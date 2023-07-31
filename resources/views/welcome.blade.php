@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Mini Project Humma Cook</title>
+        <title>Mini Project Humma Cookssss</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
