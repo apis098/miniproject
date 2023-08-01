@@ -75,7 +75,7 @@
                             <i class="fas fa-user mr-2"></i>admin
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
+                        <a href="{{route('actionlogout')}}" class="dropdown-item">
                             <i class="fas fa-arrow-left mr-2"></i>Log Out
                         </a>
                 </li>
@@ -122,7 +122,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <a href="" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -132,7 +132,7 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('siswa') }}" class="nav-link {{ request()->is('siswa') ? 'active' : '' }}">
+                            <a href="" class="nav-link {{ request()->is('siswa') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Siswa
@@ -140,7 +140,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ url('absensi') }}" class="nav-link {{ request()->is('absensi') ? 'active' : '' }}">
+                            <a href="" class="nav-link {{ request()->is('absensi') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                     Absensi
