@@ -13,6 +13,19 @@
         <div class="col-md-6 col-md-offset-3">
             <h2 class="text-center">FORM REGISTER</h3>
             <hr>
+
+
+            
+
+            @if (session()->has('error'))
+
+            <script>
+                alert("{{ session('error') }}")
+            </script>
+
+            @endif
+
+
             @if(session('message'))
             <div class="alert alert-success">
                 {{session('message')}}
@@ -22,7 +35,12 @@
             @csrf
                 <div class="form-group">
                     <label><i class="fa fa-envelope"></i> Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="Email" required="">
+                    <input type="email"  @error('email') is-invalid @enderror" name="email" class="form-control" placeholder="Email" required="">
+                    @error('email')
+                    <div class="alert alert-danger mt-2">
+                        {{ $message }}
+                    </div>
+                @enderror
                 </div>
                 <div class="form-group">
                     <label><i class="fa fa-user"></i> Username</label>
@@ -32,7 +50,7 @@
                     <label><i class="fa fa-key"></i> Password</label>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
                 </div>
-              
+
                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Register</button>
                 <hr>
                 <p class="text-center">Sudah punya akun silahkan <a href="{{route('login')}}">Login Disini!</a></p>

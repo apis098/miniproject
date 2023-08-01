@@ -52,9 +52,9 @@ Route::get('book', function () {
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
-Route::get('admin.index', [AdminController::class, 'index'])->name('admin.index')->middleware('auth', 'role:admin');
+Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index')->middleware('auth', 'role:admin');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
-
+    
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 
