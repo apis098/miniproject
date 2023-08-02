@@ -1,7 +1,6 @@
 @extends('layouts.navbar')
 
 @section('konten')
-    <h4>Selamat Datang <b>{{ Auth::user()->name }}</b>, Anda Login sebagai <b>{{ Auth::user()->role }}</b>.</h4>
     <div class="card container my-5">
         <div class="card-header">
             <h3 class="text-center">CRUD Kategori Bahan</h3>

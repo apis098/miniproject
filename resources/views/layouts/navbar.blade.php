@@ -29,18 +29,26 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
+
     <style>
-        .nav-link.active {
-            background-color: #007bff;
+        .nav-link.activet {
+          background-color: #f39c12;
             color: #fff;
         }
 
-        .nav-link:hover {
+        .nav-link.hover {
             background-color: #f0f0f0;
             color: #333;
         }
 
+        .asy{
+
+            background-image: url("/dist/img/ttpe.jpg");
+          background-size: cover;
+          }
+
     </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -53,7 +61,7 @@
         </div>
 
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+        <nav class="main-header navbar navbar-expand bg-dark">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -84,12 +92,7 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
-                        role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li>
+
             </ul>
         </nav>
         <!-- /.navbar -->
@@ -97,10 +100,10 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="{{route('admin.index')}}" class="brand-link">
                 <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light">HummaCook</span>
+                <span class="brand-text font-weight-light text-white" >HummaCook</span>
             </a>
 
             <!-- Sidebar -->
@@ -108,10 +111,10 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                        <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block text-yellow">Admin</a>
                     </div>
                 </div>
 
@@ -122,7 +125,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <a href="{{route('dashboard')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -132,61 +135,33 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('siswa') ? 'active' : '' }}">
+                            <a href="{{route('kategori')}}" class="nav-link {{ request()->is('kategori') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                    Kategori Bahan Masakan
+                                            Kategori
+
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('kategoribahan') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                            Kategori Bahan
+
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ request()->is('absensi') ? 'active' : '' }}">
+                            <a href="{{route('specialday')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
-                                    Absensi
+                                   Hari Khusus
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user"></i>
-                                <p>
-                                    Guru
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Mapel
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-home"></i>
-                                <p>
-                                    kelas
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Nilai
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-book-open"></i>
-                                <p>
-                                    perpustakaan
-                                </p>
-                            </a>
-                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -204,10 +179,10 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2023-2024.</strong>
+        <footer class="main-footer" style="background-color: rgb(255, 206, 44)">
+            <strong><b class="text-white">Copyright &copy; 2023-2024.</b></strong>
             <div class="float-right d-none d-sm-inline-block">
-                <b>HummaCook</b>
+                <b class="text-white">HummaCook</b>
             </div>
         </footer>
 
