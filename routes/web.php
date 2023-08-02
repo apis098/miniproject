@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\special_days_controller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,18 @@ Route::get('book', function () {
     return view('template.book');
 })->name('book');
 
+Route::get('dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+Route::get('kategori', function () {
+    return view('admin.kategori');
+})->name('kategori');
+
+Route::get('specialday', function () {
+    return view('admin.specialday');
+})->name('specialday');
+
 Route::get('special-days', [special_days_controller::class, 'index'])->name('SpecialDays.index');
 Route::get('/special-days-create', [special_days_controller::class, 'create'])->name('special_days.create');
 Route::get('/special-days-edit/{id}', [special_days_controller::class, 'edit'])->name('special_days.edit');
@@ -47,11 +61,11 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 
 Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index')->middleware('auth', 'role:admin');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
-    
+
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 
 
 
-
+Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index')->middleware('auth', 'role:koki');
 // ->middleware('role:koki');
