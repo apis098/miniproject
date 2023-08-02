@@ -15,7 +15,7 @@ class kategori_bahan_controller extends Controller
     {
         //$kategori_bahans = kategori_bahan::with('reseps');
         $kategori_bahans = kategori_bahan::all();
-        return view('admin.kategoribahan', compact('kategori_bahans'));
+        return view('admin.kategori_bahan.kategoribahan', compact('kategori_bahans'));
     }
 
     /**
@@ -57,7 +57,7 @@ class kategori_bahan_controller extends Controller
     public function edit(string $id)
     {
        $edit = kategori_bahan::find($id);
-       return view('admin.edit-kategoribahan', compact('edit'));
+       return view('admin.kategori_bahan.edit-kategoribahan', compact('edit'));
     }
 
     /**
@@ -72,7 +72,7 @@ class kategori_bahan_controller extends Controller
             'kategori_bahan' => $request->kategori_bahan
         ];
         kategori_bahan::where('id', $id)->update($update);
-        return redirect('/admin/kategori-bahan')->with('success', 'Sukses mengupdate data kategori bahan masakan.');
+        return redirect('/admin/kategori_bahan/kategori-bahan')->with('success', 'Sukses mengupdate data kategori bahan masakan.');
     }
 
     /**
