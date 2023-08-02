@@ -32,7 +32,7 @@ class kategori_bahan_controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kategori_bahan' => 'required'
+            'kategori_bahan' => 'required|unique:kategori_bahans'
         ]);
         $create = [
             'kategori_bahan' => $request->kategori_bahan
@@ -66,7 +66,7 @@ class kategori_bahan_controller extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'kategori_bahan' => 'required'
+            'kategori_bahan' => 'required|unique:kategori_bahans,kategori_bahan,'.$id
         ]);
         $update = [
             'kategori_bahan' => $request->kategori_bahan

@@ -18,6 +18,11 @@
                     <label for="kategori_bahan" class="form-label">Nama Kategori Bahan</label>
                     <input type="text" name="kategori_bahan" id="kategori_bahan" class="form-control" required>
                 </div>
+                @error('kategori_bahan')
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
         </div>

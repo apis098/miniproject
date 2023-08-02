@@ -53,11 +53,10 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 
+// ->middleware('role:admin')
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
     Route::resource('/admin/kategori-bahan', kategori_bahan_controller::class);
 });
-
-
 
 // ->middleware('role:koki');
