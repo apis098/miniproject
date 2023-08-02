@@ -22,12 +22,12 @@ use App\Models\kategori_bahan;
 
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.home' , ('kategori_bahan'));
+    return view('template.home' ,compact('kategori_bahan'));
 })->name('home');
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.menu', ('kategori_bahan'));
+    return view('template.menu',compact('kategori_bahan'));
 })->name('menu');
 
 Route::get('about', function () {
