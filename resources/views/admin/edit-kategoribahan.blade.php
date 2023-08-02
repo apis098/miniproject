@@ -1,4 +1,4 @@
-@extends('admin.navbar')
+@extends('layouts.navbar')
 @section('konten')
 <form action="/admin/kategori-bahan/{{ $edit->id }}" method="post">
     @csrf

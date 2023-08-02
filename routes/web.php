@@ -60,4 +60,4 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/admin/kategori-bahan', kategori_bahan_controller::class);
 });
 
-// ->middleware('role:koki');
+// ->middleware('role:koki')
