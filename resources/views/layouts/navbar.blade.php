@@ -132,10 +132,10 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ request()->is('siswa') ? 'active' : '' }}">
+                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('siswa') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                    Siswa
+                                    Kategori Bahan Masakan
                                 </p>
                             </a>
                         </li>
