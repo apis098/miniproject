@@ -20,12 +20,15 @@ class RegisterController extends Controller
         'email' => 'required|email|unique:users,email',
         'name' => 'required',
         'password' => 'required',
+        'copassword' => 'required|same:password',
 
     ],[
         'email.unique' => 'Data Email Sudah Ada/Terpakai!',
-
+        'copassword.same' => 'Password tidak sama.',
+        'copassword.required' => 'Password harus di isi.',
+        'password.required' => 'Password tidak boleh kosong     .',
        ]);
-
+        
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,
