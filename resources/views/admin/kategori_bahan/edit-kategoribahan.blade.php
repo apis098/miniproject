@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
-<form action="/admin/kategori-bahan/{{ $edit->id }}" method="post">
+<form action="{{route('kategori-bahan.update', $edit->id)}}" method="post">
     @csrf
     @method('PUT')
     <div class="mb-3">

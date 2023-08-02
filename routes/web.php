@@ -22,12 +22,12 @@ use App\Models\kategori_bahan;
 
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.home' ,compact('kategori_bahan'));
+    return view('template.home', compact('kategori_bahan'));
 })->name('home');
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.menu',compact('kategori_bahan'));
+    return view('template.menu', compact('kategori_bahan'));
 })->name('menu');
 
 Route::get('about', function () {
@@ -68,12 +68,12 @@ Route::get('register', [RegisterController::class, 'register'])->name('register'
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
-    Route::resource('/admin/kategori-bahan', kategori_bahan_controller::class);
+    Route::prefix('/admin')->group(function () {
+        Route::resource('kategori-bahan', kategori_bahan_controller::class);
+    });
 });
 
 
 // role koki
 Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index')->middleware('auth', 'role:koki');
-

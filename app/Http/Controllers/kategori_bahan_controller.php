@@ -63,16 +63,16 @@ class kategori_bahan_controller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, kategori_bahan $kategori_bahan)
     {
         $request->validate([
-            'kategori_bahan' => 'required|unique:kategori_bahans,kategori_bahan,'.$id
+            'kategori_bahan' => 'required|unique:kategori_bahans,kategori_bahan,'.$kategori_bahan->id,
         ]);
         $update = [
             'kategori_bahan' => $request->kategori_bahan
         ];
-        kategori_bahan::where('id', $id)->update($update);
-        return redirect('/admin/kategori_bahan/kategori-bahan')->with('success', 'Sukses mengupdate data kategori bahan masakan.');
+        $kategori_bahan->update($update);
+        return redirect('/admin/kategori-bahan')->with('success', 'Sukses mengupdate data kategori bahan masakan.');
     }
 
     /**

@@ -145,7 +145,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('kategoribahan') ? 'activet' : '' }}">
+                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                             Kategori Bahan
