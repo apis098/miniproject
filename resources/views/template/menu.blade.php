@@ -71,7 +71,16 @@
                                 <a class="nav-link" href="{{ route('SpecialDays.index') }}">Hari Khusus</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('book') }}">Panduan</a>
+                                <a class="nav-link" href="">Tips Dasar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Pengetahuan Dapur</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Seputar Dapur</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('book') }}">Tentang</a>
                             </li>
                             {{-- <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}">Login</a>
