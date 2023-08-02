@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\special_days_controller;
+use App\Models\kategori_bahan;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,8 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('menu', function () {
-    return view('template.menu');
+    $kategori_bahan = kategori_bahan::all();
+    return view('template.menu', compact('kategori_bahan'));
 })->name('menu');
 
 Route::get('about', function () {
@@ -45,12 +48,15 @@ Route::post('special-days/delete/multiple', [special_days_controller::class, 'de
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
-Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index')->middleware('auth', 'role:admin');
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
     
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
+    Route::resource('/admin/kategori-bahan', kategori_bahan_controller::class);
+});
 
 
 
