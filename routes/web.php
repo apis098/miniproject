@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -75,6 +76,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
         Route::resource('kategori_seputardapur',App\Http\Controllers\KategoriSeputardapurController::class);
         Route::resource('seputar_dapur',App\Http\Controllers\SeputarDapurController::class);
+        Route::resource('edit-tentang', AboutController::class);
     });
 });
 
