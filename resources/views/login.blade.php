@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login - HummaCook</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="iziToast.min.css">
+    <script src="iziToast.min.js" typ="text/javascript"></script>
+    <script src="iziToast.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="iziToast.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
+<script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body style="background-image: url('{{ asset('images/bg.jpg') }}'); background-size: cover; background-position: center;">
@@ -25,6 +32,19 @@
         font-family:'Dancing Script', cursive;
       }
     </style>
+ @if ($errors->any())
+ <script>
+     iziToast.settings({
+         position: 'topRight'
+     });
+     @foreach ($errors->all() as $error)
+         iziToast.error({
+             title: 'Error',
+             message: '{{ $error }}',
+         });
+     @endforeach
+ </script>
+@endif
     <!-- Jumbotron -->
     <div class="container py-1" style="max-width: 70%; margin-top:1.6%;">
       <div class="row g-0 align-items-center">
@@ -34,6 +54,7 @@
               backdrop-filter: blur(30px); ">
             <div class="card-body p-5 shadow-5 text-center">
               <h2 class="fw-bold mb-5 font-a ">HummaCook <i class="fa-solid fa-utensils"></i></h2>
+
               <form  action="{{ route('actionlogin') }}" method="post">
                 @csrf
                 {{-- <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -54,13 +75,14 @@
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="email" id="email" name="email" class="form-control mb-1" placeholder="Email..." required="" />
+                  <input type="email" id="email" name="email" class="form-control mb-1" placeholder="Email..."  />
                   <label class="form-label " for="form3Example3"><b>Email address</b></label>
+
                 </div>
 
                 <!-- Password input -->
                 <div class="form-outline mb-4">
-                    <input type="password" name="password" class="form-control mb-1" placeholder="Password..." required="">
+                    <input type="password" name="password" class="form-control mb-1" placeholder="Password..." >
                   <label class="form-label " for="form3Example4"><b>Password</b></label>
                 </div>
 
@@ -121,6 +143,7 @@
             </form>
         </div>
     </div> --}}
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
 

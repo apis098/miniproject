@@ -10,6 +10,8 @@ class LoginController extends Controller
 {
     public function login()
     {
+
+
         if (Auth::check()) {
             return redirect()->route('admin.index');
         }else{
@@ -19,6 +21,14 @@ class LoginController extends Controller
 
     public function actionlogin(Request $request)
     {
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ],[
+            'email.required' => 'email tidak boleh kosong',
+            'password.required' => 'password tidak boleh kosong'
+        ]);
         $data = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
