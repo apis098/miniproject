@@ -73,6 +73,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
+        Route::resource('kategori_seputardapur',App\Http\Controllers\KategoriSeputardapurController::class);
+        Route::resource('seputar_dapur',App\Http\Controllers\SeputarDapurController::class);
     });
 });
 

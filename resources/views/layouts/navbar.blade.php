@@ -135,10 +135,10 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('kategori')}}" class="nav-link {{ request()->is('kategori') ? 'activet' : '' }}">
+                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                            Kategori
+                                            Kategori Seputar Dapur
 
                                 </p>
                             </a>
