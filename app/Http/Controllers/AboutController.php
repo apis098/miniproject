@@ -51,13 +51,13 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, about $about)
+    public function update(Request $request, string $id)
     {
         $update = [
             'judul' => $request->judul,
             'isi' => $request->isi
         ];
-        $about->update($update);
+        about::where('id', $id)->update($update);
         return redirect()->back();
     }
 

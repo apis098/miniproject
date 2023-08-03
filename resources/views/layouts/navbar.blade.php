@@ -176,7 +176,14 @@ h2
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                   Edit About
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

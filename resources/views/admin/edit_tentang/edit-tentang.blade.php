@@ -6,8 +6,9 @@
         </div>
         <div class="card-body">
             @foreach ($edit_tentang as $edit)
-                <form action="/admin/edit-tentang/{{ $edit }}" method="post">
-                    {{ csrf_field() }}
+                <form action="/admin/edit-tentang/{{ $edit->id }}" method="post">
+                    @csrf
+                    @method('PUT')
                     <div class="mb-3">
                         <label for="judul" class="form-label">Judul</label>
                         <input type="text" name="judul" id="judul" class="form-control" value="{{ $edit->judul }}" required>
@@ -18,6 +19,7 @@
                             {{ $edit->isi }}
                         </textarea>
                     </div>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
             @endforeach
         </div>
