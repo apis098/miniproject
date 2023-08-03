@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\seputar_dapur;
 use App\Http\Requests\Storeseputar_dapurRequest;
 use App\Http\Requests\Updateseputar_dapurRequest;
 use App\Models\kategori_seputardapur;
+use App\Models\seputar_dapur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,9 +15,9 @@ class SeputarDapurController extends Controller
      */
     public function index()
     {
-        $kategori = kategori_seputardapur::all();
+        $kategori_seputardapur = kategori_seputardapur::all();
         $seputar_dapur = seputar_dapur::all();
-        return view('seputar-dapur.index',compact('seputar_dapur', 'kategori'));
+        return view('admin.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur'));
     }
 
     /**
@@ -26,8 +25,8 @@ class SeputarDapurController extends Controller
      */
     public function create()
     {
-        $kategori_seputardapur =kategori_seputardapur::all();
-     return view('seputar-dapur.create',compact('kategori_seputardapur'));
+    //     $kategori_seputardapur =kategori_seputardapur::all();
+    //  return view('seputar-dapur.create',compact('kategori_seputardapur'));
     }
 
     /**
@@ -80,7 +79,7 @@ class SeputarDapurController extends Controller
             'kategori_seputardapur'=>kategori_seputardapur::all(),
             'seputar_dapur'=>$seputar_dapur
             ];
-            return view('seputar-dapur.edit',$data);
+            return view('admin.seputar-dapur.edit',$data);
     }
 
     /**
