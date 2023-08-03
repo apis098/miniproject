@@ -56,12 +56,6 @@ Route::get('specialday', function () {
     return view('admin.specialday');
 })->name('specialday');
 
-Route::get('special-days', [special_days_controller::class, 'index'])->name('SpecialDays.index');
-Route::get('/special-days-create', [special_days_controller::class, 'create'])->name('special_days.create');
-Route::get('/special-days-edit/{id}', [special_days_controller::class, 'edit'])->name('special_days.edit');
-Route::put('/special-days-update/{id}', [special_days_controller::class, 'update'])->name('special_days.update');
-Route::post('/special-days-store', [special_days_controller::class, 'store'])->name('special_days.store');
-Route::post('special-days/delete/multiple', [special_days_controller::class, 'destroy'])->name('special_days.delete.multiple');
 
 // Login Register & logout
 
