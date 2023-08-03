@@ -41,6 +41,7 @@
 
         .nav-link {
             white-space: nowrap;
+            font-size: 16px;
         }
 
     </style>
