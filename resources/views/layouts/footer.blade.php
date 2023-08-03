@@ -1,4 +1,4 @@
-@extends('layouts.app')
+ @extends('layouts.app')
 <header class="header_section">
     <div class="container">
       <nav class="navbar navbar-expand-lg custom_nav-container ">
@@ -101,3 +101,9 @@
       </nav>
     </div>
   </header>
+  <footer class="main-footer" style="background-color: rgb(255, 206, 44)">
+    <strong><b class="text-white">Copyright &copy; 2023-2024.</b></strong>
+    <div class="float-right d-none d-sm-inline-block">
+        <b class="text-white">HummaCook</b>
+    </div>
+</footer>
