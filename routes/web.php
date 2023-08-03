@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\basic_tips_controller;
 use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
@@ -55,12 +56,6 @@ Route::get('specialday', function () {
     return view('admin.specialday');
 })->name('specialday');
 
-Route::get('special-days', [special_days_controller::class, 'index'])->name('SpecialDays.index');
-Route::get('/special-days-create', [special_days_controller::class, 'create'])->name('special_days.create');
-Route::get('/special-days-edit/{id}', [special_days_controller::class, 'edit'])->name('special_days.edit');
-Route::put('/special-days-update/{id}', [special_days_controller::class, 'update'])->name('special_days.update');
-Route::post('/special-days-store', [special_days_controller::class, 'store'])->name('special_days.store');
-Route::post('special-days/delete/multiple', [special_days_controller::class, 'destroy'])->name('special_days.delete.multiple');
 
 // Login Register & logout
 
@@ -75,10 +70,28 @@ Route::post('actionregister', [RegisterController::class, 'actionregister'])->na
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
     Route::prefix('/admin')->group(function () {
+        //Hari Khusus
+        Route::get('special-days', [special_days_controller::class, 'index'])->name('SpecialDays.index');
+        Route::get('/special-days-create', [special_days_controller::class, 'create'])->name('SpecialDays.create');
+        Route::get('/special-days-edit/{id}', [special_days_controller::class, 'edit'])->name('SpecialDays.edit');
+        Route::get('special-days/{id}', [special_days_controller::class, 'show'])->name('SpecialDays.show');
+        Route::put('/special-days-update/{id}', [special_days_controller::class, 'update'])->name('SpecialDays.update');
+        Route::post('/special-days-store', [special_days_controller::class, 'store'])->name('SpecialDays.store');
+        Route::delete('special-days-delete/{id}', [special_days_controller::class, 'destroy'])->name('SpecialDays.destroy');
+
+        //Tips Dasar
+        Route::get('basic-tips', [basic_tips_controller::class, 'index'])->name('BasicTips.index');
+        Route::get('/basic-tips-create', [basic_tips_controller::class, 'create'])->name('BasicTips.create');
+        Route::post('/basic-tips-store', [basic_tips_controller::class, 'store'])->name('BasicTips.store');
+        Route::get('/basic-tips-edit/{id}', [basic_tips_controller::class, 'edit'])->name('BasicTips.edit');
+        Route::put('/basic-tips-update/{id}', [basic_tips_controller::class, 'update'])->name('BasicTips.update');
+        Route::get('basic-tips/{id}', [basic_tips_controller::class, 'show'])->name('BasicTips.show');
+        Route::delete('basic-tips-delete/{id}', [basic_tips_controller::class, 'destroy'])->name('BasicTips.destroy');
+
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
-        Route::resource('kategori_seputardapur',App\Http\Controllers\KategoriSeputardapurController::class);
-        Route::resource('seputar_dapur',App\Http\Controllers\SeputarDapurController::class);
+        Route::resource('kategori_seputardapur', App\Http\Controllers\KategoriSeputardapurController::class);
+        Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
         Route::resource('edit-tentang', AboutController::class);
     });
 });

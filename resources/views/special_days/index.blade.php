@@ -1,148 +1,140 @@
-@extends('layouts.app')
+@extends('layouts.navbar')
+@section('konten')
+    @push('style')
+        @powerGridStyles
+    @endpush
+    <style>
+        .table-rounded {
+            border-collapse: separate;
+            border-radius: 10px;
+            border-color: black;
 
-@push('style')
-    @powerGridStyles
-@endpush
-<style>
-    .table-rounded {
-        border-collapse: separate;
-        border-radius: 10px;
-        border-color: black;
+        }
 
-    }
+        .table-rounded thead th:first-child {
+            border-top-left-radius: 10px;
+        }
 
-    .table-rounded thead th:first-child {
-        border-top-left-radius: 10px;
-    }
+        .table-rounded thead th:last-child {
+            border-top-right-radius: 10px;
+        }
 
-    .table-rounded thead th:last-child {
-        border-top-right-radius: 10px;
-    }
+        .table-rounded tbody tr:last-child td:first-child {
+            border-bottom-left-radius: 10px;
+        }
 
-    .table-rounded tbody tr:last-child td:first-child {
-        border-bottom-left-radius: 10px;
-    }
+        .table-rounded tbody tr:last-child td:last-child {
+            border-bottom-right-radius: 10px;
+        }
 
-    .table-rounded tbody tr:last-child td:last-child {
-        border-bottom-right-radius: 10px;
-    }
+        .btn-group-vertical {
+            display: flex;
+            flex-direction: column;
+        }
 
-    .btn-group-vertical {
-        display: flex;
-        flex-direction: column;
-    }
-    .zoom-effects:hover{
-        transform: scale(0.97); 
-    }
-</style>
-
-    <div class="btn-toolbar mb-2 mb-md-0">
+        .zoom-effects:hover {
+            transform: scale(0.97);
+        }
+    </style>
+    <div class="mt-3 ml-3">
+        <h2 class="text-dark"><b>{{ $title }}</b></h2>
+        <hr />
+    </div>
+    <div class=" mb-2 mt-1 mb-md-1">
+        <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
         <div>
-            <button class="btn btn-dark mb-3 zoom-effects" data-mdb-ripple-color="dark" onclick="deleteSelected()">
-                <span data-feather="trash-2" class="align-text-bottom me-1"></span>
-                Hapus Data
-            </button>
-        </div>  
-        <div style="margin-left: 1%">
-            <a href="{{ route('special_days.create') }}" class="btn btn-primary mb-3 zoom-effects" data-mdb-ripple-color="dark" >
-                <span data-feather="plus-circle" class="align-text-bottom me-1"></span>
-                Tambah Data 
-            </a>
+            <form method="POST" action="{{ route('SpecialDays.store') }}" class="d-flex align-items-center">
+                @csrf
+                <input type="text" class="form-control ms-1 mb-1 me-2 rounded-3" id="name" name="name"
+                    aria-describedby="emailHelp" placeholder="Masukkan nama hari...">
+                <input type="hidden" value="-" class="form-control" id="description" name="description"
+                    placeholder="Masukkan Deskripsi...">
+                <button type="submit" class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                    data-mdb-ripple-color="dark">
+                    <i class="fa-regular fa-floppy-disk me-1"></i>
+                    Submit
+                </button>
+            </form>
         </div>
-
-       
     </div>
     <table class="table table-striped table-rounded" id="table">
         <thead class="bg-secondary text-light">
             <tr>
-                <th><input type="checkbox" id="select-all"></th>
                 <th>NO</th>
                 <th>Nama Hari Special</th>
-                <th>description</th>
+                <th>Dibuat Pada:</th>
+                <th>Terakhir Diupdate Pada:</th>
                 <th>action</th>
-                </tr>
+            </tr>
         </thead>
-        <tbody class="table-active">
+        <tbody class="table-active border-light">
             @foreach ($data as $row)
                 <tr>
-                    <td>
-                        <input type="checkbox" name="selected_ids[]" class="data-checkbox" data-id="{{ $row->id }}">
-                    </td>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $row->name }}</td>
-                    <td>{{ $row->description }}</td>
+                    <td>{{ $row->created_at }}</td>
+                    <td>{{ $row->updated_at }}</td>
                     <td>
-                        <div class="btn-group-vertical">
-                            <form action="{{ route('special_days.edit', ['id' => $row->id]) }}">
-                                <button type="submit" class="btn btn-outline-success btn-sm rounded-5" data-mdb-ripple-color="dark"><span data-feather="edit-3"
-                                        class="align-text-bottom me-1"></span></button>
-                            </form>
-                        </div>
+                       
+                        <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
+                            data-target="#exampleModal" data-id="{{ $row->id }}" data-whatever="@mdo"><i
+                                class="fa-solid fa-pen-clip"></i></button>
+                        <form action="{{ route('SpecialDays.destroy', $row->id) }}" method="POST" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
+                                data-mdb-ripple-color="dark"
+                                onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                    class="fa-solid fa-trash-can"></i></button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <div class="d-flex justify-content-center" style="margin-top: -2%;">
-    {{-- {!! $holidays->links('modern-pagination') !!} --}}
+    {{-- modal edit --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('SpecialDays.update', $row->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Nama:</label>
+                            <input type="text" class="form-control" name="name" id="nameEdit">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" hidden class="form-control" name="description" id="descriptionEdit">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                    data-mdb-ripple-color="dark">
+                    <i class="fa-regular fa-floppy-disk me-1"></i>
+                    Submit
+                </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-@push('script')
+    {{-- end modal edit --}}
+    <div class="d-flex justify-content-center" style="margin-top: -2%;">
+        {{-- {!! $holidays->links('modern-pagination') !!} --}}
+    </div>
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    @powerGridScripts
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
+        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
     <script>
-        $('#select-all').on('change', function() {
-            $('.data-checkbox').prop('checked', this.checked);
-        });
-
-        $('.data-checkbox').on('change', function() {
-            const totalData = $('.data-checkbox').length;
-            const totalChecked = $('.data-checkbox:checked').length;
-
-            $('#select-all').prop('checked', totalChecked === totalData);
-        });
-
-        function deleteSelected() {
-            const selectedIds = $('.data-checkbox:checked')
-                .map(function() {
-                    return this.getAttribute('data-id');
-                })
-                .get();
-
-            if ($('#select-all').prop('checked')) {
-                $('.data-checkbox').prop('checked', true);
-            } else {
-                $('.data-checkbox').prop('checked', false);
-            }
-
-
-            if (selectedIds.length === 0) {
-                alert("Pilih setidaknya satu data yang akan dihapus.");
-                return;
-            }
-
-            if (confirm("Anda yakin ingin menghapus data terpilih?")) {
-                const deleteUrl = "{{ route('special_days.delete.multiple') }}";
-                const csrfToken = "{{ csrf_token() }}";
-
-                $.ajax({
-                    type: 'POST',
-                    url: deleteUrl,
-                    data: {
-                        _token: csrfToken,
-                        ids: selectedIds
-                    },
-                    success: function(response) {
-                        location.reload();
-                    },
-                    error: function(xhr, status, error) {
-                        alert("Terjadi kesalahan saat menghapus data.");
-                        console.log(xhr.responseText);
-                    }
-                });
-            }
-        }
         $(document).ready(function() {
             $('#search').on('input', function() {
                 var value = $(this).val().toLowerCase();
@@ -151,32 +143,19 @@
                 });
             });
         });
+
+        $(document).on('click', '.edit-btn', function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: '/special-days/' + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $('#nameEdit').val(data.name);
+                    $('#descriptionEdit').val('-');
+                    $('#exampleModal').modal('show');
+                }
+            });
+        });
     </script>
-@endpush
-
-{{-- @extends('layouts.app')
-
-@push('style')
-@powerGridStyles
-@endpush
-
-@section('buttons')
-<div class="btn-toolbar mb-2 mb-md-0">
-    <div>
-        <a href="{{ route('holidays.create') }}" class="btn btn-sm btn-primary">
-            <span data-feather="plus-circle" class="align-text-bottom me-1"></span>
-            Tambah Data Hari Libur
-        </a>
-    </div>
-</div>
 @endsection
-
-@section('content')
-@include('partials.alerts')
-<livewire:holiday-table />
-@endsection
-
-@push('script')
-<script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-@powerGridScripts
-@endpush --}}       

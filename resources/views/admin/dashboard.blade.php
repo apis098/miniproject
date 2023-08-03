@@ -1,5 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
+
 <br>
 
     <section class="content">
@@ -143,5 +144,6 @@
 
 
 @endsection
+
 
 

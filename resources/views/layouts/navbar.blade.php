@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .nav-link.activet {
           background-color: #f39c12;
@@ -53,7 +53,22 @@ h2
   font-family: 'Dancing Script', cursive;
 }
 
+</style>
+<style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+      .font-a{
+        font-family:'Dancing Script', cursive;
+      }
     </style>
+
 
 </head>
 
@@ -109,7 +124,7 @@ h2
             <a href="{{route('admin.index')}}" class="brand-link">
                 <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light text-white" >HummaCook</span>
+                <span class="brand-text font-weight-light text-white fw-bold mb-5 font-a " >HummaCook</span>
             </a>
 
             <!-- Sidebar -->
@@ -169,7 +184,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('specialday')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                            <a href="{{route('SpecialDays.index')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Hari Khusus
@@ -177,7 +192,15 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                            <a href="{{route('BasicTips.index')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                    Tips Dasar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Edit About
@@ -201,17 +224,7 @@ h2
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer bg-dark">
-            <strong><b class="text-white">Copyright &copy; 2023-2024.</b></strong>
-            <div class="float-right d-none d-sm-inline-block">
-                <b class="text-white">HummaCook</b>
-            </div>
-        </footer>
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
+       
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->

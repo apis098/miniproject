@@ -97,9 +97,7 @@
                       </li> --}}
                     </ul>
                 <div class="user_option">
-                  <a href="" class="user_link">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                  </a>
+                
 
                   <a href="{{route('login')}}" class="order_online">
                     Login
@@ -536,7 +534,6 @@
     @foreach ($about as $a)
     <section class="about_section layout_padding">
       <div class="container  ">
-    
         <div class="row">
           <div class="col-md-6 ">
             <div class="img-box">
@@ -562,8 +559,6 @@
       </div>
     </section>
     @endforeach
-    
-
     <!-- end about section -->
 
     <!-- book section -->
