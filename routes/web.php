@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\kategori_bahan_controller;
+use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\special_days_controller;
+use App\Models\about;
 use App\Models\kategori_bahan;
 
 /*
@@ -22,7 +25,8 @@ use App\Models\kategori_bahan;
 
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.home', compact('kategori_bahan'));
+    $about = about::all();
+    return view('template.home', compact('kategori_bahan', 'about'));
 })->name('home');
 
 Route::get('menu', function () {
@@ -31,7 +35,8 @@ Route::get('menu', function () {
 })->name('menu');
 
 Route::get('about', function () {
-    return view('template.about');
+    $about = about::all();
+    return view('template.about', compact('about'));
 })->name('about');
 
 Route::get('book', function () {
@@ -71,6 +76,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
     Route::prefix('/admin')->group(function () {
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
+        Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
+        Route::resource('kategori_seputardapur',App\Http\Controllers\KategoriSeputardapurController::class);
+        Route::resource('seputar_dapur',App\Http\Controllers\SeputarDapurController::class);
+        Route::resource('edit-tentang', AboutController::class);
     });
 });
 

@@ -47,6 +47,12 @@
           background-size: cover;
           }
 
+h1,
+h2
+ {
+  font-family: 'Dancing Script', cursive;
+}
+
     </style>
 
 </head>
@@ -135,10 +141,10 @@
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('kategori')}}" class="nav-link {{ request()->is('kategori') ? 'activet' : '' }}">
+                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                            Kategori
+                                            Kategori Seputar Dapur
 
                                 </p>
                             </a>
@@ -154,6 +160,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/admin/kategori-tipsdasar" class="nav-link {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                            Kategori Tips Dasar
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('specialday')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
@@ -161,7 +176,14 @@
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                   Edit About
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -179,7 +201,7 @@
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer" style="background-color: rgb(255, 206, 44)">
+        <footer class="main-footer bg-dark">
             <strong><b class="text-white">Copyright &copy; 2023-2024.</b></strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b class="text-white">HummaCook</b>
@@ -228,6 +250,20 @@
     <script src="/dist/js/pages/dashboard.js"></script>
     <script src="/https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+    </script>
+     <script src="path_to_jquery.min.js"></script>
+     <script src="path_to_moment.min.js"></script>
+     <script src="path_to_fullcalendar.min.js"></script>
+
+    <script>
+    document.addEventListener('calendar', function() {
+      var calendarEl = document.getElementById('calendar'); // ID kalender
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        // Konfigurasi kalender
+        // ...
+      });
+      calendar.render();
+    });
     </script>
 </body>
 
