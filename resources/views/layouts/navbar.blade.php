@@ -224,17 +224,7 @@ h2
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer bg-dark">
-            <strong><b class="text-white fw-bold mb-5 font-a ">Copyright &copy; 2023-2024.</b></strong>
-            <div class="float-right d-none d-sm-inline-block">
-                <b class="text-white fw-bold mb-5 font-a ">HummaCook</b>
-            </div>
-        </footer>
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
+       
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
