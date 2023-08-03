@@ -154,6 +154,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/admin/kategori-tipsdasar" class="nav-link {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                            Kategori Tips Dasar
+
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{route('specialday')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>

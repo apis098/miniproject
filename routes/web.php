@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\kategori_bahan_controller;
+use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\special_days_controller;
@@ -71,6 +72,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
     Route::prefix('/admin')->group(function () {
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
+        Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
     });
 });
 
