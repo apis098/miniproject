@@ -3,7 +3,7 @@
 
 <div class="btn-toolbar mb-2 mt-5 mb-md-0">
     <div>
-        <a href="{{ route('SpecialDays.index') }}" class="btn btn-primary rounded-3 zoom-effects" data-mdb-ripple-color="dark">
+        <a href="{{ route('BasicTips.index') }}" class="btn btn-primary rounded-3 zoom-effects" data-mdb-ripple-color="dark">
             <span data-feather="arrow-left-circle" class="align-text-bottom"></span>
             Kembali
         </a>
@@ -12,7 +12,7 @@
 
 <div class="row">
     <div class="col-md-7">
-        <form method="POST" action="{{ route('SpecialDays.update', ['id' => $data->id]) }}">
+        <form method="POST" action="{{ route('BasicTips.update', ['id' => $data->id]) }}">
             @csrf
             @method('put')
             <div class="form-group mb-3">
