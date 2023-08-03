@@ -192,6 +192,14 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{route('BasicTips.index')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                    Tips Dasar
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/admin/edit-tentang" class="nav-link {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
