@@ -53,7 +53,22 @@ h2
   font-family: 'Dancing Script', cursive;
 }
 
+</style>
+<style>
+      .cascading-right {
+        margin-right: -50px;
+      }
+
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-right: 0;
+        }
+      }
+      .font-a{
+        font-family:'Dancing Script', cursive;
+      }
     </style>
+
 
 </head>
 
@@ -109,7 +124,7 @@ h2
             <a href="{{route('admin.index')}}" class="brand-link">
                 <img src="/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light text-white" >HummaCook</span>
+                <span class="brand-text font-weight-light text-white fw-bold mb-5 font-a " >HummaCook</span>
             </a>
 
             <!-- Sidebar -->
@@ -177,7 +192,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Edit About
@@ -202,9 +217,9 @@ h2
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer bg-dark">
-            <strong><b class="text-white">Copyright &copy; 2023-2024.</b></strong>
+            <strong><b class="text-white fw-bold mb-5 font-a ">Copyright &copy; 2023-2024.</b></strong>
             <div class="float-right d-none d-sm-inline-block">
-                <b class="text-white">HummaCook</b>
+                <b class="text-white fw-bold mb-5 font-a ">HummaCook</b>
             </div>
         </footer>
 
