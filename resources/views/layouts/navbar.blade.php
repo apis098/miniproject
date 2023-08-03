@@ -141,7 +141,7 @@ h2
 
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
+                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                             Kategori Seputar Dapur
@@ -194,7 +194,7 @@ h2
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <footer class="main-footer" style="background-color: rgb(255, 206, 44)">
+        <footer class="main-footer bg-dark">
             <strong><b class="text-white">Copyright &copy; 2023-2024.</b></strong>
             <div class="float-right d-none d-sm-inline-block">
                 <b class="text-white">HummaCook</b>
