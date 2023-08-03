@@ -10,11 +10,7 @@ class kategori_bahan extends Model
     use HasFactory;
     protected $table = 'kategori_bahans';
     protected $fillable = [
-        'kategori_bahan'
+        'kategori_bahan',
+        'foto'
     ];
-    public function reseps()
-    {
-        return $this->belongsToMany(resep::class, 'pivot');
-    }
-
 }

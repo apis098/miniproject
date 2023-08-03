@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kategori_bahan;
 use App\Models\resep;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class kategori_bahan_controller extends Controller
 {
@@ -32,10 +33,12 @@ class kategori_bahan_controller extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kategori_bahan' => 'required|unique:kategori_bahans'
+            'kategori_bahan' => 'required|unique:kategori_bahans',
+            'foto' => 'required|image|mimes:png,jpg,jpeg'
         ]);
         $create = [
-            'kategori_bahan' => $request->kategori_bahan
+            'kategori_bahan' => $request->kategori_bahan,
+            'foto' => $request->file('foto')->store('public')
         ];
         kategori_bahan::create($create);
         return redirect()->back()->with('success', 'Sukses menambahkan kategori bahan masakan.');
@@ -63,15 +66,19 @@ class kategori_bahan_controller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, kategori_bahan $kategori_bahan)
+    public function update(Request $request, string $id)
     {
         $request->validate([
-            'kategori_bahan' => 'required|unique:kategori_bahans,kategori_bahan,'.$kategori_bahan->id,
+            'kategori_bahan' => 'required|unique:kategori_bahans,kategori_bahan,'.$id,
+            'foto' => 'nullable|image|mimes:png,jpg,jpeg'
         ]);
-        $update = [
-            'kategori_bahan' => $request->kategori_bahan
-        ];
-        $kategori_bahan->update($update);
+        $update = kategori_bahan::find($id);
+        $update->kategori_bahan = $request->kategori_bahan;
+        if ($request->hasFile('foto')) {
+            Storage::delete($update->foto);
+            $update->foto = $request->file('foto')->store('public');
+        }
+        $update->save();
         return redirect('/admin/kategori-bahan')->with('success', 'Sukses mengupdate data kategori bahan masakan.');
     }
 
@@ -80,6 +87,8 @@ class kategori_bahan_controller extends Controller
      */
     public function destroy(string $id)
     {
+        $hapus = kategori_bahan::find($id);
+        Storage::delete($hapus->foto);
         kategori_bahan::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Sukses menghapus data kategori bahan masakan.');
     }
