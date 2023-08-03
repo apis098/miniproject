@@ -43,7 +43,7 @@
     <div class=" mb-2 mt-1 mb-md-1">
         <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
         <div>
-            <form method="POST" action="{{ route('SpecialDays.store') }}" class="d-flex align-items-center">
+            <form method="POST" action="{{ route('BasicTips.store') }}" class="d-flex align-items-center">
                 @csrf
                 <input type="text" class="form-control ms-1 mb-1 me-2 rounded-3" id="name" name="name"
                     aria-describedby="emailHelp" placeholder="Masukkan nama hari...">
@@ -75,11 +75,14 @@
                     <td>{{ $row->created_at }}</td>
                     <td>{{ $row->updated_at }}</td>
                     <td>
-                       
+                        {{-- <form action="{{ route('BasicTips.edit', ['id' => $row->id]) }}" class="d-inline-block">
+                            <button type="submit" class="btn btn-outline-success btn-sm rounded-5"
+                                data-mdb-ripple-color="dark"><i class="fa-solid fa-pen-clip"></i></button>
+                        </form> --}}
                         <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
                             data-target="#exampleModal" data-id="{{ $row->id }}" data-whatever="@mdo"><i
                                 class="fa-solid fa-pen-clip"></i></button>
-                        <form action="{{ route('SpecialDays.destroy', $row->id) }}" method="POST" class="d-inline-block">
+                        <form action="{{ route('BasicTips.destroy', $row->id) }}" method="POST" class="d-inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
@@ -104,7 +107,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('SpecialDays.update', $row->id) }}" method="POST">
+                    <form action="{{ route('BasicTips.update', $row->id) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -147,7 +150,7 @@
         $(document).on('click', '.edit-btn', function() {
             var id = $(this).data('id');
             $.ajax({
-                url: '/special-days/' + id,
+                url: '/basic-tips/' + id,
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {

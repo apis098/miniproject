@@ -30,26 +30,26 @@ class special_days_controller extends Controller
             "data" => $data
         ]);
     }
-    public function store(Request $request)
-    {
-        $rules = [
-            'name' => 'required',
-            'description' => 'required',
-        ];
-        $customMessages = [
-            'name.required' => 'Ada column yang belum terisi',
-            'description.required' => 'Ada Column yang belum terisi',
-        ];
-        $this->validate($request, $rules, $customMessages);
+        public function store(Request $request)
+        {
+            $rules = [
+                'name' => 'required',
+                'description' => 'required',
+            ];
+            $customMessages = [
+                'name.required' => 'Ada column yang belum terisi',
+                'description.required' => 'Ada Column yang belum terisi',
+            ];
+            $this->validate($request, $rules, $customMessages);
 
-        $data = new special_days();
+            $data = new special_days();
 
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->save();
+            $data->name = $request->name;
+            $data->description = $request->description;
+            $data->save();
 
-        return redirect('/special-days')->with('success', 'Data Hari Khusus Berhasil Ditambah.');
-    }
+            return redirect('/special-days')->with('success', 'Data Hari Khusus Berhasil Ditambah.');
+        }
     public function update(Request $request,$id)
     {
         $rules = [
@@ -70,21 +70,16 @@ class special_days_controller extends Controller
 
         return redirect('/special-days')->with('success', 'Data Hari Khusus Berhasil Update.');
     }
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        $selectedIds = $request->input('ids');
+        $data = special_days::findOrFail($id);
+        $data->delete();
 
-        if (!is_array($selectedIds)) {
-            return response()->json(['message' => 'Invalid input.'], 400);
-        }
-
-        try {
-            // Hapus data berdasarkan ID yang diterima dari permintaan
-            special_days::whereIn('id', $selectedIds)->delete();
-
-            return response()->json(['message' => 'Data berhasil dihapus.'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan saat menghapus data.'], 500);
-        }
+        return redirect()->route('SpecialDays.index')->with('success', 'Data has been deleted successfully.');
+    }
+    public function show($id)
+    {
+        $data = special_days::findOrFail($id);
+        return response()->json($data);
     }
 }
