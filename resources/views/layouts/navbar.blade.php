@@ -184,7 +184,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('specialday')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                            <a href="{{route('SpecialDays.index')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Hari Khusus
