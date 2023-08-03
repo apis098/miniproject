@@ -93,9 +93,7 @@
                   </li> --}}
                 </ul>
             <div class="user_option">
-              <a href="" class="user_link">
-                <i class="fa fa-user" aria-hidden="true"></i>
-              </a>
+             
 
               <a href="{{route('login')}}" class="order_online">
                 Login
