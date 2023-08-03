@@ -9,6 +9,7 @@ use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\special_days_controller;
+use App\Models\about;
 use App\Models\kategori_bahan;
 
 /*
@@ -24,7 +25,8 @@ use App\Models\kategori_bahan;
 
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.home', compact('kategori_bahan'));
+    $about = about::all();
+    return view('template.home', compact('kategori_bahan', 'about'));
 })->name('home');
 
 Route::get('menu', function () {
@@ -33,7 +35,8 @@ Route::get('menu', function () {
 })->name('menu');
 
 Route::get('about', function () {
-    return view('template.about');
+    $about = about::all();
+    return view('template.about', compact('about'));
 })->name('about');
 
 Route::get('book', function () {
