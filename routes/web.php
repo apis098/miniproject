@@ -9,6 +9,7 @@ use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\special_days_controller;
 use App\Models\about;
 use App\Models\kategori_bahan;
@@ -93,6 +94,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::resource('kategori_seputardapur', App\Http\Controllers\KategoriSeputardapurController::class);
         Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
         Route::resource('edit-tentang', AboutController::class);
+        Route::resource('resep', ResepsController::class);
     });
 });
 

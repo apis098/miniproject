@@ -15,4 +15,7 @@ class kategori_seputardapur extends Model
     public function seputar_dapur(){
         return $this->hasMany(seputar_dapur::class);
     }
+    public function resep() {
+      return $this->hasMany(reseps::class);
+    }
 }

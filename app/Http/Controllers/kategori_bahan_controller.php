@@ -59,8 +59,7 @@ class kategori_bahan_controller extends Controller
      */
     public function edit(string $id)
     {
-       $edit = kategori_bahan::find($id);
-       return view('admin.kategori_bahan.edit-kategoribahan', compact('edit'));
+      //
     }
 
     /**

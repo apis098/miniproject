@@ -9,4 +9,7 @@ class special_days extends Model
 {
     use HasFactory;
     protected $fillable = ['name', 'description'];
+    public function resep() {
+        return $this->hasMany(reseps::class);
+    }
 }
