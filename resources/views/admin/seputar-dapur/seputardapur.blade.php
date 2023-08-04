@@ -1,7 +1,5 @@
 @extends('layouts.navbar')
 @section('konten')
-<script src="https://cdn.tiny.cloud/1/6sspi2ldznrch56a9xp1iqm46ftkai99rr2g0rm424yq2k4m/tinymce/6/tinymce.min.js"
-referrerpolicy="origin"></script>
 <div class="container">
     <div class="col mt-5">
         <div class="mb-3 row">
@@ -70,51 +68,47 @@ referrerpolicy="origin"></script>
         </div>
     </div>
 </div>
-<script>
-    tinymce.init({
-        selector: 'textarea',
-        plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-        mergetags_list: [{
-                value: 'First.Name',
-                title: 'First Name'
-            },
-            {
-                value: 'Email',
-                title: 'Email'
-            },
-        ],
-        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject(
-            "See docs to implement AI Assistant"))
-    });
-</script>
 
-<div class="container">
-    @foreach ($seputar_dapur as $item )
-    <div class="card" style="width: 18rem;">
-        <img src="{{asset('storage/seputardapur/'.$item->foto) }}" class="card-img-top" alt="">
-        <div class="card-body">
-          <h5 class="card-title">{{ $item->judul }}</h5>
-          <p class="card-text"> {!! $item->isi !!} </p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">{{ $item->kategori_seputardapur->nama_kategori }}</li>
-
-        </ul>
-        <div class="card-body">
-            <form action="{{ route('seputar_dapur.destroy', $item->id) }}"
-                method="post">
-                @method('DELETE')
-                @csrf
-                <a href="{{ route('seputar_dapur.edit', $item->id) }}"
-                    class="btn btn-warning">Edit</a>
-                <button type="submit" class="btn btn-danger"
-                    onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')">Hapus</button>
-            </form>
-        </div>
-      </div>
-    </div>
-      @endforeach
+<table class="table table-striped table-rounded" id="table">
+    <thead class="bg-secondary text-light">
+        <tr>
+            <th>NO</th>
+            <th>Foto</th>
+            <th>Judul</th>
+            <th>kategori</th>
+            <th>isi</th>
+            <th>Dibuat Pada:</th>
+            <th>Terakhir Diupdate Pada:</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody class="table-active border-light">
+        @foreach ($seputar_dapur as $data)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>
+                    <img src="{{asset('storage/seputardapur/'.$data->foto) }}" class="card-img-top" alt="" style="width:90px">
+                </td>
+                <td>{{ $data->judul }}</td>
+                <td>{{ $data->kategori_seputardapur->nama_kategori }}</td>
+                <td>{{ $data->isi }}</td>
+                <td>{{ $data->created_at }}</td>
+                <td>{{ $data->updated_at }}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
+                        data-target="#exampleModal{{ $data->id }}"><i class="fa-solid fa-pen-clip"></i></button>
+                    <form action="{{ route('seputar_dapur.destroy', $data->id) }}" method="POST" class="d-inline-block">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
+                            data-mdb-ripple-color="dark"
+                            onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                class="fa-solid fa-trash-can"></i></button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection
+
