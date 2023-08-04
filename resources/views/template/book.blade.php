@@ -71,7 +71,7 @@
 
 .login{
     display: inline-block;
-  padding: 6px 25px;
+  padding: 6px 22px;
   background-color: #ffbe33;
   color: #ffffff;
   border-radius: 45px;
@@ -161,9 +161,12 @@
             <div class="user_option">
 
 
-              <a href="{{route('login')}}" class="login">
-                Login
-              </a>
+                @if (Auth::check())
+                <a href="{{route('actionlogout')}}" class="login">Logout</a>
+                @else
+                <a href="{{route('login')}}" class="login">Login</a>
+
+                @endif
             </div>
           </div>
         </nav>
