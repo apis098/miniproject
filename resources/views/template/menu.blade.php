@@ -111,50 +111,50 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
-                      <li class="nav-item " style="margin-left: -140px; font-size: 15px">
+                      <li class="nav-item " style="margin-left: -140px;">
                         <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                       </li>
-                      <li class="nav-item active dropdown" style="font-size: 15px">
+                      <li class="nav-item active dropdown" >
                         <a class="nav-link" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <div class="dropdown-menu" >
                             <a href="#" class="dropdown-item text-white">Ayam - Daging</a>
                             <a href="#" class="dropdown-item text-white">Ikan - Seafood</a>
                             <a href="#" class="dropdown-item text-white">Tahu - Tempe - Telur</a>
                           </div>
                       </li>
-                      <li class="nav-item  dropdown" style="font-size: 15px">
+                      <li class="nav-item  dropdown" >
                         <a class="nav-link" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <div class="dropdown-menu" >
                             <a href="#" class="dropdown-item text-white">Hari Raya</a>
                             <a href="#" class="dropdown-item text-white">Natal</a>
                             <a href="#" class="dropdown-item text-white">Ulang Tahun</a>
                           </div>
                       </li>
-                      <li class="nav-item dropdown" style="font-size: 15px">
+                      <li class="nav-item dropdown" >
                         <a class="nav-link" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <div class="dropdown-menu" >
                             <a href="#" class="dropdown-item text-white">Menggoreng</a>
                             <a href="#" class="dropdown-item text-white">Menumis</a>
                             <a href="#" class="dropdown-item text-white">Merebus</a>
                           </div>
                     </li>
-                    <li class="nav-item dropdown" style="font-size: 15px">
+                    <li class="nav-item dropdown" >
                         <a class="nav-link" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <div class="dropdown-menu" >
                             <a href="#" class="dropdown-item text-white">Bahan Masak</a>
                             <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
                             <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
                           </div>
                     </li>
-                    <li class="nav-item dropdown" style="font-size: 15px">
+                    <li class="nav-item dropdown" >
                         <a class="nav-link" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <div class="dropdown-menu" >
                             <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
                             <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
                             <a href="#" class="dropdown-item text-white">Tren Masakan</a>
                           </div>
                     </li>
-                    <li class="nav-item" style="font-size: 15px">
+                    <li class="nav-item" >
                         <a class="nav-link" href="{{ route('about') }}">Tentang</a>
                     </li>
                       {{-- <li class="nav-item">
@@ -164,7 +164,7 @@
                 <div class="user_option">
 
 
-                  <a href="{{route('login')}}" class="login">
+                  <a href="{{route('login')}}" class="order_online">
                     Login
                   </a>
                 </div>

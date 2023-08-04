@@ -121,7 +121,7 @@ h2
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="{{route('admin.index')}}" class="brand-link">
+            <a href="{{url('/')}}" class="brand-link">
                 <img src="/dist/img/admin4.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light text-white fw-bold font-a " >HummaCook</span>
@@ -197,7 +197,7 @@ h2
                                     Tips Dasar
                                 </p>
                             </a>
-                            
+
                         </li>
                         <li class="nav-item">
                             <a href="{{route('seputar_dapur.index')}}" class="nav-link text-light {{ request()->is('seputar_dapur') ? 'activet' : '' }}">
