@@ -75,7 +75,6 @@
                     <td>{{ $row->created_at }}</td>
                     <td>{{ $row->updated_at }}</td>
                     <td>
-                       
                         <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
                             data-target="#exampleModal{{$row->id}}"><i
                                 class="fa-solid fa-pen-clip"></i></button>

@@ -45,6 +45,9 @@
      @endforeach
  </script>
 @endif
+
+
+
     <!-- Jumbotron -->
     <div class="container py-1" style="max-width: 70%; margin-top:1.6%;">
       <div class="row g-0 align-items-center">
@@ -72,7 +75,11 @@
                     </div>
                   </div>
                 </div> --}}
-
+                @if(session('message'))
+                <div class="alert alert-danger">
+                    <b>Opps!</b> {{session('message')}}
+                </div>
+                @endif
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <input type="email" id="email" name="email" class="form-control mb-1" placeholder="Email..."  />
