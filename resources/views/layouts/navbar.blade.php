@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .nav-link.activet {
-          background-color: #f39c12;
+          background-color: #E7B10A;
             color: #fff;
         }
 
@@ -146,7 +146,7 @@ h2
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{route('dashboard')}}" class="nav-link {{ request()->routeIs('dashboard') ? 'activet' : '' }}">
+                            <a href="{{route('dashboard')}}" class="nav-link text-light {{ request()->routeIs('dashboard') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -156,7 +156,7 @@ h2
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
+                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link text-light {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                             Kategori Seputar Dapur
@@ -166,7 +166,7 @@ h2
                         </li>
 
                         <li class="nav-item">
-                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
+                            <a href="/admin/kategori-bahan" class="nav-link text-light{{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                             Kategori Bahan
@@ -175,7 +175,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/kategori-tipsdasar" class="nav-link {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
+                            <a href="/admin/kategori-tipsdasar" class="nav-link text-light {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Kategori Tips Dasar
@@ -183,7 +183,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('SpecialDays.index')}}" class="nav-link {{ request()->is('admin/special-days') ? 'activet' : '' }}">
+                            <a href="{{route('SpecialDays.index')}}" class="nav-link text-light {{ request()->is('admin/special-days') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Hari Khusus
@@ -191,7 +191,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('BasicTips.index')}}" class="nav-link {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
+                            <a href="{{route('BasicTips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                     Tips Dasar
@@ -200,7 +200,7 @@ h2
                             
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('seputar_dapur.index')}}" class="nav-link {{ request()->is('seputar_dapur') ? 'activet' : '' }}">
+                            <a href="{{route('seputar_dapur.index')}}" class="nav-link text-light {{ request()->is('seputar_dapur') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Seputar Dapur
@@ -209,7 +209,7 @@ h2
                         </li>
 
                         <li class="nav-item">
-                            <a href="/admin/edit-tentang" class="nav-link {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
+                            <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Edit About
