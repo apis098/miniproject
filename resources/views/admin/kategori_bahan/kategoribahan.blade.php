@@ -1,7 +1,7 @@
 @extends('layouts.navbar')
 
 @section('konten')
-    {{-- <div class="container my-5"> --}}
+<br>
         <div class="card">
             <div class="card-header bg-warning text-white">
                 <h3 class="text-center">CRUD Kategori Bahan</h3>
