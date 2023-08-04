@@ -626,66 +626,75 @@
     @endforeach
     <!-- end about section -->
 
-    <!-- book section -->
+    <<!-- book section -->
     <section class="book_section layout_padding">
         <div class="container">
-            <div class="heading_container">
-                <h2>
-                    Book A Table
-                </h2>
-            </div>
+           
             <div class="row">
                 <div class="col-md-6">
                     <div class="form_container">
-                        <form action="">
-                            <div>
-                                <input type="text" class="form-control" placeholder="Your Name" />
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <form action="{{route('ComplaintUser.store')}}" method="POST">
+                            @csrf
+                            <div class="heading_container">
+                                <h2>
+                                    Ajukan keliuhanmu saat memasak
+                                </h2>
+                                <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
                             </div>
                             <div>
-                                <input type="text" class="form-control" placeholder="Phone Number" />
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject/Judul..." />
                             </div>
                             <div>
-                                <input type="email" class="form-control" placeholder="Your Email" />
+                                <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
                             </div>
-                            <div>
+                            {{-- <div>
                                 <select class="form-control nice-select wide">
                                     <option value="" disabled selected>
-                                        How many persons?
+                                        Kategori Masalah
                                     </option>
-                                    <option value="">
-                                        2
+                                    <option value="testing">
+                                        testing
                                     </option>
-                                    <option value="">
-                                        3
+                                    <option value="testing">
+                                        testing
                                     </option>
-                                    <option value="">
-                                        4
+                                    <option value="testing">
+                                        testing
                                     </option>
-                                    <option value="">
-                                        5
+                                    <option value="testing">
+                                        testing
                                     </option>
                                 </select>
-                            </div>
+                            </div> --}}
+
                             <div>
-                                <input type="date" class="form-control">
-                            </div>
-                            <div class="btn_box">
-                                <button>
-                                    Book Now
+                                <button type="submit">
+                                    Kirim <i class="fa-solid fa-paper-plane"></i>
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-top: -5%">
                     <div class="map_container ">
-                        <div id="googleMap"></div>
+                        <img src="{{ asset('images/anoying2.jpg') }}" class="img-fluid" alt="Gambar Contoh">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- end book section -->
+
 
 
     <!-- client section -->
