@@ -95,7 +95,7 @@ class ResepsController extends Controller
             'seputardapur_id' => "nullable",
             'specialday_id' => "nullable",
             'nama_masakan' => "required",
-            'foto_masakan' => "required|image|mimes:png,jpg,jpeg,webp|max:50000",
+            'foto_masakan' => "image|mimes:png,jpg,jpeg,webp|max:50000",
             'deskripsi_masakan' => "required",
             'bahan_masakan' => "required",
             'langkah2_memasak' => "required"
@@ -116,7 +116,7 @@ class ResepsController extends Controller
         $ats = implode(" , ", $request->bahan_masakan);
         $arr = explode(" , ", $ats);
         $update->kategori_bahan()->sync($arr);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Sukse mengupdate data.');
     }
 
     /**
