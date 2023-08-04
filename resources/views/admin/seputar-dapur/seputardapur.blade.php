@@ -111,7 +111,7 @@ referrerpolicy="origin"></script>
                 <a href="{{ route('seputar_dapur.edit', $item->id) }}"
                     class="btn btn-warning">Edit</a>
                 <button type="submit" class="btn btn-danger"
-                    onclick="return confirm('Apakah Anda Yakin?')">Hapus</button>
+                    onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')">Hapus</button>
             </form>
         </div>
       </div>

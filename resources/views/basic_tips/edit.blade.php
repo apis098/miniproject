@@ -16,14 +16,14 @@
             @csrf
             @method('put')
             <div class="form-group mb-3">
-              <label for="name" class="mb-2">Nama Hari Spesial</label>
+              <label for="name" class="mb-2">Nama Tips Dasar</label>
               <input type="text" value="{{$data->name}}" class="form-control" id="name" name="name" aria-describedby="emailHelp" placeholder="Masukkan nama hari...">
             </div>
             <div class="form-group mb-3">
               <label for="description" class="mb-2">Deskripsi</label>
               <input type="text" value="{{$data->description}}" class="form-control" id="description" name="description" placeholder="Masukkan Deskripsi...">
             </div>
-            
+
             <button type="submit" class="btn btn-primary">Simpan</button>
           </form>
     </div>

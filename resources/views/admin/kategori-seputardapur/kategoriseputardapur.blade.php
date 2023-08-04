@@ -71,7 +71,7 @@
                                 <a href="{{ route('kategori_seputardapur.edit', $seputardapur->id) }}"
                                     class="btn btn-warning">Edit</a>
                                 <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Apakah Anda Yakin?')">Hapus</button>
+                                    onclick="return confirm('Apakah Anda Yakin Menghapus Data Ini?')">Hapus</button>
                             </form>
                         </td>
                     </tr>
