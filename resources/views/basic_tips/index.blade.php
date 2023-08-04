@@ -80,7 +80,7 @@
                                 data-mdb-ripple-color="dark"><i class="fa-solid fa-pen-clip"></i></button>
                         </form> --}}
                         <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
-                            data-target="#exampleModal" data-id="{{ $row->id }}" data-whatever="@mdo"><i
+                            data-target="#exampleModal{{$row->id}}"><i
                                 class="fa-solid fa-pen-clip"></i></button>
                         <form action="{{ route('BasicTips.destroy', $row->id) }}" method="POST" class="d-inline-block">
                             @csrf
@@ -95,8 +95,10 @@
             @endforeach
         </tbody>
     </table>
+    @foreach($data as $row)
+    @if($row->id!="")
     {{-- modal edit --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="exampleModal{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -112,10 +114,10 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="name" class="col-form-label">Nama:</label>
-                            <input type="text" class="form-control" name="name" id="nameEdit">
+                            <input type="text" value="{{$row->name}}" class="form-control" name="name" id="nameEdit">
                         </div>
                         <div class="form-group">
-                            <input type="text" hidden class="form-control" name="description" id="descriptionEdit">
+                            <input type="text" hidden value="-" class="form-control" name="description" id="descriptionEdit">
                         </div>
 
                 </div>
@@ -130,6 +132,8 @@
             </div>
         </div>
     </div>
+    @endif
+    @endforeach
     {{-- end modal edit --}}
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
@@ -144,20 +148,6 @@
                 $('#table tbody tr').filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
-            });
-        });
-
-        $(document).on('click', '.edit-btn', function() {
-            var id = $(this).data('id');
-            $.ajax({
-                url: '/basic-tips/' + id,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('#nameEdit').val(data.name);
-                    $('#descriptionEdit').val('-');
-                    $('#exampleModal').modal('show');
-                }
             });
         });
     </script>

@@ -37,7 +37,7 @@ class basic_tips_controller extends Controller
         $data->description = $request->description;
         $data->save();
 
-        return redirect('/basic-tips')->with('success', 'Data Tips Dasar Berhasil Ditambah.');
+        return redirect()->route('BasicTips.index')->with('success', 'Data Tips Dasar Berhasil Ditambah.');
     }
     public function edit($id)
     {
@@ -59,7 +59,7 @@ class basic_tips_controller extends Controller
         $data->description = $request->description;
         $data->save();
 
-        return redirect('/basic-tips')->with('Data Berhaasil Diupdate.');
+        return redirect()->route('BasicTips.index')->with('Data Berhaasil Diupdate.');
 
     }
     public function show($id)

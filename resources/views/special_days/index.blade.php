@@ -77,7 +77,7 @@
                     <td>
                        
                         <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
-                            data-target="#exampleModal" data-id="{{ $row->id }}" data-whatever="@mdo"><i
+                            data-target="#exampleModal{{$row->id}}"><i
                                 class="fa-solid fa-pen-clip"></i></button>
                         <form action="{{ route('SpecialDays.destroy', $row->id) }}" method="POST" class="d-inline-block">
                             @csrf
@@ -93,7 +93,9 @@
         </tbody>
     </table>
     {{-- modal edit --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    @foreach($data as $row)
+    @if($row->id !="")
+    <div class="modal fade" id="exampleModal{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -109,10 +111,10 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="name" class="col-form-label">Nama:</label>
-                            <input type="text" class="form-control" name="name" id="nameEdit">
+                            <input type="text" value="{{$row->name}}" class="form-control" name="name" id="nameEdit">
                         </div>
                         <div class="form-group">
-                            <input type="text" hidden class="form-control" name="description" id="descriptionEdit">
+                            <input type="text" value="-" hidden class="form-control" name="description" id="descriptionEdit">
                         </div>
 
                 </div>
@@ -120,20 +122,21 @@
                     <button type="submit" class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
                     data-mdb-ripple-color="dark">
                     <i class="fa-regular fa-floppy-disk me-1"></i>
-                    Submit
+                    Save
                 </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    @endif
+    @endforeach
     {{-- end modal edit --}}
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
     </div>
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
-        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+
     <script>
         $(document).ready(function() {
             $('#search').on('input', function() {
@@ -141,20 +144,6 @@
                 $('#table tbody tr').filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
-            });
-        });
-
-        $(document).on('click', '.edit-btn', function() {
-            var id = $(this).data('id');
-            $.ajax({
-                url: '/special-days/' + id,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('#nameEdit').val(data.name);
-                    $('#descriptionEdit').val('-');
-                    $('#exampleModal').modal('show');
-                }
             });
         });
     </script>
