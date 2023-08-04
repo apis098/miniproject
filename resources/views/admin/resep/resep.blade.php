@@ -109,15 +109,22 @@
                             <div class="card-body">
                                 {{ $r->deskripsi_masakan }}
                                 <br>
+
                                 <button type="button"
-                                    class="bg-light p-2 m-1 rounded">{{ $r->tipsdasar->nama_kategori }}</button>
-                                <button type="button"
-                                    class="bg-light p-2 m-1 rounded">{{ $r->seputardapur->nama_kategori }}</button>
+                                    class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
+                                @if ($r->seputardapur)
+                                    <button type="button"
+                                        class="btn btn-light m-1 border">{{ $r->seputardapur->nama_kategori }}</button>
+                                @endif
                                 @foreach ($r->kategori_bahan as $i)
-                                    <button type="button" class="bg-light p-2 m-1 rounded">
+                                    <button type="button" class="btn btn-light border m-1">
                                         {{ $i->kategori_bahan }}
                                     </button>
                                 @endforeach
+                                @if ($r->specialday)
+                                    <button type="button"
+                                        class="btn btn-light border m-1">{{ $r->specialday->name }}</button>
+                                @endif
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -176,6 +183,7 @@
                                                                     Dasar*</label>
                                                                 <select name="tipsdasar_id" id="tipsdasar_id"
                                                                     class="form-control">
+
                                                                     <option value="{{ $r->tipsdasar_id }}">
                                                                         {{ $r->tipsdasar->nama_kategori }}</option>
                                                                     @foreach ($tips as $t)
@@ -194,8 +202,13 @@
                                                                     Seputar Dapur*</label>
                                                                 <select name="seputardapur_id" id="seputardapur_id"
                                                                     class="form-control">
+                                                                    @if ($r->seputardapur)
                                                                     <option value="{{ $r->seputardapur_id }}">
-                                                                        {{ $r->seputardapur->nama_kategori }}</option>
+                                                                        {{ $r->seputardapur->nama_kategori }}</option>  
+                                                                    @else
+                                                                        <option value=""></option>
+                                                                    @endif
+                                                                    
                                                                     @foreach ($dapur as $d)
                                                                         <option value="{{ $d->id }}">
                                                                             {{ $d->nama_kategori }}</option>
@@ -212,7 +225,11 @@
                                                                     Khusus*</label>
                                                                 <select name="specialday_id" id="specialday_id"
                                                                     class="form-control">
-                                                                    <option value=""></option>
+                                                                    @if ($r->specialday)
+                                                                        <option value="{{ $r->specialday_id }}">{{ $r->specialday->name }}</option>
+                                                                    @else
+                                                                        <option value=""></option>
+                                                                    @endif
                                                                     @foreach ($hari as $h)
                                                                         <option value="{{ $h->id }}">
                                                                             {{ $h->name }}</option>
@@ -239,11 +256,10 @@
                                                                     Masakan</label> <br>
                                                                 <?php $arr = explode(',', $r->bahan_masakan); ?>
                                                                 @foreach ($bahan as $i)
-                                                                <input type="checkbox" name="bahan_masakan[]" value="{{ $i->id }}" 
-                                                                @if (in_array($i->id, $arr))
-                                                                    @checked(true)
-                                                                @endif
-                                                                > {{ $i->kategori_bahan }}
+                                                                    <input type="checkbox" name="bahan_masakan[]"
+                                                                        value="{{ $i->id }}"
+                                                                        @if (in_array($i->id, $arr)) @checked(true) @endif>
+                                                                    {{ $i->kategori_bahan }}
                                                                 @endforeach
                                                             </div>
                                                             <div class="mb-3">
