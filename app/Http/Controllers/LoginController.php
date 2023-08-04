@@ -37,8 +37,7 @@ class LoginController extends Controller
         if (Auth::Attempt($data)) {
             return redirect()->route('admin.index');
         }else{
-            Session::flash('message', 'Email atau Password Salah');
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Email atau Password Salah');
         }
     }
 
