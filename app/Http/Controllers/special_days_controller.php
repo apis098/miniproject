@@ -11,10 +11,8 @@ class special_days_controller extends Controller
     public function index()
     {
         $data = special_days::all();
-        return view('special_days.index', [
-            "title" => "Daftar Hari Spesial",
-            "data" => $data
-        ]);
+        $title = "Data Hari Spesial";
+        return view('special_days.index',compact('data','title'));
     }
     public function create()
     {
@@ -24,7 +22,7 @@ class special_days_controller extends Controller
     }
     public function edit($id)
     {
-        $data=special_days::find($id);
+        $data=special_days::findOrFail($id);
         return view('special_days.edit', [
             "title" => "Form Edit Data Hari Spesial",
             "data" => $data
@@ -48,7 +46,7 @@ class special_days_controller extends Controller
             $data->description = $request->description;
             $data->save();
 
-            return redirect('/special-days')->with('success', 'Data Hari Khusus Berhasil Ditambah.');
+            return redirect()->route('SpecialDays.index')->with('success', 'Data Hari Khusus Berhasil Ditambah.');
         }
     public function update(Request $request,$id)
     {
@@ -68,7 +66,7 @@ class special_days_controller extends Controller
         $data->description = $request->description;
         $data->save();
 
-        return redirect('/special-days')->with('success', 'Data Hari Khusus Berhasil Update.');
+        return redirect()->route('SpecialDays.index')->with('success', 'Data Hari Khusus Berhasil Update.');
     }
     public function destroy($id)
     {
@@ -79,7 +77,7 @@ class special_days_controller extends Controller
     }
     public function show($id)
     {
-        $data = special_days::findOrFail($id);
+        $data = special_days::find($id);
         return response()->json($data);
-    }
+    }   
 }

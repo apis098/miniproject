@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\basic_tips_controller;
+use App\Http\Controllers\complaintController;
 use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
@@ -57,7 +58,7 @@ Route::get('specialday', function () {
     return view('admin.specialday');
 })->name('specialday');
 
-
+Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout
 
 Route::get('login', [LoginController::class, 'login'])->name('login');
@@ -97,7 +98,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::resource('resep', ResepsController::class);
     });
 });
-
 
 // role koki
 Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index')->middleware('auth', 'role:koki');

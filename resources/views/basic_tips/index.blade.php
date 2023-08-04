@@ -46,7 +46,7 @@
             <form method="POST" action="{{ route('BasicTips.store') }}" class="d-flex align-items-center">
                 @csrf
                 <input type="text" class="form-control ms-1 mb-1 me-2 rounded-3" id="name" name="name"
-                    aria-describedby="emailHelp" placeholder="Masukkan nama hari...">
+                    aria-describedby="emailHelp" placeholder="Masukkan Tips Dasar...">
                 <input type="hidden" value="-" class="form-control" id="description" name="description"
                     placeholder="Masukkan Deskripsi...">
                 <button type="submit" class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
@@ -61,7 +61,7 @@
         <thead class="bg-secondary text-light">
             <tr>
                 <th>NO</th>
-                <th>Nama Hari Special</th>
+                <th>Nama Tips Dasar</th>
                 <th>Dibuat Pada:</th>
                 <th>Terakhir Diupdate Pada:</th>
                 <th>action</th>
@@ -75,19 +75,14 @@
                     <td>{{ $row->created_at }}</td>
                     <td>{{ $row->updated_at }}</td>
                     <td>
-                        {{-- <form action="{{ route('BasicTips.edit', ['id' => $row->id]) }}" class="d-inline-block">
-                            <button type="submit" class="btn btn-outline-success btn-sm rounded-5"
-                                data-mdb-ripple-color="dark"><i class="fa-solid fa-pen-clip"></i></button>
-                        </form> --}}
                         <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
-                            data-target="#exampleModal" data-id="{{ $row->id }}" data-whatever="@mdo"><i
-                                class="fa-solid fa-pen-clip"></i></button>
+                            data-target="#exampleModal{{ $row->id }}"><i class="fa-solid fa-pen-clip"></i></button>
                         <form action="{{ route('BasicTips.destroy', $row->id) }}" method="POST" class="d-inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
                                 data-mdb-ripple-color="dark"
-                                onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i
                                     class="fa-solid fa-trash-can"></i></button>
                         </form>
                     </td>
@@ -95,41 +90,47 @@
             @endforeach
         </tbody>
     </table>
-    {{-- modal edit --}}
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('BasicTips.update', $row->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="form-group">
-                            <label for="name" class="col-form-label">Nama:</label>
-                            <input type="text" class="form-control" name="name" id="nameEdit">
+    @foreach ($data as $row)
+        @if ($row->id != '')
+            {{-- modal edit --}}
+            <div class="modal fade" id="exampleModal{{ $row->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <input type="text" hidden class="form-control" name="description" id="descriptionEdit">
+                        <div class="modal-body">
+                            <form action="{{ route('BasicTips.update', $row->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="name" class="col-form-label">Nama:</label>
+                                    <input type="text" value="{{ $row->name }}" class="form-control" name="name"
+                                        id="nameEdit">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" hidden value="-" class="form-control" name="description"
+                                        id="descriptionEdit">
+                                </div>
                         </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
-                    data-mdb-ripple-color="dark">
-                    <i class="fa-regular fa-floppy-disk me-1"></i>
-                    Submit
-                </button>
-                    </form>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                                data-mdb-ripple-color="dark">
+                                <i class="fa-regular fa-floppy-disk me-1"></i>
+                                Submit
+                            </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        @endif
+    @endforeach
     {{-- end modal edit --}}
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
@@ -144,20 +145,6 @@
                 $('#table tbody tr').filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
-            });
-        });
-
-        $(document).on('click', '.edit-btn', function() {
-            var id = $(this).data('id');
-            $.ajax({
-                url: '/basic-tips/' + id,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    $('#nameEdit').val(data.name);
-                    $('#descriptionEdit').val('-');
-                    $('#exampleModal').modal('show');
-                }
             });
         });
     </script>

@@ -15,6 +15,20 @@
             <form action="/admin/kategori-bahan" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
+<br>
+        <div class="card">
+            <div class="card-header bg-warning text-white">
+                <h3 class="text-center">CRUD Kategori Bahan</h3>
+            </div>
+            <div class="card-body">
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <form action="/admin/kategori-bahan" method="post">
+                    @csrf
+                    <div class="mb-3">
 
                     <label for="kategori_bahan" class="form-label">Nama Kategori Bahan</label>
                     <input type="text" name="kategori_bahan" id="kategori_bahan" class="form-control" required>
