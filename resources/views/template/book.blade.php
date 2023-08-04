@@ -69,6 +69,16 @@
   background-color: #dddddd10;
 }
 
+.login{
+    display: inline-block;
+  padding: 6px 25px;
+  background-color: #ffbe33;
+  color: #ffffff;
+  border-radius: 45px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: none;
+}
 
 </style>
 
