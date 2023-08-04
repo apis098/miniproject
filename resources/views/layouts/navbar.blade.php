@@ -178,13 +178,12 @@ h2
                             <a href="/admin/kategori-tipsdasar" class="nav-link {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
-                                            Kategori Tips Dasar
-
+                                    Kategori Tips Dasar
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('SpecialDays.index')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                            <a href="{{route('SpecialDays.index')}}" class="nav-link {{ request()->is('admin/special-days') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    Hari Khusus
@@ -192,7 +191,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('BasicTips.index')}}" class="nav-link {{ request()->is('specialday') ? 'activet' : '' }}">
+                            <a href="{{route('BasicTips.index')}}" class="nav-link {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                     Tips Dasar
