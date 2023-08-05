@@ -2,85 +2,95 @@
 <html>
 
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/favicon.png" type="">
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="images/favicon.png" type="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <title> HummaCook </title>
+    <title> HummaCook </title>
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
-  <!--owl slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-  <!-- nice select  -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
-  <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <!-- nice select  -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+        crossorigin="anonymous" />
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="css/responsive.css" rel="stylesheet" />
+    <style>
+        .nav-link.active {
+          background-color: #f39c12;
+            color: #fff;
+        }
 
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        .nav-link {
+            white-space: nowrap;
+        }
 
-  <style>
-    .nav-link.active {
-      background-color: #f39c12;
-        color: #fff;
-    }
-
-    .nav-link {
-        white-space: nowrap;
-    }
-
-    .dropdown {
+        .dropdown {
   position: relative;
+  display: inline-block;
 }
 
-.dropdown .dropdown-menu {
+.dropbtn {
+
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
   display: none;
   position: absolute;
-  background-color: #1b1414c7;
+  background-color: #1d1919;
   min-width: 160px;
-  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-item {
-  color: black;
+.dropdown-content a {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  color: black;
 }
 
-.dropdown-item:hover {
-  background-color: #dddddd10;
+.dropdown-content a:hover {
+  background-color: #f1f1f146;
 }
 
-.login{
-    display: inline-block;
-  padding: 6px 22px;
-  background-color: #ffbe33;
-  color: #ffffff;
-  border-radius: 45px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: none;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
-</style>
+    .login{
+        display: inline-block;
+      padding: 6px 22px;
+      background-color: #ffbe33;
+      color: #ffffff;
+      border-radius: 45px;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      border: none;
+    }
+
+    </style>
 
 
 </head>
@@ -108,52 +118,55 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto ">
-                  <li class="nav-item " style="margin-left: -140px; font-size:15px">
-                    <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-menu" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Ayam - Daging</a>
-                        <a href="#" class="dropdown-item text-white">Ikan - Seafood</a>
-                        <a href="#" class="dropdown-item text-white">Tahu - Tempe - Telur</a>
-                      </div>
-                  </li>
-                  <li class="nav-item active dropdown" style="font-size: 15px">
-                    <a class="nav-link" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-menu" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Hari Raya</a>
-                        <a href="#" class="dropdown-item text-white">Natal</a>
-                        <a href="#" class="dropdown-item text-white">Ulang Tahun</a>
-                      </div>
-                  </li>
-                  <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-menu" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Menggoreng</a>
-                        <a href="#" class="dropdown-item text-white">Menumis</a>
-                        <a href="#" class="dropdown-item text-white">Merebus</a>
-                      </div>
-                </li>
-                <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-menu" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Bahan Masak</a>
-                        <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
-                        <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
-                      </div>
-                </li>
-                <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-menu" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
-                        <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
-                        <a href="#" class="dropdown-item text-white">Tren Masakan</a>
-                      </div>
-                </li>
-                <li class="nav-item" style="font-size: 15px">
-                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
-                </li>
+                    <li class="nav-item " style="margin-left: -140px; font-size:15px">
+                        <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item  dropdown" style="font-size: 15px">
+                        <a class="nav-link  dropbtn" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($bahan_masakan as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
+                            @endforeach
+
+                          </div>
+                      </li>
+                      <li class="nav-item active dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($hari_khusus as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($tips_dasar as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
+                          </div>
+                    </li>
+                    <li class="nav-item dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
+                            <a href="#" class="dropdown-item text-white">Bahan Masak</a>
+                            <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
+                            <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
+                          </div>
+                    </li>
+                    <li class="nav-item dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
+                            <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
+                            <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
+                            <a href="#" class="dropdown-item text-white">Tren Masakan</a>
+                          </div>
+                    </li>
+                    <li class="nav-item" style="font-size: 15px">
+                        <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                    </li>
                   {{-- <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}">Login</a>
                   </li> --}}
@@ -332,7 +345,17 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
   <!-- End Google Map -->
+  <script>
+    window.addEventListener('click', function(event) {
+  const dropdowns = document.querySelectorAll('.dropdown-content');
+  for (const dropdown of dropdowns) {
+    if (!dropdown.contains(event.target)) {
+      dropdown.style.display = 'none';
+    }
+  }
+});
 
+  </script>
 </body>
 
 </html>

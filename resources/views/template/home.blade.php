@@ -47,30 +47,38 @@
 
         .dropdown {
   position: relative;
+  display: inline-block;
 }
 
-.dropdown .dropdown-menu {
+.dropbtn {
+
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
   display: none;
   position: absolute;
-  background-color: #1b1414c7;
+  background-color: #1d1919;
   min-width: 160px;
-  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-item {
-  color: black;
+.dropdown-content a {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  color: black;
 }
 
-.dropdown-item:hover {
-  background-color: #dddddd10;
+.dropdown-content a:hover {
+  background-color: #f1f1f146;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .login{
@@ -115,41 +123,43 @@
                         <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px;">
+                        <a class="nav-link  dropbtn" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
                             @foreach ($bahan_masakan as $bm)
                                 <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
                             @endforeach
-                            
+
                           </div>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
-                            <a href="#" class="dropdown-item text-white">Hari Raya</a>
-                            <a href="#" class="dropdown-item text-white">Natal</a>
-                            <a href="#" class="dropdown-item text-white">Ulang Tahun</a>
+                        <a class="nav-link dropbtn" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($hari_khusus as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
                           </div>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
-                            <a href="#" class="dropdown-item text-white">Menggoreng</a>
-                            <a href="#" class="dropdown-item text-white">Menumis</a>
-                            <a href="#" class="dropdown-item text-white">Merebus</a>
+                        <a class="nav-link dropbtn" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($tips_dasar as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
                           </div>
                     </li>
                     <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
                             <a href="#" class="dropdown-item text-white">Bahan Masak</a>
                             <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
                             <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
                           </div>
                     </li>
                     <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
                             <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
                             <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
                             <a href="#" class="dropdown-item text-white">Tren Masakan</a>
@@ -851,7 +861,17 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
+    <script>
+        window.addEventListener('click', function(event) {
+  const dropdowns = document.querySelectorAll('.dropdown-content');
+  for (const dropdown of dropdowns) {
+    if (!dropdown.contains(event.target)) {
+      dropdown.style.display = 'none';
+    }
+  }
+});
 
+    </script>
 </body>
 
 </html>
