@@ -117,9 +117,10 @@
                       <li class="nav-item dropdown" style="font-size: 15px">
                         <a class="nav-link" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
                         <div class="dropdown-menu" style="font-size: 15px;">
-                            <a href="#" class="dropdown-item text-white">Ayam - Daging</a>
-                            <a href="#" class="dropdown-item text-white">Ikan - Seafood</a>
-                            <a href="#" class="dropdown-item text-white">Tahu - Tempe - Telur</a>
+                            @foreach ($bahan_masakan as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
+                            @endforeach
+                            
                           </div>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">

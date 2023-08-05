@@ -29,7 +29,8 @@ use App\Models\kategori_bahan;
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
     $about = about::all();
-    return view('template.home', compact('kategori_bahan', 'about'));
+    $bahan_masakan = kategori_bahan::all();
+    return view('template.home', compact('kategori_bahan', 'about', 'bahan_masakan'));
 })->name('home');
 
 Route::get('menu', function () {
