@@ -38,7 +38,7 @@ class kategori_bahan_controller extends Controller
         ]);
         $create = [
             'kategori_bahan' => $request->kategori_bahan,
-            'foto' => $request->file('foto')->store('public')
+            'foto' => $request->file('foto')->store('photoKategoriBahan')
         ];
         kategori_bahan::create($create);
         return redirect()->back()->with('success', 'Sukses menambahkan kategori bahan masakan.');
@@ -75,7 +75,7 @@ class kategori_bahan_controller extends Controller
         $update->kategori_bahan = $request->kategori_bahan;
         if ($request->hasFile('foto')) {
             Storage::delete($update->foto);
-            $update->foto = $request->file('foto')->store('public');
+            $update->foto = $request->file('foto')->store('photoKategoriBahan');
         }
         $update->save();
         return redirect('/admin/kategori-bahan')->with('success', 'Sukses mengupdate data kategori bahan masakan.');
