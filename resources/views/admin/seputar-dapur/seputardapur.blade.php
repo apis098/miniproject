@@ -134,7 +134,7 @@
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" @error('foto')
                                 @enderror name="foto" id="foto" accept="image/*">
-                                <img src="{{ asset('storage/public/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
+                                <img src="{{ asset('storage/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
                                 @error('foto')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
@@ -146,7 +146,7 @@
                         <div class="mb-3 row">
                             <label for="judul" class="col-sm-2 col-form-label">input judul</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" value="{{ $data->judul }}" name="judul" id="judul">
+                                <input type="text" class="form-control" value="{{ $item->judul }}" name="judul" id="judul">
                             </div>
                         </div>
 
