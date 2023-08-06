@@ -119,7 +119,7 @@
             <div class="container">
             <div class="col-6">
               <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="{{route('home')}}">
+                <a class="navbar-brand" href="{{url('admin/index')}}">
                   <span style="margin-left: -70px;">
                     HummaCook
                   </span>
@@ -360,8 +360,8 @@
                     <div class="col-sm-6 col-lg-4 all pizza">
                         <div class="box">
                             <div>
-                                <div class="img-box">
-                                    <img src="{{ asset('storage/'.$r->foto_masakan) }}" alt="">
+                                <div class="">
+                                    <img src="{{ asset('storage/'.$r->foto_masakan) }}" width="100%" height="50%" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h5>
