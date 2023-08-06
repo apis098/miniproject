@@ -108,6 +108,23 @@
                             </div>
                             <div class="card-body">
                                 {{ $r->deskripsi_masakan }}
+                                <br>
+
+                                <button type="button"
+                                    class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
+                                @if ($r->seputardapur)
+                                    <button type="button"
+                                        class="btn btn-light m-1 border">{{ $r->seputardapur->nama_kategori }}</button>
+                                @endif
+                                @foreach ($r->kategori_bahan as $i)
+                                    <button type="button" class="btn btn-light border m-1">
+                                        {{ $i->kategori_bahan }}
+                                    </button>
+                                @endforeach
+                                @if ($r->specialday)
+                                    <button type="button"
+                                        class="btn btn-light border m-1">{{ $r->specialday->name }}</button>
+                                @endif
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -124,7 +141,8 @@
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data Resep
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Data
+                                                            Resep
                                                         </h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                             aria-label="Close"></button>
@@ -138,7 +156,8 @@
                                                                 <label for="nama_masakan" class="form-label">Nama
                                                                     Masakan</label>
                                                                 <input type="text" name="nama_masakan"
-                                                                    id="nama_masakan" class="form-control" value="{{ $r->nama_masakan }}" required>
+                                                                    id="nama_masakan" class="form-control"
+                                                                    value="{{ $r->nama_masakan }}" required>
                                                                 @error('nama_masakan')
                                                                     <div class="alert alert-danger">
                                                                         {{ $message }}
@@ -149,8 +168,10 @@
                                                                 <label for="foto_masakan" class="form-label">Foto
                                                                     Masakan</label>
                                                                 <input type="file" name="foto_masakan"
-                                                                    id="foto_masakan" class="form-control" value="">
-                                                                <img src="{{ asset('storage/'.$r->foto_masakan) }}" alt="" srcset="">
+                                                                    id="foto_masakan" class="form-control"
+                                                                    value="">
+                                                                <img src="{{ asset('storage/' . $r->foto_masakan) }}"
+                                                                    alt="" srcset="">
                                                                 @error('foto_masakan')
                                                                     <div class="alert alert-danger">
                                                                         {{ $message }}
@@ -162,7 +183,9 @@
                                                                     Dasar*</label>
                                                                 <select name="tipsdasar_id" id="tipsdasar_id"
                                                                     class="form-control">
-                                                                    <option value="{{ $r->tipsdasar_id }}">{{ $r->tipsdasar->nama_kategori }}</option>
+
+                                                                    <option value="{{ $r->tipsdasar_id }}">
+                                                                        {{ $r->tipsdasar->nama_kategori }}</option>
                                                                     @foreach ($tips as $t)
                                                                         <option value="{{ $t->id }}">
                                                                             {{ $t->nama_kategori }}</option>
@@ -179,7 +202,13 @@
                                                                     Seputar Dapur*</label>
                                                                 <select name="seputardapur_id" id="seputardapur_id"
                                                                     class="form-control">
-                                                                    <option value="{{ $r->seputardapur_id }}">{{ $r->seputardapur->nama_kategori }}</option>
+                                                                    @if ($r->seputardapur)
+                                                                    <option value="{{ $r->seputardapur_id }}">
+                                                                        {{ $r->seputardapur->nama_kategori }}</option>  
+                                                                    @else
+                                                                        <option value=""></option>
+                                                                    @endif
+                                                                    
                                                                     @foreach ($dapur as $d)
                                                                         <option value="{{ $d->id }}">
                                                                             {{ $d->nama_kategori }}</option>
@@ -196,7 +225,11 @@
                                                                     Khusus*</label>
                                                                 <select name="specialday_id" id="specialday_id"
                                                                     class="form-control">
-                                                                    <option value=""></option>
+                                                                    @if ($r->specialday)
+                                                                        <option value="{{ $r->specialday_id }}">{{ $r->specialday->name }}</option>
+                                                                    @else
+                                                                        <option value=""></option>
+                                                                    @endif
                                                                     @foreach ($hari as $h)
                                                                         <option value="{{ $h->id }}">
                                                                             {{ $h->name }}</option>
@@ -221,14 +254,12 @@
                                                             <div class="mb-3">
                                                                 <label for="bahan_masakan" class="form-label">Bahan
                                                                     Masakan</label> <br>
-                                                                <?php $bm = explode(',',$r->bahan_masakan) ?>
-                                                                @foreach ($bahan as $num => $b)
-                                                                    <input type="checkbox" class="form-checkbox"
-                                                                        name="bahan_masakan[]" id="bahan_masakan" @if (in_array($r->bahan_masakan[$num],$bm))
-                                                                            @checked(true)
-                                                                        @endif
-                                                                        value="{{ $b->id }}">
-                                                                    {{ $b->kategori_bahan }}
+                                                                <?php $arr = explode(',', $r->bahan_masakan); ?>
+                                                                @foreach ($bahan as $i)
+                                                                    <input type="checkbox" name="bahan_masakan[]"
+                                                                        value="{{ $i->id }}"
+                                                                        @if (in_array($i->id, $arr)) @checked(true) @endif>
+                                                                    {{ $i->kategori_bahan }}
                                                                 @endforeach
                                                             </div>
                                                             <div class="mb-3">

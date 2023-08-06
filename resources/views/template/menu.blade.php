@@ -41,47 +41,54 @@
 
         .nav-link {
             white-space: nowrap;
-            font-size: 16px;
         }
 
         .dropdown {
   position: relative;
+  display: inline-block;
 }
 
-.dropdown .dropdown-menu {
+.dropbtn {
+
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
   display: none;
   position: absolute;
-  background-color: #1b1414c7;
+  background-color: #1d1919;
   min-width: 160px;
-  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-item {
-  color: black;
+.dropdown-content a {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  color: black;
 }
 
-.dropdown-item:hover {
-  background-color: #dddddd10;
+.dropdown-content a:hover {
+  background-color: #f1f1f146;
 }
 
-.login{
-    display: inline-block;
-  padding: 6px 25px;
-  background-color: #ffbe33;
-  color: #ffffff;
-  border-radius: 45px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-  border: none;
+.dropdown:hover .dropdown-content {
+  display: block;
 }
+
+    .login{
+        display: inline-block;
+      padding: 6px 22px;
+      background-color: #ffbe33;
+      color: #ffffff;
+      border-radius: 45px;
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      border: none;
+    }
 
     </style>
 
@@ -111,50 +118,53 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav  mx-auto ">
-                      <li class="nav-item " style="margin-left: -140px;">
+                      <li class="nav-item " style="margin-left: -140px; font-size:15px">
                         <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                       </li>
-                      <li class="nav-item active dropdown" >
-                        <a class="nav-link" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" >
-                            <a href="#" class="dropdown-item text-white">Ayam - Daging</a>
-                            <a href="#" class="dropdown-item text-white">Ikan - Seafood</a>
-                            <a href="#" class="dropdown-item text-white">Tahu - Tempe - Telur</a>
+                      <li class="nav-item active dropdown" style="font-size: 15px">
+                        <a class="nav-link  dropbtn" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($bahan_masakan as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
+                            @endforeach
+
                           </div>
                       </li>
-                      <li class="nav-item  dropdown" >
-                        <a class="nav-link" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" >
-                            <a href="#" class="dropdown-item text-white">Hari Raya</a>
-                            <a href="#" class="dropdown-item text-white">Natal</a>
-                            <a href="#" class="dropdown-item text-white">Ulang Tahun</a>
+                      <li class="nav-item  dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($hari_khusus as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
                           </div>
                       </li>
-                      <li class="nav-item dropdown" >
-                        <a class="nav-link" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" >
-                            <a href="#" class="dropdown-item text-white">Menggoreng</a>
-                            <a href="#" class="dropdown-item text-white">Menumis</a>
-                            <a href="#" class="dropdown-item text-white">Merebus</a>
+                      <li class="nav-item dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($tips_dasar as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
                           </div>
                     </li>
-                    <li class="nav-item dropdown" >
-                        <a class="nav-link" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" >
+                    <li class="nav-item dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
                             <a href="#" class="dropdown-item text-white">Bahan Masak</a>
                             <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
                             <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
                           </div>
                     </li>
-                    <li class="nav-item dropdown" >
-                        <a class="nav-link" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" >
+                    <li class="nav-item dropdown" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
                             <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
                             <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
                             <a href="#" class="dropdown-item text-white">Tren Masakan</a>
                           </div>
                     </li>
-                    <li class="nav-item" >
+                    <li class="nav-item" style="font-size: 15px">
                         <a class="nav-link" href="{{ route('about') }}">Tentang</a>
                     </li>
                       {{-- <li class="nav-item">
@@ -164,9 +174,12 @@
                 <div class="user_option">
 
 
-                  <a href="{{route('login')}}" class="order_online">
-                    Login
-                  </a>
+                    @if (Auth::check())
+                    <a href="{{route('actionlogout')}}" class="login">Logout</a>
+                    @else
+                    <a href="{{route('login')}}" class="login">Login</a>
+
+                    @endif
                 </div>
               </div>
             </nav>
@@ -174,7 +187,7 @@
           </div>
         </header>
         <!-- end header section -->
-    </div>
+      </div>
 
     <!-- food section -->
 
@@ -554,7 +567,18 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
+    <script>
 
+        window.addEventListener('click', function(event) {
+  const dropdowns = document.querySelectorAll('.dropdown-content');
+  for (const dropdown of dropdowns) {
+    if (!dropdown.contains(event.target)) {
+      dropdown.style.display = 'none';
+    }
+  }
+});
+
+    </script>
 </body>
 
 </html>

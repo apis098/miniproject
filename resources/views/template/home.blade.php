@@ -50,35 +50,43 @@
 
         .dropdown {
   position: relative;
+  display: inline-block;
 }
 
-.dropdown .dropdown-menu {
+.dropbtn {
+
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-content {
   display: none;
   position: absolute;
-  background-color: #1b1414c7;
+  background-color: #1d1919;
   min-width: 160px;
-  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
-
-.dropdown-item {
-  color: black;
+.dropdown-content a {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
+  color: black;
 }
 
-.dropdown-item:hover {
-  background-color: #dddddd10;
+.dropdown-content a:hover {
+  background-color: #f1f1f146;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 .login{
     display: inline-block;
-  padding: 6px 25px;
+  padding: 6px 22px;
   background-color: #ffbe33;
   color: #ffffff;
   border-radius: 45px;
@@ -117,40 +125,43 @@
                         <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px;">
-                            <a href="#" class="dropdown-item text-white">Ayam - Daging</a>
-                            <a href="#" class="dropdown-item text-white">Ikan - Seafood</a>
-                            <a href="#" class="dropdown-item text-white">Tahu - Tempe - Telur</a>
+                        <a class="nav-link  dropbtn" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($bahan_masakan as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
+                            @endforeach
+
                           </div>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
-                            <a href="#" class="dropdown-item text-white">Hari Raya</a>
-                            <a href="#" class="dropdown-item text-white">Natal</a>
-                            <a href="#" class="dropdown-item text-white">Ulang Tahun</a>
+                        <a class="nav-link dropbtn" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($hari_khusus as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
                           </div>
                       </li>
                       <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
-                            <a href="#" class="dropdown-item text-white">Menggoreng</a>
-                            <a href="#" class="dropdown-item text-white">Menumis</a>
-                            <a href="#" class="dropdown-item text-white">Merebus</a>
+                        <a class="nav-link dropbtn" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px;">
+                            @foreach ($tips_dasar as $bm)
+                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                            @endforeach
+
                           </div>
                     </li>
                     <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
                             <a href="#" class="dropdown-item text-white">Bahan Masak</a>
                             <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
                             <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
                           </div>
                     </li>
                     <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-menu" style="font-size: 15px">
+                        <a class="nav-link dropbtn" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                        <div class="dropdown-content" style="font-size: 15px">
                             <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
                             <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
                             <a href="#" class="dropdown-item text-white">Tren Masakan</a>
@@ -166,9 +177,12 @@
                 <div class="user_option" >
 
 
-                  <a href="{{route('login')}}" class="login">
-                    Login
-                  </a>
+                @if (Auth::check())
+                <a href="{{route('actionlogout')}}" class="login">Logout</a>
+                @else
+                <a href="{{route('login')}}" class="login">Login</a>
+
+                @endif
                 </div>
               </div>
             </nav>
@@ -319,7 +333,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Our Menu
+                    Our Resep
                 </h2>
             </div>
 
@@ -332,258 +346,35 @@
 
             <div class="filters-content">
                 <div class="row grid">
+                    @foreach ($reseps as $r)
                     <div class="col-sm-6 col-lg-4 all pizza">
                         <div class="box">
                             <div>
                                 <div class="img-box">
-                                    <img src="images/f1.png" alt="">
+                                    <img src="{{ asset('storage/'.$r->foto_masakan) }}" alt="">
                                 </div>
                                 <div class="detail-box">
                                     <h5>
-                                        Delicious Pizza
+                                        {{ $r->nama_masakan }}
                                     </h5>
                                     <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                        voluptatem repellendus sed eaque
+                                        {{ $r->deskripsi_masakan }}
                                     </p>
                                     <div class="options">
                                         <h6>
-                                            $20
+                                            @foreach ($r->kategori_bahan as $it)
+                                                <button type="button" class="btn btn-light">{{ $it->kategori_bahan }}</button>
+                                            @endforeach
                                         </h6>
-                                        <a href="">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                y="0px" viewBox="0 0 456.029 456.029"
-                                                style="enable-background:new 0 0 456.029 456.029;"
-                                                xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                       c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                       C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                       c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                       C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                       c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
-                                        </a>
+                                        <form action="" method="get">
+                                            <button type="submit" class="btn btn-primary">Lihat Selengkapnya</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-lg-4 all burger">
-                        <div class="box">
-                            <div>
-                                <div class="img-box">
-                                    <img src="images/f2.png" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        Delicious Burger
-                                    </h5>
-                                    <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                        voluptatem repellendus sed eaque
-                                    </p>
-                                    <div class="options">
-                                        <h6>
-                                            $15
-                                        </h6>
-                                        <a href="">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                y="0px" viewBox="0 0 456.029 456.029"
-                                                style="enable-background:new 0 0 456.029 456.029;"
-                                                xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                       c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                       C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                       c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                       C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                       c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 all pasta">
-                        <div class="box">
-                            <div>
-                                <div class="img-box">
-                                    <img src="images/f9.png" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        Delicious Pasta
-                                    </h5>
-                                    <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                        voluptatem repellendus sed eaque
-                                    </p>
-                                    <div class="options">
-                                        <h6>
-                                            $10
-                                        </h6>
-                                        <a href="">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                y="0px" viewBox="0 0 456.029 456.029"
-                                                style="enable-background:new 0 0 456.029 456.029;"
-                                                xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                       c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                       C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                       c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                       C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                       c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="btn-box">
@@ -1019,7 +810,17 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
+    <script>
+        window.addEventListener('click', function(event) {
+  const dropdowns = document.querySelectorAll('.dropdown-content');
+  for (const dropdown of dropdowns) {
+    if (!dropdown.contains(event.target)) {
+      dropdown.style.display = 'none';
+    }
+  }
+});
 
+    </script>
 </body>
 
 </html>

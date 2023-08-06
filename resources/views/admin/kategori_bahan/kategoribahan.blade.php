@@ -1,20 +1,7 @@
 @extends('layouts.navbar')
 
 @section('konten')
-    {{-- <div class="container my-5"> --}}
-    <div class="card">
-        <div class="card-header bg-warning text-white">
-            <h3 class="text-center">CRUD Kategori Bahan</h3>
-        </div>
-        <div class="card-body">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <form action="/admin/kategori-bahan" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="mb-3">
+
 <br>
         <div class="card">
             <div class="card-header bg-warning text-white">
@@ -26,7 +13,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <form action="/admin/kategori-bahan" method="post">
+                <form action="/admin/kategori-bahan" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
 

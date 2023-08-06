@@ -13,7 +13,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\special_days_controller;
 use App\Models\about;
+use App\Models\basic_tips;
 use App\Models\kategori_bahan;
+use App\Models\reseps;
+use App\Models\special_days;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,21 +32,34 @@ use App\Models\kategori_bahan;
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
     $about = about::all();
-    return view('template.home', compact('kategori_bahan', 'about'));
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    $reseps = reseps::paginate(3);
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('home');
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    return view('template.menu', compact('kategori_bahan'));
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('menu');
 
 Route::get('about', function () {
     $about = about::all();
-    return view('template.about', compact('about'));
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.about', compact('about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('about');
 
 Route::get('book', function () {
-    return view('template.book');
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.book', compact('bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('book');
 
 Route::get('dashboard', function () {
