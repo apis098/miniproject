@@ -14,7 +14,10 @@
     <link rel="shortcut icon" href="images/favicon.png" type="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <title> HummaCook </title>
 
     <!-- bootstrap core css -->
@@ -89,8 +92,7 @@
     </head>
 
     <body class="sub_page">
-
-      <div class="hero_area">
+       <div class="hero_area">
         <div class="bg-box">
           <img src="images/hero-bg.jpg" alt="">
         </div>
@@ -629,7 +631,7 @@
     <<!-- book section -->
     <section class="book_section layout_padding">
         <div class="container">
-           
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="form_container">
@@ -647,7 +649,7 @@
                             @csrf
                             <div class="heading_container">
                                 <h2>
-                                    Ajukan keliuhanmu saat memasak
+                                    Ajukan keluhan saat memasak
                                 </h2>
                                 <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
                             </div>
@@ -695,8 +697,178 @@
     </section>
     <!-- end book section -->
 
+    <style>
+
+        h1{
+        color:#fff;
+        }
+        .lead{
+        color:#aaa;
+        }
+
+        .wrapper{margin:10vh}
 
 
+        .card{
+        border: none;
+        transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+        overflow:hidden;
+        border-radius:20px;
+        min-height:450px;
+        box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+
+        @media (max-width: 768px) {
+        min-height:350px;
+        }
+
+        @media (max-width: 420px) {
+        min-height:300px;
+        }
+
+        &.card-has-bg{
+        transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+        background-size:120%;
+        background-repeat:no-repeat;
+        background-position: center center;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: inherit;
+            -webkit-filter: grayscale(1);
+        -moz-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+        filter: grayscale(100%);}
+
+        &:hover {
+            transform: scale(0.98);
+            box-shadow: 0 0 5px -2px rgba(0,0,0,0.3);
+            background-size:130%;
+            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+            .card-img-overlay {
+            transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+            background: rgb(255,186,33);
+            background: linear-gradient(0deg, rgba(255,186,33,0.5) 0%, rgba(255,186,33,1) 100%);
+            }
+        }
+        }
+        .card-footer{
+        background: none;
+        border-top: none;
+            .media{
+            img{
+            border:solid 3px rgba(255,255,255,0.3);
+            }
+        }
+        }
+        .card-title{font-weight:800}
+        .card-meta{color:rgba(0,0,0,0.3);
+        text-transform:uppercase;
+        font-weight:500;
+        letter-spacing:2px;}
+        .card-body{
+        transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
+
+
+        }
+        &:hover {
+        .card-body{
+            margin-top:30px;
+            transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        cursor: pointer;
+        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .card-img-overlay {
+        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+        background: rgb(255,186,33);
+        background: linear-gradient(0deg, rgba(255,186,33,0.3785889355742297) 0%, rgba(255,186,33,1) 100%);
+        }
+        }
+        @media (max-width: 767px){
+
+        }
+            </style>
+    <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, esse.
+        </h2>
+    </div>
+     <section class="wrapper">
+                <div class="container">
+                <div class="row">
+                    <div class="col text-center mb-5">
+                        </div>
+                </div>
+                <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-4"><div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
+                    <img class="card-img d-none" src="https://source.unsplash.com/UC0HZdUitWY/?food" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
+                    <div class="card-img-overlay d-flex flex-column">
+                    <div class="card-body">
+                        <small class="card-meta mb-2">Makanan</small>
+                        <h4 class="card-title mt-0 "><a class="text-dark" herf="https://creativemanner.com">Saya menciptakan suatu resep makanan</a></h4>
+                        <small><i class="far fa-clock"></i> October 15, 2020</small>
+                        </div>
+                        <div class="card-footer">
+                        <div class="media">
+                <img class="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="Generic placeholder image" style="max-width:50px">
+                <div class="media-body">
+                <h6 class="my-0 text-dark d-block">Oz Coruhlu</h6>
+                <small>Director of UI/UX</small>
+                </div>
+            </div>
+                        </div>
+                    </div>
+                    </div></div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
+                            <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
+                            <div class="card-img-overlay d-flex flex-column">
+                                <div class="card-body">
+                                    <small class="card-meta mb-2">Makanan</small>
+                                    <h4 class="card-title mt-0 "><a class="text-dark" href="https://creativemanner.com">Saya menciptakan suatu resep makanan</a></h4>
+                                    <small><i class="far fa-clock"></i> October 15, 2020</small>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="media">
+                                        <img class="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="Generic placeholder image" style="max-width:50px">
+                                        <div class="media-body">
+                                            <h6 class="my-0 text-dark d-block">Oz Coruhlu</h6>
+                                            <small>Director of UI/UX</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Repeat the above code block for other card elements with different food images -->
+
+                <div class="col-sm-12 col-md-6 col-lg-4 mb-4"><div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
+                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
+                    <div class="card-img-overlay d-flex flex-column">
+                    <div class="card-body">
+                        <small class="card-meta mb-2">Makanan</small>
+                        <h4 class="card-title mt-0 "><a class="text-dark" herf="https://creativemanner.com">Saya menciptakan suatu resep makanan</a></h4>
+                        <small><i class="far fa-clock"></i> October 15, 2020</small>
+                        </div>
+                        <div class="card-footer">
+                        <div class="media">
+                <img class="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="Generic placeholder image" style="max-width:50px">
+                <div class="media-body">
+                <h6 class="my-0 text-dark d-block">Oz Coruhlu</h6>
+                <small>Director of UI/UX</small>
+                </div>
+            </div>
+                        </div>
+                    </div>
+                    </div></div>
+            </section>
     <!-- client section -->
     <section class="client_section layout_padding-bottom">
         <div class="container">
