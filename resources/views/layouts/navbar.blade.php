@@ -166,7 +166,7 @@ h2
                         </li>
 
                         <li class="nav-item">
-                            <a href="/admin/kategori-bahan" class="nav-link {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
+                            <a href="/admin/kategori-bahan" class="nav-link text-light {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                             Kategori Bahan
@@ -217,7 +217,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="/admin/resep" class="nav-link {{ request()->is('admin/resep') ? 'activet' : '' }}">
+                            <a href="/admin/resep" class="nav-link text-light {{ request()->is('admin/resep') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>
                                    CRUD Resep

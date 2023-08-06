@@ -103,7 +103,7 @@
         <div class="container">
         <div class="col-6">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="{{route('home')}}">
+            <a class="navbar-brand" href="{{url('admin/index')}}">
               <span style="margin-left: -70px;">
                 HummaCook
               </span>
@@ -313,17 +313,7 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
   </script>
   <!-- End Google Map -->
-  <script>
-    window.addEventListener('click', function(event) {
-  const dropdowns = document.querySelectorAll('.dropdown-content');
-  for (const dropdown of dropdowns) {
-    if (!dropdown.contains(event.target)) {
-      dropdown.style.display = 'none';
-    }
-  }
-});
 
-  </script>
 </body>
 
 </html>

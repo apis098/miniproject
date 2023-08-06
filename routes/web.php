@@ -39,6 +39,16 @@ Route::get('/', function () {
     return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('home');
 
+Route::get('artikel', function () {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $about = about::all();
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    $reseps = reseps::paginate(3);
+    return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
+})->name('artikel');    
+
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
     $bahan_masakan = kategori_bahan::all();

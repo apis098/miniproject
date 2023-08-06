@@ -79,9 +79,7 @@
                     </tbody>
                   </table>
             </div>
-            <footer>
-                <p>Hak Cipta © 2023 Humma Cook. All rights reserved.</p>
-            </footer>
+            
           </div>
         </div>
   </div>
