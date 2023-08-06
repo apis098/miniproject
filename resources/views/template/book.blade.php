@@ -43,41 +43,51 @@
             white-space: nowrap;
         }
 
+
         .dropdown {
   position: relative;
   display: inline-block;
 }
 
-.dropbtn {
+  .dropdown .dropbtn {
 
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
+    border: none;
+    outline: none;
+    color: white;
+    background-color: inherit;
+    margin: 0;
+    padding: 14px 16px;
+  }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #1d1919;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  color: black;
-}
-
-.dropdown-content a:hover {
-  background-color: #f1f1f146;
-}
-
-.dropdown:hover .dropdown-content {
+  .dropdown:hover .dropdown-content {
   display: block;
 }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1d1919;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f1f1f146;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
 
     .login{
         display: inline-block;
