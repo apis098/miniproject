@@ -115,24 +115,24 @@
         }
 
 
-.dotted {
-    border: 2px dotted #aaa;
-    text-align: center;
-    padding: 10px;
-    width: 300px;
-    height: auto;
-    border-radius: 20px;
-}
+        .dotted {
+            border: 2px dotted #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 300px;
+            height: auto;
+            border-radius: 20px;
+        }
 
-.black-border-button {
+        .black-border-button {
 
 
-  border: 1px solid black;
-  padding: 10px 15px;
-  font-size: 14px;
-  cursor: pointer;
-  border-radius: 10px;
-}
+            border: 1px solid black;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
     </style>
 
 
@@ -401,35 +401,37 @@
             <div class="filters-content">
                 <div class="row grid">
                     @foreach ($reseps as $resep)
-                    @foreach ($resep->resep as $r)
-
-                        <div class="col-sm-6 col-lg-4 all pizza">
-                            <div class="box">
-                                <div>
-                                    <div class="">
-                                        <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
-                                            height="50%" alt="">
-                                    </div>
-                                    <div class="detail-box">
-                                      <a href="{{route('artikel')}} " class="text-white">  <h4>
-                                            {{ $r->nama_masakan }}
-                                        </h4></a>
-                                     <br>
-                                        <div class="dotted">
-                                        <div class="options">
-                                            <h6>
-                                               @foreach ($r->kategori_bahan as $kb)
-                                                   <button class="black-border-button btn-sm">{{ $kb->kategori_bahan }}</button>
-                                               @endforeach
-                                            </h6>
-
+                        @foreach ($resep->resep as $r)
+                            <div class="col-sm-6 col-lg-4 all pizza">
+                                <div class="box">
+                                    <div>
+                                        <div class="">
+                                            <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
+                                                height="50%" alt="">
                                         </div>
-                                    </div>
+                                        <div class="detail-box">
+                                            <a href="{{ route('artikel') }} " class="text-white">
+                                                <h4>
+                                                    {{ $r->nama_masakan }}
+                                                </h4>
+                                            </a>
+                                            <br>
+                                            <div class="dotted">
+                                                <div class="options">
+                                                    <h6>
+                                                        @foreach ($r->kategori_bahan as $kb)
+                                                            <button
+                                                                class="black-border-button btn-sm">{{ $kb->kategori_bahan }}</button>
+                                                        @endforeach
+                                                    </h6>
+
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                     @endforeach
 
                 </div>
@@ -670,14 +672,20 @@
                                     <div class="card-footer">
                                         <div class="media">
                                             <img class="mr-3 rounded-circle"
-                                                src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                                                alt="Generic placeholder image" style="max-width:50px">
+                                                src="{{ asset('images/default-profile2.png') }}" alt="profile image"
+                                                style="max-width:50px">
                                             <div class="media-body">
                                                 <h6 class="my-0 text-dark d-block">{{ $row->user->name }}</h6>
                                                 <small>Director of UI/UX</small>
                                             </div>
                                             <div>
-                                                <a href="" class="btn btn-warning btn-sm text-light rounded-3"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg></a>
+                                                <a href=""
+                                                    class="btn btn-warning btn-sm text-light rounded-3"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="32"
+                                                        height="32" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
+                                                    </svg></a>
                                             </div>
                                         </div>
                                     </div>
@@ -836,7 +844,13 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
         </script>
         <!-- End Google Map -->
-
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#searchbahan').select2();
+            });
+        </script>
 </body>
 
 </html>
