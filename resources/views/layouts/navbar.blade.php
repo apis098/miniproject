@@ -208,14 +208,7 @@ h2
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-pen-to-square"></i>
-                                <p>
-                                   Edit About
-                                </p>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="/admin/resep" class="nav-link text-light {{ request()->is('admin/resep') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fas fa-receipt"></i>
@@ -237,6 +230,15 @@ h2
                                 <i class="nav-icon fas fa-reply-all"></i>
                                 <p>
                                    Balas Keluhan
+                                </p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-pen-to-square"></i>
+                                <p>
+                                   Tentang
                                 </p>
                             </a>
                         </li>

@@ -128,7 +128,7 @@
                       </div>
                   </li>
                   <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
+                    <a class="nav-link dropbtn" href="#">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
                     <div class="dropdown-content" style="font-size: 15px;">
                         @foreach ($hari_khusus as $bm)
                             <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
@@ -137,7 +137,7 @@
                       </div>
                   </li>
                   <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
+                    <a class="nav-link dropbtn" href="#">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
                     <div class="dropdown-content" style="font-size: 15px;">
                         @foreach ($tips_dasar as $bm)
                             <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
@@ -146,7 +146,7 @@
                       </div>
                 </li>
                 <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="">Pengetahuan Dapur   <i class="fa-solid fa-chevron-down">  </i></a>
+                    <a class="nav-link dropbtn" href="#">Pengetahuan Dapur   <i class="fa-solid fa-chevron-down">  </i></a>
                     <div class="dropdown-content" style="font-size: 15px">
                         <a href="#" class="dropdown-item text-white">Bahan Masak</a>
                         <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
@@ -154,7 +154,7 @@
                       </div>
                 </li>
                 <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
+                    <a class="nav-link dropbtn" href="#">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
                     <div class="dropdown-content" style="font-size: 15px">
                         <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
                         <a href="#" class="dropdown-item text-white">Serba - Serbi</a>

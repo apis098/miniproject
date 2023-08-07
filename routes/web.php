@@ -10,16 +10,13 @@ use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\special_days_controller;
 use App\Models\about;
 use App\Models\basic_tips;
-use App\Models\complaint;
 use App\Models\kategori_bahan;
 use App\Models\reseps;
 use App\Models\special_days;
-use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,21 +35,9 @@ Route::get('/', function () {
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    $reseps = kategori_bahan::all();
-    $complaints = complaint::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar','complaints'));
+    $reseps = reseps::paginate(3);
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('home');
-
-Route::post('/', function (Request $request) {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $about = about::all();
-    $bahan_masakan = kategori_bahan::all();
-    $hari_khusus = special_days::all();
-    $tips_dasar = basic_tips::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
-    $complaints = complaint::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
-});
 
 Route::get('artikel', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
@@ -66,21 +51,11 @@ Route::get('artikel', function () {
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = kategori_bahan::all();
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('menu');
-
-Route::post('/menu', function (Request $request) {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $bahan_masakan = kategori_bahan::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
-    $hari_khusus = special_days::all();
-    $tips_dasar = basic_tips::all();
-    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
-});
 
 Route::get('about', function () {
     $about = about::all();
@@ -120,15 +95,6 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 
-//Keluhan user
-Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
-Route::get('/keluhan-admin', [complaintController::class, 'index'])->name('ComplaintUser.index');
-Route::put('/keluhan-update/{id}',[complaintController::class,'update'])->name('ComplaintUser.update');
-Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
-Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
-Route::post('/reply-store-by/{id}',[ReplyController::class,'reply'])->name('ReplyComplaint.store');
-
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
     Route::prefix('/admin')->group(function () {
@@ -160,4 +126,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 // role koki
-Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index')->middleware('auth', 'role:koki');
+Route::middleware(['auth', 'role:koki'])->group(function () {
+    Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
+    Route::prefix('/koki')->group(function () {
+        Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
+        Route::resource('resep', ResepsController::class);
+    });
+});
+    

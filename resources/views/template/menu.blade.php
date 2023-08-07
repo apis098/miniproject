@@ -91,6 +91,26 @@
             transition: all 0.3s;
             border: none;
         }
+
+        .dotted {
+            border: 2px dotted #aaa;
+            text-align: center;
+            padding: 10px;
+            width: 300px;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        .black-border-button {
+
+
+            border: 1px solid black;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
     </style>
 
 
@@ -137,7 +157,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item  dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('book') }}">Hari Khusus <i
+                                    <a class="nav-link dropbtn" href="#">Hari Khusus <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px;">
                                         @foreach ($hari_khusus as $bm)
@@ -147,7 +167,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="">Tips Dasar <i
+                                    <a class="nav-link dropbtn" href="#">Tips Dasar <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px;">
                                         @foreach ($tips_dasar as $bm)
@@ -157,7 +177,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="">Pengetahuan Dapur <i
+                                    <a class="nav-link dropbtn" href="#">Pengetahuan Dapur <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px">
                                         <a href="#" class="dropdown-item text-white">Bahan Masak</a>
@@ -166,7 +186,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="">Seputar Dapur <i
+                                    <a class="nav-link dropbtn" href="#">Seputar Dapur <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px">
                                         <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
@@ -232,24 +252,22 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <h5>
+                                            <a href="{{ route('artikel') }} " class="text-white">  <h4>
                                                 {{ $r->nama_masakan }}
-                                            </h5>
-                                            <p>
-                                                {{ $r->deskripsi_masakan }}
-                                            </p>
+                                            </h4>
+                                            </a>
+                                            <br>
+                                            <div class="dotted">
                                             <div class="options">
                                                 <h6>
                                                     @foreach ($r->kategori_bahan as $kb)
                                                         <button
-                                                            class="btn btn-light">{{ $kb->kategori_bahan }}</button>
+                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
                                                     @endforeach
                                                 </h6>
-                                                <form action="" method="get">
-                                                    <button type="submit" class="btn btn-primary">Lihat
-                                                        Selengkapnya</button>
-                                                </form>
+
                                             </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -259,11 +277,7 @@
 
                 </div>
             </div>
-            <div class="btn-box">
-                <a href="">
-                    View More
-                </a>
-            </div>
+           
         </div>
     </section>
 
