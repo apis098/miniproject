@@ -429,74 +429,74 @@
     @endforeach
     <!-- end about section -->
 
-    <<!-- book section -->
-    <section class="book_section layout_padding">
-        <div class="container">
+   <<!-- book section -->
+   <section class="book_section layout_padding">
+    <div class="container">
+       
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form_container">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif  
+                    <form action="{{route('ComplaintUser.store')}}" method="POST">
+                        @csrf
+                        <div class="heading_container">
+                            <h2>
+                                Ajukan keluhanmu saat memasak
+                            </h2>
+                            <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject/Judul..." />
+                        </div>
+                        <div>
+                            <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
+                        </div>
+                        {{-- <div>
+                            <select class="form-control nice-select wide">
+                                <option value="" disabled selected>
+                                    Kategori Masalah
+                                </option>
+                                <option value="testing">
+                                    testing
+                                </option>
+                                <option value="testing">
+                                    testing
+                                </option>
+                                <option value="testing">
+                                    testing
+                                </option>
+                                <option value="testing">
+                                    testing
+                                </option>
+                            </select>
+                        </div> --}}
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form_container">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        <form action="{{route('ComplaintUser.store')}}" method="POST">
-                            @csrf
-                            <div class="heading_container">
-                                <h2>
-                                    Ajukan keluhan saat memasak
-                                </h2>
-                                <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
-                            </div>
-                            <div>
-                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject/Judul..." />
-                            </div>
-                            <div>
-                                <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
-                            </div>
-                            {{-- <div>
-                                <select class="form-control nice-select wide">
-                                    <option value="" disabled selected>
-                                        Kategori Masalah
-                                    </option>
-                                    <option value="testing">
-                                        testing
-                                    </option>
-                                    <option value="testing">
-                                        testing
-                                    </option>
-                                    <option value="testing">
-                                        testing
-                                    </option>
-                                    <option value="testing">
-                                        testing
-                                    </option>
-                                </select>
-                            </div> --}}
-
-                            <div>
-                                <button type="submit">
-                                    Kirim <i class="fa-solid fa-paper-plane"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
+                        <div>
+                            <button type="submit">
+                                Kirim <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="col-md-6" style="margin-top: -5%">
-                    <div class="map_container ">
-                        <img src="{{ asset('images/anoying2.jpg') }}" class="img-fluid" alt="Gambar Contoh">
-                    </div>
+            </div>
+            <div class="col-md-6" style="margin-top: -5%">
+                <div class="map_container ">
+                    <img src="{{ asset('images/anoying2.jpg') }}" class="img-fluid" alt="Gambar Contoh">
                 </div>
             </div>
         </div>
-    </section>
-    <!-- end book section -->
+    </div>
+</section>
+<!-- end book section -->
 
     <style>
 
