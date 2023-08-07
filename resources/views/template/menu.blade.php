@@ -12,7 +12,9 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <link rel="shortcut icon" href="images/favicon.png" type="">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <title> HummaCook </title>
 
@@ -35,7 +37,7 @@
     <link href="css/responsive.css" rel="stylesheet" />
     <style>
         .nav-link.active {
-          background-color: #f39c12;
+            background-color: #f39c12;
             color: #fff;
         }
 
@@ -44,150 +46,157 @@
         }
 
         .dropdown {
-  position: relative;
-  display: inline-block;
-}
+            position: relative;
+            display: inline-block;
+        }
 
-.dropbtn {
+        .dropbtn {
 
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-}
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #1d1919;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1d1919;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        }
 
-.dropdown-content a {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  color: black;
-}
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: black;
+        }
 
-.dropdown-content a:hover {
-  background-color: #f1f1f146;
-}
+        .dropdown-content a:hover {
+            background-color: #f1f1f146;
+        }
 
-.dropdown:hover .dropdown-content {
-  display: block;
-}
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
 
-    .login{
-        display: inline-block;
-      padding: 6px 22px;
-      background-color: #ffbe33;
-      color: #ffffff;
-      border-radius: 45px;
-      -webkit-transition: all 0.3s;
-      transition: all 0.3s;
-      border: none;
-    }
-
+        .login {
+            display: inline-block;
+            padding: 6px 22px;
+            background-color: #ffbe33;
+            color: #ffffff;
+            border-radius: 45px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            border: none;
+        }
     </style>
 
 
-    </head>
+</head>
 
-    <body class="sub_page">
+<body class="sub_page">
 
-      <div class="hero_area">
+    <div class="hero_area">
         <div class="bg-box">
-          <img src="images/hero-bg.jpg" alt="">
+            <img src="images/hero-bg.jpg" alt="">
         </div>
         <!-- header section strats -->
         <header class="header_section">
             <div class="container">
-            <div class="col-6">
-              <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="{{url('admin/index')}}">
-                  <span style="margin-left: -70px;">
-                    HummaCook
-                  </span>
-                </a>
+                <div class="col-6">
+                    <nav class="navbar navbar-expand-lg custom_nav-container ">
+                        <a class="navbar-brand" href="{{ url('admin/index') }}">
+                            <span style="margin-left: -70px;">
+                                HummaCook
+                            </span>
+                        </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class=""> </span>
-                </button>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class=""> </span>
+                        </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav  mx-auto ">
-                      <li class="nav-item " style="margin-left: -140px; font-size:15px">
-                        <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
-                      </li>
-                      <li class="nav-item active dropdown" style="font-size: 15px">
-                        <a class="nav-link  dropbtn" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-content" style="font-size: 15px;">
-                            @foreach ($bahan_masakan as $bm)
-                                <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
-                            @endforeach
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav  mx-auto ">
+                                <li class="nav-item " style="margin-left: -140px; font-size:15px">
+                                    <a class="nav-link" href="{{ route('home') }}">Home <span
+                                            class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item active dropdown" style="font-size: 15px">
+                                    <a class="nav-link  dropbtn" href="{{ route('menu') }}">Resep <i
+                                            class="fa-solid fa-chevron-down"> </i></a>
+                                    <div class="dropdown-content" style="font-size: 15px;">
+                                        @foreach ($bahan_masakan as $bm)
+                                            <a href=""
+                                                class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
+                                        @endforeach
 
-                          </div>
-                      </li>
-                      <li class="nav-item  dropdown" style="font-size: 15px">
-                        <a class="nav-link dropbtn" href="{{route('book')}}">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-content" style="font-size: 15px;">
-                            @foreach ($hari_khusus as $bm)
-                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
-                            @endforeach
+                                    </div>
+                                </li>
+                                <li class="nav-item  dropdown" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="{{ route('book') }}">Hari Khusus <i
+                                            class="fa-solid fa-chevron-down"> </i></a>
+                                    <div class="dropdown-content" style="font-size: 15px;">
+                                        @foreach ($hari_khusus as $bm)
+                                            <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                                        @endforeach
 
-                          </div>
-                      </li>
-                      <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link dropbtn" href="">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-content" style="font-size: 15px;">
-                            @foreach ($tips_dasar as $bm)
-                                <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
-                            @endforeach
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="">Tips Dasar <i
+                                            class="fa-solid fa-chevron-down"> </i></a>
+                                    <div class="dropdown-content" style="font-size: 15px;">
+                                        @foreach ($tips_dasar as $bm)
+                                            <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                                        @endforeach
 
-                          </div>
-                    </li>
-                    <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link dropbtn" href="">Pengetahuan Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-content" style="font-size: 15px">
-                            <a href="#" class="dropdown-item text-white">Bahan Masak</a>
-                            <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
-                            <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
-                          </div>
-                    </li>
-                    <li class="nav-item dropdown" style="font-size: 15px">
-                        <a class="nav-link dropbtn" href="">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                        <div class="dropdown-content" style="font-size: 15px">
-                            <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
-                            <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
-                            <a href="#" class="dropdown-item text-white">Tren Masakan</a>
-                          </div>
-                    </li>
-                    <li class="nav-item" style="font-size: 15px">
-                        <a class="nav-link" href="{{ route('about') }}">Tentang</a>
-                    </li>
-                      {{-- <li class="nav-item">
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="">Pengetahuan Dapur <i
+                                            class="fa-solid fa-chevron-down"> </i></a>
+                                    <div class="dropdown-content" style="font-size: 15px">
+                                        <a href="#" class="dropdown-item text-white">Bahan Masak</a>
+                                        <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
+                                        <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="">Seputar Dapur <i
+                                            class="fa-solid fa-chevron-down"> </i></a>
+                                    <div class="dropdown-content" style="font-size: 15px">
+                                        <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
+                                        <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
+                                        <a href="#" class="dropdown-item text-white">Tren Masakan</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item" style="font-size: 15px">
+                                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                                </li>
+                                {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
-                    </ul>
-                <div class="user_option">
+                            </ul>
+                            <div class="user_option">
 
 
-                    @if (Auth::check())
-                    <a href="{{route('actionlogout')}}" class="login">Logout</a>
-                    @else
-                    <a href="{{route('login')}}" class="login">Login</a>
-
-                    @endif
+                                @if (Auth::check())
+                                    <a href="{{ route('actionlogout') }}" class="login">Logout</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="login">Login</a>
+                                @endif
+                            </div>
+                        </div>
+                    </nav>
                 </div>
-              </div>
-            </nav>
-          </div>
-          </div>
+            </div>
         </header>
         <!-- end header section -->
-      </div>
+    </div>
 
     <!-- food section -->
 
@@ -195,278 +204,66 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Our Menu
+                    Search Resep By Ingredients
                 </h2>
             </div>
 
-            <ul class="filters_menu">
-                <li class="active" data-filter="*">All</li>
-                @foreach ($kategori_bahan as $item_bahan)
-                    <li data-filter=".{{ $item_bahan->kategori_bahan }}">{{ $item_bahan->kategori_bahan }}</li>
-                @endforeach
-            </ul>
+            <form action="/menu" method="post">
+                @csrf
+                <select name="bahan" id="searchbahan" class="form-control">
+                    <option value=""></option>
+                    @foreach ($bahan_masakan as $item_bahan)
+                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary my-2">Search</button>
+            </form>
+
 
             <div class="filters-content">
-                <div class="row grid">
-                    <div class="col-sm-6 col-lg-4 all pizza">
-                        <div class="box">
-                            <div>
-                                <div class="img-box">
-                                    <img src="images/f1.png" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        Delicious Pizza
-                                    </h5>
-                                    <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                        voluptatem repellendus sed eaque
-                                    </p>
-                                    <div class="options">
-                                        <h6>
-                                            $20
-                                        </h6>
-                                        <a href="">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                y="0px" viewBox="0 0 456.029 456.029"
-                                                style="enable-background:new 0 0 456.029 456.029;"
-                                                xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                         c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                         C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                         c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                         C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                         c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 all burger">
-                        <div class="box">
-                            <div>
-                                <div class="img-box">
-                                    <img src="images/f2.png" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        Delicious Burger
-                                    </h5>
-                                    <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                        voluptatem repellendus sed eaque
-                                    </p>
-                                    <div class="options">
-                                        <h6>
-                                            $15
-                                        </h6>
-                                        <a href="">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                y="0px" viewBox="0 0 456.029 456.029"
-                                                style="enable-background:new 0 0 456.029 456.029;"
-                                                xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                         c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                         C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                         c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                         C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                         c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4 all pasta">
-                        <div class="box">
-                            <div>
-                                <div class="img-box">
-                                    <img src="images/f9.png" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h5>
-                                        Delicious Pasta
-                                    </h5>
-                                    <p>
-                                        Veniam debitis quaerat officiis quasi cupiditate quo, quisquam velit, magnam
-                                        voluptatem repellendus sed eaque
-                                    </p>
-                                    <div class="options">
-                                        <h6>
-                                            $10
-                                        </h6>
-                                        <a href="">
-                                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                                                y="0px" viewBox="0 0 456.029 456.029"
-                                                style="enable-background:new 0 0 456.029 456.029;"
-                                                xml:space="preserve">
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M345.6,338.862c-29.184,0-53.248,23.552-53.248,53.248c0,29.184,23.552,53.248,53.248,53.248
-                         c29.184,0,53.248-23.552,53.248-53.248C398.336,362.926,374.784,338.862,345.6,338.862z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M439.296,84.91c-1.024,0-2.56-0.512-4.096-0.512H112.64l-5.12-34.304C104.448,27.566,84.992,10.67,61.952,10.67H20.48
-                         C9.216,10.67,0,19.886,0,31.15c0,11.264,9.216,20.48,20.48,20.48h41.472c2.56,0,4.608,2.048,5.12,4.608l31.744,216.064
-                         c4.096,27.136,27.648,47.616,55.296,47.616h212.992c26.624,0,49.664-18.944,55.296-45.056l33.28-166.4
-                         C457.728,97.71,450.56,86.958,439.296,84.91z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                    <g>
-                                                        <path
-                                                            d="M215.04,389.55c-1.024-28.16-24.576-50.688-52.736-50.688c-29.696,1.536-52.224,26.112-51.2,55.296
-                         c1.024,28.16,24.064,50.688,52.224,50.688h1.024C193.536,443.31,216.576,418.734,215.04,389.55z" />
-                                                    </g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                                <g>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="btn-box">
-                <a href="">
-                    View More
-                </a>
-            </div>
+              <div class="row grid">
+                  @foreach ($reseps as $resep)
+                  @foreach ($resep->resep as $r)
+
+                      <div class="col-sm-6 col-lg-4 all pizza">
+                          <div class="box">
+                              <div>
+                                  <div class="">
+                                      <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
+                                          height="50%" alt="">
+                                  </div>
+                                  <div class="detail-box">
+                                      <h5>
+                                          {{ $r->nama_masakan }}
+                                      </h5>
+                                      <p>
+                                          {{ $r->deskripsi_masakan }}
+                                      </p>
+                                      <div class="options">
+                                          <h6>
+                                             @foreach ($r->kategori_bahan as $kb)
+                                                 <button class="btn btn-light">{{ $kb->kategori_bahan }}</button>
+                                             @endforeach
+                                          </h6>
+                                          <form action="" method="get">
+                                              <button type="submit" class="btn btn-primary">Lihat
+                                                  Selengkapnya</button>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  @endforeach
+                  @endforeach
+
+              </div>
+          </div>
+          <div class="btn-box">
+              <a href="">
+                  View More
+              </a>
+          </div>
         </div>
     </section>
 
@@ -475,76 +272,76 @@
     <!-- footer section -->
     <footer class="footer_section">
         <div class="container">
-          <div class="row">
-            <div class="col-md-4 footer-col">
-              <div class="footer_contact">
-                <h4>
-                  Contact
-                </h4>
-                <div class="contact_link_box">
-                  <a href="">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                    <span>
-                      Lokasi
-                    </span>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    <span>
-                      Call +62 1234567890
-                    </span>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <span>
-                      hummacook@gmail.com
-                    </span>
-                  </a>
+            <div class="row">
+                <div class="col-md-4 footer-col">
+                    <div class="footer_contact">
+                        <h4>
+                            Contact
+                        </h4>
+                        <div class="contact_link_box">
+                            <a href="">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <span>
+                                    Lokasi
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>
+                                    Call +62 1234567890
+                                </span>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <span>
+                                    hummacook@gmail.com
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-4 footer-col">
-              <div class="footer_detail">
-                <a href="" class="footer-logo">
-                  HummaCook
-                </a>
-                <p>
-                  Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti
-                </p>
-                <div class="footer_social">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-pinterest" aria-hidden="true"></i>
-                  </a>
+                <div class="col-md-4 footer-col">
+                    <div class="footer_detail">
+                        <a href="" class="footer-logo">
+                            HummaCook
+                        </a>
+                        <p>
+                            Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti
+                        </p>
+                        <div class="footer_social">
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-pinterest" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-md-4 footer-col">
+                    <h4>
+                        Opening Hours
+                    </h4>
+                    <p>
+                        Setiap Hari
+                    </p>
+                    <p>
+                        24 Jam
+                    </p>
+                </div>
             </div>
-            <div class="col-md-4 footer-col">
-              <h4>
-                Opening Hours
-              </h4>
-              <p>
-                Setiap Hari
-              </p>
-              <p>
-                24 Jam
-              </p>
-            </div>
-          </div>
 
         </div>
-      </footer>
+    </footer>
     <!-- footer section -->
 
     <!-- jQery -->
