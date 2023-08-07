@@ -50,7 +50,8 @@ Route::post('/', function (Request $request) {
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     $reseps = kategori_bahan::where('id', $request->bahan)->get();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
+    $complaints = complaint::all();
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
 });
 
 Route::get('artikel', function () {

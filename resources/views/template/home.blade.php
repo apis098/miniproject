@@ -880,7 +880,7 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                @endforeach
                     <!-- Repeat the above code block for other card elements with different food images -->
 
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
