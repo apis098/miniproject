@@ -679,7 +679,7 @@
                                                 <small>Director of UI/UX</small>
                                             </div>
                                             <div>
-                                                <a href=""
+                                                <a href="{{route('ShowReplies.show',$row->id)}}"
                                                     class="btn btn-warning btn-sm text-light rounded-3"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32"
                                                         height="32" viewBox="0 0 24 24">
