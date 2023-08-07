@@ -109,10 +109,13 @@
                             <div class="card-body">
                                 {{ $r->deskripsi_masakan }}
                                 <br>
-
+                                @if ($r->tipsdasar)
+                                    
+                                
                                 <button type="button"
                                     class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
-                                @if ($r->seputardapur)
+                                @endif
+                                    @if ($r->seputardapur)
                                     <button type="button"
                                         class="btn btn-light m-1 border">{{ $r->seputardapur->nama_kategori }}</button>
                                 @endif
@@ -183,9 +186,13 @@
                                                                     Dasar*</label>
                                                                 <select name="tipsdasar_id" id="tipsdasar_id"
                                                                     class="form-control">
-
+                                                                    @if ($r->tipsdasar)
                                                                     <option value="{{ $r->tipsdasar_id }}">
-                                                                        {{ $r->tipsdasar->nama_kategori }}</option>
+                                                                        {{ $r->tipsdasar->nama_kategori }}</option> 
+                                                                    @else
+                                                                       <option value=""></option> 
+                                                                    @endif
+                                                                   
                                                                     @foreach ($tips as $t)
                                                                         <option value="{{ $t->id }}">
                                                                             {{ $t->nama_kategori }}</option>
