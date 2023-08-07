@@ -15,6 +15,7 @@ use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\special_days_controller;
 use App\Models\about;
 use App\Models\basic_tips;
+use App\Models\complaint;
 use App\Models\kategori_bahan;
 use App\Models\reseps;
 use App\Models\special_days;
@@ -37,7 +38,8 @@ Route::get('/', function () {
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     $reseps = reseps::paginate(3);
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
+    $complaints = complaint::all();
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar','complaints'));
 })->name('home');
 
 Route::get('artikel', function () {

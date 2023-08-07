@@ -460,26 +460,6 @@
                         <div>
                             <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
                         </div>
-                        {{-- <div>
-                            <select class="form-control nice-select wide">
-                                <option value="" disabled selected>
-                                    Kategori Masalah
-                                </option>
-                                <option value="testing">
-                                    testing
-                                </option>
-                                <option value="testing">
-                                    testing
-                                </option>
-                                <option value="testing">
-                                    testing
-                                </option>
-                                <option value="testing">
-                                    testing
-                                </option>
-                            </select>
-                        </div> --}}
-
                         <div>
                             <button type="submit">
                                 Kirim <i class="fa-solid fa-paper-plane"></i>
@@ -597,7 +577,7 @@
             </style>
     <div class="heading_container heading_center psudo_white_primary mb_45">
         <h2>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, esse.
+            Keluhan Pengguna lain
         </h2>
     </div>
      <section class="wrapper">
@@ -607,7 +587,8 @@
                         </div>
                 </div>
                 <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4 mb-4"><div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
+          
+            {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4"><div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
                     <img class="card-img d-none" src="https://source.unsplash.com/UC0HZdUitWY/?food" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
                     <div class="card-img-overlay d-flex flex-column">
                     <div class="card-body">
@@ -623,23 +604,27 @@
                 <small>Director of UI/UX</small>
                 </div>
             </div>
+           
                         </div>
                     </div>
-                    </div></div>
+                    </div>
+                </div> --}}
+        
+                @foreach($complaints as $row)
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                         <div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
                             <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
                             <div class="card-img-overlay d-flex flex-column">
                                 <div class="card-body">
-                                    <small class="card-meta mb-2">Makanan</small>
-                                    <h4 class="card-title mt-0 "><a class="text-dark" href="https://creativemanner.com">Saya menciptakan suatu resep makanan</a></h4>
+                                    <small class="card-meta mb-2 text-dark"><b>{{$row->subject}}</b></small>
+                                    <h4 class="card-title mt-0 "><a class="text-dark" href="https://creativemanner.com">{{$row->description}}</a></h4>
                                     <small><i class="far fa-clock"></i> October 15, 2020</small>
                                 </div>
                                 <div class="card-footer">
                                     <div class="media">
                                         <img class="mr-3 rounded-circle" src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80" alt="Generic placeholder image" style="max-width:50px">
                                         <div class="media-body">
-                                            <h6 class="my-0 text-dark d-block">Oz Coruhlu</h6>
+                                            <h6 class="my-0 text-dark d-block">{{$row->user->name}}</h6>
                                             <small>Director of UI/UX</small>
                                         </div>
                                     </div>
@@ -647,10 +632,10 @@
                             </div>
                         </div>
                     </div>
-
+                    @endforeach
                     <!-- Repeat the above code block for other card elements with different food images -->
 
-                <div class="col-sm-12 col-md-6 col-lg-4 mb-4"><div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
+                {{-- <div class="col-sm-12 col-md-6 col-lg-4 mb-4"><div class="card text-dark card-has-bg click-col" style="background-image:url('https://source.unsplash.com/600x900/?food');">
                     <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food" alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
                     <div class="card-img-overlay d-flex flex-column">
                     <div class="card-body">
@@ -668,7 +653,7 @@
             </div>
                         </div>
                     </div>
-                    </div></div>
+                    </div></div> --}}
             </section>
     <!-- client section -->
     <section class="client_section layout_padding-bottom">
