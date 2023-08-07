@@ -46,7 +46,7 @@
             <form method="POST" action="{{ route('BasicTips.store') }}" class="d-flex align-items-center">
                 @csrf
                 <input type="text" class="form-control ms-1 mb-1 me-2 rounded-3" id="name" name="name"
-                    aria-describedby="emailHelp" placeholder="Masukkan nama hari...">
+                    aria-describedby="emailHelp" placeholder="Masukkan Tips Dasar...">
                 <input type="hidden" value="-" class="form-control" id="description" name="description"
                     placeholder="Masukkan Deskripsi...">
                 <button type="submit" class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
@@ -61,7 +61,7 @@
         <thead class="bg-secondary text-light">
             <tr>
                 <th>NO</th>
-                <th>Nama Hari Special</th>
+                <th>Nama Tips Dasar</th>
                 <th>Dibuat Pada:</th>
                 <th>Terakhir Diupdate Pada:</th>
                 <th>action</th>
@@ -82,7 +82,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
                                 data-mdb-ripple-color="dark"
-                                onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i
                                     class="fa-solid fa-trash-can"></i></button>
                         </form>
                     </td>

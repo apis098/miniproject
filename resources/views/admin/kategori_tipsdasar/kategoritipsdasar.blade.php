@@ -28,20 +28,51 @@
                 <tbody>
                     @foreach ($kategori as $num => $item)
                         <tr>
-                            <th scope="row">{{ $num+=1 }}</th>
+                            <th scope="row">{{ $num += 1 }}</th>
                             <td>{{ $item->nama_kategori }}</td>
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->updated_at }}</td>
                             <td>
-                                <form action="/admin/kategori-tipsdasar/{{ $item->id }}/edit" method="get">
-                                    <button type="submit" class="btn btn-warning">Edit</button>
-                                </form>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal{{ $item->id }}">
+                                    Edit
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kategori Tips Dasar</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/admin/kategori-tipsdasar/{{ $item->id }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    @method('PUT')
+                                                    <div class="mb-3">
+                                                        <label for="nama_kategori" class="form-label">Kategori Tips
+                                                            Dasar</label>
+                                                        <input type="text" value="{{ $item->nama_kategori }}"
+                                                            class="form-control" id="nama_kategori" name="nama_kategori"
+                                                            required>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td>
                                 <form action="/admin/kategori-tipsdasar/{{ $item->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau menghapus data kategori tips dasar?')">Hapus</button>
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Yakin mau menghapus data kategori tips dasar?')">Hapus</button>
                                 </form>
                             </td>
                         </tr>

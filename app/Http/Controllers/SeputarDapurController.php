@@ -58,7 +58,7 @@ class SeputarDapurController extends Controller
             'isi' => $request->isi
         ]);
 
-        return redirect()->route('seputar_dapur.index')->with('success', 'berhasil tambah data');
+        return redirect()->back()->with('success', 'berhasil tambah data');
     }
 
 

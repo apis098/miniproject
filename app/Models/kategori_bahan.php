@@ -13,4 +13,7 @@ class kategori_bahan extends Model
         'kategori_bahan',
         'foto'
     ];
+    public function resep() {
+        return $this->belongsToMany(reseps::class, 'pivot');
+    }
 }
