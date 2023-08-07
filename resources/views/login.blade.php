@@ -69,8 +69,8 @@
         <!-- Jumbotron -->
         <div class="container py-1" style="max-width: 70%; margin-top: 1.6%;">
             <div class="row g-0 align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0" style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
-                    <div class="card cascading-right rounded-5">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card cascading-right rounded-5"  style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
                         <div class="card-body p-5 shadow-5 text-center">
                             <h2 class="fw-bold mb-5 font-a">HummaCook <i class="fa-solid fa-utensils"></i></h2>
                             <form action="{{ route('actionlogin') }}" method="post">
