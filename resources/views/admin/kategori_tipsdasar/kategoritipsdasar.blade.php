@@ -1,9 +1,11 @@
 @extends('layouts.navbar')
 @section('konten')
+        {{-- heading --}}
     <div class="card container my-5">
-        <div class="card-header">
-            <h4 class="text-center">CRUD Kategori Tips Dasar</h4>
+        <div class="card-header bg-dark text-white">
+            <h4 class="text-center"> Kategori Tips Dasar</h4>
         </div>
+        {{--  tanbah data --}}
         <div class="card-body">
             <form action="/admin/kategori-tipsdasar" method="post">
                 {{ csrf_field() }}
@@ -11,12 +13,12 @@
                     <label for="nama_kategori" class="form-label">Kategori Tips Dasar</label>
                     <input type="text" class="form-control" id="nama_kategori" name="nama_kategori" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-secondary">Simpan</button>
             </form>
         </div>
         <div class="card-footer">
-            <table class="table">
-                <thead>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama Kategori</th>
@@ -33,6 +35,7 @@
                             <td>{{ $item->created_at }}</td>
                             <td>{{ $item->updated_at }}</td>
                             <td>
+                                <div class="d-flex">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal{{ $item->id }}">
@@ -60,20 +63,20 @@
                                                             class="form-control" id="nama_kategori" name="nama_kategori"
                                                             required>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="submit" class="btn btn-dark-disable">Simpan</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                            <td>
+
                                 <form action="/admin/kategori-tipsdasar/{{ $item->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger"
                                         onclick="return confirm('Yakin mau menghapus data kategori tips dasar?')">Hapus</button>
                                 </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach

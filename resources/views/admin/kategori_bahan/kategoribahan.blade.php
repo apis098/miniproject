@@ -3,9 +3,9 @@
 @section('konten')
 
 <br>
-        <div class="card">
-            <div class="card-header bg-warning text-white">
-                <h3 class="text-center">CRUD Kategori Bahan</h3>
+        <div class="card container my-5">
+            <div class="card-header bg-dark text-white">
+                <h3 class="text-center"> Kategori Bahan</h3>
             </div>
             <div class="card-body">
                 @if (session('success'))
@@ -34,7 +34,7 @@
                         </div>
                     @enderror
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-secondary">Simpan</button>
             </form>
         </div>
         <div class="card-footer">
