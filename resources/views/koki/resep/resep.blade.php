@@ -1,4 +1,4 @@
-@extends('layouts.navbar')
+@extends('layouts.nav_koki')
 @section('konten')
     <div class="card">
         <div class="card-header">
@@ -204,11 +204,11 @@
                                                                     class="form-control">
                                                                     @if ($r->seputardapur)
                                                                     <option value="{{ $r->seputardapur_id }}">
-                                                                        {{ $r->seputardapur->nama_kategori }}</option>  
+                                                                        {{ $r->seputardapur->nama_kategori }}</option>
                                                                     @else
                                                                         <option value=""></option>
                                                                     @endif
-                                                                    
+
                                                                     @foreach ($dapur as $d)
                                                                         <option value="{{ $d->id }}">
                                                                             {{ $d->nama_kategori }}</option>

@@ -62,7 +62,7 @@ Route::get('artikel', function () {
     $tips_dasar = basic_tips::all();
     $reseps = reseps::paginate(3);
     return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
-})->name('artikel');    
+})->name('artikel');
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
@@ -90,12 +90,59 @@ Route::get('about', function () {
     return view('template.about', compact('about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('about');
 
-Route::get('book', function () {
+Route::get('hari', function () {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $reseps = kategori_bahan::all();
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    return view('template.book', compact('bahan_masakan', 'hari_khusus', 'tips_dasar'));
-})->name('book');
+    return view('template.hari', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+})->name('hari');
+
+Route::post('hari', function (Request $request) {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $bahan_masakan = kategori_bahan::all();
+    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.hari', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+});
+
+Route::get('seputar_dpr', function () {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $reseps = kategori_bahan::all();
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.seputar_dpr', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+})->name('seputar_dpr');
+
+Route::post('seputar_dpr', function (Request $request) {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $bahan_masakan = kategori_bahan::all();
+    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.seputar_dpr', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+});
+
+Route::get('tips_dsr', function () {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $reseps = kategori_bahan::all();
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.tips_dsr', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+})->name('tips_dsr');
+
+Route::post('tips_dsr', function (Request $request) {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $bahan_masakan = kategori_bahan::all();
+    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    return view('template.tips_dsr', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+});
 
 Route::get('dashboard', function () {
     return view('admin.dashboard');
@@ -153,11 +200,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
         Route::resource('kategori_seputardapur', App\Http\Controllers\KategoriSeputardapurController::class);
-        Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
         Route::resource('edit-tentang', AboutController::class);
-        Route::resource('resep', ResepsController::class);
     });
 });
 
 // role koki
-Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index')->middleware('auth', 'role:koki');
+Route::middleware(['auth', 'role:koki'])->group(function () {
+    Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
+    Route::prefix('/koki')->group(function () {
+
+        Route::resource('resep', ResepsController::class);
+        Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
+    });
+});

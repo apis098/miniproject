@@ -35,7 +35,11 @@ class LoginController extends Controller
         ];
 
         if (Auth::Attempt($data)) {
-            return redirect()->route('admin.index');
+            if (Auth::user()->role == 'koki'){
+                return redirect()->route('koki.index');
+            } else if (Auth::user()->role == 'admin') {
+                return redirect()->route('admin.index');
+            }
         }else{
             return redirect()->back()->with('error', 'Email atau Password Salah');
         }
