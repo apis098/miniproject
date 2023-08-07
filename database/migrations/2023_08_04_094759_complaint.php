@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('subject');
             $table->text('description');
             $table->string('status')->default('belum');
+            $table->string('balasan')->default('Belum ada balasan');
             $table->timestamps();
 
             // Foreign key constraint to link user_id with users table

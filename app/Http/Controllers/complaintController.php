@@ -26,10 +26,26 @@ class complaintController extends Controller
             $complaint->subject = $request->subject;
             $complaint->description = $request->description;
             $complaint->status = 'belum';
+            $complaint->balasan = 'Belum ada balasan';
             $complaint->save();
         }else{
             return redirect('/')->with('error','Silahkan login terlebih dahulu.');
         }
         return redirect('/')->with('success','Keluhan kamu telah terkirim.');
+    }
+    public function index(){
+        $data=complaint::all();
+        $title="Data keluhan";
+        return view('complaint.index',compact('data','title'));
+    }
+    public function update(Request $request,$id){
+        $data=complaint::findOrFail($id);
+        $data->subject = $request->subject;
+        $data->status = $request->status;
+        $data->balasan = $request->balasan;
+        $data->description = $request->description;
+        $data->save();
+
+        return redirect()->route('ComplaintUser.index')->with('success','Balasan telah terkirim.');
     }
 }
