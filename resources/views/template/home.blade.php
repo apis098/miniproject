@@ -178,7 +178,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="#">Hari Khusus <i
+                                    <a class="nav-link dropbtn" href="{{ route('book') }}">Hari Khusus <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px;">
                                         @foreach ($hari_khusus as $bm)
@@ -188,7 +188,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="#">Tips Dasar <i
+                                    <a class="nav-link dropbtn" href="">Tips Dasar <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px;">
                                         @foreach ($tips_dasar as $bm)
@@ -198,7 +198,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="#">Pengetahuan Dapur <i
+                                    <a class="nav-link dropbtn" href="">Pengetahuan Dapur <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px">
                                         <a href="#" class="dropdown-item text-white">Bahan Masak</a>
@@ -207,7 +207,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="#">Seputar Dapur <i
+                                    <a class="nav-link dropbtn" href="">Seputar Dapur <i
                                             class="fa-solid fa-chevron-down"> </i></a>
                                     <div class="dropdown-content" style="font-size: 15px">
                                         <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
@@ -437,8 +437,8 @@
                 </div>
             </div>
             <div class="btn-box">
-                <a href="{{route('menu')}}">
-                    Lihat Selengkapnya
+                <a href="">
+                    View More
                 </a>
             </div>
         </div>
@@ -695,7 +695,57 @@
                     @endforeach
         </section>
         <!-- client section -->
-       
+        <section class="client_section layout_padding-bottom">
+            <div class="container">
+                <div class="heading_container heading_center psudo_white_primary mb_45">
+                    <h2>
+                        Testimoni
+                    </h2>
+                </div>
+                <div class="carousel-wrap row ">
+                    <div class="owl-carousel client_owl-carousel">
+                        <div class="item">
+                            <div class="box">
+                                <div class="detail-box">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                    </p>
+                                    <h6>
+                                        Moana Michell
+                                    </h6>
+                                    <p>
+                                        magna aliqua
+                                    </p>
+                                </div>
+                                <div class="img-box">
+                                    <img src="images/client1.jpg" alt="" class="box-img">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="box">
+                                <div class="detail-box">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                    </p>
+                                    <h6>
+                                        Mike Hamell
+                                    </h6>
+                                    <p>
+                                        magna aliqua
+                                    </p>
+                                </div>
+                                <div class="img-box">
+                                    <img src="images/client2.jpg" alt="" class="box-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- end client section -->
 

@@ -16,6 +16,7 @@ class ReplyController extends Controller
     public function show($id){
         $data = complaint::findOrFail($id);
         $replies = $data->replies;
+        // $count= $replies->count();
         $title = "Data balasan keluhan ";
         return view('template.detail2',compact('data','title','replies'));
     }
