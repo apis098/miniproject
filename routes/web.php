@@ -17,6 +17,7 @@ use App\Models\basic_tips;
 use App\Models\kategori_bahan;
 use App\Models\reseps;
 use App\Models\special_days;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,19 @@ Route::get('/', function () {
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    $reseps = reseps::paginate(3);
+    $reseps = kategori_bahan::all();
     return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
 })->name('home');
+
+Route::post('/', function (Request $request) {
+    $kategori_bahan = kategori_bahan::paginate(3);
+    $about = about::all();
+    $bahan_masakan = kategori_bahan::all();
+    $hari_khusus = special_days::all();
+    $tips_dasar = basic_tips::all();
+    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
+});
 
 Route::get('artikel', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
