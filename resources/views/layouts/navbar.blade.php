@@ -157,7 +157,7 @@ h2
                         </li>
                         <li class="nav-item">
                             <a href="{{route('kategori_seputardapur.index')}}" class="nav-link text-light {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-kitchen-set"></i>
                                 <p>
                                             Kategori Seputar Dapur
 
@@ -167,7 +167,7 @@ h2
 
                         <li class="nav-item">
                             <a href="/admin/kategori-bahan" class="nav-link text-light {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-wheat-awn"></i>
                                 <p>
                                             Kategori Bahan
 
@@ -176,7 +176,7 @@ h2
                         </li>
                         <li class="nav-item">
                             <a href="/admin/kategori-tipsdasar" class="nav-link text-light {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-users"></i>
+                                <i class="nav-icon fas fa-wand-magic-sparkles"></i>
                                 <p>
                                     Kategori Tips Dasar
                                 </p>
@@ -184,33 +184,33 @@ h2
                         </li>
                         <li class="nav-item">
                             <a href="{{route('SpecialDays.index')}}" class="nav-link text-light {{ request()->is('admin/special-days') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fa-calendar-check"></i>
                                 <p>
-                                   Hari Khusus
+                                  Kategori Hari Khusus
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('BasicTips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fa-utensils"></i>
                                 <p>
-                                    Tips Dasar
+                                   Crud Tips Dasar
                                 </p>
                             </a>
 
                         </li>
                         <li class="nav-item">
                             <a href="{{route('seputar_dapur.index')}}" class="nav-link text-light {{ request()->is('admin/seputar_dapur') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fa-mortar-pestle"></i>
                                 <p>
-                                   Seputar Dapur
+                                   Crud Seputar Dapur
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fa-pen-to-square"></i>
                                 <p>
                                    Edit About
                                 </p>
@@ -218,7 +218,7 @@ h2
                         </li>
                         <li class="nav-item">
                             <a href="/admin/resep" class="nav-link text-light {{ request()->is('admin/resep') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fas fa-receipt"></i>
                                 <p>
                                    CRUD Resep
                                 </p>
@@ -226,7 +226,7 @@ h2
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
                                    Keluhan Pengguna Lain
                                 </p>
@@ -234,7 +234,7 @@ h2
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('ReplyUser.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-address-book"></i>
+                                <i class="nav-icon fas fa-reply-all"></i>
                                 <p>
                                    Balas Keluhan
                                 </p>
