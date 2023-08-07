@@ -14,6 +14,9 @@ class special_days_controller extends Controller
         $title = "Data Hari Spesial";
         return view('admin.special_days.index',compact('data','title'));
     }
+    public function detail2(){
+        return view('template.detail2');
+    }
     public function create()
     {
         return view('special_days.create', [

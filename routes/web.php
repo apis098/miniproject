@@ -62,7 +62,7 @@ Route::get('artikel', function () {
     $tips_dasar = basic_tips::all();
     $reseps = reseps::paginate(3);
     return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
-})->name('artikel');    
+})->name('artikel');
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
