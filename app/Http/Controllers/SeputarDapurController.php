@@ -5,6 +5,7 @@ use App\Http\Requests\Storeseputar_dapurRequest;
 use App\Http\Requests\Updateseputar_dapurRequest;
 use App\Models\kategori_seputardapur;
 use App\Models\seputar_dapur;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,7 +18,8 @@ class SeputarDapurController extends Controller
     {
         $kategori_seputardapur = kategori_seputardapur::all();
         $seputar_dapur = seputar_dapur::all();
-        return view('admin.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur'));
+        $userkoki = User::all();
+        return view('admin.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur','userkoki'));
     }
 
     /**
@@ -37,7 +39,7 @@ class SeputarDapurController extends Controller
         $this->validate($request, [
         'kategori_id' => 'required',
         'judul' => 'required',
-        'foto' => 'required|image|mimes:png,jpg,jpeg,svg|max:2048',
+        'foto' => 'required|image|mimes:png,jpg,jpeg,svg|max:20048',
         'isi' => 'required'
     ], [
         'kategori_id.required' => 'field ini harus di isi!',
@@ -77,6 +79,7 @@ class SeputarDapurController extends Controller
     {
         $data =[
             'kategori_seputardapur'=>kategori_seputardapur::all(),
+            'userkoki'=>User::all(),
             'seputar_dapur'=>$seputar_dapur
             ];
             return view('admin.seputar-dapur.edit',$data);
@@ -128,6 +131,7 @@ class SeputarDapurController extends Controller
      */
     public function destroy(seputar_dapur $seputar_dapur)
     {
+        // dd($seputar_dapur->foto);
        // Hapus file foto jika ada
       if ($seputar_dapur->foto) {
             // Hapus file dari direktori
