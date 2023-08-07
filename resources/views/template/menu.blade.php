@@ -221,49 +221,49 @@
 
 
             <div class="filters-content">
-              <div class="row grid">
-                  @foreach ($reseps as $resep)
-                  @foreach ($resep->resep as $r)
+                <div class="row grid">
+                    @foreach ($reseps as $resep)
+                        @foreach ($resep->resep as $r)
+                            <div class="col-sm-6 col-lg-4 all pizza">
+                                <div class="box">
+                                    <div>
+                                        <div class="">
+                                            <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
+                                                height="50%" alt="">
+                                        </div>
+                                        <div class="detail-box">
+                                            <h5>
+                                                {{ $r->nama_masakan }}
+                                            </h5>
+                                            <p>
+                                                {{ $r->deskripsi_masakan }}
+                                            </p>
+                                            <div class="options">
+                                                <h6>
+                                                    @foreach ($r->kategori_bahan as $kb)
+                                                        <button
+                                                            class="btn btn-light">{{ $kb->kategori_bahan }}</button>
+                                                    @endforeach
+                                                </h6>
+                                                <form action="" method="get">
+                                                    <button type="submit" class="btn btn-primary">Lihat
+                                                        Selengkapnya</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endforeach
 
-                      <div class="col-sm-6 col-lg-4 all pizza">
-                          <div class="box">
-                              <div>
-                                  <div class="">
-                                      <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
-                                          height="50%" alt="">
-                                  </div>
-                                  <div class="detail-box">
-                                      <h5>
-                                          {{ $r->nama_masakan }}
-                                      </h5>
-                                      <p>
-                                          {{ $r->deskripsi_masakan }}
-                                      </p>
-                                      <div class="options">
-                                          <h6>
-                                             @foreach ($r->kategori_bahan as $kb)
-                                                 <button class="btn btn-light">{{ $kb->kategori_bahan }}</button>
-                                             @endforeach
-                                          </h6>
-                                          <form action="" method="get">
-                                              <button type="submit" class="btn btn-primary">Lihat
-                                                  Selengkapnya</button>
-                                          </form>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  @endforeach
-                  @endforeach
-
-              </div>
-          </div>
-          <div class="btn-box">
-              <a href="">
-                  View More
-              </a>
-          </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <a href="">
+                    View More
+                </a>
+            </div>
         </div>
     </section>
 
@@ -364,7 +364,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchbahan').select2();
+        });
+    </script>
 </body>
 
 </html>
