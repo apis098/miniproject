@@ -670,8 +670,8 @@
                                     <div class="card-footer">
                                         <div class="media">
                                             <img class="mr-3 rounded-circle"
-                                                src="https://assets.codepen.io/460692/internal/avatars/users/default.png?format=auto&version=1688931977&width=80&height=80"
-                                                alt="Generic placeholder image" style="max-width:50px">
+                                                src="{{ asset('images/default-profile2.png') }}"
+                                                alt="profile image" style="max-width:50px">
                                             <div class="media-body">
                                                 <h6 class="my-0 text-dark d-block">{{ $row->user->name }}</h6>
                                                 <small>Director of UI/UX</small>
