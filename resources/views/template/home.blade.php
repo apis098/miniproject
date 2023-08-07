@@ -356,24 +356,33 @@
 
     <!-- food section -->
 
+    
+    <!-- food section -->
+
     <section class="food_section layout_padding">
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Our Resep
+                    Search Resep By Ingredients
                 </h2>
             </div>
 
-            <ul class="filters_menu">
-                <li class="active" data-filter="*">All</li>
-                @foreach ($kategori_bahan as $item_bahan)
-                    <li data-filter=".{{ $item_bahan->kategori_bahan }}">{{ $item_bahan->kategori_bahan }}</li>
-                @endforeach
-            </ul>
+            <form action="/" method="post">
+                @csrf
+                <select name="bahan" id="searchbahan" class="form-control">
+                    <option value=""></option>
+                    @foreach ($bahan_masakan as $item_bahan)
+                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="btn btn-primary my-2">Search</button>
+            </form>
 
             <div class="filters-content">
                 <div class="row grid">
-                    @foreach ($reseps as $r)
+                    @foreach ($reseps as $resep)
+                    @foreach ($resep->resep as $r)
+
                         <div class="col-sm-6 col-lg-4 all pizza">
                             <div class="box">
                                 <div>
@@ -390,10 +399,9 @@
                                         </p>
                                         <div class="options">
                                             <h6>
-                                                @foreach ($r->kategori_bahan as $it)
-                                                    <button type="button"
-                                                        class="btn btn-light">{{ $it->kategori_bahan }}</button>
-                                                @endforeach
+                                               @foreach ($r->kategori_bahan as $kb)
+                                                   <button class="btn btn-light">{{ $kb->kategori_bahan }}</button>
+                                               @endforeach
                                             </h6>
                                             <form action="" method="get">
                                                 <button type="submit" class="btn btn-primary">Lihat
@@ -405,6 +413,8 @@
                             </div>
                         </div>
                     @endforeach
+                    @endforeach
+
                 </div>
             </div>
             <div class="btn-box">
@@ -414,6 +424,9 @@
             </div>
         </div>
     </section>
+
+    <!-- end food section -->
+
 
     <!-- end food section -->
 
