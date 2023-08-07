@@ -11,7 +11,7 @@ class basic_tips_controller extends Controller
     {
         $data = basic_tips::all();
         $title = "Tips Dasar Memasak";
-        return view('basic_tips.index', compact('data', 'title'));
+        return view('admin.basic_tips.index', compact('data', 'title'));
     }
     public function create()
     {

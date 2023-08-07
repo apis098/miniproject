@@ -12,7 +12,7 @@ class special_days_controller extends Controller
     {
         $data = special_days::all();
         $title = "Data Hari Spesial";
-        return view('special_days.index',compact('data','title'));
+        return view('admin.special_days.index',compact('data','title'));
     }
     public function create()
     {
@@ -79,5 +79,5 @@ class special_days_controller extends Controller
     {
         $data = special_days::find($id);
         return response()->json($data);
-    }   
+    }
 }
