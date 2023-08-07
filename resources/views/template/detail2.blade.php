@@ -14,7 +14,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" <!--
         Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             background-color: #f7f6f6
@@ -100,10 +100,100 @@
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <!-- header section strats -->
+     <header class="header_section">
+        <div class="container">
+            <div class="col-6">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a class="navbar-brand" href="{{ url('admin/index') }}">
+                        <span style="margin-left: -70px;">
+                            HummaCook
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class=""> </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav  mx-auto ">
+                            <li class="nav-item " style="margin-left: -140px; font-size:15px">
+                                <a class="nav-link" href="{{ route('home') }}">Home <span
+                                        class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active dropdown" style="font-size: 15px">
+                                <a class="nav-link  dropbtn" href="{{ route('menu') }}">Resep <i
+                                        class="fa-solid fa-chevron-down"> </i></a>
+                                <div class="dropdown-content" style="font-size: 15px;">
+                                    @foreach ($bahan_masakan as $bm)
+                                        <a href=""
+                                            class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
+                                    @endforeach
+
+                                </div>
+                            </li>
+                            <li class="nav-item  dropdown" style="font-size: 15px">
+                                <a class="nav-link dropbtn" href="#">Hari Khusus <i
+                                        class="fa-solid fa-chevron-down"> </i></a>
+                                <div class="dropdown-content" style="font-size: 15px;">
+                                    @foreach ($hari_khusus as $bm)
+                                        <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                                    @endforeach
+
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown" style="font-size: 15px">
+                                <a class="nav-link dropbtn" href="#">Tips Dasar <i
+                                        class="fa-solid fa-chevron-down"> </i></a>
+                                <div class="dropdown-content" style="font-size: 15px;">
+                                    @foreach ($tips_dasar as $bm)
+                                        <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
+                                    @endforeach
+
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown" style="font-size: 15px">
+                                <a class="nav-link dropbtn" href="#">Pengetahuan Dapur <i
+                                        class="fa-solid fa-chevron-down"> </i></a>
+                                <div class="dropdown-content" style="font-size: 15px">
+                                    <a href="#" class="dropdown-item text-white">Bahan Masak</a>
+                                    <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
+                                    <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown" style="font-size: 15px">
+                                <a class="nav-link dropbtn" href="#">Seputar Dapur <i
+                                        class="fa-solid fa-chevron-down"> </i></a>
+                                <div class="dropdown-content" style="font-size: 15px">
+                                    <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
+                                    <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
+                                    <a href="#" class="dropdown-item text-white">Tren Masakan</a>
+                                </div>
+                            </li>
+                            <li class="nav-item" style="font-size: 15px">
+                                <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                            </li>
+                            {{-- <li class="nav-item">
+                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                  </li> --}}
+                        </ul>
+                        <div class="user_option">
+
+
+                            @if (Auth::check())
+                                <a href="{{ route('actionlogout') }}" class="login">Logout</a>
+                            @else
+                                <a href="{{ route('login') }}" class="login">Login</a>
+                            @endif
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </div>
-        </div>
-    </nav>
+    </header>
+    <!-- end header section -->
     <!-- Product section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
@@ -119,16 +209,25 @@
                     </div>
                     <p class="lead">{{$data->description}}</p>
                 </div>
+                
             </div>
         </div>
     </section>
     <section>
     <div class="container mb-5" style="margin-top:-5%;">
         <div class="row  d-flex justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-11">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5>Unread comments(6)</h5>
-
+                    <h5 class="me-5">Total komentar(6)</h5>
+                    <div class="col-9">
+                        <form method="POST" action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
+                        @csrf
+                        <div class="input-group">
+                        <input type="text" id="reply" name="reply" class="form-control" placeholder="Tambah komentar...">
+                        <button type="submit" class="btn btn-warning text-light"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                        </form>
+                    </div>
                     <div class="buttons">
 
                         {{-- <span class="badge bg-white d-flex flex-row align-items-center">
