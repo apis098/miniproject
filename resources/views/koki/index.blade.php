@@ -1,4 +1,4 @@
-@extends('layouts.navbar')
+@extends('layouts.nav_koki')
 
 @section('konten')
 <div class="container">
@@ -7,4 +7,4 @@
 {{-- <h4>Selamat Datang <b>{{Auth::user()->name}}</b>, Anda Login sebagai <b>{{Auth::user()->role}}</b>.</h4> --}}
 @endsection
 
-    
+

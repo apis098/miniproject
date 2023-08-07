@@ -157,12 +157,6 @@
     </header>
     <!-- ****** Header Area End ****** -->
 
-    <!-- ****** Breadcumb Area Start ****** -->
-
-
-
-    <!-- ****** Breadcumb Area End ****** -->
-
     <!-- ****** Single Blog Area Start ****** -->
     <section class="single_blog_area section_padding_80">
         <div class="container">

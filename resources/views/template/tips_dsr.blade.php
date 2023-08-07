@@ -127,27 +127,28 @@
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                            @if (Auth::check())
-                            @if (Auth::user()->role == 'Admin')
-                            <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
-                            @else
-                            <a class="navbar-brand" href="{{ url('koki/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
-                            @endif
+                        @if (Auth::check())
+                        @if (Auth::user()->role == 'Admin')
+                        <a class="navbar-brand" href="{{ url('admin/index') }}">
+                            <span style="margin-left: -70px;">
+                                HummaCook
+                            </span>
+                        </a>
                         @else
-                        <a class="navbar-brand" href="#">
+                        <a class="navbar-brand" href="{{ url('koki/index') }}">
                             <span style="margin-left: -70px;">
                                 HummaCook
                             </span>
                         </a>
                         @endif
+                    @else
+                    <a class="navbar-brand" href="#">
+                        <span style="margin-left: -70px;">
+                            HummaCook
+                        </span>
+                    </a>
+                    @endif
+
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -160,7 +161,7 @@
                                     <a class="nav-link" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="nav-item active dropdown" style="font-size: 15px">
+                                <li class="nav-item dropdown" style="font-size: 15px">
                                     <a class="nav-link  dropbtn" href="{{ route('menu') }}">Resep</a>
 
                                 </li>
@@ -168,7 +169,7 @@
                                     <a class="nav-link dropbtn" href="{{ route('hari') }}">Hari Khusus </a>
 
                                 </li>
-                                <li class="nav-item dropdown" style="font-size: 15px">
+                                <li class="nav-item active dropdown" style="font-size: 15px">
                                     <a class="nav-link dropbtn" href="{{ route('tips_dsr') }}">Tips Dasar</a>
 
                                 </li>
@@ -207,7 +208,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Search Resep By Ingredients
+                    Search Resep By Basic Tips
                 </h2>
             </div>
 

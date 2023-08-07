@@ -103,11 +103,27 @@
         <div class="container">
         <div class="col-6">
           <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="{{url('admin/index')}}">
-              <span style="margin-left: -70px;">
-                HummaCook
-              </span>
+            @if (Auth::check())
+            @if (Auth::user()->role == 'Admin')
+            <a class="navbar-brand" href="{{ url('admin/index') }}">
+                <span style="margin-left: -70px;">
+                    HummaCook
+                </span>
             </a>
+            @else
+            <a class="navbar-brand" href="{{ url('koki/index') }}">
+                <span style="margin-left: -70px;">
+                    HummaCook
+                </span>
+            </a>
+            @endif
+        @else
+        <a class="navbar-brand" href="#">
+            <span style="margin-left: -70px;">
+                HummaCook
+            </span>
+        </a>
+        @endif
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class=""> </span>
@@ -119,47 +135,21 @@
                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="{{route('menu')}}">Resep  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-content" style="font-size: 15px;">
-                        @foreach ($bahan_masakan as $bm)
-                            <a href="" class="dropdown-item text-white">{{ $bm->kategori_bahan }}</a>
-                        @endforeach
+                    <a class="nav-link  dropbtn" href="{{ route('menu') }}">Resep</a>
 
-                      </div>
-                  </li>
-                  <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="#">Hari Khusus  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-content" style="font-size: 15px;">
-                        @foreach ($hari_khusus as $bm)
-                            <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
-                        @endforeach
-
-                      </div>
-                  </li>
-                  <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="#">Tips Dasar  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-content" style="font-size: 15px;">
-                        @foreach ($tips_dasar as $bm)
-                            <a href="" class="dropdown-item text-white">{{ $bm->name }}</a>
-                        @endforeach
-
-                      </div>
                 </li>
                 <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="#">Pengetahuan Dapur   <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-content" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Bahan Masak</a>
-                        <a href="#" class="dropdown-item text-white">Bumbu Dapur</a>
-                        <a href="#" class="dropdown-item text-white">Peralaan Dapur</a>
-                      </div>
+                    <a class="nav-link dropbtn" href="{{ route('hari') }}">Hari Khusus </a>
+
                 </li>
                 <li class="nav-item dropdown" style="font-size: 15px">
-                    <a class="nav-link dropbtn" href="#">Seputar Dapur  <i class="fa-solid fa-chevron-down">  </i></a>
-                    <div class="dropdown-content" style="font-size: 15px">
-                        <a href="#" class="dropdown-item text-white">Bahan Unik & Eksotis</a>
-                        <a href="#" class="dropdown-item text-white">Serba - Serbi</a>
-                        <a href="#" class="dropdown-item text-white">Tren Masakan</a>
-                      </div>
+                    <a class="nav-link dropbtn" href="{{ route('tips_dsr') }}">Tips Dasar</a>
+
+                </li>
+
+                <li class="nav-item dropdown" style="font-size: 15px">
+                    <a class="nav-link dropbtn" href="{{ route('seputar_dpr') }}">Seputar Dapur</a>
+
                 </li>
                 <li class="nav-item active" style="font-size: 15px">
                     <a class="nav-link" href="{{ route('about') }}">Tentang</a>
