@@ -33,7 +33,7 @@
         }
 
         .zoom-effects:hover {
-            transform: scale(0.120);
+            transform: scale(0.97);
         }
     </style>
     <div class="mt-3 ml-3">
@@ -46,7 +46,7 @@
             <form method="POST" action="{{ route('BasicTips.store') }}" class="d-flex align-items-center">
                 @csrf
                 <input type="text" class="form-control ms-1 mb-1 me-2 rounded-3" id="name" name="name"
-                    aria-describedby="emailHelp" placeholder="Masukkan Tips Dasar...">
+                    aria-describedby="emailHelp" placeholder="Masukkan nama hari...">
                 <input type="hidden" value="-" class="form-control" id="description" name="description"
                     placeholder="Masukkan Deskripsi...">
                 <button type="submit" class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
@@ -61,9 +61,10 @@
         <thead class="bg-secondary text-light">
             <tr>
                 <th>NO</th>
-                <th>Nama Tips Dasar</th>
-                <th>Dibuat Pada:</th>
-                <th>Terakhir Diupdate Pada:</th>
+                <th>Nama user   </th>
+                <th>Subjek</th>
+                <th>Deskripsi</th>
+                <th>Balasan</th>
                 <th>action</th>
             </tr>
         </thead>
@@ -71,20 +72,21 @@
             @foreach ($data as $row)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $row->name }}</td>
-                    <td>{{ $row->created_at }}</td>
-                    <td>{{ $row->updated_at }}</td>
+                    <td>{{ $row->user->name}}</td>
+                    <td>{{ $row->subject }}</td>
+                    <td>{{ $row->description }}</td>
+                    <td>{{ $row->balasan }}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
-                            data-target="#exampleModal{{ $row->id }}"><i class="fa-solid fa-pen-clip"></i></button>
-                        <form action="{{ route('BasicTips.destroy', $row->id) }}" method="POST" class="d-inline-block">
+                        <button type="button" class="btn btn-outline-primary btn-sm rounded-5 edit-btn" data-toggle="modal"
+                            data-target="#exampleModal{{ $row->id }}"><i class="fa-regular fa-comment-dots"></i> Balas Pesan</button>
+                        {{-- <form action="{{ route('BasicTips.destroy', $row->id) }}" method="POST" class="d-inline-block">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
                                 data-mdb-ripple-color="dark"
-                                onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i
+                                onclick="return confirm('Are you sure you want to delete this data?')"><i
                                     class="fa-solid fa-trash-can"></i></button>
-                        </form>
+                        </form> --}}
                     </td>
                 </tr>
             @endforeach
@@ -98,31 +100,38 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Form Balasan Pesan</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('BasicTips.update', $row->id) }}" method="POST">
+                            <form action="{{ route('ComplaintUser.update', $row->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="name" class="col-form-label">Nama:</label>
-                                    <input type="text" value="{{ $row->name }}" class="form-control" name="name"
-                                        id="nameEdit">
+                                    <label for="name" class="col-form-label">Pesan Balasan:</label>
+                                    <input type="text"  class="form-control" name="balasan"
+                                        id="balasan">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" hidden value="-" class="form-control" name="description"
-                                        id="descriptionEdit">
+                                    <input type="text" hidden  value="{{ $row->description }}" class="form-control" name="description"
+                                        id="description">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" hidden value="sudah" class="form-control" name="status"
+                                        id="status">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" hidden value="{{ $row->subject }}" class="form-control" name="subject"
+                                        id="subject">
                                 </div>
                         </div>
                         <div class="modal-footer">
                             <button type="submit"
                                 class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
                                 data-mdb-ripple-color="dark">
-                                <i class="fa-regular fa-floppy-disk me-1"></i>
-                                Submit
+                                Kirim <i class="fa-solid fa-paper-plane"></i>
                             </button>
                             </form>
                         </div>

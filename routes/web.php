@@ -10,10 +10,12 @@ use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
 use App\Http\Controllers\special_days_controller;
 use App\Models\about;
 use App\Models\basic_tips;
+use App\Models\complaint;
 use App\Models\kategori_bahan;
 use App\Models\reseps;
 use App\Models\special_days;
@@ -37,7 +39,8 @@ Route::get('/', function () {
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     $reseps = kategori_bahan::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
+    $complaints = complaint::all();
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar','complaints'));
 })->name('home');
 
 Route::post('/', function (Request $request) {
@@ -105,6 +108,15 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
+
+//Keluhan user
+Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
+Route::get('/keluhan-admin', [complaintController::class, 'index'])->name('ComplaintUser.index');
+Route::put('/keluhan-update/{id}',[complaintController::class,'update'])->name('ComplaintUser.update');
+Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
+Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
+Route::post('/reply-store-by/{id}',[ReplyController::class,'reply'])->name('ReplyComplaint.store');
+
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');

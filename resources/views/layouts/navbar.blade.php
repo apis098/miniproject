@@ -224,6 +224,23 @@ h2
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                   Keluhan Pengguna Lain
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('ReplyUser.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-address-book"></i>
+                                <p>
+                                   Balas Keluhan
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
