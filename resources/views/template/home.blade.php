@@ -113,6 +113,26 @@
             transition: all 0.3s;
             border: none;
         }
+
+
+.dotted {
+    border: 2px dotted #aaa;
+    text-align: center;
+    padding: 10px;
+    width: 300px;
+    height: auto;
+    border-radius: 20px;
+}
+
+.black-border-button {
+
+
+  border: 1px solid black;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 10px;
+}
     </style>
 
 
@@ -356,7 +376,7 @@
 
     <!-- food section -->
 
-    
+
     <!-- food section -->
 
     <section class="food_section layout_padding">
@@ -391,23 +411,20 @@
                                             height="50%" alt="">
                                     </div>
                                     <div class="detail-box">
-                                        <h5>
+                                      <a href="{{route('artikel')}} " class="text-white">  <h4>
                                             {{ $r->nama_masakan }}
-                                        </h5>
-                                        <p>
-                                            {{ $r->deskripsi_masakan }}
-                                        </p>
+                                        </h4></a>
+                                     <br>
+                                        <div class="dotted">
                                         <div class="options">
                                             <h6>
                                                @foreach ($r->kategori_bahan as $kb)
-                                                   <button class="btn btn-light">{{ $kb->kategori_bahan }}</button>
+                                                   <button class="black-border-button btn-sm">{{ $kb->kategori_bahan }}</button>
                                                @endforeach
                                             </h6>
-                                            <form action="" method="get">
-                                                <button type="submit" class="btn btn-primary">Lihat
-                                                    Selengkapnya</button>
-                                            </form>
+
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
