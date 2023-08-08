@@ -7,6 +7,7 @@ use App\Models\kategori_seputardapur;
 use App\Models\seputar_dapur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class SeputarDapurController extends Controller
@@ -18,8 +19,7 @@ class SeputarDapurController extends Controller
     {
         $kategori_seputardapur = kategori_seputardapur::all();
         $seputar_dapur = seputar_dapur::all();
-        $userkoki = User::all();
-        return view('koki.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur','userkoki'));
+        return view('koki.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur'));
     }
 
     /**
@@ -36,6 +36,7 @@ class SeputarDapurController extends Controller
      */
     public function store(Request $request)
     {
+        dd(Auth::user());
         $this->validate($request, [
         'kategori_id' => 'required',
         'judul' => 'required',
@@ -54,6 +55,7 @@ class SeputarDapurController extends Controller
         $foto->storeAs('public/seputardapur', $foto->hashName());
 
         seputar_dapur::create([
+            'userkoki_id'=> Auth::user()->id,
             'kategori_id' => $request->kategori_id,
             'judul' => $request->judul,
             'foto' => $foto->hashName(),
@@ -131,7 +133,7 @@ class SeputarDapurController extends Controller
      */
     public function destroy(seputar_dapur $seputar_dapur)
     {
-        // dd($seputar_dapur->foto);
+
        // Hapus file foto jika ada
       if ($seputar_dapur->foto) {
             // Hapus file dari direktori

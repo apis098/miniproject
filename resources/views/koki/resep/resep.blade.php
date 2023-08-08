@@ -5,7 +5,7 @@
             <h3 class="text-center">CRUD Resep</h3>
         </div>
         <div class="card-body">
-            <form action="/admin/resep" method="post" enctype="multipart/form-data">
+            <form action="/koki/resep" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="nama_masakan" class="form-label">Nama Masakan</label>
@@ -109,9 +109,10 @@
                             <div class="card-body">
                                 {{ $r->deskripsi_masakan }}
                                 <br>
-
+                                @if ($r->tipsdasar)
                                 <button type="button"
                                     class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
+                                @endif
                                 @if ($r->seputardapur)
                                     <button type="button"
                                         class="btn btn-light m-1 border">{{ $r->seputardapur->nama_kategori }}</button>
@@ -124,7 +125,9 @@
                                 @if ($r->specialday)
                                     <button type="button"
                                         class="btn btn-light border m-1">{{ $r->specialday->name }}</button>
-                                @endif
+                                @endif 
+                                <br>
+                                by <span class="text-info">{{ $r->user->name }}</span>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -148,7 +151,7 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="/admin/resep/{{ $r->id }}" method="post"
+                                                        <form action="/koki/resep/{{ $r->id }}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PUT')
@@ -183,9 +186,11 @@
                                                                     Dasar*</label>
                                                                 <select name="tipsdasar_id" id="tipsdasar_id"
                                                                     class="form-control">
-
+                                                                    @if ($r->tipsdasar)
                                                                     <option value="{{ $r->tipsdasar_id }}">
                                                                         {{ $r->tipsdasar->nama_kategori }}</option>
+                                                                    @endif
+                                                                    
                                                                     @foreach ($tips as $t)
                                                                         <option value="{{ $t->id }}">
                                                                             {{ $t->nama_kategori }}</option>
@@ -282,7 +287,7 @@
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <form action="/admin/resep/{{ $r->id }}" method="post">
+                                        <form action="/koki/resep/{{ $r->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button style="width: 100%" type="submit" class="btn btn-danger"

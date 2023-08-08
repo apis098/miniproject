@@ -135,7 +135,7 @@ h2
                         <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block text-yellow">Koki</a>
+                        <a href="{{route('koki.index')}}" class="d-block text-yellow">Koki</a>
                     </div>
                 </div>
 
@@ -157,7 +157,7 @@ h2
 
 
                         <li class="nav-item">
-                            <a href="{{route('basic_tips.index')}}" class="nav-link text-light {{ request()->is('koki/basic-tips') ? 'activet' : '' }}">
+                            <a href="/koki/basic_tips" class="nav-link text-light {{ request()->is('koki/basic_tips') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-utensils"></i>
                                 <p>
                                     Tips Dasar

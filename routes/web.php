@@ -8,6 +8,7 @@ use App\Http\Controllers\complaintController;
 use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
+use App\Http\Controllers\likeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
@@ -94,21 +95,22 @@ Route::get('about', function () {
 
 Route::get('hari', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = kategori_bahan::all();
-    $bahan_masakan = kategori_bahan::all();
+    $reseps = special_days::all();
+    $specialdays = special_days::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    return view('template.hari', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'tips_dasar', 'reseps'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $bahan_masakan = kategori_bahan::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    $specialdays = special_days::all();
+    $reseps = special_days::where('id', $request->day)->get();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    return view('template.hari', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'tips_dasar', 'reseps'));
 });
+
 
 Route::get('seputar_dpr', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
@@ -173,6 +175,7 @@ Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name
 Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
+Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -190,7 +193,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
-        Route::resource('basic_tips',App\Http\Controllers\basic_tips_controller::class);
         Route::resource('kategori_seputardapur', App\Http\Controllers\KategoriSeputardapurController::class);
         Route::resource('edit-tentang', AboutController::class);
     });
@@ -202,6 +204,7 @@ Route::middleware(['auth', 'role:koki'])->group(function () {
     Route::prefix('/koki')->group(function () {
 
         Route::resource('resep', ResepsController::class);
+        Route::resource('basic_tips',App\Http\Controllers\basic_tips_controller::class);
         Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
     });
 });

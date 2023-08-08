@@ -28,12 +28,12 @@ class RegisterController extends Controller
         'copassword.required' => 'Password harus di isi.',
         'password.required' => 'Password tidak boleh kosong     .',
        ]);
-        
+
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
-            'role' => 'admin',
+            'role' => 'koki',
 
         ]);
 

@@ -9,23 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('replies', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('complaint_id');
+            $table->unsignedBigInteger('reply_id');
             $table->unsignedBigInteger('user_id');
-            $table->text('reply');
-            $table->integer('likes')->default(0);
             $table->timestamps();
 
-            $table->foreign('complaint_id')->references('id')->on('complaints')->onDelete('cascade');
+            $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('replies');
+        Schema::dropIfExists('likes');
     }
 };

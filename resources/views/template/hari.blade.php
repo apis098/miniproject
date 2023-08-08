@@ -111,6 +111,10 @@
             border-radius: 10px;
         }
 
+.t {
+    margin-left: 45px;
+}
+
     </style>
 
 
@@ -130,20 +134,20 @@
                         @if (Auth::check())
                         @if (Auth::user()->role == 'Admin')
                         <a class="navbar-brand" href="{{ url('admin/index') }}">
-                            <span style="margin-left: -70px;">
+                            <span class="t">
                                 HummaCook
                             </span>
                         </a>
                         @else
                         <a class="navbar-brand" href="{{ url('koki/index') }}">
-                            <span style="margin-left: -70px;">
+                            <span class="t">
                                 HummaCook
                             </span>
                         </a>
                         @endif
                     @else
                     <a class="navbar-brand" href="#">
-                        <span style="margin-left: -70px;">
+                        <span class="t">
                             HummaCook
                         </span>
                     </a>
@@ -157,7 +161,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item " style=" font-size:15px">
+                                <li class="nav-item " style="margin-left: -100px; font-size:15px">
                                     <a class="nav-link" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
@@ -185,7 +189,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 150px;">
+                            <div class="user_option" style="margin-left: 20px;">
 
 
                                 @if (Auth::check())
@@ -212,12 +216,12 @@
                 </h2>
             </div>
 
-            <form action="/menu" method="post">
+            <form action="/hari" method="post">
                 @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
+                <select name="day" id="searchday" class="form-control">
                     <option value=""></option>
-                    @foreach ($bahan_masakan as $item_bahan)
-                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @foreach ($specialdays as $d)
+                        <option value="{{ $d->id }}">{{ $d->name }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary my-2">Search</button>
@@ -225,6 +229,9 @@
 
 
             <div class="filters-content">
+                @foreach ($reseps as $item_r)
+                <button type="button" class="btn btn-light border p-2 mx-2">{{ $item_r->name }}</button>
+                @endforeach
                 <div class="row grid">
                     @foreach ($reseps as $resep)
                         @foreach ($resep->resep as $r)
@@ -240,16 +247,19 @@
                                                 {{ $r->nama_masakan }}
                                             </h4>
                                             </a>
+                                            by <span class="text-info">{{ $r->user->name }}</span>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">
                                                 <h6>
-                                                    @foreach ($r->kategori_bahan as $kb)
-                                                        <button
-                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
+                                                    @foreach ($r->kategori_bahan as $item_kb)
+                                                        <button class="black-border-button">{{ $item_kb->kategori_bahan }}</button>
                                                     @endforeach
+                                                    @if ($r->tipsdasar)
+                                                        <button class="black-border-button">{{ $r->tipsdasar->nama_kategori }}</button>
+                                                    @endif
+                                                    <button class="black-border-button">{{ $r->specialday->name }}</button>
                                                 </h6>
-
                                             </div>
                                         </div>
                                         </div>
@@ -258,7 +268,6 @@
                             </div>
                         @endforeach
                     @endforeach
-
                 </div>
             </div>
 

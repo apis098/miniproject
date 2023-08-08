@@ -19,6 +19,8 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
   <!--owl slider stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
   <!-- nice select  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css" integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ==" crossorigin="anonymous" />
@@ -29,7 +31,7 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
   <style>
     .nav-link.active {
@@ -87,6 +89,10 @@
   transition: all 0.3s;
   border: none;
 }
+
+.t {
+    margin-left: 45px;
+}
 </style>
 
 
@@ -106,20 +112,20 @@
             @if (Auth::check())
             @if (Auth::user()->role == 'Admin')
             <a class="navbar-brand" href="{{ url('admin/index') }}">
-                <span style="margin-left: -70px;">
+                <span class="t">
                     HummaCook
                 </span>
             </a>
             @else
             <a class="navbar-brand" href="{{ url('koki/index') }}">
-                <span style="margin-left: -70px;">
+                <span class="t">
                     HummaCook
                 </span>
             </a>
             @endif
         @else
         <a class="navbar-brand" href="#">
-            <span style="margin-left: -70px;">
+            <span class="t">
                 HummaCook
             </span>
         </a>
@@ -131,7 +137,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto ">
-                  <li class="nav-item " style=" font-size:15px">
+                  <li class="nav-item " style="margin-left: -100px; font-size:15px">
                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item dropdown" style="font-size: 15px">
@@ -158,7 +164,7 @@
                     <a class="nav-link" href="{{route('login')}}">Login</a>
                   </li> --}}
                 </ul>
-            <div class="user_option" style="margin-left: 150px;">
+            <div class="user_option" style="margin-left: 20px;">
 
                 @if (Auth::check())
                 <a href="{{route('actionlogout')}}" class="login">Logout</a>

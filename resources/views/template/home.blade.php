@@ -133,6 +133,9 @@
             cursor: pointer;
             border-radius: 10px;
         }
+        .t {
+    margin-left: 45px;
+}
     </style>
 
 
@@ -141,7 +144,7 @@
 <body class="sub_page">
     <div class="hero_area">
         <div class="bg-box">
-            <img src="img/3.jpg" alt="">
+            <img src="images/dark-food.jpg" alt="">
         </div>
         <!-- header section strats -->
         <header class="header_section">
@@ -149,26 +152,27 @@
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         @if (Auth::check())
-                            @if (Auth::user()->role == 'Admin')
-                            <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
-                            @else
-                            <a class="navbar-brand" href="{{ url('koki/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
-                            @endif
+                        @if (Auth::user()->role == 'Admin')
+                        <a class="navbar-brand" href="{{ url('admin/index') }}">
+                            <span class="t">
+                                HummaCook
+                            </span>
+                        </a>
                         @else
-                        <a class="navbar-brand" href="#">
-                            <span style="margin-left: -70px;">
+                        <a class="navbar-brand" href="{{ url('koki/index') }}">
+                            <span class="t">
                                 HummaCook
                             </span>
                         </a>
                         @endif
+                    @else
+                    <a class="navbar-brand" href="#">
+                        <span class="t">
+                            HummaCook
+                        </span>
+                    </a>
+                    @endif
+
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -178,7 +182,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item active" style=" font-size: 15px;">
+                                <li class="nav-item active" style="margin-left: -100px; font-size: 15px">
                                     <a class="nav-link" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
@@ -206,7 +210,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 150px;">
+                            <div class="user_option" style="margin-left: 20px;">
 
 
                                 @if (Auth::check())
@@ -234,12 +238,10 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{route('menu')}}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -257,12 +259,10 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{route('menu')}}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -280,12 +280,10 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{route('menu')}}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -315,19 +313,22 @@
         <div class="offer_container">
             <div class="container ">
                 <div class="row">
+                    @foreach ($reseps as $resep)
+                    @foreach ($resep->resep as $r)
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/o1.jpg" alt="">
+                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
                             </div>
                             <div class="detail-box">
-                                <h5>
-                                    Tasty Thursdays
-                                </h5>
                                 <h6>
-                                    <span>20%</span> Off
+                                    {{ $r->nama_masakan }}
                                 </h6>
-                                <a href="">
+                                <h5>
+                                    <span>Lihat Resep - Resep Lainnya</span>
+                                </h5>
+                                <br>
+                                <a href="{{route('menu')}}">
                                     Lihat Resep
                                 </a>
                             </div>
@@ -336,21 +337,25 @@
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/o2.jpg" alt="">
+                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
                             </div>
                             <div class="detail-box">
-                                <h5>
-                                    Pizza Days
-                                </h5>
                                 <h6>
-                                    <span>15%</span> Off
+                                    {{ $r->nama_masakan }}
                                 </h6>
-                                <a href="">
+                                <h5>
+                                    <span>Lihat Resep - Resep Lainnya</span>
+                                </h5>
+                                <br>
+                                <a href="{{route('menu')}}">
                                     Lihat Resep
                                 </a>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endforeach
+
                 </div>
             </div>
         </div>
@@ -600,11 +605,13 @@
 
             @media (max-width: 767px) {}
         </style>
+
         <div class="heading_container heading_center psudo_white_primary mb_45">
             <h2>
-                Keluhan Pengguna lain
+                Keluhan Pengguna
             </h2>
         </div>
+
         <section class="wrapper">
             <div class="container">
                 <div class="row">
@@ -619,12 +626,14 @@
                                 style="background-image:url('https://source.unsplash.com/600x900/?food');">
                                 <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food"
                                     alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
+                                <table>
                                 <div class="card-img-overlay d-flex flex-column">
                                     <div class="card-body">
-                                        <small class="card-meta mb-2 text-dark"><b>{{ $row->subject }}</b></small>
+                                        <small class="card-meta mb-2 text-dark"><b></b></small>
                                         <h4 class="card-title mt-0 "><a class="text-dark"
-                                                href="https://creativemanner.com">{{ $row->description }}</a></h4>
-                                        <small><i class="far fa-clock"></i> October 15, 2020</small>
+                                                href="{{route('ShowReplies.show',$row->id   )}}"><b>{{ $row->subject }}</b></a></h4>
+                                                <small class="card-meta mb-2 text-dark">{{$row->description}}</small><br>
+                                        <small><i class="far fa-clock"></i> {{ $row->created_at->diffForHumans(['short' => false]) }}</small>
                                     </div>
                                     <div class="card-footer">
                                         <div class="media">
@@ -633,7 +642,7 @@
                                                 style="max-width:50px">
                                             <div class="media-body">
                                                 <h6 class="my-0 text-dark d-block">{{ $row->user->name }}</h6>
-                                                <small>Director of UI/UX</small>
+                                                <small>{{$row->user->email}}</small>
                                             </div>
                                             <div>
                                                 <a href="{{route('ShowReplies.show',$row->id)}}"
@@ -642,17 +651,18 @@
                                                         height="32" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
                                                             d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-                                                    </svg></a>
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                </table>
                             </div>
                         </div>
                     @endforeach
         </section>
         <!-- client section -->
-
 
         @foreach ($about as $a)
         <section class="about_section layout_padding">

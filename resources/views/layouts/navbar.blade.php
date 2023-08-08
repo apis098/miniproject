@@ -135,7 +135,7 @@ h2
                         <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block text-yellow">Admin</a>
+                        <a href="{{route('admin.index')}}" class="d-block text-yellow">Admin</a>
                     </div>
                 </div>
 
@@ -190,15 +190,7 @@ h2
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('basic_tips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-utensils"></i>
-                                <p>
-                                   Crud Tips Dasar
-                                </p>
-                            </a>
 
-                        </li>
 
 
 
