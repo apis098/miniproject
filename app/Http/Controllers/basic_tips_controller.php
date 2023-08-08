@@ -7,6 +7,7 @@ use App\Models\kategori_tipsdasar;
 use App\Models\seputar_dapur;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class basic_tips_controller extends Controller
@@ -15,8 +16,7 @@ class basic_tips_controller extends Controller
     {
         $kategori_tipsdasar=kategori_tipsdasar::all();
         $basic_tips=basic_tips::all();
-        $userkoki=User::all();
-        return view('koki.basic_tips.tips_dasar',compact('kategori_tipsdasar','basic_tips','userkoki'));
+        return view('koki.basic_tips.tips_dasar',compact('kategori_tipsdasar','basic_tips'));
     }
     public function create()
     {
@@ -33,6 +33,7 @@ class basic_tips_controller extends Controller
             'deskripsi' => 'required'
         ], [
             'kategori_id.required' => 'field ini harus di isi!',
+            'userkoki_id.required' => 'field ini harus di isi!',
             'judul.required' => 'field ini harus di isi!',
             'foto.required' => 'field ini harus di isi!',
             'deskripsi.required' => 'field ini harus di isi!',
@@ -44,6 +45,7 @@ class basic_tips_controller extends Controller
         $foto->storeAs('public/tipsdasar',$foto->hashName());
 
         basic_tips::create([
+            'userkoki_id'=>$request->Auth::user()->id,
             'kategori_id'=>$request->kategori_id,
             'judul'=>$request->judul,
             'foto'=>$foto->hashName(),
@@ -60,7 +62,6 @@ class basic_tips_controller extends Controller
     {
       $data=[
           'kategori_tipsdasar'=>kategori_tipsdasar::all(),
-          'userkoki'=>User::all(),
           'basic_tips'=>basic_tips::all(),
     ];
     return view('koki.basic_tips.edit',$data);
@@ -75,6 +76,7 @@ class basic_tips_controller extends Controller
             'deskripsi'=>'required'
         ],[
             'kategori_id.required'=> 'field ini harus di isi!',
+            'userkoki_id.required'=> 'field ini harus di isi!',
             'judul.required'=> 'field ini harus di isi!',
             'isi.required'=> 'field ini harus di isi!',
         ]);
@@ -88,8 +90,8 @@ class basic_tips_controller extends Controller
 
        // create post
        basic_tips::where('id', $id)->update([
-        'kategori_id' => $request->kategori_id,
-        'judul' => $request->judul,
+           'kategori_id' => $request->kategori_id,
+           'judul' => $request->judul,
         'foto' => $foto->hashName(),
         'deskripsi' => $request->deskripsi
    ]);
@@ -110,7 +112,6 @@ class basic_tips_controller extends Controller
      */
     public function destroy(basic_tips $basic_tips)
     {
-        // dd($seputar_dapur->foto);
        // Hapus file foto jika ada
       if ($basic_tips->foto) {
             // Hapus file dari direktori
