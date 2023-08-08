@@ -66,7 +66,7 @@ class basic_tips_controller extends Controller
     return view('admin.basic_tips.edit',$data);
     }
 
-    public function update(Request $request, basic_tips $basic_tips)
+    public function update(Request $request, string $id)
     {
         $this->validate($request,[
             'kategori_id'=>'required',
@@ -79,21 +79,22 @@ class basic_tips_controller extends Controller
             'isi.required'=> 'field ini harus di isi!',
         ]);
             //    upload foto
+            $bt = basic_tips::find($id);
     if ($request->hasFile('foto')) {
 
         $foto = $request->file('foto');
         $foto->storeAs('public/tipsdasar', $foto->hashName());
-         Storage::delete('public/tipsdasar/' . $basic_tips->foto);
+         Storage::delete('public/tipsdasar/' . $bt->foto);
 
        // create post
-       $basic_tips->update([
+       basic_tips::where('id', $id)->update([
         'kategori_id' => $request->kategori_id,
         'judul' => $request->judul,
         'foto' => $foto->hashName(),
         'deskripsi' => $request->deskripsi
    ]);
   }  else{
-    $basic_tips->update([
+    basic_tips::where('id', $id)->update([
         'kategori_id' => $request->kategori_id,
         'judul' => $request->judul,
         'deskripsi' => $request->deskripsi,

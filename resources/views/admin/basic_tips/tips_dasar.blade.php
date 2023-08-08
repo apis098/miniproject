@@ -36,14 +36,13 @@
             transform: scale(0.97);
         }
     </style>
-    <div class="mt-3 ml-3">
-        <h2 class="text-dark"> Crud tips dasar</h2>
+    <div class="card bg-dark mt-3 ml-3">
+        <h2 class="text-white"> Crud tips dasar</h2>
     </div>
-    <div class=" mb-2 mt-1 mb-md-1">
+    <div class="container mb-2 mt-1 mb-md-1">
         <div class="col mt-5">
             <div class="mb-3 row">
-                <form method="POST" action="{{ route('basic_tips.store') }}" enctype="multipart/form-data"
-                    class="d-flex align-items-center">
+                <form method="POST" action="{{ route('basic_tips.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3 row">
                         <label for="foto" class="col-sm-2 col-form-label">input foto</label>
@@ -167,7 +166,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('basic_tips.update', $row->id) }}" method="POST">
+                                <form action="{{ route('basic_tips.update', $row->id) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3 row">
@@ -177,7 +176,7 @@
                                                 @error('foto')
                                         @enderror
                                                 name="foto" id="foto" accept="image/*">
-                                            <img src="{{ asset('storage/tipsdasar/' . $row->foto) }}" class="rounded"
+                                            <img src="{{ asset('storage/tipsdasar/' .$row->foto) }}" class="rounded"
                                                 style="width: 150px">
                                             @error('foto')
                                                 <div class="alert alert-danger mt-2">
@@ -218,7 +217,7 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <label for="deskripsi" class="col-sm-2 col-form-label">input isi </label>
+                                        <label for="deskripsi" class="col-sm-2 col-form-label">Input Deskripsi </label>
                                         <div class="col-sm-10">
                                             <textarea class="form-control" rows="5" name="deskripsi"
                                                 @error('deskripsi')
@@ -246,9 +245,10 @@
             @endif
         @endforeach
         {{-- end modal edit --}}
-        <div class="d-flex justify-content-center" style="margin-top: -2%;">
-            {{-- {!! $holidays->links('modern-pagination') !!} --}}
-        </div>
+        {{-- <div class="d-flex justify-content-center" style="margin-top: -2%;">
+            {!! $holidays->links('modern-pagination') !!}
+        </div> --}}
+        @endsection
         <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
             integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
@@ -262,4 +262,3 @@
                 });
             });
         </script>
-    @endsection
