@@ -313,19 +313,22 @@
         <div class="offer_container">
             <div class="container ">
                 <div class="row">
+                    @foreach ($reseps as $resep)
+                    @foreach ($resep->resep as $r)
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/o1.jpg" alt="">
+                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
                             </div>
                             <div class="detail-box">
-                                <h5>
-                                    Tasty Thursdays
-                                </h5>
                                 <h6>
-                                    <span>20%</span> Off
+                                    {{ $r->nama_masakan }}
                                 </h6>
-                                <a href="">
+                                <h5>
+                                    <span>Lihat Resep - Resep Lainnya</span>
+                                </h5>
+                                <br>
+                                <a href="{{route('menu')}}">
                                     Lihat Resep
                                 </a>
                             </div>
@@ -334,21 +337,25 @@
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="images/o2.jpg" alt="">
+                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
                             </div>
                             <div class="detail-box">
-                                <h5>
-                                    Pizza Days
-                                </h5>
                                 <h6>
-                                    <span>15%</span> Off
+                                    {{ $r->nama_masakan }}
                                 </h6>
-                                <a href="">
+                                <h5>
+                                    <span>Lihat Resep - Resep Lainnya</span>
+                                </h5>
+                                <br>
+                                <a href="{{route('menu')}}">
                                     Lihat Resep
                                 </a>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endforeach
+
                 </div>
             </div>
         </div>
