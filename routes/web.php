@@ -190,7 +190,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
-        Route::resource('basic_tips',App\Http\Controllers\basic_tips_controller::class);
         Route::resource('kategori_seputardapur', App\Http\Controllers\KategoriSeputardapurController::class);
         Route::resource('edit-tentang', AboutController::class);
     });
@@ -202,6 +201,7 @@ Route::middleware(['auth', 'role:koki'])->group(function () {
     Route::prefix('/koki')->group(function () {
 
         Route::resource('resep', ResepsController::class);
+        Route::resource('basic_tips',App\Http\Controllers\basic_tips_controller::class);
         Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
     });
 });
