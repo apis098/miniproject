@@ -87,6 +87,10 @@ class kategori_bahan_controller extends Controller
     public function destroy(string $id)
     {
         $hapus = kategori_bahan::find($id);
+        if($hapus->resep) {
+            return redirect()->back()->with('error', 'Error, karena masih ada data terkait.');
+            exit();
+        }
         Storage::delete($hapus->foto);
         kategori_bahan::where('id', $id)->delete();
         return redirect()->back()->with('success', 'Sukses menghapus data kategori bahan masakan.');

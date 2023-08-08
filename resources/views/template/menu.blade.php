@@ -110,7 +110,6 @@
             cursor: pointer;
             border-radius: 10px;
         }
-
     </style>
 
 
@@ -127,26 +126,26 @@
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                            @if (Auth::check())
+                        @if (Auth::check())
                             @if (Auth::user()->role == 'Admin')
-                            <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
+                                <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                    <span style="margin-left: -70px;">
+                                        HummaCook
+                                    </span>
+                                </a>
                             @else
-                            <a class="navbar-brand" href="{{ url('koki/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
+                                <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                    <span style="margin-left: -70px;">
+                                        HummaCook
+                                    </span>
+                                </a>
                             @endif
                         @else
-                        <a class="navbar-brand" href="#">
-                            <span style="margin-left: -70px;">
-                                HummaCook
-                            </span>
-                        </a>
+                            <a class="navbar-brand" href="#">
+                                <span style="margin-left: -70px;">
+                                    HummaCook
+                                </span>
+                            </a>
                         @endif
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -213,7 +212,7 @@
 
             <form action="/menu" method="post">
                 @csrf
-                <select id="searchbahan" class="form-control"  name="bahan[]" multiple="multiple">
+                <select id="searchbahan" class="form-control" name="bahan[]" multiple="multiple">
                     <option value=""></option>
                     @foreach ($bahan_masakan as $item_bahan)
                         <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
@@ -224,6 +223,13 @@
 
 
             <div class="filters-content">
+                @foreach ($reseps as $ir)
+                <button type="button" class="btn btn-light border p-2">
+                        <img src="{{ asset('storage/' . $ir->foto) }}" alt="{{ $ir->foto }}" width="25px"
+                            height="25px">
+                        {{ $ir->kategori_bahan }}
+                    </button>
+                @endforeach
                 <div class="row grid">
                     @foreach ($reseps as $resep)
                         @foreach ($resep->resep as $r)
@@ -235,22 +241,30 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">  <h4>
-                                                {{ $r->nama_masakan }}
-                                            </h4>
+                                            <a href="{{ route('artikel') }} " class="text-white">
+                                                <h4>
+                                                    {{ $r->nama_masakan }}
+                                                </h4>
                                             </a>
                                             <br>
                                             <div class="dotted">
-                                            <div class="options">
-                                                <h6>
-                                                    @foreach ($r->kategori_bahan as $kb)
-                                                        <button
-                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
-                                                    @endforeach
-                                                </h6>
-
+                                                <div class="options">
+                                                    <h6>
+                                                        @foreach ($r->kategori_bahan as $kb)
+                                                            <button
+                                                                class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
+                                                        @endforeach
+                                                        @if ($r->specialday)
+                                                            <button
+                                                                class="black-border-button  ">{{ $r->specialday->name }}</button>
+                                                        @endif
+                                                        @if ($r->tipsdasar)
+                                                            <button
+                                                                class="black-borer-button   ">{{ $r->tipsdasar->nama_kategori }}</button>
+                                                        @endif
+                                                    </h6>
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -365,7 +379,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#searchbahan').select2();
+            $('#searchbahan').select2({
+                closeOnSelect: false,
+                placeholder: "Pilihlah minimal 2 bahan untuk hasil yang lebih menakjubkan!"
+            });
         });
     </script>
 </body>

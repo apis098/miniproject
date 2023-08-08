@@ -79,7 +79,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-dark-disable">Simpan</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
                                                     </form>
                                                 </div>
                                             </div>

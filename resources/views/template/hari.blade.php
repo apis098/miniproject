@@ -212,12 +212,12 @@
                 </h2>
             </div>
 
-            <form action="/menu" method="post">
+            <form action="/hari" method="post">
                 @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
+                <select name="day" id="searchday" class="form-control">
                     <option value=""></option>
-                    @foreach ($bahan_masakan as $item_bahan)
-                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @foreach ($specialdays as $d)
+                        <option value="{{ $d->id }}">{{ $d->name }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary my-2">Search</button>
@@ -225,6 +225,9 @@
 
 
             <div class="filters-content">
+                @foreach ($reseps as $item_r)
+                <button type="button" class="btn btn-light border p-2 mx-2">{{ $item_r->name }}</button>
+                @endforeach
                 <div class="row grid">
                     @foreach ($reseps as $resep)
                         @foreach ($resep->resep as $r)
@@ -244,10 +247,13 @@
                                             <div class="dotted">
                                             <div class="options">
                                                 <h6>
-                                                    @foreach ($r->kategori_bahan as $kb)
-                                                        <button
-                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
+                                                    @foreach ($r->kategori_bahan as $item_kb)
+                                                        <button class="black-border-button">{{ $item_kb->kategori_bahan }}</button>
                                                     @endforeach
+                                                    @if ($r->tipsdasar)
+                                                        <button class="black-border-button">{{ $r->tipsdasar->nama_kategori }}</button>
+                                                    @endif
+                                                    <button class="black-border-button">{{ $r->specialday->name }}</button>
                                                 </h6>
 
                                             </div>
@@ -258,7 +264,6 @@
                             </div>
                         @endforeach
                     @endforeach
-
                 </div>
             </div>
 
