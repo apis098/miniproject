@@ -11,44 +11,31 @@
               <!-- small box -->
               <div class="small-box bg-info">
                 <div class="inner">
-                  <h3>150</h3>
 
-                  <p>New Orders</p>
+                    <h3></h3>
+                  <p>Tips Dasar</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-bag"></i>
+                  <i class="fas fa-utensils"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('basic_tips.index')}}" class="small-box-footer">Lihat    <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
-              <!-- small box -->
-              <div class="small-box bg-success">
-                <div class="inner">
-                  <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                  <p>Bounce Rate</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
             <!-- ./col -->
             <div class="col-lg-3 col-6">
               <!-- small box -->
               <div class="small-box bg-warning">
                 <div class="inner">
-                  <h3>44</h3>
+                    <h3></h3>
 
-                  <p>User Registrations</p>
+                  <p>Seputar Dapur</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-person-add"></i>
+                  <i class="fas fa-mortar-pestle"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="{{route('seputar_dapur.index')}}" class="small-box-footer">Lihat    <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
@@ -56,14 +43,14 @@
               <!-- small box -->
               <div class="small-box bg-danger">
                 <div class="inner">
-                  <h3>65</h3>
+                    <h3></h3>
 
-                  <p>Unique Visitors</p>
+                  <p>Resep - Resep</p>
                 </div>
                 <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
+                  <i class="fas fas fa-receipt"></i>
                 </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <a href="/koki/resep" class="small-box-footer">Lihat    <i class="fas fa-arrow-circle-right"></i></a>
               </div>
             </div>
             <!-- ./col -->
