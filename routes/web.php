@@ -77,7 +77,7 @@ Route::post('/menu', function (Request $request) {
     $bahan_masakan = kategori_bahan::all();
     // mengambil inputan array
     $bahan = $request->input('bahan', []);
-    // whereIn untuk filter beberapa request 
+    // whereIn untuk filter beberapa request
     $reseps = kategori_bahan::whereIn('id', $bahan)->get();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
@@ -150,13 +150,10 @@ Route::get('dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
 
-Route::get('kategori', function () {
-    return view('admin.kategori');
-})->name('kategori');
+Route::get('dashboardt', function () {
+    return view('koki.dashboardt');
+})->name('dashboardt');
 
-Route::get('specialday', function () {
-    return view('admin.specialday');
-})->name('specialday');
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout

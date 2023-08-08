@@ -23,7 +23,7 @@ class ResepsController extends Controller
         $hari = special_days::all();
         $bahan = kategori_bahan::all();
         $resep = reseps::all();
-        return view('admin.resep.resep', compact('tips', 'dapur', 'hari', 'bahan', 'resep'));
+        return view('koki.resep.resep', compact('tips', 'dapur', 'hari', 'bahan', 'resep'));
     }
 
     /**
