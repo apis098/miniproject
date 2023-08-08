@@ -8,6 +8,7 @@ use App\Http\Controllers\complaintController;
 use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
 use App\Http\Controllers\KokiController;
+use App\Http\Controllers\likeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
@@ -174,6 +175,7 @@ Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name
 Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
+Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

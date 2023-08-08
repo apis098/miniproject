@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\complaint;
+use App\Models\likes;
 use App\Models\Reply;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ReplyController extends Controller
     public function show($id)
     {
         $data = complaint::findOrFail($id);
-        $replies = $data->replies;
+        $replies = $data->replies->sortByDesc('likes');
         $repliesCount = $replies->count();
 
         $title = "Data balasan keluhan ";
