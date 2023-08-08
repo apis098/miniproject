@@ -600,11 +600,13 @@
 
             @media (max-width: 767px) {}
         </style>
+
         <div class="heading_container heading_center psudo_white_primary mb_45">
             <h2>
-                Keluhan Pengguna lain
+                Keluhan Pengguna 
             </h2>
         </div>
+     
         <section class="wrapper">
             <div class="container">
                 <div class="row">
@@ -619,12 +621,14 @@
                                 style="background-image:url('https://source.unsplash.com/600x900/?food');">
                                 <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food"
                                     alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
+                                <table>
                                 <div class="card-img-overlay d-flex flex-column">
                                     <div class="card-body">
-                                        <small class="card-meta mb-2 text-dark"><b>{{ $row->subject }}</b></small>
+                                        <small class="card-meta mb-2 text-dark"><b></b></small>
                                         <h4 class="card-title mt-0 "><a class="text-dark"
-                                                href="https://creativemanner.com">{{ $row->description }}</a></h4>
-                                        <small><i class="far fa-clock"></i> October 15, 2020</small>
+                                                href="{{route('ShowReplies.show',$row->id   )}}"><b>{{ $row->subject }}</b></a></h4>
+                                                <small class="card-meta mb-2 text-dark">{{$row->description}}</small><br>
+                                        <small><i class="far fa-clock"></i> {{ $row->created_at->diffForHumans(['short' => false]) }}</small>
                                     </div>
                                     <div class="card-footer">
                                         <div class="media">
@@ -633,7 +637,7 @@
                                                 style="max-width:50px">
                                             <div class="media-body">
                                                 <h6 class="my-0 text-dark d-block">{{ $row->user->name }}</h6>
-                                                <small>Director of UI/UX</small>
+                                                <small>{{$row->user->email}}</small>
                                             </div>
                                             <div>
                                                 <a href="{{route('ShowReplies.show',$row->id)}}"
@@ -642,18 +646,19 @@
                                                         height="32" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
                                                             d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-                                                    </svg></a>
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                </table>
                             </div>
                         </div>
                     @endforeach
         </section>
         <!-- client section -->
-
-
+        
         @foreach ($about as $a)
         <section class="about_section layout_padding">
             <div class="container  ">
