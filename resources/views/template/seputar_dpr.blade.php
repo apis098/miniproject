@@ -127,7 +127,7 @@
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                            @if (Auth::check())
+                        @if (Auth::check())
                             @if (Auth::user()->role == 'Admin')
                             <a class="navbar-brand" href="{{ url('admin/index') }}">
                                 <span style="margin-left: -70px;">
@@ -160,7 +160,7 @@
                                     <a class="nav-link" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
-                                <li class="nav-item active dropdown" style="font-size: 15px">
+                                <li class="nav-item dropdown" style="font-size: 15px">
                                     <a class="nav-link  dropbtn" href="{{ route('menu') }}">Resep</a>
 
                                 </li>
@@ -173,7 +173,7 @@
 
                                 </li>
 
-                                <li class="nav-item dropdown" style="font-size: 15px">
+                                <li class="nav-item active dropdown" style="font-size: 15px">
                                     <a class="nav-link dropbtn" href="{{ route('seputar_dpr') }}">Seputar Dapur</a>
 
                                 </li>
@@ -207,13 +207,13 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Search Resep By Ingredients
+                    Search Resep By around the kitchen
                 </h2>
             </div>
 
             <form action="/menu" method="post">
                 @csrf
-                <select id="searchbahan" class="form-control"  name="bahan[]" multiple="multiple">
+                <select name="bahan" id="searchbahan" class="form-control">
                     <option value=""></option>
                     @foreach ($bahan_masakan as $item_bahan)
                         <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>

@@ -14,7 +14,7 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" <!--
         Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
             background-color: #f7f6f6
@@ -100,10 +100,9 @@
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        </div>
-        </div>
-    </nav>
+     <!-- header section strats -->
+     {{--  --}}
+    <!-- end header section -->
     <!-- Product section-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
@@ -119,16 +118,25 @@
                     </div>
                     <p class="lead">{{$data->description}}</p>
                 </div>
+                
             </div>
         </div>
     </section>
     <section>
     <div class="container mb-5" style="margin-top:-5%;">
         <div class="row  d-flex justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-11">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5>Unread comments(6)</h5>
-
+                    <h5 class="me-5">Total komentar(6)</h5>
+                    <div class="col-9">
+                        <form method="POST" action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
+                        @csrf
+                        <div class="input-group">
+                        <input type="text" id="reply" name="reply" class="form-control" placeholder="Tambah komentar...">
+                        <button type="submit" class="btn btn-warning text-light"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                        </form>
+                    </div>
                     <div class="buttons">
 
                         {{-- <span class="badge bg-white d-flex flex-row align-items-center">

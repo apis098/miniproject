@@ -12,7 +12,11 @@ class kategori_tipsdasar extends Model
     protected $fillable = [
         'nama_kategori'
     ];
+
     public function resep() {
         return $this->hasMany(reseps::class);
+    }
+    public function tips_dasar() {
+        return $this->hasMany(basic_tips::class);
     }
 }

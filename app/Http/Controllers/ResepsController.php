@@ -56,7 +56,7 @@ class ResepsController extends Controller
             "seputardapur_id" => $request->seputardapur_id,
             "specialday_id" => $request->specialday_id,
             "nama_masakan" => $request->nama_masakan,
-            "foto_masakan" => $request->file('foto_masakan')->store('public'),
+            "foto_masakan" => $request->file('foto_masakan')->store('photoResep'),
             "deskripsi_masakan" => $request->deskripsi_masakan,
             "bahan_masakan" => implode(",", $request->bahan_masakan),
             "langkah2_memasak" => $request->langkah2_memasak,
@@ -107,7 +107,7 @@ class ResepsController extends Controller
         $update->nama_masakan = $request->nama_masakan;
         if ($request->hasFile('foto_masakan')) {
             Storage::delete($update->foto_masakan);
-            $update->foto_masakan = $request->file('foto_masakan')->store('public');
+            $update->foto_masakan = $request->file('foto_masakan')->store('photoResep');
         }
         $update->deskripsi_masakan = $request->deskripsi_masakan;
         $update->bahan_masakan = implode(',', $request->bahan_masakan);

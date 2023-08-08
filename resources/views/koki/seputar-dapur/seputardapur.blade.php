@@ -1,4 +1,4 @@
-@extends('layouts.navbar')
+@extends('layouts.nav_koki')
 @section('konten')
 <div class="container">
     <div class="col mt-5">

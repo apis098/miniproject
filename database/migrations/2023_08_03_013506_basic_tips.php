@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('basic_tips', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->foreignId('kategori_id')->references('id')->on('kategori_tipsdasars')->cascadeOnDelete();
+            $table->foreignId('userkoki_id')->references('id')->on('users')->cascadeOnDelete()->nullable();
+            $table->string('judul');
+            $table->string('foto');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }
