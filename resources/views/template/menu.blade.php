@@ -231,8 +231,18 @@
                     </button>
                 @endforeach
                 <div class="row grid">
+                    @php
+                        $uniqueResep = collect();
+                    @endphp
                     @foreach ($reseps as $resep)
                         @foreach ($resep->resep as $r)
+                        @php
+                            if (!$uniqueResep->contains('id', $r->id)) {
+                                $uniqueResep->push($r);
+                            } else {
+                                continue;
+                            }
+                        @endphp
                             <div class="col-sm-6 col-lg-4 all pizza">
                                 <div class="box">
                                     <div>
@@ -246,6 +256,7 @@
                                                     {{ $r->nama_masakan }}
                                                 </h4>
                                             </a>
+                                            by <span class="text-info">{{ $r->user->name }}</span>
                                             <br>
                                             <div class="dotted">
                                                 <div class="options">
@@ -260,7 +271,7 @@
                                                         @endif
                                                         @if ($r->tipsdasar)
                                                             <button
-                                                                class="black-borer-button   ">{{ $r->tipsdasar->nama_kategori }}</button>
+                                                                class="black-border-button   ">{{ $r->tipsdasar->nama_kategori }}</button>
                                                         @endif
                                                     </h6>
                                                 </div>

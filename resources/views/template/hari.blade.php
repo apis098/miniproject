@@ -243,6 +243,7 @@
                                                 {{ $r->nama_masakan }}
                                             </h4>
                                             </a>
+                                            by <span class="text-info">{{ $r->user->name }}</span>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">
@@ -255,7 +256,6 @@
                                                     @endif
                                                     <button class="black-border-button">{{ $r->specialday->name }}</button>
                                                 </h6>
-
                                             </div>
                                         </div>
                                         </div>
