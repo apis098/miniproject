@@ -94,21 +94,22 @@ Route::get('about', function () {
 
 Route::get('hari', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = kategori_bahan::all();
-    $bahan_masakan = kategori_bahan::all();
+    $reseps = special_days::all();
+    $specialdays = special_days::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    return view('template.hari', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'tips_dasar', 'reseps'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $bahan_masakan = kategori_bahan::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    $specialdays = special_days::all();
+    $reseps = special_days::where('id', $request->day)->get();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
-    return view('template.hari', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
+    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'tips_dasar', 'reseps'));
 });
+
 
 Route::get('seputar_dpr', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
