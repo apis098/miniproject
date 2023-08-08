@@ -141,7 +141,7 @@
 <body class="sub_page">
     <div class="hero_area">
         <div class="bg-box">
-            <img src="images/hero-bg.jpg" alt="">
+            <img src="img/3.jpg" alt="">
         </div>
         <!-- header section strats -->
         <header class="header_section">
@@ -421,8 +421,8 @@
                 </div>
             </div>
             <div class="btn-box">
-                <a href="">
-                    View More
+                <a href="{{route('menu')}}">
+                   Lihat Selengkapnya
                 </a>
             </div>
         </div>
@@ -435,34 +435,7 @@
 
     <!-- about section -->
 
-    @foreach ($about as $a)
-        <section class="about_section layout_padding">
-            <div class="container  ">
-                <div class="row">
-                    <div class="col-md-6 ">
-                        <div class="img-box">
-                            <img src="images/about-img.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-box">
-                            <div class="heading_container">
-                                <h2>
-                                    {{ $a->judul }}
-                                </h2>
-                            </div>
-                            <p>
-                                {{ $a->isi }}
-                            </p>
-                            <a href="">
-                                Baca Selengkapnya
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endforeach
+
     <!-- end about section -->
 
     <<!-- book section -->
@@ -679,57 +652,42 @@
                     @endforeach
         </section>
         <!-- client section -->
-        <section class="client_section layout_padding-bottom">
-            <div class="container">
-                <div class="heading_container heading_center psudo_white_primary mb_45">
-                    <h2>
-                        Testimoni
-                    </h2>
-                </div>
-                <div class="carousel-wrap row ">
-                    <div class="owl-carousel client_owl-carousel">
-                        <div class="item">
-                            <div class="box">
-                                <div class="detail-box">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                                    </p>
-                                    <h6>
-                                        Moana Michell
-                                    </h6>
-                                    <p>
-                                        magna aliqua
-                                    </p>
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/client1.jpg" alt="" class="box-img">
-                                </div>
-                            </div>
+
+
+        @foreach ($about as $a)
+        <section class="about_section layout_padding">
+            <div class="container  ">
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <div class="img-box">
+                            <img src="images/about-img.png" alt="">
                         </div>
-                        <div class="item">
-                            <div class="box">
-                                <div class="detail-box">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam
-                                    </p>
-                                    <h6>
-                                        Mike Hamell
-                                    </h6>
-                                    <p>
-                                        magna aliqua
-                                    </p>
-                                </div>
-                                <div class="img-box">
-                                    <img src="images/client2.jpg" alt="" class="box-img">
-                                </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="detail-box">
+                            <div class="heading_container">
+                                <h2>
+                                    {{ $a->judul }}
+                                </h2>
                             </div>
+                            <p>
+                                {{ $a->isi }}
+                            </p>
+                            <a href="{{route('about')}}">
+                                Baca Selengkapnya
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+    @endforeach
+
+
+
+
+
+
 
         <!-- end client section -->
 

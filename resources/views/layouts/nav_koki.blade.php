@@ -135,7 +135,7 @@ h2
                         <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block text-yellow">Admin</a>
+                        <a href="#" class="d-block text-yellow">Koki</a>
                     </div>
                 </div>
 
@@ -146,7 +146,7 @@ h2
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{route('dashboard')}}" class="nav-link text-light {{ request()->routeIs('dashboard') ? 'activet' : '' }}">
+                            <a href="{{route('dashboardt')}}" class="nav-link text-light {{ request()->routeIs('dashboardt') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -154,87 +154,37 @@ h2
                             </a>
                         </li>
 
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link text-light {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-kitchen-set"></i>
-                                <p>
-                                            Kategori Seputar Dapur
 
-                                </p>
-                            </a>
-                        </li>
 
                         <li class="nav-item">
-                            <a href="/admin/kategori-bahan" class="nav-link text-light {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-wheat-awn"></i>
-                                <p>
-                                            Kategori Bahan
-
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/kategori-tipsdasar" class="nav-link text-light {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-wand-magic-sparkles"></i>
-                                <p>
-                                    Kategori Tips Dasar
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('SpecialDays.index')}}" class="nav-link text-light {{ request()->is('admin/special-days') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-calendar-check"></i>
-                                <p>
-                                  Kategori Hari Khusus
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('BasicTips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
+                            <a href="{{route('basic_tips.index')}}" class="nav-link text-light {{ request()->is('koki/basic-tips') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-utensils"></i>
                                 <p>
-                                   Crud Tips Dasar
+                                    Tips Dasar
                                 </p>
                             </a>
 
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('seputar_dapur.index')}}" class="nav-link text-light {{ request()->is('admin/seputar_dapur') ? 'activet' : '' }}">
+                            <a href="{{route('seputar_dapur.index')}}" class="nav-link text-light {{ request()->is('koki/seputar_dapur') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-mortar-pestle"></i>
                                 <p>
-                                   Crud Seputar Dapur
+                                    Seputar Dapur
                                 </p>
                             </a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a href="/admin/resep" class="nav-link text-light {{ request()->is('admin/resep') ? 'activet' : '' }}">
+                            <a href="/koki/resep" class="nav-link text-light {{ request()->is('koki/resep') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fas fa-receipt"></i>
                                 <p>
-                                   CRUD Resep
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-user-pen"></i>
-                                <p>
-                                   Keluhan Pengguna Lain
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ReplyUser.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-reply-all"></i>
-                                <p>
-                                   Balas Keluhan
+                                    Resep - Resep
                                 </p>
                             </a>
                         </li>
 
-                   
+
 
                     </ul>
                 </nav>

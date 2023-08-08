@@ -16,7 +16,7 @@ class basic_tips_controller extends Controller
         $kategori_tipsdasar=kategori_tipsdasar::all();
         $basic_tips=basic_tips::all();
         $userkoki=User::all();
-        return view('admin.basic_tips.tips_dasar',compact('kategori_tipsdasar','basic_tips','userkoki'));
+        return view('koki.basic_tips.tips_dasar',compact('kategori_tipsdasar','basic_tips','userkoki'));
     }
     public function create()
     {
@@ -63,7 +63,7 @@ class basic_tips_controller extends Controller
           'userkoki'=>User::all(),
           'basic_tips'=>basic_tips::all(),
     ];
-    return view('admin.basic_tips.edit',$data);
+    return view('koki.basic_tips.edit',$data);
     }
 
     public function update(Request $request, string $id)

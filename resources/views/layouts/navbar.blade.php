@@ -190,33 +190,11 @@ h2
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('basic_tips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-utensils"></i>
-                                <p>
-                                   Crud Tips Dasar
-                                </p>
-                            </a>
-
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('seputar_dapur.index')}}" class="nav-link text-light {{ request()->is('admin/seputar_dapur') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-mortar-pestle"></i>
-                                <p>
-                                   Crud Seputar Dapur
-                                </p>
-                            </a>
-                        </li>
+                       
 
 
-                        <li class="nav-item">
-                            <a href="/admin/resep" class="nav-link text-light {{ request()->is('admin/resep') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fas fa-receipt"></i>
-                                <p>
-                                   CRUD Resep
-                                </p>
-                            </a>
-                        </li>
+
+
                         <li class="nav-item">
                             <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>

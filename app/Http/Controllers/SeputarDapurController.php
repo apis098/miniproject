@@ -19,7 +19,7 @@ class SeputarDapurController extends Controller
         $kategori_seputardapur = kategori_seputardapur::all();
         $seputar_dapur = seputar_dapur::all();
         $userkoki = User::all();
-        return view('admin.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur','userkoki'));
+        return view('koki.seputar-dapur.seputardapur',compact('seputar_dapur', 'kategori_seputardapur','userkoki'));
     }
 
     /**
@@ -82,7 +82,7 @@ class SeputarDapurController extends Controller
             'userkoki'=>User::all(),
             'seputar_dapur'=>$seputar_dapur
             ];
-            return view('admin.seputar-dapur.edit',$data);
+            return view('koki.seputar-dapur.edit',$data);
     }
 
     /**
