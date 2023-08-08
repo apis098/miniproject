@@ -16,7 +16,6 @@ class complaintController extends Controller
             'subject' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
-
         // Ambil data pengguna yang telah login
         $user = Auth::user();
         if ($user) {
