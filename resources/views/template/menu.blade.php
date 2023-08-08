@@ -236,11 +236,13 @@
                 @endforeach
                 <div class="row grid">
                     @php
+                    // membuat resep berada di dalam koleksi
                         $uniqueResep = collect();
                     @endphp
                     @foreach ($reseps as $resep)
                         @foreach ($resep->resep as $r)
                         @php
+                        // jika tidak ada id yang sama, maksudnya kan kalau sebelumnya data idnya resep bisa duplikat tapi kalau sampai duplikat maka ya continue kalau gak ada ya di push datanya.
                             if (!$uniqueResep->contains('id', $r->id)) {
                                 $uniqueResep->push($r);
                             } else {
