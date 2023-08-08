@@ -127,25 +127,21 @@
         <div class="row  d-flex justify-content-center">
             <div class="col-md-11">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="me-5">Total komentar({{$repliesCount}})</h5>
-                    <div class="col-9">
+                    <h5 class="me-3"> Komentar ({{$repliesCount}})</h5>
+                    <div class="col-10">
                         <form method="POST" action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
                         @csrf
                         <div class="input-group">
-                        <input type="text" id="reply" name="reply" class="form-control" placeholder="Tambah komentar...">
-                        <button type="submit" class="btn btn-warning text-light"><i class="fa-solid fa-paper-plane"></i></button>
+                        <input type="text" id="reply" name="reply" class="form-control rounded-3 me-3" placeholder="Tambah komentar...">
+                        {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
+                        <button type="submit" class="btn btn-warning text-light rounded-5 ms-1"><i class="fa-solid fa-paper-plane"></i></button>
                         </div>
+                        
                         </form>
                     </div>
                     <div class="buttons">
 
-                        {{-- <span class="badge bg-white d-flex flex-row align-items-center">
-                            <span class="text-primary">Comments "ON"</span>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-
-                            </div>
-                        </span> --}}
+                       
 
                     </div>
 
