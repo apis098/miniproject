@@ -133,6 +133,9 @@
             cursor: pointer;
             border-radius: 10px;
         }
+        .t {
+    margin-left: 45px;
+}
     </style>
 
 
@@ -149,26 +152,27 @@
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         @if (Auth::check())
-                            @if (Auth::user()->role == 'Admin')
-                            <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
-                            @else
-                            <a class="navbar-brand" href="{{ url('koki/index') }}">
-                                <span style="margin-left: -70px;">
-                                    HummaCook
-                                </span>
-                            </a>
-                            @endif
+                        @if (Auth::user()->role == 'Admin')
+                        <a class="navbar-brand" href="{{ url('admin/index') }}">
+                            <span class="t">
+                                HummaCook
+                            </span>
+                        </a>
                         @else
-                        <a class="navbar-brand" href="#">
-                            <span style="margin-left: -70px;">
+                        <a class="navbar-brand" href="{{ url('koki/index') }}">
+                            <span class="t">
                                 HummaCook
                             </span>
                         </a>
                         @endif
+                    @else
+                    <a class="navbar-brand" href="#">
+                        <span class="t">
+                            HummaCook
+                        </span>
+                    </a>
+                    @endif
+
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -178,7 +182,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item active" style=" font-size: 15px;">
+                                <li class="nav-item active" style="margin-left: -100px; font-size: 15px">
                                     <a class="nav-link" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
@@ -206,7 +210,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 150px;">
+                            <div class="user_option" style="margin-left: 20px;">
 
 
                                 @if (Auth::check())
@@ -234,12 +238,10 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{route('menu')}}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -257,12 +259,10 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{route('menu')}}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -280,12 +280,10 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            Doloremque, itaque aperiam facilis rerum, commodi, temporibus sapiente ad
-                                            mollitia laborum quam quisquam esse error unde. Tempora ex doloremque,
-                                            labore, sunt repellat dolore, iste magni quos nihil ducimus libero ipsam.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="" class="btn1">
+                                            <a href="{{route('menu')}}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -603,10 +601,10 @@
 
         <div class="heading_container heading_center psudo_white_primary mb_45">
             <h2>
-                Keluhan Pengguna 
+                Keluhan Pengguna
             </h2>
         </div>
-     
+
         <section class="wrapper">
             <div class="container">
                 <div class="row">
@@ -658,7 +656,7 @@
                     @endforeach
         </section>
         <!-- client section -->
-        
+
         @foreach ($about as $a)
         <section class="about_section layout_padding">
             <div class="container  ">
