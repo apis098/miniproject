@@ -5,7 +5,7 @@
             <h3 class="text-center">CRUD Resep</h3>
         </div>
         <div class="card-body">
-            <form action="/admin/resep" method="post" enctype="multipart/form-data">
+            <form action="/koki/resep" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
                     <label for="nama_masakan" class="form-label">Nama Masakan</label>
@@ -109,9 +109,10 @@
                             <div class="card-body">
                                 {{ $r->deskripsi_masakan }}
                                 <br>
-
+                                @if ($r->tipsdasar)
                                 <button type="button"
                                     class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
+                                @endif
                                 @if ($r->seputardapur)
                                     <button type="button"
                                         class="btn btn-light m-1 border">{{ $r->seputardapur->nama_kategori }}</button>
@@ -183,9 +184,11 @@
                                                                     Dasar*</label>
                                                                 <select name="tipsdasar_id" id="tipsdasar_id"
                                                                     class="form-control">
-
+                                                                    @if ($r->tipsdasar)
                                                                     <option value="{{ $r->tipsdasar_id }}">
                                                                         {{ $r->tipsdasar->nama_kategori }}</option>
+                                                                    @endif
+                                                                    
                                                                     @foreach ($tips as $t)
                                                                         <option value="{{ $t->id }}">
                                                                             {{ $t->nama_kategori }}</option>
