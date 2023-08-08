@@ -176,6 +176,7 @@ Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUs
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
+Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

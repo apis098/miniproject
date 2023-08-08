@@ -181,6 +181,7 @@
                         </div>
 
                         <div class="icons align-items-center">
+                         
                           <form action="{{route('Replies.like',$row->id)}}" method="POST">
                             @csrf
                             <input hidden id="reply_id" name="reply_id" value ="{{$row->id}}" type="text">
