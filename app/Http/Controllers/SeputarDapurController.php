@@ -55,8 +55,8 @@ class SeputarDapurController extends Controller
         $foto->storeAs('public/seputardapur', $foto->hashName());
 
         seputar_dapur::create([
+            'userkoki_id'=> Auth::user()->id,
             'kategori_id' => $request->kategori_id,
-            'userkoki_id'=>$request->Auth::user()->id,
             'judul' => $request->judul,
             'foto' => $foto->hashName(),
             'isi' => $request->isi
@@ -133,7 +133,7 @@ class SeputarDapurController extends Controller
      */
     public function destroy(seputar_dapur $seputar_dapur)
     {
-        
+
        // Hapus file foto jika ada
       if ($seputar_dapur->foto) {
             // Hapus file dari direktori

@@ -45,7 +45,7 @@ class basic_tips_controller extends Controller
         $foto->storeAs('public/tipsdasar',$foto->hashName());
 
         basic_tips::create([
-            'userkoki_id'=>$request->Auth::user()->id,
+            'userkoki_id'=>Auth::user()->id,
             'kategori_id'=>$request->kategori_id,
             'judul'=>$request->judul,
             'foto'=>$foto->hashName(),
