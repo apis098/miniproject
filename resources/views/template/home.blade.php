@@ -144,7 +144,7 @@
 <body class="sub_page">
     <div class="hero_area">
         <div class="bg-box">
-            <img src="img/3.jpg" alt="">
+            <img src="images/dark-food.jpg" alt="">
         </div>
         <!-- header section strats -->
         <header class="header_section">
