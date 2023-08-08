@@ -40,7 +40,7 @@ Route::get('/', function () {
     $tips_dasar = basic_tips::all();
     $reseps = kategori_bahan::all();
     $complaints = complaint::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar','complaints'));
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
 })->name('home');
 
 Route::post('/', function (Request $request) {
@@ -62,7 +62,7 @@ Route::get('artikel', function () {
     $tips_dasar = basic_tips::all();
     $reseps = reseps::paginate(3);
     return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar'));
-})->name('artikel');    
+})->name('artikel');
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
@@ -76,7 +76,10 @@ Route::get('menu', function () {
 Route::post('/menu', function (Request $request) {
     $kategori_bahan = kategori_bahan::paginate(3);
     $bahan_masakan = kategori_bahan::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    // mengambil inputan array
+    $bahan = $request->input('bahan', []);
+    // whereIn untuk filter beberapa request 
+    $reseps = kategori_bahan::whereIn('id', $bahan)->get();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
@@ -123,10 +126,10 @@ Route::post('actionregister', [RegisterController::class, 'actionregister'])->na
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 Route::get('/keluhan-admin', [complaintController::class, 'index'])->name('ComplaintUser.index');
-Route::put('/keluhan-update/{id}',[complaintController::class,'update'])->name('ComplaintUser.update');
+Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name('ComplaintUser.update');
 Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
-Route::post('/reply-store-by/{id}',[ReplyController::class,'reply'])->name('ReplyComplaint.store');
+Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

@@ -230,7 +230,7 @@
 
             <form action="/menu" method="post">
                 @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
+                <select id="searchbahan" class="form-control"  name="bahan[]" multiple="multiple">
                     <option value=""></option>
                     @foreach ($bahan_masakan as $item_bahan)
                         <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
