@@ -4,7 +4,6 @@ use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\basic_tips_controller;
 use App\Http\Controllers\complaintController;
 use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\kategori_tipsdasar_controller;
@@ -40,7 +39,7 @@ Route::get('/', function () {
     $tips_dasar = basic_tips::all();
     $reseps = kategori_bahan::all();
     $complaints = complaint::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar','complaints'));
+    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
 })->name('home');
 
 Route::post('/', function (Request $request) {
@@ -76,7 +75,10 @@ Route::get('menu', function () {
 Route::post('/menu', function (Request $request) {
     $kategori_bahan = kategori_bahan::paginate(3);
     $bahan_masakan = kategori_bahan::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
+    // mengambil inputan array
+    $bahan = $request->input('bahan', []);
+    // whereIn untuk filter beberapa request 
+    $reseps = kategori_bahan::whereIn('id', $bahan)->get();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
@@ -170,10 +172,10 @@ Route::post('actionregister', [RegisterController::class, 'actionregister'])->na
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 Route::get('/keluhan-admin', [complaintController::class, 'index'])->name('ComplaintUser.index');
-Route::put('/keluhan-update/{id}',[complaintController::class,'update'])->name('ComplaintUser.update');
+Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name('ComplaintUser.update');
 Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
-Route::post('/reply-store-by/{id}',[ReplyController::class,'reply'])->name('ReplyComplaint.store');
+Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -188,17 +190,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/special-days-store', [special_days_controller::class, 'store'])->name('SpecialDays.store');
         Route::delete('special-days-delete/{id}', [special_days_controller::class, 'destroy'])->name('SpecialDays.destroy');
 
-        //Tips Dasar
-        Route::get('basic-tips', [basic_tips_controller::class, 'index'])->name('BasicTips.index');
-        Route::get('/basic-tips-create', [basic_tips_controller::class, 'create'])->name('BasicTips.create');
-        Route::post('/basic-tips-store', [basic_tips_controller::class, 'store'])->name('BasicTips.store');
-        Route::get('/basic-tips-edit/{id}', [basic_tips_controller::class, 'edit'])->name('BasicTips.edit');
-        Route::put('/basic-tips-update/{id}', [basic_tips_controller::class, 'update'])->name('BasicTips.update');
-        Route::get('basic-tips/{id}', [basic_tips_controller::class, 'show'])->name('BasicTips.show');
-        Route::delete('basic-tips-delete/{id}', [basic_tips_controller::class, 'destroy'])->name('BasicTips.destroy');
 
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
+        Route::resource('basic_tips',App\Http\Controllers\basic_tips_controller::class);
         Route::resource('kategori_seputardapur', App\Http\Controllers\KategoriSeputardapurController::class);
         Route::resource('edit-tentang', AboutController::class);
     });

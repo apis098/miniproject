@@ -191,7 +191,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('BasicTips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
+                            <a href="{{route('basic_tips.index')}}" class="nav-link text-light {{ request()->is('admin/basic-tips') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-utensils"></i>
                                 <p>
                                    Crud Tips Dasar
@@ -233,7 +233,7 @@ h2
                                 </p>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-pen-to-square"></i>

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('seputar_dapurs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('kategori_id')->references('id')->on('kategori_seputardapurs')->cascadeOnDelete();
+            $table->foreignId('userkoki_id')->references('id')->on('users')->cascadeOnDelete()->nullable();
             $table->string('judul');
             $table->string('foto');
             $table->longText('isi');

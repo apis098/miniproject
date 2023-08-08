@@ -131,7 +131,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav  mx-auto ">
-                  <li class="nav-item " style="margin-left: -140px; font-size:15px">
+                  <li class="nav-item " style=" font-size:15px">
                     <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item dropdown" style="font-size: 15px">
@@ -158,7 +158,7 @@
                     <a class="nav-link" href="{{route('login')}}">Login</a>
                   </li> --}}
                 </ul>
-            <div class="user_option">
+            <div class="user_option" style="margin-left: 150px;">
 
                 @if (Auth::check())
                 <a href="{{route('actionlogout')}}" class="login">Logout</a>
