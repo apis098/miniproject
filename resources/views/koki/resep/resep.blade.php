@@ -125,7 +125,9 @@
                                 @if ($r->specialday)
                                     <button type="button"
                                         class="btn btn-light border m-1">{{ $r->specialday->name }}</button>
-                                @endif
+                                @endif 
+                                <br>
+                                by <span class="text-info">{{ $r->user->name }}</span>
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -149,7 +151,7 @@
                                                             aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="/admin/resep/{{ $r->id }}" method="post"
+                                                        <form action="/koki/resep/{{ $r->id }}" method="post"
                                                             enctype="multipart/form-data">
                                                             @csrf
                                                             @method('PUT')
@@ -285,7 +287,7 @@
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <form action="/admin/resep/{{ $r->id }}" method="post">
+                                        <form action="/koki/resep/{{ $r->id }}" method="post">
                                             @csrf
                                             @method('DELETE')
                                             <button style="width: 100%" type="submit" class="btn btn-danger"

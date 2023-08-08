@@ -9,6 +9,7 @@ use App\Models\reseps;
 use App\Models\seputar_dapur;
 use App\Models\special_days;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ResepsController extends Controller
@@ -51,7 +52,7 @@ class ResepsController extends Controller
             'langkah2_memasak' => "required"
         ]);
         $create = [
-            "userkoki_id" => NULL,
+            "userkoki_id" => Auth::user()->id,
             "tipsdasar_id" => $request->tipsdasar_id,
             "seputardapur_id" => $request->seputardapur_id,
             "specialday_id" => $request->specialday_id,
@@ -65,7 +66,7 @@ class ResepsController extends Controller
         $ats = implode(" , ", $request->bahan_masakan);
         $arr = explode(" , ", $ats);
         $resep->kategori_bahan()->attach($arr);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Sukses menambahkan data resep!');
     }
 
     /**
@@ -116,7 +117,7 @@ class ResepsController extends Controller
         $ats = implode(" , ", $request->bahan_masakan);
         $arr = explode(" , ", $ats);
         $update->kategori_bahan()->sync($arr);
-        return redirect()->back()->with('success', 'Sukse mengupdate data.');
+        return redirect()->back()->with('success', 'Sukse mengupdate data resep.');
     }
 
     /**
@@ -127,6 +128,6 @@ class ResepsController extends Controller
         $hapus = reseps::find($id);
         Storage::delete($hapus->foto_masakan);
         reseps::where('id', $id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Sukses menghapus data resep');
     }
 }

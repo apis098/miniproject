@@ -110,6 +110,10 @@
             cursor: pointer;
             border-radius: 10px;
         }
+
+.t {
+    margin-left: 45px;
+}
     </style>
 
 
@@ -129,20 +133,20 @@
                         @if (Auth::check())
                             @if (Auth::user()->role == 'Admin')
                                 <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                    <span style="margin-left: -70px;">
+                                    <span class="t">
                                         HummaCook
                                     </span>
                                 </a>
                             @else
                                 <a class="navbar-brand" href="{{ url('koki/index') }}">
-                                    <span style="margin-left: -70px;">
+                                    <span class="t">
                                         HummaCook
                                     </span>
                                 </a>
                             @endif
                         @else
                             <a class="navbar-brand" href="#">
-                                <span style="margin-left: -70px;">
+                                <span class="t">
                                     HummaCook
                                 </span>
                             </a>
@@ -155,7 +159,7 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item " style=" font-size:15px">
+                                <li class="nav-item " style="margin-left: -100px; font-size:15px">
                                     <a class="nav-link" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
@@ -183,7 +187,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 150px;">
+                            <div class="user_option" style="margin-left: 20px;">
 
 
                                 @if (Auth::check())
@@ -231,8 +235,20 @@
                     </button>
                 @endforeach
                 <div class="row grid">
+                    @php
+                    // membuat resep berada di dalam koleksi
+                        $uniqueResep = collect();
+                    @endphp
                     @foreach ($reseps as $resep)
                         @foreach ($resep->resep as $r)
+                        @php
+                        // jika tidak ada id yang sama, maksudnya kan kalau sebelumnya data idnya resep bisa duplikat tapi kalau sampai duplikat maka ya continue kalau gak ada ya di push datanya.
+                            if (!$uniqueResep->contains('id', $r->id)) {
+                                $uniqueResep->push($r);
+                            } else {
+                                continue;
+                            }
+                        @endphp
                             <div class="col-sm-6 col-lg-4 all pizza">
                                 <div class="box">
                                     <div>
@@ -246,6 +262,7 @@
                                                     {{ $r->nama_masakan }}
                                                 </h4>
                                             </a>
+                                            by <span class="text-info">{{ $r->user->name }}</span>
                                             <br>
                                             <div class="dotted">
                                                 <div class="options">
@@ -260,7 +277,7 @@
                                                         @endif
                                                         @if ($r->tipsdasar)
                                                             <button
-                                                                class="black-borer-button   ">{{ $r->tipsdasar->nama_kategori }}</button>
+                                                                class="black-border-button   ">{{ $r->tipsdasar->nama_kategori }}</button>
                                                         @endif
                                                     </h6>
                                                 </div>
