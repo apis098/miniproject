@@ -117,7 +117,7 @@ class basic_tips_controller extends Controller
             // Hapus file dari direktori
           Storage::delete('public/tipsdasar/'.$basic_tips->foto);
 
-          // Hapus data seputar dapur dari database
+          // Hapus data tips dasar dari database
           $basic_tips->delete();
           return redirect()->back()->with('info', 'Data Telah Di Hapus');
       }
