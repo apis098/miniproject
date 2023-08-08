@@ -36,7 +36,7 @@ class SeputarDapurController extends Controller
      */
     public function store(Request $request)
     {
-        dd(Auth::user());
+
         $this->validate($request, [
         'kategori_id' => 'required',
         'judul' => 'required',
