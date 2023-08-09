@@ -103,11 +103,11 @@
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
                         Submit
-                    </button>
-
+                </button>
                 </form>
             </div>
         </div>
+        <div class="table-responsive">
         <table class="table table-striped table-rounded" id="table">
             <thead class="bg-dark text-wgite">
                 <tr>
@@ -152,6 +152,7 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
         @foreach ($basic_tips as $row)
             @if ($row->id != '')
                 {{-- modal edit --}}

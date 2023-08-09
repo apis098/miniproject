@@ -55,6 +55,42 @@
             </form>
         </div>
     </div>
+    <div class="container">
+        <div class="table-responsive">
+            <table class="table  table-rounded " id="table">
+                <thead class="bg-secondary text-light">
+                    <tr>
+                        <th>NO</th>
+                        <th>Nama Hari Special</th>
+                        <th>Dibuat Pada:</th>
+                        <th>Terakhir Diupdate Pada:</th>
+                        <th>action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-active border-light">
+                    @foreach ($data as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $row->name }}</td>
+                            <td>{{ $row->created_at }}</td>
+                            <td>{{ $row->updated_at }}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn" data-toggle="modal"
+                                    data-target="#exampleModal{{$row->id}}"><i
+                                        class="fa-solid fa-pen-clip"></i></button>
+                                <form action="{{ route('SpecialDays.destroy', $row->id) }}" method="POST" class="d-inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
+                                        data-mdb-ripple-color="dark"
+                                        onclick="return confirm('Are you sure you want to delete this data?')"><i
+                                            class="fa-solid fa-trash-can"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
     <table class="table table-striped table-rounded" id="table">
         <thead class="bg-secondary text-light">
                     <tr>
