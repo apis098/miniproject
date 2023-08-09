@@ -26,7 +26,8 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="tipsdasar_id" class="form-label">Kategori Tips Dasar  <i class="fa-solid fa-chevron-down"></i></label>
+                    <label for="tipsdasar_id" class="form-label">Kategori Tips Dasar <i
+                            class="fa-solid fa-chevron-down"></i></label>
                     <select name="tipsdasar_id" id="tipsdasar_id" class="form-control">
                         <option value=""></option>
                         @foreach ($tips as $t)
@@ -40,7 +41,8 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="seputardapur_id" class="form-label">Kategori Seputar Dapur  <i class="fa-solid fa-chevron-down"></i></label>
+                    <label for="seputardapur_id" class="form-label">Kategori Seputar Dapur <i
+                            class="fa-solid fa-chevron-down"></i></label>
                     <select name="seputardapur_id" id="seputardapur_id" class="form-control">
                         <option value=""></option>
                         @foreach ($dapur as $d)
@@ -54,7 +56,8 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="specialday_id" class="form-label">Hari Khusus  <i class="fa-solid fa-chevron-down"></i></label>
+                    <label for="specialday_id" class="form-label">Hari Khusus <i
+                            class="fa-solid fa-chevron-down"></i></label>
                     <select name="specialday_id" id="specialday_id" class="form-control">
                         <option value=""></option>
                         @foreach ($hari as $h)
@@ -110,8 +113,8 @@
                                 {!! $r->deskripsi_masakan !!}
                                 <br>
                                 @if ($r->tipsdasar)
-                                <button type="button"
-                                    class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
+                                    <button type="button"
+                                        class="btn btn-light m-1 border">{{ $r->tipsdasar->nama_kategori }}</button>
                                 @endif
                                 @if ($r->seputardapur)
                                     <button type="button"
@@ -187,8 +190,8 @@
                                                                 <select name="tipsdasar_id" id="tipsdasar_id"
                                                                     class="form-control">
                                                                     @if ($r->tipsdasar)
-                                                                    <option value="{{ $r->tipsdasar_id }}">
-                                                                        {{ $r->tipsdasar->nama_kategori }}</option>
+                                                                        <option value="{{ $r->tipsdasar_id }}">
+                                                                            {{ $r->tipsdasar->nama_kategori }}</option>
                                                                     @endif
 
                                                                     @foreach ($tips as $t)
@@ -208,8 +211,8 @@
                                                                 <select name="seputardapur_id" id="seputardapur_id"
                                                                     class="form-control">
                                                                     @if ($r->seputardapur)
-                                                                    <option value="{{ $r->seputardapur_id }}">
-                                                                        {{ $r->seputardapur->nama_kategori }}</option>
+                                                                        <option value="{{ $r->seputardapur_id }}">
+                                                                            {{ $r->seputardapur->nama_kategori }}</option>
                                                                     @else
                                                                         <option value=""></option>
                                                                     @endif
@@ -231,7 +234,8 @@
                                                                 <select name="specialday_id" id="specialday_id"
                                                                     class="form-control">
                                                                     @if ($r->specialday)
-                                                                        <option value="{{ $r->specialday_id }}">{{ $r->specialday->name }}</option>
+                                                                        <option value="{{ $r->specialday_id }}">
+                                                                            {{ $r->specialday->name }}</option>
                                                                     @else
                                                                         <option value=""></option>
                                                                     @endif
@@ -302,12 +306,17 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.tiny.cloud/1/rzvl4yudi4uzx142mzepqiwplu6stooxorzg2ft7a6xyzqn7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- include libraries(jQuery, bootstrap) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
-        tinymce.init({
-          selector: '#textarea',
-          plugins: 'anchor autolink charmap codesample emoticons image lists media searchreplace table visualblocks wordcount',
-          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        $(document).ready(function() {
+            $('textarea').summernote();
         });
-      </script>
+    </script>
 @endsection
