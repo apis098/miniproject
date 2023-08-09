@@ -176,7 +176,7 @@
                                                 @error('foto')
                                         @enderror
                                                 name="foto" id="foto" accept="image/*">
-                                            <img src="{{ asset('storage/tipsdasar/' .$row->foto) }}" class="rounded"
+                                            <img src="{{ asset('storage/public/tipsdasar/' .$row->foto) }}" class="rounded"
                                                 style="width: 150px">
                                             @error('foto')
                                                 <div class="alert alert-danger mt-2">

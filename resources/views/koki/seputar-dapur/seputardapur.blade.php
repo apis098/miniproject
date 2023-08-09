@@ -143,7 +143,7 @@
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" @error('foto')
                                 @enderror name="foto" id="foto" accept="image/*">
-                                <img src="{{ asset('storage/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
+                                <img src="{{ asset('storage/public/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
                                 @error('foto')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
