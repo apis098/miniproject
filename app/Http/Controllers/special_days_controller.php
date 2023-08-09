@@ -71,13 +71,19 @@ class special_days_controller extends Controller
 
         return redirect()->route('SpecialDays.index')->with('success', 'Data Hari Khusus Berhasil Update.');
     }
+
     public function destroy($id)
     {
         $data = special_days::findOrFail($id);
-        $data->delete();
-
-        return redirect()->route('SpecialDays.index')->with('success', 'Data has been deleted successfully.');
+         // Cek apakah ada produk terkait dengan kategori ini
+    if ($data->resep->count() > 0) {
+        return redirect()->route('SpecialDays.index')->with('error', 'Error, karena masih ada data terkait.');
     }
+
+        $data->delete();
+        return redirect()->route('SpecialDays.index')->with('success', 'Data hari khusus berhasil duhapus.');
+    }
+
     public function show($id)
     {
         $data = special_days::find($id);

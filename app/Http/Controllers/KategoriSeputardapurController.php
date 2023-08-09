@@ -82,11 +82,11 @@ class KategoriSeputardapurController extends Controller
      */
     public function destroy(kategori_seputardapur $kategori_seputardapur)
     {
-         // Cek apakah ada produk terkait dengan kategori ini
-         //  if ($kategori_seputardapur->produk->count() > 0) {
-         //     return redirect()->back()->with('error', 'Tidak dapat menghapus kategori karena masih terdapat produk yang terkait.');
-         // }
-
+    //   Cek apakah ada seputar_dapur terkait dengan kategori ini
+        if ($kategori_seputardapur->seputar_dapur->count() > 0) {
+            return redirect()->back()->with('error', 'Error, karena masih ada data terkait.');
+        }
+            
         $kategori_seputardapur->delete();
         return redirect()->back()->with('info', 'Data Telah Di Hapus');
     }
