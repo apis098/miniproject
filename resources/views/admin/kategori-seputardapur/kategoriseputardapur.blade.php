@@ -113,7 +113,7 @@
                                                                 @enderror
                                                             </div>
                                                         </div>
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                        <button type="submit" class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center" data-mdb-ripple-color="dark"> <i class="fa-regular fa-floppy-disk me-1"></i>Save</button>
                                                     </form>
                                                 </div>
                                             </div>

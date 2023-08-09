@@ -15,7 +15,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="isi" class="form-label">Isi</label>
-                        <textarea name="isi" id="isi" cols="30" rows="10" class="form-control" required>
+                        <textarea name="isi" id="textarea" cols="30" rows="10" class="form-control" required>
                             {{ $edit->isi }}
                         </textarea>
                     </div>
@@ -24,4 +24,12 @@
             @endforeach
         </div>
     </div>
+    <script src="https://cdn.tiny.cloud/1/rzvl4yudi4uzx142mzepqiwplu6stooxorzg2ft7a6xyzqn7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#textarea',
+          plugins: 'anchor autolink charmap codesample emoticons image lists media searchreplace table visualblocks wordcount',
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+      </script>
 @endsection

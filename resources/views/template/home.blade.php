@@ -133,9 +133,10 @@
             cursor: pointer;
             border-radius: 10px;
         }
+
         .t {
-    margin-left: 45px;
-}
+            margin-left: 45px;
+        }
     </style>
 
 
@@ -152,26 +153,26 @@
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         @if (Auth::check())
-                        @if (Auth::user()->role == 'Admin')
-                        <a class="navbar-brand" href="{{ url('admin/index') }}">
-                            <span class="t">
-                                HummaCook
-                            </span>
-                        </a>
+                            @if (Auth::user()->role == 'Admin')
+                                <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                    <span class="t">
+                                        HummaCook
+                                    </span>
+                                </a>
+                            @else
+                                <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                    <span class="t">
+                                        HummaCook
+                                    </span>
+                                </a>
+                            @endif
                         @else
-                        <a class="navbar-brand" href="{{ url('koki/index') }}">
-                            <span class="t">
-                                HummaCook
-                            </span>
-                        </a>
+                            <a class="navbar-brand" href="#">
+                                <span class="t">
+                                    HummaCook
+                                </span>
+                            </a>
                         @endif
-                    @else
-                    <a class="navbar-brand" href="#">
-                        <span class="t">
-                            HummaCook
-                        </span>
-                    </a>
-                    @endif
 
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -238,10 +239,13 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep
+                                            masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep
+                                            rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
+                                            mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="{{route('menu')}}" class="btn1">
+                                            <a href="{{ route('menu') }}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -259,10 +263,13 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep
+                                            masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep
+                                            rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
+                                            mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="{{route('menu')}}" class="btn1">
+                                            <a href="{{ route('menu') }}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -280,10 +287,13 @@
                                             Resep - Resep Terpopuler
                                         </h1>
                                         <p>
-                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.
+                                            HummaCook adalah online media portal yang menyajikan kumpulan aneka resep
+                                            masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep
+                                            rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
+                                            mudah didapatkan.
                                         </p>
                                         <div class="btn-box">
-                                            <a href="{{route('menu')}}" class="btn1">
+                                            <a href="{{ route('menu') }}" class="btn1">
                                                 Lihat Resep
                                             </a>
                                         </div>
@@ -310,133 +320,40 @@
     <!-- offer section -->
 
     <section class="offer_section layout_padding-bottom">
+
+        <h2 class="text-center">Our Reseps For You!</h2>
+
         <div class="offer_container">
             <div class="container ">
                 <div class="row">
-                    @foreach ($reseps as $resep)
-                    @foreach ($resep->resep as $r)
-                    <div class="col-md-6  ">
-                        <div class="box ">
-                            <div class="img-box">
-                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h6>
-                                    {{ $r->nama_masakan }}
-                                </h6>
-                                <h5>
-                                    <span>Lihat Resep - Resep Lainnya</span>
-                                </h5>
-                                <br>
-                                <a href="{{route('menu')}}">
-                                    Lihat Resep
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6  ">
-                        <div class="box ">
-                            <div class="img-box">
-                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
-                            </div>
-                            <div class="detail-box">
-                                <h6>
-                                    {{ $r->nama_masakan }}
-                                </h6>
-                                <h5>
-                                    <span>Lihat Resep - Resep Lainnya</span>
-                                </h5>
-                                <br>
-                                <a href="{{route('menu')}}">
-                                    Lihat Resep
-                                </a>
+                    @foreach ($real_reseps as $r)
+                        <div class="col-md-6  ">
+                            <div class="box ">
+                                <div class="img-box">
+                                    <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        {{ $r->nama_masakan }}
+                                    </h6>
+                                    <h5>
+                                        <span>Lihat Resep - Resep Lainnya</span>
+                                    </h5>
+                                    <br>
+                                    <a href="{{ route('menu') }}">
+                                        Lihat Resep
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
-                    @endforeach
-
+                    {{ $real_reseps->links() }}
                 </div>
             </div>
         </div>
     </section>
 
     <!-- end offer section -->
-
-    <!-- food section -->
-
-
-    <!-- food section -->
-
-    <section class="food_section layout_padding">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2>
-                    Search Resep By Ingredients
-                </h2>
-            </div>
-
-            <form action="/" method="post">
-                @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
-                    <option value=""></option>
-                    @foreach ($bahan_masakan as $item_bahan)
-                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
-                    @endforeach
-                </select>
-                <button type="submit" class="btn btn-primary my-2">Search</button>
-            </form>
-
-            <div class="filters-content">
-                <div class="row grid">
-                    @foreach ($reseps as $resep)
-                        @foreach ($resep->resep as $r)
-                            <div class="col-sm-6 col-lg-4 all pizza">
-                                <div class="box">
-                                    <div>
-                                        <div class="">
-                                            <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
-                                                height="50%" alt="">
-                                        </div>
-                                        <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">
-                                                <h4>
-                                                    {{ $r->nama_masakan }}
-                                                </h4>
-                                            </a>
-                                            <br>
-                                            <div class="dotted">
-                                                <div class="options">
-                                                    <h6>
-                                                        @foreach ($r->kategori_bahan as $kb)
-                                                            <button
-                                                                class="black-border-button btn-sm">{{ $kb->kategori_bahan }}</button>
-                                                        @endforeach
-                                                    </h6>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endforeach
-
-                </div>
-            </div>
-            <div class="btn-box">
-                <a href="{{route('menu')}}">
-                   Lihat Selengkapnya
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- end food section -->
-
-
-    <!-- end food section -->
 
     <!-- about section -->
 
@@ -627,36 +544,39 @@
                                 <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food"
                                     alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
                                 <table>
-                                <div class="card-img-overlay d-flex flex-column">
-                                    <div class="card-body">
-                                        <small class="card-meta mb-2 text-dark"><b></b></small>
-                                        <h4 class="card-title mt-0 "><a class="text-dark"
-                                                href="{{route('ShowReplies.show',$row->id   )}}"><b>{{ $row->subject }}</b></a></h4>
-                                                <small class="card-meta mb-2 text-dark">{{$row->description}}</small><br>
-                                        <small><i class="far fa-clock"></i> {{ $row->created_at->diffForHumans(['short' => false]) }}</small>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="media">
-                                            <img class="mr-3 rounded-circle"
-                                                src="{{ asset('images/default-profile2.png') }}" alt="profile image"
-                                                style="max-width:50px">
-                                            <div class="media-body">
-                                                <h6 class="my-0 text-dark d-block">{{ $row->user->name }}</h6>
-                                                <small>{{$row->user->email}}</small>
-                                            </div>
-                                            <div>
-                                                <a href="{{route('ShowReplies.show',$row->id)}}"
-                                                    class="btn btn-warning btn-sm text-light rounded-3"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="32"
-                                                        height="32" viewBox="0 0 24 24">
-                                                        <path fill="currentColor"
-                                                            d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-                                                    </svg>
-                                                </a>
+                                    <div class="card-img-overlay d-flex flex-column">
+                                        <div class="card-body">
+                                            <small class="card-meta mb-2 text-dark"><b></b></small>
+                                            <h4 class="card-title mt-0 "><a class="text-dark"
+                                                    href="{{ route('ShowReplies.show', $row->id) }}"><b>{{ $row->subject }}</b></a>
+                                            </h4>
+                                            <small
+                                                class="card-meta mb-2 text-dark">{{ $row->description }}</small><br>
+                                            <small><i class="far fa-clock"></i>
+                                                {{ $row->created_at->diffForHumans(['short' => false]) }}</small>
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="media">
+                                                <img class="mr-3 rounded-circle"
+                                                    src="{{ asset('images/default-profile2.png') }}"
+                                                    alt="profile image" style="max-width:50px">
+                                                <div class="media-body">
+                                                    <h6 class="my-0 text-dark d-block">{{ $row->user->name }}</h6>
+                                                    <small>{{ $row->user->email }}</small>
+                                                </div>
+                                                <div>
+                                                    <a href="{{ route('ShowReplies.show', $row->id) }}"
+                                                        class="btn btn-warning btn-sm text-light rounded-3"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="32"
+                                                            height="32" viewBox="0 0 24 24">
+                                                            <path fill="currentColor"
+                                                                d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 </table>
                             </div>
                         </div>
@@ -665,39 +585,33 @@
         <!-- client section -->
 
         @foreach ($about as $a)
-        <section class="about_section layout_padding">
-            <div class="container  ">
-                <div class="row">
-                    <div class="col-md-6 ">
-                        <div class="img-box">
-                            <img src="images/about-img.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="detail-box">
-                            <div class="heading_container">
-                                <h2>
-                                    {{ $a->judul }}
-                                </h2>
+            <section class="about_section layout_padding">
+                <div class="container  ">
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <div class="img-box">
+                                <img src="images/koki.png" alt="">
                             </div>
-                            <p>
-                                {{ $a->isi }}
-                            </p>
-                            <a href="{{route('about')}}">
-                                Baca Selengkapnya
-                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="detail-box">
+                                <div class="heading_container">
+                                    <h2>
+                                        {{ $a->judul }}
+                                    </h2>
+                                </div>
+                                <p>
+                                    {!! $a->isi !!}
+                                </p>
+                                <a href="{{ route('about') }}">
+                                    Baca Selengkapnya
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    @endforeach
-
-
-
-
-
-
+            </section>
+        @endforeach
 
         <!-- end client section -->
 

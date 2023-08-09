@@ -141,7 +141,7 @@
                                                             class="form-control" id="nama_kategori" name="nama_kategori"
                                                             required>
                                                     </div>
-                                                    <button type="submit" class="btn btn-dark-disable">Simpan</button>
+                                                    <button type="submit" class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center" data-mdb-ripple-color="dark"> <i class="fa-regular fa-floppy-disk me-1"></i>Save</button>
                                                 </form>
                                             </div>
                                         </div>

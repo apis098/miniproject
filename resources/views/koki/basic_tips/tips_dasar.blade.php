@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <button type="submit"
-                        class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                        class="btn btn-secondary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
                         Submit
@@ -177,7 +177,7 @@
                                                 @error('foto')
                                         @enderror
                                                 name="foto" id="foto" accept="image/*">
-                                            <img src="{{ asset('storage/tipsdasar/' .$row->foto) }}" class="rounded"
+                                            <img src="{{ asset('storage/public/tipsdasar/' .$row->foto) }}" class="rounded"
                                                 style="width: 150px">
                                             @error('foto')
                                                 <div class="alert alert-danger mt-2">
@@ -236,7 +236,7 @@
                                     class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
                                     data-mdb-ripple-color="dark">
                                     <i class="fa-regular fa-floppy-disk me-1"></i>
-                                    Submit
+                                    Save
                                 </button>
                                 </form>
                             </div>

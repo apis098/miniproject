@@ -243,11 +243,12 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">  <h4>
+                                            <a href="{{ url('menu/'.$r->id) }} " class="text-white">  <h4>
                                                 {{ $r->nama_masakan }}
                                             </h4>
                                             </a>
                                             by <span class="text-info">{{ $r->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">
@@ -375,7 +376,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#searchbahan').select2();
+            $('#searchday').select2();
         });
     </script>
 </body>

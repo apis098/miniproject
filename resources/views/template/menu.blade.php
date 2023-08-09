@@ -257,12 +257,13 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">
+                                            <a href="{{ url('menu/'.$r->id) }} " class="text-white">
                                                 <h4>
                                                     {{ $r->nama_masakan }}
                                                 </h4>
                                             </a>
                                             by <span class="text-info">{{ $r->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                                 <div class="options">
@@ -291,7 +292,7 @@
 
                 </div>
             </div>
-
+            {{ $reseps->links() }}
         </div>
     </section>
 

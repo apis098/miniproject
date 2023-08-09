@@ -240,10 +240,12 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">  <h4>
+                                            <a href=" {{ url('seputar_dpr/'.$sd->id) }} " class="text-white">  <h4>
                                                 {{ $sd->judul }}
                                             </h4>
                                             </a>
+                                            by <span class="text-info">{{ $sd->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">
@@ -263,7 +265,7 @@
 
                 </div>
             </div>
-
+            {{ $kategori_seputardapur->links() }}
         </div>
     </section>
 

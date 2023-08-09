@@ -180,7 +180,7 @@
                             <small>Like : {{$row->likes}}</small>
                         </div>
 
-                        <div class="icons align-items-center">
+                        <div class="icons align-items-center"> 
                          
                           <form action="{{route('Replies.like',$row->id)}}" method="POST">
                             @csrf

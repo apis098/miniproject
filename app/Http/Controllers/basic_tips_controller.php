@@ -29,7 +29,7 @@ class basic_tips_controller extends Controller
         $this->validate($request,[
             'kategori_id' => 'required',
             'judul' => 'required',
-            'foto' => 'required|image|mimes:png,jpg,jpeg,svg|max:20048',
+            'foto' => 'required|image|mimes:png,jpg,jpeg,svg , webp|max:20048',
             'deskripsi' => 'required'
         ], [
             'kategori_id.required' => 'field ini harus di isi!',
@@ -37,7 +37,7 @@ class basic_tips_controller extends Controller
             'judul.required' => 'field ini harus di isi!',
             'foto.required' => 'field ini harus di isi!',
             'deskripsi.required' => 'field ini harus di isi!',
-            'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg)',
+            'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg, webp)',
             'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 20 MB',
         ]);
 
@@ -72,13 +72,15 @@ class basic_tips_controller extends Controller
         $this->validate($request,[
             'kategori_id'=>'required',
             'judul'=>'required',
-            'foto'=>'image|mimes:png,jpg,jpeg,svg|max:2048',
+            'foto'=>'image|mimes:png,jpg,jpeg,svg,webp|max:20048',
             'deskripsi'=>'required'
         ],[
             'kategori_id.required'=> 'field ini harus di isi!',
             'userkoki_id.required'=> 'field ini harus di isi!',
             'judul.required'=> 'field ini harus di isi!',
             'isi.required'=> 'field ini harus di isi!',
+            'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg, webp)',
+            'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 20 MB',
         ]);
             //    upload foto
             $bt = basic_tips::find($id);

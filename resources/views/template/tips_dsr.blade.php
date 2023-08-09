@@ -242,11 +242,13 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">
+                                            <a href="{{ url('tips_dsr/'.$td->id) }} " class="text-white">
                                                 <h4>
                                                     {{ $td->judul }}
                                                 </h4>
                                             </a>
+                                            by <span class="text-info">{{ $td->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                                 <div class="options">
@@ -265,7 +267,7 @@
 
                 </div>
             </div>
-
+            {{ $kategori_tipsdasar->links() }}
         </div>
     </section>
 

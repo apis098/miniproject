@@ -68,8 +68,9 @@
                 </div>
                 <div class="mb-3 row mt-4">
                     <div class="col">
-                        <button type="submit" class="btn btn-secondary">
-                            tambahkan
+                        <button type="submit" class="btn btn-secondary rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                            data-mdb-ripple-color="dark">
+                            <i class="fa-regular fa-floppy-disk me-1"></i>   Submit
                         </button>
                     </div>
                 </div>
@@ -143,7 +144,7 @@
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" @error('foto')
                                 @enderror name="foto" id="foto" accept="image/*">
-                                <img src="{{ asset('storage/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
+                                <img src="{{ asset('storage/public/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
                                 @error('foto')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
@@ -198,7 +199,7 @@
                         class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
-                        Submit
+                        Save
                     </button>
                     </form>
                 </div>
