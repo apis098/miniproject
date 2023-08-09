@@ -137,12 +137,12 @@
                                     <div class="col-6">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-warning" style="width: 100%"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $r->id }}">
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal{{ $r->foto_masakan }}">
                                             Edit
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{ $r->id }}" tabindex="-1"
+                                        <div class="modal fade" id="exampleModal{{ $r->foto_masakan }}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
@@ -307,7 +307,6 @@
         </div>
     </div>
     <!-- include libraries(jQuery, bootstrap) -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
