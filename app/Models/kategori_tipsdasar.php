@@ -17,6 +17,6 @@ class kategori_tipsdasar extends Model
         return $this->hasMany(reseps::class);
     }
     public function tips_dasar() {
-        return $this->hasMany(basic_tips::class);
+        return $this->hasMany(basic_tips::class, 'kategori_id', 'id');
     }
 }

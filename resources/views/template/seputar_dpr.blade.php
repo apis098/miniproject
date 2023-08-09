@@ -210,16 +210,16 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Search Resep By around the kitchen
+                    Search Around the Kitchen
                 </h2>
             </div>
 
-            <form action="/menu" method="post">
+            <form action="/seputar_dpr" method="post">
                 @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
+                <select name="dapur" id="searchdapur" class="form-control">
                     <option value=""></option>
-                    @foreach ($bahan_masakan as $item_bahan)
-                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @foreach ($kategori_sd as $sd)
+                        <option value="{{ $sd->id }}">{{ $sd->nama_kategori }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary my-2">Search</button>
@@ -228,28 +228,26 @@
 
             <div class="filters-content">
                 <div class="row grid">
-                    @foreach ($reseps as $resep)
+                    @foreach ($kategori_seputardapur as $resep)
                         @foreach ($resep->resep as $r)
                             <div class="col-sm-6 col-lg-4 all pizza">
                                 <div class="box">
                                     <div>
                                         <div class="">
-                                            <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
+                                            <img src="{{ asset('storage/' . $r->foto) }}" width="100%"
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
                                             <a href="{{ route('artikel') }} " class="text-white">  <h4>
-                                                {{ $r->nama_masakan }}
+                                                {{ $r->judul }}
                                             </h4>
                                             </a>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">
                                                 <h6>
-                                                    @foreach ($r->kategori_bahan as $kb)
                                                         <button
-                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
-                                                    @endforeach
+                                                            class="black-border-button  ">{{ $r->resep->id }}</button>
                                                 </h6>
 
                                             </div>
@@ -368,7 +366,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#searchbahan').select2();
+            $('#searchdapur').select2();
         });
     </script>
 </body>
