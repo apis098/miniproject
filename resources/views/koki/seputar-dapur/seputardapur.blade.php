@@ -1,5 +1,14 @@
 @extends('layouts.nav_koki')
 @section('konten')
+
+
+
+
+
+<div class="card bg-white mt-3 ml-3">
+    <h2 class="text-black text-center"> Seputar Dapur</h2>
+</div>
+
 <div class="container">
     <div class="col mt-5">
         <div class="mb-3 row">
@@ -87,7 +96,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                    <img src="{{asset('storage/seputardapur/'.$data->foto) }}" class="card-img-top" alt="" style="width:90px">
+                    <img src="{{asset('storage/public/seputardapur/'.$data->foto) }}" class="card-img-top" alt="" style="width:90px">
                 </td>
                 <td>{{ $data->judul }}</td>
                 <td>{{ $data->kategori_seputardapur->nama_kategori }}</td>
@@ -134,7 +143,7 @@
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" @error('foto')
                                 @enderror name="foto" id="foto" accept="image/*">
-                                <img src="{{ asset('storage/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
+                                <img src="{{ asset('storage/public/seputardapur/'.$item->foto) }}" class="rounded" style="width: 150px">
                                 @error('foto')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}

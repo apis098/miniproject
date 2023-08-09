@@ -13,7 +13,8 @@ class kategori_tipsdasar_controller extends Controller
     public function index()
     {
         $kategori = kategori_tipsdasar::all();
-        return view('admin.kategori_tipsdasar.kategoritipsdasar', compact('kategori'));
+        $title = "Data Tips Dasar";
+        return view('admin.kategori_tipsdasar.kategoritipsdasar', compact('kategori', 'title'));
     }
 
     /**

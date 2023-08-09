@@ -1,8 +1,8 @@
 @extends('layouts.navbar')
 @section('konten')
-@push('style')
-@powerGridstyles
-@endpush
+            @push('style')
+            @powerGridStyles
+            @endpush
 <style>
     .table-rounded {
         border-collapse: separate;
@@ -37,6 +37,10 @@
     }
 </style>
         {{-- heading --}}
+        <div class="mt-3 ml-3">
+            <h2 class="text-dark"><b>{{ $title }}</b></h2>
+            <hr />
+        </div>
      <div class="mb-2 mt-1 mb-md-1">
         <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
         <div>
@@ -61,7 +65,7 @@
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-active border-light">
                     @foreach ($kategori as $num => $item)
                         <tr>
                             <th scope="row">{{ $num += 1 }}</th>
@@ -101,7 +105,7 @@
                                                             class="form-control" id="nama_kategori" name="nama_kategori"
                                                             required>
                                                     </div>
-                                                    <button type="submit" class="btn btn-dark-disable">Simpan</button>
+                                                    <button type="submit" class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center" data-mdb-ripple-color="dark"> <i class="fa-regular fa-floppy-disk me-1"></i>Save</button>
                                                 </form>
                                             </div>
                                         </div>

@@ -210,46 +210,48 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Search Resep By around the kitchen
+                    Search Around the Kitchen
                 </h2>
             </div>
 
-            <form action="/menu" method="post">
+            <form action="/seputar_dpr" method="post">
                 @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
+                <select name="dapur" id="searchdapur" class="form-control">
                     <option value=""></option>
-                    @foreach ($bahan_masakan as $item_bahan)
-                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @foreach ($kategori_sd as $sd)
+                        <option value="{{ $sd->id }}">{{ $sd->nama_kategori }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary my-2">Search</button>
             </form>
 
-
+            @foreach ($kategori_seputardapur as $k_sd)
+                <button class="btn btn-light mx-2 border radius">{{ $k_sd->nama_kategori }}</button>
+            @endforeach
             <div class="filters-content">
                 <div class="row grid">
-                    @foreach ($reseps as $resep)
-                        @foreach ($resep->resep as $r)
+                    @foreach ($kategori_seputardapur as $seputardapur)
+                        @foreach ($seputardapur->seputar_dapur as $sd)
                             <div class="col-sm-6 col-lg-4 all pizza">
                                 <div class="box">
                                     <div>
                                         <div class="">
-                                            <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
+                                            <img src="{{ asset('storage/public/seputardapur/' . $sd->foto) }}" width="100%"
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
                                             <a href="{{ route('artikel') }} " class="text-white">  <h4>
-                                                {{ $r->nama_masakan }}
+                                                {{ $sd->judul }}
                                             </h4>
                                             </a>
+                                            by <span class="text-info">{{ $sd->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">
                                                 <h6>
-                                                    @foreach ($r->kategori_bahan as $kb)
                                                         <button
-                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
-                                                    @endforeach
+                                                            class="black-border-button  ">{{ $sd->kategori_seputardapur->nama_kategori }}</button>
                                                 </h6>
 
                                             </div>
@@ -263,7 +265,7 @@
 
                 </div>
             </div>
-
+            {{ $kategori_seputardapur->links() }}
         </div>
     </section>
 
@@ -368,7 +370,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#searchbahan').select2();
+            $('#searchdapur').select2();
         });
     </script>
 </body>

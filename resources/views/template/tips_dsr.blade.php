@@ -111,10 +111,9 @@
             border-radius: 10px;
         }
 
-.t {
-    margin-left: 45px;
-}
-
+        .t {
+            margin-left: 45px;
+        }
     </style>
 
 
@@ -132,26 +131,26 @@
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         @if (Auth::check())
-                        @if (Auth::user()->role == 'Admin')
-                        <a class="navbar-brand" href="{{ url('admin/index') }}">
-                            <span class="t">
-                                HummaCook
-                            </span>
-                        </a>
+                            @if (Auth::user()->role == 'Admin')
+                                <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                    <span class="t">
+                                        HummaCook
+                                    </span>
+                                </a>
+                            @else
+                                <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                    <span class="t">
+                                        HummaCook
+                                    </span>
+                                </a>
+                            @endif
                         @else
-                        <a class="navbar-brand" href="{{ url('koki/index') }}">
-                            <span class="t">
-                                HummaCook
-                            </span>
-                        </a>
+                            <a class="navbar-brand" href="#">
+                                <span class="t">
+                                    HummaCook
+                                </span>
+                            </a>
                         @endif
-                    @else
-                    <a class="navbar-brand" href="#">
-                        <span class="t">
-                            HummaCook
-                        </span>
-                    </a>
-                    @endif
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -212,50 +211,53 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Search Resep By Basic Tips
+                    Search Basic Tips
                 </h2>
             </div>
 
-            <form action="/menu" method="post">
+            <form action="/tips_dsr" method="post">
                 @csrf
-                <select name="bahan" id="searchbahan" class="form-control">
+                <select name="tips" id="searchtips" class="form-control">
                     <option value=""></option>
-                    @foreach ($bahan_masakan as $item_bahan)
-                        <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
+                    @foreach ($kategori_td as $item_tips)
+                        <option value="{{ $item_tips->id }}">{{ $item_tips->nama_kategori }}</option>
                     @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary my-2">Search</button>
             </form>
 
 
+            @foreach ($kategori_tipsdasar as $ktd)
+                <button class="btn btn-light p-2 border ">{{ $ktd->nama_kategori }}</button>
+            @endforeach
             <div class="filters-content">
                 <div class="row grid">
-                    @foreach ($reseps as $resep)
-                        @foreach ($resep->resep as $r)
+                    @foreach ($kategori_tipsdasar as $k_td)
+                        @foreach ($k_td->tips_dasar()->get() as $td)
                             <div class="col-sm-6 col-lg-4 all pizza">
                                 <div class="box">
                                     <div>
                                         <div class="">
-                                            <img src="{{ asset('storage/' . $r->foto_masakan) }}" width="100%"
+                                            <img src="{{ asset('storage/public/tipsdasar/' . $td->foto) }}" width="100%"
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">  <h4>
-                                                {{ $r->nama_masakan }}
-                                            </h4>
+                                            <a href="{{ route('artikel') }} " class="text-white">
+                                                <h4>
+                                                    {{ $td->judul }}
+                                                </h4>
                                             </a>
+                                            by <span class="text-info">{{ $td->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
-                                            <div class="options">
-                                                <h6>
-                                                    @foreach ($r->kategori_bahan as $kb)
+                                                <div class="options">
+                                                    <h6>
                                                         <button
-                                                            class="black-border-button  ">{{ $kb->kategori_bahan }}</button>
-                                                    @endforeach
-                                                </h6>
-
+                                                            class="black-border-button  ">{{ $td->kategori_tipsdasar->nama_kategori }}</button>
+                                                    </h6>
+                                                </div>
                                             </div>
-                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -265,7 +267,7 @@
 
                 </div>
             </div>
-
+            {{ $kategori_tipsdasar->links() }}
         </div>
     </section>
 
@@ -370,7 +372,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#searchbahan').select2();
+            $('#searchtips').select2();
         });
     </script>
 </body>

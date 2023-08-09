@@ -47,8 +47,8 @@ class SeputarDapurController extends Controller
         'judul.required' => 'field ini harus di isi!',
         'foto.required' => 'field ini harus di isi!',
         'isi.required' => 'field ini harus di isi!',
-        'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg)',
-        'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 2048 KB',
+        'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg,webp)',
+        'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 20MB',   
     ]);
 
         $foto = $request->file('foto');
@@ -95,12 +95,14 @@ class SeputarDapurController extends Controller
         $this->validate($request,[
             'kategori_id'=>'required',
             'judul'=>'required',
-            'foto'=>'image|mimes:png,jpg,jpeg,svg|max:2048',
+            'foto'=>'image|mimes:png,jpg,jpeg,svg,webp|max:20048',
             'isi'=>'required'
         ],[
             'kategori_id.required'=> 'field ini harus di isi!',
             'judul.required'=> 'field ini harus di isi!',
             'isi.required'=> 'field ini harus di isi!',
+            'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg, webp)',
+            'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 20 MB'
         ]);
             //    upload foto
     if ($request->hasFile('foto')) {

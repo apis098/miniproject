@@ -16,7 +16,8 @@ class kategori_bahan_controller extends Controller
     {
         //$kategori_bahans = kategori_bahan::with('reseps');
         $kategori_bahans = kategori_bahan::all();
-        return view('admin.kategori_bahan.kategoribahan', compact('kategori_bahans'));
+        $title = "Data Kategori Bahan";
+        return view('admin.kategori_bahan.kategoribahan', compact('kategori_bahans', 'title'));
     }
 
     /**

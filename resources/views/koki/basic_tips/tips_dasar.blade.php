@@ -36,9 +36,9 @@
             transform: scale(0.97);
         }
     </style>
-    <div class="card bg-dark mt-3 ml-3">
-        <h2 class="text-white"> Crud tips dasar</h2>
-    </div>
+   <div class="card bg-white mt-3 ml-3">
+    <h2 class="text-black text-center"> Tips Dasar</h2>
+</div>
     <div class="container mb-2 mt-1 mb-md-1">
         <div class="col mt-5">
             <div class="mb-3 row">
@@ -128,7 +128,7 @@
                         <td>{{ $data->judul }}</td>
                         <td>{{ $data->kategori_tipsdasar->nama_kategori }}</td>
                         <td>
-                            <img src="{{ asset('storage/tipsdasar/' . $data->foto) }}" class="card-img-top" alt=""
+                            <img src="{{ asset('storage/public/tipsdasar/' . $data->foto) }}" class="card-img-top" alt=""
                                 style="width:90px">
                         </td>
                         <td>{{ $data->deskripsi }}</td>
@@ -176,7 +176,7 @@
                                                 @error('foto')
                                         @enderror
                                                 name="foto" id="foto" accept="image/*">
-                                            <img src="{{ asset('storage/tipsdasar/' .$row->foto) }}" class="rounded"
+                                            <img src="{{ asset('storage/public/tipsdasar/' .$row->foto) }}" class="rounded"
                                                 style="width: 150px">
                                             @error('foto')
                                                 <div class="alert alert-danger mt-2">

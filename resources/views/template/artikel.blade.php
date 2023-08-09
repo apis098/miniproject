@@ -157,6 +157,12 @@
     </header>
     <!-- ****** Header Area End ****** -->
 
+    <!-- ****** Breadcumb Area Start ****** -->
+
+
+
+    <!-- ****** Breadcumb Area End ****** -->
+
     <!-- ****** Single Blog Area Start ****** -->
     <section class="single_blog_area section_padding_80">
         <div class="container">
@@ -236,10 +242,7 @@
                                     <ul class="mb-30">
                                         <li>1/3 cup Lonsectetur adipisicing elit.Lorem ipsum</li>
                                         <li>1/2 cup Veniam, quis nostrud exercitation</li>
-                                        <li>Ut labore et dolore magna</li>
-                                        <li>Lonsectetur adipisicing elit.Lorem ipsum</li>
-                                        <li>Lonsectetur adipisicing elit.Lorem ipsum</li>
-                                        <li>Ut labore et dolore magna</li>
+@ -253,568 +248,528 @@
                                         <li>Lonsectetur adipisicing elit.Lorem ipsum</li>
                                     </ul>
 
