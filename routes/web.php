@@ -42,19 +42,9 @@ Route::get('/', function () {
     $tips_dasar = basic_tips::all();
     $reseps = kategori_bahan::all();
     $complaints = complaint::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
+    $real_reseps = reseps::paginate(4);
+    return view('template.home', compact('real_reseps','kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
 })->name('home');
-
-Route::post('/', function (Request $request) {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $about = about::all();
-    $bahan_masakan = kategori_bahan::all();
-    $hari_khusus = special_days::all();
-    $tips_dasar = basic_tips::all();
-    $reseps = kategori_bahan::where('id', $request->bahan)->get();
-    $complaints = complaint::all();
-    return view('template.home', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
-});
 
 Route::get('artikel', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
@@ -68,7 +58,7 @@ Route::get('artikel', function () {
 
 Route::get('menu', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = kategori_bahan::all();
+    $reseps = kategori_bahan::paginate(4);
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
@@ -81,7 +71,7 @@ Route::post('/menu', function (Request $request) {
     // mengambil inputan array
     $bahan = $request->input('bahan', []);
     // whereIn untuk filter beberapa request
-    $reseps = kategori_bahan::whereIn('id', $bahan)->get();
+    $reseps = kategori_bahan::whereIn('id', $bahan)->paginate(4);
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'reseps'));
@@ -97,7 +87,7 @@ Route::get('about', function () {
 
 Route::get('hari', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = special_days::all();
+    $reseps = special_days::paginate(3);
     $specialdays = special_days::all();
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
@@ -107,7 +97,7 @@ Route::get('hari', function () {
 Route::post('hari', function (Request $request) {
     $kategori_bahan = kategori_bahan::paginate(3);
     $specialdays = special_days::all();
-    $reseps = special_days::where('id', $request->day)->get();
+    $reseps = special_days::where('id', $request->day)->paginate(3);
     $hari_khusus = special_days::all();
     $tips_dasar = basic_tips::all();
     return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'tips_dasar', 'reseps'));

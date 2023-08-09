@@ -265,7 +265,7 @@
 
                 </div>
             </div>
-
+            {{ $kategori_tipsdasar->links() }}
         </div>
     </section>
 

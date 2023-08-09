@@ -263,7 +263,7 @@
 
                 </div>
             </div>
-
+            {{ $kategori_seputardapur->links() }}
         </div>
     </section>
 
