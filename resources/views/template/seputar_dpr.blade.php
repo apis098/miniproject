@@ -225,21 +225,23 @@
                 <button type="submit" class="btn btn-primary my-2">Search</button>
             </form>
 
-
+            @foreach ($kategori_seputardapur as $k_sd)
+                <button class="btn btn-light mx-2 border radius">{{ $k_sd->nama_kategori }}</button>
+            @endforeach
             <div class="filters-content">
                 <div class="row grid">
-                    @foreach ($kategori_seputardapur as $resep)
-                        @foreach ($resep->resep as $r)
+                    @foreach ($kategori_seputardapur as $seputardapur)
+                        @foreach ($seputardapur->seputar_dapur as $sd)
                             <div class="col-sm-6 col-lg-4 all pizza">
                                 <div class="box">
                                     <div>
                                         <div class="">
-                                            <img src="{{ asset('storage/' . $r->foto) }}" width="100%"
+                                            <img src="{{ asset('storage/public/seputardapur/' . $sd->foto) }}" width="100%"
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
                                             <a href="{{ route('artikel') }} " class="text-white">  <h4>
-                                                {{ $r->judul }}
+                                                {{ $sd->judul }}
                                             </h4>
                                             </a>
                                             <br>
@@ -247,7 +249,7 @@
                                             <div class="options">
                                                 <h6>
                                                         <button
-                                                            class="black-border-button  ">{{ $r->resep->id }}</button>
+                                                            class="black-border-button  ">{{ $sd->kategori_seputardapur->nama_kategori }}</button>
                                                 </h6>
 
                                             </div>

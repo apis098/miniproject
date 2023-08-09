@@ -13,7 +13,7 @@ class kategori_seputardapur extends Model
       'nama_kategori'
     ];
     public function seputar_dapur(){
-        return $this->hasMany(seputar_dapur::class);
+        return $this->hasMany(seputar_dapur::class, 'kategori_id', 'id');
     }
     public function resep() {
       return $this->hasMany(reseps::class);

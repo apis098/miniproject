@@ -238,7 +238,7 @@
                                 <div class="box">
                                     <div>
                                         <div class="">
-                                            <img src="{{ asset('storage/public/tipsdasar' . $td->foto) }}" width="100%"
+                                            <img src="{{ asset('storage/public/tipsdasar/' . $td->foto) }}" width="100%"
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
