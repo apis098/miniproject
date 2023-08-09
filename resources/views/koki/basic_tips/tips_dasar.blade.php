@@ -89,7 +89,7 @@
                         <label for="deskripsi" class="col-sm-2 col-form-label">input deskripsi </label>
                         <div class="col-sm-10">
                             <textarea class="form-control" name="deskripsi" @error('deskripsi')
-                            @enderror id="deskripsi"
+                            @enderror id="textarea"
                                 rows="5"></textarea>
                             @error('deskripsi')
                                 <div class="alert alert-danger mt-2">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <button type="submit"
-                        class="btn btn-secondary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                        class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
                         Submit
@@ -128,10 +128,10 @@
                         <td>{{ $data->judul }}</td>
                         <td>{{ $data->kategori_tipsdasar->nama_kategori }}</td>
                         <td>
-                            <img src="{{ asset('storage/public/tipsdasar/' . $data->foto) }}" class="card-img-top" alt=""
+                            <img src="{{ asset('storage/public/tipsdasar/' . $data->foto) }}" class="card-img-top" alt="{{$data->foto}}"
                                 style="width:90px">
                         </td>
-                        <td>{{ $data->deskripsi }}</td>
+                        <td>{{ (strlen($data->deskripsi) > 15) ? Str::limit($data->deskripsi, 15) . '...' : $data->deskripsi }}</td>
                         <td>{{ $data->created_at }}</td>
                         <td>{{ $data->updated_at }}</td>
                         <td>
@@ -156,9 +156,9 @@
         @foreach ($basic_tips as $row)
             @if ($row->id != '')
                 {{-- modal edit --}}
-                <div class="modal fade" id="exampleModal{{ $row->id }}" tabindex="-1" role="dialog"
+                <div class="modal fade bd-example-modal-lg" id="exampleModal{{ $row->id }}" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
@@ -218,11 +218,11 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <label for="deskripsi" class="col-sm-2 col-form-label">Input Deskripsi </label>
+                                        <label for="deskripsi" class="col-sm-2 col-form-label">Input isi </label>
                                         <div class="col-sm-10">
                                             <textarea class="form-control" rows="5" name="deskripsi"
                                                 @error('deskripsi')
-                                            @enderror id="deskripsi">{{ $row->deskripsi }}</textarea>
+                                            @enderror id="textarea">{{ $row->deskripsi }}</textarea>
                                             @error('deskripsi')
                                                 <div class="alert alert-danger mt-2">
                                                     {{ $message }}
@@ -246,20 +246,20 @@
             @endif
         @endforeach
         {{-- end modal edit --}}
-        {{-- <div class="d-flex justify-content-center" style="margin-top: -2%;">
-            {!! $holidays->links('modern-pagination') !!}
-        </div> --}}
-        @endsection
+
         <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
-            integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-        <script>
+        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+
+          <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+       <script>
             $(document).ready(function() {
-                $('#search').on('input', function() {
-                    var value = $(this).val().toLowerCase();
-                    $('#table tbody tr').filter(function() {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                    });
-                });
+                $('textarea').summernote();
             });
         </script>
+        @endsection
+
+
+

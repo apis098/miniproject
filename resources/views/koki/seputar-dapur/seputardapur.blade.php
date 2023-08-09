@@ -58,7 +58,7 @@
                     <label for="isi" class="col-sm-2 col-form-label">input isi </label>
                     <div class="col-sm-10">
                         <textarea class="form-control" name="isi" @error('isi')
-                            @enderror id="isi" rows="5"></textarea>
+                            @enderror id="textarea" rows="5"></textarea>
                         @error('isi')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
@@ -68,9 +68,9 @@
                 </div>
                 <div class="mb-3 row mt-4">
                     <div class="col">
-                        <button type="submit" class="btn btn-secondary rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                        <button type="submit" class="btn btn-primary rounded-5 mb-1 zoom-effects d-flex align-items-center"
                             data-mdb-ripple-color="dark">
-                            <i class="fa-regular fa-floppy-disk me-1"></i>   Submit
+                            <i class="fa-regular fa-floppy-disk me-1"></i>  Submit
                         </button>
                     </div>
                 </div>
@@ -98,11 +98,11 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                    <img src="{{asset('storage/public/seputardapur/'.$data->foto) }}" class="card-img-top" alt="" style="width:90px">
+                    <img src="{{asset('storage/public/seputardapur/'.$data->foto) }}" class="card-img-top" alt="${{ $data->foto }}" style="width:90px">
                 </td>
                 <td>{{ $data->judul }}</td>
                 <td>{{ $data->kategori_seputardapur->nama_kategori }}</td>
-                <td>{{ $data->isi }}</td>
+                <td>{{ (strlen($data->isi) > 15) ? Str::limit($data->isi, 15) . '...' : $data->isi }}</td>
                 <td>{{ $data->created_at }}</td>
                 <td>{{ $data->updated_at }}</td>
                 <td>
@@ -128,9 +128,9 @@
 @foreach ($seputar_dapur as $item)
 @if ($item->id != '')
     {{-- modal edit --}}
-    <div class="modal fade" id="exampleModal{{ $item->id }}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade bd-example-modal-lg" id="exampleModal{{ $item->id }}" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
@@ -188,7 +188,7 @@
                             <label for="isi" class="col-sm-2 col-form-label">input isi </label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" rows="5" name="isi" @error('isi')
-                                    @enderror id="isi">{{ $item->isi }}</textarea>
+                                    @enderror id="textarea">{{ $item->isi }}</textarea>
                                 @error('isi')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -212,14 +212,19 @@
 @endif
 @endforeach
 {{-- end modal edit --}}
-@endsection
-<script>
-    $(document).ready(function() {
-        $('#search').on('input', function() {
-            var value = $(this).val().toLowerCase();
-            $('#table tbody tr').filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
+
+    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
+    integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+
+
+       <!-- include summernote css/js -->
+       <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+       <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+          <script>
+               $(document).ready(function() {
+                   $('textarea').summernote();
+               });
+           </script>
+           @endsection
+
