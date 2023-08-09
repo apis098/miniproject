@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <button type="submit"
-                        class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                        class="btn btn-secondary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
                         Submit
@@ -235,7 +235,7 @@
                                     class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
                                     data-mdb-ripple-color="dark">
                                     <i class="fa-regular fa-floppy-disk me-1"></i>
-                                    Submit
+                                    Save
                                 </button>
                                 </form>
                             </div>
