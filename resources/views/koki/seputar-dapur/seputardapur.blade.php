@@ -79,6 +79,7 @@
     </div>
 </div>
 
+<div class="table-responsive">
 <table class="table table-striped table-rounded" id="table">
     <thead class="bg-secondary text-light">
         <tr>
@@ -121,6 +122,8 @@
         @endforeach
     </tbody>
 </table>
+</div>
+
 
 @foreach ($seputar_dapur as $item)
 @if ($item->id != '')
