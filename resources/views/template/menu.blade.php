@@ -264,6 +264,7 @@
                                             </a>
                                             by <span class="text-info">{{ $r->user->name }}</span>
                                             <br>
+                                            <br>
                                             <div class="dotted">
                                                 <div class="options">
                                                     <h6>
