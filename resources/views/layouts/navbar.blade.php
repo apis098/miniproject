@@ -190,16 +190,20 @@ h2
                                 </p>
                             </a>
                         </li>
-
-
-
-
-
+                      
                         <li class="nav-item">
-                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
+                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-spesific') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
-                                   Keluhan Pengguna Lain
+                                   Keluhan anda
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('Complaint.all')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-user-pen"></i>
+                                <p>
+                                    Semua Keluhan
                                 </p>
                             </a>
                         </li>

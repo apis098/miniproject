@@ -27,26 +27,48 @@ class complaintController extends Controller
             $complaint->status = 'belum';
             $complaint->balasan = 'Belum ada balasan';
             $complaint->save();
-        }else{
-            return redirect('/')->with('error','Silahkan login terlebih dahulu.');
+        } else {
+            return redirect('/')->with('error', 'Silahkan login terlebih dahulu.');
         }
-        return redirect('/')->with('success','Keluhan kamu telah terkirim.');
+        return redirect('/')->with('success', 'Keluhan kamu telah terkirim.');
     }
-    public function index(){
-        $userId=Auth::id();
+    public function index_all()
+    {
+        $userId = Auth::id();
+        $user = Auth::user();
+        $userRole = $user->role;
         // $data=complaint::where('user_id',$userId)->get();
-        $data=complaint::all();
-        $title="Data keluhan";
-        return view('complaint.index',compact('data','title'));
+        $data = complaint::all();
+        $title = "Data keluhan";
+        if ($userRole == 'koki') {
+            return view('complaint.index_koki', compact('data', 'title', 'userRole'));
+        } else {
+            return view('complaints.index', compact('data', 'title', 'userRole'));
+        }
+
     }
-    public function update(Request $request,$id){
-        $data=complaint::findOrFail($id);
+    public function index()
+    {
+        $userId = Auth::id();
+        $user = Auth::user();
+        $userRole = $user->role;
+        $data=complaint::where('user_id',$userId)->get();
+        $title = "Data keluhan";
+        if ($userRole == 'koki') {
+            return view('complaint.index_koki', compact('data', 'title', 'userRole'));
+        } else {
+            return view('complaints.index', compact('data', 'title', 'userRole'));
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        $data = complaint::findOrFail($id);
         $data->subject = $request->subject;
         $data->status = $request->status;
         $data->balasan = $request->balasan;
         $data->description = $request->description;
         $data->save();
 
-        return redirect()->route('ComplaintUser.index')->with('success','Balasan telah terkirim.');
+        return redirect()->route('ComplaintUser.index')->with('success', 'Balasan telah terkirim.');
     }
 }

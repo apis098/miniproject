@@ -134,7 +134,7 @@ Route::post('actionregister', [RegisterController::class, 'actionregister'])->na
 
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
-Route::get('/keluhan-admin', [complaintController::class, 'index'])->name('ComplaintUser.index');
+Route::get('/keluhan/by-id', [complaintController::class, 'index'])->name('ComplaintUser.index');
 Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name('ComplaintUser.update');
 Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
@@ -142,6 +142,7 @@ Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('Re
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
+Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
