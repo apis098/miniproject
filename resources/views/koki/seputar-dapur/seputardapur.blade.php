@@ -1,5 +1,14 @@
 @extends('layouts.nav_koki')
 @section('konten')
+
+
+
+
+
+<div class="card bg-white mt-3 ml-3">
+    <h2 class="text-black text-center"> Seputar Dapur</h2>
+</div>
+
 <div class="container">
     <div class="col mt-5">
         <div class="mb-3 row">

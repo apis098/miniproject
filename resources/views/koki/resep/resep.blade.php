@@ -2,7 +2,7 @@
 @section('konten')
     <div class="card">
         <div class="card-header">
-            <h3 class="text-center">CRUD Resep</h3>
+            <h3 class="text-center">Resep - Resep</h3>
         </div>
         <div class="card-body">
             <form action="/koki/resep" method="post" enctype="multipart/form-data">
@@ -26,7 +26,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="tipsdasar_id" class="form-label">Kategori Tips Dasar*</label>
+                    <label for="tipsdasar_id" class="form-label">Kategori Tips Dasar  <i class="fa-solid fa-chevron-down"></i></label>
                     <select name="tipsdasar_id" id="tipsdasar_id" class="form-control">
                         <option value=""></option>
                         @foreach ($tips as $t)
@@ -40,7 +40,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="seputardapur_id" class="form-label">Kategori Seputar Dapur*</label>
+                    <label for="seputardapur_id" class="form-label">Kategori Seputar Dapur  <i class="fa-solid fa-chevron-down"></i></label>
                     <select name="seputardapur_id" id="seputardapur_id" class="form-control">
                         <option value=""></option>
                         @foreach ($dapur as $d)
@@ -54,7 +54,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="specialday_id" class="form-label">Hari Khusus*</label>
+                    <label for="specialday_id" class="form-label">Hari Khusus  <i class="fa-solid fa-chevron-down"></i></label>
                     <select name="specialday_id" id="specialday_id" class="form-control">
                         <option value=""></option>
                         @foreach ($hari as $h)
@@ -125,7 +125,7 @@
                                 @if ($r->specialday)
                                     <button type="button"
                                         class="btn btn-light border m-1">{{ $r->specialday->name }}</button>
-                                @endif 
+                                @endif
                                 <br>
                                 by <span class="text-info">{{ $r->user->name }}</span>
                             </div>
@@ -190,7 +190,7 @@
                                                                     <option value="{{ $r->tipsdasar_id }}">
                                                                         {{ $r->tipsdasar->nama_kategori }}</option>
                                                                     @endif
-                                                                    
+
                                                                     @foreach ($tips as $t)
                                                                         <option value="{{ $t->id }}">
                                                                             {{ $t->nama_kategori }}</option>

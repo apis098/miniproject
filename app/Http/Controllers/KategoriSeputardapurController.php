@@ -15,7 +15,8 @@ class KategoriSeputardapurController extends Controller
     public function index()
     {
       $kategori_seputardapur=kategori_seputardapur::all();
-      return view('admin.kategori-seputardapur.kategoriseputardapur',compact('kategori_seputardapur'));
+      $title = "Data Seputar Dapur";
+      return view('admin.kategori-seputardapur.kategoriseputardapur',compact('kategori_seputardapur', 'title'));
     }
 
     /**

@@ -37,10 +37,10 @@
     }
 </style>
 
-{{-- <div class="mt-3 ml-3">
+<div class="mt-3 ml-3">
     <h2 class="text-dark"><b>{{ $title }}</b></h2>
-    <hr>
-</div> --}}
+    <hr />
+</div>
     <div class="mb-2 mt-1 mb-md-1">
         <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
         <div>

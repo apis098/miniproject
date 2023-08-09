@@ -36,9 +36,9 @@
             transform: scale(0.97);
         }
     </style>
-    <div class="card bg-dark mt-3 ml-3">
-        <h2 class="text-white"> Crud tips dasar</h2>
-    </div>
+   <div class="card bg-white mt-3 ml-3">
+    <h2 class="text-black text-center"> Tips Dasar</h2>
+</div>
     <div class="container mb-2 mt-1 mb-md-1">
         <div class="col mt-5">
             <div class="mb-3 row">
