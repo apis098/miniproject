@@ -244,6 +244,8 @@
                                                 {{ $sd->judul }}
                                             </h4>
                                             </a>
+                                            by <span class="text-info">{{ $sd->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                             <div class="options">

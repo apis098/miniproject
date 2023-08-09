@@ -247,6 +247,8 @@
                                                     {{ $td->judul }}
                                                 </h4>
                                             </a>
+                                            by <span class="text-info">{{ $td->user->name }}</span>
+                                            <br>
                                             <br>
                                             <div class="dotted">
                                                 <div class="options">
