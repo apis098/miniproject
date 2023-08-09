@@ -320,7 +320,8 @@
     <!-- offer section -->
 
     <section class="offer_section layout_padding-bottom">
-        <h3 class="text-center">Our Reseps For You!</h3>
+
+        <h2 class="text-center">Our Reseps For You!</h2>
 
         <div class="offer_container">
             <div class="container ">
@@ -589,7 +590,7 @@
                     <div class="row">
                         <div class="col-md-6 ">
                             <div class="img-box">
-                                <img src="images/about-img.png" alt="">
+                                <img src="images/koki.png" alt="">
                             </div>
                         </div>
                         <div class="col-md-6">

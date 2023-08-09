@@ -68,8 +68,9 @@
                 </div>
                 <div class="mb-3 row mt-4">
                     <div class="col">
-                        <button type="submit" class="btn btn-secondary">
-                            tambahkan
+                        <button type="submit" class="btn btn-secondary rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                            data-mdb-ripple-color="dark">
+                            <i class="fa-regular fa-floppy-disk me-1"></i>   Submit
                         </button>
                     </div>
                 </div>
@@ -198,7 +199,7 @@
                         class="btn btn-primary  rounded-5 mb-1 zoom-effects d-flex align-items-center"
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
-                        Submit
+                        Save
                     </button>
                     </form>
                 </div>
