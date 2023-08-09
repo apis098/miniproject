@@ -15,7 +15,12 @@
         Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
+    <link href="{{ asset('css/style.css') }} " rel="stylesheet">
+    <link href="{{ asset('style.css') }} " rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="{{ asset('css/responsive/responsive.css')}}" rel="stylesheet">
+   <style>
         body {
             background-color: #f7f6f6
         }
@@ -100,6 +105,37 @@
 </head>
 
 <body>
+
+    <div class="top_header_area">
+        <div class="container">
+            <div class="row">
+
+                <!--  Login Register Area -->
+                <div class="col-7 col-sm-6" style="margin-left: 650px;">
+                    <div class="signup-search-area d-flex align-items-center justify-content-end">
+                        <div class="login_register_area d-flex">
+                            <div class="login">
+                                <a href="{{route('home')}}">Home</a>
+                            </div>
+                            <div class="register">
+                             
+                                @if (Auth::check())
+                                @if (Auth::user()->role == 'Admin')
+                                <a href="{{url('admin/index')}}">Dashboard</a>
+                                @else
+                                <a href="{{url('koki/index')}}">Dashboard</a>
+                            @endif
+                        @else
+                        <a href="#">Dashboard</a>
+                        @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation-->
      <!-- header section strats -->
      {{--  --}}
@@ -119,7 +155,7 @@
                     </div>
                     <p class="lead">{{$data->description}}</p>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -137,7 +173,7 @@
                         {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                         <button type="submit" class="btn btn-warning text-light rounded-5 ms-1"><i class="fa-solid fa-paper-plane"></i></button>
                         </div>
-                        
+
                         </form>
                     </div>
                     <div class="buttons">
@@ -180,8 +216,8 @@
                             <small>Like : {{$row->likes}}</small>
                         </div>
 
-                        <div class="icons align-items-center"> 
-                         
+                        <div class="icons align-items-center">
+
                           <form action="{{route('Replies.like',$row->id)}}" method="POST">
                             @csrf
                             <input hidden id="reply_id" name="reply_id" value ="{{$row->id}}" type="text">

@@ -35,7 +35,7 @@ class kategori_bahan_controller extends Controller
     {
         $request->validate([
             'kategori_bahan' => 'required|unique:kategori_bahans',
-            'foto' => 'required|image|mimes:png,jpg,jpeg'
+            'foto' => 'required|image|mimes:png,jpg,jpeg,webp'
         ]);
         $create = [
             'kategori_bahan' => $request->kategori_bahan,
@@ -70,7 +70,7 @@ class kategori_bahan_controller extends Controller
     {
         $request->validate([
             'kategori_bahan' => 'required|unique:kategori_bahans,kategori_bahan,'.$id,
-            'foto' => 'nullable|image|mimes:png,jpg,jpeg'
+            'foto' => 'nullable|image|mimes:png,jpg,jpeg,webp'
         ]);
         $update = kategori_bahan::find($id);
         $update->kategori_bahan = $request->kategori_bahan;
@@ -88,7 +88,7 @@ class kategori_bahan_controller extends Controller
     public function destroy(string $id)
     {
         $hapus = kategori_bahan::find($id);
-        
+
         if($hapus->resep->count() > 0) {
             return redirect()->back()->with('error', 'Error, karena masih ada data terkait.');
 

@@ -29,7 +29,7 @@ class basic_tips_controller extends Controller
         $this->validate($request,[
             'kategori_id' => 'required',
             'judul' => 'required',
-            'foto' => 'required|image|mimes:png,jpg,jpeg,svg , webp|max:20048',
+            'foto' => 'required|image|mimes:png,jpg,jpeg,svg,webp|max:20048',
             'deskripsi' => 'required'
         ], [
             'kategori_id.required' => 'field ini harus di isi!',
