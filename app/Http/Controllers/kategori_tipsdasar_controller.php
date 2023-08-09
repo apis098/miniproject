@@ -53,8 +53,7 @@ class kategori_tipsdasar_controller extends Controller
      */
     public function edit(string $id)
     {
-        $edit = kategori_tipsdasar::where('id', $id)->first();
-        return view('admin.kategori_tipsdasar.edit-crudresep', compact('edit'));
+       //
     }
 
     /**
@@ -68,7 +67,7 @@ class kategori_tipsdasar_controller extends Controller
         $update = [
             'nama_kategori' => $request->nama_kategori
         ];
-        kategori_tipsdasar::where('id', $id)->update($update);
+        kategori_tipsdasar::find( $id)->update($update);
         return redirect('/admin/kategori-tipsdasar')->with('success', 'Sukses mengupdate data kategori tips dasar!');
     }
 
@@ -77,7 +76,11 @@ class kategori_tipsdasar_controller extends Controller
      */
     public function destroy(string $id)
     {
-        kategori_tipsdasar::where('id', $id)->delete();
+        $hapus = kategori_tipsdasar::find($id);
+        if ($hapus->tips_dasar->count() > 0) {
+            return redirect()->back()->with('error', 'Error, karena masih ada data terkait.');
+        }
+        kategori_tipsdasar::find($id)->delete();
         return redirect()->back()->with('success', 'Sukses menghapus data kategori tips dasar!');
     }
 }

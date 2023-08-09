@@ -266,7 +266,7 @@ h2
      <script src="path_to_jquery.min.js"></script>
      <script src="path_to_moment.min.js"></script>
      <script src="path_to_fullcalendar.min.js"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
     <script>
     document.addEventListener('calendar', function() {
       var calendarEl = document.getElementById('calendar'); // ID kalender

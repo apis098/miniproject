@@ -40,7 +40,7 @@ class SeputarDapurController extends Controller
         $this->validate($request, [
         'kategori_id' => 'required',
         'judul' => 'required',
-        'foto' => 'required|image|mimes:png,jpg,jpeg,svg|max:20048',
+        'foto' => 'required|image|mimes:png,jpg,jpeg,svg,webp|max:20048',
         'isi' => 'required'
     ], [
         'kategori_id.required' => 'field ini harus di isi!',
@@ -48,7 +48,7 @@ class SeputarDapurController extends Controller
         'foto.required' => 'field ini harus di isi!',
         'isi.required' => 'field ini harus di isi!',
         'foto.image' => 'File harus berupa gambar (png, jpg, jpeg, svg,webp)',
-        'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 20MB',   
+        'foto.max' => 'Ukuran file gambar tidak boleh lebih dari 20MB',
     ]);
 
         $foto = $request->file('foto');
@@ -79,12 +79,7 @@ class SeputarDapurController extends Controller
      */
     public function edit(seputar_dapur $seputar_dapur)
     {
-        $data =[
-            'kategori_seputardapur'=>kategori_seputardapur::all(),
-            'userkoki'=>User::all(),
-            'seputar_dapur'=>$seputar_dapur
-            ];
-            return view('koki.seputar-dapur.edit',$data);
+        //
     }
 
     /**

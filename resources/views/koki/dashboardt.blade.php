@@ -57,12 +57,12 @@
             <!-- ./col -->
         </div>
           </div>
-        </div>
+       
           <!-- /.row -->
           <!-- Main row -->
           <div class="row">
             <!-- Left col -->
-            <section class="col-md-12 mb-5">
+            <section class="col-lg-7 connectedSortable">
               <!-- Custom tabs (Charts with tabs)-->
               <div class="card bg-gradient-success">
                 <div class="card-header border-0">
