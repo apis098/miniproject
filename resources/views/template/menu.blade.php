@@ -292,7 +292,7 @@
 
                 </div>
             </div>
-
+            {{ $reseps->links() }}
         </div>
     </section>
 
