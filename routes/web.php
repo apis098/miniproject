@@ -21,6 +21,7 @@ use App\Models\kategori_bahan;
 use App\Models\reseps;
 use App\Models\special_days;
 use DeepCopy\Filter\Filter;
+use App\Http\Controllers\artikels;
 use Illuminate\Http\Request;
 
 /*
@@ -111,6 +112,12 @@ Route::post('seputar_dpr', [filter2::class, 'filter_seputardapur']);
 Route::get('tips_dsr', [filter2::class, 'view_tipsdasar'])->name('tips_dsr');
 
 Route::post('tips_dsr', [filter2::class, 'filter_tipsdasar']);
+
+// artikel
+Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
+Route::get('seputar_dpr/{id}', [artikels::class, 'artikel_seputardapur']);
+Route::get('tips_dsr/{id}', [artikels::class, 'artikel_tipsdasar']);
+
 
 Route::get('dashboard', function () {
     return view('admin.dashboard');

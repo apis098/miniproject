@@ -601,7 +601,7 @@
                                     </h2>
                                 </div>
                                 <p>
-                                    {{ $a->isi }}
+                                    {!! $a->isi !!}
                                 </p>
                                 <a href="{{ route('about') }}">
                                     Baca Selengkapnya
