@@ -243,7 +243,7 @@
                                                 height="50%" alt="">
                                         </div>
                                         <div class="detail-box">
-                                            <a href="{{ route('artikel') }} " class="text-white">  <h4>
+                                            <a href="{{ url('menu/'.$r->id) }} " class="text-white">  <h4>
                                                 {{ $r->nama_masakan }}
                                             </h4>
                                             </a>

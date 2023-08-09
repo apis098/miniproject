@@ -85,7 +85,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="langkah2_memasak" class="form-label">Langkah-Langkah Memasak</label>
-                    <textarea name="langkah2_memasak" id="editor" class="form-control" cols="30" rows="10" required></textarea>
+                    <textarea name="langkah2_memasak" id="textarea" class="form-control" cols="30" rows="10" required></textarea>
                     @error('langkah2_memasak')
                         <div class="alert alert-danger">
                             {{ $message }}
@@ -107,7 +107,7 @@
                                 </h3>
                             </div>
                             <div class="card-body">
-                                {{ $r->deskripsi_masakan }}
+                                {!! $r->deskripsi_masakan !!}
                                 <br>
                                 @if ($r->tipsdasar)
                                 <button type="button"
@@ -249,7 +249,7 @@
                                                             <div class="mb-3">
                                                                 <label for="deskripsi_masakan"
                                                                     class="form-label">Deskripsi Masakan</label>
-                                                                <textarea name="deskripsi_masakan" id="deskripsi_masakan" cols="15" rows="5" class="form-control">{{ $r->deskripsi_masakan }}</textarea>
+                                                                <textarea name="deskripsi_masakan" id="deskripsi_masakan" cols="15" rows="5" class="form-control">{!! $r->deskripsi_masakan !!}</textarea>
                                                                 @error('deksripsi_masakan')
                                                                     <div class="alert alert-danger">
                                                                         {{ $message }}
@@ -270,8 +270,8 @@
                                                             <div class="mb-3">
                                                                 <label for="langkah2_memasak"
                                                                     class="form-label">Langkah-Langkah Memasak</label>
-                                                                <textarea name="langkah2_memasak" id="editor" class="form-control" cols="30" rows="10" required>
-                                                                    {{ $r->langkah2_memasak }}
+                                                                <textarea name="langkah2_memasak" id="textarea" class="form-control" cols="30" rows="10" required>
+                                                                    {!! $r->langkah2_memasak !!}
                                                                 </textarea>
                                                                 @error('langkah2_memasak')
                                                                     <div class="alert alert-danger">
@@ -302,4 +302,12 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.tiny.cloud/1/rzvl4yudi4uzx142mzepqiwplu6stooxorzg2ft7a6xyzqn7/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#textarea',
+          plugins: 'anchor autolink charmap codesample emoticons image lists media searchreplace table visualblocks wordcount',
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+      </script>
 @endsection
