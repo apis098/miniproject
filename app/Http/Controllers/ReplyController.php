@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ReplyController extends Controller
 {
-    public function index(){
-        $data = complaint::all();
-        $title = "Data Keluhan Seputar Memasak";
-        return view('replies.index',compact('data','title'));
+    public function index()
+    {
+        $userId = Auth::id();
+        $data = Reply::where('user_id', $userId)->get();
+        $title = "Balasan anda terhadap pengguna lain";
+        return view('replies.index', compact('data', 'title'));
     }
     public function show($id)
     {
@@ -30,20 +32,26 @@ class ReplyController extends Controller
         $request->validate([
             'reply' => 'required|string',
         ]);
-        
+
         $complaint = complaint::findOrFail($id);
         $user = Auth::user();
-        if($user){
+        if ($user) {
             $reply = new Reply([
                 'user_id' => auth()->user()->id,
                 'reply' => $request->reply,
             ]);
-    
+
             $complaint->replies()->save($reply);
-            return redirect()->route('ShowReplies.show', $id)->with('success', 'Balasan berhasil dikirim.');
+            return redirect()->back()->with('success', 'Balasan berhasil dikirim.');
+        } else {
+            return redirect()->back()->with('error', 'Silahkan login terlebih dahulu.');
         }
-        else{
-            return redirect()->route('ShowReplies.show',$id)->with('error','Silahkan login terlebih dahulu.');
-        }
+    }
+    public function destroy($id)
+    {
+        $data = Reply::findOrFail($id);
+        $data->delete();
+
+        return redirect()->back()->with('success', 'Data has been deleted successfully.');
     }
 }

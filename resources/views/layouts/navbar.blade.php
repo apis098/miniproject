@@ -207,7 +207,7 @@ h2
                             <a href="{{ route('ReplyUser.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-reply-all"></i>
                                 <p>
-                                   Balas Keluhan
+                                   Solusi keluhan terkirim
                                 </p>
                             </a>
                         </li>

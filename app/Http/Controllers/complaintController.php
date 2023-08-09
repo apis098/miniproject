@@ -33,6 +33,8 @@ class complaintController extends Controller
         return redirect('/')->with('success','Keluhan kamu telah terkirim.');
     }
     public function index(){
+        $userId=Auth::id();
+        // $data=complaint::where('user_id',$userId)->get();
         $data=complaint::all();
         $title="Data keluhan";
         return view('complaint.index',compact('data','title'));
