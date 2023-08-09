@@ -111,22 +111,22 @@
             <div class="row">
 
                 <!--  Login Register Area -->
-                <div class="col-7 col-sm-6" style="margin-left: 650px;">
+                <div class="col-7 col-sm-6 " style="margin-left: 550px;">
                     <div class="signup-search-area d-flex align-items-center justify-content-end">
                         <div class="login_register_area d-flex">
-                            <div class="login">
-                                <a href="{{route('home')}}">Home</a>
+                            <div class="login text-warning">
+                                <a class="text-warning" href="{{route('home')}}">Home</a>
                             </div>
-                            <div class="register">
+                            <div class="register text-warning">
                              
                                 @if (Auth::check())
                                 @if (Auth::user()->role == 'Admin')
-                                <a href="{{url('admin/index')}}">Dashboard</a>
+                                <a class="text-warning" href="{{url('admin/index')}}">Dashboard</a>
                                 @else
-                                <a href="{{url('koki/index')}}">Dashboard</a>
+                                <a class="text-warning" href="{{url('koki/index')}}">Dashboard</a>
                             @endif
                         @else
-                        <a href="#">Dashboard</a>
+                        <a class="text-warning" href="#">Dashboard</a>
                         @endif
                             </div>
                         </div>

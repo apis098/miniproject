@@ -14,9 +14,16 @@ class ReplyController extends Controller
     public function index()
     {
         $userId = Auth::id();
+        $user= Auth::user();
+        $userRole = $user->role;
         $data = Reply::where('user_id', $userId)->get();
         $title = "Balasan anda terhadap pengguna lain";
-        return view('replies.index', compact('data', 'title'));
+        if($userRole == 'admin'){
+            return view('replies.index', compact('data', 'title'));
+        }else{
+            return view('replies.index_koki', compact('data', 'title'));
+        }
+  
     }
     public function show($id)
     {

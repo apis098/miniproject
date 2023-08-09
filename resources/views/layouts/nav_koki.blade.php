@@ -154,8 +154,6 @@ h2
                             </a>
                         </li>
 
-
-
                         <li class="nav-item">
                             <a href="/koki/basic_tips" class="nav-link text-light {{ request()->is('koki/basic_tips') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-utensils"></i>
