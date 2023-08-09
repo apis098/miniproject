@@ -182,7 +182,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-spesific') ? 'activet' : '' }}">
+                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan/by-id') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
                                    Keluhan anda
@@ -190,7 +190,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('Complaint.all')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
+                            <a href="{{ route('Complaint.all')}}" class="nav-link text-light {{ request()->is('complaint/all') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
                                     Semua Keluhan
