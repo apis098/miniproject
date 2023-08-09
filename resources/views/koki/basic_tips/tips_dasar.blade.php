@@ -128,7 +128,7 @@
                         <td>{{ $data->judul }}</td>
                         <td>{{ $data->kategori_tipsdasar->nama_kategori }}</td>
                         <td>
-                            <img src="{{ asset('storage/tipsdasar/' . $data->foto) }}" class="card-img-top" alt=""
+                            <img src="{{ asset('storage/public/tipsdasar/' . $data->foto) }}" class="card-img-top" alt=""
                                 style="width:90px">
                         </td>
                         <td>{{ $data->deskripsi }}</td>

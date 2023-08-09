@@ -87,7 +87,7 @@
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>
-                    <img src="{{asset('storage/seputardapur/'.$data->foto) }}" class="card-img-top" alt="" style="width:90px">
+                    <img src="{{asset('storage/public/seputardapur/'.$data->foto) }}" class="card-img-top" alt="" style="width:90px">
                 </td>
                 <td>{{ $data->judul }}</td>
                 <td>{{ $data->kategori_seputardapur->nama_kategori }}</td>

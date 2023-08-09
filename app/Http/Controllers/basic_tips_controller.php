@@ -89,14 +89,14 @@ class basic_tips_controller extends Controller
          Storage::delete('public/tipsdasar/' . $bt->foto);
 
        // create post
-       basic_tips::where('id', $id)->update([
+       basic_tips::find($id)->update([
            'kategori_id' => $request->kategori_id,
            'judul' => $request->judul,
         'foto' => $foto->hashName(),
         'deskripsi' => $request->deskripsi
    ]);
   }  else{
-    basic_tips::where('id', $id)->update([
+    basic_tips::find($id)->update([
         'kategori_id' => $request->kategori_id,
         'judul' => $request->judul,
         'deskripsi' => $request->deskripsi,
@@ -110,16 +110,24 @@ class basic_tips_controller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(basic_tips $basic_tips)
+    public function destroy(string $id)
     {
-       // Hapus file foto jika ada
-      if ($basic_tips->foto) {
-            // Hapus file dari direktori
-          Storage::delete('public/tipsdasar/'.$basic_tips->foto);
+        // Temukan data tips dasar berdasarkan ID
+        $tipsDasar = basic_tips::find($id);
 
-          // Hapus data tips dasar dari database
-          $basic_tips->delete();
-          return redirect()->back()->with('info', 'Data Telah Di Hapus');
-      }
-    }
-}
+        // Pastikan data tips dasar ditemukan
+        if (!$tipsDasar) {
+            return redirect()->back()->with('error', 'Data Tidak Ditemukan');
+        }
+
+        // Hapus file foto jika ada
+        if ($tipsDasar->foto) {
+            // Hapus file dari direktori
+            Storage::delete('public/tipsdasar/'.$tipsDasar->foto);
+
+            // Hapus data tips dasar dari database
+            $tipsDasar->delete();
+            return redirect()->back()->with('info', 'Data Telah Dihapus');
+        }
+     }
+ }
