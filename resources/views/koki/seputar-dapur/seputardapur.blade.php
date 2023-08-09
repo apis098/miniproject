@@ -1,15 +1,47 @@
 @extends('layouts.nav_koki')
 @section('konten')
+@push('style')
+@powerGridStyles
+@endpush
+<style>
+.table-rounded {
+    border-collapse: separate;
+    border-radius: 10px;
+    border-color: black;
 
+}
 
+.table-rounded thead th:first-child {
+    border-top-left-radius: 10px;
+}
 
+.table-rounded thead th:last-child {
+    border-top-right-radius: 10px;
+}
 
+.table-rounded tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.table-rounded tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+}
+
+.zoom-effects:hover {
+    transform: scale(0.97);
+}
+</style>
 
 <div class="card bg-white mt-3 ml-3">
     <h2 class="text-black text-center"> Seputar Dapur</h2>
 </div>
 
-<div class="container">
+<div class="container mb-3 mt-1 mb-md-1">
     <div class="col mt-5">
         <div class="mb-3 row">
             <form action="{{route('seputar_dapur.store')}}" method="post" enctype="multipart/form-data">
@@ -88,8 +120,8 @@
             <th>Judul</th>
             <th>kategori</th>
             <th>isi</th>
-            <th>Dibuat Pada:</th>
-            <th>Terakhir Diupdate Pada:</th>
+            <th>Dibuat Pada</th>
+            <th>Terakhir Diupdate Pada</th>
             <th>action</th>
         </tr>
     </thead>
@@ -121,7 +153,7 @@
             </tr>
         @endforeach
     </tbody>
-</table>
+  </table>
 </div>
 
 

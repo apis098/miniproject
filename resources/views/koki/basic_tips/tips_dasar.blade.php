@@ -98,18 +98,22 @@
                             @enderror
                         </div>
                     </div>
+                    <div class="mb-3 row mt-4">
+                        <div class="col">
                     <button type="submit"
                         class="btn btn-primary btn-sm rounded-5 mb-1 zoom-effects d-flex align-items-center"
                         data-mdb-ripple-color="dark">
                         <i class="fa-regular fa-floppy-disk me-1"></i>
                         Submit
-                </button>
+                    </button>
+                     </div>
+                    </div>
                 </form>
             </div>
         </div>
         <div class="table-responsive">
         <table class="table table-striped table-rounded" id="table">
-            <thead class="bg-dark text-wgite">
+            <thead class="bg-secondary text-light">
                 <tr>
                     <th>NO</th>
                     <th>Judul</th>
