@@ -529,10 +529,12 @@
             </h2>
         </div>
 
-        <section class="wrapper">
-            <div class="container">
+        <section class="content">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col text-center mb-5">
+                    <div class="col">
+                        <div class="row">
+                    <div class="col-md-4 mb2">
                     </div>
                 </div>
                 <div class="row">
@@ -577,6 +579,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                </div>
                                 </table>
                             </div>
                         </div>

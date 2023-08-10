@@ -37,7 +37,7 @@
             transform: scale(0.97);
         }
 
-        
+
         .modal-body {
             background-color: #F8DE22;
             border-color: #F8DE22;
@@ -60,9 +60,11 @@
         }
 
     </style>
-    <div class="mt-3 ml-3">
+    <div class="card bg-white mt-3 ml-3">
         <h2 class="text-dark"><b>{{ $title }}</b></h2>
-        <hr />
+        <div class="container mb-2 mt-1 mb-md-1">
+        <div class="col mt-5">
+            <div class="mb-3 row">
     </div>
     {{-- <div class=" mb-2 mt-1 mb-md-1">
         <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
@@ -81,8 +83,9 @@
             </form>
         </div>
     </div> --}}
-    <table class="table table-striped table-rounded" >
-        <thead class="bg-secondary text-light">
+    <div class="table-responsive">
+    <table class="table table-striped table-rounded" id="table">
+        <thead class="bg-dark text-wgite">
             <tr>
                 <th>NO</th>
                 <th>Username</th>
@@ -132,7 +135,7 @@
                                         <div class="mt-2"> <span class="intro-2">Beri solusi:</span> </div>
                                         <input type="text" class="form-control rounded-3 mt-2" name="reply" id="reply">
 
-                                        <div class="mt-4 mb-3"> 
+                                        <div class="mt-4 mb-3">
                                             <button type="submit" class="btn btn-primary btn-sm rounded-5">Kirim <i class="fa-solid fa-paper-plane"></i></button>
                                         </div>
                                     </form>
@@ -142,6 +145,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    </div>
+</div>
         </div>
         @endif
     @endforeach
