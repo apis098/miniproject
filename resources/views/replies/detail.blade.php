@@ -273,8 +273,8 @@
                                                 @csrf
                                             <div class="mt-2"> <span class="intro-2">Alasan Report:</span> </div>
                                             <input type="text" class="form-control rounded-3 mt-2" name="description" id="description">
-                                            <input type="text" value="{{$row->user->id}}" class="form-control rounded-3 mt-2" name="user_id" id="user_id">
-                                            <input type="text" value="{{ $row->id }}" class="form-control rounded-3 mt-2" name="reply_id" id="reply_id">
+                                            <input type="text" hidden value="{{$row->user->id}}" class="form-control rounded-3 mt-2" name="user_id" id="user_id">
+                                            <input type="text" hidden value="{{ $row->id }}" class="form-control rounded-3 mt-2" name="reply_id" id="reply_id">
                                             <div class="mt-4 mb-3"> 
                                                 <button type="submit" class="btn btn-danger btn-sm rounded-5">Report <i class="fa-solid fa-triangle-exclamation"></i></button>
                                             </div>
