@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('nama_masakan');
             $table->string('foto_masakan');
             $table->text('deskripsi_masakan');
-            $table->string('bahan_masakan');
+            $table->longText('persiapan_memasak');
             $table->longText('langkah2_memasak');
             $table->timestamps();
 

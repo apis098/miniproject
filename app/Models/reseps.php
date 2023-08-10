@@ -17,7 +17,7 @@ class reseps extends Model
         'nama_masakan',
         'foto_masakan',
         'deskripsi_masakan',
-        'bahan_masakan',
+        'persiapan_memasak',
         'langkah2_memasak'
     ];
     public function user() {
@@ -34,5 +34,9 @@ class reseps extends Model
     }
     public function kategori_bahan() {
         return $this->belongsToMany(kategori_bahan::class, 'pivot');
+    }
+
+    public function bahans() {
+        return $this->hasMany(pivot::class, 'reseps_id');
     }
 }

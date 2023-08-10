@@ -13,4 +13,9 @@ class pivot extends Model
         'kategori_bahan_id',
         'reseps_id'
     ];
+
+    public function bahan()
+    {
+        return $this->belongsTo(kategori_bahan::class, 'kategori_bahan_id');
+    }
 }

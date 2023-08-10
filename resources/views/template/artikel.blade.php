@@ -228,6 +228,10 @@
                                         @endforeach
                                     </h5>
                                 </blockquote>
+                                <h4>Persiapan Memasak</h4>
+                                <p>
+                                    {!! $show_resep->persiapan_memasak !!}
+                                </p>
                                 <h4>Langkah - Langkah</h4>
                                 <p>
                                     {!! $show_resep->langkah2_memasak !!}

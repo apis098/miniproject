@@ -100,6 +100,27 @@
             cursor: pointer;
 
         }
+
+        .modal-body {
+            background-color: #F8DE22;
+            border-color: #F8DE22;
+        }
+
+        .intro-1 {
+            font-size: 20px
+        }
+
+        .close {
+            color: #fff
+        }
+
+        .close:hover {
+            color: #fff
+        }
+
+        .intro-2 {
+            font-size: 13px
+        }
     </style>
      <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@4.0.1/dist/fetch.umd.js"></script>
 </head>
@@ -126,7 +147,7 @@
                                 <a class="text-warning" href="{{url('koki/index')}}">Dashboard</a>
                             @endif
                         @else
-                        <a class="text-warning" href="#">Dashboard</a>
+                        <a class="text-warning" href="{{route('login')}}">Login</a>
                         @endif
                             </div>
                         </div>
@@ -211,12 +232,11 @@
                       </div>
                     <div class="action d-flex justify-content-between mt-2 align-items-center">
 
-                        <div class="reply px-4">
-                          <span class="dots"></span>
-                            <small>Like : {{$row->likes}}</small>
+                        <div class="reply px-7 me-2">
+                            <small> {{$row->likes}}</small>
                         </div>
 
-                        <div class="icons align-items-center">
+                        <div class="icons align-items-center input-group">
 
                           <form action="{{route('Replies.like',$row->id)}}" method="POST">
                             @csrf
@@ -224,18 +244,93 @@
                             <input hidden id="complaint_id" name="complaint_id" value ="{{$data->id}}" type="text">
                             <button type="submit" class="btn btn-light text-warning btn-sm rounded-5 "><i class="fa-solid fa-thumbs-up me-2"></i></button>
                           </form>
-                            <i class="fa fa-check-circle-o check-icon"></i>
+                          <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}" class="btn btn-light text-danger btn-sm rounded-5 "><i class="fa-solid fa-triangle-exclamation me-2"></i></button>
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
-
+            @foreach ($replies as $row)
+            @if ($row->id != '')
+            <div class="modal fade" id="Modal{{ $row->id }}" data-backdrop="static" data-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg ">
+                    <div class="modal-content rounded-5">
+                        <div class="modal-body rounded-4">
+                            <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i> </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="text-center mt-1"> <img src="{{ asset('images/allert2.png') }}"
+                                            width="220"> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-white fw-semibold mt-4">
+                                            <div class="mt-2"> <span class="intro-2 text-danger">Form Report Pelanggaran Pedoman Komunitas  </span> </div>
+                                            <span class="intro-1">{{ $row->subject }}</span>
+                                            {{-- <div class="mt-2"> <span class="intro-2">Balasan yang anda kirim:</span> </div>
+                                            <span class="intro-1">test</span> --}}
+                                            <form action="{{ route('Report.store') }}" method="POST">
+                                                @csrf
+                                            <div class="mt-2"> <span class="intro-2">Alasan Report:</span> </div>
+                                            <input type="text" class="form-control rounded-3 mt-2" name="description" id="description">
+                                            <input type="text" value="{{$row->user->id}}" class="form-control rounded-3 mt-2" name="user_id" id="user_id">
+                                            <input type="text" value="{{ $row->id }}" class="form-control rounded-3 mt-2" name="reply_id" id="reply_id">
+                                            <div class="mt-4 mb-3"> 
+                                                <button type="submit" class="btn btn-danger btn-sm rounded-5">Report <i class="fa-solid fa-triangle-exclamation"></i></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+        @endforeach
         </div>
 
     </div>
     </section>
     </div>
 </body>
+<!-- jQuery -->
+<script src="/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="/plugins/moment/moment.min.js"></script>
+<script src="/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="/dist/js/pages/dashboard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+ <script src="path_to_jquery.min.js"></script>
+ <script src="path_to_moment.min.js"></script>
+ <script src="path_to_fullcalendar.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

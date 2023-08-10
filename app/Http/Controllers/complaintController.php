@@ -43,7 +43,7 @@ class complaintController extends Controller
         if ($userRole == 'koki') {
             return view('complaint.index_koki', compact('data', 'title', 'userRole'));
         } else {
-            return view('complaints.index', compact('data', 'title', 'userRole'));
+            return view('complaint.index', compact('data', 'title', 'userRole'));
         }
 
     }
@@ -57,7 +57,7 @@ class complaintController extends Controller
         if ($userRole == 'koki') {
             return view('complaint.index_koki', compact('data', 'title', 'userRole'));
         } else {
-            return view('complaints.index', compact('data', 'title', 'userRole'));
+            return view('complaint.index', compact('data', 'title', 'userRole'));
         }
     }
     public function update(Request $request, $id)
