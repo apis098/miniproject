@@ -113,6 +113,7 @@
 
 .t {
     margin-left: 45px;
+    width: 90%;
 }
     </style>
 
@@ -216,14 +217,15 @@
 
             <form action="/menu" method="post">
                 @csrf
-                <select id="searchbahan" class="form-control" name="bahan[]" multiple="multiple">
+                <select id="searchbahan" class="t" name="bahan[]" multiple="multiple">
                     <option value=""></option>
                     @foreach ($bahan_masakan as $item_bahan)
                         <option value="{{ $item_bahan->id }}">{{ $item_bahan->kategori_bahan }}</option>
                     @endforeach
                 </select>
-                <button type="submit" class="btn btn-primary my-2">Search</button>
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
             </form>
+            <br>
 
 
             <div class="filters-content">

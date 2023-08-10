@@ -91,7 +91,7 @@
                             <th scope="row">{{ $num + 1 }}</th>
                             <td>{{ $item_bahan->kategori_bahan }}</td>
                             <td>
-                                <img src="{{ asset('storage/'.$item_bahan->foto) }}" alt="{{ $item_bahan->foto }}" width="50px" height="50px">
+                                <img src="{{ asset('storage/'.$item_bahan->foto) }}" alt="{{ $item_bahan->foto }}" width="110px" height="90px">
                             </td>
                             <td>{{ $item_bahan->created_at }}</td>
                             <td>{{ $item_bahan->updated_at }}</td>
