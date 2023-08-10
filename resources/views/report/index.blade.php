@@ -1,4 +1,4 @@
-@extends('layouts.nav_koki')
+@extends('layouts.navbar')
 @section('konten')
     @push('style')
         @powerGridStyles
@@ -94,25 +94,42 @@
         <thead class="bg-secondary text-light">
             <tr>
                 <th>NO</th>
-                <th>Subjek</th>
-                <th>Deskripsi</th>
-                <th>Balasan</th>
-                <th>detail</th>
+                <th>Pelapor:</th>
+                <th>User yang dilaporkan:</th>
+                <th>subjek yang dilaporkan</th>
+                <th>Melanggar sebanyak:</th>
+                <th>konfirmasi</th>
             </tr>
         </thead>
         <tbody class="table-active border-light">
             @foreach ($data as $row)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $row->complaint->subject }}</td>
-                    <td>{{ $row->complaint->description }}</td>
-                    <td>{{ $row->reply }}</td>
+                    <td>{{$row->userSender->name}}</td>
+                    <td>{{$row->user->name}}</td>
+                    <td>{{$row->replies->reply}}</td>
+                    <td>{{$row->user->jumlah_pelanggaran}} kali</td>
                     <td>
-                        <div class="ms-1">
-                            <button type="button" class="btn btn-outline-primary btn-sm rounded-5 edit-btn"
-                                data-toggle="modal" data-target="#replyModal{{ $row->id }}"><i
-                                    class="fa-solid fa-circle-info"></i></button>
+                        <div class="form-group">
+                            <form action="{{ route('ReplyBlocked.destroy', $row->replies->id) }}" method="POST" class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <div class="ms-1">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm rounded-5 edit-btn">Terima laporan <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><g fill="currentColor"><path fill-rule="evenodd" d="M16 5h13l9 9v23a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm19 9l-6-6v5a1 1 0 0 0 1 1h5Zm-2.293 7.293a1 1 0 0 1 0 1.414L24 31.414l-4.707-4.707a1 1 0 0 1 1.414-1.414L24 28.586l7.293-7.293a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"/><path d="M12 11h-2v27a5 5 0 0 0 5 5h19v-2H15a3 3 0 0 1-3-3V11Z"/></g></svg></button>
+                                </div>
+                            </form>
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" class="d-inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <div class="ms-1">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5 edit-btn">Tolak laporan <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15 3v4a1 1 0 0 0 1 1h4"/><path d="M17 17h-6a2 2 0 0 1-2-2V9m0-4a2 2 0 0 1 2-2h4l5 5v7c0 .294-.063.572-.177.823"/><path d="M16 17v2a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2M3 3l18 18"/></g></svg></button>
+                                </div>
+                            </form>
                         </div>
+                        {{-- <div class="ms-1">
+                            <button type="submit" class="btn btn-outline-primary btn-sm rounded-5 edit-btn"
+                                data-toggle="modal" data-target="#replyModal{{ $row->replies->id }}">Terima laporan <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><g fill="currentColor"><path fill-rule="evenodd" d="M16 5h13l9 9v23a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm19 9l-6-6v5a1 1 0 0 0 1 1h5Zm-2.293 7.293a1 1 0 0 1 0 1.414L24 31.414l-4.707-4.707a1 1 0 0 1 1.414-1.414L24 28.586l7.293-7.293a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"/><path d="M12 11h-2v27a5 5 0 0 0 5 5h19v-2H15a3 3 0 0 1-3-3V11Z"/></g></svg></button>
+                        </div> --}}
                     </td>
                 </tr>
             @endforeach
@@ -134,11 +151,11 @@
                                 <div class="col-md-6">
                                     <div class="text-white fw-semibold mt-4">
                                         <div class="mt-2"> <span class="intro-2">Judul keluhan:</span> </div>
-                                        <span class="intro-1">{{ $row->complaint->subject }}</span>
+                                        <span class="intro-1">d</span>
                                         <div class="mt-2"> <span class="intro-2">Balasan yang anda kirim:</span> </div>
-                                        <span class="intro-1">{{ $row->reply }}</span>
+                                        <span class="intro-1">p</span>
                                         <div class="mt-2"> <span class="intro-2">Jumlah like:</span> </div>
-                                        <span class="intro-1">{{ $row->likes }} <i
+                                        <span class="intro-1">p<i
                                                 class="fa-solid fa-thumbs-up"></i></span>
                                         <form action="{{ route('ReplyDestroy.destroy', $row->id) }}" method="POST">
                                             @csrf

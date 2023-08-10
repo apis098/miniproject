@@ -215,7 +215,14 @@ h2
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{ route('Report.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <p>
+                                    Laporan pelanggaran
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-pen-to-square"></i>

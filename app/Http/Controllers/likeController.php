@@ -17,7 +17,7 @@ class likeController extends Controller
         $user = Auth::user();
         if ($user && !$replies->likes()->where('user_id', $request->user()->id)->exists()) {
             $like = new likes([
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->user()->id,    
                 'reply_id' => $request->reply_id,
             ]);
             $replies->increment('likes');

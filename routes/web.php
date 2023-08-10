@@ -22,6 +22,7 @@ use App\Models\reseps;
 use App\Models\special_days;
 use DeepCopy\Filter\Filter;
 use App\Http\Controllers\artikels;
+use App\Http\Controllers\ReportController;
 use Illuminate\Http\Request;
 
 /*
@@ -44,7 +45,7 @@ Route::get('/', function () {
     $reseps = kategori_bahan::all();
     $complaints = complaint::all();
     $real_reseps = reseps::paginate(4);
-    return view('template.home', compact('real_reseps','kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
+    return view('template.home', compact('real_reseps', 'kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'tips_dasar', 'complaints'));
 })->name('home');
 
 Route::get('artikel', function () {
@@ -150,6 +151,9 @@ Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Repli
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
 Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
+//report
+Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');
+
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -164,6 +168,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/special-days-store', [special_days_controller::class, 'store'])->name('SpecialDays.store');
         Route::delete('special-days-delete/{id}', [special_days_controller::class, 'destroy'])->name('SpecialDays.destroy');
 
+        //report
+        Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
+        Route::delete('/content-destroy/{id}', [ReportController::class, 'block'])->name('ReplyBlocked.destroy');
+        Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
 
         Route::resource('kategori-bahan', kategori_bahan_controller::class);
         Route::resource('kategori-tipsdasar', kategori_tipsdasar_controller::class);
@@ -178,7 +186,7 @@ Route::middleware(['auth', 'role:koki'])->group(function () {
     Route::prefix('/koki')->group(function () {
 
         Route::resource('resep', ResepsController::class);
-        Route::resource('basic_tips',App\Http\Controllers\basic_tips_controller::class);
+        Route::resource('basic_tips', App\Http\Controllers\basic_tips_controller::class);
         Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
     });
 });

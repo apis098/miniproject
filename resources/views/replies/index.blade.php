@@ -98,7 +98,7 @@
                 <th>Subjek</th>
                 <th>Deskripsi</th>
                 <th>Balasan</th>
-                <th>action</th>
+                <th>detail</th>
             </tr>
         </thead>
         <tbody class="table-active border-light">
