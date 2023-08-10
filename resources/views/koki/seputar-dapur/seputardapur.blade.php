@@ -148,8 +148,8 @@
                                     class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
-                                           
-                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
+
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5" style="margin-left: 5%"
                                         data-mdb-ripple-color="dark"
                                         onclick="return confirm('Are you sure you want to delete this data?')"><i
                                             class="fa-solid fa-trash-can"></i></button>

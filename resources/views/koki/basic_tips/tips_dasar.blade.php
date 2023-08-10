@@ -140,6 +140,7 @@
                             <td>{{ $data->created_at }}</td>
                             <td>{{ $data->updated_at }}</td>
                             <td>
+                                <div class="d-flex">
                                 <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn"
                                     data-toggle="modal" data-target="#exampleModal{{ $data->id }}"><i
                                         class="fa-solid fa-pen-clip"></i></button>
@@ -147,11 +148,12 @@
                                     class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5"
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5" style="margin-left: 5%"
                                         data-mdb-ripple-color="dark"
                                         onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i
                                             class="fa-solid fa-trash-can"></i></button>
                                 </form>
+                                 </div>
                             </td>
                         </tr>
                     @endforeach
