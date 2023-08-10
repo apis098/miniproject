@@ -113,6 +113,7 @@
 
         .t {
     margin-left: 45px;
+    width: 90%;
 }
     </style>
 
@@ -216,15 +217,15 @@
 
             <form action="/seputar_dpr" method="post">
                 @csrf
-                <select name="dapur" id="searchdapur" class="form-control">
+                <select name="dapur" id="searchdapur" class="t">
                     <option value=""></option>
                     @foreach ($kategori_sd as $sd)
                         <option value="{{ $sd->id }}">{{ $sd->nama_kategori }}</option>
                     @endforeach
                 </select>
-                <button type="submit" class="btn btn-primary my-2">Search</button>
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
             </form>
-
+            <br>
             @foreach ($kategori_seputardapur as $k_sd)
                 <button class="btn btn-light mx-2 border radius">{{ $k_sd->nama_kategori }}</button>
             @endforeach

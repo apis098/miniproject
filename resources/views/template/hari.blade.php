@@ -113,6 +113,7 @@
 
 .t {
     margin-left: 45px;
+    width: 90%;
 }
 
     </style>
@@ -218,15 +219,16 @@
 
             <form action="/hari" method="post">
                 @csrf
-                <select name="day" id="searchday" class="form-control">
+                <select name="day" id="searchday" class="t">
                     <option value=""></option>
                     @foreach ($specialdays as $d)
                         <option value="{{ $d->id }}">{{ $d->name }}</option>
                     @endforeach
-                </select>
-                <button type="submit" class="btn btn-primary my-2">Search</button>
-            </form>
 
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
+            </form>
+            <br>
 
             <div class="filters-content">
                 @foreach ($reseps as $item_r)

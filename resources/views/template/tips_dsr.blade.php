@@ -113,6 +113,7 @@
 
         .t {
             margin-left: 45px;
+            width: 90%;
         }
     </style>
 
@@ -217,15 +218,15 @@
 
             <form action="/tips_dsr" method="post">
                 @csrf
-                <select name="tips" id="searchtips" class="form-control">
+                <select name="tips" id="searchtips" class="t">
                     <option value=""></option>
                     @foreach ($kategori_td as $item_tips)
                         <option value="{{ $item_tips->id }}">{{ $item_tips->nama_kategori }}</option>
                     @endforeach
                 </select>
-                <button type="submit" class="btn btn-primary my-2">Search</button>
+                <button type="submit" class="btn btn-primary btn-sm">Search</button>
             </form>
-
+            <br>
 
             @foreach ($kategori_tipsdasar as $ktd)
                 <button class="btn btn-light p-2 border ">{{ $ktd->nama_kategori }}</button>
