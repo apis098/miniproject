@@ -190,9 +190,9 @@ h2
                                 </p>
                             </a>
                         </li>
-                      
+
                         <li class="nav-item">
-                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan-spesific') ? 'activet' : '' }}">
+                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan/by-id') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
                                    Keluhan anda
@@ -200,7 +200,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('Complaint.all')}}" class="nav-link text-light {{ request()->is('keluhan-admin') ? 'activet' : '' }}">
+                            <a href="{{ route('Complaint.all')}}" class="nav-link text-light {{ request()->is('complaint/all') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
                                     Semua Keluhan
@@ -216,7 +216,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('Report.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
+                            <a href="{{ route('Report.index')}}" class="nav-link text-light {{ request()->is('admin/laporan-pengguna') ? 'activet' : '' }}">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
                                 <p>
                                     Laporan pelanggaran
