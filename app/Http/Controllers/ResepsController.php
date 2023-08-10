@@ -60,7 +60,8 @@ class ResepsController extends Controller
             "nama_masakan" => $request->nama_masakan,
             "foto_masakan" => $request->file('foto_masakan')->store('photoResep'),
             "deskripsi_masakan" => $request->deskripsi_masakan,
-            "bahan_masakan" => implode(",", $request->bahan_masakan),
+            //"bahan_masakan" => implode(",", $request->bahan_masakan),
+            "persiapan_memasak" => $request->persiapan_memasak,
             "langkah2_memasak" => $request->langkah2_memasak,
         ];
         $resep = reseps::create($create);
@@ -118,7 +119,8 @@ class ResepsController extends Controller
             $update->foto_masakan = $request->file('foto_masakan')->store('photoResep');
         }
         $update->deskripsi_masakan = $request->deskripsi_masakan;
-        $update->bahan_masakan = implode(',', $request->bahan_masakan);
+        //$update->bahan_masakan = implode(',', $request->bahan_masakan);
+        $update->persiapan_memasak = $request->persiapan_memasak;
         $update->langkah2_memasak = $request->langkah2_memasak;
         $update->save();
         $arr = [];

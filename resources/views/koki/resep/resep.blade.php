@@ -87,6 +87,10 @@
                     @endforeach
                 </div>
                 <div class="mb-3">
+                    <label for="persiapan_memasak" class="form-label">Persiapan Memasak</label>
+                    <textarea name="persiapan_memasak" id="persiapan_memasak" cols="30" rows="10" required></textarea>
+                </div>
+                <div class="mb-3">
                     <label for="langkah2_memasak" class="form-label">Langkah-Langkah Memasak</label>
                     <textarea name="langkah2_memasak" id="textarea" class="form-control" cols="30" rows="10" required></textarea>
                     @error('langkah2_memasak')
@@ -263,13 +267,23 @@
                                                             <div class="mb-3">
                                                                 <label for="bahan_masakan" class="form-label">Bahan
                                                                     Masakan</label> <br>
-                                                                <?php $arr = explode(',', $r->bahan_masakan); ?>
+                                                                <?php 
+                                                                    // $arr = explode(',', $r->bahan_masakan);
+                                                                    $arr = $r->bahans->pluck('kategori_bahan_id')->toArray();
+                                                                        // dd($r->bahans->pluck('kategori_bahan_id')->toArray());
+                                                                ?>
                                                                 @foreach ($bahan as $i)
                                                                     <input type="checkbox" name="bahan_masakan[]"
                                                                         value="{{ $i->id }}"
                                                                         @if (in_array($i->id, $arr)) @checked(true) @endif>
                                                                     {{ $i->kategori_bahan }}
                                                                 @endforeach
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="persiapan_memasak" class="form-label">Persiapan Memasak</label>
+                                                                <textarea name="persiapan_memasak" id="persiapan_memasak" class="form-control" cols="30" rows="10" required>
+                                                                    {!! $r->persiapan_memasak !!}
+                                                                </textarea>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label for="langkah2_memasak"
