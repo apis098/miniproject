@@ -23,6 +23,7 @@ use App\Models\special_days;
 use DeepCopy\Filter\Filter;
 use App\Http\Controllers\artikels;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\testingController;
 use Illuminate\Http\Request;
 
 /*
@@ -190,3 +191,7 @@ Route::middleware(['auth', 'role:koki'])->group(function () {
         Route::resource('seputar_dapur', App\Http\Controllers\SeputarDapurController::class);
     });
 });
+
+//testing
+Route::get('/testing-dynamic-input', [testingController::class, 'create'])->name('Testing.create');
+Route::post('/store-dynamic-input', [testingController::class, 'store'])->name('Testing.store');

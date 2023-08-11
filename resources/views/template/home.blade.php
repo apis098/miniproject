@@ -523,13 +523,13 @@
             @media (max-width: 767px) {}
         </style>
 
-        <div class="heading_container heading_center psudo_white_primary mb_45">
+        <div class="heading_container heading_center psudo_white_primary mb_45 mb-5">
             <h2>
                 Keluhan Pengguna
             </h2>
         </div>
 
-        <section class="content">
+        <section class="content mt-5">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">

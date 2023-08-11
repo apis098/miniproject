@@ -231,7 +231,14 @@ h2
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{route('Testing.create')}}" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
+                                <i class="nav-icon fas fa-pen-to-square"></i>
+                                <p>
+                                   testing dynamic input
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -253,7 +260,8 @@ h2
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- jQuery -->
     <script src="/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
