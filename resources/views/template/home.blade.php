@@ -63,7 +63,10 @@
             border-bottom-left-radius: 30px;
             border-bottom-right-radius: 30px;
         }
-
+        .radius-atas{
+            border-top-right-radius: 30px;
+            border-top-left-radius:30px;
+        }
 
         .dropdown {
             position: relative;
