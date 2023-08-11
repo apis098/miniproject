@@ -51,11 +51,15 @@
         .nav-link.active {
             background-color: #f39c12;
             color: #fff;
+            
         }
 
         .nav-link {
             white-space: nowrap;
+            
         }
+
+        
 
 
         .dropdown {
@@ -106,9 +110,9 @@
         .login {
             display: inline-block;
             padding: 6px 22px;
-            background-color: #ffbe33;
-            color: #ffffff;
-            border-radius: 45px;
+            background-color: #ffff;
+            color: #f39c12;
+            border-radius: 12px;
             -webkit-transition: all 0.3s;
             transition: all 0.3s;
             border: none;
@@ -137,6 +141,31 @@
         .t {
             margin-left: 45px;
         }
+
+
+        .ah{
+            display: inline-block;
+  padding: 10px 55px;
+  background-color: #ffffff;
+  color: #f39c12;
+  border-radius: 100px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  border: none;
+        }
+
+        .slider_section .detail-box a {
+    display: inline-block;
+    padding: 10px 45px;
+    background-color: #ffbe33;
+    color: #ffffff;
+    border-radius: 45px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: none;
+    margin-top: 10px;
+}
+ 
     </style>
 
 
@@ -144,8 +173,8 @@
 
 <body class="sub_page">
     <div class="hero_area">
-        <div class="bg-box">
-            <img src="images/dark-food.jpg" alt="">
+        <div class="bg-box" style="background-color: #f39c12">
+
         </div>
         <!-- header section strats -->
         <header class="header_section">
@@ -184,7 +213,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav  mx-auto ">
                                 <li class="nav-item active" style="margin-left: -100px; font-size: 15px">
-                                    <a class="nav-link" href="{{ route('home') }}">Home <span
+                                    <a class=" login" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
@@ -204,8 +233,8 @@
                                     <a class="nav-link dropbtn" href="{{ route('seputar_dpr') }}">Seputar Dapur</a>
 
                                 </li>
-                                <li class="nav-item" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                                <li class="nav-item dropdown" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="{{ route('about') }}">Tentang</a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -215,7 +244,7 @@
 
 
                                 @if (Auth::check())
-                                    <a href="{{ route('actionlogout') }}" class="login">Logout</a>
+                                    <a href="{{ route('actionlogout') }}" class="login" >Logout</a>
                                 @else
                                     <a href="{{ route('login') }}" class="login">Login</a>
                                 @endif
@@ -244,17 +273,26 @@
                                             rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
                                             mudah didapatkan.
                                         </p>
-                                        <div class="btn-box">
-                                            <a href="{{ route('menu') }}" class="btn1">
-                                                Lihat Resep
-                                            </a>
+                                        <div class="btn-box ">
+                                            <br>
+                                            {{-- <a href="{{ route('menu') }}" class="login" >Lihat Resep</a> --}}
                                         </div>
-                                    </div>
+                                        <a href="{{ route('menu') }}" class="login">
+                                            Lihat Resep
+                                        </a>
+                                   
+                                    {{-- <div class="user_option" style="margin-top: 0px;">
+
+
+                                       
+                                           
+                                        
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item ">
+                    {{-- <div class="carousel-item ">
                         <div class="container ">
                             <div class="row">
                                 <div class="col-md-7 col-lg-6 ">
@@ -277,8 +315,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
+                    </div> --}}
+                    {{-- <div class="carousel-item">
                         <div class="container ">
                             <div class="row">
                                 <div class="col-md-7 col-lg-6 ">
@@ -301,15 +339,15 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
-                <div class="container">
+                {{-- <div class="container">
                     <ol class="carousel-indicators">
                         <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
                         <li data-target="#customCarousel1" data-slide-to="1"></li>
                         <li data-target="#customCarousel1" data-slide-to="2"></li>
                     </ol>
-                </div>
+                </div> --}}
             </div>
 
         </section>
