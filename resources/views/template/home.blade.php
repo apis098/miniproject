@@ -176,6 +176,7 @@
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <div style="margin-left: -140px;">
                         @if (Auth::check())
                             @if (Auth::user()->role == 'Admin')
                                 <a class="navbar-brand" href="{{ url('admin/index') }}">
@@ -197,7 +198,7 @@
                                 </span>
                             </a>
                         @endif
-
+                    </div>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -206,8 +207,8 @@
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item active" style="margin-left: -100px; font-size: 15px">
+                            <ul class="navbar-nav mt-3 mx-auto ">
+                                <li class="nav-item active" style=" font-size: 15px">
                                     <a class=" login" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
@@ -235,13 +236,13 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 20px;">
+                            <div class="user_option" style="margin-left: 180px;">
 
 
                                 @if (Auth::check())
-                                    <a href="{{ route('actionlogout') }}" class="login" >Logout</a>
+                                    <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5" style="border-radius: 12px;" >Logout</a>
                                 @else
-                                    <a href="{{ route('login') }}" class="login">Login</a>
+                                    <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5" style="border-radius: 12px;">Login</a>
                                 @endif
                             </div>
                         </div>
