@@ -59,7 +59,10 @@
 
         }
 
-
+        .radius-bawah{
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
 
 
         .dropdown {
@@ -170,7 +173,7 @@
 
 <body class="sub_page">
     <div class="hero_area">
-        <div class="bg-box" style="background-color: #F7941E">
+        <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
 
         </div>
         <!-- header section strats -->
