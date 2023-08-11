@@ -51,15 +51,15 @@
         .nav-link.active {
             background-color: #f39c12;
             color: #fff;
-            
+
         }
 
         .nav-link {
             white-space: nowrap;
-            
+
         }
 
-        
+
 
 
         .dropdown {
@@ -147,7 +147,7 @@
             display: inline-block;
   padding: 10px 55px;
   background-color: #ffffff;
-  color: #f39c12;
+  color: #F7941E;
   border-radius: 100px;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -155,17 +155,12 @@
         }
 
         .slider_section .detail-box a {
-    display: inline-block;
-    padding: 10px 45px;
-    background-color: #ffbe33;
-    color: #ffffff;
-    border-radius: 45px;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    border: none;
-    margin-top: 10px;
+    background-color: #ffffff;
+    color: #F7941E;
+    border-radius: 12px;
+
 }
- 
+
     </style>
 
 
@@ -173,7 +168,7 @@
 
 <body class="sub_page">
     <div class="hero_area">
-        <div class="bg-box" style="background-color: #f39c12">
+        <div class="bg-box" style="background-color: #F7941E">
 
         </div>
         <!-- header section strats -->
@@ -280,13 +275,13 @@
                                         <a href="{{ route('menu') }}" class="login">
                                             Lihat Resep
                                         </a>
-                                   
+
                                     {{-- <div class="user_option" style="margin-top: 0px;">
 
 
-                                       
-                                           
-                                        
+
+
+
                                     </div> --}}
                                 </div>
                             </div>
