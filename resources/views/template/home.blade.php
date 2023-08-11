@@ -176,7 +176,7 @@
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <div style="margin-left: -140px;">
+                    <div style="margin-left: -120px;">
                         @if (Auth::check())
                             @if (Auth::user()->role == 'Admin')
                                 <a class="navbar-brand" href="{{ url('admin/index') }}">
@@ -207,7 +207,7 @@
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mt-3 mx-auto ">
+                            <ul class="navbar-nav mt-3 justify-content-center mx-auto ">
                                 <li class="nav-item active" style=" font-size: 15px">
                                     <a class=" login" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
@@ -236,7 +236,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 180px;">
+                            <div class="user_option" style="margin-left: 150px;">
 
 
                                 @if (Auth::check())
