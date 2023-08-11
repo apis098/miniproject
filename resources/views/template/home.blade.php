@@ -208,8 +208,8 @@
                             <span class=""> </span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto ">
+                        <div class="collapse navbar-collapse" class="ms-4" style="margin-left: 60px;;" id="navbarSupportedContent">
+                            <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto " >
                                 <li class="nav-item active" style=" font-size: 15px">
                                     <a class=" login" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
@@ -227,10 +227,6 @@
 
                                 </li>
 
-                                <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('seputar_dpr') }}">Seputar Dapur</a>
-
-                                </li>
                                 <li class="nav-item dropdown me-2" style="font-size: 15px">
                                     <a class="nav-link dropbtn" href="{{ route('about') }}">Tentang</a>
                                 </li>
@@ -238,7 +234,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 110px;">
+                            <div class="user_option" style="margin-left: 180px;">
 
 
                                 @if (Auth::check())
