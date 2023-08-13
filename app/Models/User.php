@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'followers',
         'password',
         'role',
     ];
@@ -45,5 +46,9 @@ class User extends Authenticatable
     ];
     public function resep() {
         return $this->hasMany(reseps::class);
+    }
+    public function followers()
+    {
+        return $this->hasMany(followers::class);
     }
 }

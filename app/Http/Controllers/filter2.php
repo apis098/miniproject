@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\kategori_bahan;
 use App\Models\kategori_seputardapur;
 use App\Models\kategori_tipsdasar;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class filter2 extends Controller
@@ -21,6 +21,10 @@ class filter2 extends Controller
         $kategori_td = kategori_tipsdasar::all();
         $kategori_tipsdasar = kategori_tipsdasar::where('id', $request->tips)->paginate(6);
         return view('template.tips_dsr', compact('kategori_tipsdasar', 'kategori_td'));
+    }
+    public function filter_user(){
+        $user = User::all();
+        return view('template.tips_dsr',compact('user'));
     }
     public function view_seputardapur() 
     {

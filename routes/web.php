@@ -22,6 +22,7 @@ use App\Models\reseps;
 use App\Models\special_days;
 use DeepCopy\Filter\Filter;
 use App\Http\Controllers\artikels;
+use App\Http\Controllers\followersController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\testingController;
 use Illuminate\Http\Request;
@@ -111,7 +112,7 @@ Route::get('seputar_dpr', [filter2::class, 'view_seputardapur'])->name('seputar_
 
 Route::post('seputar_dpr', [filter2::class, 'filter_seputardapur']);
 
-Route::get('tips_dsr', [filter2::class, 'view_tipsdasar'])->name('tips_dsr');
+Route::get('tips_dsr', [filter2::class, 'filter_user'])->name('tips_dsr');
 
 Route::post('tips_dsr', [filter2::class, 'filter_tipsdasar']);
 
@@ -195,3 +196,6 @@ Route::middleware(['auth', 'role:koki'])->group(function () {
 //testing
 Route::get('/testing-dynamic-input', [testingController::class, 'create'])->name('Testing.create');
 Route::post('/store-dynamic-input', [testingController::class, 'store'])->name('Testing.store');
+
+//followers
+Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');

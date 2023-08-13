@@ -126,32 +126,34 @@
         <div class="bg-box">
             <img src="images/hero-bg.jpg" alt="">
         </div>
-        <!-- header section strats -->
-        <header class="header_section">
+         <!-- header section strats -->
+         <header class="header_section" style="background-color: #F7941E;">
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        @if (Auth::check())
-                            @if (Auth::user()->role == 'Admin')
-                                <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                    <span class="t">
-                                        HummaCook
-                                    </span>
-                                </a>
+                        <div style="margin-left: -100px;">
+                            @if (Auth::check())
+                                @if (Auth::user()->role == 'Admin')
+                                    <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                        <span class="t">
+                                            HummaCook
+                                        </span>
+                                    </a>
+                                @else
+                                    <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                        <span class="t">
+                                            HummaCook
+                                        </span>
+                                    </a>
+                                @endif
                             @else
-                                <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                <a class="navbar-brand" href="#">
                                     <span class="t">
                                         HummaCook
                                     </span>
                                 </a>
                             @endif
-                        @else
-                            <a class="navbar-brand" href="#">
-                                <span class="t">
-                                    HummaCook
-                                </span>
-                            </a>
-                        @endif
+                        </div>
 
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -159,10 +161,10 @@
                             <span class=""> </span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item " style="margin-left: -100px; font-size:15px">
-                                    <a class="nav-link" href="{{ route('home') }}">Home <span
+                        <div class="collapse navbar-collapse" class="ms-4" style="margin-left: 60px;;" id="navbarSupportedContent">
+                            <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto " >
+                                <li class="nav-item active" style=" font-size: 15px">
+                                    <a class=" login" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
@@ -173,29 +175,27 @@
                                     <a class="nav-link dropbtn" href="{{ route('hari') }}">Hari Khusus </a>
 
                                 </li>
-                                <li class="nav-item active dropdown" style="font-size: 15px">
+                                <li class="nav-item dropdown" style="font-size: 15px">
                                     <a class="nav-link dropbtn" href="{{ route('tips_dsr') }}">Tips Dasar</a>
 
                                 </li>
 
-                                <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('seputar_dpr') }}">Seputar Dapur</a>
-
-                                </li>
-                                <li class="nav-item" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                                <li class="nav-item dropdown me-2" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="{{ route('about') }}">Tentang</a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 20px;">
+                            <div class="user_option" style="margin-left: 180px;">
 
 
                                 @if (Auth::check())
-                                    <a href="{{ route('actionlogout') }}" class="login">Logout</a>
+                                    <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5"
+                                        style="border-radius: 12px;">Logout</a>
                                 @else
-                                    <a href="{{ route('login') }}" class="login">Login</a>
+                                    <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
+                                        style="border-radius: 12px;">Login</a>
                                 @endif
                             </div>
                         </div>
@@ -207,68 +207,34 @@
     </div>
 
     <!-- food section -->
-
+ 
     <section class="food_section layout_padding">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2>
-                    Search Basic Tips
-                </h2>
-            </div>
-
-            <form action="/tips_dsr" method="post">
-                @csrf
-                <select name="tips" id="searchtips" class="t">
-                    <option value=""></option>
-                    @foreach ($kategori_td as $item_tips)
-                        <option value="{{ $item_tips->id }}">{{ $item_tips->nama_kategori }}</option>
-                    @endforeach
-                </select>
-                <button type="submit" class="btn btn-primary btn-sm">Search</button>
-            </form>
-            <br>
-
-            @foreach ($kategori_tipsdasar as $ktd)
-                <button class="btn btn-light p-2 border ">{{ $ktd->nama_kategori }}</button>
-            @endforeach
-            <div class="filters-content">
-                <div class="row grid">
-                    @foreach ($kategori_tipsdasar as $k_td)
-                        @foreach ($k_td->tips_dasar()->get() as $td)
-                            <div class="col-sm-6 col-lg-4 all pizza">
-                                <div class="box">
-                                    <div>
-                                        <div class="">
-                                            <img src="{{ asset('storage/public/tipsdasar/' . $td->foto) }}" width="100%"
-                                                height="50%" alt="">
-                                        </div>
-                                        <div class="detail-box">
-                                            <a href="{{ url('tips_dsr/'.$td->id) }} " class="text-white">
-                                                <h4>
-                                                    {{ $td->judul }}
-                                                </h4>
-                                            </a>
-                                            by <span class="text-info">{{ $td->user->name }}</span>
-                                            <br>
-                                            <br>
-                                            <div class="dotted">
-                                                <div class="options">
-                                                    <h6>
-                                                        <button
-                                                            class="black-border-button  ">{{ $td->kategori_tipsdasar->nama_kategori }}</button>
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endforeach
-
-                </div>
-            </div>
-            {{ $kategori_tipsdasar->links() }}
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                @foreach($user as $row)
+              <tr>
+                <th scope="row">{{$loop->iteration}}</th>
+                <td>{{$row->name}}</td>
+                <td>{{$row->email}}</td>
+                <td>
+                    <form action="{{route('Followers.store',$row->id)}}" method="POST">
+                        @csrf
+                        <input hidden value="{{$row->id}}" id="user_id" name="user_id" class="form-control rounded-5 mb-2" type="text">
+                        <button type="submit" class="btn btn-outline-warning rounded-3">Ikuti</button>
+                    </form>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
     </section>
 
