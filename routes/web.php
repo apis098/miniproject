@@ -108,13 +108,9 @@ Route::post('hari', function (Request $request) {
 });
 
 
-Route::get('seputar_dpr', [filter2::class, 'view_seputardapur'])->name('seputar_dpr');
-
-Route::post('seputar_dpr', [filter2::class, 'filter_seputardapur']);
-
-Route::get('tips_dsr', [filter2::class, 'filter_user'])->name('tips_dsr');
-
-Route::post('tips_dsr', [filter2::class, 'filter_tipsdasar']);
+Route::get('/search-account', function () {
+    return view('template.search-account');
+});
 
 // artikel
 Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
