@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('reseps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('userkoki_id')->nullable();
-            $table->unsignedBigInteger('tipsdasar_id')->nullable();
-            $table->unsignedBigInteger('seputardapur_id')->nullable();
             $table->unsignedBigInteger('specialday_id')->nullable();
             $table->string('nama_masakan');
             $table->string('foto_masakan');
@@ -25,8 +23,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('userkoki_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('tipsdasar_id')->references('id')->on('kategori_tipsdasars')->onDelete('cascade');
-            $table->foreign('seputardapur_id')->references('id')->on('kategori_seputardapurs')->onDelete('cascade');
             $table->foreign('specialday_id')->references('id')->on('special_days')->onDelete('cascade');
         });
     }

@@ -155,15 +155,7 @@ h2
                         </li>
 
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('kategori_seputardapur.index')}}" class="nav-link text-light {{ request()->is('admin/kategori_seputardapur') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-kitchen-set"></i>
-                                <p>
-                                            Kategori Seputar Dapur
 
-                                </p>
-                            </a>
-                        </li>
 
                         <li class="nav-item">
                             <a href="/admin/kategori-bahan" class="nav-link text-light {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
@@ -173,15 +165,7 @@ h2
 
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/admin/kategori-tipsdasar" class="nav-link text-light {{ request()->is('admin/kategori-tipsdasar') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-wand-magic-sparkles"></i>
-                                <p>
-                                    Kategori Tips Dasar
-                                </p>
-                            </a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a href="{{route('SpecialDays.index')}}" class="nav-link text-light {{ request()->is('admin/special-days') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-calendar-check"></i>
