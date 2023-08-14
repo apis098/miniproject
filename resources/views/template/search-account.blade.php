@@ -237,7 +237,14 @@
                             <p class="mt-2 ms-1">700 Suka</p>
                         </div>
                         <div class="justify-content-center">
-                            <button class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Follow</b></button>
+                            <form action="{{route('Followers.store',$row->id)}}" method="POST">
+                            @csrf
+                                @if(!$row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
+                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Follow</b></button>
+                                @else
+                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Unfollow</b></button>
+                                @endif
+                            </form>
                         </div>
                 </div>
             </div><!-- End -->

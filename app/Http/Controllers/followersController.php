@@ -11,6 +11,7 @@ class followersController extends Controller
 {
     public function index(){
         $user = User::all();
+        // $statusFollow= $user->followers()->where('follower_id', auth()->user()->id)->count() > 0;
         return view('template.search-account',compact('user'));
     }
     public function store(Request $request,$id){
