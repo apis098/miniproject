@@ -94,7 +94,17 @@
             box-shadow: none;
             outline: none
         }
-
+        /* button{
+            background-color: #F7941E;
+            border: none;
+            height: 45px;
+            width: 90px;
+            color: #ffffff;
+            position: absolute;
+            right: 1px;
+            top: 0px;
+            border-radius: 15px
+        } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -184,7 +194,7 @@
                                 <div class="col-md-12">
                                     <div >
                                         <div class="search-2" > <i class='bx bxs-map'></i> <input type="text"
-                                                placeholder="San Francisco,USA"> <button style="border-radius: 15px;">Cari</button> </div>
+                                                placeholder="Cari Username"> <button style="border-radius: 15px;">Cari</button> </div>
                                     </div>
                                 </div>
                             </div>
@@ -195,6 +205,15 @@
             </div>
         </div>
     </div><!-- End -->
+</div>
+
+<div class="ms-5 mt-5 input-group">
+    <div class="ms-1">
+        <h3 class="fw-bold">Hasil Pencarian</h3>
+    </div>
+    <div class="ms-auto me-5">
+        <button class="btn btn-light text-light float-end me-5" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
+    </div>
 </div>
 
     <div class="container mt-5">
