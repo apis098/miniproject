@@ -48,10 +48,9 @@
     <!-- responsive style -->
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
     <style>
-        .nav-link.active {
-            background-color: #f39c12;
-            color: #fff;
-
+        .custom_nav-container .navbar-nav .nav-item.active .nav-link {
+            color: #ffbe33;
+            background: white;
         }
 
         .nav-link {
@@ -219,25 +218,23 @@
                         <div class="collapse navbar-collapse" class="ms-4" style="margin-left: 60px;;"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto ">
-                                <li class="nav-item active" style=" font-size: 15px">
-                                    <a class=" login" href="{{ route('home') }}">Home <span
-                                            class="sr-only">(current)</span></a>
+                                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px">
+                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                                 </li>
-                                <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link  dropbtn" href="{{ route('menu') }}">Resep</a>
+                                <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}" style="font-size: 15px">
+                                    <a class="nav-link" href="{{ route('menu') }}">Resep</a>
+                                </li>
+                                <li class="nav-item {{ request()->is('hari') ? 'active' : '' }}" style="font-size: 15px">
+                                    <a class="nav-link" href="{{ route('hari') }}">Hari Khusus </a>
 
                                 </li>
-                                <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('hari') }}">Hari Khusus </a>
-
-                                </li>
-                                <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ url('/search-account') }}">Cari Akun</a>
+                                <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}" style="font-size: 15px">
+                                    <a class="nav-link" href="{{ url('/search-account') }}">Cari Akun</a>
 
                                 </li>
 
-                                <li class="nav-item dropdown me-2" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('about') }}">Tentang</a>
+                                <li class="nav-item {{ request()->is('about') ? 'active' : '' }} me-2" style="font-size: 15px">
+                                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -263,8 +260,8 @@
         <!-- end header section -->
     </div>
     @yield('content')
-     <!-- footer section -->
-     <footer class="footer_section" style="background-color: #F7941E; ">
+    <!-- footer section -->
+    <footer class="footer_section" style="background-color: #F7941E; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-col">
