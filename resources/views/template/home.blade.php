@@ -174,14 +174,15 @@
                         <form action="{{ route('ComplaintUser.store') }}" method="POST">
                             @csrf
                             <div class="heading_container">
-                                <h2>
+                                <h1 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
                                     Ajukan keluhanmu saat memasak
-                                </h2>
+                                </h1>
+
                                 <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
                             </div>
                             <div>
                                 <input type="text" class="form-control" id="subject" name="subject"
-                                    placeholder="Subject/Judul..." />
+                                    placeholder="Keluhan"/>
                             </div>
                             <div>
                                 <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
@@ -194,11 +195,12 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6" style="margin-top: -5%">
-                    <div class="map_container ">
-                        <img src="{{ asset('images/anoying2.jpg') }}" class="img-fluid" alt="Gambar Contoh">
+                <div class="col-md-6">
+                    <div>
+                        <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh" style="width: 100%; margin-top: -15%">
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
