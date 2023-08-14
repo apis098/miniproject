@@ -11,15 +11,26 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <link rel="shortcut icon" href="images/favicon.png" type="">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
     <title> HummaCook </title>
 
     <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
 
     <!--owl slider stylesheet -->
     <link rel="stylesheet" type="text/css"
@@ -30,19 +41,32 @@
         integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
         crossorigin="anonymous" />
     <!-- font awesome style -->
-    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
+
     <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
-    <link href="css/responsive.css" rel="stylesheet" />
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
     <style>
         .nav-link.active {
             background-color: #f39c12;
             color: #fff;
+
         }
 
         .nav-link {
             white-space: nowrap;
+
+        }
+
+        .radius-bawah {
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .radius-atas {
+            border-top-right-radius: 30px;
+            border-top-left-radius: 30px;
         }
 
         .dropdown {
@@ -50,12 +74,18 @@
             display: inline-block;
         }
 
-        .dropbtn {
+        .dropdown .dropbtn {
 
-            color: white;
-            padding: 10px;
             border: none;
-            cursor: pointer;
+            outline: none;
+            color: white;
+            background-color: inherit;
+            margin: 0;
+            padding: 14px 16px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
         }
 
         .dropdown-content {
@@ -64,13 +94,16 @@
             background-color: #1d1919;
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
         }
 
         .dropdown-content a {
+
+            color: black;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            color: black;
+
         }
 
         .dropdown-content a:hover {
@@ -84,13 +117,14 @@
         .login {
             display: inline-block;
             padding: 6px 22px;
-            background-color: #ffbe33;
-            color: #ffffff;
-            border-radius: 45px;
+            background-color: #ffff;
+            color: #f39c12;
+            border-radius: 12px;
             -webkit-transition: all 0.3s;
             transition: all 0.3s;
             border: none;
         }
+
 
         .dotted {
             border: 2px dotted #aaa;
@@ -112,56 +146,81 @@
         }
 
         .t {
-    margin-left: 45px;
-    width: 90%;
-}
+            margin-left: 45px;
+        }
+
+
+        .ah {
+            display: inline-block;
+            padding: 10px 55px;
+            background-color: #ffffff;
+            color: #F7941E;
+            border-radius: 100px;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .slider_section .detail-box a {
+            background-color: #ffffff;
+            color: #ffffff;
+            border-radius: 12px;
+
+        }
+
+        .zoom-effects:hover {
+            transform: scale(0.95);
+        }
     </style>
 
 
 </head>
 
 <body class="sub_page">
-
     <div class="hero_area">
-        <div class="bg-box">
-            <img src="images/hero-bg.jpg" alt="">
+        <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
+
         </div>
         <!-- header section strats -->
         <header class="header_section">
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        @if (Auth::check())
-                            @if (Auth::user()->role == 'Admin')
-                            <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                <span class="t">
-                                    HummaCook
-                                </span>
-                            </a>
+                        <div style="margin-left: -100px;">
+                            @if (Auth::check())
+                                @if (Auth::user()->role == 'Admin')
+                                    <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                        <span class="t">
+                                            HummaCook
+                                        </span>
+                                    </a>
+                                @else
+                                    <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                        <span class="t">
+                                            HummaCook
+                                        </span>
+                                    </a>
+                                @endif
                             @else
-                            <a class="navbar-brand" href="{{ url('koki/index') }}">
-                                <span class="t">
-                                    HummaCook
-                                </span>
-                            </a>
+                                <a class="navbar-brand" href="#">
+                                    <span class="t">
+                                        HummaCook
+                                    </span>
+                                </a>
                             @endif
-                        @else
-                        <a class="navbar-brand" href="#">
-                            <span class="t">
-                                HummaCook
-                            </span>
-                        </a>
-                        @endif
+                        </div>
+
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                             <span class=""> </span>
                         </button>
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav  mx-auto ">
-                                <li class="nav-item " style="margin-left: -100px; font-size:15px">
-                                    <a class="nav-link" href="{{ route('home') }}">Home <span
+                        <div class="collapse navbar-collapse" class="ms-4" style="margin-left: 60px;;"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto ">
+                                <li class="nav-item active" style=" font-size: 15px">
+                                    <a class=" login" href="{{ route('home') }}">Home <span
                                             class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
@@ -173,107 +232,39 @@
 
                                 </li>
                                 <li class="nav-item dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('tips_dsr') }}">Tips Dasar</a>
+                                    <a class="nav-link dropbtn" href="{{ url('/search-account') }}">Cari Akun</a>
 
                                 </li>
 
-                                <li class="nav-item active dropdown" style="font-size: 15px">
-                                    <a class="nav-link dropbtn" href="{{ route('seputar_dpr') }}">Seputar Dapur</a>
-
-                                </li>
-                                <li class="nav-item" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                                <li class="nav-item dropdown me-2" style="font-size: 15px">
+                                    <a class="nav-link dropbtn" href="{{ route('about') }}">Tentang</a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 20px;">
+                            <div class="user_option" style="margin-left: 180px;">
 
 
                                 @if (Auth::check())
-                                    <a href="{{ route('actionlogout') }}" class="login">Logout</a>
+                                    <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5"
+                                        style="border-radius: 12px;">Logout</a>
                                 @else
-                                    <a href="{{ route('login') }}" class="login">Login</a>
+                                    <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
+                                        style="border-radius: 12px;">Login</a>
                                 @endif
                             </div>
                         </div>
                     </nav>
                 </div>
+                @yield('content-header')
             </div>
         </header>
         <!-- end header section -->
     </div>
-
-    <!-- food section -->
-
-    <section class="food_section layout_padding">
-        <div class="container">
-            <div class="heading_container heading_center">
-                <h2>
-                    Search Around the Kitchen
-                </h2>
-            </div>
-
-            <form action="/seputar_dpr" method="post">
-                @csrf
-                <select name="dapur" id="searchdapur" class="t">
-                    <option value=""></option>
-                    @foreach ($kategori_sd as $sd)
-                        <option value="{{ $sd->id }}">{{ $sd->nama_kategori }}</option>
-                    @endforeach
-                </select>
-                <button type="submit" class="btn btn-primary btn-sm">Search</button>
-            </form>
-            <br>
-            @foreach ($kategori_seputardapur as $k_sd)
-                <button class="btn btn-light mx-2 border radius">{{ $k_sd->nama_kategori }}</button>
-            @endforeach
-            <div class="filters-content">
-                <div class="row grid">
-                    @foreach ($kategori_seputardapur as $seputardapur)
-                        @foreach ($seputardapur->seputar_dapur as $sd)
-                            <div class="col-sm-6 col-lg-4 all pizza">
-                                <div class="box">
-                                    <div>
-                                        <div class="">
-                                            <img src="{{ asset('storage/public/seputardapur/' . $sd->foto) }}" width="100%"
-                                                height="50%" alt="">
-                                        </div>
-                                        <div class="detail-box">
-                                            <a href=" {{ url('seputar_dpr/'.$sd->id) }} " class="text-white">  <h4>
-                                                {{ $sd->judul }}
-                                            </h4>
-                                            </a>
-                                            by <span class="text-info">{{ $sd->user->name }}</span>
-                                            <br>
-                                            <br>
-                                            <div class="dotted">
-                                            <div class="options">
-                                                <h6>
-                                                        <button
-                                                            class="black-border-button  ">{{ $sd->kategori_seputardapur->nama_kategori }}</button>
-                                                </h6>
-
-                                            </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    @endforeach
-
-                </div>
-            </div>
-            {{ $kategori_seputardapur->links() }}
-        </div>
-    </section>
-
-    <!-- end food section -->
-
-    <!-- footer section -->
-    <footer class="footer_section">
+    @yield('content')
+     <!-- footer section -->
+     <footer class="footer_section" style="background-color: #F7941E; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-col">
@@ -348,13 +339,13 @@
     <!-- footer section -->
 
     <!-- jQery -->
-    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
     <!-- bootstrap js -->
-    <script src="js/bootstrap.js"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
     <!-- owl slider -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <!-- isotope js -->
@@ -362,7 +353,7 @@
     <!-- nice select -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
     <!-- custom js -->
-    <script src="js/custom.js"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
@@ -371,7 +362,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#searchdapur').select2();
+            $('#searchbahan').select2();
         });
     </script>
 </body>
