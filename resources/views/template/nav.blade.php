@@ -247,7 +247,7 @@
                             </ul>
                             <div class="user_option" style="margin-left: 180px;">
 
-
+                            
                                 @if (Auth::check())
                                     {{-- <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5"
                                         style="border-radius: 12px;"><b class="ms-2 me-2">Logout</b></a> --}}
@@ -267,7 +267,7 @@
                                                     src="{{ asset('images/client1.jpg') }}"
                                                     alt="profile image" style="max-width:40px">
                                                 </a>
-                                                <p class="mt-2 text-orange"><b>Olivie Rodriguez</b></p>
+                                                <p class="mt-2 text-orange"><b>{{auth()->user()->name}}</b></p>
                                                 </div>
                                                 <div class="dropdown-divider"></div>
                                                     <a href="#" class="dropdown-item text-orange" style="width: 230px">
