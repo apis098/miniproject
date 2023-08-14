@@ -17,7 +17,7 @@ class likeController extends Controller
         $user = Auth::user();
         if ($user && !$replies->likes()->where('user_id', $request->user()->id)->exists()) {
             $like = new likes([
-                'user_id' => auth()->user()->id,    
+                'user_id' => auth()->user()->id,
                 'reply_id' => $request->reply_id,
             ]);
             $replies->increment('likes');
@@ -27,8 +27,8 @@ class likeController extends Controller
         }elseif($user && $replies->likes()->where('user_id', $request->user()->id)->exists()){
             $replies->decrement('likes');
             $replies->likes()->where('user_id', $request->user()->id)->delete();
-            return redirect()->route('ShowReplies.show', $complaintId)->with('error', 'anda membatalkan memberi like');
-            
+            return redirect()->route('ShowReplies.show', $complaintId)->with('info', 'anda membatalkan memberi like');
+
         }elseif(!$user){
             return redirect()->route('login')->with('error', 'anda harus login terlebih dahulu');
         }
