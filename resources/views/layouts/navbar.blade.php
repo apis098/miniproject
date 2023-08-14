@@ -107,6 +107,7 @@ h2
                         <a href="{{route('actionlogout')}}" class="dropdown-item">
                             <i class="fas fa-arrow-left mr-2"></i>Log Out
                         </a>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">

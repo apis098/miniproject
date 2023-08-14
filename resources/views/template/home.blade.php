@@ -9,15 +9,17 @@
                     <div class="container ">
                         <div class="row">
                             <div class="col-md-7 col-lg-6 ">
-                                <div class="detail-box mt-4">
-                                    <h1>
-                                        Resep - Resep Terpopuler
-                                    </h1>
+                                <div class="detail-box mt-5">
+                                    <h3 class="text-poppins"><b>
+                                        Resep - Resep Terpopuler</b>
+                                    </h3>
                                     <p>
-                                        HummaCook adalah online media portal yang menyajikan kumpulan aneka resep
-                                        masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep
-                                        rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
-                                        mudah didapatkan.
+                                        HummaCook adalah online media portal 
+                                        yang menyajikan kumpulan aneka resep masakan
+                                        untuk menginspirasi para pehobi masak.
+                                        Menyajikan resep-resep  rumahan yang mudah 
+                                        dibuat oleh semua orang, dan bahan-bahan 
+                                        masakan yang mudah didapatkan.
                                     </p>
                                     <div class="btn-box ">
                                         <br>
@@ -203,6 +205,9 @@
     <!-- end book section -->
 
     <style>
+        .text-poppins{
+            font-family: 'Poppins';
+        }
         h1 {
             color: #fff;
         }

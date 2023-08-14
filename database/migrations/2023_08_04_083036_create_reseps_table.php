@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('reseps', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('userkoki_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('specialday_id')->nullable();
             $table->string('nama_masakan');
             $table->string('foto_masakan');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->longText('langkah2_memasak');
             $table->timestamps();
 
-            $table->foreign('userkoki_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('specialday_id')->references('id')->on('special_days')->onDelete('cascade');
         });
     }

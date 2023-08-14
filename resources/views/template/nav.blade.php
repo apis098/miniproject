@@ -162,7 +162,9 @@
             transition: all 0.3s;
             border: none;
         }
-
+        .text-orange{
+            color: #F7941E;
+        }
         .slider_section .detail-box a {
             background-color: #ffffff;
             color: #ffffff;
@@ -247,8 +249,39 @@
 
 
                                 @if (Auth::check())
-                                    <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5"
-                                        style="border-radius: 12px;"><b class="ms-2 me-2">Logout</b></a>
+                                    {{-- <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5"
+                                        style="border-radius: 12px;"><b class="ms-2 me-2">Logout</b></a> --}}
+                                        <div class="text-light me-4">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M4 19v-2h2v-7q0-2.075 1.25-3.688T10.5 4.2v-.7q0-.625.438-1.063T12 2q.625 0 1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h2v2H4Zm8-7.5ZM12 22q-.825 0-1.413-.588T10 20h4q0 .825-.588 1.413T12 22Zm-4-5h8v-7q0-1.65-1.175-2.825T12 6q-1.65 0-2.825 1.175T8 10v7Z"/></svg>
+                                        </div>
+                                        <div class="input-group dropdown">
+                                            <a data-toggle="dropdown" href="#">
+                                                <img class="mr-3 rounded-circle"
+                                                src="{{ asset('images/client1.jpg') }}"
+                                                alt="profile image" style="max-width:40px">
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto" style="width: 255px; border-radius:13px;" >
+                                                <div class="input-group">
+                                                <a href="#">
+                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                    src="{{ asset('images/client1.jpg') }}"
+                                                    alt="profile image" style="max-width:40px">
+                                                </a>
+                                                <p class="mt-2 text-orange"><b>Olivie Rodriguez</b></p>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                    <a href="#" class="dropdown-item text-orange" style="width: 230px">
+                                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z"/></svg>
+                                                        Profil
+                                                    </a>
+                                                <div class="dropdown-divider"></div>
+                                                    <a href="{{route('actionlogout')}}" style="width: 230px;" class="dropdown-item text-orange">
+                                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path fill="currentColor" d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z"/></svg>
+                                                        Keluar
+                                                    </a>
+                                                <div class="dropdown-divider"></div>
+                                            </div>
+                                        </div>
                                 @else
                                     <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
                                         style="border-radius: 12px;"><b class="me-2 ms-2">Login</b></a>
