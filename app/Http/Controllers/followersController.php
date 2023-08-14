@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class followersController extends Controller
 {
+    public function index(){
+        $user = User::all();
+        return view('template.search-account',compact('user'));
+    }
     public function store(Request $request,$id){
         $userfollowing = User::findOrFail($id);
         $userLogin = Auth::user();

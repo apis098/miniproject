@@ -96,10 +96,8 @@ Route::post('hari', function (Request $request) {
     return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps'));
 });
 
-
-Route::get('/search-account', function () {
-    return view('template.search-account');
-});
+//Search user account
+Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
 
 // artikel
 Route::get('menu/{id}', [artikels::class, 'artikel_resep']);

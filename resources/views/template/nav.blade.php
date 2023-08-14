@@ -47,6 +47,9 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <!-- responsive style -->
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
     <style>
         .custom_nav-container .navbar-nav .nav-item.active .nav-link {
             color: #ffbe33;
@@ -261,7 +264,7 @@
     </div>
     @yield('content')
     <!-- footer section -->
-    <footer class="footer_section" style="background-color: #F7941E; ">
+    <footer class="footer_section radius-atas" style="background-color: #F7941E; ">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-col">
