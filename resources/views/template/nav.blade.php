@@ -52,7 +52,7 @@
 
     <style>
         .custom_nav-container .navbar-nav .nav-item.active .nav-link {
-            color: #ffbe33;
+            color: #F7941E;
             background: white;
         }
 
@@ -120,7 +120,7 @@
             display: inline-block;
             padding: 6px 22px;
             background-color: #ffff;
-            color: #f39c12;
+            color: #F7941E;
             border-radius: 12px;
             -webkit-transition: all 0.3s;
             transition: all 0.3s;
@@ -222,22 +222,22 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto ">
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('home') }}">Home</a>
+                                    <a class="nav-link" href="{{ route('home') }}"><b>Home</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('menu') }}">Resep</a>
+                                    <a class="nav-link" href="{{ route('menu') }}"><b>Resep</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('hari') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('hari') }}">Hari Khusus </a>
+                                    <a class="nav-link" href="{{ route('hari') }}"><b>Hari Khusus</b></a>
 
                                 </li>
                                 <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ url('/search-account') }}">Cari Akun</a>
+                                    <a class="nav-link" href="{{ url('/search-account') }}"><b>Cari Akun</b></a>
 
                                 </li>
 
                                 <li class="nav-item {{ request()->is('about') ? 'active' : '' }} me-2" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('about') }}">Tentang</a>
+                                    <a class="nav-link" href="{{ route('about') }}"><b>Tentang</b></a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -248,10 +248,10 @@
 
                                 @if (Auth::check())
                                     <a href="{{ route('actionlogout') }}" class="btn btn-outline-light rounded-5"
-                                        style="border-radius: 12px;">Logout</a>
+                                        style="border-radius: 12px;"><b class="ms-2 me-2">Logout</b></a>
                                 @else
                                     <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
-                                        style="border-radius: 12px;">Login</a>
+                                        style="border-radius: 12px;"><b class="me-2 ms-2">Login</b></a>
                                 @endif
                             </div>
                         </div>
