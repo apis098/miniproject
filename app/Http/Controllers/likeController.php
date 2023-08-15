@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\complaint;
 use App\Models\likes;
+use App\Models\notifications;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,13 @@ class likeController extends Controller
             ]);
             $replies->increment('likes');
             $replies->likes()->save($like);
+            $notifications = new notifications([
+                'notification_from' => auth()->user()->id,
+                'like_id' => $like->id,
+                'user_id' => $replies->user->id,
+                'reply_id' => $replies->id,
+            ]);
+            $replies->notifications()->save($notifications);
             return redirect()->route('ShowReplies.show', $complaintId)->with('success', 'anda memberi like komentar dari');
 
         }elseif($user && $replies->likes()->where('user_id', $request->user()->id)->exists()){

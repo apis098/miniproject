@@ -14,6 +14,10 @@ class Reply extends Model
     {
         return $this->belongsTo(complaint::class);
     }
+    public function notifications()
+    {
+        return $this->hasMany(notifications::class);
+    }
     public function likes()
     {
         return $this->hasMany(likes::class);

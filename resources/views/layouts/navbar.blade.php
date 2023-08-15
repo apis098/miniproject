@@ -217,7 +217,7 @@ h2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Testing.create')}}" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
+                            <a href="{{route('Testing.notif')}}" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
                                 <i class="nav-icon fas fa-pen-to-square"></i>
                                 <p>
                                    testing dynamic input
