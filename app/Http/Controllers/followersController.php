@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\followers;
+use App\Models\notifications;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,8 +12,9 @@ class followersController extends Controller
 {
     public function index(){
         $user = User::all();
+        $notification = notifications::where('user_id',auth()->user()->id)->get();
         // $statusFollow= $user->followers()->where('follower_id', auth()->user()->id)->count() > 0;
-        return view('template.search-account',compact('user'));
+        return view('template.search-account',compact('user','notification'));
     }
     public function store(Request $request,$id){
         $userfollowing = User::findOrFail($id);
@@ -24,6 +26,12 @@ class followersController extends Controller
             ]);
             $userfollowing->increment('followers');
             $userfollowing->followers()->save($follow);
+            $notifications = new notifications([
+                'notification_from' => auth()->user()->id,
+                'follower_id' => auth()->user()->id,
+                'user_id' => $userfollowing->id,
+            ]);
+            $notifications->save();
             return redirect()->back()->with('success','anda mengikuti pengguna dengan username');
         }
         else if($userLogin && $userfollowing->followers()->where('follower_id',auth()->user()->id)->exists()){

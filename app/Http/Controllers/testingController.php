@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\basic_tips;
+use App\Models\notifications;
 use Illuminate\Http\Request;
 
 class testingController extends Controller
@@ -12,6 +13,7 @@ class testingController extends Controller
         $title="Form input langkah langkah";
         return view('testing.create',compact('title','data'));  
     }
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -33,5 +35,12 @@ class testingController extends Controller
         }
 
         return redirect()->route('Testing.create')->with('success', 'Data hari spesial berhasil disimpan.');
+    }
+
+    public function notification(){
+        $data = notifications::where('user_id',auth()->user()->id)->get();
+        // $data = $notif->where('user_id',auth()->user()->id);
+        $title = "testing notification";
+        return view('testing.notification',compact('data','title'));
     }
 }

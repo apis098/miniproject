@@ -4,9 +4,17 @@
         <div class="row">
             <div class="col-lg-4 mb-5">
                 <div class="card my-5">
+                    <div class="text-center mt-5">
+                        <div style="position: relative; display: inline-block;">
+                            <img src="{{ asset('sawi.jpg') }}" width="86px" height="84px" style="border-radius: 50%" alt="">
+                            <button type="submit" class="btn btn-primary btn-sm  rounded-circle p-3" style="position: absolute; top: -10px; right: -10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" idth="20" height="20" viewBox="0 0 48 48"><mask id="ipSEdit0"><g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4"><path stroke-linecap="round" d="M7 42h36"/><path fill="#fff" d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z"/></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)"/></svg>
+                            </button>
+                        </div>
+                    </div>
                     <div class="card-body text-center">
-                        <img src="{{ asset('Vector.jpg') }}" width="50%" alt="" data-bs-toggle="modal" data-bs-target="#mymodal">
-                        <p class="mt-4" style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                        <p class="mt-4"
+                            style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Boerak smith
                             <span style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Burakcook@gmail.com</span>
                         </p>

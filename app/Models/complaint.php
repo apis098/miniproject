@@ -29,6 +29,10 @@ class complaint extends Model
     {
         return $this->hasMany(Reply::class);
     }
+    public function notifications()
+    {
+        return $this->hasMany(notifications::class);
+    }
 }
 
 

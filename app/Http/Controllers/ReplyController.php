@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\complaint;
 use App\Models\likes;
+use App\Models\notifications;
 use App\Models\Reply;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Notification;
 
 class ReplyController extends Controller
 {
@@ -47,8 +49,14 @@ class ReplyController extends Controller
                 'user_id' => auth()->user()->id,
                 'reply' => $request->reply,
             ]);
-
             $complaint->replies()->save($reply);
+            $notifications = new notifications([
+                'notification_from' => auth()->user()->id,
+                'complaint_id' => $complaint->id,
+                'user_id' => $complaint->user->id,
+                'reply_id' => $reply->id,
+            ]);
+            $complaint->notifications()->save($notifications);   
             return redirect()->back()->with('success', 'Balasan berhasil dikirim.');
         } else {
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu.');
