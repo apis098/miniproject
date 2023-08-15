@@ -34,6 +34,14 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/profile', function () {
+    return view('template.profile');
+});
+
+Route::get('/profile-orang-lain', function () {
+    return view('template.profile-oranglain');
+});
+
 Route::get('/', function () {
     $kategori_bahan = kategori_bahan::paginate(3);
     $about = about::all();
