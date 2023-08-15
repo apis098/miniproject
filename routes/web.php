@@ -21,6 +21,7 @@ use App\Http\Controllers\artikels;
 use App\Http\Controllers\followersController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\testingController;
+use App\Models\notifications;
 use Illuminate\Http\Request;
 
 /*
@@ -54,7 +55,8 @@ Route::get('/', function () {
     $reseps = kategori_bahan::all();
     $complaints = complaint::all();
     $real_reseps = reseps::paginate(4);
-    return view('template.home', compact('real_reseps', 'kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'complaints'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.home', compact('real_reseps', 'kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'complaints','notification'));
 })->name('home');
 
 Route::get('artikel', function () {
@@ -63,7 +65,8 @@ Route::get('artikel', function () {
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
     $reseps = reseps::paginate(3);
-    return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus','notification'));
 })->name('artikel');
 
 Route::get('menu', function () {
@@ -71,7 +74,8 @@ Route::get('menu', function () {
     $reseps = kategori_bahan::paginate(4);
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
-    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'reseps'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'reseps','notification'));
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
@@ -82,14 +86,16 @@ Route::post('/menu', function (Request $request) {
     // whereIn untuk filter beberapa request
     $reseps = kategori_bahan::whereIn('id', $bahan)->paginate(4);
     $hari_khusus = special_days::all();
-    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'reseps'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'reseps','notification'));
 });
 
 Route::get('about', function () {
     $about = about::all();
     $bahan_masakan = kategori_bahan::all();
     $hari_khusus = special_days::all();
-    return view('template.about', compact('about', 'bahan_masakan', 'hari_khusus'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.about', compact('about', 'bahan_masakan', 'hari_khusus','notification'));
 })->name('about');
 
 Route::get('hari', function () {
@@ -97,7 +103,8 @@ Route::get('hari', function () {
     $reseps = special_days::paginate(3);
     $specialdays = special_days::all();
     $hari_khusus = special_days::all();
-    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps','notification'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
@@ -105,11 +112,13 @@ Route::post('hari', function (Request $request) {
     $specialdays = special_days::all();
     $reseps = special_days::where('id', $request->day)->paginate(3);
     $hari_khusus = special_days::all();
-    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps'));
+    $notification = notifications::where('user_id',auth()->user()->id)->get();
+    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps','notification'));
 });
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
+
 
 // artikel
 Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
