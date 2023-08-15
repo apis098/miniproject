@@ -235,7 +235,6 @@
                                 </li>
                                 <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}" style="font-size: 15px">
                                     <a class="nav-link" href="{{ url('/search-account') }}"><b>Cari Akun</b></a>
-
                                 </li>
 
                                 <li class="nav-item {{ request()->is('about') ? 'active' : '' }} me-2" style="font-size: 15px">
@@ -247,7 +246,7 @@
                             </ul>
                             <div class="user_option" style="margin-left: 180px;">
 
-                            
+
                                 @if (Auth::check())
                                     {{-- dropdown notifikasi --}}
                                         <div class="text-light me-2">

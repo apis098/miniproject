@@ -38,6 +38,10 @@ Route::get('/profile', function () {
     return view('template.profile');
 });
 
+Route::get('/resep', function () {
+    return view('template.resep');
+});
+
 Route::get('/profile-orang-lain', function () {
     return view('template.profile-oranglain');
 });
