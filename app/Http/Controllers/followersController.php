@@ -12,8 +12,11 @@ class followersController extends Controller
 {
     public function index(){
         $user = User::all();
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
-        // $statusFollow= $user->followers()->where('follower_id', auth()->user()->id)->count() > 0;
+        $userLogin = Auth::user();
+        $notification = [];
+        if($userLogin){
+            $notification = notifications::where('user_id',auth()->user()->id)->get();
+        }
         return view('template.search-account',compact('user','notification'));
     }
     public function store(Request $request,$id){
