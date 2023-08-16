@@ -7,7 +7,7 @@
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             <img src="{{ asset('sawi.jpg') }}" width="86px" height="84px" style="border-radius: 50%" alt="">
-                            <button type="submit" class="btn btn-primary btn-sm  rounded-circle p-3" style="position: absolute; top: -10px; right: -10px;">
+                            <button type="submit" class="btn btn-primary btn-sm  rounded-circle p-3" style="position: absolute; top: -10px; right: -10px;" data-bs-toggle="modal" data-bs-target="#mymodal">
                                 <svg xmlns="http://www.w3.org/2000/svg" idth="20" height="20" viewBox="0 0 48 48"><mask id="ipSEdit0"><g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4"><path stroke-linecap="round" d="M7 42h36"/><path fill="#fff" d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z"/></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)"/></svg>
                             </button>
                         </div>
@@ -57,7 +57,6 @@
 
                       document.getElementById('fileInputA').addEventListener('change', function() {
                           var selectedFile = this.files[0];
-                          // Lakukan sesuatu dengan file yang dipilih, misalnya mengunggahnya ke server
                           console.log('Selected file:', selectedFile);
                       });
 
