@@ -35,9 +35,7 @@ Route::get('/profile', function () {
     return view('template.profile');
 });
 
-Route::get('/profile-orang-lain', function () {
-    return view('template.profile-oranglain');
-});
+
 
 Route::get('/', function () {
     $complaints = complaint::all();
@@ -107,6 +105,11 @@ Route::post('hari', function (Request $request) {
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
+Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
+// Route::get('/profile-orang-lain', function () {
+//     return view('template.profile-oranglain');
+// });
+
 
 
 // artikel

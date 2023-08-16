@@ -193,9 +193,13 @@
                                             placeholder="UX Designer"> </div>
                                 </div> --}}
                                 <div class="col-md-12">
-                                    <div >
-                                        <div class="search-2" > <i class='bx bxs-map'></i> <input type="text"
-                                                placeholder="Cari Username"> <button class="zoom-effects" style="border-radius: 15px;">Cari</button> </div>
+                                    <div>
+                                        <div class="search-2" > <i class='bx bxs-map'></i> 
+                                            <form action="{{route('user.koki')}}" method="GET">
+                                                <input type="text" id="username" name="username" placeholder="Cari Username">
+                                                <button type="submit" class="zoom-effects" style="border-radius: 15px;">Cari</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +227,8 @@
             <!-- Team item -->
             @foreach($user as $row)
                 @if($row->role != "admin")
-            <div class="col-xl-3 col-sm-6 mb-5" >
+            <div class="col-xl-3 col-sm-6 mb-5 zoom-effects" >
+                <a class="text-dark" href="{{route('show.profile',$row->id)}}">
                 <div class="bg-white shadow-sm py-4 px-4 border border-secondary" style="border-radius: 20px; height:25rem;"><img
                         src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100"
                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -248,6 +253,7 @@
                             </form>
                         </div>
                 </div>
+            </a>
             </div><!-- End -->
                 @endif
             @endforeach

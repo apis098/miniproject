@@ -10,22 +10,35 @@ use Illuminate\Support\Facades\Auth;
 
 class followersController extends Controller
 {
-    public function index(){
-        $user = User::all();
+    public function index(Request $request)
+    {
         $userLogin = Auth::user();
+        $username = $request->username;
         $notification = [];
-        if($userLogin){
-            $notification = notifications::where('user_id',auth()->user()->id)->get();
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)->get();
         }
-        return view('template.search-account',compact('user','notification'));
+        if($username != null){
+            $user = User::where('name',$username)->get();
+        }else{
+            $user = User::all();
+        }
+        return view('template.search-account', compact('user', 'notification'));
     }
-    public function store(Request $request,$id){
+    public function show_profile($id){
+        
+        $user = User::findOrFail($id);
+        
+        return view('template.profile-oranglain',compact('user'));
+    }
+    public function store(Request $request, $id)
+    {
         $userfollowing = User::findOrFail($id);
         $userLogin = Auth::user();
-        if($userLogin && !$userfollowing->followers()->where('follower_id',auth()->user()->id)->exists()){
+        if ($userLogin && !$userfollowing->followers()->where('follower_id', auth()->user()->id)->exists()) {
             $follow = new followers([
-                'user_id'=> $userfollowing->id,
-                'follower_id'=> auth()->user()->id,
+                'user_id' => $userfollowing->id,
+                'follower_id' => auth()->user()->id,
             ]);
             $userfollowing->increment('followers');
             $userfollowing->followers()->save($follow);
@@ -35,15 +48,14 @@ class followersController extends Controller
                 'user_id' => $userfollowing->id,
             ]);
             $notifications->save();
-            return redirect()->back()->with('success','anda mengikuti pengguna dengan username');
-        }
-        else if($userLogin && $userfollowing->followers()->where('follower_id',auth()->user()->id)->exists()){
+            return redirect()->back()->with('success', 'anda mengikuti pengguna dengan username');
+        } else if ($userLogin && $userfollowing->followers()->where('follower_id', auth()->user()->id)->exists()) {
             $userfollowing->decrement('followers');
-            $userfollowing->followers()->where('follower_id',auth()->user()->id)->delete();
-            return redirect()->back()->with('success','anda batal mengikuti pengguna dengan username');
-        }
-        else{
-            return redirect()->back()->with('error','Silahkan login terlebih dahulu');
+            $userfollowing->followers()->where('follower_id', auth()->user()->id)->delete();
+            return redirect()->back()->with('success', 'anda batal mengikuti pengguna dengan username');
+        } else {
+            return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
     }
+ 
 }
