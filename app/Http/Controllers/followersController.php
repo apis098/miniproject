@@ -16,7 +16,9 @@ class followersController extends Controller
         $username = $request->username;
         $notification = [];
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)->get();
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
         }
         if($username != null){
             $user = User::where('name',$username)->get();
@@ -31,7 +33,9 @@ class followersController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)->get();
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
         }
         return view('template.profile-oranglain',compact('user','notification'));
     }

@@ -35,8 +35,8 @@
                         <div style="position: relative; display: inline-block;">
                             <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <button type="submit" class="btn btn-warning text-light btn-sm  rounded-circle p-2"
-                                style="position: absolute; top: -10px; right: -10px;" data-toggle="modal"
+                            <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
+                                style="position: absolute; top: -10px; right: -10px; background-color:#F7941E;" data-toggle="modal"
                                 data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
                                     <path fill="currentColor"

@@ -42,8 +42,10 @@ Route::get('/', function () {
     $real_reseps = reseps::paginate(4);
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.home', compact('real_reseps', 'complaints','notification'));
 })->name('home');
@@ -52,8 +54,10 @@ Route::get('artikel', function () {
     $reseps = reseps::paginate(3);
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.artikel', compact('reseps', 'notification'));
 })->name('artikel');
@@ -61,8 +65,10 @@ Route::get('artikel', function () {
 Route::get('menu', function () {
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.menu', compact('notification'));
 })->name('menu');
@@ -70,8 +76,10 @@ Route::get('menu', function () {
 Route::post('/menu', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.menu', compact('notification'));
 });
@@ -79,8 +87,10 @@ Route::post('/menu', function (Request $request) {
 Route::get('about', function () {
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.about', compact('notification'));
 })->name('about');
@@ -88,8 +98,10 @@ Route::get('about', function () {
 Route::get('hari', function () {
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.hari', compact('notification'));
 })->name('hari');
@@ -97,8 +109,10 @@ Route::get('hari', function () {
 Route::post('hari', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
-    if($userLogin){
-        $notification = notifications::where('user_id',auth()->user()->id)->get();
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
     }
     return view('template.hari', compact('notification'));
 });

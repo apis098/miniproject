@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('reply_id')->nullable(); 
             $table->unsignedBigInteger('complaint_id')->nullable(); 
+            $table->string('status')->default('belum');
             $table->timestamps();
 
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');

@@ -28,5 +28,12 @@ class AdminSeeder extends Seeder
         'role' => 'koki'
        ],
     );
+    User::create([
+        'name' => 'dummy',
+        'email' => 'dummy@gmail.com',
+        'password' => Hash::make('dummy123'),
+        'role' => 'koki'
+       ],
+    );
     }
 }
