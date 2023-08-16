@@ -28,8 +28,12 @@ class followersController extends Controller
     public function show_profile($id){
         
         $user = User::findOrFail($id);
-        
-        return view('template.profile-oranglain',compact('user'));
+        $userLogin = Auth::user();
+        $notification = [];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)->get();
+        }
+        return view('template.profile-oranglain',compact('user','notification'));
     }
     public function store(Request $request, $id)
     {

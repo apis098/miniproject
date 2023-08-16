@@ -146,52 +146,15 @@
             }
         }
     </style>
-    <!-- food section -->
-
-    {{-- <section class="food_section layout_padding">
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">No</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Email</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($user as $row)
-              <tr>
-                <th scope="row">{{$loop->iteration}}</th>
-                <td>{{$row->name}}</td>
-                <td>{{$row->email}}</td>
-                <td>
-                    <form action="{{route('Followers.store',$row->id)}}" method="POST">
-                        @csrf
-                        <input hidden value="{{$row->id}}" id="user_id" name="user_id" class="form-control rounded-5 mb-2" type="text">
-                        <button type="submit" class="btn btn-outline-warning rounded-3">Ikuti</button>
-                    </form>
-                </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
-    </section> --}}
-    <!-- For demo purpose -->
 
     <div class="container py-5" >
         <div class="row text-center text-white">
             <div class="col-lg-8 mx-auto">
                 <h1 class=" font-poppins mb-5"><b>Temukan teman <br> memasak</b></h1>
-                {{-- <p class="lead mb-0">Using Bootstrap 4 grid and utilities, create a nice team page.</p> --}}
                 <form action="">
                     <div class="container">
                         <div class="search" style="border-radius: 15px;">
                             <div class="row">
-                                {{-- <div class="col-md-6">
-                                    <div class="search-1"> <i class='bx bx-search-alt'></i> <input type="text"
-                                            placeholder="UX Designer"> </div>
-                                </div> --}}
                                 <div class="col-md-12">
                                     <div>
                                         <div class="search-2" > <i class='bx bxs-map'></i> 
@@ -245,9 +208,9 @@
                             <form action="{{route('Followers.store',$row->id)}}" method="POST">
                             @csrf
                                 @if(Auth::check() && $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Unfollow</b></button>
+                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
                                 @else
-                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Follow</b></button>
+                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
                                 @endif
                             
                             </form>

@@ -29,13 +29,13 @@
     </style>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card my-5">
+            <div class="col-sm-4">
+                <div class="card my-5 border border-dark" style="border-radius: 25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <button type="submit" class="btn btn-warning btn-sm  rounded-circle p-2"
+                            <button type="submit" class="btn btn-warning text-light btn-sm  rounded-circle p-2"
                                 style="position: absolute; top: -10px; right: -10px;" data-toggle="modal"
                                 data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
@@ -46,15 +46,22 @@
                         </div>
                     </div>
                     <div class="card-body text-center">
-                        <p class="mt-4"
+                        <p class=""
                             style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            Boerak smith
+                            {{$user->name}}
+                            <br>
                             <span
-                                style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Burakcook@gmail.com</span>
+                                style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{$user->email}}</span>
                         </p>
-                        <button style="border-radius: 15px;" class="btn btn-light border border-dark mb-3">
-                            <span style="font-weight: 600">Sukai</span>
-                        </button>
+                        <form action="{{route('Followers.store',$user->id)}}" method="POST">
+                            @csrf
+                                @if(Auth::check() && $user->followers()->where('follower_id', auth()->user()->id)->count() > 0)
+                                <button type="submit" class="btn btn-light text-light float-center mb-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
+                                @else
+                                <button type="submit" class="btn btn-light text-light float-center mb-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
+                                @endif
+                            
+                            </form>
                     </div>
                 </div>
             </div>
@@ -124,7 +131,7 @@
                                 <div class="col-7">
                                     <span
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        392
+                                        {{$user->followers}}
                                     </span> <br>
                                     Pengikut
                                 </div>
@@ -136,7 +143,7 @@
                     </div>
                 </div>
                 <h4 style="font-weight: 600;" class="my-3">Resep dibuat</h4>
-                <div class="row mt-5">
+                <div class="row mb-5">
                     <div class="col-lg-4 my-2">
                         <div class="card p-3"
                             style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
