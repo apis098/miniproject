@@ -33,15 +33,7 @@ padding-top:5px
                             <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%" alt="">
                             <button type="submit" class="btn btn-warning btn-sm  rounded-circle p-2"
                                 style="position: absolute; top: -10px; right: -10px;"  data-toggle="modal" data-target="#exampleModalCenter">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
-                                    <mask id="ipSEdit0">
-                                        <g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4">
-                                            <path stroke-linecap="round" d="M7 42h36" />
-                                            <path fill="#fff" d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z" />
-                                        </g>
-                                    </mask>
-                                    <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)" />
-                                </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20"><path fill="currentColor" d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z"/></svg>
                             </button>
                         </div>
                     </div>
