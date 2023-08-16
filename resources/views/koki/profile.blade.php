@@ -6,12 +6,12 @@
                 <div class="card my-5">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
-                            <img src="{{ asset('sawi.jpg') }}" width="86px" height="84px" style="border-radius: 50%"
+                            <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <button type="submit" class="btn btn-primary btn-sm  rounded-circle p-3"
+                            <button type="submit" class="btn btn-warning btn-sm  rounded-circle p-2"
                                 style="position: absolute; top: -10px; right: -10px;" data-bs-toggle="modal"
                                 data-bs-target="#mymodal">
-                                <svg xmlns="http://www.w3.org/2000/svg" idth="20" height="20" viewBox="0 0 48 48">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                                     <mask id="ipSEdit0">
                                         <g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4">
                                             <path stroke-linecap="round" d="M7 42h36" />
@@ -43,17 +43,27 @@
                 <div class="modal-dialog modal-dialog-centered profile-modal">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5">My Profile</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Gambar</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                              </button>
                         </div>
                         <div class="modal-body">
                             <form action="#" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="profile d-flex justify-content-center">
-                                    <img src="{{ asset('vector.jpg') }}" class="rounded-circle profile-image">
-                                    <label for="fileInputA" class="change-profile-button d-flex justify-content-center"
+                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%">
+                                    <label for="fileInputA" class="change-profile-button d-flex justify-content-center rounded-circle p-2 bg-warning" style="position: absolute; top: 5%; right: 37%;"
                                         id="chooseFileButtonA">
-                                        <i class="fa-sharp fa-solid fa-image text-primary"></i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+                                            <mask id="ipSEdit0">
+                                                <g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4">
+                                                    <path stroke-linecap="round" d="M7 42h36" />
+                                                    <path fill="#ffff" d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z" />
+                                                </g>
+                                            </mask>
+                                            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)" />
+                                        </svg>
                                     </label>
                                     <input type="file" id="fileInputA" name="fileInputA" style="display:none"
                                         accept=".jpg,.png,.pdf">
@@ -61,8 +71,6 @@
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn btn-danger" class="btn-close" data-bs-dismiss="modal"
-                                type="button">Batal</button>
                             <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
                         </div>
                         </form>
@@ -173,9 +181,9 @@
                         style="width: 100%; height: 100%; border-radius: 10px; border: 0.50px black solid">
                         Halo! Saya victor, jiwa petualang yang penuh rasa ingin tahu dan selalu dalam pencarian ilmu dan
                         penemuan diri. <br>
-                        Minat: 🚀 Teknologi, ilmu pengetahuan, dan inovasi 📚 Membaca, menulis, dan puisi 🌳 Alam, mendaki,
+                        Minat:🚀 Teknologi, ilmu pengetahuan, dan inovasi📚 Membaca, menulis, dan puisi🌳 Alam, mendaki,
                         berkemah, dan fotografi <br>
-                        Filosofi: 🌱 Terimalah tantangan dan kegagalan untuk pertumbuhan pribadi 💪 Ketangguhan dan
+                        Filosofi:🌱 Terimalah tantangan dan kegagalan untuk pertumbuhan pribadi💪 Ketangguhan dan
                         adaptabilitas adalah kunci <br>
                         Saya sangat menyukai percakapan bermakna dan kolaborasi! Hubungi saya, dan mari kita berdampak
                         positif
@@ -189,4 +197,9 @@
             </div>
         </div>
     </div>
+    <!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Bootstrap JS (make sure the path is correct) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection
