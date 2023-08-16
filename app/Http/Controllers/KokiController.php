@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\notifications;
 
 class KokiController extends Controller
 {
@@ -11,7 +13,12 @@ class KokiController extends Controller
      */
     public function index()
     {
-        return view('koki.index');
+        $userLogin = Auth::user();
+        $notification = [];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)->get();
+        }
+        return view('koki.profile', compact('notification'));
     }
 
     /**

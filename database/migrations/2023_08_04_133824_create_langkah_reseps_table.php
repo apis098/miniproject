@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori_bahans', function (Blueprint $table) {
+        Schema::create('langkah_reseps', function (Blueprint $table) {
             $table->id();
-            $table->string('kategori_bahan')->unique();
-            $table->string('foto');
+            $table->unsignedBigInteger('resep_id');
+            $table->string('foto_langkah');
+            $table->text('deskripsi_langkah');
             $table->timestamps();
+
+            $table->foreign('resep_id')->references('id')->on('reseps')->onDelete('cascade');
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategori_bahans');
+        Schema::dropIfExists('langkah_reseps');
     }
 };

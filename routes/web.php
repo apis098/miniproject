@@ -5,24 +5,18 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\complaintController;
-use App\Http\Controllers\kategori_bahan_controller;
 use App\Http\Controllers\KokiController;
 use App\Http\Controllers\likeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
-use App\Http\Controllers\special_days_controller;
-use App\Models\about;
 use App\Models\complaint;
-use App\Models\kategori_bahan;
 use App\Models\reseps;
-use App\Models\special_days;
 use App\Http\Controllers\artikels;
 use App\Http\Controllers\followersController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\testingController;
 use App\Models\notifications;
-use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,20 +35,11 @@ Route::get('/profile', function () {
     return view('template.profile');
 });
 
-Route::get('/resep', function () {
-    return view('template.resep');
-});
-
 Route::get('/profile-orang-lain', function () {
     return view('template.profile-oranglain');
 });
 
 Route::get('/', function () {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $about = about::all();
-    $bahan_masakan = kategori_bahan::all();
-    $hari_khusus = special_days::all();
-    $reseps = kategori_bahan::all();
     $complaints = complaint::all();
     $real_reseps = reseps::paginate(4);
     $userLogin = Auth::user();
@@ -62,88 +47,62 @@ Route::get('/', function () {
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.home', compact('real_reseps', 'kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus', 'complaints','notification'));
+    return view('template.home', compact('real_reseps', 'complaints','notification'));
 })->name('home');
 
 Route::get('artikel', function () {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $about = about::all();
-    $bahan_masakan = kategori_bahan::all();
-    $hari_khusus = special_days::all();
     $reseps = reseps::paginate(3);
     $userLogin = Auth::user();
     $notification = [];
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.artikel', compact('kategori_bahan', 'reseps', 'about', 'bahan_masakan', 'hari_khusus','notification'));
+    return view('template.artikel', compact('reseps', 'notification'));
 })->name('artikel');
 
 Route::get('menu', function () {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = kategori_bahan::paginate(4);
-    $bahan_masakan = kategori_bahan::all();
-    $hari_khusus = special_days::all();
     $userLogin = Auth::user();
     $notification = [];
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'reseps','notification'));
+    return view('template.menu', compact('notification'));
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $bahan_masakan = kategori_bahan::all();
-    // mengambil inputan array
-    $bahan = $request->input('bahan', []);
-    // whereIn untuk filter beberapa request
-    $reseps = kategori_bahan::whereIn('id', $bahan)->paginate(4);
-    $hari_khusus = special_days::all();
     $userLogin = Auth::user();
     $notification = [];
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.menu', compact('kategori_bahan', 'bahan_masakan', 'hari_khusus', 'reseps','notification'));
+    return view('template.menu', compact('notification'));
 });
 
 Route::get('about', function () {
-    $about = about::all();
-    $bahan_masakan = kategori_bahan::all();
-    $hari_khusus = special_days::all();
     $userLogin = Auth::user();
     $notification = [];
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.about', compact('about', 'bahan_masakan', 'hari_khusus','notification'));
+    return view('template.about', compact('notification'));
 })->name('about');
 
 Route::get('hari', function () {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $reseps = special_days::paginate(3);
-    $specialdays = special_days::all();
-    $hari_khusus = special_days::all();
     $userLogin = Auth::user();
     $notification = [];
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps','notification'));
+    return view('template.hari', compact('notification'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
-    $kategori_bahan = kategori_bahan::paginate(3);
-    $specialdays = special_days::all();
-    $reseps = special_days::where('id', $request->day)->paginate(3);
-    $hari_khusus = special_days::all();
     $userLogin = Auth::user();
     $notification = [];
     if($userLogin){
         $notification = notifications::where('user_id',auth()->user()->id)->get();
     }
-    return view('template.hari', compact('kategori_bahan', 'specialdays', 'hari_khusus', 'reseps','notification'));
+    return view('template.hari', compact('notification'));
 });
 
 //Search user account
@@ -157,11 +116,6 @@ Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
 Route::get('dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
-
-Route::get('dashboardt', function () {
-    return view('koki.dashboardt');
-})->name('dashboardt');
-
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout

@@ -385,8 +385,6 @@
                 @endforeach
     </section>
     <!-- client section -->
-
-    @foreach ($about as $a)
         <section class="about_section layout_padding">
             <div class="container  ">
                 <div class="row">
@@ -399,11 +397,11 @@
                         <div class="detail-box">
                             <div class="heading_container">
                                 <h2>
-                                    {{ $a->judul }}
+                                    Lorem ipsum dolor sit.
                                 </h2>
                             </div>
                             <p>
-                                {!! $a->isi !!}
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim voluptatem, earum quia nulla temporibus inventore deserunt sequi asperiores quaerat tempore? Fugiat laudantium quos iste enim earum doloribus ex, magnam illo ratione, repellendus voluptatum? Deleniti veritatis tenetur eveniet, animi aut iure quae quas porro dolorum magnam, labore consequatur eligendi! Aliquid ducimus cum sequi eveniet odit ab at, officiis, minus ea neque laboriosam voluptatum consequuntur temporibus, dignissimos debitis amet magnam reiciendis voluptate nihil. Aperiam, doloremque ea nostrum doloribus magnam possimus excepturi fugit illum numquam error sed eius voluptate atque alias quo ullam eos laboriosam! Qui aut adipisci, voluptatibus maiores nulla doloremque fuga.
                             </p>
                             <a href="{{ route('about') }}">
                                 Baca Selengkapnya
@@ -413,7 +411,5 @@
                 </div>
             </div>
         </section>
-    @endforeach
-
     <!-- end client section -->
 @endsection

@@ -8,14 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class pivot extends Model
 {
     use HasFactory;
-    protected $table = 'pivot';
+    protected $table = 'langkah_reseps';
     protected $fillable = [
-        'kategori_bahan_id',
-        'reseps_id'
+        'resep_id',
+        'foto_langkah',
+        'deskripsi_langkah'
     ];
 
-    public function bahan()
+    public function resep()
     {
-        return $this->belongsTo(kategori_bahan::class, 'kategori_bahan_id');
+        return $this->belongsTo(reseps::class, 'resep_id');
     }
 }
