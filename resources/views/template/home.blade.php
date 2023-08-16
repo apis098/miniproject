@@ -2,53 +2,52 @@
 @section('content')
     @section('content-header')
     <!-- slider section -->
-    <section class="slider_section ">
+    <section class="slider_section">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="container ">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-md-7 col-lg-6 ">
+                            <div class="col-md-7 col-lg-6">
                                 <div class="detail-box mt-5">
                                     <h3 class="text-poppins"><b>
                                         Resep - Resep Terpopuler</b>
                                     </h3>
                                     <p>
-                                        HummaCook adalah online media portal 
+                                        HummaCook adalah online media portal
                                         yang menyajikan kumpulan aneka resep masakan
                                         untuk menginspirasi para pehobi masak.
-                                        Menyajikan resep-resep  rumahan yang mudah 
-                                        dibuat oleh semua orang, dan bahan-bahan 
+                                        Menyajikan resep-resep  rumahan yang mudah
+                                        dibuat oleh semua orang, dan bahan-bahan
                                         masakan yang mudah didapatkan.
                                     </p>
-                                    <div class="btn-box ">
-                                        <br>
-                                        {{-- <a href="{{ route('menu') }}" class="login" >Lihat Resep</a> --}}
-                                    </div>
-
                                     <a href="{{ route('menu') }}" class="zoom-effects btn btn-light mt-2 rounded-5 btn-lg"
                                         style="padding: 6px 22px;
-                                background-color: #ffff;
-                                color: #f39c12;
-                                border-radius: 12px; border:none;">Lihat
-                                        Resep</a>
-
-
-                                    {{-- <a href="{{ route('menu') }}" style="" class="btn btn-light rounded-5 text-warning">
-                                    Lihat Resep
-                                </a> --}}
-
-                                    {{-- <div class="user_option" style="margin-top: 0px;">
-
-
-
-
-
-                            </div> --}}
+                                        background-color: #ffff;
+                                        color: #f39c12;
+                                        border-radius: 12px;
+                                        border: none;">Lihat Resep</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div style="text-align: right;">
+                                    <img src="{{ asset('images/landingpage.png') }}" alt="Gambar Contoh" style="width: 90%; max-width: 500px;">
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                        {{-- <a href="{{ route('menu') }}" style="" class="btn btn-light rounded-5 text-warning">
+                        Lihat Resep
+                    </a> --}}
+
+                        {{-- <div class="user_option" style="margin-top: 0px;">
+
+
+
+
+
+                </div> --}}
                     {{-- <div class="carousel-item ">
                 <div class="container ">
                     <div class="row">
@@ -197,7 +196,7 @@
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh" style="width: 100%; margin-top: -15%">
+                        <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh" style="width: 100%; margin-top: -15%;">
                     </div>
                 </div>
 
