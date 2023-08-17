@@ -52,7 +52,7 @@
                                 @csrf
                                 @method('put')
                                 <div class="profile d-flex justify-content-center">
-                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%" id="profile-image">
+
                                     <label for="fileInputA" class="change-profile-button d-flex justify-content-center rounded-circle p-2 bg-warning" style="position: absolute; top: 5%; right: 37%;"
                                         id="chooseFileButtonA">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -67,6 +67,7 @@
                                     </label>
                                     <input type="file" id="fileInputA" name="fileInputA" style="display:none"
                                         accept=".jpg,.png,.pdf">
+                                        <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%" id="profile-image">
                                 </div>
                         </div>
 
