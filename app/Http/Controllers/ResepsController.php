@@ -24,7 +24,7 @@ class ResepsController extends Controller
             $notification = notifications::where('user_id', auth()->user()->id)->get();
         }
         $special_days = special_days::all();
-        return view("koki.resep", compact('notification', 'special_days '));
+        return view("koki.resep", compact('notification', 'special_days'));
     }
 
     /**

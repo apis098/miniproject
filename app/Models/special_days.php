@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class special_days extends Model
 {
     use HasFactory;
+    protected $table = "special_days";
     protected $fillable = ['name', 'description'];
-    public function resep() {
-        return $this->hasMany(reseps::class, 'specialday_id');
-    }
 }
