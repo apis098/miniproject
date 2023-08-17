@@ -209,9 +209,11 @@
                             <form action="{{route('Followers.store',$row->id)}}" method="POST">
                             @csrf
                                 @if(Auth::check() && $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
+                                    <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
+                                @elseif(Auth::check() && $userLogin->followers()->where('follower_id', $row->id)->exists())
+                                    <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti balik</b></button>
                                 @else
-                                <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
+                                    <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
                                 @endif
                             
                             </form>
@@ -220,7 +222,7 @@
             </a>
             </div>
             {{-- belum login --}}
-                @elseif($row->role != "admin")
+                @elseif($row->role != "admin" && $row->id != auth()->user()->id)
                 <div class="col-xl-3 col-sm-6 mb-5 zoom-effects" >
                     <a class="text-dark" href="{{route('show.profile',$row->id)}}">
                     <div class="bg-white shadow-sm py-4 px-4 border border-secondary" style="border-radius: 20px; height:25rem;"><img
@@ -240,6 +242,8 @@
                                 @csrf
                                     @if(Auth::check() && $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
                                     <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
+                                    @elseif(Auth::check() && $userLogin->followers()->where('follower_id', $row->id)->exists())
+                                    <button type="submit" class="btn btn-light text-light float-center mb-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti balik</b></button>
                                     @else
                                     <button type="submit" class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
                                     @endif

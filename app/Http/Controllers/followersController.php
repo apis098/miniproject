@@ -25,7 +25,7 @@ class followersController extends Controller
         }else{
             $user = User::all();
         }
-        return view('template.search-account', compact('user', 'notification'));
+        return view('template.search-account', compact('user', 'notification','userLogin'));
     }
     public function show_profile($id){
         
@@ -37,7 +37,7 @@ class followersController extends Controller
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
         }
-        return view('template.profile-oranglain',compact('user','notification'));
+        return view('template.profile-oranglain',compact('user','notification','userLogin'));
     }
     public function store(Request $request, $id)
     {
