@@ -28,6 +28,7 @@ class likeController extends Controller
                 'like_id' => $like->id,
                 'user_id' => $replies->user->id,
                 'reply_id' => $replies->id,
+                'complaint_id' => $complaintId,
             ]);
             $replies->notifications()->save($notifications);
             return redirect()->route('ShowReplies.show', $complaintId)->with('success', 'anda memberi like komentar dari');

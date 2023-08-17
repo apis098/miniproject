@@ -15,4 +15,11 @@ class notificationController extends Controller
         $follower_id = $request->follower_id;
         return redirect()->route('show.profile',$follower_id);
     }
+    public function repliesNotification(Request $request,$id){
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        $replies_id = $request->replies_id;
+        return redirect()->route('ShowReplies.show',$replies_id);
+    }
 }

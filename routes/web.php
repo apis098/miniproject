@@ -137,6 +137,7 @@ Route::post('hari', function (Request $request) {
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
 Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
 Route::put('/status-baca/follow/{id}', [notificationController::class, 'followNotification'])->name('follow.notification');
+Route::put('/status-baca/like-replies/{id}', [notificationController::class, 'repliesNotification'])->name('replies.notification');
 
 
 // artikel
