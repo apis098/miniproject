@@ -52,7 +52,7 @@
                                 @csrf
                                 @method('put')
                                 <div class="profile d-flex justify-content-center">
-                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%">
+                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%" id="profile-image">
                                     <label for="fileInputA" class="change-profile-button d-flex justify-content-center rounded-circle p-2 bg-warning" style="position: absolute; top: 5%; right: 37%;"
                                         id="chooseFileButtonA">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -76,31 +76,25 @@
                         </form>
                     </div>
                     <script>
-                        document.getElementById('chooseFileButtonA').addEventListener('click', function() {
-                            document.getElementById('fileInputA').click();
-                        });
+                      document.getElementById('chooseFileButtonA').addEventListener('click', function() {
+        document.getElementById('fileInputA').click();
+    });
 
-                        document.getElementById('fileInputA').addEventListener('change', function() {
-                            var selectedFile = this.files[0];
-                            console.log('Selected file:', selectedFile);
-                        });
+    document.getElementById('fileInputA').addEventListener('change', function() {
+        var selectedFile = this.files[0];
+        console.log('Selected file:', selectedFile);
+    });
 
-                        $(document).ready(function() {
-                            $('.change-profile-button').on('click', function(e) {
-                                e.preventDefault();
-                            });
-                        });
-
-                        document.getElementById("fileInputA").addEventListener("change", function(event) {
-                            var input = event.target;
-                            if (input.files && input.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function(e) {
-                                    document.getElementById("profile-image").setAttribute("src", e.target.result);
-                                };
-                                reader.readAsDataURL(input.files[0]);
-                            }
-                        });
+    document.getElementById("fileInputA").addEventListener("change", function(event) {
+        var input = event.target;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profile-image").setAttribute("src", e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
                     </script>
                 </div>
             </div>
