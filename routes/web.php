@@ -14,6 +14,7 @@ use App\Models\complaint;
 use App\Models\reseps;
 use App\Http\Controllers\artikels;
 use App\Http\Controllers\followersController;
+use App\Http\Controllers\notificationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\testingController;
 use App\Models\notifications;
@@ -42,88 +43,100 @@ Route::get('/', function () {
     $real_reseps = reseps::paginate(4);
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+       
     }
-    return view('template.home', compact('real_reseps', 'complaints','notification'));
+    return view('template.home', compact('real_reseps', 'complaints','notification','unreadNotificationCount'));
 })->name('home');
 
 Route::get('artikel', function () {
     $reseps = reseps::paginate(3);
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.artikel', compact('reseps', 'notification'));
+    return view('template.artikel', compact('reseps', 'notification','unreadNotificationCount'));
 })->name('artikel');
 
 Route::get('menu', function () {
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('notification'));
+    return view('template.menu', compact('notification','unreadNotificationCount'));
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('notification'));
+    return view('template.menu', compact('notification','unreadNotificationCount'));
 });
 
 Route::get('about', function () {
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.about', compact('notification'));
+    return view('template.about', compact('notification','unreadNotificationCount'));
 })->name('about');
 
 Route::get('hari', function () {
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('notification'));
+    return view('template.hari', compact('notification','unreadNotificationCount'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
+    $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('notification'));
+    return view('template.hari', compact('notification','unreadNotificationCount'));
 });
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
 Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
-// Route::get('/profile-orang-lain', function () {
-//     return view('template.profile-oranglain');
-// });
-
+Route::put('/status-baca/follow/{id}', [notificationController::class, 'followNotification'])->name('follow.notification');
 
 
 // artikel

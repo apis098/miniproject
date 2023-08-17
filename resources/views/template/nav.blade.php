@@ -177,6 +177,16 @@
         .zoom-effects:hover {
             transform: scale(0.95);
         }
+
+        .yuhu {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+        }
     </style>
 
 
@@ -255,14 +265,16 @@
 
                                 @if (Auth::check())
                                     {{-- dropdown notifikasi --}}
+
                                     <div class="text-light me-2">
-                                        <a data-toggle="dropdown" class="text-light" href="#">
+                                        <button data-toggle="dropdown" class="text-light btn btn-light"
+                                            style="background-color: #F7941E; border-color:#F7941E;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M4 19v-2h2v-7q0-2.075 1.25-3.688T10.5 4.2v-.7q0-.625.438-1.063T12 2q.625 0 1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h2v2H4Zm8-7.5ZM12 22q-.825 0-1.413-.588T10 20h4q0 .825-.588 1.413T12 22Zm-4-5h8v-7q0-1.65-1.175-2.825T12 6q-1.65 0-2.825 1.175T8 10v7Z" />
                                             </svg>
-                                        </a>
+                                        </button>
 
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-1"
                                             style="width: 350px; border-radius:13px; margin-right:-105%;">
@@ -271,35 +283,46 @@
                                                     <div class="dropdown-divider"></div>
                                                     <div class="input-group">
                                                         <a href="#">
-                                                            <img class="ms-2 mb-1 rounded-circle"
+                                                            <img class="ms-2 mt-1 rounded-circle"
                                                                 src="{{ asset('images/client1.jpg') }}"
-                                                                alt="profile image" style="max-width:25px">
+                                                                alt="profile image" style="max-width:35px">
                                                         </a>
-                                                        <p class="mb-2 text-orange">{{ $row->sender->name }}</p>
+                                                        <p class="mt-2 text-orange">{{ $row->sender->name }}</p>
                                                         @if ($row->reply_id != null && $row->complaint_id != null)
                                                             <small class="mt-1 ms-1 text-secondary">telah membalas
-                                                                keluhan anda</small><a href=""
-                                                                class=" ms-1 text-orange">
+                                                                keluhan anda</small>
+                                                            @if ($row->status == 'belum')
                                                                 <img class="ms-2 mb-2 rounded-circle"
                                                                     src="{{ asset('images/badge.png') }}"
-                                                                    alt="profile image" style="max-width:10px"></a>
+                                                                    alt="profile image" style="max-width:10px">
+                                                            @endif
                                                         @elseif($row->reply_id != null && $row->like_id != null)
                                                             <small class="mt-1 ms-1 text-secondary">Menyukai komentar
-                                                                anda</small><a href=""
-                                                                class=" ms-1 text-orange">
+                                                                anda</small>
+                                                            @if ($row->$status == 'belum')
                                                                 <img class="ms-2 mb-2 rounded-circle"
                                                                     src="{{ asset('images/badge.png') }}"
-                                                                    alt="profile image" style="max-width:10px"></a>
+                                                                    alt="profile image" style="max-width:10px">
+                                                            @endif
                                                         @elseif($row->follower_id != null)
-                                                            <a class="" href="{{route('show.profile',$row->follower_id)}}">
-                                                                <small class="mt-1 ms-1 text-secondary">Mulai mengikuti
-                                                                    anda</small><a href=""
-                                                                    class=" ms-1 text-orange">
-                                                                    <img class="ms-2 mb-2 rounded-circle"
-                                                                        src="{{ asset('images/badge.png') }}"
-                                                                        alt="profile image"
-                                                                        style="max-width:10px"></a>
-                                                            </a>
+                                                            <form action="{{ route('follow.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class=" ms-1 text-secondary">Mulai mengikuti
+                                                                        anda</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                <input type="text" hidden name="follower_id"
+                                                                    id="follower_id" value="{{ $row->follower_id }}"
+                                                                    class="form-control">
+                                                            </form>
                                                         @endif
                                                     </div>
                                                 @endif
@@ -308,7 +331,10 @@
                                         </div>
 
                                     </div>
-
+                                    @if ($unreadNotificationCount > 0)
+                                        <span class="badge badge-light mb-4 me-2"
+                                            style="margin-left: -28px;">{{ $unreadNotificationCount }}</span>
+                                    @endif
                                     {{-- dropdown profile & logout --}}
                                     <div class="input-group dropdown">
                                         <a data-toggle="dropdown" href="#">
