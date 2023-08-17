@@ -51,7 +51,7 @@ class ResepsController extends Controller
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
             "foto_langkah_resep.*" => "required|image|mimes:png,jpg,jpeg|max:50000",
-            "langkah_resep.*" => "required" 
+            "langkah_resep.*" => "required"
         ]);
         $photo_file = $request->file("foto_resep");
         $photo_path = $photo_file->store("photos/photo-resep", 'public');
@@ -97,9 +97,16 @@ class ResepsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(reseps $reseps)
+    public function edit(string $id)
     {
-        //
+        $edit_resep = reseps::find($id);
+        $special_days = special_days::all();
+        $userLogin = Auth::user();
+        $notification = [];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)->get();
+        }
+        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification"));
     }
 
     /**
@@ -118,7 +125,7 @@ class ResepsController extends Controller
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
             "foto_langkah_resep.*" => "required|image|mimes:png,jpg,jpeg|max:50000",
-            "langkah_resep.*" => "required" 
+            "langkah_resep.*" => "required"
         ]);
         $update_resep = reseps::find($id);
         $update_resep->nama_resep = $request->nama_resep;
@@ -136,6 +143,21 @@ class ResepsController extends Controller
         $update_resep->lama_memasak = $request->lama_memasak;
         $update_resep->pengeluaran_memasak = $request->pengeluaran_memasak;
         $update_resep->save();
+        foreach ($request->bahan_resep as $k => $v) {
+            $bahan = strtolower(trim($v));
+            bahan_reseps::where("resep_id", $update_resep->id)->update([
+                "nama_bahan" => $bahan,
+                "takaran_bahan" => $request->takaran_resep[$k]
+            ]);
+        }
+        foreach ($request->langkah_resep as $n => $l) {
+            $lr = langkah_reseps::where("resep_id", $update_resep->id)->first();
+            if ($request->hasFile("foto_langkah_resep.$n")) {
+                $lr->foto_langkah = $request->file("foto_langkah_resep.$n")->store('photo-step');
+            }
+            $lr->deskripsi_langkah = $l;
+            $lr->save();
+        }
         return redirect('/koki/index')->with('success', 'Sukses! anda berhasil mengupdate resep');
     }
 
@@ -144,7 +166,7 @@ class ResepsController extends Controller
      */
     public function destroy(string $id)
     {
-        $resep = reseps::where('id',$id)->first();
+        $resep = reseps::where('id', $id)->first();
         Storage::delete($resep->foto_resep, 'public');
         foreach ($resep->langkah as $v) {
             Storage::delete($v->foto_langkah, 'public');
