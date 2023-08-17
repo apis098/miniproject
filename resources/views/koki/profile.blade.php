@@ -45,21 +45,24 @@
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Gambar</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                              </button>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <form action="#" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
                                 <div class="profile d-flex justify-content-center">
-                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%">
-                                    <label for="fileInputA" class="change-profile-button d-flex justify-content-center rounded-circle p-2 bg-warning" style="position: absolute; top: 5%; right: 37%;"
-                                        id="chooseFileButtonA">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
+
+                                    <label for="fileInputA"
+                                        class="change-profile-button d-flex justify-content-center rounded-circle p-2 bg-warning"
+                                        style="position: absolute; top: 5%; right: 37%;" id="chooseFileButtonA">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 48 48">
                                             <mask id="ipSEdit0">
                                                 <g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4">
                                                     <path stroke-linecap="round" d="M7 42h36" />
-                                                    <path fill="#ffff" d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z" />
+                                                    <path fill="#ffff"
+                                                        d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z" />
                                                 </g>
                                             </mask>
                                             <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)" />
@@ -67,6 +70,8 @@
                                     </label>
                                     <input type="file" id="fileInputA" name="fileInputA" style="display:none"
                                         accept=".jpg,.png,.pdf">
+                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px"
+                                        style="border-radius: 50%" id="profile-image">
                                 </div>
                         </div>
 
@@ -83,12 +88,6 @@
                         document.getElementById('fileInputA').addEventListener('change', function() {
                             var selectedFile = this.files[0];
                             console.log('Selected file:', selectedFile);
-                        });
-
-                        $(document).ready(function() {
-                            $('.change-profile-button').on('click', function(e) {
-                                e.preventDefault();
-                            });
                         });
 
                         document.getElementById("fileInputA").addEventListener("change", function(event) {
@@ -164,13 +163,15 @@
                         <h5
                             style="color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Nama pengguna</h5>
-                        <input type="text" class="form-control" value="Victor sinclair" readonly>
+                        <input type="text" class="form-control" value="Victor sinclair"
+                            style="background-color: white;" readonly>
                     </div>
                     <div class="col-lg-6">
                         <h5
                             style="color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             E mail</h5>
-                        <input type="text" class="form-control" value="victor98@gmail.com" readonly>
+                        <input type="text" class="form-control" value="victor98@gmail.com"
+                            style="background-color: white;" readonly>
                     </div>
                 </div>
                 <div>
@@ -204,7 +205,7 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <div class="card">
                     <div class="card-header text-center">
-                        <img src="{{ asset('storage/'.$resep->foto_resep) }}" alt="{{ $resep->foto_resep }}"> <br>
+                        <img src="{{ asset('storage/' . $resep->foto_resep) }}" alt="{{ $resep->foto_resep }}"> <br>
                         <span style="font-weight: 600;">{{ $resep->nama_resep }}</span>
                     </div>
                     <div class="card-body">
@@ -216,7 +217,7 @@
                                 Porsi Orang : {{ $resep->porsi_orang }} Orang
                             </div>
                             <div class="col-md-4 col-sm-12">
-                                Pengeluaran Memasak : RP{{ number_format($resep->pengeluaran_memasak, 2, '.', ','); }}
+                                Pengeluaran Memasak : RP{{ number_format($resep->pengeluaran_memasak, 2, ',', '.') }}
                             </div>
                         </div>
                     </div>
@@ -226,11 +227,12 @@
                                 <form action="/koki/resep/{{ $resep->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" onclick="return confirm('Yakin mau menghapus resep?')" class="btn btn-danger">Hapus</button>
+                                    <button type="submit" onclick="return confirm('Yakin mau menghapus resep?')"
+                                        class="btn btn-danger">Hapus</button>
                                 </form>
                             </div>
                             <div class="col-sm-12 text-center col-md-6">
-                                <form action="/resep/{{ $resep->id }}/edit" method="get">
+                                <form action="/koki/resep/{{ $resep->id }}/edit" method="get">
                                     <button type="submit" class="btn btn-warning">Edit</button>
                                 </form>
                             </div>
@@ -243,8 +245,8 @@
     <!-- -->
 
     <!-- Include jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Include Bootstrap JS (make sure the path is correct) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include Bootstrap JS (make sure the path is correct) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 @endsection

@@ -384,7 +384,4 @@
                 </div>
                 @endforeach
     </section>
-    <!-- client section -->
-        
-    <!-- end client section -->
 @endsection

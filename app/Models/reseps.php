@@ -23,7 +23,7 @@ class reseps extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     public function bahan() {
-        return $this->hasMany(bahan_reseps::class);
+        return $this->hasMany(bahan_reseps::class, 'resep_id');
     }
     public function langkah() {
         return $this->hasMany(langkah_reseps::class, 'resep_id');
