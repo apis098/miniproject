@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
+use App\Models\reseps;
 
 class KokiController extends Controller
 {
@@ -13,12 +14,13 @@ class KokiController extends Controller
      */
     public function index()
     {
+        $resep_sendiri = reseps::where("user_id", Auth::user()->id)->get();
         $userLogin = Auth::user();
         $notification = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)->get();
         }
-        return view('koki.profile', compact('notification'));
+        return view('koki.profile', compact('notification', 'resep_sendiri'));
     }
 
     /**

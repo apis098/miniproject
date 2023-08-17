@@ -13,6 +13,8 @@ class reseps extends Model
         'user_id',
         'nama_resep',
         'foto_resep',
+        'deskripsi_resep',
+        'hari_khusus',
         'porsi_orang',
         'lama_memasak',
         'pengeluaran_memasak',
@@ -24,6 +26,6 @@ class reseps extends Model
         return $this->hasMany(bahan_reseps::class);
     }
     public function langkah() {
-        return $this->hasMany(langkah_reseps::class);
+        return $this->hasMany(langkah_reseps::class, 'resep_id');
     }
 }

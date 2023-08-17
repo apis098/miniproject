@@ -197,6 +197,51 @@
             </div>
         </div>
     </div>
+
+    <!-- -->
+    <div class="row my-5">
+        @foreach ($resep_sendiri as $resep)
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <img src="{{ asset('storage/'.$resep->foto_resep) }}" alt="{{ $resep->foto_resep }}"> <br>
+                        <span style="font-weight: 600;">{{ $resep->nama_resep }}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                Lama Memasak : {{ $resep->lama_memasak }} Menit
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                Porsi Orang : {{ $resep->porsi_orang }} Orang
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                Pengeluaran Memasak : RP{{ number_format($resep->pengeluaran_memasak, 2, '.', ','); }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-sm-12 text-center col-md-6">
+                                <form action="/koki/resep/{{ $resep->id }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" onclick="return confirm('Yakin mau menghapus resep?')" class="btn btn-danger">Hapus</button>
+                                </form>
+                            </div>
+                            <div class="col-sm-12 text-center col-md-6">
+                                <form action="/resep/{{ $resep->id }}/edit" method="get">
+                                    <button type="submit" class="btn btn-warning">Edit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    <!-- -->
+
     <!-- Include jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

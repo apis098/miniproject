@@ -16,9 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('nama_resep');
             $table->string('foto_resep');
+            $table->text('deskripsi_resep');
             $table->integer('porsi_orang');
             $table->integer('lama_memasak');
             $table->bigInteger('pengeluaran_memasak');
+            $table->string('hari_khusus')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
