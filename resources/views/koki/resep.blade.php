@@ -128,9 +128,11 @@
                         <label for="exampleFormControlInput1" class="form-label"><b>Hari Khusus</b></label>
                         <select name="hari_khusus" id="exampleFormControlInput1" class="form-control">
                             <option value=""></option>
-                            <option value="ulang tahun">Ulang Tahun</option>
-                            <option value="tahun baru">Tahun Baru</option>
-                            <option value="valentine">Valentine</option>
+                            @if ($special_days)
+                                @foreach ($special_days as $d)
+                                    <option value="{{ $d->name }}">{{ $d->name }}</option>
+                                @endforeach
+                            @endif
                         </select>
                         @error('hari_khusus')
                             <div class="alert alert-danger">

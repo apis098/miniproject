@@ -199,3 +199,7 @@ Route::post('/store-dynamic-input', [testingController::class, 'store'])->name('
 
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
+
+Route::get('/test', function () {
+    return view('template.test');
+});
