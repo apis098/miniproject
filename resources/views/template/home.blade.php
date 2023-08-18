@@ -322,9 +322,9 @@
     </style>
 
     <div class="heading_container heading_center psudo_white_primary mb_45 mb-5">
-        <h2>
+        {{-- <h1 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
             Keluhan Pengguna
-        </h2>
+        </h1> --}}
     </div>
 
     <section class="content mt-5">
