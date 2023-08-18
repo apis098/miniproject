@@ -346,8 +346,8 @@
 
                                     </div>
                                     @if ($unreadNotificationCount > 0)
-                                        <span class="badge badge-light mb-4 me-2"
-                                            style="margin-left: -28px;">{{ $unreadNotificationCount }}</span>
+                                        <span class="badge badge-danger rounded-pill mb-4 me-2"
+                                            style="margin-left: -33px;">{{ $unreadNotificationCount }}</span>
                                     @endif
                                     {{-- dropdown profile & logout --}}
                                     <div class="input-group dropdown">

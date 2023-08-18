@@ -50,13 +50,15 @@ class ReplyController extends Controller
                 'reply' => $request->reply,
             ]);
             $complaint->replies()->save($reply);
+            if(!auth()->user()->id){
             $notifications = new notifications([
                 'notification_from' => auth()->user()->id,
                 'complaint_id' => $complaint->id,
                 'user_id' => $complaint->user->id,
                 'reply_id' => $reply->id,
             ]);
-            $complaint->notifications()->save($notifications);   
+            $complaint->notifications()->save($notifications);  
+        }    
             return redirect()->back()->with('success', 'Balasan berhasil dikirim.');
         } else {
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu.');

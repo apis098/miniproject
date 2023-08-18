@@ -222,7 +222,7 @@
             </a>
             </div>
             {{-- belum login --}}
-                @elseif($row->role != "admin" && $row->id != auth()->user()->id)
+                @elseif($row->role != "admin")
                 <div class="col-xl-3 col-sm-6 mb-5 zoom-effects" >
                     <a class="text-dark" href="{{route('show.profile',$row->id)}}">
                     <div class="bg-white shadow-sm py-4 px-4 border border-secondary" style="border-radius: 20px; height:25rem;"><img

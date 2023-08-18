@@ -23,6 +23,7 @@ class likeController extends Controller
             ]);
             $replies->increment('likes');
             $replies->likes()->save($like);
+            if(!auth()->user()->id){
             $notifications = new notifications([
                 'notification_from' => auth()->user()->id,
                 'like_id' => $like->id,
@@ -31,6 +32,7 @@ class likeController extends Controller
                 'complaint_id' => $complaintId,
             ]);
             $replies->notifications()->save($notifications);
+            }   
             return redirect()->route('ShowReplies.show', $complaintId)->with('success', 'anda memberi like komentar dari');
 
         }elseif($user && $replies->likes()->where('user_id', $request->user()->id)->exists()){
