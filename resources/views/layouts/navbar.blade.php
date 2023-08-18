@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HummaCook</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,11 +32,12 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-   <style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
         .nav-link.activet {
-          background-color: #E7B10A;
-            color: #fff;
+            background-color: white;
         }
 
         .nav-link.hover {
@@ -41,32 +45,31 @@
             color: #333;
         }
 
-        .asy{
+        .asy {
 
             background-image: url("/dist/img/ttpe.jpg");
-          background-size: cover;
-          }
-
-h1,
-h2
- {
-  font-family: 'Dancing Script', cursive;
-}
-
-</style>
-<style>
-      .cascading-right {
-        margin-right: -50px;
-      }
-
-      @media (max-width: 991.98px) {
-        .cascading-right {
-          margin-right: 0;
+            background-size: cover;
         }
-      }
-      .font-a{
-        font-family:'Dancing Script', cursive;
-      }
+
+        h1,
+        h2 {
+            font-family: 'Dancing Script', cursive;
+        }
+    </style>
+    <style>
+        .cascading-right {
+            margin-right: -50px;
+        }
+
+        @media (max-width: 991.98px) {
+            .cascading-right {
+                margin-right: 0;
+            }
+        }
+
+        .font-a {
+            font-family: 'Dancing Script', cursive;
+        }
     </style>
 
 
@@ -81,149 +84,54 @@ h2
                 width="60">
         </div>
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand bg-dark">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars" style="color: #f0f0f0"></i></a>
-                </li>
-            </ul>
 
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown" >
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-user " style="color: #f0f0f0"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-user mr-2"></i>admin
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="{{route('actionlogout')}}" class="dropdown-item">
-                            <i class="fas fa-arrow-left mr-2"></i>Log Out
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt" style="color: #f0f0f0"></i>
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-        <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #F7941E;">
             <!-- Brand Logo -->
-            <a href="{{url('/')}}" class="brand-link">
-                <img src="/dist/img/admin4.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
-                    style="opacity: .8">
-                <span class="brand-text font-weight-light text-white fw-bold font-a " >HummaCook</span>
-            </a>
-
+            <h3 class="text-white text-center my-2 mb-4">Hummacook</h3>
             <!-- Sidebar -->
             <div class="sidebar">
-                <!-- Sidebar user panel (optional) -->
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="/dist/img/admin.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="{{route('admin.index')}}" class="d-block text-yellow">Admin</a>
-                    </div>
-                </div>
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                         <li class="nav-item">
-                            <a href="{{route('dashboard')}}" class="nav-link text-light {{ request()->routeIs('dashboard') ? 'activet' : '' }}">
+                            <a href="{{ route('admin.index') }}"
+                                class="nav-link w-75 mx-4  {{ request()->routeIs('admin.index') ? 'activet text-warning' : 'text-white' }}">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
                                 </p>
                             </a>
                         </li>
-
-                        </li>
-
-
                         <li class="nav-item">
-                            <a href="/admin/kategori-bahan" class="nav-link text-light {{ request()->is('admin/kategori-bahan') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-wheat-awn"></i>
-                                <p>
-                                            Kategori Bahan
-
-                                </p>
-                            </a>
-                        
-                        <li class="nav-item">
-                            <a href="{{route('SpecialDays.index')}}" class="nav-link text-light {{ request()->is('admin/special-days') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-calendar-check"></i>
-                                <p>
-                                  Kategori Hari Khusus
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('ComplaintUser.index')}}" class="nav-link text-light {{ request()->is('keluhan/by-id') ? 'activet' : '' }}">
+                            <a href="{{ route('Complaint.all') }}"
+                                class="nav-link w-75 mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-warning' : 'text-white' }}">
                                 <i class="nav-icon fas fa-user-pen"></i>
                                 <p>
-                                   Keluhan anda
+                                    Keluhan
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('Complaint.all')}}" class="nav-link text-light {{ request()->is('complaint/all') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-user-pen"></i>
-                                <p>
-                                    Semua Keluhan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ReplyUser.index')}}" class="nav-link text-light {{ request()->is('reply-complaint') ? 'activet' : '' }}">
+                            <a href="{{ route('ReplyUser.index') }}"
+                                class="nav-link w-75 mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-warning' : 'text-white' }}">
                                 <i class="nav-icon fas fa-reply-all"></i>
                                 <p>
-                                   Solusi keluhan terkirim
+                                    Balasan
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('Report.index')}}" class="nav-link text-light {{ request()->is('admin/laporan-pengguna') ? 'activet' : '' }}">
+                            <a href="{{ route('Report.index') }}"
+                                class="nav-link w-75 mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-warning' : 'text-white' }}">
                                 <i class="fa-solid fa-triangle-exclamation"></i>
                                 <p>
-                                    Laporan pelanggaran
+                                    Laporan
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/admin/edit-tentang" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-pen-to-square"></i>
-                                <p>
-                                   Tentang
-                                </p>
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a href="{{route('Testing.notif')}}" class="nav-link text-light {{ request()->is('admin/edit-tentang') ? 'activet' : '' }}">
-                                <i class="nav-icon fas fa-pen-to-square"></i>
-                                <p>
-                                   testing dynamic input
-                                </p>
-                            </a>
-                        </li> --}}
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -279,21 +187,25 @@ h2
     <script src="/dist/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="/dist/js/pages/dashboard.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
-     <script src="path_to_jquery.min.js"></script>
-     <script src="path_to_moment.min.js"></script>
-     <script src="path_to_fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous">
+    </script>
+    <script src="path_to_jquery.min.js"></script>
+    <script src="path_to_moment.min.js"></script>
+    <script src="path_to_fullcalendar.min.js"></script>
 
     <script>
-    document.addEventListener('calendar', function() {
-      var calendarEl = document.getElementById('calendar'); // ID kalender
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        // Konfigurasi kalender
-        // ...
-      });
-      calendar.render();
-    });
+        document.addEventListener('calendar', function() {
+            var calendarEl = document.getElementById('calendar'); // ID kalender
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                // Konfigurasi kalender
+                // ...
+            });
+            calendar.render();
+        });
     </script>
 </body>
 

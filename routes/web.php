@@ -143,11 +143,6 @@ Route::put('/status-baca/like-replies/{id}', [notificationController::class, 're
 // artikel
 Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
 
-
-Route::get('dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
-
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout
 
@@ -163,37 +158,25 @@ Route::post('actionregister', [RegisterController::class, 'actionregister'])->na
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 Route::get('/keluhan/by-id', [complaintController::class, 'index'])->name('ComplaintUser.index');
 Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name('ComplaintUser.update');
-Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
-Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
 //report
 Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');
 
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('admin/index', [AdminController::class, 'index'])->name('admin.index');
     Route::prefix('/admin')->group(function () {
-        //Hari Khusus
-        Route::get('special-days', [special_days_controller::class, 'index'])->name('SpecialDays.index');
-        Route::get('/special-days-create', [special_days_controller::class, 'create'])->name('SpecialDays.create');
-        Route::get('/special-days-edit/{id}', [special_days_controller::class, 'edit'])->name('SpecialDays.edit');
-        Route::get('special-days/{id}', [special_days_controller::class, 'show'])->name('SpecialDays.show');
-        Route::put('/special-days-update/{id}', [special_days_controller::class, 'update'])->name('SpecialDays.update');
-        Route::post('/special-days-store', [special_days_controller::class, 'store'])->name('SpecialDays.store');
-        Route::delete('special-days-delete/{id}', [special_days_controller::class, 'destroy'])->name('SpecialDays.destroy');
-
+        Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
+        Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
+        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::delete('/content-destroy/{id}', [ReportController::class, 'block'])->name('ReplyBlocked.destroy');
         Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
-
-        Route::resource('kategori-bahan', kategori_bahan_controller::class);
-        Route::resource('edit-tentang', AboutController::class);
     });
 });
 
