@@ -155,6 +155,8 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
+Route::get('delete/profile', [KokiController::class, 'deleteProfilePicture'])->name('delete.profile');
+
 
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');

@@ -52,6 +52,19 @@ class KokiController extends Controller
 
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
     }
+    public function deleteProfilePicture()
+    {
+        $user = Auth::user();
+
+        if ($user->foto) {
+            Storage::disk('public')->delete($user->foto);
+            $user->foto = null;
+            $user->save();
+            return redirect()->back()->with('success', 'Foto profile telah dihapus');
+        } else {
+            return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -64,7 +64,7 @@
                 <div class="modal-dialog modal-dialog-centered profile-modal">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" style="font-family: Poppins;" id="exampleModalLabel">Edit Gambar</h1>
+                            <h1 class="modal-title fs-5" style="font-family: Poppins;" id="exampleModalLabel"><b class="ms-2">Edit Profile</b></h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
@@ -75,26 +75,35 @@
                                 <div class="profile d-flex justify-content-center">
 
                                     <label for="fileInputA"
-                                        class="btn btn-warning rounded-5 text-light"
-                                        style="position: absolute; top: 40%; right: 33%;background-color: #F7941E; border-radius: 15px;" id="chooseFileButtonA">
-                                        <b class="ms-3 me-3">Pilih file</b>
+                                        class="btn btn-warning btn-sm rounded-5 text-light"
+                                        style="position: absolute; top: 80%; right: 46%;background-color: #F7941E; border-radius: 9px;" id="chooseFileButtonA">
+                                        <b class="ms-2 me-2">Pilih file</b>
                                     </label>
-
-                                    <button class="btn btn-warning rounded-5 text-light" style="position: absolute; top: 40%; right: 7%;background-color: #F7941E; border-radius: 15px;" type="submit" id="saveProfileButton"><b class="ms-3 me-3">Simpan</b></button>
+                                   
+                                    <a href="{{route('delete.profile')}}" class="btn btn-warning btn-sm rounded-5" style="position: absolute; top: 80%; right: 24.7%;border-radius: 9px; background-color: #F7941E; "><b class="ms-1 me-1 text-light">Hapus foto</b></a>
+                                    
+                                    <button class="btn btn-warning btn-sm rounded-5 text-light me-3" style="position: absolute; top: 80%; right: 5%;border-radius: 9px; background-color: #F7941E; " type="submit" id="saveProfileButton"><b class="ms-1 me-1">Simpan</b></button>
                                     
                                     <input type="file" id="fileInputA" name="profile_picture" style="display:none">
+                                    
                                     @if($userLogin->foto)
                                     <img src="{{ asset('storage/'.$userLogin->foto) }}" width="106px" height="104px"
-                                    style="border-radius: 50%; margin-right:60%;" id="profile-image">
+                                    style="border-radius: 50%; margin-right:-28%;" id="profile-image">
                                     @else
                                     <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px"
-                                    style="border-radius: 50%; margin-right:60%;" id="profile-image">
+                                    style="border-radius: 50%; margin-right:65%;" id="profile-image">
                                     @endif
+                                   
+                                    <div class="col-8" style="margin-left:35%;">
+                                    <input type="text" value="{{$userLogin->name}}" name="name" class="form-control form-control-sm">
+                                    <input type="text" name="email" value="{{$userLogin->email}}" class="form-control form-control-sm mt-3">
+                                    </div>
+                                
                                 </div>
                         </div>
 
-                        <div class="modal-footer">
-                          
+                        <div class="modal-footer mt-3 mb-4">
+                           
                         </div>
                         </form>
                     </div>
