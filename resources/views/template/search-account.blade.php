@@ -196,7 +196,7 @@
             <!-- Team item -->
             @foreach ($user as $row)
                 @if (Auth::check() && $row->role != 'admin' && $row->id != auth()->user()->id)
-                    <div class="col-xl-3 col-sm-6 mb-5 zoom-effects">
+                    <div class="col-xl-3 col-sm-6 mb-5">
                         <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
                             <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
                                 style="border-radius: 20px; height:25rem;">
@@ -207,7 +207,8 @@
                                     <img src="{{ asset('images/default.jpg  ') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                 @endif
-                                <h5 class="mb-0">{{ $row->name }}</h5> <span
+                                
+                                <h5 class="mb-0">{{ strlen($row->name) > 10 ? substr($row->name, 0, 10) . '...' : $row->name }}</h5> <span
                                     class="small text-muted">{{ $row->email }}</span>
                                 <div class="d-flex justify-content-center mt-3 me-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
@@ -254,7 +255,7 @@
                     </div>
                     {{-- belum login --}}
                 @elseif(!Auth::check() && $row->role != 'admin')
-                    <div class="col-xl-3 col-sm-6 mb-5 zoom-effects">
+                    <div class="col-xl-3 col-sm-6 mb-5">
                         <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
                             <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
                                 style="border-radius: 20px; height:25rem;">
@@ -265,8 +266,8 @@
                                     <img src="{{ asset('images/default.jpg  ') }}" alt="" width="100"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                 @endif
-                                <h5 class="mb-0">{{ $row->name }}</h5> <span
-                                    class="small text-muted">{{ $row->email }}</span>
+                                <h5 class="mb-0">{{ strlen($row->name) > 15 ? substr($row->name, 0, 15) . '...' : $row->name }}</h5> <span
+                                    class="small text-muted">{{ strlen($row->email) > 25 ? substr($row->email, 0, 25) . '...' : $row->email }}</span>
                                 <div class="d-flex justify-content-center mt-3 me-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
                                         viewBox="0 0 256 256">

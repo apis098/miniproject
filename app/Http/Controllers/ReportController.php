@@ -29,6 +29,10 @@ class ReportController extends Controller
         $reply = Reply::findOrFail($id);
         $reply->user->increment('jumlah_pelanggaran');
         $reply->delete();
+        if($reply->user->jumlah_pelanggaran > 10){
+            $reply->user->delete();
+            return redirect()->back()->with('success', 'User telah diblokir');
+        }
         return redirect()->back()->with('success', 'Komentar telah diblokir');
     }
     public function destroy($id){
