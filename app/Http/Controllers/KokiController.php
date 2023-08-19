@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\notifications;
 use App\Models\reseps;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class KokiController extends Controller
 {
@@ -26,7 +29,29 @@ class KokiController extends Controller
         }
         return view('koki.profile', compact('notification', 'resep_sendiri','unreadNotificationCount','userLogin'));
     }
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
 
+        $this->validate($request, [
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('profile_picture')) {
+            // Delete old profile picture if exists
+            if ($user->foto) {
+                Storage::disk('public')->delete($user->foto);
+            }
+
+            // Upload new profile picture
+            $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->foto = $profilePicturePath;
+            $user->save();
+        }
+
+
+        return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
+    }
     /**
      * Show the form for creating a new resource.
      */

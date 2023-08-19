@@ -154,6 +154,7 @@ Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('acti
 
 Route::get('register', [RegisterController::class, 'register'])->name('register');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
+Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
 
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
@@ -185,9 +186,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:koki'])->group(function () {
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
-
+    
         Route::resource('resep', ResepsController::class);
-
     });
 });
 

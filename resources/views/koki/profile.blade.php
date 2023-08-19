@@ -6,9 +6,14 @@
                 <div class="card my-5">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
-                            <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                            @if($userLogin->foto)
+                            <img src="{{ asset('storage/'. $userLogin->foto) }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <button type="submit" class="btn btn-warning btn-sm  rounded-circle p-2"
+                            @else
+                            <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                                alt="">
+                            @endif
+                            <button type="submit" style="position: absolute; top: -10px; right: -10px; background-color:#F7941E;" class="btn btn-warning btn-sm text-light rounded-circle p-2"
                                 style="position: absolute; top: -10px; right: -10px;" data-bs-toggle="modal"
                                 data-bs-target="#mymodal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -48,48 +53,36 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="#" method="POST" enctype="multipart/form-data">
+                            <form action="{{route('update.profile')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('put')
+                                {{-- @method('put') --}}
                                 <div class="profile d-flex justify-content-center">
 
                                     <label for="fileInputA"
-                                        class="change-profile-button d-flex justify-content-center rounded-circle p-2 bg-warning"
-                                        style="position: absolute; top: 5%; right: 37%;" id="chooseFileButtonA">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 48 48">
-                                            <mask id="ipSEdit0">
-                                                <g fill="none" stroke="#fff" stroke-linejoin="round" stroke-width="4">
-                                                    <path stroke-linecap="round" d="M7 42h36" />
-                                                    <path fill="#ffff"
-                                                        d="M11 26.72V34h7.317L39 13.308L31.695 6L11 26.72Z" />
-                                                </g>
-                                            </mask>
-                                            <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)" />
-                                        </svg>
+                                        class="btn btn-warning rounded-5 text-light"
+                                        style="position: absolute; top: 40%; right: 33%;background-color: #F7941E; border-radius: 15px;" id="chooseFileButtonA">
+                                        <b class="ms-3 me-3">Pilih file</b>
                                     </label>
-                                    <input type="file" id="fileInputA" name="fileInputA" style="display:none"
-                                        accept=".jpg,.png,.pdf">
-                                    <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px"
-                                        style="border-radius: 50%" id="profile-image">
+
+                                    <button class="btn btn-warning rounded-5 text-light" style="position: absolute; top: 40%; right: 7%;background-color: #F7941E; border-radius: 15px;" type="submit" id="saveProfileButton"><b class="ms-3 me-3">Simpan</b></button>
+                                    
+                                    <input type="file" id="fileInputA" name="profile_picture" style="display:none">
+                                    @if($userLogin->foto)
+                                    <img src="{{ asset('storage/'.$userLogin->foto) }}" width="106px" height="104px"
+                                    style="border-radius: 50%; margin-right:60%;" id="profile-image">
+                                    @else
+                                    <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px"
+                                    style="border-radius: 50%; margin-right:60%;" id="profile-image">
+                                    @endif
                                 </div>
                         </div>
 
                         <div class="modal-footer">
-                            <button class="btn btn-primary" type="submit" id="saveProfileButton">Simpan</button>
+                          
                         </div>
                         </form>
                     </div>
                     <script>
-                        document.getElementById('chooseFileButtonA').addEventListener('click', function() {
-                            document.getElementById('fileInputA').click();
-                        });
-
-                        document.getElementById('fileInputA').addEventListener('change', function() {
-                            var selectedFile = this.files[0];
-                            console.log('Selected file:', selectedFile);
-                        });
-
                         document.getElementById("fileInputA").addEventListener("change", function(event) {
                             var input = event.target;
                             if (input.files && input.files[0]) {
