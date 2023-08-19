@@ -24,7 +24,7 @@ class KokiController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view('koki.profile', compact('notification', 'resep_sendiri','unreadNotificationCount'));
+        return view('koki.profile', compact('notification', 'resep_sendiri','unreadNotificationCount','userLogin'));
     }
 
     /**

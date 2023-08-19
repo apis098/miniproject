@@ -16,26 +16,36 @@ class RegisterController extends Controller
 
     public function actionregister(Request $request)
     {
-       $this->validate($request,[
-        'email' => 'required|email|unique:users,email',
-        'name' => 'required',
-        'password' => 'required',
-        'copassword' => 'required|same:password',
-
-    ],[
-        'email.unique' => 'Data Email Sudah Ada/Terpakai!',
-        'copassword.same' => 'Password tidak sama.',
-        'copassword.required' => 'Password harus di isi.',
-        'password.required' => 'Password tidak boleh kosong     .',
-       ]);
+        $this->validate($request, [
+            'email' => 'required|email|unique:users,email',
+            'name' => 'required',
+            'password' => 'required',
+            'copassword' => 'required|same:password',
+            'profile_picture' => 'mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'email.unique' => 'Data Email Sudah Ada/Terpakai!',
+            'copassword.same' => 'Password tidak sama.',
+            'copassword.required' => 'Password harus di isi.',
+            'password.required' => 'Password tidak boleh kosong.',
+            'profile_picture.required' => 'Foto profil harus diunggah.',
+            'profile_picture.image' => 'File yang diunggah harus berupa gambar.',
+            'profile_picture.mimes' => 'Format gambar yang diizinkan: jpeg, png, jpg, gif.',
+            'profile_picture.max' => 'Ukuran gambar maksimal 2MB.',
+        ]);
 
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
             'role' => 'koki',
-
         ]);
+
+        // Handle profile picture upload
+        if ($request->hasFile('profile_picture')) {
+            $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->foto = $profilePicturePath;
+            $user->save();
+        }
 
         Session::flash('success_message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan username dan password.');
         return redirect('login');

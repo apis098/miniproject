@@ -27,7 +27,7 @@ class followersController extends Controller
         }else{
             $user = User::all();
         }
-        return view('template.search-account', compact('user', 'notification','userLogin','unreadNotificationCount'));
+        return view('template.search-account', compact('user', 'notification','userLogin','unreadNotificationCount','userLogin'));
     }
     public function show_profile($id){
         
@@ -41,7 +41,7 @@ class followersController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view('template.profile-oranglain',compact('user','notification','userLogin','unreadNotificationCount'));
+        return view('template.profile-oranglain',compact('user','notification','userLogin','unreadNotificationCount','userLogin'));
     }
     public function store(Request $request, $id)
     {

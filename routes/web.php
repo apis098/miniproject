@@ -52,7 +52,7 @@ Route::get('/', function () {
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
        
     }
-    return view('template.home', compact('real_reseps', 'complaints','notification','unreadNotificationCount'));
+    return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount'));
 })->name('home');
 
 Route::get('artikel', function () {
@@ -66,7 +66,7 @@ Route::get('artikel', function () {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.artikel', compact('reseps', 'notification','unreadNotificationCount'));
+    return view('template.artikel', compact('reseps','userLogin', 'notification','unreadNotificationCount'));
 })->name('artikel');
 
 Route::get('menu', function () {
@@ -79,7 +79,7 @@ Route::get('menu', function () {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('notification','unreadNotificationCount'));
+    return view('template.menu', compact('notification','unreadNotificationCount','userLogin'));
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
@@ -92,7 +92,7 @@ Route::post('/menu', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('notification','unreadNotificationCount'));
+    return view('template.menu', compact('notification','unreadNotificationCount','userLogin'));
 });
 
 Route::get('about', function () {
@@ -105,7 +105,7 @@ Route::get('about', function () {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.about', compact('notification','unreadNotificationCount'));
+    return view('template.about', compact('notification','unreadNotificationCount','userLogin'));
 })->name('about');
 
 Route::get('hari', function () {
@@ -118,7 +118,7 @@ Route::get('hari', function () {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('notification','unreadNotificationCount'));
+    return view('template.hari', compact('notification','unreadNotificationCount','userLogin'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
@@ -131,7 +131,7 @@ Route::post('hari', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('notification','unreadNotificationCount'));
+    return view('template.hari', compact('notification','unreadNotificationCount','userLogin'));
 });
 
 //Search user account

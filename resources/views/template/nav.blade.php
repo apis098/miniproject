@@ -350,20 +350,32 @@
                                         @if ($unreadNotificationCount > 0)
                                             <span class="badge badge-danger rounded-pill mb-4 me-2"
                                                 style="margin-left: -33px;">{{ $unreadNotificationCount }}</span>
-                                        @endif
+                                        @endif  
                                         {{-- dropdown profile & logout --}}
                                         <div class="input-group dropdown">
                                             <a data-toggle="dropdown" href="#">
+                                                @if($userLogin->foto)
                                                 <img loading="lazy" class="mr-3 rounded-circle"
-                                                src="{{ asset('images/client1.jpg') }}"
+                                                src="{{ asset('storage/' . $userLogin->foto) }}"
                                                 alt="profile image" style="max-width:40px">
+                                                @else
+                                                <img loading="lazy" class="mr-3 rounded-circle"
+                                                src="{{ asset('images/default.jpg') }}"
+                                                alt="profile image" style="max-width:40px">
+                                                @endif
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto" style="width: 255px; border-radius:13px;" >
                                                 <div class="input-group">
                                                 <a href="#">
+                                                    @if($userLogin->foto)
                                                     <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                    src="{{ asset('images/client1.jpg') }}"
+                                                    src="{{ asset('storage/' . $userLogin->foto) }}"
                                                     alt="profile image" style="max-width:40px">
+                                                    @else
+                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                    src="{{ asset('images/default.jpg') }}"
+                                                    alt="profile image" style="max-width:40px">
+                                                    @endif
                                                 </a>
                                                 <p class="mt-2 text-orange"><b>{{auth()->user()->name}}</b></p>
                                                 </div>

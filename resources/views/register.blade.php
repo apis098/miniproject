@@ -53,14 +53,14 @@
                                     {{ session('message') }}
                                 </div>
                             @endif
-                            <form action="{{ route('actionregister') }}" method="post">
+                            <form action="{{ route('actionregister') }}" method="post" enctype="multipart/form-data">
                                 @csrf
 
                                 <!-- Username input -->
                                 <div class="form-outline mb-1">
                                     <input type="text" id="name" name="name" class="form-control mb-1"
                                         placeholder="Username..." required="" />
-                                    <label class="form-label " for="name"><b>Username</b></label>
+                                    <label class="form-label" for="name"><b>Username</b></label>
                                 </div>
 
                                 <!-- Email input -->
@@ -68,25 +68,35 @@
                                     <input type="email" id="email" @error('email') is-invalid @enderror
                                         name="email" class="form-control mb-1" placeholder="Email..."
                                         required="" />
-                                        @error('email')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    <label class="form-label " for="email"><b>Email address</b></label>
+                                    @error('email')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <label class="form-label" for="email"><b>Email</b></label>
                                 </div>
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-1">
                                     <input type="password" name="password" class="form-control mb-1"
                                         placeholder="Password..." required="">
-                                    <label class="form-label " for="password"><b>Password</b></label>
+                                    <label class="form-label" for="password"><b>Password</b></label>
                                 </div>
                                 <div class="form-outline mb-1">
                                     <input type="password" name="copassword" id="copassword" class="form-control mb-1"
                                         placeholder="Confirm Password..." required="">
-                                    <label class="form-label " for="copassword"><b>Confirm Password</b></label>
+                                    <label class="form-label" for="copassword"><b>Confirm Password</b></label>
                                 </div>
+                                <div class="form-outline mb-1">
+                                    <input type="file" name="profile_picture" id="profile_picture"
+                                        class="form-control mb-1" placeholder="Foto profil">
+                                    <label class="form-label" for="profile_picture"><b>Foto profil</b></label>
+                                </div>
+                                @error('profile_picture')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-outline-dark  mb-4 rounded-5"><b>Submit </b><i
                                         class="fa-solid fa-right-to-bracket"></i></button>
