@@ -175,6 +175,15 @@
         .zoom-effects:hover {
             transform: scale(0.95);
         }
+        .yuhu {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+        }
     </style>
 
 
@@ -259,39 +268,89 @@
                                                 @if($row->sender->id != auth()->user()->id)
 
                                                     <div class="dropdown-divider"></div>
-                                                            <div class="input-group">
-
-                                                                <a href="#">
-                                                                    <img class="ms-2 mb-1 rounded-circle"
-                                                                    src="{{ asset('images/client1.jpg') }}"
-                                                                    alt="profile image" style="max-width:25px">
-                                                                </a>
-                                                                <p class="mb-2 text-orange">{{$row->sender->name}}</p>
-                                                                @if($row->reply_id != null && $row->complaint_id != null)
-                                                                <small class="mt-1 ms-1 text-secondary">telah membalas keluhan anda</small><a href="" class=" ms-1 text-orange">
-                                                                    <img class="ms-2 mb-2 rounded-circle"
-                                                                    src="{{ asset('images/badge.png') }}"
-                                                                    alt="profile image" style="max-width:10px"></a>
-                                                                @elseif($row->reply_id != null && $row->like_id != null)
-                                                                <small class="mt-1 ms-1 text-secondary">Menyukai komentar anda</small><a href="" class=" ms-1 text-orange">
-                                                                    <img class="ms-2 mb-2 rounded-circle"
-                                                                    src="{{ asset('images/badge.png') }}"
-                                                                    alt="profile image" style="max-width:10px"></a>
-                                                                @elseif($row->follower_id != null)
-                                                                <small class="mt-1 ms-1 text-secondary">Mulai mengikuti anda</small><a href="" class=" ms-1 text-orange">
-                                                                    <img class="ms-2 mb-2 rounded-circle"
-                                                                        src="{{ asset('images/badge.png') }}"
-                                                                        alt="profile image" style="max-width:10px"></a>
-                                                                @endif
-                                                            </div>
-
-                                                @endif
+                                                    <div class="input-group">
+                                                        <a href="#">
+                                                            <img class="ms-2 mt-1 rounded-circle"
+                                                                src="{{ asset('images/client1.jpg') }}"
+                                                                alt="profile image" style="max-width:35px">
+                                                        </a>
+                                                        <p class="mt-2 text-orange">{{ $row->sender->name }}</p>
+                                                        @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
+                                                        <form action="{{ route('replies.notification', $row->id) }}"
+                                                            method="POST">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <button class="yuhu mt-2" type="submit">
+                                                            <small class="mt-1 ms-1 text-secondary">Membalas keluhan anda</small>
+                                                            @if ($row->status == 'belum')
+                                                            <img class="ms-2 mb-2 rounded-circle"
+                                                                src="{{ asset('images/badge.png') }}"
+                                                                alt="profile image" style="max-width:10px">
+                                                            @endif
+                                                            <input hidden type="text" value="{{$row->complaint_id}}" name="replies_id" id="replies_id" class="form-control">
+                                                            </button>
+                                                        </form>
+                                                        @elseif($row->reply_id != null && $row->like_id != null)
+                                                        <form action="{{ route('replies.notification', $row->id) }}"
+                                                            method="POST">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <button class="yuhu mt-2" type="submit">
+                                                            <small class="mt-1 ms-1 text-secondary">Menyukai komentar anda</small>
+                                                            @if ($row->status == 'belum')
+                                                            <img class="ms-2 mb-2 rounded-circle"
+                                                                src="{{ asset('images/badge.png') }}"
+                                                                alt="profile image" style="max-width:10px">
+                                                            @endif
+                                                            <input hidden type="text" value="{{$row->complaint_id}}" name="replies_id" id="replies_id" class="form-control">
+                                                            </button>
+                                                        </form>
+                                                        @elseif($row->follower_id == auth()->user()->id && $row->complaint_id != null )
+                                                        <form action="{{ route('replies.notification', $row->id) }}"
+                                                            method="POST">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <button class="yuhu mt-2" type="submit">
+                                                            <small class="mt-1 ms-1 text-secondary">Memiliki kesulitan memasak</small>
+                                                            @if ($row->status == 'belum')
+                                                            <img class="ms-2 mb-2 rounded-circle"
+                                                                src="{{ asset('images/badge.png') }}"
+                                                                alt="profile image" style="max-width:10px">
+                                                            @endif
+                                                            <input hidden type="text" value="{{$row->complaint_id}}" name="replies_id" id="replies_id" class="form-control">
+                                                            </button>
+                                                        </form>
+                                                        @elseif($row->follower_id != null && $row->complaint_id == null)
+                                                            <form action="{{ route('follow.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class=" ms-1 text-secondary">Mulai mengikuti
+                                                                        anda</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                <input type="text" hidden name="follower_id"
+                                                                    id="follower_id" value="{{ $row->follower_id }}"
+                                                                    class="form-control">
+                                                            </form>
+                                                        @endif
+                                                    </div>
+                                                    @endif
                                                 @endforeach
                                                 <div class="dropdown-divider"></div>
                                             </div>
 
                                         </div>
-
+                                        @if ($unreadNotificationCount > 0)
+                                            <span class="badge badge-danger rounded-pill mb-4 me-2"
+                                                style="margin-left: -33px;">{{ $unreadNotificationCount }}</span>
+                                        @endif
                                         {{-- dropdown profile & logout --}}
                                         <div class="input-group dropdown">
                                             <a data-toggle="dropdown" href="#">
