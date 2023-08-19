@@ -84,12 +84,18 @@
                             </button>
                         </div>
                         <div class="modal-body d-flex align-items-center"> <!-- Tambahkan kelas "align-items-center" -->
-                            <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                            @if($user->foto)
+                            <img src="{{ asset('storage/'.$user->foto) }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
                             <textarea class="form-control" name="" rows="5" placeholder="Alasan"></textarea>
+                            @else
+                            <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                                alt="">
+                            <textarea class="form-control rounded-5" name="" rows="5" placeholder="Alasan..."></textarea>
+                            @endif
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning">Laporkan</button>
+                            <button type="button" class="btn btn-light text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Laporkan</b></button>
                         </div>
                     </div>
                 </div>
@@ -147,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-                <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep anda</b></h4>
+                <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep dibuat</b></h4>
                 <div class="row mb-5">
                     <div class="col-lg-4 my-1">
                         <div class="card p-3"

@@ -55,7 +55,9 @@
             color: #F7941E;
             background: white;
         }
-
+        #navbar:hover{
+            color: #272829;
+        }
         .nav-link {
             white-space: nowrap;
 
@@ -232,22 +234,22 @@
                         <div class="collapse navbar-collapse" class="ms-4" style="margin-left: 60px;;"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto ">
-                                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('home') }}"><b>Home</b></a>
+                                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
+                                    <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Home</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('menu') }}"><b>Resep</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ route('menu') }}"><b>Resep</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('hari') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('hari') }}"><b>Hari Khusus</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ route('hari') }}"><b>Hari Khusus</b></a>
 
                                 </li>
                                 <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ url('/search-account') }}"><b>Cari Akun</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ url('/search-account') }}"><b>Cari Akun</b></a>
                                 </li>
 
                                 <li class="nav-item {{ request()->is('about') ? 'active' : '' }} me-2" style="font-size: 15px">
-                                    <a class="nav-link" href="{{ route('about') }}"><b>Tentang</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ route('about') }}"><b>Tentang</b></a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
