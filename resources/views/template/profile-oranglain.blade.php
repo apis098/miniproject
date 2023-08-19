@@ -33,10 +33,15 @@
                 <div class="card my-5 border border-dark" style="border-radius: 25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
-                            <img src="{{ asset('sawi.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                            @if($user->foto)
+                            <img src="{{ asset('storage/'. $user->foto) }}" width="146px" height="144px" style="border-radius: 50%"
                                 alt="">
+                            @else
+                            <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px" style="border-radius: 50%"
+                                alt="">
+                            @endif
                             <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
-                                style="position: absolute; top: -10px; right: -10px; background-color:#F7941E;" data-toggle="modal"
+                                style="position: absolute;  right: -2px; background-color:#F7941E;" data-toggle="modal"
                                 data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
                                     <path fill="currentColor"
@@ -56,11 +61,11 @@
                         <form action="{{route('Followers.store',$user->id)}}" method="POST">
                             @csrf
                                 @if(Auth::check() && $user->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                <button type="submit" class="btn btn-light text-light float-center mb-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
+                                <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
                                 @elseif(Auth::check() && $userLogin->followers()->where('follower_id', $user->id)->exists())
-                                <button type="submit" class="btn btn-light text-light float-center mb-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti balik</b></button>
+                                <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti balik</b></button>
                                 @else
-                                <button type="submit" class="btn btn-light text-light float-center mb-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
+                                <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
                                 @endif
                             
                             </form>
@@ -90,18 +95,18 @@
                 </div>
             </div>
             {{-- end modal --}}
+            {{-- akhir modal --}}
             <div class="col-lg-8">
                 <div class="row mt-5">
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
-                                <div class="col-7">
-                                    <span
-                                        style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        392
+                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-7 ">
+                                    <span class="ms-3" style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        {{$user->like}}
                                     </span> <br>
-                                    Suka
+                                    <p class="ms-3">Suka</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-thumbs-up fa-2xl"></i>
@@ -111,14 +116,13 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-7">
-                                    <span
-                                        style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        5
+                                    <span class="ms-3" style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        {{$user->resep->count()}}
                                     </span> <br>
-                                    Resep
+                                    <p class="ms-3">Resep</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-book fa-flip-horizontal fa-2xl"></i>
@@ -128,14 +132,13 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-7">
-                                    <span
-                                        style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        {{$user->followers}}
+                                    <span class="ms-3" style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        {{$user->followers }}
                                     </span> <br>
-                                    Pengikut
+                                    <p class="ms-3">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-user-plus fa-2xl"></i>
@@ -144,14 +147,14 @@
                         </div>
                     </div>
                 </div>
-                <h4 style="font-weight: 600;" class="my-3">Resep dibuat</h4>
+                <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep anda</b></h4>
                 <div class="row mb-5">
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-1">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-4">
-                                    <img src="{{ asset('images/f1.png') }}" width="70px" alt="">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
                                 </div>
                                 <div class=" col-8">
                                     <h3 class="as">
@@ -164,12 +167,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-1">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-4">
-                                    <img src="{{ asset('images/f1.png') }}" width="70px" alt="">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
                                 </div>
                                 <div class=" col-8">
                                     <h3 class="as">
@@ -182,12 +185,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-1">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-4">
-                                    <img src="{{ asset('images/f1.png') }}" width="70px" alt="">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="">
                                 </div>
                                 <div class=" col-8">
                                     <h3 class="as">
@@ -200,12 +203,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-1">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-4">
-                                    <img src="{{ asset('images/f1.png') }}" width="70px" alt="">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
                                 </div>
                                 <div class=" col-8">
                                     <h3 class="as">
@@ -218,12 +221,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 my-2">
+                    <div class="col-lg-4 my-1">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-4">
-                                    <img src="{{ asset('images/f1.png') }}" width="70px" alt="">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
                                 </div>
                                 <div class=" col-8">
                                     <h3 class="as">

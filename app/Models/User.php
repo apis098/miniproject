@@ -23,7 +23,7 @@ class User extends Authenticatable
         'followers',
         'password',
         'role',
-        'foto',
+        'foto', 
     ];
 
     /**

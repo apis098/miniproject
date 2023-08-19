@@ -1,20 +1,36 @@
 @extends('template.nav')
 @section('content')
+<style>
+     .as {
+            color: black;
+            font-size: 20px;
+            font-family: Poppins;
+            font-weight: 500;
+        }
+
+        .ai {
+            color: black;
+            font-size: 13px;
+            font-family: Poppins;
+            font-weight: 400;
+            word-wrap: break-word;
+            padding-top: 5px
+        }
+</style>
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 mb-5">
-                <div class="card my-5">
+            <div class="col-sm-4">
+                <div class="card my-5 border border-dark" style="border-radius:25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             @if($userLogin->foto)
-                            <img src="{{ asset('storage/'. $userLogin->foto) }}" width="106px" height="104px" style="border-radius: 50%"
+                            <img src="{{ asset('storage/'. $userLogin->foto) }}" width="146px" height="144px" style="border-radius: 50%"
                                 alt="">
                             @else
-                            <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                            <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px" style="border-radius: 50%"
                                 alt="">
                             @endif
-                            <button type="submit" style="position: absolute; top: -10px; right: -10px; background-color:#F7941E;" class="btn btn-warning btn-sm text-light rounded-circle p-2"
-                                style="position: absolute; top: -10px; right: -10px;" data-bs-toggle="modal"
+                            <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E;" class="btn btn-warning btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
                                 data-bs-target="#mymodal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
                                     <mask id="ipSEdit0">
@@ -29,15 +45,15 @@
                         </div>
                     </div>
                     <div class="card-body text-center">
-                        <p class="mt-4"
+                        <p class="mt-2"
                             style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            Boerak smith
+                            {{$userLogin->name}}<br>
                             <span
-                                style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Burakcook@gmail.com</span>
+                                style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{$userLogin->email}}</span>
                         </p>
-                        <button style="border-radius: 15px;" class="btn btn-light border border-dark mb-3">
+                        <button style="border-radius: 15px;background-color:#F7941E;" class="btn btn-light text-light mb-3">
                             <span style="font-weight: 600">
-                                <a href="/koki/resep" style="color: black;">Buat Resep</a>
+                                <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
                             </span>
                         </button>
                     </div>
@@ -48,7 +64,7 @@
                 <div class="modal-dialog modal-dialog-centered profile-modal">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Gambar</h1>
+                            <h1 class="modal-title fs-5" style="font-family: Poppins;" id="exampleModalLabel">Edit Gambar</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
@@ -97,18 +113,17 @@
                 </div>
             </div>
             {{-- akhir modal --}}
-            <div class="col-lg-8 mt-5">
+            <div class="col-lg-8">
                 <div class="row mt-5">
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
-                                <div class="col-7">
-                                    <span
-                                        style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        392
+                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-7 ">
+                                    <span class="ms-3" style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        {{$userLogin->like}}
                                     </span> <br>
-                                    Suka
+                                    <p class="ms-3">Suka</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-thumbs-up fa-2xl"></i>
@@ -118,14 +133,13 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-7">
-                                    <span
-                                        style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        5
+                                    <span class="ms-3" style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        {{$resep_sendiri->count()}}
                                     </span> <br>
-                                    Resep
+                                    <p class="ms-3">Resep</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-book fa-flip-horizontal fa-2xl"></i>
@@ -135,14 +149,13 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 100%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-3">
+                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
                                 <div class="col-7">
-                                    <span
-                                        style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                        392
+                                    <span class="ms-3" style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        {{$userLogin->followers }}
                                     </span> <br>
-                                    Pengikut
+                                    <p class="ms-3">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-user-plus fa-2xl"></i>
@@ -151,44 +164,101 @@
                         </div>
                     </div>
                 </div>
-                <div class="row my-3">
-                    <div class="col-lg-6">
-                        <h5
-                            style="color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            Nama pengguna</h5>
-                        <input type="text" class="form-control" value="Victor sinclair"
-                            style="background-color: white;" readonly>
+                <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep anda</b></h4>
+                <div class="row mb-5">
+                    <div class="col-lg-4 my-1">
+                        <div class="card p-3"
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-4">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
+                                </div>
+                                <div class=" col-8">
+                                    <h3 class="as">
+                                        Pizza Italia
+                                    </h3>
+                                    <span class="ai">
+                                        OLeh Boerak Smith
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6">
-                        <h5
-                            style="color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            E mail</h5>
-                        <input type="text" class="form-control" value="victor98@gmail.com"
-                            style="background-color: white;" readonly>
+                    <div class="col-lg-4 my-1">
+                        <div class="card p-3"
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-4">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
+                                </div>
+                                <div class=" col-8">
+                                    <h3 class="as">
+                                        Pizza Italia
+                                    </h3>
+                                    <span class="ai">
+                                        OLeh Boerak Smith
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <p class="mt-2"
-                        style="color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Deskripsi</p>
-                    <div class="p-3"
-                        style="width: 100%; height: 100%; border-radius: 10px; border: 0.50px black solid">
-                        Halo! Saya victor, jiwa petualang yang penuh rasa ingin tahu dan selalu dalam pencarian ilmu dan
-                        penemuan diri. <br>
-                        Minat:🚀 Teknologi, ilmu pengetahuan, dan inovasi📚 Membaca, menulis, dan puisi🌳 Alam, mendaki,
-                        berkemah, dan fotografi <br>
-                        Filosofi:🌱 Terimalah tantangan dan kegagalan untuk pertumbuhan pribadi💪 Ketangguhan dan
-                        adaptabilitas adalah kunci <br>
-                        Saya sangat menyukai percakapan bermakna dan kolaborasi! Hubungi saya, dan mari kita berdampak
-                        positif
-                        bersama. 🤝
+                    <div class="col-lg-4 my-1">
+                        <div class="card p-3"
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-4">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="">
+                                </div>
+                                <div class=" col-8">
+                                    <h3 class="as">
+                                        Pizza Italia
+                                    </h3>
+                                    <span class="ai">
+                                        OLeh Boerak Smith
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-light text-white my-3" style="border-radius: 14px;background-color: #F7941E;">
-                        <span
-                            style="font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Perbarui</span>
-                    </button>
+                    <div class="col-lg-4 my-1">
+                        <div class="card p-3"
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-4">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
+                                </div>
+                                <div class=" col-8">
+                                    <h3 class="as">
+                                        Pizza Italia
+                                    </h3>
+                                    <span class="ai">
+                                        OLeh Boerak Smith
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 my-1">
+                        <div class="card p-3"
+                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                            <div class="row my-1">
+                                <div class="col-4">
+                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
+                                </div>
+                                <div class=" col-8">
+                                    <h3 class="as">
+                                        Pizza Italia
+                                    </h3>
+                                    <span class="ai">
+                                        OLeh Boerak Smith
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
