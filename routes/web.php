@@ -17,6 +17,7 @@ use App\Http\Controllers\followersController;
 use App\Http\Controllers\notificationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\testingController;
+use App\Models\bahan_reseps;
 use App\Models\notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

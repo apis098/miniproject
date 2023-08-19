@@ -40,9 +40,10 @@ class ResepsController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $request->validate([
             "nama_resep" => "required",
-            "foto_resep" => "required|image|mimes:png,jpg,jpeg|max:50000",
+            "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|numeric",
@@ -53,12 +54,10 @@ class ResepsController extends Controller
             "foto_langkah_resep.*" => "required|image|mimes:png,jpg,jpeg|max:50000",
             "langkah_resep.*" => "required"
         ]);
-        $photo_file = $request->file("foto_resep");
-        $photo_path = $photo_file->store("photos/photo-resep", 'public');
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
             "nama_resep" => $request->nama_resep,
-            "foto_resep" => $request->file('foto_resep')->store('photo-recipe'),
+            "foto_resep" => $request->file('foto_resep')->store('photo-recipe', 'public'),
             "deskripsi_resep" => $request->deskripsi_resep,
             "hari_khusus" => $request->hari_khusus,
             "porsi_orang" => $request->porsi_orang,
@@ -75,11 +74,9 @@ class ResepsController extends Controller
                 ]);
             }
             foreach ($request->langkah_resep as $nomer => $langkah) {
-                $photo_file2 = $request->file("foto_langkah_resep.$nomer");
-                $photo_path2 = $photo_file2->store("photos/photo-langkah", 'public');
                 langkah_reseps::create([
                     "resep_id" => $create_recipe->id,
-                    "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step'),
+                    "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
                     "deskripsi_langkah" => $langkah
                 ]);
             }
@@ -114,6 +111,7 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $request->validate([
             "nama_resep" => "required",
             "foto_resep" => "nullable|image|mimes:png,jpg,jpeg|max:50000",
@@ -130,10 +128,8 @@ class ResepsController extends Controller
         $update_resep = reseps::find($id);
         $update_resep->nama_resep = $request->nama_resep;
         if ($request->hasFile("foto_resep")) {
-            Storage::delete($update_resep->foto_resep);
-            $photo_file = $request->file("foto_resep");
-            $photo_path = $photo_file->store("photos/photo-resep", 'public');
-            $update_resep->foto_resep = $photo_path;
+            Storage::delete("public/" . $update_resep->foto_resep);
+            $update_resep->foto_resep = $request->file('foto_resep')->store('photo-recipe', 'public');
         }
         $update_resep->deskripsi_resep = $request->deskripsi_resep;
         if ($request->has("hari_khusus")) {
@@ -143,20 +139,54 @@ class ResepsController extends Controller
         $update_resep->lama_memasak = $request->lama_memasak;
         $update_resep->pengeluaran_memasak = $request->pengeluaran_memasak;
         $update_resep->save();
-        foreach ($request->bahan_resep as $k => $v) {
-            $bahan = strtolower(trim($v));
-            bahan_reseps::where("resep_id", $update_resep->id)->update([
+        if ($request->has("hapus_bahan")) {
+            foreach ($request->hapus_bahan as $key => $value) {
+                bahan_reseps::where("id", $value)->delete();
+            }
+        }
+        if ($request->has("hapus_langkah")) {
+            foreach ($request->hapus_langkah as $key => $v) {
+                langkah_reseps::where("id", $v)->delete();
+            }
+        }
+        
+
+        foreach ($request->bahan_resep as $i => $b) {
+            $bahan = strtolower(trim($b));
+            bahan_reseps::where('id', $request->id_bahan_resep[$i])->update([
                 "nama_bahan" => $bahan,
-                "takaran_bahan" => $request->takaran_resep[$k]
+                "takaran_bahan" => $request->takaran_resep[$i]
             ]);
         }
-        foreach ($request->langkah_resep as $n => $l) {
-            $lr = langkah_reseps::where("resep_id", $update_resep->id)->first();
-            if ($request->hasFile("foto_langkah_resep.$n")) {
-                $lr->foto_langkah = $request->file("foto_langkah_resep.$n")->store('photo-step');
+        // menambahkan bahan jika ada
+        if ($request->has("bahan_resep_tambahan")) {
+            foreach ($request->bahan_resep_tambahan as $number => $b) {
+                $bahan = strtolower(trim($b));
+                bahan_reseps::create([
+                    "resep_id" => $update_resep->id,
+                    "nama_bahan" => $bahan,
+                    "takaran_bahan" => $request->takaran_resep_tambahan[$number]
+                ]);
             }
-            $lr->deskripsi_langkah = $l;
-            $lr->save();
+        }
+        foreach ($request->langkah_resep as $index => $langkah) {
+            $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
+            $langkah_resep->deskripsi_langkah = $langkah;
+            if ($request->hasFile("foto_langkah_resep.$index")) {
+                Storage::delete("public/".$langkah_resep->foto_langkah);
+                $langkah_resep->foto_langkah = $request->file("foto_langkah_resep.$index")->store("photo-step", "public");
+            }
+            $langkah_resep->save();
+        }
+        // menambahkan langkah2 jika ada
+        if ($request->has("langkah_resep_tambahan")) {
+            foreach ($request->langkah_resep_tambahan as $nomer => $langkah) {
+                langkah_reseps::create([
+                    "resep_id" => $update_resep->id,
+                    "foto_langkah" => $request->file("foto_langkah_resep_tambahan.$nomer")->store('photo-step', 'public'),
+                    "deskripsi_langkah" => $langkah
+                ]);
+            }
         }
         return redirect('/koki/index')->with('success', 'Sukses! anda berhasil mengupdate resep');
     }
@@ -167,9 +197,9 @@ class ResepsController extends Controller
     public function destroy(string $id)
     {
         $resep = reseps::where('id', $id)->first();
-        Storage::delete($resep->foto_resep, 'public');
+        Storage::delete("public/" . $resep->foto_resep);
         foreach ($resep->langkah as $v) {
-            Storage::delete($v->foto_langkah, 'public');
+            Storage::delete("public/" . $v->foto_langkah);
         }
         reseps::where("id", $id)->delete();
         return redirect()->back()->with('success', 'Sukses! anda berhasil menghapus data resep.');

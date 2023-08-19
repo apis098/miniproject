@@ -200,9 +200,12 @@
     </div>
 
     <!-- -->
+    <hr>
+    <h3 class="text-center">Daftar Resep Anda</h3>
+    <hr>
     <div class="row my-5">
         @foreach ($resep_sendiri as $resep)
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-4 col-md-6 col-sm-12 mx-3">
                 <div class="card">
                     <div class="card-header text-center">
                         <img src="{{ asset('storage/' . $resep->foto_resep) }}" alt="{{ $resep->foto_resep }}"> <br>
@@ -211,13 +214,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 col-sm-12">
-                                Lama Memasak : {{ $resep->lama_memasak }} Menit
+                                Waktu : {{ $resep->lama_memasak }} Menit
                             </div>
                             <div class="col-md-4 col-sm-12">
-                                Porsi Orang : {{ $resep->porsi_orang }} Orang
+                                Porsi : {{ $resep->porsi_orang }} Orang
                             </div>
                             <div class="col-md-4 col-sm-12">
-                                Pengeluaran Memasak : RP{{ number_format($resep->pengeluaran_memasak, 2, ',', '.') }}
+                                Harga : RP{{ number_format($resep->pengeluaran_memasak, 2, ',', '.') }}
                             </div>
                         </div>
                     </div>

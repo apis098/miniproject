@@ -68,29 +68,40 @@
                             </div>
                         @enderror
                     </div>
+
                     @foreach ($edit_resep->bahan as $num => $item_bahan)
-                        <div class="mt-2">
-                            <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan
-                                    {{ $num += 1 }}</b></label>
-                            <input type="text" name="bahan_resep[]" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan bahan makanan" value="{{ $item_bahan->nama_bahan }}">
-                            @error('bahan_resep.*')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="mt-2">
-                            <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
-                            <input type="text" name="takaran_resep[]" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan takaran" value="{{ $item_bahan->takaran_bahan }}">
-                            @error('takaran_resep.*')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                        <div id="close1_{{ $item_bahan->id }}">
+                            @if ($num > 1)
+                                <button type="button" class="fa-solid fa-x"
+                                    onclick="close1({{ $item_bahan->id }})"></button>
+                            @endif
+                            <input type="hidden" name="id_bahan_resep[]" value="{{ $item_bahan->id }}">
+                            <div class="mt-2">
+                                <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan
+                                        {{ $num += 1 }}</b></label>
+                                <input type="text" name="bahan_resep[]" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="Masukkan bahan makanan"
+                                    value="{{ $item_bahan->nama_bahan }}">
+                                @error('bahan_resep.*')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mt-2">
+                                <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
+                                <input type="text" name="takaran_resep[]" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="Masukkan takaran"
+                                    value="{{ $item_bahan->takaran_bahan }}">
+                                @error('takaran_resep.*')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                         </div>
                     @endforeach
+
                     <div id="new-input1"></div>
                     <br>
                     <button type="button" id="button-new-input1" class="btn btn-warning text-white"
@@ -147,34 +158,41 @@
                     </div>
                     <br>
                     @foreach ($edit_resep->langkah as $int => $item_langkah)
-                        <div class="mb-4">
-                            <div class="row">
-                                <label for="formFile" class="form-label"><b>Langkah-langkah
-                                        {{ $int += 1 }}</b></label>
-                                <div class="card my-5 col-lg-4">
-                                    <div class="card-body text-center">
-                                        <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" width="100%"
-                                            alt="{{ $item_langkah->foto_langkah }}" class="">
+                        <div id="close2_{{ $item_langkah->id }}">
+                            @if ($int > 1)
+                                <button type="button" class="fa-solid fa-x"
+                                    onclick="close2({{ $item_langkah->id }})"></button>
+                            @endif
+                            <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
+                            <div class="mb-4">
+                                <div class="row">
+                                    <label for="formFile" class="form-label"><b>Langkah-langkah
+                                            {{ $int += 1 }}</b></label>
+                                    <div class="card my-5 col-lg-4">
+                                        <div class="card-body text-center">
+                                            <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
+                                                width="100%" alt="{{ $item_langkah->foto_langkah }}" class="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-7 my-auto mx-1">
-                                    <input name="foto_langkah_resep[]" class="form-control my-auto mx-1" type="file"
-                                        class="formFile">
-                                    @error('foto_langkah_resep.*')
+                                    <div class="col-lg-7 my-auto mx-1">
+                                        <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
+                                            type="file" class="formFile">
+                                        @error('foto_langkah_resep.*')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <textarea class="form-control" name="langkah_resep[]" style="white-space: nowrap;"
+                                        placeholder="Masukkan langkah langkah" id="floatingTextarea">
+                                {{ trim($item_langkah->deskripsi_langkah) }}
+                            </textarea>
+                                    @error('langkah_resep.*')
                                         <div class="alert alert-danger">
                                             {{ $message }}
                                         </div>
                                     @enderror
                                 </div>
-                                <textarea class="form-control" name="langkah_resep[]" style="white-space: nowrap;"
-                                    placeholder="Masukkan langkah langkah" id="floatingTextarea">
-                                {{ trim($item_langkah->deskripsi_langkah) }}
-                            </textarea>
-                                @error('langkah_resep.*')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                         </div>
                     @endforeach
@@ -229,10 +247,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-7 my-auto mx-1">
-                                <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
-                                             type="file" class="formFile">
+                                <input name="foto_langkah_resep_tambahan[]" class="form-control my-auto mx-1"
+                                             type="file" class="formFile" required>
                             </div>
-                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea"></textarea>
+                            <textarea class="form-control" name="langkah_resep_tambahan[]" placeholder="Masukkan langkah langkah" id="floatingTextarea" required></textarea>
                             </div>
             `;
             place2.appendChild(input2);
@@ -244,15 +262,31 @@
             input1.classList.add("mt-2");
             input1.innerHTML = `
                 <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan</b></label>
-                <input type="text" name="bahan_resep[]" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Masukkan bahan makanan">
+                <input type="text" name="bahan_resep_tambahan[]" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Masukkan bahan makanan" required>
                 <br>
                 <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
-                <input type="text" name="takaran_resep[]" class="form-control" id="exampleFormControlInput1"
-                    placeholder="Masukkan takaran">
+                <input type="text" name="takaran_resep_tambahan[]" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Masukkan takaran" required>
                 <br>
             `;
             place1.appendChild(input1);
         });
+
+        function close1(num) {
+            const close = document.getElementById("close1_" + num);
+            close.innerHTML = `
+                            <input type="hidden" name="hapus_bahan[]" value="${num}">
+                            `;
+            close.style.display = "none";
+        }
+
+        function close2(num) {
+            const close2 = document.getElementById("close2_" + num);
+            close2.innerHTML = `
+                            <input type="hidden" name="hapus_langkah[]" value="${num}">
+                            `;
+            close2.style.display = "none";
+        }
     </script>
 @endsection
