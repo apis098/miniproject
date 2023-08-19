@@ -269,11 +269,19 @@
 
                                                     <div class="dropdown-divider"></div>
                                                     <div class="input-group">
+                                                        @if($row->sender->foto)
                                                         <a href="#">
                                                             <img class="ms-2 mt-1 rounded-circle"
-                                                                src="{{ asset('images/client1.jpg') }}"
+                                                                src="{{ asset('storage/'.$row->sender->foto) }}"
                                                                 alt="profile image" style="max-width:35px">
                                                         </a>
+                                                        @else
+                                                        <a href="#">
+                                                            <img class="ms-2 mt-1 rounded-circle"
+                                                                src="{{ asset('images/default.jpg') }}"
+                                                                alt="profile image" style="max-width:35px">
+                                                        </a>
+                                                        @endif
                                                         <p class="mt-2 text-orange">{{ $row->sender->name }}</p>
                                                         @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                                         <form action="{{ route('replies.notification', $row->id) }}"
