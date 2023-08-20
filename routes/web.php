@@ -73,13 +73,14 @@ Route::get('menu', function () {
     $userLogin = Auth::user();
     $notification = [];
     $unreadNotificationCount=[];
+    $recipes = reseps::paginate(6);
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('notification','unreadNotificationCount','userLogin'));
+    return view('template.menu', compact('recipes','notification','unreadNotificationCount','userLogin'));
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
@@ -112,13 +113,14 @@ Route::get('hari', function () {
     $userLogin = Auth::user();
     $notification = [];
     $unreadNotificationCount=[];
+    $recipes = reseps::whereNotNull("hari_khusus")->paginate(6);
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('notification','unreadNotificationCount','userLogin'));
+    return view('template.hari', compact('recipes','notification','unreadNotificationCount','userLogin'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {

@@ -14,9 +14,11 @@
                 min-height: 100vh;
                 font-family: 'Poppins';
             }
-            .font-poppins{
+
+            .font-poppins {
                 font-family: 'Poppins';
             }
+
             .social-link {
                 width: 30px;
                 height: 30px;
@@ -94,17 +96,18 @@
                 box-shadow: none;
                 outline: none
             }
+
             /* button{
-                background-color: #F7941E;
-                border: none;
-                height: 45px;
-                width: 90px;
-                color: #ffffff;
-                position: absolute;
-                right: 1px;
-                top: 0px;
-                border-radius: 15px
-            } */
+                    background-color: #F7941E;
+                    border: none;
+                    height: 45px;
+                    width: 90px;
+                    color: #ffffff;
+                    position: absolute;
+                    right: 1px;
+                    top: 0px;
+                    border-radius: 15px
+                } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -119,7 +122,7 @@
                 top: 0px;
                 border: none;
                 height: 45px;
-               background-color: #F7941E;
+                background-color: #F7941E;
                 color: #fff;
                 width: 90px;
                 border-radius: 4px
@@ -147,7 +150,7 @@
             }
         </style>
 
-        <div class="container py-5" >
+        <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
                     <h1 class=" font-poppins mb-5"><b>Cari resep masakan <br> berdasarkan bahan</b></h1>
@@ -157,10 +160,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div>
-                                            <div class="search-2" > <i class='bx bxs-map'></i>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="" method="GET">
-                                                    <input type="text" id="" name="bahan" placeholder="Cari resep yang kamu mau">
-                                                    <button type="submit" class="zoom-effects" style="border-radius: 15px;">Cari</button>
+                                                    <input type="text" id="" name="bahan"
+                                                        placeholder="Cari resep yang kamu mau">
+                                                    <button type="submit" class="zoom-effects"
+                                                        style="border-radius: 15px;">Cari</button>
                                                 </form>
                                             </div>
 
@@ -173,7 +178,9 @@
                     </p>
                     <div class="col-sm-12 text-center mt-5">
                         <button class="btn btn-white" style=" background: white; border-radius: 10px; padding: 6px 35px;">
-                            <div class="Ayam" style="color: #F7941E; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Ayam</div>
+                            <div class="Ayam"
+                                style="color: #F7941E; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                Ayam</div>
                         </button>
 
                     </div>
@@ -188,158 +195,41 @@
             <h3 class="fw-bold">Hasil Pencarian</h3>
         </div>
         <div class="ms-auto me-5">
-            <button class="btn btn-light text-light float-end me-5 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
+            {{ $recipes->links('vendor.pagination.simple-default') }}
         </div>
     </div>
 
     <div class="container my-5">
         <div class="row">
-            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header">
-                        <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
-                            src="https://via.placeholder.com/328x304" />
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Sup Ayam</h5>
-                                <span>Oleh Ghofur</span>
-                            </div>
-                            <div class="col-12  my-3">
-                                <button type="button" class="border p-2"
-                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 6px 35px;">
-                                    <div
-                                        style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Ayam</div>
-                                </button>
+            @foreach ($recipes as $item)
+                <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-header">
+                            <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
+                                src="{{ asset('storage/' . $item->foto_resep) }}" />
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>{{ $item->nama_resep }}</h5>
+                                    <span>Oleh {{ $item->User->name }}</span>
+                                </div>
+                                <div class="col-12  my-3">
+                                    @foreach ($item->bahan as $b)
+                                        <button type="button" class="border p-2"
+                                            style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 6px 35px;">
+                                            <div
+                                                style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                {{ $b->nama_bahan }}</div>
+                                        </button>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header">
-                        <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
-                            src="https://via.placeholder.com/328x304" />
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Sup Ayam</h5>
-                                <span>Oleh Ghofur</span>
-                            </div>
-                            <div class="col-12  my-3">
-                                <button type="button" class="border p-2"
-                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
-                                    <div
-                                        style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Ayam</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header">
-                        <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
-                            src="https://via.placeholder.com/328x304" />
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Sup Ayam</h5>
-                                <span>Oleh Ghofur</span>
-                            </div>
-                            <div class="col-12  my-3">
-                                <button type="button" class="border p-2"
-                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
-                                    <div
-                                        style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Ayam</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header">
-                        <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
-                            src="https://via.placeholder.com/328x304" />
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Sup Ayam</h5>
-                                <span>Oleh Ghofur</span>
-                            </div>
-                            <div class="col-12  my-3">
-                                <button type="button" class="border p-2"
-                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
-                                    <div
-                                        style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Ayam</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header">
-                        <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
-                            src="https://via.placeholder.com/328x304" />
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Sup Ayam</h5>
-                                <span>Oleh Ghofur</span>
-                            </div>
-                            <div class="col-12  my-3">
-                                <button type="button" class="border p-2"
-                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
-                                    <div
-                                        style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Ayam</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header">
-                        <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
-                            src="https://via.placeholder.com/328x304" />
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Sup Ayam</h5>
-                                <span>Oleh Ghofur</span>
-                            </div>
-                            <div class="col-12  my-3">
-                                <button type="button" class="border p-2"
-                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
-                                    <div
-                                        style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Ayam</div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
+        {{ $recipes->links() }}
     </div>
-
-
 @endsection
