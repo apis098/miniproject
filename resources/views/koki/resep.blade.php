@@ -10,7 +10,7 @@
             width: 100%;
         }
     </style>
-    <form action="/koki/resep" method="post" enctype="multipart/form-data">
+    <form id="form-add-recipe" action="/koki/resep" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
             <div class="row">
@@ -97,7 +97,7 @@
                     <br>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
-                        <input type="text" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
+                        <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
                             placeholder="Masukkan porsi orang">
                         @error('porsi_orang')
                             <div class="alert alert-danger">
@@ -117,7 +117,7 @@
                     </div>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="text" name="pengeluaran_memasak" class="form-control"
+                        <input type="number" name="pengeluaran_memasak" class="form-control"
                             id="exampleFormControlInput1" placeholder="Masukkan jumlah pengeluaran">
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">
@@ -181,7 +181,7 @@
                         style="float: right;background: #F7941E;">Tambahkan</button>
                     <br> <br>
                     <button type="submit" class="btn btn-warning text-white mb-4"
-                        style="float: right;background: #F7941E;">Tambah
+                        style="float: right;background: #F7941E;" id="button-add-recipe">Tambah
                         Resep</button>
                 </div>
             </div>

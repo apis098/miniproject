@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('foto_resep');
             $table->text('deskripsi_resep');
             $table->integer('porsi_orang');
-            $table->integer('lama_memasak');
+            $table->string('lama_memasak');
             $table->bigInteger('pengeluaran_memasak');
             $table->string('hari_khusus')->nullable();
             $table->timestamps();

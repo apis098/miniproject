@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
 use App\Models\special_days;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ResepsController extends Controller
 {
@@ -51,7 +52,7 @@ class ResepsController extends Controller
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|numeric",
-            "lama_memasak" => "required|numeric",
+            "lama_memasak" => "required",
             "pengeluaran_memasak" => "required|numeric",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
@@ -111,7 +112,7 @@ class ResepsController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification",'userlogin','unreadNotificationCount'));
+        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification",'userLogin','unreadNotificationCount'));
     }
 
     /**
@@ -119,20 +120,22 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-        $request->validate([
+        $validasi = Validator::make($request->all(), [
             "nama_resep" => "required",
             "foto_resep" => "nullable|image|mimes:png,jpg,jpeg|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|numeric",
-            "lama_memasak" => "required|numeric",
+            "lama_memasak" => "required",
             "pengeluaran_memasak" => "required|numeric",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
             "foto_langkah_resep.*" => "required|image|mimes:png,jpg,jpeg|max:50000",
             "langkah_resep.*" => "required"
         ]);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors(), 422);
+        }
         $update_resep = reseps::find($id);
         $update_resep->nama_resep = $request->nama_resep;
         if ($request->hasFile("foto_resep")) {

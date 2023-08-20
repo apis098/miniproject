@@ -111,7 +111,7 @@
                     <br>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
-                        <input type="text" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
+                        <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
                             placeholder="Masukkan porsi orang" value="{{ $edit_resep->porsi_orang }}">
                         @error('porsi_orang')
                             <div class="alert alert-danger">
@@ -131,7 +131,7 @@
                     </div>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="text" name="pengeluaran_memasak" class="form-control"
+                        <input type="number" name="pengeluaran_memasak" class="form-control"
                             id="exampleFormControlInput1" placeholder="Masukkan jumlah pengeluaran"
                             value="{{ $edit_resep->pengeluaran_memasak }}">
                         @error('pengeluaran_memasak')
