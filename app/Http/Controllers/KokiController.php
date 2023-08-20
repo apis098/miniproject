@@ -47,9 +47,10 @@ class KokiController extends Controller
             // Upload new profile picture
             $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
             $user->foto = $profilePicturePath;
-            $user->save();
         }
-
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
 
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
     }

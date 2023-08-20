@@ -50,7 +50,7 @@ class ReportController extends Controller
                 $notification->user_id = $report->profile_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->profile_id = $report->profile_id;
-                $notification->save();
+                $notification->save();  
                 return redirect()->back()->with('success', 'Foto profile telah diblokir');
             } else {
                 return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
