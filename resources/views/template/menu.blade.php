@@ -177,12 +177,13 @@
                     </form>
                     </p>
                     <div class="col-sm-12 text-center mt-5">
+                        @foreach ($bahan as $b)
                         <button class="btn btn-white" style=" background: white; border-radius: 10px; padding: 6px 35px;">
                             <div class="Ayam"
                                 style="color: #F7941E; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                Ayam</div>
+                                {{ $b }}</div>
                         </button>
-
+                        @endforeach
                     </div>
                 </div>
             </div>
