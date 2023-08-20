@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\notifications;
 use App\Models\Reply;
 use App\Models\Report;
 use Illuminate\Http\Request;
@@ -44,6 +45,12 @@ class ReportController extends Controller
                 $profile->foto = null;
                 $profile->save();
                 $report->delete();
+                
+                $notification = new notifications();
+                $notification->user_id = $report->profile_id;
+                $notification->notification_from = auth()->user()->id;
+                $notification->profile_id = $report->profile_id;
+                $notification->save();
                 return redirect()->back()->with('success', 'Foto profile telah diblokir');
             } else {
                 return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');

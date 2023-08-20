@@ -330,6 +330,21 @@
                                                             <input hidden type="text" value="{{$row->complaint_id}}" name="replies_id" id="replies_id" class="form-control">
                                                             </button>
                                                         </form>
+                                                        @elseif($row->profile_id != null )
+                                                        <form action="{{ route('profile.blocked.notification', $row->id) }}"
+                                                            method="POST">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <button class="yuhu mt-2" type="submit">
+                                                            <small class="mt-1 ms-1 text-secondary">Foto profil kamu telah diblokir</small>
+                                                            @if ($row->status == 'belum')
+                                                            <img class="ms-2 mb-2 rounded-circle"
+                                                                src="{{ asset('images/badge.png') }}"
+                                                                alt="profile image" style="max-width:10px">
+                                                            @endif
+                                                            <input hidden type="text" value="{{$row->complaint_id}}" name="replies_id" id="replies_id" class="form-control">
+                                                            </button>
+                                                        </form>
                                                         @elseif($row->follower_id != null && $row->complaint_id == null)
                                                             <form action="{{ route('follow.notification', $row->id) }}"
                                                                 method="POST">
@@ -355,7 +370,6 @@
                                                 @endforeach
                                                 <div class="dropdown-divider"></div>
                                             </div>
-
                                         </div>
                                         @if ($unreadNotificationCount > 0)
                                             <span class="badge badge-danger rounded-pill mb-4 me-2"

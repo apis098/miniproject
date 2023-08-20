@@ -22,4 +22,10 @@ class notificationController extends Controller
         $replies_id = $request->replies_id;
         return redirect()->route('ShowReplies.show',$replies_id);
     }
+    public function blockedProfile($id){
+        $notificattion = notifications::findOrFail($id);
+        $notificattion->status = 'sudah';
+        $notificattion->save();
+        return redirect('/koki/index');
+    }
 }
