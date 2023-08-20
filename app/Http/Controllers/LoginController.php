@@ -19,32 +19,41 @@ class LoginController extends Controller
         }
     }
 
-    public function actionlogin(Request $request)
+    public function actionLogin(Request $request)
     {
-
         $request->validate([
             'email' => 'required',
             'password' => 'required'
-        ],[
-            'email.required' => 'email tidak boleh kosong',
-            'password.required' => 'password tidak boleh kosong'
+        ], [
+            'email.required' => 'Email tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong'
         ]);
+    
         $data = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
         ];
-
-        if (Auth::Attempt($data)) {
-            if (Auth::user()->role == 'koki'){
-                return redirect()->route('koki.index');
-            } else if (Auth::user()->role == 'admin') {
-                return redirect()->route('admin.index');
+    
+        if (Auth::attempt($data)) {
+            $user = Auth::user();
+            
+            if ($user->status == 'nonaktif') {
+                Auth::logout();
+                return redirect()->back()->with('error', 'Akun anda telah diblokir!');
             }
-        }else{
+    
+            if ($user->status == 'aktif') {
+                if ($user->role == 'koki') {
+                    return redirect()->route('koki.index');
+                } else if ($user->role == 'admin') {
+                    return redirect()->route('admin.index');
+                }
+            }
+        } else {
             return redirect()->back()->with('error', 'Email atau Password Salah');
         }
     }
-
+    
     public function actionlogout()
     {
         Auth::logout();

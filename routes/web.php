@@ -185,7 +185,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 // role koki
-Route::middleware(['auth', 'role:koki'])->group(function () {
+Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function () {
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
     
