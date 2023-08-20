@@ -18,6 +18,7 @@ class KokiController extends Controller
     public function index()
     {
         $resep_sendiri = reseps::where("user_id", Auth::user()->id)->get();
+        $recipes = reseps::where("user_id", Auth::user()->id)->paginate(6);
         $userLogin = Auth::user();
         $notification = [];
         $unreadNotificationCount=[];
@@ -27,7 +28,7 @@ class KokiController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view('koki.profile', compact('notification', 'resep_sendiri','unreadNotificationCount','userLogin'));
+        return view('koki.profile', compact('recipes','notification', 'resep_sendiri','unreadNotificationCount','userLogin'));
     }
     public function updateProfile(Request $request)
     {

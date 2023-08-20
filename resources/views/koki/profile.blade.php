@@ -186,7 +186,7 @@
                 </div>
                 <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep anda</b></h4>
                 <div class="row mb-5">
-                    @foreach ($resep_sendiri as $r)
+                    @foreach ($recipes as $r)
                         <div class="col-lg-4 my-1">
                             <div class="card p-3"
                                 style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
@@ -234,6 +234,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{$recipes->links()}}
             </div>
 
         </div>
