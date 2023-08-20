@@ -32,9 +32,17 @@ class ReplyController extends Controller
         $data = complaint::findOrFail($id);
         $replies = $data->replies->sortByDesc('likes');
         $repliesCount = $replies->count();
-
+        $userLogin = Auth::user();
+        $notification = [];
+        $unreadNotificationCount=[];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+        }
         $title = "Data balasan keluhan ";
-        return view('replies.detail', compact('data', 'title', 'replies', 'repliesCount'));
+        return view('replies.detail', compact('data', 'title', 'replies', 'repliesCount','userLogin','notification','unreadNotificationCount'));
     }
     public function reply(Request $request, $id)
     {
