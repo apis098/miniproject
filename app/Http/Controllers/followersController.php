@@ -15,20 +15,29 @@ class followersController extends Controller
         $userLogin = Auth::user();
         $username = $request->username;
         $notification = [];
-        $unreadNotificationCount=[];
+        $unreadNotificationCount = [];
+    
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)
+                ->where('status', 'belum')
+                ->count();
         }
-        if($username != null){
-            $user = User::where('name',$username && 'status','aktif')->get();
-        }else{
-            $user = User::where('status','aktif')->get();
+    
+        if ($username != null) {
+            $user = User::where('status', 'aktif')
+                ->where('name', 'like', '%' . $username . '%')
+                ->get();
+        } else {
+            $user = User::where('status', 'aktif')->get();
         }
-        return view('template.search-account', compact('user', 'notification','userLogin','unreadNotificationCount','userLogin'));
+    
+        return view('template.search-account', compact('user', 'notification', 'userLogin', 'unreadNotificationCount'));
     }
+    
     public function show_profile($id){
         
         $user = User::findOrFail($id);
