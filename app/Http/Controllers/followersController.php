@@ -23,9 +23,9 @@ class followersController extends Controller
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
         if($username != null){
-            $user = User::where('name',$username)->get();
+            $user = User::where('name',$username && 'status','aktif')->get();
         }else{
-            $user = User::all();
+            $user = User::where('status','aktif')->get();
         }
         return view('template.search-account', compact('user', 'notification','userLogin','unreadNotificationCount','userLogin'));
     }
