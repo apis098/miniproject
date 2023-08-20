@@ -107,11 +107,24 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{$row->userSender->name}}</td>
                     <td>{{$row->user->name}}</td>
+                    @if($row->reply_id)
                     <td>{{$row->replies->reply}}</td>
+                    @elseif($row->profile_id)
+                        @if($row->user->foto)
+                            <td>
+                                <img src="{{asset('storage/'.$row->user->foto)}}" class="img-thumbnail" width="106px" height="104px" alt="halo">
+                            </td>
+                        @else
+                            <td>
+                                <img src="{{asset('images/default.jpg')}}" class="img-thumbnail" width="106px" height="104px" alt="halo">
+                            </td>
+                        @endif  
+                    @endif
                     <td>{{$row->user->jumlah_pelanggaran}} kali</td>
                     <td>
                         <div class="form-group">
-                            <form action="{{ route('ReplyBlocked.destroy', $row->replies->id) }}" method="POST" class="d-inline-block">
+
+                            <form action="{{ route('ReplyBlocked.destroy', $row->id) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <div class="ms-1">

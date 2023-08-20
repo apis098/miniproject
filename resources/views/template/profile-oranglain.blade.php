@@ -78,25 +78,32 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Laporkan Pengguna</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Laporkan foto pengguna</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <form action="{{route('Report.store')}}" method="POST">
+                            @csrf
                         <div class="modal-body d-flex align-items-center"> <!-- Tambahkan kelas "align-items-center" -->
                             @if($user->foto)
                             <img src="{{ asset('storage/'.$user->foto) }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <textarea class="form-control" name="" rows="5" placeholder="Alasan"></textarea>
+                            <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                            <input hidden type="text" name="profile_id" value="{{$user->id}}">
+                            <input hidden type="text" name="user_id" value="{{$user->id}}">
                             @else
                             <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <textarea class="form-control rounded-5" name="" rows="5" placeholder="Alasan..."></textarea>
+                            <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                            <input hidden type="text" name="profile_id" value="{{$user->id}}">
+                            <input hidden type="text" name="user_id" value="{{$user->id}}">
                             @endif
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-light text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Laporkan</b></button>
+                            <button type="submit" class="btn btn-light text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Laporkan</b></button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
