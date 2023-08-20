@@ -96,8 +96,8 @@
                                         <img src="{{ asset('storage/' . $userLogin->foto) }}" width="106px" height="104px"
                                             style="border-radius: 50%; margin-right:-28%;" id="profile-image">
                                     @else
-                                        <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px"
-                                            style="border-radius: 50%; margin-right:65%;" id="profile-image">
+                                        <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                            style="border-radius: 50%; margin-right:-28%;" id="profile-image">
                                     @endif
 
                                     <div class="col-8" style="margin-left:35%;">
