@@ -157,6 +157,7 @@
 
 <div class="container mb-5">
     <div class="row mb-5">
+        @foreach ($complaints as $item)            
         <div class="col-lg-4">
             <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
                 <div class="card-body ">
@@ -167,19 +168,20 @@
                                     src="{{ asset('images/default.jpg') }}"alt="">
                             </div>
                             <div class="widget-49-meeting-info">
-                                <span class="widget-49-pro-title fw-bolder">Hamdan syakirin</span>
-                                <small class="text-secondary"><i>hamdan@gmail.com</i></small>
+                                <span class="widget-49-pro-title fw-bolder">{{ $item->user->name }}</span>
+                                <small class="text-secondary"><i>{{ $item->user->email }}</i></small>
                             </div>
                         </div>
                         <div class="mt-3 ms-1">
                             <p>
-                                <b>Masakan Gosong</b><br>
+                                <b>
+                                    <a style="color: black;" href="/show-reply-by/{{ $item->id }}">
+                                    {{ $item->subject }}
+                                    </a>
+                                </b><br>
 
-                                <small>Seakan-akan seseorang berusaha keras untuk
-                                    menjadikan resep ini tantangan bagi selera
-                                    kita. Namun, sepertinya resep ini lebih cocok
-                                    dijadikan contoh apa yang sebaiknya tidak
-                                    dicoba.
+                                <small>
+                                    {{ $item->description }}
                                 </small>
 
                             </p>
@@ -189,74 +191,10 @@
                 </div>
             </div>
         </div>
-        {{--  --}}
-        <div class="col-lg-4">
-            <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
-                <div class="card-body ">
-                    <div class="widget-49">
-                        <div class="widget-49-title-wrapper">
-                            <div class="widget-49-date-primary">
-                                <img class="widget-49-date-primary" style="border:1.5px black solid"
-                                    src="{{ asset('images/default.jpg') }}"alt="">
-                            </div>
-                            <div class="widget-49-meeting-info">
-                                <span class="widget-49-pro-title fw-bolder">Hamdan syakirin</span>
-                                <small class="text-secondary"><i>hamdan@gmail.com</i></small>
-                            </div>
-                        </div>
-                        <div class="mt-3 ms-1">
-                            <p>
-                                <b>Masakan Gosong</b><br>
-
-                                <small>Seakan-akan seseorang berusaha keras untuk
-                                    menjadikan resep ini tantangan bagi selera
-                                    kita. Namun, sepertinya resep ini lebih cocok
-                                    dijadikan contoh apa yang sebaiknya tidak
-                                    dicoba.
-                                </small>
-
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{--  --}}
-        <div class="col-lg-4">
-            <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
-                <div class="card-body ">
-                    <div class="widget-49">
-                        <div class="widget-49-title-wrapper">
-                            <div class="widget-49-date-primary">
-                                <img class="widget-49-date-primary" style="border:1.5px black solid"
-                                    src="{{ asset('images/default.jpg') }}"alt="">
-                            </div>
-                            <div class="widget-49-meeting-info">
-                                <span class="widget-49-pro-title fw-bolder">Hamdan syakirin</span>
-                                <small class="text-secondary"><i>hamdan@gmail.com</i></small>
-                            </div>
-                        </div>
-                        <div class="mt-3 ms-1">
-                            <p>
-                                <b>Masakan Gosong</b><br>
-
-                                <small>Seakan-akan seseorang berusaha keras untuk
-                                    menjadikan resep ini tantangan bagi selera
-                                    kita. Namun, sepertinya resep ini lebih cocok
-                                    dijadikan contoh apa yang sebaiknya tidak
-                                    dicoba.
-                                </small>
-
-                            </p>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
         {{--  --}}
     </div>
+    {{ $complaints->links() }}
 </div>
 
 <style>

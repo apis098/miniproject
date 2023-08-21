@@ -41,7 +41,7 @@ Route::get('/profile', function () {
 
 
 Route::get('/', function () {
-    $complaints = complaint::all();
+    $complaints = complaint::paginate(3);
     $real_reseps = reseps::paginate(4);
     $userLogin = Auth::user();
     $notification = [];
