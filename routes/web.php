@@ -69,6 +69,8 @@ Route::get('artikel', function () {
     return view('template.artikel', compact('reseps','userLogin', 'notification','unreadNotificationCount'));
 })->name('artikel');
 
+Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
+
 Route::get('menu', function () {
     $userLogin = Auth::user();
     $bahan = bahan_reseps::pluck("nama_bahan")->unique();

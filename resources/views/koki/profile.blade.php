@@ -199,7 +199,7 @@
                                         <a type="button"  class="as" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal{{$r->id}}">
                                             {{ $r->nama_resep }}
-                                        </a>
+                                        </a> <br>
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal{{$r->id}}" tabindex="-1"
                                             aria-labelledby="exampleModalLabel" aria-hidden="true">

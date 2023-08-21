@@ -178,9 +178,9 @@
                     </p>
                     <div class="col-sm-12 text-center mt-5">
                         @foreach ($bahan as $b)
-                        <button class="btn btn-white" style=" background: white; border-radius: 10px; padding: 6px 35px;">
+                        <button class="btn btn-white mx-2 my-2" style=" background: white; border-radius: 10px; padding: 6px 35px;">
                             <div class="Ayam"
-                                style="color: #F7941E; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                 {{ $b }}</div>
                         </button>
                         @endforeach
@@ -211,8 +211,12 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-6">
-                                    <h5>{{ $item->nama_resep }}</h5>
+                                <div class="col-12">
+                                    <h5>
+                                        <a style="color: black;" href="/artikel/{{$item->id}}/{{$item->nama_resep}}">
+                                        {{ $item->nama_resep }}
+                                        </a>
+                                    </h5>
                                     <span>Oleh {{ $item->User->name }}</span>
                                 </div>
                                 <div class="col-12  my-3">

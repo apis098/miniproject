@@ -195,7 +195,7 @@
             </div>
             <div class="col-sm-12 text-center">
                 @foreach ($hari as $h)                    
-                <button type="button" class="col-1 border p-2"
+                <button type="button" class="border p-2"
                     style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
                     <div
                         style="color: #F7941E; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -208,12 +208,12 @@
 @endsection
 <div class="container my-5">
     <div class="row">
-        <div class="col">
+        <div class="col-lg-10">
             <h3
                 style="color: black; font-size: 24px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word; margin-top: 12px; margin-bottom: 12px;">
                 Hasil pencarian</h3>
         </div>
-        <div class="col" style="text-align: right;">
+        <div class="col-lg-2" style="text-align: right;">
             {{ $recipes->links('vendor.pagination.simple-default') }}
         </div>
     </div>
@@ -228,7 +228,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <h5>{{ $item->nama_resep }}</h5>
+                                <h5>
+                                    <a style="color: black;" href="/artikel/{{$item->id}}/{{$item->nama_resep}}">
+                                    {{ $item->nama_resep }}
+                                    </a>
+                                </h5>
                                 <span>Oleh {{ $item->User->name }}</span>
                             </div>
                             <div class="col-12  my-3">
