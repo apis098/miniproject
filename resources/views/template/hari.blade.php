@@ -194,12 +194,14 @@
                 </form>
             </div>
             <div class="col-sm-12 text-center">
+                @foreach ($hari as $h)                    
                 <button type="button" class="col-1 border p-2"
                     style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px">
                     <div
                         style="color: #F7941E; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Lebaran</div>
+                        {{ $h }}</div>
                 </button>
+                @endforeach
             </div>
         </div>
     </section>
