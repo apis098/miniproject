@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -16,91 +13,168 @@
  <link rel="stylesheet" href="iziToast.min.css">
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css">
 <script src="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/js/iziToast.min.js"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .humma-cook {
+        color: #ffffff;
+        text-align: left;
+        font: 500 30px'Dancing Script', sans-serif;
+        position: absolute;
+        left: 30px;
+        top: 20px;
+            }
+
+    .register-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        position: relative;
+        background-color: #ffffff;
+    }
+    .bg-image {
+        background: #f7941e;
+        flex: 1;
+        height: 100vh;
+        position: relative;
+        border-radius: 0 15px 15px 0;
+        overflow: hidden;
+    }
+
+    .circle {
+          background: #ffffff;
+        border-radius: 50%;
+        width: 50%;
+        padding-bottom: 50%;
+        position: absolute;
+        top: 25%;
+        left: 17%;
+
+    }
+    .circle2 {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ffffff;
+    border-width: 2px;
+    width: 60%;
+    padding-bottom: 60%;
+    position: absolute;
+    top: 21%;
+    left: 12%;
+    }
+    .image-42 {
+        width: 120%;
+        height: 90%;
+        position: absolute;
+        top: 8%;
+        left: 2%;
+    }
+      .icon-clutery {
+        position: absolute;
+        top: 15%;
+        left: 10%;
+        overflow: visible;
+    }
+
+    .content-container {
+        display: flex;
+        flex-direction: column;
+
+        padding: 20px;
+        width: 55%
+    }
+    .username{
+        width: 100%;
+        height: 100%;
+        border-radius: 15px;
+        border: 0.50px black solid
+    }
+       .button-buat{
+         width: 100%;
+         height: 100%;
+         background: #F7941E;
+         box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.25);
+        border-radius: 10px
+       }
+
+
+    .alert {
+        margin-top: 10px;
+    }
+
+</style>
 </head>
+@if ($errors->any())
+<script>
+    iziToast.settings({
+        position: 'topRight'
+    });
+    @foreach ($errors->all() as $error)
+        iziToast.error({
+            title: 'Error',
+            message: '{{ $error }}',
+        });
+    @endforeach
+</script>
+@endif
+@if(session()->has('error'))
+<script>
+   iziToast.settings({
+       position: 'topRight'
+   });
+       iziToast.error({
+           title: 'Error',
+           message: '{{ session('error')}}',
+       });
+</script>
 
-<body style="background-image: url('{{ asset('images/bg.jpg') }}'); background-size: cover; background-position: center;">
-    <!-- Section: Design Block -->
-    <section class="text-center text-lg-start">
-        <style>
-            .cascading-right {
-                margin-right: -50px;
-            }
+@endif
+<body>
+    <div class="register-container">
+        <div class="bg-image">
+            <div class="humma-cook"> <i>HummaCook</i></div>
+            <div class="circle"></div>
+            <div class="circle2"></div>
+            <img src="{{ asset('images/image 42.png') }}" class="image-42" alt="" srcset="">
+        </div>
+        <div class="content-container mb-3">
+            <div style="color: black; font-size: 30px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">Masuk</div>
+            <div style="width: 100%; color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:3%" >Selamat datang di <i style="font-family:Dancing Script; ">Hummacook</i> </div>
+            <div class=" mb-3 ">
 
-            @media (max-width: 991.98px) {
-                .cascading-right {
-                    margin-right: 0;
-                }
-            }
+                <form action="{{ route('actionlogin') }}" method="post">
+                    @csrf
+                    <!-- Email input -->
+                    <div class="form-outline mb-3">
+                        <input type="email" id="email" name="email" class="form-control username rounded-4 mb-1" placeholder="E-mail..." />
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" name="password" class="form-control username rounded-4 mb-1" placeholder="Kata Kunci...">
+                    </div>
+                    <!-- Register buttons -->
+                    <p>Belum punya akun? <a href="{{ route('register') }}">Register</a> sekarang!</p>
+                    <!-- Submit button -->
+                    <button type="submit" class="button-buat rounded-4"> <b style="color:white">Login</b></button>
+                </form>
 
-            .font-a {
-                font-family: 'Dancing Script', cursive;
-            }
-        </style>
-       @if ($errors->any())
-       <script>
-           iziToast.settings({
-               position: 'topRight'
-           });
-           @foreach ($errors->all() as $error)
-               iziToast.error({
-                   title: 'Error',
-                   message: '{{ $error }}',
-               });
-           @endforeach
-       </script>
-      @endif
-      @if(session()->has('error'))
-      <script>
-          iziToast.settings({
-              position: 'topRight'
-          });
-              iziToast.error({
-                  title: 'Error',
-                  message: '{{ session('error')}}',
-              });
-      </script>
-
-      @endif
-
-
-
-
-        <!-- Jumbotron -->
-        <div class="container py-1" style="max-width: 70%; margin-top: 1.6%;">
-            <div class="row g-0 align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="card cascading-right rounded-5"  style="background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
-                        <div class="card-body p-5 shadow-5 text-center">
-                            <h2 class="fw-bold mb-5 font-a">HummaCook <i class="fa-solid fa-utensils"></i></h2>
-                            <form action="{{ route('actionlogin') }}" method="post">
-                                @csrf
-                                <!-- Email input -->
-                                <div class="form-outline mb-4">
-                                    <input type="email" id="email" name="email" class="form-control mb-1" placeholder="Email..." />
-                                    <label class="form-label" for="form3Example3"><b>Email address</b></label>
-                                </div>
-                                <!-- Password input -->
-                                <div class="form-outline mb-4">
-                                    <input type="password" name="password" class="form-control mb-1" placeholder="Password...">
-                                    <label class="form-label" for="form3Example4"><b>Password</b></label>
-                                </div>
-                                <!-- Submit button -->
-                                <button type="submit" class="btn btn-outline-dark mb-4 rounded-5"><b>Login  </b><i class="fa-solid fa-door-open"></i></button>
-                                <!-- Register buttons -->
-                                <p class="text-center">Belum punya akun? <a href="{{ route('register') }}">Register</a> sekarang!</p>
-                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="{{ asset('images/bg2.jpg') }}" class="w-100 rounded-4 shadow-4" alt="" />
-                </div>
             </div>
         </div>
-        <!-- Jumbotron -->
+        </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
 </body>
-
 </html>
+
+
+
