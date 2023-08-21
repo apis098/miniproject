@@ -70,7 +70,7 @@ Route::get('artikel', function () {
     return view('template.artikel', compact('reseps','userLogin', 'notification','unreadNotificationCount'));
 })->name('artikel');
 
-Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
+Route::get('/artikel/{hash}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 
 Route::get('menu', function (Request $request) {
     $userLogin = Auth::user();

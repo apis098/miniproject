@@ -1,121 +1,134 @@
 @extends('template.nav')
 @section('content')
-    <div class="row">
-        <div class="col-lg-10">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <img style="border-radius: 9999px; border: 0.50px black solid"
-                            src="{{ asset('storage/' . $show_resep->foto_resep) }}" />
-                    </div>
-                    <div class="col-lg-9 my-5">
-                        <div>
-                            <h4>{{ $show_resep->nama_resep }}</h4>
-                            <span>Oleh {{ $show_resep->User->name }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="row container">
+        <div class="col-lg-3 mt-3 d-flex flex-row-reverse">
+            <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="75%"
+                height="80%" style="border-radius: 50%;">
         </div>
-        <div class="col-lg-2">
-            <button type="submit" class="btn btn-light my-5" style="border: 1px solid black">Sukai</button>
+        <div class="col-lg-3 mt-5">
+            <h3 style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}</h3>
+            <span>{{ $show_resep->User->name }}</span>
+        </div>
+        <div class="col-lg-6">
+
         </div>
     </div>
-    <div class="row mt-2 container mx-5">
+    <div class="row container mx-auto mb-3">
         <div class="col-lg-4">
-            <h4>Durasi</h4>
-            <div class="card p-3" style="border-radius: 30px; border: 0.50px black solid">
-                <div class="row my-1 container">
-                    <div class="col-10 ">
-                        <span class="ms-3 my-auto"
-                            style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+            <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
+            <div class="card p-4" style="border-radius: 5px; border: 0.50px black solid">
+                <div class="row my-1">
+                    <div class="col-7">
+                        <span class="ms-3"
+                            style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                             {{ $show_resep->lama_memasak }}
                         </span> <br>
                     </div>
-                    <div class="col-2 my-3">
-                        <i class="fa-regular fa-clock fa-2xl"></i>
+                    <div class="col-5 d-flex my-auto flex-row-reverse">
+                        <i class="fa-solid fa-thumbs-up fa-2xl"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
-            <h4>Pengeluaran</h4>
-            <div class="card p-3" style="border-radius: 30px; border: 0.50px black solid">
-                <div class="row my-1 container">
-                    <div class="col-10">
+            <h4 style="font-weight: 600; word-warp:break-word;">Pengeluaran</h4>
+            <div class="card p-4" style="border-radius: 5px; border: 0.50px black solid">
+                <div class="row my-1">
+                    <div class="col-7">
                         <span class="ms-3"
-                            style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                            style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                             RP{{ number_format($show_resep->pengeluaran_memasak, 2, ',', '.') }}
                         </span> <br>
                     </div>
-                    <div class="col-2 my-3">
-                        <i class="fa-solid fa-money-bill fa-2xl"></i>
+                    <div class="col-5 d-flex my-auto flex-row-reverse">
+                        <i class="fa-solid fa-thumbs-up fa-2xl"></i>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
-            <h4>Porsi</h4>
-            <div class="card p-3" style="border-radius: 30px; border: 0.50px black solid">
-                <div class="row my-1 container">
-                    <div class="col-10">
+            <h4 style="font-weight: 600; word-warp: break-word;">Porsi</h4>
+            <div class="card p-4" style="border-radius: 5px; border: 0.50px black solid">
+                <div class="row my-1">
+                    <div class="col-7">
                         <span class="ms-3"
-                            style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                            style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                             {{ $show_resep->porsi_orang }} Orang
                         </span> <br>
                     </div>
-                    <div class="col-2 my-3">
-                        <i class="fa-solid fa-plate-wheat fa-2xl"></i>
+                    <div class="col-5 d-flex my-auto flex-row-reverse">
+                        <i class="fa-solid fa-thumbs-up fa-2xl"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <ul class="nav nav-tabs container mt-5" id="myTab" role="tablist">
-        <li class="nav-item mr-5" role="presentation">
-            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
-                type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
-                <h5>Home</h5>
-            </button>
-        </li>
-        <li class="nav-item mr-5" role="presentation">
-            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button"
-                role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                <h5>Bahan - Bahan</h5>
-            </button>
-        </li>
-        <li class="nav-item mr-5" role="presentation">
-            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button"
-                role="tab" aria-controls="contact-tab-pane" aria-selected="false">
-                <h5>Langkah - Langkah</h5>
-            </button>
-        </li>
-    </ul>
-    <div class="tab-content container" id="myTabContent">
-        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-            <div class="card-body mb-5">
+    <style>
+    </style>
+    <div class="container">
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+                    <h6 style="font-weight: 600; word-warp: break-word;">Deskripsi</h6>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                    type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
+                    <h6 style="font-weight: 600; word-warp: break-word;">Bahan</h6>
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                    type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
+                    <h6 style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h6>
+                </button>
+            </li>
+        </ul>
+        <div class="tab-content mb-5" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
                 {{ $show_resep->deskripsi_resep }}
             </div>
-        </div>
-        <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-            <h4 class="mt-2">Bahan</h4>
-            <div class="row">
-                @foreach ($show_resep->bahan as $b)
-                    <div class="col-lg-4 mx-1 rounded p-2" style="border: 1px solid black;">
-                        <h6>{{ $b->nama_bahan }}</h6> 
-                        <span>{{ $b->takaran_bahan }}</span>
-                    </div>
-                @endforeach
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                <div class="row mt-5">
+                    @foreach ($show_resep->bahan as $item_bahan)
+                        <div class="col-lg-4">
+                            <div class="card p-3"
+                                style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
+                                <div class="row my-1">
+                                    <div class="col-12 ">
+                                        <span class="ms-3"
+                                            style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                            {{ $item_bahan->nama_bahan }}
+                                        </span> <br>
+                                        <p class="ms-3">{{ $item_bahan->takaran_bahan }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-            @foreach ($show_resep->langkah as $n => $l)
-                <div class="card-body">
-                    {{$n+=1}}
-                    <img class="mr-4" src="{{ asset('storage/' . $l->foto_langkah) }}" alt="{{ $l->foto_langkah }}" style="border-radius: 15px;">
-                    {{ $l->deskripsi_langkah }}
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">
+            @foreach ($show_resep->langkah as $num => $item_langkah)
+                <div class="card-body d-flex flex-row">
+                    <div>
+                        <img src="{{ asset('storage/'.$item_langkah->foto_langkah) }}" alt="{{ $item_langkah->foto_langkah }}" width="85%" height="85%">
+                        <button type="button" style="position: absolute;  left: 290px; background-color:#F7941E;"
+                        class="btn btn-warning btn-sm text-light rounded-circle p-2">
+                        <span class="p-2">{{ $num+=1 }}</span>
+                    </button>
+                    </div>
+                    <div class="my-auto mx-2">
+                        {{ $item_langkah->deskripsi_langkah }}
+                    </div>
                 </div>
             @endforeach
+            </div>
         </div>
     </div>
 @endsection

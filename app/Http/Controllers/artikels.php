@@ -12,7 +12,7 @@ use App\Models\notifications;
 
 class artikels extends Controller
 {
-    public function artikel_resep(string $id, string $judul)
+    public function artikel_resep(string $hash, string $judul)
     {
         $userLogin = Auth::user();
         $notification = [];
@@ -23,7 +23,7 @@ class artikels extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        $show_resep = reseps::find($id);
+        $show_resep = reseps::find($hash);
         return view('template.artikel', compact('show_resep', 'notification','unreadNotificationCount','userLogin'));
     }
 }
