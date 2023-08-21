@@ -146,7 +146,7 @@
             padding: 10px 15px;
             font-size: 14px;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 5px;
         }
 
         .t {

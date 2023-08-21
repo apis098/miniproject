@@ -1,6 +1,6 @@
 @extends('template.nav')
 @section('content')
-    @section('content-header')
+@section('content-header')
     <!-- slider section -->
     <section class="slider_section">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -11,13 +11,13 @@
                             <div class="col-md-7 col-lg-6">
                                 <div class="detail-box mt-5">
                                     <h3 class="text-poppins"><b>
-                                        Resep - Resep Terpopuler</b>
+                                            Resep - Resep Terpopuler</b>
                                     </h3>
                                     <p>
                                         HummaCook adalah online media portal
                                         yang menyajikan kumpulan aneka resep masakan
                                         untuk menginspirasi para pehobi masak.
-                                        Menyajikan resep-resep  rumahan yang mudah
+                                        Menyajikan resep-resep rumahan yang mudah
                                         dibuat oleh semua orang, dan bahan-bahan
                                         masakan yang mudah didapatkan.
                                     </p>
@@ -26,308 +26,529 @@
                                         background-color: #ffff;
                                         color: #f39c12;
                                         border-radius: 12px;
-                                        border: none;">Lihat Resep</a>
+                                        border: none;">Lihat
+                                        Resep</a>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div style="text-align: right;">
-                                    <img src="{{ asset('images/landingpage.png') }}" alt="Gambar Contoh" style="width: 90%; max-width: 500px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                        {{-- <a href="{{ route('menu') }}" style="" class="btn btn-light rounded-5 text-warning">
-                        Lihat Resep
-                    </a> --}}
-
-                        {{-- <div class="user_option" style="margin-top: 0px;">
-
-
-
-
-
-                </div> --}}
-                    {{-- <div class="carousel-item ">
-                <div class="container ">
-                    <div class="row">
-                        <div class="col-md-7 col-lg-6 ">
-                            <div class="detail-box">
-                                <h1>
-                                    Resep - Resep Terpopuler
-                                </h1>
-                                <p>
-                                    HummaCook adalah online media portal yang menyajikan kumpulan aneka resep
-                                    masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep
-                                    rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
-                                    mudah didapatkan.
-                                </p>
-                                <div class="btn-box">
-                                    <a href="{{ route('menu') }}" class="btn1">
-                                        Lihat Resep
-                                    </a>
+                                    <img src="{{ asset('images/landingpage.png') }}" alt="Gambar Contoh"
+                                        style="width: 90%; max-width: 500px;">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
-                    {{-- <div class="carousel-item">
-                <div class="container ">
-                    <div class="row">
-                        <div class="col-md-7 col-lg-6 ">
-                            <div class="detail-box">
-                                <h1>
-                                    Resep - Resep Terpopuler
-                                </h1>
-                                <p>
-                                    HummaCook adalah online media portal yang menyajikan kumpulan aneka resep
-                                    masakan untuk menginspirasi para pehobi masak. Menyajikan resep-resep
-                                    rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang
-                                    mudah didapatkan.
-                                </p>
-                                <div class="btn-box">
-                                    <a href="{{ route('menu') }}" class="btn1">
-                                        Lihat Resep
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-                </div>
-                {{-- <div class="container">
-            <ol class="carousel-indicators">
-                <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
-                <li data-target="#customCarousel1" data-slide-to="1"></li>
-                <li data-target="#customCarousel1" data-slide-to="2"></li>
-            </ol>
-        </div> --}}
             </div>
 
     </section>
     <!-- end slider section -->
-    @endsection
+@endsection
 
-    <!-- offer section -->
+<!-- offer section -->
 
-    <section class="offer_section layout_padding-bottom">
+<section class="offer_section layout_padding-bottom">
 
-        <h2 class="text-center">Our Reseps For You!</h2>
+    <h2 class="text-center">Our Reseps For You!</h2>
 
-        <div class="offer_container">
-            <div class="container ">
-                <div class="row">
-                    @foreach ($real_reseps as $r)
-                        <div class="col-md-6  ">
-                            <div class="box ">
-                                <div class="img-box">
-                                    <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
-                                </div>
-                                <div class="detail-box">
-                                    <h6>
-                                        {{ $r->nama_masakan }}
-                                    </h6>
-                                    <h5>
-                                        <span>Lihat Resep - Resep Lainnya</span>
-                                    </h5>
-                                    <br>
-                                    <a href="{{ route('menu') }}">
-                                        Lihat Resep
-                                    </a>
-                                </div>
+    <div class="offer_container">
+        <div class="container ">
+            <div class="row">
+                @foreach ($real_reseps as $r)
+                    <div class="col-md-6  ">
+                        <div class="box ">
+                            <div class="img-box">
+                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <h6>
+                                    {{ $r->nama_masakan }}
+                                </h6>
+                                <h5>
+                                    <span>Lihat Resep - Resep Lainnya</span>
+                                </h5>
+                                <br>
+                                <a href="{{ route('menu') }}">
+                                    Lihat Resep
+                                </a>
                             </div>
                         </div>
-                    @endforeach
-                    {{ $real_reseps->links() }}
-                </div>
+                    </div>
+                @endforeach
+                {{ $real_reseps->links() }}
             </div>
         </div>
-    </section>
-
-    <!-- end offer section -->
-
-    <!-- about section -->
-
-
-    <!-- end about section -->
-
-    <!-- book section -->
-    <section class="book_section layout_padding">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-6 ms-3">
-                    <div class="form_container">
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        <form action="{{ route('ComplaintUser.store') }}" method="POST">
-                            @csrf
-                            <div class="heading_container">
-                                <h1 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
-                                    Ajukan keluhanmu saat memasak
-                                </h1>
-
-                                <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
-                            </div>
-                            <div>
-                                <input type="text" class="form-control" id="subject" name="subject"
-                                    placeholder="Keluhan"/>
-                            </div>
-                            <div>
-                                <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
-                            </div>
-                            <div>
-                                <button style="background-color: #f39c12" type="submit">
-                                    Kirim 
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col ms-5">
-                    <div>
-                        <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh" style="width: 110%; margin-top: -20%;">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-    <!-- end book section -->
-
-    <style>
-        .text-poppins{
-            font-family: 'Poppins';
-        }
-        h1 {
-            color: #fff;
-        }
-
-        .lead {
-            color: #aaa;
-        }
-
-        .wrapper {
-            margin: 10vh
-        }
-
-
-        .card {
-            border: none;
-            transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
-            overflow: hidden;
-            border-radius: 20px;
-            min-height: 450px;
-            box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.2);
-
-            @media (max-width: 768px) {
-                min-height: 350px;
-            }
-
-            @media (max-width: 420px) {
-                min-height: 300px;
-            }
-
-            &.card-has-bg {
-                transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
-                background-size: 120%;
-                background-repeat: no-repeat;
-                background-position: center center;
-
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    left: 0;
-                    background: inherit;
-                    -webkit-filter: grayscale(1);
-                    -moz-filter: grayscale(100%);
-                    -ms-filter: grayscale(100%);
-                    -o-filter: grayscale(100%);
-                    filter: grayscale(100%);
-                }
-
-                &:hover {
-                    transform: scale(0.98);
-                    box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.3);
-                    background-size: 130%;
-                    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
-
-                    .card-img-overlay {
-                        transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-                        background: rgb(255, 186, 33);
-                        background: linear-gradient(0deg, rgba(255, 186, 33, 0.5) 0%, rgba(255, 186, 33, 1) 100%);
-                    }
-                }
-            }
-
-            .card-footer {
-                background: none;
-                border-top: none;
-
-                .media {
-                    img {
-                        border: solid 3px rgba(255, 255, 255, 0.3);
-                    }
-                }
-            }
-
-            .card-title {
-                font-weight: 800
-            }
-
-            .card-meta {
-                color: rgba(0, 0, 0, 0.3);
-                text-transform: uppercase;
-                font-weight: 500;
-                letter-spacing: 2px;
-            }
-
-            .card-body {
-                transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
-
-
-            }
-
-            &:hover {
-                .card-body {
-                    margin-top: 30px;
-                    transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-                }
-
-                cursor: pointer;
-                transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-            }
-
-            .card-img-overlay {
-                transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-                background: rgb(255, 186, 33);
-                background: linear-gradient(0deg, rgba(255, 186, 33, 0.3785889355742297) 0%, rgba(255, 186, 33, 1) 100%);
-            }
-        }
-
-        @media (max-width: 767px) {}
-    </style>
-
-    <div class="heading_container heading_center psudo_white_primary mb_45 mb-5">
-        {{-- <h1 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
-            Keluhan Pengguna
-        </h1> --}}
     </div>
+</section>
 
-    <section class="content mt-5">
+<!-- end offer section -->
+
+<!-- about section -->
+
+
+<!-- end about section -->
+
+<!-- book section -->
+<section class="book_section layout_padding">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6 ms-3">
+                <div class="form_container">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('ComplaintUser.store') }}" method="POST">
+                        @csrf
+                        <div class="heading_container">
+                            <h1
+                                style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
+                                Ajukan keluhanmu saat memasak
+                            </h1>
+
+                            <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="subject" name="subject"
+                                placeholder="Keluhan" />
+                        </div>
+                        <div>
+                            <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
+                        </div>
+                        <div>
+                            <button style="background-color: #f39c12" type="submit">
+                               <b>Kirim</b>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col ms-5">
+                <div>
+                    <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh"
+                        style="width: 110%; margin-top: -20%;">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- end book section -->
+<div class="row ms-1 mb-4 me-1" style="margin-top: -4%;">
+    <div class="ms-5 input-group">
+        <div class="ms-1">
+            <h3 class="fw-bold">Keluhan Pengguna</h3>
+        </div>
+        <div class="ms-auto me-5">
+            <button class="btn btn-light text-light float-end me-5 zoom-effects"
+                style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="row mb-5">
+        <div class="col-lg-4">
+            <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
+                <div class="card-body ">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-date-primary">
+                                <img class="widget-49-date-primary" style="border:1.5px black solid"
+                                    src="{{ asset('images/default.jpg') }}"alt="">
+                            </div>
+                            <div class="widget-49-meeting-info">
+                                <span class="widget-49-pro-title fw-bolder">Hamdan syakirin</span>
+                                <small class="text-secondary"><i>hamdan@gmail.com</i></small>
+                            </div>
+                        </div>
+                        <div class="mt-3 ms-1">
+                            <p>
+                                <b>Masakan Gosong</b><br>
+
+                                <small>Seakan-akan seseorang berusaha keras untuk
+                                    menjadikan resep ini tantangan bagi selera
+                                    kita. Namun, sepertinya resep ini lebih cocok
+                                    dijadikan contoh apa yang sebaiknya tidak
+                                    dicoba.
+                                </small>
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--  --}}
+        <div class="col-lg-4">
+            <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
+                <div class="card-body ">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-date-primary">
+                                <img class="widget-49-date-primary" style="border:1.5px black solid"
+                                    src="{{ asset('images/default.jpg') }}"alt="">
+                            </div>
+                            <div class="widget-49-meeting-info">
+                                <span class="widget-49-pro-title fw-bolder">Hamdan syakirin</span>
+                                <small class="text-secondary"><i>hamdan@gmail.com</i></small>
+                            </div>
+                        </div>
+                        <div class="mt-3 ms-1">
+                            <p>
+                                <b>Masakan Gosong</b><br>
+
+                                <small>Seakan-akan seseorang berusaha keras untuk
+                                    menjadikan resep ini tantangan bagi selera
+                                    kita. Namun, sepertinya resep ini lebih cocok
+                                    dijadikan contoh apa yang sebaiknya tidak
+                                    dicoba.
+                                </small>
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--  --}}
+        <div class="col-lg-4">
+            <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
+                <div class="card-body ">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-date-primary">
+                                <img class="widget-49-date-primary" style="border:1.5px black solid"
+                                    src="{{ asset('images/default.jpg') }}"alt="">
+                            </div>
+                            <div class="widget-49-meeting-info">
+                                <span class="widget-49-pro-title fw-bolder">Hamdan syakirin</span>
+                                <small class="text-secondary"><i>hamdan@gmail.com</i></small>
+                            </div>
+                        </div>
+                        <div class="mt-3 ms-1">
+                            <p>
+                                <b>Masakan Gosong</b><br>
+
+                                <small>Seakan-akan seseorang berusaha keras untuk
+                                    menjadikan resep ini tantangan bagi selera
+                                    kita. Namun, sepertinya resep ini lebih cocok
+                                    dijadikan contoh apa yang sebaiknya tidak
+                                    dicoba.
+                                </small>
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{--  --}}
+    </div>
+</div>
+
+<style>
+    .text-poppins {
+        font-family: 'Poppins';
+    }
+
+    .card-margin {
+        margin-bottom: 1.875rem;
+        height: ;
+    }
+
+    .card {
+        border: 0;
+        box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #ffffff;
+        background-clip: border-box;
+        border: 1px solid #e6e4e9;
+        border-radius: 8px;
+    }
+
+    .card .card-header.no-border {
+        border: 0;
+    }
+
+    .card .card-header {
+        background: none;
+        padding: 0 0.9375rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        min-height: 50px;
+    }
+
+    .card-header:first-child {
+        border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
+    }
+
+    .widget-49 .widget-49-title-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-primary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #edf1fc;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #fcfcfd;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-day {
+        color: #dde1e9;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-month {
+        color: #dde1e9;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-success {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #e8faf8;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-success .widget-49-date-day {
+        color: #17d1bd;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-success .widget-49-date-month {
+        color: #17d1bd;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #ebf7ff;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-info .widget-49-date-day {
+        color: #36afff;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-info .widget-49-date-month {
+        color: #36afff;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-warning {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: floralwhite;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-warning .widget-49-date-day {
+        color: #FFC868;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-warning .widget-49-date-month {
+        color: #FFC868;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-danger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #feeeef;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-danger .widget-49-date-day {
+        color: #F95062;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-danger .widget-49-date-month {
+        color: #F95062;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-light {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #fefeff;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-light .widget-49-date-day {
+        color: #f7f9fa;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-light .widget-49-date-month {
+        color: #f7f9fa;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-dark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #ebedee;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-dark .widget-49-date-day {
+        color: #394856;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-dark .widget-49-date-month {
+        color: #394856;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-base {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #f0fafb;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-base .widget-49-date-day {
+        color: #68CBD7;
+        font-weight: 500;
+        font-size: 1.5rem;
+        line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-base .widget-49-date-month {
+        color: #68CBD7;
+        line-height: 1;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-pro-title {
+        color: #3c4142;
+        font-size: 14px;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-meeting-time {
+        color: #B1BAC5;
+        font-size: 13px;
+    }
+
+    .widget-49 .widget-49-meeting-points {
+        font-weight: 400;
+        font-size: 13px;
+        margin-top: .5rem;
+        margin-left: -10%;
+    }
+
+    .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
+        display: list-item;
+        color: #727686;
+    }
+</style>
+{{-- <section class="content mt-5">
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
@@ -383,5 +604,5 @@
                     </div>
                 </div>
                 @endforeach
-    </section>
+    </section> --}}
 @endsection
