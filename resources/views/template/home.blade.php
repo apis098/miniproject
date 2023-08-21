@@ -53,16 +53,18 @@
 
     <div class="offer_container">
         <div class="container ">
-            <div class="row">
+            <div class="row mb-3">
                 @foreach ($real_reseps as $r)
                     <div class="col-md-6  ">
                         <div class="box ">
                             <div class="img-box">
-                                <img src="{{ asset('storage/' . $r->foto_masakan) }}" alt="">
+                                <a href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
+                                <img src="{{ asset('storage/' . $r->foto_resep) }}" alt="">
+                                </a>
                             </div>
                             <div class="detail-box">
                                 <h6>
-                                    {{ $r->nama_masakan }}
+                                    {{ $r->nama_resep }}
                                 </h6>
                                 <h5>
                                     <span>Lihat Resep - Resep Lainnya</span>
@@ -74,9 +76,9 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
-                {{ $real_reseps->links() }}
+                @endforeach 
             </div>
+            {{ $real_reseps->links() }}
         </div>
     </div>
 </section>

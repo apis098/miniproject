@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\followers;
 use App\Models\notifications;
+use App\Models\reseps;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,7 @@ class followersController extends Controller
         
         $user = User::findOrFail($id);
         $userLogin = Auth::user();
+        $recipes = reseps::where('user_id', $id)->paginate(6);
         $notification = [];
         $unreadNotificationCount=[];
         if ($userLogin) {
@@ -50,7 +52,7 @@ class followersController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view('template.profile-oranglain',compact('user','notification','userLogin','unreadNotificationCount','userLogin'));
+        return view('template.profile-oranglain',compact('recipes','user','notification','userLogin','unreadNotificationCount','userLogin'));
     }
     public function store(Request $request, $id)
     {

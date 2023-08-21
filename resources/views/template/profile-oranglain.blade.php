@@ -162,97 +162,30 @@
                 </div>
                 <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep dibuat</b></h4>
                 <div class="row mb-5">
+                    @foreach ($recipes as $item_recipe)                        
                     <div class="col-lg-4 my-1">
                         <div class="card p-3"
                             style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
                             <div class="row my-1">
                                 <div class="col-4">
-                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
+                                    <img class="rounded-circle" src="{{ asset('storage/'.$item_recipe->foto_resep) }}" width="55px" alt="dsdaa">
                                 </div>
                                 <div class=" col-8">
                                     <h3 class="as">
-                                        Pizza Italia
+                                        <a style="color: black;" href="/artikel/{{$item_recipe->id}}/{{$item_recipe->nama_resep}}">
+                                        {{ $item_recipe->nama_resep }}
+                                        </a>
                                     </h3>
                                     <span class="ai">
-                                        OLeh Boerak Smith
+                                        Oleh {{ $item_recipe->User->name }}
                                     </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 my-1">
-                        <div class="card p-3"
-                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-4">
-                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
-                                </div>
-                                <div class=" col-8">
-                                    <h3 class="as">
-                                        Pizza Italia
-                                    </h3>
-                                    <span class="ai">
-                                        OLeh Boerak Smith
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 my-1">
-                        <div class="card p-3"
-                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-4">
-                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="">
-                                </div>
-                                <div class=" col-8">
-                                    <h3 class="as">
-                                        Pizza Italia
-                                    </h3>
-                                    <span class="ai">
-                                        OLeh Boerak Smith
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 my-1">
-                        <div class="card p-3"
-                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-4">
-                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
-                                </div>
-                                <div class=" col-8">
-                                    <h3 class="as">
-                                        Pizza Italia
-                                    </h3>
-                                    <span class="ai">
-                                        OLeh Boerak Smith
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 my-1">
-                        <div class="card p-3"
-                            style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-4">
-                                    <img class="rounded-circle" src="{{ asset('images/client1.jpg') }}" width="55px" alt="dsdaa">
-                                </div>
-                                <div class=" col-8">
-                                    <h3 class="as">
-                                        Pizza Italia
-                                    </h3>
-                                    <span class="ai">
-                                        OLeh Boerak Smith
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
+                {{ $recipes->links() }}
             </div>
         </div>
     </div>
