@@ -110,8 +110,8 @@
                 <div class="col-md-8">
                     <h3 class=" fw-bolder" style="font-family: poppins; margin-top:55px;"><b>{{$data->subject}}</b></h3>
                     <div class="input-group">
-                        @if ($userLogin->foto)
-                            <img src="{{ asset('storage/' . $userLogin->foto) }}" width="52px" height="52px"
+                        @if ($data->user->foto)
+                            <img src="{{ asset('storage/' . $data->user->foto) }}" width="52px" height="52px"
                                     style="border-radius: 50%" alt="">
                         @else
                             <img src="{{ asset('images/default.jpg') }}" width="52px" height="52px"
@@ -202,8 +202,13 @@
                                             type="text">
                                         <input hidden id="complaint_id" name="complaint_id" value="{{ $data->id }}"
                                             type="text">
+                                        @if($userLogin && $row->likes()->where('user_id', $userLogin->id)->exists())
                                         <button type="submit" class="btn btn-light text-warning btn-sm rounded-5 "><i
                                                 class="fa-solid fa-thumbs-up me-2"></i></button>
+                                        @else
+                                        <button type="submit" class="btn btn-light text-dark btn-sm rounded-5 "><i
+                                            class="fa-solid fa-thumbs-up me-2"></i></button>
+                                        @endif
                                     </form>
                                     <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
                                         class="btn btn-light text-danger btn-sm rounded-5 "><i
