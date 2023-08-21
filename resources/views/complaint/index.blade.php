@@ -37,7 +37,7 @@
             transform: scale(0.97);
         }
 
-        
+
         .modal-body {
             background-color: #F8DE22;
             border-color: #F8DE22;
@@ -60,10 +60,59 @@
         }
 
     </style>
-    <div class="mt-3 ml-3">
-        <h2 class="text-dark"><b>{{ $title }}</b></h2>
-        <hr />
-    </div>
+        <div class="mt-3">
+            <div class="Rectangle185" style="width: 1060px; height: 54px; left: 280px; top: 35px; position: absolute; background: #F7941E; border-radius: 14px"></div>
+
+            <div class="Gambar" style="width: 105px; left: 390px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Gambar</div>
+            <div class="Username" style="width: 131px; left: 651px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Username</div>
+            <div class="Subjek" style="width: 85px; left: 972px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Subjek</div>
+            <div class="Aksi" style="width: 54px; left: 1200px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Aksi</div>
+            
+            
+            <div class="Rectangle187" style="width: 1060px; height: 129px; left: 280px; top: 109px; position: absolute; border-radius: 14px; border: 0.50px black solid"></div>
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 137px; position: absolute; border: 0.50px black solid">
+            <div class="Ferdiansyah" style="width: 132px; left: 651px; top: 158px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="MasakanGosong" style="width: 183px; left: 939px; top: 158px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="Rectangle7" style="width: 93px; height: 40px; left: 1180px; top: 149px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Detail" style="width: 61px; left: 1200px; top: 154px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+            
+
+
+
+
+            <div class="Rectangle188" style="width: 1060px; height: 129px; left: 280px; top: 258px; position: absolute; border-radius: 14px; border: 0.50px black solid"></div>
+            <div class="Rectangle190" style="width: 1060px; height: 129px; left: 280px; top: 407px; position: absolute; border-radius: 14px; border: 0.50px black solid"></div>
+            <div class="Rectangle192" style="width: 1060px; height: 129px; left: 280px; top: 556px; position: absolute; border-radius: 14px; border: 0.50px black solid"></div>
+            <div class="Rectangle194" style="width: 1060px; height: 129px; left: 280px; top: 705px; position: absolute; border-radius: 14px; border: 0.50px black solid"></div>
+            <div class="Rectangle196" style="width: 1060px; height: 129px; left: 280px; top: 854px; position: absolute; border-radius: 14px; border: 0.50px black solid"></div>
+           
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 286px; position: absolute; border: 0.50px black solid">
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 435px; position: absolute; border: 0.50px black solid">
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 584px; position: absolute; border: 0.50px black solid">
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 733px; position: absolute; border: 0.50px black solid">
+            <img  src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 882px; position: absolute; border: 0.50px black solid">
+            <div class="Ferdiansyah" style="width: 134px; left: 653px; top: 307px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="Ferdiansyah" style="width: 134px; left: 653px; top: 456px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="Ferdiansyah" style="width: 134px; left: 653px; top: 605px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="Ferdiansyah" style="width: 134px; left: 653px; top: 754px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="Ferdiansyah" style="width: 134px; left: 653px; top: 903px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="MasakanGosong" style="width: 183px; left: 939px; top: 307px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="MasakanGosong" style="width: 183px; left: 939px; top: 456px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="MasakanGosong" style="width: 183px; left: 939px; top: 605px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="MasakanGosong" style="width: 183px; left: 939px; top: 754px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="MasakanGosong" style="width: 183px; left: 939px; top: 903px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="Rectangle197" style="width: 93px; height: 40px; left: 1180px; top: 298px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Rectangle198" style="width: 93px; height: 40px; left: 1180px; top: 447px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Rectangle199" style="width: 93px; height: 40px; left: 1180px; top: 596px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Rectangle200" style="width: 93px; height: 40px; left: 1180px; top: 745px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Rectangle201" style="width: 93px; height: 40px; left: 1180px; top: 894px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Detail" style="width: 61px; left: 1200px; top: 303px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+            <div class="Detail" style="width: 61px; left: 1200px; top: 452px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+            <div class="Detail" style="width: 61px; left: 1200px; top: 601px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+            <div class="Detail" style="width: 61px; left: 1200px; top: 750px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+            <div class="Detail" style="width: 61px; left: 1200px; top: 899px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+           
+        </div>
     {{-- <div class=" mb-2 mt-1 mb-md-1">
         <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
         <div>
@@ -81,7 +130,7 @@
             </form>
         </div>
     </div> --}}
-    <table class="table table-striped table-rounded" >
+    {{-- <table class="table table-striped table-rounded mt-5" >
         <thead class="bg-secondary text-light">
             <tr>
                 <th>NO</th>
@@ -107,7 +156,7 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
     @foreach ($data as $row)
         @if ($row->id != '')
         <div class="modal fade" id="complaintModal{{ $row->id }}" data-backdrop="static" data-keyboard="false"
@@ -132,7 +181,7 @@
                                         <div class="mt-2"> <span class="intro-2">Beri solusi:</span> </div>
                                         <input type="text" class="form-control rounded-3 mt-2" name="reply" id="reply">
 
-                                        <div class="mt-4 mb-3"> 
+                                        <div class="mt-4 mb-3">
                                             <button type="submit" class="btn btn-primary btn-sm rounded-5">Kirim <i class="fa-solid fa-paper-plane"></i></button>
                                         </div>
                                     </form>
