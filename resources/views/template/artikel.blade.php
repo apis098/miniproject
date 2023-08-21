@@ -170,208 +170,82 @@
     <!-- ****** Breadcumb Area End ****** -->
 
     <!-- ****** Single Blog Area Start ****** -->
-    @if ($show_resep)
-        <section class="single_blog_area section_padding_80">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <!-- Single Post -->
-                        <div class="col-10 col-sm-11">
-                            <div class="single-post">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <img src="{{ asset('storage/' . $show_resep->foto_masakan) }}" width="100%"
-                                        alt="">
-                                    <h1>{{ $show_resep->nama_masakan }}</h1>
-                                    @if ($show_resep->specialday)
+    <section class="single_blog_area section_padding_80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <!-- Single Post -->
+                    <div class="col-10 col-sm-11">
+                        <div class="single-post">
+                            <!-- Post Thumb -->
+                            <div class="post-thumb" style="display: flex; justify-content: center;">
+                                <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" width="25%"
+                                    alt="{{$show_resep->foto_resep}}" class="">
+                            </div>
+                            <h1>{{ $show_resep->nama_resep }}</h1>
+                            <!-- Post Content -->
+                            <div class="post-content">
+
+                                <div class="post-meta d-flex">
+                                    <div class="post-author-date-area d-flex">
+                                        <!-- Post Author -->
+                                        <div class="post-author">
+                                            <a href="#">Oleh <span
+                                                    class="text-info">{{ $show_resep->User->name }}</span></a>
+                                        </div>
+                                        <!-- Post Date -->
+                                        <div class="post-date">
+
+                                            <a href="#">{{ $show_resep->created_at }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#">
+
+                                <h2 class="post-headline"> </h2>
+                            </a>
+                            <p>
+                                {!! $show_resep->deskripsi_resep !!}
+                            </p>
+
+                            <blockquote class="yummy-blockquote mt-30 mb-30">
+                                <h5 class="mb-30">
+                                    Bahan - Bahan <br>
+                                    @foreach ($show_resep->bahan as $item_bahan)
                                         <button
-                                            class="btn btn-light border rounded p-2 m-2">{{ $show_resep->specialday->name }}</button>
-                                    @endif
-                                    @if ($show_resep->tipsdasar)
-                                        <button
-                                            class="btn btn-light border rounded p-2 m-2">{{ $show_resep->tipsdasar->nama_kategori }}</button>
-                                    @endif
+                                            class="btn btn-light border rounded p-2 m-2">{{ $item_bahan->nama_bahan }} {{$item_bahan->takaran_bahan}}</button>
+                                        <br>
+                                    @endforeach
+                                </h5>
+                            </blockquote>
+                            <h4>Langkah - Langkah</h4>
+                            @foreach ($show_resep->langkah as $l)
+                                <div 
+                                    class="card-body border rounded p-2 m-2">
+                                    <img src="{{asset('storage/'.$l->foto_langkah)}}" alt="">
+                                    {{ $l->deskripsi_langkah }}
                                 </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                <a href="#">By <span
-                                                        class="text-info">{{ $show_resep->user->name }}</span></a>
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-
-                                                <a href="#">{{ $show_resep->created_at }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-
-                                    <h2 class="post-headline"> </h2>
-                                </a>
-                                <p>
-                                    {!! $show_resep->deskripsi_masakan !!}
-                                </p>
-
-                                <blockquote class="yummy-blockquote mt-30 mb-30">
-                                    <h5 class="mb-30">
-                                        Bahan - Bahan <br>
-                                        @foreach ($show_resep->kategori_bahan as $item_bahan)
-                                            <button
-                                                class="btn btn-light border rounded p-2 m-2">{{ $item_bahan->kategori_bahan }}</button>
-                                            <br>
-                                        @endforeach
-                                    </h5>
-                                </blockquote>
-                                <h4>Persiapan Memasak</h4>
-                                <p>
-                                    {!! $show_resep->persiapan_memasak !!}
-                                </p>
-                                <h4>Langkah - Langkah</h4>
-                                <p>
-                                    {!! $show_resep->langkah2_memasak !!}
-                                </p>
-                            </div>
+                                <br>
+                            @endforeach
                         </div>
+                    </div>
 
-                        <!-- Tags Area -->
+                    <!-- Tags Area -->
 
-                        {{-- <div class="tags-area">
+                    {{-- <div class="tags-area">
                                 <a href="#">Multipurpose</a>
                                 <a href="#">Design</a>
                                 <a href="#">Ideas</a>
 
                             </div> --}}
 
-                    </div>
                 </div>
             </div>
-            </div>
-            </div>
-        </section>
-    @endif
-    @if ($show_tipsdasar)
-        <section class="single_blog_area section_padding_80">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <!-- Single Post -->
-                        <div class="col-10 col-sm-11">
-                            <div class="single-post">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <img src="{{ asset('storage/public/tipsdasar/' . $show_tipsdasar->foto) }}" width="100%"
-                                        alt="">
-                                    <h1>{{ $show_tipsdasar->judul }}</h1>
-                                </div>
-                                <!-- Post Content -->
-                                <div class="post-content">
-                                    <button class="btn btn-light p-2 m-2 border">{{ $show_tipsdasar->kategori_tipsdasar->nama_kategori }}</button>
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                <a href="#">By <span
-                                                        class="text-info">{{ $show_tipsdasar->user->name }}</span></a>
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-
-                                                <a href="#">{{ $show_tipsdasar->created_at }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-
-                                    <h2 class="post-headline"> </h2>
-                                </a>
-                                <p>
-                                    {!! $show_tipsdasar->deskripsi!!}
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Tags Area -->
-
-                        {{-- <div class="tags-area">
-                                <a href="#">Multipurpose</a>
-                                <a href="#">Design</a>
-                                <a href="#">Ideas</a>
-
-                            </div> --}}
-
-                    </div>
-                </div>
-            </div>
-            </div>
-            </div>
-        </section>
-    @endif
-    @if ($show_seputardapur)
-        <section class="single_blog_area section_padding_80">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12">
-                        <!-- Single Post -->
-                        <div class="col-10 col-sm-11">
-                            <div class="single-post">
-                                <!-- Post Thumb -->
-                                <div class="post-thumb">
-                                    <img src="{{ asset('storage/public/seputardapur/' . $show_seputardapur->foto) }}" width="100%"
-                                        alt="">
-                                    <h1>{{ $show_seputardapur->judul }}</h1>
-                                </div>
-                                <button type="submit" class="btn btn-light p-2 m-2">{{ $show_seputardapur->kategori_seputardapur->nama_kategori }}</button>
-                                <!-- Post Content -->
-                                <div class="post-content">
-
-                                    <div class="post-meta d-flex">
-                                        <div class="post-author-date-area d-flex">
-                                            <!-- Post Author -->
-                                            <div class="post-author">
-                                                <a href="#">By <span
-                                                        class="text-info">{{ $show_seputardapur->user->name }}</span></a>
-                                            </div>
-                                            <!-- Post Date -->
-                                            <div class="post-date">
-
-                                                <a href="#">{{ $show_seputardapur->created_at }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="#">
-
-                                    <h2 class="post-headline"> </h2>
-                                </a>
-                                <p>
-                                    {!! $show_seputardapur->isi !!}
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Tags Area -->
-
-                        {{-- <div class="tags-area">
-                                <a href="#">Multipurpose</a>
-                                <a href="#">Design</a>
-                                <a href="#">Ideas</a>
-
-                            </div> --}}
-
-                    </div>
-                </div>
-            </div>
-            </div>
-            </div>
-        </section>
-    @endif
+        </div>
+        </div>
+        </div>
+    </section>
     <!-- ****** Single Blog Area End ****** -->
 
     <!-- ****** Footer Menu Area Start ****** -->
@@ -400,8 +274,7 @@
                     <div class="copy_right_text text-center">
 
                         <p>Copyright @2023 All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                aria-hidden="true"></i> by <a href="{{ route('home') }}"
-                                target="_blank">HummaCook</a>
+                                aria-hidden="true"></i> by <a href="{{ route('home') }}" target="_blank">HummaCook</a>
                         </p>
                     </div>
                 </div>
