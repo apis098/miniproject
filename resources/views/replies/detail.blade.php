@@ -101,6 +101,30 @@
         .intro-2 {
             font-size: 13px
         }
+        .modal-body {
+            padding: 20px;
+            /* Tambahkan padding untuk menciptakan jarak di sekitar elemen */
+        }
+
+        .modal-body img {
+            margin-right: 20px;
+            /* Tambahkan margin di sebelah kanan gambar untuk menciptakan jarak */
+        }
+        .as {
+            color: black;
+            font-size: 20px;
+            font-family: Poppins;
+            font-weight: 500;
+        }
+
+        .ai {
+            color: black;
+            font-size: 13px;
+            font-family: Poppins;
+            font-weight: 400;
+            word-wrap: break-word;
+            padding-top: 5px
+        }
     </style>
     <section class="py-5" style="margin-top: -6%;">
         <div class="container px-5 px-lg-5 my-5">
@@ -108,20 +132,21 @@
                 <div class="col-md-4"><img class="card-img-top mb-5 mb-md-0 " src="{{ asset('images/complaint.png') }}"
                         alt="..." /></div>
                 <div class="col-md-8">
-                    <h3 class=" fw-bolder" style="font-family: poppins; margin-top:55px;"><b>{{$data->subject}}</b></h3>
+                    <h3 class=" fw-bolder" style="font-family: poppins; margin-top:55px;"><b>{{ $data->subject }}</b></h3>
                     <div class="input-group">
                         @if ($data->user->foto)
                             <img src="{{ asset('storage/' . $data->user->foto) }}" width="52px" height="52px"
-                                    style="border-radius: 50%" alt="">
+                                style="border-radius: 50%" alt="">
                         @else
                             <img src="{{ asset('images/default.jpg') }}" width="52px" height="52px"
-                                    style="border-radius: 50%" alt="">
+                                style="border-radius: 50%" alt="">
                         @endif
                         <div>
-                        <p class="ms-3 fw-bolder">{{$data->user->name}}<br><small class=""><i>{{$data->user->email}}</i></small></p>
+                            <p class="ms-3 fw-bolder">{{ $data->user->name }}<br><small
+                                    class=""><i>{{ $data->user->email }}</i></small></p>
                         </div>
                     </div>
-                    <p >{{ $data->description }}</p>
+                    <p>{{ $data->description }}</p>
                 </div>
 
             </div>
@@ -137,10 +162,11 @@
                             <form method="POST" action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" id="reply" name="reply" width="500px" class="form-control rounded-3 me-5"
-                                        placeholder="Tambah komentar...">
+                                    <input type="text" id="reply" name="reply" width="500px"
+                                        class="form-control rounded-3 me-5" placeholder="Tambah komentar...">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                    <button type="submit" style="background-color: #F7941E; border-radius:10px;" class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                    <button type="submit" style="background-color: #F7941E; border-radius:10px;"
+                                        class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
 
                             </form>
@@ -164,10 +190,12 @@
                         <div class="card p-3">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="user d-flex flex-row align-items-center">
-                                    @if($row->user->foto)
-                                    <img src="{{ asset('storage/'.$row->user->foto) }}" width="30" class="user-img rounded-circle mr-2">
+                                    @if ($row->user->foto)
+                                        <img src="{{ asset('storage/' . $row->user->foto) }}" width="30"
+                                            class="user-img rounded-circle mr-2">
                                     @else
-                                        <img src="{{ asset('images/default.jpg') }}" width="30" class="user-img rounded-circle mr-2">
+                                        <img src="{{ asset('images/default.jpg') }}" width="30"
+                                            class="user-img rounded-circle mr-2">
                                     @endif
                                     @if ($row->user->role == 'admin')
                                         <span><small
@@ -202,12 +230,14 @@
                                             type="text">
                                         <input hidden id="complaint_id" name="complaint_id" value="{{ $data->id }}"
                                             type="text">
-                                        @if($userLogin && $row->likes()->where('user_id', $userLogin->id)->exists())
-                                        <button type="submit" class="btn btn-light text-warning btn-sm rounded-5 "><i
-                                                class="fa-solid fa-thumbs-up me-2"></i></button>
+                                        @if (
+                                            $userLogin &&
+                                                $row->likes()->where('user_id', $userLogin->id)->exists())
+                                            <button type="submit" class="btn btn-light text-warning btn-sm rounded-5 "><i
+                                                    class="fa-solid fa-thumbs-up me-2"></i></button>
                                         @else
-                                        <button type="submit" class="btn btn-light text-dark btn-sm rounded-5 "><i
-                                            class="fa-solid fa-thumbs-up me-2"></i></button>
+                                            <button type="submit" class="btn btn-light text-dark btn-sm rounded-5 "><i
+                                                    class="fa-solid fa-thumbs-up me-2"></i></button>
                                         @endif
                                     </form>
                                     <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
@@ -218,7 +248,50 @@
                         </div>
                     @endforeach
                 </div>
-                @foreach ($replies as $row)
+                @foreach($replies as $row)
+                    @if($row->id != null)
+                <!-- Modal -->
+                <div class="modal fade" id="Modal{{ $row->id }}"  tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Laporkan foto pengguna</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="{{ route('Report.store') }}" method="POST">
+                                @csrf
+                                <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
+                                    <!-- Tambahkan kelas "align-items-center" -->
+                                    @if ($row->user->foto)
+                                        <img src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
+                                            style="border-radius: 50%; border:0.05rem solid rgb(185, 180, 180);" alt="">
+                                        <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                                        <input hidden type="text" name="reply_id" value="{{ $row->id }}">
+                                        <input hidden type="text" name="user_id" value="{{ $row->user->id }}">
+                                    @else
+                                        <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                            style="border-radius: 50%  border:0.05rem solid rgb(185, 180, 180);" alt="">
+                                        <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                        <input hidden type="text" name="reply_id" value="{{ $row->id }}">
+                                        <input hidden type="text" name="user_id" value="{{ $row->user->id }}">
+                                    @endif
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-light text-light"
+                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                            class="ms-2 me-2">Laporkan</b></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                    @endif
+                @endforeach
+                {{-- end modal --}}
+                {{-- @foreach ($replies as $row)
                     @if ($row->id != '')
                         <div class="modal fade" id="Modal{{ $row->id }}" data-backdrop="static" data-keyboard="false"
                             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -237,8 +310,7 @@
                                                     <div class="mt-2"> <span class="intro-2 text-danger">Form Report
                                                             Pelanggaran Pedoman Komunitas </span> </div>
                                                     <span class="intro-1">{{ $row->subject }}</span>
-                                                    {{-- <div class="mt-2"> <span class="intro-2">Balasan yang anda kirim:</span> </div>
-                                            <span class="intro-1">test</span> --}}
+                                             
                                                     <form action="{{ route('Report.store') }}" method="POST">
                                                         @csrf
                                                         <div class="mt-2"> <span class="intro-2">Alasan Report:</span>
@@ -265,9 +337,9 @@
                             </div>
                         </div>
                     @endif
-                @endforeach
-            </div>
+                @endforeach --}}
 
+            </div>
         </div>
     </section>
     </div>
