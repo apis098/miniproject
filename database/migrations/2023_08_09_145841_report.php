@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reply_id')->nullable();
+            $table->unsignedBigInteger('reply_id_report')->nullable();
             $table->unsignedBigInteger('user_id_sender')->nullable();
             $table->unsignedBigInteger('complaint_id')->nullable();
             $table->unsignedBigInteger('user_id');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
 
+            
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id_sender')->references('id')->on('users')->onDelete('cascade');

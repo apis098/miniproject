@@ -36,6 +36,11 @@ class ReportController extends Controller
         $report->user->increment('jumlah_pelanggaran');
         if($report->reply_id != null){
             $report->replies->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->reply_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->reply_id_report = $report->reply_id;
+            $notification->save(); 
             return redirect()->back()->with('success', 'Komentar telah diblokir');
         }
         if($report->profile_id != null){

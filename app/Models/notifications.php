@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class notifications extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'follower_id','like_id','complaint_id','notification_from','reply_id','status'];
+    protected $fillable = ['user_id', 'follower_id','like_id','complaint_id','notification_from','reply_id','status','reply_id_report'];
 
     public function complaint()
     {
@@ -34,5 +34,9 @@ class notifications extends Model
     public function reply()
     {
         return $this->belongsTo(Reply::class);
+    }
+    public function replyBlocked()
+    {
+        return $this->belongsTo(Reply::class,'reply_id_report');
     }
 }
