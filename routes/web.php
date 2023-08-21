@@ -124,19 +124,24 @@ Route::get('about', function () {
     return view('template.about', compact('notification','unreadNotificationCount','userLogin'));
 })->name('about');
 
-Route::get('hari', function () {
+Route::get('hari', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
     $unreadNotificationCount=[];
-    $hari = reseps::pluck('hari_khusus')->unique();
+    $haries = reseps::pluck('hari_khusus')->unique();
     $recipes = reseps::whereNotNull("hari_khusus")->paginate(6);
+    $hari = reseps::pluck('hari_khusus')->unique();
+    if ($request->has('hari')) {
+        $hari = $request->input('hari');
+        $recipes = reseps::whereIn('hari_khusus', $hari)->paginate(6);
+    }
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('hari','recipes','notification','unreadNotificationCount','userLogin'));
+    return view('template.hari', compact('haries','hari','recipes','notification','unreadNotificationCount','userLogin'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {

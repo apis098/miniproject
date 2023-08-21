@@ -48,7 +48,7 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.css')}}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.css') }}">
     <style>
         .custom_nav-container .navbar-nav .nav-item.active .nav-link {
             color: #F7941E;
@@ -577,11 +577,13 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
     </script>
     <!-- End Google Map -->
-    <script src="{{asset('plugins/select2/js/select2.js')}}"></script>
+    <script src="{{ asset('plugins/select2/js/select2.js') }}"></script>
     <script>
         // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {
-            $('.search-bahan').select2();
+            $('.search-bahan').select2({
+                closeOnSelect: false
+            });
         });
     </script>
 </body>

@@ -120,9 +120,9 @@
             .search-2 button {
                 position: absolute;
                 right: 1px;
-                top: 0px;
+                top: -1px;
                 border: none;
-                height: 45px;
+                height: 35px;
                 background-color: #F7941E;
                 color: #fff;
                 width: 90px;
@@ -154,7 +154,10 @@
         <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class=" font-poppins mb-5"><b>Cari resep  <br> berdasarkan bahan</b></h1>
+                    <h1 class=""
+                    style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
+                    Cari resep masakan <br />berdasarkan bahan
+                </h1>
                     <form action="">
                         <div class="container">
                             <div class="search" style="border-radius: 15px;">
@@ -164,7 +167,6 @@
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="{{ url('/menu') }}" method="get">
                                                     <select name="bahan[]" class="search-bahan" id="search-bahan" multiple="multiple">
-                                                        <option value=""></option>
                                                         @foreach ($ingredients as $i)
                                                             <option value="{{ $i }}">{{ $i }}</option>
                                                         @endforeach
@@ -239,6 +241,12 @@
                                                 {{ $b->nama_bahan }}</div>
                                         </button>
                                     @endforeach
+                                    <button type="button" class="border p-2"
+                                            style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 6px 35px;">
+                                            <div
+                                                style="color: white; font-size: 15px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                {{ $item->nama_bahan }}</div>
+                                        </button>
                                 </div>
                             </div>
                         </div>
