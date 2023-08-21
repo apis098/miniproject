@@ -158,7 +158,7 @@
         <div class="container">
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 ms-3">
                     <div class="form_container">
                         @if (session('success'))
                             <div class="alert alert-success">
@@ -187,16 +187,16 @@
                                 <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
                             </div>
                             <div>
-                                <button type="submit">
-                                    Kirim <i class="fa-solid fa-paper-plane"></i>
+                                <button style="background-color: #f39c12" type="submit">
+                                    Kirim 
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col ms-5">
                     <div>
-                        <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh" style="width: 100%; margin-top: -15%;">
+                        <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh" style="width: 110%; margin-top: -20%;">
                     </div>
                 </div>
 
