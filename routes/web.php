@@ -21,6 +21,7 @@ use App\Models\bahan_reseps;
 use App\Models\notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mockery\Undefined;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,32 +72,43 @@ Route::get('artikel', function () {
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 
-Route::get('menu', function () {
+Route::get('menu', function (Request $request) {
     $userLogin = Auth::user();
-    $bahan = bahan_reseps::pluck("nama_bahan")->unique();
+    $bahan = bahan_reseps::pluck('nama_bahan')->unique();
     $notification = [];
     $unreadNotificationCount=[];
     $recipes = reseps::paginate(6);
+    if ($request->has('bahan')) {
+        $bahan = $request->input('bahan');
+    $recipes = reseps::whereHas('bahan', function ($query) use ($bahan) {
+        $query->where('nama_bahan', $bahan);
+    })->paginate(6);
+    }
+    $ingredients = bahan_reseps::pluck('nama_bahan')->unique();
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('bahan','recipes','notification','unreadNotificationCount','userLogin'));
+    return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin'));
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
     $unreadNotificationCount=[];
+    $ingredients = $request->input('bahan');
+    $recipes = reseps::whereHas('bahan', function ($query) use ($ingredients) {
+        $query->where('nama_bahan', $ingredients);
+    });
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('notification','unreadNotificationCount','userLogin'));
+    return view('template.menu', compact('recipes','notification','unreadNotificationCount','userLogin'));
 });
 
 Route::get('about', function () {

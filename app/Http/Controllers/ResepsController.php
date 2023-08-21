@@ -55,8 +55,8 @@ class ResepsController extends Controller
             "lama_memasak" => "required",
             "pengeluaran_memasak" => "required|numeric",
             "bahan_resep.*" => "required",
+            "foto_langkah_resep.0" => "required|image|mimes:png,jpeg,jpg|max:50000",
             "takaran_resep.*" => "required",
-            "foto_langkah_resep.*" => "required|image|mimes:png,jpg,jpeg|max:50000",
             "langkah_resep.*" => "required"
         ]);
         $create_recipe = reseps::create([

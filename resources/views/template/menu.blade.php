@@ -50,7 +50,7 @@
                 width: 100%
             }
 
-            .search-1 input {
+            .search-1 select {
                 height: 45px;
                 border: none;
                 width: 100%;
@@ -59,7 +59,7 @@
                 border-right: 2px solid #eee
             }
 
-            .search-1 input:focus {
+            .search-1 select:focus {
                 border-color: none;
                 box-shadow: none;
                 outline: none
@@ -83,31 +83,32 @@
                 width: 100%
             }
 
-            .search-2 input {
+            .search-2 select {
                 height: 45px;
                 border: none;
                 width: 100%;
+                color: #000;
                 padding-left: 18px;
                 padding-right: 100px
             }
 
-            .search-2 input:focus {
+            .search-2 select:focus {
                 border-color: none;
                 box-shadow: none;
                 outline: none
             }
 
             /* button{
-                    background-color: #F7941E;
-                    border: none;
-                    height: 45px;
-                    width: 90px;
-                    color: #ffffff;
-                    position: absolute;
-                    right: 1px;
-                    top: 0px;
-                    border-radius: 15px
-                } */
+                                                background-color: #F7941E;
+                                                border: none;
+                                                height: 45px;
+                                                width: 90px;
+                                                color: #ffffff;
+                                                position: absolute;
+                                                right: 1px;
+                                                top: 0px;
+                                                border-radius: 15px
+                                            } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -153,7 +154,7 @@
         <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class=" font-poppins mb-5"><b>Cari resep masakan <br> berdasarkan bahan</b></h1>
+                    <h1 class=" font-poppins mb-5"><b>Cari resep  <br> berdasarkan bahan</b></h1>
                     <form action="">
                         <div class="container">
                             <div class="search" style="border-radius: 15px;">
@@ -161,9 +162,13 @@
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="" method="GET">
-                                                    <input type="text" id="" name="bahan"
-                                                        placeholder="Cari resep yang kamu mau">
+                                                <form action="{{ url('/menu') }}" method="get">
+                                                    <select name="bahan[]" class="search-bahan" id="search-bahan" multiple="multiple">
+                                                        <option value=""></option>
+                                                        @foreach ($ingredients as $i)
+                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                        @endforeach
+                                                    </select>
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px;">Cari</button>
                                                 </form>
@@ -175,22 +180,27 @@
                             </div>
                         </div>
                     </form>
-                    </p>
                     <div class="col-sm-12 text-center mt-5">
+                        <div style="background-color: #F7941E;
+                        width: 100%;
+                        height: 65px;
+                        border: 1px solid black;
+                        overflow-y: scroll;
+                        border: none;">
                         @foreach ($bahan as $b)
-                        <button class="btn btn-white mx-2 my-2" style=" background: white; border-radius: 10px; padding: 6px 35px;">
-                            <div class="Ayam"
-                                style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                {{ $b }}</div>
-                        </button>
+                            <button class="btn btn-white mx-2 my-2"
+                                style=" background: white; border-radius: 10px; padding: 6px 35px;">
+                                <div class="Ayam"
+                                    style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                    {{ $b }}</div>
+                            </button>
                         @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
         </div><!-- End -->
     </div>
-
-
     <div class="ms-5 mt-5 input-group">
         <div class="ms-1">
             <h3 class="fw-bold">Hasil Pencarian</h3>
@@ -213,8 +223,9 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h5>
-                                        <a style="color: black;" href="/artikel/{{$item->id}}/{{$item->nama_resep}}">
-                                        {{ $item->nama_resep }}
+                                        <a style="color: black;"
+                                            href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                            {{ $item->nama_resep }}
                                         </a>
                                     </h5>
                                     <span>Oleh {{ $item->User->name }}</span>
