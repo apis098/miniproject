@@ -268,7 +268,7 @@
                             <div class="user_option" style="margin-left: 180px;">
 
 
-                                @if (Auth::check())
+                                @if (Auth::check() && $notification != null)
                                     {{-- dropdown notifikasi --}}
                                     <div class="text-light me-2">
                                         <a data-toggle="dropdown" class="text-light" href="#">
@@ -428,6 +428,14 @@
                                                     </div>
                                                 @endif
                                             @endforeach
+                                            @forelse ($notification as $row)
+                                                <!-- Konten notifikasi -->
+                                            @empty
+                                            <div class="dropdown-divider"></div>
+                                                <div class="text-center mt-2">
+                                                    <img src="{{asset('images/nodata.png')}}" class="col-sm-6" alt="...">
+                                                </div>
+                                            @endforelse
                                             <div class="dropdown-divider"></div>
                                         </div>
                                     </div>
