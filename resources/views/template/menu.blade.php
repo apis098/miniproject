@@ -220,7 +220,7 @@
                 <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header">
-                            <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
+                            <img width="328px" height="304px" style="border-radius: 9999px; border: 0.50px black solid"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                         </div>
                         <div class="card-body">

@@ -449,7 +449,7 @@
                                             @if ($userLogin->foto)
                                                 <img loading="lazy" class="mr-3 rounded-circle"
                                                     src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                    alt="profile image" style="max-width:40px">
+                                                    alt="profile image" width="50px" height="50px">
                                             @else
                                                 <img loading="lazy" class="mr-3 rounded-circle"
                                                     src="{{ asset('images/default.jpg') }}" alt="profile image"
@@ -463,7 +463,7 @@
                                                     @if ($userLogin->foto)
                                                         <img class="mr-3 ms-2 mb-1 rounded-circle"
                                                             src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                            alt="profile image" style="max-width:40px">
+                                                            alt="profile image" width="50px" height="50px">
                                                     @else
                                                         <img class="mr-3 ms-2 mb-1 rounded-circle"
                                                             src="{{ asset('images/default.jpg') }}"

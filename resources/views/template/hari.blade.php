@@ -185,12 +185,14 @@
                     <div class="col-sm-12 text-center mt-5">
                         <div>
                         @foreach ($hari as $b)
-                            <button class="btn btn-white mx-2 my-2"
-                                style=" background: white; border-radius: 10px; padding: 6px 35px;">
-                                <div
-                                    style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                    {{ $b }}</div>
-                            </button>
+                        @if ($b != NULL)
+                        <button class="btn btn-white mx-2 my-2"
+                        style=" background: white; border-radius: 10px; padding: 6px 35px;">
+                        <div
+                            style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            {{ $b }}</div>
+                    </button>
+                        @endif
                         @endforeach
                         </div>
                     </div>
@@ -213,7 +215,7 @@
                 <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header">
-                            <img width="100%" height="100%" style="border-radius: 9999px; border: 0.50px black solid"
+                            <img width="328px" height="304px" style="border-radius: 9999px; border: 0.50px black solid"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                         </div>
                         <div class="card-body">

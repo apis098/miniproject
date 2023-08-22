@@ -59,7 +59,8 @@ class ResepsController extends Controller
             "foto_langkah_resep.0" => "required|image|mimes:png,jpeg,jpg|max:50000",
             "takaran_resep.*" => "required",
             "langkah_resep.*" => "required"
-        ]);*/
+        ]); */
+
         $rules = [
             "nama_resep" => "required",
             "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
@@ -75,16 +76,9 @@ class ResepsController extends Controller
         foreach ($request->langkah_resep as $key => $value) {
             $rules["foto_langkah_resep.$key"] = "required|image|mimes:jpg,jpeg,png|max:50000";
         }
-        $messages = [
-            "nama_resep.required" => "Nama resep wajib diisi!",
-            "foto_resep.required" => "Foto resep wajib diisi!",
-            "foto_resep.image" => "Foto resep wajib berupa gambar!",
-            "foto_resep.mimes" => "Foto resep setidaknya berekstensi jpg, jpeg, atau png!",
-            "foto_resep.max" => "Foto resep maksimal berukuran 50MB!",
-        ];
         $validasi = Validator::make($request->all(), $rules);
-        if ($validasi->errors()) {
-            return redirect()->back()->withErrors($validasi)->withInput();
+        if ($validasi->fails()) {
+            return redirect()->back()->withErrors($validasi);
         }
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
@@ -115,6 +109,7 @@ class ResepsController extends Controller
         }
         return redirect('/koki/index')->with('success', 'Sukses! anda berhasil membuat resep baru.');
     }
+
     /**
      * Display the specified resource.
      */

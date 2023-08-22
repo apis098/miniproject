@@ -1,11 +1,12 @@
 @extends('template.nav')
 @section('content')
-    <div class="row container">
-        <div class="col-lg-3 mt-3 d-flex flex-row-reverse">
-            <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="75%"
-                height="80%" style="border-radius: 50%;">
+<section class="container">
+    <div class="row my-5-3">
+        <div class="col-lg-2 mt-3">
+            <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="197px"
+                height="187px" style="border-radius: 50%;">
         </div>
-        <div class="col-lg-3 mt-5">
+        <div class="col-lg-4 mt-5 ml-3">
             <h3 style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}</h3>
             <span>{{ $show_resep->User->name }}</span>
         </div>
@@ -13,10 +14,10 @@
 
         </div>
     </div>
-    <div class="row container mx-auto mb-3">
+    <div class="row mx-auto my-5">
         <div class="col-lg-4">
             <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
-            <div class="card p-4" style="border-radius: 5px; border: 0.50px black solid">
+            <div class="card p-4" style="border-radius: 10px; border: 0.50px black solid">
                 <div class="row my-1">
                     <div class="col-7">
                         <span class="ms-3"
@@ -32,7 +33,7 @@
         </div>
         <div class="col-lg-4">
             <h4 style="font-weight: 600; word-warp:break-word;">Pengeluaran</h4>
-            <div class="card p-4" style="border-radius: 5px; border: 0.50px black solid">
+            <div class="card p-4" style="border-radius: 10px; border: 0.50px black solid">
                 <div class="row my-1">
                     <div class="col-7">
                         <span class="ms-3"
@@ -48,7 +49,7 @@
         </div>
         <div class="col-lg-4">
             <h4 style="font-weight: 600; word-warp: break-word;">Porsi</h4>
-            <div class="card p-4" style="border-radius: 5px; border: 0.50px black solid">
+            <div class="card p-4" style="border-radius: 10px; border: 0.50px black solid">
                 <div class="row my-1">
                     <div class="col-7">
                         <span class="ms-3"
@@ -65,25 +66,25 @@
     </div>
     <style>
     </style>
-    <div class="container">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <div class="my-5">
+        <ul class="nav mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+                <a class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
                     type="button" role="tab" aria-controls="pills-home" aria-selected="true">
                     <h6 style="font-weight: 600; word-warp: break-word;">Deskripsi</h6>
-                </button>
+            </a>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+                <a class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
                     type="button" role="tab" aria-controls="pills-profile" aria-selected="false">
                     <h6 style="font-weight: 600; word-warp: break-word;">Bahan</h6>
-                </button>
+            </a>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
+                <a class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact"
                     type="button" role="tab" aria-controls="pills-contact" aria-selected="false">
                     <h6 style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h6>
-                </button>
+            </a>
             </li>
         </ul>
         <div class="tab-content mb-5" id="pills-tabContent">
@@ -117,8 +118,8 @@
             @foreach ($show_resep->langkah as $num => $item_langkah)
                 <div class="card-body d-flex flex-row">
                     <div>
-                        <img src="{{ asset('storage/'.$item_langkah->foto_langkah) }}" alt="{{ $item_langkah->foto_langkah }}" width="85%" height="85%">
-                        <button type="button" style="position: absolute;  left: 290px; background-color:#F7941E;"
+                        <img src="{{ asset('storage/'.$item_langkah->foto_langkah) }}" alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px;" width="160px" height="160px">
+                        <button type="button" style="position: absolute;  left: 260px; bottom: -15px; background-color:#F7941E;"
                         class="btn btn-warning btn-sm text-light rounded-circle p-2">
                         <span class="p-2">{{ $num+=1 }}</span>
                     </button>
@@ -131,4 +132,5 @@
             </div>
         </div>
     </div>
+</section>
 @endsection
