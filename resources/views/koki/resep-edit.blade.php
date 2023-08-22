@@ -160,7 +160,7 @@
                     @foreach ($edit_resep->langkah as $int => $item_langkah)
                         <div id="close2_{{ $item_langkah->id }}">
                             @if ($int > 1)
-                                <button type="button" class="fa-solid fa-x"
+                                <button type="button" class="btn btn-danger fa-solid fa-x"
                                     onclick="close2({{ $item_langkah->id }})"></button>
                             @endif
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
@@ -225,15 +225,16 @@
         const place1 = document.getElementById("new-input1");
         const place2 = document.getElementById("new-input2");
 
-        num = 1;
-        num2 = 1;
+        num = 1000;
+        num2 = 1000;
 
         addInput2.addEventListener('click', function() {
             num2++;
             const input2 = document.createElement("div");
             input2.classList.add("mb-4");
             input2.innerHTML = `
-                        <div class="row">
+                        <div class="row" id="close2_${num2}">
+                            <button type="button" style="width: 50px;" class="btn btn-danger fa-solid fa-x" onclick="close2(${num2})"></button>
                             <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
                             <div class="card my-5 col-lg-4">
                                 <div class="card-body text-center">
@@ -261,6 +262,8 @@
             const input1 = document.createElement("div");
             input1.classList.add("mt-2");
             input1.innerHTML = `
+            <div id="close1_${num}">
+            <button type="button" class="btn btn-danger my-2 fa-solid fa-x" onclick="close1(${num})"></button>
                 <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan</b></label>
                 <input type="text" name="bahan_resep_tambahan[]" class="form-control" id="exampleFormControlInput1"
                     placeholder="Masukkan bahan makanan" required>
@@ -269,24 +272,19 @@
                 <input type="text" name="takaran_resep_tambahan[]" class="form-control" id="exampleFormControlInput1"
                     placeholder="Masukkan takaran" required>
                 <br>
+            </div>
             `;
             place1.appendChild(input1);
         });
 
         function close1(num) {
             const close = document.getElementById("close1_" + num);
-            close.innerHTML = `
-                            <input type="hidden" name="hapus_bahan[]" value="${num}">
-                            `;
             close.style.display = "none";
         }
 
         function close2(num) {
-            const close2 = document.getElementById("close2_" + num);
-            close2.innerHTML = `
-                            <input type="hidden" name="hapus_langkah[]" value="${num}">
-                            `;
-            close2.style.display = "none";
+            const close = document.getElementById("close2_" + num);
+            close.style.display = "none";
         }
     </script>
 @endsection

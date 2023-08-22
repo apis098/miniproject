@@ -202,35 +202,11 @@
                                             width="55px" alt="dsdaa">
                                     </div>
                                     <div class=" col-8">
-                                        <a type="button"  class="as" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal{{$r->id}}">
+                                        <a type="button"  class="as" href="/artikel/{{$r->User->id}}/{{$r->nama_resep}}">
                                             {{ $r->nama_resep }}
                                         </a> <br>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal{{$r->id}}" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title text-center fs-5" id="exampleModalLabel">Edit Resep / Hapus Resep
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body text-center">
-                                                        <form action="/koki/resep/{{$r->id}}/edit" method="get">
-                                                            <button type="submit" class="btn btn-warning">Edit Resep {{$r->nama_resep}}</button>
-                                                        </form>
-                                                        <br>
-                                                        <form action="/koki/resep/{{$r->id}}" method="post">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin mau menghapus data resep')">Hapus Resep {{$r->nama_resep}}</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    
                                         <span class="ai">
                                             Oleh {{ $r->User->name }}
                                         </span>

@@ -1,7 +1,7 @@
 @extends('template.nav')
 @section('content')
     <section class="container">
-        <div class="row my-5-3">
+        <div class="row my-5">
             <div class="col-lg-2 mt-3">
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="197px"
                     height="187px" style="border-radius: 50%;">
@@ -10,10 +10,22 @@
                 <h3 style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}</h3>
                 <span>{{ $show_resep->User->name }}</span>
             </div>
-            <div class="col-lg-6">
-
+            <div class="col-lg-6 mt-5 ml-3">
+                <div style="position: absolute; right: -500px; top: -200px;" class="d-flex">
+                @if ($show_resep->User->id === Auth::user()->id)
+                    <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
+                        <button type="submit" class="btn btn-warning mr-2">Edit</button>
+                    </form>
+                    <form action="/koki/resep/{{ $show_resep->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger"
+                            onclick="return confirm('Yakin mau menghapus data resep')">Hapus</button>
+                    </form>
+                @endif
+                </div>
             </div>
-        </div>
+        </div> <br>
         <div class="row mx-auto my-5">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
@@ -109,7 +121,7 @@
                 });
                 click2.addEventListener("click", function() {
                     border2.removeAttribute('hidden');
-                    border2.style.display ="block";
+                    border2.style.display = "block";
                     border1.style.display = "none";
                     border3.style.display = "none";
                 });
@@ -151,14 +163,13 @@
                     @foreach ($show_resep->langkah as $num => $item_langkah)
                         <div class="card-body d-flex flex-row">
                             <div>
+                                <button type="button" style="background-color:#F7941E;"
+                                    class="btn btn-warning btn-sm text-light rounded-circle p-2 ml-2">
+                                    <span class="p-2">{{ $num += 1 }}</span>
+                                </button>
                                 <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
                                     alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px;" width="160px"
                                     height="160px">
-                                <button type="button"
-                                    style="position: absolute;  left: 270px; bottom: -19px; background-color:#F7941E;"
-                                    class="btn btn-warning btn-sm text-light rounded-circle p-2">
-                                    <span class="p-2">{{ $num += 1 }}</span>
-                                </button>
                             </div>
                             <div class="my-auto mx-4">
                                 {{ $item_langkah->deskripsi_langkah }}

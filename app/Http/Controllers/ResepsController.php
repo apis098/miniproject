@@ -162,9 +162,9 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validasi = Validator::make($request->all(), [
+        $rules = [
             "nama_resep" => "required",
-            "foto_resep" => "nullable|image|mimes:png,jpg,jpeg|max:50000",
+            "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|numeric",
@@ -172,11 +172,34 @@ class ResepsController extends Controller
             "pengeluaran_memasak" => "required|numeric",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
-            "foto_langkah_resep.*" => "required|image|mimes:png,jpg,jpeg|max:50000",
             "langkah_resep.*" => "required"
-        ]);
+        ];
+        $messages = [
+            "nama_resep.required" => "Nama resep wajib diisi!",
+            "foto_resep.required" => "Foto resep wajib diisi!",
+            "foto_resep.image" => "Foto resep harus berupa gambar!",
+            "foto_resep.mimes" => "Foto resep harus berekstensi jpg, jpeg, atau png!",
+            "foto_resep.max" => "Foto resep yang diterima maksimal berukuran 50MB!",
+            "deskripsi_resep.required" => "Deskripsi resep wajib diisi!",
+            "porsi_orang.required" => "Porsi orang wajib diisi!",
+            "porsi_orang.numeric" => "Porsi orang wajib berupa nomer!",
+            "lama_memasak.required" => "Lama memasak wajib diisi!",
+            "pengeluaran_memasak.required" => "Pengeluaran memasak wajib diisi!",
+            "pengeluaran_memasak.numeric" => "Pengeluaran memasak wajib berupa nomer!",
+            "bahan_resep.*.required" => "Bahan resep wajib diisi!",
+            "takaran_resep.*.required" => "Takaran resep wajib diisi!",
+            "langkah_resep.*.required" => "Langkah resep wajib diisi!"
+        ];
+        foreach ($request->langkah_resep as $key => $value) {
+            $rules["foto_langkah_resep.$key"] = "required|image|mimes:jpg,jpeg,png|max:50000";
+            $messages["foto_langkah_resep.$key.required"] = "Foto langkah wajib diisi!";
+            $messages["foto_langkah_resep.$key.image"] = "Foto langkah wajib berupa gambar!";
+            $messages["foto_langkah_resep.$key.mimes"] = "Foto langkah harus berekstensi jpg, jpeg, atau png!";
+            $messages["foto_langkah_resep.$key.max"] = "Foto langkah yang diterima maksimal berukuran 50MB!";
+        }
+        $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            return response()->json($validasi->errors(), 422);
+            return redirect()->back()->withErrors($validasi);
         }
         $update_resep = reseps::find($id);
         $update_resep->nama_resep = $request->nama_resep;
