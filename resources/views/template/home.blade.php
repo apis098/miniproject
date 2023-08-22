@@ -47,39 +47,52 @@
 
 <!-- offer section -->
 
-<section class="offer_section layout_padding-bottom">
+<section class="container mb-5">
 
-    <h2 class="text-center">Our Reseps For You!</h2>
-
-    <div class="offer_container">
-        <div class="container ">
-            <div class="row mb-3">
-                @foreach ($real_reseps as $r)
-                    <div class="col-md-6  ">
-                        <div class="box ">
-                            <div class="img-box">
-                                <a href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
-                                <img src="{{ asset('storage/' . $r->foto_resep) }}" alt="">
-                                </a>
-                            </div>
-                            <div class="detail-box">
-                                <h6>
-                                    {{ $r->nama_resep }}
-                                </h6>
-                                <h5>
-                                    <span>Lihat Resep - Resep Lainnya</span>
-                                </h5>
-                                <br>
-                                <a href="{{ route('menu') }}">
-                                    Lihat Resep
-                                </a>
-                            </div>
+    <div class="ms-5 mt-5 input-group">
+        <div class="ms-1">
+            <h3 class="fw-bold">Resep populer</h3>
+        </div>
+        <div class="ms-auto me-5">
+            {{ $real_reseps->links('vendor.pagination.simple-default') }}
+        </div>
+    </div>
+    <div class="row container">
+        @foreach ($real_reseps as $item)
+        <div class="col-lg-4">
+           <div class="card p-3">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{{ asset('storage/'.$item->foto_resep) }}" class="rounded-circle" width="100%" height="100%" alt="">
+                </div>
+                <div class="col-7">
+                    <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
+                    <div class="d-flex flex-row my-2">
+                        <div class="">
+                            <img src="{{ asset('storage/'.$item->User->foto) }}" width="50px" style="border-radius: 50%;" alt="">
+                        </div>
+                        <div class="">
+                            <span>{{ $item->User->name }}</span>
                         </div>
                     </div>
-                @endforeach 
+                    <div class="row my-1">
+                        <div class="col-6 my-2">
+                            <img src="{{asset('images/🦆 icon _trophy_.svg')}}" style="" width="15px" alt="">
+                            Top 2
+                        </div>
+                        <div class="col-6">
+                            <form action="/artikel/{{$item->id}}/{{$item->nama_resep}}" method="get">
+                                <button type="submit" class="btn btn-light" style="background-color: #f39c12; border-radius: 15px;">
+                                    <span style="font-weight: 600;">Lihat</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{ $real_reseps->links() }}
+           </div>
         </div>
+        @endforeach
     </div>
 </section>
 
@@ -112,7 +125,7 @@
                         <div class="heading_container">
                             <h1
                                 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
-                                Apa keluhanmu saat memasak? 
+                                Apa keluhanmu saat memasak?
                             </h1>
 
                             <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
@@ -126,7 +139,7 @@
                         </div>
                         <div>
                             <button style="background-color: #f39c12" type="submit">
-                               <b>Kirim</b>
+                                <b>Kirim</b>
                             </button>
                         </div>
                     </form>
@@ -157,40 +170,40 @@
 
 <div class="container mb-5">
     <div class="row mb-5">
-        @foreach ($complaints as $item)            
-        <div class="col-lg-4">
-            <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
-                <div class="card-body ">
-                    <div class="widget-49">
-                        <div class="widget-49-title-wrapper">
-                            <div class="widget-49-date-primary">
-                                <img class="widget-49-date-primary" style="border:1.5px black solid"
-                                    src="{{ asset('images/default.jpg') }}"alt="">
+        @foreach ($complaints as $item)
+            <div class="col-lg-4">
+                <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
+                    <div class="card-body ">
+                        <div class="widget-49">
+                            <div class="widget-49-title-wrapper">
+                                <div class="widget-49-date-primary">
+                                    <img class="widget-49-date-primary" style="border:1.5px black solid"
+                                        src="{{ asset('images/default.jpg') }}"alt="">
+                                </div>
+                                <div class="widget-49-meeting-info">
+                                    <span class="widget-49-pro-title fw-bolder">{{ $item->user->name }}</span>
+                                    <small class="text-secondary"><i>{{ $item->user->email }}</i></small>
+                                </div>
                             </div>
-                            <div class="widget-49-meeting-info">
-                                <span class="widget-49-pro-title fw-bolder">{{ $item->user->name }}</span>
-                                <small class="text-secondary"><i>{{ $item->user->email }}</i></small>
+                            <div class="mt-3 ms-1">
+                                <p>
+                                    <b>
+                                        <a style="color: black;" href="/show-reply-by/{{ $item->id }}">
+                                            {{ $item->subject }}
+                                        </a>
+                                    </b><br>
+
+                                    <small>
+                                        {{ $item->description }}
+                                    </small>
+
+                                </p>
+
                             </div>
-                        </div>
-                        <div class="mt-3 ms-1">
-                            <p>
-                                <b>
-                                    <a style="color: black;" href="/show-reply-by/{{ $item->id }}">
-                                    {{ $item->subject }}
-                                    </a>
-                                </b><br>
-
-                                <small>
-                                    {{ $item->description }}
-                                </small>
-
-                            </p>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         @endforeach
         {{--  --}}
     </div>

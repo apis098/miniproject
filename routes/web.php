@@ -42,7 +42,7 @@ Route::get('/profile', function () {
 
 Route::get('/', function () {
     $complaints = complaint::paginate(3);
-    $real_reseps = reseps::paginate(4);
+    $real_reseps = reseps::paginate(2);
     $userLogin = Auth::user();
     $notification = [];
     $unreadNotificationCount=[];
