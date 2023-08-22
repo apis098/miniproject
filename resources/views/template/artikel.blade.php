@@ -1,7 +1,7 @@
 @extends('template.nav')
 @section('content')
     <section class="container">
-        <div class="row my-5">
+        <div class="row mt-5">
             <div class="col-lg-2 mt-3">
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="197px"
                     height="187px" style="border-radius: 50%;">
@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div> <br>
-        <div class="row mx-auto my-5">
+        <div class="row mx-auto mb-5">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
                 <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">

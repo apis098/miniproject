@@ -162,9 +162,10 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //dd($request->all());
         $rules = [
             "nama_resep" => "required",
-            "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
+            "foto_resep" => "nullable|image|mimes:jpg,jpeg,png|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|numeric",
@@ -176,7 +177,6 @@ class ResepsController extends Controller
         ];
         $messages = [
             "nama_resep.required" => "Nama resep wajib diisi!",
-            "foto_resep.required" => "Foto resep wajib diisi!",
             "foto_resep.image" => "Foto resep harus berupa gambar!",
             "foto_resep.mimes" => "Foto resep harus berekstensi jpg, jpeg, atau png!",
             "foto_resep.max" => "Foto resep yang diterima maksimal berukuran 50MB!",
@@ -191,8 +191,7 @@ class ResepsController extends Controller
             "langkah_resep.*.required" => "Langkah resep wajib diisi!"
         ];
         foreach ($request->langkah_resep as $key => $value) {
-            $rules["foto_langkah_resep.$key"] = "required|image|mimes:jpg,jpeg,png|max:50000";
-            $messages["foto_langkah_resep.$key.required"] = "Foto langkah wajib diisi!";
+            $rules["foto_langkah_resep.$key"] = "nullable|image|mimes:jpg,jpeg,png|max:50000";
             $messages["foto_langkah_resep.$key.image"] = "Foto langkah wajib berupa gambar!";
             $messages["foto_langkah_resep.$key.mimes"] = "Foto langkah harus berekstensi jpg, jpeg, atau png!";
             $messages["foto_langkah_resep.$key.max"] = "Foto langkah yang diterima maksimal berukuran 50MB!";
@@ -225,8 +224,6 @@ class ResepsController extends Controller
                 langkah_reseps::where("id", $v)->delete();
             }
         }
-
-
         foreach ($request->bahan_resep as $i => $b) {
             $bahan = strtolower(trim($b));
             bahan_reseps::where('id', $request->id_bahan_resep[$i])->update([

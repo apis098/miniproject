@@ -71,11 +71,12 @@
 
                     @foreach ($edit_resep->bahan as $num => $item_bahan)
                         <div id="close1_{{ $item_bahan->id }}">
-                            @if ($num > 1)
-                                <button type="button" class="fa-solid fa-x"
+                            @if ($num >= 1)
+                                <button type="button" class="btn btn-danger my-2 fa-solid fa-x"
                                     onclick="close1({{ $item_bahan->id }})"></button>
                             @endif
                             <input type="hidden" name="id_bahan_resep[]" value="{{ $item_bahan->id }}">
+                            <input type="hidden" id="hapus_bahan{{$num}}" value="{{ $item_bahan->id }}">
                             <div class="mt-2">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan
                                         {{ $num += 1 }}</b></label>
@@ -280,6 +281,8 @@
         function close1(num) {
             const close = document.getElementById("close1_" + num);
             close.style.display = "none";
+            const hapus_bahan = document.getElementById("hapus_bahan"+num);
+            hapus_bahan.setAttribute("name", "hapus_bahan[]");
         }
 
         function close2(num) {
