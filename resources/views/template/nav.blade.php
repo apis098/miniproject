@@ -517,10 +517,10 @@
             <div class="row">
                 <div class="col-md-4 footer-col">
                     <div class="footer_detail">
-                        <h1 style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold;">
+                        <h1 style="margin-right: 10em">
                             HummaCook
                         </h1>
-                        <p>
+                        <p class="mt-3">
                             Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti
                         </p>
 
@@ -545,25 +545,25 @@
                 </div>
                 <div class="col-md-4 footer-col">
                     <div class="footer_contact">
-                        <h1 style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold;">
+                        <h1 style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: 5em">
                             Kontak
                         </h1>
                         <div class="contact_link_box">
                             <a href="">
                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <span>
+                                <span style="margin-right: 6em">
                                     Lokasi
                                 </span>
                             </a>
                             <a href="">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <i class="fa fa-phone" aria-hidden="true" style="margin-left: 1em"></i>
                                 <span>
                                     Call +62 1234567890
                                 </span>
                             </a>
                             <a href="">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <span>
+                                <i class="fa fa-envelope" aria-hidden="true" style="margin-left: 4em"></i>
+                                <span style="margin-right: 1em">
                                     hummacook@gmail.com
                                 </span>
                             </a>
