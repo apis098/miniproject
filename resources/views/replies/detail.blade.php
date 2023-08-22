@@ -1,9 +1,6 @@
 @extends('template.nav')
 @section('content')
     <style>
-        body {
-            background-color: #f7f6f6
-        }
 
         .card {
 
@@ -23,13 +20,7 @@
             display: inline-block;
         }
 
-        .badge {
-
-            padding: 7px;
-            padding-right: 9px;
-            padding-left: 16px;
-            box-shadow: 5px 6px 6px 2px #e9ecef;
-        }
+  
 
         .user-img {
 

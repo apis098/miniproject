@@ -23,7 +23,7 @@ class likeController extends Controller
             ]);
             $replies->increment('likes');
             $replies->likes()->save($like);
-            if(!auth()->user()->id){
+            if(auth()->user()->id){
             $notifications = new notifications([
                 'notification_from' => auth()->user()->id,
                 'like_id' => $like->id,
