@@ -52,11 +52,11 @@
     .circle {
           background: #ffffff;
         border-radius: 50%;
-        width: 50%;
-        padding-bottom: 50%;
+        width: 55%;
+        padding-bottom: 55%;
         position: absolute;
-        top: 25%;
-        left: 17%;
+        top: 27%;
+        left: 23%;
 
     }
     .circle2 {
@@ -64,18 +64,18 @@
     border-style: solid;
     border-color: #ffffff;
     border-width: 2px;
-    width: 60%;
-    padding-bottom: 60%;
+    width: 65%;
+    padding-bottom: 65%;
     position: absolute;
-    top: 21%;
-    left: 12%;
+    top: 22%;
+    left: 18%;
     }
     .image-42 {
-        width: 120%;
-        height: 90%;
+        width:  100%;
+        height: 88%;
         position: absolute;
-        top: 8%;
-        left: 2%;
+        top: 6%;
+        left: 13%;
     }
       .icon-clutery {
         position: absolute;
