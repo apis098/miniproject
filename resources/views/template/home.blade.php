@@ -57,10 +57,12 @@
             {{ $real_reseps->links('vendor.pagination.simple-default') }}
         </div>
     </div>
+    @if ($real_reseps->count() == 0)
     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
         <img src="images/data.png" style="width: 15em">
         <p>Tidak ada data</p>
     </div>
+    @endif
     <div class="row container">
         @foreach ($real_reseps as $item)
         <div class="col-lg-4">
@@ -171,10 +173,12 @@
             </div>
     </div>
 </div>
+@if ($complaints->count() == 0)
 <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
     <img src="images/data.png" style="width: 15em">
     <p>Tidak ada data</p>
 </div>
+@endif
 
 <div class="container mb-5">
     <div class="row mb-5">

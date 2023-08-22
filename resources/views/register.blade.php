@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register - HummaCook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -18,6 +20,16 @@
             padding: 0;
             display: flex;
             flex-direction: row-reverse;
+        }
+        .eye1 {
+          position: absolute;
+          right: 80px;
+          top: 380px;
+        }
+        .eye2 {
+          position: absolute;
+          right: 80px;
+          top: 435px;
         }
         .humma-cook {
             color: #ffffff;
@@ -377,10 +389,10 @@
                                 <div class="form-outline mb-3">
                                     <input type="password" name="password" id="pass2" class=" username form-control rounded-4"
                                         placeholder="Kata Kunci..." required="">
-                                        <div class="input-group-append">
+                                        <div class="input-group-append eye1">
 
                                           <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->
-                                          <span id="mybutton2" onclick="change('pass2','mybutton2')" class="input-group-text">
+                                          <span id="mybutton2" onclick="change('pass2','mybutton2')">
 
                                               <!-- icon mata bawaan bootstrap  -->
                                               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor"
@@ -396,10 +408,10 @@
                                 <div class="form-outline mb-3">
                                     <input type="password" name="copassword" id="pass" class=" username form-control rounded-4"
                                         placeholder="Konfirmasi Kata Sandi..." required="">
-                                        <div class="input-group-append">
+                                        <div class="input-group-append eye2">
 
                                           <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->
-                                          <span id="mybutton" onclick="change('pass','mybutton')" class="input-group-text">
+                                          <span id="mybutton" onclick="change('pass','mybutton')">
 
                                               <!-- icon mata bawaan bootstrap  -->
                                               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor"

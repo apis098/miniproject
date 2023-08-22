@@ -161,6 +161,12 @@
                     </div>
                 </div>
                 <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep dibuat</b></h4>
+                @if ($recipes->count() == 0)
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <img src="{{asset('images/data.png')}}" style="width: 15em">
+                    <p>Tidak ada data</p>
+                </div>
+                @endif
                 <div class="row mb-5">
                     @foreach ($recipes as $item_recipe)                        
                     <div class="col-lg-4 my-1">

@@ -189,7 +189,12 @@
                 style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
         </div>
     </div>
-
+    @if ($user->count() == 0)
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="{{asset('images/data.png')}}" style="width: 15em">
+        <p>Tidak ada data</p>
+    </div>
+    @endif
     <div class="container mt-5">
         <div class="row text-center">
 
