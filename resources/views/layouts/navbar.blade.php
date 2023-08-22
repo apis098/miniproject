@@ -93,7 +93,7 @@
 
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 300px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 230px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
             <!-- Brand Logo -->
             <h3 class="text-white text-center my-2 mt-4 font-a" style="font-size: 40px; ">Hummacook</h3>
             <!-- Sidebar -->

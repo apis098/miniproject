@@ -11,6 +11,7 @@ use App\Models\notifications;
 use App\Models\special_days;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Validator as ValidationValidator;
 
 class ResepsController extends Controller
 {
@@ -21,15 +22,15 @@ class ResepsController extends Controller
     {
         $userLogin = Auth::user();
         $notification = [];
-        $unreadNotificationCount=[];
+        $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         $special_days = special_days::all();
-        return view("koki.resep", compact('notification', 'special_days','userLogin','unreadNotificationCount'));
+        return view("koki.resep", compact('notification', 'special_days', 'userLogin', 'unreadNotificationCount'));
     }
 
     /**
@@ -45,7 +46,7 @@ class ResepsController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
+        /*dd($request->all());
         $request->validate([
             "nama_resep" => "required",
             "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
@@ -58,7 +59,33 @@ class ResepsController extends Controller
             "foto_langkah_resep.0" => "required|image|mimes:png,jpeg,jpg|max:50000",
             "takaran_resep.*" => "required",
             "langkah_resep.*" => "required"
-        ]);
+        ]);*/
+        $rules = [
+            "nama_resep" => "required",
+            "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
+            "deskripsi_resep" => "required",
+            "hari_khusus" => "nullable",
+            "porsi_orang" => "required|numeric",
+            "lama_memasak" => "required",
+            "pengeluaran_memasak" => "required|numeric",
+            "bahan_resep.*" => "required",
+            "takaran_resep.*" => "required",
+            "langkah_resep.*" => "required"
+        ];
+        foreach ($request->langkah_resep as $key => $value) {
+            $rules["foto_langkah_resep.$key"] = "required|image|mimes:jpg,jpeg,png|max:50000";
+        }
+        $messages = [
+            "nama_resep.required" => "Nama resep wajib diisi!",
+            "foto_resep.required" => "Foto resep wajib diisi!",
+            "foto_resep.image" => "Foto resep wajib berupa gambar!",
+            "foto_resep.mimes" => "Foto resep setidaknya berekstensi jpg, jpeg, atau png!",
+            "foto_resep.max" => "Foto resep maksimal berukuran 50MB!",
+        ];
+        $validasi = Validator::make($request->all(), $rules);
+        if ($validasi->errors()) {
+            return redirect()->back()->withErrors($validasi)->withInput();
+        }
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
             "nama_resep" => $request->nama_resep,
@@ -105,14 +132,14 @@ class ResepsController extends Controller
         $special_days = special_days::all();
         $userLogin = Auth::user();
         $notification = [];
-        $unreadNotificationCount=[];
+        $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification",'userLogin','unreadNotificationCount'));
+        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount'));
     }
 
     /**
@@ -160,7 +187,7 @@ class ResepsController extends Controller
                 langkah_reseps::where("id", $v)->delete();
             }
         }
-        
+
 
         foreach ($request->bahan_resep as $i => $b) {
             $bahan = strtolower(trim($b));
@@ -184,7 +211,7 @@ class ResepsController extends Controller
             $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
             $langkah_resep->deskripsi_langkah = $langkah;
             if ($request->hasFile("foto_langkah_resep.$index")) {
-                Storage::delete("public/".$langkah_resep->foto_langkah);
+                Storage::delete("public/" . $langkah_resep->foto_langkah);
                 $langkah_resep->foto_langkah = $request->file("foto_langkah_resep.$index")->store("photo-step", "public");
             }
             $langkah_resep->save();

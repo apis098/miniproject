@@ -178,11 +178,11 @@
                                         style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                         Tidak ada file terpilih</div>
                                 </div>
-                                @error('foto_langkah_resep.*')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                               @error('foto_langkah_resep.*')
+                                   <div class="alert alert-danger">
+                                    {{ $message }}
+                                   </div>
+                               @enderror
                             </div>
                             <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea"></textarea>
                             @error('langkah_resep.*')

@@ -47,11 +47,11 @@
 
 <!-- offer section -->
 
-<section class="container mb-5">
+<section class="container mt-5 mb-5">
 
-    <div class="ms-5 mt-5 input-group">
-        <div class="ms-1">
-            <h3 class="fw-bold">Resep populer</h3>
+    <div class=" input-group">
+        <div class="">
+            <h3 class="fw-bold ml-3">Resep populer</h3>
         </div>
         <div class="ms-auto me-5">
             {{ $real_reseps->links('vendor.pagination.simple-default') }}
@@ -60,7 +60,7 @@
     <div class="row container">
         @foreach ($real_reseps as $item)
         <div class="col-lg-4">
-           <div class="card p-3">
+           <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
             <div class="row">
                 <div class="col-5">
                     <img src="{{ asset('storage/'.$item->foto_resep) }}" class="rounded-circle" width="100%" height="100%" alt="">
@@ -82,8 +82,8 @@
                         </div>
                         <div class="col-6">
                             <form action="/artikel/{{$item->id}}/{{$item->nama_resep}}" method="get">
-                                <button type="submit" class="btn btn-light" style="background-color: #f39c12; border-radius: 15px;">
-                                    <span style="font-weight: 600;">Lihat</span>
+                                <button type="submit" class="btn btn-light" style="background-color: #f39c12; border-radius: 12px; box-shadow: 0px 4px 4px black;">
+                                    <span style="font-weight: 600; color: white;">Lihat</span>
                                 </button>
                             </form>
                         </div>
