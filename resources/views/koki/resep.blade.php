@@ -273,7 +273,7 @@
             input2.classList.add("mb-4");
             input2.innerHTML = `
                         <div class="row" id="close2_${num2}">
-                            <button type="button" class="fa-solid fa-x" onclick="close2(${num2})"></button>
+                            <button type="button" style="width: 50px;" class="btn btn-danger fa-solid fa-x" onclick="close2(${num2})"></button>
                             <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
                             <div id="div3${num2}" class="card my-5 col-lg-4 border border-dark"
                                 style="border-radius: 15px;">
@@ -320,7 +320,7 @@
             input1.innerHTML = `
             <div id="close1_${num}">
                     <div class="">
-                        <button type="button" class="fa-solid fa-x" onclick="close1(${num})"></button>
+                        <button type="button" class="btn btn-danger my-2 fa-solid fa-x" onclick="close1(${num})"></button>
                         <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan</b></label>
                         <input type="text" name="bahan_resep[]" class="form-control" id="exampleFormControlInput1"
                             placeholder="Masukkan bahan makanan">
