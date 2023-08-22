@@ -563,7 +563,7 @@
                             </a>
                             <a href="">
                                 <i class="fa fa-envelope" aria-hidden="true" style="margin-left: 4em"></i>
-                                <span style="margin-right: 1em">
+                                <span>
                                     hummacook@gmail.com
                                 </span>
                             </a>
