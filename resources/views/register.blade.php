@@ -24,12 +24,12 @@
         .eye1 {
           position: absolute;
           right: 80px;
-          top: 380px;
+          top: 386.5px;
         }
         .eye2 {
           position: absolute;
           right: 80px;
-          top: 435px;
+          top: 441px;
         }
         .humma-cook {
             color: #ffffff;
@@ -165,6 +165,13 @@
 
         .alert {
             margin-top: 10px;
+        }
+        .input-file{
+            width: 100%;
+            height: 100%;
+             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+             border-radius: 15px;
+             border: 0.50px black solid
         }
 
     </style>
@@ -357,8 +364,22 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-7 my-auto mx-1">
-                                                    <input name="profile_picture" id="profile_picture" class="form-control my-auto mx-1"
-                                                         type="file" class="formFile">
+                                                    {{-- <input name="profile_picture" id="profile_picture" class="input-file my-auto mx-1"
+                                                         type="file" class="formFile"> --}}
+                                                         <div class="row ms-3"
+                                                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid">
+                                                         <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
+                                                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
+                                                             <div
+                                                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                 Pilih File</div>
+                                                             <input name="profile_picture" class="form-control my-auto mx-1"
+                                                                 style="display: none;" type="file" id="inputan">
+                                                         </button>
+                                                         <div class="col-8" id="fileinfo"
+                                                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                             Tidak ada file terpilih</div>
+                                                     </div>               
                                         </div>
                                     </div>
                                 </div>
@@ -443,24 +464,37 @@
      <!-- Include Bootstrap JS (make sure the path is correct) -->
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
      <script>
-        document.getElementById("profile_picture").addEventListener("change", function(event) {
-            var input = event.target;
-            var profileImage = document.getElementById("profile-image");
-            var svgPlaceholder = document.getElementById("svg-placeholder");
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    profileImage.setAttribute("src", e.target.result);
-                    svgPlaceholder.style.display = "none"; // Hide the SVG placeholder
-                    profileImage.style.display = "block";
+        function inputfilee() {
+            // Simulasikan klik pada input file saat tombol "Pilih File" diklik
+            document.getElementById('inputan').click();
+        }
+        
+        document.getElementById('inputan').addEventListener('change', function (event) {
+            const fileInput = event.target;
+            const file = fileInput.files[0];
+        
+            const fileinfo = document.getElementById('fileinfo');
+            const profileImage = document.getElementById('profile-image');
+            const svgPlaceholder = document.getElementById('svg-placeholder');
+        
+            if (file) {
+                fileinfo.textContent = file.name;
+                // Menggunakan objek FileReader untuk membaca file gambar dan menampilkan pratinjau
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profileImage.src = e.target.result;
+                    svgPlaceholder.style.display = 'none'; // Hide the SVG placeholder
+                    profileImage.style.display = 'block';
                 };
-                reader.readAsDataURL(input.files[0]);
+                reader.readAsDataURL(file);
             } else {
-                profileImage.setAttribute("src", "");
-                svgPlaceholder.style.display = "block"; // Show the SVG placeholder
+                fileinfo.textContent = 'Tidak ada file terpilih';
+                profileImage.src = ''; // Clear the profile image source
+                svgPlaceholder.style.display = 'block'; // Show the SVG placeholder
+                profileImage.style.display = 'none'; // Hide the profile image
             }
         });
+        
 
           // membuat fungsi change
           function change(inputId, buttonId) {

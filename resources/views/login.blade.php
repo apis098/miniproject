@@ -34,7 +34,7 @@
         .eye {
           position: absolute;
           right: 80px;
-          top: 310px;
+          top: 316px;
         }
 
         .humma-cook {
