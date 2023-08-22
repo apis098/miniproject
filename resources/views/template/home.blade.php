@@ -57,6 +57,10 @@
             {{ $real_reseps->links('vendor.pagination.simple-default') }}
         </div>
     </div>
+    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+        <img src="images/data.png" style="width: 15em">
+        <p>Tidak ada data</p>
+    </div>
     <div class="row container">
         @foreach ($real_reseps as $item)
         <div class="col-lg-4">
@@ -164,8 +168,12 @@
         <div class="ms-auto me-5">
             <button class="btn btn-light text-light float-end me-5 zoom-effects"
                 style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
-        </div>
+            </div>
     </div>
+</div>
+<div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+    <img src="images/data.png" style="width: 15em">
+    <p>Tidak ada data</p>
 </div>
 
 <div class="container mb-5">
