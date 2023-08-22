@@ -202,7 +202,7 @@
                                             width="55px" alt="dsdaa">
                                     </div>
                                     <div class=" col-8">
-                                        <a type="button"  class="as" href="/artikel/{{$r->User->id}}/{{$r->nama_resep}}">
+                                        <a type="button"  class="as" href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
                                             {{ $r->nama_resep }}
                                         </a> <br>
                                         <!-- Modal -->
