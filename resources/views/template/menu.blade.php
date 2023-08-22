@@ -99,16 +99,16 @@
             }
 
             /* button{
-                                                                background-color: #F7941E;
-                                                                border: none;
-                                                                height: 45px;
-                                                                width: 90px;
-                                                                color: #ffffff;
-                                                                position: absolute;
-                                                                right: 1px;
-                                                                top: 0px;
-                                                                border-radius: 15px
-                                                            } */
+                                                                    background-color: #F7941E;
+                                                                    border: none;
+                                                                    height: 45px;
+                                                                    width: 90px;
+                                                                    color: #ffffff;
+                                                                    position: absolute;
+                                                                    right: 1px;
+                                                                    top: 0px;
+                                                                    border-radius: 15px
+                                                                } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -184,14 +184,9 @@
                         </div>
                     </form>
                     <div class="col-sm-12 text-center mt-5">
-                        @if ($bahan->count() >= 5)
+                        @if (count($bahan) >= 5)
                             <div
-                                style="background-color: #F7941E;
-                    width: 100%;
-                    height: 65px;
-                    border: 1px solid black;
-                    overflow-y: scroll;
-                    border: none;">
+                                style="background-color: #F7941E; width: 100%; height: 65px; border: 1px solid black; overflow-y: scroll; border: none;">
                                 @foreach ($bahan as $b)
                                     <button class="btn btn-white mx-2 my-2"
                                         style=" background: white; border-radius: 10px; padding: 6px 35px;">

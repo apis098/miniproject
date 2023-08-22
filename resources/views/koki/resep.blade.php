@@ -52,7 +52,7 @@
                         <label for="exampleFormControlInput1" class="form-label text-poppins"
                             style="font: Poppins"><b>Nama</b></label>
                         <input type="nama_resep" name="nama_resep" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Masukkan nama masakkan">
+                            placeholder="Masukkan nama masakkan" value="{{ old('nama_resep') }}">
                         @error('nama_resep')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -61,7 +61,7 @@
                     </div>
                     <div class="mt-2">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
-                        <textarea name="deskripsi_resep" class="form-control" placeholder="Masukkan deskripsi makanan" id="floatingTextarea"></textarea>
+                        <textarea name="deskripsi_resep" class="form-control" placeholder="Masukkan deskripsi makanan" id="floatingTextarea">{{ old('deskripsi_resep') }}</textarea>
                         @error('deskripsi_resep')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -72,8 +72,8 @@
                         <div class="mt-2">
                             <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan</b></label>
                             <input type="text" name="bahan_resep[]" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan bahan makanan">
-                            @error('bahan_resep.*')
+                                placeholder="Masukkan bahan makanan" value="{{ old('bahan_resep.0') }}">
+                            @error('bahan_resep.0')
                                 <div class="alert alert-danger">
                                     {{ $message }}
                                 </div>
@@ -82,8 +82,8 @@
                         <div class="mt-2">
                             <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
                             <input type="text" name="takaran_resep[]" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan takaran">
-                            @error('takaran_resep.*')
+                                placeholder="Masukkan takaran" value="{{ old('takaran_resep.0') }}">
+                            @error('takaran_resep.0')
                                 <div class="alert alert-danger">
                                     {{ $message }}
                                 </div>
@@ -100,7 +100,7 @@
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
                         <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Masukkan porsi orang">
+                            placeholder="Masukkan porsi orang" value="{{ old('porsi_orang') }}">
                         @error('porsi_orang')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -110,7 +110,7 @@
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
                         <input type="text" name="lama_memasak" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Masukkan waktu memasak">
+                            placeholder="Masukkan waktu memasak" value="{{ old('lama_memasak') }}">
                         @error('lama_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -120,7 +120,8 @@
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Pengeluaran Memasak</b></label>
                         <input type="number" name="pengeluaran_memasak" class="form-control"
-                            id="exampleFormControlInput1" placeholder="Masukkan jumlah pengeluaran">
+                            id="exampleFormControlInput1" placeholder="Masukkan jumlah pengeluaran"
+                            value="{{ old('pengeluaran_memasak') }}">
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -178,13 +179,15 @@
                                         style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                         Tidak ada file terpilih</div>
                                 </div>
-                               @error('foto_langkah_resep.*')
-                                   <div class="alert alert-danger">
-                                    {{ $message }}
-                                   </div>
-                               @enderror
+                                @error('foto_langkah_resep.*')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
-                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea"></textarea>
+                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea">
+                                {{ old('langkah_resep.0') }}
+                            </textarea>
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
                                     {{ $message }}

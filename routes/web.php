@@ -79,10 +79,11 @@ Route::get('menu', function (Request $request) {
     $unreadNotificationCount=[];
     $recipes = reseps::paginate(6);
     if ($request->has('bahan')) {
-        $bahan = $request->input('bahan');
-    $recipes = reseps::whereHas('bahan', function ($query) use ($bahan) {
-        $query->where('nama_bahan', $bahan);
+        $bahans = $request->input('bahan');
+    $recipes = reseps::whereHas('bahan', function ($query) use ($bahans) {
+        $query->where('nama_bahan', $bahans);
     })->paginate(6);
+    $bahan = bahan_reseps::whereIn('nama_bahan', $bahans)->get();
     }
     $ingredients = bahan_reseps::pluck('nama_bahan')->unique();
     if ($userLogin) {
