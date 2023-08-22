@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahan_reseps;
+use App\Models\followers;
 use App\Models\langkah_reseps;
 use App\Models\reseps;
 use Illuminate\Http\Request;
@@ -46,21 +47,6 @@ class ResepsController extends Controller
      */
     public function store(Request $request)
     {
-        /*dd($request->all());
-        $request->validate([
-            "nama_resep" => "required",
-            "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
-            "deskripsi_resep" => "required",
-            "hari_khusus" => "nullable",
-            "porsi_orang" => "required|numeric",
-            "lama_memasak" => "required",
-            "pengeluaran_memasak" => "required|numeric",
-            "bahan_resep.*" => "required",
-            "foto_langkah_resep.0" => "required|image|mimes:png,jpeg,jpg|max:50000",
-            "takaran_resep.*" => "required",
-            "langkah_resep.*" => "required"
-        ]); */
-
         $rules = [
             "nama_resep" => "required",
             "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
@@ -125,6 +111,19 @@ class ResepsController extends Controller
                     "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
                     "deskripsi_langkah" => $langkah
                 ]);
+            }
+            //notifikasi untuk follower
+            $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
+            if($followerIds != null){
+                foreach ($followerIds as $followerId) {
+                    $notification = new Notifications([
+                        'notification_from' => auth()->user()->id,
+                        'resep_id' => $create_recipe->id,
+                        'follower_id' => $followerId,
+                        'user_id' => $followerId,
+                    ]);
+                    $notification->save();
+                }
             }
         }
         return redirect('/koki/index')->with('success', 'Sukses! anda berhasil membuat resep baru.');

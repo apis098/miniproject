@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reply_id')->nullable(); 
             $table->unsignedBigInteger('complaint_id')->nullable(); 
             $table->unsignedBigInteger('profile_id')->nullable(); 
+            $table->unsignedBigInteger('resep_id')->nullable(); 
             $table->string('status')->default('belum');
             $table->timestamps();
 
@@ -32,6 +33,7 @@ return new class extends Migration
             $table->foreign('like_id')->references('id')->on('likes')->onDelete('cascade');
             $table->foreign('complaint_id')->references('id')->on('complaints')->onDelete('cascade');
             $table->foreign('profile_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('resep_id')->references('id')->on('reseps')->onDelete('cascade');
         });
     }
 

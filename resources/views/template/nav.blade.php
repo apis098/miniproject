@@ -362,6 +362,26 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
+                                                        @elseif($row->follower_id == auth()->user()->id && $row->resep_id != null)
+                                                            <form
+                                                                action="{{ route('replies.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class="mt-1 ms-1 text-secondary">Menambahkan resep baru</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 mb-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                    <input hidden type="text"
+                                                                        value="{{ $row->complaint_id }}"
+                                                                        name="replies_id" id="replies_id"
+                                                                        class="form-control">
+                                                                </button>
+                                                            </form>
                                                         @elseif($row->profile_id != null)
                                                             <form
                                                                 action="{{ route('profile.blocked.notification', $row->id) }}"
@@ -424,6 +444,26 @@
                                                                     id="follower_id" value="{{ $row->follower_id }}"
                                                                     class="form-control">
                                                             </form>
+                                                        @elseif($row->follower_id != null && $row->complaint_id == null)
+                                                            <form
+                                                                action="{{ route('follow.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class=" ms-1 text-secondary">Mulai mengikuti
+                                                                        anda</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                <input type="text" hidden name="follower_id"
+                                                                    id="follower_id" value="{{ $row->follower_id }}"
+                                                                    class="form-control">
+                                                        </form>
                                                         @endif
                                                     </div>
                                                 @endif
