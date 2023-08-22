@@ -72,6 +72,10 @@
         .font-a {
             font-family: 'Dancing Script', cursive;
         }
+
+        .t{
+            font-family: 'Dancing Script';
+        }
     </style>
 
 
@@ -89,20 +93,22 @@
 
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #F7941E;">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 300px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
             <!-- Brand Logo -->
-            <h3 class="text-white text-center my-2 mb-4">Hummacook</h3>
+            <h3 class="text-white text-center my-2 mt-4 font-a" style="font-size: 40px; ">Hummacook</h3>
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
-                <nav class="mt-2">
+                <nav class="mt-3">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
                             <a href="{{ route('admin.index') }}"
                                 class="nav-link w-75 mx-4  {{ request()->routeIs('admin.index') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
+                                <i class="fa-solid fa-house"></i>
+
+                                <p  style="margin-left: 10px">
+
                                     Dashboard
                                 </p>
                             </a>
@@ -110,8 +116,8 @@
                         <li class="nav-item">
                             <a href="{{ route('Complaint.all') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="nav-icon fas fa-user-pen"></i>
-                                <p>
+                                <i class="fa-solid fa-envelope"></i>
+                                <p style="margin-left: 12px">
                                     Keluhan
                                 </p>
                             </a>
@@ -119,8 +125,8 @@
                         <li class="nav-item">
                             <a href="{{ route('ReplyUser.index') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="nav-icon fas fa-reply-all"></i>
-                                <p>
+                                <i class="fa-solid fa-people-arrows"></i>
+                                <p  style="margin-left: 10px">
                                     Balasan
                                 </p>
                             </a>
@@ -128,8 +134,8 @@
                         <li class="nav-item">
                             <a href="{{ route('Report.index') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="fa-solid fa-triangle-exclamation"></i>
-                                <p>
+                                <i class="fa-solid fa-flag"></i>
+                                <p  style="margin-left: 15px">
                                     Laporan
                                 </p>
                             </a>

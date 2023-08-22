@@ -214,7 +214,7 @@
                                         </span>
                                     </a>
                                 @else
-                                    <a class="navbar-brand" href="{{ url('koki/index') }}">
+                                    <a class="navbar-brand" href="#">
                                         <span class="t">
                                             HummaCook
                                         </span>
