@@ -1,4 +1,4 @@
-@extends('layouts.navbar')
+    @extends('layouts.navbar')
 
 @section('konten')
 
@@ -46,7 +46,7 @@
     <div class="row mt-4">
         <div class="col-lg-12">
             <div style="max-width: 800px; margin: 0 auto;">
-                <canvas id="myBarChart" style="border: 2px solid black;"></canvas>
+                <canvas id="myBarChart" style="border: 1px solid black;"></canvas>
             </div>
         </div>
     </div>
@@ -57,10 +57,10 @@
         var myBarChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+                labels: ['January', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                 datasets: [{
-                    label: 'Revenue',
-                    data: [4, 4, 1, 5, 1, 2, 1, 2, 3, 4, 4, 2],
+                    label: 'Total',
+                    data: [4, 4, 1, 30, 1, 2, 1, 2, 3, 4, 4, 2],
                     backgroundColor: 'orange',
                 }]
             },

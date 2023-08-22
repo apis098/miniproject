@@ -112,7 +112,7 @@
                         <div class="heading_container">
                             <h1
                                 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
-                                Ajukan keluhanmu saat memasak
+                                Apa keluhanmu saat memasak? 
                             </h1>
 
                             <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
