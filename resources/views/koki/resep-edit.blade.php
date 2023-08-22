@@ -76,7 +76,7 @@
                                     onclick="close1({{ $item_bahan->id }})"></button>
                             @endif
                             <input type="hidden" name="id_bahan_resep[]" value="{{ $item_bahan->id }}">
-                            <input type="hidden" id="hapus_bahan{{$num}}" value="{{ $item_bahan->id }}">
+                            <input type="hidden" id="hapus_bahan{{ $num }}" value="{{ $item_bahan->id }}">
                             <div class="mt-2">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan
                                         {{ $num += 1 }}</b></label>
@@ -170,14 +170,28 @@
                                     <label for="formFile" class="form-label"><b>Langkah-langkah
                                             {{ $int += 1 }}</b></label>
                                     <div class="card my-5 col-lg-4">
-                                        <div class="card-body text-center">
+                                        <div class="card-body text-center div3">
                                             <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
-                                                width="100%" alt="{{ $item_langkah->foto_langkah }}" class="">
+                                                width="100%" class=""
+                                                id="IMAGE{{$int}}">
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
-                                            type="file" class="formFile">
+                                        <div class="row" style="border-radius: 25px; border: 1px solid black;">
+                                            <button type="button" onclick="inputfile({{ $int }})"
+                                                class="col-4"
+                                                style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
+                                                <div
+                                                    style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                    Pilih File</div>
+                                                <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
+                                                    style="display: none;" type="file"
+                                                    id="inputann{{ $int }}">
+                                            </button>
+                                            <div class="col-8" id="fileinfo{{ $int }}"
+                                                style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                Tidak ada file terpilih</div>
+                                        </div>
                                         @error('foto_langkah_resep.*')
                                             <div class="alert alert-danger">
                                                 {{ $message }}
@@ -281,13 +295,46 @@
         function close1(num) {
             const close = document.getElementById("close1_" + num);
             close.style.display = "none";
-            const hapus_bahan = document.getElementById("hapus_bahan"+num);
+            const hapus_bahan = document.getElementById("hapus_bahan" + num);
             hapus_bahan.setAttribute("name", "hapus_bahan[]");
         }
 
         function close2(num) {
             const close = document.getElementById("close2_" + num);
             close.style.display = "none";
+        }
+
+        function inputfile(num) {
+            document.getElementById("inputann" + num).click();
+            document.getElementById('inputann' + num).addEventListener('change', function(event) {
+                var selectedFile = event.target.files[0];
+                document.getElementById('fileinfo' + num).textContent = selectedFile.name;
+                document.getElementById("IMAGE" + num).setAttribute('src', event.target.result);
+                const svgElement = document.getElementById("svg3" + num);
+                const divElement = document.getElementById("div3" + num);
+                var input = event.target;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById("gambar3" + num).style.display = "block";
+                        svgElement.style.display = "none";
+                        divElement.classList.remove('border-dark');
+                        divElement.classList.remove('mb-5');
+                        divElement.classList.add('border-light');
+                        document.getElementById("gambar3" + num).setAttribute("src", e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
+        }
+
+        function inputfilee() {
+            document.getElementById("inputan").click();
+            document.getElementById('inputan').addEventListener('change', function() {
+                var selectedFile = event.target.files[0];
+                document.getElementById('fileinfo').textContent = selectedFile.name;
+
+            });
         }
     </script>
 @endsection
