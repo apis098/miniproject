@@ -391,14 +391,14 @@
                                 <!-- Username input -->
                                 <div class="form-outline mb-3">
                                     <input type="text" id="name" name="name" class=" username form-control rounded-4"
-                                        placeholder="Nama Pengguna..." required="" />
+                                        placeholder="Nama Pengguna..." required value="{{old('name')}}" />
                                 </div>
 
                                 <!-- Email input -->
                                 <div class="form-outline mb-3 ">
                                     <input type="email" id="email" @error('email') is-invalid @enderror
-                                        name="email" class=" username form-control rounded-4" placeholder="Email..."
-                                        required="" />
+                                        name="email" class=" username form-control rounded-4" placeholder="Email..." value="{{old('email')}}"
+                                        required />
                                     @error('email')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
@@ -409,7 +409,7 @@
                                 <!-- Password input -->
                                 <div class="form-outline mb-3">
                                     <input type="password" name="password" id="pass2" class=" username form-control rounded-4"
-                                        placeholder="Kata Kunci..." required="">
+                                        placeholder="Kata Kunci..." value="{{old('password')}}" required>
                                         <div class="input-group-append eye1">
 
                                           <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->
@@ -428,7 +428,7 @@
                                 </div>
                                 <div class="form-outline mb-3">
                                     <input type="password" name="copassword" id="pass" class=" username form-control rounded-4"
-                                        placeholder="Konfirmasi Kata Sandi..." required="">
+                                        placeholder="Konfirmasi Kata Sandi..." value="{{old('copassword')}}" required>
                                         <div class="input-group-append eye2">
 
                                           <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->

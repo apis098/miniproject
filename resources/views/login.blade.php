@@ -34,7 +34,7 @@
         .eye {
           position: absolute;
           right: 80px;
-          top: 316px;
+          top: 312px;
         }
 
         .humma-cook {
@@ -295,12 +295,12 @@
                     <!-- Email input -->
                     <div class="form-outline mb-3">
                         <input type="email" id="email" name="email"
-                            class="form-control username rounded-4 mb-1" placeholder="E-mail..." />
+                            class="form-control username rounded-4 mb-1" placeholder="E-mail..." value="{{old('email')}}" />
                     </div>
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                         <input type="password" name="password" id="pass"
-                            class="form-control username rounded-4 mb-1" placeholder="Kata Kunci...">
+                            class="form-control username rounded-4 mb-1" placeholder="Kata Kunci..." value="{{old('password')}}">
                         <div class="input-group-append eye">
                             <!-- kita pasang onclick untuk merubah icon buka/tutup mata setiap diklik  -->
                             <span id="mybutton" onclick="change()">

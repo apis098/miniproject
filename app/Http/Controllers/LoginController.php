@@ -50,7 +50,7 @@ class LoginController extends Controller
                 }
             }
         } else {
-            return redirect()->back()->with('error', 'Email atau Password Salah');
+            return redirect()->back()->with('error', 'Email atau Password Salah')->withInput();
         }
     }
     
