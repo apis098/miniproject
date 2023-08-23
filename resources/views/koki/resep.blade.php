@@ -46,6 +46,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <div id="foto_resep_error" style="display: none;" class="alert alert-danger"></div>
                 </div>
                 <div class="col-lg-9">
                     <div class="mt-5">
@@ -58,6 +59,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div id="nama_resep_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div class="mt-2">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
@@ -68,6 +70,8 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div id="deskripsi_resep_error" class="alert alert-danger" style="display: none;">
+                        </div>
                     </div>
                     <div>
                         <div class="mt-2">
@@ -79,6 +83,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <div id="bahan_resep.0_error" class="alert alert-danger" style="display: none;"></div>
                         </div>
                         <div class="mt-2">
                             <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
@@ -89,6 +94,9 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <div id="takaran_resep.0_error" style="display: none;" class="alert alert-danger">
+
+                            </div>
                         </div>
                     </div>
                     <div id="new-input1"></div>
@@ -107,6 +115,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div id="porsi_orang_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
@@ -122,6 +131,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div id="lama_memasak_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Pengeluaran Memasak</b></label>
@@ -133,6 +143,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                        <div id="pengeluaran_memasak_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Hari Khusus</b></label>
@@ -190,6 +201,8 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                                <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
+                                </div>
                             </div>
                             <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea">
                                 {{ old('langkah_resep.0') }}
@@ -199,6 +212,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
+                            <div id="langkah_resep.0_error" style="display: none;" class="alert alert-danger"></div>
                         </div>
                     </div>
                     <div id="new-input2">
@@ -215,21 +229,8 @@
             </div>
         </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
     <script>
-       $("#button-add-recipe").click(function(e) {
-        e.preventDefault();
-        var formResep = $("#form-add-recipe").serialize();
-        $.ajax({
-            url: "/koki/resep",
-            type: "post",
-            data: formResep,
-            error: function(data) {
-                alert(data.responseJSON['bahan_resep.0']);
-                //$("#button-add-recipe").style.float = "right";
-            }
-        });
-       });
         num = 0;
 
         function klik() {
@@ -436,4 +437,28 @@
         //     }
         // });
     </script>
+    <!--
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
+    <script>
+        $("#button-add-recipe").click(function(e) {
+            e.preventDefault();
+            var formResep = $("#form-add-recipe").serialize();
+            $.ajax({
+                url: "/koki/resep",
+                type: "post",
+                data: formResep,
+                error: function(xhr) {
+                    var errors = xhr.responseJSON;
+                    //alert(errors);
+                    $.each(errors, function(field, messages) {
+                        messages.forEach(function(message)) {
+                            fielderror.text(message);
+                        }
+                        fielderror.css('display', 'block');
+                    });
+                }
+            });
+        });
+    </script> -->
 @endsection
