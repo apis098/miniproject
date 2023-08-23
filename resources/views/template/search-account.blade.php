@@ -181,7 +181,7 @@
     </div>
 
     <div class="ms-5 mt-5 input-group">
-        <div class="ms-1">
+        <div class="ms-3">
             <h3 class="fw-bold">Hasil Pencarian</h3>
         </div>
         <div class="ms-auto me-5">

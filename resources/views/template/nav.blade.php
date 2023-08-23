@@ -54,9 +54,12 @@
             color: #F7941E;
             background: white;
         }
-
-        #navbar:hover {
-            color: #272829;
+        .custom_nav-container .navbar-nav .nav-item.active .nav-link:hover {
+            color: #F7941E;
+            background: white;
+        }
+        .nav-link:hover {
+            
         }
 
         .nav-link {
