@@ -61,6 +61,7 @@ Route::get('/', function () {
         ->orderBy('created_at', 'desc')
         ->paginate(10);
     }
+    
     return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount','favorite'));
 })->name('home');
 
@@ -117,17 +118,13 @@ Route::get('menu', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-<<<<<<< Updated upstream
-   
-    return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin'));
-=======
     if ($userLogin) {
         $favorite = favorite::where('user_id_from', auth()->user()->id)
         ->orderBy('created_at', 'desc')
         ->paginate(10);
     }
     return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin','favorite'));
->>>>>>> Stashed changes
+
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
