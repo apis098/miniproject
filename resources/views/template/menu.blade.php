@@ -169,7 +169,7 @@
                                                     <select name="bahan[]" class="search-bahan" id="search-bahan"
                                                         multiple="multiple">
                                                         @foreach ($ingredients as $n => $i)
-                                                            <option value="{{ $i }}">{{ $i }}</option>
+                                                            <option value="{{ $i }}" hidden>{{ $i }}</option>
                                                         @endforeach
                                                     </select>
                                                     <button type="submit" class="zoom-effects"

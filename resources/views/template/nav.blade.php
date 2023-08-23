@@ -584,7 +584,7 @@
     </div>
     @yield('content')
     <!-- footer section -->
-    <footer class="footer_section" style="background-color: #F7941E; ">
+    <footer class="footer_section" style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 footer-col">

@@ -220,10 +220,10 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E;">Tambahkan</button>
+                        style="float: right;background: #F7941E; border-radius: 15px;">Tambahkan</button>
                     <br> <br>
                     <button type="submit" class="btn btn-warning text-white mb-4"
-                        style="float: right;background: #F7941E;">Edit
+                        style="float: right;background: #F7941E; border-radius: 15px;">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
                 </div>
             </div>
@@ -278,7 +278,8 @@
             const input2 = document.createElement("div");
             input2.classList.add("mb-4");
             input2.innerHTML = `
-            <div id="close2_{{ $item_langkah->id }}">
+            <div id="close2_${num2}">
+                <button type="button" class="btn btn-danger my-2 fa-solid fa-x" onclick="close2(${num2})"></button>
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
                             <div class="mb-4">
                                 <div class="row">

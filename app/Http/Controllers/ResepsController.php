@@ -59,9 +59,9 @@ class ResepsController extends Controller
             "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
-            "porsi_orang" => "required|numeric",
-            "lama_memasak" => "required|numeric",
-            "pengeluaran_memasak" => "required|numeric",
+            "porsi_orang" => "required|integer|min:0",
+            "lama_memasak" => "required|integer|min:0",
+            "pengeluaran_memasak" => "required|integer|min:0",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
             "langkah_resep.*" => "required"
@@ -74,11 +74,14 @@ class ResepsController extends Controller
             "foto_resep.max" => "Foto resep yang diterima maksimal berukuran 50MB!",
             "deskripsi_resep.required" => "Deskripsi resep wajib diisi!",
             "porsi_orang.required" => "Porsi orang wajib diisi!",
-            "porsi_orang.numeric" => "Porsi orang wajib berupa nomer!",
+            "porsi_orang.integer" => "Porsi orang wajib berupa nomer!",
+            "porsi_orang.min" => "Porsi orang tidak boleh bernilai minus!",
             "lama_memasak.required" => "Lama memasak wajib diisi!",
-            "lama_memasak.numeric" => "Lama memasak wajib berupa nomer!",
+            "lama_memasak.integer" => "Lama memasak wajib berupa nomer!",
+            "lama_memasak.min" => "Lama memasak tidak boleh bernilai minus!",
             "pengeluaran_memasak.required" => "Pengeluaran memasak wajib diisi!",
-            "pengeluaran_memasak.numeric" => "Pengeluaran memasak wajib berupa nomer!",
+            "pengeluaran_memasak.integer" => "Pengeluaran memasak wajib berupa nomer!",
+            "pengeluaran_memasak.min" => "Pengeluaran memasak tidak boleh bernilai minus!",
             "bahan_resep.*.required" => "Bahan resep wajib diisi!",
             "takaran_resep.*.required" => "Takaran resep wajib diisi!",
             "langkah_resep.*.required" => "Langkah resep wajib diisi!"
@@ -92,8 +95,8 @@ class ResepsController extends Controller
         }
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            return redirect()->back()->withErrors($validasi)->withInput();
-            //return response()->json($validasi->errors(), 422);
+            //return redirect()->back()->withErrors($validasi)->withInput();
+            return response()->json($validasi->errors(), 422);
         }
         $lama_memasak = $request->lama_memasak . " " . $request->lama_memasak2;
         $create_recipe = reseps::create([
@@ -183,9 +186,9 @@ class ResepsController extends Controller
             "foto_resep" => "nullable|image|mimes:jpg,jpeg,png|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
-            "porsi_orang" => "required|numeric",
-            "lama_memasak" => "required|numeric",
-            "pengeluaran_memasak" => "required|numeric",
+            "porsi_orang" => "required|integer|min:0",
+            "lama_memasak" => "required|integer|min:0",
+            "pengeluaran_memasak" => "required|integer|min:0",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
             "langkah_resep.*" => "required"
@@ -197,11 +200,14 @@ class ResepsController extends Controller
             "foto_resep.max" => "Foto resep yang diterima maksimal berukuran 50MB!",
             "deskripsi_resep.required" => "Deskripsi resep wajib diisi!",
             "porsi_orang.required" => "Porsi orang wajib diisi!",
-            "porsi_orang.numeric" => "Porsi orang wajib berupa nomer!",
+            "porsi_orang.integer" => "Porsi orang wajib berupa nomer!",
+            "porsi_orang.min" => "Porsi orang tidak boleh bernilai minus!",
             "lama_memasak.required" => "Lama memasak wajib diisi!",
-            "lama_memasak.numeric" => "Lama memasak wajib berupa nomer!",
+            "lama_memasak.integer" => "Lama memasak wajib berupa nomer!",
+            "lama_memasak.min" => "Lama memasak tidak boleh bernilai minus!",
             "pengeluaran_memasak.required" => "Pengeluaran memasak wajib diisi!",
-            "pengeluaran_memasak.numeric" => "Pengeluaran memasak wajib berupa nomer!",
+            "pengeluaran_memasak.integer" => "Pengeluaran memasak wajib berupa nomer!",
+            "pengeluaran_memasak.min" => "Pengeluaran memasak tidak boleh bernilai minus!",
             "bahan_resep.*.required" => "Bahan resep wajib diisi!",
             "takaran_resep.*.required" => "Takaran resep wajib diisi!",
             "langkah_resep.*.required" => "Langkah resep wajib diisi!"
