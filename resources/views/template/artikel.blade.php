@@ -23,6 +23,21 @@
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Yakin mau menghapus data resep')">Hapus</button>
                             </form>
+                        @else
+                        <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2" style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 16 16"><g fill="none"><path d="M9.582 1.052c-.75-.209-1.337.35-1.546.872c-.24.6-.452 1.02-.705 1.523c-.157.312-.33.654-.534 1.09c-.474 1.01-.948 1.657-1.292 2.045a4.064 4.064 0 0 1-.405.403c-.047.039-.081.065-.102.08l-.016.012L3.11 8.182a2 2 0 0 0-.856 2.425l.52 1.385a2 2 0 0 0 1.273 1.204l5.356 1.682a2.5 2.5 0 0 0 3.148-1.68l1.364-4.646a2 2 0 0 0-1.919-2.564h-1.385c.066-.227.134-.479.195-.74c.131-.561.243-1.203.233-1.738c-.01-.497-.06-1.018-.264-1.462c-.22-.475-.603-.832-1.193-.996z" fill="currentColor"/></g></svg></button>
+                        </form>
+                        <form action="/koki/resep/{{ $show_resep->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2" style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z"/></svg></button>
+                        </form>
+                        <form action="/koki/resep/{{ $show_resep->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2" style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M6 21q-.425 0-.713-.288T5 20V5q0-.425.288-.713T6 4h7.175q.35 0 .625.225t.35.575L14.4 6H19q.425 0 .713.288T20 7v8q0 .425-.288.713T19 16h-5.175q-.35 0-.625-.225t-.35-.575L12.6 14H7v6q0 .425-.288.713T6 21Z"/></svg></button>
+                        </form>
                         @endif
                     @endif
                 </div>

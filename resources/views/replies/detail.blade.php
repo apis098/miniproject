@@ -217,10 +217,7 @@
 
                                     <form action="{{ route('Replies.like', $row->id) }}" method="POST">
                                         @csrf
-                                        <input hidden id="reply_id" name="reply_id" value="{{ $row->id }}"
-                                            type="text">
-                                        <input hidden id="complaint_id" name="complaint_id" value="{{ $data->id }}"
-                                            type="text">
+                                        <input hidden id="reply_id" name="reply_id"type="text">
                                         @if (
                                             $userLogin &&
                                                 $row->likes()->where('user_id', $userLogin->id)->exists())

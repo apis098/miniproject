@@ -191,6 +191,7 @@ Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
+Route::post('/resep/{id}/like', [likeController::class, 'likeResep'])->name('Resep.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
 //report

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class likes extends Model
 {
     use HasFactory;
-    protected $fillable = ['reply_id', 'user_id',];
+    protected $fillable = ['reply_id', 'user_id','resep_id',];
 
     public function complaint()
     {
@@ -17,5 +17,9 @@ class likes extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function resep()
+    {
+        return $this->belongsTo(reseps::class);
     }
 }

@@ -31,4 +31,8 @@ class reseps extends Model
     public function notifications() {
         return $this->hasMany(notifications::class);
     }
+    public function likes()
+    {
+        return $this->hasMany(likes::class,'resep_id');
+    }
 }
