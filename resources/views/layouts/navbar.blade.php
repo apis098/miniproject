@@ -14,8 +14,7 @@
         integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
@@ -38,7 +37,7 @@
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
     <style>
         .nav-link.activet {
             background-color: white;
@@ -78,6 +77,8 @@
         .t{
             font-family: 'Dancing Script';
         }
+
+
     </style>
 
 
@@ -104,31 +105,29 @@
                 <nav class="mt-3">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item">
+                        <li class="nav-item" style="margin-bottom: -30px;">
                             <a href="{{ route('admin.index') }}"
                                 class="nav-link w-75 mx-4  {{ request()->routeIs('admin.index') ? 'activet text-warning' : 'text-white' }}">
-                                {{-- <i class="fa-solid fa-house"></i> --}}
-
-                                <p  style="margin-left: 10px;  font-size: 24px; font-family: Poppins; font-weight: 600;">
-
+                               <i class="fas fa-nav fa-solid fa-house"></i>
+                                <p  style="margin-left: 10px;  font-size: 20px; font-family: Poppins; font-weight: 500; ">
                                     Dashboard
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="margin-bottom: -30px;">
                             <a href="{{ route('Complaint.all') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-warning' : 'text-white' }}">
-                                {{-- <i class="fa-solid fa-envelope"></i> --}}
-                                <p style="margin-left: 12px; font-size: 24px; font-family: Poppins; font-weight: 600;">
+                                 <i class="fa-solid fa-envelope"></i>
+                                <p style="margin-left: 12px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
                                     Keluhan
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="margin-bottom: -30px;">
                             <a href="{{ route('ReplyUser.index') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-warning' : 'text-white' }}">
-                                {{-- <i class="fa-solid fa-people-arrows"></i> --}}
-                                <p  style="margin-left: 10px; font-size: 24px; font-family: Poppins; font-weight: 600;">
+                                 <i class="fa-solid fa-people-arrows"></i>
+                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                     Balasan
                                 </p>
                             </a>
@@ -136,8 +135,8 @@
                         <li class="nav-item">
                             <a href="{{ route('Report.index') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-warning' : 'text-white' }}">
-                                {{-- <i class="fa-solid fa-flag"></i> --}}
-                                <p  style="margin-left: 15px; font-size: 24px; font-family: Poppins; font-weight: 600;">
+                                 <i class="fa-solid fa-flag"></i>
+                                <p  style="margin-left: 15px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                     Laporan
                                 </p>
                             </a>

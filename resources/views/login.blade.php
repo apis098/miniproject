@@ -180,7 +180,7 @@
             height: 100%;
             background: #F7941E;
             box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.25);
-            border-radius: 10px
+            border-radius: 15px
         }
 
 
