@@ -83,7 +83,17 @@ Route::get('menu', function (Request $request) {
     $recipes = reseps::whereHas('bahan', function ($query) use ($bahans) {
         $query->where('nama_bahan', $bahans);
     })->paginate(6);
-    $bahan = bahan_reseps::whereIn('nama_bahan', $bahans)->get();
+    $bahan = bahan_reseps::where('nama_bahan', $bahans)->get();
+    }
+    if ($request->has('time') && $request->has('times')) {
+        $time = $request->time . " " . $request->times;
+        $recipes = reseps::where("lama_memasak", $time)->paginate(6);
+    }
+    if ($request->has('price')) {
+        $recipes = reseps::where("pengeluaran_memasak", $request->price)->paginate(6);
+    }
+    if ($request->has('porsi')) {
+        $recipes = reseps::where('porsi_orang', $request->porsi)->paginate(6);
     }
     $ingredients = bahan_reseps::pluck('nama_bahan')->unique();
     if ($userLogin) {
@@ -92,6 +102,7 @@ Route::get('menu', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
+   
     return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin'));
 })->name('menu');
 

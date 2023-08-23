@@ -99,16 +99,16 @@
             }
 
             /* button{
-                                                                    background-color: #F7941E;
-                                                                    border: none;
-                                                                    height: 45px;
-                                                                    width: 90px;
-                                                                    color: #ffffff;
-                                                                    position: absolute;
-                                                                    right: 1px;
-                                                                    top: 0px;
-                                                                    border-radius: 15px
-                                                                } */
+                                                                        background-color: #F7941E;
+                                                                        border: none;
+                                                                        height: 45px;
+                                                                        width: 90px;
+                                                                        color: #ffffff;
+                                                                        position: absolute;
+                                                                        right: 1px;
+                                                                        top: 0px;
+                                                                        border-radius: 15px
+                                                                    } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -184,6 +184,7 @@
                         </div>
                     </form>
                     <div class="col-sm-12 text-center mt-5">
+                        @if (request()->has('bahan'))
                         @if (count($bahan) >= 5)
                             <div
                                 style="background-color: #F7941E; width: 100%; height: 65px; border: 1px solid black; overflow-y: scroll; border: none;">
@@ -192,7 +193,7 @@
                                         style=" background: white; border-radius: 10px; padding: 6px 35px;">
                                         <div class="Ayam"
                                             style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                            {{ $b }}</div>
+                                            {{ $b->nama_bahan }}</div>
                                     </button>
                                 @endforeach
                             </div>
@@ -202,9 +203,10 @@
                                     style=" background: white; border-radius: 10px; padding: 6px 35px;">
                                     <div class="Ayam"
                                         style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        {{ $b }}</div>
+                                        {{ $b->nama_bahan }}</div>
                                 </button>
                             @endforeach
+                        @endif
                         @endif
                     </div>
                 </div>
@@ -217,6 +219,48 @@
         </div>
         <div class="ms-auto me-5">
             {{ $recipes->links('vendor.pagination.simple-default') }}
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    @if (request()->has('bahan'))
+    <button type="button" id="btns" class="btn btn-primary mx-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Filter Lanjutan
+    </button>
+    @endif
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cari Resep Lebih Spesifik</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/menu" method="get">
+                        <label for="">Lama Memasak</label>
+                        <div class="row">
+                            <div class="col-9">
+                                <input type="number" class="form-control" name="time" value="">
+                            </div>
+                            <div class="col-3">
+                                <select name="times" class="form-control">
+                                    <option value="menit">menit</option>
+                                    <option value="jam">jam</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <label for="">Pengeluaran Memasak</label>
+                                <input type="number" class="form-control" name="price">
+                        <br>
+                        <label for="Porsi_orang">Porsi Orang</label>
+                        <input type="number" class="form-control" name="porsi" placeholder="masukkan 1 inputan angka...">
+                        <div class="text-center my-3">
+                            <button type="submit" class="btn btn-primary">Terapkan Filter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     @if ($recipes->count() == 0)

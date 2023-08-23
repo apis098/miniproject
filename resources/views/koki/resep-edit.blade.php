@@ -120,10 +120,15 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Masukkan waktu memasak" value="{{ $edit_resep->lama_memasak }}">
+                        <input type="number" name="lama_memasak" class="form-control col-10"
+                            id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
+                            value="{{ old('lama_memasak') }}" required>
+                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-2">
+                            <option value="menit" @if (old('lama_memasak2' == 'menit')) selected @endif>menit</option>
+                            <option value="jam" @if (old('lama_memasak2' == 'jam')) selected @endif>jam</option>
+                        </select>
                         @error('lama_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -172,8 +177,7 @@
                                     <div class="card my-5 col-lg-4">
                                         <div class="card-body text-center div3">
                                             <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
-                                                width="100%" class=""
-                                                id="IMAGE{{$int}}">
+                                                width="100%" class="" id="IMAGE{{ $int }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
@@ -227,22 +231,23 @@
     </form>
     <script>
         function input_file_langkah(num) {
-            const inputan_foto_langkah = document.getElementById('inputan_foto_langkah'+num);
+            const inputan_foto_langkah = document.getElementById('inputan_foto_langkah' + num);
             inputan_foto_langkah.click();
-            document.getElementById("inputan_foto_langkah"+num).addEventListener("change", function(event) {
+            document.getElementById("inputan_foto_langkah" + num).addEventListener("change", function(event) {
                 selectedFile = event.target.files[0];
-                document.getElementById("foto_langkah_info"+num).textContent = selectedFile.name;
+                document.getElementById("foto_langkah_info" + num).textContent = selectedFile.name;
                 i = event.target;
                 if (i.files && i.files[0]) {
                     reading = new FileReader();
-                    reading.onload = function (event) {
-                        document.getElementById('IMAGE'+num).setAttribute("src", event.target.result);
-                        document.getElementById('IMAGE'+num).style.width = "100%";
+                    reading.onload = function(event) {
+                        document.getElementById('IMAGE' + num).setAttribute("src", event.target.result);
+                        document.getElementById('IMAGE' + num).style.width = "100%";
                     }
                     reading.readAsDataURL(i.files[0]);
                 }
             });
         }
+
         function klik() {
             num++;
             document.getElementById("formFile").click();
@@ -252,7 +257,7 @@
                 var input = event.target;
                 if (input.files && input.files[0]) {
                     var read = new FileReader();
-                    read.onload  = function (event) {
+                    read.onload = function(event) {
                         document.getElementById('changePhotoResep').setAttribute("src", event.target.result);
                     };
                     read.readAsDataURL(input.files[0]);
@@ -281,12 +286,12 @@
                                             {{ $int += 1 }}</b></label>
                                     <div class="card my-5 col-lg-4">
                                         <div class="card-body text-center div3">
-                                            <img src=" class="" id="IMAGE{{$int}}">
+                                            <img src=" class="" id="IMAGE{{ $int }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
                                         <div class="row" style="border-radius: 25px; border: 1px solid black;">
-                                            <button type="button" onclick="input_file_langkah({{$int}})"
+                                            <button type="button" onclick="input_file_langkah({{ $int }})"
                                                 class="col-4"
                                                 style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                                                 <div
@@ -294,9 +299,9 @@
                                                     Pilih File</div>
                                                 <input name="foto_langkah_resep_tambahan[]" class="form-control my-auto mx-1"
                                                     style="display: none;" type="file"
-                                                    id="inputan_foto_langkah{{$int}}">
+                                                    id="inputan_foto_langkah{{ $int }}">
                                             </button>
-                                            <div class="col-8" id="foto_langkah_info{{$int}}"
+                                            <div class="col-8" id="foto_langkah_info{{ $int }}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>

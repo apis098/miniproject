@@ -35,7 +35,7 @@
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                 Pilih File</div>
                             <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
-                                id="formFile" >
+                                id="formFile">
                         </button>
                         <div class="col-8" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -61,7 +61,8 @@
                     </div>
                     <div class="mt-2">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
-                        <textarea name="deskripsi_resep" class="form-control" placeholder="Masukkan deskripsi makanan" id="floatingTextarea" required>{{ old('deskripsi_resep') }}</textarea>
+                        <textarea name="deskripsi_resep" class="form-control" placeholder="Masukkan deskripsi makanan" id="floatingTextarea"
+                            required>{{ old('deskripsi_resep') }}</textarea>
                         @error('deskripsi_resep')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -107,10 +108,15 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Masukkan waktu memasak" value="{{ old('lama_memasak') }}" required>
+                        <input type="number" name="lama_memasak" class="form-control col-10"
+                            id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
+                            value="{{ old('lama_memasak') }}" required>
+                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-2">
+                            <option value="menit" @if (old('lama_memasak2' == 'menit')) selected @endif>menit</option>
+                            <option value="jam" @if (old('lama_memasak2' == 'jam')) selected @endif>jam</option>
+                        </select>
                         @error('lama_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -185,7 +191,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea" >
+                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea">
                                 {{ old('langkah_resep.0') }}
                             </textarea>
                             @error('langkah_resep.*')
@@ -209,10 +215,11 @@
             </div>
         </div>
     </form>
-    
+
     <script>
         num = 0;
-         function klik() {
+
+        function klik() {
             num++;
             document.getElementById("formFile").click();
             document.getElementById('formFile').addEventListener('change', function(event) {
@@ -221,7 +228,7 @@
                 var input = event.target;
                 if (input.files && input.files[0]) {
                     var read = new FileReader();
-                    read.onload  = function (event) {
+                    read.onload = function(event) {
                         document.getElementById('changePhotoResep').setAttribute("src", event.target.result);
                     };
                     read.readAsDataURL(input.files[0]);
