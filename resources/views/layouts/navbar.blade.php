@@ -37,6 +37,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
     <style>
         .nav-link.activet {
             background-color: white;
@@ -93,9 +95,9 @@
 
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 230px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
             <!-- Brand Logo -->
-            <h3 class="text-white text-center my-2 mt-4 font-a" style="font-size: 40px; ">Hummacook</h3>
+            <h3 class="text-white text-center my-2 mt-4 t" style="font-size: 40px; ">Hummacook</h3>
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
@@ -105,9 +107,9 @@
                         <li class="nav-item">
                             <a href="{{ route('admin.index') }}"
                                 class="nav-link w-75 mx-4  {{ request()->routeIs('admin.index') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="fa-solid fa-house"></i>
+                                {{-- <i class="fa-solid fa-house"></i> --}}
 
-                                <p  style="margin-left: 10px">
+                                <p  style="margin-left: 10px;  font-size: 24px; font-family: Poppins; font-weight: 600;">
 
                                     Dashboard
                                 </p>
@@ -116,8 +118,8 @@
                         <li class="nav-item">
                             <a href="{{ route('Complaint.all') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="fa-solid fa-envelope"></i>
-                                <p style="margin-left: 12px">
+                                {{-- <i class="fa-solid fa-envelope"></i> --}}
+                                <p style="margin-left: 12px; font-size: 24px; font-family: Poppins; font-weight: 600;">
                                     Keluhan
                                 </p>
                             </a>
@@ -125,8 +127,8 @@
                         <li class="nav-item">
                             <a href="{{ route('ReplyUser.index') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="fa-solid fa-people-arrows"></i>
-                                <p  style="margin-left: 10px">
+                                {{-- <i class="fa-solid fa-people-arrows"></i> --}}
+                                <p  style="margin-left: 10px; font-size: 24px; font-family: Poppins; font-weight: 600;">
                                     Balasan
                                 </p>
                             </a>
@@ -134,8 +136,8 @@
                         <li class="nav-item">
                             <a href="{{ route('Report.index') }}"
                                 class="nav-link w-75 mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-warning' : 'text-white' }}">
-                                <i class="fa-solid fa-flag"></i>
-                                <p  style="margin-left: 15px">
+                                {{-- <i class="fa-solid fa-flag"></i> --}}
+                                <p  style="margin-left: 15px; font-size: 24px; font-family: Poppins; font-weight: 600;">
                                     Laporan
                                 </p>
                             </a>
@@ -148,7 +150,7 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
+        <div class="">
 
             <!-- Main content -->
             <section class="content">

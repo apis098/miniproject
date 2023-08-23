@@ -61,56 +61,34 @@
 
     </style>
         <div class="mt-3">
-            <div class="Rectangle185" style="width: 950px; height: 54px; left: 280px; top: 35px; position: absolute; background: #F7941E; border-radius: 14px; margin-left: 45px; "></div>
+            <div class="Rectangle185" style="width: 1032px; height: 54px; left: 245px; top: 32px; position: absolute; background: #F7941E; border-radius: 14px; margin-left: 45px; "></div>
 
-            <div class="Gambar" style="width: 105px; left: 390px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Gambar</div>
-            <div class="Username" style="width: 131px; left: 590px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Username</div>
-            <div class="Subjek" style="width: 85px; left: 860px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Subjek</div>
-            <div class="Aksi" style="width: 54px; left: 1100px; top: 44px; position: absolute; color: #F5F5F5; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Aksi</div>
-
-
-            <div class="Rectangle187" style="width: 950px; height: 129px; left: 280px; top: 109px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px;"></div>
-            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 137px; position: absolute; border: 0.50px black solid">
-            <div class="Ferdiansyah" style="width: 132px; left: 590px; top: 158px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-            <div class="MasakanGosong" style="width: 183px; left: 840px; top: 158px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <div class="Rectangle7" style="width: 93px; height: 40px; left: 1090px; top: 149px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-            <div class="Detail" style="width: 61px; left: 1110px; top: 154px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+            <div class="Gambar" style="width: 105px; left: 330px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Gambar</div>
+            <div class="Username" style="width: 131px; left: 588px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Username</div>
+            <div class="Subjek" style="width: 85px; left: 892px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Subjek</div>
+            <div class="Aksi" style="width: 54px; left: 1210px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Aksi</div>
 
 
+            <div class="Rectangle187" style="width: 1032px; height: 120px; left: 245px; top: 112px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px;"></div>
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 330px; top: 137px; position: absolute; border: 0.50px black solid">
+            <div class="Ferdiansyah" style="width: 132px; left: 590px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="MasakanGosong" style="width: 183px; left: 860px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="Rectangle7" style="width: 93px; height: 36px; left: 1190px; top: 155px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Detail" style="width: 61px; left: 1212px; top: 160px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
 
 
 
-            <div class="Rectangle188" style="width: 950px; height: 129px; left: 280px; top: 258px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px"></div>
-            <div class="Rectangle190" style="width: 950px; height: 129px; left: 280px; top: 407px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px"></div>
-            <div class="Rectangle192" style="width: 950px; height: 129px; left: 280px; top: 556px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px"></div>
-            <div class="Rectangle194" style="width: 950px; height: 129px; left: 280px; top: 705px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px"></div>
-            <div class="Rectangle196" style="width: 950px; height: 129px; left: 280px; top: 854px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px"></div>
 
-            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 286px; position: absolute; border: 0.50px black solid">
-            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 435px; position: absolute; border: 0.50px black solid">
-            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 584px; position: absolute; border: 0.50px black solid">
-            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 733px; position: absolute; border: 0.50px black solid">
-            <img  src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 398px; top: 882px; position: absolute; border: 0.50px black solid">
-            <div class="Ferdiansyah" style="width: 134px;  left: 590px; top: 307px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-            <div class="Ferdiansyah" style="width: 134px;  left: 590px; top: 456px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-            <div class="Ferdiansyah" style="width: 134px;  left: 590px; top: 605px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-            <div class="Ferdiansyah" style="width: 134px;  left: 590px; top: 754px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-            <div class="Ferdiansyah" style="width: 134px;  left: 590px; top: 903px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-            <div class="MasakanGosong" style="width: 183px; left: 840px; top: 307px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <div class="MasakanGosong" style="width: 183px; left: 840px; top: 456px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <div class="MasakanGosong" style="width: 183px; left: 840px; top: 605px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <div class="MasakanGosong" style="width: 183px; left: 840px; top: 754px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <div class="MasakanGosong" style="width: 183px; left: 840px; top: 903px; position: absolute; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <div class="Rectangle197" style="width: 93px; height: 40px; left: 1090px; top: 298px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-            <div class="Rectangle198" style="width: 93px; height: 40px; left: 1090px; top: 447px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-            <div class="Rectangle199" style="width: 93px; height: 40px; left: 1090px; top: 596px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-            <div class="Rectangle200" style="width: 93px; height: 40px; left: 1090px; top: 745px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-            <div class="Rectangle201" style="width: 93px; height: 40px; left: 1090px; top: 894px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-            <div class="Detail" style="width: 61px; left: 1110px; top: 303px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
-            <div class="Detail" style="width: 61px; left: 1110px; top: 452px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
-            <div class="Detail" style="width: 61px; left: 1110px; top: 601px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
-            <div class="Detail" style="width: 61px; left: 1110px; top: 750px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
-            <div class="Detail" style="width: 61px; left: 1110px; top: 899px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+
+            <div class="Rectangle188" style="width: 1032px; height: 120px; left: 245px; top: 262px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 45px"></div>
+            <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 330px; top: 286px; position: absolute; border: 0.50px black solid">
+            <div class="Ferdiansyah" style="width: 134px;  left: 590px; top: 307px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
+            <div class="MasakanGosong" style="width: 183px; left: 860px; top: 307px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
+            <div class="Rectangle197" style="width: 93px; height: 40px; left: 1190px; top: 298px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
+            <div class="Detail" style="width: 61px; left: 1212px; top: 305px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+
+
+
 
         </div>
     {{-- <div class=" mb-2 mt-1 mb-md-1">
