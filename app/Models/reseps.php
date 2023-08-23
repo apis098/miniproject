@@ -35,4 +35,8 @@ class reseps extends Model
     {
         return $this->hasMany(likes::class,'resep_id');
     }
+    public function favorite()
+    {
+        return $this->hasMany(favorite::class);
+    }
 }

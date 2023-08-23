@@ -13,11 +13,13 @@ use App\Http\Controllers\ResepsController;
 use App\Models\complaint;
 use App\Models\reseps;
 use App\Http\Controllers\artikels;
+use App\Http\Controllers\favoriteController;
 use App\Http\Controllers\followersController;
 use App\Http\Controllers\notificationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\testingController;
 use App\Models\bahan_reseps;
+use App\Models\favorite;
 use App\Models\notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +47,7 @@ Route::get('/', function () {
     $real_reseps = reseps::paginate(2);
     $userLogin = Auth::user();
     $notification = [];
+    $favorite =[];
     $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
@@ -53,13 +56,19 @@ Route::get('/', function () {
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
        
     }
-    return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount'));
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount','favorite'));
 })->name('home');
 
 Route::get('artikel', function () {
     $reseps = reseps::paginate(3);
     $userLogin = Auth::user();
     $notification = [];
+    $favorite = [];
     $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
@@ -67,7 +76,12 @@ Route::get('artikel', function () {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.artikel', compact('reseps','userLogin', 'notification','unreadNotificationCount'));
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.artikel', compact('reseps','userLogin', 'notification','unreadNotificationCount','favorite'));
 })->name('artikel');
 
 Route::get('/artikel/{hash}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
@@ -76,6 +90,7 @@ Route::get('menu', function (Request $request) {
     $userLogin = Auth::user();
     $bahan = bahan_reseps::pluck('nama_bahan')->unique();
     $notification = [];
+    $favorite = [];
     $unreadNotificationCount=[];
     $recipes = reseps::paginate(6);
     if ($request->has('bahan')) {
@@ -102,13 +117,23 @@ Route::get('menu', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
+<<<<<<< Updated upstream
    
     return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin'));
+=======
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin','favorite'));
+>>>>>>> Stashed changes
 })->name('menu');
 
 Route::post('/menu', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
+    $favorite = [];
     $unreadNotificationCount=[];
     $ingredients = $request->input('bahan');
     $recipes = reseps::whereHas('bahan', function ($query) use ($ingredients) {
@@ -120,12 +145,18 @@ Route::post('/menu', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.menu', compact('recipes','notification','unreadNotificationCount','userLogin'));
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.menu', compact('recipes','notification','unreadNotificationCount','userLogin','favorite'));
 });
 
 Route::get('about', function () {
     $userLogin = Auth::user();
     $notification = [];
+    $favorite = [];
     $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
@@ -133,12 +164,18 @@ Route::get('about', function () {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.about', compact('notification','unreadNotificationCount','userLogin'));
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.about', compact('notification','unreadNotificationCount','userLogin','favorite'));
 })->name('about');
 
 Route::get('hari', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
+    $favorite = [];
     $unreadNotificationCount=[];
     $haries = reseps::pluck('hari_khusus')->unique();
     $recipes = reseps::whereNotNull("hari_khusus")->paginate(6);
@@ -153,12 +190,13 @@ Route::get('hari', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('haries','hari','recipes','notification','unreadNotificationCount','userLogin'));
+    return view('template.hari', compact('haries','hari','recipes','notification','unreadNotificationCount','userLogin','favorite'));
 })->name('hari');
 
 Route::post('hari', function (Request $request) {
     $userLogin = Auth::user();
     $notification = [];
+    $favorite = [];
     $unreadNotificationCount=[];
     if ($userLogin) {
         $notification = notifications::where('user_id', auth()->user()->id)
@@ -166,7 +204,12 @@ Route::post('hari', function (Request $request) {
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
     }
-    return view('template.hari', compact('notification','unreadNotificationCount','userLogin'));
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.hari', compact('notification','unreadNotificationCount','userLogin','favorite'));
 });
 
 //Search user account
@@ -174,12 +217,14 @@ Route::get('search-account', [followersController::class, 'index'])->name('user.
 Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
 Route::put('/status-baca/follow/{id}', [notificationController::class, 'followNotification'])->name('follow.notification');
 Route::put('/status-baca/like-replies/{id}', [notificationController::class, 'repliesNotification'])->name('replies.notification');
+Route::put('/status-baca/like-resep/{id}', [notificationController::class, 'likeResep'])->name('resep.like.notification');
 Route::put('/status-baca/profile-blocked/{id}', [notificationController::class, 'blockedProfile'])->name('profile.blocked.notification');
 Route::put('/status-baca/replies-blocked/{id}', [notificationController::class, 'repliesBlocked'])->name('replies.blocked.notification');
 
 
 // artikel
 Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
+Route::post('/favorite-store/{id}', [favoriteController::class, 'store'])->name('favorite.store');
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout

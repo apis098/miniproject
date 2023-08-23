@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\basic_tips;
+use App\Models\favorite;
 use App\Models\reseps;
 use App\Models\seputar_dapur;
 use App\Models\special_days;
@@ -18,6 +19,7 @@ class artikels extends Controller
         // untuk user belum login
         $userLog = 1;
         $notification = [];
+        $favorite = [];
         $unreadNotificationCount=[];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -27,7 +29,12 @@ class artikels extends Controller
                 // jika user sudah login
                 $userLog = 2;
         }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
         $show_resep = reseps::find($hash);
-        return view('template.artikel', compact('show_resep', 'userLog','notification','unreadNotificationCount','userLogin'));
+        return view('template.artikel', compact('show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'));
     }
 }

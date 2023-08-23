@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahan_reseps;
+use App\Models\favorite;
 use App\Models\followers;
 use App\Models\langkah_reseps;
 use App\Models\reseps;
@@ -23,6 +24,7 @@ class ResepsController extends Controller
     {
         $userLogin = Auth::user();
         $notification = [];
+        $favorite = [];
         $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -30,8 +32,13 @@ class ResepsController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
         $special_days = special_days::all();
-        return view("koki.resep", compact('notification', 'special_days', 'userLogin', 'unreadNotificationCount'));
+        return view("koki.resep", compact('notification', 'special_days', 'userLogin', 'unreadNotificationCount','favorite'));
     }
 
     /**
@@ -149,6 +156,7 @@ class ResepsController extends Controller
         $special_days = special_days::all();
         $userLogin = Auth::user();
         $notification = [];
+        $favorite = [];
         $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -156,7 +164,12 @@ class ResepsController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount'));
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount','favorite'));
     }
 
     /**

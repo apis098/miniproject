@@ -35,4 +35,12 @@ class notificationController extends Controller
         $id = $notificattion->replyBlocked->complaint_id;
         return redirect()->route('ShowReplies.show',$id);
     }
+    public function likeResep($id){
+        $notificattion = notifications::findOrFail($id);
+        $notificattion->status = 'sudah';
+        $notificattion->save();
+        $resepId = $notificattion->resep->id;
+        $resepName = $notificattion->resep->id;
+        return redirect('/artikel/' . $resepId . '/' . $resepName);
+    }
 }

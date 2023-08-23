@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\favorite;
 use App\Models\followers;
 use App\Models\notifications;
 use App\Models\reseps;
@@ -16,6 +17,7 @@ class followersController extends Controller
         $userLogin = Auth::user();
         $username = $request->username;
         $notification = [];
+        $favorite = [];
         $unreadNotificationCount = [];
     
         if ($userLogin) {
@@ -27,7 +29,11 @@ class followersController extends Controller
                 ->where('status', 'belum')
                 ->count();
         }
-    
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
         if ($username != null) {
             $user = User::where('status', 'aktif')
                 ->where('name', 'like', '%' . $username . '%')
@@ -36,7 +42,7 @@ class followersController extends Controller
             $user = User::where('status', 'aktif')->get();
         }
     
-        return view('template.search-account', compact('user', 'notification', 'userLogin', 'unreadNotificationCount'));
+        return view('template.search-account', compact('user', 'notification', 'userLogin', 'unreadNotificationCount','favorite'));
     }
     
     public function show_profile($id){

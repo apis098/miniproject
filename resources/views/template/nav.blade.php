@@ -341,6 +341,27 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
+                                                            @elseif($row->like_id != null && $row->resep_id != null)
+                                                            <form
+                                                                action="{{ route('resep.like.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        resep anda</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 mb-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                    <input hidden type="text"
+                                                                        value="{{ $row->complaint_id }}"
+                                                                        name="replies_id" id="replies_id"
+                                                                        class="form-control">
+                                                                </button>
+                                                            </form>
                                                         @elseif($row->follower_id == auth()->user()->id && $row->complaint_id != null)
                                                             <form
                                                                 action="{{ route('replies.notification', $row->id) }}"
@@ -525,6 +546,12 @@
                                                 Profil
                                             </a>
                                             <div class="dropdown-divider"></div>
+                                            <a href="#"  data-toggle="modal" data-target="#favoriteModal" style="width: 230px;"
+                                                class="dropdown-item text-orange">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="21" class="me-1" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z"/></svg>
+                                                favorite
+                                            </a>
+                                            <div class="dropdown-divider"></div>
                                             <a href="{{ route('actionlogout') }}" style="width: 230px;"
                                                 class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
@@ -624,7 +651,41 @@
 
                 </div>
             </div>
+        <!-- Modal -->
+        <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark fw-bolder ms-3" id="exampleModalLongTitle">Resep favorite</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                @foreach($favorite as $row)
+                <form action="{{route('Report.store')}}" method="POST">
+                    @csrf
+                <div class="modal-body d-flex align-items-center">
+                    <input type="checkbox" class="form-check-input ms-3">
+                    <img src="{{ asset('storage/'.$row->resep->foto_resep) }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
+                    alt="">
+                    <div style="justify-content: space-between;" class="mb-1">
+                    <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">{{$row->resep->nama_resep}}</h6>
+                    
+                                <small class="text-secondary  me-3">{{$row->resep->deskripsi_resep}}</small>
+            
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-light btn-sm text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus dari favorit</b></button>
+                </div>
+                </form>
+                @endforeach
 
+            </div>
+        </div>
+    </div>
+        {{-- end Modal --}}
         </div>
     </footer>
     <!-- footer section -->
