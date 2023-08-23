@@ -12,17 +12,19 @@
             </div>
             <div class="col-lg-6 mt-5 ml-3">
                 <div style="position: absolute; right: -500px; top: -200px;" class="d-flex">
-                @if ($show_resep->User->id === Auth::user()->id)
-                    <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
-                        <button type="submit" class="btn btn-warning mr-2">Edit</button>
-                    </form>
-                    <form action="/koki/resep/{{ $show_resep->id }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger"
-                            onclick="return confirm('Yakin mau menghapus data resep')">Hapus</button>
-                    </form>
-                @endif
+                    @if ($userLog === 2)
+                        @if ($show_resep->User->id === Auth::user()->id)
+                            <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
+                                <button type="submit" class="btn btn-warning mr-2">Edit</button>
+                            </form>
+                            <form action="/koki/resep/{{ $show_resep->id }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Yakin mau menghapus data resep')">Hapus</button>
+                            </form>
+                        @endif
+                    @endif
                 </div>
             </div>
         </div> <br>

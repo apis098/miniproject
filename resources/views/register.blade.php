@@ -219,7 +219,7 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             />
-
+            </svg>
             <div class="icon-cooking-pot">
                 <div class="group">
                   <svg

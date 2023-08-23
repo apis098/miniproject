@@ -232,7 +232,7 @@
                     stroke-linejoin="round" />
                 <path
                     d="M1.70607 23.1134C5.26169 30.6807 17.7076 37.337 17.7076 37.337C17.7076 37.337 30.1537 30.6807 33.7092 23.1134C37.5478 14.9439 33.7092 0 33.7092 0H1.70607C1.70607 0 -2.13259 14.9439 1.70607 23.1134Z"
-                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>
 
                 <div class="icon-cooking-pot">
                     <div class="group">
