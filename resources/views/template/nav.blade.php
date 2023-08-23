@@ -369,7 +369,8 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Menambahkan resep baru</small>
+                                                                    <small class="mt-1 ms-1 text-secondary">Menambahkan
+                                                                        resep baru</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
                                                                             src="{{ asset('images/badge.png') }}"
@@ -463,7 +464,7 @@
                                                                 <input type="text" hidden name="follower_id"
                                                                     id="follower_id" value="{{ $row->follower_id }}"
                                                                     class="form-control">
-                                                        </form>
+                                                            </form>
                                                         @endif
                                                     </div>
                                                 @endif
@@ -471,9 +472,10 @@
                                             @forelse ($notification as $row)
                                                 <!-- Konten notifikasi -->
                                             @empty
-                                            <div class="dropdown-divider"></div>
+                                                <div class="dropdown-divider"></div>
                                                 <div class="text-center mt-2">
-                                                    <img src="{{asset('images/nodata.png')}}" class="col-sm-6" alt="...">
+                                                    <img src="{{ asset('images/nodata.png') }}" class="col-sm-6"
+                                                        alt="...">
                                                 </div>
                                             @endforelse
                                             <div class="dropdown-divider"></div>
@@ -585,7 +587,8 @@
                 </div>
                 <div class="col-md-4 footer-col">
                     <div class="footer_contact">
-                        <h1 style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: 5em">
+                        <h1
+                            style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: 5em">
                             Kontak
                         </h1>
                         <div class="contact_link_box">
@@ -648,7 +651,6 @@
     <!-- End Google Map -->
     <script src="{{ asset('plugins/select2/js/select2.js') }}"></script>
     <script>
-        // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function() {
             $('.search-bahan').select2({
                 closeOnSelect: false

@@ -154,7 +154,7 @@
         <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class=""
+                    <h1 class="mb-5"
                     style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
                     Cari resep masakan <br />berdasarkan hari khusus
                 </h1>

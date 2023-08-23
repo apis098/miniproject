@@ -154,7 +154,7 @@
         <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class=""
+                    <h1 class="mb-5"
                         style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
                         Cari resep masakan <br />berdasarkan bahan
                     </h1>
@@ -168,7 +168,7 @@
                                                 <form action="{{ url('/menu') }}" method="get">
                                                     <select name="bahan[]" class="search-bahan" id="search-bahan"
                                                         multiple="multiple">
-                                                        @foreach ($ingredients as $i)
+                                                        @foreach ($ingredients as $n => $i)
                                                             <option value="{{ $i }}">{{ $i }}</option>
                                                         @endforeach
                                                     </select>

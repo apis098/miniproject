@@ -85,6 +85,7 @@ class ResepsController extends Controller
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
             return redirect()->back()->withErrors($validasi)->withInput();
+            //return response()->json($validasi->errors(), 422);
         }
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
@@ -198,6 +199,7 @@ class ResepsController extends Controller
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
             return redirect()->back()->withErrors($validasi)->withInput();
+            //return response()->json([$validasi->errors(), 422]);
         }
         $update_resep = reseps::find($id);
         $update_resep->nama_resep = $request->nama_resep;

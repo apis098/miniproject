@@ -292,7 +292,7 @@
                                                 <div
                                                     style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                     Pilih File</div>
-                                                <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
+                                                <input name="foto_langkah_resep_tambahan[]" class="form-control my-auto mx-1"
                                                     style="display: none;" type="file"
                                                     id="inputan_foto_langkah{{$int}}">
                                             </button>
@@ -306,7 +306,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <textarea class="form-control" name="langkah_resep[]" style="white-space: nowrap;"
+                                    <textarea class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
                                         placeholder="Masukkan langkah langkah" id="floatingTextarea">
                             </textarea>
                                     @error('langkah_resep.*')
