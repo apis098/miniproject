@@ -59,7 +59,7 @@
             background: white;
         }
         .nav-link:hover {
-            
+
         }
 
         .nav-link {
@@ -592,8 +592,9 @@
                         <h1 style="margin-right: 10em">
                             HummaCook
                         </h1>
-                        <p class="mt-3">
-                            Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti
+                        <p class="mt-3" style="margin-right: 3em; text-align: left;">
+                            Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk
+                            Dimengerti
                         </p>
 
                         {{-- <div class="footer_social">
@@ -635,7 +636,7 @@
                                 </span>
                             </a>
                             <a href="">
-                                <i class="fa fa-envelope" aria-hidden="true" style="margin-left: 4em"></i>
+                                <i class="fa fa-envelope" aria-hidden="true" style="margin-left: 3em"></i>
                                 <span>
                                     hummacook@gmail.com
                                 </span>
@@ -664,7 +665,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                
+
                 @foreach($favorite as $row)
                 <form action="{{route('Report.store')}}" method="POST">
                     @csrf
@@ -674,9 +675,9 @@
                     alt="">
                     <div style="justify-content: space-between;" class="mb-1">
                     <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">{{$row->resep->nama_resep}}</h6>
-                    
+
                                 <small class="text-secondary  me-3">{{$row->resep->deskripsi_resep}}</small>
-            
+
                     </div>
                 </div>
                 <div class="modal-footer">
