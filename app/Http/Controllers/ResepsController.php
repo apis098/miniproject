@@ -96,7 +96,7 @@ class ResepsController extends Controller
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
             //return redirect()->back()->withErrors($validasi)->withInput();
-            return response()->json($validasi->errors(), 422);
+                return response()->json($validasi->errors(), 422);
         }
         $lama_memasak = $request->lama_memasak . " " . $request->lama_memasak2;
         $create_recipe = reseps::create([

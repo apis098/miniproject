@@ -215,8 +215,21 @@
             </div>
         </div>
     </form>
-
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script>
+       $("#button-add-recipe").click(function(e) {
+        e.preventDefault();
+        var formResep = $("#form-add-recipe").serialize();
+        $.ajax({
+            url: "/koki/resep",
+            type: "post",
+            data: formResep,
+            error: function(data) {
+                alert(data.responseJSON['bahan_resep.0']);
+                //$("#button-add-recipe").style.float = "right";
+            }
+        });
+       });
         num = 0;
 
         function klik() {
