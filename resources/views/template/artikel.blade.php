@@ -4,7 +4,7 @@
         <div class="row mt-5">
             <div class="col-lg-2 mt-3">
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="197px"
-                    height="187px" style="border-radius: 50%;">
+                    height="187px" style="border-radius: 50%; border: 1px solid black;" class="p-2">
             </div>
             <div class="col-lg-4 mt-5 ml-3">
                 <h3 style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}</h3>
@@ -109,31 +109,6 @@
                     </a>
                 </li>
             </ul>
-            <script>
-                const click1 = document.getElementById("click1");
-                const click3 = document.getElementById("click3");
-                const border1 = document.getElementById("border1");
-                const border3 = document.getElementById("border3");
-                const click2 = document.getElementById("c");
-                const border2 = document.getElementById("b");
-                click1.addEventListener('click', function() {
-                    border1.style.display = "block";
-                    border2.style.display = "none";
-                    border3.style.display = "none";
-                });
-                click2.addEventListener("click", function() {
-                    border2.removeAttribute('hidden');
-                    border2.style.display = "block";
-                    border1.style.display = "none";
-                    border3.style.display = "none";
-                });
-
-                click3.addEventListener("click", function() {
-                    border3.style.display = "block";
-                    border1.style.display = "none";
-                    border2.style.display = "none";
-                });
-            </script>
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
@@ -164,13 +139,13 @@
                     tabindex="0">
                     @foreach ($show_resep->langkah as $num => $item_langkah)
                         <div class="card-body d-flex flex-row">
-                            <div>
-                                <button type="button" style="background-color:#F7941E;"
-                                    class="btn btn-warning btn-sm text-light rounded-circle p-2 ml-2">
-                                    <span class="p-2">{{ $num += 1 }}</span>
-                                </button>
-                                <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
-                                    alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px;" width="160px"
+                            <div class="d-flex flex-column">
+                                <button type="button" style="background-color:#F7941E;width: 45px;height: 45px; position: absolute; left: 270px;"
+                                class="btn btn-warning btn-sm text-light rounded-circle p-2 ml-2">
+                                <span class="p-2">{{ $num += 1 }}</span>
+                            </button>
+                                <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3"
+                                    alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px;border: 1px solid black;" width="160px"
                                     height="160px">
                             </div>
                             <div class="my-auto mx-4">
@@ -182,4 +157,29 @@
             </div>
         </div>
     </section>
+    <script>
+        const click1 = document.getElementById("click1");
+        const click3 = document.getElementById("click3");
+        const border1 = document.getElementById("border1");
+        const border3 = document.getElementById("border3");
+        const click2 = document.getElementById("c");
+        const border2 = document.getElementById("b");
+        click1.addEventListener('click', function() {
+            border1.style.display = "block";
+            border2.style.display = "none";
+            border3.style.display = "none";
+        });
+        click2.addEventListener("click", function() {
+            border2.removeAttribute('hidden');
+            border2.style.display = "block";
+            border1.style.display = "none";
+            border3.style.display = "none";
+        });
+
+        click3.addEventListener("click", function() {
+            border3.style.display = "block";
+            border1.style.display = "none";
+            border2.style.display = "none";
+        });
+    </script>
 @endsection
