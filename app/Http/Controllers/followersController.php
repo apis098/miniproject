@@ -58,7 +58,12 @@ class followersController extends Controller
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
-        return view('template.profile-oranglain',compact('recipes','user','notification','userLogin','unreadNotificationCount','userLogin'));
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        return view('template.profile-oranglain',compact('recipes','user','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)
     {
