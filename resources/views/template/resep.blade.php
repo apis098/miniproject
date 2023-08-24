@@ -166,11 +166,7 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="{{ url('/menu') }}" method="get">
-                                                    <select name="bahan[]" class="search-bahan" id="search-bahan"
-                                                        multiple="multiple">
-                                                        @foreach ($ingredients as $n => $i)
-                                                            <option value="{{ $i }}" hidden>{{ $i }}</option>
-                                                        @endforeach
+                                                    <input type="text" name="search_">
                                                     </select>
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px;">Cari</button>
@@ -183,32 +179,6 @@
                             </div>
                         </div>
                     </form>
-                    <div class="col-sm-12 text-center mt-5">
-                        @if (request()->has('bahan'))
-                        @if (count($bahan) >= 5)
-                            <div
-                                style="background-color: #F7941E; width: 100%; height: 65px; border: 1px solid black; overflow-y: scroll; border: none;">
-                                @foreach ($bahan as $b)
-                                    <button class="btn btn-white mx-2 my-2"
-                                        style=" background: white; border-radius: 10px; padding: 6px 35px;">
-                                        <div class="Ayam"
-                                            style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                            {{ $b->nama_bahan }}</div>
-                                    </button>
-                                @endforeach
-                            </div>
-                        @else
-                            @foreach ($bahan as $b)
-                                <button class="btn btn-white mx-2 my-2"
-                                    style=" background: white; border-radius: 10px; padding: 6px 35px;">
-                                    <div class="Ayam"
-                                        style="color: #F7941E; font-size: 18px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        {{ $b->nama_bahan }}</div>
-                                </button>
-                            @endforeach
-                        @endif
-                        @endif
-                    </div>
                 </div>
             </div>
         </div><!-- End -->
