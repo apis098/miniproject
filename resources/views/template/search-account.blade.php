@@ -195,7 +195,7 @@
         <p>Tidak ada data</p>
     </div>
     @endif
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="row text-center">
 
             <!-- Team item -->

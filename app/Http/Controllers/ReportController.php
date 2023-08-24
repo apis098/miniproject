@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\notifications;
 use App\Models\Reply;
 use App\Models\Report;
+use App\Models\reseps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,16 @@ class ReportController extends Controller
         $data = Report::all();
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.index',compact('data','title'));
+    }
+    public function storeResep(Request $request,$id){
+        $resep = reseps::findOrFail($id);
+        $report = new Report();
+        $report->resep_id = $resep->id;
+        $report->user_id = $resep->user_id;
+        $report->user_id_sender = auth()->user()->id;
+        $report->description = $request->description;
+        $report->save();
+        return redirect()->back()->with('success','Laporan anda telah terkirim');
     }
     public function store(Request $request){
         $userId = Auth::user()->id;

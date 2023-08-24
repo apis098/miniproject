@@ -267,6 +267,7 @@ Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('R
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
 //report
 Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');
+Route::post('/laporan-resep/{id}',[ReportController::class,'storeResep'])->name('report.resep');
 
 
 

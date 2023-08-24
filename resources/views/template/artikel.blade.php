@@ -65,11 +65,40 @@
                                 @csrf
                                 <button type="submit" class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2" style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z"/></svg></button>
                             </form>
-                            <form action="/koki/resep/{{ $show_resep->id }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2" style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M6 21q-.425 0-.713-.288T5 20V5q0-.425.288-.713T6 4h7.175q.35 0 .625.225t.35.575L14.4 6H19q.425 0 .713.288T20 7v8q0 .425-.288.713T19 16h-5.175q-.35 0-.625-.225t-.35-.575L12.6 14H7v6q0 .425-.288.713T6 21Z"/></svg></button>
-                            </form>
+
+                                <button type="submit" data-toggle="modal" data-target="#reportModal" class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2" style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M6 21q-.425 0-.713-.288T5 20V5q0-.425.288-.713T6 4h7.175q.35 0 .625.225t.35.575L14.4 6H19q.425 0 .713.288T20 7v8q0 .425-.288.713T19 16h-5.175q-.35 0-.625-.225t-.35-.575L12.6 14H7v6q0 .425-.288.713T6 21Z"/></svg></button>
+                                {{-- modal --}}
+                                <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="reportModal">Laporkan resep</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="{{route('report.resep',$show_resep->id)}}" method="POST">
+                                            @csrf
+                                        <div class="modal-body d-flex align-items-center"> <!-- Tambahkan kelas "align-items-center" -->
+                                            @if($show_resep->foto_resep)
+                                            <img class="me-2" src="{{ asset('storage/'.$show_resep->foto_resep) }}" width="106px" height="104px" style="border-radius: 50%"
+                                                alt="">
+                                            <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                                            @else
+                                            <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
+                                                alt="">
+                                            <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                            @endif
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-light text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Laporkan</b></button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- end Modal --}}
                             @endif
                         @endif
                     </div>
@@ -81,8 +110,8 @@
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
                 <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">
                     <div class="row my-1">
-                        <div class="col-7">
-                            <span class="ms-3"
+                        <div class="col-7 mt-1">
+                            <span class=""
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                 {{ $show_resep->lama_memasak }} {{$show_resep->lama_memasak2}}
                             </span> <br>
@@ -101,8 +130,8 @@
                 <h4 style="font-weight: 600; word-warp:break-word;">Pengeluaran</h4>
                 <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">
                     <div class="row my-1">
-                        <div class="col-7">
-                            <span class="ms-3"
+                        <div class="col-7 mt-1">
+                            <span class=""
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                 RP{{ number_format($show_resep->pengeluaran_memasak, 2, ',', '.') }}
                             </span> <br>
@@ -120,8 +149,8 @@
                 <h4 style="font-weight: 600; word-warp: break-word;">Porsi</h4>
                 <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">
                     <div class="row my-1">
-                        <div class="col-7">
-                            <span class="ms-3"
+                        <div class="col-7 mt-1">
+                            <span class="]"
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                 {{ $show_resep->porsi_orang }} Orang
                             </span> <br>
