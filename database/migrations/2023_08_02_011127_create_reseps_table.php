@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('porsi_orang');
             $table->integer('lama_memasak');
             $table->string('lama_memasak2');
+            $table->string('time');
             $table->integer('likes')->default(0);
             $table->bigInteger('pengeluaran_memasak');
             $table->string('hari_khusus')->nullable();

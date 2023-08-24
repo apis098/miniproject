@@ -107,6 +107,7 @@ class ResepsController extends Controller
             "porsi_orang" => $request->porsi_orang,
             "lama_memasak" => $request->lama_memasak,
             "lama_memasak2" => $request->lama_memasak2,
+            "time" => $request->lama_memasak . " " . $request->lama_memasak2,
             "pengeluaran_memasak" => $request->pengeluaran_memasak
         ]);
         if ($create_recipe) {
@@ -237,6 +238,7 @@ class ResepsController extends Controller
         $lama_memasak = $request->lama_memasak;
         $update_resep->lama_memasak = $request->lama_memasak;
         $update_resep->lama_memasak2 = $request->lama_memasak2;
+        $update_resep->time = $request->lama_memasak . " " . $request->lama_memasak2;
         $update_resep->pengeluaran_memasak = $request->pengeluaran_memasak;
         $update_resep->save();
         if ($request->has("hapus_bahan")) {

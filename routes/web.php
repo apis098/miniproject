@@ -87,6 +87,29 @@ Route::get('artikel', function () {
 
 Route::get('/artikel/{hash}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 
+Route::get('waktu', function (Request $request) {
+    $userLogin = Auth::user();
+    $notification = [];
+    $favorite = [];
+    $unreadNotificationCount=[];
+    $recipes = reseps::paginate(4);
+    if ($request->has("time")) {
+        $recipes = reseps::where('time', 'like', '%'.$request->time.'%')->paginate(4);
+    }
+    if ($userLogin) {
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+    }
+    if ($userLogin) {
+        $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+    }
+    return view('template.waktu', compact('recipes','userLogin', 'notification', 'favorite', 'unreadNotificationCount'));
+});
+
 Route::get('menu', function (Request $request) {
     $userLogin = Auth::user();
     $bahan = bahan_reseps::pluck('nama_bahan')->unique();
@@ -100,16 +123,6 @@ Route::get('menu', function (Request $request) {
         $query->where('nama_bahan', $bahans);
     })->paginate(6);
     $bahan = bahan_reseps::where('nama_bahan', $bahans)->get();
-    }
-    if ($request->has('time') && $request->has('times')) {
-        $time = $request->time . " " . $request->times;
-        $recipes = reseps::where("lama_memasak", $time)->paginate(6);
-    }
-    if ($request->has('price')) {
-        $recipes = reseps::where("pengeluaran_memasak", $request->price)->paginate(6);
-    }
-    if ($request->has('porsi')) {
-        $recipes = reseps::where('porsi_orang', $request->porsi)->paginate(6);
     }
     $ingredients = bahan_reseps::pluck('nama_bahan')->unique();
     if ($userLogin) {

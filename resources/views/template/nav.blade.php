@@ -238,7 +238,7 @@
                             <span class=""> </span>
                         </button>
 
-                        <div class="collapse navbar-collapse" class="ms-4" style="margin-left: 60px;;"
+                        <div class="collapse navbar-collapse" class="ms-4"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav mt-3 me-2 justify-content-center mx-auto ">
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
@@ -247,6 +247,10 @@
                                 <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}"
                                     style="font-size: 15px">
                                     <a class="nav-link" id="navbar" href="{{ route('menu') }}"><b>Resep</b></a>
+                                </li>
+                                <li class="nav-item {{ request()->is('waktu') ? 'active' : '' }}"
+                                    style="font-size: 15px">
+                                    <a class="nav-link" id="navbar" href="{{ url('/waktu') }}"><b>Waktu</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('hari') ? 'active' : '' }}"
                                     style="font-size: 15px">
@@ -268,7 +272,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
-                            <div class="user_option" style="margin-left: 180px;">
+                            <div class="user_option" style="margin-left: 100px;">
 
 
                                 @if (Auth::check() && $notification != null)
@@ -719,6 +723,9 @@
         $(document).ready(function() {
             $('.search-bahan').select2({
                 closeOnSelect: false
+            });
+            $('.search-time').select2({
+                multiple: false
             });
         });
     </script>
