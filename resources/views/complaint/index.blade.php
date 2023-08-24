@@ -37,12 +37,6 @@
             transform: scale(0.97);
         }
 
-
-        .modal-body {
-            background-color: #F8DE22;
-            border-color: #F8DE22;
-        }
-
         .intro-1 {
             font-size: 20px
         }
@@ -59,6 +53,16 @@
             font-size: 13px
         }
 
+        .btn-kirim{
+            width: 100%;
+            height: 100%;
+            background: #F7941E;
+            color: #F5F5F5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            border: none
+        }
+
     </style>
         <div class="mt-3">
             <div class="Rectangle185" style="width: 960px; height: 54px; left: 245px; top: 32px; position: absolute; background: #F7941E; border-radius: 14px; margin-left: 45px; "></div>
@@ -73,21 +77,9 @@
             <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 330px; top: 137px; position: absolute; border: 0.50px black solid">
             <div class="Ferdiansyah" style="width: 132px; left: 562px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
             <div class="MasakanGosong" style="width: 183px; left: 810px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <button class="text-white btn btn-warning" data-bs-toggle="modal" data-bs-target="#complaintModal" style="width: 93px; height: 36px; left: 1120px; top: 155px; position: absolute; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word; border: none;">
+            <button class="text-white btn btn-warning"  data-bs-toggle="modal" data-bs-target="#exampleModal" style="width: 93px; height: 36px; left: 1120px; top: 155px; position: absolute; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word; border: none;">
                   Detail
             </button>
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
     {{-- <div class=" mb-2 mt-1 mb-md-1">
         <label for="name" class="mb-1 ms-2 text-secondary">Tambah Data:</label>
@@ -134,7 +126,7 @@
         </tbody>
     </table> --}}
 
-        <div class="modal fade" id="complaintModal" data-backdrop="static" data-keyboard="false"
+        {{-- <div class="modal fade" id="complaintModal" data-backdrop="static" data-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg ">
                 <div class="modal-content rounded-5">
@@ -148,10 +140,10 @@
                             <div class="col-md-6">
                                 <div class="text-white fw-semibold mt-4">
                                     <div class="mt-2"> <span class="intro-2">Judul keluhan:</span> </div>
-                                    <span class="intro-1"></span>
+                                    <span class="intro-1"></span> --}}
                                     {{-- <div class="mt-2"> <span class="intro-2">Balasan yang anda kirim:</span> </div>
                                     <span class="intro-1">test</span> --}}
-                                    <form action="" method="POST">
+                                    {{-- <form action="" method="POST">
                                         @csrf
                                         <div class="mt-2"> <span class="intro-2">Beri solusi:</span> </div>
                                         <input type="text" class="form-control rounded-3 mt-2" name="reply" id="reply">
@@ -166,7 +158,38 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+         <!-- Vertically centered modal -->
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius: 15px">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-family:poppins;">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+            <form action="" method="post">
+                @csrf
+            <div class=" mb-3">
+                <input type="text" class="form-control" style="border-radius: 5px">
+            </div>
+            <div class=" mb-3">
+            <textarea class="form-control"  rows="3"  style="border-radius: 5px"></textarea>
+            </div>
+            <div class=" mb-3">
+            <textarea class="form-control"  rows="3"  style="border-radius: 5px"></textarea>
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer mb-3">
+          <button type="submit" class="btn btn-kirim">Kirim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
     {{-- end modal edit --}}
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
