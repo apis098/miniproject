@@ -1,5 +1,35 @@
 @extends('template.nav')
 @section('content')
+<style>
+    .btn-edit{
+        width: 100%;
+        height: 100%;
+        background: #F7941E;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        color: white;
+        font-size: 18px;
+        font-family: 'poppins';
+        font-weight: 500;
+        word-wrap: break-word;
+        border: none;
+        letter-spacing: 0.20px;
+    }
+    .btn-hapus{
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        font-size: 17px;
+        font-family: 'Poppins';
+        font-weight: 500;
+        letter-spacing: 0.20px;
+        word-wrap: break-word;
+        color: black;
+        border-radius: 10px;
+        margin-left: 10px;
+        border: 0.50px black solid
+    }
+    </style>
     <section class="container">
         <div class="row mt-5">
             <div class="col-lg-2 mt-3">
@@ -18,12 +48,12 @@
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
                                 <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
-                                    <button type="submit" class="btn btn-warning mr-2">Edit</button>
+                                    <button type="submit" class="btn btn-edit ">Edit</button>
                                 </form>
                                 <form action="/koki/resep/{{ $show_resep->id }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="btn btn-hapus"
                                         onclick="return confirm('Yakin mau menghapus data resep')">Hapus</button>
                                 </form>
                             @else
