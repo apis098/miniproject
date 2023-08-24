@@ -71,10 +71,11 @@
 
                     @foreach ($edit_resep->bahan as $num => $item_bahan)
                         <div id="close1_{{ $item_bahan->id }}">
+                            <!--
                             @if ($num >= 1)
                                 <button type="button" class="btn btn-danger my-2 fa-solid fa-x"
-                                    onclick="close1({{ $item_bahan->id }})"></button>
-                            @endif
+                                    onclick="close1()"></button>
+                            @endif -->
                             <input type="hidden" name="id_bahan_resep[]" value="{{ $item_bahan->id }}">
                             <input type="hidden" id="hapus_bahan{{ $num }}" value="{{ $item_bahan->id }}">
                             <div class="mt-2">
@@ -168,10 +169,11 @@
                     <br>
                     @foreach ($edit_resep->langkah as $int => $item_langkah)
                         <div id="close2_{{ $item_langkah->id }}">
+                            <!--
                             @if ($int > 1)
                                 <button type="button" class="btn btn-danger fa-solid fa-x"
-                                    onclick="close2({{ $item_langkah->id }})"></button>
-                            @endif
+                                    onclick="close2()"></button>
+                            @endif -->
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
                             <div class="mb-4">
                                 <div class="row">
