@@ -134,7 +134,7 @@
                 <div class="row mt-5">
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
                             <div class="row my-1">
                                 <div class="col-7 ">
                                     <span class="ms-3"
@@ -151,7 +151,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
                             <div class="row my-1">
                                 <div class="col-7">
                                     <span class="ms-3"
@@ -168,7 +168,7 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
                             <div class="row my-1">
                                 <div class="col-7">
                                     <span class="ms-3"
