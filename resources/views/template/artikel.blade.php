@@ -171,14 +171,14 @@
                     tabindex="0">
                     @foreach ($show_resep->langkah as $num => $item_langkah)
                         <div class="card-body d-flex flex-row">
-                            <div class="d-flex flex-column">
-                                <button type="button" style="background-color:#F7941E;width: 45px;height: 45px; position: absolute; left: 95px;"
-                                class="btn btn-warning btn-sm text-light rounded-circle p-2 ml-2">
-                                <span class="p-2">{{ $num += 1 }}</span>
-                            </button>
+                            <div class="d-flex flex-column" style="position: relative;">
                                 <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3"
-                                    alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px;border: 1px solid black;" width="160px"
+                                    alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px; border: 1px solid black;" width="160px"
                                     height="160px">
+                                <button type="button" style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
+                                    class="btn btn-light btn-sm text-light rounded-circle p-2 ml-2">
+                                    <span class="p-2 fw-bolder">{{ $num += 1 }}</span>
+                                </button>
                             </div>
                             <div class="my-auto mx-4">
                                 {{ $item_langkah->deskripsi_langkah }}
