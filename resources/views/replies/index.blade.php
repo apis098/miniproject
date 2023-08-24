@@ -35,7 +35,7 @@
         .zoom-effects:hover {
             transform: scale(0.97);
         }
-        
+
 
         .modal-body {
             background-color: #F8DE22;
@@ -69,8 +69,8 @@
                     padding-left: 20px;
                 } */
     </style>
-   
-     
+
+
     <div class="mt-3">
         <div class="Rectangle185" style="width: 960px; height: 54px; left: 245px; top: 32px; position: absolute; background: #F7941E; border-radius: 14px; margin-left: 45px; "></div>
 
@@ -84,15 +84,17 @@
         <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 330px; top: 137px; position: absolute; border: 0.50px black solid">
         <div class="Ferdiansyah" style="width: 132px; left: 562px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ronaldo</div>
         <div class="MasakanGosong" style="width: 183px; left: 810px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Kurang Bumbu</div>
-        <div class="Rectangle7" style="width: 93px; height: 40px; left: 1122px; top: 149px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"></div>
-        <div class="Detail" style="width: 61px; left: 1138px; top: 154px; position: absolute; color: white; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Detail</div>
+        <button class="text-white" style="width: 93px; height: 36px; left: 1122px; top: 149px; position: absolute; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word; border: none;">
+            Detail
+        </button>
 
 
 
 
 
-       
-       
+
+
+
 
 
 
