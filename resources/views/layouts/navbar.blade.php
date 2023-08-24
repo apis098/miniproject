@@ -76,9 +76,14 @@
 
         .t{
             font-family: 'Dancing Script';
+            color: white;
+            margin-bottom: 80px;
+            margin-left: 40px;
         }
 
-
+        .t:hover{
+            color: white
+        }
     </style>
 
 
@@ -98,7 +103,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
             <!-- Brand Logo -->
-            <h3 class="text-white text-center my-2 mt-4 t" style="font-size: 40px; ">Hummacook</h3>
+            <a class=" t" href="{{route('home')}}" style="font-size: 40px;">Hummacook</a>
+            {{-- <h3 class="text-white text-center my-2 mt-4 t" style="font-size: 40px; ">Hummacook</h3> --}}
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
