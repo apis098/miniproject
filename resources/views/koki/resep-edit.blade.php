@@ -10,8 +10,7 @@
             width: 100%;
         }
     </style>
-    <h3 class="text-center my-3" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Edit
-        Data Resep {{ $edit_resep->nama_resep }}</h3>
+   
     <form action="/koki/resep/{{ $edit_resep->id }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -25,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row"
-                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px black solid">
+                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                             <div
@@ -34,7 +33,7 @@
                             <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
                                 id="formFile">
                         </button>
-                        <div class="col-8" id="infos"
+                        <div class="col-8 my-auto" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Tidak ada file terpilih</div>
                     </div>
@@ -107,7 +106,7 @@
                     <div id="new-input1"></div>
                     <br>
                     <button type="button" id="button-new-input1" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;">
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                         Tambahkan
                     </button>
                     <br>
@@ -126,12 +125,8 @@
                         <input type="number" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" value="{{$edit_resep->lama_memasak}}">
                         <select name="lama_memasak2" id="" class="form-control col-2">
-                            <option value="menit" @if ($edit_resep->lama_memasak2 == 'menit')
-                                @selected(true)
-                            @endif>menit</option>
-                            <option value="jam" @if ($edit_resep->lama_memasak2 == 'jam')
-                                @selected(true)
-                            @endif>jam</option>
+                            <option value="menit" {{$edit_resep->lama_memasak2 == 'menit' ? 'selected' : ''}}>menit</option>
+                            <option value="jam" {{$edit_resep->lama_memasak2 == 'jam' ? 'selected' : ''}}>jam</option>
                         </select>
                         @error('lama_memasak')
                             <div class="alert alert-danger">
@@ -153,10 +148,10 @@
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Hari Khusus</b></label>
                         <select name="hari_khusus" id="exampleFormControlInput1" class="form-control">
-                            <option value="{{ $edit_resep->hari_khusus }}">tidak diganti</option>
+                            <option value=""></option>
                             @if ($special_days)
                                 @foreach ($special_days as $d)
-                                    <option value="{{ $d->name }}">{{ $d->name }}</option>
+                                    <option value="{{ $d->name }}" {{$edit_resep->hari_khusus == $d->name ? 'selected' : ''}}>{{ $d->name }}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -186,7 +181,9 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row" style="border-radius: 25px; border: 1px solid black;">
+                                        <div class="row" 
+                                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+
                                             <button type="button" onclick="input_file_langkah({{ $int }})"
                                                 class="col-4"
                                                 style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
@@ -197,7 +194,7 @@
                                                     style="display: none;" type="file"
                                                     id="inputan_foto_langkah{{ $int }}">
                                             </button>
-                                            <div class="col-8" id="foto_langkah_info{{ $int }}"
+                                            <div class="col-8 my-auto" id="foto_langkah_info{{ $int }}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>
@@ -225,10 +222,10 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;">Tambahkan</button>
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
                     <br> <br>
                     <button type="submit" class="btn btn-warning text-white mb-4"
-                        style="float: right;background: #F7941E; border-radius: 15px;">Edit
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
                 </div>
             </div>
@@ -303,7 +300,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row" style="border-radius: 25px; border: 1px solid black;">
+                                        <div class="row" 
+                                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                             <button type="button" onclick="input_file_langkah(${num2})"
                                                 class="col-4"
                                                 style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
@@ -314,7 +312,7 @@
                                                     style="display: none;" type="file"
                                                     id="inputan_foto_langkah${num2}">
                                             </button>
-                                            <div class="col-8" id="foto_langkah_info${num2}"
+                                            <div class="col-8 my-auto" id="foto_langkah_info${num2}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>

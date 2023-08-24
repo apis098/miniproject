@@ -28,16 +28,16 @@
                         </div>
                     </div>
                     <div class="row"
-                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px black solid">
+                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
-                            style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
+                            style="border: 0.50px rgb(142, 136, 136) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;">
                             <div
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                 Pilih File</div>
                             <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
                                 id="formFile">
                         </button>
-                        <div class="col-8" id="infos"
+                        <div class="col-8 my-auto" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Tidak ada file terpilih</div>
                     </div>
@@ -102,7 +102,7 @@
                     <div id="new-input1"></div>
                     <br>
                     <button type="button" id="button-new-input1" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E;">
+                        style="float: right;background: #F7941E; border-radius:15px ;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                         Tambahkan
                     </button>
                     <br>
@@ -123,8 +123,8 @@
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
                         <select name="lama_memasak2" id="lama_memasak2" class="form-control col-2">
-                            <option value="menit" @if (old('lama_memasak2' == 'menit')) selected @endif>menit</option>
-                            <option value="jam" @if (old('lama_memasak2' == 'jam')) selected @endif>jam</option>
+                            <option value="menit" {{ old('lama_memasak2') == 'menit' ? 'selected' : '' }}>menit</option>
+                            <option value="jam" {{ old('lama_memasak2') == 'jam' ? 'selected' : '' }}>jam</option>
                         </select>
                         @error('lama_memasak')
                             <div class="alert alert-danger">
@@ -151,7 +151,7 @@
                             <option value=""></option>
                             @if ($special_days)
                                 @foreach ($special_days as $d)
-                                    <option value="{{ $d->name }}">{{ $d->name }}</option>
+                                    <option value="{{ $d->name }}" {{old('hari_khusus') == $d->name ? 'selected' : ''}}>{{ $d->name }}</option>
                                 @endforeach
                             @endif
                         </select>
@@ -183,7 +183,7 @@
                                 {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
                                 <div class="row ms-3"
-                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid">
+                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                     <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                                         <div
@@ -192,7 +192,7 @@
                                         <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
                                             style="display: none;" type="file" id="inputan" required>
                                     </button>
-                                    <div class="col-8" id="fileinfo"
+                                    <div class="col-8 my-auto" id="fileinfo"
                                         style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                         Tidak ada file terpilih</div>
                                 </div>
@@ -220,10 +220,10 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E;">Tambahkan</button>
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
                     <br> <br>
                     <button type="submit" class="btn btn-warning text-white mb-4"
-                        style="float: right;background: #F7941E;" id="button-add-recipe">Tambah
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" id="button-add-recipe">Tambah
                         Resep</button>
                 </div>
             </div>
@@ -336,7 +336,7 @@
                                 {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
                                 <div class="row ms-3"
-                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid">
+                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid;height:40px">
                                     <button type="button" onclick="inputfile(${num2})" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                                         <div
@@ -345,7 +345,7 @@
                                         <input name="foto_langkah_resep[]" class="form-control my-auto mx-1" style="display: none;"
                                             type="file" id="inputann${num2}">
                                     </button>
-                                    <div class="col-8" id="fileinfo${num2}"
+                                    <div class="col-8 my-auto" id="fileinfo${num2}"
                                         style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                         Tidak ada file terpilih</div>
                                 </div>
