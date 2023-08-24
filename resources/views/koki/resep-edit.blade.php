@@ -106,7 +106,7 @@
                     <div id="new-input1"></div>
                     <br>
                     <button type="button" id="button-new-input1" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E;">
+                        style="float: right;background: #F7941E; border-radius: 15px;">
                         Tambahkan
                     </button>
                     <br>
@@ -274,7 +274,7 @@
         const place2 = document.getElementById("new-input2");
 
         num = 1000;
-        num2 = 1000;
+        num2 = 100;
 
         addInput2.addEventListener('click', function() {
             num2++;
@@ -287,15 +287,15 @@
                             <div class="mb-4">
                                 <div class="row">
                                     <label for="formFile" class="form-label"><b>Langkah-langkah
-                                            {{ $int += 1 }}</b></label>
+                                            ${num2}</b></label>
                                     <div class="card my-5 col-lg-4">
                                         <div class="card-body text-center div3">
-                                            <img src=" class="" id="IMAGE{{ $int }}">
+                                            <img src=" class="" id="IMAGE${num2}">
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
                                         <div class="row" style="border-radius: 25px; border: 1px solid black;">
-                                            <button type="button" onclick="input_file_langkah({{ $int }})"
+                                            <button type="button" onclick="input_file_langkah(${num2})"
                                                 class="col-4"
                                                 style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                                                 <div
@@ -303,9 +303,9 @@
                                                     Pilih File</div>
                                                 <input name="foto_langkah_resep_tambahan[]" class="form-control my-auto mx-1"
                                                     style="display: none;" type="file"
-                                                    id="inputan_foto_langkah{{ $int }}">
+                                                    id="inputan_foto_langkah${num2}">
                                             </button>
-                                            <div class="col-8" id="foto_langkah_info{{ $int }}"
+                                            <div class="col-8" id="foto_langkah_info${num2}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>
@@ -315,9 +315,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <textarea class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
-                                        placeholder="Masukkan langkah langkah" id="floatingTextarea">
-                            </textarea>
+                                    <input class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
+                                        placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{old('langkah_resep_tambahan.*')}}"/>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
                                             {{ $message }}
