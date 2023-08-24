@@ -122,13 +122,8 @@
                     </div>
                     <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
-                        <input type="number" name="lama_memasak" class="form-control col-10"
-                            id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                            value="{{ old('lama_memasak') }}" required>
-                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-2">
-                            <option value="menit" @if (old('lama_memasak2' == 'menit')) selected @endif>menit</option>
-                            <option value="jam" @if (old('lama_memasak2' == 'jam')) selected @endif>jam</option>
-                        </select>
+                        <input type="text" name="lama_memasak" class="form-control col-12"
+                            id="exampleFormControlInput1" value="{{$edit_resep->lama_memasak}}">
                         @error('lama_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}

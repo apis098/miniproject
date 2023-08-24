@@ -204,7 +204,7 @@
                                 <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
                                 </div>
                             </div>
-                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea">
+                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" style="float: left;">
                                 {{ old('langkah_resep.0') }}
                             </textarea>
                             @error('langkah_resep.*')
@@ -229,7 +229,8 @@
             </div>
         </div>
     </form>
-
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
     <script>
         num = 0;
 
@@ -436,29 +437,9 @@
         //         reader.readAsDataURL(input.files[0]);
         //     }
         // });
+       
     </script>
-    <!--
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-        crossorigin="anonymous"></script>
-    <script>
-        $("#button-add-recipe").click(function(e) {
-            e.preventDefault();
-            var formResep = $("#form-add-recipe").serialize();
-            $.ajax({
-                url: "/koki/resep",
-                type: "post",
-                data: formResep,
-                error: function(xhr) {
-                    var errors = xhr.responseJSON;
-                    //alert(errors);
-                    $.each(errors, function(field, messages) {
-                        messages.forEach(function(message)) {
-                            fielderror.text(message);
-                        }
-                        fielderror.css('display', 'block');
-                    });
-                }
-            });
-        });
-    </script> -->
+
+        
+   
 @endsection

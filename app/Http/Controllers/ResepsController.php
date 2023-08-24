@@ -96,7 +96,7 @@ class ResepsController extends Controller
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
             return redirect()->back()->withErrors($validasi)->withInput();
-            //    return response()->json($validasi->errors(), 422);
+            //return response()->json([$validasi->errors(), 422]);
         }
         $lama_memasak = $request->lama_memasak . " " . $request->lama_memasak2;
         $create_recipe = reseps::create([
@@ -234,7 +234,7 @@ class ResepsController extends Controller
             $update_resep->hari_khusus = $request->hari_khusus;
         }
         $update_resep->porsi_orang = $request->porsi_orang;
-        $lama_memasak = $request->lama_memasak . " " . $request->lama_memasak2;
+        $lama_memasak = $request->lama_memasak;
         $update_resep->lama_memasak = $lama_memasak;
         $update_resep->pengeluaran_memasak = $request->pengeluaran_memasak;
         $update_resep->save();
