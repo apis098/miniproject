@@ -73,7 +73,7 @@
             <img src="" alt="" class="rounded-circle flex-shrink-0" style="width: 72px; height: 72px; left: 330px; top: 137px; position: absolute; border: 0.50px black solid">
             <div class="Ferdiansyah" style="width: 132px; left: 562px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
             <div class="MasakanGosong" style="width: 183px; left: 810px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Masakan gosong</div>
-            <button class="text-white btn btn-warning" style="width: 93px; height: 36px; left: 1120px; top: 155px; position: absolute; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word; border: none;">
+            <button class="text-white btn btn-warning" data-bs-toggle="modal" data-bs-target="#complaintModal" style="width: 93px; height: 36px; left: 1120px; top: 155px; position: absolute; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word; border: none;">
                   Detail
             </button>
 
@@ -83,7 +83,7 @@
 
 
 
-           
+
 
 
 
@@ -133,9 +133,8 @@
             @endforeach
         </tbody>
     </table> --}}
-    @foreach ($data as $row)
-        @if ($row->id != '')
-        <div class="modal fade" id="complaintModal{{ $row->id }}" data-backdrop="static" data-keyboard="false"
+
+        <div class="modal fade" id="complaintModal" data-backdrop="static" data-keyboard="false"
             tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg ">
                 <div class="modal-content rounded-5">
@@ -149,10 +148,10 @@
                             <div class="col-md-6">
                                 <div class="text-white fw-semibold mt-4">
                                     <div class="mt-2"> <span class="intro-2">Judul keluhan:</span> </div>
-                                    <span class="intro-1">{{ $row->subject }}</span>
+                                    <span class="intro-1"></span>
                                     {{-- <div class="mt-2"> <span class="intro-2">Balasan yang anda kirim:</span> </div>
                                     <span class="intro-1">test</span> --}}
-                                    <form action="{{ route('ReplyComplaint.store', $row->id) }}" method="POST">
+                                    <form action="" method="POST">
                                         @csrf
                                         <div class="mt-2"> <span class="intro-2">Beri solusi:</span> </div>
                                         <input type="text" class="form-control rounded-3 mt-2" name="reply" id="reply">
@@ -168,8 +167,7 @@
                 </div>
             </div>
         </div>
-        @endif
-    @endforeach
+
     {{-- end modal edit --}}
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}

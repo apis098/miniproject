@@ -12,10 +12,10 @@
 </style>
 
 <!-- Sale & Revenue Start -->
-<div class="container-fluid pt-4 px-4">
+<div class=" container-fluid pt-4 px-4">
     <div class="row g-2">
-        <div class="col-sm-4 col-lg-4">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
+        <div class="col-sm-3 col-lg-3" style="margin-left: 17em">
+            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333; border-radius: 35px;">
                 <div class="ms-1">
                     <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
                     <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
@@ -24,7 +24,7 @@
             </div>
         </div>
 
-        <div class="col-sm-4 col-lg-4">
+        <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
                     <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
@@ -33,7 +33,7 @@
                 <i class="fas fa-book fa-3x"></i>
             </div>
         </div>
-        <div class="col-sm-4 col-lg-4">
+        <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
             <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
                     <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
@@ -43,16 +43,16 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4">
-        <div class="col-lg-12">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <canvas id="myBarChart" style="border: 1px solid black;"></canvas>
+    <div class="row mt-3">
+        <div class="col-lg-10" style="margin-left: 15em">
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <canvas id="myBarChart" style="border: 1px solid black; border-radius: 15px"></canvas>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
+<script>
         var ctx = document.getElementById('myBarChart').getContext('2d');
         var myBarChart = new Chart(ctx, {
             type: 'bar',
@@ -83,57 +83,61 @@
 <!-- Widgets Start -->
 
 <div class="container-fluid pt-4 px-4">
-    <div class="row g-4 mb-5">
-        <div class="col-sm-12 col-md-6 col-xl-4" style="margin-left: 5em">
-            <div class="h-100 bg-light rounded p-4 border border-dark border-2">
-                <div class="d-flex align-items-center justify-content-start mb-2">
-                    <h6 class="mb-0">keluhan Terbaru</h6>
-                </div>
-                <div class="border-bottom py-3">
-                    <a href="#" class="text-decoration-none d-flex text-dark">
-                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                        <div class="w-100 ms-3">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Nama Saya</h6>
-                                <small>1 hari lalu</small>
-                            </div>
-                            <span>Saya ingin mengajukan sesuatu</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="border-bottom py-3">
-                    <a href="#" class="text-decoration-none d-flex text-dark">
-                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                        <div class="w-100 ms-3">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Nama Saya</h6>
-                                <small>1 hari lalu</small>
-                            </div>
-                            <span>Saya ingin mengajukan sesuatu</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="border-bottom py-3">
-                    <a href="#" class="text-decoration-none d-flex text-dark">
-                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
-                        <div class="w-100 ms-3">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h6 class="mb-0">Nama Saya</h6>
-                                <small>1 hari lalu</small>
-                            </div>
-                            <span>Saya ingin mengajukan sesuatu</span>
-                        </div>
-                    </a>
-                </div>
+    <div class="ms-1" style="display: flex; align-items: center;">
+        <h5 class="fw-bold" style="margin-left: 13em; margin-bottom: 1;">Keluhan Pengguna</h5>
+        <h5 class="fw-bold" style="margin-left: 17em; margin-bottom: 1;">Laporan Pengguna</h5>
+    </div>
 
+    <div class="row g-4 mb-5" style="margin-left: 4em;">
+        <div class="col-12 col-md-6 col-xl-5 ms-auto">
+            <div class="h-100 bg-light rounded p-4 border border-dark border-2 ">
+                <div class="d-flex align-items-center justify-content-start mb-2">
+                    {{-- <h6 class="mb-0">Keluhan Terbaru</h6> --}}
+                </div>
+                <div class="border-bottom py-3">
+                    <a href="#" class="text-decoration-none d-flex text-dark">
+                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Nama Saya</h6>
+                                <small>1 hari lalu</small>
+                            </div>
+                            <span>Saya ingin mengajukan sesuatu</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="border-bottom py-3">
+                    <a href="#" class="text-decoration-none d-flex text-dark">
+                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Nama Saya</h6>
+                                <small>1 hari lalu</small>
+                            </div>
+                            <span>Saya ingin mengajukan sesuatu</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="border-bottom py-3">
+                    <a href="#" class="text-decoration-none d-flex text-dark">
+                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Nama Saya</h6>
+                                <small>1 hari lalu</small>
+                            </div>
+                            <span>Saya ingin mengajukan sesuatu</span>
+                        </div>
+                    </a>
+                </div>
+                <!-- Konten keluhan terbaru -->
             </div>
         </div>
-        <div class="col-sm-12 col-md-6 col-xl-4" style="margin-left: 10em">
+        <div class="col-12 col-md-6 col-xl-5">
             <div class="h-100 bg-light rounded p-4 border border-dark border-2">
                 <div class="d-flex align-items-center justify-content-start mb-2">
-                    <h6 class="mb-0">Laporan Terbaru</h6>
                 </div>
-
+                <!-- Konten laporan terbaru -->
                 <div class="border-bottom py-3">
                     <a href="#" class="text-decoration-none d-flex text-dark">
                         <img class="rounded-circle flex-shrink-0" src="{{ asset('images/user.jpg') }}" alt="" style="width: 40px; height: 40px;">
@@ -172,6 +176,12 @@
                         </div>
                     </a>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
             </div>
         </div>
