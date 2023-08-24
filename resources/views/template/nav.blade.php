@@ -211,20 +211,20 @@
                         <div style="margin-left: -100px;">
                             @if (Auth::check())
                                 @if (Auth::user()->role == 'Admin')
-                                    <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                    <a class="navbar-brand ms-2" href="{{ url('admin/index') }}">
                                         <span class="t">
                                             HummaCook
                                         </span>
                                     </a>
                                 @else
-                                    <a class="navbar-brand" href="#">
+                                    <a class="navbar-brand ms-2" href="#">
                                         <span class="t">
                                             HummaCook
                                         </span>
                                     </a>
                                 @endif
                             @else
-                                <a class="navbar-brand" href="#">
+                                <a class="navbar-brand ms-2" href="#">
                                     <span class="t">
                                         HummaCook
                                     </span>
@@ -511,7 +511,7 @@
                                     @endif
                                     {{-- dropdown profile & logout --}}
                                     <div class="input-group dropdown">
-                                        <a data-toggle="dropdown" href="#">
+                                        <a data-toggle="dropdown" class="me-4" href="#">
                                             @if ($userLogin->foto)
                                                 <img loading="lazy" class="mr-3 rounded-circle"
                                                     src="{{ asset('storage/' . $userLogin->foto) }}"
