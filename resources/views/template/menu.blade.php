@@ -275,7 +275,7 @@
                 <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">
-                            <img width="260px" class="img-fluid rounded-circle" height="230px"
+                            <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                         </div>
