@@ -50,7 +50,7 @@
                         <div class="col-7">
                             <span class="ms-3"
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                {{ $show_resep->lama_memasak }}
+                                {{ $show_resep->lama_memasak }} {{$show_resep->lama_memasak2}}
                             </span> <br>
                         </div>
                         <div class="col-5 d-flex my-auto flex-row-reverse">

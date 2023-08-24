@@ -60,7 +60,7 @@ class ResepsController extends Controller
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|integer|min:0",
-            "lama_memasak" => "required|integer|min:0",
+            "lama_memasak" => "required|numeric|min:0",
             "pengeluaran_memasak" => "required|integer|min:0",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
@@ -77,7 +77,7 @@ class ResepsController extends Controller
             "porsi_orang.integer" => "Porsi orang wajib berupa nomer!",
             "porsi_orang.min" => "Porsi orang tidak boleh bernilai minus!",
             "lama_memasak.required" => "Lama memasak wajib diisi!",
-            "lama_memasak.integer" => "Lama memasak wajib berupa nomer!",
+            "lama_memasak.numeric" => "Lama memasak wajib berupa nomer!",
             "lama_memasak.min" => "Lama memasak tidak boleh bernilai minus!",
             "pengeluaran_memasak.required" => "Pengeluaran memasak wajib diisi!",
             "pengeluaran_memasak.integer" => "Pengeluaran memasak wajib berupa nomer!",
@@ -98,7 +98,6 @@ class ResepsController extends Controller
             return redirect()->back()->withErrors($validasi)->withInput();
             //return response()->json([$validasi->errors(), 422]);
         }
-        $lama_memasak = $request->lama_memasak . " " . $request->lama_memasak2;
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
             "nama_resep" => $request->nama_resep,
@@ -106,7 +105,8 @@ class ResepsController extends Controller
             "deskripsi_resep" => $request->deskripsi_resep,
             "hari_khusus" => $request->hari_khusus,
             "porsi_orang" => $request->porsi_orang,
-            "lama_memasak" => $lama_memasak,
+            "lama_memasak" => $request->lama_memasak,
+            "lama_memasak2" => $request->lama_memasak2,
             "pengeluaran_memasak" => $request->pengeluaran_memasak
         ]);
         if ($create_recipe) {
@@ -187,7 +187,7 @@ class ResepsController extends Controller
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|integer|min:0",
-            "lama_memasak" => "required|integer|min:0",
+            "lama_memasak" => "required|numeric|min:0",
             "pengeluaran_memasak" => "required|integer|min:0",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
@@ -203,7 +203,7 @@ class ResepsController extends Controller
             "porsi_orang.integer" => "Porsi orang wajib berupa nomer!",
             "porsi_orang.min" => "Porsi orang tidak boleh bernilai minus!",
             "lama_memasak.required" => "Lama memasak wajib diisi!",
-            "lama_memasak.integer" => "Lama memasak wajib berupa nomer!",
+            "lama_memasak.numeric" => "Lama memasak wajib berupa nomer!",
             "lama_memasak.min" => "Lama memasak tidak boleh bernilai minus!",
             "pengeluaran_memasak.required" => "Pengeluaran memasak wajib diisi!",
             "pengeluaran_memasak.integer" => "Pengeluaran memasak wajib berupa nomer!",
@@ -235,7 +235,8 @@ class ResepsController extends Controller
         }
         $update_resep->porsi_orang = $request->porsi_orang;
         $lama_memasak = $request->lama_memasak;
-        $update_resep->lama_memasak = $lama_memasak;
+        $update_resep->lama_memasak = $request->lama_memasak;
+        $update_resep->lama_memasak2 = $request->lama_memasak2;
         $update_resep->pengeluaran_memasak = $request->pengeluaran_memasak;
         $update_resep->save();
         if ($request->has("hapus_bahan")) {

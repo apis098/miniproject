@@ -17,6 +17,7 @@ class reseps extends Model
         'hari_khusus',
         'porsi_orang',
         'lama_memasak',
+        'lama_memasak2',
         'pengeluaran_memasak',
     ];
     public function User() {

@@ -204,9 +204,9 @@
                                 <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
                                 </div>
                             </div>
-                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" style="float: left;">
-                                {{ old('langkah_resep.0') }}
-                            </textarea>
+                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" style="float: right;"
+                                value="{{ old('langkah_resep.0') }}"
+                        /> 
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -350,7 +350,7 @@
                                         Tidak ada file terpilih</div>
                                 </div>
                             </div>
-                            <textarea class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea"></textarea>
+                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{old('langkah_resep.${num2}')}}"/>
                         </div>
             `;
             place2.appendChild(input2);
