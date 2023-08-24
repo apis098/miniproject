@@ -28,6 +28,22 @@
                                         border-radius: 12px;
                                         border: none;">Lihat
                                         Resep</a>
+                                        <div class="col-md-10">
+                                            <div style="display: flex; align-items: center; justify-content: flex-start; margin-top: 20px;">
+                                                <img src="{{ asset('images/f3.png') }}" alt="Gambar Contoh"
+                                                    style="width: 10%; max-width: 100px; margin-right: -15px; border-radius: 50%;">
+                                                <img src="{{ asset('images/f6.png') }}" alt="Gambar Contoh"
+                                                    style="width: 10%; max-width: 100px; margin-right: -15px; border-radius: 50%;">
+                                                <img src="{{ asset('images/f9.png') }}" alt="Gambar Contoh"
+                                                    style="width: 10%; max-width: 100px; margin-right: -15px; border-radius: 50%;">
+                                                <img src="{{ asset('images/f1.png') }}" alt="Gambar Contoh"
+                                                    style="width: 10%; max-width: 100px; margin-right: -15px; border-radius: 50%;">
+                                            </div>
+                                        </div>
+
+                                        <div class="ms-1" style="display: flex; align-items: center;">
+                                            <p class="fw-bold" style="margin-left: 1em; margin-bottom: 1em; color: white;">100 + resep</p>
+                                        </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -36,7 +52,6 @@
                                         style="width: 90%; max-width: 500px;">
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
