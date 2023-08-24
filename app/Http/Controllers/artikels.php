@@ -13,7 +13,7 @@ use App\Models\notifications;
 
 class artikels extends Controller
 {
-    public function artikel_resep(string $hash, string $judul)
+    public function artikel_resep(string $id, string $judul)
     {
         $userLogin = Auth::user();
         // untuk user belum login
@@ -34,7 +34,7 @@ class artikels extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $show_resep = reseps::find($hash);
+        $show_resep = reseps::find($id);
         return view('template.artikel', compact('show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'));
     }
 }

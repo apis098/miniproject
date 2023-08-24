@@ -122,7 +122,7 @@
                     </div>
                     <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
-                        <input type="number" name="lama_memasak" class="form-control col-10"
+                        <input type="text" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" value="{{$edit_resep->lama_memasak}}">
                         <select name="lama_memasak2" id="" class="form-control col-2">
                             <option value="menit" {{$edit_resep->lama_memasak2 == 'menit' ? 'selected' : ''}}>menit</option>

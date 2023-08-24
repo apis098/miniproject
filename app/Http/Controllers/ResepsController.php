@@ -98,9 +98,10 @@ class ResepsController extends Controller
             return redirect()->back()->withErrors($validasi)->withInput();
             //return response()->json([$validasi->errors(), 422]);
         }
-        if ($request->lama_memasak2 == 'jam') {
+        $time = 0;
+        if ($request->lama_memasak2 === 'jam') {
             $time = $request->lama_memasak * 60;
-        } else {
+        } else if($request->lama_memasak2 === 'menit'){
             $time = $request->lama_memasak;
         }
         $create_recipe = reseps::create([
@@ -308,6 +309,6 @@ class ResepsController extends Controller
             Storage::delete("public/" . $v->foto_langkah);
         }
         reseps::where("id", $id)->delete();
-        return redirect()->back()->with('success', 'Sukses! anda berhasil menghapus data resep.');
+        return redirect('koki/index')->with('success', 'Sukses! anda berhasil menghapus data resep.');
     }
 }

@@ -10,35 +10,16 @@ use App\Models\favorite;
 
 class FiltersController extends Controller
 {
-    public function resep_index()
+    public function resep_index(Request $request)
     {
-        $userLogin = Auth::user();
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
         $recipes = reseps::paginate(6);
-        if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        if ($request->has('nama_resep')) {
+            $recipes = reseps::where('nama_resep', 'like', '%' . $request->nama_resep . '%')->paginate(6);
         }
-        if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-        return view('template.resep', compact('recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
-    }
-    public function filter_resep_action(Request $request)
-    {
-        $userLogin = Auth::user();
-        $userLogin = Auth::user();
-        $notification = [];
-        $favorite = [];
-        $unreadNotificationCount = [];
-        $recipes = reseps::paginate(6);
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru

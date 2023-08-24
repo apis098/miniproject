@@ -113,7 +113,12 @@
                         <div class="col-7 mt-1">
                             <span class=""
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                {{ $show_resep->lama_memasak }} {{$show_resep->lama_memasak2}}
+                                {{ $show_resep->lama_memasak }} 
+                                @if ($show_resep->lama_memasak > 60)
+                                    jam
+                                @elseif($show_resep->lama_memasak <= 60)
+                                    menit
+                                @endif
                             </span> <br>
                         </div>
                         <div class="col-5 d-flex my-auto flex-row-reverse">

@@ -60,9 +60,8 @@ Route::get('/', function () {
     return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount','favorite'));
 })->name('home');
 
-Route::get('/artikel/{hash}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
+Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
-Route::post('resep', [FiltersController::class, 'filter_resep_action'])->name('resep.filter');
 
 Route::get('about', function () {
     $userLogin = Auth::user();

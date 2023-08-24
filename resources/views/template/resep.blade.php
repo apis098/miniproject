@@ -50,7 +50,7 @@
                 width: 100%
             }
 
-            .search-1 select {
+            .search-1 input {
                 height: 45px;
                 border: none;
                 width: 100%;
@@ -59,7 +59,7 @@
                 border-right: 2px solid #eee
             }
 
-            .search-1 select:focus {
+            .search-1 input:focus {
                 border-color: none;
                 box-shadow: none;
                 outline: none
@@ -74,7 +74,7 @@
             }
 
             ::placeholder {
-                color: #eee;
+                color: grey;
                 opacity: 1
             }
 
@@ -83,7 +83,7 @@
                 width: 100%
             }
 
-            .search-2 select {
+            .search-2 input {
                 height: 45px;
                 border: none;
                 width: 100%;
@@ -92,7 +92,7 @@
                 padding-right: 100px
             }
 
-            .search-2 select:focus {
+            .search-2 input:focus {
                 border-color: none;
                 box-shadow: none;
                 outline: none
@@ -122,7 +122,7 @@
                 right: 1px;
                 top: -1px;
                 border: none;
-                height: 35px;
+                height: 45px;
                 background-color: #F7941E;
                 color: #fff;
                 width: 90px;
@@ -156,7 +156,7 @@
                 <div class="col-lg-8 mx-auto">
                     <h1 class="mb-5"
                         style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
-                        Cari resep masakan <br />berdasarkan bahan
+                        Cari resep masakan <br />
                     </h1>
                     <form action="">
                         <div class="container">
@@ -165,14 +165,13 @@
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="{{ url('/menu') }}" method="get">
-                                                    <input type="text" name="search_">
+                                                <form action="{{ route('resep.home') }}" method="GET">
+                                                    <input type="text" name="nama_resep" placeholder="Masukkan nama resep...">
                                                     </select>
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px;">Cari</button>
                                                 </form>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>

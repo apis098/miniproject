@@ -119,7 +119,7 @@
                     </div>
                     <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
-                        <input type="number" name="lama_memasak" class="form-control col-10"
+                        <input type="text" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
                         <select name="lama_memasak2" id="lama_memasak2" class="form-control col-2">
