@@ -14,6 +14,7 @@ use App\Models\complaint;
 use App\Models\reseps;
 use App\Http\Controllers\artikels;
 use App\Http\Controllers\favoriteController;
+use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\followersController;
 use App\Http\Controllers\notificationController;
 use App\Http\Controllers\ReportController;
@@ -35,12 +36,6 @@ use Mockery\Undefined;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/profile', function () {
-    return view('template.profile');
-});
-
-
 
 Route::get('/', function () {
     $complaints = complaint::paginate(3);
@@ -65,103 +60,9 @@ Route::get('/', function () {
     return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount','favorite'));
 })->name('home');
 
-Route::get('artikel', function () {
-    $reseps = reseps::paginate(3);
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.artikel', compact('reseps','userLogin', 'notification','unreadNotificationCount','favorite'));
-})->name('artikel');
-
 Route::get('/artikel/{hash}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
-
-Route::get('waktu', function (Request $request) {
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    $recipes = reseps::paginate(4);
-    if ($request->has("time")) {
-        $recipes = reseps::where('time', 'like', '%'.$request->time.'%')->paginate(4);
-    }
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.waktu', compact('recipes','userLogin', 'notification', 'favorite', 'unreadNotificationCount'));
-});
-
-Route::get('menu', function (Request $request) {
-    $userLogin = Auth::user();
-    $bahan = bahan_reseps::pluck('nama_bahan')->unique();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    $recipes = reseps::paginate(6);
-    if ($request->has('bahan')) {
-        $bahans = $request->input('bahan');
-    $recipes = reseps::whereHas('bahan', function ($query) use ($bahans) {
-        $query->where('nama_bahan', $bahans);
-    })->paginate(6);
-    $bahan = bahan_reseps::where('nama_bahan', $bahans)->get();
-    }
-    $ingredients = bahan_reseps::pluck('nama_bahan')->unique();
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.menu', compact('ingredients','bahan','recipes','notification','unreadNotificationCount','userLogin','favorite'));
-
-})->name('menu');
-
-Route::post('/menu', function (Request $request) {
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    $ingredients = $request->input('bahan');
-    $recipes = reseps::whereHas('bahan', function ($query) use ($ingredients) {
-        $query->where('nama_bahan', $ingredients);
-    });
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.menu', compact('recipes','notification','unreadNotificationCount','userLogin','favorite'));
-});
+Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
+Route::post('resep', [FiltersController::class, 'filter_resep_action'])->name('resep.filter');
 
 Route::get('about', function () {
     $userLogin = Auth::user();
@@ -182,51 +83,6 @@ Route::get('about', function () {
     return view('template.about', compact('notification','unreadNotificationCount','userLogin','favorite'));
 })->name('about');
 
-Route::get('hari', function (Request $request) {
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    $haries = reseps::pluck('hari_khusus')->unique();
-    $recipes = reseps::whereNotNull("hari_khusus")->paginate(6);
-    $hari = reseps::pluck('hari_khusus')->unique();
-    if ($request->has('hari')) {
-        $hari = $request->input('hari');
-        $recipes = reseps::whereIn('hari_khusus', $hari)->paginate(6);
-    }
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.hari', compact('haries','hari','recipes','notification','unreadNotificationCount','userLogin','favorite'));
-})->name('hari');
-
-Route::post('hari', function (Request $request) {
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.hari', compact('notification','unreadNotificationCount','userLogin','favorite'));
-});
-
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
 Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
@@ -238,7 +94,6 @@ Route::put('/status-baca/replies-blocked/{id}', [notificationController::class, 
 
 
 // artikel
-Route::get('menu/{id}', [artikels::class, 'artikel_resep']);
 Route::post('/favorite-store/{id}', [favoriteController::class, 'store'])->name('favorite.store');
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
@@ -291,14 +146,5 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::resource('resep', ResepsController::class);
     });
 });
-
-//testing
-Route::get('/testing-dynamic-input', [testingController::class, 'create'])->name('Testing.create');
-Route::post('/store-dynamic-input', [testingController::class, 'store'])->name('Testing.store');
-
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
-
-Route::get('/test', function () {
-    return view('template.test');
-});

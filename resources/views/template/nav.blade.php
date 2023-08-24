@@ -246,17 +246,7 @@
                                 </li>
                                 <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ route('menu') }}"><b>Resep</b></a>
-                                </li>
-                                <li class="nav-item {{ request()->is('waktu') ? 'active' : '' }}"
-                                    style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ url('/waktu') }}"><b>Waktu</b></a>
-                                </li>
-                                <li class="nav-item {{ request()->is('hari') ? 'active' : '' }}"
-                                    style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ route('hari') }}"><b>Hari
-                                            Khusus</b></a>
-
+                                    <a class="nav-link" id="navbar" href="{{ route('resep.home') }}"><b>Resep</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}"
                                     style="font-size: 15px">

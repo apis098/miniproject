@@ -21,7 +21,7 @@
                                         dibuat oleh semua orang, dan bahan-bahan
                                         masakan yang mudah didapatkan.
                                     </p>
-                                    <a href="{{ route('menu') }}" class="zoom-effects btn btn-light mt-2 rounded-5 btn-lg"
+                                    <a href="{{ route('resep.index') }}" class="zoom-effects btn btn-light mt-2 rounded-5 btn-lg"
                                         style="padding: 6px 22px;
                                         background-color: #ffff;
                                         color: #f39c12;
