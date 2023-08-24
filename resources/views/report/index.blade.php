@@ -70,7 +70,7 @@
                 } */
     </style>
 
-<div class="mt-3">
+<div class="mt-3 d-flex justify-content-center">
 <div class="Rectangle185" style="width: 960px; height: 54px; left: 280px; top: 32px; position: absolute; background: #F7941E; border-radius: 14px;  margin-left: 10px;"></div>
 
 <div class="Pelapor" style="width: 96px; left: 340px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Pelapor</div>
@@ -86,8 +86,8 @@
 <div class="Kali" style="width: 57px; height: 30px; left: 880px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">1 kali</div>
 <div class="Rectangle198" style="width: 100px; height: 38px; left: 1009px; top: 152px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"></div>
 <div class="Rectangle199" style="width: 100px; height: 38px; left: 1129px; top: 152px; position: absolute; border-radius: 10px; border: 0.50px black solid"></div>
-<div class="Terima" style="width: 76px; left: 1030px; top: 158px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Terima</div>
-<div class="Tolak" style="width: 60px; left: 1158px; top: 158px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Tolak</div>
+<div class="Terima" style="width: 76px; left: 1030px; top: 160px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Terima</div>
+<div class="Tolak" style="width: 60px; left: 1156px; top: 160px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Tolak</div>
 
 
 
@@ -100,8 +100,8 @@
 <div class="Kali" style="width: 57px; height: 30px; left: 880px; top: 305px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">1 kali</div>
 <div class="Rectangle201" style="width: 100px; height: 38px; left: 1009px; top: 301px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"></div>
 <div class="Rectangle202" style="width: 100px; height: 38px; left: 1129px; top: 301px; position: absolute; border-radius: 10px; border: 0.50px black solid"></div>
-<div class="Terima" style="width: 76px; left: 1030px; top: 308px; position: absolute; color: white; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Terima</div>
-<div class="Tolak" style="width: 60px; left: 1158px; top: 308px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Tolak</div>
+<div class="Terima" style="width: 76px; left: 1030px; top: 309px; position: absolute; color: white; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Terima</div>
+<div class="Tolak" style="width: 60px; left: 1156px; top: 309px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Tolak</div>
 </div>
 
 
