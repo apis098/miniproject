@@ -244,7 +244,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Laporkan foto pengguna</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -254,14 +254,14 @@
                                 <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
                                     <!-- Tambahkan kelas "align-items-center" -->
                                     @if ($row->user->foto)
-                                        <img src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
-                                            style="border-radius: 50%; border:0.05rem solid rgb(185, 180, 180);" alt="">
+                                        <img class="rounded-circle" src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
+                                            style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);" alt="">
                                         <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
                                         <input hidden type="text" name="reply_id" value="{{ $row->id }}">
                                         <input hidden type="text" name="user_id" value="{{ $row->user->id }}">
                                     @else
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
-                                            style="border-radius: 50%  border:0.05rem solid rgb(185, 180, 180);" alt="">
+                                            style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);" alt="">
                                         <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
                                         <input hidden type="text" name="reply_id" value="{{ $row->id }}">
                                         <input hidden type="text" name="user_id" value="{{ $row->user->id }}">
