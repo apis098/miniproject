@@ -211,20 +211,20 @@
                         <div style="margin-left: -100px;">
                             @if (Auth::check())
                                 @if (Auth::user()->role == 'Admin')
-                                    <a class="navbar-brand ms-2" href="{{ url('admin/index') }}">
+                                    <a class="navbar-brand ms-3" href="{{ url('admin/index') }}">
                                         <span class="t">
                                             HummaCook
                                         </span>
                                     </a>
                                 @else
-                                    <a class="navbar-brand ms-2" href="#">
+                                    <a class="navbar-brand ms-3" href="#">
                                         <span class="t">
                                             HummaCook
                                         </span>
                                     </a>
                                 @endif
                             @else
-                                <a class="navbar-brand ms-2" href="#">
+                                <a class="navbar-brand ms-3" href="#">
                                     <span class="t">
                                         HummaCook
                                     </span>
