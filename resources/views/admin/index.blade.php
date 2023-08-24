@@ -8,14 +8,16 @@
     }
 
     /* Custom CSS to make the chart fill the screen */
-
+     .su{
+        border-radius: 30px;
+     }
 </style>
 
 <!-- Sale & Revenue Start -->
-<div class=" container-fluid pt-4 px-4">
-    <div class="row g-2">
-        <div class="col-sm-3 col-lg-3" style="margin-left: 17em">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333; border-radius: 35px;">
+<div class=" container-fluid pt-4 px-4 su">
+    <div class="row g-2 su">
+        <div class="col-sm-3 col-lg-3" style="margin-left: 17em; ">
+            <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
                     <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
                     <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
@@ -25,7 +27,7 @@
         </div>
 
         <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
+            <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
                     <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
                     <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
@@ -34,7 +36,7 @@
             </div>
         </div>
         <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
-            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
+            <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
                     <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
                     <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
@@ -43,7 +45,7 @@
             </div>
         </div>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3 me-2">
         <div class="col-lg-10" style="margin-left: 15em">
             <div style="max-width: 1000px; margin: 0 auto;">
                 <canvas id="myBarChart" style="border: 1px solid black; border-radius: 15px"></canvas>
@@ -83,14 +85,14 @@
 <!-- Widgets Start -->
 
 <div class="container-fluid pt-4 px-4">
-    <div class="ms-1" style="display: flex; align-items: center;">
-        <h5 class="fw-bold" style="margin-left: 13em; margin-bottom: 1;">Keluhan Pengguna</h5>
-        <h5 class="fw-bold" style="margin-left: 17em; margin-bottom: 1;">Laporan Pengguna</h5>
+    <div class="ms-1 " style="display: flex; align-items: center;">
+        <h5 class="fw-bold" style="margin-left: 12.5em; margin-bottom: 1;">Keluhan Pengguna</h5>
+        <h5 class="fw-bold" style="margin-left: 17.2em; margin-bottom: 1;">Laporan Pengguna</h5>
     </div>
 
-    <div class="row g-4 mb-5" style="margin-left: 4em;">
+    <div class="row g-4 mb-5" style="margin-left: 2.5em; ">
         <div class="col-12 col-md-6 col-xl-5 ms-auto">
-            <div class="h-100 bg-light rounded p-4 border border-dark border-2 ">
+            <div class="h-100 rounded-4 p-4 border border-dark border-2 ">
                 <div class="d-flex align-items-center justify-content-start mb-2">
                     {{-- <h6 class="mb-0">Keluhan Terbaru</h6> --}}
                 </div>
@@ -134,7 +136,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 col-xl-5">
-            <div class="h-100 bg-light rounded p-4 border border-dark border-2">
+            <div class="h-100 rounded-4 p-4 border border-dark border-2" style="background-color: white">
                 <div class="d-flex align-items-center justify-content-start mb-2">
                 </div>
                 <!-- Konten laporan terbaru -->
