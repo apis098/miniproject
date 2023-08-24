@@ -54,7 +54,11 @@
                             </span> <br>
                         </div>
                         <div class="col-5 d-flex my-auto flex-row-reverse">
-                            <i class="fa-solid fa-thumbs-up fa-2xl"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a8.994 8.994 0 0 0 7.03-14.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7z" />
+                            </svg>
+
                         </div>
                     </div>
                 </div>
@@ -70,7 +74,10 @@
                             </span> <br>
                         </div>
                         <div class="col-5 d-flex my-auto flex-row-reverse">
-                            <i class="fa-solid fa-thumbs-up fa-2xl"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M128 88a40 40 0 1 0 40 40a40 40 0 0 0-40-40Zm0 64a24 24 0 1 1 24-24a24 24 0 0 1-24 24Zm112-96H16a8 8 0 0 0-8 8v128a8 8 0 0 0 8 8h224a8 8 0 0 0 8-8V64a8 8 0 0 0-8-8Zm-46.35 128H62.35A56.78 56.78 0 0 0 24 145.65v-35.3A56.78 56.78 0 0 0 62.35 72h131.3A56.78 56.78 0 0 0 232 110.35v35.3A56.78 56.78 0 0 0 193.65 184ZM232 93.37A40.81 40.81 0 0 1 210.63 72H232ZM45.37 72A40.81 40.81 0 0 1 24 93.37V72ZM24 162.63A40.81 40.81 0 0 1 45.37 184H24ZM210.63 184A40.81 40.81 0 0 1 232 162.63V184Z" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -86,7 +93,14 @@
                             </span> <br>
                         </div>
                         <div class="col-5 d-flex my-auto flex-row-reverse">
-                            <i class="fa-solid fa-thumbs-up fa-2xl"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 32 32">
+                                <g fill="currentColor">
+                                    <path
+                                        d="M6.82 20.575v3.834A12.475 12.475 0 0 0 16.5 29c4.324 0 8.136-2.196 10.38-5.533v-5.374C26.112 23.136 21.757 27 16.5 27c-4.354 0-8.089-2.65-9.68-6.425Zm18.21-10.199V8.654a3.32 3.32 0 0 1 .184-1.116A12.459 12.459 0 0 0 16.5 4a12.45 12.45 0 0 0-7.976 2.875l.005.061l.001.027v2.7A10.476 10.476 0 0 1 16.5 6c3.514 0 6.624 1.726 8.53 4.376Z" />
+                                    <path
+                                        d="M24.5 16.5a8 8 0 1 1-16 0a8 8 0 0 1 16 0Zm-8 7a7 7 0 1 0 0-14a7 7 0 0 0 0 14ZM29.99 7.94c0-.9-.73-1.63-1.63-1.63c-1.3 0-2.34 1.05-2.33 2.34v5.55c0 1.253.726 2.375 1.85 2.883V25.7c0 .52.42.94.94.94h.23c.52 0 .94-.42.94-.94V7.94ZM6.82 6.31a.68.68 0 0 0-.68.68v2.69c0 .2-.16.35-.35.35c-.2 0-.35-.16-.35-.35V7.02c0-.37-.29-.7-.66-.71c-.39-.01-.71.3-.71.68v2.69c0 .2-.16.35-.35.35c-.2 0-.35-.16-.35-.35V7.02c0-.37-.29-.7-.66-.71c-.39-.01-.71.3-.71.68v4.58c0 .902.437 1.707 1.109 2.209c.601.339.601 1.891.601 1.891v10.02c0 .52.42.94.94.94h.23c.52 0 .94-.42.94-.94V15.67s0-1.491.601-1.891A2.757 2.757 0 0 0 7.53 11.57V6.99a.72.72 0 0 0-.71-.68Z" />
+                                </g>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -154,7 +168,7 @@
                     @foreach ($show_resep->langkah as $num => $item_langkah)
                         <div class="card-body d-flex flex-row">
                             <div class="d-flex flex-column">
-                                <button type="button" style="background-color:#F7941E;width: 45px;height: 45px; position: absolute; left: 270px;"
+                                <button type="button" style="background-color:#F7941E;width: 45px;height: 45px; position: absolute; left: 95px;"
                                 class="btn btn-warning btn-sm text-light rounded-circle p-2 ml-2">
                                 <span class="p-2">{{ $num += 1 }}</span>
                             </button>
