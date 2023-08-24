@@ -195,11 +195,11 @@
                     @foreach ($recipes as $r)
                         <div class="col-lg-4 my-1">
                             <div class="card p-3"
-                                style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">
+                                style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
                                 <div class="row my-1">
                                     <div class="col-4">
-                                        <img class="rounded-circle" src="{{ asset('storage/' . $r->foto_resep) }}"
-                                            width="55px" alt="dsdaa">
+                                        <img class="rounded-circle mb-1" style="max-width:55px;" src="{{ asset('storage/' . $r->foto_resep) }}"
+                                            width="55px" height="55px" alt="dsdaa">
                                     </div>
                                     <div class=" col-8">
                                         <a type="button"  class="as" href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
