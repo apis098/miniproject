@@ -68,6 +68,9 @@
                     padding-right: 20px;
                     padding-left: 20px;
                 } */
+                .ah{
+                    background-color: #fff;
+                }
     </style>
 
 <div class="mt-3 d-flex justify-content-center">
@@ -82,26 +85,21 @@
 <div class="Rectangle187" style="width: 960px; height: 120px; left: 280px; top: 109px; position: absolute; border-radius: 14px; border: 0.50px black solid;  margin-left: 10px;"></div>
 <div class="Ferdiansyah" style="width: 134px; left: 325px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
 <div class="Ronaldo" style="width: 93px; height: 30px; left: 500px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ronaldo</div>
-<div class="BerkataKotor" style="width: 140px; height: 30px; left: 650px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Berkata kotor</div>
+<div class="BerkataKotor" style="width: 140px; height: 30px; left: 656px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Berkata kotor</div>
 <div class="Kali" style="width: 57px; height: 30px; left: 880px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">1 kali</div>
-<div class="Rectangle198" style="width: 100px; height: 38px; left: 1009px; top: 152px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"></div>
-<div class="Rectangle199" style="width: 100px; height: 38px; left: 1129px; top: 152px; position: absolute; border-radius: 10px; border: 0.50px black solid"></div>
-<div class="Terima" style="width: 76px; left: 1030px; top: 160px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Terima</div>
-<div class="Tolak" style="width: 60px; left: 1156px; top: 160px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Tolak</div>
+
+<button class="text-white" style="width: 100px; height: 38px; left: 1009px; top: 152px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; border: none;">
+Terima
+</button>
+
+<button class="text-black ah" style="width: 100px; height: 38px; left: 1126px; top: 152px; position: absolute; border-radius: 15px; border: 0.50px black solid; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; ">
+Tolak
+</button>
 
 
 
 
 
-<div class="Rectangle200" style="width: 960px; height: 120px; left: 280px; top: 258px; position: absolute; border-radius: 14px; border: 0.50px black solid; margin-left: 10px;"></div>
-<div class="Ferdiansyah" style="width: 134px; left: 325px; top: 305px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-<div class="Ronaldo" style="width: 93px; height: 30px; left: 500px; top: 305px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ronaldo</div>
-<div class="BerkataKotor" style="width: 140px; height: 30px; left: 650px; top: 305px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Berkata kotor</div>
-<div class="Kali" style="width: 57px; height: 30px; left: 880px; top: 305px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">1 kali</div>
-<div class="Rectangle201" style="width: 100px; height: 38px; left: 1009px; top: 301px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"></div>
-<div class="Rectangle202" style="width: 100px; height: 38px; left: 1129px; top: 301px; position: absolute; border-radius: 10px; border: 0.50px black solid"></div>
-<div class="Terima" style="width: 76px; left: 1030px; top: 309px; position: absolute; color: white; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Terima</div>
-<div class="Tolak" style="width: 60px; left: 1156px; top: 309px; position: absolute; color: black; font-size:16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word">Tolak</div>
 </div>
 
 
