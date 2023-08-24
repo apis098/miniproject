@@ -27,6 +27,16 @@ class ReportController extends Controller
         $report->save();
         return redirect()->back()->with('success','Laporan anda telah terkirim');
     }
+    public function storeReply(Request $request ,$id){
+        $reply = Reply::findOrFail($id);
+        $report = new Report();
+        $report->reply_id = $reply->id;
+        $report->user_id = $reply->user_id;
+        $report->user_id_sender = auth()->user()->id;
+        $report->description = $request->description;
+        $report->save();
+        return redirect()->back()->with('success','Laporan anda telah terkirim');
+    }
     public function store(Request $request){
         $userId = Auth::user()->id;
         $report = new Report();

@@ -249,7 +249,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('Report.store') }}" method="POST">
+                            <form action="{{ route('report.reply',$row->id) }}" method="POST">
                                 @csrf
                                 <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
                                     <!-- Tambahkan kelas "align-items-center" -->
@@ -257,14 +257,10 @@
                                         <img class="rounded-circle" src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);" alt="">
                                         <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
-                                        <input hidden type="text" name="reply_id" value="{{ $row->id }}">
-                                        <input hidden type="text" name="user_id" value="{{ $row->user->id }}">
                                     @else
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);" alt="">
                                         <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
-                                        <input hidden type="text" name="reply_id" value="{{ $row->id }}">
-                                        <input hidden type="text" name="user_id" value="{{ $row->user->id }}">
                                     @endif
                                 </div>
                                 <div class="modal-footer">
