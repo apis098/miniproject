@@ -179,8 +179,9 @@
             width: 100%;
             height: 100%;
             background: #F7941E;
-            box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.25);
-            border-radius: 15px
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            border:none;
         }
 
 
@@ -283,11 +284,11 @@
         </div>
         <div class="content-container mx-5">
             <div
-                style="color: black; font-size: 30px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">
+                style="color: black; font-size: 28px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">
                 Masuk</div>
             <div
-                style="width: 100%; color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:3%">
-                Selamat datang di <i style="font-family:Dancing Script; ">Hummacook</i> </div>
+                style="width: 100%; color: black; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:3%">
+                Selamat datang di <i style="font-family:Dancing Script; font-size: 18px">Hummacook</i> </div>
             <div class=" mb-3 ">
 
                 <form action="{{ route('actionlogin') }}" method="post">
@@ -306,7 +307,7 @@
                             <span id="mybutton" onclick="change()">
 
                                 <!-- icon mata bawaan bootstrap  -->
-                                <svg width="1.1em" height="2.1em" viewBox="0 0 16 16" class="bi bi-eye-fill"
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                                     <path fill-rule="evenodd"
@@ -316,7 +317,7 @@
                         </div>
                     </div>
                     <!-- Register buttons -->
-                    <p>Belum punya akun? <a href="{{ route('register') }}">Register</a> sekarang!</p>
+                    <p>Belum punya akun? <a style="color: #f7941e;" href="{{ route('register') }}">Register</a> </p>
                     <!-- Submit button -->
                     <button type="submit" class="button-buat rounded-4"> <b style="color:white">Login</b></button>
                 </form>
@@ -342,7 +343,7 @@
                 document.getElementById('pass').type = 'text';
 
                 //ubah icon mata terbuka menjadi tertutup
-                document.getElementById('mybutton').innerHTML = `<svg  width="1.1em" height="2.1em" viewBox="0 0 16 16" class="bi bi-eye-slash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                document.getElementById('mybutton').innerHTML = `<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-slash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M10.79 12.912l-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
                                                                 <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708l-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829z"/>
                                                                 <path fill-rule="evenodd" d="M13.646 14.354l-12-12 .708-.708 12 12-.708.708z"/>
@@ -353,7 +354,7 @@
                 document.getElementById('pass').type = 'password';
 
                 //ubah icon mata terbuka menjadi tertutup
-                document.getElementById('mybutton').innerHTML = `<svg  width="1.1em" height="2.1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                document.getElementById('mybutton').innerHTML = `<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                                 <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
                                                                 <path fill-rule="evenodd" d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                                 </svg>`;

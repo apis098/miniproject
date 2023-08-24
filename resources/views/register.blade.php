@@ -158,8 +158,9 @@
              width: 100%;
              height: 100%;
              background: #F7941E;
-             box-shadow: 0px 0.5px 0.5px rgba(0, 0, 0, 0.25);
-            border-radius: 15px
+             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 15px;
+            border:none;
            }
 
 
@@ -333,8 +334,8 @@
           </svg>
         </div>
         <div class="content-container mx-5">
-            <div style="color: black; font-size: 30px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">Buat akun</div>
-            <div style="width: 100%; color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word">Selamat datang di Hummacook </div>
+            <div style="color: black; font-size: 28px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">Buat akun</div>
+            <div style="width: 100%; color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word">Selamat datang di <i style="font-family:Dancing Script; font-size: 18px"> Hummacook</i> </div>
             <div class="">
                 @if (session()->has('error'))
                 <script>
@@ -446,8 +447,8 @@
                                 </div>
                                 <br>
                                 <!-- Submit button -->
-                                <p>Sudah punya akun? <a href="{{ route('login') }}">Login</a>
-                                    sekarang!</p>
+                                <p>Sudah punya akun? Masuk <a  style="color: #f7941e;" href="{{ route('login') }}">Masuk</a>
+                                    </p>
                                     <!-- Login buttons -->
                                 <button type="submit" class="button-buat rounded-4"> <b style="color:white">Buat</b></button>
                             </form>
