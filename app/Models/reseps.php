@@ -40,6 +40,6 @@ class reseps extends Model
     }
     public function favorite()
     {
-        return $this->hasMany(favorite::class);
+        return $this->hasMany(favorite::class,'resep_id');
     }
 }
