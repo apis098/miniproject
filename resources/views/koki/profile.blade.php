@@ -30,7 +30,7 @@
                                 <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px"
                                     style="border-radius: 50%" alt="">
                             @endif
-                            <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E;"
+                            <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
                                 class="btn btn-warning btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
                                 data-bs-target="#mymodal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -52,7 +52,7 @@
                             <span
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $userLogin->email }}</span>
                         </p>
-                        <button style="border-radius: 15px;background-color:#F7941E;" class="btn btn-light text-light mb-3">
+                        <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn btn-light text-light mb-3">
                             <span style="font-weight: 600">
                                 <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
                             </span>
@@ -77,17 +77,17 @@
                                 <div class="profile d-flex justify-content-center">
 
                                     <label for="fileInputA" class="btn btn-warning btn-sm rounded-5 text-light"
-                                        style="position: absolute; top: 80%; right: 46%;background-color: #F7941E; border-radius: 9px;"
+                                        style="position: absolute; top: 80%; right: 46%;background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                         id="chooseFileButtonA">
                                         <b class="ms-2 me-2">Pilih file</b>
                                     </label>
 
                                     <a href="{{ route('delete.profile') }}" class="btn btn-warning btn-sm rounded-5"
-                                        style="position: absolute; top: 80%; right: 24.7%;border-radius: 9px; background-color: #F7941E; "><b
+                                        style="position: absolute; top: 80%; right: 24.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-1 me-1 text-light">Hapus foto</b></a>
 
                                     <button class="btn btn-warning btn-sm rounded-5 text-light me-3"
-                                        style="position: absolute; top: 80%; right: 5%;border-radius: 9px; background-color: #F7941E; "
+                                        style="position: absolute; top: 80%; right: 5%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                         type="submit" id="saveProfileButton"><b class="ms-1 me-1">Simpan</b></button>
 
                                     <input type="file" id="fileInputA" name="profile_picture" style="display:none">
