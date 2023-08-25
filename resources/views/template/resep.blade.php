@@ -99,16 +99,16 @@
             }
 
             /* button{
-                                                                        background-color: #F7941E;
-                                                                        border: none;
-                                                                        height: 45px;
-                                                                        width: 90px;
-                                                                        color: #ffffff;
-                                                                        position: absolute;
-                                                                        right: 1px;
-                                                                        top: 0px;
-                                                                        border-radius: 15px
-                                                                    } */
+                                                                                    background-color: #F7941E;
+                                                                                    border: none;
+                                                                                    height: 45px;
+                                                                                    width: 90px;
+                                                                                    color: #ffffff;
+                                                                                    position: absolute;
+                                                                                    right: 1px;
+                                                                                    top: 0px;
+                                                                                    border-radius: 15px
+                                                                                } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -149,6 +149,12 @@
                     top: 5px
                 }
             }
+
+            .garis {
+                padding: 0px;
+                border: 0.5px solid grey;
+                background-color: black;
+            }
         </style>
 
         <div class="container py-5">
@@ -166,10 +172,11 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="{{ route('resep.home') }}" method="GET">
-                                                    <input type="text" name="nama_resep" placeholder="Masukkan nama resep...">
+                                                    <input type="text" name="nama_resep"
+                                                        placeholder="Masukkan nama resep...">
                                                     </select>
                                                     <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Cari</button>
+                                                        style="border-radius: 15px;">Cari</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -188,6 +195,112 @@
         </div>
         <div class="ms-auto me-5">
             {{ $recipes->links('vendor.pagination.simple-default') }}
+        </div>
+    </div>
+    <!-- Button Modal -->
+    <div class="btn btn-light mx-5" data-bs-toggle="modal" data-bs-target="#filter" style="border: 1px solid black">
+        <img src="{{ asset('images/🦆 icon _filter_.svg') }}" alt=""> Filter
+    </div>
+    <!-- Modal -->
+    <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-weight: 700;">Filter Lanjutan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="GET">
+                        <div class="mb-3">
+                            <label for="ingredients" class="form-label">Nama Bahan</label>
+                            <select name="ingredients[]" id="ingredients" class="form-control" style="border-radius: 10px">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Rentang Harga</label>
+                            <div class="row">
+                                <div class="col-5">
+                                    <input type="number" placeholder="Minimal" value="" class="form-control"
+                                        style="border-radius: 10px;">
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <div class="garis"></div>
+                                </div>
+                                <div class="col-5">
+                                    <input type="number" class="form-control" placeholder="Maksimal"
+                                        style="border-radius:10px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alat" class="form-label">Alat alat</label>
+                            <select name="alat[]" id="alat" class="form-control" style="border-radius: 10px">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hari" class="form-label">Hari spesial</label>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <input type="hidden" value="valentine">
+                                    <button id="pilih_hari1" onclick="pilih_hari()" class="btn btn-light" type="button"
+                                        style="border: 1px solid black; border-radius: 10px;">Valentine</button>
+                                </div> 
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <input id="input_jenis_makanan1" type="hidden" value="Desert">
+                                    <button id="pilih_jenis_makanan1" onclick="pilih_jenis_makanan()" class="btn btn-light" type="button"
+                                        style="border: 1px solid black; border-radius: 10px;">Dessert</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-light" style="background-color: #F7941E; border-radius: 15px;">
+                                <span style="font-weight: 600;color: white;">Aplikasikan</span>
+                            </button>
+                        </div>
+                    </form>
+                    <style>
+                        .btn-filter {
+                            background-color: #F7941E;
+                            color: white;
+                            font-weight: 400;                            
+                        }
+                    </style>
+                    <script>
+                        function pilih_hari() {
+                            const pilih_hari1 = document.getElementById("pilih_hari1");
+                            if (pilih_hari1.classList.contains("btn-light")) {
+                                pilih_hari1.classList.remove("btn-light");
+                                pilih_hari1.classList.add("btn-filter");
+                                pilih_hari1.setAttribute("name", "hari_khusus[]");
+                            } else if(pilih_hari1.classList.contains("btn-filter")) {
+                                pilih_hari1.classList.remove("btn-filter");
+                                pilih_hari1.classList.add("btn-light");
+                                pilih_hari1.remove("name");
+                            }
+                        }
+                        function pilih_jenis_makanan() {
+                            const pilih_jenis_makanan1 = document.getElementById("pilih_jenis_makanan1");
+                            const input_jenis_makanan1 = document.getElementById("input_jenis_makanan1");
+                            if (pilih_jenis_makanan1.classList.contains("btn-light")) {
+                                pilih_jenis_makanan1.classList.remove("btn-light");
+                                pilih_jenis_makanan1.classList.add("btn-filter");
+                                input_jenis_makanan1.setAttribute("name", "jenis_makanan[]");
+                            } else if(pilih_jenis_makanan1.classList.contains("btn-filter")) {
+                                pilih_jenis_makanan1.classList.remove("btn-filter");
+                                pilih_jenis_makanan1.classList.add("btn-light");
+                                input_jenis_makanan1.remove("name");
+                            }
+                        }
+                    </script>
+                </div>
+            </div>
         </div>
     </div>
     @if ($recipes->count() == 0)

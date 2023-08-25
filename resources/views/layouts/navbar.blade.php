@@ -158,7 +158,7 @@
                         </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('kategori-makanan.index')}}"
-                                class="nav-link mx-4 {{ request()->is('admin/kategori-makanan.index') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
+                                class="nav-link mx-4 {{ request()->is('admin/kategori-makanan') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
                                 <svg  style="vertical-align: top;"  xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                Kategori

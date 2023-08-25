@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('resep_id');
             $table->string('foto_langkah');
+            $table->string('judul_langkah');
             $table->text('deskripsi_langkah');
             $table->timestamps();
 

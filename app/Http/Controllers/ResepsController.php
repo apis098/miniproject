@@ -55,6 +55,7 @@ class ResepsController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $rules = [
             "nama_resep" => "required",
             "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
@@ -135,6 +136,7 @@ class ResepsController extends Controller
                 langkah_reseps::create([
                     "resep_id" => $create_recipe->id,
                     "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
+                    "judul_langkah" => $request->judul_langkah[$nomer],
                     "deskripsi_langkah" => $langkah
                 ]);
             }
@@ -307,6 +309,7 @@ class ResepsController extends Controller
         }
         foreach ($request->langkah_resep as $index => $langkah) {
             $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
+            $langkah_resep->judul_langkah = $request->judul_langkah[$index];
             $langkah_resep->deskripsi_langkah = $langkah;
             if ($request->hasFile("foto_langkah_resep.$index")) {
                 Storage::delete("public/" . $langkah_resep->foto_langkah);
@@ -320,6 +323,7 @@ class ResepsController extends Controller
                 langkah_reseps::create([
                     "resep_id" => $update_resep->id,
                     "foto_langkah" => $request->file("foto_langkah_resep_tambahan.$nomer")->store('photo-step', 'public'),
+                    "judul_langkah" => $request->judul_resep_tambahan[$nomer],
                     "deskripsi_langkah" => $langkah
                 ]);
             }

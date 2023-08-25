@@ -12,6 +12,7 @@ class langkah_reseps extends Model
     protected $fillable = [
         'resep_id',
         'foto_langkah',
+        'judul_langkah',
         'deskripsi_langkah'
     ];
 
