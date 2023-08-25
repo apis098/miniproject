@@ -208,7 +208,7 @@
             <div class="container">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
-                        <div style="margin-left: -100px;">
+                        <div style="margin-left: -80px;">
                             @if (Auth::check())
                                 @if (Auth::user()->role == 'Admin')
                                     <a class="navbar-brand ms-3" href="{{ url('admin/index') }}">
