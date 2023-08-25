@@ -165,7 +165,7 @@
                                                     <input type="text" id="username" name="username"
                                                         placeholder="Cari Username">
                                                     <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px;">Cari</button>
+                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Cari</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -186,7 +186,7 @@
         </div>
         <div class="ms-auto me-5">
             <button class="btn btn-light text-light float-end me-5 zoom-effects"
-                style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
+                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-3 me-3">Selanjutnya</b></button>
         </div>
     </div>
     @if ($user->count() == 0)
@@ -241,7 +241,7 @@
                                         @else
                                             <button type="submit"
                                                 class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px;"><b
+                                                style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
                                                     class="ms-3 me-3">Ikuti</b></button>
                                         @endif
 
