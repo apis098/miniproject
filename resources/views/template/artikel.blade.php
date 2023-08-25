@@ -1,34 +1,35 @@
 @extends('template.nav')
 @section('content')
-<style>
-    .btn-edit{
-        width: 100%;
-        height: 100%;
-        background: #F7941E;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 10px;
-        color: white;
-        font-size: 18px;
-        font-family: 'poppins';
-        font-weight: 500;
-        word-wrap: break-word;
-        border: none;
-        letter-spacing: 0.20px;
-    }
-    .btn-hapus{
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        font-size: 17px;
-        font-family: 'Poppins';
-        font-weight: 500;
-        letter-spacing: 0.20px;
-        word-wrap: break-word;
-        color: black;
-        border-radius: 10px;
-        margin-left: 10px;
-        border: 0.50px black solid
-    }
+    <style>
+        .btn-edit {
+            width: 100%;
+            height: 100%;
+            background: #F7941E;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            color: white;
+            font-size: 18px;
+            font-family: 'poppins';
+            font-weight: 500;
+            word-wrap: break-word;
+            border: none;
+            letter-spacing: 0.20px;
+        }
+
+        .btn-hapus {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            font-size: 17px;
+            font-family: 'Poppins';
+            font-weight: 500;
+            letter-spacing: 0.20px;
+            word-wrap: break-word;
+            color: black;
+            border-radius: 10px;
+            margin-left: 10px;
+            border: 0.50px black solid
+        }
     </style>
     <section class="container">
         <div class="row mt-5">
@@ -38,7 +39,8 @@
             </div>
             <div class="col-lg-8 mt-4 ms-3">
                 <div class="col-lg-4 mt-5 ml-3">
-                    <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}</h3>
+                    <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
+                    </h3>
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
             </div>
@@ -59,33 +61,60 @@
                             @else
                                 <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST" class="like-form">
                                     @csrf
-                                    <button type="submit"
-                                        class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
-                                        style="border-color: #F7941E;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" style="color: #F7941E" width="21"
-                                            height="21" viewBox="0 0 16 16">
-                                            <g fill="none">
-                                                <path
-                                                    d="M9.582 1.052c-.75-.209-1.337.35-1.546.872c-.24.6-.452 1.02-.705 1.523c-.157.312-.33.654-.534 1.09c-.474 1.01-.948 1.657-1.292 2.045a4.064 4.064 0 0 1-.405.403c-.047.039-.081.065-.102.08l-.016.012L3.11 8.182a2 2 0 0 0-.856 2.425l.52 1.385a2 2 0 0 0 1.273 1.204l5.356 1.682a2.5 2.5 0 0 0 3.148-1.68l1.364-4.646a2 2 0 0 0-1.919-2.564h-1.385c.066-.227.134-.479.195-.74c.131-.561.243-1.203.233-1.738c-.01-.497-.06-1.018-.264-1.462c-.22-.475-.603-.832-1.193-.996z"
-                                                    fill="currentColor" />
-                                            </g>
-                                        </svg>
-                                    </button>
+                                    @if (
+                                        $userLogin &&
+                                            !$show_resep->likes()->where('user_id', auth()->user()->id)->exists())
+                                        <button type="submit"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
+                                            style="border-color: #F7941E;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" style="color: #F7941E" width="21"
+                                                height="21" viewBox="0 0 16 16">
+                                                <g fill="none">
+                                                    <path
+                                                        d="M9.582 1.052c-.75-.209-1.337.35-1.546.872c-.24.6-.452 1.02-.705 1.523c-.157.312-.33.654-.534 1.09c-.474 1.01-.948 1.657-1.292 2.045a4.064 4.064 0 0 1-.405.403c-.047.039-.081.065-.102.08l-.016.012L3.11 8.182a2 2 0 0 0-.856 2.425l.52 1.385a2 2 0 0 0 1.273 1.204l5.356 1.682a2.5 2.5 0 0 0 3.148-1.68l1.364-4.646a2 2 0 0 0-1.919-2.564h-1.385c.066-.227.134-.479.195-.74c.131-.561.243-1.203.233-1.738c-.01-.497-.06-1.018-.264-1.462c-.22-.475-.603-.832-1.193-.996z"
+                                                        fill="currentColor" />
+                                                </g>
+                                            </svg>
+                                        </button>
+                                    @else
+                                        <button type="submit"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
+                                            style="background-color: #F7941E;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffffff" width="21"
+                                                height="21" viewBox="0 0 16 16">
+                                                <g fill="none">
+                                                    <path
+                                                        d="M9.582 1.052c-.75-.209-1.337.35-1.546.872c-.24.6-.452 1.02-.705 1.523c-.157.312-.33.654-.534 1.09c-.474 1.01-.948 1.657-1.292 2.045a4.064 4.064 0 0 1-.405.403c-.047.039-.081.065-.102.08l-.016.012L3.11 8.182a2 2 0 0 0-.856 2.425l.52 1.385a2 2 0 0 0 1.273 1.204l5.356 1.682a2.5 2.5 0 0 0 3.148-1.68l1.364-4.646a2 2 0 0 0-1.919-2.564h-1.385c.066-.227.134-.479.195-.74c.131-.561.243-1.203.233-1.738c-.01-.497-.06-1.018-.264-1.462c-.22-.475-.603-.832-1.193-.996z"
+                                                        fill="currentColor" />
+                                                </g>
+                                            </svg>
+                                        </button>
+                                    @endif
                                 </form>
-
-                                <form action="{{ route('favorite.store', $show_resep->id) }}" method="post"
-                                    class="favorite-form">
+                                {{-- favorite --}}
+                                <form action="{{ route('favorite.store', $show_resep->id) }}" method="POST"class="favorite-form">
                                     @csrf
-                                    <button type="submit"
-                                        class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
-                                        style="border-color: #F7941E;"><svg style="color: #F7941E"
-                                            xmlns="http://www.w3.org/2000/svg" width="22" height="21"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
-                                        </svg></button>
+                                    @if ($userLogin && !$show_resep->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                        <button type="submit"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
+                                            style="border-color: #F7941E;"><svg style="color: #F7941E"
+                                                xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
+                                            </svg></button>
+                                    @else
+                                        <button type="submit"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
+                                            style="background-color: #F7941E;"><svg style="color: #ffffff"
+                                                xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
+                                            </svg></button>
+                                    @endif
                                 </form>
-
+                                {{-- end favorite --}}
                                 <button type="submit" data-toggle="modal" data-target="#reportModal"
                                     class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2"
                                     style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg"
@@ -95,36 +124,43 @@
                                     </svg></button>
                                 {{-- modal --}}
                                 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="reportModal">Laporkan resep</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="reportModal">Laporkan resep</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('report.resep', $show_resep->id) }}" method="POST">
+                                                @csrf
+                                                <div class="modal-body d-flex align-items-center">
+                                                    <!-- Tambahkan kelas "align-items-center" -->
+                                                    @if ($show_resep->foto_resep)
+                                                        <img class="me-2"
+                                                            src="{{ asset('storage/' . $show_resep->foto_resep) }}"
+                                                            width="106px" height="104px" style="border-radius: 50%"
+                                                            alt="">
+                                                        <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                    @else
+                                                        <img class="me-2" src="{{ asset('images/default.jpg') }}"
+                                                            width="106px" height="104px" style="border-radius: 50%"
+                                                            alt="">
+                                                        <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                                    @endif
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-light text-light"
+                                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                                            class="ms-2 me-2">Laporkan</b></button>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <form action="{{route('report.resep',$show_resep->id)}}" method="POST">
-                                            @csrf
-                                        <div class="modal-body d-flex align-items-center"> <!-- Tambahkan kelas "align-items-center" -->
-                                            @if($show_resep->foto_resep)
-                                            <img class="me-2" src="{{ asset('storage/'.$show_resep->foto_resep) }}" width="106px" height="104px" style="border-radius: 50%"
-                                                alt="">
-                                            <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
-                                            @else
-                                            <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
-                                                alt="">
-                                            <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
-                                            @endif
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="submit" class="btn btn-light text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Laporkan</b></button>
-                                        </div>
-                                        </form>
                                     </div>
                                 </div>
-                            </div>
-                            {{-- end Modal --}}
+                                {{-- end Modal --}}
                             @endif
                         @endif
                     </div>
@@ -222,11 +258,12 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <a id="click4" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
-                    data-bs-target="#pills-footer" type="button" role="tab" aria-controls="pills-footer"
-                    aria-selected="false">
-                    <h5 style="font-weight: 600; word-wrap:break-word;">Alat - Alat</h5>
-                    <div id="border4" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;" class="mx-auto"></div>
-                </a>
+                        data-bs-target="#pills-footer" type="button" role="tab" aria-controls="pills-footer"
+                        aria-selected="false">
+                        <h5 style="font-weight: 600; word-wrap:break-word;">Alat - Alat</h5>
+                        <div id="border4" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;"
+                            class="mx-auto"></div>
+                    </a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a id="click3" class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill"
@@ -270,9 +307,10 @@
                         <div class="card-body d-flex flex-row">
                             <div class="d-flex flex-column" style="position: relative;">
                                 <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3"
-                                    alt="{{ $item_langkah->foto_langkah }}" style="border-radius: 10px; border: 1px solid black;" width="160px"
-                                    height="160px">
-                                <button type="button" style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
+                                    alt="{{ $item_langkah->foto_langkah }}"
+                                    style="border-radius: 10px; border: 1px solid black;" width="160px" height="160px">
+                                <button type="button"
+                                    style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
                                     class="btn btn-light btn-sm text-light rounded-circle p-2 ml-2">
                                     <span class="p-2 fw-bolder">{{ $num += 1 }}</span>
                                 </button>
@@ -284,25 +322,25 @@
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="pills-footer" role="tabpanel" aria-labelledby="pills-footer-tab"
-                tabindex="0">
-                <div class="row mt-5">
-                @foreach ($show_resep->alat as $num => $item_langkah)
-                <div class="col-lg-4">
-                    <div class="card p-3"
-                        style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid">
-                        <div class="row my-1">
-                            <div class="col-12 ">
-                                <span class="ms-3" class=""
-                                    style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                    {{ $item_langkah->nama_alat }}
-                                </span> <br>
+                    tabindex="0">
+                    <div class="row mt-5">
+                        @foreach ($show_resep->alat as $num => $item_langkah)
+                            <div class="col-lg-4">
+                                <div class="card p-3"
+                                    style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid">
+                                    <div class="row my-1">
+                                        <div class="col-12 ">
+                                            <span class="ms-3" class=""
+                                                style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                {{ $item_langkah->nama_alat }}
+                                            </span> <br>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                @endforeach
-                </div>
-            </div>
             </div>
         </div>
     </section>
@@ -320,7 +358,7 @@
                     const response = await fetch(form.action, {
                         method: "POST",
                         headers: {
-                            "X-CSRF-Token": "{{ csrf_token( ) }}",
+                            "X-CSRF-Token": "{{ csrf_token() }}",
                         },
                     });
 
@@ -351,7 +389,7 @@
                     event.preventDefault();
 
                     const button1 = form1.querySelector(
-                    ".favorite-button"); // Menggunakan form1
+                        ".favorite-button"); // Menggunakan form1
                     const svg1 = button1.querySelector("svg"); // Menggunakan button1
 
                     const response = await fetch(form1.action, {
