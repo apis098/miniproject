@@ -169,7 +169,7 @@
                                                     <input type="text" name="nama_resep" placeholder="Masukkan nama resep...">
                                                     </select>
                                                     <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px;">Cari</button>
+                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Cari</button>
                                                 </form>
                                             </div>
                                         </div>

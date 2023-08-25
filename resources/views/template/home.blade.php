@@ -81,7 +81,7 @@
         <p><b>Tidak ada data</b></p>
     </div>
     @endif
-    <div class="row container">
+    <div class="row container mt-4">
         @foreach ($real_reseps as $item)
         <div class="col-lg-4">
            <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
@@ -106,7 +106,7 @@
                         </div>
                         <div class="col-6">
                             <form action="/artikel/{{$item->id}}/{{$item->nama_resep}}" method="get">
-                                <button type="submit" class="btn btn-light" style="background-color: #f39c12; border-radius: 12px; box-shadow: 0px 4px 4px black;">
+                                <button type="submit" class="btn btn-light" style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <span style="font-weight: 600; color: white;">Lihat</span>
                                 </button>
                             </form>
@@ -162,7 +162,7 @@
                             <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
                         </div>
                         <div>
-                            <button style="background-color: #f39c12" type="submit">
+                            <button style="background-color: #f39c12; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" type="submit">
                                 <b>Kirim</b>
                             </button>
                         </div>
@@ -187,7 +187,7 @@
         </div>
         <div class="ms-auto me-5">
             <button class="btn btn-light text-light float-end me-5 zoom-effects"
-                style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Selanjutnya</b></button>
+                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-3 me-3">Selanjutnya</b></button>
             </div>
     </div>
 </div>
