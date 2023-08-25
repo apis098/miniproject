@@ -21,12 +21,12 @@
                                         dibuat oleh semua orang, dan bahan-bahan
                                         masakan yang mudah didapatkan.
                                     </p>
-                                    <a href="{{ route('resep.index') }}" class="zoom-effects btn btn-light mt-2 rounded-5 btn-lg"
+                                    <a href="{{ route('resep.home') }}" class="zoom-effects btn btn-light mt-2 rounded-5 btn-lg"
                                         style="padding: 6px 22px;
                                         background-color: #ffff;
                                         color: #f39c12;
                                         border-radius: 12px;
-                                        border: none;">Lihat
+                                        border: none; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Lihat
                                         Resep</a>
                                         <div class="col-md-10" style="margin-left: -20px">
                                             <div style="display: flex; align-items: center; justify-content: flex-start; margin-top: 25px;">
