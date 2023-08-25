@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\kategori_makanan;
 use Illuminate\Http\Request;
 
 class KategoriMakananController extends Controller
