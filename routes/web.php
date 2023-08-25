@@ -18,6 +18,8 @@ use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\followersController;
 use App\Http\Controllers\notificationController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\special_days_controller;
+use App\Http\Controllers\KategoriMakananController;
 use App\Http\Controllers\testingController;
 use App\Models\bahan_reseps;
 use App\Models\favorite;
@@ -49,14 +51,14 @@ Route::get('/', function () {
             ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
             $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-       
+
     }
     if ($userLogin) {
         $favorite = favorite::where('user_id_from', auth()->user()->id)
         ->orderBy('created_at', 'desc')
         ->paginate(10);
     }
-    
+
     return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount','favorite'));
 })->name('home');
 
@@ -135,6 +137,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::delete('/content-destroy/{id}', [ReportController::class, 'block'])->name('ReplyBlocked.destroy');
         Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
+         // special_days
+         Route::resource('/special-days', special_days_controller::class);
+        //  kategori makanan
+         Route::resource('/kategori-makanan',KategoriMakananController::class);
     });
 });
 
@@ -142,7 +148,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function () {
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
-    
+
         Route::resource('resep', ResepsController::class);
     });
 });
