@@ -34,8 +34,11 @@
     <section class="container">
         <div class="row mt-5">
             <div class="col-lg-2 mt-3">
-                <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}" width="197px"
-                    height="187px" style="border-radius: 50%; border:none;" class="p-2">
+                <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; " class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal" data-target="#reportModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7"/></svg>
+                </button>
+                <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
+                    width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
             </div>
             <div class="col-lg-8 mt-4 ms-3">
                 <div class="col-lg-4 mt-5 ml-3">
@@ -45,7 +48,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <div class="col-lg-6 mt-5 ml-3">
+                <div class="col-lg-6 mt-5 ml-5">
                     <div style="position: absolute; right: -500px; top: -200px;" class="d-flex">
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
@@ -92,9 +95,12 @@
                                     @endif
                                 </form>
                                 {{-- favorite --}}
-                                <form action="{{ route('favorite.store', $show_resep->id) }}" method="POST"class="favorite-form">
+                                <form action="{{ route('favorite.store', $show_resep->id) }}"
+                                    method="POST"class="favorite-form">
                                     @csrf
-                                    @if ($userLogin && !$show_resep->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                    @if (
+                                        $userLogin &&
+                                            !$show_resep->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                         <button type="submit"
                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
                                             style="border-color: #F7941E;"><svg style="color: #F7941E"
@@ -115,13 +121,6 @@
                                     @endif
                                 </form>
                                 {{-- end favorite --}}
-                                <button type="submit" data-toggle="modal" data-target="#reportModal"
-                                    class="btn btn-warning btn-sm text-light rounded-circle p-2 mr-2"
-                                    style="background-color: #F7941E;"><svg xmlns="http://www.w3.org/2000/svg"
-                                        width="22" height="22" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M6 21q-.425 0-.713-.288T5 20V5q0-.425.288-.713T6 4h7.175q.35 0 .625.225t.35.575L14.4 6H19q.425 0 .713.288T20 7v8q0 .425-.288.713T19 16h-5.175q-.35 0-.625-.225t-.35-.575L12.6 14H7v6q0 .425-.288.713T6 21Z" />
-                                    </svg></button>
                                 {{-- modal --}}
                                 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
