@@ -69,7 +69,7 @@ class likeController extends Controller
                 ]);
                 $notifications->save();
             }
-            return redirect('/artikel/' . $resep->id . '/' . $resep->nama_resep)->with('success', 'seukses memberikan like pada resep ini');
+            return response()->json(['liked' => true]);
         }
         if ($user && $resep->likes()->where('user_id', auth()->user()->id)->exists()) {
             $resep->decrement('likes');
@@ -77,11 +77,11 @@ class likeController extends Controller
             $resep->likes()->where('user_id', auth()->user()->id)->delete();
             // Simpan perubahan pada model $resep
             $resep->save();
-            return redirect('/artikel/' . $resep->id . '/' . $resep->nama_resep)->with('info', 'anda batal memberikan like pada resep ini');
+            return response()->json(['liked' => false]);
 
         }
         if (!$user) {
-            return redirect()->route('login')->with('error', 'anda harus login terlebih dahulu');
+            return response()->json(['error' => 'User authentication required']);
         }
         // return redirect()->route('ShowReplies.show', $complaintId)->with('error', 'anda sudah memberi like komentar ini sebelumnya');
     }
