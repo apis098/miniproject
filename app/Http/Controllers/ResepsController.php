@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
 use App\Models\special_days;
+use App\Models\toolsCooks;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Validator as ValidationValidator;
@@ -121,6 +122,13 @@ class ResepsController extends Controller
                     "resep_id" => $create_recipe->id,
                     "nama_bahan" => $bahan,
                     "takaran_bahan" => $request->takaran_resep[$number]
+                ]);
+            }
+            foreach($request->nama_alat as $nm => $a) {
+                $alat = strtolower(trim($a));
+                toolsCooks::create([
+                    "recipes_id" => $create_recipe->id,
+                    "nama_alat" => $alat
                 ]);
             }
             foreach ($request->langkah_resep as $nomer => $langkah) {
@@ -250,12 +258,20 @@ class ResepsController extends Controller
         $update_resep->save();
         if ($request->has("hapus_bahan")) {
             foreach ($request->hapus_bahan as $key => $value) {
-                bahan_reseps::where("id", $value)->delete();
+                $n = (int)$value;
+                bahan_reseps::where("id", $n)->delete();
+            }
+        }
+        if ($request->has("hapus_alat")) {
+            foreach($request->hapus_alat as $nms => $vv) {
+                $c = (int)$vv;
+                toolsCooks::where("id", $c)->delete();
             }
         }
         if ($request->has("hapus_langkah")) {
             foreach ($request->hapus_langkah as $key => $v) {
-                langkah_reseps::where("id", $v)->delete();
+                $d = (int)$v;
+                langkah_reseps::where("id", $d)->delete();
             }
         }
         foreach ($request->bahan_resep as $i => $b) {
@@ -273,6 +289,19 @@ class ResepsController extends Controller
                     "resep_id" => $update_resep->id,
                     "nama_bahan" => $bahan,
                     "takaran_bahan" => $request->takaran_resep_tambahan[$number]
+                ]);
+            }
+        }
+        
+        foreach($request->nama_alat as $in => $na) {
+            $alat = toolsCooks::where("id", $request->id_alat[$in])->first();
+            $alat->nama_alat = $request->$na;
+        }
+        if ($request->has("nama_alat_tambahan")) {
+            foreach ($request->nama_alat_tambahan as $nam => $amn) {
+                toolsCooks::create([
+                    "recipes_id" => $update_resep->id,
+                    "nama_alat" => $amn
                 ]);
             }
         }

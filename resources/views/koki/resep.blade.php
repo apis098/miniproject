@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="row"
-                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="border: 0.50px rgb(142, 136, 136) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;">
                             <div
@@ -106,6 +106,40 @@
                         Tambahkan
                     </button>
                     <br>
+                    <div>
+                        <div class="mt-2">
+                            <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
+                            <input type="text" name="nama_alat[]" id="nama_alat"
+                                placeholder="tambahkan alat yang anda gunakan..." class="form-control">
+                        </div>
+                    </div>
+                    <div id="new-input-alat"></div>
+                    <br>
+                    <button type="button" id="button-new-alat" class="btn btn-warning text-white"
+                        style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
+                        Tambahkan
+                    </button>
+                    <script>
+                        numsq = 0;
+                        document.getElementById("button-new-alat").addEventListener("click", function () {
+                            numsq++;
+                            div = document.createElement("div");
+                            div.innerHTML = `
+                            <div class="mt-2" id="close3${numsq}">
+                            <button class="btn btn-danger fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
+                            <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
+                            <input type="text" name="nama_alat[]" id="nama_alat"
+                                placeholder="tambahkan alat yang anda gunakan..." class="form-control">
+                        </div>
+                            `;
+                            document.getElementById("new-input-alat").appendChild(div);
+                        });
+                        function close3(num) {
+                            const close3  = document.getElementById("close3"+num);
+                            close3.remove();
+                        }
+                    </script>
+                    <br>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
                         <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
@@ -151,7 +185,9 @@
                             <option value=""></option>
                             @if ($special_days)
                                 @foreach ($special_days as $d)
-                                    <option value="{{ $d->name }}" {{old('hari_khusus') == $d->name ? 'selected' : ''}}>{{ $d->name }}</option>
+                                    <option value="{{ $d->name }}"
+                                        {{ old('hari_khusus') == $d->name ? 'selected' : '' }}>{{ $d->name }}
+                                    </option>
                                 @endforeach
                             @endif
                         </select>
@@ -204,9 +240,8 @@
                                 <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
                                 </div>
                             </div>
-                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" style="float: right;"
-                                value="{{ old('langkah_resep.0') }}"
-                        /> 
+                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah"
+                                style="float: right;" value="{{ old('langkah_resep.0') }}" />
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -223,14 +258,15 @@
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
                     <br> <br>
                     <button type="submit" class="btn btn-warning text-white mb-4"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" id="button-add-recipe">Tambah
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                        id="button-add-recipe">Tambah
                         Resep</button>
                 </div>
             </div>
         </div>
     </form>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script>
         num = 0;
 
@@ -350,7 +386,7 @@
                                         Tidak ada file terpilih</div>
                                 </div>
                             </div>
-                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{old('langkah_resep.${num2}')}}"/>
+                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{ old('langkah_resep.${num2}') }}"/>
                         </div>
             `;
             place2.appendChild(input2);
@@ -390,12 +426,12 @@
 
         function close1(num) {
             const close = document.getElementById("close1_" + num);
-            close.style.display = "none";
+            close.remove();
         }
 
         function close2(num) {
             const close = document.getElementById("close2_" + num);
-            close.style.display = "none";
+            close.remove();
         }
 
         function inputfile(num) {
@@ -437,9 +473,8 @@
         //         reader.readAsDataURL(input.files[0]);
         //     }
         // });
-       
     </script>
 
-        
-   
+
+
 @endsection

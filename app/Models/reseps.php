@@ -28,6 +28,9 @@ class reseps extends Model
     public function langkah() {
         return $this->hasMany(langkah_reseps::class, 'resep_id');
     }
+    public function alat() {
+        return $this->hasMany(toolsCooks::class, 'recipes_id');
+    }
     public function notifications() {
         return $this->hasMany(notifications::class);
     }

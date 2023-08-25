@@ -10,11 +10,12 @@
             width: 100%;
         }
     </style>
-   
+
     <form action="/koki/resep/{{ $edit_resep->id }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="container">
+            <div id="hapus"></div>
             <div class="row">
                 <div class="col-lg-3 mb-5">
                     <div class="card my-5">
@@ -24,7 +25,7 @@
                         </div>
                     </div>
                     <div class="row"
-                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                             <div
@@ -70,13 +71,14 @@
 
                     @foreach ($edit_resep->bahan as $num => $item_bahan)
                         <div id="close1_{{ $item_bahan->id }}">
-                            <!--
+
                             @if ($num >= 1)
                                 <button type="button" class="btn btn-danger my-2 fa-solid fa-x"
-                                    onclick="close1()"></button>
-                            @endif -->
+                                    onclick="close1({{ $item_bahan->id }})"></button>
+                            @else
+                            @endif
+
                             <input type="hidden" name="id_bahan_resep[]" value="{{ $item_bahan->id }}">
-                            <input type="hidden" id="hapus_bahan{{ $num }}" value="{{ $item_bahan->id }}">
                             <div class="mt-2">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan
                                         {{ $num += 1 }}</b></label>
@@ -110,6 +112,48 @@
                         Tambahkan
                     </button>
                     <br>
+                    @foreach ($edit_resep->alat as $nsoi => $item)
+                        <div id="remove_alat{{ $item->id }}">
+                            <input type="hidden" name="id_alat[]" value="{{ $item->id }}">
+                            <div class="mt-2">
+                                @if ($nsoi >= 1)
+                                    <button type="button" class="btn btn-danger my-2 fa-solid fa-x"
+                                        onclick="close12({{ $item->id }})"></button>
+                                @endif
+                                <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
+                                <input type="text" name="nama_alat[]" id="nama_alat" value="{{ $item->nama_alat }}"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    @endforeach
+                    <div id="new-input-alat"></div>
+                    <br>
+                    <button type="button" id="button-new-alat" class="btn btn-warning text-white"
+                        style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
+                        Tambahkan
+                    </button>
+                    <script>
+                        numsq = 0;
+                        document.getElementById("button-new-alat").addEventListener("click", function() {
+                            numsq++;
+                            div = document.createElement("div");
+                            div.innerHTML = `
+                            <div class="mt-2" id="close3${numsq}">
+                            <button class="btn btn-danger fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
+                            <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
+                            <input type="text" name="nama_alat_tambahan[]" id="nama_alat"
+                                placeholder="tambahkan alat yang anda gunakan..." class="form-control">
+                        </div>
+                            `;
+                            document.getElementById("new-input-alat").appendChild(div);
+                        });
+
+                        function close3(num) {
+                            const close3 = document.getElementById("close3" + num);
+                            close3.remove();
+                        }
+                    </script>
+                    <br>
                     <div class="mt-2">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
                         <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
@@ -123,10 +167,12 @@
                     <div class="mt-2 row mx-auto">
                         <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
                         <input type="text" name="lama_memasak" class="form-control col-10"
-                            id="exampleFormControlInput1" value="{{$edit_resep->lama_memasak}}">
+                            id="exampleFormControlInput1" value="{{ $edit_resep->lama_memasak }}">
                         <select name="lama_memasak2" id="" class="form-control col-2">
-                            <option value="menit" {{$edit_resep->lama_memasak2 == 'menit' ? 'selected' : ''}}>menit</option>
-                            <option value="jam" {{$edit_resep->lama_memasak2 == 'jam' ? 'selected' : ''}}>jam</option>
+                            <option value="menit" {{ $edit_resep->lama_memasak2 == 'menit' ? 'selected' : '' }}>menit
+                            </option>
+                            <option value="jam" {{ $edit_resep->lama_memasak2 == 'jam' ? 'selected' : '' }}>jam
+                            </option>
                         </select>
                         @error('lama_memasak')
                             <div class="alert alert-danger">
@@ -151,7 +197,9 @@
                             <option value=""></option>
                             @if ($special_days)
                                 @foreach ($special_days as $d)
-                                    <option value="{{ $d->name }}" {{$edit_resep->hari_khusus == $d->name ? 'selected' : ''}}>{{ $d->name }}</option>
+                                    <option value="{{ $d->name }}"
+                                        {{ $edit_resep->hari_khusus == $d->name ? 'selected' : '' }}>{{ $d->name }}
+                                    </option>
                                 @endforeach
                             @endif
                         </select>
@@ -164,11 +212,10 @@
                     <br>
                     @foreach ($edit_resep->langkah as $int => $item_langkah)
                         <div id="close2_{{ $item_langkah->id }}">
-                            <!--
-                            @if ($int > 1)
+                            @if ($int >= 1)
                                 <button type="button" class="btn btn-danger fa-solid fa-x"
-                                    onclick="close2()"></button>
-                            @endif -->
+                                    onclick="close2({{ $item_langkah->id }})"></button>
+                            @endif
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
                             <div class="mb-4">
                                 <div class="row">
@@ -181,8 +228,8 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row" 
-                                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                                        <div class="row"
+                                            style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
 
                                             <button type="button" onclick="input_file_langkah({{ $int }})"
                                                 class="col-4"
@@ -323,7 +370,7 @@
                                         @enderror
                                     </div>
                                     <input class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
-                                        placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{old('langkah_resep_tambahan.*')}}"/>
+                                        placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{ old('langkah_resep_tambahan.*') }}"/>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
                                             {{ $message }}
@@ -359,14 +406,36 @@
 
         function close1(num) {
             const close = document.getElementById("close1_" + num);
-            close.style.display = "none";
-            const hapus_bahan = document.getElementById("hapus_bahan" + num);
-            hapus_bahan.setAttribute("name", "hapus_bahan[]");
+            close.remove();
+            input = document.createElement("input");
+            input.setAttribute("name", "hapus_bahan[]");
+            input.setAttribute("value", num);
+            input.setAttribute("type", "number");
+            input.style.display = "none";
+            document.getElementById("hapus").appendChild(input);
+            //const hapus_bahan = document.getElementById("hapus_bahan" + num);
+        }
+
+        function close12(num) {
+            const closes = document.getElementById("remove_alat" + num);
+            closes.remove();
+            input = document.createElement("input");
+            input.setAttribute("name", "hapus_alat[]");
+            input.setAttribute("type", "number");
+            input.setAttribute("value", num);
+            input.style.display = "none";
+            document.getElementById("hapus").appendChild(input);
         }
 
         function close2(num) {
             const close = document.getElementById("close2_" + num);
-            close.style.display = "none";
+            close.remove();
+            input = document.createElement("input");
+            input.setAttribute("name", "hapus_langkah[]");
+            input.setAttribute("type", "number");
+            input.setAttribute("value", num);
+            input.style.display = "none";
+            document.getElementById("hapus").appendChild(input);
         }
 
         function inputfile(num) {
