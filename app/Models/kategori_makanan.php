@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class special_days extends Model
+class kategori_makanan extends Model
 {
     use HasFactory;
-    protected $table = "special_days";
-    protected $fillable = [
-        'nama'
+    protected $table ="kategori_makanans";
+    protected $fillable =[
+        'nama_makanan'
     ];
 }

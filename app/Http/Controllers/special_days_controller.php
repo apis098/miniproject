@@ -10,83 +10,55 @@ class special_days_controller extends Controller
 {
     public function index()
     {
-        $data = special_days::all();
-        $title = "Data Hari Spesial";
-        return view('admin.special_days.index',compact('data','title'));
+        $special_days = special_days::all();
+        return view('admin.specialdays',compact('special_days'));
     }
-    public function detail2(){
-        return view('template.detail2');
-    }
-    public function create()
+
+    public function store(Request $request)
     {
-        return view('special_days.create', [
-            "title" => "Tambah Data Hari Spesial"
+        $this ->validate($request,[
+         'nama'=>'required'
+          ],[
+        "nama.required"=>"Field Hari Khusus Harus Diisi"
         ]);
-    }
-    public function edit($id)
-    {
-        $data=special_days::findOrFail($id);
-        return view('special_days.edit', [
-            "title" => "Form Edit Data Hari Spesial",
-            "data" => $data
+        special_days::create([
+            'nama'=>$request->nama
         ]);
+
+        return redirect()->back()->with('success', 'Data Hari Khusus Berhasil Ditambah.');
     }
-        public function store(Request $request)
-        {
-            $rules = [
-                'name' => 'required',
-                'description' => 'required',
-            ];
-            $customMessages = [
-                'name.required' => 'Ada column yang belum terisi',
-                'description.required' => 'Ada Column yang belum terisi',
-            ];
-            $this->validate($request, $rules, $customMessages);
 
-            $data = new special_days();
 
-            $data->name = $request->name;
-            $data->description = $request->description;
-            $data->save();
-
-            return redirect()->route('SpecialDays.index')->with('success', 'Data Hari Khusus Berhasil Ditambah.');
-        }
-    public function update(Request $request,$id)
+    public function update( Request $request , string $id)
     {
-        $rules = [
-            'name' => 'required',
-            'description' => 'required',
-        ];
-        $customMessages = [
-            'name.required' => 'Ada column yang belum terisi',
-            'description.required' => 'Ada Column yang belum terisi',
-        ];
-        $this->validate($request, $rules, $customMessages);
+        $this ->validate($request,[
+            'nama'=>'required'
+             ],[
+        "nama.required"=>"Field Hari Khusus Harus Diisi"
+        ]);
 
-        $data = special_days::findOrFail($id);
+           special_days::find($id)->update([
+               'nama'=>$request->nama
+           ]);
 
-        $data->name = $request->name;
-        $data->description = $request->description;
-        $data->save();
-
-        return redirect()->route('SpecialDays.index')->with('success', 'Data Hari Khusus Berhasil Update.');
+        return redirect()->route('special-days.index',compact('request'))->with('success', 'Data Hari Khusus Berhasil Update.');
     }
 
-    public function destroy($id)
+    public function destroy( string $id)
     {
-        $data = special_days::findOrFail($id);
-         // Cek apakah ada produk terkait dengan kategori ini
-    if ($data->resep->count() > 0) {
-        return redirect()->route('SpecialDays.index')->with('error', 'Error, karena masih ada data terkait.');
+        $special_days = special_days::find($id);
+    //      // Cek apakah ada produk terkait dengan kategori ini
+    // if ($special_days->resep->count() > 0) {
+    //     return redirect()->route('SpecialDays.index')->with('error', 'Error, karena masih ada data terkait.');
+    // }
+
+        $special_days->delete();
+        return redirect()->back()->with('info', 'Data hari khusus berhasil dihapus.');
     }
 
-        $data->delete();
-        return redirect()->route('SpecialDays.index')->with('success', 'Data hari khusus berhasil duhapus.');
-    }
-
-    public function show($id)
-    {
-        $data = special_days::find($id);
-        return response()->json($data);
-    }
+    // public function show($id)
+    // {
+    //     $special_days = special_days::find($id);
+    //     return response()->json($special_days);
+    // }
 }
