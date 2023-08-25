@@ -47,7 +47,7 @@
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
             </div>
-            <div class="mt-4">
+            <div class="mt-4 ml-3">
                 <div class="col-lg-6 mt-5 ml-5">
                     <div style="position: absolute; right: -500px; top: -200px;" class="d-flex">
                         @if ($userLog === 2)
@@ -78,7 +78,10 @@
                                                         fill="currentColor" />
                                                 </g>
                                             </svg>
-                                        </button>
+                                        </button><br>
+                                        <div class="d-flex justify-content-center">
+                                            <small class="me-1 like-count" id="like-count-{{$show_resep->id}}">{{$show_resep->likes}}</small>
+                                        </div>                                        
                                     @else
                                         <button type="submit"
                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
@@ -91,7 +94,10 @@
                                                         fill="currentColor" />
                                                 </g>
                                             </svg>
-                                        </button>
+                                        </button><br>
+                                        <div class="d-flex justify-content-center">
+                                            <small class="me-1 like-count" id="like-count-{{$show_resep->id}}">{{$show_resep->likes}}</small>
+                                        </div>                                        
                                     @endif
                                 </form>
                                 {{-- favorite --}}
@@ -108,7 +114,11 @@
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
-                                            </svg></button>
+                                            </svg>
+                                        </button><br>
+                                        <div class="d-flex justify-content-center">
+                                            <small class="me-1 fav-count" id="fav-count-{{$show_resep->id}}">{{$show_resep->favorite_count}}</small>
+                                        </div> 
                                     @else
                                         <button type="submit"
                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
@@ -117,7 +127,11 @@
                                                 viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
-                                            </svg></button>
+                                            </svg>
+                                        </button><br>
+                                        <div class="d-flex justify-content-center">
+                                            <small class="me-1 fav-count" id="fav-count-{{$show_resep->id}}">{{$show_resep->favorite_count}}</small>
+                                        </div> 
                                     @endif
                                 </form>
                                 {{-- end favorite --}}
@@ -367,12 +381,14 @@
                             // Reset button color and SVG here
                             button.style.backgroundColor = "#F7941E";
                             svg.style.color = "white";
+                            document.getElementById("like-count-" + responseData.resep_id).textContent = responseData.likes;
                             // Modify SVG appearance if needed
                         } else {
                             // Update button color and SVG here
                             button.style.backgroundColor = "white";
                             svg.style.color = "#F7941E";
                             button.style.borderColor = "#F7941E";
+                            document.getElementById("like-count-" + responseData.resep_id).textContent = responseData.likes;
                         }
                     }
                 });
@@ -405,11 +421,13 @@
                             button1.style.backgroundColor = "#F7941E";
                             svg1.style.color = "white";
                             // Modify SVG appearance if needed
+                            document.getElementById("fav-count-" + responseData1.resep_id).textContent = responseData1.favorite_count;
                         } else {
                             // Update button color and SVG here
                             button1.style.backgroundColor = "white";
                             svg1.style.color = "#F7941E";
                             button1.style.borderColor = "#F7941E";
+                            document.getElementById("fav-count-" + responseData1.resep_id).textContent = responseData1.favorite_count;
                         }
                     }
                 });

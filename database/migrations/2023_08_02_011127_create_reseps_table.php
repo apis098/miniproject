@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('foto_resep');
             $table->text('deskripsi_resep');
             $table->integer('porsi_orang');
+            $table->integer('favorite_count')->default(0);
             $table->integer('lama_memasak');
             $table->integer('likes')->default(0);
             $table->bigInteger('pengeluaran_memasak');

@@ -69,7 +69,11 @@ class likeController extends Controller
                 ]);
                 $notifications->save();
             }
-            return response()->json(['liked' => true]);
+            return response()->json([
+                'liked' => true,
+                'likes' => $resep->likes,
+                'resep_id' => $resep->id,
+            ]);
         }
         if ($user && $resep->likes()->where('user_id', auth()->user()->id)->exists()) {
             $resep->decrement('likes');
@@ -77,8 +81,11 @@ class likeController extends Controller
             $resep->likes()->where('user_id', auth()->user()->id)->delete();
             // Simpan perubahan pada model $resep
             $resep->save();
-            return response()->json(['liked' => false]);
-
+            return response()->json([
+                'liked' => false,
+                'likes' => $resep->likes,
+                'resep_id' => $resep->id,
+            ]);
         }
         if (!$user) {
             return response()->json(['error' => 'User authentication required']);
