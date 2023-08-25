@@ -661,13 +661,7 @@
                     </button>
                 </div>
 
-                @if ($favorite->count() == 0)
-                <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 2em">
-                    <img src="images/data.png" style="width: 15em">
-                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                </div>
-                @endif
-
+                
                 @foreach($favorite as $row)
                 <form action="{{route('Report.store')}}" method="POST">
                     @csrf
@@ -687,7 +681,14 @@
                 </div>
                 </form>
                 @endforeach
+                @forelse ($favorite as $row)
 
+                @empty
+                <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 2em">
+                    <img src="images/data.png" style="width: 15em">
+                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                </div>
+                @endforelse
             </div>
         </div>
     </div>
