@@ -90,6 +90,7 @@ Route::put('/status-baca/like-replies/{id}', [notificationController::class, 're
 Route::put('/status-baca/like-resep/{id}', [notificationController::class, 'likeResep'])->name('resep.like.notification');
 Route::put('/status-baca/profile-blocked/{id}', [notificationController::class, 'blockedProfile'])->name('profile.blocked.notification');
 Route::put('/status-baca/replies-blocked/{id}', [notificationController::class, 'repliesBlocked'])->name('replies.blocked.notification');
+Route::put('/status-baca/tambah-resep/{id}', [notificationController::class, 'recipesNotification'])->name('resep.read.notification');
 
 
 // artikel

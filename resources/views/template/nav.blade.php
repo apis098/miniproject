@@ -382,7 +382,7 @@
                                                             </form>
                                                         @elseif($row->follower_id == auth()->user()->id && $row->resep_id != null)
                                                             <form
-                                                                action="{{ route('replies.notification', $row->id) }}"
+                                                                action="{{ route('resep.read.notification', $row->id) }}"
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
