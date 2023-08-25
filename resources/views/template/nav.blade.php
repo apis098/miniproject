@@ -672,7 +672,7 @@
                     <div style="justify-content: space-between;" class="mb-1">
                     <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">{{$row->resep->nama_resep}}</h6>
 
-                                <small class="text-secondary  me-3">{{$row->resep->deskripsi_resep}}</small>
+                                 <small class="text-secondary  me-3">{{strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep}}</small>
 
                     </div>
                 </div>
