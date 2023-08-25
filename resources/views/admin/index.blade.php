@@ -47,7 +47,7 @@
     </div>
     <div class="row mt-3 me-2">
         <div class="col-lg-10" style="margin-left: 15em">
-            <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="max-width:940px; margin: 0 auto;">
                 <canvas id="myBarChart" style="border: 1px solid black; border-radius: 15px"></canvas>
             </div>
         </div>
@@ -84,14 +84,14 @@
 
 <!-- Widgets Start -->
 
-<div class="container-fluid pt-4 px-4">
+<div class="container-fluid pt-4 px-4 ms-3">
     <div class="ms-1 " style="display: flex; align-items: center;">
-        <h5 class="fw-bold" style="margin-left: 12.5em; margin-bottom: 1;">Keluhan Pengguna</h5>
-        <h5 class="fw-bold" style="margin-left: 17.2em; margin-bottom: 1;">Laporan Pengguna</h5>
+        <h5 class="fw-bold" style="margin-left: 11.5em; margin-bottom: 1;">Keluhan Pengguna</h5>
+        <h5 class="fw-bold" style="margin-left: 16.2em; margin-bottom: 1;">Laporan Pengguna</h5>
     </div>
 
-    <div class="row g-4 mb-5" style="margin-left: 2.5em; ">
-        <div class="col-12 col-md-6 col-xl-5 ms-auto">
+    <div class="row g-4 mb-5 ml-5" style="margin-left: 3em; ">
+        <div class="col-12 col-md-6 col-xl-5 ms-auto ms-5" style="mar" >
             <div class="h-100 rounded-4 p-4 border border-dark border-2 ">
                 <div class="d-flex align-items-center justify-content-start mb-2">
                     {{-- <h6 class="mb-0">Keluhan Terbaru</h6> --}}
@@ -135,7 +135,7 @@
                 <!-- Konten keluhan terbaru -->
             </div>
         </div>
-        <div class="col-12 col-md-6 col-xl-5">
+        <div class="col-12 col-md-6 col-xl-5 ms-3">
             <div class="h-100 rounded-4 p-4 border border-dark border-2" style="background-color: white">
                 <div class="d-flex align-items-center justify-content-start mb-2">
                 </div>

@@ -22,6 +22,13 @@ class notificationController extends Controller
         $replies_id = $request->replies_id;
         return redirect()->route('ShowReplies.show',$replies_id);
     }
+    public function recipesNotification($id){
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        $resepId = $notification->resep_id;
+        return redirect('/artikel/'.$resepId.'/'.$notification->resep->nama_resep);
+    }
     public function blockedProfile($id){
         $notificattion = notifications::findOrFail($id);
         $notificattion->status = 'sudah';
@@ -40,7 +47,7 @@ class notificationController extends Controller
         $notificattion->status = 'sudah';
         $notificattion->save();
         $resepId = $notificattion->resep->id;
-        $resepName = $notificattion->resep->id;
+        $resepName = $notificattion->resep->nama_resep;
         return redirect('/artikel/' . $resepId . '/' . $resepName);
     }
 }
