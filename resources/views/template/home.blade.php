@@ -78,7 +78,7 @@
     @if ($real_reseps->count() == 0)
     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
         <img src="images/data.png" style="width: 15em">
-        <p>Tidak ada data</p>
+        <p><b>Tidak ada data</b></p>
     </div>
     @endif
     <div class="row container">
@@ -194,7 +194,7 @@
 @if ($complaints->count() == 0)
 <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
     <img src="images/data.png" style="width: 15em">
-    <p>Tidak ada data</p>
+    <p><b>Tidak ada data</b></p>
 </div>
 @endif
 

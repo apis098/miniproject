@@ -192,7 +192,7 @@
     @if ($user->count() == 0)
     <div class="d-flex flex-column justify-content-center align-items-center">
         <img src="{{asset('images/data.png')}}" style="width: 15em">
-        <p>Tidak ada data</p>
+        <p><b>Tidak ada data</b></p>
     </div>
     @endif
     <div class="container mt-4">
@@ -212,7 +212,7 @@
                                     <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                 @endif
-                                
+
                                 <h5 class="mb-0">{{ strlen($row->name) > 10 ? substr($row->name, 0, 10) . '...' : $row->name }}</h5> <span
                                     class="small text-muted">{{ $row->email }}</span>
                                 <div class="d-flex justify-content-center mt-3 me-2">

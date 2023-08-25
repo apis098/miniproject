@@ -67,7 +67,7 @@
                                 @else
                                 <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti</b></button>
                                 @endif
-                            
+
                             </form>
                     </div>
                 </div>
@@ -164,11 +164,11 @@
                 @if ($recipes->count() == 0)
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <img src="{{asset('images/data.png')}}" style="width: 15em">
-                    <p>Tidak ada data</p>
+                    <p><b>Tidak ada data</b></p>
                 </div>
                 @endif
                 <div class="row mb-5">
-                    @foreach ($recipes as $item_recipe)                        
+                    @foreach ($recipes as $item_recipe)
                     <div class="col-lg-4 my-1">
                         <div class="card p-3"
                             style="width: 100%; height: 95%; border-radius: 30px; border: 0.50px black solid">

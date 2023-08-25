@@ -193,7 +193,7 @@
     @if ($recipes->count() == 0)
         <div class="d-flex flex-column justify-content-center align-items-center">
             <img src="{{ asset('images/data.png') }}" style="width: 15em">
-            <p>Tidak ada data</p>
+            <p><b>Tidak ada data</b></p>
         </div>
     @endif
     <div class="mx-5 my-5">
