@@ -240,7 +240,7 @@
 
                         <div class="collapse navbar-collapse" class="ms-4"
                             id="navbarSupportedContent">
-                            <ul class="navbar-nav mt-3 me-2 justify-content-center mx-5">
+                            <ul class="navbar-nav mt-3 me-2 justify-content-center " style="margin-left: 70px">
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
                                     <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Home</b></a>
                                 </li>
@@ -262,6 +262,7 @@
                         <a class="nav-link" href="{{route('login')}}">Login</a>
                       </li> --}}
                             </ul>
+
                             <div class="user_option" style="margin-left: 230px;">
 
 
