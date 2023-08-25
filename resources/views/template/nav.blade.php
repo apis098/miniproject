@@ -244,7 +244,7 @@
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
                                     <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Home</b></a>
                                 </li>
-                                <li class="nav-item {{ request()->is('menu') ? 'active' : '' }}"
+                                <li class="nav-item {{ request()->is('resep') ? 'active' : '' }}"
                                     style="font-size: 15px">
                                     <a class="nav-link" id="navbar" href="{{ route('resep.home') }}"><b>Resep</b></a>
                                 </li>
