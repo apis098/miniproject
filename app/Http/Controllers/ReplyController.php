@@ -65,7 +65,7 @@ class ReplyController extends Controller
                 'reply' => $request->reply,
             ]);
             $complaint->replies()->save($reply);
-            if(auth()->user()->id){
+            if($complaint->user_id != auth()->user()->id){
             $notifications = new notifications([
                 'notification_from' => auth()->user()->id,
                 'complaint_id' => $complaint->id,
