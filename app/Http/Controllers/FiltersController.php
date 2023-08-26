@@ -42,6 +42,12 @@ class FiltersController extends Controller
         if ($request->has('nama_resep')) {
             $recipes = [];
             $recipes = reseps::where('nama_resep', 'like', '%' . $request->nama_resep . '%')->paginate(6);
+            if ($request->has('min_price')) {
+                $recipes = reseps::where('pengeluaran_memasak', '>=', $request->min_price)->paginate(6);
+            }
+            if ($request->has('max_price')) {
+                $recipes = reseps::where('pengeluaran_memasak', '<=', $request->max_price)->paginate(6);
+            }
             if ($request->has('ingredients')) {
                 $ingredients = $request->ingredients;
                 $recipes = reseps::whereHas('bahan', function($query) use($ingredients){
@@ -67,6 +73,12 @@ class FiltersController extends Controller
                 })->paginate(6);
             }
         } else {
+            if ($request->has('min_price')) {
+                $recipes = reseps::where('pengeluaran_memasak', '>=', $request->min_price)->paginate(6);
+            }
+            if ($request->has('max_price')) {
+                $recipes = reseps::where('pengeluaran_memasak', '<=', $request->max_price)->paginate(6);
+            }
             if ($request->has('ingredients')) {
                 $ingredients = $request->ingredients;
                 $recipes = reseps::whereHas('bahan', function($query) use($ingredients){

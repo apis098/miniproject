@@ -245,14 +245,14 @@
                             <label for="harga" class="form-label">Rentang Harga</label>
                             <div class="row">
                                 <div class="col-5">
-                                    <input type="number" placeholder="Minimal" value="" class="form-control"
+                                    <input type="number" name="min_price" placeholder="Minimal" value="" class="form-control"
                                         style="border-radius: 10px;">
                                 </div>
                                 <div class="col-2 my-auto">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
-                                    <input type="number" class="form-control" placeholder="Maksimal"
+                                    <input type="number" name="max_price" class="form-control" placeholder="Maksimal"
                                         style="border-radius:10px">
                                 </div>
                             </div>
