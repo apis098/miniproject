@@ -188,7 +188,7 @@
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="{{ route('resep.home') }}" method="GET">
                                                     <input type="text" name="nama_resep"
-                                                        placeholder="Masukkan nama resep...">
+                                                        placeholder="Masukkan nama resep..." value="{{ request()->nama_resep }}">
                                                     </select>
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px;">Cari</button>
