@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori_makanans', function (Blueprint $table) {
+        Schema::create('special_days', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("reseps_id");
-            $table->string('nama_makanan');
+            $table->string('nama');
             $table->timestamps();
 
             $table->foreign("reseps_id")->references("id")->on("reseps")->setNullOnDelete();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategori_makanans');
+        Schema::dropIfExists('special_days');
     }
 };
