@@ -613,18 +613,13 @@
                         </div> --}}
                     </div>
                 </div>
-                <div class="col-md-4 footer-col">
+               <div class="col-md-4 footer-col">
                     <div class="footer_contact">
                         <h1
                             style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: 5em">
                             Kontak
                         </h1>
                         <div class="contact_link_box">
-                            <a href="">
-                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                <span style="margin-right: 6em">
-                                    Lokasi
-                                </span>
                             </a>
                             <a href="">
                                 <i class="fa fa-phone" aria-hidden="true" style="margin-left: 1em"></i>
@@ -637,21 +632,26 @@
                                 <span>
                                     hummacook@gmail.com
                                 </span>
+                            <a href="">
+                                <i class="fa fa-clock-o" aria-hidden="true" style="margin-left: -2.5em"></i>
+                                <span>
+                                    buka 24 jam
+                                </span>
                             </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-4 footer-col">
-                    <h1 style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold;">
-                        Jam Buka
-                    </h1>
-                    <p>
-                        Setiap Hari 24 Jam
-                    </p>
-
-                </div>
-            </div>
+                    <h1
+                    style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: em">
+                    <i class="fa fa-map-marker " aria-hidden="true" style="margin-left: 1em"></i>
+                   <span>Lokasi</span>
+                </h1>
+            </p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
         <!-- Modal -->
         <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -663,7 +663,7 @@
                     </button>
                 </div>
 
-                
+
                 @foreach($favorite as $row)
                 <form action="{{route('Report.store')}}" method="POST">
                     @csrf
