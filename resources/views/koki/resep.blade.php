@@ -121,7 +121,7 @@
                     </button>
                     <script>
                         numsq = 0;
-                        document.getElementById("button-new-alat").addEventListener("click", function () {
+                        document.getElementById("button-new-alat").addEventListener("click", function() {
                             numsq++;
                             div = document.createElement("div");
                             div.innerHTML = `
@@ -134,8 +134,9 @@
                             `;
                             document.getElementById("new-input-alat").appendChild(div);
                         });
+
                         function close3(num) {
-                            const close3  = document.getElementById("close3"+num);
+                            const close3 = document.getElementById("close3" + num);
                             close3.remove();
                         }
                     </script>
@@ -178,24 +179,6 @@
                             </div>
                         @enderror
                         <div id="pengeluaran_memasak_error" style="display: none;" class="alert alert-danger"></div>
-                    </div>
-                    <div class="mt-2">
-                        <label for="exampleFormControlInput1" class="form-label"><b>Hari Khusus</b></label>
-                        <select name="hari_khusus" id="exampleFormControlInput1" class="form-control">
-                            <option value=""></option>
-                            @if ($special_days)
-                                @foreach ($special_days as $d)
-                                    <option value="{{ $d->name }}"
-                                        {{ old('hari_khusus') == $d->name ? 'selected' : '' }}>{{ $d->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                        @error('hari_khusus')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
                     </div>
                     <br>
                     <div class="mb-4">
@@ -240,8 +223,12 @@
                                 <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
                                 </div>
                             </div>
-                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah"
-                                style="float: right;" value="{{ old('langkah_resep.0') }}" />
+                            <input type="text" class="form-control mb-2" name="judul_langkah[]"
+                                placeholder="Masukkan judul langkah..." required>
+                            <textarea class="form-control" cols="30" rows="5" name="langkah_resep[]"
+                                placeholder="Masukkan langkah langkah" style="float: right;">
+                            {{ old('langkah_resep.0') }}
+                            </textarea>
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -256,7 +243,77 @@
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
-                    <br> <br>
+                    <br>
+                    <div class="mt-2">
+                        <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
+                            <b> Jenis Makanan </b>
+                        </label>
+                        <div class="row">
+                            @foreach ($categories_food as $num => $f)                                
+                            <div class="col-lg-3 m-2">
+                                <input type="text" id="jenis_makanan{{ $num }}" value="{{ $f->nama_makanan }}" style="display: none;">
+                                <button id="pilih_jenis_makanan{{ $num }}" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
+                                    type="button" style="border: 1px solid black; border-radius: 10px;">
+                                    <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
+                                </button>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mt-2">
+                        <label for="hari_khusus" class="form-label" style="font-weight: 600;">
+                            <b> Hari Khusus </b>
+                        </label>
+                        <div class="row">
+                            @foreach ($special_days as $int => $d)                                
+                            <div class="col-lg-3 m-2">
+                                <input type="hidden" id="input_pilih_hari{{ $int }}" value="{{ $d->nama }}">
+                                <button id="pilih_hari{{ $int }}" onclick="pilih_hari({{ $int }})" class="btn btn-light" type="button"
+                                    style="border: 1px solid black; border-radius: 10px;">
+                                    <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                </button>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    <br>
+                    <style>
+                        .btn-filter {
+                            background-color: #F7941E;
+                            color: white;
+                            font-weight: 400;
+                        }
+                    </style>
+                    <script>
+                        function pilih_hari(num) {
+                            const pilih_hari = document.getElementById("pilih_hari" + num);
+                            const input_pilih_hari = document.getElementById("input_pilih_hari" + num);
+                            if (pilih_hari.classList.contains("btn-light")) {
+                                pilih_hari.classList.remove("btn-light");
+                                pilih_hari.classList.add("btn-filter");
+                                input_pilih_hari.setAttribute("name", "hari_khusus[]");
+                            } else if (pilih_hari.classList.contains("btn-filter")) {
+                                pilih_hari.classList.remove("btn-filter");
+                                pilih_hari.classList.add("btn-light");
+                                input_pilih_hari.removeAttribute("name");
+                            }
+                        }
+
+                        function pilih_jenis_makanan(num) {
+                            const pilih_jenis_makanan = document.getElementById("pilih_jenis_makanan" + num);
+                            const jenis_makanan = document.getElementById("jenis_makanan" + num)
+                            if (pilih_jenis_makanan.classList.contains("btn-light")) {
+                                pilih_jenis_makanan.classList.remove("btn-light");
+                                pilih_jenis_makanan.classList.add("btn-filter");
+                                jenis_makanan.setAttribute("name", "jenis_makanan[]");
+                            } else if (pilih_jenis_makanan.classList.contains("btn-filter")) {
+                                pilih_jenis_makanan.classList.remove("btn-filter");
+                                pilih_jenis_makanan.classList.add("btn-light");
+                                jenis_makanan.removeAttribute("name");
+                            }
+                        }
+                    </script>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="button-add-recipe">Tambah
@@ -386,7 +443,8 @@
                                         Tidak ada file terpilih</div>
                                 </div>
                             </div>
-                            <input class="form-control" name="langkah_resep[]" placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{ old('langkah_resep.${num2}') }}"/>
+                            <input type="text" class="form-control mb-2" name="judul_langkah[]" placeholder="Masukkan judul langkah...">
+                            <textarea class="form-control" name="langkah_resep[]" cols="30" rows="5" placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.${num2}') }}</textarea>
                         </div>
             `;
             place2.appendChild(input2);
@@ -457,7 +515,4 @@
             });
         }
     </script>
-
-
-
 @endsection

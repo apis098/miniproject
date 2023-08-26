@@ -74,19 +74,59 @@
                             <td>{{ $data->nama_makanan }}</td>
                             <td>
                                 <div class="d-flex">
-                                <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn"
-                                    data-toggle="modal" data-target="#exampleModal{{ $data->id }}"><i
-                                        class="fa-solid fa-pen-clip"></i></button>
-                                <form action="{{ route('kategori-makanan.destroy', $data->id) }}" method="POST"
-                                    class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-5" style="margin-left: 5%"
-                                        data-mdb-ripple-color="dark"
-                                        onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i
-                                            class="fa-solid fa-trash-can"></i></button>
-                                </form>
-                                 </div>
+                                    <button type="button" class="btn btn-outline-success btn-sm rounded-5 edit-btn"
+                                        data-toggle="modal" data-target="#exampleModal{{ $data->id }}"><i
+                                            class="fa-solid fa-pen-clip"></i></button>
+                                    {{-- modal edit --}}
+                                    <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route('kategori-makanan.update', $data->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('PUT')
+
+                                                        <div class="mb-3 row">
+                                                            <label for="nama" class="col-sm-2 col-form-label"></label>
+                                                            <div class="col-sm-10">
+                                                                <input type="text" class="form-control"
+                                                                    value="{{ $data->nama_makanan }}" name="nama_makanan"
+                                                                    id="nama">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="submit"
+                                                                class="btn btn-danger  rounded-5 mb-1 zoom-effects d-flex align-items-center"
+                                                                data-mdb-ripple-color="dark">
+                                                                Simpan
+                                                            </button>
+                                                    </form>
+                                                    <form action="{{ route('kategori-makanan.destroy', $data->id) }}"
+                                                        method="POST" class="d-inline-block">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            class="btn btn-outline-danger btn-sm rounded-5"
+                                                            style="margin-left: 5%" data-mdb-ripple-color="dark"
+                                                            onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')"><i
+                                                                class="fa-solid fa-trash-can"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- end modal edit --}}
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -94,46 +134,6 @@
             </table>
         </div>
     </div>
-    @foreach ($kategori_makanans as $row)
-        @if ($row->id != '')
-            {{-- modal edit --}}
-            <div class="modal fade" id="exampleModal{{ $row->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Data</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form action="{{ route('kategori-makanan.update', $row->id) }}" method="POST">
-                                @csrf
-                                @method('PUT')
-
-                                <div class="mb-3 row">
-                                    <label for="nama" class="col-sm-2 col-form-label"></label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" value="{{ $row->nama_makanan }}"
-                                            name="nama_makanan" id="nama">
-                                    </div>
-                                </div>
-
-                        <div class="modal-footer">
-                            <button type="submit"
-                                class="btn btn-danger  rounded-5 mb-1 zoom-effects d-flex align-items-center"
-                                data-mdb-ripple-color="dark">
-                                Simpan
-                            </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-    @endforeach
-    {{-- end modal edit --}}
 
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"

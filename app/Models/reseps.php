@@ -42,4 +42,11 @@ class reseps extends Model
     {
         return $this->hasMany(favorite::class,'resep_id');
     }
+    public function category_food() {
+        return $this->hasMany(kategori_makanan::class, "reseps_id");
+    }
+    public function special_day() {
+        return $this->hasMany(special_days::class, "reseps_id");
+    }
 }
+ 
