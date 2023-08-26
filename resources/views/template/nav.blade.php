@@ -593,7 +593,7 @@
                             Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk
                             Dimengerti
                         </p>
-                        <div class="footer_contact" style="margin-top: 3em; display: flex; justify-content: flex-start;">
+                        <div class="footer_contact" style="margin-top: 2em; display: flex; justify-content: flex-start;">
                             <i class="fa fa-facebook" aria-hidden="true" style="margin-right: 10px; font-size: 24px;"></i>
                             <i class="fa fa-telegram" aria-hidden="true" style="margin-right: 10px; font-size: 24px;"></i>
                             <i class="fa fa-twitter" aria-hidden="true" style="margin-right: 10px; font-size: 24px;"></i>
