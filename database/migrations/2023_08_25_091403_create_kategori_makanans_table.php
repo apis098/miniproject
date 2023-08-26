@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('kategori_makanans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("reseps_id");
             $table->string('nama_makanan');
             $table->timestamps();
+
+            $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete("set null");
         });
     }
 

@@ -14,6 +14,7 @@ use App\Models\special_days;
 use App\Models\toolsCooks;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Models\kategori_makanan;
 use Illuminate\Validation\Validator as ValidationValidator;
 
 class ResepsController extends Controller
@@ -38,8 +39,9 @@ class ResepsController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
+        $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('notification', 'special_days', 'userLogin', 'unreadNotificationCount','favorite'));
+        return view("koki.resep", compact('categories_food','notification', 'special_days', 'userLogin', 'unreadNotificationCount','favorite'));
     }
 
     /**
