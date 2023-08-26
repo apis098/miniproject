@@ -261,21 +261,25 @@
                         <div class="mb-3">
                             <label for="hari" class="form-label">Hari spesial</label>
                             <div class="row">
+                                @foreach ($special_day as $nums => $d)
                                 <div class="col-lg-4">
-                                    <input type="hidden" value="valentine">
-                                    <button id="pilih_hari1" onclick="pilih_hari()" class="btn btn-light" type="button"
-                                        style="border: 1px solid black; border-radius: 10px;">Valentine</button>
+                                    <input type="hidden" id="input_pilih_hari{{ $nums }}" value="{{ $d->nama }}">
+                                    <button id="pilih_hari{{ $nums }}" onclick="pilih_hari({{ $nums }})" class="btn btn-light" type="button"
+                                        style="border: 1px solid black; border-radius: 10px;">{{ $d->nama }}</button>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
+                                @foreach ($categories_foods as $num => $f)                                    
                                 <div class="col-lg-4">
-                                    <input id="input_jenis_makanan1" type="hidden" value="Desert">
-                                    <button id="pilih_jenis_makanan1" onclick="pilih_jenis_makanan()" class="btn btn-light" type="button"
-                                        style="border: 1px solid black; border-radius: 10px;">Dessert</button>
+                                    <input id="input_jenis_makanan{{$num}}" type="hidden" value="{{ $f->nama_makanan }}">
+                                    <button id="pilih_jenis_makanan1" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light" type="button"
+                                        style="border: 1px solid black; border-radius: 10px;">{{ $f->nama_makanan }}</button>
                                 </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="mb-3 d-flex flex-row-reverse">
@@ -292,29 +296,30 @@
                         }
                     </style>
                     <script>
-                        function pilih_hari() {
-                            const pilih_hari1 = document.getElementById("pilih_hari1");
-                            if (pilih_hari1.classList.contains("btn-light")) {
-                                pilih_hari1.classList.remove("btn-light");
-                                pilih_hari1.classList.add("btn-filter");
-                                pilih_hari1.setAttribute("name", "hari_khusus[]");
-                            } else if(pilih_hari1.classList.contains("btn-filter")) {
-                                pilih_hari1.classList.remove("btn-filter");
-                                pilih_hari1.classList.add("btn-light");
-                                pilih_hari1.remove("name");
+                        function pilih_hari(num) {
+                            const pilih_hari = document.getElementById("pilih_hari" + num);
+                            const input_pilih_hari = document.getElementById("input_pilih_hari" + num);
+                            if (pilih_hari.classList.contains("btn-light")) {
+                                pilih_hari.classList.remove("btn-light");
+                                pilih_hari.classList.add("btn-filter");
+                                input_pilih_hari.setAttribute("name", "hari_khusus[]");
+                            } else if(pilih_hari.classList.contains("btn-filter")) {
+                                pilih_hari.classList.remove("btn-filter");
+                                pilih_hari.classList.add("btn-light");
+                                input_pilih_hari.removeAttribute("name");
                             }
                         }
-                        function pilih_jenis_makanan() {
-                            const pilih_jenis_makanan1 = document.getElementById("pilih_jenis_makanan1");
-                            const input_jenis_makanan1 = document.getElementById("input_jenis_makanan1");
-                            if (pilih_jenis_makanan1.classList.contains("btn-light")) {
-                                pilih_jenis_makanan1.classList.remove("btn-light");
-                                pilih_jenis_makanan1.classList.add("btn-filter");
-                                input_jenis_makanan1.setAttribute("name", "jenis_makanan[]");
+                        function pilih_jenis_makanan(num) {
+                            const pilih_jenis_makanan = document.getElementById("pilih_jenis_makanan" + num);
+                            const input_jenis_makanan = document.getElementById("input_jenis_makanan" + num);
+                            if (pilih_jenis_makanan.classList.contains("btn-light")) {
+                                pilih_jenis_makanan.classList.remove("btn-light");
+                                pilih_jenis_makanan.classList.add("btn-filter");
+                                input_jenis_makanan.setAttribute("name", "jenis_makanan[]");
                             } else if(pilih_jenis_makanan1.classList.contains("btn-filter")) {
-                                pilih_jenis_makanan1.classList.remove("btn-filter");
-                                pilih_jenis_makanan1.classList.add("btn-light");
-                                input_jenis_makanan1.remove("name");
+                                pilih_jenis_makanan.classList.remove("btn-filter");
+                                pilih_jenis_makanan.classList.add("btn-light");
+                                input_jenis_makanan.removeAttribute("name");
                             }
                         }
                     </script>

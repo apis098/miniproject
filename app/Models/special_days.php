@@ -10,10 +10,9 @@ class special_days extends Model
     use HasFactory;
     protected $table = "special_days";
     protected $fillable = [
-        'reseps_id',
         'nama'
     ];
     public function resep() {
-        return $this->belongsTo(reseps::class, "reseps_id");
+        return $this->belongsToMany(reseps::class, "hari_reseps");
     }
 }

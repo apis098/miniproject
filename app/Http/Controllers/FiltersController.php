@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
+use App\Models\kategori_makanan;
+use App\Models\special_days;
 
 class FiltersController extends Controller
 {
@@ -31,6 +33,8 @@ class FiltersController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.resep', compact('recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $special_day = special_days::all();
+        $categories_foods = kategori_makanan::all();
+        return view('template.resep', compact('special_day','categories_foods','recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

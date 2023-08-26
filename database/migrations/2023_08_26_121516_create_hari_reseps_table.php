@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('special_days', function (Blueprint $table) {
+        Schema::create('hari_reseps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("reseps_id");
-            $table->string('nama');
+            $table->unsignedBigInteger("hari_khusus_id");
             $table->timestamps();
 
-            $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete("set null");
+            $table->foreign("reseps_id")->references("id")->on("reseps")->setNullOnDelete();
+            $table->foreign("hari_khusus_id")->references("id")->on("special_days")->onDelete("cascade");
         });
     }
 
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('special_days');
+        Schema::dropIfExists('hari_reseps');
     }
 };

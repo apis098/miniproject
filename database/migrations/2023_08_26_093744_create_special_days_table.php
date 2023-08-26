@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('special_days', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("reseps_id");
             $table->string('nama');
             $table->timestamps();
-
-            $table->foreign("reseps_id")->references("id")->on("reseps")->setNullOnDelete();
-        });
+       });
     }
 
     /**
