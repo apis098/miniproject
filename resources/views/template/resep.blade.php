@@ -273,10 +273,10 @@
                         <div class="mb-3">
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
-                                @foreach ($categories_foods as $num => $f)                                    
+                                @foreach ($categories_foods as $num => $f)
                                 <div class="col-lg-4">
                                     <input id="input_jenis_makanan{{$num}}" type="hidden" value="{{ $f->nama_makanan }}">
-                                    <button id="pilih_jenis_makanan1" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light" type="button"
+                                    <button id="pilih_jenis_makanan{{ $num }}" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light" type="button"
                                         style="border: 1px solid black; border-radius: 10px;">{{ $f->nama_makanan }}</button>
                                 </div>
                                 @endforeach
@@ -316,7 +316,7 @@
                                 pilih_jenis_makanan.classList.remove("btn-light");
                                 pilih_jenis_makanan.classList.add("btn-filter");
                                 input_jenis_makanan.setAttribute("name", "jenis_makanan[]");
-                            } else if(pilih_jenis_makanan1.classList.contains("btn-filter")) {
+                            } else if(pilih_jenis_makanan.classList.contains("btn-filter")) {
                                 pilih_jenis_makanan.classList.remove("btn-filter");
                                 pilih_jenis_makanan.classList.add("btn-light");
                                 input_jenis_makanan.removeAttribute("name");
