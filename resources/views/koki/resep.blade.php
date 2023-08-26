@@ -456,23 +456,6 @@
                 }
             });
         }
-        // document.getElementById("inputann"+num).addEventListener("change", function(event) {
-        //     const svgElement = document.getElementById("svg3"+num);
-        //     const divElement = document.getElementById("div3"+num);
-        //     var input = event.target;
-        //     if (input.files && input.files[0]) {
-        //         var reader = new FileReader();
-        //         reader.onload = function(e) {
-        //             document.getElementById("gambar3"+num).style.display = "block";
-        //             svgElement.style.display = "none";
-        //             divElement.classList.remove('border-dark');
-        //             divElement.classList.remove('mb-5');
-        //             divElement.classList.add('border-light');
-        //             document.getElementById("gambar3"+num).setAttribute("src", e.target.result);
-        //         };
-        //         reader.readAsDataURL(input.files[0]);
-        //     }
-        // });
     </script>
 
 

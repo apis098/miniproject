@@ -12,12 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 class likeController extends Controller
 {
-    public function like(Request $request, $id)
+    public function like($id)
     {
         $replies = Reply::findOrFail($id);
         $complaintId = $replies->complaint_id;
         $user = Auth::user();
-        if ($user && !$replies->likes()->where('user_id', $request->user()->id)->exists()) {
+        if ($user && !$replies->likes()->where('user_id', auth()->user()->id)->exists()) {
             $like = new likes([
                 'user_id' => auth()->user()->id,
                 'reply_id' => $replies->id,
@@ -34,13 +34,21 @@ class likeController extends Controller
                 ]);
                 $replies->notifications()->save($notifications);
             }
-            return redirect()->route('ShowReplies.show', $complaintId)->with('success', 'anda memberi like komentar dari');
-
+            return response()->json([
+                'liked' => true,
+                'likes' => $replies->likes,
+                'reply_id' => $replies->id,
+            ]);
         }
-        if ($user && $replies->likes()->where('user_id', $request->user()->id)->exists()) {
+        if ($user && $replies->likes()->where('user_id', auth()->user()->id)->exists()) {
             $replies->decrement('likes');
-            $replies->likes()->where('user_id', $request->user()->id)->delete();
-            return redirect()->route('ShowReplies.show', $complaintId)->with('info', 'anda membatalkan memberi like');
+            $replies->likes()->where('user_id', auth()->user()->id)->delete();
+            $replies->save();
+            return response()->json([
+                'liked' => false,
+                'likes' => $replies->likes,
+                'reply_id' => $replies->id,
+            ]);
 
         }
         if (!$user) {

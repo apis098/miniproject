@@ -172,7 +172,9 @@
         .text-orange {
             color: #F7941E;
         }
-
+        .text-orange:hover{
+            color: #F7941E;
+        }
         .slider_section .detail-box a {
             background-color: #ffffff;
             color: #ffffff;

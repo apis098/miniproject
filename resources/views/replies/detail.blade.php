@@ -210,26 +210,25 @@
                             <div class="action d-flex justify-content-between mt-2 align-items-center">
 
                                 <div class="reply px-7 me-2">
-                                    <small> {{ $row->likes }}</small>
+                                    <small id="like-count-{{$row->id}}"> {{ $row->likes }}</small>
                                 </div>
 
                                 <div class="icons align-items-center input-group">
 
-                                    <form action="{{ route('Replies.like', $row->id) }}" method="POST">
+                                    <form action="{{ route('Replies.like', $row->id) }}" method="POST" class="like-form">
                                         @csrf
-                                        <input hidden id="reply_id" name="reply_id"type="text">
-                                        @if (
-                                            $userLogin &&
-                                                $row->likes()->where('user_id', $userLogin->id)->exists())
-                                            <button type="submit" class="btn btn-light text-warning btn-sm rounded-5 "><i
-                                                    class="fa-solid fa-thumbs-up me-2"></i></button>
+                                        @if ($userLogin && $row->likes()->where('user_id', $userLogin->id)->exists())
+                                            <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5 like-button ">
+                                                <i class="fa-solid fa-thumbs-up"></i>
+                                            </button>
                                         @else
-                                            <button type="submit" class="btn btn-light text-dark btn-sm rounded-5 "><i
-                                                    class="fa-solid fa-thumbs-up me-2"></i></button>
+                                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </button>
                                         @endif
                                     </form>
                                     <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
-                                        class="btn btn-light text-danger btn-sm rounded-5 "><i
+                                        class="yuhu text-danger btn-sm rounded-5 "><i
                                             class="fa-solid fa-triangle-exclamation me-2"></i></button>
                                 </div>
                             </div>
@@ -274,59 +273,47 @@
                 </div>
                     @endif
                 @endforeach
-                {{-- end modal --}}
-                {{-- @foreach ($replies as $row)
-                    @if ($row->id != '')
-                        <div class="modal fade" id="Modal{{ $row->id }}" data-backdrop="static" data-keyboard="false"
-                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg ">
-                                <div class="modal-content rounded-5">
-                                    <div class="modal-body rounded-4">
-                                        <div class="text-right"> <i class="fa fa-close close" data-dismiss="modal"></i>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <div class="text-center mt-1"> <img src="{{ asset('images/allert2.png') }}"
-                                                        width="220"> </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="text-white fw-semibold mt-4">
-                                                    <div class="mt-2"> <span class="intro-2 text-danger">Form Report
-                                                            Pelanggaran Pedoman Komunitas </span> </div>
-                                                    <span class="intro-1">{{ $row->subject }}</span>
-                                             
-                                                    <form action="{{ route('Report.store') }}" method="POST">
-                                                        @csrf
-                                                        <div class="mt-2"> <span class="intro-2">Alasan Report:</span>
-                                                        </div>
-                                                        <input type="text" class="form-control rounded-3 mt-2"
-                                                            name="description" id="description">
-                                                        <input type="text" hidden value="{{ $row->user->id }}"
-                                                            class="form-control rounded-3 mt-2" name="user_id"
-                                                            id="user_id">
-                                                        <input type="text" hidden value="{{ $row->id }}"
-                                                            class="form-control rounded-3 mt-2" name="reply_id"
-                                                            id="reply_id">
-                                                        <div class="mt-4 mb-3">
-                                                            <button type="submit"
-                                                                class="btn btn-danger btn-sm rounded-5">Report <i
-                                                                    class="fa-solid fa-triangle-exclamation"></i></button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                @endforeach --}}
-
             </div>
         </div>
     </section>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const likeForms = document.querySelectorAll(".like-form");
+
+            likeForms.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector(".like-button");
+                    const icon = button.querySelector("i");
+                    const svg = button.querySelector("svg");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.liked) {
+                            button.classList.remove('text-dark');
+                            button.classList.add('text-warning');
+                            icon.setAttribute('class', 'fa-solid fa-thumbs-up'); 
+                            document.getElementById("like-count-" + responseData.reply_id).textContent = responseData.likes;
+                        } else {
+                            button.classList.remove('text-warning');
+                            button.classList.add('text-dark');
+                            icon.setAttribute('class', 'fa-regular fa-thumbs-up'); 
+                            document.getElementById("like-count-" + responseData.reply_id).textContent = responseData.likes;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
