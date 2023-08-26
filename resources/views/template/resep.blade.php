@@ -155,6 +155,21 @@
                 border: 0.5px solid grey;
                 background-color: black;
             }
+            .btn-fil{
+                width: 15%;
+                height: 35%;
+                position: absolute;
+                background: white;
+                border-radius: 15px;
+                color: black;
+                font-size: 18px;
+                font-family: Poppins;
+                font-weight: 600;
+                letter-spacing: 0.48px;
+                margin-left: 48%;
+                bottom: 10%
+
+            }
         </style>
 
         <div class="container py-5">
@@ -185,6 +200,13 @@
                             </div>
                         </div>
                     </form>
+                      <!-- Button Modal -->
+                      <div>
+                     <button  class="btn btn-fil" data-bs-toggle="modal" data-bs-target="#filter" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z"/></svg>
+                        filter
+                    </button>
+                    </div>
                 </div>
             </div>
         </div><!-- End -->
@@ -197,10 +219,7 @@
             {{ $recipes->links('vendor.pagination.simple-default') }}
         </div>
     </div>
-    <!-- Button Modal -->
-    <div class="btn btn-light mx-5" data-bs-toggle="modal" data-bs-target="#filter" style="border: 1px solid black">
-        <img src="{{ asset('images/🦆 icon _filter_.svg') }}" alt=""> Filter
-    </div>
+
     <!-- Modal -->
     <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true" tabindex="-1">
         <div class="modal-dialog">
@@ -246,7 +265,7 @@
                                     <input type="hidden" value="valentine">
                                     <button id="pilih_hari1" onclick="pilih_hari()" class="btn btn-light" type="button"
                                         style="border: 1px solid black; border-radius: 10px;">Valentine</button>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                         <div class="mb-3">
@@ -269,7 +288,7 @@
                         .btn-filter {
                             background-color: #F7941E;
                             color: white;
-                            font-weight: 400;                            
+                            font-weight: 400;
                         }
                     </style>
                     <script>
