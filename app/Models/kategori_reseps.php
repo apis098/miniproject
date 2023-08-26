@@ -11,6 +11,6 @@ class kategori_reseps extends Model
     protected $table = "kategori_reseps";
     protected $fillable = [
         "reseps_id",
-        "kategori_makanan_id"
+        "kategori_reseps_id"
     ];
 }

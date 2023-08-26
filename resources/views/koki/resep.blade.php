@@ -225,7 +225,7 @@
                             </div>
                             <input type="text" class="form-control mb-2" name="judul_langkah[]"
                                 placeholder="Masukkan judul langkah..." required>
-                            <textarea class="form-control" cols="30" rows="5" name="langkah_resep[]"
+                            <textarea maxlength="255" class="form-control" cols="30" rows="5" name="langkah_resep[]"
                                 placeholder="Masukkan langkah langkah" style="float: right;">
                             {{ old('langkah_resep.0') }}
                             </textarea>
@@ -444,7 +444,7 @@
                                 </div>
                             </div>
                             <input type="text" class="form-control mb-2" name="judul_langkah[]" placeholder="Masukkan judul langkah...">
-                            <textarea class="form-control" name="langkah_resep[]" cols="30" rows="5" placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.${num2}') }}</textarea>
+                            <textarea maxlength="255"  class="form-control" name="langkah_resep[]" cols="30" rows="5" placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.${num2}') }}</textarea>
                         </div>
             `;
             place2.appendChild(input2);

@@ -191,24 +191,6 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2">
-                        <label for="exampleFormControlInput1" class="form-label"><b>Hari Khusus</b></label>
-                        <select name="hari_khusus" id="exampleFormControlInput1" class="form-control">
-                            <option value=""></option>
-                            @if ($special_days)
-                                @foreach ($special_days as $d)
-                                    <option value="{{ $d->name }}"
-                                        {{ $edit_resep->hari_khusus == $d->name ? 'selected' : '' }}>{{ $d->name }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                        @error('hari_khusus')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
                     <br>
                     @foreach ($edit_resep->langkah as $int => $item_langkah)
                         <div id="close2_{{ $item_langkah->id }}">
@@ -269,8 +251,101 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
-                    <br> <br>
+                    style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
+                    <br>
+                    <div class="mt-2">
+                        <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
+                            <b> Jenis Makanan </b>
+                        </label>
+
+                        <div class="row">
+                            @foreach ($categories_foods as $num => $f)
+                            @if ($edit_resep->kategori_resep->contains('nama_makanan', $f->nama_makanan))
+                            <div class="col-lg-3 m-2">
+                                <input type="text" name="jenis_makanan[]" id="jenis_makanan{{ $num }}" value="{{ $f->id }}" style="display: none;">
+                                <button id="pilih_jenis_makanan{{ $num }}" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-filter"
+                                    type="button" style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <span style="font-size: 15px;">{{$f->nama_makanan}}</span>
+                                </button>
+                            </div> 
+                            @else
+                            <div class="col-lg-3 m-2">
+                                <input type="text" id="jenis_makanan{{ $num }}" value="{{ $f->id }}" style="display: none;">
+                                <button id="pilih_jenis_makanan{{ $num }}" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
+                                    type="button" style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
+                                </button>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <br>
+                    <div class="mt-2">
+                        <label for="hari_khusus" class="form-label" style="font-weight: 600;">
+                            <b> Hari Khusus </b>
+                        </label>
+                        <div class="row">
+                            @foreach ($special_days as $int => $d)
+                            @if ($edit_resep->hari_resep->contains("nama", $d->nama))
+                            <div class="col-lg-3 m-2">
+                                <input type="hidden" name="hari_khusus[]" id="input_pilih_hari{{ $int }}" value="{{ $d->id }}">
+                                <button id="pilih_hari{{ $int }}" onclick="pilih_hari({{ $int }})" class="btn btn-filter" type="button"
+                                    style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                </button>
+                            </div>
+                            @else     
+                            <div class="col-lg-3 m-2">
+                                <input type="hidden" id="input_pilih_hari{{ $int }}" value="{{ $d->id }}">
+                                <button id="pilih_hari{{ $int }}" onclick="pilih_hari({{ $int }})" class="btn btn-light" type="button"
+                                    style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                </button>
+                            </div>
+                            @endif
+                            @endforeach
+                        </div>
+                    </div>
+                    <br>
+                    <style>
+                        .btn-filter {
+                            background-color: #F7941E;
+                            color: white;
+                            font-weight: 400;
+                        }
+                    </style>
+                    <script>
+                        function pilih_hari(num) {
+                            const pilih_hari = document.getElementById("pilih_hari" + num);
+                            const input_pilih_hari = document.getElementById("input_pilih_hari" + num);
+                            if (pilih_hari.classList.contains("btn-light")) {
+                                pilih_hari.classList.remove("btn-light");
+                                pilih_hari.classList.add("btn-filter");
+                                input_pilih_hari.setAttribute("name", "hari_khusus[]");
+                            } else if (pilih_hari.classList.contains("btn-filter")) {
+                                pilih_hari.classList.remove("btn-filter");
+                                pilih_hari.classList.add("btn-light");
+                                input_pilih_hari.removeAttribute("name");
+                            }
+                        }
+
+                        function pilih_jenis_makanan(num) {
+                            const pilih_jenis_makanan = document.getElementById("pilih_jenis_makanan" + num);
+                            const jenis_makanan = document.getElementById("jenis_makanan" + num)
+                            if (pilih_jenis_makanan.classList.contains("btn-light")) {
+                                pilih_jenis_makanan.classList.remove("btn-light");
+                                pilih_jenis_makanan.classList.add("btn-filter");
+                                jenis_makanan.setAttribute("name", "jenis_makanan[]");
+                            } else if (pilih_jenis_makanan.classList.contains("btn-filter")) {
+                                pilih_jenis_makanan.classList.remove("btn-filter");
+                                pilih_jenis_makanan.classList.add("btn-light");
+                                jenis_makanan.removeAttribute("name");
+                            }
+                        }
+                    </script>
+                    <br>
+                    <br>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
@@ -347,7 +422,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row" 
+                                        <div class="row"
                                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                             <button type="button" onclick="input_file_langkah(${num2})"
                                                 class="col-4"
@@ -379,7 +454,7 @@
                                 </div>
                             </div>
                         </div>
-            
+
             `;
             place2.appendChild(input2);
         });

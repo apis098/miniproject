@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('hari_reseps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("reseps_id");
-            $table->unsignedBigInteger("special_days_id");
+            $table->unsignedBigInteger("hari_khusus_id");
             $table->timestamps();
 
             $table->foreign("reseps_id")->references("id")->on("reseps")->setNullOnDelete();

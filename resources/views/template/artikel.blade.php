@@ -336,6 +336,7 @@
                                 </button>
                             </div>
                             <div class="my-auto mx-4">
+                                <p style="font-weight: 900;font-size:18px;">{{ $item_langkah->judul_langkah }}</p>
                                 {{ $item_langkah->deskripsi_langkah }}
                             </div>
                         </div>

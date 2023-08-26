@@ -11,6 +11,6 @@ class hari_reseps extends Model
     protected $table = "hari_reseps";
     protected $fillable = [
         "reseps_id",
-        "special_days_id"
+        "hari_khusus_id"
     ];
 }

@@ -147,13 +147,13 @@ class ResepsController extends Controller
             foreach ($request->hari_khusus as $urut => $day) {
                 hari_reseps::create([
                     "reseps_id" => $create_recipe->id,
-                    "special_days_id" => $day
+                    "hari_khusus_id" => $day
                 ]);
             }
             foreach ($request->jenis_makanan as $no => $jenis) {
                 kategori_reseps::create([
                     "reseps_id" => $create_recipe->id,
-                    "kategori_makanan_id" => $jenis
+                    "kategori_reseps_id" => $jenis
                 ]);
             }
             //notifikasi untuk follower
@@ -188,6 +188,7 @@ class ResepsController extends Controller
     {
         $edit_resep = reseps::find($id);
         $special_days = special_days::all();
+        $categories_foods = kategori_makanan::all();
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
@@ -203,7 +204,7 @@ class ResepsController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view("koki.resep-edit", compact("edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount','favorite'));
+        return view("koki.resep-edit", compact("categories_foods","edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount','favorite'));
     }
 
     /**
