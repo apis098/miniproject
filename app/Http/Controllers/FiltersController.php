@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bahan_reseps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\kategori_makanan;
+use App\Models\kategori_reseps;
 use App\Models\special_days;
+use App\Models\toolsCooks;
 
 class FiltersController extends Controller
 {
@@ -34,7 +37,9 @@ class FiltersController extends Controller
                 ->paginate(10);
         }
         $special_day = special_days::all();
+        $tools = toolsCooks::all();
         $categories_foods = kategori_makanan::all();
-        return view('template.resep', compact('special_day','categories_foods','recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
+        return view('template.resep', compact('tools','special_day','categories_foods','categories_ingredients','recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

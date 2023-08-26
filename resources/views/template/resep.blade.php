@@ -189,7 +189,6 @@
                                                 <form action="{{ route('resep.home') }}" method="GET">
                                                     <input type="text" name="nama_resep"
                                                         placeholder="Masukkan nama resep..." value="{{ request()->nama_resep }}">
-                                                    </select>
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px;">Cari</button>
                                                 </form>
@@ -221,7 +220,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true" tabindex="-1">
+    <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -229,11 +228,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="GET">
+                    <form action="/resep" method="GET">
+                        @if (request()->nama_resep)
+                        <input type="text" hidden name="nama_resep" value="{{ request()->nama_resep }}">
+                        @endif
                         <div class="mb-3">
                             <label for="ingredients" class="form-label">Nama Bahan</label>
-                            <select name="ingredients[]" id="ingredients" class="form-control" style="border-radius: 10px">
+                            <select name="ingredients[]" style="width: 100%;" multiple="multiple" id="ingredients" class="cari form-control" style="border-radius: 10px">
                                 <option value=""></option>
+                                @foreach ($categories_ingredients as $f)
+                                 <option value="{{ $f }}">{{ $f }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">
@@ -254,8 +259,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="alat" class="form-label">Alat alat</label>
-                            <select name="alat[]" id="alat" class="form-control" style="border-radius: 10px">
+                            <select style="width: 100%;" name="alat[]" multiple="multiple" id="alat" class="form-control cari" style="border-radius: 10px;">
                                 <option value=""></option>
+                                @foreach ($tools as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_alat }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="mb-3">

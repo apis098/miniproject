@@ -722,11 +722,8 @@
     <script src="{{ asset('plugins/select2/js/select2.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.search-bahan').select2({
+            $('.cari').select2({
                 closeOnSelect: false
-            });
-            $('.search-time').select2({
-                multiple: false
             });
         });
     </script>

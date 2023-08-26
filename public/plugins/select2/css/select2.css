@@ -1,5 +1,7 @@
 .select2-container {
-  border: none;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 10px;
   box-sizing: border-box;
   display: inline-block;
   margin: 0;
