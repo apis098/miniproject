@@ -81,7 +81,7 @@
                                         </button><br>
                                         <div class="d-flex justify-content-center">
                                             <small class="me-1 like-count" id="like-count-{{$show_resep->id}}">{{$show_resep->likes}}</small>
-                                        </div>                                        
+                                        </div>
                                     @else
                                         <button type="submit"
                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
@@ -97,7 +97,7 @@
                                         </button><br>
                                         <div class="d-flex justify-content-center">
                                             <small class="me-1 like-count" id="like-count-{{$show_resep->id}}">{{$show_resep->likes}}</small>
-                                        </div>                                        
+                                        </div>
                                     @endif
                                 </form>
                                 {{-- favorite --}}
@@ -118,7 +118,7 @@
                                         </button><br>
                                         <div class="d-flex justify-content-center">
                                             <small class="me-1 fav-count" id="fav-count-{{$show_resep->id}}">{{$show_resep->favorite_count}}</small>
-                                        </div> 
+                                        </div>
                                     @else
                                         <button type="submit"
                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
@@ -131,7 +131,7 @@
                                         </button><br>
                                         <div class="d-flex justify-content-center">
                                             <small class="me-1 fav-count" id="fav-count-{{$show_resep->id}}">{{$show_resep->favorite_count}}</small>
-                                        </div> 
+                                        </div>
                                     @endif
                                 </form>
                                 {{-- end favorite --}}
@@ -180,6 +180,13 @@
                 </div>
             </div>
         </div>
+        @foreach ($show_resep->kategori_resep()->get() as $nk)
+        <button type="button" class="btn btn-info">{{ $nk->nama_makanan }}</button>
+        @endforeach
+        @foreach ($show_resep->hari_resep()->get() as $hr)
+        <button type="button" class="btn btn-info">{{ $hr->nama }}</button>
+
+        @endforeach
         <div class="row mx-auto mb-5" style="margin-top: -20px;">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>

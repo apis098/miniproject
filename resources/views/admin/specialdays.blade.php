@@ -37,7 +37,7 @@
         }
     </style>
     <div class="card bg-white mt-3 ml-3">
-        <h2 class="text-black text-center"> Tips Dasar</h2>
+        <h2 class="text-black text-center">Hari Khusus</h2>
     </div>
     <div class="container mb-3 mt-1 mb-md-1" style="margin-left:20%">
         <div class="col mt-5">

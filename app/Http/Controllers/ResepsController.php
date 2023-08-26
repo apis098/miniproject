@@ -15,6 +15,8 @@ use App\Models\toolsCooks;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\kategori_makanan;
+use App\Models\hari_reseps;
+use App\Models\kategori_reseps;
 use Illuminate\Validation\Validator as ValidationValidator;
 
 class ResepsController extends Controller
@@ -100,7 +102,6 @@ class ResepsController extends Controller
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
             return redirect()->back()->withErrors($validasi)->withInput();
-            //return response()->json([$validasi->errors(), 422]);
         }
         $time = 0;
         if ($request->lama_memasak2 === 'jam') {
@@ -108,16 +109,17 @@ class ResepsController extends Controller
         } else if($request->lama_memasak2 === 'menit'){
             $time = $request->lama_memasak;
         }
+
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
             "nama_resep" => $request->nama_resep,
             "foto_resep" => $request->file('foto_resep')->store('photo-recipe', 'public'),
             "deskripsi_resep" => $request->deskripsi_resep,
-            "hari_khusus" => $request->hari_khusus,
             "porsi_orang" => $request->porsi_orang,
             "lama_memasak" => $time,
             "pengeluaran_memasak" => $request->pengeluaran_memasak
         ]);
+
         if ($create_recipe) {
             foreach ($request->bahan_resep as $number => $b) {
                 $bahan = strtolower(trim($b));
@@ -140,6 +142,18 @@ class ResepsController extends Controller
                     "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
                     "judul_langkah" => $request->judul_langkah[$nomer],
                     "deskripsi_langkah" => $langkah
+                ]);
+            }
+            foreach ($request->hari_khusus as $urut => $day) {
+                hari_reseps::create([
+                    "reseps_id" => $create_recipe->id,
+                    "special_days_id" => $day
+                ]);
+            }
+            foreach ($request->jenis_makanan as $no => $jenis) {
+                kategori_reseps::create([
+                    "reseps_id" => $create_recipe->id,
+                    "kategori_makanan_id" => $jenis
                 ]);
             }
             //notifikasi untuk follower
@@ -296,7 +310,7 @@ class ResepsController extends Controller
                 ]);
             }
         }
-        
+
         foreach($request->nama_alat as $in => $na) {
             $alat = toolsCooks::where("id", $request->id_alat[$in])->first();
             $alat->nama_alat = $request->$na;
