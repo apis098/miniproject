@@ -97,7 +97,7 @@ Route::put('/status-baca/tambah-resep/{id}', [notificationController::class, 're
 
 // artikel
 Route::post('/favorite-store/{id}', [favoriteController::class, 'store'])->name('favorite.store');
-Route::post('/favorite-delete/multiple', [favoriteController::class, 'destroy'])->name('favorite.delete.multiple');
+Route::post('/favorite-delete/multiple', [favoriteController::class, 'destroyFavorite'])->name('favorite.delete.multiple');
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout

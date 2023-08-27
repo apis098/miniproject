@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class favoriteController extends Controller
 {
-    public function store($id){
-        $user=Auth::user();
+    public function store($id)
+    {
+        $user = Auth::user();
         $resep = reseps::findOrFail($id);
         if ($user && !$resep->favorite()->where('user_id_from', auth()->user()->id)->exists()) {
             $data = new favorite();
@@ -25,7 +26,7 @@ class favoriteController extends Controller
                 'resep_id' => $resep->id,
             ]);
         }
-        if ($user && $resep->favorite()->where('user_id_from', auth()->user()->id)->exists()){
+        if ($user && $resep->favorite()->where('user_id_from', auth()->user()->id)->exists()) {
             $resep->favorite()->where('user_id_from', auth()->user()->id)->delete();
             $resep->decrement('favorite_count');
             $resep->save();
@@ -39,7 +40,7 @@ class favoriteController extends Controller
             return response()->json(['error' => 'User authentication required']);
         }
     }
-    public function destroy(Request $request)
+    public function destroyFavorite(Request $request)
     {
         $selectedIds = $request->input('ids');
 
@@ -47,13 +48,21 @@ class favoriteController extends Controller
             return response()->json(['message' => 'Invalid input.'], 400);
         }
 
-        try {
-            // Hapus data berdasarkan ID yang diterima dari permintaan
-            favorite::whereIn('id', $selectedIds)->delete();
+        // Hapus data berdasarkan ID yang diterima dari permintaan
+        $favorites = favorite::whereIn('id', $selectedIds)->get();
 
-            return response()->json(['message' => 'Data berhasil dihapus.'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => 'Terjadi kesalahan saat menghapus data.'], 500);
+        // Iterasi melalui setiap data favorite untuk mengurangi favorite_count pada resep terkait
+        foreach ($favorites as $favorite) {
+            $resep = reseps::find($favorite->resep_id);
+            if ($resep) {
+                $resep->decrement('favorite_count');
+            }
         }
+
+        // Hapus data favorite setelah mengurangi favorite_count pada resep terkait
+        favorite::whereIn('id', $selectedIds)->delete();
+
+        return response()->json(['message' => 'Data berhasil dihapus.'], 200);
     }
+
 }

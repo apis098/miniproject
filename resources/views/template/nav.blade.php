@@ -671,7 +671,7 @@
                
                     </div>
                     @foreach($favorite as $row)
-                    <form action="{{route('Report.store')}}" method="POST">
+                    <form action="{{route('favorite.delete.multiple')}}" method="POST">
                         @csrf
                     <div class="modal-body d-flex align-items-center">
                         <input type="checkbox" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="{{$row->id}}" >
@@ -727,6 +727,7 @@
         });
 
         function deleteSelected() {
+            event.preventDefault();
             const selectedIds = $('.data-checkbox:checked')
                 .map(function() {
                     return this.getAttribute('data-id');
@@ -742,7 +743,7 @@
 
             if (selectedIds.length === 0) {
                 alert("Pilih setidaknya satu data yang akan dihapus.");
-                return;
+                location.reload();
             }
 
             if (confirm("Anda yakin ingin menghapus data terpilih?")) {
