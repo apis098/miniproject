@@ -215,7 +215,7 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //dd($request->all());
+        // dd($request->all());
         $rules = [
             "nama_resep" => "required",
             "foto_resep" => "nullable|image|mimes:jpg,jpeg,png|max:50000",
@@ -316,8 +316,9 @@ class ResepsController extends Controller
         }
 
         foreach($request->nama_alat as $in => $na) {
-            $alat = toolsCooks::where("id", $request->id_alat[$in])->first();
-            $alat->nama_alat = $request->$na;
+            $alat = toolsCooks::where('id', $request->id_alat[$in])->first();
+            $alat->nama_alat = $na;
+            $alat->save();
         }
         if ($request->has("nama_alat_tambahan")) {
             foreach ($request->nama_alat_tambahan as $nam => $amn) {
@@ -329,13 +330,17 @@ class ResepsController extends Controller
         }
         foreach ($request->langkah_resep as $index => $langkah) {
             $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
-            $langkah_resep->judul_langkah = $request->judul_langkah[$index];
             $langkah_resep->deskripsi_langkah = $langkah;
             if ($request->hasFile("foto_langkah_resep.$index")) {
                 Storage::delete("public/" . $langkah_resep->foto_langkah);
                 $langkah_resep->foto_langkah = $request->file("foto_langkah_resep.$index")->store("photo-step", "public");
             }
             $langkah_resep->save();
+        }
+        foreach ($request->judul_langkah as $bb => $jl) {
+            $langkah_resep2 = langkah_reseps::where('id', $request->id_langkah_resep[$bb])->first();
+            $langkah_resep2->judul_langkah = $jl;
+            $langkah_resep2->save();
         }
         // menambahkan langkah2 jika ada
         if ($request->has("langkah_resep_tambahan")) {
