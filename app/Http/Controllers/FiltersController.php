@@ -12,6 +12,7 @@ use App\Models\kategori_makanan;
 use App\Models\kategori_reseps;
 use App\Models\special_days;
 use App\Models\toolsCooks;
+use Illuminate\Support\Facades\Validator;
 
 class FiltersController extends Controller
 {
@@ -37,73 +38,92 @@ class FiltersController extends Controller
         $tools = toolsCooks::all();
         $categories_foods = kategori_makanan::all();
         $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
+        // validasi filter
+        $validator  = Validator::make($request->all(), [
+            'min_price' => 'lte:max_price'
+        ], [
+            'min_price.lte' => 'Minimal harga tidak boleh melebihi maksimal harga!'
+        ]);
+        if($validator->fails()) {
+            //return redirect()->back()->withErrors($validator);
+            return redirect()->back()->with('error', 'Minimal harga tidak boleh melebihi maksimal harga!');
+
+        }
+        $request->validate([
+            "min_price" => "lte:max_price"
+        ], [
+            "min_price.lte" => "Nilai harga minimal tidak boleh melebihi maksimal harga!"
+        ]);
         // proses filter lanjutan resep
         $recipes = reseps::paginate(6);
         if ($request->has('nama_resep')) {
             $recipes = [];
             $recipes = reseps::where('nama_resep', 'like', '%' . $request->nama_resep . '%')->paginate(6);
-            if ($request->has('min_price')) {
-                $recipes = reseps::where('pengeluaran_memasak', '>=', $request->min_price)->paginate(6);
-            }
-            if ($request->has('max_price')) {
-                $recipes = reseps::where('pengeluaran_memasak', '<=', $request->max_price)->paginate(6);
+            if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
+                $minprice = str_replace(['.', ','], '', $request->min_price);
+                $maxprice = str_replace(['.', ','], '', $request->max_price);
+                $min_price = (int)$minprice;
+                $max_price = (int)$maxprice;
+                $recipes = reseps::whereBetween("pengeluaran_memasak", [$min_price, $max_price])->paginate(6);
             }
             if ($request->has('ingredients')) {
                 $ingredients = $request->ingredients;
-                $recipes = reseps::whereHas('bahan', function($query) use($ingredients){
+                $recipes = reseps::whereHas('bahan', function ($query) use ($ingredients) {
                     $query->whereIn("nama_bahan", $ingredients);
                 })->paginate(6);
             }
             if ($request->has('alat')) {
                 $tools = $request->alat;
-                $recipes = reseps::whereHas('alat', function($query) use($tools){
+                $recipes = reseps::whereHas('alat', function ($query) use ($tools) {
                     $query->whereIn("nama_alat", $tools);
                 })->paginate(6);
             }
             if ($request->has('hari_khusus')) {
                 $days = $request->hari_khusus;
-                $recipes = reseps::whereHas("hari_resep", function($query) use($days){
+                $recipes = reseps::whereHas("hari_resep", function ($query) use ($days) {
                     $query->whereIn('nama', $days);
                 })->paginate(6);
             }
             if ($request->has('jenis_makanan')) {
                 $categories_foods = $request->jenis_makanan;
-                $recipes = reseps::whereHas("kategori_resep", function($query) use($categories_foods) {
+                $recipes = reseps::whereHas("kategori_resep", function ($query) use ($categories_foods) {
                     $query->whereIn('nama_makanan', $categories_foods);
                 })->paginate(6);
             }
         } else {
-            if ($request->has('min_price')) {
-                $recipes = reseps::where('pengeluaran_memasak', '>=', $request->min_price)->paginate(6);
+            if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
+                $minprice = str_replace(['.', ','], '', $request->min_price);
+                $maxprice = str_replace(['.', ','], '', $request->max_price);
+                $min_price = (int)$minprice;
+                $max_price = (int)$maxprice;
+                $recipes = reseps::whereBetween("pengeluaran_memasak", [$min_price, $max_price])->paginate(6);
             }
-            if ($request->has('max_price')) {
-                $recipes = reseps::where('pengeluaran_memasak', '<=', $request->max_price)->paginate(6);
-            }
+
             if ($request->has('ingredients')) {
                 $ingredients = $request->ingredients;
-                $recipes = reseps::whereHas('bahan', function($query) use($ingredients){
+                $recipes = reseps::whereHas('bahan', function ($query) use ($ingredients) {
                     $query->whereIn("nama_bahan", $ingredients);
                 })->paginate(6);
             }
             if ($request->has('alat')) {
                 $tools = $request->alat;
-                $recipes = reseps::whereHas('alat', function($query) use($tools){
+                $recipes = reseps::whereHas('alat', function ($query) use ($tools) {
                     $query->whereIn("nama_alat", $tools);
                 })->paginate(6);
             }
             if ($request->has('hari_khusus')) {
                 $days = $request->hari_khusus;
-                $recipes = reseps::whereHas("hari_resep", function($query) use($days){
+                $recipes = reseps::whereHas("hari_resep", function ($query) use ($days) {
                     $query->whereIn('nama', $days);
                 })->paginate(6);
             }
             if ($request->has('jenis_makanan')) {
                 $categories_foods = $request->jenis_makanan;
-                $recipes = reseps::whereHas("kategori_resep", function($query) use($categories_foods) {
+                $recipes = reseps::whereHas("kategori_resep", function ($query) use ($categories_foods) {
                     $query->whereIn('nama_makanan', $categories_foods);
                 })->paginate(6);
             }
         }
-        return view('template.resep', compact('tools','special_day','categories_foods','categories_ingredients','recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('tools', 'special_day', 'categories_foods', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

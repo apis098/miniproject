@@ -218,6 +218,15 @@
             {{ $recipes->links('vendor.pagination.simple-default') }}
         </div>
     </div>
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
     <!-- Modal -->
     <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true">
@@ -228,7 +237,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="/resep" method="GET">
+                    <form action="{{ route('resep.home') }}" method="GET">
                         @if (request()->nama_resep)
                         <input type="text" hidden name="nama_resep" value="{{ request()->nama_resep }}">
                         @endif
@@ -245,14 +254,14 @@
                             <label for="harga" class="form-label">Rentang Harga</label>
                             <div class="row">
                                 <div class="col-5">
-                                    <input type="number" name="min_price" placeholder="Minimal" value="" class="form-control"
+                                    <input type="text" name="min_price" id="minHargaInput" placeholder="Minimal" class="form-control "
                                         style="border-radius: 10px;">
                                 </div>
                                 <div class="col-2 my-auto">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
-                                    <input type="number" name="max_price" class="form-control" placeholder="Maksimal"
+                                    <input type="text" name="max_price"  class="form-control" id="maxHargaInput" placeholder="Maksimal"
                                         style="border-radius:10px">
                                 </div>
                             </div>
@@ -330,6 +339,24 @@
                                 input_jenis_makanan.removeAttribute("name");
                             }
                         }
+                        document.addEventListener('DOMContentLoaded', function(){
+                    const minHargaInput = document.getElementById('minHargaInput');
+                    const maxHargaInput = document.getElementById('maxHargaInput');
+
+                    const formatNumber = (input) => {
+                        const rawValue = input.value.replace(/\D/g,'');
+                        const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
+                        input.value = formattedValue;
+                    };
+
+                    minHargaInput.addEventListener('input', function(){
+                        formatNumber(this);
+                    });
+
+                    maxHargaInput.addEventListener('input', function(){
+                        formatNumber(this);
+                    });
+                });
                     </script>
                 </div>
             </div>
