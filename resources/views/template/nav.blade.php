@@ -658,55 +658,115 @@
             </p>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-dark fw-bolder ms-3" id="exampleModalLongTitle">Resep favorite</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-
-                @foreach($favorite as $row)
-                <form action="{{route('Report.store')}}" method="POST">
-                    @csrf
-                <div class="modal-body d-flex align-items-center">
-                    <input type="checkbox" class="form-check-input ms-3">
-                    <img src="{{ asset('storage/'.$row->resep->foto_resep) }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
-                    alt="">
-                    <div style="justify-content: space-between;" class="mb-1">
-                    <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">{{$row->resep->nama_resep}}</h6>
-
-                                 <small class="text-secondary  me-3">{{strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep}}</small>
-
+         <!-- Modal -->
+         <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Resep favorite</h5>
+                        {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+               
                     </div>
+                    @foreach($favorite as $row)
+                    <form action="{{route('Report.store')}}" method="POST">
+                        @csrf
+                    <div class="modal-body d-flex align-items-center">
+                        <input type="checkbox" name="selected_ids[]" class="form-check-input ms-3 data-checkbox" data-id="{{$row->id}}" >
+                        <img src="{{ asset('storage/'.$row->resep->foto_resep) }}" class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
+                        alt="">
+                        <a href="/artikel/{{$row->resep->id}}/{{$row->resep->nama_resep}}">
+                            <div style="justify-content: space-between;" class="mb-1">
+                            <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">{{$row->resep->nama_resep}}</h6>
+    
+                                        <small class="text-secondary  me-3">{{strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep}}</small>
+    
+                            </div>
+                        </a>
+                    </div>
+                    @endforeach
+                    @forelse ($favorite as $row)
+    
+                    @empty
+                    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 2em">
+                        <img src="images/data.png" style="width: 15em">
+                        <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                    </div>
+                    @endforelse
+                    <div class="modal-footer"> 
+                        <div class="me-4">
+                            <input name="select-all" style="margin-left: -25%;" type="checkbox" class="form-check-input" id="select-all">
+                            <div class="me-5">
+                                <label for="select-all" class="text-dark me-5">Pilih semua</label>
+                            </div>
+                        </div>
+                        <button onclick="deleteSelected()" class="btn btn-light btn-sm text-light ms-5" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus dari favorit</b></button>
+                    </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-light btn-sm text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus dari favorit</b></button>
-                </div>
-                </form>
-                @endforeach
-                @forelse ($favorite as $row)
-
-                @empty
-                <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 2em">
-                    <img src="images/data.png" style="width: 15em">
-                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                </div>
-                @endforelse
             </div>
         </div>
-    </div>
-        {{-- end Modal --}}
+            {{-- end Modal --}}
         </div>
     </footer>
     <!-- footer section -->
-
     <!-- jQery -->
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script>
+        $('#select-all').on('change', function() {
+            $('.data-checkbox').prop('checked', this.checked);
+        });
+
+        $('.data-checkbox').on('change', function() {
+            const totalData = $('.data-checkbox').length;
+            const totalChecked = $('.data-checkbox:checked').length;
+
+            $('#select-all').prop('checked', totalChecked === totalData);
+        });
+
+        function deleteSelected() {
+            const selectedIds = $('.data-checkbox:checked')
+                .map(function() {
+                    return this.getAttribute('data-id');
+                })
+                .get();
+
+            if ($('#select-all').prop('checked')) {
+                $('.data-checkbox').prop('checked', true);
+            } else {
+                $('.data-checkbox').prop('checked', false);
+            }
+
+
+            if (selectedIds.length === 0) {
+                alert("Pilih setidaknya satu data yang akan dihapus.");
+                return;
+            }
+
+            if (confirm("Anda yakin ingin menghapus data terpilih?")) {
+                const deleteUrl = "{{ route('favorite.delete.multiple') }}";
+                const csrfToken = "{{ csrf_token() }}";
+
+                $.ajax({
+                    type: 'POST',
+                    url: deleteUrl,
+                    data: {
+                        _token: csrfToken,
+                        ids: selectedIds
+                    },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Terjadi kesalahan saat menghapus data.");
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
+        }
+    </script>
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">

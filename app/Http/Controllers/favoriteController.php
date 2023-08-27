@@ -39,4 +39,21 @@ class favoriteController extends Controller
             return response()->json(['error' => 'User authentication required']);
         }
     }
+    public function destroy(Request $request)
+    {
+        $selectedIds = $request->input('ids');
+
+        if (!is_array($selectedIds)) {
+            return response()->json(['message' => 'Invalid input.'], 400);
+        }
+
+        try {
+            // Hapus data berdasarkan ID yang diterima dari permintaan
+            favorite::whereIn('id', $selectedIds)->delete();
+
+            return response()->json(['message' => 'Data berhasil dihapus.'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Terjadi kesalahan saat menghapus data.'], 500);
+        }
+    }
 }
