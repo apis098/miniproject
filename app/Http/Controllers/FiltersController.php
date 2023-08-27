@@ -35,8 +35,8 @@ class FiltersController extends Controller
         }
         // memberikan data untuk filter lanjutan resep
         $special_day = special_days::all();
-        $tools = toolsCooks::all();
-        $categories_foods = kategori_makanan::all();
+        $toolsCooks = toolsCooks::all();
+        $categories_foods_all = kategori_makanan::all();
         $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
         // validasi filter
         $validator  = Validator::make($request->all(), [
@@ -124,6 +124,6 @@ class FiltersController extends Controller
                 })->paginate(6);
             }
         }
-        return view('template.resep', compact('tools', 'special_day', 'categories_foods', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('toolsCooks', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

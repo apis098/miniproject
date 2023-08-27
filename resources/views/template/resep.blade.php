@@ -270,8 +270,8 @@
                             <label for="alat" class="form-label">Alat alat</label>
                             <select style="width: 100%;" name="alat[]" multiple="multiple" id="alat" class="form-control cari" style="border-radius: 10px;">
                                 <option value=""></option>
-                                @foreach ($tools as $item)
-                                <option value="{{ $item->id }}">{{ $item->nama_alat }}</option>
+                                @foreach ($toolsCooks as $itemtool)
+                                <option value="{{ $itemtool->id }}">{{ $itemtool->nama_alat }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -290,7 +290,7 @@
                         <div class="mb-3">
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
-                                @foreach ($categories_foods as $num => $f)
+                                @foreach ($categories_foods_all as $num => $f)
                                 <div class="col-lg-4">
                                     <input id="input_jenis_makanan{{$num}}" type="hidden" value="{{ $f->nama_makanan }}">
                                     <button id="pilih_jenis_makanan{{ $num }}" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light" type="button"
