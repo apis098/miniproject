@@ -144,18 +144,21 @@ class ResepsController extends Controller
                     "deskripsi_langkah" => $langkah
                 ]);
             }
-            foreach ($request->hari_khusus as $urut => $day) {
-                hari_reseps::create([
-                    "reseps_id" => $create_recipe->id,
-                    "hari_khusus_id" => $day
-                ]);
+            if ($request->has('hari_khusus')) {
+                foreach ($request->hari_khusus as $urut => $day) {
+                    hari_reseps::create([
+                        "reseps_id" => $create_recipe->id,
+                        "hari_khusus_id" => $day
+                    ]);
+                }
             }
+            if ($request->has('jenis_makanan')) {
             foreach ($request->jenis_makanan as $no => $jenis) {
                 kategori_reseps::create([
                     "reseps_id" => $create_recipe->id,
                     "kategori_reseps_id" => $jenis
                 ]);
-            }
+            }}
             //notifikasi untuk follower
             $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
             if($followerIds != null){

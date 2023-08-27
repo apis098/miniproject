@@ -43,9 +43,9 @@ class reseps extends Model
         return $this->hasMany(favorite::class,'resep_id');
     }
    public function kategori_resep() {
-    return $this->belongsToMany(kategori_makanan::class, "kategori_reseps");
+    return $this->belongsToMany(kategori_makanan::class, "kategori_reseps", "reseps_id", "kategori_reseps_id");
    }
     public function hari_resep() {
-        return $this->belongsToMany(special_days::class, "hari_reseps");
+        return $this->belongsToMany(special_days::class, "hari_reseps", "reseps_id", "hari_khusus_id");
     }
 }

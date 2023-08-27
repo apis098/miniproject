@@ -180,13 +180,16 @@
                 </div>
             </div>
         </div>
+        @if ($show_resep->kategori_resep)
         @foreach ($show_resep->kategori_resep()->get() as $nk)
         <button type="button" class="btn btn-info">{{ $nk->nama_makanan }}</button>
         @endforeach
+        @endif
+        @if ($show_resep->hari_resep)
         @foreach ($show_resep->hari_resep()->get() as $hr)
         <button type="button" class="btn btn-info">{{ $hr->nama }}</button>
-
         @endforeach
+        @endif
         <div class="row mx-auto mb-5" style="margin-top: -20px;">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>

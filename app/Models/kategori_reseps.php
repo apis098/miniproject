@@ -13,4 +13,5 @@ class kategori_reseps extends Model
         "reseps_id",
         "kategori_reseps_id"
     ];
+    
 }
