@@ -62,7 +62,7 @@ class favoriteController extends Controller
         // Hapus data favorite setelah mengurangi favorite_count pada resep terkait
         favorite::whereIn('id', $selectedIds)->delete();
 
-        return response()->json(['message' => 'Data berhasil dihapus.'], 200);
+       return redirect()->back()->with('success','data favorite berhasil dihapus');
     }
 
 }
