@@ -245,7 +245,7 @@
                 </div>
                 @if ($repliesCount > 0)
                     <div class="w-75 p-3">
-                        <small class="float-end">{{ $row->created_at->diffForHumans(['short' => false]) }}</small>
+                        <small class="float-end">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                     </div>
                 @endif
             </div>
