@@ -272,20 +272,20 @@
                             <div class="row">
                                 <div class="col-5">
                                     <input type="text" name="min_time" class="form-control" placeholder="Minimal" style="border-radius: 10px;">
-                                    <!--<select name="min_timer" id="">
+                                    <select name="min_timer" id="">
                                         <option value="menit">menit</option>
                                         <option value="jam">jam</option>
-                                    </select>-->
+                                    </select>
                                 </div>
                                 <div class="col-2 my-auto">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
                                     <input type="text" name="max_time" class="form-control" placeholder="Maksimal" style="border-radius: 10px;">
-                                    <!--<select name="max_timer" id="">
+                                    <select name="max_timer" id="">
                                         <option value="menit">menit</option>
                                         <option value="jam">jam</option>
-                                    </select>-->
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -395,7 +395,8 @@
         <div class="row">
             @foreach ($recipes as $item)
                 <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                    <div class="card" 
+                     style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">
                             <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
