@@ -170,9 +170,8 @@
                     </div>
                     <div class="mt-2">
                         <label for="PengeluaranMemasak" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="text" name="pengeluaran_memasak" class="form-control"
-                            id="PengeluaranMemasak" placeholder="Masukkan jumlah pengeluaran"
-                            value="{{ old('pengeluaran_memasak') }}" required>
+                        <input type="text" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
+                            placeholder="Masukkan jumlah pengeluaran" value="{{ old('pengeluaran_memasak') }}" required>
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -250,13 +249,16 @@
                         </label>
                         <div class="row">
                             @foreach ($categories_food as $num => $f)
-                            <div class="col-lg-3 m-2">
-                                <input type="text" id="jenis_makanan{{ $num }}" value="{{ $f->id }}" style="display: none;">
-                                <button id="pilih_jenis_makanan{{ $num }}" onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
-                                    type="button" style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                    <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
-                                </button>
-                            </div>
+                                <div class="col-lg-3 m-2">
+                                    <input type="text" id="jenis_makanan{{ $num }}"
+                                        value="{{ $f->id }}" style="display: none;">
+                                    <button id="pilih_jenis_makanan{{ $num }}"
+                                        onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
+                                        type="button"
+                                        style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                        <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
+                                    </button>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -267,13 +269,13 @@
                         </label>
                         <div class="row">
                             @foreach ($special_days as $int => $d)
-                            <div class="col-lg-3 m-2">
-                                <input type="hidden" id="input_pilih_hari{{ $int }}" value="{{ $d->id }}">
-                                <button id="pilih_hari{{ $int }}" onclick="pilih_hari({{ $int }})" class="btn btn-light" type="button"
-                                    style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                    <span style="font-size: 15px;">{{ $d->nama }}</span>
-                                </button>
-                            </div>
+                                <div class="col-lg-3 m-2">
+                                    <input type="radio" class="btn-check" name="hari_khusus"
+                                        id="success-outlined{{$int}}" autocomplete="off" checked>
+                                    <label class="btn btn-outline-warning" 
+                                    style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); color: black;border:none;"
+                                    for="success-outlined{{$int}}">{{ $d->nama }}</label>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -284,22 +286,11 @@
                             color: white;
                             font-weight: 400;
                         }
+                        .btn-outline.warning:active {
+                            background-color: #F7941E;
+                        }
                     </style>
                     <script>
-                        function pilih_hari(num) {
-                            const pilih_hari = document.getElementById("pilih_hari" + num);
-                            const input_pilih_hari = document.getElementById("input_pilih_hari" + num);
-                            if (pilih_hari.classList.contains("btn-light")) {
-                                pilih_hari.classList.remove("btn-light");
-                                pilih_hari.classList.add("btn-filter");
-                                input_pilih_hari.setAttribute("name", "hari_khusus[]");
-                            } else if (pilih_hari.classList.contains("btn-filter")) {
-                                pilih_hari.classList.remove("btn-filter");
-                                pilih_hari.classList.add("btn-light");
-                                input_pilih_hari.removeAttribute("name");
-                            }
-                        }
-
                         function pilih_jenis_makanan(num) {
                             const pilih_jenis_makanan = document.getElementById("pilih_jenis_makanan" + num);
                             const jenis_makanan = document.getElementById("jenis_makanan" + num)
@@ -313,15 +304,15 @@
                                 jenis_makanan.removeAttribute("name");
                             }
                         }
-                        document.addEventListener('DOMContentLoaded', function(){
-                        const PengeluaranMemasak = document.getElementById('PengeluaranMemasak');
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const PengeluaranMemasak = document.getElementById('PengeluaranMemasak');
 
-                        PengeluaranMemasak.addEventListener('input', function(){
-                            const rawValue = this.value.replace(/\D/g,'');
-                            const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
-                            this.value = formattedValue;
+                            PengeluaranMemasak.addEventListener('input', function() {
+                                const rawValue = this.value.replace(/\D/g, '');
+                                const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
+                                this.value = formattedValue;
+                            });
                         });
-                    });
                     </script>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
