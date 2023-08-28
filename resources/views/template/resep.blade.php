@@ -268,6 +268,28 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label for="waktu" class="form-label">Waktu</label>
+                            <div class="row">
+                                <div class="col-5">
+                                    <input type="text" name="min_time" class="form-control" placeholder="Minimal" style="border-radius: 10px;">
+                                    <!--<select name="min_timer" id="">
+                                        <option value="menit">menit</option>
+                                        <option value="jam">jam</option>
+                                    </select>-->
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <div class="garis"></div>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" name="max_time" class="form-control" placeholder="Maksimal" style="border-radius: 10px;">
+                                    <!--<select name="max_timer" id="">
+                                        <option value="menit">menit</option>
+                                        <option value="jam">jam</option>
+                                    </select>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
                             <label for="alat" class="form-label">Alat alat</label>
                             <select style="width: 100%;" name="alat[]" multiple="multiple" id="alat" class="form-control cari" style="border-radius: 10px;">
                                 <option value=""></option>

@@ -739,9 +739,25 @@
     </footer>
     <!-- footer section -->
     <!-- jQery -->
-    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script> 
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
+          $(document).ready(function () {
+            $("#buttonaddrecipe").click(function (event) {
+                event.preventDefault();
+
+                var data = $("#form-add-recipe").serialize();
+                $.ajax({
+                    url: "{{ route('resep.store') }}",
+                    type: "POST",
+                    data: data,
+                    error: function(data) {
+                        console.log(data.error);
+                    }
+                });
+            });
+        });
+
         $('#select-all').on('change', function() {
             $('.data-checkbox').prop('checked', this.checked);
         });
