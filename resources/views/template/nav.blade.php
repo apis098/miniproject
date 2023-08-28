@@ -598,11 +598,20 @@
                     <div class="footer_detail">
                         <h1>HummaCook</h1>
                         <p class="mt-3">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
-                        <div class="footer_contact mt-4"> <!-- Increase the margin-top value as needed -->
-                            <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-telegram fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
-                            <i class="fa fa-instagram fa-lg" aria-hidden="true"></i>
+                        <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
+                            <a href="">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-telegram" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                            <a href="">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+
                         </div>
 
 
