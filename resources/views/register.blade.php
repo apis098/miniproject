@@ -368,17 +368,17 @@
                                                     {{-- <input name="profile_picture" id="profile_picture" class="input-file my-auto mx-1"
                                                          type="file" class="formFile"> --}}
                                                          <div class="row ms-3"
-                                                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid">
+                                                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40x;">
                                                          <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
-                                                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
+                                                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px; padding: 9px 12px; right: 2px;">
                                                              <div
-                                                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                                                  Pilih File</div>
                                                              <input name="profile_picture" class="form-control my-auto mx-1"
                                                                  style="display: none;" type="file" id="inputan">
                                                          </button>
-                                                         <div class="col-8" id="fileinfo"
-                                                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                         <div class="col-8 mt-2" id="fileinfo"
+                                                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                                              Tidak ada file terpilih</div>
                                                      </div>
                                         </div>
