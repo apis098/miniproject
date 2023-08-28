@@ -214,7 +214,7 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request->all());
+        //dd($request->all());
         $rules = [
             "nama_resep" => "required",
             "foto_resep" => "nullable|image|mimes:jpg,jpeg,png|max:50000",
@@ -263,9 +263,7 @@ class ResepsController extends Controller
             $update_resep->foto_resep = $request->file('foto_resep')->store('photo-recipe', 'public');
         }
         $update_resep->deskripsi_resep = $request->deskripsi_resep;
-        if ($request->has("hari_khusus")) {
-            $update_resep->hari_khusus = $request->hari_khusus;
-        }
+       
         $update_resep->porsi_orang = $request->porsi_orang;
         $lama_memasak = $request->lama_memasak;
         if (strtolower(trim($request->lama_memasak2)) == 'jam') {
