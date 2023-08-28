@@ -171,7 +171,7 @@
             </div>
             <div class="col ms-5">
                 <div>
-                    <img src="{{ asset('images/home.jpg') }}" alt="Gambar Contoh"
+                    <img src="{{ asset('images/home.png') }}" alt="Gambar Contoh"
                         style="width: 110%; margin-top: -20%;">
                 </div>
             </div>
