@@ -283,6 +283,7 @@
                                             </svg>
                                         </a>
 
+
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-1"
                                             style="width: 350px; border-radius:13px; margin-right:-105%;">
                                             @foreach ($notification as $row)
@@ -588,92 +589,53 @@
         <!-- end header section -->
     </div>
     @yield('content')
+
     <!-- footer section -->
-    <footer class="footer_section"
-        style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+    <footer class="footer_section" style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 footer-col" style="margin-top: -2em">
+                <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_detail">
-                        <h1 style="margin-right: 10em">
-                            HummaCook
-                        </h1>
-                        <p class="mt-3" style="margin-right: 3em; text-align: left;">
-                            Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk
-                            Dimengerti
-                        </p>
-                        <div class="footer_contact"
-                            style="margin-top: 2em; display: flex; justify-content: flex-start;">
-                            <i class="fa fa-facebook" aria-hidden="true"
-                                style="margin-right: 10px; font-size: 24px;"></i>
-                            <i class="fa fa-telegram" aria-hidden="true"
-                                style="margin-right: 10px; font-size: 24px;"></i>
-                            <i class="fa fa-twitter" aria-hidden="true"
-                                style="margin-right: 10px; font-size: 24px;"></i>
-                            <i class="fa fa-instagram" aria-hidden="true"
-                                style="margin-right: 10px; font-size: 24px;"></i>
+                        <h1>HummaCook</h1>
+                        <p class="mt-3">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
+                        <div class="footer_contact mt-4"> <!-- Increase the margin-top value as needed -->
+                            <i class="fa fa-facebook fa-lg" aria-hidden="true"></i>
+                            <i class="fa fa-telegram fa-lg" aria-hidden="true"></i>
+                            <i class="fa fa-twitter fa-lg" aria-hidden="true"></i>
+                            <i class="fa fa-instagram fa-lg" aria-hidden="true"></i>
                         </div>
 
 
-                        {{-- <div class="footer_social">
-                            <a href="">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-linkedin" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                            </a>
-                            <a href="">
-                                <i class="fa fa-pinterest" aria-hidden="true"></i>
-                            </a>
-                        </div> --}}
                     </div>
                 </div>
-                <div class="col-md-4 footer-col" style="margin-top: -1em">
+                <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_contact">
-                        <h1
-                            style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: 5em">
-                            Kontak
-                        </h1>
+                        <h5 class="fw-bold">Kontak</h5>
                         <div class="contact_link_box">
+
+                            <a href="#">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <span>Call +62 1234567890</span>
                             </a>
-                            <a href="">
-                                <i class="fa fa-phone" aria-hidden="true" style="margin-left: 1em"></i>
-                                <span>
-                                    Call +62 1234567890
-                                </span>
+                            <a href="#">
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <span>Hummacook@gmail.com</span>
                             </a>
-                            <a href="">
-                                <i class="fa fa-envelope" aria-hidden="true" style="margin-left: 3em"></i>
-                                <span>
-                                    hummacook@gmail.com
-                                </span>
-                                <a href="">
-                                    <i class="fa fa-clock-o" aria-hidden="true" style="margin-left: -2.5em"></i>
-                                    <span>
-                                        buka 24 jam
-                                    </span>
-                                </a>
+                            <a href="#">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span>Buka Setiap Hari 24 Jam</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4 footer-col" style="margin-top: -1em">
-                    <h1 style="font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; margin-right: em">
-                        <i class="fa fa-map-marker " aria-hidden="true" style="margin-left: 1em"></i>
-                        <span>Lokasi</span>
+                <div class="col-md-4 col-sm-12 footer-col">
+                    <h1 class="footer-title">
+                        {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
+                        <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
                     </h1>
-                    </p>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid"
-                        height="200" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
+            </div>
                 <!-- Modal -->
                 <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -739,7 +701,7 @@
     </footer>
     <!-- footer section -->
     <!-- jQery -->
-    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script> 
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
           $(document).ready(function () {
