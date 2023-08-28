@@ -34,9 +34,15 @@
             <div class="col-lg-2 mt-3">
                 @if ($show_resep->User->id === Auth::user()->id)
                 @else
-                <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; " class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal" data-target="#reportModal">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7"/></svg>
-                </button>
+                    <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
+                        class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
+                        data-target="#reportModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7" />
+                        </svg>
+                    </button>
                 @endif
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                     width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
@@ -48,14 +54,14 @@
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
                 @if ($show_resep->kategori_resep)
-                @foreach ($show_resep->kategori_resep()->get() as $nk)
-                <button type="button" class="btn-edit p-2 ml-4 mr-2">{{ $nk->nama_makanan }}</button>
-                @endforeach
+                    @foreach ($show_resep->kategori_resep()->get() as $nk)
+                        <button type="button" class="btn-edit p-2 ml-4 mr-2">{{ $nk->nama_makanan }}</button>
+                    @endforeach
                 @endif
                 @if ($show_resep->hari_resep)
-                @foreach ($show_resep->hari_resep()->get() as $hr)
-                <button type="button" class="btn-edit p-2">{{ $hr->nama }}</button>
-                @endforeach
+                    @foreach ($show_resep->hari_resep()->get() as $hr)
+                        <button type="button" class="btn-edit p-2">{{ $hr->nama }}</button>
+                    @endforeach
                 @endif
             </div>
             <div class="mt-4 ml-3">
@@ -66,11 +72,10 @@
                                 <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
                                     <button type="submit" class="btn btn-edit ">Edit</button>
                                 </form>
-                                <form action="/koki/resep/{{ $show_resep->id }}" method="post">
+                                <form action="/koki/resep/{{ $show_resep->id }}" method="post" id="delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-hapus"
-                                        onclick="return confirm('Yakin mau menghapus data resep')">Hapus</button>
+                                    <button type="button" id="delete-button" class="btn btn-hapus">Hapus</button>
                                 </form>
                             @else
                                 <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST" class="like-form">
@@ -91,7 +96,8 @@
                                             </svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 like-count" id="like-count-{{$show_resep->id}}">{{$show_resep->likes}}</small>
+                                            <small class="me-1 like-count"
+                                                id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
                                         </div>
                                     @else
                                         <button type="submit"
@@ -107,7 +113,8 @@
                                             </svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 like-count" id="like-count-{{$show_resep->id}}">{{$show_resep->likes}}</small>
+                                            <small class="me-1 like-count"
+                                                id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
                                         </div>
                                     @endif
                                 </form>
@@ -128,7 +135,8 @@
                                             </svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 fav-count" id="fav-count-{{$show_resep->id}}">{{$show_resep->favorite_count}}</small>
+                                            <small class="me-1 fav-count"
+                                                id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
                                         </div>
                                     @else
                                         <button type="submit"
@@ -141,7 +149,8 @@
                                             </svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 fav-count" id="fav-count-{{$show_resep->id}}">{{$show_resep->favorite_count}}</small>
+                                            <small class="me-1 fav-count"
+                                                id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
                                         </div>
                                     @endif
                                 </form>
@@ -369,6 +378,32 @@
             </div>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('delete-button').addEventListener('click', function() {
+                Swal.fire({
+                    title: "Apakah Anda Yakin?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Ya,hapus!",
+                    cancelButtonText: "Tidak"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        document.getElementById('delete-form').submit();
+                        swalWithBootstrapButtons.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll(".like-form");
@@ -393,14 +428,16 @@
                             // Reset button color and SVG here
                             button.style.backgroundColor = "#F7941E";
                             svg.style.color = "white";
-                            document.getElementById("like-count-" + responseData.resep_id).textContent = responseData.likes;
+                            document.getElementById("like-count-" + responseData.resep_id)
+                                .textContent = responseData.likes;
                             // Modify SVG appearance if needed
                         } else {
                             // Update button color and SVG here
                             button.style.backgroundColor = "white";
                             svg.style.color = "#F7941E";
                             button.style.borderColor = "#F7941E";
-                            document.getElementById("like-count-" + responseData.resep_id).textContent = responseData.likes;
+                            document.getElementById("like-count-" + responseData.resep_id)
+                                .textContent = responseData.likes;
                         }
                     }
                 });
@@ -433,13 +470,15 @@
                             button1.style.backgroundColor = "#F7941E";
                             svg1.style.color = "white";
                             // Modify SVG appearance if needed
-                            document.getElementById("fav-count-" + responseData1.resep_id).textContent = responseData1.favorite_count;
+                            document.getElementById("fav-count-" + responseData1.resep_id)
+                                .textContent = responseData1.favorite_count;
                         } else {
                             // Update button color and SVG here
                             button1.style.backgroundColor = "white";
                             svg1.style.color = "#F7941E";
                             button1.style.borderColor = "#F7941E";
-                            document.getElementById("fav-count-" + responseData1.resep_id).textContent = responseData1.favorite_count;
+                            document.getElementById("fav-count-" + responseData1.resep_id)
+                                .textContent = responseData1.favorite_count;
                         }
                     }
                 });
