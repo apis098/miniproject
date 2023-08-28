@@ -181,9 +181,9 @@
                         @enderror
                     </div>
                     <div class="mt-2">
-                        <label for="exampleFormControlInput1" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="number" name="pengeluaran_memasak" class="form-control"
-                            id="exampleFormControlInput1" placeholder="Masukkan jumlah pengeluaran"
+                        <label for="" class="form-label"><b>Pengeluaran Memasak</b></label>
+                        <input type="text" name="pengeluaran_memasak" class="form-control"
+                            id="PengeluaranMemasak" placeholder="Masukkan jumlah pengeluaran"
                             value="{{ $edit_resep->pengeluaran_memasak }}">
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">
@@ -357,6 +357,15 @@
                                 jenis_makanan.removeAttribute("name");
                             }
                         }
+                        document.addEventListener('DOMContentLoaded', function(){
+                        const PengeluaranMemasak = document.getElementById('PengeluaranMemasak');
+
+                        PengeluaranMemasak.addEventListener('input', function(){
+                            const rawValue = this.value.replace(/\D/g,'');
+                            const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
+                            this.value = formattedValue;
+                        });
+                    });
                     </script>
                     <br>
                     <br>

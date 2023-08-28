@@ -42,7 +42,8 @@
             .search {
                 background-color: #fff;
                 padding: 4px;
-                border-radius: 5px
+                border-radius: 5px;
+                width: 85%;
             }
 
             .search-1 {
@@ -120,7 +121,7 @@
             .search-2 button {
                 position: absolute;
                 right: 1px;
-                top: -1px;
+                top: 0px;
                 border: none;
                 height: 45px;
                 background-color: #F7941E;
@@ -166,7 +167,7 @@
                 font-family: Poppins;
                 font-weight: 600;
                 letter-spacing: 0.48px;
-                margin-left: 48%;
+                margin-left: 33%;
                 bottom: 10%
 
             }

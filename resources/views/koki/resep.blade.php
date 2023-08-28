@@ -169,9 +169,9 @@
                         <div id="lama_memasak_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div class="mt-2">
-                        <label for="exampleFormControlInput1" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="number" name="pengeluaran_memasak" class="form-control"
-                            id="exampleFormControlInput1" placeholder="Masukkan jumlah pengeluaran"
+                        <label for="PengeluaranMemasak" class="form-label"><b>Pengeluaran Memasak</b></label>
+                        <input type="text" name="pengeluaran_memasak" class="form-control"
+                            id="PengeluaranMemasak" placeholder="Masukkan jumlah pengeluaran"
                             value="{{ old('pengeluaran_memasak') }}" required>
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">
@@ -313,6 +313,15 @@
                                 jenis_makanan.removeAttribute("name");
                             }
                         }
+                        document.addEventListener('DOMContentLoaded', function(){
+                        const PengeluaranMemasak = document.getElementById('PengeluaranMemasak');
+
+                        PengeluaranMemasak.addEventListener('input', function(){
+                            const rawValue = this.value.replace(/\D/g,'');
+                            const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
+                            this.value = formattedValue;
+                        });
+                    });
                     </script>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
