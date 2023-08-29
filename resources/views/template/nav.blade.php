@@ -673,8 +673,8 @@
                                 <span>Hummacook@gmail.com</span>
                             </a>
                             <a href="#">
-                                <i class="fa fa-clock-o" aria-hidden="true" style="margin-left: -0.5em"></i>
-                                <span>Buka Setiap Hari 24 Jam</span>
+                                <i class="fa-brands fa-youtube" aria-hidden="true" style="margin-left: -1.5em"></i>
+                                <span>Hummacook_Tutorial</span>
                             </a>
                         </div>
                     </div>
