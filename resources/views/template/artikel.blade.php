@@ -56,7 +56,7 @@
                 </div>
                 @if ($show_resep->kategori_resep)
                     @foreach ($show_resep->kategori_resep()->get() as $nk)
-                        <button type="button" class="btn-edit p-2 ml-4 mr-2">{{ $nk->nama_makanan }}</button>
+                        <button type="button" class="btn-edit p-2 ml-4 mr-2 mt-2">{{ $nk->nama_makanan }}</button>
                     @endforeach
                 @endif
                 @if ($show_resep->hari_resep)
