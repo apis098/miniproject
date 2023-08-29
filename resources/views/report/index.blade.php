@@ -62,7 +62,7 @@
         .table-custom td {
             padding-top: 30px;
             padding-bottom: 30px;
-            width: 185px;
+            width: 195px;
             border-top: solid black;
             border-bottom: solid black;
             border-left: none;
@@ -154,7 +154,7 @@
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan komentar </h5>
-                        <div id="f" style="width: 90%; height: 100%; border: 1px #F7941E solid;" hidden></div>
+                        <div id="f" class="ms-2" style="width: 90%; height: 100%; border: 1px #F7941E solid;" hidden></div>
                     </button>
                 </li>
             </ul>
