@@ -55,7 +55,7 @@
         }
 
         h1,
-        h2 {
+        h2{
             font-family: 'Dancing Script', cursive;
         }
     </style>

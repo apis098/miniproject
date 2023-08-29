@@ -381,25 +381,39 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+
             document.getElementById('delete-button').addEventListener('click', function() {
-                Swal.fire({
+                swalWithBootstrapButtons.fire({
                     title: "Apakah Anda Yakin?",
                     text: "Anda tidak akan dapat mengembalikannya!",
                     icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
                     confirmButtonText: "Ya,hapus!",
-                    cancelButtonText: "Tidak"
+                    cancelButtonText: "Tidak",
+                    reverseButtons: true,
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        document.getElementById('delete-form').submit();
                         swalWithBootstrapButtons.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    }
+                        'Terhapus!',
+                        'Data Anda Berhasil Dihapus!.',
+                        'success'
+                        );
+                    document.getElementById('delete-form').submit();
+
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        "Dibatalkan",
+                        "Data Anda Aman :)",
+                        "error"
+                    );
+                }
                 });
             });
         });

@@ -144,7 +144,7 @@ class FiltersController extends Controller
                     $query->whereIn('nama_makanan', $categories_foods);
                 })->paginate(6);
             }
-        } 
+        }
 
         return view('template.resep', compact('toolsCooks', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }

@@ -108,7 +108,7 @@ class ResepsController extends Controller
         } else if($request->lama_memasak2 === 'menit'){
             $time = $request->lama_memasak;
         }
-
+        $price = str_replace(['.', ','], '',$request->pengeluaran_memasak);
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
             "nama_resep" => $request->nama_resep,
@@ -116,7 +116,7 @@ class ResepsController extends Controller
             "deskripsi_resep" => $request->deskripsi_resep,
             "porsi_orang" => $request->porsi_orang,
             "lama_memasak" => $time,
-            "pengeluaran_memasak" => $request->pengeluaran_memasak
+            "pengeluaran_memasak" => $price
         ]);
 
         if ($create_recipe) {
@@ -263,7 +263,7 @@ class ResepsController extends Controller
             $update_resep->foto_resep = $request->file('foto_resep')->store('photo-recipe', 'public');
         }
         $update_resep->deskripsi_resep = $request->deskripsi_resep;
-       
+
         $update_resep->porsi_orang = $request->porsi_orang;
         $lama_memasak = $request->lama_memasak;
         if (strtolower(trim($request->lama_memasak2)) == 'jam') {
@@ -272,7 +272,8 @@ class ResepsController extends Controller
             $timer = $request->lama_memasak;
         }
         $update_resep->lama_memasak = $timer;
-        $update_resep->pengeluaran_memasak = $request->pengeluaran_memasak;
+        $price = str_replace([',', '.'], '', $request->pengeluaran_memasak);
+        $update_resep->pengeluaran_memasak = $price;
         $update_resep->save();
         if ($request->has("hapus_bahan")) {
             foreach ($request->hapus_bahan as $key => $value) {
