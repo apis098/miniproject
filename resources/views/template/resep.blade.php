@@ -249,7 +249,7 @@
                         <div class="mb-3">
                             <label for="ingredients" class="form-label">Nama Bahan</label>
                             <select name="ingredients[]" style="width: 100%;" multiple="multiple" id="ingredients"
-                                class="cari form-control" style="border-radius: 10px">
+                                class="cari form-control">
                                 <option value=""></option>
                                 @foreach ($categories_ingredients as $f)
                                     <option value="{{ $f }}">{{ $f }}</option>
@@ -261,14 +261,14 @@
                             <div class="row">
                                 <div class="col-5">
                                     <input type="text" name="min_price" id="minHargaInput" placeholder="Minimal"
-                                        class="form-control " style="border-radius: 10px;">
+                                        class="form-control " style="border-radius: 10px;font-size: 13px;">
                                 </div>
                                 <div class="col-2 my-auto">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
                                     <input type="text" name="max_price" class="form-control" id="maxHargaInput"
-                                        placeholder="Maksimal" style="border-radius:10px">
+                                        placeholder="Maksimal" style="border-radius:10px; font-size:13px;">
                                 </div>
                             </div>
                         </div>
@@ -276,47 +276,51 @@
                             <label for="waktu" class="form-label">Waktu</label>
                             <div class="row">
                                 <div class="col-5">
-                                    <input type="text" name="min_time" class="form-control" placeholder="Minimal"
-                                        style="border-radius: 10px;">
-                                    <select name="min_timer" id="">
+                                    <div class="row mx-auto">
+                                    <input type="text" name="min_time" class="col-6 form-control mr-1" placeholder="Minimal"
+                                        style="border-radius: 10px; font-size:13px;">
+                                    <select name="min_timer" id="" class="col-5" style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
                                         <option value="menit">menit</option>
                                         <option value="jam">jam</option>
                                     </select>
+                                    </div>
                                 </div>
-                                <div class="col-2 my-auto">
+                                <div class="col-2 my-3">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
-                                    <input type="text" name="max_time" class="form-control" placeholder="Maksimal"
-                                        style="border-radius: 10px;">
-                                    <select name="max_timer" id="">
+                                    <div class="row mx-auto">
+                                    <input type="text" name="max_time" class="col-6 form-control mr-1" placeholder="Maksimal"
+                                        style="border-radius: 10px;font-size:13px;">
+                                    <select name="max_timer" class="col-5" style="background-color: white;;border-radius: 10px; border: 1px solid;font-size:13px;" id="">
                                         <option value="menit">menit</option>
                                         <option value="jam">jam</option>
                                     </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="alat" class="form-label">Alat alat</label>
                             <select style="width: 100%;" name="alat[]" multiple="multiple" id="alat"
-                                class="form-control cari" style="border-radius: 10px;">
+                                class="form-control cari">
                                 <option value=""></option>
                                 @foreach ($toolsCooks as $itemtool)
-                                    <option value="{{ $itemtool->id }}">{{ $itemtool->nama_alat }}</option>
+                                    <option value="{{ $itemtool->nama_alat }}">{{ $itemtool->nama_alat }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> 
                         <div class="mb-3">
                             <label for="hari" class="form-label">Hari spesial</label>
                             <div class="row">
                                 @foreach ($special_day as $nums => $d)
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3 mb-3">
                                         <input type="hidden" id="input_pilih_hari{{ $nums }}"
                                             value="{{ $d->nama }}">
                                         <button id="pilih_hari{{ $nums }}"
                                             onclick="pilih_hari({{ $nums }})" class="btn btn-light"
                                             type="button"
-                                            style="border: 1px solid black; border-radius: 10px;">{{ $d->nama }}</button>
+                                            style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $d->nama }}</button>
                                     </div>
                                 @endforeach
                             </div>
@@ -325,13 +329,13 @@
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
                                 @foreach ($categories_foods_all as $num => $f)
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3 mb-3">
                                         <input id="input_jenis_makanan{{ $num }}" type="hidden"
                                             value="{{ $f->nama_makanan }}">
                                         <button id="pilih_jenis_makanan{{ $num }}"
                                             onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
                                             type="button"
-                                            style="border: 1px solid black; border-radius: 10px;">{{ $f->nama_makanan }}</button>
+                                            style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
                                     </div>
                                 @endforeach
                             </div>

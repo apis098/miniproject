@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("kategori_reseps_id")->nullable();
             $table->timestamps();
 
-            $table->foreign("reseps_id")->references("id")->on("reseps");
+            $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete('cascade');
             $table->foreign("kategori_reseps_id")->references("id")->on("kategori_makanans");
         });
     }
