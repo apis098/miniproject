@@ -216,7 +216,7 @@ class ResepsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //dd($request->all());
+        dd($request->all());
         $rules = [
             "nama_resep" => "required",
             "foto_resep" => "nullable|image|mimes:jpg,jpeg,png|max:50000",
@@ -277,6 +277,18 @@ class ResepsController extends Controller
         $price = str_replace([',', '.'], '', $request->pengeluaran_memasak);
         $update_resep->pengeluaran_memasak = $price;
         $update_resep->save();
+        if ($request->hari_khusus != "on") {
+            $ceks = reseps::has("hari_resep")->count();
+            if ($ceks >= 1) {
+                hari_reseps::where("reseps_id", $update_resep->id)->delete();
+            }
+            hari_reseps::create([
+                "reseps_id" => $update_resep->id,
+                "hari_khusus_id" => $request->hari_khusus
+            ]);
+        } else {
+            hari_reseps::where("reseps_id", $update_resep->id)->delete();
+        }
         if ($request->has("hapus_bahan")) {
             foreach ($request->hapus_bahan as $key => $value) {
                 $n = (int)$value;
