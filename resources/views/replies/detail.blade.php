@@ -35,17 +35,6 @@
             margin-left: 3px;
         }
 
-        .form-check-input {
-            margin-top: 6px;
-            margin-left: -24px !important;
-            cursor: pointer;
-        }
-
-
-        .form-check-input:focus {
-            box-shadow: none;
-        }
-
 
         .icons i {
 
@@ -69,37 +58,6 @@
             color: green;
             cursor: pointer;
 
-        }
-
-        .modal-body {
-            background-color: #F8DE22;
-            border-color: #F8DE22;
-        }
-
-        .intro-1 {
-            font-size: 20px
-        }
-
-        .close {
-            color: #fff
-        }
-
-        .close:hover {
-            color: #fff
-        }
-
-        .intro-2 {
-            font-size: 13px
-        }
-
-        .modal-body {
-            padding: 20px;
-            /* Tambahkan padding untuk menciptakan jarak di sekitar elemen */
-        }
-
-        .modal-body img {
-            margin-right: 20px;
-            /* Tambahkan margin di sebelah kanan gambar untuk menciptakan jarak */
         }
 
         .as {
