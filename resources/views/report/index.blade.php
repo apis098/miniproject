@@ -136,8 +136,8 @@
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan Resep</h5>
-                        <div id="border1" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan Resep</h5>
+                        <div id="border1" class="ms-2" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
