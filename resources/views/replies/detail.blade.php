@@ -18,9 +18,6 @@
             border-radius: 50%;
             display: inline-block;
         }
-
-
-
         .user-img {
 
             margin-top: 4px;
