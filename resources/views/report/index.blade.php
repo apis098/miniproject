@@ -157,6 +157,14 @@
                         <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;" hidden></div>
                     </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-user" type="button" role="tab" aria-controls="pills-contact"
+                        aria-selected="false">
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan pengguna</h5>
+                        <div id="pp" class="ms-3" style="width: 80%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                    </button>
+                </li>
             </ul>
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
@@ -255,6 +263,37 @@
                     </table>
                 </div>
                 {{-- end --}}
+                <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-contact-tab"
+                    tabindex="0">
+                    {{-- start tab 2 --}}
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pelapor</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Subjek</th>
+                                <th scope="col">Repitisi</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mt-5">
+                                <td style="border-left:solid black;" class="mt">Dummy</td>
+                                <td>Koki</td>
+                                <td>Berkata kasar</td>
+                                <td>1 Kali</td>
+                                <td style="border-right: solid black;">@mdo</td>
+                            </tr>
+                            <tr>
+                                <td style="border-left:solid black;">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Otto</td>
+                                <td style="border-right: solid black;">@dknsallk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
         </div>
@@ -268,23 +307,32 @@
         const border2 = document.getElementById("b");
         const underline = document.getElementById("f");
         const buttonTab = document.getElementById("button-tab");
+        const o = document.getElementById("pp");
+        const a_tab = document.getElementById("a-tab");
         buttonTab.addEventListener("click", function() {
             tab3();
         });
-
         function tab3() {
             event.preventDefault();
             border1.style.display = "none";
             border2.style.display = "none";
             underline.style.display = "block";
             underline.removeAttribute('hidden');
+            o.style.display = "none";
         }
+        a_tab.addEventListener('click',function() {
+            event.preventDefault();
+            o.style.display = "block";
+            underline.style.display = "none";
+            border1.style.display = "none";
+            border2.style.display = "none";
+        });
         click1.addEventListener('click', function() {
             event.preventDefault();
             border1.style.display = "block";
             border2.style.display = "none";
             underline.style.display = "none";
-            underline.addAttribute('hidden');
+            o.style.display = "none";
         });
         click2.addEventListener("click", function() {
             event.preventDefault();
@@ -292,7 +340,7 @@
             border2.style.display = "block";
             border1.style.display = "none";
             underline.style.display = "none";
-            underline.addAttribute('hidden');
+            o.style.display = "none";
         });
     </script>
     </div>

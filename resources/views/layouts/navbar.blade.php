@@ -111,7 +111,7 @@
                 <nav class="mt-3">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"  >
                             <a href="{{ route('admin.index') }}"
                                 class="nav-link mx-4  {{ request()->routeIs('admin.index') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
                                 <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="currentColor" d="m33.71 17.29l-15-15a1 1 0 0 0-1.41 0l-15 15a1 1 0 0 0 1.41 1.41L18 4.41l14.29 14.3a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="M28 32h-5V22H13v10H8V18l-2 2v12a2 2 0 0 0 2 2h7V24h6v10h7a2 2 0 0 0 2-2V19.76l-2-2Z" class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
