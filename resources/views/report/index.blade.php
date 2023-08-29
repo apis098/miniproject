@@ -4,13 +4,6 @@
         @powerGridStyles
     @endpush
     <style>
-        .table-rounded {
-            border-collapse: separate;
-            border-radius: 10px;
-            border-color: black;
-
-        }
-
         .table-rounded thead th:first-child {
             border-top-left-radius: 10px;
         }
@@ -36,12 +29,6 @@
             transform: scale(0.97);
         }
 
-
-        .modal-body {
-            background-color: #F8DE22;
-            border-color: #F8DE22;
-        }
-
         .intro-1 {
             font-size: 20px
         }
@@ -58,49 +45,245 @@
             font-size: 13px
         }
 
-        /* .btn-primary {
-                    color: #5165ff;
-                    background-color: #fffaff;
-                    border-color: #fffaff;
-                    padding: 12px;
-                    font-weight: 700;
-                    border-radius: 41px;
-                    padding-right: 20px;
-                    padding-left: 20px;
+        .ah {
+            background-color: #fff;
+        }
+
+        .table-custom {
+            text-align: center;
+        }
+
+        .table-custom {
+            text-align: center;
+            border-collapse: separate;
+            border-spacing: 0px 15px;
+        }
+
+        .table-custom td {
+            padding-top: 30px;
+            padding-bottom:30px;
+            width: 185px;
+            border-top: solid black;
+            border-bottom: solid black;
+            border-left: none;
+            border-right: none;
+            top: 10px;
+            overflow: hidden;
+        }
+
+        .table-custom th {
+            padding: 10px;
+            background-color: #F7941E;
+            margin-bottom: 50px;
+            color: #fff;
+        }
+
+        .table-custom thead {
+            margin-bottom: 50px;
+        }
+
+        /* .table-custom thead {
+                    background: #F7941E;
+                    margin-bottom: 10%;
+                    color: white;
                 } */
-                .ah{
-                    background-color: #fff;
-                }
+
+        /* .table-custom tr:not(.thead) {
+                margin-top: 10px;
+                margin-bottom: 10px;
+                border: 2px solid black;
+            } */
+
+        .table-custom td:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .table-custom td:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .table-custom th:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        .table-custom th:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+        tr{
+            padding: 30px;
+        }
     </style>
 
-<div class="mt-3 d-flex justify-content-center">
-<div class="Rectangle185" style="width: 960px; height: 54px; left: 280px; top: 32px; position: absolute; background: #F7941E; border-radius: 14px;  margin-left: 10px;"></div>
+    <div class=" d-flex justify-content-center ms-3" >
+        <div class="my-5 ml-5" style="margin-right: -15%;">
+            <ul class="nav mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                        aria-selected="true">
+                        <h5 class="text-dark" style="font-weight: 600; word-warp: break-word;">Laporan Resep</h5>
+                        <div id="border1" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                        aria-selected="false">
+                        <h5 class="text-dark" style="font-weight: 600; word-warp: break-word;">Laporan keluhan</h5>
+                        <div id="b" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a id="click4" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-footer" type="button" role="tab" aria-controls="pills-footer"
+                        aria-selected="false">
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap:break-word;">Laporan komentar </h5>
+                        <div id="border4" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;"
+                            class="mx-auto"></div>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                    tabindex="0">
+                    {{-- start tab 1 --}}
+                    <table class="table-custom">
+                        <thead >
+                            <tr>
+                                <th scope="col">Pelapor</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Subjek</th>
+                                <th scope="col">Repitisi</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mt-5">
+                                <td style="border-left:solid black;" class="mt">Dummy</td>
+                                <td>Koki</td>
+                                <td>Berkata kasar</td>
+                                <td>1 Kali</td>
+                                <td style="border-right: solid black;">@mdo</td>
+                            </tr>
+                            <tr>
+                                <td style="border-left:solid black;">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Otto</td>
+                                <td style="border-right: solid black;">@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {{-- end --}}
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                    tabindex="0">
+                     {{-- start tab 1 --}}
+                     <table class="table-custom">
+                        <thead >
+                            <tr>
+                                <th scope="col">Pelapor</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Subjek</th>
+                                <th scope="col">Repitisi</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mt-5">
+                                <td style="border-left:solid black;" class="mt">Dummy</td>
+                                <td>Koki</td>
+                                <td>Berkata kasar</td>
+                                <td>1 Kali</td>
+                                <td style="border-right: solid black;">@mdo</td>
+                            </tr>
+                            <tr>
+                                <td style="border-left:solid black;">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Otto</td>
+                                <td style="border-right: solid black;">@mdo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {{-- end --}}
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                    tabindex="0">
 
-<div class="Pelapor" style="width: 96px; left: 340px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Pelapor</div>
-<div class="User" style="width: 55px; left: 512px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">User</div>
-<div class="Subjek" style="width: 85px; left: 670px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Subjek</div>
-<div class="Repetisi" style="width: 102px; left: 860px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Repetisi</div>
-<div class="Konfirmasi" style="width: 135px; left: 1055px; top: 44px; position: absolute; color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Konfirmasi</div>
+                    <div class="card-body d-flex flex-row">
+                        <div class="my-auto mx-4">
+                            <p style="font-weight: 900;font-size:18px;">dsmandkasnd</p>
+                            dajsdkjaksd
+                        </div>
+                    </div>
 
-<div class="Rectangle187" style="width: 960px; height: 120px; left: 280px; top: 109px; position: absolute; border-radius: 14px; border: 0.50px black solid;  margin-left: 10px;"></div>
-<div class="Ferdiansyah" style="width: 134px; left: 325px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ferdiansyah</div>
-<div class="Ronaldo" style="width: 93px; height: 30px; left: 500px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Ronaldo</div>
-<div class="BerkataKotor" style="width: 140px; height: 30px; left: 656px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Berkata kotor</div>
-<div class="Kali" style="width: 57px; height: 30px; left: 880px; top: 156px; position: absolute; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">1 kali</div>
+                </div>
+                <div class="tab-pane fade" id="pills-footer" role="tabpanel" aria-labelledby="pills-footer-tab"
+                    tabindex="0">
+                    <div class="row mt-5">
 
-<button class="text-white" style="width: 100px; height: 38px; left: 1009px; top: 152px; position: absolute; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; border: none;">
-Terima
-</button>
+                        <div class="col-lg-4">
+                            <div class="card p-3"
+                                style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid">
+                                <div class="row my-1">
+                                    <div class="col-12 ">
+                                        <span class="ms-3" class=""
+                                            style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                            daskaksjdjads
+                                        </span> <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-<button class="text-black ah" style="width: 100px; height: 38px; left: 1126px; top: 152px; position: absolute; border-radius: 15px; border: 0.50px black solid; font-size: 16px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; ">
-Tolak
-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const click1 = document.getElementById("click1");
+            const click3 = document.getElementById("click3");
+            const border1 = document.getElementById("border1");
+            const border3 = document.getElementById("border3");
+            const click2 = document.getElementById("c");
+            const border2 = document.getElementById("b");
+            const click4 = document.getElementById("click4");
+            const border4 = document.getElementById("border4");
+            click1.addEventListener('click', function() {
+                border1.style.display = "block";
+                border2.style.display = "none";
+                border3.style.display = "none";
+                border4.style.display = "none";
+            });
+            click2.addEventListener("click", function() {
+                border2.removeAttribute('hidden');
+                border2.style.display = "block";
+                border1.style.display = "none";
+                border3.style.display = "none";
+                border4.style.display = "none";
+            });
 
-
-
-
-
-</div>
+            click3.addEventListener("click", function() {
+                border3.style.display = "block";
+                border1.style.display = "none";
+                border2.style.display = "none";
+                border4.style.display = "none";
+            });
+            click4.addEventListener("click", function() {
+                border3.style.display = "none";
+                border1.style.display = "none";
+                border2.style.display = "none";
+                border4.style.display = "block";
+            });
+        </script>
+    </div>
 
 
 
@@ -139,10 +322,10 @@ Tolak
 
                     <td>{{$row->userSender->name}}</td>
                     <td>{{$row->user->name}}</td>
-                    @if($row->reply_id)
+                    @if ($row->reply_id)
                     <td>{{$row->replies->reply}}</td>
                     @elseif($row->profile_id)
-                        @if($row->user->foto)
+                        @if ($row->user->foto)
                             <td>
                                 <img src="{{asset('storage/'.$row->user->foto)}}" class="img-thumbnail" width="106px" height="104px" alt="halo">
                             </td>
@@ -175,7 +358,7 @@ Tolak
                             <button type="submit" class="btn btn-outline-primary btn-sm rounded-5 edit-btn"
                                 data-toggle="modal" data-target="#replyModal{{ $row->replies->id }}">Terima laporan <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 48 48"><g fill="currentColor"><path fill-rule="evenodd" d="M16 5h13l9 9v23a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm19 9l-6-6v5a1 1 0 0 0 1 1h5Zm-2.293 7.293a1 1 0 0 1 0 1.414L24 31.414l-4.707-4.707a1 1 0 0 1 1.414-1.414L24 28.586l7.293-7.293a1 1 0 0 1 1.414 0Z" clip-rule="evenodd"/><path d="M12 11h-2v27a5 5 0 0 0 5 5h19v-2H15a3 3 0 0 1-3-3V11Z"/></g></svg></button>
                         </div> --}}
-                {{--    </td>
+    {{--    </td>
                 </tr>
             @endforeach
         </tbody>
@@ -200,13 +383,13 @@ Tolak
                                         <div class="mt-2"> <span class="intro-2">Balasan yang anda kirim:</span> </div>
                                         <span class="intro-1">p</span>
                                         <div class="mt-2"> <span class="intro-2">Jumlah like:</span> </div>
-                                        <span class="intro-1">p<i
-                                                class="fa-solid fa-thumbs-up"></i></span>
+                                        <span class="intro-1">p<i class="fa-solid fa-thumbs-up"></i></span>
                                         <form action="{{ route('ReplyDestroy.destroy', $row->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <div class="mt-4 mb-3"> <button
-                                                    class="btn btn-outline-dark btn-sm rounded-5">delete <i class="fa-solid fa-trash-can"></i></button> </div>
+                                                    class="btn btn-outline-dark btn-sm rounded-5">delete <i
+                                                        class="fa-solid fa-trash-can"></i></button> </div>
                                         </form>
                                     </div>
                                 </div>

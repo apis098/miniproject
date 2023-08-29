@@ -120,7 +120,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
+                        {{-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
                             <a href="{{ route('Complaint.all') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
                                 <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="M224 52H32a4 4 0 0 0-4 4v136a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V56a4 4 0 0 0-4-4Zm-96 86.57L42.28 60h171.44ZM104.63 128L36 190.91V65.09Zm5.92 5.43L125.3 147a4 4 0 0 0 5.4 0l14.75-13.52L213.72 196H42.28Zm40.82-5.43L220 65.09v125.82Z"/></svg>
@@ -137,7 +137,7 @@
                                     Balasan
                                 </p>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('Report.index') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
