@@ -597,7 +597,7 @@
                 <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_detail">
                         <h1>HummaCook</h1>
-                        <p class="mt-3">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
+                        <p class="mt-3 text-start">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -623,15 +623,15 @@
                         <div class="contact_link_box">
 
                             <a href="#">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
                                 <span>Call +62 1234567890</span>
                             </a>
                             <a href="#">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left: 1"></i>
                                 <span>Hummacook@gmail.com</span>
                             </a>
                             <a href="#">
-                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <i class="fa fa-clock-o" aria-hidden="true" style="margin-left: -0.5em"></i>
                                 <span>Buka Setiap Hari 24 Jam</span>
                             </a>
                         </div>
