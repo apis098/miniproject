@@ -93,9 +93,9 @@
                     <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
                     <div class="d-flex flex-row my-2">
                         <div class="">
-                            <img src="{{ asset('storage/'.$item->User->foto) }}" width="50px" style="border-radius: 50%;" alt="">
-                        </div>
-                        <div class="">
+                            <img src="{{ asset('storage/'.$item->User->foto) }}" width="30px" height="30px" style="border-radius: 50%;" alt="">
+                        </div> &nbsp;
+                        <div class="mt-1">
                             <span>{{ $item->User->name }}</span>
                         </div>
                     </div>
