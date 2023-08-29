@@ -639,7 +639,7 @@
                 <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_detail ">
                         <h1>HummaCook</h1>
-                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti, Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.  </p>
+                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakannya yang mudah untuk didapatkan.  </p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
