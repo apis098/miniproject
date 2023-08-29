@@ -271,12 +271,13 @@
                             @foreach ($special_days as $int => $d)
                                 <div class="col-lg-3 m-2">
                                     <input type="radio" class="btn-check" name="hari_khusus"
-                                        id="success-outlined{{$int}}" autocomplete="off" checked>
-                                    <label class="btn btn-outline-warning" 
-                                    style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;"
-                                    for="success-outlined{{$int}}">{{ $d->nama }}</label>
+                                        id="success-outlined{{ $int }}" value="{{ $d->id }}" autocomplete="off" checked>
+                                    <label class="btn btn-outline-warning"
+                                        style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;"
+                                        for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                 </div>
                             @endforeach
+                            
                         </div>
                     </div>
                     <br>
@@ -286,6 +287,7 @@
                             color: white;
                             font-weight: 400;
                         }
+
                         .btn-outline.warning:active {
                             background-color: #F7941E;
                         }

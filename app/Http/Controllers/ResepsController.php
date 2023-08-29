@@ -144,12 +144,10 @@ class ResepsController extends Controller
                 ]);
             }
             if ($request->has('hari_khusus')) {
-                foreach ($request->hari_khusus as $urut => $day) {
                     hari_reseps::create([
                         "reseps_id" => $create_recipe->id,
-                        "hari_khusus_id" => $day
+                        "hari_khusus_id" => $request->hari_khusus
                     ]);
-                }
             }
             if ($request->has('jenis_makanan')) {
             foreach ($request->jenis_makanan as $no => $jenis) {

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('kategori_reseps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("reseps_id");
-            $table->unsignedBigInteger("kategori_reseps_id");
+            $table->unsignedBigInteger("kategori_reseps_id")->nullable();
             $table->timestamps();
 
-            $table->foreign("reseps_id")->references("id")->on("reseps")->setNullOnDelete();
-            $table->foreign("kategori_reseps_id")->references("id")->on("kategori_makanans")->onDelete("cascade");
+            $table->foreign("reseps_id")->references("id")->on("reseps");
+            $table->foreign("kategori_reseps_id")->references("id")->on("kategori_makanans");
         });
     }
 

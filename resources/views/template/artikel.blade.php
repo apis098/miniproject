@@ -32,17 +32,18 @@
     <section class="container">
         <div class="row mt-5">
             <div class="col-lg-2 mt-3">
-                @if ($show_resep->User->id === Auth::user()->id)
-                @else
-                    <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
-                        class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
-                        data-target="#reportModal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7" />
-                        </svg>
-                    </button>
+                @if ($userLog == 2)
+                    @if ($show_resep->User->id === Auth::user()->id)
+                        <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
+                            class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
+                            data-target="#reportModal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7" />
+                            </svg>
+                        </button>
+                    @endif
                 @endif
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                     width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
@@ -382,12 +383,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
-            },
-            buttonsStyling: false
-        });
+                customClass: {
+                    confirmButton: "btn btn-success",
+                    cancelButton: "btn btn-danger"
+                },
+                buttonsStyling: false
+            });
 
             document.getElementById('delete-button').addEventListener('click', function() {
                 swalWithBootstrapButtons.fire({
@@ -401,19 +402,19 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         swalWithBootstrapButtons.fire(
-                        'Terhapus!',
-                        'Data Anda Berhasil Dihapus!.',
-                        'success'
+                            'Terhapus!',
+                            'Data Anda Berhasil Dihapus!.',
+                            'success'
                         );
-                    document.getElementById('delete-form').submit();
+                        document.getElementById('delete-form').submit();
 
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Dibatalkan",
-                        "Data Anda Aman :)",
-                        "error"
-                    );
-                }
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swalWithBootstrapButtons.fire(
+                            "Dibatalkan",
+                            "Data Anda Aman :)",
+                            "error"
+                        );
+                    }
                 });
             });
         });
