@@ -383,9 +383,9 @@
         function DeleteData() {
            iziToast.show({
                backgroundColor: '#F7941E',
+               title: '<i class="fa-regular fa-circle-question"></i>',
                titleColor: 'white',
                messageColor: 'white',
-               title: '<i class="fa-regular fa-circle-question"></i>',
                message: 'Apakah Anda yakin ingin menghapus data ini?',
                position: 'topCenter',
                buttons: [
@@ -396,7 +396,7 @@
                                document.getElementById('delete-form').submit();
                            }
                        }, toast, 'buttonName');
-                   }, true], // true to focus
+                   }, false], // true to focus
                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
                        instance.hide({}, toast, 'buttonName');
                    }]
