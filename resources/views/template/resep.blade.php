@@ -261,14 +261,14 @@
                             <div class="row">
                                 <div class="col-5">
                                     <input type="text" name="min_price" id="minHargaInput" placeholder="Minimal"
-                                        class="form-control " style="border-radius: 10px;font-size: 13px;">
+                                        class="form-control " style="border-radius: 10px;font-size: 13px;border: 1px solid black;">
                                 </div>
                                 <div class="col-2 my-auto">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
                                     <input type="text" name="max_price" class="form-control" id="maxHargaInput"
-                                        placeholder="Maksimal" style="border-radius:10px; font-size:13px;">
+                                        placeholder="Maksimal" style="border-radius:10px; font-size:13px;border:1px solid black;">
                                 </div>
                             </div>
                         </div>
@@ -278,7 +278,7 @@
                                 <div class="col-5">
                                     <div class="row mx-auto">
                                     <input type="text" name="min_time" class="col-6 form-control mr-1" placeholder="Minimal"
-                                        style="border-radius: 10px; font-size:13px;">
+                                        style="border-radius: 10px; font-size:13px;border: 1px solid black;">
                                     <select name="min_timer" id="" class="col-5" style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
                                         <option value="menit">menit</option>
                                         <option value="jam">jam</option>
@@ -291,7 +291,7 @@
                                 <div class="col-5">
                                     <div class="row mx-auto">
                                     <input type="text" name="max_time" class="col-6 form-control mr-1" placeholder="Maksimal"
-                                        style="border-radius: 10px;font-size:13px;">
+                                        style="border-radius: 10px;font-size:13px;border: 1px solid black;">
                                     <select name="max_timer" class="col-5" style="background-color: white;;border-radius: 10px; border: 1px solid;font-size:13px;" id="">
                                         <option value="menit">menit</option>
                                         <option value="jam">jam</option>

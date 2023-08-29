@@ -182,9 +182,8 @@
                     </div>
                     <div class="mt-2">
                         <label for="" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="text" name="pengeluaran_memasak" class="form-control"
-                            id="PengeluaranMemasak" placeholder="Masukkan jumlah pengeluaran"
-                            value="{{ $edit_resep->pengeluaran_memasak }}">
+                        <input type="text" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
+                            placeholder="Masukkan jumlah pengeluaran" value="{{ $edit_resep->pengeluaran_memasak }}">
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -233,7 +232,8 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="judul_langkah[]" id="" class="form-control" value="{{ $item_langkah->judul_langkah }}">
+                                    <input type="text" name="judul_langkah[]" id="" class="form-control"
+                                        value="{{ $item_langkah->judul_langkah }}">
                                     <textarea class="form-control" name="langkah_resep[]" style="white-space: nowrap;"
                                         placeholder="Masukkan langkah langkah" id="floatingTextarea">
                                 {{ trim($item_langkah->deskripsi_langkah) }}
@@ -269,7 +269,7 @@
                                         <button id="pilih_jenis_makanan{{ $num }}"
                                             onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-filter"
                                             type="button"
-                                            style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            style="width: 100%;border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                             <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
                                         </button>
                                     </div>
@@ -280,7 +280,7 @@
                                         <button id="pilih_jenis_makanan{{ $num }}"
                                             onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
                                             type="button"
-                                            style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            style="width: 100%;border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                             <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
                                         </button>
                                     </div>
@@ -294,31 +294,50 @@
                             <b> Hari Khusus </b>
                         </label>
                         <div class="row">
+                            @php
+                                $collect_day = [];
+                                foreach ($edit_resep->hari_resep as $ksw => $vle) {
+                                    $collect_day[] = $vle;
+                                }
+                            @endphp
                             @foreach ($special_days as $int => $d)
-                                @if ($edit_resep->hari_resep->contains('nama', $d->nama))
-                                    <div class="col-lg-3 m-2">
-                                        <input type="hidden" name="hari_khusus[]"
-                                            id="input_pilih_hari{{ $int }}" value="{{ $d->id }}">
-                                        <button id="pilih_hari{{ $int }}"
-                                            onclick="pilih_hari({{ $int }})" class="btn btn-filter"
-                                            type="button"
-                                            style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                            <span style="font-size: 15px;">{{ $d->nama }}</span>
-                                        </button>
+                                @if ($collect_day != [] && $collect_day[0]->nama == $d->nama)
+                                    <div class="col-lg-3 mb-2">
+                                        <input type="radio" class="btn-check" name="hari_khusus"
+                                            id="success-outlined{{ $int }}" value="{{ $d->id }}"
+                                            autocomplete="on" checked>
+                                        <label class="btn btn-outline-warning"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                     </div>
                                 @else
-                                    <div class="col-lg-3 m-2">
-                                        <input type="hidden" id="input_pilih_hari{{ $int }}"
-                                            value="{{ $d->id }}">
-                                        <button id="pilih_hari{{ $int }}"
-                                            onclick="pilih_hari({{ $int }})" class="btn btn-light"
-                                            type="button"
-                                            style="border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                            <span style="font-size: 15px;">{{ $d->nama }}</span>
-                                        </button>
+                                    <div class="col-lg-3 mb-2">
+                                        <input type="radio" class="btn-check" name="hari_khusus"
+                                            id="success-outlined{{ $int }}" value="{{ $d->id }}"
+                                            autocomplete="off">
+                                        <label class="btn btn-outline-warning"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                     </div>
                                 @endif
                             @endforeach
+                            @if ($collect_day === [])
+                                <div class="col-lg-3">
+                                    <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
+                                        autocomplete="on" checked>
+                                    <label class="btn btn-outline-warning"
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        for="success-outlined">Tidak ada</label>
+                                </div>
+                            @else
+                                <div class="col-lg-3">
+                                    <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
+                                        autocomplete="off">
+                                    <label class="btn btn-outline-warning"
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        for="success-outlined">Tidak ada</label>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <br>
@@ -357,15 +376,15 @@
                                 jenis_makanan.removeAttribute("name");
                             }
                         }
-                        document.addEventListener('DOMContentLoaded', function(){
-                        const PengeluaranMemasak = document.getElementById('PengeluaranMemasak');
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const PengeluaranMemasak = document.getElementById('PengeluaranMemasak');
 
-                        PengeluaranMemasak.addEventListener('input', function(){
-                            const rawValue = this.value.replace(/\D/g,'');
-                            const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
-                            this.value = formattedValue;
+                            PengeluaranMemasak.addEventListener('input', function() {
+                                const rawValue = this.value.replace(/\D/g, '');
+                                const formattedValue = new Intl.NumberFormat('id-ID').format(rawValue);
+                                this.value = formattedValue;
+                            });
                         });
-                    });
                     </script>
                     <br>
                     <br>
