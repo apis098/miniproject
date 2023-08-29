@@ -76,7 +76,7 @@
                                 <form action="/koki/resep/{{ $show_resep->id }}" method="post" id="delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" id="delete-button" class="btn btn-hapus">Hapus</button>
+                                    <button type="button" onclick="DeleteData()" class="btn btn-hapus">Hapus</button>
                                 </form>
                             @else
                                 <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST" class="like-form">
@@ -379,46 +379,37 @@
             </div>
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const swalWithBootstrapButtons = Swal.mixin({
-                customClass: {
-                    confirmButton: "btn btn-success",
-                    cancelButton: "btn btn-danger"
-                },
-                buttonsStyling: false
-            });
-
-            document.getElementById('delete-button').addEventListener('click', function() {
-                swalWithBootstrapButtons.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda tidak akan dapat mengembalikannya!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Ya,hapus!",
-                    cancelButtonText: "Tidak",
-                    reverseButtons: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        swalWithBootstrapButtons.fire(
-                            'Terhapus!',
-                            'Data Anda Berhasil Dihapus!.',
-                            'success'
-                        );
-                        document.getElementById('delete-form').submit();
-
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        swalWithBootstrapButtons.fire(
-                            "Dibatalkan",
-                            "Data Anda Aman :)",
-                            "error"
-                        );
-                    }
-                });
-            });
-        });
-    </script>
+        function DeleteData() {
+           iziToast.show({
+               backgroundColor: '#F7941E',
+               titleColor: 'white',
+               messageColor: 'white',
+               title: '<i class="fa-regular fa-circle-question"></i>',
+               message: 'Apakah Anda yakin ingin menghapus data ini?',
+               position: 'topCenter',
+               buttons: [
+                   ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
+                       instance.hide({
+                           transitionOut: 'fadeOutUp',
+                           onClosing: function (instance, toast, closedBy) {
+                               document.getElementById('delete-form').submit();
+                           }
+                       }, toast, 'buttonName');
+                   }, true], // true to focus
+                   ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
+                       instance.hide({}, toast, 'buttonName');
+                   }]
+               ],
+               onOpening: function (instance, toast) {
+                   console.info('callback abriu!');
+               },
+               onClosing: function (instance, toast, closedBy) {
+                   console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+               }
+           });
+       }
+       </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll(".like-form");
