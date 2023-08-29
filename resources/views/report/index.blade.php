@@ -137,7 +137,7 @@
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan Resep</h5>
-                        <div id="border1" class="ms-2" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
+                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;"></div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -145,7 +145,7 @@
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan keluhan</h5>
-                        <div id="b" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
+                        <div id="b" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;" hidden>
                         </div>
                     </a>
                 </li>
@@ -154,7 +154,7 @@
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan komentar </h5>
-                        <div id="f" class="ms-2" style="width: 90%; height: 100%; border: 1px #F7941E solid;" hidden></div>
+                        <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;" hidden></div>
                     </button>
                 </li>
             </ul>
