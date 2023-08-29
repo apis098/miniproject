@@ -232,7 +232,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="judul_langkah[]" id="" class="form-control"
+                                    <input type="text" name="judul_langkah[]" id="" class="form-control mb-3"
                                         value="{{ $item_langkah->judul_langkah }}">
                                     <textarea class="form-control" name="langkah_resep[]" style="white-space: nowrap;"
                                         placeholder="Masukkan langkah langkah" id="floatingTextarea">
@@ -486,8 +486,12 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
-                                        placeholder="Masukkan langkah langkah" id="floatingTextarea" value="{{ old('langkah_resep_tambahan.*') }}"/>
+                                    <input type="text" name="judul_resep_tambahan[]" id="" class="form-control mb-3"
+                                        value="{{ $item_langkah->judul_langkah }}">
+                                    <textarea class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
+                                        placeholder="Masukkan langkah langkah" id="floatingTextarea">
+                                {{ trim($item_langkah->deskripsi_langkah) }}
+                            </textarea>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
                                             {{ $message }}
