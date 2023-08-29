@@ -19,7 +19,7 @@
         <div class="col-sm-3 col-lg-3" style="margin-left: 17em; ">
             <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
-                    <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
+                    <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">{{ $jumlah_user }}</h6>
                     <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
                 </div>
                 <i class="fas fa-user-circle fa-3x"></i>
@@ -29,8 +29,8 @@
         <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
             <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
-                    <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
-                    <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
+                    <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">{{ $jumlah_resep }}</h6>
+                    <p class="mb-2" style="font-size: 14px; font-weight: bold;">Resep</p>
                 </div>
                 <i class="fas fa-book fa-3x"></i>
             </div>
@@ -38,8 +38,8 @@
         <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
             <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card" style="border: 1px solid #333;">
                 <div class="ms-1">
-                    <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">4997</h6>
-                    <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengguna</p>
+                    <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">{{ $jumlah_report}}</h6>
+                    <p class="mb-2" style="font-size: 14px; font-weight: bold;">Laporan</p>
                 </div>
                 <i class="fas fa-flag-o fa-3x"></i>
             </div>
@@ -52,8 +52,10 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @php
+    $data = ['1'];
+    @endphp
 <script>
         var ctx = document.getElementById('myBarChart').getContext('2d');
         var myBarChart = new Chart(ctx, {
@@ -62,7 +64,7 @@
                 labels: ['January', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'],
                 datasets: [{
                     label: 'Total',
-                    data: [4, 4, 1, 30, 1, 2, 1, 2, 3, 4, 4, 2],
+                    data: ['20'],
                     backgroundColor: 'orange',
                 }]
             },

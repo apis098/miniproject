@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Report;
+use App\Models\reseps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -13,9 +15,13 @@ class AdminController extends Controller
     public function index()
     {
         $admin = User::find(Auth::user()->id);
+        $jumlah_user = User::all()->count();
+        $jumlah_resep = reseps::all()->count();
+        $jumlah_report = Report::all()->count();
+        $data_chartjs = [];
         return view('admin.index',[
             'admin'=> $admin,
-            ]);
+            ], compact("jumlah_user", "jumlah_resep", "jumlah_report"));
 
 
     }
