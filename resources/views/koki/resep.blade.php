@@ -277,7 +277,13 @@
                                         for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                 </div>
                             @endforeach
-                            
+                            <div class="col-lg-3 m-2">
+                                <input type="radio" class="btn-check" name="hari_khusus"
+                                    id="success-outlined" autocomplete="on" checked>
+                                <label class="btn btn-outline-warning"
+                                    style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;"
+                                    for="success-outlined">Tidak ada</label>
+                            </div>
                         </div>
                     </div>
                     <br>

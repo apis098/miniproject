@@ -33,7 +33,7 @@
         <div class="row mt-5">
             <div class="col-lg-2 mt-3">
                 @if ($userLog == 2)
-                    @if ($show_resep->User->id === Auth::user()->id)
+                    @if ($show_resep->User->id != Auth::user()->id)
                         <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
                             class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
                             data-target="#reportModal">
