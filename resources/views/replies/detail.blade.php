@@ -163,8 +163,8 @@
 
                     @foreach ($replies as $row)
                         <div class="card p-3">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="user d-flex flex-row align-items-center">
+                            <div class="d-flex justify-content-between">
+                                <div class="user d-flex flex-row">
                                     @if ($row->user->foto)
                                         <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
                                             class="user-img rounded-circle mr-2">
@@ -199,7 +199,7 @@
                     @endif
                 </div>
                 @if ($repliesCount > 0)
-                    <div class="w-75 p-3">
+                    <div class="w-75 p-3 d-flex justify-content-end align-items-center">
                         <small class="float-end">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                     </div>
                 @endif

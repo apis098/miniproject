@@ -637,9 +637,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 footer-col">
-                    <div class="footer_detail">
+                    <div class="footer_detail ">
                         <h1>HummaCook</h1>
-                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
+                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti, Menyajikan resep-resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakan yang mudah didapatkan.  </p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -659,10 +659,10 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 footer-col">
-                    <div class="footer_contact">
+                <div class="col-md-4 col-sm-6 mt-2   footer-col ">
+                    <div class="footer_contact mt-2">
                         <h5 class="fw-bold">Kontak</h5>
-                        <div class="contact_link_box">
+                        <div class="contact_link_box mt-4">
 
                             <a href="#">
                                 <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
@@ -680,7 +680,7 @@
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-12 footer-col">
-                    <h1 class="footer-title">
+                    <h1 class="footer-title mt-4">
                         {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
                         <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
                     </h1>
