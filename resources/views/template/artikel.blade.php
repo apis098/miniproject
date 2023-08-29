@@ -32,17 +32,18 @@
     <section class="container">
         <div class="row mt-5">
             <div class="col-lg-2 mt-3">
-                @if ($show_resep->User->id === Auth::user()->id)
-                @else
-                    <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
-                        class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
-                        data-target="#reportModal">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7" />
-                        </svg>
-                    </button>
+                @if ($userLog == 2)
+                    @if ($show_resep->User->id != Auth::user()->id)
+                        <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
+                            class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
+                            data-target="#reportModal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 5a5 5 0 0 1 7 0a5 5 0 0 0 7 0v9a5 5 0 0 1-7 0a5 5 0 0 0-7 0V5zm0 16v-7" />
+                            </svg>
+                        </button>
+                    @endif
                 @endif
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                     width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
@@ -55,7 +56,7 @@
                 </div>
                 @if ($show_resep->kategori_resep)
                     @foreach ($show_resep->kategori_resep()->get() as $nk)
-                        <button type="button" class="btn-edit p-2 ml-4 mr-2">{{ $nk->nama_makanan }}</button>
+                        <button type="button" class="btn-edit p-2 ml-4 mr-2 mt-2">{{ $nk->nama_makanan }}</button>
                     @endforeach
                 @endif
                 @if ($show_resep->hari_resep)
@@ -75,7 +76,7 @@
                                 <form action="/koki/resep/{{ $show_resep->id }}" method="post" id="delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" id="delete-button" class="btn btn-hapus">Hapus</button>
+                                    <button type="button" onclick="DeleteData()" class="btn btn-hapus">Hapus</button>
                                 </form>
                             @else
                                 <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST" class="like-form">
@@ -378,46 +379,37 @@
             </div>
         </div>
     </section>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
-            },
-            buttonsStyling: false
-        });
-
-            document.getElementById('delete-button').addEventListener('click', function() {
-                swalWithBootstrapButtons.fire({
-                    title: "Apakah Anda Yakin?",
-                    text: "Anda tidak akan dapat mengembalikannya!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "Ya,hapus!",
-                    cancelButtonText: "Tidak",
-                    reverseButtons: true,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        swalWithBootstrapButtons.fire(
-                        'Terhapus!',
-                        'Data Anda Berhasil Dihapus!.',
-                        'success'
-                        );
-                    document.getElementById('delete-form').submit();
-
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "Dibatalkan",
-                        "Data Anda Aman :)",
-                        "error"
-                    );
-                }
-                });
-            });
-        });
-    </script>
+        function DeleteData() {
+           iziToast.show({
+               backgroundColor: '#F7941E',
+               title: '<i class="fa-regular fa-circle-question"></i>',
+               titleColor: 'white',
+               messageColor: 'white',
+               message: 'Apakah Anda yakin ingin menghapus data ini?',
+               position: 'topCenter',
+               buttons: [
+                   ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
+                       instance.hide({
+                           transitionOut: 'fadeOutUp',
+                           onClosing: function (instance, toast, closedBy) {
+                               document.getElementById('delete-form').submit();
+                           }
+                       }, toast, 'buttonName');
+                   }, false], // true to focus
+                   ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
+                       instance.hide({}, toast, 'buttonName');
+                   }]
+               ],
+               onOpening: function (instance, toast) {
+                   console.info('callback abriu!');
+               },
+               onClosing: function (instance, toast, closedBy) {
+                   console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+               }
+           });
+       }
+       </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll(".like-form");

@@ -30,14 +30,14 @@
                     <div class="row"
                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
-                            style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 40px;">
+                            style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 39px;">
                             <p
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                 Pilih File</p>
                             <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
                                 id="formFile">
                         </button>
-                        <div class="col-7 my-auto" id="infos"
+                        <div class="col-8 my-auto" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Tidak ada file terpilih</div>
                     </div>
@@ -226,7 +226,7 @@
                                 placeholder="Masukkan judul langkah..." required>
                             <textarea maxlength="255" class="form-control" cols="30" rows="5" name="langkah_resep[]"
                                 placeholder="Masukkan langkah langkah" style="float: right;">
-                            {{ old('langkah_resep.0') }}
+                                {{ old('langkah_resep.0') }}
                             </textarea>
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
@@ -249,13 +249,13 @@
                         </label>
                         <div class="row">
                             @foreach ($categories_food as $num => $f)
-                                <div class="col-lg-3 m-2">
+                                <div class="col-lg-3 mb-4">
                                     <input type="text" id="jenis_makanan{{ $num }}"
                                         value="{{ $f->id }}" style="display: none;">
                                     <button id="pilih_jenis_makanan{{ $num }}"
                                         onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
                                         type="button"
-                                        style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                         <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
                                     </button>
                                 </div>
@@ -269,14 +269,21 @@
                         </label>
                         <div class="row">
                             @foreach ($special_days as $int => $d)
-                                <div class="col-lg-3 m-2">
+                                <div class="col-lg-3 mb-2">
                                     <input type="radio" class="btn-check" name="hari_khusus"
-                                        id="success-outlined{{$int}}" autocomplete="off" checked>
-                                    <label class="btn btn-outline-warning" 
-                                    style="border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;"
-                                    for="success-outlined{{$int}}">{{ $d->nama }}</label>
+                                        id="success-outlined{{ $int }}" value="{{ $d->id }}" autocomplete="off" checked>
+                                    <label class="btn btn-outline-warning"
+                                    style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                 </div>
                             @endforeach
+                            <div class="col-lg-3">
+                                <input type="radio" class="btn-check" name="hari_khusus"
+                                    id="success-outlined" autocomplete="on" checked>
+                                <label class="btn btn-outline-warning"
+                                style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    for="success-outlined">Tidak ada</label>
+                            </div>
                         </div>
                     </div>
                     <br>

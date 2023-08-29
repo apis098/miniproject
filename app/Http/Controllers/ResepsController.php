@@ -38,12 +38,12 @@ class ResepsController extends Controller
         }
         if ($userLogin) {
             $favorite = favorite::where('user_id_from', auth()->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
         }
         $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('categories_food','notification', 'special_days', 'userLogin', 'unreadNotificationCount','favorite'));
+        return view("koki.resep", compact('categories_food', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -105,10 +105,10 @@ class ResepsController extends Controller
         $time = 0;
         if ($request->lama_memasak2 === 'jam') {
             $time = $request->lama_memasak * 60;
-        } else if($request->lama_memasak2 === 'menit'){
+        } else if ($request->lama_memasak2 === 'menit') {
             $time = $request->lama_memasak;
         }
-        $price = str_replace(['.', ','], '',$request->pengeluaran_memasak);
+        $price = str_replace(['.', ','], '', $request->pengeluaran_memasak);
         $create_recipe = reseps::create([
             "user_id" => Auth::user()->id,
             "nama_resep" => $request->nama_resep,
@@ -128,7 +128,7 @@ class ResepsController extends Controller
                     "takaran_bahan" => $request->takaran_resep[$number]
                 ]);
             }
-            foreach($request->nama_alat as $nm => $a) {
+            foreach ($request->nama_alat as $nm => $a) {
                 $alat = strtolower(trim($a));
                 toolsCooks::create([
                     "recipes_id" => $create_recipe->id,
@@ -144,23 +144,25 @@ class ResepsController extends Controller
                 ]);
             }
             if ($request->has('hari_khusus')) {
-                foreach ($request->hari_khusus as $urut => $day) {
+                if ($request->hari_khusus != 'on') {
+                    # code...
                     hari_reseps::create([
                         "reseps_id" => $create_recipe->id,
-                        "hari_khusus_id" => $day
+                        "hari_khusus_id" => $request->hari_khusus
                     ]);
                 }
             }
             if ($request->has('jenis_makanan')) {
-            foreach ($request->jenis_makanan as $no => $jenis) {
-                kategori_reseps::create([
-                    "reseps_id" => $create_recipe->id,
-                    "kategori_reseps_id" => $jenis
-                ]);
-            }}
+                foreach ($request->jenis_makanan as $no => $jenis) {
+                    kategori_reseps::create([
+                        "reseps_id" => $create_recipe->id,
+                        "kategori_reseps_id" => $jenis
+                    ]);
+                }
+            }
             //notifikasi untuk follower
             $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
-            if($followerIds != null){
+            if ($followerIds != null) {
                 foreach ($followerIds as $followerId) {
                     $notification = new Notifications([
                         'notification_from' => auth()->user()->id,
@@ -203,10 +205,10 @@ class ResepsController extends Controller
         }
         if ($userLogin) {
             $favorite = favorite::where('user_id_from', auth()->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
         }
-        return view("koki.resep-edit", compact("categories_foods","edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount','favorite'));
+        return view("koki.resep-edit", compact("categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -282,7 +284,7 @@ class ResepsController extends Controller
             }
         }
         if ($request->has("hapus_alat")) {
-            foreach($request->hapus_alat as $nms => $vv) {
+            foreach ($request->hapus_alat as $nms => $vv) {
                 $c = (int)$vv;
                 toolsCooks::where("id", $c)->delete();
             }
@@ -312,7 +314,7 @@ class ResepsController extends Controller
             }
         }
 
-        foreach($request->nama_alat as $in => $na) {
+        foreach ($request->nama_alat as $in => $na) {
             $alat = toolsCooks::where('id', $request->id_alat[$in])->first();
             $alat->nama_alat = $na;
             $alat->save();

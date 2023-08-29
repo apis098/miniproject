@@ -36,7 +36,8 @@ class FiltersController extends Controller
         }
         // memberikan data untuk filter lanjutan resep
         $special_day = special_days::all();
-        $toolsCooks = toolsCooks::all();
+        $toolcook = toolsCooks::all();
+        $toolsCooks = $toolcook->unique();
         $categories_foods_all = kategori_makanan::all();
         $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
         // validasi filter

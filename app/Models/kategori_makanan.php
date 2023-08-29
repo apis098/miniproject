@@ -13,6 +13,6 @@ class kategori_makanan extends Model
         'nama_makanan'
     ];
     public function resep() {
-        return $this->belongsToMany(reseps::class, "kategori_reseps");
+        return $this->belongsToMany(reseps::class, "kategori_reseps")->withTimestamps();
     }
 }
