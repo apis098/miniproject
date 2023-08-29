@@ -524,6 +524,7 @@
                                                     style="max-width:40px">
                                             @endif
                                         </a>
+                                        @if (auth()->user()->role === 'koki')
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
                                             style="width: 255px; border-radius:13px;">
                                             <div class="input-group">
@@ -575,6 +576,47 @@
                                             <div class="dropdown-divider"></div>
                                         </div>
                                     </div>
+                                    @elseif (auth()->user()->role === 'admin')
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                            style="width: 255px; border-radius:13px;">
+                                            <div class="input-group">
+                                                <a href="#">
+                                                    @if ($userLogin->foto)
+                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                            src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                            alt="profile image" width="50px" height="50px">
+                                                    @else
+                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                            src="{{ asset('images/default.jpg') }}"
+                                                            alt="profile image" style="max-width:40px">
+                                                    @endif
+                                                </a>
+                                                <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/koki/index" class="dropdown-item text-orange"
+                                                style="width: 230px">
+                                                <svg style="vertical-align: top; margin-left: -5px" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="currentColor" d="m33.71 17.29l-15-15a1 1 0 0 0-1.41 0l-15 15a1 1 0 0 0 1.41 1.41L18 4.41l14.29 14.3a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="M28 32h-5V22H13v10H8V18l-2 2v12a2 2 0 0 0 2 2h7V24h6v10h7a2 2 0 0 0 2-2V19.76l-2-2Z" class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
+                                               &nbsp; Dashboard
+                                            </a>
+
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                                class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                    <path fill="currentColor"
+                                                        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                                </svg>
+                                                Keluar
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                        </div>
+                                    </div>
+                                    @endif
+
                                 @else
                                     <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
                                         style="border-radius: 12px;"><b class="me-2 ms-2">Login</b></a>
@@ -597,7 +639,7 @@
                 <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_detail">
                         <h1>HummaCook</h1>
-                        <p class="mt-3 text-start">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
+                        <p class="mt-3">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti</p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
                             <a href="">
                                 <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -623,15 +665,15 @@
                         <div class="contact_link_box">
 
                             <a href="#">
-                                <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
+                                <i class="fa fa-phone" aria-hidden="true"></i>
                                 <span>Call +62 1234567890</span>
                             </a>
                             <a href="#">
-                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left: 1"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                                 <span>Hummacook@gmail.com</span>
                             </a>
                             <a href="#">
-                                <i class="fa fa-clock-o" aria-hidden="true" style="margin-left: -0.5em"></i>
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
                                 <span>Buka Setiap Hari 24 Jam</span>
                             </a>
                         </div>
