@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("hari_khusus_id")->nullable();
             $table->timestamps();
 
-            $table->foreign("reseps_id")->references("id")->on("reseps");
+            $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete('cascade');
             $table->foreign("hari_khusus_id")->references("id")->on("special_days");
         });
     }
