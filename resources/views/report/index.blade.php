@@ -61,7 +61,7 @@
 
         .table-custom td {
             padding-top: 30px;
-            padding-bottom:30px;
+            padding-bottom: 30px;
             width: 185px;
             border-top: solid black;
             border-bottom: solid black;
@@ -83,16 +83,16 @@
         }
 
         /* .table-custom thead {
-                    background: #F7941E;
-                    margin-bottom: 10%;
-                    color: white;
-                } */
+                        background: #F7941E;
+                        margin-bottom: 10%;
+                        color: white;
+                    } */
 
         /* .table-custom tr:not(.thead) {
-                margin-top: 10px;
-                margin-bottom: 10px;
-                border: 2px solid black;
-            } */
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    border: 2px solid black;
+                } */
 
         .table-custom td:first-child {
             border-top-left-radius: 15px;
@@ -113,19 +113,30 @@
             border-top-right-radius: 15px;
             border-bottom-right-radius: 15px;
         }
-        tr{
+
+        tr {
             padding: 30px;
+        }
+
+        .yuhu {
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
         }
     </style>
 
-    <div class=" d-flex justify-content-center ms-3" >
+    <div class=" d-flex justify-content-center ms-3">
         <div class="my-5 ml-5" style="margin-right: -15%;">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark" style="font-weight: 600; word-warp: break-word;">Laporan Resep</h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan Resep</h5>
                         <div id="border1" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
                     </a>
                 </li>
@@ -133,19 +144,18 @@
                     <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-warp: break-word;">Laporan keluhan</h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan keluhan</h5>
                         <div id="b" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
                         </div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a id="click4" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
-                        data-bs-target="#pills-footer" type="button" role="tab" aria-controls="pills-footer"
+                    <button id="button-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap:break-word;">Laporan komentar </h5>
-                        <div id="border4" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;"
-                            class="mx-auto"></div>
-                    </a>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan komentar </h5>
+                        <div id="f" style="width: 90%; height: 100%; border: 1px #F7941E solid;" hidden></div>
+                    </button>
                 </li>
             </ul>
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
@@ -153,7 +163,7 @@
                     tabindex="0">
                     {{-- start tab 1 --}}
                     <table class="table-custom">
-                        <thead >
+                        <thead>
                             <tr>
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
@@ -183,9 +193,9 @@
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
-                     {{-- start tab 1 --}}
-                     <table class="table-custom">
-                        <thead >
+                    {{-- start tab 2 --}}
+                    <table class="table-custom">
+                        <thead>
                             <tr>
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
@@ -213,76 +223,78 @@
                     </table>
                 </div>
                 {{-- end --}}
-                </div>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
-
-                    <div class="card-body d-flex flex-row">
-                        <div class="my-auto mx-4">
-                            <p style="font-weight: 900;font-size:18px;">dsmandkasnd</p>
-                            dajsdkjaksd
-                        </div>
-                    </div>
-
+                    {{-- start tab 2 --}}
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pelapor</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Subjek</th>
+                                <th scope="col">Repitisi</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="mt-5">
+                                <td style="border-left:solid black;" class="mt">Dummy</td>
+                                <td>Koki</td>
+                                <td>Berkata kasar</td>
+                                <td>1 Kali</td>
+                                <td style="border-right: solid black;">@mdo</td>
+                            </tr>
+                            <tr>
+                                <td style="border-left:solid black;">1</td>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>Otto</td>
+                                <td style="border-right: solid black;">@dknsallk</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="tab-pane fade" id="pills-footer" role="tabpanel" aria-labelledby="pills-footer-tab"
-                    tabindex="0">
-                    <div class="row mt-5">
-
-                        <div class="col-lg-4">
-                            <div class="card p-3"
-                                style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid">
-                                <div class="row my-1">
-                                    <div class="col-12 ">
-                                        <span class="ms-3" class=""
-                                            style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                            daskaksjdjads
-                                        </span> <br>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                {{-- end --}}
             </div>
-        </div>
-        <script>
-            const click1 = document.getElementById("click1");
-            const click3 = document.getElementById("click3");
-            const border1 = document.getElementById("border1");
-            const border3 = document.getElementById("border3");
-            const click2 = document.getElementById("c");
-            const border2 = document.getElementById("b");
-            const click4 = document.getElementById("click4");
-            const border4 = document.getElementById("border4");
-            click1.addEventListener('click', function() {
-                border1.style.display = "block";
-                border2.style.display = "none";
-                border3.style.display = "none";
-                border4.style.display = "none";
-            });
-            click2.addEventListener("click", function() {
-                border2.removeAttribute('hidden');
-                border2.style.display = "block";
-                border1.style.display = "none";
-                border3.style.display = "none";
-                border4.style.display = "none";
-            });
 
-            click3.addEventListener("click", function() {
-                border3.style.display = "block";
-                border1.style.display = "none";
-                border2.style.display = "none";
-                border4.style.display = "none";
-            });
-            click4.addEventListener("click", function() {
-                border3.style.display = "none";
-                border1.style.display = "none";
-                border2.style.display = "none";
-                border4.style.display = "block";
-            });
-        </script>
+        </div>
+    </div>
+    <script>
+        const click1 = document.getElementById("click1");
+        const click3 = document.getElementById("click3");
+        const border1 = document.getElementById("border1");
+        const border3 = document.getElementById("border3");
+        const click2 = document.getElementById("c");
+        const border2 = document.getElementById("b");
+        const underline = document.getElementById("f");
+        const buttonTab = document.getElementById("button-tab");
+        buttonTab.addEventListener("click", function() {
+            tab3();
+        });
+
+        function tab3() {
+            event.preventDefault();
+            border1.style.display = "none";
+            border2.style.display = "none";
+            underline.style.display = "block";
+            underline.removeAttribute('hidden');
+        }
+        click1.addEventListener('click', function() {
+            event.preventDefault();
+            border1.style.display = "block";
+            border2.style.display = "none";
+            underline.style.display = "none";
+            underline.addAttribute('hidden');
+        });
+        click2.addEventListener("click", function() {
+            event.preventDefault();
+            border2.removeAttribute('hidden');
+            border2.style.display = "block";
+            border1.style.display = "none";
+            underline.style.display = "none";
+            underline.addAttribute('hidden');
+        });
+    </script>
     </div>
 
 
