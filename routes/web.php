@@ -39,50 +39,12 @@ use Mockery\Undefined;
 |
 */
 
-Route::get('/', function () {
-    $complaints = complaint::paginate(3);
-    $real_reseps = reseps::paginate(2);
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite =[];
-    $unreadNotificationCount=[];
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-
-    return view('template.home', compact('real_reseps','userLogin', 'complaints','notification','unreadNotificationCount','favorite'));
-})->name('home');
+Route::get('/', [LoginController::class, 'home'])->name('home');
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 
-Route::get('about', function () {
-    $userLogin = Auth::user();
-    $notification = [];
-    $favorite = [];
-    $unreadNotificationCount=[];
-    if ($userLogin) {
-        $notification = notifications::where('user_id', auth()->user()->id)
-            ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-            ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-    }
-    if ($userLogin) {
-        $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-    }
-    return view('template.about', compact('notification','unreadNotificationCount','userLogin','favorite'));
-})->name('about');
+Route::get('about', [LoginController::class, 'about'])->name('about');
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
