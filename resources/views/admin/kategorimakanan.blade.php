@@ -59,7 +59,7 @@
         .table-custom td {
             padding-top: 30px;
             padding-bottom: 30px;
-            width: 195px;
+            width: 210px;
             border-top: solid black;
             border-bottom: solid black;
             border-left: none;
@@ -70,6 +70,7 @@
 
         .table-custom th {
             padding: 10px;
+            width: 210px;
             background-color: #F7941E;
             margin-bottom: 50px;
             color: #fff;
@@ -150,7 +151,7 @@
             word-wrap: break-word
         }
     </style>
-    <div class=" d-flex justify-content-center ms-3">
+    <div class=" d-flex justify-content-center ms-1">
         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
             <div class="my-5 ml-5" style="margin-right:%;">
                 <button type="button" class="btn btn-buat btn-sm" data-toggle="modal"
