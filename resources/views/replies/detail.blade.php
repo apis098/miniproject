@@ -219,35 +219,50 @@
                                     @endif
                                     @if ($row->user->role == 'admin')
                                         <span><small
-                                                class="font-weight-semibold text-primary ms-2 me-2"><b>{{ $row->user->name }}</b><svg
+                                                class="font-weight-semibold ms-1 me-2"><b>{{ $row->user->name }}</b>
+                                                <svg
                                                     class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
                                                     width="15" height="15" viewBox="0 0 24 24">
                                                     <path fill="currentColor"
                                                         d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                </svg></small>
+                                                </svg>
+                                                @if ($repliesCount > 0)
+                                                <div class="text-black" style="font-size: 15px">
+                                                    <small class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                                </div>
+                                            @endif
+                                        </small>
                                             <br>
-                                            <div class="w-auto p-2" style="">
-                                                <small class="font-weight-bold">{{ $row->reply }}</small>
+                                            <div class="" style="">
+                                                <small class="font-weight-bold text-break">{{ $row->reply }}</small>
                                         </span>
                                 </div>
                             @else
+                            <div class="d-flex">
                                 <span><small
-                                        class="font-weight-semibold text-primary ms-2 me-2"><b>{{ $row->user->name }}</b></small>
+                                        class="font-weight-semibold ms-1 me-2"><b class="font-weight-semibold me-2">{{ $row->user->name }}</b>
+                                        @if ($repliesCount > 0)
+                                            <div class="" style="font-size: 15px">
+                                                <small class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                            </div>
+                                        @endif
+                                        </small>
+                                        <div class="" style="">
+                                            <small class="font-weight-bold text-break" >{{ $row->reply }}</small>
+                                       
+                                            {{-- @if (strlen($row->reply) > 500) --}}
+                                {{-- <button class="read-more-button">Baca Selengkapnya</button> --}}
+                            {{-- @endif --}}
+                                    </span>
+                                </div>
+            </div>
                                     <br>
-                                    <div class="w-auto p-2 " style="">
-                                        <small class="font-weight-bold" >{{ $row->reply }}</small>
-                                        {{-- @if (strlen($row->reply) > 500) --}}
-                            {{-- <button class="read-more-button">Baca Selengkapnya</button> --}}
-                        {{-- @endif --}}
-                                </span>
-                            </div>
+                                    
+
+                                   
                     @endif
                 </div>
-                @if ($repliesCount > 0)
-                    <div class="w-75 p-3 d-flex justify-content-end align-items-center">
-                        <small class="float-end">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                    </div>
-                @endif
+                
             </div>
             <div class="action d-flex justify-content-between mt-2 align-items-center">
 
