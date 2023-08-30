@@ -69,6 +69,7 @@
             border-right: none;
             top: 10px;
             overflow: hidden;
+            font-weight: bolder;
         }
 
         .table-custom th {
@@ -161,7 +162,7 @@
                     <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-user" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan pengguna</h5>
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan profile</h5>
                         <div id="pp" class="ms-3" style="width: 80%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                     </button>
                 </li>
@@ -186,14 +187,18 @@
                                 <td>Koki</td>
                                 <td>Berkata kasar</td>
                                 <td>1 Kali</td>
-                                <td style="border-right: solid black;">@mdo</td>
+                                <td style="border-right: solid black;">
+                                    <button class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                </td>
                             </tr>
                             <tr>
                                 <td style="border-left:solid black;">1</td>
                                 <td>Mark</td>
                                 <td>Otto</td>
                                 <td>Otto</td>
-                                <td style="border-right: solid black;">@mdo</td>
+                                <td style="border-right: solid black;">
+                                    <button class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>   
+                                </td>
                             </tr>
                         </tbody>
                     </table>
