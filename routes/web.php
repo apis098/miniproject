@@ -89,6 +89,7 @@ Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name(
 Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');
 Route::post('/laporan-resep/{id}',[ReportController::class,'storeResep'])->name('report.resep');
 Route::post('/laporan-komentar/{id}',[ReportController::class,'storeReply'])->name('report.reply');
+Route::post('/laporan-keluhan/{id}',[ReportController::class,'storeComplaint'])->name('report.complaint');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

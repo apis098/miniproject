@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\complaint;
 use App\Models\favorite;
 use App\Models\notifications;
 use App\Models\Reply;
@@ -57,6 +58,16 @@ class ReportController extends Controller
         $report->description = $request->description;
         $report->save();
         return redirect()->back()->with('success','Laporan anda telah terkirim');
+    }
+    public function storeComplaint(Request $request, $id){
+        $complaint = complaint::findOrFail($id);
+        $report = new Report();
+        $report->complaint_id = $complaint->id;
+        $report->user_id = $complaint->user_id;
+        $report->user_id_sender = auth()->user()->id;
+        $report->description = $request->description;
+        $report->save();
+        return redirect()->back()->with('success','Laoran anda telah terkirim');
     }
     public function store(Request $request){
         $userId = Auth::user()->id;

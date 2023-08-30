@@ -235,11 +235,13 @@
                             @foreach($data as $row)
                             @if($row->complaint_id !=  null)
                                 <tr class="mt-5">
-                                    <td style="border-left:solid black;" class="mt">Dummy</td>
-                                    <td>Koki</td>
-                                    <td>Berkata kasar</td>
-                                    <td>1 Kali</td>
-                                    <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    <td style="border-left:solid black;" class="mt">{{$row->userSender->name}}</td>
+                                    <td>{{$row->user->name}}</td>
+                                    <td>{{$row->description}}</td>
+                                    <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
+                                    <td style="border-right: solid black;">
+                                        <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
                                 </tr>
                             @endif
                             @endforeach
@@ -300,7 +302,7 @@
                                 <td>{{$row->description}}</td>
                                 <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
                                 <td style="border-right: solid black;">
-                                    <button type="button" data-toggle="modal" data-target="#modalProfile{{ $row->profile_id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    <button type="button" data-toggle="modal" data-target="#modalProfile{{$row->profile_id}}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
                                 </td>
                             </tr>
                             @endif
@@ -358,32 +360,79 @@
         });
     </script>
     </div>
-    {{-- Modal report profile --}}
+    {{-- modal proofile --}}
     @foreach($data as $row)
-    @if($row->profile_id != null)
-    <div class="modal fade bd-example-modal-xl rounded-5" id="modalProfile{{$row->profile_id}}" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title fw-bolder">Detail</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="fa-regular text-dark fa-circle-xmark"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-               ....
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus laporan</button>
-                <button type="button" style="background-color: #F7941E;" class="btn btn-light text-light rounded-3">Terima laporan</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      @endif
-      @endforeach
-    {{-- end modal --}}
+    @if($row->profile_id!=null)
+    <div class="modal fade" data-bs-backdrop="static" id="modalProfile{{$row->profile_id}}" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered profile-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" style="font-family: Poppins;" id="exampleModalLabel"><b
+                            class="ms-2">Edit Profile</b></h1>
+                    <button type="button" class="btn-close" data-dismis="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        {{-- @method('put') --}}
+                        <div class="profile d-flex justify-content-center">
 
+                            <button class="btn btn-light text-light btn-sm rounded-3  text-light"
+                                style="position: absolute; top: 80%; right: 44%;background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                <b class="">Hapus laporan</b>
+                            </button>
+
+                            <a href="{{ route('delete.profile') }}" class="btn btn-light text-light btn-sm rounded-3"
+                                style="position: absolute; top: 80%; right: 22.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-1 me-1 text-light">Hapus foto</b></a>
+
+                            <button class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
+                                style="position: absolute; top: 80%; right: 3%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                type="submit" id="saveProfileButton"><b class="ms-1 me-1">Simpan</b></button>
+
+                            <input type="file" id="fileInputA" name="profile_picture" style="display:none">
+
+                            @if ($userLogin->foto)
+                                <img src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
+                                    style="border-radius: 50%; margin-right:-28%;" id="profile-image">
+                            @else
+                                <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                    style="border-radius: 50%; margin-right:-28%;" id="profile-image">
+                            @endif
+
+                            <div class="col-8" style="margin-left:35%;">
+                                <input type="text" value="{{ $row->user->name }}" name="name"
+                                    class="form-control form-control-sm">
+                                <input type="text" name="email" value="{{ $row->user->email }}"
+                                    class="form-control form-control-sm mt-3">
+                            </div>
+
+                        </div>
+                </div>
+
+                <div class="modal-footer mt-3 mb-4">
+
+                </div>
+                </form>
+            </div>
+            <script>
+                document.getElementById("fileInputA").addEventListener("change", function(event) {
+                    var input = event.target;
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function(e) {
+                            document.getElementById("profile-image").setAttribute("src", e.target.result);
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                });
+            </script>
+        </div>
+    </div>
+    @endif
+    @endforeach
+    {{-- akhir modal --}}
     {{-- Modal resep --}}
     @foreach($data as $row)
     @if($row->resep_id != null)

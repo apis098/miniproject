@@ -150,18 +150,18 @@
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('Report.store') }}" method="POST">
+                            <form action="{{ route('report.complaint',$data->id) }}" method="POST">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Report User</h5>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Laporkan Keluhan</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="d-flex align-items-center">
-                                        @if(auth()->user()->foto)
-                                            <img src="{{ asset('storage/'.auth()->user()->foto) }}" width="106px" height="104px"
+                                        @if($data->user->foto)
+                                            <img src="{{ asset('storage/'.$data->user->foto) }}" width="106px" height="104px"
                                                 style="border-radius: 50%" alt="">
                                         @else
                                             <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
@@ -169,8 +169,6 @@
                                         @endif
                                         <textarea class="form-control" style="margin-left: 1em" name="description" rows="5"
                                             placeholder="Alasan">{{ old('description') }}</textarea>
-                                        <input type="hidden" name="profile_id" value="{{ auth()->user()->id }}">
-                                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
