@@ -57,7 +57,7 @@ class KategoriMakananController extends Controller
     public function destroy( string $id)
     {
         $kategori_makanans = kategori_makanan::find($id);
-
+        $kategori_makanans->resep()->where('kategori_reseps_id', $kategori_makanans->id)->delete();
         $kategori_makanans->delete();
         return redirect()->back()->with('info','Data Kategori Makanan Berhasil Dihapus');
     }
