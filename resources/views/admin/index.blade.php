@@ -51,9 +51,13 @@
                 <!-- Example single danger button -->
                 <div class="col-lg-10" style="margin-left: 15em">
                     <div class="btn-group">
-                        <button type="button" style="width: 10%; margin-left: 34px;"
-                            class="btn btn-danger dropdown-toggle mb-3" data-bs-toggle="dropdown" aria-expanded="false">
-                            Tahun
+                        <button type="button" style="width: 10%; margin-left: 34px;border-radius: 15px;background-color: #F7941E; border: none;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn btn-warning dropdown-toggle mb-3" data-bs-toggle="dropdown" aria-expanded="false">
+                            @if (request()->has("tahun"))
+                                {{ request()->tahun }}
+                            @else
+                                {{ date('Y') }}
+                            @endif
                         </button>
                         <ul class="dropdown-menu">
                             @foreach ($years as $y)
@@ -113,6 +117,7 @@
                         <div class="h-100 rounded-4 p-4 border border-dark border-2 ">
                             <div class="d-flex align-items-center justify-content-start mb-2">
                             </div>
+                            <div class="overflow-auto" style="height: 100px;">
                             @foreach ($reseps as $rsp)
                             <div class="border-bottom py-3">
                                 <a href="#" class="text-decoration-none d-flex text-dark">
@@ -124,18 +129,20 @@
                                             <small>{{ $rsp->created_at->diffForHumans() }}</small>
                                         </div>
                                         <span>
-                                            {{ $rsp->deskripsi_resep }}
+                                            Oleh {{ $rsp->user->name }}
                                         </span>
                                     </div>
                                 </a>
                             </div> 
                             @endforeach
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-6 col-xl-5 ms-3">
                         <div class="h-100 rounded-4 p-4 border border-dark border-2" style="background-color: white">
                             <div class="d-flex align-items-center justify-content-start mb-2">
                             </div>
+                            <div class="overflow-auto" style="height: 100px">
                             @foreach ($reports as $r)
                                 <!-- Konten laporan terbaru -->
                                 <div class="border-bottom py-3">
@@ -159,6 +166,7 @@
                                     </a>
                                 </div>
                             @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

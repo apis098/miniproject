@@ -20,8 +20,8 @@ class AdminController extends Controller
         $jumlah_user = User::all()->count();
         $jumlah_resep = reseps::all()->count();
         $jumlah_report = Report::all()->count();
-        $reports = Report::all();
-        $reseps = reseps::all();
+        $reports = Report::orderBy("created_at", "desc")->get();
+        $reseps = reseps::orderBy("created_at", "desc")->get();
         $datetime = User::pluck("created_at");
         $year = 2023;
         $max_year = 2023 + 5;
