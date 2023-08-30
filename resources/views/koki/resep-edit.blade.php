@@ -234,9 +234,9 @@
                                     </div>
                                     <input type="text" name="judul_langkah[]" id="" class="form-control mb-3"
                                         value="{{ $item_langkah->judul_langkah }}">
-                                    <textarea class="form-control" name="langkah_resep[]" style="white-space: nowrap;"
+                                    <textarea class="form-control" name="langkah_resep[]" cols="15" rows="5"
                                         placeholder="Masukkan langkah langkah" id="floatingTextarea">
-                                {{ trim($item_langkah->deskripsi_langkah) }}
+                                {{ $item_langkah->deskripsi_langkah }}
                             </textarea>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
@@ -262,27 +262,26 @@
                         <div class="row">
                             @foreach ($categories_foods as $num => $f)
                                 @if ($edit_resep->kategori_resep->contains('nama_makanan', $f->nama_makanan))
-                                    <div class="col-lg-3 m-2">
-                                        <input type="text" name="jenis_makanan[]"
-                                            id="jenis_makanan{{ $num }}" value="{{ $f->id }}"
-                                            style="display: none;">
+                                    <div class="col-lg-3 mb-4">
+                                        <input type="text" name="jenis_makanan[]" id="jenis_makanan{{ $num }}"
+                                            value="{{ $f->id }}" style="display: none;">
                                         <button id="pilih_jenis_makanan{{ $num }}"
                                             onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-filter"
                                             type="button"
-                                            style="width: 100%;border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                             <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
                                         </button>
                                     </div>
                                 @else
-                                    <div class="col-lg-3 m-2">
-                                        <input type="text" id="jenis_makanan{{ $num }}"
-                                            value="{{ $f->id }}" style="display: none;">
-                                        <button id="pilih_jenis_makanan{{ $num }}"
-                                            onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
-                                            type="button"
-                                            style="width: 100%;border: 1px solid black; border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                            <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
-                                        </button>
+                                    <div class="col-lg-3 mb-4">
+                                            <input type="text" id="jenis_makanan{{ $num }}"
+                                                value="{{ $f->id }}" style="display: none;">
+                                            <button id="pilih_jenis_makanan{{ $num }}"
+                                                onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
+                                                type="button"
+                                                style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                                <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
+                                            </button>
                                     </div>
                                 @endif
                             @endforeach
@@ -307,7 +306,7 @@
                                             id="success-outlined{{ $int }}" value="{{ $d->id }}"
                                             autocomplete="on" checked>
                                         <label class="btn btn-outline-warning"
-                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;background:grey;"
                                             for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                     </div>
                                 @else
@@ -316,7 +315,7 @@
                                             id="success-outlined{{ $int }}" value="{{ $d->id }}"
                                             autocomplete="off">
                                         <label class="btn btn-outline-warning"
-                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
                                             for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                     </div>
                                 @endif
@@ -326,7 +325,7 @@
                                     <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
                                         autocomplete="on" checked>
                                     <label class="btn btn-outline-warning"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
                                         for="success-outlined">Tidak ada</label>
                                 </div>
                             @else
@@ -334,7 +333,7 @@
                                     <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
                                         autocomplete="off">
                                     <label class="btn btn-outline-warning"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
                                         for="success-outlined">Tidak ada</label>
                                 </div>
                             @endif
@@ -487,10 +486,9 @@
                                         @enderror
                                     </div>
                                     <input type="text" name="judul_resep_tambahan[]" id="" class="form-control mb-3"
-                                        value="{{ $item_langkah->judul_langkah }}">
-                                    <textarea class="form-control" name="langkah_resep_tambahan[]" style="white-space: nowrap;"
-                                        placeholder="Masukkan langkah langkah" id="floatingTextarea">
-                                {{ trim($item_langkah->deskripsi_langkah) }}
+                                        placeholder="Masukkan judul langkah">
+                                        <textarea maxlength="255"  class="form-control" name="langkah_resep_tambahan[]" cols="30" rows="5" placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
+
                             </textarea>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">

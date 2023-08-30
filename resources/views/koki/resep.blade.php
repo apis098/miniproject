@@ -224,10 +224,8 @@
                             </div>
                             <input type="text" class="form-control mb-2" name="judul_langkah[]"
                                 placeholder="Masukkan judul langkah..." required>
-                            <textarea maxlength="255" class="form-control" cols="30" rows="5" name="langkah_resep[]"
-                                placeholder="Masukkan langkah langkah" style="float: right;">
-                                {{ old('langkah_resep.0') }}
-                            </textarea>
+                            <textarea maxlength="255"  class="form-control" name="langkah_resep[]" cols="30" rows="5" placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
+
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -272,7 +270,7 @@
                                 <div class="col-lg-3 mb-2">
                                     <input type="radio" class="btn-check" name="hari_khusus"
                                         id="success-outlined{{ $int }}" value="{{ $d->id }}" autocomplete="off" checked>
-                                    <label class="btn btn-outline-warning"
+                                    <label class="btn btn-outline-warning custom-btn"
                                     style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                         for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                 </div>
@@ -293,9 +291,7 @@
                             color: white;
                             font-weight: 400;
                         }
-                        .btn-outline.warning:active {
-                            background-color: #F7941E;
-                        }
+                        
                     </style>
                     <script>
                         function pilih_jenis_makanan(num) {

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete('cascade');
-            $table->foreign("kategori_reseps_id")->references("id")->on("kategori_makanans");
+            $table->foreign("kategori_reseps_id")->references("id")->on("kategori_makanans")->onDelete('restrict');
         });
     }
 

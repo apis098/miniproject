@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete('cascade');
-            $table->foreign("hari_khusus_id")->references("id")->on("special_days");
+            $table->foreign("hari_khusus_id")->references("id")->on("special_days")->onDelete('restrict');
         });
     }
 
