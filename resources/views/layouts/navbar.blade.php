@@ -39,14 +39,16 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
          <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
     <style>
-        .nav-link.activet {
-            background-color: white;
-        }
+         .nav-link.activet {
+        background-color: white; /* Warna latar belakang saat aktif */
+        color: orange !important; /* Warna teks saat aktif */
+    }
 
-        .nav-link.hover {
-            background-color: #f0f0f0;
-            color: #333;
-        }
+    .nav-link.activet:hover {
+        background-color: white; /* Warna latar belakang saat dihover */
+        color: white !important; /* Warna teks saat dihover */
+    }
+
 
         .asy {
 
@@ -103,44 +105,28 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4" style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
             <!-- Brand Logo -->
+            <div class="mt-3">
             <a class=" t" href="{{route('home')}}" style="font-size: 40px;">Hummacook</a>
+        </div>
             {{-- <h3 class="text-white text-center my-2 mt-4 t" style="font-size: 40px; ">Hummacook</h3> --}}
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar Menu -->
-                <nav class="mt-3">
+                <nav class="mt-1">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"  >
                             <a href="{{ route('admin.index') }}"
-                                class="nav-link mx-4  {{ request()->routeIs('admin.index') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
+                                class="nav-link mx-4  {{ request()->routeIs('admin.index') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
                                 <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="currentColor" d="m33.71 17.29l-15-15a1 1 0 0 0-1.41 0l-15 15a1 1 0 0 0 1.41 1.41L18 4.41l14.29 14.3a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="M28 32h-5V22H13v10H8V18l-2 2v12a2 2 0 0 0 2 2h7V24h6v10h7a2 2 0 0 0 2-2V19.76l-2-2Z" class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
                                 <p  style="margin-left: 10px;   font-size: 20px; font-family: Poppins; font-weight: 500; ">
                                     Dashboard
                                 </p>
                             </a>
                         </li>
-                        {{-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
-                            <a href="{{ route('Complaint.all') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
-                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="M224 52H32a4 4 0 0 0-4 4v136a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V56a4 4 0 0 0-4-4Zm-96 86.57L42.28 60h171.44ZM104.63 128L36 190.91V65.09Zm5.92 5.43L125.3 147a4 4 0 0 0 5.4 0l14.75-13.52L213.72 196H42.28Zm40.82-5.43L220 65.09v125.82Z"/></svg>
-                                <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
-                                    Keluhan
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
-                            <a href="{{ route('ReplyUser.index') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
-                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm12 12a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm6-5V8a2 2 0 0 0-2-2h-6l3 3m0-6l-3 3M3 13v3a2 2 0 0 0 2 2h6l-3-3m0 6l3-3"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
-                                    Balasan
-                                </p>
-                            </a>
-                        </li> --}}
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('Report.index') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
+                                class="nav-link mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
                                 <svg  style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M20.565 3.18a.809.809 0 0 0-.81-.02l-1.13.56c-1.63.87-3.82.83-6.5-.13a9.141 9.141 0 0 0-7.3.52l-.76.41v-.96a.5.5 0 0 0-1 0v16.88a.5.5 0 0 0 1 0V15.9a.836.836 0 0 0 .2-.08l1.03-.55a8.163 8.163 0 0 1 6.5-.46c2.95 1.06 5.41 1.08 7.3.07l1.44-.72a.759.759 0 0 0 .4-.66V3.82a.751.751 0 0 0-.37-.64Zm-.63 10.16l-1.31.66c-1.63.87-3.82.83-6.5-.13a9.141 9.141 0 0 0-7.3.52l-.76.4V5.65L5.3 4.99a8.122 8.122 0 0 1 6.5-.46c2.95 1.06 5.41 1.08 7.29.08l.85-.43Z"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                     Laporan
@@ -149,7 +135,7 @@
                         </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('special-days.index')}}"
-                                class="nav-link  mx-4 {{ request()->is('admin/special-days') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
+                                class="nav-link  mx-4 {{ request()->is('admin/special-days') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
                                 <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M5 22q-.825 0-1.413-.588T3 20V6q0-.825.588-1.413T5 4h1V3q0-.425.288-.713T7 2q.425 0 .713.288T8 3v1h8V3q0-.425.288-.713T17 2q.425 0 .713.288T18 3v1h1q.825 0 1.413.588T21 6v14q0 .825-.588 1.413T19 22H5Zm0-2h14V10H5v10ZM5 8h14V6H5v2Zm0 0V6v2Zm7 6q-.425 0-.713-.288T11 13q0-.425.288-.713T12 12q.425 0 .713.288T13 13q0 .425-.288.713T12 14Zm-4 0q-.425 0-.713-.288T7 13q0-.425.288-.713T8 12q.425 0 .713.288T9 13q0 .425-.288.713T8 14Zm8 0q-.425 0-.713-.288T15 13q0-.425.288-.713T16 12q.425 0 .713.288T17 13q0 .425-.288.713T16 14Zm-4 4q-.425 0-.713-.288T11 17q0-.425.288-.713T12 16q.425 0 .713.288T13 17q0 .425-.288.713T12 18Zm-4 0q-.425 0-.713-.288T7 17q0-.425.288-.713T8 16q.425 0 .713.288T9 17q0 .425-.288.713T8 18Zm8 0q-.425 0-.713-.288T15 17q0-.425.288-.713T16 16q.425 0 .713.288T17 17q0 .425-.288.713T16 18Z"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                Hari Khusus
@@ -158,13 +144,31 @@
                         </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('kategori-makanan.index')}}"
-                                class="nav-link mx-4 {{ request()->is('admin/kategori-makanan') ? 'activet text-warning' : 'text-white' }}" style="width: 12em">
+                                class="nav-link mx-4 {{ request()->is('admin/kategori-makanan') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
                                 <svg  style="vertical-align: top;"  xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                Kategori
                                 </p>
                             </a>
                         </li>
+                           {{-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
+                            <a href="{{ route('Complaint.all') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="M224 52H32a4 4 0 0 0-4 4v136a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V56a4 4 0 0 0-4-4Zm-96 86.57L42.28 60h171.44ZM104.63 128L36 190.91V65.09Zm5.92 5.43L125.3 147a4 4 0 0 0 5.4 0l14.75-13.52L213.72 196H42.28Zm40.82-5.43L220 65.09v125.82Z"/></svg>
+                                <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                                    Keluhan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
+                            <a href="{{ route('ReplyUser.index') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm12 12a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm6-5V8a2 2 0 0 0-2-2h-6l3 3m0-6l-3 3M3 13v3a2 2 0 0 0 2 2h6l-3-3m0 6l3-3"/></svg>
+                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                    Balasan
+                                </p>
+                            </a>
+                        </li> --}}
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

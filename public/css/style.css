@@ -166,15 +166,7 @@ a:focus {
   padding-left: 18%;
 }
 
-.custom_nav-container .navbar-nav .nav-item .nav-link {
-  padding: 5px 20px;
-  color: #ffffff;
-  text-align: center;
-  text-transform: uppercase;
-  border-radius: 5px;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
-}
+
 
 .custom_nav-container .nav_search-btn {
   width: auto;
