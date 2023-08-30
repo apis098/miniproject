@@ -178,7 +178,7 @@
   border-width: 0 4px 5px 4px; }
 
 .select2-container--default .select2-selection--multiple {
-  background-color: white;
+ 
   border-radius: 4px;
   cursor: text; }
   .select2-container--default .select2-selection--multiple .select2-selection__rendered {
@@ -200,6 +200,7 @@
     background-color: #F7941E;
     border:0px solid white;
     border-radius: 4px;
+    color:white;
     cursor: default;
     float: left;
     margin-right: 5px;
