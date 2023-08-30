@@ -242,21 +242,30 @@
                                         </div>
                                     </div>
                                     {{-- end modal edit --}}
-                                    <form action="{{ route('special-days.destroy', $data->id) }}" method="POST"
+                                    <form action="{{ route('special-days.destroy', $data->id) }}" method="POST" id="delete-form"
                                         class="d-inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-buat btn-sm" style="margin-left: 5%"
-                                            data-mdb-ripple-color="dark" onclick="DeleteData()">
+                                        <button type="button" class="btn btn-buat btn-sm" style="margin-left: 5%"
+                                            data-mdb-ripple-color="dark" onclick="DeleteData()" >
                                             Hapus</button>
                                     </form>
                             </td>
                         </tr>
                     @endforeach
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    @forelse ($special_days as $data)
+
+    @empty
+    <div class="d-flex flex-column h-100 justify-content-center align-items-center mx-5"
+    style="margin-top: -90px;">
+    <img src="{{asset('images/data.png')}}" style="width: 20em">
+    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+</div>
+    @endforelse
     </div>
 </div>
 {{-- end --}}
