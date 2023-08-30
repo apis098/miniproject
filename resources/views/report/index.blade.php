@@ -394,8 +394,8 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Resep
-                        favorite</h5>
+                    <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Laporan
+                        keluhan</h5>
                     {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -547,13 +547,13 @@
                                             <div class="widget-49-meeting-info">
                                                 
                                             </div>
-                                            <textarea readonly class="form-control" name="description" rows="5">{{$row->description}}</textarea>
+                                            <textarea readonly class="form-control" name="description" rows="5">{{$row->replies->reply}}</textarea>
                                         </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-light text-light"
+                                <a href="{{route('blockContent.destroy',$row->id)}}" class="btn btn-light text-light"
                                     style="border-radius: 15px; background-color:#F7941E;"><b
-                                        class="ms-2 me-2">Terima</b></button>
+                                        class="ms-2 me-2">Terima</b></a>
                                 <button type="submit" class="btn btn-light text-black"
                                     style=" border-radius: 10px; border: 0.50px black solid"><b
                                         class="ms-2 me-2">Hapus</b></button>

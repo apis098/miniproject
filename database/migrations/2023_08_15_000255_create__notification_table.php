@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('status')->default('belum');
             $table->timestamps();
 
-            $table->foreign('reply_id_report')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('notification_from')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

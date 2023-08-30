@@ -67,7 +67,7 @@ class ReportController extends Controller
         $report->user_id_sender = auth()->user()->id;
         $report->description = $request->description;
         $report->save();
-        return redirect()->back()->with('success','Laoran anda telah terkirim');
+        return redirect()->back()->with('success','Laporan anda telah terkirim');
     }
     public function store(Request $request){
         $userId = Auth::user()->id;
@@ -92,7 +92,7 @@ class ReportController extends Controller
             $notification = new notifications();
             $notification->user_id = $report->reply_id;
             $notification->notification_from = auth()->user()->id;
-            $notification->reply_id_report = $report->reply_id;
+            $notification->reply_id_report = 1;
             $notification->save(); 
             return redirect()->back()->with('success', 'Komentar telah diblokir');
         }
