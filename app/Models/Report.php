@@ -18,6 +18,9 @@ class Report extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function resep(){
+        return $this->belongsTo(reseps::class);
+    }
     public function userSender()
 {
     return $this->belongsTo(User::class, 'user_id_sender');

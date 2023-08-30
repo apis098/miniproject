@@ -74,6 +74,7 @@
 
         .table-custom th {
             padding: 10px;
+            width: 195px;
             background-color: #F7941E;
             margin-bottom: 50px;
             color: #fff;
@@ -182,24 +183,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="mt-5">
-                                <td style="border-left:solid black;" class="mt">Dummy</td>
-                                <td>Koki</td>
-                                <td>Berkata kasar</td>
-                                <td>1 Kali</td>
-                                <td style="border-right: solid black;">
-                                    <button class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="border-left:solid black;">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td style="border-right: solid black;">
-                                    <button class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>   
-                                </td>
-                            </tr>
+                            @foreach($data as $row)
+                            @if($row->resep_id != null)
+                                <tr class="mt-5">
+                                    <td style="border-left:solid black;" class="mt">{{$row->userSender->name}}</td>
+                                    <td>{{$row->user->name}}</td>
+                                    <td>{{$row->description}}</td>
+                                    <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
+                                    <td style="border-right: solid black;">
+                                        <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
+                                </tr>
+                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -218,20 +214,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="mt-5">
-                                <td style="border-left:solid black;" class="mt">Dummy</td>
-                                <td>Koki</td>
-                                <td>Berkata kasar</td>
-                                <td>1 Kali</td>
-                                <td style="border-right: solid black;">@mdo</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left:solid black;">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td style="border-right: solid black;">@mdo</td>
-                            </tr>
+                            @foreach($data as $row)
+                            @if($row->complaint_id !=  null)
+                                <tr class="mt-5">
+                                    <td style="border-left:solid black;" class="mt">Dummy</td>
+                                    <td>Koki</td>
+                                    <td>Berkata kasar</td>
+                                    <td>1 Kali</td>
+                                    <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                </tr>
+                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -250,20 +243,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="mt-5">
-                                <td style="border-left:solid black;" class="mt">Dummy</td>
-                                <td>Koki</td>
-                                <td>Berkata kasar</td>
-                                <td>1 Kali</td>
-                                <td style="border-right: solid black;">@mdo</td>
-                            </tr>
-                            <tr>
-                                <td style="border-left:solid black;">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td style="border-right: solid black;">@dknsallk</td>
-                            </tr>
+                            @foreach($data as $row)
+                            @if($row->reply_id != null)
+                                <tr class="mt-5">
+                                    <td style="border-left:solid black;" class="mt">{{$row->userSender->name}}</td>
+                                    <td>{{$row->user->name}}</td>
+                                    <td>{{$row->description}}</td>
+                                    <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
+                                    <td  style="border-right:solid black;">
+                                        <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
+                                </tr>
+                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -282,20 +274,19 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($data as $row)
+                            @if($row->profile_id != null)
                             <tr class="mt-5">
-                                <td style="border-left:solid black;" class="mt">Dummy</td>
-                                <td>Koki</td>
-                                <td>Berkata kasar</td>
-                                <td>1 Kali</td>
-                                <td style="border-right: solid black;">@mdo</td>
+                                <td style="border-left:solid black;" class="mt">{{$row->userSender->name}}</td>
+                                <td>{{$row->user->name}}</td>
+                                <td>{{$row->description}}</td>
+                                <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
+                                <td style="border-right: solid black;">
+                                    <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                </td>
                             </tr>
-                            <tr>
-                                <td style="border-left:solid black;">1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>Otto</td>
-                                <td style="border-right: solid black;">@dknsallk</td>
-                            </tr>
+                            @endif
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
