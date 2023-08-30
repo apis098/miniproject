@@ -117,7 +117,7 @@
                         <div class="h-100 rounded-4 p-4 border border-dark border-2 ">
                             <div class="d-flex align-items-center justify-content-start mb-2">
                             </div>
-                            <div class="overflow-auto" style="height: 100px;">
+                            <div class="overflow-auto" style="height: 250px;">
                             @foreach ($reseps as $rsp)
                             <div class="border-bottom py-3">
                                 <a href="#" class="text-decoration-none d-flex text-dark">
@@ -136,6 +136,17 @@
                                 </a>
                             </div>
                             @endforeach
+                            @forelse ($reseps as $rsp)
+
+                            @empty
+
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: 2em">
+                                    <img src="{{asset('images/data.png')}}" style="width: 15em">
+                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                </div>
+
+                            @endforelse
                             </div>
                         </div>
                     </div>
@@ -143,7 +154,7 @@
                         <div class="h-100 rounded-4 p-4 border border-dark border-2" style="background-color: white">
                             <div class="d-flex align-items-center justify-content-start mb-2">
                             </div>
-                            <div class="overflow-auto" style="height: 100px">
+                            <div class="overflow-auto" style="height: 250px">
                             @foreach ($reports as $r)
                                 <!-- Konten laporan terbaru -->
                                 <div class="border-bottom py-3">
@@ -167,6 +178,14 @@
                                     </a>
                                 </div>
                             @endforeach
+                            @forelse ($reports as $r)
+                            @empty
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: 2em">
+                                    <img src="{{asset('images/data.png')}}" style="width: 15em">
+                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                </div>
+                            @endforelse
                             </div>
                         </div>
                     </div>
