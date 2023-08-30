@@ -144,7 +144,6 @@
 <!-- book section -->
 <section class="book_section layout_padding">
     <div class="container">
-
         <div class="row">
             <div class="col-md-6 ms-3">
                 <div class="form_container">
@@ -176,7 +175,8 @@
                             <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
                         </div>
                         <div>
-                            <button style="background-color: #f39c12; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            <button 
+                            style="background-color: #f39c12; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 type="submit">
                                 <b>Kirim</b>
                             </button>
@@ -201,9 +201,7 @@
             <h3 class="fw-bold">Keluhan Pengguna</h3>
         </div>
         <div class="ms-auto me-5">
-            <button class="btn btn-light text-light float-end me-5 zoom-effects"
-                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                    class="ms-3 me-3">Selanjutnya</b></button>
+            {{$complaints->links('vendor.pagination.simple-default')}}
         </div>
     </div>
 </div>
@@ -253,7 +251,6 @@
         @endforeach
         {{--  --}}
     </div>
-    {{ $complaints->links() }}
 </div>
 
 <style>
