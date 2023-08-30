@@ -1,5 +1,7 @@
 @extends('layouts.navbar')
 @section('konten')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+
     @push('style')
         @powerGridStyles
     @endpush
@@ -47,10 +49,11 @@
         }
 
         .table-custom {
-            width: 200%;
+            width: 230%;
             text-align: center;
             border-collapse: separate;
             border-spacing: 0px 15px;
+            margin-left: -40%;
         }
 
         .table-custom td {
@@ -131,7 +134,8 @@
             font-family: Poppins;
             font-weight: 500;
             letter-spacing: 0.40px;
-            word-wrap: break-word
+            word-wrap: break-word;
+            margin-left: -40%;
         }
 
         .btn-tambah {
@@ -242,8 +246,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-buat btn-sm" style="margin-left: 5%"
-                                                data-mdb-ripple-color="dark"
-                                                onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Data Ini?')">
+                                                data-mdb-ripple-color="dark" onclick="DeleteData()">
                                                 Hapus</button>
                                         </form>
                                 </td>
@@ -263,13 +266,36 @@
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
         integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-
-    <!-- include summernote css/js -->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('textarea').summernote();
-        });
-    </script>
+        function DeleteData() {
+           iziToast.show({
+               backgroundColor: '#F7941E',
+               title: '<i class="fa-regular fa-circle-question"></i>',
+               titleColor: 'white',
+               messageColor: 'white',
+               message: 'Apakah Anda yakin ingin menghapus data ini?',
+               position: 'topCenter',
+               buttons: [
+                   ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
+                       instance.hide({
+                           transitionOut: 'fadeOutUp',
+                           onClosing: function (instance, toast, closedBy) {
+                               document.getElementById('delete-form').submit();
+                           }
+                       }, toast, 'buttonName');
+                   }, false], // true to focus
+                   ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
+                       instance.hide({}, toast, 'buttonName');
+                   }]
+               ],
+               onOpening: function (instance, toast) {
+                   console.info('callback abriu!');
+               },
+               onClosing: function (instance, toast, closedBy) {
+                   console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+               }
+           });
+       }
+       </script>
 @endsection
