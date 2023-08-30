@@ -144,6 +144,9 @@
             margin-left: 10px;
             border: 0.50px black solid
         }
+        .garis{
+            border-bottom: #F7941E 2px solid;
+        }
     </style>
 
     <div class=" d-flex justify-content-center ms-3">
@@ -297,7 +300,7 @@
                                 <td>{{$row->description}}</td>
                                 <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
                                 <td style="border-right: solid black;">
-                                    <button type="button" data-toggle="modal" data-target="#replyModal{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    <button type="button" data-toggle="modal" data-target="#modalProfile{{ $row->profile_id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
                                 </td>
                             </tr>
                             @endif
@@ -355,6 +358,32 @@
         });
     </script>
     </div>
+    {{-- Modal report profile --}}
+    @foreach($data as $row)
+    @if($row->profile_id != null)
+    <div class="modal fade bd-example-modal-xl rounded-5" id="modalProfile{{$row->profile_id}}" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bolder">Detail</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="fa-regular text-dark fa-circle-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+               ....
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus laporan</button>
+                <button type="button" style="background-color: #F7941E;" class="btn btn-light text-light rounded-3">Terima laporan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      @endif
+      @endforeach
+    {{-- end modal --}}
+
     {{-- Modal resep --}}
     @foreach($data as $row)
     @if($row->resep_id != null)
@@ -376,7 +405,7 @@
                         </div>
                         <div class="col-lg-8 mt-4 ms-3">
                             <div class="col-lg-4 mt-5 ml-3">
-                                <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
+                                <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $row->resep->nama_resep }}
                                 </h3>
                                 <span>Oleh {{ $row->user->name }}</span>
                             </div>
@@ -471,47 +500,65 @@
                     <div class="my-5">
                         <ul class="nav mb-3" id="pills-tab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a id="deskripsi" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-desc" type="button" role="tab" aria-controls="pills-home"
+                                <a id="deskripsi{{$row->resep_id}}" class="nav-link jiah garis mr-5" data-bs-toggle="pill" href="#pills-desc{{$row->resep_id}}"
+                                type="button" role="tab" aria-controls="pills-home"
                                     aria-selected="true">
                                     <h5 class="text-dark" style="font-weight: 600; word-warp: break-word;">Deskripsi</h5>
-                                    <div id="borderDeskripsi" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
+                                    {{-- <div id="borderDeskripsi" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
+                                    </div> --}}
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a id="bahan" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-bahan" type="button" role="tab" aria-controls="pills-profile"
+                                <a id="bahan{{$row->resep_id}}" class="nav-link jiah mr-5" data-bs-toggle="pill" href="#pills-bahan{{$row->resep_id}}"
+                                   type="button" role="tab" aria-controls="pills-profile"
                                     aria-selected="false">
                                     <h5 class="text-dark" style="font-weight: 600; word-warp: break-word;">Bahan</h5>
-                                    <div id="borderBahan" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
-                                    </div>
+                                    {{-- <div id="borderBahan" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
+                                    </div> --}}
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a id="alat" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-alat" type="button" role="tab" aria-controls="pills-footer"
+                                <a id="alat{{$row->resep_id}}" class="nav-link jiah mr-5"  data-bs-toggle="pill" href="#pills-alat{{$row->resep_id}}"
+                                    type="button" role="tab" aria-controls="pills-footer"
                                     aria-selected="false">
                                     <h5 class="text-dark" style="font-weight: 600; word-wrap:break-word;">Alat - Alat</h5>
-                                    <div id="borderAlat" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;"
-                                        class="mx-auto"></div>
+                                    {{-- <div id="borderAlat" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;"
+                                        class="mx-auto"></div> --}}
                                 </a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a id="langkah" class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-langkah" type="button" role="tab" aria-controls="pills-contact"
+                                <a id="langkah{{$row->resep_id}}" class="nav-link jiah mr-5" data-bs-toggle="pill" href="#pills-langkah{{$row->resep_id}}"
+                                    type="button" role="tab" aria-controls="pills-contact"
                                     aria-selected="false">
                                     <h5 class="text-dark" style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
-                                    <div id="borderLangkah" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
-                                        class="mx-auto"></div>
+                                    {{-- <div id="borderLangkah" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
+                                        class="mx-auto"></div> --}}
                                 </a>
                             </li>
+                            <script>
+                                // Dapatkan semua elemen nav-link
+                                var navLinks = document.querySelectorAll('.jiah');
+                            
+                                // Tambahkan event listener untuk setiap elemen nav-link
+                                navLinks.forEach(function(navLink) {
+                                    navLink.addEventListener('click', function() {
+                                        // Hapus kelas active dari semua elemen nav-link
+                                        navLinks.forEach(function(link) {
+                                            link.classList.remove('garis');
+                                        });
+                            
+                                        // Tambahkan kelas active pada elemen nav-link yang diklik
+                                        this.classList.add('garis');
+                                    });
+                                });
+                            </script>
                         </ul>
                         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-desc" role="tabpanel" aria-labelledby="pills-home-tab"
+                            <div class="tab-pane fade show active" id="pills-desc{{$row->resep_id}}" role="tabpanel" aria-labelledby="pills-home-tab"
                                 tabindex="0">
                                 {{ $row->resep->deskripsi_resep }}
                             </div>
-                            <div class="tab-pane fade" id="pills-bahan" role="tabpanel" aria-labelledby="pills-profile-tab"
+                            <div class="tab-pane fade" id="pills-bahan{{$row->resep_id}}" role="tabpanel" aria-labelledby="pills-profile-tab"
                                 tabindex="0">
                                 <div class="row mt-5">
                                     @foreach ($row->resep->bahan as $item_bahan)
@@ -532,7 +579,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pills-langkah" role="tabpanel" aria-labelledby="pills-contact-tab"
+                            <div class="tab-pane fade" id="pills-langkah{{$row->resep_id}}" role="tabpanel" aria-labelledby="pills-contact-tab"
                                 tabindex="0">
                                 @foreach ($row->resep->langkah as $num => $item_langkah)
                                     <div class="card-body d-flex flex-row">
@@ -553,7 +600,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            <div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-footer-tab"
+                            <div class="tab-pane fade" id="pills-alat{{$row->resep_id}}" role="tabpanel" aria-labelledby="pills-footer-tab"
                                 tabindex="0">
                                 <div class="row mt-5">
                                     @foreach ($row->resep->alat as $num => $item_langkah)
