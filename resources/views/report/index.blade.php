@@ -397,13 +397,11 @@
                     <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Laporan
                         keluhan</h5>
                     {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
 
                 </div>
-                    <form action="{{ route('favorite.delete.multiple') }}" method="POST">
-                        @csrf
                         <div class="modal-body d-flex align-items-center">
                             @if($row->user->foto)
                             <img src="{{ asset('storage/' . $row->user->foto) }}" class="ms-2 me-5 img-fluid rounded-circle me-2"
@@ -424,12 +422,15 @@
                             </a>
                         </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus
-                        laporan</button>
+                    <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-dark rounded-3" >Hapus
+                            laporan</button>
+                    </form>
                     <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;"
                         class="btn btn-light text-light rounded-3">Terima laporan</a>
                 </div>
-                </form>
             </div>
         </div>
     </div>
