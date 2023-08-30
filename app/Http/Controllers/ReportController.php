@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\favorite;
 use App\Models\notifications;
 use App\Models\Reply;
 use App\Models\Report;
@@ -14,8 +15,28 @@ class ReportController extends Controller
 {
     public function index(){
         $data = Report::all();
+        $userLogin = Auth::user();
+        // untuk user belum login
+        $userLog = 1;
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount=[];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                // jika user sudah login
+                $userLog = 2;
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('data','title'));
+        return view('report.index',compact('data','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'));
     }
     public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);
