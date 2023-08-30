@@ -126,14 +126,15 @@
                                     <div class="w-100 ms-3">
                                         <div class="d-flex w-100 justify-content-between">
                                             <h6 class="mb-0">{{ $rsp->nama_resep }}</h6>
-                                            <small>{{ $rsp->created_at->diffForHumans() }}</small>
+                                            <small>{{ \Carbon\Carbon::parse($rsp->created_at)->locale('id_ID')->diffForHumans() }}</small>
+
                                         </div>
                                         <span>
                                             Oleh {{ $rsp->user->name }}
                                         </span>
                                     </div>
                                 </a>
-                            </div> 
+                            </div>
                             @endforeach
                             </div>
                         </div>
@@ -159,7 +160,7 @@
                                         <div class="w-100 ms-3">
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h6 class="mb-0">{{ $r->user->name }}</h6>
-                                                <small>{{ $r->created_at->diffForHumans() }}</small>
+                                                <small>{{\Carbon\Carbon::parse($r->created_at)->locale('id_ID')->diffForHumans()}}</small>
                                             </div>
                                             <span>{{ $r->description }}</span>
                                         </div>
