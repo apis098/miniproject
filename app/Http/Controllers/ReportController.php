@@ -101,9 +101,18 @@ class ReportController extends Controller
             $notification = new notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
-            $notification->complaint_id_report = 1  ;
+            $notification->complaint_id_report = 1;
             $notification->save();
             return redirect()->back()->with('success', 'Keluhan telah diblokir');
+        }
+        if($report->resep_id != null){
+            $report->resep->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->resep_id_report = 1;
+            $notification->save();
+            return redirect()->back()->with('success', 'Resep telah diblokir');
         }
         if($report->profile_id != null){
             if ($report->user->foto) {

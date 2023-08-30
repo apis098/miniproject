@@ -528,7 +528,7 @@
                                 <div class="row mt-1">
                                     <div class="col-lg-2 mt-3">
                                         <img src="{{ asset('storage/' . $row->resep->foto_resep) }}"
-                                            alt="{{ $show_resep->foto_resep }}" width="197px" height="187px"
+                                            alt="{{ $row->resep->foto_resep }}" width="197px" height="187px"
                                             style="border-radius: 50%; border:none;" class="p-2">
                                     </div>
                                     <div class="col-lg-8 mt-4 ms-3">
@@ -770,8 +770,8 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus
                                 laporan</button>
-                            <button type="button" style="background-color: #F7941E;"
-                                class="btn btn-light text-light rounded-3">Terima laporan</button>
+                            <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;"
+                                class="btn btn-light text-light rounded-3">Terima laporan</a>
                         </div>
                     </div>
                 </div>

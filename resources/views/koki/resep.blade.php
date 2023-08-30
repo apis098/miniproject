@@ -330,23 +330,23 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script>
-        $("document").ready(function() {
-            $("#button-add-recipe").click(function(event) {
-                event.preventDefault();
-                const data = $("#form-add-recipe").serialize();
-                const formData = new FormData($("#form-add-recipe")[0]);
-                $.ajax({
-                    url: "{{ route('resep.store') }}",
-                    method: "POST",
-                    processData: false,
-                    contentType: false,
-                    data: formData,
-                    error: function error(xhr, status, errors) {
-                        alert(xhr.responseText);
-                    }
-                });
-            });
-        });
+        // $("document").ready(function() {
+        //     $("#button-add-recipe").click(function(event) {
+        //         event.preventDefault();
+        //         const data = $("#form-add-recipe").serialize();
+        //         const formData = new FormData($("#form-add-recipe")[0]);
+        //         $.ajax({
+        //             url: "{{ route('resep.store') }}",
+        //             method: "POST",
+        //             processData: false,
+        //             contentType: false,
+        //             data: formData,
+        //             error: function error(xhr, status, errors) {
+        //                 alert(xhr.responseText);
+        //             }
+        //         });
+        //     });
+        // });
 
         num = 0;
 

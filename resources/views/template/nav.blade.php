@@ -511,6 +511,26 @@
                                                                     id="follower_id" value="{{ $row->follower_id }}"
                                                                     class="form-control">
                                                             </form>
+                                                        @elseif($row->resep_id_report != null)
+                                                            <form
+                                                                action="{{ route('follow.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class=" ms-1 text-secondary">Resep
+                                                                        anda telah diblokir</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                <input type="text" hidden name="follower_id"
+                                                                    id="follower_id" value="{{ $row->follower_id }}"
+                                                                    class="form-control">
+                                                            </form>
                                                         @endif
                                                     </div>
                                                 @endif
