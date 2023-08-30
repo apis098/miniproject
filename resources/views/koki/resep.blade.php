@@ -320,7 +320,7 @@
                     </script>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        id="button-add-recipes">Tambah
+                        id="button-add-recipe">Tambah
                         Resep</button>
                 </div>
             </div>
@@ -334,16 +334,15 @@
             $("#button-add-recipe").click(function(event) {
                 event.preventDefault();
                 const data = $("#form-add-recipe").serialize();
+                const formData = new FormData($("#form-add-recipe")[0]);
                 $.ajax({
                     url: "{{ route('resep.store') }}",
                     method: "POST",
-                    data: data,
-                    success: function success() {
-                        location.reload();
-                    },
+                    processData: false,
+                    contentType: false,
+                    data: formData,
                     error: function error(xhr, status, errors) {
-                        var a = xhr.responseText;
-                        $
+                        alert(xhr.responseText);
                     }
                 });
             });
