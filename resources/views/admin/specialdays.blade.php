@@ -263,8 +263,8 @@
     @empty
     <div class="d-flex flex-column h-100 justify-content-center align-items-center mx-5"
     style="margin-top: -90px;">
-    <img src="{{asset('images/data.png')}}" style="width: 20em">
-    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+    <img src="{{asset('images/data.png')}}" style="width: 20em;  margin-right: -250px;">
+    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
 </div>
     @endforelse
     </div>
