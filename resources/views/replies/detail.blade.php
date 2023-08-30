@@ -96,7 +96,8 @@
                     <p>{{ $data->description }}</p>
                     <div style="text-align: right;">
                         <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
-                            style="background-color:#F7941E;" data-toggle="modal"
+                         style="background-color:#F7941E; margin-top: -11.5em;"
+                           data-toggle="modal"
                             data-target="#exampleModalCenter">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
                                 <path fill="currentColor"
