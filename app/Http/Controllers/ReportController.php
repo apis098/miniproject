@@ -96,6 +96,15 @@ class ReportController extends Controller
             $notification->save(); 
             return redirect()->back()->with('success', 'Komentar telah diblokir');
         }
+        if($report->complaint_id != null){
+            $report->complaint->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->complaint_id_report = 1  ;
+            $notification->save();
+            return redirect()->back()->with('success', 'Keluhan telah diblokir');
+        }
         if($report->profile_id != null){
             if ($report->user->foto) {
                 Storage::disk('public')->delete($report->user->foto);

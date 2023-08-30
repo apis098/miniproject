@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('notification_from')->nullable();
             $table->unsignedBigInteger('follower_id')->nullable();
             $table->unsignedBigInteger('reply_id_report')->nullable();
+            $table->integer('complaint_id_report')->nullable();
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('reply_id')->nullable(); 
             $table->unsignedBigInteger('complaint_id')->nullable(); 

@@ -478,8 +478,28 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class=" ms-1 text-secondary">Mulai mengikuti
+                                                                    <small class=" ms-1 text-secondary">K mengikuti
                                                                         anda</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                <input type="text" hidden name="follower_id"
+                                                                    id="follower_id" value="{{ $row->follower_id }}"
+                                                                    class="form-control">
+                                                            </form>
+                                                        @elseif($row->complaint_id_report != null)
+                                                            <form
+                                                                action="{{ route('follow.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class=" ms-1 text-secondary">Keluhan
+                                                                        anda telah diblokir</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 rounded-circle"
                                                                             src="{{ asset('images/badge.png') }}"

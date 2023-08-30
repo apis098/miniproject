@@ -424,9 +424,10 @@
                             </a>
                         </div>
                 <div class="modal-footer">
-                    <button onclick="deleteSelected()" class="btn btn-light btn-sm text-light ms-5"
-                        style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus
-                            dari favorit</b></button>
+                    <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus
+                        laporan</button>
+                    <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;"
+                        class="btn btn-light text-light rounded-3">Terima laporan</a>
                 </div>
                 </form>
             </div>
@@ -458,12 +459,10 @@
                                         style="position: absolute; top: 80%; right: 44%;background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                         <b class="">Hapus laporan</b>
                                     </button>
-                                     <form action="{{ route('blockContent.destroy',$row->id) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-light text-light btn-sm rounded-3"
+                                        <a href="{{ route('blockContent.destroy',$row->id) }}" class="btn btn-light text-light btn-sm rounded-3"
                                             style="position: absolute; top: 80%; right: 22.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-1 me-1 text-light">Hapus foto</b></button>
-                                     </form>
+                                                class="ms-1 me-1 text-light">Hapus foto</b></a>
+        
                                     <button class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
                                         style="position: absolute; top: 80%; right: 3%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                         type="submit" id="saveProfileButton"><b class="ms-1 me-1">Simpan</b></button>

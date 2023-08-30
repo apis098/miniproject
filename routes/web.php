@@ -99,7 +99,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
-        Route::delete('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
+        Route::get('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
         Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
          // special_days
          Route::resource('/special-days', special_days_controller::class);
