@@ -165,7 +165,7 @@
                                             <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                                 style="border-radius: 50%" alt="">
                                         @endif
-                                        <textarea class="form-control" name="description" rows="5"
+                                        <textarea class="form-control" style="margin-left: 1em" name="description" rows="5"
                                             placeholder="Alasan">{{ old('description') }}</textarea>
                                         <input type="hidden" name="profile_id" value="{{ auth()->user()->id }}">
                                         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
