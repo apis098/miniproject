@@ -56,7 +56,7 @@ class FiltersController extends Controller
         ]);
         if($validator->fails()) {
             //return redirect()->back()->withErrors($validator);
-            return redirect('resep')->withErrors($validator->errors());
+            return redirect('resep')->with('error', $validator->errors()->all());
 
         }
         // proses filter lanjutan resep\
