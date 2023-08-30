@@ -162,7 +162,7 @@
                                         @if ($r->user->foto)
                                             <img class="rounded-circle flex-shrink-0"
                                                 src="{{ asset('storage/' . $r->user->foto) }}" alt="{{ $r->user->foto }}"
-                                                style="width: 40px; height: 40px;"> \
+                                                style="width: 40px; height: 40px;"> 
                                         @else
                                             <img class="rounded-circle flex-shrink-0"
                                                 src="{{ asset('images/default.jpg') }}" alt="{{ $r->user->foto }}"
