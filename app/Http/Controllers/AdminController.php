@@ -9,19 +9,44 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\file;
 use App\Models\User;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $admin = User::find(Auth::user()->id);
         $jumlah_user = User::all()->count();
         $jumlah_resep = reseps::all()->count();
         $jumlah_report = Report::all()->count();
+        $reports = Report::all();
+        $reseps = reseps::all();
+        $datetime = User::pluck("created_at");
+        $year = 2023;
+        $max_year = 2023 + 5;
+        $years = [];
+        for ($i=0; $i < 6; $i++) { 
+            $years[] = $year++; 
+        }
+        $month = [];
+        if ($request->has("tahun")) {
+            $tahun = $request->tahun;
+            for ($i=1; $i <= 12; $i++) { 
+                $month[] = DB::table("users")
+                ->whereMonth('created_at', $i)
+                ->whereYear("created_at", $tahun)
+                ->count();
+            }
+        } else {
+            for ($i=1; $i <= 12 ; $i++) { 
+                $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
+            }
+        }
         $data_chartjs = [];
         return view('admin.index',[
             'admin'=> $admin,
-            ], compact("jumlah_user", "jumlah_resep", "jumlah_report"));
+            ], compact("jumlah_user", "jumlah_resep", "jumlah_report","month", "years", "reports", "reseps"));
 
 
     }
