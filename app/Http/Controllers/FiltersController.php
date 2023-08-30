@@ -42,15 +42,21 @@ class FiltersController extends Controller
         $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
         // validasi filter
         $validator  = Validator::make($request->all(), [
-            'min_price' => 'lte:max_price',
-            'min_time' => 'lte:max_time'
+            'min_price' => 'lte:max_price|required_with:max_price',
+            'max_price' => 'required_with:min_price',
+            'min_time' => 'lte:max_time|required_with:max_time',
+            'max_time' => 'required_with:min_time'
         ], [
             'min_price.lte' => 'Minimal harga tidak boleh melebihi maksimal harga!',
-            'min_time.lte' => 'Minimal waktu tidak boleh melebihi maksimal waktu!'
+            'min_time.lte' => 'Minimal waktu tidak boleh melebihi maksimal waktu!',
+            'min_price.required_with' => "Maksimal harga harus terisi!",
+            "max_price.required_with" => "Minimal harga harus terisi!",
+            "min_time.required_with" => "Maksimal waktu harus terisi!",
+            "max_time.required_with" => "Minimal waktu harus terisi!"
         ]);
         if($validator->fails()) {
             //return redirect()->back()->withErrors($validator);
-            return redirect()->back()->with(['error', $validator->errors()]);
+            return redirect('resep')->withErrors($validator->errors());
 
         }
         // proses filter lanjutan resep\
