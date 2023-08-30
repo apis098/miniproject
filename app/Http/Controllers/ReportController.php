@@ -36,7 +36,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('data','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'));
+        return view('report.index',compact('data','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'   ));
     }
     public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);

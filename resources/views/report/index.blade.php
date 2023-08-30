@@ -206,7 +206,7 @@
                                     <td>{{$row->description}}</td>
                                     <td>{{$row->user->jumlah_pelanggaran}} Kali</td>
                                     <td style="border-right: solid black;">
-                                        <button type="button" data-toggle="modal" data-target="#modalResep{{ $row->id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                        <button type="button" data-toggle="modal" data-target="#modalResep{{ $row->resep_id }}" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
                                     </td>
                                 </tr>
                             @endif
@@ -357,8 +357,8 @@
     </div>
     {{-- Modal resep --}}
     @foreach($data as $row)
-    @if($row->id != null)
-    <div class="modal fade bd-example-modal-xl rounded-5" id="modalResep{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    @if($row->resep_id != null)
+    <div class="modal fade bd-example-modal-xl rounded-5" id="modalResep{{$row->resep_id}}" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
@@ -369,28 +369,24 @@
             </div>
             <div class="modal-body">
                 <section class="container">
-                    <div class="row mt-5">
+                    <div class="row mt-1">
                         <div class="col-lg-2 mt-3">
-                            @if ($userLog == 2)
-                                @if ($show_resep->User->id != Auth::user()->id)
-                                @endif
-                            @endif
-                            <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
+                            <img src="{{ asset('storage/' . $row->resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                                 width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
                         </div>
                         <div class="col-lg-8 mt-4 ms-3">
                             <div class="col-lg-4 mt-5 ml-3">
                                 <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                                 </h3>
-                                <span>Oleh {{ $show_resep->User->name }}</span>
+                                <span>Oleh {{ $row->user->name }}</span>
                             </div>
-                            @if ($show_resep->kategori_resep)
-                                @foreach ($show_resep->kategori_resep()->get() as $nk)
+                            @if ($row->resep->kategori_resep)
+                                @foreach ($row->resep->kategori_resep()->get() as $nk)
                                     <button type="button" class="btn-edit p-2 ml-4 mr-2 mt-2">{{ $nk->nama_makanan }}</button>
                                 @endforeach
                             @endif
-                            @if ($show_resep->hari_resep)
-                                @foreach ($show_resep->hari_resep()->get() as $hr)
+                            @if ($row->resep->hari_resep)
+                                @foreach ($row->resep->hari_resep()->get() as $hr)
                                     <button type="button" class="btn-edit p-2">{{ $hr->nama }}</button>
                                 @endforeach
                             @endif
@@ -398,18 +394,6 @@
                         <div class="mt-4 ml-3">
                             <div class="col-lg-6 mt-5 ml-5">
                                 <div style="position: absolute; right: -500px; top: -200px;" class="d-flex">
-                                    @if ($userLog === 2)
-                                        @if ($show_resep->User->id === Auth::user()->id)
-                                            <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
-                                                <button type="submit" class="btn btn-edit ">Edit</button>
-                                            </form>
-                                            <form action="/koki/resep/{{ $show_resep->id }}" method="post" id="delete-form">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" onclick="DeleteData()" class="btn btn-hapus">Hapus</button>
-                                            </form>
-                                        @endif
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -422,10 +406,10 @@
                                     <div class="col-7 mt-1">
                                         <span class=""
                                             style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            @if ($show_resep->lama_memasak > 60)
-                                                {{ $show_resep->lama_memasak / 60 }} jam
-                                            @elseif($show_resep->lama_memasak <= 60)
-                                                {{ $show_resep->lama_memasak }} menit
+                                            @if ($row->resep->lama_memasak > 60)
+                                                {{ $row->resep->lama_memasak / 60 }} jam
+                                            @elseif($row->resep->lama_memasak <= 60)
+                                                {{ $row->resep->lama_memasak }} menit
                                             @endif
                                         </span> <br>
                                     </div>
@@ -446,7 +430,7 @@
                                     <div class="col-7 mt-1">
                                         <span class=""
                                             style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            RP{{ number_format($show_resep->pengeluaran_memasak, 2, ',', '.') }}
+                                            RP{{ number_format($row->resep->pengeluaran_memasak, 2, ',', '.') }}
                                         </span> <br>
                                     </div>
                                     <div class="col-5 d-flex my-auto flex-row-reverse">
@@ -465,7 +449,7 @@
                                     <div class="col-7 mt-1">
                                         <span class="]"
                                             style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            {{ $show_resep->porsi_orang }} Orang
+                                            {{ $row->resep->porsi_orang }} Orang
                                         </span> <br>
                                     </div>
                                     <div class="col-5 d-flex my-auto flex-row-reverse">
@@ -525,12 +509,12 @@
                         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                             <div class="tab-pane fade show active" id="pills-desc" role="tabpanel" aria-labelledby="pills-home-tab"
                                 tabindex="0">
-                                {{ $show_resep->deskripsi_resep }}
+                                {{ $row->resep->deskripsi_resep }}
                             </div>
                             <div class="tab-pane fade" id="pills-bahan" role="tabpanel" aria-labelledby="pills-profile-tab"
                                 tabindex="0">
                                 <div class="row mt-5">
-                                    @foreach ($show_resep->bahan as $item_bahan)
+                                    @foreach ($row->resep->bahan as $item_bahan)
                                         <div class="col-lg-4">
                                             <div class="card p-3"
                                                 style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
@@ -550,7 +534,7 @@
                             </div>
                             <div class="tab-pane fade" id="pills-langkah" role="tabpanel" aria-labelledby="pills-contact-tab"
                                 tabindex="0">
-                                @foreach ($show_resep->langkah as $num => $item_langkah)
+                                @foreach ($row->resep->langkah as $num => $item_langkah)
                                     <div class="card-body d-flex flex-row">
                                         <div class="d-flex flex-column" style="position: relative;">
                                             <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3"
@@ -572,7 +556,7 @@
                             <div class="tab-pane fade" id="pills-alat" role="tabpanel" aria-labelledby="pills-footer-tab"
                                 tabindex="0">
                                 <div class="row mt-5">
-                                    @foreach ($show_resep->alat as $num => $item_langkah)
+                                    @foreach ($row->resep->alat as $num => $item_langkah)
                                         <div class="col-lg-4">
                                             <div class="card p-3"
                                                 style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid">
@@ -594,8 +578,8 @@
                 </section>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus laporan</button>
+                <button type="button" style="background-color: #F7941E;" class="btn btn-light text-light rounded-3">Terima laporan</button>
             </div>
           </div>
         </div>
