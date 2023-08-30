@@ -250,7 +250,6 @@
                             <label for="ingredients" class="form-label">Nama Bahan</label>
                             <select name="ingredients[]" style="width: 100%;" multiple="multiple" id="ingredients"
                                 class="cari form-control">
-                                <option value=""></option>
                                 @foreach ($categories_ingredients as $f)
                                     <option value="{{ $f }}">{{ $f }}</option>
                                 @endforeach

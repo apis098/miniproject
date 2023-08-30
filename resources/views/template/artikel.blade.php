@@ -269,7 +269,7 @@
                 </div>
             </div>
         </div>
-        <style>
+        <style> 
         </style>
         <div class="my-5">
             <ul class="nav mb-3" id="pills-tab" role="tablist">

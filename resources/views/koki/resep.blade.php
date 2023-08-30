@@ -52,7 +52,7 @@
                     <div class="mt-5">
                         <label for="exampleFormControlInput1" class="form-label text-poppins"
                             style="font: Poppins"><b>Nama</b></label>
-                        <input type="nama_resep" name="nama_resep" class="form-control" id="exampleFormControlInput1"
+                        <input type="nama_resep" name="nama_resep" class="form-control" id="nama_resep_baru"
                             placeholder="Masukkan nama masakkan" value="{{ old('nama_resep') }}" required>
                         @error('nama_resep')
                             <div class="alert alert-danger">
@@ -224,7 +224,8 @@
                             </div>
                             <input type="text" class="form-control mb-2" name="judul_langkah[]"
                                 placeholder="Masukkan judul langkah..." required>
-                            <textarea maxlength="255"  class="form-control" name="langkah_resep[]" cols="30" rows="5" placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
+                            <textarea maxlength="255" class="form-control" name="langkah_resep[]" cols="30" rows="5"
+                                placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
 
                             @error('langkah_resep.*')
                                 <div class="alert alert-danger">
@@ -269,17 +270,18 @@
                             @foreach ($special_days as $int => $d)
                                 <div class="col-lg-3 mb-2">
                                     <input type="radio" class="btn-check" name="hari_khusus"
-                                        id="success-outlined{{ $int }}" value="{{ $d->id }}" autocomplete="off" checked>
+                                        id="success-outlined{{ $int }}" value="{{ $d->id }}"
+                                        autocomplete="off" checked>
                                     <label class="btn btn-outline-warning custom-btn"
-                                    style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                         for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                 </div>
                             @endforeach
                             <div class="col-lg-3">
-                                <input type="radio" class="btn-check" name="hari_khusus"
-                                    id="success-outlined" autocomplete="on" checked>
+                                <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
+                                    autocomplete="on" checked>
                                 <label class="btn btn-outline-warning"
-                                style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     for="success-outlined">Tidak ada</label>
                             </div>
                         </div>
@@ -291,7 +293,6 @@
                             color: white;
                             font-weight: 400;
                         }
-                        
                     </style>
                     <script>
                         function pilih_jenis_makanan(num) {
@@ -319,15 +320,35 @@
                     </script>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        id="button-add-recipe">Tambah
+                        id="button-add-recipes">Tambah
                         Resep</button>
                 </div>
             </div>
         </div>
     </form>
+    <div id="erroro"></div>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script>
+        $("document").ready(function() {
+            $("#button-add-recipe").click(function(event) {
+                event.preventDefault();
+                const data = $("#form-add-recipe").serialize();
+                $.ajax({
+                    url: "{{ route('resep.store') }}",
+                    method: "POST",
+                    data: data,
+                    success: function success() {
+                        location.reload();
+                    },
+                    error: function error(xhr, status, errors) {
+                        var a = xhr.responseText;
+                        $
+                    }
+                });
+            });
+        });
+
         num = 0;
 
         function klik() {
