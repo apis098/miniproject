@@ -63,8 +63,8 @@
             padding-top: 30px;
             padding-bottom: 30px;
             width: 195px;
-            border-top: solid black;
-            border-bottom: solid black;
+            border-top:1px solid black;
+            border-bottom:1px solid black;
             border-left: none;
             border-right: none;
             top: 10px;
@@ -210,12 +210,12 @@
                             @foreach ($data as $row)
                                 @if ($row->resep_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right: solid black;">
+                                        <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
                                                 data-target="#modalResep{{ $row->resep_id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
@@ -245,12 +245,12 @@
                             @foreach ($data as $row)
                                 @if ($row->complaint_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right: solid black;">
+                                        <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
                                                 data-target="#modalComplaint{{ $row->complaint_id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
@@ -281,12 +281,12 @@
                             @foreach ($data as $row)
                                 @if ($row->reply_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right:solid black;">
+                                        <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
                                                 data-target="#modalKomentar{{ $row->reply_id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
@@ -317,12 +317,12 @@
                             @foreach ($data as $row)
                                 @if ($row->profile_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right: solid black;">
+                                        <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
                                                 data-target="#modalProfile{{ $row->profile_id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
