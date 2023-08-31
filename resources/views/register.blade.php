@@ -56,7 +56,7 @@
         .bg-image {
             background: #f7941e;
             flex: 1;
-            height: 610%;
+            height: 615%;
             position: relative;
             border-radius: 0 15px 15px 0;
             overflow: hidden;
