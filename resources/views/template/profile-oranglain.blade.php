@@ -61,7 +61,7 @@
                         <form action="{{route('Followers.store',$user->id)}}" method="POST">
                             @csrf
                                 @if(Auth::check() && $user->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Batal mengiikuti</b></button>
+                                <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Diikuti</b></button>
                                 @elseif(Auth::check() && $userLogin->followers()->where('follower_id', $user->id)->exists())
                                 <button type="submit" class="btn btn-light text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px;"><b class="ms-3 me-3">Ikuti balik</b></button>
                                 @else

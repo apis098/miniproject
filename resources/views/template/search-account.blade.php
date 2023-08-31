@@ -227,7 +227,7 @@
                                             <button type="submit"
                                                 class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
                                                 style="background-color: #F7941E; border-radius: 15px;"><b
-                                                    class="ms-3 me-3">Batal mengiikuti</b></button>
+                                                    class="ms-3 me-3">Diikuti</b></button>
                                         @elseif(Auth::check() &&
                                                 $userLogin->followers()->where('follower_id', $row->id)->exists())
                                             <button type="submit"
@@ -277,7 +277,7 @@
                                             <button type="submit"
                                                 class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
                                                 style="background-color: #F7941E; border-radius: 15px;"><b
-                                                    class="ms-3 me-3">Batal mengiikuti</b></button>
+                                                    class="ms-3 me-3">Diikuti</b></button>
                                         @elseif(Auth::check() &&
                                                 $userLogin->followers()->where('follower_id', $row->id)->exists())
                                             <button type="submit"
