@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -80,16 +80,16 @@
         }
 
         /* .table-custom thead {
-                            background: #F7941E;
-                            margin-bottom: 10%;
-                            color: white;
-                        } */
+                                background: #F7941E;
+                                margin-bottom: 10%;
+                                color: white;
+                            } */
 
         /* .table-custom tr:not(.thead) {
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        border: 2px solid black;
-                    } */
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            border: 2px solid black;
+                        } */
 
         .table-custom td:first-child {
             border-top-left-radius: 15px;
@@ -149,166 +149,166 @@
             letter-spacing: 0.40px;
             word-wrap: break-word
         }
-
     </style>
 
-<div class=" d-flex justify-content-center ms-1">
-    <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-        <div class="my-5 ml-5" style="margin-right:%;">
-            <button type="button" class="btn btn-buat btn-sm" data-toggle="modal"
-                data-target="#exampleModal">Tambah</button>
-            {{-- modal tambah --}}
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered " role="document">
-                    <div class="modal-content" style="border-radius: 15px">
-                        <div class="modal-body">
-                            <div class="d-flex justify-content-between">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <br>
-                            <form method="POST" action="{{ route('special-days.store') }}" >
-                                @csrf
-                                <div class="">
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="nama" id="nama"
-                                            style="border-radius:10px; width:120%;">
-                                        <br>
-                                        <button type="submit"
-                                            class="btn btn-tambah btn-sm d-flex justify-content-xxl-end">
-                                            Tambah
-                                        </button>
-                                    </div>
+    <div class=" d-flex justify-content-center ms-1">
+        <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+            <div class="my-5 ml-5" style="margin-right:%;">
+                <button type="button" class="btn btn-buat btn-sm" data-toggle="modal"
+                    data-target="#exampleModal">Tambah</button>
+                {{-- modal tambah --}}
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered " role="document">
+                        <div class="modal-content" style="border-radius: 15px">
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                            </form>
+                                <br>
+                                <form method="POST" action="{{ route('special-days.store') }}">
+                                    @csrf
+                                    <div class="">
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" name="nama" id="nama"
+                                                style="border-radius:10px; width:120%;">
+                                            <br>
+                                            <button type="submit"
+                                                class="btn btn-tambah btn-sm d-flex justify-content-xxl-end">
+                                                Tambah
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {{-- end modal tambah --}}
-            {{-- start tab 2 --}}
+                {{-- end modal tambah --}}
+                {{-- start tab 2 --}}
 
-            <table class="table-custom">
-                <thead>
-                    <tr>
-                        <th scope="col">Hari Khusus</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($special_days as $data)
+                <table class="table-custom">
+                    <thead>
                         <tr>
-                            <td style="border-left:solid black; font-size:15px;font-family:poppins">
-                                {{ $data->nama }}</td>
-                            <td style="border-right: solid black;">
-                                <div>
-                                    <button type="button" class="btn btn-tambah" data-toggle="modal"
-                                        data-target="#exampleModal{{ $data->id }}">Edit</button>
-                                    {{-- modal edit --}}
-                                    <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content" style="border-radius: 15px">
-                                                <div class="modal-body">
-                                                    <div class="d-flex justify-content-between">
-                                                        <h5 class="modal-title" id="exampleModalLabel"> Edit Data</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <br>
-                                                    <form action="{{ route('special-days.update', $data->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('PUT')
-
-                                                        <div class="">
-                                                            <div class="col-sm-10">
-                                                                <input type="text" class="form-control"
-                                                                    value="{{ $data->nama }}"
-                                                                    name="nama" id="nama"
-                                                                    style="border-radius:10px; width:120%;">
-                                                            </div>
+                            <th scope="col">Hari Khusus</th>
+                            <th scope="col">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($special_days as $data)
+                            <tr>
+                                <td style="border-left:solid black; font-size:15px;font-family:poppins">
+                                    {{ $data->nama }}</td>
+                                <td style="border-right: solid black;">
+                                    <div>
+                                        <button type="button" class="btn btn-tambah" data-toggle="modal"
+                                            data-target="#exampleModal{{ $data->id }}">Edit</button>
+                                        {{-- modal edit --}}
+                                        <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content" style="border-radius: 15px">
+                                                    <div class="modal-body">
+                                                        <div class="d-flex justify-content-between">
+                                                            <h5 class="modal-title" id="exampleModalLabel"> Edit Data</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
                                                         <br>
-                                                        <button type="submit"
-                                                            class="btn btn-tambah btn-sm d-flex justify-content-xxl-end">Edit</button>
-                                                    </form>
+                                                        <form action="{{ route('special-days.update', $data->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('PUT')
+
+                                                            <div class="">
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" class="form-control"
+                                                                        value="{{ $data->nama }}" name="nama"
+                                                                        id="nama"
+                                                                        style="border-radius:10px; width:120%;">
+                                                                </div>
+                                                            </div>
+                                                            <br>
+                                                            <button type="submit"
+                                                                class="btn btn-tambah btn-sm d-flex justify-content-xxl-end">Edit</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    {{-- end modal edit --}}
-                                    <form action="{{ route('special-days.destroy', $data->id) }}" method="POST" id="delete-form"
-                                        class="d-inline-block">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-buat btn-sm" style="margin-left: 5%"
-                                            data-mdb-ripple-color="dark" onclick="DeleteData()" >
-                                            Hapus</button>
-                                    </form>
-                            </td>
+                                        {{-- end modal edit --}}
+                                        <form action="{{ route('special-days.destroy', $data->id) }}" method="POST"
+                                            id="delete-form" class="d-inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-buat btn-sm" style="margin-left: 5%"
+                                                data-mdb-ripple-color="dark" onclick="DeleteData()">
+                                                Hapus</button>
+                                        </form>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tr>
-                    @endforeach
-                </tr>
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+            @forelse ($special_days as $data)
+            @empty
+                <div class="d-flex flex-column h-100 justify-content-center align-items-center mx-5"
+                    style="margin-top: -50px;">
+                    <img src="{{ asset('images/data.png') }}" style="width: 20em;  margin-right: -250px;">
+                    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
+                </div>
+            @endforelse
+        </div>
     </div>
-    @forelse ($special_days as $data)
-
-    @empty
-    <div class="d-flex flex-column h-100 justify-content-center align-items-center mx-5"
-    style="margin-top: -50px;">
-    <img src="{{asset('images/data.png')}}" style="width: 20em;  margin-right: -250px;">
-    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
-</div>
-    @endforelse
+    {{-- end --}}
     </div>
-</div>
-{{-- end --}}
-</div>
-</div>
-</div>
+    </div>
+    </div>
     {{-- end modal edit --}}
 
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
         integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
-        <script>
-            function DeleteData() {
-               iziToast.show({
-                   backgroundColor: '#F7941E',
-                   title: '<i class="fa-regular fa-circle-question"></i>',
-                   titleColor: 'white',
-                   messageColor: 'white',
-                   message: 'Apakah Anda yakin ingin menghapus data ini?',
-                   position: 'topCenter',
-                   buttons: [
-                       ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
-                           instance.hide({
-                               transitionOut: 'fadeOutUp',
-                               onClosing: function (instance, toast, closedBy) {
-                                   document.getElementById('delete-form').submit();
-                               }
-                           }, toast, 'buttonName');
-                       }, false], // true to focus
-                       ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
-                           instance.hide({}, toast, 'buttonName');
-                       }]
-                   ],
-                   onOpening: function (instance, toast) {
-                       console.info('callback abriu!');
-                   },
-                   onClosing: function (instance, toast, closedBy) {
-                       console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-                   }
-               });
-           }
-           </script>
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+    <script>
+        function DeleteData() {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('delete-form').submit();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+    </script>
 @endsection

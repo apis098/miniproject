@@ -387,52 +387,55 @@
     </script>
     </div>
     <!-- Modal Keluhan -->
-    @foreach($data as $row)
-    @if($row->complaint_id != null)
-    <div class="modal fade" id="modalComplaint{{$row->complaint_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Detail</h5>
-                    {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
-                    <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    @foreach ($data as $row)
+        @if ($row->complaint_id != null)
+            <div class="modal fade" id="modalComplaint{{ $row->complaint_id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Detail</h5>
+                            {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
+                            <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
 
-                </div>
+                        </div>
                         <div class="modal-body d-flex align-items-center">
-                            @if($row->user->foto)
-                            <img src="{{ asset('storage/' . $row->user->foto) }}" class="ms-2 me-5 img-fluid rounded-circle me-2"
-                                style="max-width:106px" alt="">
+                            @if ($row->user->foto)
+                                <img src="{{ asset('storage/' . $row->user->foto) }}"
+                                    class="ms-2 me-5 img-fluid rounded-circle me-2" style="max-width:106px"
+                                    alt="">
                             @else
-                            <img src="{{ asset('images/default.jpg') }}" class="ms-2 me-5 img-fluid rounded-circle me-2"
-                            style="max-width:106px" alt="">
+                                <img src="{{ asset('images/default.jpg') }}"
+                                    class="ms-2 me-5 img-fluid rounded-circle me-2" style="max-width:106px"
+                                    alt="">
                             @endif
                             <a href="">
                                 <div style="justify-content: space-between;" class="mb-1">
                                     <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
                                         {{ $row->complaint->subject }}</h6>
 
-                                    <small
-                                        class="text-secondary  me-3">{{$row->complaint->description}}</small>
+                                    <small class="text-secondary  me-3">{{ $row->complaint->description }}</small>
 
                                 </div>
                             </a>
                         </div>
-                <div class="modal-footer">
-                    <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" ><b>Hapus Laporan</b></button>
-                    </form>
-                    <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
+                        <div class="modal-footer">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-dark rounded-3"
+                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
+                            </form>
+                            <a href="{{ route('blockContent.destroy', $row->id) }}"
+                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    @endif
+        @endif
     @endforeach
     {{-- end Modal --}}
     {{-- modal proofile --}}
@@ -445,54 +448,54 @@
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" style="font-family: Poppins;" id="exampleModalLabel"><b
                                     class="ms-2">Detail</b></h1>
-                                <button type="button" class="close text-black" data-dismiss="modal"
-                                    aria-label="Close">
-                                    <i class="fa-regular fa-circle-xmark"></i>
-                                </button>
+                            <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                                <i class="fa-regular fa-circle-xmark"></i>
+                            </button>
                         </div>
                         <div class="modal-body">
-                                @csrf
-                                {{-- @method('put') --}}
-                                <div class="profile d-flex justify-content-center">
-                                    
-                                        <a href="{{ route('blockContent.destroy',$row->id) }}" class="btn btn-light text-light btn-sm rounded-3"
-                                            style="position: absolute; top: 80%; right: 38%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-1 me-1 text-light">Hapus foto saat ini</b></a>
-        
-                                    <a href="{{route('randomName.update',$row->id)}}" class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
-                                        style="position: absolute; top: 80%; right: 3%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                        type="submit" id="saveProfileButton"><b class="ms-1 me-1">Berikan nama acak</b></a>
-                                    
-                                    <input type="file" id="fileInputA" name="profile_picture" style="display:none">
+                            @csrf
+                            {{-- @method('put') --}}
+                            <div class="profile d-flex justify-content-center">
 
-                                    @if ($row->user->foto)
-                                        <img src="{{ asset('storage/' . $row->user->foto) }}" width="106px"
-                                            height="104px" style="border-radius: 50%; margin-right:-28%;"
-                                            id="profile-image">
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
-                                            style="border-radius: 50%; margin-right:-28%;" id="profile-image">
-                                    @endif
+                                <a href="{{ route('blockContent.destroy', $row->id) }}"
+                                    class="btn btn-light text-light btn-sm rounded-3"
+                                    style="position: absolute; top: 80%; right: 38%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-1 me-1 text-light">Hapus foto saat ini</b></a>
 
-                                    <div class="col-8" style="margin-left:35%;">
-                                        <input type="text" value="{{ $row->user->name }}" name="name"
-                                            class="form-control form-control-sm">
-                                        <input type="text" name="email" value="{{ $row->user->email }}"
-                                            class="form-control form-control-sm mt-3">
-                                    </div>
+                                <a href="{{ route('randomName.update', $row->id) }}"
+                                    class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
+                                    style="position: absolute; top: 80%; right: 3%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    type="submit" id="saveProfileButton"><b class="ms-1 me-1">Berikan nama acak</b></a>
 
+                                <input type="file" id="fileInputA" name="profile_picture" style="display:none">
+
+                                @if ($row->user->foto)
+                                    <img src="{{ asset('storage/' . $row->user->foto) }}" width="106px" height="104px"
+                                        style="border-radius: 50%; margin-right:-28%;" id="profile-image">
+                                @else
+                                    <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                        style="border-radius: 50%; margin-right:-28%;" id="profile-image">
+                                @endif
+
+                                <div class="col-8" style="margin-left:35%;">
+                                    <input type="text" value="{{ $row->user->name }}" name="name"
+                                        class="form-control form-control-sm">
+                                    <input type="text" name="email" value="{{ $row->user->email }}"
+                                        class="form-control form-control-sm mt-3">
                                 </div>
+
+                            </div>
                         </div>
 
                         <div class="modal-footer mt-3 ">
-                            <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-outline-dark btn-sm rounded-3 me-3"
                                     style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <b class="">Hapus laporan</b>
                                 </button>
-                                </form>
+                            </form>
                         </div>
                     </div>
                     <script>
@@ -512,62 +515,60 @@
         @endif
     @endforeach
     {{-- akhir modal --}}
-                {{-- modal komentar --}}
-                @foreach($data as $row)
-                @if($row->reply_id !=null)
-                <div class="modal fade" id="modalKomentar{{$row->reply_id}}" tabindex="-1" role="dialog"
+    {{-- modal komentar --}}
+    @foreach ($data as $row)
+        @if ($row->reply_id != null)
+            <div class="modal fade" id="modalKomentar{{ $row->reply_id }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="reportModal" style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Detail</h5>
-                            <button type="button" class="close text-black" data-dismiss="modal"
-                                aria-label="Close">
+                            <h5 class="modal-title" id="reportModal"
+                                style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                Detail</h5>
+                            <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                            <div class="modal-body d-flex align-items-center col-12">
-                                <!-- Tambahkan kelas "align-items-center" -->
-                                <div class="col-3 mt-2  ms-3">
-                                    @if($row->user->foto)
-                                    <img class=""
-                                        src="{{asset('storage/'.$row->user->foto)}}"
-                                        width="100px" height="100px" style="border-radius: 50%"
-                                        alt="">
-                                    @else
-                                    <img class=""
-                                    src="{{asset('images/default.jpg')}}"
-                                    width="100px" height="100px" style="border-radius: 50%"
-                                    alt="">
-                                    @endif
-                                        <span class="widget-49-pro-title fw-bolder" style="margin-left: 30px;">{{$row->user->name}}</span><br>
-                                        <small class="text-secondary ms-2"><i>{{$row->user->email}}</i></small>
-                                </div>
-                                        <div class="col-md-8">
-                                            <div class="widget-49-meeting-info">
-                                                
-                                            </div>
-                                            <textarea readonly class="form-control" name="description" rows="5">{{$row->replies->reply}}</textarea>
-                                        </div>
+                        <div class="modal-body d-flex align-items-center col-12">
+                            <!-- Tambahkan kelas "align-items-center" -->
+                            <div class="col-3 mt-2  ms-3">
+                                @if ($row->user->foto)
+                                    <img class="" src="{{ asset('storage/' . $row->user->foto) }}" width="100px"
+                                        height="100px" style="border-radius: 50%" alt="">
+                                @else
+                                    <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
+                                        height="100px" style="border-radius: 50%" alt="">
+                                @endif
+                                <span class="widget-49-pro-title fw-bolder"
+                                    style="margin-left: 30px;">{{ $row->user->name }}</span><br>
+                                <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small>
                             </div>
-                            <div class="modal-footer">
-                                <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-light text-black"
+                            <div class="col-md-8">
+                                <div class="widget-49-meeting-info">
+
+                                </div>
+                                <textarea readonly class="form-control" name="description" rows="5">{{ $row->replies->reply }}</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-light text-black"
                                     style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Hapus Laporan</b></button>
-                                </form>
-                                <a href="{{route('blockContent.destroy',$row->id)}}" class="btn btn-light text-light"
-                                    style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                        class="ms-2 me-2">Terima Laporan</b></a>
-                            </div>
+                            </form>
+                            <a href="{{ route('blockContent.destroy', $row->id) }}" class="btn btn-light text-light"
+                                style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Terima Laporan</b></a>
+                        </div>
                     </div>
                 </div>
             </div>
-            @endif
-            @endforeach
-            {{-- end Modal --}}
+        @endif
+    @endforeach
+    {{-- end Modal --}}
     {{-- Modal resep --}}
     @foreach ($data as $row)
         @if ($row->resep_id != null)
@@ -826,12 +827,14 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
+                                <button type="submit" class="btn btn-outline-dark rounded-3"
+                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            <a href="{{ route('blockContent.destroy', $row->id) }}"
+                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
                         </div>
                     </div>
