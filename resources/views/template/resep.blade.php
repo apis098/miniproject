@@ -451,5 +451,6 @@
                 </div>
             @endforeach
         </div>
+        {{ $recipes->links('vendor.pagination.default') }}
     </div>
 @endsection

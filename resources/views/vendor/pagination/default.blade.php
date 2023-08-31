@@ -17,7 +17,8 @@
                                     style="color: white; background-color: #F7941E; border: 1px solid black; border-radius: 10px;">{{ $page }}</button>
                             </li>
                         @else
-                            <li><a href="{{ $url }}" class="btn btn-light mx-1"
+                        {{-- Request::fullUrl untuk mengembalikan url dan seluruh parameternya sebelumnya kemudian penambahan WithQuery untuk menambahkan atau mengupdate parameter page dengan nilai variabel $page --}}
+                            <li><a href="{{ Request::fullUrlWithQuery(['page' => $page]) }}" class="btn btn-light mx-1"
                                     style="color: black; border: 1px solid black; border-radius: 10px;">{{ $page }}</a>
                             </li>
                         @endif
