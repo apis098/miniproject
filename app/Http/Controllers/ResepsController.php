@@ -293,7 +293,7 @@ class ResepsController extends Controller
         if ($request->has('jenis_makanan')) {
             $update_resep->kategori_resep()->sync($request->jenis_makanan);
         } else {
-            kategori_reseps::where("reseps_id", $request->jenis_makanan)->delete();
+            kategori_reseps::where("reseps_id", $update_resep->id)->delete();
         }
         if ($request->has("hapus_bahan")) {
             foreach ($request->hapus_bahan as $key => $value) {
