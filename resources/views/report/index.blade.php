@@ -444,30 +444,25 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" style="font-family: Poppins;" id="exampleModalLabel"><b
-                                    class="ms-2">Edit Profile</b></h1>
-                            <button type="button" class="btn-close" data-dismis="modal" aria-label="Close">
-                            </button>
+                                    class="ms-2">Detail</b></h1>
+                                <button type="button" class="close text-black" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                </button>
                         </div>
                         <div class="modal-body">
                                 @csrf
                                 {{-- @method('put') --}}
                                 <div class="profile d-flex justify-content-center">
-                                    <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-outline-dark btn-sm rounded-3"
-                                        style="position: absolute; top: 80%; right: 44%;border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                        <b class="">Hapus laporan</b>
-                                    </button>
-                                    </form>
+                                    
                                         <a href="{{ route('blockContent.destroy',$row->id) }}" class="btn btn-light text-light btn-sm rounded-3"
-                                            style="position: absolute; top: 80%; right: 22.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-1 me-1 text-light">Hapus foto</b></a>
+                                            style="position: absolute; top: 80%; right: 38%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                class="ms-1 me-1 text-light">Hapus foto saat ini</b></a>
         
-                                    <button class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
+                                    <a href="{{route('randomName.update',$row->id)}}" class="btn btn-light text-light btn-sm rounded-3 text-light me-3"
                                         style="position: absolute; top: 80%; right: 3%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                        type="submit" id="saveProfileButton"><b class="ms-1 me-1">Simpan</b></button>
-
+                                        type="submit" id="saveProfileButton"><b class="ms-1 me-1">Berikan nama acak</b></a>
+                                    
                                     <input type="file" id="fileInputA" name="profile_picture" style="display:none">
 
                                     @if ($row->user->foto)
@@ -489,8 +484,15 @@
                                 </div>
                         </div>
 
-                        <div class="modal-footer mt-3 mb-4">
-
+                        <div class="modal-footer mt-3 ">
+                            <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-outline-dark btn-sm rounded-3 me-3"
+                                    style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <b class="">Hapus laporan</b>
+                                </button>
+                                </form>
                         </div>
                     </div>
                     <script>
@@ -519,7 +521,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="reportModal" style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Detail</h5>
-                            <button type="button" class="close" data-dismiss="modal"
+                            <button type="button" class="close text-black" data-dismiss="modal"
                                 aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>

@@ -100,6 +100,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::get('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
+        Route::get('/random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
          // special_days
          Route::resource('/special-days', special_days_controller::class);

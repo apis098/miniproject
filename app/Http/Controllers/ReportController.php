@@ -11,7 +11,7 @@ use App\Models\reseps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use Str;
 class ReportController extends Controller
 {
     public function index(){
@@ -84,13 +84,35 @@ class ReportController extends Controller
         $report->save();
         return redirect()->back()->with('success', 'Laporan pelanggaran berhasil dikirim.');
     }
+    public function randomName($id){
+        $report = Report::findOrFail($id);
+        $report->user->delete();
+        $nama_random = Str::random(10);
+        $report->user->increment('jumlah_pelanggaran');
+        $user = $report->user;
+        $user->name = $nama_random;
+        $user->save();
+
+        $notification = new notifications();
+        $notification->user_id = $report->user_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->random_name = $nama_random;
+        $notification->save();
+
+        if($report->user->jumlah_pelanggaran > 10){
+            $report->user->status = "nonaktif";
+            $report->user->save();
+            return redirect()->back()->with('success', 'User telah diblokir');
+        }
+        return redirect()->back()->with('success','Nama berhasil disesuaikan');
+    }
     public function block($id){
         $report = Report::findOrFail($id);
         $report->user->increment('jumlah_pelanggaran');
         if($report->reply_id != null){
             $report->replies->delete();
             $notification = new notifications();
-            $notification->user_id = $report->reply_id;
+            $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
             $notification->save(); 
@@ -137,7 +159,7 @@ class ReportController extends Controller
             $report->user->save();
             return redirect()->back()->with('success', 'User telah diblokir');
         }
-    
+        
     }
     public function destroy($id){
         $report = Report::findOrFail($id);
