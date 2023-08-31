@@ -431,6 +431,9 @@
                             <a href="{{ route('blockContent.destroy', $row->id) }}"
                                 style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
+                            <a href="{{ route('block.user', $row->id) }}"
+                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-light text-light rounded-3 me-4"><b>Blokir pengguna</b></a>
                         </div>
                     </div>
                 </div>
@@ -495,6 +498,9 @@
                                     style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <b class="">Hapus laporan</b>
                                 </button>
+                                <a href="{{ route('block.user', $row->id) }}"
+                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-light btn-sm me-3 text-light rounded-3"><b>Blokir pengguna</b></a>
                             </form>
                         </div>
                     </div>
@@ -563,6 +569,9 @@
                             <a href="{{ route('blockContent.destroy', $row->id) }}" class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></a>
+                            <a href="{{ route('block.user', $row->id) }}"
+                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b></a>
                         </div>
                     </div>
                 </div>
@@ -837,6 +846,9 @@
                             <a href="{{ route('blockContent.destroy', $row->id) }}"
                                 style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
+                            <a href="{{ route('block.user', $row->id) }}"
+                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-light text-light rounded-3"><b>Blokir pengguna</b></a>
                         </div>
                     </div>
                 </div>

@@ -162,6 +162,32 @@ class ReportController extends Controller
         }
         
     }
+    public function blockUser($id){
+        $report= Report::findOrFail($id);
+        if($report->user->status == "aktif"){
+            $report->user->status = "nonaktif";
+            $report->user->save();
+            if($report->reply_id !=null){
+                $report->replies->delete();
+            }
+            if($report->complaint_id != null){
+                $report->complaint->delete();
+            }
+            if($report->resep_id !=null){
+                $report->resep->delete();
+            }
+            if($report->profile_id != null){
+                Storage::disk('public')->delete($report->user->foto);
+                $profile = $report->user;
+                $profile->foto = null;
+                $profile->save();
+                $report->delete();
+            }
+            return redirect()->back()->with('success','Pengguna berhasil diblokir');
+        }else{
+            return redirect()->back()->with('error','User sudah diblokir');
+        }
+    }
     // public function deletePhoto($id)
     // {
     //     $report=Report::findOrFail($id);

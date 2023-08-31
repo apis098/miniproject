@@ -95,6 +95,7 @@ Route::post('/laporan-komentar/{id}',[ReportController::class,'storeReply'])->na
 Route::post('/laporan-keluhan/{id}',[ReportController::class,'storeComplaint'])->name('report.complaint');
 
 
+
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
@@ -103,6 +104,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::get('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
+        Route::get('/block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::get('/random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
          // special_days
