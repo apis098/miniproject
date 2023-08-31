@@ -220,7 +220,6 @@
             <h3 class="fw-bold">Hasil Pencarian</h3>
         </div>
         <div class="ms-auto me-5">
-            {{ $recipes->links('vendor.pagination.simple-default') }}
         </div>
     </div>
     @if ($errors->any())
@@ -242,7 +241,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('resep.home') }}" method="GET">
+                    <form action="{{ route('filter.resep') }}" method="POST">
+                        {{ csrf_field() }}
                         @if (request()->nama_resep)
                             <input type="text" hidden name="nama_resep" value="{{ request()->nama_resep }}">
                         @endif
@@ -452,6 +452,5 @@
                 </div>
             @endforeach
         </div>
-        {{ $recipes->links() }}
     </div>
 @endsection
