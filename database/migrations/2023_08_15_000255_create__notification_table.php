@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('notification_from')->nullable();
             $table->unsignedBigInteger('follower_id')->nullable();
             $table->unsignedBigInteger('reply_id_report')->nullable();
+            $table->integer('complaint_id_report')->nullable();
+            $table->integer('resep_id_report')->nullable();
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('reply_id')->nullable(); 
             $table->unsignedBigInteger('complaint_id')->nullable(); 
@@ -25,7 +27,6 @@ return new class extends Migration
             $table->string('status')->default('belum');
             $table->timestamps();
 
-            $table->foreign('reply_id_report')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('notification_from')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
