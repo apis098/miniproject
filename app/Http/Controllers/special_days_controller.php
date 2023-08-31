@@ -10,7 +10,7 @@ class special_days_controller extends Controller
 {
     public function index()
     {
-        $special_days = special_days::all();
+        $special_days = special_days::paginate(1);
         return view('admin.specialdays', compact('special_days'));
     }
 
@@ -48,7 +48,7 @@ class special_days_controller extends Controller
     {
         $special_days = special_days::find($id);
         //      // Cek apakah ada produk terkait dengan kategori ini
-       
+
         $special_days->resep()->where("hari_khusus_id", $special_days->id)->update([
             "hari_khusus_id" => NULL
         ]);

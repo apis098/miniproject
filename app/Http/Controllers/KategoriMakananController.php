@@ -12,7 +12,7 @@ class KategoriMakananController extends Controller
      */
     public function index()
     {
-        $kategori_makanans = kategori_makanan::all();
+        $kategori_makanans = kategori_makanan::paginate('2');
         return view('admin.kategorimakanan', compact('kategori_makanans'));
     }
 

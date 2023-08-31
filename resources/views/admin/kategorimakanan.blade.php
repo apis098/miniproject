@@ -149,13 +149,148 @@
             font-weight: 500;
             letter-spacing: 0.40px;
             word-wrap: break-word
+
+        }
+
+        .search {
+            background-color: #fff;
+            padding: 0px 10px;
+            border-radius: 5px;
+            width: 250px;
+        }
+
+        .search-1 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-1 input {
+            height: 45px;
+            border: none;
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 10px;
+            border-right: 2px solid #eee
+        }
+
+        .search-1 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        .search-1 i {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        ::placeholder {
+            color: #eee;
+            opacity: 1
+        }
+
+        .search-2 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-2 input {
+            height: 35px;
+            border: none;
+            width: 100%;
+            padding-left: 15px;
+            padding-right: 100px;
+
+
+        }
+
+        .search-2 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        /* button{
+                    background-color: #F7941E;
+                    border: none;
+                    height: 45px;
+                    width: 90px;
+                    color: #ffffff;
+                    position: absolute;
+                    right: 1px;
+                    top: 0px;
+                    border-radius: 15px
+                } */
+        .search-2 i {
+            position: absolute;
+            top: 12px;
+            left: -10px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        .search-2 button {
+            position: absolute;
+            right: 4px;
+            top: 2px;
+            border: none;
+            height: 30px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 70px;
+            border-radius: 4px
+
+        }
+
+
+        @media (max-width:800px) {
+            .search-1 input {
+                border-right: none;
+                border-bottom: 1px solid #eee
+            }
+
+            .search-2 i {
+                left: 4px
+            }
+
+            .search-2 input {
+                padding-left: 34px
+            }
+
+            .search-2 button {
+                height: 37px;
+                top: 5px
+            }
         }
     </style>
     <div class=" d-flex justify-content-center ms-1">
         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-            <div class="my-5 ml-5" style="margin-right:%;">
+            <div class="my-5 ml-5" style="margin-right:%; " >
                 <button type="button" class="btn btn-sm" data-toggle="modal"
                  style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"   data-target="#exampleModal">Tambah</button>
+                 <form action="" style="position:fixed;">
+                    <div class="container" style="margin-top: -35px; margin-right: -547px; ">
+                        <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                        <div class="search-2"> <i class='bx bxs-map'></i>
+                                            <form action="" method="GET">
+                                                <input type="text" id="" name=""
+                                                    placeholder="Cari Kategori">
+                                                <button type="submit" class="zoom-effects"
+                                                    style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -11px">Cari</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 {{-- modal tambah --}}
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -176,7 +311,6 @@
                                             <input type="text" class="form-control" name="nama_makanan"
                                                 style="border-radius:10px; width:120%;">
                                             <br>
-                                            
                                             <button type="submit"
                                                 class="btn btn-sm text-white d-flex justify-content-xxl-end" style="  margin-left: 350px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
                                                 Tambah
@@ -258,6 +392,8 @@
                     </tbody>
                 </table>
             </div>
+
+
             @forelse ($kategori_makanans as $data)
 
     @empty
@@ -272,6 +408,10 @@
     {{-- end --}}
     </div>
     </div>
+    </div>
+
+    <div style="margin-top: 3em;">
+    {{$kategori_makanans->links('vendor.pagination.default')}}
     </div>
 
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
