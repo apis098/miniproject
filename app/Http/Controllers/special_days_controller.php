@@ -49,7 +49,9 @@ class special_days_controller extends Controller
         $special_days = special_days::find($id);
         //      // Cek apakah ada produk terkait dengan kategori ini
        
-        $special_days->resep()->where("hari_khusus_id", $special_days->id)->delete();
+        $special_days->resep()->where("hari_khusus_id", $special_days->id)->update([
+            "hari_khusus_id" => NULL
+        ]);
         $special_days->delete();
         return redirect()->back()->with('info', 'Data hari khusus berhasil dihapus.');
     }
