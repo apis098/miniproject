@@ -23,10 +23,10 @@ class AdminController extends Controller
         $reports = Report::orderBy("created_at", "desc")->get();
         $reseps = reseps::orderBy("created_at", "desc")->get();
         $datetime = User::pluck("created_at");
-        $year = 2023;
-        $max_year = 2023 + 5;
+        $year = 2018;
+        $yearsu = date('Y') - $year;
         $years = [];
-        for ($i=0; $i < 6; $i++) { 
+        for ($i=0; $i <= $yearsu; $i++) { 
             $years[] = $year++; 
         }
         $month = [];
