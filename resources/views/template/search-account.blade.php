@@ -184,10 +184,6 @@
         <div class="ms-3">
             <h3 class="fw-bold">Hasil Pencarian</h3>
         </div>
-        <div class="ms-auto me-5">
-            <button class="btn btn-light text-light float-end me-5 zoom-effects"
-                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-3 me-3">Selanjutnya</b></button>
-        </div>
     </div>
     @if ($user->count() == 0)
     <div class="d-flex flex-column justify-content-center align-items-center">
