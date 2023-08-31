@@ -153,7 +153,7 @@
                             <form action="{{ route('report.complaint',$data->id) }}" method="POST">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Laporkan Keluhan</h5>
+                                    <h5 class="modal-title" id="exampleModalCenterTitle" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Laporkan Keluhan</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -162,12 +162,12 @@
                                     <div class="d-flex align-items-center">
                                         @if($data->user->foto)
                                             <img src="{{ asset('storage/'.$data->user->foto) }}" width="106px" height="104px"
-                                                style="border-radius: 50%" alt="">
+                                                style="border-radius: 50%; " alt="">
                                         @else
                                             <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
-                                                style="border-radius: 50%" alt="">
+                                                style="border-radius: 50%; " alt="">
                                         @endif
-                                        <textarea class="form-control" style="margin-left: 1em" name="description" rows="5"
+                                        <textarea class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5" 
                                             placeholder="Alasan">{{ old('description') }}</textarea>
                                     </div>
                                 </div>
@@ -232,7 +232,6 @@
                                                 </div>
                                             @endif
                                         </small>
-                                            <br>
                                             <div class="" style="">
                                                 <small class="font-weight-bold text-break">{{ $row->reply }}</small>
                                         </span>
@@ -247,7 +246,7 @@
                                             </div>
                                         @endif
                                         </small>
-                                        <div class="" style="">
+                                        <div class="" style="margin-top: ">
                                             <small class="font-weight-bold text-break" >{{ $row->reply }}</small>
                                        
                                             {{-- @if (strlen($row->reply) > 500) --}}
@@ -256,7 +255,7 @@
                                     </span>
                                 </div>
             </div>
-                                    <br>
+                                  
                                     
 
                                    
@@ -316,12 +315,12 @@
                                             width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                             alt="">
-                                        <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                                        <textarea class="form-control" name="description" style="margin-left: 1em; border-radius: 15px;" rows="5" placeholder="Alasan"></textarea>
                                     @else
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                             alt="">
-                                        <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                        <textarea class="form-control rounded-5" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5" placeholder="Alasan..."></textarea>
                                     @endif
                                 </div>
                                 <div class="modal-footer">
