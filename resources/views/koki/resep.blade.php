@@ -107,7 +107,7 @@
                     <br>
                     <button type="button" id="button-new-input1" class="btn btn-warning text-white"
                         style="float: right;background: #F7941E; border-radius:15px ;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                        Tambahkan
+                        Tambahkan Bahan & Takaran
                     </button>
                     <br>
                     <div>
@@ -121,7 +121,7 @@
                     <br>
                     <button type="button" id="button-new-alat" class="btn btn-warning text-white"
                         style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
-                        Tambahkan
+                        Tambahkan Alat - Alat
                     </button>
                     <script>
                         numsq = 0;
@@ -244,7 +244,7 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan</button>
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan Langkah - Langkah</button>
                     <br>
                     <div class="mt-2">
                         <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
