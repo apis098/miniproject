@@ -524,8 +524,6 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="" method="POST">
-                            @csrf
                             <div class="modal-body d-flex align-items-center col-12">
                                 <!-- Tambahkan kelas "align-items-center" -->
                                 <div class="col-3 mt-2  ms-3">
@@ -551,15 +549,17 @@
                                         </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-light text-black"
-                                style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-2 me-2">Hapus Laporan</b></button>
-
+                                <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-light text-black"
+                                    style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-2 me-2">Hapus Laporan</b></button>
+                                </form>
                                 <a href="{{route('blockContent.destroy',$row->id)}}" class="btn btn-light text-light"
                                     style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Terima Laporan</b></a>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -824,7 +824,11 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
+                            <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
+                            </form>
                             <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
                         </div>
