@@ -56,7 +56,7 @@
         .bg-image {
             background: #f7941e;
             flex: 1;
-            height: 100vh;
+            height: 620px;
             position: relative;
             border-radius: 0 15px 15px 0;
             overflow: hidden;
@@ -325,7 +325,7 @@ border-radius: 10px;
                     <div class="">
                         <div class="row">
                             <div class="card my-3 col-3">
-                                <div class="card-body text-center">
+                                <div class="card-body text-center" style="margin-left:-7px" >
                                     <svg width="50" height="100" viewBox="0 0 102 137" fill="none"
                                         id="svg-placeholder" xmlns="http://www.w3.org/2000/svg">
                                         <path

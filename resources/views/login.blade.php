@@ -52,6 +52,7 @@
             align-items: center;
             justify-content: center;
             height: 100%;
+            width: 100%;
             position: relative;
             background-color: #ffffff;
         }
@@ -59,7 +60,7 @@
         .bg-image {
             background: #f7941e;
             flex: 1;
-            height: 100vh;
+            height: 620px;
             position: relative;
             border-radius: 0 15px 15px 0;
             overflow: hidden;
@@ -222,7 +223,7 @@
             border-radius: 10px;
         }
 
-     
+
 
         .alert {
             margin-top: 10px;
