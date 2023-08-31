@@ -250,6 +250,7 @@
                             <label for="ingredients" class="form-label">Nama Bahan</label>
                             <select name="ingredients[]" style="width: 100%;" multiple="multiple" id="ingredients"
                                 class="cari form-control">
+                                <option value="" disabled >Masukkan Nama Bahan</option>
                                 @foreach ($categories_ingredients as $f)
                                     <option value="{{ $f }}">{{ $f }}</option>
                                 @endforeach
@@ -303,12 +304,12 @@
                             <label for="alat" class="form-label">Alat alat</label>
                             <select style="width: 100%;" name="alat[]" multiple="multiple" id="alat"
                                 class="form-control cari">
-                                <option value=""></option>
+                                <option value="" disabled>Masukkan Nama Alat-Alat</option>
                                 @foreach ($toolsCooks as $itemtool)
                                     <option value="{{ $itemtool->nama_alat }}">{{ $itemtool->nama_alat }}</option>
                                 @endforeach
                             </select>
-                        </div> 
+                        </div>
                         <div class="mb-3">
                             <label for="hari" class="form-label">Hari spesial</label>
                             <div class="row">
