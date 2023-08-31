@@ -13,9 +13,9 @@ class KategoriMakananController extends Controller
     public function index(Request $request)
     {
         if ($request->has('m')) {
-            $kategori_makanans = kategori_makanan::where("nama_makanan", "like", "%" . $request->m . "%")->paginate(1);
+            $kategori_makanans = kategori_makanan::where("nama_makanan", "like", "%" . $request->m . "%")->paginate(5);
         } else {
-            $kategori_makanans = kategori_makanan::paginate(1);
+            $kategori_makanans = kategori_makanan::paginate(5);
         }
         return view('admin.kategorimakanan', compact('kategori_makanans'));
     }

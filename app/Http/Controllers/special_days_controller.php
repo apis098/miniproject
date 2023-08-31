@@ -11,9 +11,9 @@ class special_days_controller extends Controller
     public function index(Request $request)
     {
         if ($request->has('d')) {
-            $special_days = special_days::where("nama", "like", "%" . $request->d . "%")->paginate(1);
+            $special_days = special_days::where("nama", "like", "%" . $request->d . "%")->paginate(5);
         } else {
-            $special_days = special_days::paginate(1);
+            $special_days = special_days::paginate(5);
         }
         return view('admin.specialdays', compact('special_days'));
     }
