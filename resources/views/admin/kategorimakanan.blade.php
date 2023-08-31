@@ -60,8 +60,8 @@
             padding-top: 30px;
             padding-bottom: 30px;
             width: 210px;
-            border-top: solid black;
-            border-bottom: solid black;
+            border-top:1px solid black;
+            border-bottom:1px solid black;
             border-left: none;
             border-right: none;
             top: 10px;
@@ -201,9 +201,9 @@
                     <tbody>
                         @foreach ($kategori_makanans as $data)
                             <tr>
-                                <td style="border-left:solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
+                                <td style="border-left:1px solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
                                     {{ $data->nama_makanan }}</td>
-                                <td style="border-right: solid black;">
+                                <td style="border-right:1px solid black;">
                                     <div>
                                         <button type="button" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;"
                                         data-toggle="modal"  data-target="#exampleModal{{ $data->id }}">Edit</button>
