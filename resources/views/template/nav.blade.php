@@ -432,7 +432,7 @@
                                                             </form>
                                                         @elseif($row->reply_id_report != null)
                                                             <form
-                                                                action="{{ route('replies.blocked.notification', $row->id) }}"
+                                                                action="{{ route('blockedComent.notification', $row->id) }}"
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
@@ -493,7 +493,7 @@
                                                             </form>
                                                         @elseif($row->complaint_id_report != null)
                                                             <form
-                                                                action="{{ route('follow.notification', $row->id) }}"
+                                                                action="{{ route('blockedComplaint.notification', $row->id) }}"
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
@@ -513,7 +513,7 @@
                                                             </form>
                                                         @elseif($row->resep_id_report != null)
                                                             <form
-                                                                action="{{ route('follow.notification', $row->id) }}"
+                                                                action="{{ route('blockedRecipes.notification', $row->id) }}"
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
@@ -533,7 +533,7 @@
                                                             </form>
                                                         @elseif($row->random_name != null)
                                                             <form
-                                                                action="{{ route('follow.notification', $row->id) }}"
+                                                                action="{{ route('profile.blocked.notification', $row->id) }}"
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf

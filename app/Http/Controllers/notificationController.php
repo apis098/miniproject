@@ -35,6 +35,24 @@ class notificationController extends Controller
         $notificattion->save();
         return redirect('/koki/index');
     }
+    public function blockedRecipes($id){
+        $notificattion = notifications::findOrFail($id);
+        $notificattion->status = 'sudah';
+        $notificattion->save();
+        return redirect()->back()->with('info','Resep kamu telah diblokir');
+    }
+    public function blockedComplaint($id){
+        $notificattion = notifications::findOrFail($id);
+        $notificattion->status = 'sudah';
+        $notificattion->save();
+        return redirect()->back()->with('info','Keluhan kamu telah diblokir');
+    }
+    public function blockedComent($id){
+        $notificattion = notifications::findOrFail($id);
+        $notificattion->status = 'sudah';
+        $notificattion->save();
+        return redirect()->back()->with('info','Komentar kamu telah diblokir');
+    }
     public function repliesBlocked($id){
         $notificattion = notifications::findOrFail($id);
         $notificattion->status = 'sudah';
