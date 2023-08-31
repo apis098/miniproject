@@ -151,15 +151,16 @@
                                 </p>
                             </a>
                         </li>
-                           {{-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
-                            <a href="{{ route('Complaint.all') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/complaint/all') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
-                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="M224 52H32a4 4 0 0 0-4 4v136a12 12 0 0 0 12 12h176a12 12 0 0 0 12-12V56a4 4 0 0 0-4-4Zm-96 86.57L42.28 60h171.44ZM104.63 128L36 190.91V65.09Zm5.92 5.43L125.3 147a4 4 0 0 0 5.4 0l14.75-13.52L213.72 196H42.28Zm40.82-5.43L220 65.09v125.82Z"/></svg>
+                            <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
+                            <a href="{{ route('footer.index') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/footer') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M5 18.08V19h.92l9.06-9.06l-.92-.92z" opacity=".3"/><path fill="currentColor" d="M20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83zM3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06l.92.92L5.92 19z"/></svg>
                                 <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
-                                    Keluhan
+                                    footer
                                 </p>
                             </a>
                         </li>
+                    {{--
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
                             <a href="{{ route('ReplyUser.index') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
