@@ -43,7 +43,7 @@ Route::get('/', [LoginController::class, 'home'])->name('home');
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
-
+Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
 Route::get('about', [LoginController::class, 'about'])->name('about');
 
 //Search user account

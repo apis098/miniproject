@@ -241,8 +241,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('filter.resep') }}" method="POST">
-                        {{ csrf_field() }}
+                    <form action="{{ route('resep.home') }}" method="GET">
                         @if (request()->nama_resep)
                             <input type="text" hidden name="nama_resep" value="{{ request()->nama_resep }}">
                         @endif
@@ -413,7 +412,7 @@
     @endif
     <div class="mx-5 my-5">
         <div class="row">
-            @foreach ($recipes as $item)
+            @foreach ($recipes as $num => $item)
                 <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">

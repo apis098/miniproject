@@ -60,106 +60,55 @@ class FiltersController extends Controller
             //return redirect()->back()->withErrors($validator);
             return redirect('resep')->with('error', $validator->errors()->all());
         }
+        $recipess = reseps::query();
         if ($request->has('nama_resep')) {
-            $recipes = reseps::where('nama_resep', 'like', '%' . $request->nama_resep . '%')->paginate(6);
-        } else {
-            $recipes = reseps::paginate(6);
+            $recipess->where('nama_resep', 'like', '%' . $request->nama_resep . '%');
         }
-        /* proses filter lanjutan resep
-        $recipes = reseps::query();
-        if ($request->has('nama_resep')) {
-            $recipes->where('nama_resep', 'like', '%' . $request->nama_resep . '%');
-            if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
-                $minprice = str_replace(['.', ','], '', $request->min_price);
-                $maxprice = str_replace(['.', ','], '', $request->max_price);
-                $min_price = (int)$minprice;
-                $max_price = (int)$maxprice;
-                $recipes->whereBetween("pengeluaran_memasak", [$min_price, $max_price]);
-
+        if ($request->min_price != NULL && $request->max_price != NULL) {
+            $minprice = str_replace(['.', ','], '', $request->min_price);
+            $maxprice = str_replace(['.', ','], '', $request->max_price);
+            $min_price = (int)$minprice;
+            $max_price = (int)$maxprice;
+            $recipess->whereBetween('pengeluaran_memasak', [$min_price, $max_price]);
+        }
+        if ($request->min_time != NULL && $request->max_time != NULL) {
+            $min = $request->min_time;
+            if ($request->min_timer === 'jam') {
+                $min *= 60;
             }
-            if ($request->min_time && $request->max_time) {
-                $min = $request->min_time;
-                if ($request->min_timer === 'jam') {
-                    $min*=60;
-                }
-                $max = $request->max_time;
-                if ($request->max_timer === 'jam') {
-                    $max*=60;
-                }
-                $recipes->whereBetween('lama_memasak', [$min, $max]);
+            $max = $request->max_time;
+            if ($request->max_timer === 'jam') {
+                $max *= 60;
             }
-            if ($request->has('ingredients')) {
-                $ingredients = $request->ingredients;
-                $recipes->whereHas('bahan', function ($query) use ($ingredients) {
-                    $query->whereIn("nama_bahan", $ingredients);
-                });
-            }
-            if ($request->has('alat')) {
-                $tools = $request->alat;
-                $recipes->whereHas('alat', function ($query) use ($tools) {
-                    $query->whereIn("nama_alat", $tools);
-                });
-            }
-            if ($request->has('hari_khusus')) {
-                $days = $request->hari_khusus;
-                $recipes->whereHas("hari_resep", function ($query) use ($days) {
-                    $query->whereIn('nama', $days);
-                });
-            }
-            if ($request->has('jenis_makanan')) {
-                $categories_foods = $request->jenis_makanan;
-                $recipes->whereHas("kategori_resep", function ($query) use ($categories_foods) {
-                    $query->whereIn('nama_makanan', $categories_foods);
-                });
-            }
-            $recipes->paginate(6);
-        } 
-             if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
-                $minprice = str_replace(['.', ','], '', $request->min_price);
-                $maxprice = str_replace(['.', ','], '', $request->max_price);
-                $min_price = (int)$minprice;
-                $max_price = (int)$maxprice;
-                $recipes->whereBetween("pengeluaran_memasak", [$min_price, $max_price]);
-
-            }
-            if ($request->min_time && $request->max_time) {
-                $min = $request->min_time;
-                if ($request->min_timer === 'jam') {
-                    $min*=60;
-                }
-                $max = $request->max_time;
-                if ($request->max_timer === 'jam') {
-                    $max*=60;
-                }
-                $recipes->whereBetween('lama_memasak', [$min, $max]);
-            }
-            if ($request->has('ingredients')) {
-                $ingredients = $request->ingredients;
-                $recipes->whereHas('bahan', function ($query) use ($ingredients) {
-                    $query->whereIn("nama_bahan", $ingredients);
-                });
-            }
-            if ($request->has('alat')) {
-                $tools = $request->alat;
-                $recipes->whereHas('alat', function ($query) use ($tools) {
-                    $query->whereIn("nama_alat", $tools);
-                });
-            }
-            if ($request->has('hari_khusus')) {
-                $days = $request->hari_khusus;
-                $recipes->whereHas("hari_resep", function ($query) use ($days) {
-                    $query->whereIn('nama', $days);
-                });
-            }
-            if ($request->has('jenis_makanan')) {
-                $categories_foods = $request->jenis_makanan;
-                $recipes->whereHas("kategori_resep", function ($query) use ($categories_foods) {
-                    $query->whereIn('nama_makanan', $categories_foods);
-                });
-            }
-            $recipes->paginate(6); */
-
-
+            $recipess->whereBetween('lama_memasak', [$min, $max]);
+        }
+        
+        if ($request->has('ingredients')) {
+            $bahan = $request->ingredients;
+            $recipess->whereHas('bahan', function ($query) use ($bahan) {
+                $query->whereIn("nama_bahan", $bahan);
+            });
+        }
+        if ($request->has('alat')) {
+            $alat = $request->alat;
+            $recipess->whereHas("alat", function ($queri) use ($alat) {
+                $queri->whereIn("nama_alat", $alat);
+            });
+        }
+        if ($request->has("hari_khusus")) {
+            $d = $request->hari_khusus;
+            $recipess->whereHas("hari_resep", function ($querys) use ($d) {
+                $querys->whereIn("nama", $d);
+            });
+        }
+        if ($request->has("jenis_makanan")) {
+            $jm = $request->jenis_makanan;
+            $recipess->whereHas("kategori_resep", function ($qwerty) use ($jm) {
+                $qwerty->whereIn("nama_makanan", $jm);
+            });
+        }
+        $recipes = $recipess->paginate(6);
+        //dd($recipes);
         return view('template.resep', compact('toolsCooks', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function filter_resep(Request $request)
@@ -213,11 +162,13 @@ class FiltersController extends Controller
         $ingredients = null;
         $days = [];
         $categories_foods = [];
+        $recipes = reseps::query();
         if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
             $minprice = str_replace(['.', ','], '', $request->min_price);
             $maxprice = str_replace(['.', ','], '', $request->max_price);
             $min_price = (int)$minprice;
             $max_price = (int)$maxprice;
+            $recipes->whereBetween('pengeluaran_memasak', [$min_price, $max_price]);
         }
         if ($request->min_time && $request->max_time) {
             $min = $request->min_time;
@@ -228,19 +179,33 @@ class FiltersController extends Controller
             if ($request->max_timer === 'jam') {
                 $max *= 60;
             }
+            $recipes->whereBetween('lama_memasak', [$min, $max]);
         }
         if ($request->has('alat')) {
             $tools = $request->alat;
+            $recipes->whereHas('alat', function ($query) use ($tools) {
+                $query->whereIn('nama_alat', $tools);
+            });
         }
         if ($request->has('ingredients')) {
             $ingredients = $request->ingredients;
+            $recipes->whereHas('bahan', function ($query) use ($ingredients) {
+                $query->whereIn("nama_bahan", $ingredients);
+            });
         }
         if ($request->has('hari_khusus')) {
             $days = $request->hari_khusus;
+            $recipes->whereHas("hari_resep", function ($query) use ($days) {
+                $query->whereIn('nama', $days);
+            });
         }
         if ($request->has('jenis_makanan')) {
             $categories_foods = $request->jenis_makanan;
+            $recipes->whereHas("kategori_resep", function ($query) use ($categories_foods) {
+                $query->whereIn('nama_makanan', $categories_foods);
+            });
         }
+        /*
         if ($request->has('nama_resep')) {
             $recipes = reseps::query()
                 ->where("nama_resep", "like", "%" . $request->nama_resep . "%")
@@ -276,8 +241,9 @@ class FiltersController extends Controller
                     $query->whereIn('nama_makanan', $categories_foods);
                 })
                 ->paginate(6);
-        }
-        //$recipes->paginate(6);
+        }*/
+        //dd($recipes->paginate(6));
+        $recipes->paginate(6);
         return view('template.resep', compact('toolsCooks', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
