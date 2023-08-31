@@ -58,7 +58,7 @@
                     </div>
                     <div class="mt-2">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
-                        <textarea name="deskripsi_resep" class="form-control" style="white-space: nowrap;"
+                        <textarea name="deskripsi_resep" class="form-control" style="white-space:normal" cols="15" rows="5"
                             placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
                             {{ trim($edit_resep->deskripsi_resep) }}
                         </textarea>
@@ -234,7 +234,7 @@
                                     </div>
                                     <input type="text" name="judul_langkah[]" id=""
                                         class="form-control mb-3" value="{{ $item_langkah->judul_langkah }}">
-                                    <textarea name="langkah_resep[]" class="form-control" style="white-space: nowrap;"
+                                    <textarea name="langkah_resep[]" class="form-control" style="white-space:normal;" cols="15" rows="5"
                                         placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
                             {{ trim($item_langkah->deskripsi_langkah) }}
                         </textarea>
