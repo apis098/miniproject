@@ -54,16 +54,18 @@
                     </h3>
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
+                <div class="ms-4">
                 @if ($show_resep->kategori_resep)
                     @foreach ($show_resep->kategori_resep()->get() as $nk)
-                        <button type="button" class="btn-edit p-2 ml-4 mr-2 mt-2">{{ $nk->nama_makanan }}</button>
+                        <button type="button" class="btn-edit p-2 mx-1 mt-2">{{ $nk->nama_makanan }}</button>
                     @endforeach
                 @endif
                 @if ($show_resep->hari_resep)
                     @foreach ($show_resep->hari_resep()->get() as $hr)
-                        <button type="button" class="btn-edit p-2">{{ $hr->nama }}</button>
+                        <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
                     @endforeach
                 @endif
+                </div>
             </div>
             <div class="mt-4 ml-3">
                 <div class="col-lg-6 mt-5 ml-5">
