@@ -155,7 +155,7 @@
         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
             <div class="my-5 ml-5" style="margin-right:%;">
                 <button type="button" class="btn btn-buat btn-sm" data-toggle="modal"
-                    data-target="#exampleModal">Tambah</button>
+                style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"     data-target="#exampleModal">Tambah</button>
                 {{-- modal tambah --}}
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -163,7 +163,7 @@
                         <div class="modal-content" style="border-radius: 15px">
                             <div class="modal-body">
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="modal-title" id="exampleModalLabel">Tambah</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel" style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">Tambah</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -177,7 +177,7 @@
                                                 style="border-radius:10px; width:120%;">
                                             <br>
                                             <button type="submit"
-                                                class="btn btn-tambah btn-sm d-flex justify-content-xxl-end">
+                                                class="btn  btn-sm text-white d-flex justify-content-xxl-end"  style="  margin-left: 350px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
                                                 Tambah
                                             </button>
                                         </div>
@@ -193,19 +193,19 @@
                 <table class="table-custom">
                     <thead>
                         <tr>
-                            <th scope="col">Hari Khusus</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Hari Khusus</th>
+                            <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($special_days as $data)
                             <tr>
-                                <td style="border-left:solid black; font-size:15px;font-family:poppins">
+                                <td style="border-left:solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
                                     {{ $data->nama }}</td>
                                 <td style="border-right: solid black;">
                                     <div>
-                                        <button type="button" class="btn btn-tambah" data-toggle="modal"
-                                            data-target="#exampleModal{{ $data->id }}">Edit</button>
+                                        <button type="button" class="btn text-white" data-toggle="modal"
+                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;"   data-target="#exampleModal{{ $data->id }}">Edit</button>
                                         {{-- modal edit --}}
                                         <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -213,7 +213,7 @@
                                                 <div class="modal-content" style="border-radius: 15px">
                                                     <div class="modal-body">
                                                         <div class="d-flex justify-content-between">
-                                                            <h5 class="modal-title" id="exampleModalLabel"> Edit Data</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel"  style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word"> Edit Data</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -235,7 +235,7 @@
                                                             </div>
                                                             <br>
                                                             <button type="submit"
-                                                                class="btn btn-tambah btn-sm d-flex justify-content-xxl-end">Edit</button>
+                                                                class="btn btn-sm text-white d-flex justify-content-xxl-end"  style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -246,7 +246,7 @@
                                             id="delete-form" class="d-inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-buat btn-sm" style="margin-left: 5%"
+                                            <button type="button" class="btn btn-buat btn-sm" style="margin-left: 5%;  border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word"
                                                 data-mdb-ripple-color="dark" onclick="DeleteData()">
                                                 Hapus</button>
                                         </form>

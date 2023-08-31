@@ -194,8 +194,8 @@
                 <table class="table-custom">
                     <thead>
                         <tr>
-                            <th scope="col">Kategori</th>
-                            <th scope="col">Aksi</th>
+                            <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Kategori</th>
+                            <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
