@@ -302,7 +302,7 @@
                         <div class="mb-3">
                             <label for="alat" class="form-label">Alat alat</label>
                             <select style="width: 100%;" name="alat[]" multiple="multiple" id="alat"
-                                class="form-control cari">
+                                class="form-control cari23 js-states">
                                 <option value="" disabled>Masukkan Nama Alat-Alat</option>
                                 @foreach ($toolsCooks as $itemtool)
                                     <option value="{{ $itemtool->nama_alat }}">{{ $itemtool->nama_alat }}</option>

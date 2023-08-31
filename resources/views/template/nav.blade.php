@@ -538,7 +538,8 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class=" ms-2 text-secondary">Username kamu diblokir</small>
+                                                                    <small class=" ms-2 text-secondary">Username kamu
+                                                                        diblokir</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 rounded-circle"
                                                                             src="{{ asset('images/badge.png') }}"
@@ -584,121 +585,132 @@
                                             @endif
                                         </a>
                                         @if (auth()->user()->role === 'koki')
-                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
-                                            style="width: 255px; border-radius:13px;">
-                                            <div class="input-group">
-                                                <a href="#">
-                                                    @if ($userLogin->foto)
-                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                            src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                            alt="profile image" width="50px" height="50px">
-                                                    @else
-                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                            src="{{ asset('images/default.jpg') }}"
-                                                            alt="profile image" style="max-width:40px">
-                                                    @endif
+                                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                                style="width: 255px; border-radius:13px;">
+                                                <div class="input-group">
+                                                    <a href="#">
+                                                        @if ($userLogin->foto)
+                                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                                src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                                alt="profile image" width="50px" height="50px">
+                                                        @else
+                                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                                src="{{ asset('images/default.jpg') }}"
+                                                                alt="profile image" style="max-width:40px">
+                                                        @endif
+                                                    </a>
+                                                    <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
+                                                </div>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="/koki/index" class="dropdown-item text-orange"
+                                                    style="width: 230px">
+                                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                        width="20" height="20" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                                    </svg>
+                                                    Profil
                                                 </a>
-                                                <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" data-toggle="modal" data-target="#favoriteModal"
+                                                    style="width: 230px;" class="dropdown-item text-orange">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="21"
+                                                        class="me-1" height="21" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
+                                                    </svg>
+                                                    favorite
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                                    class="dropdown-item text-orange">
+                                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                        width="20" height="20" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                        <path fill="currentColor"
+                                                            d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                                    </svg>
+                                                    Keluar
+                                                </a>
+                                                <div class="dropdown-divider"></div>
                                             </div>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="/koki/index" class="dropdown-item text-orange"
-                                                style="width: 230px">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                    height="20" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
-                                                </svg>
-                                                Profil
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" data-toggle="modal" data-target="#favoriteModal"
-                                                style="width: 230px;" class="dropdown-item text-orange">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="21" class="me-1"
-                                                    height="21" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
-                                                </svg>
-                                                favorite
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="{{ route('actionlogout') }}" style="width: 230px;"
-                                                class="dropdown-item text-orange">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                    height="20" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                                    <path fill="currentColor"
-                                                        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
-                                                </svg>
-                                                Keluar
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                        </div>
                                     </div>
-                                    @elseif (auth()->user()->role === 'admin')
+                                @elseif (auth()->user()->role === 'admin')
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
-                                            style="width: 255px; border-radius:13px;">
-                                            <div class="input-group">
-                                                <a href="#">
-                                                    @if ($userLogin->foto)
-                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                            src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                            alt="profile image" width="50px" height="50px">
-                                                    @else
-                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                            src="{{ asset('images/default.jpg') }}"
-                                                            alt="profile image" style="max-width:40px">
-                                                    @endif
-                                                </a>
-                                                <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
-                                            </div>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="/koki/index" class="dropdown-item text-orange"
-                                                style="width: 230px">
-                                                <svg style="vertical-align: top; margin-left: -5px" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 36 36"><path fill="currentColor" d="m33.71 17.29l-15-15a1 1 0 0 0-1.41 0l-15 15a1 1 0 0 0 1.41 1.41L18 4.41l14.29 14.3a1 1 0 0 0 1.41-1.41Z" class="clr-i-outline clr-i-outline-path-1"/><path fill="currentColor" d="M28 32h-5V22H13v10H8V18l-2 2v12a2 2 0 0 0 2 2h7V24h6v10h7a2 2 0 0 0 2-2V19.76l-2-2Z" class="clr-i-outline clr-i-outline-path-2"/><path fill="none" d="M0 0h36v36H0z"/></svg>
-                                               &nbsp; Dashboard
+                                        style="width: 255px; border-radius:13px;">
+                                        <div class="input-group">
+                                            <a href="#">
+                                                @if ($userLogin->foto)
+                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                        src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                        alt="profile image" width="50px" height="50px">
+                                                @else
+                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                        src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                                        style="max-width:40px">
+                                                @endif
                                             </a>
-
-                                            <div class="dropdown-divider"></div>
-                                            <a href="{{ route('actionlogout') }}" style="width: 230px;"
-                                                class="dropdown-item text-orange">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                    height="20" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                                    <path fill="currentColor"
-                                                        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
-                                                </svg>
-                                                Keluar
-                                            </a>
-                                            <div class="dropdown-divider"></div>
+                                            <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
                                         </div>
-                                    </div>
-                                    @endif
+                                        <div class="dropdown-divider"></div>
+                                        <a href="/koki/index" class="dropdown-item text-orange" style="width: 230px">
+                                            <svg style="vertical-align: top; margin-left: -5px"
+                                                xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                viewBox="0 0 36 36">
+                                                <path fill="currentColor"
+                                                    d="m33.71 17.29l-15-15a1 1 0 0 0-1.41 0l-15 15a1 1 0 0 0 1.41 1.41L18 4.41l14.29 14.3a1 1 0 0 0 1.41-1.41Z"
+                                                    class="clr-i-outline clr-i-outline-path-1" />
+                                                <path fill="currentColor"
+                                                    d="M28 32h-5V22H13v10H8V18l-2 2v12a2 2 0 0 0 2 2h7V24h6v10h7a2 2 0 0 0 2-2V19.76l-2-2Z"
+                                                    class="clr-i-outline clr-i-outline-path-2" />
+                                                <path fill="none" d="M0 0h36v36H0z" />
+                                            </svg>
+                                            &nbsp; Dashboard
+                                        </a>
 
-                                @else
-                                    <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
-                                        style="border-radius: 12px;"><b class="me-2 ms-2">Login</b></a>
-                                @endif
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                            class="dropdown-item text-orange">
+                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                height="20" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                <path fill="currentColor"
+                                                    d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                            </svg>
+                                            Keluar
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                    </div>
                             </div>
+                            @endif
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
+                                style="border-radius: 12px;"><b class="me-2 ms-2">Login</b></a>
+                            @endif
                         </div>
-                    </nav>
                 </div>
-                @yield('content-header')
+                </nav>
             </div>
-        </header>
-        <!-- end header section -->
+            @yield('content-header')
+    </div>
+    </header>
+    <!-- end header section -->
     </div>
     @yield('content')
 
     <!-- footer section -->
-    <footer class="footer_section" style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+    <footer class="footer_section"
+        style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_detail ">
                         <h1>HummaCook</h1>
-                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakannya yang mudah untuk didapatkan.  </p>
+                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan
+                            Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang,
+                            dan bahan-bahan masakannya yang mudah untuk didapatkan. </p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
                             <a href="">
                                 <i class="fa-brands fa-facebook" aria-hidden="true"></i>
@@ -743,79 +755,80 @@
                         {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
                         <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
                     </h1>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid"
+                        height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-                <!-- Modal -->
-                <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Resep
-                                    favorite</h5>
-                                {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+            <!-- Modal -->
+            <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Resep
+                                favorite</h5>
+                            {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
 
-                            </div>
-                            @foreach ($favorite as $row)
-                                <form action="{{ route('favorite.delete.multiple') }}" method="POST">
-                                    @csrf
-                                    <div class="modal-body d-flex align-items-center">
-                                        <input type="checkbox" name="selected_ids[]"
-                                            class="form-check-input ms-3 data-checkbox"
-                                            data-id="{{ $row->id }}">
-                                        <img src="{{ asset('storage/' . $row->resep->foto_resep) }}"
-                                            class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
-                                            alt="">
-                                        <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
-                                            <div style="justify-content: space-between;" class="mb-1">
-                                                <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
-                                                    {{ $row->resep->nama_resep }}</h6>
-
-                                                <small
-                                                    class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                            @endforeach
-                            @forelse ($favorite as $row)
-                            @empty
-                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                                    style="margin-top: 2em">
-                                    <img src="{{asset('images/data.png')}}" style="width: 15em">
-                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                                </div>
-                            @endforelse
-                            <div class="modal-footer">
-                                <div class="me-4">
-                                    <input name="select-all" style="margin-left: -25%;" type="checkbox"
-                                        class="form-check-input" id="select-all">
-                                    <div class="me-5">
-                                        <label for="select-all" class="text-dark me-5">Pilih semua</label>
-                                    </div>
-                                </div>
-                                <button onclick="deleteSelected()" class="btn btn-light btn-sm text-light ms-5"
-                                    style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus
-                                        dari favorit</b></button>
-                            </div>
-                            </form>
                         </div>
+                        @foreach ($favorite as $row)
+                            <form action="{{ route('favorite.delete.multiple') }}" method="POST">
+                                @csrf
+                                <div class="modal-body d-flex align-items-center">
+                                    <input type="checkbox" name="selected_ids[]"
+                                        class="form-check-input ms-3 data-checkbox" data-id="{{ $row->id }}">
+                                    <img src="{{ asset('storage/' . $row->resep->foto_resep) }}" class=" ms-5 me-2"
+                                        style="border-radius: 10px;max-width:106px" alt="">
+                                    <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
+                                        <div style="justify-content: space-between;" class="mb-1">
+                                            <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
+                                                {{ $row->resep->nama_resep }}</h6>
+
+                                            <small
+                                                class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
+
+                                        </div>
+                                    </a>
+                                </div>
+                        @endforeach
+                        @forelse ($favorite as $row)
+                        @empty
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 2em">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                            </div>
+                        @endforelse
+                        <div class="modal-footer">
+                            <div class="me-4">
+                                <input name="select-all" style="margin-left: -25%;" type="checkbox"
+                                    class="form-check-input" id="select-all">
+                                <div class="me-5">
+                                    <label for="select-all" class="text-dark me-5">Pilih semua</label>
+                                </div>
+                            </div>
+                            <button onclick="deleteSelected()" class="btn btn-light btn-sm text-light ms-5"
+                                style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus
+                                    dari favorit</b></button>
+                        </div>
+                        </form>
                     </div>
                 </div>
-                {{-- end Modal --}}
             </div>
+            {{-- end Modal --}}
+        </div>
     </footer>
     <!-- footer section -->
     <!-- jQery -->
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
-          $(document).ready(function () {
-            $("#buttonaddrecipe").click(function (event) {
+        $(document).ready(function() {
+            $("#buttonaddrecipe").click(function(event) {
                 event.preventDefault();
 
                 var data = $("#form-add-recipe").serialize();
@@ -936,7 +949,18 @@
     <script>
         $(document).ready(function() {
             $('.cari').select2({
-                closeOnSelect: false
+                closeOnSelect: false,
+                placeholder: {
+                    id: '-1', // the value of the option
+                    text: 'Masukkan Nama Bahan'
+                }
+            });
+            $('.cari23').select2({
+                closeOnSelect: false,
+                placeholder: {
+                    id: '-1', // the value of the option
+                    text: 'Masukkan Nama Alat Alat'
+                }
             });
         });
     </script>
