@@ -221,7 +221,7 @@
                                                         </button>
                                                     </div>
                                                     <br>
-                                                    <form action="{{ route('kategori-makanan.update', $data->id) }}"
+                                                    <form action="{{ route('special-days.update', $data->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('PUT')
