@@ -281,8 +281,8 @@
                                 <div class="col-md-12">
                                     <div>
                                         <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="" method="GET">
-                                                <input type="text" id="" name=""
+                                            <form action="/admin/special-days" method="GET">
+                                                <input type="text" id="" name="d"
                                                     placeholder="Cari Hari Khusus">
                                                 <button type="submit" class="zoom-effects"
                                                     style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -11px">Cari</button>

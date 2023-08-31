@@ -8,9 +8,13 @@ use Illuminate\Http\Request;
 
 class special_days_controller extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $special_days = special_days::paginate(1);
+        if ($request->has('d')) {
+            $special_days = special_days::where("nama", "like", "%" . $request->d . "%")->paginate(1);
+        } else {
+            $special_days = special_days::paginate(1);
+        }
         return view('admin.specialdays', compact('special_days'));
     }
 

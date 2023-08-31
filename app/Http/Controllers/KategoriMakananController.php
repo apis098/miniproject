@@ -10,9 +10,13 @@ class KategoriMakananController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategori_makanans = kategori_makanan::paginate('2');
+        if ($request->has('m')) {
+            $kategori_makanans = kategori_makanan::where("nama_makanan", "like", "%" . $request->m . "%")->paginate(1);
+        } else {
+            $kategori_makanans = kategori_makanan::paginate(1);
+        }
         return view('admin.kategorimakanan', compact('kategori_makanans'));
     }
 
@@ -22,13 +26,13 @@ class KategoriMakananController extends Controller
      */
     public function store(Request $request)
     {
-        $this ->validate($request,[
-        'nama_makanan'=>'required'
-        ],[
-        "nama_makanan.required"=>"Field Kategori Makanan Harus Diisi"
+        $this->validate($request, [
+            'nama_makanan' => 'required'
+        ], [
+            "nama_makanan.required" => "Field Kategori Makanan Harus Diisi"
         ]);
         kategori_makanan::create([
-         'nama_makanan'=>$request->nama_makanan
+            'nama_makanan' => $request->nama_makanan
         ]);
         return redirect()->back()->with('success', 'Data Kategori Makanan Berhasil Ditambah.');
     }
@@ -38,29 +42,29 @@ class KategoriMakananController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $this ->validate($request,[
-            'nama_makanan'=>'required'
-            ],[
-            "nama_makanan.required"=>"Field Kategori Makanan Harus Diisi"
-            ]);
+        $this->validate($request, [
+            'nama_makanan' => 'required'
+        ], [
+            "nama_makanan.required" => "Field Kategori Makanan Harus Diisi"
+        ]);
 
-            kategori_makanan::find($id)->update([
-             'nama_makanan'=>$request->nama_makanan
-            ]);
-            return redirect()->route('kategori-makanan.index',compact('request'))->with('success', 'Data Kategori Makanan Berhasil Edit.');
-        }
+        kategori_makanan::find($id)->update([
+            'nama_makanan' => $request->nama_makanan
+        ]);
+        return redirect()->route('kategori-makanan.index', compact('request'))->with('success', 'Data Kategori Makanan Berhasil Edit.');
+    }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( string $id)
+    public function destroy(string $id)
     {
         $kategori_makanans = kategori_makanan::find($id);
         $kategori_makanans->resep()->where('kategori_reseps_id', $kategori_makanans->id)->update([
             "kategori_reseps_id" => NULL
         ]);
         $kategori_makanans->delete();
-        return redirect()->back()->with('info','Data Kategori Makanan Berhasil Dihapus');
+        return redirect()->back()->with('info', 'Data Kategori Makanan Berhasil Dihapus');
     }
 }
