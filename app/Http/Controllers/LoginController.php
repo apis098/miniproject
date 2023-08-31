@@ -66,8 +66,8 @@ class LoginController extends Controller
 
     public function home()
     {
-        $complaints = complaint::paginate(3);
-        $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
+        $complaints = complaint::paginate(3, ['*'], 'complaint-page');
+        $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(1);
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
