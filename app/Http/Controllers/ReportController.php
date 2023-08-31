@@ -151,6 +151,7 @@ class ReportController extends Controller
                 $notification->save();  
                 return redirect()->back()->with('success', 'Foto profile telah diblokir');
             } else {
+                $report->delete();
                 return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
             }
         }
@@ -161,6 +162,21 @@ class ReportController extends Controller
         }
         
     }
+    // public function deletePhoto($id)
+    // {
+    //     $report=Report::findOrFail($id);
+    //     $user = $report->user;
+
+    //     if ($user->foto) {
+    //         Storage::disk('public')->delete($user->foto);
+    //         $user->foto = null;
+    //         $user->save();
+    //         return redirect()->back()->with('success', 'Foto profile telah dihapus');
+    //     } else {
+    //         return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
+    //     }
+    // }
+
     public function destroy($id){
         $report = Report::findOrFail($id);
         $report->delete();

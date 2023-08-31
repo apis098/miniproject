@@ -478,9 +478,9 @@
                                 @endif
 
                                 <div class="col-8" style="margin-left:35%;">
-                                    <input type="text" value="{{ $row->user->name }}" name="name"
+                                    <input readonly type="text" value="{{ $row->user->name }}" name="name"
                                         class="form-control form-control-sm">
-                                    <input type="text" name="email" value="{{ $row->user->email }}"
+                                    <input readonly type="text" name="email" value="{{ $row->user->email }}"
                                         class="form-control form-control-sm mt-3">
                                 </div>
 
@@ -540,9 +540,10 @@
                                     <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
                                         height="100px" style="border-radius: 50%" alt="">
                                 @endif
+                                {{-- <div></div>
                                 <span class="widget-49-pro-title fw-bolder"
                                     style="margin-left: 30px;">{{ $row->user->name }}</span><br>
-                                <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small>
+                                <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small> --}}
                             </div>
                             <div class="col-md-8">
                                 <div class="widget-49-meeting-info">
@@ -559,8 +560,8 @@
                                     style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
-                            <a href="{{ route('blockContent.destroy', $row->id) }}" class="btn btn-light text-light"
-                                style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                            <a href="{{ route('blockContent.destroy', $row->id) }}" class="btn btn-light text-light rounded-3"
+                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></a>
                         </div>
                     </div>
