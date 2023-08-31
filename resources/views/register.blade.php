@@ -56,7 +56,7 @@
         .bg-image {
             background: #f7941e;
             flex: 1;
-            height: 615%;
+            height: 615px;
             position: relative;
             border-radius: 0 15px 15px 0;
             overflow: hidden;
@@ -384,7 +384,7 @@ border-radius: 10px;
                     <div class="form mb-3">
                         <input type="password" name="password" id="pass2"
                             class="form-control username rounded-4 form-input" placeholder="password..." required>
-                        <a id="mybutton2" onclick="change('pass2','mybutton2')"><span id="mybutton" class="left-pan"><i
+                        <a id="mybutton2" onclick="change('pass2','mybutton2')"><span id="mybutton2" class="left-pan"><i
                                     class="fa-solid fa-eye"></i></span></a>
                     </div>
                     <div class="form mb-3">
