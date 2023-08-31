@@ -386,7 +386,7 @@
         });
     </script>
     </div>
-    <!-- Modal -->
+    <!-- Modal Keluhan -->
     @foreach($data as $row)
     @if($row->complaint_id != null)
     <div class="modal fade" id="modalComplaint{{$row->complaint_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -394,8 +394,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Laporan
-                        keluhan</h5>
+                    <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Detail</h5>
                     {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
                     <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -425,11 +424,10 @@
                     <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-outline-dark rounded-3" >Hapus
-                            laporan</button>
+                        <button type="submit" class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" ><b>Hapus Laporan</b></button>
                     </form>
-                    <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;"
-                        class="btn btn-light text-light rounded-3">Terima laporan</a>
+                    <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                        class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
                 </div>
             </div>
         </div>
@@ -451,15 +449,17 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 {{-- @method('put') --}}
                                 <div class="profile d-flex justify-content-center">
-
-                                    <button class="btn btn-light text-light btn-sm rounded-3  text-light"
-                                        style="position: absolute; top: 80%; right: 44%;background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <form action="{{ route('Report.destroy',$row->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-outline-dark btn-sm rounded-3"
+                                        style="position: absolute; top: 80%; right: 44%;border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                         <b class="">Hapus laporan</b>
                                     </button>
+                                    </form>
                                         <a href="{{ route('blockContent.destroy',$row->id) }}" class="btn btn-light text-light btn-sm rounded-3"
                                             style="position: absolute; top: 80%; right: 22.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                 class="ms-1 me-1 text-light">Hapus foto</b></a>
@@ -492,7 +492,6 @@
                         <div class="modal-footer mt-3 mb-4">
 
                         </div>
-                        </form>
                     </div>
                     <script>
                         document.getElementById("fileInputA").addEventListener("change", function(event) {
@@ -552,12 +551,13 @@
                                         </div>
                             </div>
                             <div class="modal-footer">
-                                <a href="{{route('blockContent.destroy',$row->id)}}" class="btn btn-light text-light"
-                                    style="border-radius: 15px; background-color:#F7941E;"><b
-                                        class="ms-2 me-2">Terima</b></a>
                                 <button type="submit" class="btn btn-light text-black"
-                                    style=" border-radius: 10px; border: 0.50px black solid"><b
-                                        class="ms-2 me-2">Hapus</b></button>
+                                style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Hapus Laporan</b></button>
+
+                                <a href="{{route('blockContent.destroy',$row->id)}}" class="btn btn-light text-light"
+                                    style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-2 me-2">Terima Laporan</b></a>
                             </div>
                         </form>
                     </div>
@@ -824,10 +824,9 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark rounded-3" data-dismiss="modal">Hapus
-                                laporan</button>
-                            <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;"
-                                class="btn btn-light text-light rounded-3">Terima laporan</a>
+                            <button type="button" class="btn btn-outline-dark rounded-3" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
+                            <a href="{{ route('blockContent.destroy',$row->id) }}" style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
                         </div>
                     </div>
                 </div>
