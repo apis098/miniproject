@@ -233,7 +233,7 @@
                                             @endif
                                         </small>
                                             <div class="" style="">
-                                                <small class="font-weight-bold text-break">{{ $row->reply }}</small>
+                                                <small class="font-weight text-break">{{ $row->reply }}</small>
                                         </span>
                                 </div>
                             @else
@@ -247,7 +247,7 @@
                                         @endif
                                         </small>
                                         <div class="" style="margin-top: ">
-                                            <small class="font-weight-bold text-break" >{{ $row->reply }}</small>
+                                            <small class="font-weight text-break" >{{ $row->reply }}</small>
                                        
                                             {{-- @if (strlen($row->reply) > 500) --}}
                                 {{-- <button class="read-more-button">Baca Selengkapnya</button> --}}
