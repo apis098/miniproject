@@ -12,6 +12,7 @@ use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
 use App\Models\complaint;
 use App\Models\reseps;
+use App\Models\footer;
 use App\Http\Controllers\artikels;
 use App\Http\Controllers\favoriteController;
 use App\Http\Controllers\FiltersController;
@@ -111,6 +112,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
          Route::resource('/special-days', special_days_controller::class);
         //  kategori makanan
          Route::resource('/kategori-makanan',KategoriMakananController::class);
+        // footer
+        Route::resource('/footer',footer::class);
     });
 });
 
