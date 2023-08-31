@@ -9,7 +9,11 @@
             background-color: #F7941E;
             width: 100%;
         }
-    </style>
+        .btn-outline-warning
+        {
+            
+        }
+        </style>
     <form id="form-add-recipe" action="/koki/resep" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
