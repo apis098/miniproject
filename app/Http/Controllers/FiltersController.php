@@ -210,6 +210,9 @@ class FiltersController extends Controller
         $min = null;
         $max = null;
         $tools = null;
+        $ingredients = null;
+        $days = [];
+        $categories_foods = [];
         if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
             $minprice = str_replace(['.', ','], '', $request->min_price);
             $maxprice = str_replace(['.', ','], '', $request->max_price);
@@ -229,6 +232,15 @@ class FiltersController extends Controller
         if ($request->has('alat')) {
             $tools = $request->alat;
         }
+        if ($request->has('ingredients')) {
+            $ingredients = $request->ingredients;
+        }
+        if ($request->has('hari_khusus')) {
+            $days = $request->hari_khusus;
+        }
+        if ($request->has('jenis_makanan')) {
+            $categories_foods = $request->jenis_makanan;
+        }
         if ($request->has('nama_resep')) {
             $recipes = reseps::query()
                 ->where("nama_resep", "like", "%" . $request->nama_resep . "%")
@@ -237,6 +249,15 @@ class FiltersController extends Controller
                 ->whereHas('alat', function ($query) use ($tools) {
                     $query->whereIn('nama_alat', $tools);
                 })
+                ->whereHas('bahan', function ($query) use ($ingredients) {
+                    $query->whereIn("nama_bahan", $ingredients);
+                })
+                ->whereHas("hari_resep", function ($query) use ($days) {
+                    $query->whereIn('nama', $days);
+                })
+                ->whereHas("kategori_resep", function ($query) use ($categories_foods) {
+                    $query->whereIn('nama_makanan', $categories_foods);
+                })
                 ->paginate(6);
         } else {
             $recipes = reseps::query()
@@ -244,6 +265,15 @@ class FiltersController extends Controller
                 ->whereBetween('lama_memasak', [$min, $max])
                 ->whereHas('alat', function ($query) use ($tools) {
                     $query->whereIn('nama_alat', $tools);
+                })
+                ->whereHas('bahan', function ($query) use ($ingredients) {
+                    $query->whereIn("nama_bahan", $ingredients);
+                })
+                ->whereHas("hari_resep", function ($query) use ($days) {
+                    $query->whereIn('nama', $days);
+                })
+                ->whereHas("kategori_resep", function ($query) use ($categories_foods) {
+                    $query->whereIn('nama_makanan', $categories_foods);
                 })
                 ->paginate(6);
         }
