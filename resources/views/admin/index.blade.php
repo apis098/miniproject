@@ -50,7 +50,7 @@
             <div class="row mt-3 me-2">
                 <!-- Example single danger button -->
                 <div class="col-lg-10" style="margin-left: 15em">
-                    <div class="btn-group">
+                    <div class="btn-group ">
                         <button type="button" style="width: 10%; margin-left: 34px;border-radius: 15px;background-color: #F7941E; border: none;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                             class="btn btn-warning dropdown-toggle mb-3" data-bs-toggle="dropdown" aria-expanded="false">
                             @if (request()->has("tahun"))
@@ -68,11 +68,17 @@
                             @endforeach
                         </ul>
                     </div>
-                    <div style="max-width:940px; margin: 0 auto;">
+                    <div style="max-width:940px; margin: 0 auto; margin-top: -45px">
+                        <div class="panel h-full xl:col-span-2 w-full">
+                            <div class="mb-3 flex items-center text-center dark:text-white-light">
+                                <h5 class="text-lg fw-bold">Data Jumlah Pengguna</h5>
+                            </div>
+                        </div>
                         <canvas id="myBarChart" style="border: 1px solid black; border-radius: 15px"></canvas>
                     </div>
                 </div>
             </div>
+
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
                 var ctx = document.getElementById('myBarChart').getContext('2d');
@@ -83,7 +89,7 @@
                             'Oktober', 'November', 'Desember'
                         ],
                         datasets: [{
-                            label: 'Total',
+                            label: 'Total Pengguna',
                             data: @json($month),
                             backgroundColor: 'orange',
                         }]
@@ -162,7 +168,7 @@
                                         @if ($r->user->foto)
                                             <img class="rounded-circle flex-shrink-0"
                                                 src="{{ asset('storage/' . $r->user->foto) }}" alt="{{ $r->user->foto }}"
-                                                style="width: 40px; height: 40px;"> 
+                                                style="width: 40px; height: 40px;">
                                         @else
                                             <img class="rounded-circle flex-shrink-0"
                                                 src="{{ asset('images/default.jpg') }}" alt="{{ $r->user->foto }}"
