@@ -701,16 +701,16 @@
                         <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang, dan bahan-bahan masakannya yang mudah untuk didapatkan.  </p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
                             <a href="">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
                             </a>
                             <a href="">
-                                <i class="fa fa-telegram" aria-hidden="true"></i>
+                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                             </a>
                             <a href="">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                                <i class="fa-brands fa-twitter" aria-hidden="true"></i>
                             </a>
                             <a href="">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                             </a>
 
                         </div>
@@ -728,12 +728,12 @@
                                 <span>Call +62 1234567890</span>
                             </a>
                             <a href="#">
-                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left: 1"></i>
-                                <span>Hummacook@gmail.com</span>
+                                <i class="fa-brands fa-telegram" aria-hidden="true" style="margin-left: -1.5em"></i>
+                                <span>Hummacook Telegram</span>
                             </a>
                             <a href="#">
-                                <i class="fa-brands fa-youtube" aria-hidden="true" style="margin-left: -1.5em"></i>
-                                <span>Hummacook_Tutorial</span>
+                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left: 1"></i>
+                                <span>Hummacook@gmail.com</span>
                             </a>
                         </div>
                     </div>
