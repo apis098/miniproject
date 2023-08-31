@@ -232,12 +232,12 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <input type="text" name="judul_langkah[]" id="" class="form-control mb-3"
-                                        value="{{ $item_langkah->judul_langkah }}">
-                                    <textarea class="form-control" name="langkah_resep[]" cols="15" rows="5"
-                                        placeholder="Masukkan langkah langkah" id="floatingTextarea">
-                                {{ $item_langkah->deskripsi_langkah }}
-                            </textarea>
+                                    <input type="text" name="judul_langkah[]" id=""
+                                        class="form-control mb-3" value="{{ $item_langkah->judul_langkah }}">
+                                    <textarea name="langkah_resep[]" class="form-control" style="white-space: nowrap;"
+                                        placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
+                            {{ trim($item_langkah->deskripsi_langkah) }}
+                        </textarea>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
                                             {{ $message }}
@@ -263,8 +263,9 @@
                             @foreach ($categories_foods as $num => $f)
                                 @if ($edit_resep->kategori_resep->contains('nama_makanan', $f->nama_makanan))
                                     <div class="col-lg-3 mb-4">
-                                        <input type="text" name="jenis_makanan[]" id="jenis_makanan{{ $num }}"
-                                            value="{{ $f->id }}" style="display: none;">
+                                        <input type="text" name="jenis_makanan[]"
+                                            id="jenis_makanan{{ $num }}" value="{{ $f->id }}"
+                                            style="display: none;">
                                         <button id="pilih_jenis_makanan{{ $num }}"
                                             onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-filter"
                                             type="button"
@@ -274,14 +275,14 @@
                                     </div>
                                 @else
                                     <div class="col-lg-3 mb-4">
-                                            <input type="text" id="jenis_makanan{{ $num }}"
-                                                value="{{ $f->id }}" style="display: none;">
-                                            <button id="pilih_jenis_makanan{{ $num }}"
-                                                onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
-                                                type="button"
-                                                style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                                <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
-                                            </button>
+                                        <input type="text" id="jenis_makanan{{ $num }}"
+                                            value="{{ $f->id }}" style="display: none;">
+                                        <button id="pilih_jenis_makanan{{ $num }}"
+                                            onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
+                                            type="button"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
+                                        </button>
                                     </div>
                                 @endif
                             @endforeach
@@ -306,7 +307,7 @@
                                             id="success-outlined{{ $int }}" value="{{ $d->id }}"
                                             autocomplete="on" checked>
                                         <label class="btn btn-outline-warning"
-                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;background:grey;"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
                                             for="success-outlined{{ $int }}">{{ $d->nama }}</label>
                                     </div>
                                 @else
