@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -436,10 +436,10 @@
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir1">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
                                 @csrf
                                 @method('put')
-                                <button type="button" id="buttonBlokir1"
+                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -509,10 +509,10 @@
                                     <b class="">Hapus laporan</b>
                                 </button>
                             </form>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir2">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
                                 @csrf
                                 @method('put')
-                                <button type="button" id="buttonBlokir2"
+                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light btn-sm text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -587,10 +587,10 @@
                                 data-dismiss="modal" class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir3">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
                                 @csrf
                                 @method('put')
-                                <button type="button" id="buttonBlokir3"
+                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -914,10 +914,10 @@
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir4">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
                                 @csrf
                                 @method('put')
-                                <button type="button" id="buttonBlokir4"
+                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -1048,12 +1048,11 @@
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
     </div>
-    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
 
     <!-- jQuery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
         function DeleteData() {
@@ -1087,114 +1086,139 @@
                 }
             });
         }
+        function buttonAllert(num){
+            iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('formBlokir'+num).submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
+                });
+        }
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById('buttonBlokir1').addEventListener('click', function() {
-                // Tampilkan konfirmasi alert menggunakan iziToast
-                iziToast.show({
-                    backgroundColor: '#F7941E',
-                    title: '<i class="fa-regular fa-circle-question"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
-                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                    position: 'topCenter',
-                    buttons: [
-                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                            function(instance, toast) {
-                                // Jika pengguna menekan tombol "Ya", kirim form
-                                document.getElementById('formBlokir1').submit();
-                            }
-                        ],
-                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                            function(instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOut'
-                                }, toast, 'button');
-                            }
-                        ],
-                    ],
-                });
-            });
-            document.getElementById('buttonBlokir2').addEventListener('click', function() {
-                // Tampilkan konfirmasi alert menggunakan iziToast
-                iziToast.show({
-                    backgroundColor: '#F7941E',
-                    title: '<i class="fa-regular fa-circle-question"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
-                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                    position: 'topCenter',
-                    buttons: [
-                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                            function(instance, toast) {
-                                // Jika pengguna menekan tombol "Ya", kirim form
-                                document.getElementById('formBlokir2').submit();
-                            }
-                        ],
-                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                            function(instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOut'
-                                }, toast, 'button');
-                            }
-                        ],
-                    ],
-                });
-            });
-            document.getElementById('buttonBlokir3').addEventListener('click', function() {
-                // Tampilkan konfirmasi alert menggunakan iziToast
-                iziToast.show({
-                    backgroundColor: '#F7941E',
-                    title: '<i class="fa-regular fa-circle-question"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
-                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                    position: 'topCenter',
-                    buttons: [
-                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                            function(instance, toast) {
-                                // Jika pengguna menekan tombol "Ya", kirim form
-                                document.getElementById('formBlokir3').submit();
-                            }
-                        ],
-                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                            function(instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOut'
-                                }, toast, 'button');
-                            }
-                        ],
-                    ],
-                });
-            });
-            document.getElementById('buttonBlokir4').addEventListener('click', function() {
-                // Tampilkan konfirmasi alert menggunakan iziToast
-                iziToast.show({
-                    backgroundColor: '#F7941E',
-                    title: '<i class="fa-regular fa-circle-question"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
-                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                    position: 'topCenter',
-                    buttons: [
-                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                            function(instance, toast) {
-                                // Jika pengguna menekan tombol "Ya", kirim form
-                                document.getElementById('formBlokir4').submit();
-                            }
-                        ],
-                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                            function(instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOut'
-                                }, toast, 'button');
-                            }
-                        ],
-                    ],
-                });
-            });
-        });
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     document.getElementById('buttonBlokir1').addEventListener('click', function() {
+        //         // Tampilkan konfirmasi alert menggunakan iziToast
+        //         iziToast.show({
+        //             backgroundColor: '#F7941E',
+        //             title: '<i class="fa-regular fa-circle-question"></i>',
+        //             titleColor: 'white',
+        //             messageColor: 'white',
+        //             message: 'Anda yakin ingin memblookir pengguna tersebut?',
+        //             position: 'topCenter',
+        //             buttons: [
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+        //                     function(instance, toast) {
+        //                         // Jika pengguna menekan tombol "Ya", kirim form
+        //                         document.getElementById('formBlokir1').submit();
+        //                     }
+        //                 ],
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+        //                     function(instance, toast) {
+        //                         instance.hide({
+        //                             transitionOut: 'fadeOut'
+        //                         }, toast, 'button');
+        //                     }
+        //                 ],
+        //             ],
+        //         });
+        //     });
+        //     document.getElementById('buttonBlokir2').addEventListener('click', function() {
+        //         // Tampilkan konfirmasi alert menggunakan iziToast
+        //         iziToast.show({
+        //             backgroundColor: '#F7941E',
+        //             title: '<i class="fa-regular fa-circle-question"></i>',
+        //             titleColor: 'white',
+        //             messageColor: 'white',
+        //             message: 'Anda yakin ingin memblookir pengguna tersebut?',
+        //             position: 'topCenter',
+        //             buttons: [
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+        //                     function(instance, toast) {
+        //                         // Jika pengguna menekan tombol "Ya", kirim form
+        //                         document.getElementById('formBlokir2').submit();
+        //                     }
+        //                 ],
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+        //                     function(instance, toast) {
+        //                         instance.hide({
+        //                             transitionOut: 'fadeOut'
+        //                         }, toast, 'button');
+        //                     }
+        //                 ],
+        //             ],
+        //         });
+        //     });
+        //     document.getElementById('buttonBlokir3').addEventListener('click', function() {
+        //         // Tampilkan konfirmasi alert menggunakan iziToast
+        //         iziToast.show({
+        //             backgroundColor: '#F7941E',
+        //             title: '<i class="fa-regular fa-circle-question"></i>',
+        //             titleColor: 'white',
+        //             messageColor: 'white',
+        //             message: 'Anda yakin ingin memblookir pengguna tersebut?',
+        //             position: 'topCenter',
+        //             buttons: [
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+        //                     function(instance, toast) {
+        //                         // Jika pengguna menekan tombol "Ya", kirim form
+        //                         document.getElementById('formBlokir3').submit();
+        //                     }
+        //                 ],
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+        //                     function(instance, toast) {
+        //                         instance.hide({
+        //                             transitionOut: 'fadeOut'
+        //                         }, toast, 'button');
+        //                     }
+        //                 ],
+        //             ],
+        //         });
+        //     });
+        //     document.getElementById('buttonBlokir4').addEventListener('click', function() {
+        //         // Tampilkan konfirmasi alert menggunakan iziToast
+        //         iziToast.show({
+        //             backgroundColor: '#F7941E',
+        //             title: '<i class="fa-regular fa-circle-question"></i>',
+        //             titleColor: 'white',
+        //             messageColor: 'white',
+        //             message: 'Anda yakin ingin memblookir pengguna tersebut?',
+        //             position: 'topCenter',
+        //             buttons: [
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+        //                     function(instance, toast) {
+        //                         // Jika pengguna menekan tombol "Ya", kirim form
+        //                         document.getElementById('formBlokir4').submit();
+        //                     }
+        //                 ],
+        //                 ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+        //                     function(instance, toast) {
+        //                         instance.hide({
+        //                             transitionOut: 'fadeOut'
+        //                         }, toast, 'button');
+        //                     }
+        //                 ],
+        //             ],
+        //         });
+        //     });
+        // });
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
