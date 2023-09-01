@@ -21,6 +21,7 @@ use App\Http\Controllers\notificationController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\special_days_controller;
 use App\Http\Controllers\KategoriMakananController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\testingController;
 use App\Models\bahan_reseps;
 use App\Models\favorite;
