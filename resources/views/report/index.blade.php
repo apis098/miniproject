@@ -609,7 +609,9 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-            <form action="{{route('blockContent.destroy',$row->id)}}">
+            <form action="{{route('blockContent.destroy',$row->id)}}" method="POST">
+                @csrf
+                @method('put')
                 <div class="modal-header">
                     <h5 class="modal-title" id="reportModal"
                         style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
