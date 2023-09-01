@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
 
     @push('style')
         @powerGridStyles
@@ -60,8 +60,8 @@
             padding-top: 30px;
             padding-bottom: 30px;
             width: 210px;
-            border-top:1px solid black;
-            border-bottom:1px solid black;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
             border-left: none;
             border-right: none;
             top: 10px;
@@ -81,16 +81,16 @@
         }
 
         /* .table-custom thead {
-                            background: #F7941E;
-                            margin-bottom: 10%;
-                            color: white;
-                        } */
+                                background: #F7941E;
+                                margin-bottom: 10%;
+                                color: white;
+                            } */
 
         /* .table-custom tr:not(.thead) {
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        border: 2px solid black;
-                    } */
+                            margin-top: 10px;
+                            margin-bottom: 10px;
+                            border: 2px solid black;
+                        } */
 
         .table-custom td:first-child {
             border-top-left-radius: 15px;
@@ -149,7 +149,6 @@
             font-weight: 500;
             letter-spacing: 0.40px;
             word-wrap: break-word
-
         }
 
         .search {
@@ -214,16 +213,16 @@
         }
 
         /* button{
-                    background-color: #F7941E;
-                    border: none;
-                    height: 45px;
-                    width: 90px;
-                    color: #ffffff;
-                    position: absolute;
-                    right: 1px;
-                    top: 0px;
-                    border-radius: 15px
-                } */
+                        background-color: #F7941E;
+                        border: none;
+                        height: 45px;
+                        width: 90px;
+                        color: #ffffff;
+                        position: absolute;
+                        right: 1px;
+                        top: 0px;
+                        border-radius: 15px
+                    } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -242,7 +241,6 @@
             color: #fff;
             width: 70px;
             border-radius: 4px
-
         }
 
 
@@ -268,10 +266,11 @@
     </style>
     <div class=" d-flex justify-content-center ms-1" style="overflow-x:hidden">
         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-            <div class="my-5 ml-5" style="margin-right:%; " >
+            <div class="my-5 ml-5" style="margin-right:%; ">
                 <button type="button" class="btn btn-sm" data-toggle="modal"
-                 style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"   data-target="#exampleModal">Tambah</button>
-                 <form action="" >
+                    style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"
+                    data-target="#exampleModal">Tambah</button>
+                <form action="">
                     <div class="container" style="margin-top: -35px; margin-right: -538px; ">
                         <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
                             <div class="row">
@@ -298,7 +297,9 @@
                         <div class="modal-content" style="border-radius: 15px">
                             <div class="modal-body">
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="modal-title" id="exampleModalLabel" style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">Tambah</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel"
+                                        style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                                        Tambah</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -312,7 +313,8 @@
                                                 style="border-radius:10px; width:120%;">
                                             <br>
                                             <button type="submit"
-                                                class="btn btn-sm text-white d-flex justify-content-xxl-end" style="  margin-left: 350px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
+                                                class="btn btn-sm text-white d-flex justify-content-xxl-end"
+                                                style="  margin-left: 350px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
                                                 Tambah
                                             </button>
                                         </div>
@@ -328,19 +330,25 @@
                 <table class="table-custom">
                     <thead>
                         <tr>
-                            <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Kategori</th>
-                            <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Aksi</th>
+                            <th scope="col"
+                                style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                Kategori</th>
+                            <th scope="col"
+                                style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($kategori_makanans as $data)
                             <tr>
-                                <td style="border-left:1px solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
+                                <td
+                                    style="border-left:1px solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
                                     {{ $data->nama_makanan }}</td>
                                 <td style="border-right:1px solid black;">
                                     <div>
-                                        <button type="button" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;"
-                                        data-toggle="modal"  data-target="#exampleModal{{ $data->id }}">Edit</button>
+                                        <button type="button" class="btn text-white"
+                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;"
+                                            data-toggle="modal" data-target="#exampleModal{{ $data->id }}">Edit</button>
                                         {{-- modal edit --}}
                                         <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -348,7 +356,9 @@
                                                 <div class="modal-content" style="border-radius: 15px">
                                                     <div class="modal-body">
                                                         <div class="d-flex justify-content-between">
-                                                            <h5 class="modal-title" id="exampleModalLabel" style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word"> Edit Data</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel"
+                                                                style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                                                                Edit Data</h5>
                                                             <button type="button" class="close" data-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -370,18 +380,20 @@
                                                             </div>
                                                             <br>
                                                             <button type="submit"
-                                                                class="btn btn-sm d-flex justify-content-end text-white" style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                                                                class="btn btn-sm d-flex justify-content-end text-white"
+                                                                style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         {{-- end modal edit --}}
-                                        <form action="{{ route('kategori-makanan.destroy', $data->id) }}" method="POST" id="delete-form"
-                                            class="d-inline-block">
+                                        <form action="{{ route('kategori-makanan.destroy', $data->id) }}" method="POST"
+                                            id="delete-form" class="d-inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" class="btn btn-sm" style="margin-left: 5%;  border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word"
+                                            <button type="button" class="btn btn-sm"
+                                                style="margin-left: 5%;  border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word"
                                                 data-mdb-ripple-color="dark" onclick="DeleteData()">
                                                 Hapus</button>
                                         </form>
@@ -392,26 +404,22 @@
                     </tbody>
                 </table>
             </div>
-
-
+            <div style="margin-top: -2em; margin-left: 10em;">
+                {{ $kategori_makanans->links('vendor.pagination.default') }}
+            </div>
             @forelse ($kategori_makanans as $data)
-
-    @empty
-    <div class="d-flex flex-column h-100 justify-content-center text-center align-items-center mx-5"
-    style="margin-top: -50px;">
-    <img src="{{asset('images/data.png')}}" style="width: 20em; margin-right: -250px;">
-    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
-</div>
-    @endforelse
+            @empty
+                <div class="d-flex flex-column h-100 justify-content-center text-center align-items-center mx-5"
+                    style="margin-top: -50px;">
+                    <img src="{{ asset('images/data.png') }}" style="width: 20em; margin-right: -250px;">
+                    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
+                </div>
+            @endforelse
         </div>
     </div>
     {{-- end --}}
     </div>
     </div>
-    </div>
-
-    <div style="margin-top: -5em; margin-left: 10em;">
-    {{$kategori_makanans->links('vendor.pagination.default')}}
     </div>
 
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
@@ -420,33 +428,35 @@
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
         function DeleteData() {
-           iziToast.show({
-               backgroundColor: '#F7941E',
-               title: '<i class="fa-regular fa-circle-question"></i>',
-               titleColor: 'white',
-               messageColor: 'white',
-               message: 'Apakah Anda yakin ingin menghapus data ini?',
-               position: 'topCenter',
-               buttons: [
-                   ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
-                       instance.hide({
-                           transitionOut: 'fadeOutUp',
-                           onClosing: function (instance, toast, closedBy) {
-                               document.getElementById('delete-form').submit();
-                           }
-                       }, toast, 'buttonName');
-                   }, false], // true to focus
-                   ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
-                       instance.hide({}, toast, 'buttonName');
-                   }]
-               ],
-               onOpening: function (instance, toast) {
-                   console.info('callback abriu!');
-               },
-               onClosing: function (instance, toast, closedBy) {
-                   console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-               }
-           });
-       }
-       </script>
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('delete-form').submit();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+    </script>
 @endsection

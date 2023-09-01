@@ -114,7 +114,7 @@
                                 <div class="col-6 my-2">
                                     <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
                                         alt="">
-                                    Top {{ $num += 1 }}
+                                    Top {{ $num + 1 + ($real_reseps->currentPage() - 1)  * $real_reseps->perPage() }}
                                 </div>
                                 <div class="col-6">
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"

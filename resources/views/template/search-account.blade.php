@@ -300,6 +300,7 @@
             @endforeach
 
         </div>
+        {{$user->links('vendor.pagination.default')}}
     </div>
 
     <!-- end food section -->
