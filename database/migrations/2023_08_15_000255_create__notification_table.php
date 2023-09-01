@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('complaint_id_report')->nullable();
             $table->integer('resep_id_report')->nullable();
             $table->string('random_name')->nullable();
+            $table->string('alasan')->nullable();
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('reply_id')->nullable(); 
             $table->unsignedBigInteger('complaint_id')->nullable(); 

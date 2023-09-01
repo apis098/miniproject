@@ -432,7 +432,7 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan"
+                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}"
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
@@ -514,7 +514,7 @@
                                 @method('put')
                                 <button type="button" id="buttonBlokir2"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                                    class="btn btn-light btn-sm text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
                             </form>
 
@@ -583,7 +583,7 @@
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
 
-                            <button type="button" data-target="#modalTerimalaporan" data-toggle="modal"
+                            <button type="button" data-target="#modalTerimalaporan{{$row->id}}" data-toggle="modal"
                                 data-dismiss="modal" class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
@@ -603,14 +603,17 @@
     @endforeach
     {{-- end Modal --}}
     {{-- Model Terima laporan --}}
-    <div class="modal fade" id="modalTerimalaporan" tabindex="-1" role="dialog"
+    @foreach($data as $row)
+    @if($row->id != null)
+    <div class="modal fade" id="modalTerimalaporan{{$row->id}}" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
+            <form action="{{route('blockContent.destroy',$row->id)}}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="reportModal"
                         style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                        Kirim Alasan</h5>
+                        Kirim Peringatan</h5>
                     <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -620,27 +623,26 @@
                     <div class="col-3 mt-2  ms-3">
                         <img class="" src="{{ asset('images/default.jpg') }}" width="100px" height="100px"
                             style="border-radius: 50%" alt="">
-
-                        {{-- <div></div>
-                        <span class="widget-49-pro-title fw-bolder"
-                            style="margin-left: 30px;">{{ $row->user->name }}</span><br>
-                        <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small> --}}
                     </div>
                     <div class="col-md-8">
                         <div class="widget-49-meeting-info">
 
                         </div>
-                        <textarea readonly class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                        <textarea class="form-control" name="alasan" rows="5" placeholder="Alasan"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="" class="btn btn-light text-light rounded-3"
+                    <button type="submit" class="btn btn-light text-light rounded-3"
                         style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                            class="ms-2 me-2">Laporkan</b></a>
+                            class="ms-2 me-2">Kirim</b>
+                    </button>
                 </div>
+            </form>
             </div>
         </div>
     </div>
+    @endif
+    @endforeach
     {{-- End Modal Terima Laporan --}}
     {{-- Modal resep --}}
     @foreach ($data as $row)
@@ -906,7 +908,7 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan"
+                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}"
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>

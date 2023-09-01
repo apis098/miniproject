@@ -107,7 +107,7 @@ class ReportController extends Controller
         }
         return redirect()->back()->with('success','Nama berhasil disesuaikan');
     }
-    public function block($id){
+    public function block(Request $request, $id){
         $report = Report::findOrFail($id);
         $report->user->increment('jumlah_pelanggaran');
         if($report->reply_id != null){
@@ -116,6 +116,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
+            $notification->alasan = $request->alasan;
             $notification->save(); 
             return redirect()->back()->with('success', 'Komentar telah diblokir');
         }
@@ -125,6 +126,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->complaint_id_report = 1;
+            $notification->alasan = $request->alasan;
             $notification->save();
             return redirect()->back()->with('success', 'Keluhan telah diblokir');
         }
@@ -134,6 +136,7 @@ class ReportController extends Controller
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->resep_id_report = 1;
+            $notification->alasan = $request->alasan;
             $notification->save();
             return redirect()->back()->with('success', 'Resep telah diblokir');
         }
@@ -149,6 +152,7 @@ class ReportController extends Controller
                 $notification->user_id = $report->profile_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->profile_id = $report->profile_id;
+                $notification->alasan = $request->alasan;
                 $notification->save();  
                 return redirect()->back()->with('success', 'Foto profile telah diblokir');
             } else {
