@@ -191,7 +191,7 @@
                     </div>
                     @endforeach
                 </div>
-                {{ $recipes->links() }}
+                {{ $recipes->links('vendor.pagination.default') }}
             </div>
         </div>
     </div>
