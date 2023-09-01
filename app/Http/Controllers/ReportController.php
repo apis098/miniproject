@@ -193,6 +193,10 @@ class ReportController extends Controller
         $user = User::where('status','nonaktif')->get();
         return view('admin.unblock',compact('user'));   
     }
+    public function unblock_store($id){
+        $user = User::findOrdail($id);
+
+    }
     public function destroy($id){
         $report = Report::findOrFail($id);
         $report->delete();

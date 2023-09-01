@@ -66,7 +66,7 @@ class followersController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('template.profile-oranglain',compact('recipes','user','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
+        return view('template.profile-oranglain',compact('recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)
     {
