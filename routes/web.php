@@ -113,7 +113,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         //  kategori makanan
          Route::resource('/kategori-makanan',KategoriMakananController::class);
         // footer
-        Route::resource('/footer',footer::class);
+        Route::resource('/footer',FooterController::class);
     });
 });
 
