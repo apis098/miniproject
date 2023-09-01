@@ -249,12 +249,18 @@
                             <label for="ingredients" class="form-label">Nama Bahan</label>
                             <select name="ingredients[]" style="width: 100%;" aria-placeholder="Masukkan nama bahan" multiple="multiple" id="ingredients"
                                 class="cari form-control">
-                                <option value="" disabled >Masukkan Nama Bahan</option>
+                                <option value="" disabled>Masukkan Nama Bahan</option>
+
                                 @foreach ($categories_ingredients as $f)
                                     <option value="{{ $f }}">{{ $f }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        <style>
+                            #pbb {
+                                background-color: white;
+                            }
+                        </style>
                         <div class="mb-3">
                             <label for="harga" class="form-label">Rentang Harga</label>
                             <div class="row">

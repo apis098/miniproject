@@ -948,20 +948,27 @@
     <script src="{{ asset('plugins/select2/js/select2.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.cari').select2({
+            $('#filter').on('shown.bs.modal', function () {
+                $('.cari').select2({
                 closeOnSelect: false,
                 placeholder: {
-                    id: -1,
+                    id: '-1',
                     text: 'Masukkan Nama Bahan'
-                }
+                },
+                dropdownParent: $('#filter')
+
             });
             $('.cari23').select2({
                 closeOnSelect: false,
                 placeholder: {
-                    id: -1, // the value of the option
+                    id: '-1', // the value of the option
                     text: 'Masukkan Nama Alat Alat'
-                }
+                },
+                dropdownParent: $('#filter')
             });
+});
+
+
         });
     </script>
 </body>
