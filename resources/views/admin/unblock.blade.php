@@ -308,11 +308,13 @@
                                         {{ $data->jumlah_pelanggaran }} kali</td>
                                 <td style="border-right:1px solid black;">
                                     <div>
-                                        <form action="{{route('unblock.user.store',$data->id)}}" method="POST" >
+                                        <form action="{{ route('unblock.user.store', $data->id) }}" method="POST" id="unblock-form">
                                             @csrf
-                                            @method('put')
-                                            <button type="submit" class="btn text-white"
-                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;">Unblock</button>
+                                            @method('PUT')
+                                            <button type="button" id="unblock-button" class="btn text-white"
+                                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;">
+                                                Unblock
+                                            </button>
                                         </form>
                                             {{-- modal edit --}}
                                         <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
@@ -422,5 +424,27 @@
                 }
             });
         }
+    </script>
+    <script>
+        document.getElementById('unblock-button').addEventListener('click', function () {
+            // Tampilkan konfirmasi alert menggunakan iziToast
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda yakin ingin melakukan unblock?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
+                        // Jika pengguna menekan tombol "Ya", kirim form
+                        document.getElementById('unblock-form').submit();
+                    }],
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    }],
+                ],
+            });
+        });
     </script>
 @endsection
