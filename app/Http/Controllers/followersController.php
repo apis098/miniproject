@@ -39,9 +39,9 @@ class followersController extends Controller
         if ($username != null) {
             $user = User::where('status', 'aktif')
                 ->where('name', 'like', '%' . $username . '%')
-                ->get();
+                ->paginate(6);
         } else {
-            $user = User::where('status', 'aktif')->get();
+            $user = User::where('status', 'aktif')->paginate(6);
         }
     
         return view('template.search-account', compact('user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
