@@ -109,7 +109,7 @@ class FiltersController extends Controller
                 $qwerty->whereIn("nama_makanan", $jm);
             });
         }
-        $recipes = $recipess->paginate(6);
+        $recipes = $recipess->paginate(3);
         //dd($recipes);
         return view('template.resep', compact('toolsCooks', 'special_day','footer','categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
