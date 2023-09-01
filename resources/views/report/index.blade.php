@@ -432,7 +432,7 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}"
+                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
@@ -910,7 +910,7 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}"
+                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
