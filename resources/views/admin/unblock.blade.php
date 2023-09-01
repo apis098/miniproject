@@ -308,10 +308,10 @@
                                         {{ $data->jumlah_pelanggaran }} kali</td>
                                 <td style="border-right:1px solid black;">
                                     <div>
-                                        <form action="{{ route('unblock.user.store', $data->id) }}" method="POST" id="unblock-form">
+                                        <form action="{{ route('unblock.user.store', $data->id) }}" method="POST" id="unblock-form{{$data->id}}">
                                             @csrf
                                             @method('PUT')
-                                            <button type="button" id="unblock-button" class="btn text-white"
+                                            <button type="button" onclick="konfirmasi({{$data->id}})" id="unblock-button{{$data->id}}" class="btn text-white"
                                                     style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;">
                                                 Unblock
                                             </button>
@@ -424,9 +424,28 @@
                 }
             });
         }
+        function konfirmasi(num){
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda yakin ingin melakukan unblock?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
+                        // Jika pengguna menekan tombol "Ya", kirim form
+                        document.getElementById('unblock-form'+num).submit();
+                    }],
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
+                        instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
+                    }],
+                ],
+            });
+        }
     </script>
-    <script>
-        document.getElementById('unblock-button').addEventListener('click', function () {
+    {{-- <script>
+        document.getElementById('unblock-button'+num).addEventListener('click', function () {
             // Tampilkan konfirmasi alert menggunakan iziToast
             iziToast.show({
                 backgroundColor: '#F7941E',
@@ -438,7 +457,7 @@
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
                         // Jika pengguna menekan tombol "Ya", kirim form
-                        document.getElementById('unblock-form').submit();
+                        document.getElementById('unblock-form'+num).submit();
                     }],
                     ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
@@ -446,5 +465,5 @@
                 ],
             });
         });
-    </script>
+    </script> --}}
 @endsection
