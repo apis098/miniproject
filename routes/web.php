@@ -106,7 +106,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::get('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
-        Route::get('/block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
+        Route::put('/block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::get('/random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::get('/blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status');
         Route::put('/unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');

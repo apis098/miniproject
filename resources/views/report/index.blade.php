@@ -1,5 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -63,8 +64,8 @@
             padding-top: 30px;
             padding-bottom: 30px;
             width: 195px;
-            border-top:1px solid black;
-            border-bottom:1px solid black;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
             border-left: none;
             border-right: none;
             top: 10px;
@@ -245,7 +246,8 @@
                             @foreach ($data as $row)
                                 @if ($row->complaint_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
@@ -281,7 +283,8 @@
                             @foreach ($data as $row)
                                 @if ($row->reply_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
@@ -317,7 +320,8 @@
                             @foreach ($data as $row)
                                 @if ($row->profile_id != null)
                                     <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
                                         </td>
                                         <td>{{ $row->user->name }}</td>
                                         <td>{{ $row->description }}</td>
@@ -428,14 +432,18 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal"
-                            data-target="#modalTerimalaporan"
-                            class="btn btn-light text-light rounded-3"
-                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                class="ms-2 me-2">Terima Laporan</b></button>
-                            <a href="{{ route('block.user', $row->id) }}"
-                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn btn-light text-light rounded-3 me-4"><b>Blokir pengguna</b></a>
+                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan"
+                                class="btn btn-light text-light rounded-3"
+                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Terima Laporan</b></button>
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir1">
+                                @csrf
+                                @method('put')
+                                <button type="button" id="buttonBlokir1"
+                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -500,10 +508,16 @@
                                     style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <b class="">Hapus laporan</b>
                                 </button>
-                                <a href="{{ route('block.user', $row->id) }}"
-                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    class="btn btn-light btn-sm me-3 text-light rounded-3"><b>Blokir pengguna</b></a>
                             </form>
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir2">
+                                @csrf
+                                @method('put')
+                                <button type="button" id="buttonBlokir2"
+                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                                </button>
+                            </form>
+
                         </div>
                     </div>
                     <script>
@@ -569,15 +583,18 @@
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
 
-                            <button type="button" data-toggle="modal"
-                            data-target="#modalTerimalaporan"
-                            class="btn btn-light text-light rounded-3"
-                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                class="ms-2 me-2">Terima Laporan</b></button>
-
-                            <a href="{{ route('block.user', $row->id) }}"
-                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b></a>
+                            <button type="button" data-target="#modalTerimalaporan" data-toggle="modal"
+                                data-dismiss="modal" class="btn btn-light text-light rounded-3"
+                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Terima Laporan</b></button>
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir3">
+                                @csrf
+                                @method('put')
+                                <button type="button" id="buttonBlokir3"
+                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -601,8 +618,8 @@
                 <div class="modal-body d-flex align-items-center col-12">
                     <!-- Tambahkan kelas "align-items-center" -->
                     <div class="col-3 mt-2  ms-3">
-                            <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
-                                height="100px" style="border-radius: 50%" alt="">
+                        <img class="" src="{{ asset('images/default.jpg') }}" width="100px" height="100px"
+                            style="border-radius: 50%" alt="">
 
                         {{-- <div></div>
                         <span class="widget-49-pro-title fw-bolder"
@@ -889,14 +906,18 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal"
-                            data-target="#modalTerimalaporan"
-                            class="btn btn-light text-light rounded-3"
-                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                class="ms-2 me-2">Terima Laporan</b></button>
-                            <a href="{{ route('block.user', $row->id) }}"
+                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan"
+                                class="btn btn-light text-light rounded-3"
+                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Terima Laporan</b></button>
+                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir4">
+                                @csrf
+                                @method('put')
+                                <button type="button" id="buttonBlokir4"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    class="btn btn-light text-light rounded-3"><b>Blokir pengguna</b></a>
+                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -1024,9 +1045,12 @@
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
     </div>
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+
     <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
         function DeleteData() {
             iziToast.show({
@@ -1062,40 +1086,108 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const likeForms = document.querySelectorAll(".like-form");
-
-            likeForms.forEach(form => {
-                form.addEventListener("submit", async function(event) {
-                    event.preventDefault();
-
-                    const button = form.querySelector(".like-button");
-                    const svg = button.querySelector("svg");
-
-                    const response = await fetch(form.action, {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-Token": "{{ csrf_token() }}",
-                        },
-                    });
-
-                    if (response.ok) {
-                        const responseData = await response.json();
-                        if (responseData.liked) {
-                            // Reset button color and SVG here
-                            button.style.backgroundColor = "#F7941E";
-                            svg.style.color = "white";
-                            document.getElementById("like-count-" + responseData.resep_id)
-                                .textContent = responseData.likes;
-                            // Modify SVG appearance if needed
-                        } else {
-                            // Update button color and SVG here
-                            button.style.backgroundColor = "white";
-                            svg.style.color = "#F7941E";
-                            button.style.borderColor = "#F7941E";
-                            document.getElementById("like-count-" + responseData.resep_id)
-                                .textContent = responseData.likes;
-                        }
-                    }
+            document.getElementById('buttonBlokir1').addEventListener('click', function() {
+                // Tampilkan konfirmasi alert menggunakan iziToast
+                iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('formBlokir1').submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
+                });
+            });
+            document.getElementById('buttonBlokir2').addEventListener('click', function() {
+                // Tampilkan konfirmasi alert menggunakan iziToast
+                iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('formBlokir2').submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
+                });
+            });
+            document.getElementById('buttonBlokir3').addEventListener('click', function() {
+                // Tampilkan konfirmasi alert menggunakan iziToast
+                iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('formBlokir3').submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
+                });
+            });
+            document.getElementById('buttonBlokir4').addEventListener('click', function() {
+                // Tampilkan konfirmasi alert menggunakan iziToast
+                iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('formBlokir4').submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
                 });
             });
         });
