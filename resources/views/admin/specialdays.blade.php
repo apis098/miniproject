@@ -395,6 +395,7 @@
                     </tbody>
                 </table>
             </div>
+            <div style="margin-top: -2em;  margin-left: 10em;">{{$special_days->links('vendor.pagination.default')}} </div>
             @forelse ($special_days as $data)
             @empty
                 <div class="d-flex flex-column h-100 justify-content-center align-items-center mx-5"
@@ -411,9 +412,7 @@
     </div>
     {{-- end modal edit --}}
 
-    <div style="margin-top: -5em;  margin-left: 10em;">
-        {{$special_days->links('vendor.pagination.default')}}
-        </div>
+   
 
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
