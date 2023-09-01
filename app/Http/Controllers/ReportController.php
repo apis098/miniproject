@@ -189,13 +189,15 @@ class ReportController extends Controller
             return redirect()->back()->with('error','User sudah diblokir');
         }
     }
-    public function unblock_index(){
+    public function blocked_index(){
         $user = User::where('status','nonaktif')->get();
         return view('admin.unblock',compact('user'));   
     }
     public function unblock_store($id){
-        $user = User::findOrdail($id);
-
+        $user = User::findOrFail($id);
+        $user->status =  "aktif";
+        $user->save();
+        return redirect()->back()->with('success','Pengguna berhasil di unblock');
     }
     public function destroy($id){
         $report = Report::findOrFail($id);

@@ -308,9 +308,13 @@
                                         {{ $data->jumlah_pelanggaran }} kali</td>
                                 <td style="border-right:1px solid black;">
                                     <div>
-                                        <button type="button" class="btn text-white" data-toggle="modal"
-                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;"   data-target="#exampleModal{{ $data->id }}">Unblock</button>
-                                        {{-- modal edit --}}
+                                        <form action="{{route('unblock.user.store',$data->id)}}" method="POST" >
+                                            @csrf
+                                            @method('put')
+                                            <button type="submit" class="btn text-white"
+                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word; padding: 4px 22px;">Unblock</button>
+                                        </form>
+                                            {{-- modal edit --}}
                                         <div class="modal fade" id="exampleModal{{ $data->id }}" tabindex="-1"
                                             role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
