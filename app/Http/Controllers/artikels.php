@@ -10,6 +10,7 @@ use App\Models\special_days;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
+use App\Models\footer;
 
 class artikels extends Controller
 {
@@ -34,7 +35,8 @@ class artikels extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
+        $footer = footer::first();
         $show_resep = reseps::find($id);
-        return view('template.artikel', compact('show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'));
+        return view('template.artikel', compact('show_resep', 'footer','userLog','notification','unreadNotificationCount','userLogin','favorite'));
     }
 }

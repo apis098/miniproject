@@ -233,7 +233,8 @@
                             value="{{ $item->telegram }}" hidden>
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
-                            <button type="submit" class="btn btn-edit">Edit</button>
+                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                            border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
@@ -275,7 +276,8 @@
                             value="{{ $item->youtube }}" hidden>
                             <input type="text" class="form-control" id="input" name="facebook"
                             value="{{ $item->facebook }}" hidden>
-                            <button type="submit" class="btn btn-edit">Edit</button>
+                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                            border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
@@ -306,7 +308,8 @@
                             value="{{ $item->kontak }}" hidden>
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
-                            <button type="submit" class="btn btn-edit">Edit</button>
+                            <button type="submit" class="btn text-white " style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                            border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                 @endforeach
