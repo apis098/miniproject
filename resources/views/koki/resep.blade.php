@@ -271,16 +271,16 @@
                         </label>
                         <div class="row">
                             @foreach ($special_days as $int => $d)
-                            <div class="col-lg-3 mb-4">
-                                <input type="text" id="hari_khusus{{ $int }}"
-                                    value="{{ $d->id }}" style="display: none;">
-                                <button id="pilih_hari_khusus{{ $int }}"
-                                    onclick="pilih_hari_khusus({{ $int }})" class="btn btn-light"
-                                    type="button"
-                                    style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                    <span style="font-size: 15px;">{{ $d->nama }}</span>
-                                </button>
-                            </div>
+                                <div class="col-lg-3 mb-4">
+                                    <input type="text" id="hari_khusus{{ $int }}"
+                                        value="{{ $d->id }}" style="display: none;">
+                                    <button id="pilih_hari_khusus{{ $int }}"
+                                        onclick="pilih_hari_khusus({{ $int }})" class="btn btn-light"
+                                        type="button"
+                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                        <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                    </button>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -306,6 +306,7 @@
                                 jenis_makanan.removeAttribute("name");
                             }
                         }
+
                         function pilih_hari_khusus(num) {
                             const pilih_hari_khusus = document.getElementById("pilih_hari_khusus" + num);
                             const hari_khusus = document.getElementById("hari_khusus" + num)
@@ -341,23 +342,31 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script>
-        // $("document").ready(function() {
-        //     $("#button-add-recipe").click(function(event) {
-        //         event.preventDefault();
-        //         const data = $("#form-add-recipe").serialize();
-        //         const formData = new FormData($("#form-add-recipe")[0]);
-        //         $.ajax({
-        //             url: "{{ route('resep.store') }}",
-        //             method: "POST",
-        //             processData: false,
-        //             contentType: false,
-        //             data: formData,
-        //             error: function error(xhr, status, errors) {
-        //                 alert(xhr.responseText);
-        //             }
-        //         });
-        //     });
-        // });
+        $("document").ready(function() {
+            $("#button-add-recipe").click(function(event) {
+                event.preventDefault();
+                const data = $("#form-add-recipe").serialize();
+                const formData = new FormData($("#form-add-recipe")[0]);
+                $.ajax({
+                    url: "{{ route('resep.store') }}",
+                    method: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    error: function error(xhr, status, errors) {
+                        //alert(xhr.responseText);
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: xhr.responseText,
+                            position: 'topCenter',
+                        });
+                    }
+                });
+            });
+        });
 
         num = 0;
 

@@ -102,7 +102,8 @@ class ResepsController extends Controller
         }
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            return redirect()->back()->withErrors($validasi->errors());
+            //return redirect()->back()->withErrors($validasi->errors());
+            return response()->json($validasi->errors()->first(), 422);
         }
         $time = 0;
         if ($request->lama_memasak2 === 'jam') {
