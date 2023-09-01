@@ -8,6 +8,7 @@ use App\Models\notifications;
 use App\Models\Reply;
 use App\Models\Report;
 use App\Models\reseps;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -188,21 +189,10 @@ class ReportController extends Controller
             return redirect()->back()->with('error','User sudah diblokir');
         }
     }
-    // public function deletePhoto($id)
-    // {
-    //     $report=Report::findOrFail($id);
-    //     $user = $report->user;
-
-    //     if ($user->foto) {
-    //         Storage::disk('public')->delete($user->foto);
-    //         $user->foto = null;
-    //         $user->save();
-    //         return redirect()->back()->with('success', 'Foto profile telah dihapus');
-    //     } else {
-    //         return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
-    //     }
-    // }
-
+    public function unblock_index(){
+        $user = User::where('status','nonaktif')->get();
+        return view('admin.unblock',compact('user'));   
+    }
     public function destroy($id){
         $report = Report::findOrFail($id);
         $report->delete();

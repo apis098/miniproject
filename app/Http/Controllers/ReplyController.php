@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\complaint;
 use App\Models\favorite;
+use App\Models\footer;
 use App\Models\likes;
 use App\Models\notifications;
 use App\Models\Reply;
@@ -35,6 +36,7 @@ class ReplyController extends Controller
         $repliesCount = $replies->count();
         $userLogin = Auth::user();
         $notification = [];
+        $footer = footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
         if ($userLogin) {
@@ -49,7 +51,7 @@ class ReplyController extends Controller
             ->paginate(10);
         }
         $title = "Data balasan keluhan ";
-        return view('replies.detail', compact('data', 'title', 'replies', 'repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
+        return view('replies.detail', compact('data','footer', 'title', 'replies', 'repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
     }
     public function reply(Request $request, $id)
     {

@@ -951,14 +951,14 @@
             $('.cari').select2({
                 closeOnSelect: false,
                 placeholder: {
-                    id: '-1', // the value of the option
+                    id: -1,
                     text: 'Masukkan Nama Bahan'
                 }
             });
             $('.cari23').select2({
                 closeOnSelect: false,
                 placeholder: {
-                    id: '-1', // the value of the option
+                    id: -1, // the value of the option
                     text: 'Masukkan Nama Alat Alat'
                 }
             });

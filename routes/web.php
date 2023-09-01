@@ -108,6 +108,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
         Route::get('/block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::get('/random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
+        Route::get('/blocked-user', [ReportController::class, 'unblock_index'])->name('blocked.user.status');
         Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
          // special_days
          Route::resource('/special-days', special_days_controller::class);
