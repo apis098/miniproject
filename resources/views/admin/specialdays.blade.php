@@ -236,9 +236,9 @@
 .search-2 button {
     position: absolute;
     right: 4px;
-    top: 2px;
+    top: -2px;
     border: none;
-    height: 30px;
+    height: 38px;
     background-color: #F7941E;
     color: #fff;
     width: 70px;
@@ -269,15 +269,15 @@
 
     </style>
 
-    <div class=" d-flex justify-content-center ms-1">
+    <div class=" d-flex justify-content-center ms-1" style="overflow-x:hidden">
         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
             <div class="my-5 ml-5" style="margin-right:%;">
                 <button type="button" class="btn btn-buat btn-sm" data-toggle="modal"
                 style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"     data-target="#exampleModal">Tambah</button>
-                <form action="" style="position:fixed;">
-                    <div class="container" style="margin-top: -35px; margin-right: -547px">
-                        <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
-                            <div class="row">
+                <form action="">
+                    <div class="container" style="margin-top: -35px; margin-right: -547px; ">
+                        <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                            <div class="row" >
                                 <div class="col-md-12">
                                     <div>
                                         <div class="search-2"> <i class='bx bxs-map'></i>
@@ -285,7 +285,7 @@
                                                 <input type="text" id="" name="d"
                                                     placeholder="Cari Hari Khusus">
                                                 <button type="submit" class="zoom-effects"
-                                                    style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -11px">Cari</button>
+                                                    style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
                                             </form>
                                         </div>
                                     </div>
@@ -328,7 +328,7 @@
                 {{-- end modal tambah --}}
                 {{-- start tab 2 --}}
 
-                <table class="table-custom">
+                <table class="table-custom ">
                     <thead>
                         <tr>
                             <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Hari Khusus</th>
