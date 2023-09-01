@@ -144,11 +144,10 @@ class ResepsController extends Controller
                 ]);
             }
             if ($request->has('hari_khusus')) {
-                if ($request->hari_khusus != 'on') {
-                    # code...
+                foreach ($request->hari_khusus as $key => $value) {
                     hari_reseps::create([
                         "reseps_id" => $create_recipe->id,
-                        "hari_khusus_id" => $request->hari_khusus
+                        "hari_khusus_id" => $value
                     ]);
                 }
             }
@@ -277,15 +276,8 @@ class ResepsController extends Controller
         $price = str_replace([',', '.'], '', $request->pengeluaran_memasak);
         $update_resep->pengeluaran_memasak = $price;
         $update_resep->save();
-        if ($request->hari_khusus != "on") {
-            $ceks = reseps::has("hari_resep")->count();
-            if ($ceks >= 1) {
-                hari_reseps::where("reseps_id", $update_resep->id)->delete();
-            }
-            hari_reseps::create([
-                "reseps_id" => $update_resep->id,
-                "hari_khusus_id" => $request->hari_khusus
-            ]);
+        if ($request->has('hari_khusus')) {
+            $update_resep->hari_resep()->sync($request->hari_khusus);
         } else {
             hari_reseps::where("reseps_id", $update_resep->id)->delete();
         }

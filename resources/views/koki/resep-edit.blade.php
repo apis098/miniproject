@@ -252,7 +252,8 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan Langkah - Langkah</button>
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
+                        Langkah - Langkah</button>
                     <br>
                     <div class="mt-2">
                         <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
@@ -294,50 +295,31 @@
                             <b> Hari Khusus </b>
                         </label>
                         <div class="row">
-                            @php
-                                $collect_day = [];
-                                foreach ($edit_resep->hari_resep as $ksw => $vle) {
-                                    $collect_day[] = $vle;
-                                }
-                            @endphp
                             @foreach ($special_days as $int => $d)
-                                @if ($collect_day != [] && $collect_day[0]->nama == $d->nama)
-                                    <div class="col-lg-3 mb-2">
-                                        <input type="radio" class="btn-check" name="hari_khusus"
-                                            id="success-outlined{{ $int }}" value="{{ $d->id }}"
-                                            autocomplete="on" checked>
-                                        <label class="btn btn-outline-warning"
-                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
-                                            for="success-outlined{{ $int }}">{{ $d->nama }}</label>
+                                @if ($edit_resep->hari_resep->contains('nama', $d->nama))
+                                    <div class="col-lg-3 mb-4">
+                                        <input type="text" name="hari_khusus[]" id="hari_khusus{{ $int }}"
+                                            value="{{ $d->id }}" style="display: none;">
+                                        <button id="pilih_hari_khusus{{ $int }}"
+                                            onclick="pilih_hari_khusus({{ $int }})" class="btn btn-filter"
+                                            type="button"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                        </button>
                                     </div>
                                 @else
-                                    <div class="col-lg-3 mb-2">
-                                        <input type="radio" class="btn-check" name="hari_khusus"
-                                            id="success-outlined{{ $int }}" value="{{ $d->id }}"
-                                            autocomplete="off">
-                                        <label class="btn btn-outline-warning"
-                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
-                                            for="success-outlined{{ $int }}">{{ $d->nama }}</label>
+                                    <div class="col-lg-3 mb-4">
+                                        <input type="text" id="hari_khusus{{ $int }}"
+                                            value="{{ $d->id }}" style="display: none;">
+                                        <button id="pilih_hari_khusus{{ $int }}"
+                                            onclick="pilih_hari_khusus({{ $int }})" class="btn btn-light"
+                                            type="button"
+                                            style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                        </button>
                                     </div>
                                 @endif
                             @endforeach
-                            @if ($collect_day === [])
-                                <div class="col-lg-3">
-                                    <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
-                                        autocomplete="on" checked>
-                                    <label class="btn btn-outline-warning"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
-                                        for="success-outlined">Tidak ada</label>
-                                </div>
-                            @else
-                                <div class="col-lg-3">
-                                    <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
-                                        autocomplete="off">
-                                    <label class="btn btn-outline-warning"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;color: black;"
-                                        for="success-outlined">Tidak ada</label>
-                                </div>
-                            @endif
                         </div>
                     </div>
                     <br>
@@ -349,17 +331,17 @@
                         }
                     </style>
                     <script>
-                        function pilih_hari(num) {
-                            const pilih_hari = document.getElementById("pilih_hari" + num);
-                            const input_pilih_hari = document.getElementById("input_pilih_hari" + num);
-                            if (pilih_hari.classList.contains("btn-light")) {
-                                pilih_hari.classList.remove("btn-light");
-                                pilih_hari.classList.add("btn-filter");
-                                input_pilih_hari.setAttribute("name", "hari_khusus[]");
-                            } else if (pilih_hari.classList.contains("btn-filter")) {
-                                pilih_hari.classList.remove("btn-filter");
-                                pilih_hari.classList.add("btn-light");
-                                input_pilih_hari.removeAttribute("name");
+                        function pilih_hari_khusus(num) {
+                            const pilih_hari_khusus = document.getElementById("pilih_hari_khusus" + num);
+                            const hari_khusus = document.getElementById("hari_khusus" + num)
+                            if (pilih_hari_khusus.classList.contains("btn-light")) {
+                                pilih_hari_khusus.classList.remove("btn-light");
+                                pilih_hari_khusus.classList.add("btn-filter");
+                                hari_khusus.setAttribute("name", "hari_khusus[]");
+                            } else if (pilih_hari_khusus.classList.contains("btn-filter")) {
+                                pilih_hari_khusus.classList.remove("btn-filter");
+                                pilih_hari_khusus.classList.add("btn-light");
+                                hari_khusus.removeAttribute("name");
                             }
                         }
 

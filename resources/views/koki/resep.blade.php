@@ -9,11 +9,9 @@
             background-color: #F7941E;
             width: 100%;
         }
-        .btn-outline-warning
-        {
-            
-        }
-        </style>
+
+        .btn-outline-warning {}
+    </style>
     <form id="form-add-recipe" action="/koki/resep" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
@@ -244,7 +242,8 @@
                     </div>
                     <br>
                     <button type="button" id="button-new-input2" class="btn btn-warning text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan Langkah - Langkah</button>
+                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
+                        Langkah - Langkah</button>
                     <br>
                     <div class="mt-2">
                         <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
@@ -272,22 +271,17 @@
                         </label>
                         <div class="row">
                             @foreach ($special_days as $int => $d)
-                                <div class="col-lg-3 mb-2">
-                                    <input type="radio" class="btn-check" name="hari_khusus"
-                                        id="success-outlined{{ $int }}" value="{{ $d->id }}"
-                                        autocomplete="off" checked>
-                                    <label class="btn btn-outline-warning custom-btn"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                        for="success-outlined{{ $int }}">{{ $d->nama }}</label>
-                                </div>
-                            @endforeach
-                            <div class="col-lg-3">
-                                <input type="radio" class="btn-check" name="hari_khusus" id="success-outlined"
-                                    autocomplete="on" checked>
-                                <label class="btn btn-outline-warning"
-                                    style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    for="success-outlined">Tidak ada</label>
+                            <div class="col-lg-3 mb-4">
+                                <input type="text" id="hari_khusus{{ $int }}"
+                                    value="{{ $d->id }}" style="display: none;">
+                                <button id="pilih_hari_khusus{{ $int }}"
+                                    onclick="pilih_hari_khusus({{ $int }})" class="btn btn-light"
+                                    type="button"
+                                    style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                    <span style="font-size: 15px;">{{ $d->nama }}</span>
+                                </button>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <br>
@@ -310,6 +304,19 @@
                                 pilih_jenis_makanan.classList.remove("btn-filter");
                                 pilih_jenis_makanan.classList.add("btn-light");
                                 jenis_makanan.removeAttribute("name");
+                            }
+                        }
+                        function pilih_hari_khusus(num) {
+                            const pilih_hari_khusus = document.getElementById("pilih_hari_khusus" + num);
+                            const hari_khusus = document.getElementById("hari_khusus" + num)
+                            if (pilih_hari_khusus.classList.contains("btn-light")) {
+                                pilih_hari_khusus.classList.remove("btn-light");
+                                pilih_hari_khusus.classList.add("btn-filter");
+                                hari_khusus.setAttribute("name", "hari_khusus[]");
+                            } else if (pilih_hari_khusus.classList.contains("btn-filter")) {
+                                pilih_hari_khusus.classList.remove("btn-filter");
+                                pilih_hari_khusus.classList.add("btn-light");
+                                hari_khusus.removeAttribute("name");
                             }
                         }
                         document.addEventListener('DOMContentLoaded', function() {
