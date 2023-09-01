@@ -428,9 +428,11 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <a href="{{ route('blockContent.destroy', $row->id) }}"
-                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
+                            <button type="button" data-toggle="modal"
+                            data-target="#modalTerimalaporan"
+                            class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Terima Laporan</b></button>
                             <a href="{{ route('block.user', $row->id) }}"
                                 style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-light text-light rounded-3 me-4"><b>Blokir pengguna</b></a>
@@ -566,9 +568,13 @@
                                     style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
-                            <a href="{{ route('blockContent.destroy', $row->id) }}" class="btn btn-light text-light rounded-3"
-                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-2 me-2">Terima Laporan</b></a>
+
+                            <button type="button" data-toggle="modal"
+                            data-target="#modalTerimalaporan"
+                            class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Terima Laporan</b></button>
+
                             <a href="{{ route('block.user', $row->id) }}"
                                 style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b></a>
@@ -579,6 +585,46 @@
         @endif
     @endforeach
     {{-- end Modal --}}
+    {{-- Model Terima laporan --}}
+    <div class="modal fade" id="modalTerimalaporan" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reportModal"
+                        style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                        Kirim Alasan</h5>
+                    <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body d-flex align-items-center col-12">
+                    <!-- Tambahkan kelas "align-items-center" -->
+                    <div class="col-3 mt-2  ms-3">
+                            <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
+                                height="100px" style="border-radius: 50%" alt="">
+
+                        {{-- <div></div>
+                        <span class="widget-49-pro-title fw-bolder"
+                            style="margin-left: 30px;">{{ $row->user->name }}</span><br>
+                        <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small> --}}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="widget-49-meeting-info">
+
+                        </div>
+                        <textarea readonly class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="btn btn-light text-light rounded-3"
+                        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                            class="ms-2 me-2">Laporkan</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- End Modal Terima Laporan --}}
     {{-- Modal resep --}}
     @foreach ($data as $row)
         @if ($row->resep_id != null)
@@ -843,9 +889,11 @@
                                 <button type="submit" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <a href="{{ route('blockContent.destroy', $row->id) }}"
-                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn btn-light text-light rounded-3"><b>Terima Laporan</b></a>
+                            <button type="button" data-toggle="modal"
+                            data-target="#modalTerimalaporan"
+                            class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Terima Laporan</b></button>
                             <a href="{{ route('block.user', $row->id) }}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3"><b>Blokir pengguna</b></a>
