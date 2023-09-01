@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\favorite;
 use App\Models\followers;
+use App\Models\footer;
 use App\Models\notifications;
 use App\Models\reseps;
 use App\Models\User;
@@ -18,6 +19,7 @@ class followersController extends Controller
         $username = $request->username;
         $notification = [];
         $favorite = [];
+        $footer = footer::first();
         $unreadNotificationCount = [];
     
         if ($userLogin) {
@@ -42,7 +44,7 @@ class followersController extends Controller
             $user = User::where('status', 'aktif')->get();
         }
     
-        return view('template.search-account', compact('user', 'notification', 'userLogin', 'unreadNotificationCount','favorite'));
+        return view('template.search-account', compact('user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
     }
     
     public function show_profile($id){
@@ -51,6 +53,7 @@ class followersController extends Controller
         $userLogin = Auth::user();
         $recipes = reseps::where('user_id', $id)->paginate(6);
         $notification = [];
+        $footer= footer::first();
         $unreadNotificationCount=[];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)

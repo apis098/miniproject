@@ -712,16 +712,16 @@
                             Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang,
                             dan bahan-bahan masakannya yang mudah untuk didapatkan. </p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
-                            <a href="">
+                            <a href="{{$footer->facebook}}" target="_blank">
                                 <i class="fa-brands fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="{{$footer->youtube}}" target="_blank">
                                 <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="{{$footer->twitter}}" target="_blank">
                                 <i class="fa-brands fa-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="">
+                            <a href="{{$footer->instagram}}" target="_blank">
                                 <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                             </a>
 
@@ -730,22 +730,22 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 mt-2   footer-col ">
+                <div class="col-md-4 col-sm-6 mt-2 footer-col" style="text-align: center;">
                     <div class="footer_contact mt-2">
                         <h5 class="fw-bold">Kontak</h5>
                         <div class="contact_link_box mt-4">
 
-                            <a href="#">
+                            <a href="{{$footer->kontak}}" target="_blank">
                                 <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
-                                <span>Call +62 1234567890</span>
+                                <span>{{$footer->kontak}}</span>
                             </a>
-                            <a href="#">
-                                <i class="fa-brands fa-telegram" aria-hidden="true" style="margin-left: -1.5em"></i>
-                                <span>Hummacook Telegram</span>
+                            <a href="{{$footer->telegram}}" target="_blank">
+                                <i class="fa-brands fa-telegram" aria-hidden="true" style="margin-left: -2em"></i>
+                                <span>{{$footer->telegram}}</span>
                             </a>
-                            <a href="#">
-                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left: 1"></i>
-                                <span>Hummacook@gmail.com</span>
+                            <a href="{{$footer->email}}" target="_blank">
+                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left:-1em"></i>
+                                <span>{{$footer->email}}</span>
                             </a>
                         </div>
                     </div>
@@ -756,7 +756,7 @@
                         <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
                     </h1>
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.952145574648!2d112.60431107429163!3d-7.900068678606525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7881c2c4637501%3A0x10433eaf1fb2fb4c!2sHummasoft%20Technology!5e0!3m2!1sid!2sid!4v1693025443065!5m2!1sid!2sid"
+                        src="{{$footer->lokasi}}"
                         height="200" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>

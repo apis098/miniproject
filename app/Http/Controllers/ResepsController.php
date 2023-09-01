@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\bahan_reseps;
 use App\Models\favorite;
 use App\Models\followers;
+use App\Models\footer;
 use App\Models\langkah_reseps;
 use App\Models\reseps;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class ResepsController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
+        $footer = footer::first();
         $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -43,7 +45,7 @@ class ResepsController extends Controller
         }
         $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('categories_food', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep", compact('categories_food','footer','notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -194,6 +196,7 @@ class ResepsController extends Controller
         $special_days = special_days::all();
         $categories_foods = kategori_makanan::all();
         $userLogin = Auth::user();
+        $footer = footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];

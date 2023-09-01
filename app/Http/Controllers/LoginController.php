@@ -8,6 +8,7 @@ use App\Models\complaint;
 use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
+use App\Models\footer;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -69,6 +70,7 @@ class LoginController extends Controller
         $complaints = complaint::paginate(3, ['*'], 'complaint-page');
         $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
         $userLogin = Auth::user();
+        $footer = footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
@@ -84,7 +86,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
 
-        return view('template.home', compact('real_reseps', 'userLogin', 'complaints', 'notification', 'unreadNotificationCount', 'favorite'));
+        return view('template.home', compact('real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite'));
     }
 
     public function about()
@@ -92,6 +94,7 @@ class LoginController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
+        $footer = footer::first();
         $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -104,12 +107,13 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.about', compact('notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.about', compact('notification','footer','unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
 $userLogin = Auth::user();
 $notification = [];
 $favorite = [];
+$footer = footer::first();
 $unreadNotificationCount = [];
 if ($userLogin) {
     $notification = notifications::where('user_id', auth()->user()->id)
@@ -122,4 +126,4 @@ if ($userLogin) {
         ->orderBy('created_at', 'desc')
         ->paginate(10);
 }
-return view('template.about', compact('notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+return view('template.about', compact('notification','footer','unreadNotificationCount', 'userLogin', 'favorite'));

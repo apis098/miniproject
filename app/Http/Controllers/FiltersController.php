@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
+use App\Models\footer;
 use App\Models\kategori_makanan;
 use App\Models\kategori_reseps;
 use App\Models\special_days;
@@ -24,6 +25,7 @@ class FiltersController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
+        $footer = footer::first();
         $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -109,13 +111,14 @@ class FiltersController extends Controller
         }
         $recipes = $recipess->paginate(6);
         //dd($recipes);
-        return view('template.resep', compact('toolsCooks', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('toolsCooks', 'special_day','footer','categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function filter_resep(Request $request)
     {
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
+        $footer = footer::first();
         $unreadNotificationCount = [];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
@@ -244,6 +247,6 @@ class FiltersController extends Controller
         }*/
         //dd($recipes->paginate(6));
         $recipes->paginate(6);
-        return view('template.resep', compact('toolsCooks', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('toolsCooks','footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

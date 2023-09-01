@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\favorite;
+use App\Models\footer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,7 @@ class KokiController extends Controller
         $resep_sendiri = reseps::where("user_id", Auth::user()->id)->get();
         $recipes = reseps::where("user_id", Auth::user()->id)->paginate(6);
         $userLogin = Auth::user();
+        $footer = footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount=[];
@@ -35,7 +37,7 @@ class KokiController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('koki.profile', compact('recipes','notification', 'resep_sendiri','unreadNotificationCount','userLogin','favorite'));
+        return view('koki.profile', compact('recipes','notification','footer', 'resep_sendiri','unreadNotificationCount','userLogin','favorite'));
     }
     public function updateProfile(Request $request)
     {
