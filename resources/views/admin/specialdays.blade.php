@@ -275,7 +275,7 @@
                 <button type="button" class="btn btn-buat btn-sm" data-toggle="modal"
                 style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"     data-target="#exampleModal">Tambah</button>
                 <form action="">
-                    <div class="container" style="margin-top: -35px; margin-right: -547px; ">
+                    <div class="container" style="margin-top: -35px; margin-right: -538px; ">
                         <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
                             <div class="row" >
                                 <div class="col-md-12">
@@ -411,7 +411,7 @@
     </div>
     {{-- end modal edit --}}
 
-    <div style="margin-top: 10em;">
+    <div style="margin-top: -5em;  margin-left: 10em;">
         {{$special_days->links('vendor.pagination.default')}}
         </div>
 
