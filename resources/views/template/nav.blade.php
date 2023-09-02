@@ -50,7 +50,7 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
     <style>
         .custom_nav-container .navbar-nav .nav-item.active .nav-link {
             color: #F7941E;
