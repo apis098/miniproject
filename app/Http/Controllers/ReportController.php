@@ -28,7 +28,10 @@ class ReportController extends Controller
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-                // jika user sudah login
+                $statusProfile = $data->whereNotNull('profile_id')->count();
+                $statusResep = $data->whereNotNull('resep_id')->count();
+                $statusComplaint = $data->whereNotNull('complaint_id')->count();
+                $statusKomentar = $data->whereNotNull('reply_id')->count();
                 $userLog = 2;
         }
         if ($userLogin) {
@@ -38,7 +41,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('data','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite'   ));
+        return view('report.index',compact('data','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
     }
     public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);

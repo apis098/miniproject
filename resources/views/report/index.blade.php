@@ -150,6 +150,9 @@
         .garis {
             border-bottom: #F7941E 2px solid;
         }
+        .fa-circle{
+
+        }
     </style>
 
     <div class=" d-flex justify-content-center ms-3">
@@ -159,7 +162,12 @@
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan Resep</h5>
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan resep
+                            @if($statusResep>0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -168,7 +176,12 @@
                     <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan keluhan</h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan keluhan
+                            @if($statusComplaint > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="b" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
@@ -178,7 +191,12 @@
                     <button id="button-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan komentar </h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan komentar 
+                            @if($statusKomentar > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
                             hidden></div>
                     </button>
@@ -187,7 +205,12 @@
                     <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-user" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan profile</h5>
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan profile
+                            @if($statusProfile > 0 )
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="pp" class="ms-3"
                             style="width: 80%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                     </button>
@@ -203,7 +226,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -238,7 +261,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -275,7 +298,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -312,7 +335,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -426,10 +449,10 @@
                             </a>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-dark rounded-3"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
                             <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
@@ -501,10 +524,10 @@
                         </div>
 
                         <div class="modal-footer mt-3 ">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-dark btn-sm rounded-3 me-3"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark btn-sm rounded-3 me-3"
                                     style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <b class="">Hapus laporan</b>
                                 </button>
@@ -575,10 +598,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-light text-black"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-light text-black"
                                     style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
@@ -904,10 +927,10 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-dark rounded-3"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
                             <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
@@ -1022,6 +1045,31 @@
                             function(instance, toast) {
                                 // Jika pengguna menekan tombol "Ya", kirim form
                                 document.getElementById('formBlokir'+num).submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
+                });
+        }
+        function confirmation(num) {
+            iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin mengahpus laporan?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('deleteLaporan'+num).submit();
                             }
                         ],
                         ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
