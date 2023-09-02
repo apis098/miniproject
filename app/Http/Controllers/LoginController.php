@@ -70,6 +70,8 @@ class LoginController extends Controller
         $complaints = complaint::paginate(3, ['*'], 'complaint-page');
         $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
         $userLogin = Auth::user();
+        $jumlah_resep = reseps::all()->count();
+        $foto_resep= reseps::take(5)->get();
         $footer = footer::first();
         $notification = [];
         $favorite = [];
@@ -86,7 +88,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
 
-        return view('template.home', compact('real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite'));
+        return view('template.home', compact('real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
     }
 
     public function about()
