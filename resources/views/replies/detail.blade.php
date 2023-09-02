@@ -18,6 +18,7 @@
             border-radius: 50%;
             display: inline-block;
         }
+
         .user-img {
 
             margin-top: 4px;
@@ -96,12 +97,11 @@
                     <p>{{ $data->description }}</p>
                     <div style="text-align: right;">
                         <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
-                                style="background-color:#F7941E; margin-top: -100px;"
-                                data-toggle="modal"
-                                data-target="#exampleModalCenter">
+                            style="background-color:#F7941E; margin-top: -100px;" data-toggle="modal"
+                            data-target="#exampleModalCenter">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
                                 <path fill="currentColor"
-                                      d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
+                                    d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
                             </svg>
                         </button>
                     </div>
@@ -146,150 +146,151 @@
                         </div>
                     @endif
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <form action="{{ route('report.complaint',$data->id) }}" method="POST">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Laporkan Keluhan</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="d-flex align-items-center">
-                                        @if($data->user->foto)
-                                            <img src="{{ asset('storage/'.$data->user->foto) }}" width="106px" height="104px"
-                                                style="border-radius: 50%; " alt="">
-                                        @else
-                                            <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
-                                                style="border-radius: 50%; " alt="">
-                                        @endif
-                                        <textarea class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5" 
-                                            placeholder="Alasan">{{ old('description') }}</textarea>
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('report.complaint', $data->id) }}" method="POST">
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                            Laporkan Keluhan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-light text-light" style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Laporkan</b></button>
-                            </form>
+                                    <div class="modal-body">
+                                        <div class="d-flex align-items-center">
+                                            @if ($data->user->foto)
+                                                <img src="{{ asset('storage/' . $data->user->foto) }}" width="106px"
+                                                    height="104px" style="border-radius: 50%; " alt="">
+                                            @else
+                                                <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                                    style="border-radius: 50%; " alt="">
+                                            @endif
+                                            <textarea class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5"
+                                                placeholder="Alasan">{{ old('description') }}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-light text-light"
+                                            style="border-radius: 15px; background-color:#F7941E;"><b
+                                                class="ms-2 me-2">Laporkan</b></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                    <style>
-                        .post-content {
-  max-height: 100px; /* Atur tinggi maksimum konten yang ditampilkan */
-  overflow: hidden; /* Sembunyikan teks yang berlebihan */
-}
+                <style>
+                    .post-content {
+                        max-height: 100px;
+                        /* Atur tinggi maksimum konten yang ditampilkan */
+                        overflow: hidden;
+                        /* Sembunyikan teks yang berlebihan */
+                    }
 
-.read-more-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-   /* Sembunyikan tombol secara default */
-}
+                    .read-more-button {
+                        background-color: #007BFF;
+                        color: #fff;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        margin-top: 10px;
+                        /* Sembunyikan tombol secara default */
+                    }
 
-.post.open .post-content {
-  max-height: none; /* Tampilkan seluruh teks saat tombol ditekan */
-}
+                    .post.open .post-content {
+                        max-height: none;
+                        /* Tampilkan seluruh teks saat tombol ditekan */
+                    }
 
-.post.open .read-more-button {
-  /* Sembunyikan tombol saat teks ditampilkan secara penuh */
-}
+                    .post.open .read-more-button {
+                        /* Sembunyikan tombol saat teks ditampilkan secara penuh */
+                    }
+                </style>
 
 
-                      </style>
-
-
-                    @foreach ($replies as $row)
-                        <div class="card p-3">
-                            <div class="d-flex justify-content-between">
-                                <div class="user d-flex flex-row">
-                                    @if ($row->user->foto)
-                                        <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
-                                            class="user-img rounded-circle mr-2">
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
-                                            class="user-img rounded-circle mr-2">
-                                    @endif
-                                    @if ($row->user->role == 'admin')
-                                        <span><small
-                                                class="font-weight-semibold ms-1 me-2"><b>{{ $row->user->name }}</b>
-                                                <svg
-                                                    class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
-                                                    width="15" height="15" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                </svg>
-                                                @if ($repliesCount > 0)
+                @foreach ($replies as $row)
+                    <div class="card p-3">
+                        <div class="d-flex justify-content-between">
+                            <div class="user d-flex flex-row">
+                                @if ($row->user->foto)
+                                    <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
+                                        class="user-img rounded-circle mr-2">
+                                @else
+                                    <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
+                                        class="user-img rounded-circle mr-2">
+                                @endif
+                                @if ($row->user->role == 'admin')
+                                    <span><small class="font-weight-semibold ms-1 me-2"><b>{{ $row->user->name }}</b>
+                                            <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
+                                                width="15" height="15" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                            </svg>
+                                            @if ($repliesCount > 0)
                                                 <div class="text-black" style="font-size: 15px">
-                                                    <small class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                                    <small
+                                                        class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                                 </div>
                                             @endif
                                         </small>
-                                            <div class="" style="padding-right: 25px;">
-                                                <small class="font-weight text-break" >{{ $row->reply }}</small>
-                                        </span>
-                                </div>
-                            @else
+                                        <div class="" style="padding-right: 25px;">
+                                            <small class="font-weight text-break">{{ $row->reply }}</small>
+                                    </span>
+                            </div>
+                        @else
                             <div class="d-flex">
-                                <span><small
-                                        class="font-weight-semibold ms-1 me-2"><b class="font-weight-semibold me-2">{{ $row->user->name }}</b>
+                                <span><small class="font-weight-semibold ms-1 me-2"><b
+                                            class="font-weight-semibold me-2">{{ $row->user->name }}</b>
                                         @if ($repliesCount > 0)
                                             <div class="" style="font-size: 15px">
-                                                <small class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                                <small
+                                                    class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                             </div>
                                         @endif
-                                        </small>
-                                        <div class="" style="padding-right: 25px;">
-                                            <small class="font-weight text-break" >{{ $row->reply }}</small>
-                                       
-                                            {{-- @if (strlen($row->reply) > 500) --}}
-                                {{-- <button class="read-more-button">Baca Selengkapnya</button> --}}
-                            {{-- @endif --}}
-                                    </span>
-                                </div>
-            </div>
-                                  
-                                    
+                                    </small>
+                                    <div class="" style="padding-right: 25px;">
+                                        <small class="font-weight text-break">{{ $row->reply }}</small>
 
-                                   
+                                        {{-- @if (strlen($row->reply) > 500) --}}
+                                        {{-- <button class="read-more-button">Baca Selengkapnya</button> --}}
+                                        {{-- @endif --}}
+                                </span>
+                            </div>
+                        </div>
+                @endif
+            </div>
+
+        </div>
+        <div class="action d-flex justify-content-between mt-2 align-items-center">
+
+            <div class="reply px-7 me-2">
+                <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
+            </div>
+
+            <div class="icons align-items-center input-group">
+
+                <form action="{{ route('Replies.like', $row->id) }}" method="POST" class="like-form">
+                    @csrf
+                    @if (
+                        $userLogin &&
+                            $row->likes()->where('user_id', $userLogin->id)->exists())
+                        <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5 like-button ">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                        </button>
+                    @else
+                        <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                            <i class="fa-regular fa-thumbs-up"></i>
+                        </button>
                     @endif
-                </div>
-                
+                </form>
+                <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
+                    class="yuhu text-danger btn-sm rounded-5 "><i
+                        class="fa-solid fa-triangle-exclamation me-2"></i></button>
             </div>
-            <div class="action d-flex justify-content-between mt-2 align-items-center">
-
-                <div class="reply px-7 me-2">
-                    <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
-                </div>
-
-                <div class="icons align-items-center input-group">
-
-                    <form action="{{ route('Replies.like', $row->id) }}" method="POST" class="like-form">
-                        @csrf
-                        @if (
-                            $userLogin &&
-                                $row->likes()->where('user_id', $userLogin->id)->exists())
-                            <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5 like-button ">
-                                <i class="fa-solid fa-thumbs-up"></i>
-                            </button>
-                        @else
-                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
-                                <i class="fa-regular fa-thumbs-up"></i>
-                            </button>
-                        @endif
-                    </form>
-                    <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
-                        class="yuhu text-danger btn-sm rounded-5 "><i
-                            class="fa-solid fa-triangle-exclamation me-2"></i></button>
-                </div>
-            </div>
+        </div>
         </div>
         @endforeach
         </div>
@@ -315,12 +316,14 @@
                                             width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                             alt="">
-                                        <textarea class="form-control" name="description" style="margin-left: 1em; border-radius: 15px;" rows="5" placeholder="Alasan"></textarea>
+                                        <textarea class="form-control" name="description" style="margin-left: 1em; border-radius: 15px;" rows="5"
+                                            placeholder="Alasan"></textarea>
                                     @else
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                             alt="">
-                                        <textarea class="form-control rounded-5" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                        <textarea class="form-control rounded-5" style="margin-left: 1em; border-radius: 15px;" name="description"
+                                            rows="5" placeholder="Alasan..."></textarea>
                                     @endif
                                 </div>
                                 <div class="modal-footer">
@@ -340,11 +343,11 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const readMoreButtons = document.querySelectorAll(".read-more-button");
 
             readMoreButtons.forEach((readMoreButton) => {
-                readMoreButton.addEventListener("click", function () {
+                readMoreButton.addEventListener("click", function() {
                     const post = this.closest(".post"); // Temukan kontainer komentar terdekat
                     const postContent = post.querySelector(".post-content");
 
@@ -352,10 +355,12 @@
 
                     if (post.classList.contains("open")) {
                         this.textContent = "Sembunyikan";
-                        postContent.style.maxHeight = "none"; // Tampilkan seluruh teks saat tombol ditekan
+                        postContent.style.maxHeight =
+                        "none"; // Tampilkan seluruh teks saat tombol ditekan
                     } else {
                         this.textContent = "Baca Selengkapnya";
-                        postContent.style.maxHeight = "100px"; // Ganti dengan tinggi maksimum yang Anda inginkan
+                        postContent.style.maxHeight =
+                        "100px"; // Ganti dengan tinggi maksimum yang Anda inginkan
                     }
                 });
             });
@@ -371,7 +376,8 @@
                 if (postContent.textContent.length <= maxLength) {
                     readMoreButton.style.display = "none";
                 } else {
-                    postContent.style.maxHeight = "100px"; // Sembunyikan teks yang berlebihan secara default
+                    postContent.style.maxHeight =
+                    "100px"; // Sembunyikan teks yang berlebihan secara default
                 }
             });
         });

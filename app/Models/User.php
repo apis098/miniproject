@@ -52,4 +52,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(followers::class);
     }
+    public function comment_recipe() 
+    {
+        return $this->belongsToMany(reseps::class, "comment_recipes", "users_id", "recipes_id")->withPivot("comment");
+    }
 }

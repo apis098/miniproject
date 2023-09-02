@@ -19,33 +19,44 @@ class reseps extends Model
         'lama_memasak',
         'pengeluaran_memasak',
     ];
-    public function User() {
+    public function User()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function bahan() {
+    public function bahan()
+    {
         return $this->hasMany(bahan_reseps::class, 'resep_id');
     }
-    public function langkah() {
+    public function langkah()
+    {
         return $this->hasMany(langkah_reseps::class, 'resep_id');
     }
-    public function alat() {
+    public function alat()
+    {
         return $this->hasMany(toolsCooks::class, 'recipes_id');
     }
-    public function notifications() {
+    public function notifications()
+    {
         return $this->hasMany(notifications::class);
     }
     public function likes()
     {
-        return $this->hasMany(likes::class,'resep_id');
+        return $this->hasMany(likes::class, 'resep_id');
     }
     public function favorite()
     {
-        return $this->hasMany(favorite::class,'resep_id');
+        return $this->hasMany(favorite::class, 'resep_id');
     }
-   public function kategori_resep() {
-    return $this->belongsToMany(kategori_makanan::class, "kategori_reseps", "reseps_id", "kategori_reseps_id");
-   }
-    public function hari_resep() {
+    public function kategori_resep()
+    {
+        return $this->belongsToMany(kategori_makanan::class, "kategori_reseps", "reseps_id", "kategori_reseps_id");
+    }
+    public function hari_resep()
+    {
         return $this->belongsToMany(special_days::class, "hari_reseps", "reseps_id", "hari_khusus_id");
+    }
+    public function comment_user()
+    {
+        return $this->belongsToMany(User::class, "comment_recipes", "recipes_id", "users_id")->withPivot("comment");
     }
 }

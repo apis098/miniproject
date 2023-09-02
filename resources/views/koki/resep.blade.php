@@ -347,6 +347,7 @@
                 event.preventDefault();
                 const data = $("#form-add-recipe").serialize();
                 const formData = new FormData($("#form-add-recipe")[0]);
+                $($(this)).prop('disabled', true);
                 $.ajax({
                     url: "{{ route('resep.store') }}",
                     method: "POST",
@@ -354,9 +355,13 @@
                     processData: false,
                     data: formData,
                     success: function success(response) {
+                        $("#button-add-recipe").prop('disabled', false);
+
                         window.location.href = "/koki/index"; 
                     },
                     error: function error(xhr, status, errors) {
+                        $("#button-add-recipe").prop('disabled', false);
+
                         //alert(xhr.responseText);
                         iziToast.show({
                             backgroundColor: '#F7941E',

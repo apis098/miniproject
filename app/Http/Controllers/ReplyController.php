@@ -27,7 +27,7 @@ class ReplyController extends Controller
         }else{
             return view('replies.index_koki', compact('data', 'title'));
         }
-  
+        
     }
     public function show($id)
     {

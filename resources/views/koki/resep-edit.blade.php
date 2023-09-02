@@ -385,7 +385,7 @@
                 const id = $(this).data('id');
                 const formData = new FormData($("#form-edit-recipe")[0]);
                 $.ajax({
-                    url: "{{ route('resep.update',id) }}",
+                    url: "{{ route('resep.update', ['resep' => $edit_resep->id]) }}",
                     method: "POST",
                     processData: false,
                     contentType: false,

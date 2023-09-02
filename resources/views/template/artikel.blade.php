@@ -55,16 +55,16 @@
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
                 <div class="ms-4">
-                @if ($show_resep->kategori_resep)
-                    @foreach ($show_resep->kategori_resep()->get() as $nk)
-                        <button type="button" class="btn-edit p-2 mx-1 mt-2">{{ $nk->nama_makanan }}</button>
-                    @endforeach
-                @endif
-                @if ($show_resep->hari_resep)
-                    @foreach ($show_resep->hari_resep()->get() as $hr)
-                        <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
-                    @endforeach
-                @endif
+                    @if ($show_resep->kategori_resep)
+                        @foreach ($show_resep->kategori_resep()->get() as $nk)
+                            <button type="button" class="btn-edit p-2 mx-1 mt-2">{{ $nk->nama_makanan }}</button>
+                        @endforeach
+                    @endif
+                    @if ($show_resep->hari_resep)
+                        @foreach ($show_resep->hari_resep()->get() as $hr)
+                            <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <div class="mt-4 ml-3">
@@ -271,7 +271,7 @@
                 </div>
             </div>
         </div>
-        <style> 
+        <style>
         </style>
         <div class="my-5">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
@@ -381,37 +381,107 @@
             </div>
         </div>
     </section>
+    <section class="container">
+        <div class="row  d-flex justify-content-center">
+            <div class="col-md-12">
+                <div class="headings d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="me-5  ms-2"><b>Komentar</b></h5>
+                    <div class="col-10">
+                        <form method="POST" action="{{ route('komentar.resep') }}">
+                            @csrf
+                            @if ($userLog == 2)
+                                <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="recipes_id" value="{{ $show_resep->id }}">
+                            @endif
+                            <div class="input-group">
+                                <input type="text" id="reply" name="komentar" width="500px"
+                                    {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
+                                    placeholder="{{ $userLog === 1 ? 'Harap Login Dulu Sebelum Komentar' : 'Silakan Komentar...' }}">
+                                {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
+                                <button type="submit" style="background-color: #F7941E; border-radius:10px;"
+                                    class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="buttons">
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                @foreach ($show_resep->comment_user()->get() as $item)
+                    <div class="col-6">
+                        <div class="d-flex flex-start mb-4">
+                            @if ($item->foto)
+                            <img class="rounded-circle shadow-1-strong me-3"
+                            src="{{ asset('storage/'.$item->foto) }}" alt="avatar"
+                            width="65" height="65" />
+                            @else
+                            <img class="rounded-circle shadow-1-strong me-3"
+                                src="{{ asset('images/default.jpg') }}" alt="avatar"
+                                width="65" height="65" />
+                            @endif
+                            <div class="card w-100">
+                                <div class="card-body p-4">
+                                    <div class="">
+                                        <h5>{{ $item->name }}</h5>
+                                        <p class="small">{{ $item->created_at->diffForHumans() }}</p>
+                                        <p>
+                                           {{ $item->pivot->comment }}
+                                        </p>
+
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <a href="#!" class="link-muted me-2"><i
+                                                        class="fas fa-thumbs-up me-1"></i>132</a>
+                                                <a href="#!" class="link-muted"><i
+                                                        class="fas fa-thumbs-down me-1"></i>15</a>
+                                            </div>
+                                            <a href="#!" class="link-muted"><i class="fas fa-reply me-1"></i>
+                                                Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+    </section>
     <script>
         function DeleteData() {
-           iziToast.show({
-               backgroundColor: '#F7941E',
-               title: '<i class="fa-regular fa-circle-question"></i>',
-               titleColor: 'white',
-               messageColor: 'white',
-               message: 'Apakah Anda yakin ingin menghapus data ini?',
-               position: 'topCenter',
-               buttons: [
-                   ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
-                       instance.hide({
-                           transitionOut: 'fadeOutUp',
-                           onClosing: function (instance, toast, closedBy) {
-                               document.getElementById('delete-form').submit();
-                           }
-                       }, toast, 'buttonName');
-                   }, false], // true to focus
-                   ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function (instance, toast) {
-                       instance.hide({}, toast, 'buttonName');
-                   }]
-               ],
-               onOpening: function (instance, toast) {
-                   console.info('callback abriu!');
-               },
-               onClosing: function (instance, toast, closedBy) {
-                   console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-               }
-           });
-       }
-       </script>
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('delete-form').submit();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll(".like-form");
