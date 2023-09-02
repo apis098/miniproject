@@ -57,6 +57,8 @@ class reseps extends Model
     }
     public function comment_user()
     {
-        return $this->belongsToMany(User::class, "comment_recipes", "recipes_id", "users_id")->withPivot("comment");
+        return $this->belongsToMany(User::class, "comment_recipes", "recipes_id", "users_id")
+        ->withPivot("comment")
+        ->withTimestamps();
     }
 }

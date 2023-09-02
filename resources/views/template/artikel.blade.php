@@ -414,21 +414,22 @@
                     <div class="col-6">
                         <div class="d-flex flex-start mb-4">
                             @if ($item->foto)
-                            <img class="rounded-circle shadow-1-strong me-3"
-                            src="{{ asset('storage/'.$item->foto) }}" alt="avatar"
-                            width="65" height="65" />
+                                <img class="rounded-circle shadow-1-strong me-3"
+                                    src="{{ asset('storage/' . $item->foto) }}" alt="avatar" width="65"
+                                    height="65" />
                             @else
-                            <img class="rounded-circle shadow-1-strong me-3"
-                                src="{{ asset('images/default.jpg') }}" alt="avatar"
-                                width="65" height="65" />
+                                <img class="rounded-circle shadow-1-strong me-3" src="{{ asset('images/default.jpg') }}"
+                                    alt="avatar" width="65" height="65" />
                             @endif
                             <div class="card w-100">
                                 <div class="card-body p-4">
                                     <div class="">
-                                        <h5>{{ $item->name }}</h5>
-                                        <p class="small">{{ $item->created_at->diffForHumans() }}</p>
+                                        <a href="/profile-orang-lain/{{ $item->id }}">
+                                            <h5>{{ $item->name }}</h5>
+                                        </a>
+                                        <p class="small">{{ $item->pivot->created_at->diffForHumans() }}</p>
                                         <p>
-                                           {{ $item->pivot->comment }}
+                                            {{ $item->pivot->comment }}
                                         </p>
 
                                         <div class="d-flex justify-content-between align-items-center">
