@@ -150,6 +150,9 @@
         .garis {
             border-bottom: #F7941E 2px solid;
         }
+        .fa-circle{
+
+        }
     </style>
 
     <div class=" d-flex justify-content-center ms-3">
@@ -159,7 +162,12 @@
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan Resep</h5>
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan resep
+                            @if($statusResep>0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -168,7 +176,12 @@
                     <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan keluhan</h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan keluhan
+                            @if($statusComplaint > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="b" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
@@ -178,7 +191,12 @@
                     <button id="button-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Laporan komentar </h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan komentar 
+                            @if($statusKomentar > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
                             hidden></div>
                     </button>
@@ -187,7 +205,12 @@
                     <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-user" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Laporan profile</h5>
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                            Laporan profile
+                            @if($statusProfile > 0 )
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @endif
+                        </h5>
                         <div id="pp" class="ms-3"
                             style="width: 80%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                     </button>
