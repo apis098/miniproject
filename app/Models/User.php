@@ -56,4 +56,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(reseps::class, "comment_recipes", "users_id", "recipes_id")->withPivot("comment");
     }
+    public function like_comment_recipe()
+    {
+        return $this->hasMany(like_comment_recipes::class);
+    }
 }

@@ -14,4 +14,8 @@ class comment_recipes extends Model
         "recipes_id",
         "comment"
     ];
+    public function like() 
+    {
+        return $this->hasMany(like_comment_recipes::class);
+    }
 }

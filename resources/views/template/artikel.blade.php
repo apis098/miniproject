@@ -424,9 +424,15 @@
                             <div class="card w-100">
                                 <div class="card-body p-4">
                                     <div class="">
+                                        @if ($item->id == Auth::user()->id)
+                                        <a href="/koki/index">
+                                            <h5>{{ $item->name }}</h5>
+                                        </a>
+                                        @else
                                         <a href="/profile-orang-lain/{{ $item->id }}">
                                             <h5>{{ $item->name }}</h5>
                                         </a>
+                                        @endif
                                         <p class="small">{{ $item->pivot->created_at->diffForHumans() }}</p>
                                         <p>
                                             {{ $item->pivot->comment }}
