@@ -45,7 +45,7 @@ class ResepsController extends Controller
         }
         $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('categories_food','footer','notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep", compact('categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -104,79 +104,80 @@ class ResepsController extends Controller
         if ($validasi->fails()) {
             //return redirect()->back()->withErrors($validasi->errors());
             return response()->json($validasi->errors()->first(), 422);
-        }
-        $time = 0;
-        if ($request->lama_memasak2 === 'jam') {
-            $time = $request->lama_memasak * 60;
-        } else if ($request->lama_memasak2 === 'menit') {
-            $time = $request->lama_memasak;
-        }
-        $price = str_replace(['.', ','], '', $request->pengeluaran_memasak);
-        $create_recipe = reseps::create([
-            "user_id" => Auth::user()->id,
-            "nama_resep" => $request->nama_resep,
-            "foto_resep" => $request->file('foto_resep')->store('photo-recipe', 'public'),
-            "deskripsi_resep" => $request->deskripsi_resep,
-            "porsi_orang" => $request->porsi_orang,
-            "lama_memasak" => $time,
-            "pengeluaran_memasak" => $price
-        ]);
+        } else {
+            $time = 0;
+            if ($request->lama_memasak2 === 'jam') {
+                $time = $request->lama_memasak * 60;
+            } else if ($request->lama_memasak2 === 'menit') {
+                $time = $request->lama_memasak;
+            }
+            $price = str_replace(['.', ','], '', $request->pengeluaran_memasak);
+            $create_recipe = reseps::create([
+                "user_id" => Auth::user()->id,
+                "nama_resep" => $request->nama_resep,
+                "foto_resep" => $request->file('foto_resep')->store('photo-recipe', 'public'),
+                "deskripsi_resep" => $request->deskripsi_resep,
+                "porsi_orang" => $request->porsi_orang,
+                "lama_memasak" => $time,
+                "pengeluaran_memasak" => $price
+            ]);
 
-        if ($create_recipe) {
-            foreach ($request->bahan_resep as $number => $b) {
-                $bahan = strtolower(trim($b));
-                bahan_reseps::create([
-                    "resep_id" => $create_recipe->id,
-                    "nama_bahan" => $bahan,
-                    "takaran_bahan" => $request->takaran_resep[$number]
-                ]);
-            }
-            foreach ($request->nama_alat as $nm => $a) {
-                $alat = strtolower(trim($a));
-                toolsCooks::create([
-                    "recipes_id" => $create_recipe->id,
-                    "nama_alat" => $alat
-                ]);
-            }
-            foreach ($request->langkah_resep as $nomer => $langkah) {
-                langkah_reseps::create([
-                    "resep_id" => $create_recipe->id,
-                    "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
-                    "judul_langkah" => $request->judul_langkah[$nomer],
-                    "deskripsi_langkah" => $langkah
-                ]);
-            }
-            if ($request->has('hari_khusus')) {
-                foreach ($request->hari_khusus as $key => $value) {
-                    hari_reseps::create([
-                        "reseps_id" => $create_recipe->id,
-                        "hari_khusus_id" => $value
+            if ($create_recipe) {
+                foreach ($request->bahan_resep as $number => $b) {
+                    $bahan = strtolower(trim($b));
+                    bahan_reseps::create([
+                        "resep_id" => $create_recipe->id,
+                        "nama_bahan" => $bahan,
+                        "takaran_bahan" => $request->takaran_resep[$number]
                     ]);
                 }
-            }
-            if ($request->has('jenis_makanan')) {
-                foreach ($request->jenis_makanan as $no => $jenis) {
-                    kategori_reseps::create([
-                        "reseps_id" => $create_recipe->id,
-                        "kategori_reseps_id" => $jenis
+                foreach ($request->nama_alat as $nm => $a) {
+                    $alat = strtolower(trim($a));
+                    toolsCooks::create([
+                        "recipes_id" => $create_recipe->id,
+                        "nama_alat" => $alat
                     ]);
                 }
-            }
-            //notifikasi untuk follower
-            $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
-            if ($followerIds != null) {
-                foreach ($followerIds as $followerId) {
-                    $notification = new Notifications([
-                        'notification_from' => auth()->user()->id,
-                        'resep_id' => $create_recipe->id,
-                        'follower_id' => $followerId,
-                        'user_id' => $followerId,
+                foreach ($request->langkah_resep as $nomer => $langkah) {
+                    langkah_reseps::create([
+                        "resep_id" => $create_recipe->id,
+                        "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
+                        "judul_langkah" => $request->judul_langkah[$nomer],
+                        "deskripsi_langkah" => $langkah
                     ]);
-                    $notification->save();
+                }
+                if ($request->has('hari_khusus')) {
+                    foreach ($request->hari_khusus as $key => $value) {
+                        hari_reseps::create([
+                            "reseps_id" => $create_recipe->id,
+                            "hari_khusus_id" => $value
+                        ]);
+                    }
+                }
+                if ($request->has('jenis_makanan')) {
+                    foreach ($request->jenis_makanan as $no => $jenis) {
+                        kategori_reseps::create([
+                            "reseps_id" => $create_recipe->id,
+                            "kategori_reseps_id" => $jenis
+                        ]);
+                    }
+                }
+                //notifikasi untuk follower
+                $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
+                if ($followerIds != null) {
+                    foreach ($followerIds as $followerId) {
+                        $notification = new Notifications([
+                            'notification_from' => auth()->user()->id,
+                            'resep_id' => $create_recipe->id,
+                            'follower_id' => $followerId,
+                            'user_id' => $followerId,
+                        ]);
+                        $notification->save();
+                    }
                 }
             }
+            return redirect('/koki/index')->with('success', 'Sukses! anda berhasil membuat resep baru.');
         }
-        return redirect('/koki/index')->with('success', 'Sukses! anda berhasil membuat resep baru.');
     }
 
     /**
@@ -211,7 +212,7 @@ class ResepsController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view("koki.resep-edit", compact("categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep-edit", compact("footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -258,7 +259,8 @@ class ResepsController extends Controller
         }
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            return redirect()->back()->withErrors($validasi)->withInput();
+            //return redirect()->back()->withErrors($validasi)->withInput();
+            return response()->json($validasi->errors()->first(), 422);
             //return response()->json([$validasi->errors(), 422]);
         }
         $update_resep = reseps::find($id);

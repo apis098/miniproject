@@ -11,7 +11,7 @@
         }
     </style>
 
-    <form action="/koki/resep/{{ $edit_resep->id }}" method="post" enctype="multipart/form-data">
+    <form id="form-edit-recipe" action="/koki/resep/{{ $edit_resep->id }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="container">
@@ -370,7 +370,7 @@
                     </script>
                     <br>
                     <br>
-                    <button type="submit" class="btn btn-warning text-white mb-4"
+                    <button type="submit" class="btn btn-warning text-white mb-4" id="button_edit_recipe"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
                 </div>
@@ -378,6 +378,33 @@
         </div>
     </form>
     <script>
+         $("document").ready(function() {
+            $("#button-edit-recipe").click(function(event) {
+                event.preventDefault();
+                const data = $("#form-edit-recipe").serialize();
+                const id = $(this).data('id');
+                const formData = new FormData($("#form-edit-recipe")[0]);
+                $.ajax({
+                    url: "{{ route('resep.update',id) }}",
+                    method: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    error: function error(xhr, status, errors) {
+                        //alert(xhr.responseText);
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: xhr.responseText,
+                            position: 'topCenter',
+                        });
+                    }
+                });
+            });
+        });
+
         function input_file_langkah(num) {
             const inputan_foto_langkah = document.getElementById('inputan_foto_langkah' + num);
             inputan_foto_langkah.click();

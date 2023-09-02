@@ -350,9 +350,12 @@
                 $.ajax({
                     url: "{{ route('resep.store') }}",
                     method: "POST",
-                    processData: false,
                     contentType: false,
+                    processData: false,
                     data: formData,
+                    success: function success(response) {
+                        window.location.href = "/koki/index";
+                    },
                     error: function error(xhr, status, errors) {
                         //alert(xhr.responseText);
                         iziToast.show({
