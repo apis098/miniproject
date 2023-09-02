@@ -226,7 +226,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -261,7 +261,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -298,7 +298,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -335,7 +335,7 @@
                                 <th scope="col">Pelapor</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Subjek</th>
-                                <th scope="col">Repitisi</th>
+                                <th scope="col">Melanggar</th>
                                 <th scope="col">Aksi</th>
                             </tr>
                         </thead>
@@ -449,10 +449,10 @@
                             </a>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-dark rounded-3"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
                             <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
@@ -524,10 +524,10 @@
                         </div>
 
                         <div class="modal-footer mt-3 ">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-dark btn-sm rounded-3 me-3"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark btn-sm rounded-3 me-3"
                                     style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <b class="">Hapus laporan</b>
                                 </button>
@@ -598,10 +598,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-light text-black"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-light text-black"
                                     style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
@@ -927,10 +927,10 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-outline-dark rounded-3"
+                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
                             <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
@@ -1045,6 +1045,31 @@
                             function(instance, toast) {
                                 // Jika pengguna menekan tombol "Ya", kirim form
                                 document.getElementById('formBlokir'+num).submit();
+                            }
+                        ],
+                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                            function(instance, toast) {
+                                instance.hide({
+                                    transitionOut: 'fadeOut'
+                                }, toast, 'button');
+                            }
+                        ],
+                    ],
+                });
+        }
+        function confirmation(num) {
+            iziToast.show({
+                    backgroundColor: '#F7941E',
+                    title: '<i class="fa-regular fa-circle-question"></i>',
+                    titleColor: 'white',
+                    messageColor: 'white',
+                    message: 'Anda yakin ingin mengahpus laporan?',
+                    position: 'topCenter',
+                    buttons: [
+                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                            function(instance, toast) {
+                                // Jika pengguna menekan tombol "Ya", kirim form
+                                document.getElementById('deleteLaporan'+num).submit();
                             }
                         ],
                         ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
