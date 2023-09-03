@@ -59,6 +59,7 @@ class reseps extends Model
     {
         return $this->belongsToMany(User::class, "comment_recipes", "recipes_id", "users_id")
         ->withPivot("comment")
+        ->withPivot("id")
         ->withTimestamps();
     }
 }

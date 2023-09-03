@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
 use App\Models\footer;
+use App\Models\like_comment_recipes;
 
 class artikels extends Controller
 {

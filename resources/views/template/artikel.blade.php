@@ -425,13 +425,13 @@
                                 <div class="card-body p-4">
                                     <div class="">
                                         @if ($item->id == Auth::user()->id)
-                                        <a href="/koki/index">
-                                            <h5>{{ $item->name }}</h5>
-                                        </a>
+                                            <a href="/koki/index">
+                                                <h5>{{ $item->name }}</h5>
+                                            </a>
                                         @else
-                                        <a href="/profile-orang-lain/{{ $item->id }}">
-                                            <h5>{{ $item->name }}</h5>
-                                        </a>
+                                            <a href="/profile-orang-lain/{{ $item->id }}">
+                                                <h5>{{ $item->name }}</h5>
+                                            </a>
                                         @endif
                                         <p class="small">{{ $item->pivot->created_at->diffForHumans() }}</p>
                                         <p>
@@ -440,13 +440,31 @@
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
-                                                <a href="#!" class="link-muted me-2"><i
-                                                        class="fas fa-thumbs-up me-1"></i>132</a>
-                                                <a href="#!" class="link-muted"><i
-                                                        class="fas fa-thumbs-down me-1"></i>15</a>
+                                                @php
+                                                    $likes = \App\Models\like_comment_recipes::query()
+                                                        ->where('comment_id', $item->pivot->id)
+                                                        ->get();
+                                                    $liked = \App\Models\like_comment_recipes::query()
+                                                        ->where('users_id', Auth::user()->id)
+                                                        ->where('comment_id', $item->pivot->id)
+                                                        ->exists();
+                                                @endphp
+                                                <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-light me-2">
+                                                        @if ($liked)
+                                                            <img width="25px"
+                                                                src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
+                                                                alt="">
+                                                        @else
+                                                            <img width="25px"
+                                                                src="{{ asset('images/like-1-svgrepo-com.svg') }}"
+                                                                alt="">
+                                                        @endif
+                                                        {{ $likes->count() }}
+                                                    </button>
+                                                </form>
                                             </div>
-                                            <a href="#!" class="link-muted"><i class="fas fa-reply me-1"></i>
-                                                Reply</a>
                                         </div>
                                     </div>
                                 </div>

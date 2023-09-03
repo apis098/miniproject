@@ -58,6 +58,6 @@ class User extends Authenticatable
     }
     public function like_comment_recipe()
     {
-        return $this->hasMany(like_comment_recipes::class);
+        return $this->hasMany(like_comment_recipes::class, "users_id");
     }
 }

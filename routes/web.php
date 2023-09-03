@@ -23,6 +23,7 @@ use App\Http\Controllers\special_days_controller;
 use App\Http\Controllers\KategoriMakananController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\komentar_resep;
+use App\Http\Controllers\LikeCommentController;
 use App\Http\Controllers\testingController;
 use App\Models\bahan_reseps;
 use App\Models\favorite;
@@ -127,6 +128,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::prefix('/koki')->group(function () {
         Route::post('komentar-resep', [komentar_resep::class, 'toComment'])->name('komentar.resep');
         Route::resource('resep', ResepsController::class);
+        Route::post('/sukai/{comment}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe');
     });
 });
 //followers
