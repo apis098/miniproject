@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\complaint;
+use App\Models\like_reply;
 use App\Models\likes;
 use App\Models\notifications;
 use App\Models\Reply;
+use App\Models\replyComplaint;
 use App\Models\reseps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +57,48 @@ class likeController extends Controller
             return redirect()->route('login')->with('error', 'anda harus login terlebih dahulu');
         }
         // return redirect()->route('ShowReplies.show', $complaintId)->with('error', 'anda sudah memberi like komentar ini sebelumnya');
+    }
+    public function likeBalasan($id){
+        $balasan = replyComplaint::findOrFail($id);
+        $complaintId = $balasan->complaint_id;
+        $user = Auth::user();
+        if ($user && !$balasan->likes_reply()->where('user_id', auth()->user()->id)->exists()) {
+            $like = new like_reply([
+                'user_id' => auth()->user()->id,
+                'reply_complaint_id' => $balasan ->id,
+            ]);
+            $balasan->increment('likes');
+            $balasan->likes_reply()->save($like);
+            if ($balasan->user_id != auth()->user()->id) {
+                $notifications = new notifications([
+                    'notification_from' => auth()->user()->id,
+                    'like_id' => $like->id,
+                    'user_id' => $balasan->user_id,
+                    'reply_id' => $balasan->id,
+                    'complaint_id' => $complaintId,
+                ]);
+                $balasan->notifications()->save($notifications);
+            }
+            return response()->json([
+                'liked' => true,
+                'likes' => $balasan->likes,
+                'reply_id' => $balasan->id,
+            ]);
+        }
+        if ($user && $balasan->likes_reply()->where('user_id', auth()->user()->id)->exists()) {
+            $balasan->decrement('likes');
+            $balasan->likes_reply()->where('user_id', auth()->user()->id)->delete();
+            $balasan->save();
+            return response()->json([
+                'liked' => false,
+                'likes' => $balasan->likes,
+                'reply_id' => $balasan->id,
+            ]);
+
+        }
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'anda harus login terlebih dahulu');
+        }
     }
     public function likeResep(Request $request, $id)
     {

@@ -90,6 +90,7 @@ Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowR
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/replies-store/{id}', [ReplyController::class, 'replyComment'])->name('ReplyComment.store');
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
+Route::post('/comments/reply/{id}/like', [likeController::class, 'likeBalasan'])->name('Replies.like.balasan');
 Route::post('/resep/{id}/like', [likeController::class, 'likeResep'])->name('Resep.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');

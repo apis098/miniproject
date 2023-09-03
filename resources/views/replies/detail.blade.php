@@ -301,17 +301,17 @@
             <div class="collapse" id="collapse{{$row->id}}">
                 <div class="card card-body bg-light mx-3">
                     <form action="{{route('ReplyComment.store',$row->id)}}" method="POST">
-                        <div class="input-group mb-2">
+                        <div class="input-group mb-3">
                                 @csrf
                                 <input type="text" id="reply_comment" name="reply_comment" width="500px"
-                                    class="form-control form-control-sm rounded-3 me-5" placeholder="Tambah komentar...">
+                                    class="form-control form-control-sm rounded-3 me-5" placeholder="Balas komentar dari {{$row->user->name}}....">
                             
                                 <button type="submit" style="background-color: #F7941E; border-radius:10px;"
                                     class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                         </div>
                     </form>  
                     @foreach($row->replies as $item)
-                    <div class="user d-flex flex-row">
+                    <div class="user d-flex flex-row mb-2">
                         @if ($item->user->foto)
                             <img src="{{ asset('storage/' . $item->user->foto) }}" width="30" height="30"
                                 class="user-img rounded-circle mr-2">
@@ -342,21 +342,19 @@
                     <div class="action d-flex mt-2 align-items-center">
 
                         <div class="reply px-7 me-2">
-                            <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
+                            <small id="like-count-balasan{{ $item->id }}"> {{ $item->likes }}</small>
                         </div>
             
                         <div class="icons align-items-center input-group">
             
-                            <form action="{{ route('Replies.like', $row->id) }}" method="POST" class="like-form">
+                            <form action="{{ route('Replies.like.balasan', $item->id) }}" method="POST" id="like-form">
                                 @csrf
-                                @if (
-                                    $userLogin &&
-                                        $row->likes()->where('user_id', $userLogin->id)->exists())
-                                    <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5 like-button ">
+                                @if ($userLogin && $item->likes_reply()->where('user_id', $userLogin->id)->exists())
+                                    <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5" id="like-button">
                                         <i class="fa-solid fa-thumbs-up"></i>
                                     </button>
                                 @else
-                                    <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                    <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5" id="like-button">
                                         <i class="fa-regular fa-thumbs-up"></i>
                                     </button>
                                 @endif
@@ -463,9 +461,45 @@
             });
         });
     </script>
+     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const likeForms = document.querySelectorAll("#like-form");
 
+            likeForms.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
 
+                    const button = form.querySelector("#like-button");
+                    const icon = button.querySelector("i");
+                    const svg = button.querySelector("svg");
 
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.liked) {
+                            button.classList.remove('text-dark');
+                            button.classList.add('text-warning');
+                            icon.setAttribute('class', 'fa-solid fa-thumbs-up');
+                            document.getElementById("like-count-balasan" + responseData.reply_id)
+                                .textContent = responseData.likes;
+                        } else {
+                            button.classList.remove('text-warning');
+                            button.classList.add('text-dark');
+                            icon.setAttribute('class', 'fa-regular fa-thumbs-up');
+                            document.getElementById("like-count-balasan" + responseData.reply_id)
+                                .textContent = responseData.likes;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll(".like-form");

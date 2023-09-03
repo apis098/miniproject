@@ -22,4 +22,9 @@ class replyComplaint extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function likes_reply()
+    {
+        return $this->hasMany(like_reply::class);
+    }
+    
 }
