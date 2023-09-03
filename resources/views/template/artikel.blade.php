@@ -482,7 +482,7 @@
                                                 @else
                                                     <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
                                                         @csrf
-                                                        <button type="button" class="btn btn-light me-2">
+                                                        <button type="button" onclick="harusLogin()" class="btn btn-light me-2">
                                                             <img width="25px"
                                                                 src="{{ asset('images/like-1-svgrepo-com.svg') }}"
                                                                 alt="">
@@ -502,6 +502,16 @@
             </div>
     </section>
     <script>
+        function harusLogin() {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda Harus Login Dulu!',
+                position: 'topCenter',
+            });
+        }
         function DeleteData() {
             iziToast.show({
                 backgroundColor: '#F7941E',
