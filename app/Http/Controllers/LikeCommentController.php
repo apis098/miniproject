@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 class LikeCommentController extends Controller
 {
     public function like_comment_recipe(string $id) {
+        $log = Auth::user();
+        if ($log == false) {
+            return redirect()->back()->with("error", "Anda harus login dulu sebelum menyukai komentar!");
+        }
         $like = like_comment_recipes::query();
         $like->where("users_id", Auth::user()->id);
         $like->where("comment_id", $id);

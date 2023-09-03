@@ -424,10 +424,16 @@
                             <div class="card w-100">
                                 <div class="card-body p-4">
                                     <div class="">
-                                        @if ($item->id == Auth::user()->id)
-                                            <a href="/koki/index">
-                                                <h5>{{ $item->name }}</h5>
-                                            </a>
+                                        @if ($userLog == 2)
+                                            @if ($item->id == Auth::user()->id)
+                                                <a href="/koki/index">
+                                                    <h5>{{ $item->name }}</h5>
+                                                </a>
+                                            @else
+                                                <a href="/profile-orang-lain/{{ $item->id }}">
+                                                    <h5>{{ $item->name }}</h5>
+                                                </a>
+                                            @endif
                                         @else
                                             <a href="/profile-orang-lain/{{ $item->id }}">
                                                 <h5>{{ $item->name }}</h5>
@@ -440,30 +446,51 @@
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex align-items-center">
+                                                @if ($userLog == 2)
+                                                    @php
+                                                        $liked = \App\Models\like_comment_recipes::query()
+                                                            ->where('users_id', Auth::user()->id)
+                                                            ->where('comment_id', $item->pivot->id)
+                                                            ->exists();
+                                                    @endphp
+                                                @else
+                                                    @php
+                                                        $liked = false;
+                                                    @endphp
+                                                @endif
                                                 @php
                                                     $likes = \App\Models\like_comment_recipes::query()
                                                         ->where('comment_id', $item->pivot->id)
                                                         ->get();
-                                                    $liked = \App\Models\like_comment_recipes::query()
-                                                        ->where('users_id', Auth::user()->id)
-                                                        ->where('comment_id', $item->pivot->id)
-                                                        ->exists();
                                                 @endphp
-                                                <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-light me-2">
-                                                        @if ($liked)
-                                                            <img width="25px"
-                                                                src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
-                                                                alt="">
-                                                        @else
+                                                @if ($userLog == 2)
+                                                    <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-light me-2">
+                                                            @if ($liked)
+                                                                <img width="25px"
+                                                                    src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
+                                                                    alt="">
+                                                            @else
+                                                                <img width="25px"
+                                                                    src="{{ asset('images/like-1-svgrepo-com.svg') }}"
+                                                                    alt="">
+                                                            @endif
+                                                            {{ $likes->count() }}
+                                                        </button>
+                                                    </form>
+                                                @else
+                                                    <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
+                                                        @csrf
+                                                        <button type="button" class="btn btn-light me-2">
                                                             <img width="25px"
                                                                 src="{{ asset('images/like-1-svgrepo-com.svg') }}"
                                                                 alt="">
-                                                        @endif
-                                                        {{ $likes->count() }}
-                                                    </button>
-                                                </form>
+                                                            {{ $likes->count() }}
+                                                        </button>
+                                                    </form>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>
