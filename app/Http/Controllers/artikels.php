@@ -20,34 +20,33 @@ class artikels extends Controller
     public function artikel_resep(string $id, string $judul)
     {
         $userLogin = Auth::user();
-        $id_user = Auth::user()->id;
-        $id_admin = User::where("role", "admin")->first();
-        if ($id_user == $id_admin->id) {
-            $admin = true;
-        } else {
-            $admin = false;
-        }
         // untuk user belum login
         $userLog = 1;
         $notification = [];
         $favorite = [];
-        $unreadNotificationCount=[];
+        $unreadNotificationCount = [];
+        $admin = false;
         if ($userLogin) {
+            $id_user = Auth::user()->id;
+            $id_admin = User::where("role", "admin")->first();
+            if ($id_user == $id_admin->id) {
+                $admin = true;
+            } 
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
-                // jika user sudah login
-                $userLog = 2;
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            // jika user sudah login
+            $userLog = 2;
         }
         if ($userLogin) {
             $favorite = favorite::where('user_id_from', auth()->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
         }
         $footer = footer::first();
         $show_resep = reseps::find($id);
         $comment_recipe_count = comment_recipes::where("recipes_id", $id)->count();
-        return view('template.artikel', compact('admin','comment_recipe_count','show_resep', 'footer','userLog','notification','unreadNotificationCount','userLogin','favorite'));
+        return view('template.artikel', compact('admin', 'comment_recipe_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
