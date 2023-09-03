@@ -130,8 +130,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::prefix('/koki')->group(function () {
         Route::post('komentar-resep', [komentar_resep::class, 'toComment'])->name('komentar.resep');
         Route::resource('resep', ResepsController::class);
-        Route::post('/sukai/{comment}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe');
     });
 });
+Route::post('/koki/sukai/{comment}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');

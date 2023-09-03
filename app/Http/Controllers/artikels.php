@@ -13,12 +13,20 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
 use App\Models\footer;
 use App\Models\like_comment_recipes;
+use App\Models\User;
 
 class artikels extends Controller
 {
     public function artikel_resep(string $id, string $judul)
     {
         $userLogin = Auth::user();
+        $id_user = Auth::user()->id;
+        $id_admin = User::where("role", "admin")->first();
+        if ($id_user == $id_admin->id) {
+            $admin = true;
+        } else {
+            $admin = false;
+        }
         // untuk user belum login
         $userLog = 1;
         $notification = [];
@@ -40,6 +48,6 @@ class artikels extends Controller
         $footer = footer::first();
         $show_resep = reseps::find($id);
         $comment_recipe_count = comment_recipes::where("recipes_id", $id)->count();
-        return view('template.artikel', compact('comment_recipe_count','show_resep', 'footer','userLog','notification','unreadNotificationCount','userLogin','favorite'));
+        return view('template.artikel', compact('admin','comment_recipe_count','show_resep', 'footer','userLog','notification','unreadNotificationCount','userLogin','favorite'));
     }
 }
