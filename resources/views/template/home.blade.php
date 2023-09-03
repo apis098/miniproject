@@ -35,8 +35,8 @@
                                             style="display: flex; align-items: center; justify-content: flex-start; margin-top: 25px;">
                                            @foreach ($foto_resep as $item)
 
-                                           <img src="{{ asset('storage/'.$item->foto_resep) }}" alt=""
-                                               style="width: 10%; max-width: 100px; margin-right: -14px; border-radius: 50%;">
+                                           <img src="{{ asset('storage/'.$item->foto_resep) }}" alt="" class="rounded-circle" width="50px" height="50px"
+                                               style="margin-right: -14px;">
                                            @endforeach
 
                                         </div>
@@ -45,7 +45,12 @@
                                   <div class="ms-1" style="display: flex; align-items: center;">
                                       <p class="fw-bold"
                                           style="margin-left: em; margin-bottom: 0.5em; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.48px; word-wrap: break-word">
-                                          {{ $jumlah_resep }} + resep</p>
+                                          @if ($jumlah_resep <= 10)
+                                          {{ $jumlah_resep }}
+                                          @elseif($jumlah_resep > 10)
+                                          {{ floor($jumlah_resep/10)*10  }}+
+                                          @endif
+                                          resep</p>
                                   </div>
 
                                 </div>
