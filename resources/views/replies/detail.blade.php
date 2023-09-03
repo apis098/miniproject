@@ -230,7 +230,7 @@
                                                     d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
                                             </svg>
                                             @if ($repliesCount > 0)
-                                                <div class="text-black" style="font-size: 15px">
+                                                <div class="text-black" style="font-size: 13px">
                                                     <small
                                                         class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                                 </div>
@@ -245,7 +245,7 @@
                                 <span><small class="font-weight-semibold ms-1 me-2"><b
                                             class="font-weight-semibold me-2">{{ $row->user->name }}</b>
                                         @if ($repliesCount > 0)
-                                            <div class="" style="font-size: 15px">
+                                            <div class="" style="font-size: 13px">
                                                 <small
                                                     class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                             </div>
@@ -264,7 +264,7 @@
             </div>
 
         </div>
-        <div class="action d-flex justify-content-between mt-2 align-items-center">
+        <div class="action d-flex mt-2 align-items-center">
 
             <div class="reply px-7 me-2">
                 <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
@@ -287,10 +287,49 @@
                     @endif
                 </form>
                 <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
-                    class="yuhu text-danger btn-sm rounded-5 "><i
-                        class="fa-solid fa-triangle-exclamation me-2"></i></button>
+                    class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-triangle-exclamation me-2"></i>
+                </button>
+            </div>
+            <div class="d-flex justify-content-end input-group">
+                <a href="#" class="text-orange " data-toggle="collapse" data-target="#collapseExample"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Balasan <small><i class="fa-solid fa-chevron-down"></i></small>
+                </a>
             </div>
         </div>
+        {{-- collapse --}}
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mx-3">
+                    <div class="user d-flex flex-row">
+                        @if ($row->user->foto)
+                            <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
+                                class="user-img rounded-circle mr-2">
+                        @else
+                            <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
+                                class="user-img rounded-circle mr-2">
+                        @endif
+                        <span>
+                            <small class="font-weight-semibold ms-1 me-2"><b>{{ $row->user->name }}</b>
+                                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                </svg>
+                            </small>
+                            @if ($repliesCount > 0)
+                                <div class="text-black" style="font-size: 13px">
+                                    <small
+                                        class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                </div>
+                            @endif
+                            <div class="" style="padding-right: 25px;">
+                                <small class="font-weight text-break">apa iya?</small>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {{-- end collapse --}}
         </div>
         @endforeach
         </div>
@@ -339,6 +378,7 @@
         @endforeach
         </div>
         </div>
+        {{-- collapse --}}
     </section>
     </div>
 
@@ -356,11 +396,11 @@
                     if (post.classList.contains("open")) {
                         this.textContent = "Sembunyikan";
                         postContent.style.maxHeight =
-                        "none"; // Tampilkan seluruh teks saat tombol ditekan
+                            "none"; // Tampilkan seluruh teks saat tombol ditekan
                     } else {
                         this.textContent = "Baca Selengkapnya";
                         postContent.style.maxHeight =
-                        "100px"; // Ganti dengan tinggi maksimum yang Anda inginkan
+                            "100px"; // Ganti dengan tinggi maksimum yang Anda inginkan
                     }
                 });
             });
@@ -377,7 +417,7 @@
                     readMoreButton.style.display = "none";
                 } else {
                     postContent.style.maxHeight =
-                    "100px"; // Sembunyikan teks yang berlebihan secara default
+                        "100px"; // Sembunyikan teks yang berlebihan secara default
                 }
             });
         });
