@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\basic_tips;
+use App\Models\comment_recipes;
 use App\Models\favorite;
 use App\Models\reseps;
 use App\Models\seputar_dapur;
@@ -38,6 +39,7 @@ class artikels extends Controller
         }
         $footer = footer::first();
         $show_resep = reseps::find($id);
-        return view('template.artikel', compact('show_resep', 'footer','userLog','notification','unreadNotificationCount','userLogin','favorite'));
+        $comment_recipe_count = comment_recipes::where("recipes_id", $id)->count();
+        return view('template.artikel', compact('comment_recipe_count','show_resep', 'footer','userLog','notification','unreadNotificationCount','userLogin','favorite'));
     }
 }
