@@ -334,30 +334,31 @@
                 </li>
             </ul>
 
-            <form action="">
-                <div class="container mt-1" style="margin-top: -35px; margin-right: -10px; ">
-                    <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                        <div class="row" >
-                            <div class="col-md-12">
-                                <div>
-                                    <div class="search-2"> <i class='bx bxs-map'></i>
-                                        <form action="/admin/special-days" method="GET">
-                                            <input type="text" id="" name="d"
-                                                placeholder="Cari Laporan Resep">
-                                            <button type="submit" class="zoom-effects"
-                                                style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
+
 
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                                <div class="row" >
+                                    <div class="col-md-12">
+                                        <div>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/special-days" method="GET">
+                                                    <input type="text" id="" name="d"
+                                                        placeholder="Cari Laporan Resep">
+                                                    <button type="submit" class="zoom-effects"
+                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     {{-- start tab 1 --}}
                     <table class="table-custom">
                         <thead>
@@ -389,13 +390,33 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{-- <div style="margin-top: -2em;  margin-left: 10em;">
+                        {{$data->links('vendor.pagination.default')}}
+                     </div> --}}
                 </div>
-                {{-- <div style="margin-top: -2em;  margin-left: 10em;">
-                    {{$data->links('vendor.pagination.default')}}
-                 </div> --}}
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                                <div class="row" >
+                                    <div class="col-md-12">
+                                        <div>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/special-days" method="GET">
+                                                    <input type="text" id="" name="d"
+                                                        placeholder="Cari Laporan Resep">
+                                                    <button type="submit" class="zoom-effects"
+                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     {{-- start tab 2 --}}
                     <table class="table-custom">
                         <thead>
@@ -433,6 +454,26 @@
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                                <div class="row" >
+                                    <div class="col-md-12">
+                                        <div>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/special-days" method="GET">
+                                                    <input type="text" id="" name="d"
+                                                        placeholder="Cari Laporan Resep">
+                                                    <button type="submit" class="zoom-effects"
+                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     {{-- start tab 2 --}}
                     <table class="table-custom">
                         <thead>
@@ -470,6 +511,26 @@
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                                <div class="row" >
+                                    <div class="col-md-12">
+                                        <div>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/special-days" method="GET">
+                                                    <input type="text" id="" name="d"
+                                                        placeholder="Cari Laporan Resep">
+                                                    <button type="submit" class="zoom-effects"
+                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     {{-- start tab 2 --}}
                     <table class="table-custom">
                         <thead>
