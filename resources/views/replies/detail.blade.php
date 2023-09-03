@@ -291,42 +291,83 @@
                 </button>
             </div>
             <div class="d-flex justify-content-end input-group">
-                <a href="#" class="text-orange " data-toggle="collapse" data-target="#collapseExample"
+                <a href="#" class="text-secondary " data-toggle="collapse" data-target="#collapse{{$row->id}}"
                     aria-expanded="true" aria-controls="collapseOne">
-                    Balasan <small><i class="fa-solid fa-chevron-down"></i></small>
+                    <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
                 </a>
             </div>
         </div>
         {{-- collapse --}}
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body mx-3">
+            <div class="collapse" id="collapse{{$row->id}}">
+                <div class="card card-body bg-light mx-3">
+                    <form action="{{route('ReplyComment.store',$row->id)}}" method="POST">
+                        <div class="input-group mb-2">
+                                @csrf
+                                <input type="text" id="reply_comment" name="reply_comment" width="500px"
+                                    class="form-control form-control-sm rounded-3 me-5" placeholder="Tambah komentar...">
+                            
+                                <button type="submit" style="background-color: #F7941E; border-radius:10px;"
+                                    class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                        </div>
+                    </form>  
+                    @foreach($row->replies as $item)
                     <div class="user d-flex flex-row">
-                        @if ($row->user->foto)
-                            <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
+                        @if ($item->user->foto)
+                            <img src="{{ asset('storage/' . $item->user->foto) }}" width="30" height="30"
                                 class="user-img rounded-circle mr-2">
                         @else
                             <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
                                 class="user-img rounded-circle mr-2">
                         @endif
                         <span>
-                            <small class="font-weight-semibold ms-1 me-2"><b>{{ $row->user->name }}</b>
+                            <small class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b>
                                 <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
                                 </svg>
                             </small>
-                            @if ($repliesCount > 0)
+                            @if ($item->count() > 0)
                                 <div class="text-black" style="font-size: 13px">
                                     <small
-                                        class="float-start">{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                        class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                 </div>
                             @endif
                             <div class="" style="padding-right: 25px;">
-                                <small class="font-weight text-break">apa iya?</small>
+                                <small class="font-weight text-break">{{$item->reply}}</small>
                             </div>
                         </span>
                     </div>
+                    {{-- llike --}}
+                    <div class="action d-flex mt-2 align-items-center">
+
+                        <div class="reply px-7 me-2">
+                            <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
+                        </div>
+            
+                        <div class="icons align-items-center input-group">
+            
+                            <form action="{{ route('Replies.like', $row->id) }}" method="POST" class="like-form">
+                                @csrf
+                                @if (
+                                    $userLogin &&
+                                        $row->likes()->where('user_id', $userLogin->id)->exists())
+                                    <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5 like-button ">
+                                        <i class="fa-solid fa-thumbs-up"></i>
+                                    </button>
+                                @else
+                                    <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                    </button>
+                                @endif
+                            </form>
+                            <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
+                                class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-triangle-exclamation me-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    @endforeach
+                    {{--end like --}}
                 </div>
             </div>
         {{-- end collapse --}}

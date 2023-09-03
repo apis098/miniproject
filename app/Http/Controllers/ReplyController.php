@@ -8,6 +8,7 @@ use App\Models\footer;
 use App\Models\likes;
 use App\Models\notifications;
 use App\Models\Reply;
+use App\Models\replyComplaint;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,10 @@ class ReplyController extends Controller
         $footer = footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
+        // $balasanKomentar = [];
+        // if($replies->isNotEmpty()){
+        //     $balasanKomentar = $replies->first()->repliesComment->sortByDesc('likes');
+        // }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -51,7 +56,7 @@ class ReplyController extends Controller
             ->paginate(10);
         }
         $title = "Data balasan keluhan ";
-        return view('replies.detail', compact('data','footer', 'title', 'replies', 'repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
+        return view('replies.detail', compact('data','footer', 'title', 'replies','repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
     }
     public function reply(Request $request, $id)
     {
@@ -80,6 +85,26 @@ class ReplyController extends Controller
         } else {
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu.');
         }
+    }
+    public function replyComment(Request $request,$id){
+        $request->validate([
+            'reply_comment' => 'required|string',
+        ]);
+        $user = Auth::check();
+        if($user){
+            $comment = Reply::findOrFail($id);
+            $reply = new replyComplaint();
+            $reply->reply_id = $comment->id;
+            $reply->complaint_id = $comment->complaint_id;
+            $reply->user_id = $comment->user_id;
+            $reply->user_id_sender = auth()->user()->id;
+            $reply->reply = $request->reply_comment;
+            $reply->save();
+            return redirect()->back()->with('success','Berhasil membalas komentar');
+        }else{
+            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+        }
+       
     }
     public function destroy($id)
     {

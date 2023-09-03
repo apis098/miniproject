@@ -88,10 +88,12 @@ Route::get('/keluhan/by-id', [complaintController::class, 'index'])->name('Compl
 Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name('ComplaintUser.update');
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
+Route::post('/replies-store/{id}', [ReplyController::class, 'replyComment'])->name('ReplyComment.store');
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
 Route::post('/resep/{id}/like', [likeController::class, 'likeResep'])->name('Resep.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
+
 //report
 Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');
 Route::post('/laporan-resep/{id}',[ReportController::class,'storeResep'])->name('report.resep');
