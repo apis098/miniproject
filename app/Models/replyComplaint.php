@@ -26,5 +26,9 @@ class replyComplaint extends Model
     {
         return $this->hasMany(like_reply::class);
     }
+    public function notifications()
+    {
+        return $this->hasMany(notifications::class);
+    }
     
 }

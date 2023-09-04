@@ -69,16 +69,14 @@ class likeController extends Controller
             ]);
             $balasan->increment('likes');
             $balasan->likes_reply()->save($like);
-            // if ($balasan->user_id != auth()->user()->id) {
-            //     $notifications = new notifications([
-            //         'notification_from' => auth()->user()->id,
-            //         'like_id' => $like->id,
-            //         'user_id' => $balasan->user_id,
-            //         'reply_id' => $balasan->id,
-            //         'complaint_id' => $complaintId,
-            //     ]);
-            //     $balasan->notifications()->save($notifications);
-            // }
+            if ($balasan->user_id != auth()->user()->id) {
+                $notifications = new notifications();
+                $notifications->notification_from = auth()->user()->id;
+                $notifications->user_id = $balasan->user_id;
+                $notifications->like_reply_id = $like->id;
+                $notifications->complaint_id =$complaintId;
+                $notifications->save();
+            }
             return response()->json([
                 'liked' => true,
                 'likes' => $balasan->likes,
