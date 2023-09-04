@@ -259,115 +259,118 @@ class ResepsController extends Controller
         }
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            //return redirect()->back()->withErrors($validasi)->withInput();
             return response()->json($validasi->errors()->first(), 422);
-            //return response()->json([$validasi->errors(), 422]);
-        }
-        $update_resep = reseps::find($id);
-        $update_resep->nama_resep = $request->nama_resep;
-        if ($request->hasFile("foto_resep")) {
-            Storage::delete("public/" . $update_resep->foto_resep);
-            $update_resep->foto_resep = $request->file('foto_resep')->store('photo-recipe', 'public');
-        }
-        $update_resep->deskripsi_resep = $request->deskripsi_resep;
+        } else {
+            $update_resep = reseps::find($id);
+            $update_resep->nama_resep = $request->nama_resep;
+            if ($request->hasFile("foto_resep")) {
+                Storage::delete("public/" . $update_resep->foto_resep);
+                $update_resep->foto_resep = $request->file('foto_resep')->store('photo-recipe', 'public');
+            }
+            $update_resep->deskripsi_resep = $request->deskripsi_resep;
 
-        $update_resep->porsi_orang = $request->porsi_orang;
-        $lama_memasak = $request->lama_memasak;
-        if (strtolower(trim($request->lama_memasak2)) == 'jam') {
-            $timer = $request->lama_memasak * 60;
-        } else {
-            $timer = $request->lama_memasak;
-        }
-        $update_resep->lama_memasak = $timer;
-        $price = str_replace([',', '.'], '', $request->pengeluaran_memasak);
-        $update_resep->pengeluaran_memasak = $price;
-        $update_resep->save();
-        if ($request->has('hari_khusus')) {
-            $update_resep->hari_resep()->sync($request->hari_khusus);
-        } else {
-            hari_reseps::where("reseps_id", $update_resep->id)->delete();
-        }
-        if ($request->has('jenis_makanan')) {
-            $update_resep->kategori_resep()->sync($request->jenis_makanan);
-        } else {
-            kategori_reseps::where("reseps_id", $update_resep->id)->delete();
-        }
-        if ($request->has("hapus_bahan")) {
-            foreach ($request->hapus_bahan as $key => $value) {
-                $n = (int)$value;
-                bahan_reseps::where("id", $n)->delete();
+            $update_resep->porsi_orang = $request->porsi_orang;
+            $lama_memasak = $request->lama_memasak;
+            if (strtolower(trim($request->lama_memasak2)) == 'jam') {
+                $timer = $request->lama_memasak * 60;
+            } else {
+                $timer = $request->lama_memasak;
             }
-        }
-        if ($request->has("hapus_alat")) {
-            foreach ($request->hapus_alat as $nms => $vv) {
-                $c = (int)$vv;
-                toolsCooks::where("id", $c)->delete();
+            $update_resep->lama_memasak = $timer;
+            $price = str_replace([',', '.'], '', $request->pengeluaran_memasak);
+            $update_resep->pengeluaran_memasak = $price;
+            $update_resep->save();
+            if ($request->has('hari_khusus')) {
+                $update_resep->hari_resep()->sync($request->hari_khusus);
+            } else {
+                hari_reseps::where("reseps_id", $update_resep->id)->delete();
             }
-        }
-        if ($request->has("hapus_langkah")) {
-            foreach ($request->hapus_langkah as $key => $v) {
-                $d = (int)$v;
-                langkah_reseps::where("id", $d)->delete();
+            if ($request->has('jenis_makanan')) {
+                $update_resep->kategori_resep()->sync($request->jenis_makanan);
+            } else {
+                kategori_reseps::where("reseps_id", $update_resep->id)->delete();
             }
-        }
-        foreach ($request->bahan_resep as $i => $b) {
-            $bahan = strtolower(trim($b));
-            bahan_reseps::where('id', $request->id_bahan_resep[$i])->update([
-                "nama_bahan" => $bahan,
-                "takaran_bahan" => $request->takaran_resep[$i]
+            if ($request->has("hapus_bahan")) {
+                foreach ($request->hapus_bahan as $key => $value) {
+                    $n = (int)$value;
+                    bahan_reseps::where("id", $n)->delete();
+                }
+            }
+            if ($request->has("hapus_alat")) {
+                foreach ($request->hapus_alat as $nms => $vv) {
+                    $c = (int)$vv;
+                    toolsCooks::where("id", $c)->delete();
+                }
+            }
+            if ($request->has("hapus_langkah")) {
+                foreach ($request->hapus_langkah as $key => $v) {
+                    $d = (int)$v;
+                    langkah_reseps::where("id", $d)->delete();
+                }
+            }
+            foreach ($request->bahan_resep as $i => $b) {
+                $bahan = strtolower(trim($b));
+                bahan_reseps::where('id', $request->id_bahan_resep[$i])->update([
+                    "nama_bahan" => $bahan,
+                    "takaran_bahan" => $request->takaran_resep[$i]
+                ]);
+            }
+            // menambahkan bahan jika ada
+            if ($request->has("bahan_resep_tambahan")) {
+                foreach ($request->bahan_resep_tambahan as $number => $b) {
+                    $bahan = strtolower(trim($b));
+                    bahan_reseps::create([
+                        "resep_id" => $update_resep->id,
+                        "nama_bahan" => $bahan,
+                        "takaran_bahan" => $request->takaran_resep_tambahan[$number]
+                    ]);
+                }
+            }
+
+            foreach ($request->nama_alat as $in => $na) {
+                $alat = toolsCooks::where('id', $request->id_alat[$in])->first();
+                $alat->nama_alat = $na;
+                $alat->save();
+            }
+            if ($request->has("nama_alat_tambahan")) {
+                foreach ($request->nama_alat_tambahan as $nam => $amn) {
+                    toolsCooks::create([
+                        "recipes_id" => $update_resep->id,
+                        "nama_alat" => $amn
+                    ]);
+                }
+            }
+            foreach ($request->langkah_resep as $index => $langkah) {
+                $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
+                $langkah_resep->deskripsi_langkah = $langkah;
+                if ($request->hasFile("foto_langkah_resep.$index")) {
+                    Storage::delete("public/" . $langkah_resep->foto_langkah);
+                    $langkah_resep->foto_langkah = $request->file("foto_langkah_resep.$index")->store("photo-step", "public");
+                }
+                $langkah_resep->save();
+            }
+            foreach ($request->judul_langkah as $bb => $jl) {
+                $langkah_resep2 = langkah_reseps::where('id', $request->id_langkah_resep[$bb])->first();
+                $langkah_resep2->judul_langkah = $jl;
+                $langkah_resep2->save();
+            }
+            // menambahkan langkah2 jika ada
+            if ($request->has("langkah_resep_tambahan")) {
+                foreach ($request->langkah_resep_tambahan as $nomer => $langkah) {
+                    langkah_reseps::create([
+                        "resep_id" => $update_resep->id,
+                        "foto_langkah" => $request->file("foto_langkah_resep_tambahan.$nomer")->store('photo-step', 'public'),
+                        "judul_langkah" => $request->judul_resep_tambahan[$nomer],
+                        "deskripsi_langkah" => $langkah
+                    ]);
+                }
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Berhasil Mengupdate Resep!',
+                'data' => $update_resep
             ]);
         }
-        // menambahkan bahan jika ada
-        if ($request->has("bahan_resep_tambahan")) {
-            foreach ($request->bahan_resep_tambahan as $number => $b) {
-                $bahan = strtolower(trim($b));
-                bahan_reseps::create([
-                    "resep_id" => $update_resep->id,
-                    "nama_bahan" => $bahan,
-                    "takaran_bahan" => $request->takaran_resep_tambahan[$number]
-                ]);
-            }
-        }
-
-        foreach ($request->nama_alat as $in => $na) {
-            $alat = toolsCooks::where('id', $request->id_alat[$in])->first();
-            $alat->nama_alat = $na;
-            $alat->save();
-        }
-        if ($request->has("nama_alat_tambahan")) {
-            foreach ($request->nama_alat_tambahan as $nam => $amn) {
-                toolsCooks::create([
-                    "recipes_id" => $update_resep->id,
-                    "nama_alat" => $amn
-                ]);
-            }
-        }
-        foreach ($request->langkah_resep as $index => $langkah) {
-            $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
-            $langkah_resep->deskripsi_langkah = $langkah;
-            if ($request->hasFile("foto_langkah_resep.$index")) {
-                Storage::delete("public/" . $langkah_resep->foto_langkah);
-                $langkah_resep->foto_langkah = $request->file("foto_langkah_resep.$index")->store("photo-step", "public");
-            }
-            $langkah_resep->save();
-        }
-        foreach ($request->judul_langkah as $bb => $jl) {
-            $langkah_resep2 = langkah_reseps::where('id', $request->id_langkah_resep[$bb])->first();
-            $langkah_resep2->judul_langkah = $jl;
-            $langkah_resep2->save();
-        }
-        // menambahkan langkah2 jika ada
-        if ($request->has("langkah_resep_tambahan")) {
-            foreach ($request->langkah_resep_tambahan as $nomer => $langkah) {
-                langkah_reseps::create([
-                    "resep_id" => $update_resep->id,
-                    "foto_langkah" => $request->file("foto_langkah_resep_tambahan.$nomer")->store('photo-step', 'public'),
-                    "judul_langkah" => $request->judul_resep_tambahan[$nomer],
-                    "deskripsi_langkah" => $langkah
-                ]);
-            }
-        }
-        return response()->json(['success' => 'Sukses menambahkan data resep!']);
     }
 
     /**

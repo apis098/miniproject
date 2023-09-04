@@ -392,6 +392,19 @@
                     processData: false,
                     contentType: false,
                     data: formData,
+                    success: function success(response) {
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                        setTimeout(() => {
+                            window.location.href = '/artikel/{{ $edit_resep->id }}/'+response.data.nama_resep;
+                        }, 5000);
+                    },
                     error: function error(xhr, status, errors) {
                         //alert(xhr.responseText);
                         iziToast.show({
