@@ -49,7 +49,7 @@ class RegisterController extends Controller
 
             // Lakukan penyesuaian gambar (misalnya, memotong)
             $croppedImage = Image::make(public_path("storage/{$profilePicturePath}"))
-                ->crop(300, 300); // Ubah ukuran sesuai kebutuhan
+                ->fit(576, 576); // Ubah ukuran sesuai kebutuhan
 
             // Simpan gambar yang telah diubah
             $croppedImage->save();

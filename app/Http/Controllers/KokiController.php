@@ -58,13 +58,14 @@ class KokiController extends Controller
             $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
              // Lakukan penyesuaian gambar (misalnya, memotong)
             $croppedImage = Image::make(public_path("storage/{$profilePicturePath}"))
-            ->fit(300, 300); // Ubah ukuran sesuai kebutuhan
+            ->fit(576, 576); // Ubah ukuran sesuai kebutuhan
 
               // Simpan gambar yang telah diubah
              $croppedImage->save();
 
             $user->foto = $profilePicturePath;
         }
+        
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
