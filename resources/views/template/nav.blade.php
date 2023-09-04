@@ -457,7 +457,7 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}"   >
+                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
                                                                     <small class="mt-1 ms-1 text-secondary">Komentar
                                                                         kamu telah diblokir</small>
                                                                     @if ($row->status == 'belum')
@@ -518,7 +518,7 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="submit">
+                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
                                                                     <small class=" ms-1 text-secondary">Resep
                                                                         anda telah diblokir</small>
                                                                     @if ($row->status == 'belum')
