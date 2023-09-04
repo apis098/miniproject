@@ -164,7 +164,7 @@
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="reportModal">Laporkan resep</h5>
+                                                <h5 class="modal-title" id="reportModal" style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Laporkan resep</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -179,12 +179,12 @@
                                                             src="{{ asset('storage/' . $show_resep->foto_resep) }}"
                                                             width="106px" height="104px" style="border-radius: 50%"
                                                             alt="">
-                                                        <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                        <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
                                                     @else
                                                         <img class="me-2" src="{{ asset('images/default.jpg') }}"
                                                             width="106px" height="104px" style="border-radius: 50%"
                                                             alt="">
-                                                        <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan..."></textarea>
                                                     @endif
                                                 </div>
                                                 <div class="modal-footer">
