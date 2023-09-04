@@ -390,17 +390,32 @@
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
                     <h5 class=""><b>Komentar ({{ $comment_recipe_count }})</b></h5>
                     <div class="col-10">
-                        <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
-                            @csrf
-                            <div class="input-group">
-                                <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
-                                    {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
-                                    placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
-                                {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                <button type="submit" style="background-color: #F7941E; border-radius:10px;"
-                                    class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
-                            </div>
-                        </form>
+                        @if ($userLog == 2)
+                            <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
+                                        {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
+                                        placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
+                                    {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
+                                    <button type="submit" style="background-color: #F7941E; border-radius:10px;"
+                                        class="btn btn-light btn-sm text-light ms-3"><b
+                                            class="me-3 ms-3">Kirim</b></button>
+                                </div>
+                            </form>
+                        @else
+                            <form>
+                                <div class="input-group">
+                                    <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
+                                        {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
+                                        placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
+                                    {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
+                                    <button type="button" onclick="harusLogin()" style="background-color: #F7941E; border-radius:10px;"
+                                        class="btn btn-light btn-sm text-light ms-3"><b
+                                            class="me-3 ms-3">Kirim</b></button>
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -491,27 +506,26 @@
                                                         </button>
                                                     </form>
                                                 @endif
-                                                @if ($userLog == 2)
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                        data-bs-target="#exampleModal{{ $item->pivot->id }}">
-                                                        Balasan
-                                                    </button>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal{{ $item->pivot->id }}">
+                                                    Balasan
+                                                </button>
 
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal{{ $item->pivot->id }}"
-                                                        tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                        aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                        Balas Komentar {{ $item->name }}
-                                                                    </h1>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal{{ $item->pivot->id }}"
+                                                    tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                                    Balas Komentar {{ $item->name }}
+                                                                </h1>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            @if ($userLog == 2)
                                                                 <form
                                                                     action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $item->pivot->id }}"
                                                                     method="post">
@@ -525,42 +539,62 @@
                                                                         </button>
                                                                     </div>
                                                                 </form>
-                                                                <div class="modal-footer">
-                                                                    @php
-                                                                        $reply_comment = \App\Models\replyCommentRecipe::query()
-                                                                            ->where('comment_id', $item->pivot->id)
-                                                                            ->get();
-                                                                    @endphp
-                                                                    @if ($reply_comment != null)
-                                                                        @foreach ($reply_comment as $ii)
-                                                                            <div class="card-body p-4">
-                                                                                <div class="d-flex flex-start">
+                                                            @else
+                                                                <form>
+                                                                    <div class="container mx-auto modal-body row">
+                                                                        <input name="komentar"
+                                                                            placeholder="Masukkan balasan komentar..."
+                                                                            class="form-control col-10" maxlength="225" readonly/>
+                                                                        <button type="button" onclick="harusLogin()"
+                                                                            class="btn btn-primary col-2">Kirim
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            @endif
+                                                            <div class="modal-footer">
+                                                                @php
+                                                                    $reply_comment = \App\Models\replyCommentRecipe::query()
+                                                                        ->where('comment_id', $item->pivot->id)
+                                                                        ->get();
+                                                                @endphp
+                                                                @if ($reply_comment != null)
+                                                                    @foreach ($reply_comment as $ii)
+                                                                        <div class="card-body p-4">
+                                                                            <div class="d-flex flex-start">
+                                                                                @if ($ii->user->foto)
                                                                                     <img class="rounded-circle shadow-1-strong me-3"
-                                                                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(24).webp"
+                                                                                        src="{{ asset('storage/' . $ii->user->foto) }}"
                                                                                         alt="avatar" width="60"
                                                                                         height="60" />
-                                                                                    <div>
-                                                                                        <h6 class="fw-bold mb-1">
-                                                                                            {{ $ii->user->name }}
-                                                                                        </h6>
-                                                                                        <div
-                                                                                            class="d-flex align-items-center mb-3">
-                                                                                            <p class="mb-0">
-                                                                                                {{ $ii->created_at->diffForHumans() }}
-                                                                                            </p>
+                                                                                @else
+                                                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                                                        src="{{ asset('images/default-profile.png') }}"
+                                                                                        alt="avatar" width="60"
+                                                                                        height="60" />
+                                                                                @endif
 
-                                                                                        </div>
+                                                                                <div>
+                                                                                    <h6 class="fw-bold mb-1">
+                                                                                        {{ $ii->user->name }}
+                                                                                    </h6>
+                                                                                    <div
+                                                                                        class="d-flex align-items-center mb-3">
                                                                                         <p class="mb-0">
-                                                                                            {{ $ii->komentar }}
+                                                                                            {{ $ii->created_at->diffForHumans() }}
                                                                                         </p>
-                                                                                    </div> 
-                                                                                   
+
+                                                                                    </div>
+                                                                                    <p class="mb-0">
+                                                                                        {{ $ii->komentar }}
+                                                                                    </p>
                                                                                 </div>
-                                                                                @if ($userLog == 2)
+
+                                                                            </div>
+                                                                            @if ($userLog == 2)
                                                                                 @php
                                                                                     $liked = \App\Models\like_comment_recipes::query()
                                                                                         ->where('users_id', Auth::user()->id)
-                                                                                        ->where('comment_id', $item->pivot->id)
+                                                                                        ->where('comment_id', $ii->id)
                                                                                         ->exists();
                                                                                 @endphp
                                                                             @else
@@ -570,12 +604,12 @@
                                                                             @endif
                                                                             @php
                                                                                 $likes = \App\Models\like_comment_recipes::query()
-                                                                                    ->where('comment_id', $item->pivot->id)
+                                                                                    ->where('comment_id', $ii->id)
                                                                                     ->get();
                                                                             @endphp
                                                                             @if ($userLog == 2)
                                                                                 <form
-                                                                                    action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}"
+                                                                                    action="/koki/sukai/{{ $ii->id }}/{{ $show_resep->id }}"
                                                                                     method="post">
                                                                                     @csrf
                                                                                     <button type="submit"
@@ -604,17 +638,13 @@
                                                                                     </button>
                                                                                 </form>
                                                                             @endif
-                                                                            </div>
-                                                                        @endforeach
-                                                                    @endif
-                                                                </div>
+                                                                        </div>
+                                                                    @endforeach
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @else
-                                                    <button type="button" class="btn btn-primary"
-                                                        onclick="harusLogin()">Balasan</button>
-                                                @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
