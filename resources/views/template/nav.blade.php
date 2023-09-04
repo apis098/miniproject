@@ -498,7 +498,7 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="submit">
+                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
                                                                     <small class=" ms-1 text-secondary">Keluhan
                                                                         anda telah diblokir</small>
                                                                     @if ($row->status == 'belum')
@@ -696,6 +696,39 @@
             </div>
             @yield('content-header')
     </div>
+        {{-- Modal alasan --}}
+    @foreach($notification as $row)
+    <div class="modal fade" id="modalAlasan{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle"
+                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                            Alasan diblokir</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center">
+
+                            <img src="{{ asset('images/peringatan.png') }}" width="106px" height="104px"
+                                    style="border-radius: 50%; " alt="">
+                            <textarea readonly class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5"
+                                placeholder="Alasan">{{$row->alasan}}</textarea>
+                        </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-light text-light"
+                            style="border-radius: 15px; background-color:#F7941E;"><b
+                                class="ms-2 me-2">Oke</b></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
     </header>
     <!-- end header section -->
     </div>
@@ -762,6 +795,7 @@
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
+            
             <!-- Modal -->
             <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
