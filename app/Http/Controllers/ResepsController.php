@@ -259,8 +259,8 @@ class ResepsController extends Controller
         }
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            return redirect()->back()->withErrors($validasi)->withInput();
-            //return response()->json($validasi->errors()->first(), 422);
+            //return redirect()->back()->withErrors($validasi)->withInput();
+            return response()->json($validasi->errors()->first(), 422);
             //return response()->json([$validasi->errors(), 422]);
         }
         $update_resep = reseps::find($id);
@@ -367,7 +367,7 @@ class ResepsController extends Controller
                 ]);
             }
         }
-        return redirect('/koki/index')->with('success', 'Sukses! anda berhasil mengupdate resep');
+        return response()->json(['success' => 'Sukses menambahkan data resep!']);
     }
 
     /**

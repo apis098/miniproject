@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("users_id");
             $table->unsignedBigInteger("recipe_id");
             $table->unsignedBigInteger("comment_id");
+            $table->text("komentar");
             
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("recipe_id")->references("id")->on("reseps")->onDelete("cascade");

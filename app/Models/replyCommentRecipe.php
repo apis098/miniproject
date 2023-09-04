@@ -12,7 +12,8 @@ class replyCommentRecipe extends Model
     protected $fillable = [
         "users_id",
         "recipe_id",
-        "comment_id"
+        "comment_id",
+        "komentar"
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");

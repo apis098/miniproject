@@ -164,7 +164,9 @@
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="reportModal" style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Laporkan resep</h5>
+                                                <h5 class="modal-title" id="reportModal"
+                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                    Laporkan resep</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -184,7 +186,8 @@
                                                         <img class="me-2" src="{{ asset('images/default.jpg') }}"
                                                             width="106px" height="104px" style="border-radius: 50%"
                                                             alt="">
-                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                            placeholder="Alasan..."></textarea>
                                                     @endif
                                                 </div>
                                                 <div class="modal-footer">
@@ -460,7 +463,9 @@
                                                         ->get();
                                                 @endphp
                                                 @if ($userLog == 2)
-                                                    <form action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}" method="post">
+                                                    <form
+                                                        action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}"
+                                                        method="post">
                                                         @csrf
                                                         <button type="submit" class="btn btn-light me-2">
                                                             @if ($liked)
@@ -477,7 +482,6 @@
                                                     </form>
                                                 @else
                                                     <form>
-                                                        @csrf
                                                         <button type="button" onclick="harusLogin()"
                                                             class="btn btn-light me-2">
                                                             <img width="25px"
@@ -509,20 +513,101 @@
                                                                         aria-label="Close"></button>
                                                                 </div>
                                                                 <form
-                                                                    action="/balas-komentar/{{ Auth::user()->id }}/{{ $item->pivot->id }}"
+                                                                    action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $item->pivot->id }}"
                                                                     method="post">
-                                                                    <div class="modal-body">
-                                                                        <textarea name="komentar_balasan" placeholder="Masukkan balasan komentar..." class="form-control" maxlength="225" cols="30" rows="10">
-                                                                        </textarea>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-bs-dismiss="modal">Tutup</button>
+                                                                    {{ csrf_field() }}
+                                                                    <div class="container mx-auto modal-body row">
+                                                                        <input name="komentar"
+                                                                            placeholder="Masukkan balasan komentar..."
+                                                                            class="form-control col-10" maxlength="225" />
                                                                         <button type="submit"
-                                                                            class="btn btn-primary">Kirim
-                                                                            </button>
+                                                                            class="btn btn-primary col-2">Kirim
+                                                                        </button>
                                                                     </div>
                                                                 </form>
+                                                                <div class="modal-footer">
+                                                                    @php
+                                                                        $reply_comment = \App\Models\replyCommentRecipe::query()
+                                                                            ->where('comment_id', $item->pivot->id)
+                                                                            ->get();
+                                                                    @endphp
+                                                                    @if ($reply_comment != null)
+                                                                        @foreach ($reply_comment as $ii)
+                                                                            <div class="card-body p-4">
+                                                                                <div class="d-flex flex-start">
+                                                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                                                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(24).webp"
+                                                                                        alt="avatar" width="60"
+                                                                                        height="60" />
+                                                                                    <div>
+                                                                                        <h6 class="fw-bold mb-1">
+                                                                                            {{ $ii->user->name }}
+                                                                                        </h6>
+                                                                                        <div
+                                                                                            class="d-flex align-items-center mb-3">
+                                                                                            <p class="mb-0">
+                                                                                                {{ $ii->created_at->diffForHumans() }}
+                                                                                            </p>
+
+                                                                                        </div>
+                                                                                        <p class="mb-0">
+                                                                                            {{ $ii->komentar }}
+                                                                                        </p>
+                                                                                    </div> 
+                                                                                   
+                                                                                </div>
+                                                                                @if ($userLog == 2)
+                                                                                @php
+                                                                                    $liked = \App\Models\like_comment_recipes::query()
+                                                                                        ->where('users_id', Auth::user()->id)
+                                                                                        ->where('comment_id', $item->pivot->id)
+                                                                                        ->exists();
+                                                                                @endphp
+                                                                            @else
+                                                                                @php
+                                                                                    $liked = false;
+                                                                                @endphp
+                                                                            @endif
+                                                                            @php
+                                                                                $likes = \App\Models\like_comment_recipes::query()
+                                                                                    ->where('comment_id', $item->pivot->id)
+                                                                                    ->get();
+                                                                            @endphp
+                                                                            @if ($userLog == 2)
+                                                                                <form
+                                                                                    action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}"
+                                                                                    method="post">
+                                                                                    @csrf
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-light me-2">
+                                                                                        @if ($liked)
+                                                                                            <img width="25px"
+                                                                                                src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
+                                                                                                alt="">
+                                                                                        @else
+                                                                                            <img width="25px"
+                                                                                                src="{{ asset('images/like-1-svgrepo-com.svg') }}"
+                                                                                                alt="">
+                                                                                        @endif
+                                                                                        {{ $likes->count() }}
+                                                                                    </button>
+                                                                                </form>
+                                                                            @else
+                                                                                <form>
+                                                                                    <button type="button"
+                                                                                        onclick="harusLogin()"
+                                                                                        class="btn btn-light me-2">
+                                                                                        <img width="25px"
+                                                                                            src="{{ asset('images/like-1-svgrepo-com.svg') }}"
+                                                                                            alt="">
+                                                                                        {{ $likes->count() }}
+                                                                                    </button>
+                                                                                </form>
+                                                                            @endif
+                                                                            </div>
+                                                                        @endforeach
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>

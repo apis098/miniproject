@@ -370,13 +370,15 @@
                     </script>
                     <br>
                     <br>
-                    <button type="submit" class="btn btn-warning text-white mb-4" id="button_edit_recipe"
+                    <button type="submit" class="btn btn-warning text-white mb-4" id="button-edit-recipe"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
                 </div>
             </div>
         </div>
     </form>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
     <script>
          $("document").ready(function() {
             $("#button-edit-recipe").click(function(event) {
