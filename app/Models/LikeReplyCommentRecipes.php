@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LikeReplyCommentRecipes extends Model
 {
     use HasFactory;
-    protected $table = "LikeReplyCommentRecipes";
+    protected $table = "like_reply_comment_recipes";
     protected $fillable = [
         "users_id",
         "recipe_id",

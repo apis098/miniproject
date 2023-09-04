@@ -592,9 +592,10 @@
                                                                             </div>
                                                                             @if ($userLog == 2)
                                                                                 @php
-                                                                                    $liked = \App\Models\like_comment_recipes::query()
+                                                                                    $liked = \App\Models\LikeReplyCommentRecipes::query()
                                                                                         ->where('users_id', Auth::user()->id)
-                                                                                        ->where('comment_id', $ii->id)
+                                                                                        ->where('recipe_id', $show_resep->id)
+                                                                                        ->where('comment_id', $item->pivot->id)
                                                                                         ->exists();
                                                                                 @endphp
                                                                             @else
@@ -603,13 +604,13 @@
                                                                                 @endphp
                                                                             @endif
                                                                             @php
-                                                                                $likes = \App\Models\like_comment_recipes::query()
+                                                                                $likes = \App\Models\LikeReplyCommentRecipes::query()
                                                                                     ->where('comment_id', $ii->id)
                                                                                     ->get();
                                                                             @endphp
                                                                             @if ($userLog == 2)
                                                                                 <form
-                                                                                    action="/koki/sukai/{{ $ii->id }}/{{ $show_resep->id }}"
+                                                                                    action="/like/komentar/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $item->pivot->id }}"
                                                                                     method="post">
                                                                                     @csrf
                                                                                     <button type="submit"

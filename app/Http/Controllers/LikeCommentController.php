@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\like_comment_recipes;
+use App\Models\LikeReplyCommentRecipes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,20 @@ class LikeCommentController extends Controller
         }
     }
     public function like_reply_comment_recipe(string $user, string $resep, string $comment) {
-
+        $like = LikeReplyCommentRecipes::where('users_id', $user)->where('recipe_id', $resep)->where('comment_id', $comment)->count();
+        if ($like == 0) {
+            LikeReplyCommentRecipes::create([
+                'users_id' => $user,
+                'recipe_id' => $resep,
+                'comment_id' => $comment
+            ]);
+            return redirect()->back()->with('success', 'Sukses menyukai komentar!');
+        } else {
+            $d = LikeReplyCommentRecipes::where('users_id', $user)->where('recipe_id', $resep)->where('comment_id', $comment)->delete();
+            if ($d) {
+                return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
+            }
+        }
+        
     }
 }

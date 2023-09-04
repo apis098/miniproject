@@ -24,5 +24,8 @@ class replyCommentRecipe extends Model
     public function comment() {
         return $this->belongsTo(comment_recipes::class, "comment_id");
     }
+    public function like() {
+        return $this->hasMany(LikeReplyCommentRecipes::class, "comment_id");
+    }
 
 }
