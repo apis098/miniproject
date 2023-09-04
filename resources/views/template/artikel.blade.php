@@ -390,7 +390,7 @@
                         <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
                             @csrf
                             <div class="input-group">
-                                <input type="text" id="reply" name="komentar" width="500px"
+                                <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
                                     {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
                                     placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                 {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
@@ -460,7 +460,7 @@
                                                         ->get();
                                                 @endphp
                                                 @if ($userLog == 2)
-                                                    <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
+                                                    <form action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}" method="post">
                                                         @csrf
                                                         <button type="submit" class="btn btn-light me-2">
                                                             @if ($liked)
@@ -476,7 +476,7 @@
                                                         </button>
                                                     </form>
                                                 @else
-                                                    <form action="/koki/sukai/{{ $item->pivot->id }}" method="post">
+                                                    <form>
                                                         @csrf
                                                         <button type="button" onclick="harusLogin()"
                                                             class="btn btn-light me-2">

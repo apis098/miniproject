@@ -133,6 +133,6 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     });
 });
 Route::post('/komentar-resep/{user}/{recipe}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
-Route::post('/koki/sukai/{comment}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
+Route::post('/koki/sukai/{comment}/{recipe}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');

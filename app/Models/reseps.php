@@ -62,4 +62,10 @@ class reseps extends Model
         ->withPivot("id")
         ->withTimestamps();
     }
+    public function like_comment_recipe() {
+        return $this->hasMany(like_comment_recipes::class);
+    }
+    public function reply_comment_recipe() {
+        return $this->hasMany(replyCommentRecipe::class);
+    }
 }

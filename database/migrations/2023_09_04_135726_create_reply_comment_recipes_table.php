@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('like_comment_recipes', function (Blueprint $table) {
+        Schema::create('reply_comment_recipes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id');
-            $table->unsignedBigInteger('comment_id');
+            $table->unsignedBigInteger("users_id");
             $table->unsignedBigInteger("recipe_id");
-            $table->timestamps();
-
+            $table->unsignedBigInteger("comment_id");
+            
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
-            $table->foreign("comment_id")->references("id")->on("comment_recipes")->onDelete("cascade");
             $table->foreign("recipe_id")->references("id")->on("reseps")->onDelete("cascade");
+            $table->foreign("comment_id")->references("id")->on("comment_recipes")->onDelete("cascade");
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('like_comment_recipes');
+        Schema::dropIfExists('reply_comment_recipes');
     }
 };

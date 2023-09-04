@@ -18,4 +18,7 @@ class comment_recipes extends Model
     {
         return $this->hasMany(like_comment_recipes::class);
     }
+    public function reply_comment_recipe() {
+        return $this->hasMany(replyCommentRecipe::class);
+    }
 }

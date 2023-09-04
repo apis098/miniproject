@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeCommentController extends Controller
 {
-    public function like_comment_recipe(string $id) {
+    public function like_comment_recipe(string $id, string $id_resep) {
         $log = Auth::user();
         if ($log == false) {
             return redirect()->back()->with("error", "Anda harus login dulu sebelum menyukai komentar!");
@@ -21,7 +21,8 @@ class LikeCommentController extends Controller
             # code...
             like_comment_recipes::create([
                 "users_id" => Auth::user()->id,
-                "comment_id" => $id
+                "comment_id" => $id,
+                "recipe_id" => $id_resep
             ]);
             return redirect()->back()->with("success", "Sukses menyukai komentar!");
         } else {
