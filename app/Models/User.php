@@ -63,4 +63,7 @@ class User extends Authenticatable
     public function reply_comment_recipe() {
         return $this->hasMany(replyCommentRecipe::class);
     }
+    public function like_reply_comment_recipe() {
+        return $this->hasMany(LikeReplyCommentRecipes::class, "users_id");
+    }
 }

@@ -30,4 +30,7 @@ class LikeCommentController extends Controller
             return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
         }
     }
+    public function like_reply_comment_recipe(string $user, string $resep, string $comment) {
+
+    }
 }
