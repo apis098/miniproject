@@ -687,8 +687,8 @@
                             </div>
                             @endif
                         @else
-                            <a href="{{ route('login') }}" class="btn btn-outline-light rounded-5"
-                                style="border-radius: 12px;"><b class="me-2 ms-2">Login</b></a>
+                            <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects"
+                                style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b class="me-2 ms-2">Masuk</b></a>
                             @endif
                         </div>
                 </div>
