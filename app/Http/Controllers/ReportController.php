@@ -58,6 +58,7 @@ class ReportController extends Controller
         return redirect()->back()->with('success','Laporan anda telah terkirim');
     }
     public function storeReply(Request $request ,$id){
+        if(Auth::check()) { // Memeriksa apakah pengguna telah login
         $reply = Reply::findOrFail($id);
         $report = new Report();
         $report->reply_id = $reply->id;
@@ -66,8 +67,13 @@ class ReportController extends Controller
         $report->description = $request->description;
         $report->save();
         return redirect()->back()->with('success','Laporan anda telah terkirim');
+    } else {
+        // Pengguna belum login, tampilkan pesan
+        return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
+    }
     }
     public function storeComplaint(Request $request, $id){
+        if(Auth::check()) { // Memeriksa apakah pengguna telah login
         $complaint = complaint::findOrFail($id);
         $report = new Report();
         $report->complaint_id = $complaint->id;
@@ -76,22 +82,32 @@ class ReportController extends Controller
         $report->description = $request->description;
         $report->save();
         return redirect()->back()->with('success','Laporan anda telah terkirim');
+    } else {
+        // Pengguna belum login, tampilkan pesan
+        return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
+    }
     }
     public function store(Request $request){
-        $userId = Auth::user()->id;
-        $report = new Report();
-        $report->user_id = $request->user_id;
-        if($request->reply_id != null){
-            $report->reply_id =  $request->reply_id;
+        if(Auth::check()) { // Memeriksa apakah pengguna telah login
+            $userId = Auth::user()->id;
+            $report = new Report();
+            $report->user_id = $request->user_id;
+            if($request->reply_id != null){
+                $report->reply_id =  $request->reply_id;
+            }
+            if($request->profile_id != null){
+                $report->profile_id = $request->profile_id;
+            }
+            $report->description = $request->description;
+            $report->user_id_sender = $userId;
+            $report->save();
+            return redirect()->back()->with('success', 'Laporan pelanggaran berhasil dikirim.');
+        } else {
+            // Pengguna belum login, tampilkan pesan
+            return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
         }
-        if($request->profile_id != null){
-            $report->profile_id = $request->profile_id;
-        }
-        $report->description = $request->description;
-        $report->user_id_sender = $userId;
-        $report->save();
-        return redirect()->back()->with('success', 'Laporan pelanggaran berhasil dikirim.');
     }
+
     public function randomName($id){
         $report = Report::findOrFail($id);
         $report->user->delete();
@@ -124,7 +140,7 @@ class ReportController extends Controller
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
-            $notification->save(); 
+            $notification->save();
             return redirect()->back()->with('success', 'Komentar telah diblokir');
         }
         if($report->complaint_id != null){
@@ -154,13 +170,13 @@ class ReportController extends Controller
                 $profile->foto = null;
                 $profile->save();
                 $report->delete();
-                
+
                 $notification = new notifications();
                 $notification->user_id = $report->profile_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->profile_id = $report->profile_id;
                 $notification->alasan = $request->alasan;
-                $notification->save();  
+                $notification->save();
                 return redirect()->back()->with('success', 'Foto profile telah diblokir');
             } else {
                 $report->delete();
@@ -172,7 +188,7 @@ class ReportController extends Controller
             $report->user->save();
             return redirect()->back()->with('success', 'User telah diblokir');
         }
-        
+
     }
     public function blockUser($id){
         $report= Report::findOrFail($id);
@@ -202,7 +218,7 @@ class ReportController extends Controller
     }
     public function blocked_index(){
         $user = User::where('status','nonaktif')->get();
-        return view('admin.unblock',compact('user'));   
+        return view('admin.unblock',compact('user'));
     }
     public function unblock_store($id){
         $user = User::findOrFail($id);
