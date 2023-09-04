@@ -54,6 +54,7 @@ class followersController extends Controller
         $recipes = reseps::where('user_id', $id)->paginate(6);
         $notification = [];
         $footer= footer::first();
+        $favorite = [];
         $unreadNotificationCount=[];
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
