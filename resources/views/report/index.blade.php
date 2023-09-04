@@ -1,6 +1,6 @@
 @extends('layouts.navbar')
 @section('konten')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -150,126 +150,123 @@
         .garis {
             border-bottom: #F7941E 2px solid;
         }
-        .fa-circle{
+
+        .fa-circle {}
+
+
+
+        .search {
+            background-color: #fff;
+            padding: 0px 10px;
+            border-radius: 5px;
+            width: 968px;
+        }
+
+        .search-1 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-1 input {
+            height: 45px;
+            border: none;
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 10px;
+            border-right: 2px solid #eee
+        }
+
+        .search-1 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        .search-1 i {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        ::placeholder {
+            color: #eee;
+            opacity: 1
+        }
+
+        .search-2 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-2 input {
+            height: 35px;
+            border: none;
+            width: 200px;
+            padding-left: 15px;
+            padding-right: 100px;
+
 
         }
 
+        .search-2 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
 
-
-.search {
-    background-color: #fff;
-    padding: 0px 10px;
-    border-radius: 5px;
-    width: 968px;
-}
-
-.search-1 {
-    position: relative;
-    width: 100%
-}
-
-.search-1 input {
-    height: 45px;
-    border: none;
-    width: 100%;
-    padding-left: 25px;
-    padding-right: 10px;
-    border-right: 2px solid #eee
-}
-
-.search-1 input:focus {
-    border-color: none;
-    box-shadow: none;
-    outline: none
-}
-
-.search-1 i {
-    position: absolute;
-    top: 12px;
-    left: 5px;
-    font-size: 24px;
-    color: #eee
-}
-
-::placeholder {
-    color: #eee;
-    opacity: 1
-}
-
-.search-2 {
-    position: relative;
-    width: 100%
-}
-
-.search-2 input {
-    height: 35px;
-    border: none;
-    width: 200px;
-    padding-left: 15px;
-    padding-right: 100px;
-
-
-}
-
-.search-2 input:focus {
-    border-color: none;
-    box-shadow: none;
-    outline: none
-}
-
-/* button{
-            background-color: #F7941E;
-            border: none;
-            height: 45px;
-            width: 90px;
-            color: #ffffff;
+        /* button{
+                background-color: #F7941E;
+                border: none;
+                height: 45px;
+                width: 90px;
+                color: #ffffff;
+                position: absolute;
+                right: 1px;
+                top: 0px;
+                border-radius: 15px
+            } */
+        .search-2 i {
             position: absolute;
-            right: 1px;
-            top: 0px;
-            border-radius: 15px
-        } */
-.search-2 i {
-    position: absolute;
-    top: 12px;
-    left: -10px;
-    font-size: 24px;
-    color: #eee
-}
+            top: 12px;
+            left: -10px;
+            font-size: 24px;
+            color: #eee
+        }
 
-.search-2 button {
-    position: absolute;
-    right: 4px;
-    top: -2px;
-    border: none;
-    height: 38px;
-    background-color: #F7941E;
-    color: #fff;
-    width: 90px;
-    border-radius: 4px
-
-}
+        .search-2 button {
+            position: absolute;
+            right: 4px;
+            top: -2px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 90px;
+            border-radius: 4px
+        }
 
 
-@media (max-width:800px) {
-    .search-1 input {
-        border-right: none;
-        border-bottom: 1px solid #eee
-    }
+        @media (max-width:800px) {
+            .search-1 input {
+                border-right: none;
+                border-bottom: 1px solid #eee
+            }
 
-    .search-2 i {
-        left: 4px
-    }
+            .search-2 i {
+                left: 4px
+            }
 
-    .search-2 input {
-        padding-left: 34px
-    }
+            .search-2 input {
+                padding-left: 34px
+            }
 
-    .search-2 button {
-        height: 37px;
-        top: 5px
-    }
-}
-
+            .search-2 button {
+                height: 37px;
+                top: 5px
+            }
+        }
     </style>
 
     <div class=" d-flex justify-content-center ms-3">
@@ -281,8 +278,12 @@
                         aria-selected="true">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                             Laporan resep
-                            @if($statusResep>0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @if ($statusResep > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                </svg>
                             @endif
                         </h5>
                         <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
@@ -295,8 +296,12 @@
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                             Laporan keluhan
-                            @if($statusComplaint > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @if ($statusComplaint > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                </svg>
                             @endif
                         </h5>
                         <div id="b" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
@@ -310,8 +315,12 @@
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                             Laporan komentar
-                            @if($statusKomentar > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @if ($statusKomentar > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                </svg>
                             @endif
                         </h5>
                         <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
@@ -324,8 +333,12 @@
                         aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                             Laporan profile
-                            @if($statusProfile > 0 )
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z"/></svg>
+                            @if ($statusProfile > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                </svg>
                             @endif
                         </h5>
                         <div id="pp" class="ms-3"
@@ -342,7 +355,7 @@
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                             <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row" >
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
@@ -371,28 +384,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $row)
-                                @if ($row->resep_id != null)
-                                    <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
-                                        </td>
-                                        <td>{{ $row->user->name }}</td>
-                                        <td>{{ $row->description }}</td>
-                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right:1px solid black;">
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#modalResep{{ $row->resep_id }}"
-                                                class="btn btn-light btn-sm rounded-3 text-light"
-                                                style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach ($reportResep as $row)
+                                <tr class="mt-5">
+                                    <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
+                                    </td>
+                                    <td>{{ $row->user->name }}</td>
+                                    <td>{{ $row->description }}</td>
+                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                    <td style="border-right:1px solid black;">
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#modalResep{{ $row->resep_id }}"
+                                            class="btn btn-light btn-sm rounded-3 text-light"
+                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    {{-- <div style="margin-top: -2em;  margin-left: 10em;">
-                        {{$data->links('vendor.pagination.default')}}
-                     </div> --}}
+
+                    {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
                 </div>
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
@@ -400,7 +410,7 @@
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                             <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row" >
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
@@ -429,27 +439,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $row)
-                                @if ($row->complaint_id != null)
-                                    <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">
-                                            {{ $row->userSender->name }}
-                                        </td>
-                                        <td>{{ $row->user->name }}</td>
-                                        <td>{{ $row->description }}</td>
-                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right:1px solid black;">
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#modalComplaint{{ $row->complaint_id }}"
-                                                class="btn btn-light btn-sm rounded-3 text-light"
-                                                style="background-color: #F7941E;"><b
-                                                    class="ms-2 me-2">Detail</b></button>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach ($reportComplaint as $row)
+                                <tr class="mt-5">
+                                    <td style="border-left:1px solid black;" class="mt">
+                                        {{ $row->userSender->name }}
+                                    </td>
+                                    <td>{{ $row->user->name }}</td>
+                                    <td>{{ $row->description }}</td>
+                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                    <td style="border-right:1px solid black;">
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#modalComplaint{{ $row->complaint_id }}"
+                                            class="btn btn-light btn-sm rounded-3 text-light"
+                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
                 </div>
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
@@ -457,7 +465,7 @@
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                             <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row" >
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
@@ -486,27 +494,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $row)
-                                @if ($row->reply_id != null)
-                                    <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">
-                                            {{ $row->userSender->name }}
-                                        </td>
-                                        <td>{{ $row->user->name }}</td>
-                                        <td>{{ $row->description }}</td>
-                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right:1px solid black;">
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#modalKomentar{{ $row->reply_id }}"
-                                                class="btn btn-light btn-sm rounded-3 text-light"
-                                                style="background-color: #F7941E;"><b
-                                                    class="ms-2 me-2">Detail</b></button>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach ($reportReply as $row)
+                                <tr class="mt-5">
+                                    <td style="border-left:1px solid black;" class="mt">
+                                        {{ $row->userSender->name }}
+                                    </td>
+                                    <td>{{ $row->user->name }}</td>
+                                    <td>{{ $row->description }}</td>
+                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                    <td style="border-right:1px solid black;">
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#modalKomentar{{ $row->reply_id }}"
+                                            class="btn btn-light btn-sm rounded-3 text-light"
+                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $reportReply->links('vendor.pagination.defaultReportReply') }}
                 </div>
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-contact-tab"
@@ -514,7 +520,7 @@
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                             <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row" >
+                                <div class="row">
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
@@ -543,27 +549,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($data as $row)
-                                @if ($row->profile_id != null)
-                                    <tr class="mt-5">
-                                        <td style="border-left:1px solid black;" class="mt">
-                                            {{ $row->userSender->name }}
-                                        </td>
-                                        <td>{{ $row->user->name }}</td>
-                                        <td>{{ $row->description }}</td>
-                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                        <td style="border-right:1px solid black;">
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#modalProfile{{ $row->profile_id }}"
-                                                class="btn btn-light btn-sm rounded-3 text-light"
-                                                style="background-color: #F7941E;"><b
-                                                    class="ms-2 me-2">Detail</b></button>
-                                        </td>
-                                    </tr>
-                                @endif
+                            @foreach ($reportProfile as $row)
+                                <tr class="mt-5">
+                                    <td style="border-left:1px solid black;" class="mt">
+                                        {{ $row->userSender->name }}
+                                    </td>
+                                    <td>{{ $row->user->name }}</td>
+                                    <td>{{ $row->description }}</td>
+                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                    <td style="border-right:1px solid black;">
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#modalProfile{{ $row->profile_id }}"
+                                            class="btn btn-light btn-sm rounded-3 text-light"
+                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
                 </div>
             </div>
 
@@ -652,20 +656,25 @@
                             </a>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                                id="deleteLaporan{{ $row->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark rounded-3"
+                                <button type="button" onclick="confirmation({{ $row->id }})"
+                                    class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
+                            <button type="button" data-toggle="modal"
+                                data-target="#modalTerimalaporan{{ $row->id }}" data-dismiss="modal"
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST"
+                                id="formBlokir{{ $row->id }}">
                                 @csrf
                                 @method('put')
-                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
+                                <button type="button" onclick="buttonAllert({{ $row->id }})"
+                                    id="buttonBlokir{{ $row->id }}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -727,18 +736,22 @@
                         </div>
 
                         <div class="modal-footer mt-3 ">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                                id="deleteLaporan{{ $row->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark btn-sm rounded-3 me-3"
+                                <button type="button" onclick="confirmation({{ $row->id }})"
+                                    class="btn btn-outline-dark btn-sm rounded-3 me-3"
                                     style="border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                     <b class="">Hapus laporan</b>
                                 </button>
                             </form>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST"
+                                id="formBlokir{{ $row->id }}">
                                 @csrf
                                 @method('put')
-                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
+                                <button type="button" onclick="buttonAllert({{ $row->id }})"
+                                    id="buttonBlokir{{ $row->id }}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light btn-sm text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -801,22 +814,26 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                                id="deleteLaporan{{ $row->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-light text-black"
+                                <button type="button" onclick="confirmation({{ $row->id }})"
+                                    class="btn btn-light text-black"
                                     style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                         class="ms-2 me-2">Hapus Laporan</b></button>
                             </form>
 
-                            <button type="button" data-target="#modalTerimalaporan{{$row->id}}" data-toggle="modal"
-                                data-dismiss="modal" class="btn btn-light text-light rounded-3"
+                            <button type="button" data-target="#modalTerimalaporan{{ $row->id }}"
+                                data-toggle="modal" data-dismiss="modal" class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST"
+                                id="formBlokir{{ $row->id }}">
                                 @csrf
                                 @method('put')
-                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
+                                <button type="button" onclick="buttonAllert({{ $row->id }})"
+                                    id="buttonBlokir{{ $row->id }}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -829,47 +846,47 @@
     @endforeach
     {{-- end Modal --}}
     {{-- Model Terima laporan --}}
-    @foreach($data as $row)
-    @if($row->id != null)
-    <div class="modal fade" id="modalTerimalaporan{{$row->id}}" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-            <form action="{{route('blockContent.destroy',$row->id)}}" method="POST">
-                @csrf
-                @method('put')
-                <div class="modal-header">
-                    <h5 class="modal-title" id="reportModal"
-                        style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                        Kirim Peringatan</h5>
-                    <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body d-flex align-items-center col-12">
-                    <!-- Tambahkan kelas "align-items-center" -->
-                    <div class="col-3 mt-2  ms-3">
-                        <img class="" src="{{ asset('images/default.jpg') }}" width="100px" height="100px"
-                            style="border-radius: 50%" alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="widget-49-meeting-info">
+    @foreach ($data as $row)
+        @if ($row->id != null)
+            <div class="modal fade" id="modalTerimalaporan{{ $row->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form action="{{ route('blockContent.destroy', $row->id) }}" method="POST">
+                            @csrf
+                            @method('put')
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="reportModal"
+                                    style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                    Kirim Peringatan</h5>
+                                <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body d-flex align-items-center col-12">
+                                <!-- Tambahkan kelas "align-items-center" -->
+                                <div class="col-3 mt-2  ms-3">
+                                    <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
+                                        height="100px" style="border-radius: 50%" alt="">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="widget-49-meeting-info">
 
-                        </div>
-                        <textarea class="form-control" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                    </div>
+                                    <textarea class="form-control" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light text-light rounded-3"
+                                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-2 me-2">Kirim</b>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-light text-light rounded-3"
-                        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                            class="ms-2 me-2">Kirim</b>
-                    </button>
-                </div>
-            </form>
             </div>
-        </div>
-    </div>
-    @endif
+        @endif
     @endforeach
     {{-- End Modal Terima Laporan --}}
     {{-- Modal resep --}}
@@ -1130,20 +1147,25 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST" id="deleteLaporan{{$row->id}}">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                                id="deleteLaporan{{ $row->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirmation({{$row->id}})" class="btn btn-outline-dark rounded-3"
+                                <button type="button" onclick="confirmation({{ $row->id }})"
+                                    class="btn btn-outline-dark rounded-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#modalTerimalaporan{{$row->id}}" data-dismiss="modal"
+                            <button type="button" data-toggle="modal"
+                                data-target="#modalTerimalaporan{{ $row->id }}" data-dismiss="modal"
                                 class="btn btn-light text-light rounded-3"
                                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                     class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST" id="formBlokir{{$row->id}}">
+                            <form action="{{ route('block.user', $row->id) }}" method="POST"
+                                id="formBlokir{{ $row->id }}">
                                 @csrf
                                 @method('put')
-                                <button type="button" onclick="buttonAllert({{$row->id}})" id="buttonBlokir{{$row->id}}"
+                                <button type="button" onclick="buttonAllert({{ $row->id }})"
+                                    id="buttonBlokir{{ $row->id }}"
                                     style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
                                 </button>
@@ -1200,7 +1222,8 @@
 
     <!-- jQuery CDN -->
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
+        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
@@ -1235,55 +1258,57 @@
                 }
             });
         }
-        function buttonAllert(num){
+
+        function buttonAllert(num) {
             iziToast.show({
-                    backgroundColor: '#F7941E',
-                    title: '<i class="fa-regular fa-circle-question"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
-                    message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                    position: 'topCenter',
-                    buttons: [
-                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                            function(instance, toast) {
-                                // Jika pengguna menekan tombol "Ya", kirim form
-                                document.getElementById('formBlokir'+num).submit();
-                            }
-                        ],
-                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                            function(instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOut'
-                                }, toast, 'button');
-                            }
-                        ],
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda yakin ingin memblookir pengguna tersebut?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                        function(instance, toast) {
+                            // Jika pengguna menekan tombol "Ya", kirim form
+                            document.getElementById('formBlokir' + num).submit();
+                        }
                     ],
-                });
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                        function(instance, toast) {
+                            instance.hide({
+                                transitionOut: 'fadeOut'
+                            }, toast, 'button');
+                        }
+                    ],
+                ],
+            });
         }
+
         function confirmation(num) {
             iziToast.show({
-                    backgroundColor: '#F7941E',
-                    title: '<i class="fa-regular fa-circle-question"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
-                    message: 'Anda yakin ingin mengahpus laporan?',
-                    position: 'topCenter',
-                    buttons: [
-                        ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                            function(instance, toast) {
-                                // Jika pengguna menekan tombol "Ya", kirim form
-                                document.getElementById('deleteLaporan'+num).submit();
-                            }
-                        ],
-                        ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                            function(instance, toast) {
-                                instance.hide({
-                                    transitionOut: 'fadeOut'
-                                }, toast, 'button');
-                            }
-                        ],
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda yakin ingin mengahpus laporan?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                        function(instance, toast) {
+                            // Jika pengguna menekan tombol "Ya", kirim form
+                            document.getElementById('deleteLaporan' + num).submit();
+                        }
                     ],
-                });
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                        function(instance, toast) {
+                            instance.hide({
+                                transitionOut: 'fadeOut'
+                            }, toast, 'button');
+                        }
+                    ],
+                ],
+            });
         }
     </script>
 

@@ -11,6 +11,7 @@ use App\Models\notifications;
 use App\Models\reseps;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class KokiController extends Controller
 {
@@ -55,6 +56,13 @@ class KokiController extends Controller
 
             // Upload new profile picture
             $profilePicturePath = $request->file('profile_picture')->store('profile_pictures', 'public');
+             // Lakukan penyesuaian gambar (misalnya, memotong)
+            $croppedImage = Image::make(public_path("storage/{$profilePicturePath}"))
+            ->crop(300, 300); // Ubah ukuran sesuai kebutuhan
+
+              // Simpan gambar yang telah diubah
+             $croppedImage->save();
+
             $user->foto = $profilePicturePath;
         }
         $user->name = $request->name;
