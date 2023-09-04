@@ -45,7 +45,7 @@ class notificationController extends Controller
         $notificattion = notifications::findOrFail($id);
         $notificattion->status = 'sudah';
         $notificattion->save();
-        return redirect()->back()->with('info','Keluhan kamu telah diblokir');
+        return redirect()->back();
     }
     public function blockedComent($id){
         $notificattion = notifications::findOrFail($id);
@@ -68,4 +68,10 @@ class notificationController extends Controller
         $resepName = $notificattion->resep->nama_resep;
         return redirect('/artikel/' . $resepId . '/' . $resepName);
     }
+    // public function blockComplaint($id){
+    //     $notificattion = notifications::findOrFail($id);
+    //     $notificattion->status = 'sudah';
+    //     $notificattion->save();
+    //     return redirect()->back();
+    // }
 }

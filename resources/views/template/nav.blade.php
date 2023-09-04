@@ -457,7 +457,7 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="submit">
+                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}"   >
                                                                     <small class="mt-1 ms-1 text-secondary">Komentar
                                                                         kamu telah diblokir</small>
                                                                     @if ($row->status == 'belum')
@@ -701,8 +701,9 @@
     <div class="modal fade" id="modalAlasan{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <form action="" method="POST">
+                <form action="{{route('blockedComplaint.notification',$row->id)}}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalCenterTitle"
                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
@@ -714,7 +715,7 @@
                     <div class="modal-body">
                         <div class="d-flex align-items-center">
 
-                            <img src="{{ asset('images/peringatan.png') }}" width="106px" height="104px"
+                            <img src="{{ asset('images/peringatan.png') }}" width="145px" height="140px"
                                     style="border-radius: 50%; " alt="">
                             <textarea readonly class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5"
                                 placeholder="Alasan">{{$row->alasan}}</textarea>
