@@ -80,7 +80,7 @@
                 <div class="col-md-4"><img class="card-img-top mb-5 mb-md-0 " src="{{ asset('images/complaint.png') }}"
                         alt="..." /></div>
                 <div class="col-md-8">
-                    <h3 class=" fw-bolder" style="font-family: poppins; margin-top:55px;"><b>{{ $data->subject }}</b></h3>
+                    <h3 class=" fw-bolder mb-3" style="font-family: poppins; margin-top:55px;"><b>{{ $data->subject }}</b></h3>
                     <div class="input-group">
                         @if ($data->user->foto)
                             <img src="{{ asset('storage/' . $data->user->foto) }}" width="52px" height="52px"
@@ -93,18 +93,19 @@
                             <p class="ms-3 fw-bolder">{{ $data->user->name }}<br><small
                                     class=""><i>{{ $data->user->email }}</i></small></p>
                         </div>
+                        <div class="" style="margin-top: -60px">
+                            <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
+                                style="background-color:#F7941E; margin-top: -px;  margin-left: 640px;" data-toggle="modal"
+                                data-target="#exampleModalCenter">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <p>{{ $data->description }}</p>
-                    <div style="text-align: right;">
-                        <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
-                            style="background-color:#F7941E; margin-top: -100px;" data-toggle="modal"
-                            data-target="#exampleModalCenter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
-                                <path fill="currentColor"
-                                    d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
-                            </svg>
-                        </button>
-                    </div>
+
 
                 </div>
 
@@ -305,11 +306,11 @@
                                 @csrf
                                 <input type="text" id="reply_comment" name="reply_comment" width="500px"
                                     class="form-control form-control-sm rounded-3 me-5" placeholder="Balas komentar dari {{$row->user->name}}....">
-                            
+
                                 <button type="submit" style="background-color: #F7941E; border-radius:10px;"
                                     class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                         </div>
-                    </form>  
+                    </form>
                     @foreach($row->replies as $item)
                     <div class="user d-flex flex-row mb-2">
                         @if ($item->user->foto)
@@ -344,9 +345,9 @@
                         <div class="reply px-7 me-2">
                             <small id="like-count-balasan{{ $item->id }}"> {{ $item->likes }}</small>
                         </div>
-            
+
                         <div class="icons align-items-center input-group">
-            
+
                             <form action="{{ route('Replies.like.balasan', $item->id) }}" method="POST" id="like-form">
                                 @csrf
                                 @if ($userLogin && $item->likes_reply()->where('user_id', $userLogin->id)->exists())
