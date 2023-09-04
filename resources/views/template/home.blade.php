@@ -240,7 +240,7 @@
                                     </b><br>
 
                                     <small>
-                                        {{ $item->description }}
+                                        {{ Str::limit($item->description, 100, '...') }}
                                     </small>
 
                                 </p>
