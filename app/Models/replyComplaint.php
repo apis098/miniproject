@@ -20,7 +20,7 @@ class replyComplaint extends Model
     }
     public function userSender()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id_sender');
     }
     public function likes_reply()
     {

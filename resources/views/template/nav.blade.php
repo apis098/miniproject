@@ -311,7 +311,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">8
+                                                                    <small class="mt-1 ms-1 text-secondary">Membalas
                                                                         keluhan anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"

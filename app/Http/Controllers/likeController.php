@@ -12,6 +12,8 @@ use App\Models\reseps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function Laravel\Prompts\alert;
+
 class likeController extends Controller
 {
     public function like($id)
@@ -69,12 +71,12 @@ class likeController extends Controller
             ]);
             $balasan->increment('likes');
             $balasan->likes_reply()->save($like);
-            if ($balasan->user_id != auth()->user()->id) {
+            if ($balasan->user_id_sender != Auth::user()->id) {
                 $notifications = new notifications();
                 $notifications->notification_from = auth()->user()->id;
-                $notifications->user_id = $balasan->user_id;
+                $notifications->user_id = $balasan->user_id_sender;
                 $notifications->like_reply_id = $like->id;
-                $notifications->complaint_id =$complaintId;
+                $notifications->complaint_id = $complaintId;
                 $notifications->save();
             }
             return response()->json([

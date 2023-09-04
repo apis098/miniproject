@@ -313,15 +313,15 @@
                     </form>
                     @foreach($row->replies as $item)
                     <div class="user d-flex flex-row mb-2">
-                        @if ($item->user->foto)
-                            <img src="{{ asset('storage/' . $item->user->foto) }}" width="30" height="30"
+                        @if ($item->userSender->foto)
+                            <img src="{{ asset('storage/' . $item->userSenderfoto) }}" width="30" height="30"
                                 class="user-img rounded-circle mr-2">
                         @else
                             <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
                                 class="user-img rounded-circle mr-2">
                         @endif
                         <span>
-                            <small class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b>
+                            <small class="font-weight-semibold ms-1 me-2"><b>{{ $item->userSender->name }}</b>
                                 <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"

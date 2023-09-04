@@ -21,7 +21,9 @@ class ReportController extends Controller
         $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
         $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
+        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
+        $allComments = $reportReply->concat($reportReplyComment);
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -46,7 +48,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+        return view('report.index',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
     }
     public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);

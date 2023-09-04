@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['complaint_id', 'user_id','reply_id','user_id_sender','description','profile_id','reply_id_complaints'];
+    protected $fillable = ['complaint_id', 'user_id','reply_id','user_id_sender','description','profile_id'];
 
     public function complaint()
     {

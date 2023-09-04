@@ -494,7 +494,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($reportReply as $row)
+                            @foreach ($allComments as $row)
                                 <tr class="mt-5">
                                     <td style="border-left:1px solid black;" class="mt">
                                         {{ $row->userSender->name }}
