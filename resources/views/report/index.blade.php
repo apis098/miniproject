@@ -810,7 +810,7 @@
                                 <div class="widget-49-meeting-info">
 
                                 </div>
-                                <textarea readonly class="form-control" name="description" rows="5">{{ $row->replies->reply }}</textarea>
+                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -873,7 +873,7 @@
                                     <div class="widget-49-meeting-info">
 
                                     </div>
-                                    <textarea class="form-control" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                    <textarea class="form-control" style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">

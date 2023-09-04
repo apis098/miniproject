@@ -78,7 +78,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Laporkan foto pengguna</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle" style=" font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">Laporkan foto pengguna</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -89,13 +89,13 @@
                             @if($user->foto)
                             <img src="{{ asset('storage/'.$user->foto) }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <textarea class="form-control" name="description" rows="5" placeholder="Alasan"></textarea>
+                            <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
                             <input hidden type="text" name="profile_id" value="{{$user->id}}">
                             <input hidden type="text" name="user_id" value="{{$user->id}}">
                             @else
                             <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px" style="border-radius: 50%"
                                 alt="">
-                            <textarea class="form-control rounded-5" name="description" rows="5" placeholder="Alasan..."></textarea>
+                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan..."></textarea>
                             <input hidden type="text" name="profile_id" value="{{$user->id}}">
                             <input hidden type="text" name="user_id" value="{{$user->id}}">
                             @endif
