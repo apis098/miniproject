@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('alasan')->nullable();
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('like_reply_id')->nullable(); 
+            $table->unsignedBigInteger('reply_id_comment');
             $table->unsignedBigInteger('reply_id')->nullable(); 
             $table->unsignedBigInteger('complaint_id')->nullable(); 
             $table->unsignedBigInteger('profile_id')->nullable(); 

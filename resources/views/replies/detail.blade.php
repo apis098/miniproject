@@ -360,7 +360,7 @@
                                     </button>
                                 @endif
                             </form>
-                            <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
+                            <button type="button" data-toggle="modal" data-target="#modalBalasan{{ $item->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-triangle-exclamation me-2"></i>
                             </button>
                         </div>
@@ -381,7 +381,7 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar</h5>
+                                <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar dari {{$row->user->name}}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -415,7 +415,51 @@
                     </div>
                 </div>
             @endif
+            {{-- modal report balasan komentar --}}
+            @foreach($row->replies as $item)
+            @if($item->id != null)
+            <div class="modal fade" id="modalBalasan{{ $item->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar dari {{$item->user->name}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="{{ route('report.reply.comment', $item->id) }}" method="POST">
+                            @csrf
+                            <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
+                                <!-- Tambahkan kelas "align-items-center" -->
+                                @if ($row->user->foto)
+                                    <img class="rounded-circle" src="{{ asset('storage/' . $row->user->foto) }}"
+                                        width="106px" height="104px"
+                                        style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
+                                        alt="">
+                                    <textarea class="form-control" name="description" style="margin-left: 1em; border-radius: 15px;" rows="5"
+                                        placeholder="Alasan"></textarea>
+                                @else
+                                    <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                        style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
+                                        alt="">
+                                    <textarea class="form-control rounded-5" style="margin-left: 1em; border-radius: 15px;" name="description"
+                                        rows="5" placeholder="Alasan..."></textarea>
+                                @endif
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light text-light"
+                                    style="border-radius: 15px; background-color:#F7941E;"><b
+                                        class="ms-2 me-2">Laporkan</b></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @endforeach
         @endforeach
+       
         </div>
         </div>
         {{-- collapse --}}

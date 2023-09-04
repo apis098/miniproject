@@ -6,6 +6,7 @@ use App\Models\complaint;
 use App\Models\favorite;
 use App\Models\notifications;
 use App\Models\Reply;
+use App\Models\replyComplaint;
 use App\Models\Report;
 use App\Models\reseps;
 use App\Models\User;
@@ -56,6 +57,19 @@ class ReportController extends Controller
         $report->description = $request->description;
         $report->save();
         return redirect()->back()->with('success','Laporan anda telah terkirim');
+    }
+    public function storeReplyComment(Request $request,$id){
+        if(Auth::check()){
+            $reply = replyComplaint::findOrFail($id);
+            $report = new Report();
+            $report->user_id = $reply->user_id;
+            $report->user_id_sender = auth()->user()->id;
+            $report->description = $request->description;
+            $report->save();
+            return redirect()->back()->with('success','Laporan anda telah terkirim');
+        }else{
+            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+        }
     }
     public function storeReply(Request $request ,$id){
         if(Auth::check()) { // Memeriksa apakah pengguna telah login

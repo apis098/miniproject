@@ -100,6 +100,13 @@ class ReplyController extends Controller
             $reply->user_id_sender = auth()->user()->id;
             $reply->reply = $request->reply_comment;
             $reply->save();
+            if($comment->user_id != auth()->user()->id){
+                $notifications = new notifications();
+                $notifications->notification_from = auth()->user()->id;
+                $notifications->user_id = $comment->user_id;
+                $notifications->reply_id_comment = $comment->id;
+                $notifications->save();
+            }
             return redirect()->back()->with('success','Berhasil membalas komentar');
         }else{
             return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
