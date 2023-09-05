@@ -13,6 +13,7 @@ class replyCommentRecipe extends Model
         "users_id",
         "recipe_id",
         "comment_id",
+        "likes",
         "komentar"
     ];
     public function user() {

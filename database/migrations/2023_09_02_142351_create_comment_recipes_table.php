@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('users_id');
             $table->unsignedBigInteger('recipes_id');
+            $table->integer('likes')->default(0);
             $table->text('comment');
             $table->timestamps();
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('comment_recipes');
+       
     }
 };

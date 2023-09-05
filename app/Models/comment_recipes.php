@@ -12,13 +12,17 @@ class comment_recipes extends Model
     protected $fillable = [
         "users_id",
         "recipes_id",
-        "comment"
+        "comment",
+        'like',
     ];
     public function like() 
     {
-        return $this->hasMany(like_comment_recipes::class);
+        return $this->hasMany(like_comment_recipes::class,'recipe_id');
+    }
+    public function user(){
+        return $this->belongsTo(User::class,'users_id');
     }
     public function reply_comment_recipe() {
-        return $this->hasMany(replyCommentRecipe::class);
+        return $this->hasMany(replyCommentRecipe::class,'comment_id');
     }
 }
