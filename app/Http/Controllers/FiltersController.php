@@ -84,13 +84,7 @@ class FiltersController extends Controller
         }
         if ($request->min_time != NULL && $request->max_time != NULL) {
             $min = $request->min_time;
-            if ($request->min_timer === 'jam') {
-                $min *= 60;
-            }
             $max = $request->max_time;
-            if ($request->max_timer === 'jam') {
-                $max *= 60;
-            }
             $recipess->whereBetween('lama_memasak', [$min, $max]);
         }
         
