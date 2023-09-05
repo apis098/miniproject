@@ -66,4 +66,7 @@ class User extends Authenticatable
     public function like_reply_comment_recipe() {
         return $this->hasMany(LikeReplyCommentRecipes::class, "users_id");
     }
+    public function tag_comment() {
+        return $this->hasMany(tagReplyComments::class);
+    }
 }

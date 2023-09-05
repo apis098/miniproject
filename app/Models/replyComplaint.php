@@ -30,5 +30,8 @@ class replyComplaint extends Model
     {
         return $this->hasMany(notifications::class);
     }
+    public function tag_comment() {
+        return $this->hasMany(tagReplyComments::class);
+    }
     
 }

@@ -71,4 +71,7 @@ class reseps extends Model
     public function like_reply_comment_recipe() {
         return $this->belongsTo(LikeReplyCommentRecipes::class, "recipe_id");
     }
+    public function tag_comment() {
+        return $this->hasMany(tagReplyComments::class);
+    }
 }

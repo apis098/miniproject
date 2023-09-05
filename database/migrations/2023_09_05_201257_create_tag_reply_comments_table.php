@@ -20,7 +20,9 @@ return new class extends Migration
             $table->text("isi");
             $table->timestamps();
 
-            $table->foreign("reply_comment_id");
+            $table->foreign("reply_comment_id")->references("id")->on("reply_complaints")->onDelete("cascade");
+            $table->foreign("recipe_id")->references("id")->on("reseps")->onDelete("cascade");
+            $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
         });
     }
 
