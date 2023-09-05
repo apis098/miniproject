@@ -273,7 +273,7 @@
         <div class="my-5 ml-5" style="margin-right: -15%;">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.index')}}" class="nav-link mr-5 active" type="button"
+                    <a href="{{route('Report.index')}}" class="nav-link mr-5 " type="button"
                         aria-selected="true">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                             Laporan resep
@@ -285,8 +285,7 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
-                        </div>
+
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -308,7 +307,7 @@
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.komentar')}}" class="nav-link mr-5 yuhu mt-2"  type="button"
+                    <a href="{{route('Report.komentar')}}" class="nav-link mr-5 yuhu mt-2 active"  type="button"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                             Laporan komentar
@@ -320,8 +319,8 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
-                            hidden></div>
+                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
+                        </div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
@@ -347,64 +346,8 @@
 
 
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" name="resep"
-                                                        placeholder="Cari Laporan Resep">
-                                                    <button  type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    {{-- start tab 1 --}}
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reportResep as $row)
-                            <div id="search-results">
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button  type="button" data-toggle="modal"
-                                            data-target="#modalResep{{ $row->resep_id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
-                                </tr>
-                            </div>
-                            @endforeach
-                        </tbody>
-                    </table>
 
-                    {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
-                </div>
-                {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                <div class="" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
@@ -413,8 +356,8 @@
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
+                                                <form action="/admin/komentar" method="GET">
+                                                    <input type="text" id="" name="komentar"
                                                         placeholder="Cari Laporan Resep">
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
@@ -426,62 +369,7 @@
                             </div>
                         </div>
                     </form>
-
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reportComplaint as $row)
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">
-                                        {{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#modalComplaint{{ $row->complaint_id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
-                </div> --}}
-                {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
-                                                        placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
+                    {{-- start tab 2 --}}
                     <table class="table-custom">
                         <thead>
                             <tr>
@@ -512,62 +400,8 @@
                         </tbody>
                     </table>
                     {{ $reportReply->links('vendor.pagination.defaultReportReply') }}
-                </div> --}}
-                {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-contact-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
-                                                        placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                </div>
 
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reportProfile as $row)
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">
-                                        {{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#modalProfile{{ $row->profile_id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
-                </div> --}}
             </div>
 
         </div>

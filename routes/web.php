@@ -112,6 +112,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
+        Route::get('/keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
+        Route::get('/komentar', [ReportController::class, 'komentar'])->name('Report.komentar');
+        Route::get('/profil', [ReportController::class, 'profil'])->name('Report.profil');
         Route::put('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
         Route::put('/block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::get('/random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');

@@ -273,8 +273,8 @@
         <div class="my-5 ml-5" style="margin-right: -15%;">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.index')}}" class="nav-link mr-5 active" type="button"
-                        aria-selected="true">
+                    <a href="{{route('Report.index')}}" class="nav-link mr-5 " type="button"
+                        aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                             Laporan resep
                             @if ($statusResep > 0)
@@ -285,13 +285,12 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
-                        </div>
+
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.keluhan')}}"  class="nav-link mr-5"  type="button"
-                        aria-selected="false">
+                    <a href="{{route('Report.keluhan')}}"  class="nav-link mr-5 active"  type="button"
+                        aria-selected="true">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                             Laporan keluhan
                             @if ($statusComplaint > 0)
@@ -302,8 +301,7 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="b" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
-                            hidden>
+                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
                 </li>
@@ -347,7 +345,7 @@
 
 
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                {{-- <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
@@ -357,9 +355,9 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" name="resep"
+                                                    <input type="text" id="search-input" name="query"
                                                         placeholder="Cari Laporan Resep">
-                                                    <button  type="submit" class="zoom-effects"
+                                                    <button id="search-button" type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
                                                 </form>
                                             </div>
@@ -369,7 +367,7 @@
                             </div>
                         </div>
                     </form>
-                    {{-- start tab 1 --}}
+
                     <table class="table-custom">
                         <thead>
                             <tr>
@@ -402,10 +400,9 @@
                     </table>
 
                     {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
-                </div>
+                </div> --}}
                 {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-                    tabindex="0">
+                <div    >
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                             <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
@@ -413,8 +410,8 @@
                                     <div class="col-md-12">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
+                                                <form action="/admin/keluhan" method="GET">
+                                                    <input type="text" name="keluhan"
                                                         placeholder="Cari Laporan Resep">
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
@@ -426,7 +423,7 @@
                             </div>
                         </div>
                     </form>
-
+                    {{-- start tab 2 --}}
                     <table class="table-custom">
                         <thead>
                             <tr>
@@ -457,7 +454,7 @@
                         </tbody>
                     </table>
                     {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
-                </div> --}}
+                </div>
                 {{-- end --}}
                 {{-- <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
