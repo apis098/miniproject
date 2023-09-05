@@ -32,16 +32,9 @@ class LikeCommentController extends Controller
             return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
         }
     }
-    public function like_reply_comment_recipe(string $user, string $resep, string $comment)
-    {
-        //dd($user . " " . $resep . " " . $comment);
-        $like = LikeReplyCommentRecipes::query();
-        $like->where("users_id", $user);
-        $like->where("recipe_id", $resep);
-        $like->where("comment_id", $comment);
-        $count_like = $like->count();
-        //$like = LikeReplyCommentRecipes::where('users_id', $user)->where('recipe_id', $resep)->where('comment_id', $comment)->count();
-        if ($count_like == 0) {
+    public function like_reply_comment_recipe(string $user, string $resep, string $comment) {
+        $like = LikeReplyCommentRecipes::where('users_id', $user)->where('recipe_id', $resep)->where('comment_id', $comment)->count();
+        if ($like == 0) {
             LikeReplyCommentRecipes::create([
                 'users_id' => $user,
                 'recipe_id' => $resep,
@@ -49,8 +42,11 @@ class LikeCommentController extends Controller
             ]);
             return redirect()->back()->with('success', 'Sukses menyukai komentar!');
         } else {
-            $like->delete();
-            return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
+            $d = LikeReplyCommentRecipes::where('users_id', $user)->where('recipe_id', $resep)->where('comment_id', $comment)->delete();
+            if ($d) {
+                return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
+            }
         }
+        
     }
 }
