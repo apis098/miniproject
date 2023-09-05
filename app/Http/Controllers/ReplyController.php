@@ -135,7 +135,7 @@ class ReplyController extends Controller
 
         if(auth()->user()->role == "admin"){
             $notification = new notifications();
-            $notification->user_id = $data->user_id;
+            $notification->user_id = $data->user_id_sender;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
