@@ -158,7 +158,7 @@ class ReportController extends Controller
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
-            return redirect()->back()->with('success', 'Komentar telah diblokir');
+            return redirect()->back()->with('success', 'Komentar berhasil diblokir');
         }
         if($report->complaint_id != null){
             $report->complaint->delete();

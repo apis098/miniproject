@@ -94,6 +94,7 @@ Route::post('/comments/reply/{id}/like', [likeController::class, 'likeBalasan'])
 Route::post('/resep/{id}/like', [likeController::class, 'likeResep'])->name('Resep.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
+Route::delete('/reply-comment-destroy/{id}', [ReplyController::class, 'destroyComment'])->name('replyComment.destroy');
 
 //report
 Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');

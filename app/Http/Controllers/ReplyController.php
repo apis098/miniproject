@@ -113,11 +113,35 @@ class ReplyController extends Controller
         }
        
     }
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         $data = Reply::findOrFail($id);
         $data->delete();
+        
+        if(auth()->user()->role =="admin"){
+            $notification = new notifications();
+            $notification->user_id = $data->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->reply_id_report = 1;
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            return redirect()->back()->with('info','Komentar berhasil diblokir');
+        }
+        return redirect()->back()->with('info', 'Komentar berhasil dihapus');
+    }
+    public function destroyComment(Request $request,$id){
+        $data = replyComplaint::findOrFail($id);
+        $data->delete();
 
-        return redirect()->back()->with('success', 'Data has been deleted successfully.');
+        if(auth()->user()->role == "admin"){
+            $notification = new notifications();
+            $notification->user_id = $data->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->reply_id_report = 1;
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            return redirect()->back()->with('info','Komentar berhasil diblokir');
+        }
+        return redirect()->back()->with('info','komentar telah dihapus');
     }
 }

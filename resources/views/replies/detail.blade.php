@@ -1,5 +1,6 @@
 @extends('template.nav')
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <style>
         .card {
 
@@ -287,9 +288,23 @@
                         </button>
                     @endif
                 </form>
+                @if($userLogin->id != $row->user_id && $userLogin->role != "admin")
                 <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
                     class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-triangle-exclamation me-2"></i>
                 </button>
+                @elseif(auth()->user()->role == "admin")
+                <button type="button" data-toggle="modal" data-target="#blockModal{{ $row->id }}"
+                    class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z" fill="currentColor" fill-rule="nonzero"/></svg>
+                </button>
+                @else
+                <form action="{{route('ReplyDestroy.destroy',$row->id)}}" method="POST" id="formDelete{{$row->id}}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" onclick="confirmation({{ $row->id }})"
+                        class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                    </button>
+                </form>
+                @endif
             </div>
             <div class="d-flex justify-content-end input-group">
                 <a href="#" class="text-secondary " data-toggle="collapse" data-target="#collapse{{$row->id}}"
@@ -360,9 +375,23 @@
                                     </button>
                                 @endif
                             </form>
+                            @if($userLogin->id != $item->user_id_sender && $userLogin->role != "admin")
                             <button type="button" data-toggle="modal" data-target="#modalBalasan{{ $item->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-triangle-exclamation me-2"></i>
                             </button>
+                            @elseif(auth()->user()->role == "admin")
+                            <button type="button" data-toggle="modal" data-target="#blockModalReply{{ $item->id }}"
+                                class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z" fill="currentColor" fill-rule="nonzero"/></svg>
+                            </button>
+                            @else
+                            <form action="{{route('replyComment.destroy',$item->id)}}" method="POST" id="replyDelete{{$item->id}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="confirmationReply({{ $item->id }})"
+                                    class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
+                            @endif
                         </div>
                     </div>
                     @endforeach
@@ -415,6 +444,89 @@
                     </div>
                 </div>
             @endif
+            @forEach($replies as $row)
+            @if(!empty($row->id))
+            <div class="modal fade" id="blockModal{{ $row->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form action="{{ route('ReplyDestroy.destroy', $row->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="reportModal"
+                                    style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                    Kirim Peringatan</h5>
+                                <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body d-flex align-items-center col-12">
+                                <!-- Tambahkan kelas "align-items-center" -->
+                                <div class="col-4">
+                                    <img style="margin-left: -50%;" class="rounded-circle mb-1" src="{{ asset('images/alasan.png') }}" width="250px" height="180px">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="widget-49-meeting-info">
+
+                                    </div>
+                                    <textarea class="form-control" style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light text-light"
+                                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
+                                        class="ms-2 me-2">Kirim</b>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @endforeach
+
+            @foreach($row->replies as $item)
+            @if(!empty($item->id))
+            <div class="modal fade" id="blockModalReply{{ $item->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form action="{{ route('replyComment.destroy', $item->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="reportModal"
+                                    style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                    Kirim Peringatan</h5>
+                                <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body d-flex align-items-center col-12">
+                                <!-- Tambahkan kelas "align-items-center" -->
+                                <div class="col-4">
+                                    <img style="margin-left: -50%;" class="rounded-circle mb-1" src="{{ asset('images/alasan.png') }}" width="250px" height="180px">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="widget-49-meeting-info">
+
+                                    </div>
+                                    <textarea class="form-control" style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light text-light"
+                                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
+                                        class="ms-2 me-2">Kirim</b>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @endforeach
             {{-- modal report balasan komentar --}}
             @foreach($row->replies as $item)
             @if($item->id != null)
@@ -423,7 +535,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar dari {{$item->user->name}}</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar dari {{$item->userSender->name}}</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -432,8 +544,8 @@
                             @csrf
                             <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
                                 <!-- Tambahkan kelas "align-items-center" -->
-                                @if ($row->user->foto)
-                                    <img class="rounded-circle" src="{{ asset('storage/' . $row->user->foto) }}"
+                                @if ($item->user->foto)
+                                    <img class="rounded-circle" src="{{ asset('storage/' . $item->user->foto) }}"
                                         width="106px" height="104px"
                                         style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                         alt="">
@@ -465,7 +577,7 @@
         {{-- collapse --}}
     </section>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const readMoreButtons = document.querySelectorAll(".read-more-button");
@@ -583,6 +695,55 @@
                 });
             });
         });
+        function confirmation(num) {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda yakin ingin mengahpus komentar?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                        function(instance, toast) {
+                            // Jika pengguna menekan tombol "Ya", kirim form
+                            document.getElementById('formDelete' + num).submit();
+                        }
+                    ],
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                        function(instance, toast) {
+                            instance.hide({
+                                transitionOut: 'fadeOut'
+                            }, toast, 'button');
+                        }
+                    ],
+                ],
+            });
+        }function confirmationReply(num) {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda yakin ingin mengahpus komentar?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
+                        function(instance, toast) {
+                            // Jika pengguna menekan tombol "Ya", kirim form
+                            document.getElementById('replyDelete' + num).submit();
+                        }
+                    ],
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
+                        function(instance, toast) {
+                            instance.hide({
+                                transitionOut: 'fadeOut'
+                            }, toast, 'button');
+                        }
+                    ],
+                ],
+            });
+        }
     </script>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
