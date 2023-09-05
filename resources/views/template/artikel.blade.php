@@ -658,7 +658,6 @@
                                 </div>
                                 @if ($userLog == 2)
                                     <div class="reply px-7 me-2">
-                                        <small id="like-count-balasan"> {{ $likes->count() }}</small>
                                     </div>
                                     @php
                                         $liked2 = \App\Models\LikeReplyCommentRecipes::query()
@@ -679,8 +678,10 @@
                                         ->where('comment_id', $ii->id)
                                         ->get();
                                 @endphp
+                                <div class="d-flex flex-row">
                                 @if ($userLog == 2)
-                                    <form
+                                    <span style="font-weight: 100; color:#b7b4b4">{{ $likesf->count() }}</span>
+                                    <form class="ml-2"
                                         action="/like/komentar/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $ii->id }}"
                                         method="post">
                                         @csrf
@@ -696,17 +697,26 @@
                                             </button>
                                         @endif
                                     </form>
-                                    {{ $likesf->count() }}
-
+                                    <button type="button" data-toggle="modal"
+                                    data-target="#modalBalasan{{ $ii->id }}"
+                                    class="yuhu text-danger btn-sm rounded-5 "><i
+                                        class="fa-solid fa-triangle-exclamation me-2"></i>
+                                </button>
                                 @else
-                                    <form>
+                                <span style="font-weight: 100; color:#b7b4b4">{{ $likesf->count() }}</span>
+                                    <form class="ml-2">
                                         <button type="button" onclick="harusLogin()" class="btn btn-light me-2">
                                             <img width="25px" src="{{ asset('images/like-1-svgrepo-com.svg') }}"
                                                 alt="">
-                                            {{ $likesf->count() }}
                                         </button>
                                     </form>
+                                    <button type="button" data-toggle="modal"
+                                    data-target="#modalBalasan{{ $ii->id }}"
+                                    class="yuhu text-danger btn-sm rounded-5 "><i
+                                        class="fa-solid fa-triangle-exclamation me-2"></i>
+                                </button>
                                 @endif
+                                </div>
                             </div>
                         @endforeach
                     @endif
