@@ -403,7 +403,7 @@
                         });
                         setTimeout(() => {
                             window.location.href = '/artikel/{{ $edit_resep->id }}/'+response.data.nama_resep;
-                        }, 5000);
+                        }, 2000);
                     },
                     error: function error(xhr, status, errors) {
                         //alert(xhr.responseText);
