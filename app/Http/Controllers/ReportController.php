@@ -16,9 +16,18 @@ use Illuminate\Support\Facades\Storage;
 use Str;
 class ReportController extends Controller
 {
-    public function index(){
-        $data = Report::all();
+
+    public function index(Request $request){
+
+
         $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
+        if ($request->has('resep')) {
+            $searchQuery = $request->resep;
+            $reportResep = Report::where('description', 'like', '%' . $searchQuery . '%')
+                ->whereNotNull("resep_id")
+                ->paginate(6, ['*'], "report-resep-page");
+        }
+        $data = Report::all();
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
         $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
         $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
@@ -50,6 +59,152 @@ class ReportController extends Controller
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.index',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
     }
+
+    public function keluhan(Request $request){
+
+        $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
+
+        if ($request->has('keluhan')) {
+            $searchQuery = $request->keluhan;
+            $reportComplaint = Report::where('description', 'like', '%' . $searchQuery . '%')
+                ->whereNotNull("complaint_id")
+                ->paginate(6, ['*'], "report-complaint-page");
+        }
+
+        $data = Report::all();
+        $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
+        $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
+        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
+        $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
+        $allComments = $reportReply->concat($reportReplyComment);
+        $userLogin = Auth::user();
+        // untuk user belum login
+        $userLog = 1;
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount=[];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $statusProfile = $data->whereNotNull('profile_id')->count();
+                $statusResep = $data->whereNotNull('resep_id')->count();
+                $statusComplaint = $data->whereNotNull('complaint_id')->count();
+                $statusKomentar = $data->whereNotNull('reply_id')->count();
+                $userLog = 2;
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        $show_resep = reseps::find(2);
+        $title = "Data laporan pelanggaran panduan komunitas";
+        return view('report.keluhan',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+
+    }
+
+    public function komentar(Request $request){
+
+        $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
+        if ($request->has('komentar')) {
+            $searchQuery = $request->komentar;
+            $reportReply = Report::where('description', 'like', '%' . $searchQuery . '%')
+                ->whereNotNull("reply_id")
+                ->paginate(6, ['*'], "report-reply-page");
+        }
+
+        $data = Report::all();
+        $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
+        $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
+        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
+        $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
+        $allComments = $reportReply->concat($reportReplyComment);
+        $userLogin = Auth::user();
+        // untuk user belum login
+        $userLog = 1;
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount=[];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $statusProfile = $data->whereNotNull('profile_id')->count();
+                $statusResep = $data->whereNotNull('resep_id')->count();
+                $statusComplaint = $data->whereNotNull('complaint_id')->count();
+                $statusKomentar = $data->whereNotNull('reply_id')->count();
+                $userLog = 2;
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        $show_resep = reseps::find(2);
+        $title = "Data laporan pelanggaran panduan komunitas";
+        return view('report.komentar',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+
+    }
+
+    public function profil(Request $request){
+
+
+        $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
+        if ($request->has('profil')) {
+            $searchQuery = $request->profil;
+            $reportProfile = Report::where('description', 'like', '%' . $searchQuery . '%')
+            ->whereNotNull("profile_id")
+            ->paginate(6, ['*'], "report-profile-page");
+        }
+
+        $data = Report::all();
+        $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
+        $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
+        $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
+        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
+        $allComments = $reportReply->concat($reportReplyComment);
+        $userLogin = Auth::user();
+        // untuk user belum login
+        $userLog = 1;
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount=[];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $statusProfile = $data->whereNotNull('profile_id')->count();
+                $statusResep = $data->whereNotNull('resep_id')->count();
+                $statusComplaint = $data->whereNotNull('complaint_id')->count();
+                $statusKomentar = $data->whereNotNull('reply_id')->count();
+                $userLog = 2;
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
+        $show_resep = reseps::find(2);
+        $title = "Data laporan pelanggaran panduan komunitas";
+        return view('report.profil',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+
+    }
+
+    public function search(Request $request)
+{
+    $query = $request->input('query');
+    $results = Report::where('description', 'LIKE', "%$query%")->get();
+
+    return view('report.index', ['results' => $results]);
+}
+
+
+
+
     public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);
         $report = new Report();
