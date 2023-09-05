@@ -504,7 +504,7 @@
                                     <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                                     <td style="border-right:1px solid black;">
                                         <button type="button" data-toggle="modal"
-                                            data-target="#modalKomentar{{ $row->reply_id }}"
+                                            data-target="#modalKomentar{{ $row->id }}"
                                             class="btn btn-light btn-sm rounded-3 text-light"
                                             style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
                                     </td>
@@ -777,9 +777,8 @@
     @endforeach
     {{-- akhir modal --}}
     {{-- modal komentar --}}
-    @foreach ($data as $row)
-        @if ($row->reply_id != null)
-            <div class="modal fade" id="modalKomentar{{ $row->reply_id }}" tabindex="-1" role="dialog"
+    @foreach ($allComments as $row)
+            <div class="modal fade" id="modalKomentar{{ $row->id }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -810,7 +809,12 @@
                                 <div class="widget-49-meeting-info">
 
                                 </div>
-                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
+                                @if(!empty($row->replies->reply))
+                                    <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
+                                @elseif(!empty($row->reply_complaint->reply))
+                                <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_complaint->reply }}</textarea>
+                                @endif
+                                
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -842,7 +846,6 @@
                     </div>
                 </div>
             </div>
-        @endif
     @endforeach
     {{-- end Modal --}}
     {{-- Model Terima laporan --}}

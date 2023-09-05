@@ -66,6 +66,7 @@ class ReportController extends Controller
             $report = new Report();
             $report->user_id = $reply->user_id;
             $report->user_id_sender = auth()->user()->id;
+            $report->reply_id_complaint = $reply->id;
             $report->description = $request->description;
             $report->save();
             return redirect()->back()->with('success','Laporan anda telah terkirim');
