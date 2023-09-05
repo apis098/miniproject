@@ -324,7 +324,9 @@ class ResepsController extends Controller
             if ($request->has("hapus_langkah")) {
                 foreach ($request->hapus_langkah as $key => $v) {
                     $d = (int)$v;
-                    langkah_reseps::where("id", $d)->delete();
+                    $lr = langkah_reseps::where("id", $d)->first();
+                    Storage::delete("public/".$lr->foto_langkah);
+                    $lr->delete();
                 }
             }
             foreach ($request->bahan_resep as $i => $b) {
