@@ -645,7 +645,7 @@
                                             {{ $ii->user->name }}
                                         </h6>
                                         <div class="d-flex align-items-center mb-3">
-                                            <p class="mb-0" style="font-weight: 100">
+                                            <p class="mb-0" style="font-weight: 100; font-size: 15px;">
                                                 {{ $ii->created_at->diffForHumans() }}
                                             </p>
 
