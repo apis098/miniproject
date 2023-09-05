@@ -31,4 +31,5 @@ class komentar_resep extends Controller
             return redirect()->back()->with('success', 'Sukses memberikan komentar!');
         }
     }
+    
 }

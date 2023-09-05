@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\comment_recipes;
 use App\Models\like_comment_recipes;
 use App\Models\LikeReplyCommentRecipes;
+use App\Models\notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LikeCommentController extends Controller
 {
-    public function like_comment_recipe(string $id, string $id_resep)
+    public function like_comment_recipe($id)
     {
+        $comment = comment_recipes::findOrFail($id);
         $log = Auth::user();
         if ($log == false) {
             return redirect()->back()->with("error", "Anda harus login dulu sebelum menyukai komentar!");
@@ -23,11 +26,20 @@ class LikeCommentController extends Controller
             # code...
             like_comment_recipes::create([
                 "users_id" => Auth::user()->id,
-                "comment_id" => $id,
-                "recipe_id" => $id_resep
+                "comment_id" => $comment->id,
+                "recipe_id" => $comment->recipes_id,
             ]);
+            if ($comment->users_id != auth()->user()->id){
+                $notifications = new notifications();
+                $notifications->notification_from = auth()->user()->id;
+                $notifications->user_id = $comment->users_id;
+                $notifications->save();
+            }
+            
+            $comment->increment('likes');
             return redirect()->back()->with("success", "Sukses menyukai komentar!");
         } else {
+            $comment->decrement('likes');
             $like->delete();
             return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
         }
