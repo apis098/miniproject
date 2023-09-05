@@ -34,7 +34,7 @@
                             <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
                                 id="formFile">
                         </button>
-                        <div class="col-8 my-auto" id="infos"
+                        <div class="col-8 my-auto text-truncate" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Tidak ada file terpilih</div>
                     </div>
@@ -222,7 +222,7 @@
                                                     style="display: none;" type="file"
                                                     id="inputan_foto_langkah{{ $int }}">
                                             </button>
-                                            <div class="col-8 my-auto" id="foto_langkah_info{{ $int }}"
+                                            <div class="col-8 my-auto text-truncate" id="foto_langkah_info{{ $int }}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>
@@ -500,7 +500,7 @@
                                                     hidden type="file"
                                                     id="inputan_foto_langkah${num2}">
                                             </button>
-                                            <div class="col-8 my-auto" id="foto_langkah_info${num2}"
+                                            <div class="col-8 my-auto text-truncate" id="foto_langkah_info${num2}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>

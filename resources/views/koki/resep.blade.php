@@ -212,7 +212,7 @@
                                         <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
                                             style="display: none;" type="file" id="inputan" required>
                                     </button>
-                                    <div class="col-8 my-auto" id="fileinfo"
+                                    <div class="col-8 my-auto text-truncate" id="fileinfo"
                                         style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                         Tidak ada file terpilih</div>
                                 </div>
@@ -493,7 +493,7 @@
                                         <input name="foto_langkah_resep[]" class="form-control my-auto mx-1" style="display: none;"
                                             type="file" id="inputann${num2}">
                                     </button>
-                                    <div class="col-8 my-auto" id="fileinfo${num2}"
+                                    <div class="col-8 my-auto text-truncate" id="fileinfo${num2}"
                                         style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                         Tidak ada file terpilih</div>
                                 </div>
