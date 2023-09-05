@@ -460,7 +460,8 @@
                             </form>
                     </div>
                 @else
-                    <form>
+                    <form action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}" method="POST">
+                        @csrf
                         <div class="input-group">
                             <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
                                 {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
@@ -583,9 +584,9 @@
             {{-- collapse --}}
             <div class="collapse" id="collapse{{ $row->id }}">
                 <div class="card card-body mx-3">
-                    <form action="{{ route('ReplyComment.store', $row->id) }}" method="POST">
+                    <form action="{{ route('balasan.komentar.resep', $row->id) }}" method="POST">
+                        @csrf
                         <div class="input-group mb-3">
-                            @csrf
                             <input type="text" id="reply_comment" name="reply_comment" width="500px"
                                 class="form-control form-control-sm rounded-3 me-5"
                                 placeholder="Balas komentar dari {{ $row->user->name }}....">

@@ -48,6 +48,7 @@ class artikels extends Controller
         $show_resep = reseps::find($id);
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
+      
         return view('template.artikel', compact('admin','comment_count', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

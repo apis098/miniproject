@@ -30,6 +30,16 @@ class komentar_resep extends Controller
         if ($c) {
             return redirect()->back()->with('success', 'Sukses memberikan komentar!');
         }
+        return redirect()->back()->with('success','Sukses menambahkan komentar');
     }
-    
+    public function reply_comment(Request $request,$id){
+        $comment = comment_recipes::findOrFail($id);
+        $reply = new replyCommentRecipe();
+        $reply->users_id = auth()->user()->id;
+        $reply->recipe_id = $comment->recipes_id;
+        $reply->comment_id = $comment->id;
+        $reply->komentar = $request->reply_comment;
+        $reply->save();
+        return redirect()->back()->with('success','Sukses membalas komentar');
+    }
 }
