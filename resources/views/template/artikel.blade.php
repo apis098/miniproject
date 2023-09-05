@@ -384,7 +384,7 @@
             </div>
         </div>
     </section>
-    <section class="container">
+    <section class="container mb-5">
         <div class="row d-flex justify-content-center">
             <div class="">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
@@ -410,7 +410,8 @@
                                         {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
                                         placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                    <button type="button" onclick="harusLogin()" style="background-color: #F7941E; border-radius:10px;"
+                                    <button type="button" onclick="harusLogin()"
+                                        style="background-color: #F7941E; border-radius:10px;"
                                         class="btn btn-light btn-sm text-light ms-3"><b
                                             class="me-3 ms-3">Kirim</b></button>
                                 </div>
@@ -419,244 +420,294 @@
                     </div>
                 </div>
             </div>
+
+            <style>
+                .post-content {
+                    max-height: 100px;
+                    /* Atur tinggi maksimum konten yang ditampilkan */
+                    overflow: hidden;
+                    /* Sembunyikan teks yang berlebihan */
+                }
+
+                .read-more-button {
+                    background-color: #007BFF;
+                    color: #fff;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    margin-top: 10px;
+                    /* Sembunyikan tombol secara default */
+                }
+
+                .post.open .post-content {
+                    max-height: none;
+                    /* Tampilkan seluruh teks saat tombol ditekan */
+                }
+
+                .post.open .read-more-button {
+                    /* Sembunyikan tombol saat teks ditampilkan secara penuh */
+                }
+
+                .card {
+
+                    border: none;
+                    box-shadow: 5px 6px 6px 2px #e9ecef;
+                    border-radius: 4px;
+                }
+
+                .reply {
+
+                    margin-left: 12px;
+                }
+
+                .reply small {
+
+                    color: #b7b4b4;
+
+                }
+
+
+                .reply small:hover {
+
+                    color: green;
+                    cursor: pointer;
+
+                }
+            </style>
+
             @foreach ($show_resep->comment_user()->get() as $item)
-                <div class="">
-                    <div class="mb-4">
-                        <div class="card">
-                            <div class="card-body p-4">
-                                <div class="d-flex flex-row">
-                                    <div class="">
-                                        @if ($item->foto)
-                                            <img class="rounded-circle shadow-1-strong me-3"
-                                                src="{{ asset('storage/' . $item->foto) }}" alt="avatar"
-                                                width="65" height="65" />
+                <div class="card p-3">
+                    <div class="d-flex justify-content-between">
+                        <div class="d-flex flex-row">
+
+                            @if ($item->foto)
+                                <img class="user-img rounded-circle mr-2" src="{{ asset('storage/' . $item->foto) }}"
+                                    alt="avatar" width="30" height="30" />
+                            @else
+                                <img class="rounded-circle shadow-1-strong me-3" src="{{ asset('images/default.jpg') }}"
+                                    alt="avatar" width="65" height="65" />
+                            @endif
+
+                            @if ($userLog == 2)
+                                @if ($item->id == Auth::user()->id)
+                                    <a href="/koki/index">
+                                        <h5>{{ $item->name }}</h5>
+                                    </a>
+                                @else
+                                    <a href="/profile-orang-lain/{{ $item->id }}">
+                                        <h5>{{ $item->name }}</h5>
+                                    </a>
+                                @endif
+                            @else
+                                <a href="/profile-orang-lain/{{ $item->id }}">
+                                    <h5>{{ $item->name }}</h5>
+                                </a>
+                            @endif
+                            <p class="small">
+                                {{ $item->pivot->created_at->diffForHumans() }}
+                            </p>
+                            <p>
+                                {{ $item->pivot->comment }}
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    @if ($userLog == 2)
+                                        @php
+                                            $liked = \App\Models\like_comment_recipes::query()
+                                                ->where('users_id', Auth::user()->id)
+                                                ->where('comment_id', $item->pivot->id)
+                                                ->exists();
+                                        @endphp
+                                    @else
+                                        @php
+                                            $liked = false;
+                                        @endphp
+                                    @endif
+
+                                    @php
+                                        $likes = \App\Models\like_comment_recipes::query()
+                                            ->where('comment_id', $item->pivot->id)
+                                            ->get();
+                                    @endphp
+                                    @if ($userLog == 2)
+                                        <div class="action d-flex mt-2 align-items-center">
+                                            <div class="reply px-7 me-2">
+                                                <small id="like-count-balasan"> {{ $likes->count() }}</small>
+                                            </div>
+                                            <div class="icons align-items-center input-group">
+                                                <form action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @if ($liked)
+                                                        <button type="submit"
+                                                            class="yuhu me-2 text-warning btn-sm rounded-5 like-button ">
+                                                            <i class="fa-solid fa-thumbs-up"></i>
+                                                        </button>
+                                                    @else
+                                                        <button type="submit"
+                                                            class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                                            <i class="fa-regular fa-thumbs-up"></i>
+                                                        </button>
+                                                    @endif
+
+                                                </form>
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#modalBalasan{{ $item->id }}"
+                                                    class="yuhu text-danger btn-sm rounded-5 "><i
+                                                        class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                </button>
+                                            </div>
                                         @else
-                                            <img class="rounded-circle shadow-1-strong me-3"
-                                                src="{{ asset('images/default.jpg') }}" alt="avatar" width="65"
-                                                height="65" />
-                                        @endif
+                                            <div class="reply px-7 me-2">
+                                                <small id="like-count-balasan"> {{ $likes->count() }}</small>
+                                            </div>
+                                            <form>
+                                                <button type="button" onclick="harusLogin()"
+                                                    class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                                    <i class="fa-regular fa-thumbs-up"></i>
+                                                </button>
+                                            </form>
+                                    @endif
+                                    <!-- Button trigger modal -->
+                                    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal{{ $item->pivot->id }}">
+                                                    Balasan
+                                                </button> --}}
+
+                                    <div class="d-flex justify-content-end input-group">
+                                        <a href="#" class="text-secondary " data-toggle="collapse"
+                                            data-target="#collapse{{ $item->id }}" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                        </a>
                                     </div>
-                                    <div class="">
-                                        @if ($userLog == 2)
-                                            @if ($item->id == Auth::user()->id)
-                                                <a href="/koki/index">
-                                                    <h5>{{ $item->name }}</h5>
-                                                </a>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $item->pivot->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                                    Balas Komentar {{ $item->name }}
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            @if ($userLog == 2)
+                                                <form
+                                                    action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $item->pivot->id }}"
+                                                    method="post">
+                                                    {{ csrf_field() }}
+                                                    <div class="container mx-auto modal-body row">
+                                                        <input name="komentar" placeholder="Masukkan balasan komentar..."
+                                                            class="form-control col-10" maxlength="225" />
+                                                        <button type="submit" class="btn btn-primary col-2">Kirim
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             @else
-                                                <a href="/profile-orang-lain/{{ $item->id }}">
-                                                    <h5>{{ $item->name }}</h5>
-                                                </a>
+                                                <form>
+                                                    <div class="container mx-auto modal-body row">
+                                                        <input name="komentar" placeholder="Masukkan balasan komentar..."
+                                                            class="form-control col-10" maxlength="225" readonly />
+                                                        <button type="button" onclick="harusLogin()"
+                                                            class="btn btn-primary col-2">Kirim
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             @endif
-                                        @else
-                                            <a href="/profile-orang-lain/{{ $item->id }}">
-                                                <h5>{{ $item->name }}</h5>
-                                            </a>
-                                        @endif
-                                        <p class="small">
-                                            {{ $item->pivot->created_at->diffForHumans() }}
-                                        </p>
-                                        <p>
-                                            {{ $item->pivot->comment }}
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                @if ($userLog == 2)
-                                                    @php
-                                                        $liked = \App\Models\like_comment_recipes::query()
-                                                            ->where('users_id', Auth::user()->id)
-                                                            ->where('comment_id', $item->pivot->id)
-                                                            ->exists();
-                                                    @endphp
-                                                @else
-                                                    @php
-                                                        $liked = false;
-                                                    @endphp
-                                                @endif
+                                            <div class="modal-footer">
                                                 @php
-                                                    $likes = \App\Models\like_comment_recipes::query()
+                                                    $reply_comment = \App\Models\replyCommentRecipe::query()
                                                         ->where('comment_id', $item->pivot->id)
                                                         ->get();
                                                 @endphp
-                                                @if ($userLog == 2)
-                                                    <form
-                                                        action="/koki/sukai/{{ $item->pivot->id }}/{{ $show_resep->id }}"
-                                                        method="post">
-                                                        @csrf
-                                                        <button type="submit" class="btn btn-light me-2">
-                                                            @if ($liked)
-                                                                <img width="25px"
-                                                                    src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
-                                                                    alt="">
-                                                            @else
-                                                                <img width="25px"
-                                                                    src="{{ asset('images/like-1-svgrepo-com.svg') }}"
-                                                                    alt="">
-                                                            @endif
-                                                            {{ $likes->count() }}
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <form>
-                                                        <button type="button" onclick="harusLogin()"
-                                                            class="btn btn-light me-2">
-                                                            <img width="25px"
-                                                                src="{{ asset('images/like-1-svgrepo-com.svg') }}"
-                                                                alt="">
-                                                            {{ $likes->count() }}
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal{{ $item->pivot->id }}">
-                                                    Balasan
-                                                </button>
+                                                @if ($reply_comment != null)
+                                                    @foreach ($reply_comment as $ii)
+                                                        <div class="card-body p-4">
+                                                            <div class="d-flex flex-start">
+                                                                @if ($ii->user->foto)
+                                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                                        src="{{ asset('storage/' . $ii->user->foto) }}"
+                                                                        alt="avatar" width="60" height="60" />
+                                                                @else
+                                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                                        src="{{ asset('images/default-profile.png') }}"
+                                                                        alt="avatar" width="60" height="60" />
+                                                                @endif
 
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal{{ $item->pivot->id }}"
-                                                    tabindex="-1" aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                    Balas Komentar {{ $item->name }}
-                                                                </h1>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <div>
+                                                                    <h6 class="fw-bold mb-1">
+                                                                        {{ $ii->user->name }}
+                                                                    </h6>
+                                                                    <div class="d-flex align-items-center mb-3">
+                                                                        <p class="mb-0">
+                                                                            {{ $ii->created_at->diffForHumans() }}
+                                                                        </p>
+
+                                                                    </div>
+                                                                    <p class="mb-0">
+                                                                        {{ $ii->komentar }}
+                                                                    </p>
+                                                                </div>
+
                                                             </div>
                                                             @if ($userLog == 2)
+                                                                @php
+                                                                    $liked2 = \App\Models\LikeReplyCommentRecipes::query()
+                                                                        ->where('users_id', Auth::user()->id)
+                                                                        ->where('recipe_id', $show_resep->id)
+                                                                        ->where('comment_id', $ii->id)
+                                                                        ->exists();
+                                                                @endphp
+                                                            @else
+                                                                @php
+                                                                    $liked2 = false;
+                                                                @endphp
+                                                            @endif
+                                                            @php
+                                                                $likes = \App\Models\LikeReplyCommentRecipes::query()
+                                                                    ->where('comment_id', $ii->id)
+                                                                    ->get();
+                                                            @endphp
+                                                            @if ($userLog == 2)
                                                                 <form
-                                                                    action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $item->pivot->id }}"
+                                                                    action="/like/komentar/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $ii->id }}"
                                                                     method="post">
-                                                                    {{ csrf_field() }}
-                                                                    <div class="container mx-auto modal-body row">
-                                                                        <input name="komentar"
-                                                                            placeholder="Masukkan balasan komentar..."
-                                                                            class="form-control col-10" maxlength="225" />
-                                                                        <button type="submit"
-                                                                            class="btn btn-primary col-2">Kirim
-                                                                        </button>
-                                                                    </div>
+                                                                    @csrf
+                                                                    <button type="submit" class="btn btn-light me-2">
+                                                                        @if ($liked2)
+                                                                            <img width="25px"
+                                                                                src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
+                                                                                alt="">
+                                                                        @else
+                                                                            <img width="25px"
+                                                                                src="{{ asset('images/like-1-svgrepo-com.svg') }}"
+                                                                                alt="">
+                                                                        @endif
+                                                                        {{ $likes->count() }}
+                                                                    </button>
                                                                 </form>
                                                             @else
                                                                 <form>
-                                                                    <div class="container mx-auto modal-body row">
-                                                                        <input name="komentar"
-                                                                            placeholder="Masukkan balasan komentar..."
-                                                                            class="form-control col-10" maxlength="225" readonly/>
-                                                                        <button type="button" onclick="harusLogin()"
-                                                                            class="btn btn-primary col-2">Kirim
-                                                                        </button>
-                                                                    </div>
+                                                                    <button type="button" onclick="harusLogin()"
+                                                                        class="btn btn-light me-2">
+                                                                        <img width="25px"
+                                                                            src="{{ asset('images/like-1-svgrepo-com.svg') }}"
+                                                                            alt="">
+                                                                        {{ $likes->count() }}
+                                                                    </button>
                                                                 </form>
                                                             @endif
-                                                            <div class="modal-footer">
-                                                                @php
-                                                                    $reply_comment = \App\Models\replyCommentRecipe::query()
-                                                                        ->where('comment_id', $item->pivot->id)
-                                                                        ->get();
-                                                                @endphp
-                                                                @if ($reply_comment != null)
-                                                                    @foreach ($reply_comment as $ii)
-                                                                        <div class="card-body p-4">
-                                                                            <div class="d-flex flex-start">
-                                                                                @if ($ii->user->foto)
-                                                                                    <img class="rounded-circle shadow-1-strong me-3"
-                                                                                        src="{{ asset('storage/' . $ii->user->foto) }}"
-                                                                                        alt="avatar" width="60"
-                                                                                        height="60" />
-                                                                                @else
-                                                                                    <img class="rounded-circle shadow-1-strong me-3"
-                                                                                        src="{{ asset('images/default-profile.png') }}"
-                                                                                        alt="avatar" width="60"
-                                                                                        height="60" />
-                                                                                @endif
-
-                                                                                <div>
-                                                                                    <h6 class="fw-bold mb-1">
-                                                                                        {{ $ii->user->name }}
-                                                                                    </h6>
-                                                                                    <div
-                                                                                        class="d-flex align-items-center mb-3">
-                                                                                        <p class="mb-0">
-                                                                                            {{ $ii->created_at->diffForHumans() }}
-                                                                                        </p>
-
-                                                                                    </div>
-                                                                                    <p class="mb-0">
-                                                                                        {{ $ii->komentar }}
-                                                                                    </p>
-                                                                                </div>
-
-                                                                            </div>
-                                                                            @if ($userLog == 2)
-                                                                                @php
-                                                                                    $liked = \App\Models\LikeReplyCommentRecipes::query()
-                                                                                        ->where('users_id', Auth::user()->id)
-                                                                                        ->where('recipe_id', $show_resep->id)
-                                                                                        ->where('comment_id', $item->pivot->id)
-                                                                                        ->exists();
-                                                                                @endphp
-                                                                            @else
-                                                                                @php
-                                                                                    $liked = false;
-                                                                                @endphp
-                                                                            @endif
-                                                                            @php
-                                                                                $likes = \App\Models\LikeReplyCommentRecipes::query()
-                                                                                    ->where('comment_id', $ii->id)
-                                                                                    ->get();
-                                                                            @endphp
-                                                                            @if ($userLog == 2)
-                                                                                <form
-                                                                                    action="/like/komentar/{{ Auth::user()->id }}/{{ $show_resep->id }}/{{ $item->pivot->id }}"
-                                                                                    method="post">
-                                                                                    @csrf
-                                                                                    <button type="submit"
-                                                                                        class="btn btn-light me-2">
-                                                                                        @if ($liked)
-                                                                                            <img width="25px"
-                                                                                                src="{{ asset('images/like-1-svgrepo-com(1).svg') }}"
-                                                                                                alt="">
-                                                                                        @else
-                                                                                            <img width="25px"
-                                                                                                src="{{ asset('images/like-1-svgrepo-com.svg') }}"
-                                                                                                alt="">
-                                                                                        @endif
-                                                                                        {{ $likes->count() }}
-                                                                                    </button>
-                                                                                </form>
-                                                                            @else
-                                                                                <form>
-                                                                                    <button type="button"
-                                                                                        onclick="harusLogin()"
-                                                                                        class="btn btn-light me-2">
-                                                                                        <img width="25px"
-                                                                                            src="{{ asset('images/like-1-svgrepo-com.svg') }}"
-                                                                                            alt="">
-                                                                                        {{ $likes->count() }}
-                                                                                    </button>
-                                                                                </form>
-                                                                            @endif
-                                                                        </div>
-                                                                    @endforeach
-                                                                @endif
-                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             @endforeach
-        </div>
-        </div>
         </div>
     </section>
     <script>

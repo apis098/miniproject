@@ -45,6 +45,15 @@ class FiltersController extends Controller
         $categories_foods_all = kategori_makanan::all();
         $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
         // validasi filter
+        if ($request->min_time != NULL && $request->max_time != NULL) {
+            if ($request->min_timer === 'jam') {
+                $request->merge(["min_time" => $request->min_time * 60]);
+            }
+            if ($request->max_timer === 'jam') {
+                $request->merge(["max_time" => $request->max_time * 60]);
+            }
+
+        }
         $validator  = Validator::make($request->all(), [
             'min_price' => 'lte:max_price|required_with:max_price',
             'max_price' => 'required_with:min_price',
@@ -75,13 +84,7 @@ class FiltersController extends Controller
         }
         if ($request->min_time != NULL && $request->max_time != NULL) {
             $min = $request->min_time;
-            if ($request->min_timer === 'jam') {
-                $min *= 60;
-            }
             $max = $request->max_time;
-            if ($request->max_timer === 'jam') {
-                $max *= 60;
-            }
             $recipess->whereBetween('lama_memasak', [$min, $max]);
         }
         
