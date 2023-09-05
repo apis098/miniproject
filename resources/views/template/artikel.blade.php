@@ -449,9 +449,9 @@
                             <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
+                                    <input type="text" id="reply" name="komentar2" width="500px" maxlength="255"
                                         {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
-                                        placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
+                                        placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}" required>
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                                     <button type="submit" style="background-color: #F7941E; border-radius:10px;"
                                         class="btn btn-light btn-sm text-light ms-3"><b
@@ -462,9 +462,9 @@
                 @else
                     <form>
                         <div class="input-group">
-                            <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
+                            <input type="text" id="reply" name="komentar2" width="500px" maxlength="255"
                                 {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
-                                placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
+                                placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}" required>
                             {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                             <button type="button" onclick="harusLogin()"
                                 style="background-color: #F7941E; border-radius:10px;"
@@ -602,8 +602,11 @@
                             method="post">
                             {{ csrf_field() }}
                             <div class="container mx-auto d-flex modal-body">
-                                <input name="komentar" placeholder="Masukkan balasan komentar..."
-                                    class="form-control col-10" maxlength="225" />
+                                <input name="komentar1" placeholder="Masukkan balasan komentar..."
+                                    class="form-control col-10" maxlength="225" required/>
+                                    @error('komentar1')
+                                        
+                                    @enderror
                                 <button type="submit" style="background-color: #F7941E; border-radius:10px;"
                                     class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim
                                 </button>
