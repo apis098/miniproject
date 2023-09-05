@@ -35,13 +35,20 @@ class LikeCommentController extends Controller
                 $notifications->user_id = $comment->users_id;
                 $notifications->save();
             }
-            
             $comment->increment('likes');
-            return redirect()->back()->with("success", "Sukses menyukai komentar!");
+            return response()->json([
+                'liked' => true,
+                'likes' => $comment->likes,
+                'reply_id' => $comment->id,
+            ]);
         } else {
             $comment->decrement('likes');
             $like->delete();
-            return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
+            return response()->json([
+                'liked' => false,
+                'likes' => $comment->likes,
+                'reply_id' => $comment->id,
+            ]);
         }
     }
     public function like_reply_comment_recipe(string $user, string $resep, string $comment) {

@@ -529,19 +529,19 @@
             <div class="action d-flex mt-2 align-items-center">
 
                 <div class="reply px-7 me-2">
-                    <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
+                    <small id="like-count-comment{{ $row->id }}"> {{ $row->likes }}</small>
                 </div>
 
                 <div class="icons align-items-center input-group">
-                    <form action="{{ route('like.comment.recipe', $row->id) }}" method="POST" class="">
+                    <form action="{{ route('like.comment.recipe', $row->id) }}" method="POST" id="like-form-comment">
                         @csrf
                         @if ($userLogin && $row->like()->where('users_id', auth()->user()->id)->exists())
                             <button type="submit"
-                                class="yuhu me-2 text-warning btn-sm rounded-5 ">
+                                class="yuhu me-2 text-warning btn-sm rounded-5" id="like-button-comment">
                                 <i class="fa-solid fa-thumbs-up"></i>
                             </button>
                         @else
-                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 ">
+                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5" id="like-button-comment">
                                 <i class="fa-regular fa-thumbs-up"></i>
                             </button>
                         @endif
@@ -635,18 +635,18 @@
                             <div class="icons align-items-center input-group">
 
                                 <form action="{{ route('Replies.like.balasan', $item->id) }}" method="POST"
-                                    id="like-form">
+                                    id="">
                                     @csrf
                                     @if (
                                         $userLogin &&
                                             $item->like()->where('users_id', $userLogin->id)->exists())
                                         <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
-                                            id="like-button">
+                                            id="">
                                             <i class="fa-solid fa-thumbs-up"></i>
                                         </button>
                                     @else
                                         <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                            id="like-button">
+                                            id="">
                                             <i class="fa-regular fa-thumbs-up"></i>
                                         </button>
                                     @endif
@@ -690,6 +690,46 @@
         </div>
     @endforeach
     </section>
+    <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            const likeForms = document.querySelectorAll("#like-form-comment");
+
+            likeForms.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector("#like-button-comment");
+                    const icon = button.querySelector("i");
+                    const svg = button.querySelector("svg");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.liked) {
+                            button.classList.remove('text-dark');
+                            button.classList.add('text-warning');
+                            icon.setAttribute('class', 'fa-solid fa-thumbs-up');
+                            document.getElementById("like-count-comment" + responseData.reply_id)
+                                .textContent = responseData.likes;
+                        } else {
+                            button.classList.remove('text-warning');
+                            button.classList.add('text-dark');
+                            icon.setAttribute('class', 'fa-regular fa-thumbs-up');
+                            document.getElementById("like-count-comment" + responseData
+                                    .reply_id)
+                                .textContent = responseData.likes;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <script>
         function harusLogin() {
             iziToast.show({
