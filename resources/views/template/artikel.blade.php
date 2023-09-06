@@ -523,23 +523,7 @@
                                     </span>
                                 </div>
                             @endif
-                        @else
-                            <div class="d-flex">
-                                <span>
-                                    <div class="font-weight-semibold ms-1 me-2">
-                                        <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
-                                        @if ($row->count() > 0)
-                                            <div class="text-black" style="font-size: 13px">
-                                                <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div>
-                                        <small>{{ $row->comment }}</small>
-                                    </div>
-                                </span>
-                            </div>
-                        @endif
+                       
                     </div>
                 </div>
                 <div class="action d-flex mt-2 align-items-center">
