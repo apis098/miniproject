@@ -639,8 +639,7 @@
                                     id="like-reply-comment-form">
                                     @csrf
                                     @if (
-                                        $userLogin &&
-                                            $item->like()->where('users_id', $userLogin->id)->exists())
+                                        $userLogin && $item->like()->where('users_id', $userLogin->id)->exists())
                                         <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
                                             id="like-reply-comment-button">
                                             <i class="fa-solid fa-thumbs-up"></i>

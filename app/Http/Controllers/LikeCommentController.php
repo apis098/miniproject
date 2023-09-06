@@ -24,9 +24,8 @@ class LikeCommentController extends Controller
         $like->where("comment_id", $id);
         $count_like = $like->count();
         if ($count_like == 0) {
-            # code...
             like_comment_recipes::create([
-                "users_id" => Auth::user()->id,
+                "users_id" => auth()->user()->id,
                 "comment_id" => $comment->id,
                 "recipe_id" => $comment->recipes_id,
             ]);
@@ -95,6 +94,8 @@ class LikeCommentController extends Controller
                     'reply_id' => $comment->id,
                 ]);
             }
+        }else{
+            return redirect()->route('login')->with('info','silahkan login terlebih dahulu');
         }
     }
 }

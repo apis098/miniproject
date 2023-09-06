@@ -17,7 +17,7 @@ class comment_recipes extends Model
     ];
     public function like() 
     {
-        return $this->hasMany(like_comment_recipes::class,'recipe_id');
+        return $this->hasMany(like_comment_recipes::class,'comment_id');
     }
     public function user(){
         return $this->belongsTo(User::class,'users_id');
