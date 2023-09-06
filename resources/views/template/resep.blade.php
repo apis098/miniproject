@@ -322,13 +322,13 @@
                                 <div class="col-lg-3 mb-3" style="width:100%;">
                                     <input type="hidden" id="input_pilih_hari{{ $nums }}"
                                         value="{{ $d->nama }}">
-                                    <button id="pilih_hari{{ $nums }}" 
+                                    <button id="pilih_hari{{ $nums }}"
                                         onclick="pilih_hari({{ $nums }})" class="btn btn-light"
                                         type="button"
                                         style="border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $d->nama }}</button>
-                                </div>   
-                                
-                                    
+                                </div>
+
+
                                 @endforeach
                             </div>
                         </div>
@@ -344,14 +344,14 @@
                                         type="button"
                                         style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
                                 </div>
-                               
+
                                 @endforeach
                             </div>
                         </div>
                         <div class="mb-3 d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-light"
                                 style="background-color: #F7941E; border-radius: 15px;">
-                                <span style="font-weight: 600;color: white;">Aplikasikan</span>
+                                <span style="font-weight: 600;color: white;">Cari</span>
                             </button>
                         </div>
                     </form>
