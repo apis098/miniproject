@@ -440,7 +440,9 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5 class=""><b>Komentar ({{ $comment_count }})</b></h5>
+                    <h5 class=""><b>Komentar
+                    ({{ $show_resep->comment_recipes->count() + $show_resep->reply_comment_recipe->count() }})
+                    </b></h5>
                     <div class="col-10">
                         @if (Auth::check())
                             <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
@@ -569,7 +571,8 @@
                             </form>
                         @endif
                         @if (Auth::check())
-                            @if (auth()->user()->role == 'admin')
+                            @if (auth()->user()->role == 'admin' && Auth::user()->id != $idAdmin->id)
+                            <!--
                                 <button type="button" data-toggle="modal" data-target="#blockModal{{ $row->id }}"
                                     class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
                                         width="20" height="20" viewBox="0 0 24 24">
@@ -577,7 +580,7 @@
                                             d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
                                             fill="currentColor" fill-rule="nonzero" />
                                     </svg>
-                                </button>
+                                </button> -->
                             @elseif(Auth::user()->id == $row->user->id)
                                 <form action="{{ route('delete.comment', $row->id) }}" method="POST"
                                     id="formDelete{{ $row->id }}">
@@ -589,51 +592,63 @@
                                     </button>
                                 </form>
                             @else
-                                <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
-                                    class="yuhu text-danger btn-sm rounded-5 "><i
-                                        class="fa-solid fa-triangle-exclamation me-2"></i>
-                                </button>
-                                {{-- modal --}}
-                                <div class="modal fade" id="Modald{{ $row->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="reportModal"
-                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                    Laporkan komentar</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <form action="" method="POST">
-                                                @csrf
-                                                <div class="modal-body d-flex align-items-center">
-                                                    <!-- Tambahkan kelas "align-items-center" -->
-                                                    @if ($row->foto)
-                                                        <img class="me-2" src="{{ asset('storage/' . $row->foto) }}"
-                                                            width="106px" height="104px" style="border-radius: 50%"
-                                                            alt="">
-                                                        <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
-                                                    @else
-                                                        <img class="me-2" src="{{ asset('images/default.jpg') }}"
-                                                            width="106px" height="104px" style="border-radius: 50%"
-                                                            alt="">
-                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                            placeholder="Alasan..."></textarea>
-                                                    @endif
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-light text-light"
-                                                        style="border-radius: 15px; background-color:#F7941E;"><b
-                                                            class="ms-2 me-2">Laporkan</b></button>
-                                                </div>
-                                            </form>
+                            @if (Auth::user()->id === $idAdmin->id)
+                            <!-- Button Untuk Blokir Pengguna Bagi Admin -->
+                            <button type="button" data-toggle="modal" data-target="#blockModal{{ $row->id }}"
+                                class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="20" height="20" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                        fill="currentColor" fill-rule="nonzero" />
+                                </svg>
+                            </button>
+                            @else 
+                            <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
+                                class="yuhu text-danger btn-sm rounded-5 "><i
+                                    class="fa-solid fa-triangle-exclamation me-2"></i>
+                            </button>
+                            {{-- modal --}}
+                            <div class="modal fade" id="Modald{{ $row->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="reportModal"
+                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                Laporkan komentar</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
+                                        <form action="" method="POST">
+                                            @csrf
+                                            <div class="modal-body d-flex align-items-center">
+                                                <!-- Tambahkan kelas "align-items-center" -->
+                                                @if ($row->foto)
+                                                    <img class="me-2" src="{{ asset('storage/' . $row->foto) }}"
+                                                        width="106px" height="104px" style="border-radius: 50%"
+                                                        alt="">
+                                                    <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                @else
+                                                    <img class="me-2" src="{{ asset('images/default.jpg') }}"
+                                                        width="106px" height="104px" style="border-radius: 50%"
+                                                        alt="">
+                                                    <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                        placeholder="Alasan..."></textarea>
+                                                @endif
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-light text-light"
+                                                    style="border-radius: 15px; background-color:#F7941E;"><b
+                                                        class="ms-2 me-2">Laporkan</b></button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                                {{-- end Modal --}}
+                            </div>
+                            {{-- end Modal --}}
+                            @endif
                             @endif
                         @else
                             <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"

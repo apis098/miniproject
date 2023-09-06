@@ -19,6 +19,7 @@ class artikels extends Controller
 {
     public function artikel_resep(string $id, string $judul)
     {
+        $idAdmin = User::where('role', 'admin')->first();
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -48,7 +49,6 @@ class artikels extends Controller
         $show_resep = reseps::find($id);
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
-      
-        return view('template.artikel', compact('admin','comment_count', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.artikel', compact('idAdmin','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
