@@ -256,8 +256,7 @@
                                 </li>
                                 <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ url('/search-account') }}"><b>Cari
-                                            Akun</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ url('/search-account') }}"><b>Temukan koki</b></a>
                                 </li>
 
                                 <li class="nav-item {{ request()->is('about') ? 'active' : '' }} me-2"
@@ -353,7 +352,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Membalas 
+                                                                    <small class="mt-1 ms-1 text-secondary">Membalas
                                                                         komentar anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
@@ -374,7 +373,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Menyukai 
+                                                                    <small class="mt-1 ms-1 text-secondary">Menyukai
                                                                         komentar anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
@@ -395,7 +394,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Menyukai 
+                                                                    <small class="mt-1 ms-1 text-secondary">Menyukai
                                                                         komentar anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
@@ -416,7 +415,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Membalas 
+                                                                    <small class="mt-1 ms-1 text-secondary">Membalas
                                                                         komentar anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
@@ -876,11 +875,11 @@
                     </h1>
                     <iframe
                         src="{{$footer->lokasi}}"
-                        height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        height="200" style="border:0;margin-top:8%" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-            
+
             <!-- Modal -->
             <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -931,8 +930,8 @@
                                     <label for="select-all" class="text-dark me-5">Pilih semua</label>
                                 </div>
                             </div>
-                            <button onclick="deleteSelected()" class="btn btn-light btn-sm text-light ms-5"
-                                style="border-radius: 15px; background-color:#F7941E;"><b class="ms-2 me-2">Hapus
+                            <button onclick="deleteSelected()" class="btn  btn-sm text-light ms-5"
+                                style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-2 me-2">Hapus
                                     dari favorit</b></button>
                         </div>
                         </form>
