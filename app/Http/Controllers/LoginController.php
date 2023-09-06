@@ -9,6 +9,8 @@ use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\kategori_makanan;
+use App\Models\User;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -68,7 +70,10 @@ class LoginController extends Controller
     public function home()
     {
         $complaints = complaint::paginate(3, ['*'], 'complaint-page');
-        $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
+        $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(3)->get();
+        $top_users = User::has("followers")->orderBy("followers", "desc")->take(4)->get();
+        $categories_foods = kategori_makanan::all();
+        $recipes = reseps::whereDate('created_at', today())->get();
         $userLogin = Auth::user();
         $jumlah_resep = reseps::all()->count();
         $foto_resep= reseps::take(5)->get();
@@ -88,7 +93,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
 
-        return view('template.home', compact('real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
+        return view('template.home', compact('recipes','categories_foods','top_users','real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
     }
 
     public function about()

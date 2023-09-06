@@ -78,9 +78,6 @@
         <div class="">
             <h3 class="fw-bold ml-3">Resep populer</h3>
         </div>
-        <div class="ms-auto me-5">
-            {{ $real_reseps->links('vendor.pagination.simple-default') }}
-        </div>
     </div>
     @if ($real_reseps->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
@@ -117,7 +114,7 @@
                                 <div class="col-6 my-2">
                                     <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
                                         alt="">
-                                    Top {{ $num + 1 + ($real_reseps->currentPage() - 1) * $real_reseps->perPage() }}
+                                    Top {{ $num + 1 }}
                                 </div>
                                 <div class="col-6">
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
@@ -146,221 +143,214 @@
 
 
 {{-- start koki terpopuler --}}
-<section class="container mt-5 mb-5">
+<section class="container mt-5 mb-5 mx-auto">
     <div class=" input-group">
         <div class="">
             <h3 class="fw-bold ml-3">Koki terpopuler</h3>
         </div>
-        {{-- <div class="ms-auto me-5">
-            {{ ->links('vendor.pagination.simple-default') }}
-        </div> --}}
     </div>
     <div class="row text-center">
-
-        <!-- Team item -->
-        {{-- @foreach ($user as $row)
-        @if (Auth::check() && $row->role != 'admin' && $row->id != auth()->user()->id) --}}
-        <div class="col-xl-3 col-sm-4 mb-4 my-4 mx-3">
-            {{-- <a class="text-dark" href="{{ route('show.profile', $row->id) }}"> --}}
-            <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
-                style="border-radius: 20px; height:25rem;">
-                {{-- @if ($row->foto)
-                            <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="50%" height="50%"
-                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                        @else --}}
-                <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
-                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                {{-- @endif --}}
-
-                <h5 class="mb-0">{{-- strlen($row->name)>10?substr($row->name,0,10).'...':$row->name }} --}} Alecander</h5> <span
-                    class="small text-muted">{{-- {{ $row->email }} --}}Alexander@gmail.com</span>
-                <div class="d-flex justify-content-center mt-3 me-5">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
-                        <path fill="currentColor"
-                            d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
-                    </svg>
-                    <p class="mt-2 ms-1">{{-- {{ $row->resep->count() }} --}} 5 Resep</p>
-                </div>
-                <div class="d-flex justify-content-center mt-1 me-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M13 14.062V22H4a8 8 0 0 1 9-7.938ZM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6Zm5.793 6.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414l2.12 2.121Z" />
-                    </svg>
-                    <p class="mt-2 ms-1">{{-- {{ $row->resep->count() }} --}} 500 pengikut</p>
-                </div>
-                <div class="justify-content-center">
-                    {{-- <form action="{{ route('Followers.store', $row->id) }}" method="POST">
-                                @csrf
-                                @if (Auth::check() &&
-    $row->followers()->where('follower_id', auth()->user()->id)->count() > 0) --}}
-                    {{-- <button type="submit"
-                                        class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
-                                            class="ms-3 me-3">Diikuti</b></button> --}}
-                    {{-- @elseif(Auth::check() &&
-                                        $userLogin->followers()->where('follower_id', $row->id)->exists())
-                                    <button type="submit"
-                                        class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
-                                            class="ms-3 me-3">Ikuti balik</b></button>
-                                @else --}}
-                    <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                        style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
-                            class="ms-3 me-3">Ikuti</b></button>
-                    {{-- @endif --}}
-
-                    </form>
-                </div>
-            </div>
-            </a>
-        </div>
-
-        {{-- belum login
-        @elseif(!Auth::check() && $row->role != 'admin')
-            <div class="col-xl-3 col-sm-6 mb-5">
-                <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
-                    <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
-                        style="border-radius: 20px;  height:25rem;">
-                        @if ($row->foto)
-                            <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="100"
-                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                        @else
-                            <img src="{{ asset('images/default.jpg  ') }}" alt="" width="100"
-                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                        @endif
-                        <h5 class="mb-0">{{ strlen($row->name) > 15 ? substr($row->name, 0, 15) . '...' : $row->name }}</h5> <span
-                            class="small text-muted">{{ strlen($row->email) > 25 ? substr($row->email, 0, 25) . '...' : $row->email }}</span>
-                        <div class="d-flex justify-content-center mt-3 me-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
-                                viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
-                            </svg>
-                            <p class="mt-2 ms-1">{{ $row->resep->count() }} Resep</p>
-                        </div>
-                        <div class="d-flex justify-content-center mt-3 me-2">
-
-                            <p class="mt-2 ms-1">{{ $row->resep->count() }} </p>
-                        </div>
-                        <div class="justify-content-center">
-                            <form action="{{ route('Followers.store', $row->id) }}" method="POST">
-                                @csrf
-                                @if (Auth::check() &&
-    $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                    <button type="submit"
-                                        class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
-                                            class="ms-3 me-3">Diikuti</b></button>
-                                @elseif(Auth::check() &&
-                                        $userLogin->followers()->where('follower_id', $row->id)->exists())
-                                    <button type="submit"
-                                        class="btn btn-light text-light float-center mb-5 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
-                                            class="ms-3 me-3">Ikuti balik</b></button>
-                                @else
-                                    <button type="submit"
-                                        class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
-                                            class="ms-3 me-3">Ikuti</b></button>
-                                @endif
-
-                            </form>
-                        </div>
+        @foreach ($top_users as $iu)
+            <div class="col-xl-3 col-sm-4 mb-4 my-4">
+                <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
+                    style="border-radius: 20px; height:25rem;">
+                    <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    <h5 class="mb-0">{{ $iu->name }}</h5>
+                    <span class="small text-muted">{{ $iu->email }}</span>
+                    <div class="d-flex justify-content-center mt-3 me-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
+                            <path fill="currentColor"
+                                d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
+                        </svg>
+                        <p class="mt-2 ms-1">
+                            {{ $iu->resep->count() }} Resep</p>
                     </div>
+                    <div class="d-flex justify-content-center mt-1 me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M13 14.062V22H4a8 8 0 0 1 9-7.938ZM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6Zm5.793 6.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414l2.12 2.121Z" />
+                        </svg>
+                        <p class="mt-2 ms-1">
+                            {{ $iu->followers }} pengikut</p>
+                    </div>
+                    <div class="justify-content-center">
+                        <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                            style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                                class="ms-3 me-3">Ikuti</b></button>
+                        </form>
+                    </div>
+                </div>
                 </a>
-            </div><!-- End -->
-        @endif
-    @endforeach --}}
+            </div>
+        @endforeach
     </div>
 </section>
-
 {{-- end koki terpopuler --}}
 
-<div class="container-fluid py-5 mb-5"  style="width: 100%; height: 100%; background: #F7941E; border-radius: 25px">
+<div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 25px">
     <div class=" input-group" style="margin-left:7rem">
-            <h3 class="fw-bold ml-3" style="color:white;font-family:poppins">Kategori makanan</h3>
+        <h3 class="fw-bold ml-3" style="color:white;font-family:poppins">Kategori makanan</h3>
     </div>
-           <div style="margin-left:8rem" >
-            <p style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi anda.</p>
-          </div>
-          <button class="btn btn-lg" style="margin-left:8rem; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-            Dinner
-          </button>
-          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-            Makanan ringan
-          </button>
-          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-            Dinner
-          </button>
-          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-            Dinner
-          </button>
-          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-            Dinner
-          </button>
-          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-            Dinner
-          </button>
-   </div>
+    <div style="margin-left:8rem">
+        <p style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi
+            anda.</p>
+    </div>
+    <div class="row">
+        <div style="margin-left: 8rem;">
+            @foreach ($categories_foods as $cf)
+                <button class="btn btn-lg col-lg-2 mb-3"
+                    style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+                    <a href="/resep?jenis_makanan[]={{ $cf->nama_makanan }}" class="text-dark">
+                        {{ $cf->nama_makanan }}
+                    </a>
+                </button>
+            @endforeach
+        </div>
+    </div>
+</div>
 
-   {{-- start resep terbaru --}}
-   <section class="container mt-5 mb-5">
+{{-- start resep terbaru --}}
+<section class="container mt-5 mb-5">
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3">Resep resep Terbaru</h3>
+            <h3 class="fw-bold ml-3 mb-5">Resep resep Terbaru</h3>
         </div>
-        {{-- <div class="ms-auto me-5">
-            {{ ->links('vendor.pagination.simple-default') }}
-        </div> --}}
     </div>
-    <div class="row text-center">
+    @if ($recipes->count() >= 3)
         <div class="row">
-            {{-- @foreach ($recipes as $num => $item) --}}
-                <div class="col-lg-4 mb-3 my-4 mx-4 col-sm-12 col-md-6">
+            @foreach ($recipes as $num => $item)
+                <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">
                             <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
-                             src="{{ asset('images/default.jpg') }}"
-                        {{-- src="{{ asset('storage/'  $item->foto_resep) }}" --}}/>
+                                src="{{ asset('storage/' . $item->foto_resep) }}" />
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 mx-4" style="text-align: left;">
                                     <h5>
-                                        {{-- <a style="color: black; font-size: 24px;"
+                                        <a style="color: black; font-size: 24px;"
                                             href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                             {{ $item->nama_resep }}
-                                        </a> --}}
-                                        Churous
+                                        </a>
                                     </h5>
-                                     <span>oleh alexandria {{--   {{ $item->User->name }}  --}}</span> <br> <br>
-
+                                    <span>Oleh {{ $item->User->name }}</span> <br> <br>
+                                    <span>RP.
+                                        {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</span>
                                 </div>
-                                <div class="col-12 row  my-3">
+                                <div class="col-12 row mx-2 my-3">
                                     <div class="col-6 mx-auto">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26.31" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-dasharray="80" stroke-dashoffset="80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11L12 3L15 4L14 10H21V13L18 20H7H3V11H7V20"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.8s" values="80;0"/></path></svg>
-                                        {{-- {{ $item->likes }} --}}50 suka
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26.31"
+                                            viewBox="0 0 24 24">
+                                            <path fill="none" stroke="currentColor" stroke-dasharray="80"
+                                                stroke-dashoffset="80" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M7 11L12 3L15 4L14 10H21V13L18 20H7H3V11H7V20">
+                                                <animate fill="freeze" attributeName="stroke-dashoffset"
+                                                    dur="0.8s" values="80;0" />
+                                            </path>
+                                        </svg>
+                                        {{ $item->likes }} suka
                                     </div>
                                     <div class="col-6 mx-auto">
-                                      <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7" viewBox="0 0 24 24"><path fill="currentColor" d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a8.994 8.994 0 0 0 7.03-14.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7z"/></svg>
-                                        {{-- @if ($item->lama_memasak >= 60)
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a8.994 8.994 0 0 0 7.03-14.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7z" />
+                                        </svg>
+                                        @if ($item->lama_memasak >= 60)
                                             {{ $item->lama_memasak / 60 }} jam
                                         @else
                                             {{ $item->lama_memasak }} menit
-                                        @endif --}}
-                                        30 jam
+                                        @endif
                                     </div>
-
+                                    <div class="d-flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7"
+                                            viewBox="0 0 24 24">
+                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="M12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8S2 6.582 2 11c0 2.157 1.067 4.114 2.801 5.553C4.271 18.65 3 20 2 21c3 0 4.527-.979 6.32-2.559c1.14.36 2.38.559 3.68.559z" />
+                                        </svg>
+                                        <span class="mx-2">
+                                            {{ $item->comment_recipes->count() + $item->reply_comment_recipe->count() }}
+                                            Komentar
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            {{-- @endforeach --}}
+            @endforeach
         </div>
-    </div>
-   </section>
+    @else
+        @foreach ($recipes as $item)
+            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
+                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                    <div class="card-header my-3 mx-auto" style="background-color: white">
+                        <img width="260px" class="rounded-circle" height="260px"
+                            style="border: 0.50px black solid; max-width:260px;"
+                            src="{{ asset('storage/' . $item->foto_resep) }}" /> 
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mx-4" style="text-align: left;">
+                                <h5>
+                                    <a style="color: black; font-size: 24px;"
+                                        href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                        {{ $item->nama_resep }}
+                                    </a>
+                                </h5>
+                                <span>Oleh {{ $item->User->name }}</span> <br> <br>
+                                <span>RP.
+                                    {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</span>
+                            </div>
+                            <div class="col-12 row  my-3">
+                                <div class="col-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26.31"
+                                        viewBox="0 0 24 24">
+                                        <path fill="none" stroke="currentColor" stroke-dasharray="80"
+                                            stroke-dashoffset="80" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M7 11L12 3L15 4L14 10H21V13L18 20H7H3V11H7V20">
+                                            <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.8s"
+                                                values="80;0" />
+                                        </path>
+                                    </svg>
+                                    {{ $item->likes }} suka
+                                </div>
+                                <div class="col-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a8.994 8.994 0 0 0 7.03-14.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7z" />
+                                    </svg>
+                                    @if ($item->lama_memasak >= 60)
+                                        {{ $item->lama_memasak / 60 }} jam
+                                    @else
+                                        {{ $item->lama_memasak }} menit
+                                    @endif
+                                </div>
+                                <div class="d-flex mx-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7"
+                                        viewBox="0 0 24 24">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2"
+                                            d="M12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8S2 6.582 2 11c0 2.157 1.067 4.114 2.801 5.553C4.271 18.65 3 20 2 21c3 0 4.527-.979 6.32-2.559c1.14.36 2.38.559 3.68.559z" />
+                                    </svg>
+                                    <span class="mx-2">
+                                        {{ $item->comment_recipes->count() + $item->reply_comment_recipe->count() }}
+                                        Komentar
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+</section>
 
 <!-- book section -->
 {{-- <section class="book_section layout_padding">
