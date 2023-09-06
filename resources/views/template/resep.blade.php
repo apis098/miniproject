@@ -438,7 +438,8 @@
                                             {{ $item->nama_resep }}
                                         </a>
                                     </h5>
-                                    <span>Oleh {{ $item->User->name }}</span>
+                                    <span>Oleh {{ $item->User->name }}</span> <br> <br>
+                                    <span>RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</span>
                                 </div>
                                 <div class="col-12 row  my-3">
                                     <div class="col-6 mx-auto">
@@ -452,6 +453,10 @@
                                         @else
                                             {{ $item->lama_memasak }} menit
                                         @endif
+                                    </div>
+                                    <div class="col-12 my-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8S2 6.582 2 11c0 2.157 1.067 4.114 2.801 5.553C4.271 18.65 3 20 2 21c3 0 4.527-.979 6.32-2.559c1.14.36 2.38.559 3.68.559z"/></svg>
+                                        {{ $item->comment_recipes->count() + $item->reply_comment_recipe->count() }}
                                     </div>
                                 </div>
                             </div>

@@ -70,7 +70,7 @@ class reseps extends Model
         return $this->hasMany(like_comment_recipes::class);
     }
     public function reply_comment_recipe() {
-        return $this->hasMany(replyCommentRecipe::class);
+        return $this->hasMany(replyCommentRecipe::class, "recipe_id");
     }
     public function like_reply_comment_recipe() {
         return $this->belongsTo(LikeReplyCommentRecipes::class, "recipe_id");
