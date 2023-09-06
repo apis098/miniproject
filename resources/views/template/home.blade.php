@@ -156,7 +156,23 @@
                     style="border-radius: 20px; height:25rem;">
                     <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                    <h5 class="mb-0">{{ $iu->name }}</h5>
+                    <h5 class="mb-0">
+                        @if (Auth::check())
+                            @if (Auth::user()->id == $iu->id)
+                            <a href="/koki/index" style="color: black">
+                                {{ $iu->name }}
+                                </a>    
+                            @else
+                            <a href="/profile-orang-lain/{{ $iu->id }}" style="color: black">
+                                {{ $iu->name }}
+                                </a>    
+                            @endif
+                        @else
+                        <a href="/profile-orang-lain/{{ $iu->id }}" style="color: black">
+                            {{ $iu->name }}
+                            </a>   
+                        @endif
+                    </h5>
                     <span class="small text-muted">{{ $iu->email }}</span>
                     <div class="d-flex justify-content-center mt-3 me-5">
                         <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
@@ -175,10 +191,35 @@
                             {{ $iu->followers }} pengikut</p>
                     </div>
                     <div class="justify-content-center">
-                        <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                            style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
-                                class="ms-3 me-3">Ikuti</b></button>
-                        </form>
+                        @if (Auth::check())
+                        <form action="{{ route('Followers.store', $iu->id) }}" method="POST">
+                            @csrf
+                            @if (Auth::check() &&
+                                    $iu->followers()->where('follower_id', auth()->user()->id)->count() > 0)
+                                <button type="submit"
+                                    class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; border-radius: 15px;"><b
+                                        class="ms-3 me-3">Diikuti</b></button>
+                            @elseif(Auth::check() &&
+                                    $userLogin->followers()->where('follower_id', $iu->id)->exists())
+                                <button type="submit"
+                                    class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; border-radius: 15px;"><b
+                                        class="ms-3 me-3">Ikuti balik</b></button>
+                            @else
+                                <button type="submit"
+                                    class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                                        class="ms-3 me-3">Ikuti</b></button>
+                            @endif
+
+                        </form>   
+                        @else
+                        <button type="button" onclick="harusLogin()"
+                        class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                        style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                            class="ms-3 me-3">Ikuti</b></button>   
+                        @endif
                     </div>
                 </div>
                 </a>
@@ -812,4 +853,16 @@
                 </div>
                 @endforeach
     </section> --}}
+    <script>
+        function harusLogin() {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Anda Harus Login Dulu!',
+                position: 'topCenter',
+            });
+        }
+    </script>
 @endsection
