@@ -47,10 +47,10 @@ class complaintController extends Controller
         }
 
     } else {
-        return redirect('/')->with('error', 'Silahkan login terlebih dahulu.');
+        return redirect('keluhan')->with('error', 'Silahkan login terlebih dahulu.');
     }
 
-    return redirect('/')->with('success', 'Keluhan kamu telah terkirim.');
+    return redirect('keluhan')->with('success', 'Keluhan kamu telah terkirim.');
 }
 
     public function index_all()

@@ -72,9 +72,9 @@
         <div class="ms-1">
             <h3 class="fw-bold">Keluhan Pengguna</h3>
         </div>
-        <div class="ms-auto me-5">
-            {{$complaints->links('vendor.pagination.simple-default')}}
-        </div>
+        {{-- <div class="ms-auto me-5">
+            {{ $complaints->links('vendor.pagination.default') }}
+        </div> --}}
     </div>
 </div>
 @if ($complaints->count() == 0)
@@ -124,9 +124,9 @@
         {{--  --}}
     </div>
 </div>
-
+{{ $complaints->links('vendor.pagination.default') }}
 <style>
-    .text-poppins {
+    .text-poppins { 
         font-family: 'Poppins';
     }
 
