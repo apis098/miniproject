@@ -52,7 +52,7 @@
                             <span
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $userLogin->email }}</span>
                         </p>
-                        <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn btn-light text-light mb-3">
+                        <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
                             <span style="font-weight: 600">
                                 <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
                             </span>

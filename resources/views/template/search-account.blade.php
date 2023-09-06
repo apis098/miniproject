@@ -225,18 +225,18 @@
                                         @if (Auth::check() &&
                                                 $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
                                             <button type="submit"
-                                                class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
+                                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
                                                 style="background-color: #F7941E; border-radius: 15px;"><b
                                                     class="ms-3 me-3">Diikuti</b></button>
                                         @elseif(Auth::check() &&
                                                 $userLogin->followers()->where('follower_id', $row->id)->exists())
                                             <button type="submit"
-                                                class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
+                                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
                                                 style="background-color: #F7941E; border-radius: 15px;"><b
                                                     class="ms-3 me-3">Ikuti balik</b></button>
                                         @else
                                             <button type="submit"
-                                                class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
+                                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
                                                 style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
                                                     class="ms-3 me-3">Ikuti</b></button>
                                         @endif
