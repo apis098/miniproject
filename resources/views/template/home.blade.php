@@ -33,25 +33,26 @@
                                     <div class="col-md-10" style="margin-left: -20px">
                                         <div
                                             style="display: flex; align-items: center; justify-content: flex-start; margin-top: 25px;">
-                                           @foreach ($foto_resep as $item)
-
-                                           <img src="{{ asset('storage/'.$item->foto_resep) }}" alt="" class="rounded-circle" width="50px" height="50px"
-                                               style="margin-right: -14px;">
-                                           @endforeach
+                                            @foreach ($foto_resep as $item)
+                                                <img src="{{ asset('storage/' . $item->foto_resep) }}" alt=""
+                                                    class="rounded-circle" width="50px" height="50px"
+                                                    style="margin-right: -14px;">
+                                            @endforeach
 
                                         </div>
                                     </div>
 
-                                  <div class="ms-1" style="display: flex; align-items: center;">
-                                      <p class="fw-bold"
-                                          style="margin-left: em; margin-bottom: 0.5em; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.48px; word-wrap: break-word">
-                                          @if ($jumlah_resep <= 10)
-                                          {{ $jumlah_resep }}
-                                          @elseif($jumlah_resep > 10)
-                                          {{ floor($jumlah_resep/10)*10  }}+
-                                          @endif
-                                          resep</p>
-                                  </div>
+                                    <div class="ms-1" style="display: flex; align-items: center;">
+                                        <p class="fw-bold"
+                                            style="margin-left: em; margin-bottom: 0.5em; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.48px; word-wrap: break-word">
+                                            @if ($jumlah_resep <= 10)
+                                                {{ $jumlah_resep }}
+                                            @elseif($jumlah_resep > 10)
+                                                {{ floor($jumlah_resep / 10) * 10 }}+
+                                            @endif
+                                            resep
+                                        </p>
+                                    </div>
 
                                 </div>
                             </div>
@@ -116,7 +117,7 @@
                                 <div class="col-6 my-2">
                                     <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
                                         alt="">
-                                    Top {{ $num + 1 + ($real_reseps->currentPage() - 1)  * $real_reseps->perPage() }}
+                                    Top {{ $num + 1 + ($real_reseps->currentPage() - 1) * $real_reseps->perPage() }}
                                 </div>
                                 <div class="col-6">
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
@@ -142,6 +143,224 @@
 
 
 <!-- end about section -->
+
+
+{{-- start koki terpopuler --}}
+<section class="container mt-5 mb-5">
+    <div class=" input-group">
+        <div class="">
+            <h3 class="fw-bold ml-3">Koki terpopuler</h3>
+        </div>
+        {{-- <div class="ms-auto me-5">
+            {{ ->links('vendor.pagination.simple-default') }}
+        </div> --}}
+    </div>
+    <div class="row text-center">
+
+        <!-- Team item -->
+        {{-- @foreach ($user as $row)
+        @if (Auth::check() && $row->role != 'admin' && $row->id != auth()->user()->id) --}}
+        <div class="col-xl-3 col-sm-4 mb-4 my-4 mx-3">
+            {{-- <a class="text-dark" href="{{ route('show.profile', $row->id) }}"> --}}
+            <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
+                style="border-radius: 20px; height:25rem;">
+                {{-- @if ($row->foto)
+                            <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="50%" height="50%"
+                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        @else --}}
+                <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                {{-- @endif --}}
+
+                <h5 class="mb-0">{{-- strlen($row->name)>10?substr($row->name,0,10).'...':$row->name }} --}} Alecander</h5> <span
+                    class="small text-muted">{{-- {{ $row->email }} --}}Alexander@gmail.com</span>
+                <div class="d-flex justify-content-center mt-3 me-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
+                        <path fill="currentColor"
+                            d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
+                    </svg>
+                    <p class="mt-2 ms-1">{{-- {{ $row->resep->count() }} --}} 5 Resep</p>
+                </div>
+                <div class="d-flex justify-content-center mt-1 me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M13 14.062V22H4a8 8 0 0 1 9-7.938ZM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6Zm5.793 6.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414l2.12 2.121Z" />
+                    </svg>
+                    <p class="mt-2 ms-1">{{-- {{ $row->resep->count() }} --}} 500 pengikut</p>
+                </div>
+                <div class="justify-content-center">
+                    {{-- <form action="{{ route('Followers.store', $row->id) }}" method="POST">
+                                @csrf
+                                @if (Auth::check() &&
+    $row->followers()->where('follower_id', auth()->user()->id)->count() > 0) --}}
+                    {{-- <button type="submit"
+                                        class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                            class="ms-3 me-3">Diikuti</b></button> --}}
+                    {{-- @elseif(Auth::check() &&
+                                        $userLogin->followers()->where('follower_id', $row->id)->exists())
+                                    <button type="submit"
+                                        class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                            class="ms-3 me-3">Ikuti balik</b></button>
+                                @else --}}
+                    <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                        style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                            class="ms-3 me-3">Ikuti</b></button>
+                    {{-- @endif --}}
+
+                    </form>
+                </div>
+            </div>
+            </a>
+        </div>
+
+        {{-- belum login
+        @elseif(!Auth::check() && $row->role != 'admin')
+            <div class="col-xl-3 col-sm-6 mb-5">
+                <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
+                    <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
+                        style="border-radius: 20px;  height:25rem;">
+                        @if ($row->foto)
+                            <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="100"
+                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        @else
+                            <img src="{{ asset('images/default.jpg  ') }}" alt="" width="100"
+                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        @endif
+                        <h5 class="mb-0">{{ strlen($row->name) > 15 ? substr($row->name, 0, 15) . '...' : $row->name }}</h5> <span
+                            class="small text-muted">{{ strlen($row->email) > 25 ? substr($row->email, 0, 25) . '...' : $row->email }}</span>
+                        <div class="d-flex justify-content-center mt-3 me-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
+                                viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
+                            </svg>
+                            <p class="mt-2 ms-1">{{ $row->resep->count() }} Resep</p>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 me-2">
+
+                            <p class="mt-2 ms-1">{{ $row->resep->count() }} </p>
+                        </div>
+                        <div class="justify-content-center">
+                            <form action="{{ route('Followers.store', $row->id) }}" method="POST">
+                                @csrf
+                                @if (Auth::check() &&
+    $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
+                                    <button type="submit"
+                                        class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                            class="ms-3 me-3">Diikuti</b></button>
+                                @elseif(Auth::check() &&
+                                        $userLogin->followers()->where('follower_id', $row->id)->exists())
+                                    <button type="submit"
+                                        class="btn btn-light text-light float-center mb-5 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                            class="ms-3 me-3">Ikuti balik</b></button>
+                                @else
+                                    <button type="submit"
+                                        class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                            class="ms-3 me-3">Ikuti</b></button>
+                                @endif
+
+                            </form>
+                        </div>
+                    </div>
+                </a>
+            </div><!-- End -->
+        @endif
+    @endforeach --}}
+    </div>
+</section>
+
+{{-- end koki terpopuler --}}
+
+<div class="container-fluid py-5 mb-5"  style="width: 100%; height: 100%; background: #F7941E; border-radius: 25px">
+    <div class=" input-group" style="margin-left:7rem">
+            <h3 class="fw-bold ml-3" style="color:white;font-family:poppins">Kategori makanan</h3>
+    </div>
+           <div style="margin-left:8rem" >
+            <p style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi anda.</p>
+          </div>
+          <button class="btn btn-lg" style="margin-left:8rem; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+            Dinner
+          </button>
+          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+            Makanan ringan
+          </button>
+          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+            Dinner
+          </button>
+          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+            Dinner
+          </button>
+          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+            Dinner
+          </button>
+          <button class="btn btn-lg" style=" background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
+            Dinner
+          </button>
+   </div>
+
+   {{-- start resep terbaru --}}
+   <section class="container mt-5 mb-5">
+    <div class=" input-group">
+        <div class="">
+            <h3 class="fw-bold ml-3">Resep resep Terbaru</h3>
+        </div>
+        {{-- <div class="ms-auto me-5">
+            {{ ->links('vendor.pagination.simple-default') }}
+        </div> --}}
+    </div>
+    <div class="row text-center">
+        <div class="row">
+            {{-- @foreach ($recipes as $num => $item) --}}
+                <div class="col-lg-4 mb-3 my-4 mx-4 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-header my-3 mx-auto" style="background-color: white">
+                            <img width="260px" class="rounded-circle" height="260px"
+                                style="border: 0.50px black solid; max-width:260px;"
+                             src="{{ asset('images/default.jpg') }}"
+                        {{-- src="{{ asset('storage/'  $item->foto_resep) }}" --}}/>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5>
+                                        {{-- <a style="color: black; font-size: 24px;"
+                                            href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                            {{ $item->nama_resep }}
+                                        </a> --}}
+                                        Churous
+                                    </h5>
+                                     <span>oleh alexandria {{--   {{ $item->User->name }}  --}}</span> <br> <br>
+
+                                </div>
+                                <div class="col-12 row  my-3">
+                                    <div class="col-6 mx-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26.31" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-dasharray="80" stroke-dashoffset="80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11L12 3L15 4L14 10H21V13L18 20H7H3V11H7V20"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.8s" values="80;0"/></path></svg>
+                                        {{-- {{ $item->likes }} --}}50 suka
+                                    </div>
+                                    <div class="col-6 mx-auto">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7" viewBox="0 0 24 24"><path fill="currentColor" d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a8.994 8.994 0 0 0 7.03-14.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7s7 3.13 7 7s-3.13 7-7 7z"/></svg>
+                                        {{-- @if ($item->lama_memasak >= 60)
+                                            {{ $item->lama_memasak / 60 }} jam
+                                        @else
+                                            {{ $item->lama_memasak }} menit
+                                        @endif --}}
+                                        30 jam
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{-- @endforeach --}}
+        </div>
+    </div>
+   </section>
 
 <!-- book section -->
 {{-- <section class="book_section layout_padding">
