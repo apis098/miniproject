@@ -1,140 +1,10 @@
 @extends('template.nav')
 @section('content')
-@section('content-header')
-    <!-- slider section -->
-    <section class="slider_section">
-        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-7 col-lg-6">
-                                <div class="detail-box mt-5">
-                                    <h3 class="text-poppins"><b>
-                                            Resep - Resep Terpopuler</b>
-                                    </h3>
-                                    <p>
-                                        HummaCook adalah online media portal
-                                        yang menyajikan kumpulan aneka resep masakan
-                                        untuk menginspirasi para pehobi masak.
-                                        Menyajikan resep-resep rumahan yang mudah
-                                        dibuat oleh semua orang, dan bahan-bahan
-                                        masakan yang mudah didapatkan.
-                                    </p>
-                                    <a href="{{ route('resep.home') }}"
-                                        class="zoom-effects btn btn-light mt-2 rounded-5 btn-lg"
-                                        style="padding: 6px 22px;
-                                        background-color: #ffff;
-                                        color: #f39c12;
-                                        border-radius: 12px;
-                                        border: none; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Lihat
-                                        Resep</a>
 
-                                    <div class="col-md-10" style="margin-left: -20px">
-                                        <div
-                                            style="display: flex; align-items: center; justify-content: flex-start; margin-top: 25px;">
-                                           @foreach ($foto_resep as $item)
-
-                                           <img src="{{ asset('storage/'.$item->foto_resep) }}" alt="" class="rounded-circle" width="50px" height="50px"
-                                               style="margin-right: -14px;">
-                                           @endforeach
-
-                                        </div>
-                                    </div>
-
-                                  <div class="ms-1" style="display: flex; align-items: center;">
-                                      <p class="fw-bold"
-                                          style="margin-left: em; margin-bottom: 0.5em; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.48px; word-wrap: break-word">
-                                          @if ($jumlah_resep <= 10)
-                                          {{ $jumlah_resep }}
-                                          @elseif($jumlah_resep > 10)
-                                          {{ floor($jumlah_resep/10)*10  }}+
-                                          @endif
-                                          resep</p>
-                                  </div>
-
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div style="text-align: right;">
-                                    <img src="{{ asset('images/landingpage.png') }}" alt="Gambar Contoh"
-                                        style="width: 90%; max-width: 500px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-    </section>
-    <!-- end slider section -->
-@endsection
 
 <!-- offer section -->
 
-<section class="container mt-5 mb-5">
 
-    <div class=" input-group">
-        <div class="">
-            <h3 class="fw-bold ml-3">Resep populer</h3>
-        </div>
-        <div class="ms-auto me-5">
-            {{ $real_reseps->links('vendor.pagination.simple-default') }}
-        </div>
-    </div>
-    @if ($real_reseps->count() == 0)
-        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
-            <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
-        </div>
-    @endif
-    <div class="row container mt-4">
-        @foreach ($real_reseps as $num => $item)
-            <div class="col-lg-4 mb-3">
-                <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
-                    <div class="row">
-                        <div class="col-5">
-                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle" width="100%"
-                                height="100%" alt="">
-                        </div>
-                        <div class="col-7">
-                            <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
-                            <div class="d-flex flex-row my-2">
-                                <div class="">
-                                    @if ($item->User->foto)
-                                        <img src="{{ asset('storage/' . $item->User->foto) }}" width="30px"
-                                            height="30px" style="border-radius: 50%;" alt="">
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
-                                            height="30px" style="border-radius: 50%">
-                                    @endif
-                                </div> &nbsp;
-                                <div class="mt-1">
-                                    <span>{{ $item->User->name }}</span>
-                                </div>
-                            </div>
-                            <div class="row my-1">
-                                <div class="col-6 my-2">
-                                    <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
-                                        alt="">
-                                    Top {{ $num + 1 + ($real_reseps->currentPage() - 1)  * $real_reseps->perPage() }}
-                                </div>
-                                <div class="col-6">
-                                    <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
-                                        method="get">
-                                        <button type="submit" class="btn btn-light"
-                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                            <span style="font-weight: 600; color: white;">Lihat</span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</section>
 
 <!-- end offer section -->
 
@@ -144,7 +14,7 @@
 <!-- end about section -->
 
 <!-- book section -->
-{{-- <section class="book_section layout_padding">
+<section class="book_section layout_padding">
     <div class="container">
         <div class="row">
             <div class="col-md-6 ms-3">
@@ -195,9 +65,9 @@
 
         </div>
     </div>
-</section> --}}
+</section>
 <!-- end book section -->
-{{-- <div class="row ms-1 mb-4 me-1" style="margin-top: -4%;">
+<div class="row ms-1 mb-4 me-1" style="margin-top: -4%;">
     <div class="ms-5 input-group">
         <div class="ms-1">
             <h3 class="fw-bold">Keluhan Pengguna</h3>
@@ -206,15 +76,15 @@
             {{$complaints->links('vendor.pagination.simple-default')}}
         </div>
     </div>
-</div> --}}
-{{-- @if ($complaints->count() == 0)
+</div>
+@if ($complaints->count() == 0)
     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
         <img src="images/data.png" style="width: 15em">
         <p><b>Tidak ada data</b></p>
     </div>
-@endif --}}
+@endif
 
-{{-- <div class="container mb-5">
+<div class="container mb-5">
     <div class="row mb-5">
         @foreach ($complaints as $item)
             <div class="col-lg-4">
@@ -251,9 +121,9 @@
                 </div>
             </div>
         @endforeach
-
+        {{--  --}}
     </div>
-</div> --}}
+</div>
 
 <style>
     .text-poppins {
