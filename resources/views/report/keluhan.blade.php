@@ -692,7 +692,7 @@ function showLoading() {
                                     <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
                                         {{ $row->complaint->subject }}</h6>
 
-                                    <small class="text-secondary  me-3">{{ $row->complaint->description }}</small>
+                                    <small class="text-secondary text-break me-3">{{ $row->complaint->description }}</small>
 
                                 </div>
                             </a>
