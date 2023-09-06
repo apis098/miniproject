@@ -154,8 +154,13 @@
             <div class="col-xl-3 col-sm-4 mb-4 my-4">
                 <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
                     style="border-radius: 20px; height:25rem;">
-                    <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
-                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    @if ($iu->foto)
+                    <img src="{{ asset('storage/'.$iu->foto) }}" alt="" width="50%" height="50%"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">  
+                    @else
+                    <img src="{{ asset('images/default.jpg') }}" alt="" width="50%" height="50%"
+                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                    @endif
                     <h5 class="mb-0">
                         @if (Auth::check())
                             @if (Auth::user()->id == $iu->id)
