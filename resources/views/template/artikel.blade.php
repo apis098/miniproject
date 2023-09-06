@@ -209,7 +209,7 @@
         <div class="row mx-auto mb-5" style="margin-top: -20px;">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
-                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">
+                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid;box-shadow:none;">
                     <div class="row my-1">
                         <div class="col-7 mt-1">
                             <span class=""
@@ -233,7 +233,7 @@
             </div>
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp:break-word;">Pengeluaran</h4>
-                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">
+                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid;box-shadow: none;">
                     <div class="row my-1">
                         <div class="col-7 mt-1">
                             <span class=""
@@ -252,7 +252,7 @@
             </div>
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Porsi</h4>
-                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid">
+                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid; box-shadow: none;">
                     <div class="row my-1">
                         <div class="col-7 mt-1">
                             <span class="]"
@@ -384,8 +384,6 @@
             </div>
         </div>
     </section>
-
-
     <style>
         .post-content {
             max-height: 100px;
@@ -478,220 +476,220 @@
         </div>
 
         @foreach ($comment as $row)
-        <div class="card p-3">
-            <div class="d-flex justify-content-between">
-                <div class="user d-flex flex-row">
-                    @if ($row->foto)
-                        <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
-                            class="user-img rounded-circle mr-2">
-                    @else
-                        <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
-                            class="user-img rounded-circle mr-2">
-                    @endif
-                    @if (Auth::user()->role == "admin")
-                        <span>
-                            <div class="font-weight-semibold ms-1 me-2">
-                                <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
-                                <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
-                                    width="15" height="15" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                </svg>
-                                @if ($comment_count > 0)
-                                    <div class="text-black" style="font-size: 13px">
-                                        <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                                    </div>
-                                @endif
-                            </div>
-
-                            <small class="font-weight text-break">{{ $row->comment }}</small>
-                        </span>
-                    @else
-                        <div class="d-flex">
+            <div class="card p-3">
+                <div class="d-flex justify-content-between">
+                    <div class="user d-flex flex-row">
+                        @if ($row->foto)
+                            <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
+                                class="user-img rounded-circle mr-2">
+                        @else
+                            <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
+                                class="user-img rounded-circle mr-2">
+                        @endif
+                        @if (Auth::user()->role == 'admin')
                             <span>
                                 <div class="font-weight-semibold ms-1 me-2">
                                     <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
-                                    @if ($row->count() > 0)
+                                    <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg" width="15"
+                                        height="15" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                    </svg>
+                                    @if ($comment_count > 0)
                                         <div class="text-black" style="font-size: 13px">
                                             <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                         </div>
                                     @endif
                                 </div>
-                                <div>
-                                    <small>{{ $row->comment }}</small>
-                                </div>
 
+                                <small class="font-weight text-break">{{ $row->comment }}</small>
                             </span>
-                        </div>
-                    @endif
+                        @else
+                            <div class="d-flex">
+                                <span>
+                                    <div class="font-weight-semibold ms-1 me-2">
+                                        <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
+                                        @if ($row->count() > 0)
+                                            <div class="text-black" style="font-size: 13px">
+                                                <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <small>{{ $row->comment }}</small>
+                                    </div>
+
+                                </span>
+                            </div>
+                        @endif
+                    </div>
+
                 </div>
+                <div class="action d-flex mt-2 align-items-center">
 
-            </div>
-            <div class="action d-flex mt-2 align-items-center">
+                    <div class="reply px-7 me-2">
+                        <small id="like-count-comment{{ $row->id }}"> {{ $row->likes }}</small>
+                    </div>
 
-                <div class="reply px-7 me-2">
-                    <small id="like-count-comment{{ $row->id }}"> {{ $row->likes }}</small>
-                </div>
-
-                <div class="icons align-items-center input-group">
-                    <form action="{{ route('like.comment.recipe', $row->id) }}" method="POST" id="like-form-comment">
-                        @csrf
-                        @if ($userLogin && $row->like()->where('users_id', auth()->user()->id)->exists())
-                            <button type="submit"
-                                class="yuhu me-2 text-warning btn-sm rounded-5" id="like-button-comment">
-                                <i class="fa-solid fa-thumbs-up"></i>
+                    <div class="icons align-items-center input-group">
+                        <form action="{{ route('like.comment.recipe', $row->id) }}" method="POST"
+                            id="like-form-comment">
+                            @csrf
+                            @if (
+                                $userLogin &&
+                                    $row->like()->where('users_id', auth()->user()->id)->exists())
+                                <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
+                                    id="like-button-comment">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                </button>
+                            @else
+                                <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
+                                    id="like-button-comment">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                </button>
+                            @endif
+                        </form>
+                        @if ($userLogin->id != $row->users_id && $userLogin->role != 'admin')
+                            <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
+                                class="yuhu text-danger btn-sm rounded-5 "><i
+                                    class="fa-solid fa-triangle-exclamation me-2"></i>
+                            </button>
+                        @elseif(auth()->user()->role == 'admin')
+                            <button type="button" data-toggle="modal" data-target="#blockModal{{ $row->id }}"
+                                class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="20" height="20" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                        fill="currentColor" fill-rule="nonzero" />
+                                </svg>
                             </button>
                         @else
-                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5" id="like-button-comment">
-                                <i class="fa-regular fa-thumbs-up"></i>
-                            </button>
+                            <form action="{{ route('delete.comment', $row->id) }}" method="POST"
+                                id="formDelete{{ $row->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="confirmation({{ $row->id }})" id="delete-form-comment{{$row->id}}"
+                                    class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         @endif
-                    </form>
-                    @if ($userLogin->id != $row->users_id && $userLogin->role != 'admin')
-                        <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
-                            class="yuhu text-danger btn-sm rounded-5 "><i
-                                class="fa-solid fa-triangle-exclamation me-2"></i>
-                        </button>
-                    @elseif(auth()->user()->role == 'admin')
-                        <button type="button" data-toggle="modal"
-                            data-target="#blockModal{{ $row->id }}"
-                            class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
-                                width="20" height="20" viewBox="0 0 24 24">
-                                <path
-                                    d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                    fill="currentColor" fill-rule="nonzero" />
-                            </svg>
-                        </button>
-                    @else
-                        <form action="{{ route('ReplyDestroy.destroy', $row->id) }}" method="POST"
-                            id="formDelete{{ $row->id }}">
+                    </div>
+                    <div class="d-flex justify-content-end input-group">
+                        <a href="#" class="text-secondary " data-toggle="collapse"
+                            data-target="#collapse{{ $row->id }}" aria-expanded="true" aria-controls="collapseOne">
+                            <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                        </a>
+                    </div>
+                </div>
+                {{-- collapse --}}
+                <div class="collapse" id="collapse{{ $row->id }}">
+                    <div class="card card-body mx-3">
+                        <form action="{{ route('balasan.komentar.resep', $row->id) }}" method="POST">
                             @csrf
-                            @method('DELETE')
-                            <button type="button" onclick="confirmation({{ $row->id }})"
-                                class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
-                            </button>
-                        </form>
-                    @endif
-                </div>
-                <div class="d-flex justify-content-end input-group">
-                    <a href="#" class="text-secondary " data-toggle="collapse"
-                        data-target="#collapse{{ $row->id }}" aria-expanded="true"
-                        aria-controls="collapseOne">
-                        <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-                    </a>
-                </div>
-            </div>
-            {{-- collapse --}}
-            <div class="collapse" id="collapse{{ $row->id }}">
-                <div class="card card-body mx-3">
-                    <form action="{{ route('balasan.komentar.resep', $row->id) }}" method="POST">
-                        @csrf
-                        <div class="input-group mb-3">
-                            <input type="text" id="reply_comment" name="reply_comment" width="500px"
-                                class="form-control form-control-sm rounded-3 me-5"
-                                placeholder="Balas komentar dari {{ $row->user->name }}....">
+                            <div class="input-group mb-3">
+                                <input type="text" id="reply_comment" name="reply_comment" width="500px"
+                                    class="form-control form-control-sm rounded-3 me-5"
+                                    placeholder="Balas komentar dari {{ $row->user->name }}....">
 
-                            <button type="submit" style="background-color: #F7941E; border-radius:10px;"
-                                class="btn btn-light btn-sm text-light ms-3"><b
-                                    class="me-3 ms-3">Kirim</b></button>
-                        </div>
-                    </form>
-                    @foreach ($row->reply_comment_recipe as $item)
-                        <div class="user d-flex flex-row mb-2">
-                            @if ($item->user->foto)
-                                <img src="{{ asset('storage/' . $item->user->foto) }}" width="30"
-                                    height="30" class="user-img rounded-circle mr-2">
-                            @else
-                                <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
-                                    class="user-img rounded-circle mr-2">
-                            @endif
-                            <span>
-                                <small
-                                    class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b>
-                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-                                        width="15" height="15" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                    </svg>
-                                </small>
-                                @if ($item->count() > 0)
-                                    <div class="text-black" style="font-size: 13px">
-                                        <small
-                                            class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                                    </div>
-                                @endif
-                                <div class="">
-                                    <small class="font-weight">{{ $item->komentar }}</small>
-                                </div>
-                            </span>
-                        </div>
-                        {{-- llike --}}
-                        <div class="action d-flex mt-2 align-items-center">
-
-                            <div class="reply px-7 me-2">
-                                <small id="like-count-reply-comment{{ $item->id }}">
-                                    {{ $item->likes }}</small>
+                                <button type="submit" style="background-color: #F7941E; border-radius:10px;"
+                                    class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                             </div>
+                        </form>
+                        @foreach ($row->reply_comment_recipe as $item)
+                            <div class="user d-flex flex-row mb-2">
+                                @if ($item->user->foto)
+                                    <img src="{{ asset('storage/' . $item->user->foto) }}" width="30" height="30"
+                                        class="user-img rounded-circle mr-2">
+                                @else
+                                    <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
+                                        class="user-img rounded-circle mr-2">
+                                @endif
+                                <span>
+                                    <small class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b>
+                                        <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="15"
+                                            height="15" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                        </svg>
+                                    </small>
+                                    @if ($item->count() > 0)
+                                        <div class="text-black" style="font-size: 13px">
+                                            <small
+                                                class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                        </div>
+                                    @endif
+                                    <div class="">
+                                        <small class="font-weight">{{ $item->komentar }}</small>
+                                    </div>
+                                </span>
+                            </div>
+                            {{-- llike --}}
+                            <div class="action d-flex mt-2 align-items-center">
 
-                            <div class="icons align-items-center input-group">
+                                <div class="reply px-7 me-2">
+                                    <small id="like-count-reply-comment{{ $item->id }}">
+                                        {{ $item->likes }}</small>
+                                </div>
 
-                                <form action="{{ route('likeReply.comment.recipe', $item->id) }}" method="POST"
-                                    id="like-reply-comment-form">
-                                    @csrf
-                                    @if (
-                                        $userLogin && $item->like()->where('users_id', $userLogin->id)->exists())
-                                        <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
-                                            id="like-reply-comment-button">
-                                            <i class="fa-solid fa-thumbs-up"></i>
+                                <div class="icons align-items-center input-group">
+
+                                    <form action="{{ route('likeReply.comment.recipe', $item->id) }}" method="POST"
+                                        id="like-reply-comment-form">
+                                        @csrf
+                                        @if (
+                                            $userLogin &&
+                                                $item->like()->where('users_id', $userLogin->id)->exists())
+                                            <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
+                                                id="like-reply-comment-button">
+                                                <i class="fa-solid fa-thumbs-up"></i>
+                                            </button>
+                                        @else
+                                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
+                                                id="like-reply-comment-button">
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </button>
+                                        @endif
+                                    </form>
+                                    @if ($userLogin->id != $item->users_id && $userLogin->role != 'admin')
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#modalBalasan{{ $item->id }}"
+                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                        </button>
+                                    @elseif(auth()->user()->role == 'admin')
+                                        <button type="button" data-toggle="modal"
+                                            data-target="#blockModalReply{{ $item->id }}"
+                                            class="yuhu text-danger btn-sm rounded-5 "><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                    fill="currentColor" fill-rule="nonzero" />
+                                            </svg>
                                         </button>
                                     @else
-                                        <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                            id="like-reply-comment-button">
-                                            <i class="fa-regular fa-thumbs-up"></i>
-                                        </button>
+                                        <form action="{{ route('delete.reply.comment', $item->id) }}" method="POST"
+                                            id="replyDelete{{ $item->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" onclick="confirmationReply({{ $item->id }})"
+                                                class="yuhu text-danger btn-sm rounded-5 "><i
+                                                    class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
                                     @endif
-                                </form>
-                                @if ($userLogin->id != $item->users_id && $userLogin->role != 'admin')
-                                    <button type="button" data-toggle="modal"
-                                        data-target="#modalBalasan{{ $item->id }}"
-                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                            class="fa-solid fa-triangle-exclamation me-2"></i>
-                                    </button>
-                                @elseif(auth()->user()->role == 'admin')
-                                    <button type="button" data-toggle="modal"
-                                        data-target="#blockModalReply{{ $item->id }}"
-                                        class="yuhu text-danger btn-sm rounded-5 "><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                fill="currentColor" fill-rule="nonzero" />
-                                        </svg>
-                                    </button>
-                                @else
-                                    <form action="{{ route('replyComment.destroy', $item->id) }}"
-                                        method="POST" id="replyDelete{{ $item->id }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button"
-                                            onclick="confirmationReply({{ $item->id }})"
-                                            class="yuhu text-danger btn-sm rounded-5 "><i
-                                                class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                @endif
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                    {{-- end like --}}
+                        @endforeach
+                        {{-- end like --}}
+                    </div>
                 </div>
+                {{-- end collapse --}}
             </div>
-            {{-- end collapse --}}
-        </div>
-    @endforeach
+        @endforeach
     </section>
     <script>
-         document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll("#like-reply-comment-form");
 
             likeForms.forEach(form => {
@@ -715,7 +713,8 @@
                             button.classList.remove('text-dark');
                             button.classList.add('text-warning');
                             icon.setAttribute('class', 'fa-solid fa-thumbs-up');
-                            document.getElementById("like-count-reply-comment" + responseData.reply_id)
+                            document.getElementById("like-count-reply-comment" + responseData
+                                    .reply_id)
                                 .textContent = responseData.likes;
                         } else {
                             button.classList.remove('text-warning');
@@ -731,7 +730,69 @@
         });
     </script>
     <script>
-          document.addEventListener("DOMContentLoaded", function() {
+        function confirmationReply(num) {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('replyDelete'+num).submit();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        function confirmation(num) {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('formDelete'+num).submit();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll("#like-form-comment");
 
             likeForms.forEach(form => {
@@ -755,7 +816,8 @@
                             button.classList.remove('text-dark');
                             button.classList.add('text-warning');
                             icon.setAttribute('class', 'fa-solid fa-thumbs-up');
-                            document.getElementById("like-count-comment" + responseData.reply_id)
+                            document.getElementById("like-count-comment" + responseData
+                                    .reply_id)
                                 .textContent = responseData.likes;
                         } else {
                             button.classList.remove('text-warning');

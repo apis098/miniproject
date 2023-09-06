@@ -42,4 +42,12 @@ class komentar_resep extends Controller
         $reply->save();
         return redirect()->back()->with('success','Sukses membalas komentar');
     }
+    public function delete_comment(string $id) {
+        comment_recipes::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Sukses menghapus komentar!');
+    }
+    public function delete_reply_comment(string $id) {
+        replyCommentRecipe::where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Sukses menghapus komentar!');
+    }
 }

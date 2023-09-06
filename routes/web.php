@@ -144,5 +144,7 @@ Route::post('/balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_comme
 Route::post('/koki/sukai/{id}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::class, 'like_reply_comment_recipe'])->name('like.reply.comment.recipe')->middleware("auth");
 Route::post('/koki/sukai/balasan/{id}', [LikeCommentController::class, 'like_reply_comment'])->name('likeReply.comment.recipe')->middleware('auth');
+Route::delete('/hapus/komentar-resep/{id}', [komentar_resep::class, 'delete_comment'])->name('delete.comment')->middleware(['auth', 'role:koki']);
+Route::delete('/hapus/komentar-resep-reply/{id}', [komentar_resep::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth', 'role:koki');
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
