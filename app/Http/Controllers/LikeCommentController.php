@@ -6,6 +6,7 @@ use App\Models\comment_recipes;
 use App\Models\like_comment_recipes;
 use App\Models\LikeReplyCommentRecipes;
 use App\Models\notifications;
+use App\Models\replyCommentRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -67,5 +68,33 @@ class LikeCommentController extends Controller
             }
         }
         
+    }
+
+    public function like_reply_comment($id){
+        $comment = replyCommentRecipe::findOrFail($id);
+        $user = Auth::user();
+        if($user && !LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->exists()){
+            LikeReplyCommentRecipes::create([
+                'users_id' => auth()->user()->id,
+                'recipe_id' => $comment->recipe_id,
+                'comment_id' => $comment->id
+            ]);
+            $comment->increment('likes');
+            return response()->json([
+                'liked' => true,
+                'likes' => $comment->likes,
+                'reply_id' => $comment->id,
+            ]);
+        }elseif($user && LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->exists()){
+            $data = LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->where('recipe_id', $comment->recipe_id)->where('comment_id', $comment->id)->delete();
+            if($data){
+                $comment->decrement('likes');
+                return response()->json([
+                    'liked' => false,
+                    'likes' => $comment->likes,
+                    'reply_id' => $comment->id,
+                ]);
+            }
+        }
     }
 }

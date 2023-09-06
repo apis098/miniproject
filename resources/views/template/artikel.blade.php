@@ -629,25 +629,25 @@
                         <div class="action d-flex mt-2 align-items-center">
 
                             <div class="reply px-7 me-2">
-                                <small id="like-count-balasan{{ $item->id }}">
+                                <small id="like-count-reply-comment{{ $item->id }}">
                                     {{ $item->likes }}</small>
                             </div>
 
                             <div class="icons align-items-center input-group">
 
-                                <form action="{{ route('Replies.like.balasan', $item->id) }}" method="POST"
-                                    id="">
+                                <form action="{{ route('likeReply.comment.recipe', $item->id) }}" method="POST"
+                                    id="like-reply-comment-form">
                                     @csrf
                                     @if (
                                         $userLogin &&
                                             $item->like()->where('users_id', $userLogin->id)->exists())
                                         <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
-                                            id="">
+                                            id="like-reply-comment-button">
                                             <i class="fa-solid fa-thumbs-up"></i>
                                         </button>
                                     @else
                                         <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                            id="">
+                                            id="like-reply-comment-button">
                                             <i class="fa-regular fa-thumbs-up"></i>
                                         </button>
                                     @endif
@@ -691,6 +691,46 @@
         </div>
     @endforeach
     </section>
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+            const likeForms = document.querySelectorAll("#like-reply-comment-form");
+
+            likeForms.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector("#like-reply-comment-button");
+                    const icon = button.querySelector("i");
+                    const svg = button.querySelector("svg");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.liked) {
+                            button.classList.remove('text-dark');
+                            button.classList.add('text-warning');
+                            icon.setAttribute('class', 'fa-solid fa-thumbs-up');
+                            document.getElementById("like-count-reply-comment" + responseData.reply_id)
+                                .textContent = responseData.likes;
+                        } else {
+                            button.classList.remove('text-warning');
+                            button.classList.add('text-dark');
+                            icon.setAttribute('class', 'fa-regular fa-thumbs-up');
+                            document.getElementById("like-count-reply-comment" + responseData
+                                    .reply_id)
+                                .textContent = responseData.likes;
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <script>
           document.addEventListener("DOMContentLoaded", function() {
             const likeForms = document.querySelectorAll("#like-form-comment");
