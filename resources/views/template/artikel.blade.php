@@ -523,14 +523,11 @@
                             </div>
                         @endif
                     </div>
-
                 </div>
                 <div class="action d-flex mt-2 align-items-center">
-
                     <div class="reply px-7 me-2">
                         <small id="like-count-comment{{ $row->id }}"> {{ $row->likes }}</small>
                     </div>
-
                     <div class="icons align-items-center input-group">
                         <form action="{{ route('like.comment.recipe', $row->id) }}" method="POST"
                             id="like-form-comment">
@@ -550,10 +547,52 @@
                             @endif
                         </form>
                         @if ($userLogin->id != $row->users_id && $userLogin->role != 'admin')
-                            <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
+                            <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><i
-                                    class="fa-solid fa-triangle-exclamation me-2"></i>
+                                    class="fa-solid fa-triangle-exclamation me-2"></i> 
                             </button>
+                              {{-- modal --}}
+                              <div class="modal fade" id="Modald{{ $row->id }}" tabindex="-1" role="dialog"
+                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h5 class="modal-title" id="reportModal"
+                                              style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                              Laporkan komentar</h5>
+                                          <button type="button" class="close" data-dismiss="modal"
+                                              aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </div>
+                                      <form action="" method="POST">
+                                          @csrf
+                                          <div class="modal-body d-flex align-items-center">
+                                              <!-- Tambahkan kelas "align-items-center" -->
+                                              @if ($row->foto)
+                                                  <img class="me-2"
+                                                      src="{{ asset('storage/' . $row->foto) }}"
+                                                      width="106px" height="104px" style="border-radius: 50%"
+                                                      alt="">
+                                                  <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                              @else
+                                                  <img class="me-2" src="{{ asset('images/default.jpg') }}"
+                                                      width="106px" height="104px" style="border-radius: 50%"
+                                                      alt="">
+                                                  <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                      placeholder="Alasan..."></textarea>
+                                              @endif
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="submit" class="btn btn-light text-light"
+                                                  style="border-radius: 15px; background-color:#F7941E;"><b
+                                                      class="ms-2 me-2">Laporkan</b></button>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                          {{-- end Modal --}}
                         @elseif(auth()->user()->role == 'admin')
                             <button type="button" data-toggle="modal" data-target="#blockModal{{ $row->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
@@ -568,7 +607,8 @@
                                 id="formDelete{{ $row->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onclick="confirmation({{ $row->id }})" id="delete-form-comment{{$row->id}}"
+                                <button type="button" onclick="confirmation({{ $row->id }})"
+                                    id="delete-form-comment{{ $row->id }}"
                                     class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
@@ -606,11 +646,7 @@
                                 @endif
                                 <span>
                                     <small class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b>
-                                        <svg class="text-primary" xmlns="http://www.w3.org/2000/svg" width="15"
-                                            height="15" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                        </svg>
+                                        
                                     </small>
                                     @if ($item->count() > 0)
                                         <div class="text-black" style="font-size: 13px">
@@ -652,10 +688,52 @@
                                     </form>
                                     @if ($userLogin->id != $item->users_id && $userLogin->role != 'admin')
                                         <button type="button" data-toggle="modal"
-                                            data-target="#modalBalasan{{ $item->id }}"
+                                            data-target="#modalR{{ $item->id }}"
                                             class="yuhu text-danger btn-sm rounded-5 "><i
-                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                class="fa-solid fa-triangle-exclamation me-2"></i> 
                                         </button>
+                                          {{-- modal --}}
+                                <div class="modal fade" id="modalR{{ $item->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="reportModal"
+                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                Laporkan komentar</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="" method="POST">
+                                            @csrf
+                                            <div class="modal-body d-flex align-items-center">
+                                                <!-- Tambahkan kelas "align-items-center" -->
+                                                @if ($item->user->foto)
+                                                    <img class="me-2"
+                                                        src="{{ asset('storage/' . $item->user->foto) }}"
+                                                        width="106px" height="104px" style="border-radius: 50%"
+                                                        alt="">
+                                                    <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                @else
+                                                    <img class="me-2" src="{{ asset('images/default.jpg') }}"
+                                                        width="106px" height="104px" style="border-radius: 50%"
+                                                        alt="">
+                                                    <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                        placeholder="Alasan..."></textarea>
+                                                @endif
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-light text-light"
+                                                    style="border-radius: 15px; background-color:#F7941E;"><b
+                                                        class="ms-2 me-2">Laporkan</b></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- end Modal --}}
                                     @elseif(auth()->user()->role == 'admin')
                                         <button type="button" data-toggle="modal"
                                             data-target="#blockModalReply{{ $item->id }}"
@@ -744,7 +822,7 @@
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('replyDelete'+num).submit();
+                                document.getElementById('replyDelete' + num).submit();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
@@ -761,6 +839,7 @@
                 }
             });
         }
+
         function confirmation(num) {
             iziToast.show({
                 backgroundColor: '#F7941E',
@@ -775,7 +854,7 @@
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('formDelete'+num).submit();
+                                document.getElementById('formDelete' + num).submit();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
