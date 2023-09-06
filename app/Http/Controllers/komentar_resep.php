@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\comment_recipes;
+use App\Models\notifications;
 use App\Models\replyCommentRecipe;
 use Illuminate\Support\Facades\Validator;
 
@@ -26,6 +27,7 @@ class komentar_resep extends Controller
                 'recipes_id' => $recipe,
                 "comment" => $komentar
             ]);
+            
         }
         if ($c) {
             return redirect()->back()->with('success', 'Sukses memberikan komentar!');
@@ -40,6 +42,14 @@ class komentar_resep extends Controller
         $reply->comment_id = $comment->id;
         $reply->komentar = $request->reply_comment;
         $reply->save();
+        if ($comment->users_id != auth()->user()->id){
+            $notifications = new notifications();
+            $notifications->notification_from = auth()->user()->id;
+            $notifications->user_id = $comment->users_id;
+            $notifications->reply_comment_id = 1;
+            $notifications->resep_id = $comment->recipes_id;
+            $notifications->save();
+        }
         return redirect()->back()->with('success','Sukses membalas komentar');
     }
     public function delete_comment(string $id) {

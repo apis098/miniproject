@@ -30,6 +30,8 @@ return new class extends Migration
             $table->unsignedBigInteger('resep_id')->nullable(); 
             $table->unsignedBigInteger('like_comment_recipes_id')->nullable();
             $table->unsignedBigInteger('like_reply_comment_recipes_id')->nullable();
+            $table->unsignedBigInteger('comment_id')->nullable();
+            $table->unsignedBigInteger('reply_comment_id')->nullable();
             $table->string('status')->default('belum');
             $table->timestamps();
 
