@@ -49,6 +49,7 @@ Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('a
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
 Route::get('about', [LoginController::class, 'about'])->name('about');
+Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');

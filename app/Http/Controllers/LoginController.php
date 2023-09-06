@@ -111,6 +111,34 @@ class LoginController extends Controller
         }
         return view('template.about', compact('notification','footer','unreadNotificationCount', 'userLogin', 'favorite'));
     }
+
+    public function keluhan()
+    {
+        $complaints = complaint::paginate(3, ['*'], 'complaint-page');
+        $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
+        $userLogin = Auth::user();
+        $jumlah_resep = reseps::all()->count();
+        $foto_resep= reseps::take(5)->get();
+        $footer = footer::first();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+
+        return view('template.keluhan', compact('real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
+    }
+
+
 }
 $userLogin = Auth::user();
 $notification = [];
