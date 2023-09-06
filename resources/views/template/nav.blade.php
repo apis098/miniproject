@@ -210,8 +210,8 @@
 
         </div>
         <!-- header section strats -->
-        <header class="header_section">
-            <div class="container">
+        <header class="header_section ms-5">
+            <div class="container ms-4">
                 <div class="col-6">
                     <nav class="navbar navbar-expand-lg custom_nav-container ">
                         <div style="margin-left: -80px;">
