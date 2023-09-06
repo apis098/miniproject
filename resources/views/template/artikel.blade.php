@@ -533,9 +533,7 @@
                         <form action="{{ route('like.comment.recipe', $row->id) }}" method="POST"
                             id="like-form-comment">
                             @csrf
-                            @if (
-                                $userLogin &&
-                                    $row->like()->where('users_id', auth()->user()->id)->exists())
+                            @if ($userLogin && $row->like()->where('users_id', auth()->user()->id)->exists())
                                 <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
                                     id="like-button-comment">
                                     <i class="fa-solid fa-thumbs-up"></i>

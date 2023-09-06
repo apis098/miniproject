@@ -42,5 +42,47 @@ class AdminSeeder extends Seeder
         'role' => 'koki'
        ],
     );
+    User::create([
+        'name' => 'Arif',
+        'email' => 'arif@gmail.com',
+        'password' => Hash::make('arif123'),
+        'role' => 'koki'
+       ],
+    );
+    User::create([
+        'name' => 'Reno',
+        'email' => 'reno@gmail.com',
+        'password' => Hash::make('reno123'),
+        'role' => 'koki'
+       ],
+    );
+    User::create([
+        'name' => 'Clara',
+        'email' => 'clara@gmail.com',
+        'password' => Hash::make('clara123'),
+        'role' => 'koki'
+       ],
+    );
+    User::create([
+        'name' => 'Hamdan',
+        'email' => 'hamdan@gmail.com',
+        'password' => Hash::make('hamdan123'),
+        'role' => 'koki'
+       ],
+    );
+    User::create([
+        'name' => 'Rahmat',
+        'email' => 'rahmat@gmail.com',
+        'password' => Hash::make('rahmat123'),
+        'role' => 'koki'
+       ],
+    );
+    User::create([
+        'name' => 'Daffa',
+        'email' => 'daffa@gmail.com',
+        'password' => Hash::make('daffa123'),
+        'role' => 'koki'
+       ],
+    );
     }
 }
