@@ -319,7 +319,6 @@
                             <label for="hari" class="form-label">Hari spesial</label>
                             <div class="row" style="width: 100%;">
                                 @foreach ($special_day as $nums => $d)
-                                @if ($nums <= 3)
                                 <div class="col-lg-3 mb-3" style="width:100%;">
                                     <input type="hidden" id="input_pilih_hari{{ $nums }}"
                                         value="{{ $d->nama }}">
@@ -328,21 +327,7 @@
                                         type="button"
                                         style="border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $d->nama }}</button>
                                 </div>   
-                                @else
-                                  <div class="collapse" id="collapseExample{{$nums}}">
-                                        <div class="col-lg-3 mb-3" style="margin-left: -10px;">
-                                            <input type="hidden" id="input_pilih_hari{{ $nums }}"
-                                                value="{{ $d->nama }}">
-                                            <button id="pilih_hari{{ $nums }}"
-                                                onclick="pilih_hari({{ $nums }})" class="btn btn-light"
-                                                type="button"
-                                                style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $d->nama }}</button>
-                                        </div>  
-                                  </div>   
-                                  <a class="text-center text-dark" data-bs-toggle="collapse" href="#collapseExample{{$nums}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    Lihat Lebih Banyak <i class="fa-solid fa-chevron-down"></i>
-                                  </a>               
-                                @endif
+                                
                                     
                                 @endforeach
                             </div>
@@ -351,7 +336,6 @@
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
                                 @foreach ($categories_foods_all as $num => $f)
-                                @if ($num <= 3)
                                 <div class="col-lg-3 mb-3">
                                     <input id="input_jenis_makanan{{ $num }}" type="hidden"
                                         value="{{ $f->nama_makanan }}">
@@ -360,21 +344,7 @@
                                         type="button"
                                         style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
                                 </div>
-                                @else
-                                <div class="collapse" id="colapseExample{{$num}}">
-                                <div class="col-lg-3 mb-3" style="margin-left: -10px;">
-                                    <input id="input_jenis_makanan{{ $num }}" type="hidden"
-                                        value="{{ $f->nama_makanan }}">
-                                    <button id="pilih_jenis_makanan{{ $num }}"
-                                        onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
-                                        type="button"
-                                        style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
-                                </div>
-                                </div>
-                                <a class="text-center text-dark" data-bs-toggle="collapse" href="#colapseExample{{$num}}" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                    Lihat Lebih Banyak <i class="fa-solid fa-chevron-down"></i>
-                                  </a>    
-                                @endif
+                               
                                 @endforeach
                             </div>
                         </div>
