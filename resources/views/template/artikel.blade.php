@@ -444,7 +444,7 @@
                             ({{ $show_resep->comment_recipes->count() + $show_resep->reply_comment_recipe->count() }})
                         </b></h5>
                     <div class="col-10">
-                        @if (Auth::check())
+                @if (Auth::check())
                             <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
                                 @csrf
                                 <div class="input-group">
@@ -459,7 +459,7 @@
                             </form>
                     </div>
                 @else
-                    <form action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}" method="POST">
+                    <form action="{{route('login')}}" method="POST">
                         @csrf
                         <div class="input-group">
                             <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
@@ -487,7 +487,7 @@
                             <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
                                 class="user-img rounded-circle mr-2">
                         @endif
-                        @if (Auth::user()->role == 'admin')
+                        @if (Auth::check() && Auth::user()->role == 'admin')
                             <span>
                                 <div class="font-weight-semibold ms-1 me-2">
                                     <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
@@ -523,7 +523,6 @@
                                     </span>
                                 </div>
                             @endif
-                       
                     </div>
                 </div>
                 <div class="action d-flex mt-2 align-items-center">
@@ -548,7 +547,7 @@
                                 </button>
                             @endif
                         </form>
-                        @if ($userLogin->id != $row->users_id && $userLogin->role != 'admin')
+                        @if (Auth::check() && $userLogin->id != $row->users_id && $userLogin->role != 'admin')
                             <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><i
                                     class="fa-solid fa-triangle-exclamation me-2"></i> 
@@ -595,7 +594,7 @@
                               </div>
                           </div>
                           {{-- end Modal --}}
-                        @elseif(auth()->user()->role == 'admin')
+                        @elseif(Auth::check() && auth()->user()->role == 'admin')
                             <button type="button" data-toggle="modal" data-target="#blockModal{{ $row->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
                                     width="20" height="20" viewBox="0 0 24 24">
@@ -739,7 +738,7 @@
                                             </button>
                                         @endif
                                     </form>
-                                    @if ($userLogin->id != $item->users_id && $userLogin->role != 'admin')
+                                    @if (Auth::check() && $userLogin->id != $item->users_id && $userLogin->role != 'admin')
                                         <button type="button" data-toggle="modal"
                                             data-target="#modalR{{ $item->id }}"
                                             class="yuhu text-danger btn-sm rounded-5 "><i
@@ -787,7 +786,7 @@
                                 </div>
                             </div>
                             {{-- end Modal --}}
-                                    @elseif(auth()->user()->role == 'admin')
+                                    @elseif(Auth::check() && auth()->user()->role == 'admin')
                                         <button type="button" data-toggle="modal"
                                             data-target="#blockModalReply{{ $item->id }}"
                                             class="yuhu text-danger btn-sm rounded-5 "><svg
@@ -1010,7 +1009,7 @@
                 title: '<i class="fa-solid fa-triangle-exclamation"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
-                message: 'Anda Harus Login Dulu!',
+                message: 'Silahkan Login Terlebih Dahulu!',
                 position: 'topCenter',
             });
         }
