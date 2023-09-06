@@ -33,6 +33,8 @@ class LikeCommentController extends Controller
                 $notifications = new notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->users_id;
+                $notifications->like_comment_recipes_id = 1;
+                $notifications->resep_id = $comment->recipes_id;
                 $notifications->save();
             }
             $comment->increment('likes');
@@ -79,6 +81,14 @@ class LikeCommentController extends Controller
                 'comment_id' => $comment->id
             ]);
             $comment->increment('likes');
+            if ($comment->users_id != auth()->user()->id){
+                $notifications = new notifications();
+                $notifications->notification_from = auth()->user()->id;
+                $notifications->user_id = $comment->users_id;
+                $notifications->like_reply_comment_recipes_id = 1;
+                $notifications->resep_id = $comment->recipe_id;
+                $notifications->save();
+            }
             return response()->json([
                 'liked' => true,
                 'likes' => $comment->likes,
