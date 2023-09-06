@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\comment_recipes;
 use App\Models\notifications;
 use App\Models\replyCommentRecipe;
+use App\Models\reseps;
 use Illuminate\Support\Facades\Validator;
 
 class komentar_resep extends Controller
@@ -14,6 +15,7 @@ class komentar_resep extends Controller
     {
         $c = null;
         $komentar = $request->komentar;
+        $resepData  = reseps::findOrFail($recipe);
         if ($comment != null) {
             $c = replyCommentRecipe::create([
                 'users_id' => $user,
@@ -27,6 +29,14 @@ class komentar_resep extends Controller
                 'recipes_id' => $recipe,
                 "comment" => $komentar
             ]);
+            if ($resepData->user_id != auth()->user()->id){
+                $notifications = new notifications();
+                $notifications->notification_from = auth()->user()->id;
+                $notifications->user_id = $resepData->user_id;
+                $notifications->comment_id = 1;
+                $notifications->resep_id = $resepData->id;
+                $notifications->save();
+            }
             
         }
         if ($c) {

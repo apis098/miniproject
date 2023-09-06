@@ -433,6 +433,27 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
+                                                        @elseif($row->comment_id != null && $row->resep_id != null )
+                                                            <form
+                                                                action="{{ route('resep.read.notification', $row->id) }}"
+                                                                method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="submit">
+                                                                    <small class="mt-1 ms-1 text-secondary">Berkomentar pada 
+                                                                        resep anda</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 mb-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                    <input hidden type="text"
+                                                                        value="{{ $row->complaint_id }}"
+                                                                        name="replies_id" id="replies_id"
+                                                                        class="form-control">
+                                                                </button>
+                                                            </form>
                                                         @elseif($row->like_reply_id != null && $row->complaint_id != null)
                                                             <form
                                                                 action="{{ route('replies.notification', $row->id) }}"
