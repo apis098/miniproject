@@ -357,6 +357,7 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
+    <div class="row">
     @foreach ($recipes as $num => $item)
         <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
             <div class="card" style="border-radius: 15px; border: 0.50px black solid">
@@ -404,6 +405,7 @@
             </div>
         </div>
     @endforeach
+    </div>
 </section>
 
 <!-- book section -->
