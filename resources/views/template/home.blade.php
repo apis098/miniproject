@@ -298,6 +298,23 @@
     </div>
 </section>
 {{-- end koki terpopuler --}}
+   
+<style>
+    .btn-custom{
+     width: 100%; /* Atur lebar tetap untuk tombol */
+     padding: 20px; /* Atur padding agar tombol terlihat bagus */
+     text-align: center; /* Pusatkan teks di dalam tombol */
+     border:none;
+     background: white;
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+     border-radius: 15px;
+     color: #F7941E;
+     font-size: 18px;
+     font-family: Poppins;
+     font-weight: 500;
+     word-wrap: break-word;
+    }
+ </style>
 
 <div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 25px">
     <div class=" input-group" style="margin-left:7rem">
@@ -316,7 +333,7 @@
     <div class="row">
         <div style="margin-left: 8rem;">
             @foreach ($categories_foods as $cf)
-                <button class="btn btn-lg col-lg-2 mb-3"
+                <button class="btn-custom btn-lg col-lg-2 mb-3"
                     style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
                     <a href="/resep?jenis_makanan[]={{ $cf->nama_makanan }}" class="text-dark">
                         {{ $cf->nama_makanan }}
