@@ -430,12 +430,12 @@
                         </div>
                         <div class="card-body mx-4">
                             <div class="row">
-                                <div class="col-12 mx-3">
+                                <div class="col-12 mx-3 mb-3">
                                     <h5>
                                         <a style="color: black; font-size: 24px; margin-left:-1px"
                                             href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                             {{ $item->nama_resep }}
-                                        </a>
+                                         </a>
                                     </h5>
                                     <span>Oleh {{ $item->User->name }}</span> <br>
                                     <p class="mt-2 my-2">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>

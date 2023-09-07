@@ -394,6 +394,7 @@ class ResepsController extends Controller
             }
             return response()->json([
                 'success' => true,
+                'redirect' => route('artikel.resep', [$update_resep->id, $update_resep->nama_resep]),
                 'message' => 'Berhasil Mengupdate Resep!',
                 'data' => $update_resep
             ]);

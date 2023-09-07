@@ -393,6 +393,10 @@
                     contentType: false,
                     data: formData,
                     success: function success(response) {
+                        if (response.redirect) {
+                            window.location.href = response.redirect + "?message=Sukses mengupdate resep!";
+                        }
+                        /*
                         iziToast.show({
                             backgroundColor: '#F7941E',
                             title: '<i class="fa-regular fa-circle-question"></i>',
@@ -401,9 +405,7 @@
                             message: response.message,
                             position: 'topCenter',
                         });
-                        setTimeout(() => {
-                            window.location.href = '/artikel/{{ $edit_resep->id }}/'+response.data.nama_resep;
-                        }, 2000);
+                        */
                     },
                     error: function error(xhr, status, errors) {
                         //alert(xhr.responseText);
