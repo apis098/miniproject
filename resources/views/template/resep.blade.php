@@ -429,7 +429,7 @@
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                         </div>
-                        <div class="card-body">
+                        <div class="card-body mx-4">
                             <div class="row">
                                 <div class="col-12">
                                     <h5>
@@ -438,10 +438,10 @@
                                             {{ $item->nama_resep }}
                                         </a>
                                     </h5>
-                                    <span>Oleh {{ $item->User->name }}</span> <br> <br>
-                                    <span>RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</span>
+                                    <span>Oleh {{ $item->User->name }}</span> <br>
+                                    <p class="mt-3">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>
                                 </div>
-                                <div class="col-12 row  my-3">
+                                <div class="col-12 row mb-3">
                                     <div class="col-6 mx-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26.31" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-dasharray="80" stroke-dashoffset="80" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11L12 3L15 4L14 10H21V13L18 20H7H3V11H7V20"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.8s" values="80;0"/></path></svg>
                                         {{ $item->likes }} suka
@@ -454,9 +454,13 @@
                                             {{ $item->lama_memasak }} menit
                                         @endif
                                     </div>
-                                    <div class="col-12 my-2">
+                                    <div class="col-6 my-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19c5.523 0 10-3.582 10-8s-4.477-8-10-8S2 6.582 2 11c0 2.157 1.067 4.114 2.801 5.553C4.271 18.65 3 20 2 21c3 0 4.527-.979 6.32-2.559c1.14.36 2.38.559 3.68.559z"/></svg>
-                                        {{ $item->comment_recipes->count() + $item->reply_comment_recipe->count() }}
+                                        {{ $item->comment_recipes->count() }} Komentar
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27.7" viewBox="0 0 384 512"><path fill="currentColor" d="M0 48C0 21.5 21.5 0 48 0v441.4l130.1-92.9c8.3-6 19.6-6 27.9 0l130 92.9V48H48V0h288c26.5 0 48 21.5 48 48v440c0 9-5 17.2-13 21.3s-17.6 3.4-24.9-1.8L192 397.5l-154.1 110c-7.3 5.2-16.9 5.9-24.9 1.8S0 497 0 488V48z"/></svg>
+                                        {{ $item->favorite_count }} Favorit
                                     </div>
                                 </div>
                             </div>

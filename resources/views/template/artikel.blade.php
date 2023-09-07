@@ -441,7 +441,7 @@
             <div class="col-md-12">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
                     <h5 class=""><b>Komentar
-                            ({{ $show_resep->comment_recipes->count() + $show_resep->reply_comment_recipe->count() }})
+                            ({{ $show_resep->comment_recipes->count() }})
                         </b></h5>
                     <div class="col-10">
                 @if (Auth::check())
