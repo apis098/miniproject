@@ -336,7 +336,7 @@
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
                                 @foreach ($categories_foods_all as $num => $f)
-                                <div class="col-lg-3 mb-3">
+                                <div class="col-lg-3 mb-3" style="width: 100px;">
                                     <input id="input_jenis_makanan{{ $num }}" type="hidden"
                                         value="{{ $f->nama_makanan }}">
                                     <button id="pilih_jenis_makanan{{ $num }}"
@@ -344,7 +344,6 @@
                                         type="button"
                                         style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
                                 </div>
-
                                 @endforeach
                             </div>
                         </div>
