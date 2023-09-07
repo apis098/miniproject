@@ -449,7 +449,7 @@
                                     <div class="col-6 mx-auto">
                                         <img width="20px" height="20px" src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
                                         @if ($item->lama_memasak >= 60)
-                                            {{ $item->lama_memasak / 60 }} jam
+                                            {{ number_format($item->lama_memasak / 60, 1) }} jam
                                         @else
                                             {{ $item->lama_memasak }} menit
                                         @endif

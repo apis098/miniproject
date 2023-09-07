@@ -215,7 +215,7 @@
                             <span class=""
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                 @if ($show_resep->lama_memasak > 60)
-                                    {{ $show_resep->lama_memasak / 60 }} jam
+                                    {{ number_format($show_resep->lama_memasak / 60, 1) }} jam
                                 @elseif($show_resep->lama_memasak <= 60)
                                     {{ $show_resep->lama_memasak }} menit
                                 @endif
