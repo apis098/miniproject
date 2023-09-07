@@ -655,76 +655,7 @@ function showLoading() {
     @endforeach
     {{-- akhir modal --}}
     {{-- modal komentar --}}
-    @foreach ($allComments as $row)
-            <div class="modal fade" id="modalKomentar{{ $row->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="reportModal"
-                                style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                Detail</h5>
-                            <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body d-flex align-items-center col-12">
-                            <!-- Tambahkan kelas "align-items-center" -->
-                            <div class="col-3 mt-2  ms-3">
-                                @if ($row->user->foto)
-                                    <img class="" src="{{ asset('storage/' . $row->user->foto) }}" width="100px"
-                                        height="100px" style="border-radius: 50%" alt="">
-                                @else
-                                    <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
-                                        height="100px" style="border-radius: 50%" alt="">
-                                @endif
-                                {{-- <div></div>
-                                <span class="widget-49-pro-title fw-bolder"
-                                    style="margin-left: 30px;">{{ $row->user->name }}</span><br>
-                                <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small> --}}
-                            </div>
-                            <div class="col-md-8">
-                                <div class="widget-49-meeting-info">
-
-                                </div>
-                                @if(!empty($row->replies->reply))
-                                    <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
-                                @elseif(!empty($row->reply_complaint->reply))
-                                <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_complaint->reply }}</textarea>
-                                @endif
-
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
-                                id="deleteLaporan{{ $row->id }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="confirmation({{ $row->id }})"
-                                    class="btn btn-light text-black"
-                                    style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                        class="ms-2 me-2">Hapus Laporan</b></button>
-                            </form>
-
-                            <button type="button" data-target="#modalTerimalaporan{{ $row->id }}"
-                                data-toggle="modal" data-dismiss="modal" class="btn btn-light text-light rounded-3"
-                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST"
-                                id="formBlokir{{ $row->id }}">
-                                @csrf
-                                @method('put')
-                                <button type="button" onclick="buttonAllert({{ $row->id }})"
-                                    id="buttonBlokir{{ $row->id }}"
-                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    @endforeach
+    
     {{-- end Modal --}}
     {{-- Model Terima laporan --}}
     @foreach ($data as $row)
