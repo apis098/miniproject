@@ -73,7 +73,7 @@ class LoginController extends Controller
         $complaints = complaint::paginate(3, ['*'], 'complaint-page');
         $reseps = reseps::query();
         $real_reseps = $reseps->has("likes")->orderBy("likes", "desc")->take(3)->get();
-        $real_reseps = $reseps->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $real_reseps = $reseps->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
         $resep = reseps::query();
         $favorite_resep = $resep->has('favorite')->orderBy('favorite_count', 'desc')->take(3)->get();
         $favorite_resep = $resep->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
