@@ -17,6 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('reply_id_report')->nullable();
             $table->unsignedBigInteger('user_id_sender')->nullable();
             $table->unsignedBigInteger('reply_id_complaint')->nullable();
+            $table->unsignedBigInteger('comment_id')->nullable();
+            $table->unsignedBigInteger('reply_comment_id')->nullable();
             $table->unsignedBigInteger('complaint_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('resep_id')->nullable();
@@ -24,7 +26,8 @@ return new class extends Migration
             $table->string('description');
             $table->timestamps();
 
-            
+            $table->foreign('comment_id')->references('id')->on('comment_recipes')->onDelete('cascade');
+            $table->foreign('reply_comment_id')->references('id')->on('reply_comment_recipes')->onDelete('cascade');
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('reply_id_complaint')->references('id')->on('reply_complaints')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

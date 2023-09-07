@@ -99,6 +99,8 @@ Route::delete('/reply-comment-destroy/{id}', [ReplyController::class, 'destroyCo
 
 //report
 Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name('Report.store');
+Route::post('/laporan-komentar-resep-store/{id}', [ReportController::class, 'store_comment_recipes'])->name('Report.comment.recipes');
+Route::post('/laporan-balasan-komentar-resep-store/{id}', [ReportController::class, 'reply_comment_recipes'])->name('Report.reply.comment.recipes');
 Route::post('/laporan-resep/{id}',[ReportController::class,'storeResep'])->name('report.resep');
 Route::post('/laporan-komentar/{id}',[ReportController::class,'storeReply'])->name('report.reply');
 Route::post('/laporan-komentar-balasan/{id}',[ReportController::class,'storeReplyComment'])->name('report.reply.comment');

@@ -7,6 +7,8 @@ use App\Models\favorite;
 use App\Models\notifications;
 use App\Models\Reply;
 use App\Models\replyComplaint;
+use App\Models\comment_recipes;
+use App\Models\replyCommentRecipe;
 use App\Models\Report;
 use App\Models\reseps;
 use App\Models\User;
@@ -256,9 +258,37 @@ class ReportController extends Controller
         return redirect()->back()->with('success','Laporan anda telah terkirim');
     } else {
         // Pengguna belum login, tampilkan pesan
-        return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
+        return redirect()->route('login')->with('info','Silahkan login terlebih dahulu sebelum melaporkan pelanggaran');
     }
     }
+    public function store_comment_recipes(Request $request,$id){
+        if(Auth::check()){
+            $comment = comment_recipes::findOrFail($id);
+            $report = new Report();
+            $report->user_id = $comment->users_id;
+            $report->user_id_sender = auth()->user()->id;
+            $report->comment_id = $comment->id;
+            $report->description = $request->description;
+            $report->save();
+            return redirect()->back()->with('success','Laporan anda telah terkirim');
+        }else{
+            return redirect()->route('login')->with('info','Silahkan login terlebih dahulu sebelum melaporkan pelanggaran');
+        }
+    }
+    public function reply_comment_recipes(Request $request,$id){
+        if(Auth::check()){
+            $comment = replyCommentRecipe::findOrFail($id);
+            $report = new Report();
+            $report->user_id = $comment->users_id;
+            $report->user_id_sender = auth()->user()->id;
+            $report->reply_comment_id = $comment->id;
+            $report->description = $request->description;
+            $report->save();
+            return redirect()->back()->with('success','Laporan anda telah terkirim');
+        }else{
+            return redirect()->route('login')->with('info','Silahkan login terlebih dahulu sebelum melaporkan pelanggaran');
+        }
+    }   
     public function store(Request $request){
         if(Auth::check()) { // Memeriksa apakah pengguna telah login
             $userId = Auth::user()->id;

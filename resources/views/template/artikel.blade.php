@@ -567,6 +567,7 @@
                                         </button>
                                     </div>
                                     <form action="" method="POST">
+                                    <form action="{{route('Report.comment.recipes',$row->id)}}\" method="POST">
                                         @csrf
                                         <div class="modal-body d-flex align-items-center">
                                             <!-- Tambahkan kelas "align-items-center" -->
@@ -613,51 +614,10 @@
                             </button>
                         </form>
                     @elseif(empty(auth()->user()->id))
-                        <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
+                        <button type="button" onclick="harusLogin()"
                             class="yuhu text-danger btn-sm rounded-5 "><i
                                 class="fa-solid fa-triangle-exclamation me-2"></i>
                         </button>
-                        {{-- modal --}}
-                        <div class="modal fade" id="Modald{{ $row->id }}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="reportModal"
-                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                            Laporkan komentar</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <form>
-                                        <div class="modal-body d-flex align-items-center">
-                                            <!-- Tambahkan kelas "align-items-center" -->
-                                            @if ($row->foto)
-                                                <img class="me-2" src="{{ asset('storage/' . $row->foto) }}"
-                                                    width="106px" height="104px" style="border-radius: 50%"
-                                                    alt="">
-                                                <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
-                                            @else
-                                                <img class="me-2" src="{{ asset('images/default.jpg') }}"
-                                                    width="106px" height="104px" style="border-radius: 50%"
-                                                    alt="">
-                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                    placeholder="Alasan..."></textarea>
-                                            @endif
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" onclick="harusLogin()"
-                                                class="btn btn-light text-light"
-                                                style="border-radius: 15px; background-color:#F7941E;"><b
-                                                    class="ms-2 me-2">Laporkan</b></button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- end Modal --}}
                     @endif
                 </div>
                 <div class="d-flex justify-content-end input-group">
@@ -807,55 +767,21 @@
                                                 fill="currentColor" fill-rule="nonzero" />
                                         </svg>
                                     </button>
-                                @else
-                                    <button type="button" data-toggle="modal"
-                                        data-target="#modalR{{ $item->id }}"
+                                @elseif(Auth::check() && auth()->user()->id == $item->users_id)
+                                    <form method="POST" action="{{ route('delete.reply.comment', $row->id) }}"
+                                        id="delete-reply-comment-form{{ $row->id }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" onclick="confirmationReply({{ $row->id }})"
+                                            class="yuhu text-danger btn-sm rounded-5 ">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                @elseif(empty(auth()->user()->id))
+                                    <button type="button" onclick="harusLogin()"
                                         class="yuhu text-danger btn-sm rounded-5 "><i
                                             class="fa-solid fa-triangle-exclamation me-2"></i>
                                     </button>
-                                    {{-- modal --}}
-                                    <div class="modal fade" id="modalR{{ $item->id }}" tabindex="-1"
-                                        role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="reportModal"
-                                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                        Laporkan komentar</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form>
-                                                    <div class="modal-body d-flex align-items-center">
-                                                        <!-- Tambahkan kelas "align-items-center" -->
-                                                        @if ($item->user->foto)
-                                                            <img class="me-2"
-                                                                src="{{ asset('storage/' . $item->user->foto) }}"
-                                                                width="106px" height="104px"
-                                                                style="border-radius: 50%" alt="">
-                                                            <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
-                                                        @else
-                                                            <img class="me-2"
-                                                                src="{{ asset('images/default.jpg') }}"
-                                                                width="106px" height="104px"
-                                                                style="border-radius: 50%" alt="">
-                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                placeholder="Alasan..."></textarea>
-                                                        @endif
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" onclick="harusLogin()"
-                                                            class="btn btn-light text-light"
-                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                class="ms-2 me-2">Laporkan</b></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- end Modal --}}
                                 @endif
                             </div>
                         </div>
@@ -915,7 +841,7 @@
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
-                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -923,7 +849,7 @@
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('replyDelete' + num).submit();
+                                document.getElementById('delete-reply-comment-form' + num).submit();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
@@ -947,7 +873,7 @@
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
-                message: 'Apakah Anda yakin ingin menghapus komentar     ini?',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
