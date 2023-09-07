@@ -79,7 +79,7 @@ class LoginController extends Controller
         $favorite_resep = $resep->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(4)->get();
         $categories_foods = kategori_makanan::all();
-        $recipes = reseps::whereDate('created_at', today())->get();
+        $recipes = reseps::whereDate('created_at', today())->take(3)->get();
         $userLogin = Auth::user();
         $jumlah_resep = reseps::all()->count();
         $foto_resep= reseps::take(5)->get();
