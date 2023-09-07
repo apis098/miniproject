@@ -163,7 +163,7 @@
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="{{ route('user.koki') }}" method="GET">
                                                     <input type="text" id="username" name="username"
-                                                        placeholder="Cari Username">
+                                                        placeholder="Cari Username" value="{{ request()->username }}">
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Cari</button>
                                                 </form>
