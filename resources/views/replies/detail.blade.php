@@ -261,12 +261,12 @@
                                         </button>
                                     @endif
                                 </form>
-                                @if ($userLogin->id != $row->user_id && $userLogin->role != 'admin')
+                                @if (Auth::check() && $userLogin->id != $row->user_id && $userLogin->role != 'admin')
                                     <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
                                         class="yuhu text-danger btn-sm rounded-5 "><i
                                             class="fa-solid fa-triangle-exclamation me-2"></i>
                                     </button>
-                                @elseif(auth()->user()->role == 'admin')
+                                @elseif(Auth::check() && auth()->user()->role == 'admin')
                                     <button type="button" data-toggle="modal"
                                         data-target="#blockModal{{ $row->id }}"
                                         class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
