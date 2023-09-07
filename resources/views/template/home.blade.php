@@ -76,7 +76,7 @@
 
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3">Resep populer</h3>
+            <h3 class="fw-bold ml-3">Resep populer minggu ini</h3>
         </div>
     </div>
     @if ($real_reseps->count() == 0)
@@ -87,6 +87,68 @@
     @endif
     <div class="row container mt-4">
         @foreach ($real_reseps as $num => $item)
+            <div class="col-lg-4 mb-3">
+                <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
+                    <div class="row">
+                        <div class="col-5">
+                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle" width="100%"
+                                height="100%" alt="">
+                        </div>
+                        <div class="col-7">
+                            <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
+                            <div class="d-flex flex-row my-2">
+                                <div class="">
+                                    @if ($item->User->foto)
+                                        <img src="{{ asset('storage/' . $item->User->foto) }}" width="30px"
+                                            height="30px" style="border-radius: 50%;" alt="">
+                                    @else
+                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                            height="30px" style="border-radius: 50%">
+                                    @endif
+                                </div> &nbsp;
+                                <div class="mt-1">
+                                    <span>{{ $item->User->name }}</span>
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-6 my-2">
+                                    <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
+                                        alt="">
+                                    Top {{ $num + 1 }}
+                                </div>
+                                <div class="col-6">
+                                    <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
+                                        method="get">
+                                        <button type="submit" class="btn btn-light"
+                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            <span style="font-weight: 600; color: white;">Lihat</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+</section>
+
+<section class="container mt-5 mb-5">
+
+    <div class=" input-group">
+        <div class="">
+            <h3 class="fw-bold ml-3">Resep terfavorite minggu ini</h3>
+        </div>
+    </div>
+    @if ($favorite_resep->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif
+    <div class="row container mt-4">
+        @foreach ($favorite_resep as $num => $item)
             <div class="col-lg-4 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
@@ -149,6 +211,12 @@
             <h3 class="fw-bold ml-3">Koki terpopuler</h3>
         </div>
     </div>
+    @if ($top_users->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif
     <div class="row text-center">
         @foreach ($top_users as $iu)
             <div class="col-xl-3 col-sm-4 mb-4 my-4">
@@ -242,6 +310,12 @@
         <p style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi
             anda.</p>
     </div>
+    @if ($categories_foods->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif
     <div class="row">
         <div style="margin-left: 8rem;">
             @foreach ($categories_foods as $cf)
@@ -263,6 +337,12 @@
             <h3 class="fw-bold ml-3 mb-5">Resep resep Terbaru</h3>
         </div>
     </div>
+    @if ($recipes->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif
     @if ($recipes->count() >= 3)
         <div class="row">
             @foreach ($recipes as $num => $item)

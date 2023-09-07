@@ -11,6 +11,7 @@ use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kategori_makanan;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -70,7 +71,12 @@ class LoginController extends Controller
     public function home()
     {
         $complaints = complaint::paginate(3, ['*'], 'complaint-page');
-        $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(3)->get();
+        $reseps = reseps::query();
+        $real_reseps = $reseps->has("likes")->orderBy("likes", "desc")->take(3)->get();
+        $real_reseps = $reseps->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
+        $resep = reseps::query();
+        $favorite_resep = $resep->has('favorite')->orderBy('favorite_count', 'desc')->take(3)->get();
+        $favorite_resep = $resep->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(4)->get();
         $categories_foods = kategori_makanan::all();
         $recipes = reseps::whereDate('created_at', today())->get();
@@ -93,7 +99,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
 
-        return view('template.home', compact('recipes','categories_foods','top_users','real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
+        return view('template.home', compact('favorite_resep','recipes','categories_foods','top_users','real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
     }
 
     public function about()
