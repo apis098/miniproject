@@ -70,6 +70,7 @@ class ResepsController extends Controller
             "porsi_orang" => "required|integer|min:0",
             "lama_memasak" => "required|numeric|min:0",
             "pengeluaran_memasak" => "required|min:0",
+            "nama_alat.*" => "required",
             "bahan_resep.*" => "required",
             "takaran_resep.*" => "required",
             "langkah_resep.*" => "required"
@@ -89,6 +90,7 @@ class ResepsController extends Controller
             "lama_memasak.min" => "Lama memasak tidak boleh bernilai minus!",
             "pengeluaran_memasak.required" => "Pengeluaran memasak wajib diisi!",
             "pengeluaran_memasak.min" => "Pengeluaran memasak tidak boleh bernilai minus!",
+            "nama_alat.*.required" => "Nama alat tidak boleh kosong!",
             "bahan_resep.*.required" => "Bahan resep wajib diisi!",
             "takaran_resep.*.required" => "Takaran resep wajib diisi!",
             "langkah_resep.*.required" => "Langkah resep wajib diisi!"
