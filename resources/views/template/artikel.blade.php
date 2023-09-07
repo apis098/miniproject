@@ -54,22 +54,24 @@
                     </h3>
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
-                <div class="ms-4">
+                <div class="ms-4 mt-2">
                     @if ($show_resep->kategori_resep)
                         @foreach ($show_resep->kategori_resep()->get() as $nk)
                             <button type="button" class="btn-edit p-2 mx-1 mt-2">{{ $nk->nama_makanan }}</button>
                         @endforeach
                     @endif
+                    <div class="mt-2">
                     @if ($show_resep->hari_resep)
                         @foreach ($show_resep->hari_resep()->get() as $hr)
                             <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
                         @endforeach
                     @endif
                 </div>
+                </div>
             </div>
             <div class="mt-4 ml-3">
                 <div class="col-lg-6 mt-5 ml-5">
-                    <div style="position: absolute; right: -500px; top: -200px;" class="d-flex">
+                    <div style="position: absolute; right: -500px; top: -245px;" class="d-flex">
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
                                 <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
@@ -87,7 +89,7 @@
                                         $userLogin &&
                                             !$show_resep->likes()->where('user_id', auth()->user()->id)->exists())
                                         <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
+                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
                                             style="border-color: #F7941E;">
                                             <svg xmlns="http://www.w3.org/2000/svg" style="color: #F7941E" width="21"
                                                 height="21" viewBox="0 0 16 16">
@@ -237,7 +239,7 @@
                         <div class="col-7 mt-1">
                             <span class=""
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                RP{{ number_format($show_resep->pengeluaran_memasak, 2, ',', '.') }}
+                                RP {{ number_format($show_resep->pengeluaran_memasak, 2, ',', '.') }}
                             </span> <br>
                         </div>
                         <div class="col-5 d-flex my-auto flex-row-reverse">
@@ -440,7 +442,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5 class=""><b>Komentar
+                    <h5 class="" style="margin-left: 18px;"><b>Komentar
                             ({{ $show_resep->comment_recipes->count() }})
                         </b></h5>
                     <div class="col-10">
@@ -807,7 +809,7 @@
                     position: 'topRight',
                 });
                 setTimeout(() => {
-                    window.location.href = window.location.origin + window.location.pathname;  
+                    window.location.href = window.location.origin + window.location.pathname;
                 }, 2000);
             }
         });
