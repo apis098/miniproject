@@ -692,6 +692,10 @@ function showLoading() {
                                     <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
                                 @elseif(!empty($row->reply_complaint->reply))
                                 <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_complaint->reply }}</textarea>
+                                @elseif(!empty($row->comment->comment))
+                                <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->comment->comment }}</textarea>
+                                @elseif(!empty($row->replyComment->komentar))
+                                <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replyComment->komentar }}</textarea>
                                 @endif
 
                             </div>

@@ -29,6 +29,12 @@ class Report extends Model
     {
         return $this->belongsTo(Reply::class,'reply_id');
     }
+    public function comment(){
+        return $this->belongsTo(comment_recipes::class,'comment_id');
+    }
+    public function replyComment(){
+        return $this->belongsTo(replyCommentRecipe::class,'reply_comment_id');
+    }
     public function reply_complaint()
     {
         return $this->belongsTo(replyComplaint::class,'reply_id_complaint');

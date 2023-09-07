@@ -31,8 +31,8 @@ class ReportController extends Controller
         }
         $data = Report::all();
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
-        $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
-        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
+        $reportReply = Report::whereNotNull("reply_id")->orWhereNotNull('reply_comment_id')->paginate(6, ['*'], "report-reply-page");
+        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->orWhereNotNull('comment_id')->paginate(6, ['*'], "report-reply-page");
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
         $allComments = $reportReply->concat($reportReplyComment);
         $userLogin = Auth::user();
@@ -120,9 +120,13 @@ class ReportController extends Controller
         $data = Report::all();
         $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
-        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
+        $allComments = Report::whereNotNull("comment_id")
+        ->orWhereNotNull("reply_id")
+        ->orWhereNotNull("reply_id_complaint")
+        ->orWhereNotNull("reply_comment_id")
+        ->paginate(6, ['*'], "report-reply-page");
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
-        $allComments = $reportReply->concat($reportReplyComment);
+        // $allComments = $reportReply->concat($reportReplyComment);
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -167,7 +171,11 @@ class ReportController extends Controller
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
         $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
         $reportReplyComment = Report::whereNotNull("reply_id_complaint")->paginate(6, ['*'], "report-reply-page");
+        $reportComment = Report::whereNotNull("comment_id")->paginate(6, ['*'], "report-reply-page");
+        $reportReplies = Report::whereNotNull("reply_comment_id")->paginate(6, ['*'], "report-reply-page");
         $allComments = $reportReply->concat($reportReplyComment);
+        $report =  $reportComment->concat($reportReplies);
+        $allReport = $allComments->concat($report);
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -192,7 +200,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.profil',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+        return view('report.profil',compact('allReport','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
     }
 
@@ -385,7 +393,7 @@ class ReportController extends Controller
                 return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
             }
         }
-        if($report->user->jumlah_pelanggaran > 10){
+        if($report->user->jumlah_pelanggaran > 3){
             $report->user->status = "nonaktif";
             $report->user->save();
             return redirect()->back()->with('success', 'User telah diblokir');
