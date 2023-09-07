@@ -566,7 +566,6 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="" method="POST">
                                     <form action="{{route('Report.comment.recipes',$row->id)}}\" method="POST">
                                         @csrf
                                         <div class="modal-body d-flex align-items-center">
@@ -709,12 +708,12 @@
                                 </form>
                                 @if (Auth::check() && $userLogin->id != $item->users_id && $userLogin->role != 'admin')
                                     <button type="button" data-toggle="modal"
-                                        data-target="#modalR{{ $item->id }}"
+                                        data-target="#modalRpl{{ $item->id }}"
                                         class="yuhu text-danger btn-sm rounded-5 "><i
                                             class="fa-solid fa-triangle-exclamation me-2"></i>
                                     </button>
                                     {{-- modal --}}
-                                    <div class="modal fade" id="modalR{{ $item->id }}" tabindex="-1"
+                                    <div class="modal fade" id="modalRpl{{ $item->id }}" tabindex="-1"
                                         role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
@@ -727,7 +726,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="" method="POST">
+                                                <form action="{{route('Report.reply.comment.recipes',$item->id)}}" method="POST">
                                                     @csrf
                                                     <div class="modal-body d-flex align-items-center">
                                                         <!-- Tambahkan kelas "align-items-center" -->
