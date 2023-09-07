@@ -421,7 +421,7 @@
     <div class="mx-5 my-5">
         <div class="row">
             @foreach ($recipes as $num => $item)
-                <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
+                <div class="col-lg-4 mb-2 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">
                             <img width="260px" class="rounded-circle" height="260px"
@@ -430,18 +430,18 @@
                         </div>
                         <div class="card-body mx-4">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-12 mx-3">
                                     <h5>
-                                        <a style="color: black; font-size: 24px;"
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
                                             href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                             {{ $item->nama_resep }}
                                         </a>
                                     </h5>
                                     <span>Oleh {{ $item->User->name }}</span> <br>
-                                    <p class="mt-3">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>
+                                    <p class="mt-2 my-2">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>
                                 </div>
-                                <div class="col-12 row mb-3">
-                                    <div class="col-6 mx-auto">
+                                <div class="col-12 row  mb-3 mx-1 ">
+                                    <div class="col-6">
                                     <img width="20px" height="20px" src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
                                         {{ $item->likes }} suka
                                     </div>
@@ -453,11 +453,11 @@
                                             {{ $item->lama_memasak }} menit
                                         @endif
                                     </div>
-                                    <div class="col-6 my-2">
+                                    <div class="col-6 my-3">
                                         <img width="20px" height="20px" src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}" alt="">
-                                        {{ $item->comment_recipes->count() }} Komentar
+                                        {{ $item->comment_recipes->count() }} Komen
                                     </div>
-                                    <div class="col-6 my-2">
+                                    <div class="col-6 my-3 mx-auto">
                                         <img width="20px" height="20px" src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
                                         {{ $item->favorite_count }} Favorit
                                     </div>
