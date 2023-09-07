@@ -440,7 +440,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Berkomentar pada 
+                                                                    <small class="mt-1 ms-1 text-secondary">Mengomentari 
                                                                         resep anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
