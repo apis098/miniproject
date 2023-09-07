@@ -82,7 +82,8 @@
                                         <b class="ms-2 me-2">Pilih file</b>
                                     </label>
 
-                                    <a href="{{ route('delete.profile') }}" class="btn btn-warning btn-sm rounded-5"
+                                    <a href="{{ route('delete.profile') }}" id="deleteProfile" hidden>Hapus</a>
+                                    <a onclick="DeleteData()" class="btn btn-warning btn-sm rounded-5"
                                         style="position: absolute; top: 80%; right: 24.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-1 me-1 text-light">Hapus foto</b></a>
 
@@ -222,7 +223,39 @@
         </div>
     </div>
 
-
+    <script>
+        function DeleteData() {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('deleteProfile').click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+    </script>
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

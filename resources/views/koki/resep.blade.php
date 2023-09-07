@@ -359,7 +359,7 @@
                     success: function success(response) {
                         $("#button-add-recipe").prop('disabled', false);
 
-                        window.location.href = "/koki/index";
+                        window.location.href = "/koki/index?message-success=Sukses menambahkan resep!"; 
                     },
                     error: function error(xhr, status, errors) {
                         $("#button-add-recipe").prop('disabled', false);
