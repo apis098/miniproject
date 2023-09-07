@@ -325,7 +325,6 @@ border-radius: 10px;
                         <div class="row">
 
                             <div class="card my-3 col-3">
-                                    <svg width="50" height="100" viewBox="0 0 102 137" fill="none"
                                 <div class="card-body text-center" style="margin-left:-4px" >
                                     <svg id="svg-placeholder" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-4" width="50"
                                 height="55" viewBox="0 0 22 25">
