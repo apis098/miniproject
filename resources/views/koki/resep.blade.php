@@ -29,8 +29,8 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="row" 
-                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                    <div class="row"
+                        style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 39px;">
                             <p
@@ -39,7 +39,7 @@
                             <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
                                 id="formFile">
                         </button>
-                        <div class="col-8 my-auto text-truncate" id="infos" 
+                        <div class="col-8 my-auto text-truncate" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Tidak ada file terpilih</div>
                     </div>
@@ -63,7 +63,7 @@
                         @enderror
                         <div id="nama_resep_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
                         <textarea name="deskripsi_resep" class="form-control" placeholder="Masukkan deskripsi makanan" id="floatingTextarea"
                             required>{{ old('deskripsi_resep') }}</textarea>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="mt-2">
+                        <div class="mt-2" style="margin-bottom: 20px">
                             <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan</b></label>
                             <input type="text" name="bahan_resep[]" class="form-control" id="exampleFormControlInput1"
                                 placeholder="Masukkan bahan makanan" value="{{ old('bahan_resep.0') }}" required>
@@ -87,7 +87,7 @@
                             @enderror
                             <div id="bahan_resep.0_error" class="alert alert-danger" style="display: none;"></div>
                         </div>
-                        <div class="mt-2">
+                        <div class="mt-2" style="margin-bottom: 20px">
                             <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
                             <input type="text" name="takaran_resep[]" class="form-control" id="exampleFormControlInput1"
                                 placeholder="Masukkan takaran" value="{{ old('takaran_resep.0') }}" required>
@@ -103,13 +103,13 @@
                     </div>
                     <div id="new-input1"></div>
                     <br>
-                    <button type="button" id="button-new-input1" class="btn btn-warning text-white"
+                    <button type="button" id="button-new-input1" class="btn text-white"
                         style="float: right;background: #F7941E; border-radius:15px ;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                         Tambahkan Bahan & Takaran
                     </button>
                     <br>
                     <div>
-                        <div class="mt-2">
+                        <div class="mt-2" style="margin-bottom: 20px">
                             <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
                             <input type="text" name="nama_alat[]" id="nama_alat"
                                 placeholder="tambahkan alat yang anda gunakan..." class="form-control">
@@ -117,7 +117,7 @@
                     </div>
                     <div id="new-input-alat"></div>
                     <br>
-                    <button type="button" id="button-new-alat" class="btn btn-warning text-white"
+                    <button type="button" id="button-new-alat" class="btn text-white"
                         style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
                         Tambahkan Alat - Alat
                     </button>
@@ -143,7 +143,7 @@
                         }
                     </script>
                     <br>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
                         <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
                             placeholder="Masukkan porsi orang" value="{{ old('porsi_orang') }}" required>
@@ -154,8 +154,8 @@
                         @enderror
                         <div id="porsi_orang_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
-                    <div class="mt-2 row mx-auto">
-                        <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
+                    <div class="mt-2 row mx-auto" style="margin-bottom: 20">
+                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama Memasak</b></label>
                         <input type="text" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
@@ -170,7 +170,7 @@
                         @enderror
                         <div id="lama_memasak_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="PengeluaranMemasak" class="form-label"><b>Pengeluaran Memasak</b></label>
                         <input type="text" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
                             placeholder="Masukkan jumlah pengeluaran" value="{{ old('pengeluaran_memasak') }}" required>
@@ -182,10 +182,10 @@
                         <div id="pengeluaran_memasak_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <br>
-                    <div class="mb-4">
+                    <div class="mb-4 mx-1" style="margin-bottom: 20px">
                         <div class="row">
                             <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
-                            <div id="div2" class="card my-5 col-lg-4 border border-dark"
+                            <div id="div2" class="card my-4 col-lg-4 mx-3 border border-dark"
                                 style="border-radius: 15px;">
                                 <div class="card-body text-center">
                                     <img id="gambar" src="{{ asset('images/default.jpg') }}"
@@ -203,7 +203,7 @@
                                 {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
                                 <div class="row ms-3"
-                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                                    style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                     <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                                         <div
@@ -224,9 +224,9 @@
                                 <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
                                 </div>
                             </div>
-                            <input type="text" class="form-control mb-2" name="judul_langkah[]"
+                            <input type="text" class="form-control mb-2 mx-3" name="judul_langkah[]"
                                 placeholder="Masukkan judul langkah..." required>
-                            <textarea maxlength="255" class="form-control" name="langkah_resep[]" cols="30" rows="5"
+                            <textarea class="mx-3" maxlength="255" class="form-control" name="langkah_resep[]" cols="30" rows="5"
                                 placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
 
                             @error('langkah_resep.*')
@@ -241,11 +241,12 @@
 
                     </div>
                     <br>
-                    <button type="button" id="button-new-input2" class="btn btn-warning text-white"
+                    <button type="button" id="button-new-input2" class="btn text-white"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
                         Langkah - Langkah</button>
                     <br>
-                    <div class="mt-2">
+                    <br>
+                    <div class="mt-2 mx-2">
                         <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
                             <b> Jenis Makanan </b>
                         </label>
@@ -257,7 +258,7 @@
                                     <button id="pilih_jenis_makanan{{ $num }}"
                                         onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
                                         type="button"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                        style="width: 100%;border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                         <span style="font-size: 15px;">{{ $f->nama_makanan }}</span>
                                     </button>
                                 </div>
@@ -265,7 +266,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="mt-2">
+                    <div class="mt-2 mx-2">
                         <label for="hari_khusus" class="form-label" style="font-weight: 600;">
                             <b> Hari Khusus </b>
                         </label>
@@ -277,7 +278,7 @@
                                     <button id="pilih_hari_khusus{{ $int }}"
                                         onclick="pilih_hari_khusus({{ $int }})" class="btn btn-light"
                                         type="button"
-                                        style="width: 100%;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                        style="width: 100%;border-radius: 10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                                         <span style="font-size: 15px;">{{ $d->nama }}</span>
                                     </button>
                                 </div>
@@ -358,7 +359,7 @@
                     success: function success(response) {
                         $("#button-add-recipe").prop('disabled', false);
 
-                        window.location.href = "/koki/index"; 
+                        window.location.href = "/koki/index";
                     },
                     error: function error(xhr, status, errors) {
                         $("#button-add-recipe").prop('disabled', false);
@@ -414,7 +415,7 @@
             }
         });
         });
-       
+
         document.getElementById("inputan").addEventListener("change", function(event) {
             const svgElement = document.getElementById("svg2");
             const divElement = document.getElementById("div2");
@@ -522,7 +523,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
                         <input type="text" name="takaran_resep[]" class="form-control" id="exampleFormControlInput1"
                             placeholder="Masukkan takaran">
