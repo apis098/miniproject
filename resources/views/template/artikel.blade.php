@@ -324,7 +324,7 @@
                         @foreach ($show_resep->bahan as $item_bahan)
                             <div class="col-lg-4">
                                 <div class="card p-3"
-                                    style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
+                                    style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid;">
                                     <div class="row my-1">
                                         <div class="col-12 ">
                                             <span class="ms-3"
@@ -370,7 +370,7 @@
                                     <div class="row my-1">
                                         <div class="col-12 ">
                                             <span class="ms-3" class=""
-                                                style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                                 {{ $item_langkah->nama_alat }}
                                             </span> <br>
                                         </div>

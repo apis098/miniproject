@@ -125,7 +125,7 @@ class LoginController extends Controller
 
     public function keluhan()
     {
-        $complaints = complaint::paginate(3, ['*'], 'complaint-page');
+        $complaints = complaint::paginate(3);
         $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
         $userLogin = Auth::user();
         $jumlah_resep = reseps::all()->count();

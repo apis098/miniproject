@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-5">
                             <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle" width="100%"
-                                height="100%" alt="">
+                            Favorit              height="100%" alt="">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -120,7 +120,7 @@
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
                                         method="get">
                                         <button type="submit" class="btn btn-light"
-                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;">
                                             <span style="font-weight: 600; color: white;">Lihat</span>
                                         </button>
                                     </form>
@@ -182,7 +182,7 @@
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
                                         method="get">
                                         <button type="submit" class="btn btn-light"
-                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border:none;">
                                             <span style="font-weight: 600; color: white;">Lihat</span>
                                         </button>
                                     </form>
@@ -270,12 +270,12 @@
                                 @if (Auth::check() &&
                                         $iu->followers()->where('follower_id', auth()->user()->id)->count() > 0)
                                     <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-3 me-3">Diikuti</b></button>
                                 @elseif(Auth::check() &&
                                         $userLogin->followers()->where('follower_id', $iu->id)->exists())
                                     <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px;"><b
+                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-3 me-3">Ikuti balik</b></button>
                                 @else
                                     <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
