@@ -37,11 +37,29 @@ class followersController extends Controller
             ->paginate(10);
         }
         if ($username != null) {
-            $user = User::where('status', 'aktif')
+            if($userLogin){
+                $user = User::where('status', 'aktif')
                 ->where('name', 'like', '%' . $username . '%')
-                ->paginate(9);
+                ->where('role','koki')
+                ->where('id','!=',auth()->user()->id)
+                ->paginate(8);
+            }else{
+                $user = User::where('status', 'aktif')
+                ->where('name', 'like', '%' . $username . '%')
+                ->where('role','koki')
+                ->paginate(8);
+            }
         } else {
-            $user = User::where('status', 'aktif')->paginate(9);
+           if($userLogin){
+            $user = User::where('status', 'aktif')
+            ->where('role','koki')
+            ->where('id','!=',auth()->user()->id)
+            ->paginate(8);
+           }else{
+            $user = User::where('status', 'aktif')
+            ->where('role','koki')
+            ->paginate(8);
+           }
         }
     
         return view('template.search-account', compact('user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));

@@ -196,7 +196,6 @@
 
             <!-- Team item -->
             @foreach ($user as $row)
-                @if (Auth::check() && $row->role != 'admin' && $row->id != auth()->user()->id)
                     <div class="col-xl-3 col-sm-4 mb-5">
                         <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
                             <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
@@ -246,57 +245,6 @@
                             </div>
                         </a>
                     </div>
-                    {{-- belum login --}}
-                @elseif(!Auth::check() && $row->role != 'admin')
-                    <div class="col-xl-3 col-sm-6 mb-5">
-                        <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
-                            <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
-                                style="border-radius: 20px;  height:22rem;">
-                                @if ($row->foto)
-                                    <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="100"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                @else
-                                    <img src="{{ asset('images/default.jpg  ') }}" alt="" width="100"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                @endif
-                                <h5 class="mb-0">{{ strlen($row->name) > 15 ? substr($row->name, 0, 15) . '...' : $row->name }}</h5> <span
-                                    class="small text-muted">{{ strlen($row->email) > 25 ? substr($row->email, 0, 25) . '...' : $row->email }}</span>
-                                <div class="d-flex justify-content-center mt-3 me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
-                                        viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
-                                    </svg>
-                                    <p class="mt-2 ms-1">{{ $row->resep->count() }} Resep</p>
-                                </div>
-                                <div class="justify-content-center">
-                                    <form action="{{ route('Followers.store', $row->id) }}" method="POST">
-                                        @csrf
-                                        @if (Auth::check() &&
-                                                $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                            <button type="submit"
-                                                class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px;"><b
-                                                    class="ms-3 me-3">Diikuti</b></button>
-                                        @elseif(Auth::check() &&
-                                                $userLogin->followers()->where('follower_id', $row->id)->exists())
-                                            <button type="submit"
-                                                class="btn btn-light text-light float-center mb-5 zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px;"><b
-                                                    class="ms-3 me-3">Ikuti balik</b></button>
-                                        @else
-                                            <button type="submit"
-                                                class="btn btn-light text-light float-center mt-3 mb-3 zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px;"><b
-                                                    class="ms-3 me-3">Ikuti</b></button>
-                                        @endif
-
-                                    </form>
-                                </div>
-                            </div>
-                        </a>
-                    </div><!-- End -->
-                @endif
             @endforeach
 
         </div>
