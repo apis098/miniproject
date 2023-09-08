@@ -366,6 +366,7 @@
                                                     </button>
                                                 @endif
                                             </form>
+                                            {{-- @if (auth()->check()) --}}
                                             @if ($userLogin->id != $item->user_id_sender && $userLogin->role != 'admin')
                                                 <button type="button" data-toggle="modal"
                                                     data-target="#modalBalasan{{ $item->id }}"
@@ -395,6 +396,9 @@
                                                     </button>
                                                 </form>
                                             @endif
+                                                            {{-- @else
+
+                @endif --}}
                                         </div>
                                     </div>
                                 @endforeach
