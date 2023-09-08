@@ -128,7 +128,7 @@
                             div = document.createElement("div");
                             div.innerHTML = `
                             <div class="mt-2" id="close3${numsq}">
-                            <button class="btn btn-danger btn-sm fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
+                            <button class="btn btn-danger  fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
                             <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
                             <input type="text" name="nama_alat[]" id="nama_alat"
                                 placeholder="tambahkan alat yang anda gunakan..." class="form-control">
