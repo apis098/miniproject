@@ -326,7 +326,7 @@
                         @foreach ($show_resep->bahan as $item_bahan)
                             <div class="col-lg-4">
                                 <div class="card p-3"
-                                    style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid;">
+                                    style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid;box-shadow: none">
                                     <div class="row my-1">
                                         <div class="col-12 ">
                                             <span class="ms-3"
@@ -368,7 +368,7 @@
                         @foreach ($show_resep->alat as $num => $item_langkah)
                             <div class="col-lg-4">
                                 <div class="card p-3"
-                                    style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid">
+                                    style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid;box-shadow: none">
                                     <div class="row my-1">
                                         <div class="col-12 ">
                                             <span class="ms-3" class=""
@@ -454,8 +454,8 @@
                                         {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
                                         placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                    <button type="submit" style="background-color: #F7941E; border-radius:10px;"
-                                        class="btn btn-light btn-sm text-light ms-3"><b
+                                    <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                        class="btn btn-sm text-light ms-3"><b
                                             class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
@@ -469,8 +469,8 @@
                                 placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                             {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                             <button type="button" onclick="harusLogin()"
-                                style="background-color: #F7941E; border-radius:10px;"
-                                class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                         </div>
                     </form>
                     @endif
@@ -638,8 +638,8 @@
                                         class="form-control form-control-sm rounded-3 me-5"
                                         placeholder="Balas komentar dari {{ $row->user->name }}....">
 
-                                    <button type="submit" style="background-color: #F7941E; border-radius:10px;"
-                                        class="btn btn-light btn-sm text-light ms-3"><b
+                                    <button type="submit" style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                        class="btn btn-sm text-light ms-3"><b
                                             class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
@@ -651,8 +651,8 @@
                                         placeholder="Balas komentar dari {{ $row->user->name }}....">
 
                                     <button type="button" onclick="harusLogin()"
-                                        style="background-color: #F7941E; border-radius:10px;"
-                                        class="btn btn-light btn-sm text-light ms-3"><b
+                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        class="btn btn-sm text-light ms-3"><b
                                             class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>

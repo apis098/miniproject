@@ -128,7 +128,7 @@
                             div = document.createElement("div");
                             div.innerHTML = `
                             <div class="mt-2" id="close3${numsq}">
-                            <button class="btn btn-danger fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
+                            <button class="btn btn-danger btn-sm fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
                             <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
                             <input type="text" name="nama_alat[]" id="nama_alat"
                                 placeholder="tambahkan alat yang anda gunakan..." class="form-control">
@@ -154,7 +154,7 @@
                         @enderror
                         <div id="porsi_orang_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
-                    <div class="mt-2 row mx-auto" style="margin-bottom: 20">
+                    <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama Memasak</b></label>
                         <input type="text" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
@@ -359,7 +359,7 @@
                     success: function success(response) {
                         $("#button-add-recipe").prop('disabled', false);
 
-                        window.location.href = "/koki/index?message-success=Sukses menambahkan resep!"; 
+                        window.location.href = "/koki/index?message-success=Sukses menambahkan resep!";
                     },
                     error: function error(xhr, status, errors) {
                         $("#button-add-recipe").prop('disabled', false);

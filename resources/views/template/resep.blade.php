@@ -192,7 +192,7 @@
                                                         placeholder="Masukkan nama resep..."
                                                         value="{{ request()->nama_resep }}">
                                                     <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px;">Cari</button>
+                                                        style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">Cari</button>
                                                 </form>
                                             </div>
                                         </div>

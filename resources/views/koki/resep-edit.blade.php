@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="row"
-                        style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                        style="border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                             <div
@@ -56,7 +56,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
                         <textarea name="deskripsi_resep" class="form-control" style="white-space:normal" cols="15" rows="5"
                             placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
@@ -79,7 +79,7 @@
                             @endif
 
                             <input type="hidden" name="id_bahan_resep[]" value="{{ $item_bahan->id }}">
-                            <div class="mt-2">
+                            <div class="mt-2" class="margin-bottom:20px">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Bahan-bahan
                                         {{ $num += 1 }}</b></label>
                                 <input type="text" name="bahan_resep[]" class="form-control"
@@ -91,7 +91,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="mt-2">
+                            <div class="mt-2" style="margin-bottom: 20px">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Takaran</b></label>
                                 <input type="text" name="takaran_resep[]" class="form-control"
                                     id="exampleFormControlInput1" placeholder="Masukkan takaran"
@@ -107,7 +107,7 @@
 
                     <div id="new-input1"></div>
                     <br>
-                    <button type="button" id="button-new-input1" class="btn btn-warning text-white"
+                    <button type="button" id="button-new-input1" class="btn text-white"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                         Tambahkan Bahan & Takaran
                     </button>
@@ -115,7 +115,7 @@
                     @foreach ($edit_resep->alat as $nsoi => $item)
                         <div id="remove_alat{{ $item->id }}">
                             <input type="hidden" name="id_alat[]" value="{{ $item->id }}">
-                            <div class="mt-2">
+                            <div class="mt-2" style="margin-bottom: 20px">
                                 @if ($nsoi >= 1)
                                     <button type="button" class="btn btn-danger my-2 fa-solid fa-x"
                                         onclick="close12({{ $item->id }})"></button>
@@ -128,7 +128,7 @@
                     @endforeach
                     <div id="new-input-alat"></div>
                     <br>
-                    <button type="button" id="button-new-alat" class="btn btn-warning text-white"
+                    <button type="button" id="button-new-alat" class="btn text-white"
                         style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
                         Tambahkan Alat - Alat
                     </button>
@@ -139,7 +139,7 @@
                             div = document.createElement("div");
                             div.innerHTML = `
                             <div class="mt-2" id="close3${numsq}">
-                            <button class="btn btn-danger fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
+                            <button class="btn btn-danger btn-sm fa-solid fa-x mb-2" type="button" onclick="close3(${numsq})"></button>
                             <label for="nama_alat" class="form-label" style="font-weight: 700;">Nama Alat</label>
                             <input type="text" name="nama_alat_tambahan[]" id="nama_alat"
                                 placeholder="tambahkan alat yang anda gunakan..." class="form-control">
@@ -154,7 +154,7 @@
                         }
                     </script>
                     <br>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label"><b>Porsi Orang</b></label>
                         <input type="number" name="porsi_orang" class="form-control" id="exampleFormControlInput1"
                             placeholder="Masukkan porsi orang" value="{{ $edit_resep->porsi_orang }}">
@@ -164,8 +164,8 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2 row mx-auto">
-                        <label for="exampleFormControlInput1" class="form-label"><b>Lama Memasak</b></label>
+                    <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
+                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama Memasak</b></label>
                         <input type="text" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" value="{{ $edit_resep->lama_memasak }}">
                         <select name="lama_memasak2" id="" class="form-control col-2">
@@ -180,7 +180,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="mt-2">
+                    <div class="mt-2" style="margin-bottom: 20px">
                         <label for="" class="form-label"><b>Pengeluaran Memasak</b></label>
                         <input type="text" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
                             placeholder="Masukkan jumlah pengeluaran" value="{{ $edit_resep->pengeluaran_memasak }}">
@@ -198,19 +198,19 @@
                                     onclick="close2({{ $item_langkah->id }})"></button>
                             @endif
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
-                            <div class="mb-4">
+                            <div class="mb-4 mx-1" style="margin-bottom: 20px">
                                 <div class="row">
                                     <label for="formFile" class="form-label"><b>Langkah-langkah
                                             {{ $int += 1 }}</b></label>
-                                    <div class="card my-5 col-lg-4">
+                                    <div class="card my-4 col-lg-4 mx-3">
                                         <div class="card-body text-center div3">
                                             <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}"
                                                 width="100%" class="" id="IMAGE{{ $int }}">
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row"
-                                            style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                                        <div class="row ms-3"
+                                            style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
 
                                             <button type="button" onclick="input_file_langkah({{ $int }})"
                                                 class="col-4"
@@ -233,8 +233,8 @@
                                         @enderror
                                     </div>
                                     <input type="text" name="judul_langkah[]" id=""
-                                        class="form-control mb-3" value="{{ $item_langkah->judul_langkah }}">
-                                    <textarea name="langkah_resep[]" class="form-control" style="white-space:normal;" cols="15" rows="5"
+                                        class="form-control mb-3 mx-3" value="{{ $item_langkah->judul_langkah }}">
+                                    <textarea name="langkah_resep[]" class="form-control mx-3" style="white-space:normal;" cols="15" rows="5"
                                         placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
                             {{ trim($item_langkah->deskripsi_langkah) }}
                         </textarea>
@@ -251,11 +251,12 @@
 
                     </div>
                     <br>
-                    <button type="button" id="button-new-input2" class="btn btn-warning text-white"
+                    <button type="button" id="button-new-input2" class="btn text-white"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
                         Langkah - Langkah</button>
                     <br>
-                    <div class="mt-2">
+                    <br>
+                    <div class="mt-2 mx-2">
                         <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
                             <b> Jenis Makanan </b>
                         </label>
@@ -290,7 +291,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="mt-2">
+                    <div class="mt-2 mx-2">
                         <label for="hari_khusus" class="form-label" style="font-weight: 600;">
                             <b> Hari Khusus </b>
                         </label>
@@ -370,7 +371,7 @@
                     </script>
                     <br>
                     <br>
-                    <button type="submit" class="btn btn-warning text-white mb-4" id="button-edit-recipe"
+                    <button type="submit" class="btn text-white mb-4" id="button-edit-recipe"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
                 </div>
