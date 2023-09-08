@@ -96,8 +96,8 @@
                                     class=""><i>{{ $data->user->email }}</i></small></p>
                         </div>
                         <div class="" style="margin-top: -60px">
-                            <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
-                                style="background-color:#F7941E; margin-top: -px;  margin-left: 640px;" data-toggle="modal"
+                            <button type="submit" class="btn zoom-effects text-light btn-sm rounded-circle p-2"
+                                style="background-color:#F7941E; margin-top: -px ;  margin-left: 640px;" data-toggle="modal"
                                 data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
                                     <path fill="currentColor"
@@ -119,7 +119,7 @@
             <div class="row  d-flex justify-content-center">
                 <div class="col-md-12">
                     <div class="headings d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="me-5  ms-2"><b>Komentar ({{ $repliesCount }})</b></h5>
+                        <h5 class="" style="margin-left: 12px;"><b>Komentar ({{ $repliesCount }})</b></h5>
                         <div class="col-10">
                             <form method="POST" action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
                                 @csrf
@@ -127,8 +127,8 @@
                                     <input type="text" id="reply" name="reply" width="500px"
                                         class="form-control rounded-3 me-5" placeholder="Tambah komentar...">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                    <button type="submit" style="background-color: #F7941E; border-radius:10px;"
-                                        class="btn btn-light btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                    <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                        class="btn  btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
 
                             </form>
@@ -177,8 +177,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-light text-light"
-                                            style="border-radius: 15px; background-color:#F7941E;"><b
+                                        <button type="submit" class="btn  text-light"
+                                            style="border-radius: 15px; background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                 class="ms-2 me-2">Laporkan</b></button>
                                 </form>
                             </div>
@@ -305,8 +305,8 @@
                                             class="form-control form-control-sm rounded-3 me-5"
                                             placeholder="Balas komentar dari {{ $row->user->name }}....">
 
-                                        <button type="submit" style="background-color: #F7941E; border-radius:10px;"
-                                            class="btn btn-light btn-sm text-light ms-3"><b
+                                        <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            class="btn btn-sm text-light ms-3"><b
                                                 class="me-3 ms-3">Kirim</b></button>
                                     </div>
                                 </form>
@@ -440,8 +440,8 @@
                                     @endif
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-light text-light"
-                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                    <button type="submit" class="btn text-light"
+                                        style="border-radius: 15px; background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-2 me-2">Laporkan</b></button>
                                 </div>
                             </form>

@@ -48,7 +48,7 @@
                         </div>
                         <div>
                             <button
-                            style="background-color: #f39c12; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            style="background-color: #f39c12; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"
                                 type="submit">
                                 <b>Kirim</b>
                             </button>
@@ -126,7 +126,7 @@
 </div>
 {{ $complaints->links('vendor.pagination.default') }}
 <style>
-    .text-poppins { 
+    .text-poppins {
         font-family: 'Poppins';
     }
 
