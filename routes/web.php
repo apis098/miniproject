@@ -138,6 +138,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
+        Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
+        Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video');
     });
 });
 
