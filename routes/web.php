@@ -25,6 +25,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\komentar_resep;
 use App\Http\Controllers\LikeCommentController;
 use App\Http\Controllers\testingController;
+use App\Http\Controllers\VeedController;
 use App\Models\bahan_reseps;
 use App\Models\favorite;
 use App\Models\notifications;
@@ -50,6 +51,9 @@ Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
 Route::get('about', [LoginController::class, 'about'])->name('about');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
+
+// veed
+Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
