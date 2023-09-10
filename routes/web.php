@@ -155,5 +155,12 @@ Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::c
 Route::post('/koki/sukai/balasan/{id}', [LikeCommentController::class, 'like_reply_comment'])->name('likeReply.comment.recipe')->middleware('auth');
 Route::delete('/hapus/komentar-resep/{id}', [komentar_resep::class, 'delete_comment'])->name('delete.comment')->middleware(['auth']);
 Route::delete('/hapus/komentar-resep-reply/{id}', [komentar_resep::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth');
+
+// like dan komentar pada veed
+Route::post("like/veed/{user_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
+Route::post("/komentar-veed/{user_id}/{veed_id}", [VeedController::class, 'komentar_veed'])->name('komentar.veed');
+Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
+Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');
+Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [VeedController::class, 'sukai_balasan_komentar_veed'])->name('sukai.balasan.komentar.veed');
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');

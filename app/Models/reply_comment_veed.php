@@ -12,7 +12,8 @@ class reply_comment_veed extends Model
     protected $fillable = [
         "users_id",
         "comment_id",
-        "veed_id"
+        "veed_id",
+        "komentar"
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");
