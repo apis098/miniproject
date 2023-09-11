@@ -245,9 +245,9 @@
                         </button>
 
                         <div class="collapse navbar-collapse" class="ms-4" id="navbarSupportedContent">
-                            <ul class="navbar-nav mt-3 me-2 justify-content-center " style="margin-left: -10px">
+                            <ul class="navbar-nav mt-3 me-2 justify-content-center " style="margin-left: 20px">
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
-                                    <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Home</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Beranda</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('resep') ? 'active' : '' }}"
                                     style="font-size: 15px">
@@ -272,7 +272,7 @@
                       </li> --}}
                             </ul>
 
-                            <div class="user_option" style="margin-left: 140px;">
+                            <div class="user_option" style="margin-left: 190px;">
 
 
                                 @if (Auth::check() && $notification != null)
