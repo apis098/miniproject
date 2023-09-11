@@ -254,18 +254,18 @@
                                     <a class="nav-link" id="navbar"
                                         href="{{ route('resep.home') }}"><b>Resep</b></a>
                                 </li>
-                                <li class="nav-item {{ request()->is('search-account') ? 'active' : '' }}"
+                                <li class="nav-item {{ request()->is('kursus') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ url('/search-account') }}"><b>Temukan koki</b></a>
+                                    <a class="nav-link" id="navbar" href="#"><b> Kursus </b></a>
                                 </li>
-                                <li class="nav-item {{ request()->is('keluhan') ? 'active' : '' }}"
+                                <li class="nav-item {{ request()->is('feed') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ route('keluhan') }}"><b>Keluhan</b></a>
+                                    <a class="nav-link" id="navbar" href="#"><b>Feed</b></a>
                                 </li>
 
-                                <li class="nav-item {{ request()->is('about') ? 'active' : '' }} me-2"
+                                <li class="nav-item {{ request()->is('keluhan') ? 'active' : '' }} me-2"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ route('about') }}"><b>Tentang</b></a>
+                                    <a class="nav-link" id="navbar" href="{{ route('keluhan') }}"><b>Diskusi</b></a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -277,6 +277,7 @@
 
                                 @if (Auth::check() && $notification != null)
                                     {{-- dropdown notifikasi --}}
+                                    <a href="{{ url('/search-account') }}"  class="text-light"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4" fill="currentColor"/><path fill="currentColor" d="M10.35 14.01C7.62 13.91 2 15.27 2 18v2h9.54c-2.47-2.76-1.23-5.89-1.19-5.99zm9.08 4.01c.36-.59.57-1.28.57-2.02c0-2.21-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4c.74 0 1.43-.22 2.02-.57L20.59 22L22 20.59l-2.57-2.57zM16 18c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z"/></svg></a>
                                     <div class="text-light me-2">
                                         <a data-toggle="dropdown" class="text-light" href="#">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -440,7 +441,7 @@
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Mengomentari 
+                                                                    <small class="mt-1 ms-1 text-secondary">Mengomentari
                                                                         resep anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
