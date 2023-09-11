@@ -21,7 +21,7 @@
                                 @csrf
                                 <div class="mb-3">
                                     <label for="comment-veed" class="form-label">Komentar</label>
-                                    <input type="text" name="commentVeed" id="comment-veed" class="form-control"
+                                    <input type="text" name="commentVeed" id="comment-veed1" class="form-control"
                                         required>
                                 </div>
                                 <button type="submit" id="buttonCommentVeed" class="btn btn-primary">Kirim</button>
@@ -35,16 +35,18 @@
                                         ->count();
                                 @endphp
                                 @if ($isLikeVeed == 0)
-                                    <form action="/like/veed/{{ Auth::user()->id }}/{{ $veed->id }}" method="post">
+                                    <form id="formLikeVeed" action="/like/veed/{{ Auth::user()->id }}/{{ $veed->id }}"
+                                        method="post">
                                         @csrf
-                                        <button class="btn btn-light" type="submit">
+                                        <button id="buttonLikeVeed" class="btn btn-light" type="submit">
                                             <i class="fa-regular fa-thumbs-up"></i>
                                         </button>
                                     </form>
                                 @elseif($isLikeVeed == 1)
-                                    <form action="/like/veed/{{ Auth::user()->id }}/{{ $veed->id }}" method="post">
+                                    <form id="formLikeVeed" action="/like/veed/{{ Auth::user()->id }}/{{ $veed->id }}"
+                                        method="post">
                                         @csrf
-                                        <button class="btn btn-light" type="submit">
+                                        <button id="buttonLikeVeed" class="btn btn-light" type="submit">
                                             <i class="fa-solid fa-thumbs-up"></i>
                                         </button>
                                     </form>
@@ -167,12 +169,14 @@
                                                 @endphp
                                                 @foreach ($reply_comments as $reply_comment)
                                                     @php
-                                                        // memeriksa apakah balasan komentar veed sudah di like atau belum
-                                                        $isLike2sd = App\Models\like_reply_comment_veed::query()
-                                                            ->where('users_id', Auth::user()->id)
-                                                            ->where('reply_comment_veed_id', $reply_comment->id)
-                                                            ->where('veed_id', $veed->id)
-                                                            ->exists();
+                                                        if (Auth::check()) {
+                                                            // memeriksa apakah balasan komentar veed sudah di like atau belum
+                                                            $isLike2sd = App\Models\like_reply_comment_veed::query()
+                                                                ->where('users_id', Auth::user()->id)
+                                                                ->where('reply_comment_veed_id', $reply_comment->id)
+                                                                ->where('veed_id', $veed->id)
+                                                                ->exists();
+                                                        }
                                                         $countLike2sd = App\Models\like_reply_comment_veed::query()
                                                             ->where('reply_comment_veed_id', $reply_comment->id)
                                                             ->where('veed_id', $veed->id)
@@ -228,12 +232,38 @@
                         <!-- Footer Content Goes Here -->
                     </div>
                 </div>
-
             </div>
         </div>
     @endforeach
     {{ $video_pembelajaran->links('vendor.pagination.simple-default') }}
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
     <script>
+        $("document").ready(function() {
+            // menambahkan komentar veed tanpa refresh
+            $("#buttonCommentVeed").click(function(event) {
+                event.preventDefault();
+                var data = $("#formCommentVeed").serialize();
+                $.ajax({
+                    url: "{{ route('komentar.veed', [Auth::user()->id, $veed->id]) }}",
+                    method: "POST",
+                    data: data,
+                    success: function success(response) {
+                        if (response.success) {
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
         function harusLogin() {
             iziToast.show({
                 backgroundColor: '#F7941E',

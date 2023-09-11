@@ -14,6 +14,7 @@ use App\Models\footer;
 use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
 use App\Models\reply_comment_veed;
+use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
 
 class VeedController extends Controller
 {
@@ -47,7 +48,7 @@ class VeedController extends Controller
         $footer = footer::first();
 
         $video_pembelajaran = upload_video::paginate(1);
-        $comment_veed = comment_veed::orderBy("created_at", "desc");
+        $comment_veed = comment_veed::latest();
         $reply_comment_veed = reply_comment_veed::query()->orderBy("created_at", "desc");
         return view("template.veed", compact("reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
@@ -59,7 +60,7 @@ class VeedController extends Controller
                 "users_id" => $user_id,
                 "veed_id" => $veed_id
             ]);
-            return redirect()->back()->with('success', 'Sukses memberi like!');
+           return redirect()->back()->with('success', 'Sukses memberi like!');
         } elseif ($cek == 1) {
             like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->delete();
             return redirect()->back()->with('success', 'Sukses membatalkan like!');
@@ -73,7 +74,11 @@ class VeedController extends Controller
             "komentar" => $request->commentVeed
         ]);
         if ($store_comment) {
-            return redirect()->back()->with('success', 'Sukses mengirim komentar!');
+            //return redirect()->back()->with('success', 'Sukses mengirim komentar!');
+            return response()->json([
+                "success" => true,
+                "message" => "Anda berhasil memberi komentar!"
+            ]);
         }
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
@@ -92,6 +97,10 @@ class VeedController extends Controller
             return redirect()->back()->with('success', 'Sukses memberi like!');
         } elseif ($countIsLike == 1) {
             $isLike->delete();
+            return response()->json([
+                "success" => true,
+                "message" => "Anda berhasil membatalkan memberi like veed!"
+            ]);
             return redirect()->back()->with('success', 'Sukses membatalkan like!');
         }
     }
