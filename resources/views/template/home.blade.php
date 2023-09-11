@@ -205,9 +205,9 @@
 
 
 {{-- start koki terpopuler --}}
-<section class="container mt-5 mb-5 mx-auto">
+<section class="container mt-5 mb-5" >
     <div class=" input-group">
-        <div class="">
+        <div class=" mx-2">
             <h3 class="fw-bold ml-3">Koki terpopuler</h3>
         </div>
     </div>
@@ -298,7 +298,7 @@
     </div>
 </section>
 {{-- end koki terpopuler --}}
-   
+
 <style>
     .btn-custom{
      width: 100%; /* Atur lebar tetap untuk tombol */
@@ -316,11 +316,11 @@
     }
  </style>
 
-<div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 25px">
-    <div class=" input-group" style="margin-left:7rem">
+<div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 15px">
+    <div class=" input-group" style="margin-left:4.5%">
         <h3 class="fw-bold ml-3" style="color:white;font-family:poppins">Kategori makanan</h3>
     </div>
-    <div style="margin-left:8rem">
+    <div style="margin-left:5.5%">
         <p style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi
             anda.</p>
     </div>
@@ -348,7 +348,7 @@
 <section class="container mt-5 mb-5">
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3 mb-5">Resep resep Terbaru</h3>
+            <h3 class="fw-bold ml-3 mb-5 mx-3">Resep resep Terbaru</h3>
         </div>
     </div>
     @if ($recipes->count() == 0)
@@ -811,63 +811,44 @@
         color: #727686;
     }
 </style>
-{{-- <section class="content mt-5">
-        <div class="container-fluid">
+       <!-- about section -->
+    <section class="py-5">
+        <div class="container">
             <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <div class="col-md-4 mb2">
+                <div class="col-md-6">
+                    <div class="detail-box mx-3">
+                        <div class="heading_container">
+                            <h2 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">
+                                Tentang Kami
+                            </h2>
                         </div>
-                    </div>
-                    <div class="row">
-
-                        @foreach ($complaints as $row)
-                            <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
-                                <div class="card text-dark card-has-bg click-col"
-                                    style="background-image:url('https://source.unsplash.com/600x900/?food');">
-                                    <img class="card-img d-none" src="https://source.unsplash.com/600x900/?food"
-                                        alt="Creative Manner Design Lorem Ipsum Sit Amet Consectetur dipisi?">
-                                    <table>
-                                        <div class="card-img-overlay d-flex flex-column">
-                                            <div class="card-body">
-                                                <small class="card-meta mb-2 text-dark"><b></b></small>
-                                                <h4 class="card-title mt-0 "><a class="text-dark"
-                                                        href="{{ route('ShowReplies.show', $row->id) }}"><b>{{ $row->subject }}</b></a>
-                                                </h4>
-                                                <small class="card-meta mb-2 text-dark">{{ $row->description }}</small><br>
-                                                <small><i class="far fa-clock"></i>
-                                                    {{ $row->created_at->diffForHumans(['short' => false]) }}</small>
-                                            </div>
-                                            <div class="card-footer">
-                                                <div class="media">
-                                                    <img class="mr-3 rounded-circle"
-                                                        src="{{ asset('images/default-profile2.png') }}"
-                                                        alt="profile image" style="max-width:50px">
-                                                    <div class="media-body">
-                                                        <h6 class="my-0 text-dark d-block">{{ $row->user->name }}
-                                                        </h6>
-                                                        <small>{{ $row->user->email }}</small>
-                                                    </div>
-                                                    <div>
-                                                        <a href="{{ route('ShowReplies.show', $row->id) }}"
-                                                            class="btn btn-warning btn-sm text-light rounded-3"><svg
-                                                                xmlns="http://www.w3.org/2000/svg" width="32"
-                                                                height="32" viewBox="0 0 24 24">
-                                                                <path fill="currentColor"
-                                                                    d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </div>
-                            </div>
-                            </table>
+                        <p class="mt-4">
+                             Selamat Datang di HummaCook! HummaCook adalah online
+                            media portal yang menyajikan kumpulan aneka resep masakan
+                            untuk menginspirasi para pehobi masak. Menyajikan resep-resep
+                            rumahan yang mudah dibuat oleh semua orang, dan
+                            bahan-bahan masakan yang mudah didapatkan. Resep-resep
+                            ditulis oleh teman-teman food blogger seantero Nusantara yang
+                            sudah berpengalaman di bidang masak memasak. Harapan
+                            kami semua orang bisa memasak dengan mudah dan berhasil,
+                            supaya dapat disajikan dengan sempurna untuk keluarga
+                            tercinta. Semua resep di sini telah teruji dapur dan foto yang
+                            ditampilkan adalah original/hasil aslinya. Terima Kasih.
+                        </p>
+                        {{-- <a href="">
+                            Baca Selengkapnya
+                        </a> --}}
                     </div>
                 </div>
-                @endforeach
-    </section> --}}
+                <div class="col-md-6">
+                    <div class="img-box">
+                        <img src="{{ asset('images/tentang.png') }}" alt="" style="max-width: 100%; margin-top: -10%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end about section -->
 <script>
     function harusLogin() {
         iziToast.show({
