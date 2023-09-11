@@ -25,6 +25,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\komentar_resep;
 use App\Http\Controllers\LikeCommentController;
 use App\Http\Controllers\testingController;
+use App\Http\Controllers\VeedController;
 use App\Models\bahan_reseps;
 use App\Models\favorite;
 use App\Models\notifications;
@@ -50,6 +51,9 @@ Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
 Route::get('about', [LoginController::class, 'about'])->name('about');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
+
+// veed
+Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
@@ -138,6 +142,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
+        Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
+        Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video');
     });
 });
 
@@ -149,5 +155,12 @@ Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::c
 Route::post('/koki/sukai/balasan/{id}', [LikeCommentController::class, 'like_reply_comment'])->name('likeReply.comment.recipe')->middleware('auth');
 Route::delete('/hapus/komentar-resep/{id}', [komentar_resep::class, 'delete_comment'])->name('delete.comment')->middleware(['auth']);
 Route::delete('/hapus/komentar-resep-reply/{id}', [komentar_resep::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth');
+
+// like dan komentar pada veed
+Route::post("like/veed/{user_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
+Route::post("/komentar-veed/{user_id}/{veed_id}", [VeedController::class, 'komentar_veed'])->name('komentar.veed');
+Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
+Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');
+Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [VeedController::class, 'sukai_balasan_komentar_veed'])->name('sukai.balasan.komentar.veed');
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');

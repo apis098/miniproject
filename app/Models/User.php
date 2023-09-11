@@ -69,4 +69,23 @@ class User extends Authenticatable
     public function tag_comment() {
         return $this->hasMany(tagReplyComments::class);
     }
+    public function upload_video() {
+        return $this->hasMany(upload_video::class);
+    }
+    public function comment_veed() {
+        return $this->hasMany(comment_veed::class);
+    }
+    public function reply_comment_veed() {
+        return $this->hasMany(reply_comment_veed::class);
+    }
+    public function like_veed() {
+        return $this->hasMany(like_veed::class);
+    }
+    public function like_comment_veed() {
+        return $this->hasMany(like_comment_veed::class);
+    }
+    public function like_reply_comment_veed() {
+        return $this->hasMany(like_reply_comment_veed::class);
+    }
+
 }

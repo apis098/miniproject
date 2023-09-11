@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\notifications;
 use App\Models\reseps;
+use App\Models\upload_video;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 
 class KokiController extends Controller
@@ -83,6 +85,49 @@ class KokiController extends Controller
             return redirect()->back()->with('success', 'Foto profile telah dihapus');
         } else {
             return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
+        }
+    }
+    /**
+     * Memperlihatkan form untuk upload video pembelajaran oleh koki
+     */
+    public function upload_video() {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $footer = footer::first();
+        $unreadNotificationCount = [];
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        return view("koki.upload-video", compact('userLogin','notification', 'favorite', 'footer', 'unreadNotificationCount'));
+    }
+    public function upload(Request $request)
+    {
+        $rules = [
+            "judul_video" => "required",
+            "deskripsi_video" => "required",
+            "upload_video" => "required|mimes:mp4|max:50000"
+        ];
+        $validasi = Validator::make($request->all(), $rules);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+        $up = upload_video::create([
+            "users_id" => Auth::user()->id,
+            "judul_video" => $request->judul_video,
+            "deskripsi_video" => $request->deskripsi_video,
+            "upload_video" => $request->file("upload_video")->store("video-user", "public")
+        ]);
+        if ($up) {
+            return response()->json(["message" => "Sukses upload video!"]);
         }
     }
     /**
