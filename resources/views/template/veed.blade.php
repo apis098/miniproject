@@ -1,14 +1,14 @@
 @extends('template.nav')
 @section('content')
     @foreach ($video_pembelajaran as $veed)
-        <div class="row">
-            <div class="col-lg-6">
+        <div class="">
+            <div class="container mx-auto">
                 <video width="100%" height="100%" class="mx-auto my-1" autoplay>
                     <source src="{{ asset('storage/' . $veed->upload_video) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
-            <div class="col-lg-6">
+            <div class="modal-komentar" hidden>
                 <div class="card">
                     <div class="card-header">
                         @php
@@ -235,7 +235,6 @@
             </div>
         </div>
     @endforeach
-    {{ $video_pembelajaran->links('vendor.pagination.simple-default') }}
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
     crossorigin="anonymous"></script>
     <script>

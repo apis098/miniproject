@@ -47,7 +47,7 @@ class VeedController extends Controller
         }
         $footer = footer::first();
 
-        $video_pembelajaran = upload_video::paginate(1);
+        $video_pembelajaran = upload_video::all();
         $comment_veed = comment_veed::latest();
         $reply_comment_veed = reply_comment_veed::query()->orderBy("created_at", "desc");
         return view("template.veed", compact("reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
