@@ -203,7 +203,7 @@
         .search-2 input {
             height: 35px;
             border: none;
-            width: 200px;
+            width: 100%;
             padding-left: 15px;
             padding-right: 100px;
 
@@ -655,7 +655,7 @@ function showLoading() {
     @endforeach
     {{-- akhir modal --}}
     {{-- modal komentar --}}
-    
+
     {{-- end Modal --}}
     {{-- Model Terima laporan --}}
     @foreach ($data as $row)

@@ -203,7 +203,7 @@
         .search-2 input {
             height: 35px;
             border: none;
-            width: 200px;
+            width: 100%;
             padding-left: 15px;
             padding-right: 100px;
 
@@ -357,7 +357,7 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" name="resep"
+                                                    <input type="text" name="resep" autofocus
                                                         placeholder="Cari Laporan Resep">
                                                     <button  type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
