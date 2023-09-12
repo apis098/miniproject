@@ -2,207 +2,244 @@
 <html>
 
 <head>
-    <!-- Basic -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Site Metas -->
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+    <!DOCTYPE html>
+    <html class=''>
 
-    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <head>
+        <script
+            src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'>
+        </script>
+        <script
+            src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'>
+        </script>
+        <script
+            src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'>
+        </script>
+        <meta charset='UTF-8'>
+        <meta name="robots" content="noindex">
+        <link rel="shortcut icon" type="image/x-icon"
+            href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" />
+        <link rel="mask-icon" type=""
+            href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg"
+            color="#111" />
+        <link rel="canonical" href="https://codepen.io/emilcarlsson/pen/ZOQZaV?limit=all&page=74&q=contact+" />
+        <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,300' rel='stylesheet'
+            type='text/css'>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-    </script>
-    <title> HummaCook </title>
-    <!-- bootstrap core css -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
+        <script src="https://use.typekit.net/hoy3lrg.js"></script>
+        <script>
+            try {
+                Typekit.load({
+                    async: true
+                });
+            } catch (e) {}
+        </script>
+        <!-- Basic -->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Site Metas -->
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
 
-    <!--owl slider stylesheet -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <!-- nice select  -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
-        integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
-        crossorigin="anonymous" />
-    <!-- font awesome style -->
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
+        <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-    <!-- responsive style -->
-    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+        </script>
+        <title> HummaCook </title>
+        <!-- bootstrap core css -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
 
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-    <style>
-        .custom_nav-container .navbar-nav .nav-item.active .nav-link {
-            color: #F7941E;
-            background: white;
-        }
+        <!--owl slider stylesheet -->
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+        <!-- nice select  -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css"
+            integrity="sha512-CruCP+TD3yXzlvvijET8wV5WxxEh5H8P4cmz0RFbKK6FlZ2sYl3AEsKlLPHbniXKSrDdFewhbmBK5skbdsASbQ=="
+            crossorigin="anonymous" />
+        <!-- font awesome style -->
+        <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
 
-        .custom_nav-container .navbar-nav .nav-item.active .nav-link:hover {
-            color: #F7941E;
-            background: white;
-        }
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+        <!-- responsive style -->
+        <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
-        .nav-link:hover {}
+        <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+        <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
 
-        .nav-link {
-            white-space: nowrap;
+        <style>
+            .custom_nav-container .navbar-nav .nav-item.active .nav-link {
+                color: #F7941E;
+                background: white;
+            }
 
-        }
+            .custom_nav-container .navbar-nav .nav-item.active .nav-link:hover {
+                color: #F7941E;
+                background: white;
+            }
 
-        .radius-bawah {
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-        }
+            .nav-link:hover {}
 
-        .radius-atas {
-            border-top-right-radius: 30px;
-            border-top-left-radius: 30px;
-        }
+            .nav-link {
+                white-space: nowrap;
 
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
+            }
 
-        .dropdown .dropbtn {
+            .radius-bawah {
+                border-bottom-left-radius: 30px;
+                border-bottom-right-radius: 30px;
+            }
 
-            border: none;
-            outline: none;
-            color: white;
-            background-color: inherit;
-            margin: 0;
-            padding: 14px 16px;
-        }
+            .radius-atas {
+                border-top-right-radius: 30px;
+                border-top-left-radius: 30px;
+            }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
 
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #1d1919;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
+            .dropdown .dropbtn {
 
-        .dropdown-content a {
+                border: none;
+                outline: none;
+                color: white;
+                background-color: inherit;
+                margin: 0;
+                padding: 14px 16px;
+            }
 
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
 
-        }
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #1d1919;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f146;
-        }
+            .dropdown-content a {
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
 
-        .login {
-            display: inline-block;
-            padding: 6px 22px;
-            background-color: #ffff;
-            color: #F7941E;
-            border-radius: 12px;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            border: none;
-        }
+            }
 
+            .dropdown-content a:hover {
+                background-color: #f1f1f146;
+            }
 
-        .dotted {
-            border: 2px dotted #aaa;
-            text-align: center;
-            padding: 10px;
-            width: 300px;
-            height: auto;
-            border-radius: 20px;
-        }
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
 
-        .black-border-button {
-
-
-            border: 1px solid black;
-            padding: 10px 15px;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .t {
-            margin-left: 45px;
-        }
-
-
-        .ah {
-            display: inline-block;
-            padding: 10px 55px;
-            background-color: #ffffff;
-            color: #F7941E;
-            border-radius: 100px;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            border: none;
-        }
-
-        .text-orange {
-            color: #F7941E;
-        }
-
-        .text-orange:hover {
-            color: #F7941E;
-        }
-
-        .slider_section .detail-box a {
-            background-color: #ffffff;
-            color: #ffffff;
-            border-radius: 12px;
-
-        }
-
-        .zoom-effects:hover {
-            transform: scale(0.95);
-        }
-
-        .yuhu {
-            background: none;
-            color: inherit;
-            border: none;
-            padding: 0;
-            font: inherit;
-            cursor: pointer;
-            outline: inherit;
-        }
-    </style>
+            .login {
+                display: inline-block;
+                padding: 6px 22px;
+                background-color: #ffff;
+                color: #F7941E;
+                border-radius: 12px;
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+                border: none;
+            }
 
 
-</head>
+            .dotted {
+                border: 2px dotted #aaa;
+                text-align: center;
+                padding: 10px;
+                width: 300px;
+                height: auto;
+                border-radius: 20px;
+            }
+
+            .black-border-button {
+
+
+                border: 1px solid black;
+                padding: 10px 15px;
+                font-size: 14px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .t {
+                margin-left: 45px;
+            }
+
+
+            .ah {
+                display: inline-block;
+                padding: 10px 55px;
+                background-color: #ffffff;
+                color: #F7941E;
+                border-radius: 100px;
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+                border: none;
+            }
+
+            .text-orange {
+                color: #F7941E;
+            }
+
+            .text-orange:hover {
+                color: #F7941E;
+            }
+
+            .slider_section .detail-box a {
+                background-color: #ffffff;
+                color: #ffffff;
+                border-radius: 12px;
+
+            }
+
+            .zoom-effects:hover {
+                transform: scale(0.95);
+            }
+
+            .yuhu {
+                background: none;
+                color: inherit;
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                outline: inherit;
+            }
+        </style>
+
+
+    </head>
 
 <body class="sub_page">
     <div class="hero_area">
@@ -265,7 +302,8 @@
 
                                 <li class="nav-item {{ request()->is('keluhan') ? 'active' : '' }} me-2"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ route('keluhan') }}"><b>Diskusi</b></a>
+                                    <a class="nav-link" id="navbar"
+                                        href="{{ route('keluhan') }}"><b>Diskusi</b></a>
                                 </li>
                                 {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -277,7 +315,14 @@
 
                                 @if (Auth::check() && $notification != null)
                                     {{-- dropdown notifikasi --}}
-                                    <a href="{{ url('/search-account') }}"  class="text-light"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><circle cx="10" cy="8" r="4" fill="currentColor"/><path fill="currentColor" d="M10.35 14.01C7.62 13.91 2 15.27 2 18v2h9.54c-2.47-2.76-1.23-5.89-1.19-5.99zm9.08 4.01c.36-.59.57-1.28.57-2.02c0-2.21-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4c.74 0 1.43-.22 2.02-.57L20.59 22L22 20.59l-2.57-2.57zM16 18c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z"/></svg></a>
+                                    <a href="{{ url('/search-account') }}" class="text-light"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                            viewBox="0 0 24 24">
+                                            <circle cx="10" cy="8" r="4"
+                                                fill="currentColor" />
+                                            <path fill="currentColor"
+                                                d="M10.35 14.01C7.62 13.91 2 15.27 2 18v2h9.54c-2.47-2.76-1.23-5.89-1.19-5.99zm9.08 4.01c.36-.59.57-1.28.57-2.02c0-2.21-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4c.74 0 1.43-.22 2.02-.57L20.59 22L22 20.59l-2.57-2.57zM16 18c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z" />
+                                        </svg></a>
                                     <div class="text-light me-2">
                                         <a data-toggle="dropdown" class="text-light" href="#">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -350,7 +395,7 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
-                                                        @elseif($row->reply_id_comment != null )
+                                                        @elseif($row->reply_id_comment != null)
                                                             <form
                                                                 action="{{ route('replies.notification', $row->id) }}"
                                                                 method="POST">
@@ -371,7 +416,7 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
-                                                        @elseif($row->like_comment_recipes_id != null && $row->resep_id != null )
+                                                        @elseif($row->like_comment_recipes_id != null && $row->resep_id != null)
                                                             <form
                                                                 action="{{ route('resep.read.notification', $row->id) }}"
                                                                 method="POST">
@@ -392,7 +437,7 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
-                                                        @elseif($row->like_reply_comment_recipes_id != null && $row->resep_id != null )
+                                                        @elseif($row->like_reply_comment_recipes_id != null && $row->resep_id != null)
                                                             <form
                                                                 action="{{ route('resep.read.notification', $row->id) }}"
                                                                 method="POST">
@@ -413,7 +458,7 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
-                                                        @elseif($row->reply_comment_id != null && $row->resep_id != null )
+                                                        @elseif($row->reply_comment_id != null && $row->resep_id != null)
                                                             <form
                                                                 action="{{ route('resep.read.notification', $row->id) }}"
                                                                 method="POST">
@@ -434,14 +479,15 @@
                                                                         class="form-control">
                                                                 </button>
                                                             </form>
-                                                        @elseif($row->comment_id != null && $row->resep_id != null )
+                                                        @elseif($row->comment_id != null && $row->resep_id != null)
                                                             <form
                                                                 action="{{ route('resep.read.notification', $row->id) }}"
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
                                                                 <button class="yuhu mt-2" type="submit">
-                                                                    <small class="mt-1 ms-1 text-secondary">Mengomentari
+                                                                    <small
+                                                                        class="mt-1 ms-1 text-secondary">Mengomentari
                                                                         resep anda</small>
                                                                     @if ($row->status == 'belum')
                                                                         <img class="ms-2 mb-2 rounded-circle"
@@ -566,7 +612,9 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                                <button class="yuhu mt-2" type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalAlasan{{ $row->id }}">
                                                                     <small class="mt-1 ms-1 text-secondary">Komentar
                                                                         kamu telah diblokir</small>
                                                                     @if ($row->status == 'belum')
@@ -607,7 +655,9 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                                <button class="yuhu mt-2" type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalAlasan{{ $row->id }}">
                                                                     <small class=" ms-1 text-secondary">Keluhan
                                                                         anda telah diblokir</small>
                                                                     @if ($row->status == 'belum')
@@ -627,7 +677,9 @@
                                                                 method="POST">
                                                                 @method('PUT')
                                                                 @csrf
-                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                                <button class="yuhu mt-2" type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#modalAlasan{{ $row->id }}">
                                                                     <small class=" ms-1 text-secondary">Resep
                                                                         anda telah diblokir</small>
                                                                     @if ($row->status == 'belum')
@@ -732,11 +784,15 @@
                                                     Favorite
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                               <a href="#"  style="width: 230px;"
+                                                <a href="#" style="width: 230px;"
                                                     class="dropdown-item text-orange">
-                                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z"/></svg>
+                                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                        width="20" height="20" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                                    </svg>
                                                     Upgrade
-                                                    </a>
+                                                </a>
                                                 <div class="dropdown-divider"></div>
                                                 <a href="{{ route('actionlogout') }}" style="width: 230px;"
                                                     class="dropdown-item text-orange">
@@ -802,7 +858,8 @@
                             @endif
                         @else
                             <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects"
-                                style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b class="me-2 ms-2">Masuk</b></a>
+                                style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
+                                    class="me-2 ms-2">Masuk</b></a>
                             @endif
                         </div>
                 </div>
@@ -810,39 +867,40 @@
             </div>
             @yield('content-header')
     </div>
-        {{-- Modal alasan --}}
-    @foreach($notification as $row)
-    <div class="modal fade" id="modalAlasan{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form action="{{route('blockedComplaint.notification',$row->id)}}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle"
-                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                            Alasan diblokir</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="d-flex align-items-center">
-
-                            <img src="{{ asset('images/peringatan.png') }}" width="145px" height="140px"
-                                    style="border-radius: 50%; " alt="">
-                            <textarea readonly class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description" rows="5"
-                                placeholder="Alasan">{{$row->alasan}}</textarea>
+    {{-- Modal alasan --}}
+    @foreach ($notification as $row)
+        <div class="modal fade" id="modalAlasan{{ $row->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form action="{{ route('blockedComplaint.notification', $row->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle"
+                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                Alasan diblokir</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
+                        <div class="modal-body">
+                            <div class="d-flex align-items-center">
+
+                                <img src="{{ asset('images/peringatan.png') }}" width="145px" height="140px"
+                                    style="border-radius: 50%; " alt="">
+                                <textarea readonly class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description"
+                                    rows="5" placeholder="Alasan">{{ $row->alasan }}</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-light text-light"
+                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                    class="ms-2 me-2">Oke</b></button>
+                    </form>
                 </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-light text-light"
-                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                class="ms-2 me-2">Oke</b></button>
-                </form>
             </div>
         </div>
-    </div>
     @endforeach
     </header>
     <!-- end header section -->
@@ -861,16 +919,16 @@
                             Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang,
                             dan bahan-bahan masakannya yang mudah untuk didapatkan. </p>
                         <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
-                            <a href="{{$footer->facebook}}" target="_blank">
+                            <a href="{{ $footer->facebook }}" target="_blank">
                                 <i class="fa-brands fa-facebook" aria-hidden="true"></i>
                             </a>
-                            <a href="{{$footer->youtube}}" target="_blank">
+                            <a href="{{ $footer->youtube }}" target="_blank">
                                 <i class="fa-brands fa-youtube" aria-hidden="true"></i>
                             </a>
-                            <a href="{{$footer->twitter}}" target="_blank">
+                            <a href="{{ $footer->twitter }}" target="_blank">
                                 <i class="fa-brands fa-twitter" aria-hidden="true"></i>
                             </a>
-                            <a href="{{$footer->instagram}}" target="_blank">
+                            <a href="{{ $footer->instagram }}" target="_blank">
                                 <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                             </a>
 
@@ -884,17 +942,17 @@
                         <h5 class="fw-bold">Kontak</h5>
                         <div class="contact_link_box mt-4">
 
-                            <a href="{{$footer->kontak}}" target="_blank">
+                            <a href="{{ $footer->kontak }}" target="_blank">
                                 <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
-                                <span>{{$footer->kontak}}</span>
+                                <span>{{ $footer->kontak }}</span>
                             </a>
-                            <a href="{{$footer->telegram}}" target="_blank">
+                            <a href="{{ $footer->telegram }}" target="_blank">
                                 <i class="fa-brands fa-telegram" aria-hidden="true" style="margin-left: -2em"></i>
-                                <span>{{$footer->telegram}}</span>
+                                <span>{{ $footer->telegram }}</span>
                             </a>
-                            <a href="{{$footer->email}}" target="_blank">
+                            <a href="{{ $footer->email }}" target="_blank">
                                 <i class="fas fa-envelope" aria-hidden="true" style="margin-left:-1em"></i>
-                                <span>{{$footer->email}}</span>
+                                <span>{{ $footer->email }}</span>
                             </a>
                         </div>
                     </div>
@@ -904,10 +962,8 @@
                         {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
                         <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
                     </h1>
-                    <iframe
-                        src="{{$footer->lokasi}}"
-                        height="200" style="border:0;margin-top:8%" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="{{ $footer->lokasi }}" height="200" style="border:0;margin-top:8%"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -962,7 +1018,8 @@
                                 </div>
                             </div>
                             <button onclick="deleteSelected()" class="btn  btn-sm text-light ms-5"
-                                style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-2 me-2">Hapus
+                                style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Hapus
                                     dari favorit</b></button>
                         </div>
                         </form>
@@ -1098,25 +1155,25 @@
     <script src="{{ asset('plugins/select2/js/select2.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#filter').on('shown.bs.modal', function () {
+            $('#filter').on('shown.bs.modal', function() {
                 $('.cari').select2({
-                closeOnSelect: false,
-                placeholder: {
-                    id: '-1',
-                    text: 'Masukkan Nama Bahan'
-                },
-                dropdownParent: $('#filter')
+                    closeOnSelect: false,
+                    placeholder: {
+                        id: '-1',
+                        text: 'Masukkan Nama Bahan'
+                    },
+                    dropdownParent: $('#filter')
 
+                });
+                $('.cari23').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        id: '-1', // the value of the option
+                        text: 'Masukkan Nama Alat Alat'
+                    },
+                    dropdownParent: $('#filter')
+                });
             });
-            $('.cari23').select2({
-                closeOnSelect: false,
-                placeholder: {
-                    id: '-1', // the value of the option
-                    text: 'Masukkan Nama Alat Alat'
-                },
-                dropdownParent: $('#filter')
-            });
-});
 
 
         });
