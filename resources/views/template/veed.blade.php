@@ -1,6 +1,216 @@
 @extends('template.nav')
 @section('content')
-    @foreach ($video_pembelajaran as $veed)
+
+<section class="text-align-center mt-5">
+
+  <div class="row justify-content-center">
+    <div class="col-md-3 " style="">
+        <div class="card" style="width: 15rem; margin-left:50px;  border-radius: 10px">
+        <div class="card-header text-white text-center" style="background-color: #F7941E;   border-top-right-radius: 10px;
+        border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+            Rekomendasi Chef
+        </div>
+          <div class="card-body"  style="height: 400px;">
+            <div class="d-flex mb-3">
+              <a href="">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="border rounded-circle me-2"
+                  alt="Avatar" style="height: 40px" />
+              </a>
+              <div>
+                <div class="bg-light rounded-3 px-3 py-1">
+                  <a href="" class="text-dark mb-0">
+                    <strong>Malcolm Dosh</strong>
+                  </a>
+                  <a href="" class="text-muted d-block">
+                    <small>20 Resep</small>
+                  </a>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+
+        <div class="card ">
+            <div class="card-body">
+                <textarea name="deskripsi_resep" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="floatingTextarea"
+                rows="5"  required>{{ old('deskripsi_resep') }}</textarea>
+     <br>
+                  <a href="#" class="btn btn-light"
+                  style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
+                  <span style="font-weight: 600; color: black;">Tambahkan Video</span>
+            </a>
+    
+                  <a href="#" class="btn "
+                  style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                  <span style="font-weight: 600; color: white;">Kirim</span>
+            </a>
+    
+            </div>
+        </div>
+        <div class="card mt-4" style="max-width: 42rem;">
+
+
+
+
+         
+
+
+       
+          <!-- Data -->
+          <div class="card-header" style="background-color: white">
+           
+          <div class="d-flex mb-1">
+            <a href="">
+              <img src="https://mdbcdn.b-cdn.net/img/new/avatars/18.webp" class="border rounded-circle me-2"
+                alt="Avatar" style="height: 40px" />
+            </a>
+            <div  style="margin-top: 8px;">
+              <a href="" class="text-dark ">
+                <strong class="text-center" >Anna Doe</strong>
+              </a>
+              <a href="" class="text-muted d-block" style="float: right; margin-left: 390px">
+                <small>10 hari yang lalu</small>
+              </a>
+            </div>
+          </div>
+        
+        </div>
+         
+        <!-- Media -->
+        <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/people/077.webp" class="w-100" />
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+          </a>
+        </div>
+        <!-- Media -->
+        <!-- Interactions -->
+        <div class="card-body">
+          <!-- Reactions -->
+          <div class="d-flex justify-content-between mb-2">
+            <div>
+              <a href="">
+                <i class="fas fa-thumbs-up text-primary"></i>
+                <i class="fas fa-heart text-danger"></i>
+                <span>124</span>
+              </a>
+            </div>
+            {{-- <div>
+              <a href="" class="text-muted"> 8 comments </a>
+            </div> --}}
+          </div>
+          <!-- Reactions -->
+  
+          <!-- Buttons -->
+        
+          <!-- Buttons -->
+  
+          <!-- Comments -->
+  
+          <!-- Input -->
+         
+          <!-- Input -->
+  
+          <!-- Answers -->
+  
+          <!-- Single answer -->
+        
+  
+          <!-- Single answer -->
+          <div class="d-flex mb-3">
+           
+            <div>
+              <div class="rounded-3 py-1">
+                <a href="" class="text-dark mb-0">
+                  <strong>Rhia Wallis Et tempora ad natus autem enim a distinctio
+                    quaerat asperiores necessitatibus commodi dolorum
+                    nam perferendis labore delectus, aliquid placeat
+                    quia nisi magnam bagaimana jhdsahgdad kita mengaca ita aanm aki iitu makanya .</strong>
+                </a>
+                
+              </div>
+              {{-- <a href="" class="text-muted small ms-3 me-2"><strong>Like</strong></a>
+              <a href="" class="text-muted small me-2"><strong>Reply</strong></a> --}}
+            </div>
+          </div>
+  
+          <!-- Single answer -->
+        
+  
+          <!-- Single answer -->
+        
+  
+          <!-- Answers -->
+  
+          <!-- Comments -->
+        </div>
+        </div>
+    </div>
+
+    
+    <div class="col-md-3">
+        <div class="card" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
+            <div class="card-header text-white text-center" style="background-color: #F7941E;   border-top-right-radius: 10px;
+            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                Diikuti
+            </div>
+          <div class="card-body" style="height: 500px;">
+            <div class="d-flex mb-3">
+              <a href="">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="border rounded-circle me-2"
+                  alt="Avatar" style="height: 40px" />
+              </a>
+              <div>
+                <div class="bg-light rounded-3 px-3 py-1">
+                  <a href="" class="text-dark mb-0">
+                    <strong>Resep baru siap di jiltod</strong>
+                  </a>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card mt-5 mb-5" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
+            <div class="card-header text-white text-center" style="background-color: #F7941E;   border-top-right-radius: 10px;
+            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                Belum Dibaca
+            </div>
+            <div class="card-body" style="height: 500px;">
+              <div class="d-flex mb-3">
+                <a href="">
+                  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="border rounded-circle me-2"
+                    alt="Avatar" style="height: 40px" />
+                </a>
+                <div>
+                    <div class="bg-light rounded-3 px-3 py-1">
+                      <a href="" class="text-dark mb-0">
+                        <strong>Bunda Rahma</strong>
+                      </a>
+                      <a href="" class="text-muted d-block">
+                        <small>2 Pesan Baru</small>
+                      </a>
+                    </div>
+                   
+                  </div>
+              </div>
+            </div>
+          </div>
+    </div>
+
+</div>
+
+
+  </section>
+  
+  
+    {{-- @foreach ($video_pembelajaran as $veed)
         <div class="">
             <div class="container mx-auto">
                 <video width="100%" height="100%" class="mx-auto my-1" autoplay>
@@ -165,7 +375,7 @@
                                                     $reply_comments = App\Models\reply_comment_veed::query()
                                                         ->where('comment_id', $item_comment->id)
                                                         ->get();
-                                                    
+
                                                 @endphp
                                                 @foreach ($reply_comments as $reply_comment)
                                                     @php
@@ -273,5 +483,5 @@
                 position: 'topCenter',
             });
         }
-    </script>
+    </script> --}}
 @endsection
