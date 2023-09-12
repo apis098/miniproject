@@ -49,11 +49,12 @@ Route::get('/', [LoginController::class, 'home'])->name('home');
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
-Route::get('about', [LoginController::class, 'about'])->name('about');
+Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 // veed
 Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
+
 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
