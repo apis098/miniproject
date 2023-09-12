@@ -256,11 +256,11 @@
                                 </li>
                                 <li class="nav-item {{ request()->is('kursus') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="{{ route('kursus') }}"><b> Kursus </b></a>
+                                    <a class="nav-link" id="navbar" href=""><b> Kursus </b></a>
                                 </li>
-                                <li class="nav-item {{ request()->is('feed') ? 'active' : '' }}"
+                                <li class="nav-item {{ request()->is('veed') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href="#"><b>Feed</b></a>
+                                    <a class="nav-link" id="navbar" href="{{url('veed')}}"><b>Feed</b></a>
                                 </li>
 
                                 <li class="nav-item {{ request()->is('keluhan') ? 'active' : '' }} me-2"
