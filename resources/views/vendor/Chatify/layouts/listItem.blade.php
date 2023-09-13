@@ -1,21 +1,21 @@
 {{-- -------------------- Saved Messages -------------------- --}}
-@if($get == 'saved')
+{{-- @if($get == 'saved')
     <table class="messenger-list-item" data-contact="{{ Auth::user()->id }}">
         <tr data-action="0">
-            {{-- Avatar side --}}
+           
             <td>
             <div class="saved-messages avatar av-m">
                 <span class="far fa-bookmark"></span>
             </div>
             </td>
-            {{-- center side --}}
+        
             <td>
-                <p data-id="{{ Auth::user()->id }}" data-type="user">Saved Messages <span>You</span></p>
+                <p data-id="{{ Auth::user()->id }}" data-type="user">Pesan yang disimpan <span>You</span></p>
                 <span>Save messages secretly</span>
             </td>
         </tr>
     </table>
-@endif
+@endif --}}
 
 {{-- -------------------- Contact list -------------------- --}}
 @if($get == 'users' && !!$lastMessage)
@@ -30,9 +30,15 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
             @if($user->active_status)
                 <span class="activeStatus"></span>
             @endif
-        <div class="avatar av-m"
-        style="background-image: url('{{ $user->avatar }}');">
-        </div>
+        @if($user->foto == null)
+            <div class="avatar av-m"
+            style="background-image: url('/images/default.jpg');">
+            </div>
+        @else
+            <div class="avatar av-m"
+            style="background-image: url('/storage/{{ $user->foto }}');">
+            </div>
+        @endif
         </td>
         {{-- center side --}}
         <td>
@@ -68,9 +74,15 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
     <tr data-action="0">
         {{-- Avatar side --}}
         <td>
-        <div class="avatar av-m"
-        style="background-image: url('{{ $user->avatar }}');">
-        </div>
+            @if($user->foto == null)
+            <div class="avatar av-m"
+            style="background-image: url('/images/default.jpg');">
+            </div>
+        @else
+            <div class="avatar av-m"
+            style="background-image: url('/storage/{{ $user->foto }}');">
+            </div>
+        @endif
         </td>
         {{-- center side --}}
         <td>

@@ -1,11 +1,12 @@
 @include('Chatify::layouts.headLinks')
+
 <div class="messenger">
     {{-- ----------------------Users/Groups lists side---------------------- --}}
     <div class="messenger-listView {{ !!$id ? 'conversation-active' : '' }}">
         {{-- Header and search bar --}}
         <div class="m-header">
             <nav>
-                <a href="#"><i class="fas fa-inbox"></i> <span class="messenger-headTitle">MESSAGES</span> </a>
+                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="mb-1" width="27" height="27" viewBox="0 0 256 256"><path fill="currentColor" d="M172 108a12 12 0 0 1-12 12H96a12 12 0 0 1 0-24h64a12 12 0 0 1 12 12Zm-12 28H96a12 12 0 0 0 0 24h64a12 12 0 0 0 0-24Zm76-8a108 108 0 0 1-157.23 96.15L46.34 235A20 20 0 0 1 21 209.66l10.81-32.43A108 108 0 1 1 236 128Zm-24 0a84 84 0 1 0-156.73 42.06a12 12 0 0 1 1 9.81l-9.93 29.79l29.79-9.93a12.1 12.1 0 0 1 3.8-.62a12 12 0 0 1 6 1.62A84 84 0 0 0 212 128Z"/></svg><span class="messenger-headTitle">HummaCook Messenger</span> </a>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
                     <a href="#"><i class="fas fa-cog settings-btn"></i></a>
@@ -27,14 +28,14 @@
            <div class="show messenger-tab users-tab app-scroll" data-view="users">
                {{-- Favorites --}}
                <div class="favorites-section">
-                <p class="messenger-title"><span>Favorites</span></p>
+                <p class="messenger-title"><span>Koki Favorite</span></p>
                 <div class="messenger-favorites app-scroll-hidden"></div>
                </div>
                {{-- Saved Messages --}}
-               <p class="messenger-title"><span>Your Space</span></p>
+               {{-- <p class="messenger-title"><span>Your Space</span></p> --}}
                {!! view('Chatify::layouts.listItem', ['get' => 'saved']) !!}
                {{-- Contact --}}
-               <p class="messenger-title"><span>All Messages</span></p>
+               <p class="messenger-title"><span>Semua pesan</span></p>
                <div class="listOfContacts" style="width: 100%;height: calc(100% - 272px);position: relative;"></div>
            </div>
              {{-- ---------------- [ Search Tab ] ---------------- --}}
@@ -58,7 +59,7 @@
                     <a href="#" class="show-listView"><i class="fas fa-arrow-left"></i></a>
                     <div class="avatar av-s header-avatar" style="margin: 0px 10px; margin-top: -5px; margin-bottom: -5px;">
                     </div>
-                    <a href="#" class="user-name">{{ config('chatify.name') }}</a>
+                    <a href="#" class="user-name">Pilih satu pengguna untuk memulai percakapan</a>
                 </div>
                 {{-- header buttons --}}
                 <nav class="m-header-right">
