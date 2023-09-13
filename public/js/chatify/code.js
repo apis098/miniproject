@@ -397,13 +397,27 @@ function IDinfo(id) {
           return;
         }
         // avatar photo
-        $(".messenger-infoView")
+        if (data.fetch.foto !=null) {
+          // profile
+          $(".messenger-infoView")
           .find(".avatar")
           .css("background-image",'url('+'/storage/' + data.fetch.foto + ')');
-        $(".header-avatar").css(
-          "background-image",
-          'url('+'/storage/' + data.fetch.foto + ')'
-        );
+          // header
+          $(".header-avatar").css(
+            "background-image",
+            'url('+'/storage/' + data.fetch.foto + ')'
+          );
+        }else{
+          // profile
+          $(".messenger-infoView")
+          .find(".avatar")
+          .css("background-image",'url('+'/images/default.jpg'+ ')');
+          // header
+          $(".header-avatar").css(
+            "background-image",
+            'url('+'/images/default.jpg'+ ')'
+          );
+        }
         // Show shared and actions
         $(".messenger-infoView-btns .delete-conversation").show();
         $(".messenger-infoView-shared").show();
