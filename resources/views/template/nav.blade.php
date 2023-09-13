@@ -293,7 +293,7 @@
                                 </li>
                                 <li class="nav-item {{ request()->is('kursus') ? 'active' : '' }}"
                                     style="font-size: 15px">
-                                    <a class="nav-link" id="navbar" href=""><b> Kursus </b></a>
+                                    <a class="nav-link" id="navbar" href="{{ route('kursus') }}"><b> Kursus </b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('veed') ? 'active' : '' }}"
                                     style="font-size: 15px">
@@ -310,7 +310,7 @@
                       </li> --}}
                             </ul>
 
-                            <div class="user_option" style="margin-left: 190px;">
+                            <div class="user_option" style="margin-left: 120px;">
 
 
                                 @if (Auth::check() && $notification != null)

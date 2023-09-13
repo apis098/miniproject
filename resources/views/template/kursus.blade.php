@@ -161,7 +161,7 @@
         }
     </style>
 
-    <div class="container py-5">
+    <div class="container-fluid py-5">
         <div class="row text-center">
             <div class="col-lg-12">
                 <h1 class="mb-5"
@@ -262,24 +262,80 @@
                 </div>
                 <!-- End button modal -->
             </div>
-            <div class="tab-content mb-5 mx-3 my-5" id="pills-tabContent">
-                <div class="row">
-                    <div class="card mx-5" style="width: 18rem;">
-                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" alt="...">
+        </div>
+            <div class="mx-1">
+            <div class="tab-content mb-5 mx-1 my-5" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                        tabindex="0">
+                        {{-- start tab 1 --}}
+                    <div class="row mx-1" style="margin-left: -50px">
+                    <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
+                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                        border-top-right-radius: calc(0.5rem - 1px);" alt="...">
                         <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text">Merebus</p>
+                          <b style="font-family: poppins;font-size:20px;font-weight:500">cara merebus dengan benar</b>
+                          <div class="mt-3 d-flex ">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+                          <path fill="currentColor" d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z"/></svg>
+                        <p class="mt-1"> 5 Pelajaran</p>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 15 15"><path fill="none" stroke="currentColor" d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z"/></svg>
+                        <p class="mt-1"> 120 menit</p>
+                        </div>
                         </div>
                       </div>
 
-                    <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" alt="...">
+                      <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
+                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                        border-top-right-radius: calc(0.5rem - 1px);" alt="...">
                         <div class="card-body">
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <p class="card-text">Merebus</p>
+                          <b style="font-family: poppins;font-size:20px;font-weight:500"">cara merebus dengan benar</b>
+
                         </div>
                       </div>
+
+                      <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
+                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                        border-top-right-radius: calc(0.5rem - 1px);" alt="...">
+                        <div class="card-body">
+                          <p class="card-text">Merebus</p>
+                          <b style="font-family: poppins;font-size:20px;font-weight:500"">cara merebus dengan benar</b>
+                        </div>
+                      </div>
+
+                      <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
+                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                        border-top-right-radius: calc(0.5rem - 1px);" alt="...">
+                        <div class="card-body">
+                          <p class="card-text">Merebus</p>
+                          <b style="font-family: poppins;font-size:20px;font-weight:500"">cara merebus dengan benar</b>
+                        </div>
+                      </div>
+
+                      <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
+                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                        border-top-right-radius: calc(0.5rem - 1px);" alt="...">
+                        <div class="card-body">
+                          <p class="card-text">Merebus</p>
+                          <b style="font-family: poppins;font-size:20px;font-weight:500"">cara merebus dengan benar</b>
+                        </div>
+                      </div>
+
+                      <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
+                        <img src="{{ asset('sawi.jpg') }}" class="card-img-top" style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                        border-top-right-radius: calc(0.5rem - 1px);" alt="...">
+                        <div class="card-body">
+                          <p class="card-text">Merebus</p>
+                          <b style="font-family:poppins;font-size:20px;font-weight:500">cara merebus dengan benar</b>
+                        </div>
+                      </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            </div>
+
     </div>
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <!-- jQuery CDN -->
