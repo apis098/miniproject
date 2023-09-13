@@ -6,7 +6,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Chatify Messenger'),
+    'name' => env('CHATIFY_NAME', 'Hummacook Messenger'),
 
     /*
     |-------------------------------------
@@ -59,7 +59,7 @@ return [
     */
     'user_avatar' => [
         'folder' => 'users-avatar',
-        'default' => 'avatar.png',
+        'default' => 'default.jpg',
     ],
 
     /*

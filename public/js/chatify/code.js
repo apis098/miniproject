@@ -399,10 +399,10 @@ function IDinfo(id) {
         // avatar photo
         $(".messenger-infoView")
           .find(".avatar")
-          .css("background-image", 'url("' + data.user_avatar + '")');
+          .css("background-image",'url('+'/storage/' + data.fetch.foto + ')');
         $(".header-avatar").css(
           "background-image",
-          'url("' + data.user_avatar + '")'
+          'url('+'/storage/' + data.fetch.foto + ')'
         );
         // Show shared and actions
         $(".messenger-infoView-btns .delete-conversation").show();
