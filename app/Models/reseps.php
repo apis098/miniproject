@@ -18,6 +18,7 @@ class reseps extends Model
         'porsi_orang',
         'lama_memasak',
         'pengeluaran_memasak',
+        'isPremium'
     ];
     public function User()
     {

@@ -427,6 +427,11 @@
                             <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
+                                <button type="submit" style="position: absolute;  right: 110px; background-color:#F7941E; "
+                                class="btn btn-warning btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
+                                data-bs-target="#mymodal">
+                                <i class="fa-solid fa-circle-check" style="width:100%;height:100%"></i>
+                            </button>
                         </div>
                         <div class="card-body mx-4">
                             <div class="row">

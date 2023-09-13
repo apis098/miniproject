@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('lama_memasak');
             $table->integer('likes')->default(0);
             $table->bigInteger('pengeluaran_memasak');
+            $table->enum("isPremium", ["yes", "no"])->default("no");
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
