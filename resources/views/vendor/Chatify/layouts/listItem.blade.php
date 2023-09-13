@@ -24,7 +24,7 @@ $lastMessageBody = mb_convert_encoding($lastMessage->body, 'UTF-8', 'UTF-8');
 $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0, 30, 'UTF-8').'..' : $lastMessageBody;
 ?>
 <table class="messenger-list-item" data-contact="{{ $user->id }}">
-    <tr data-action="0">
+    <tr class="teer" data-action="0">
         {{-- Avatar side --}}
         <td style="position: relative">
             @if($user->active_status)
@@ -71,7 +71,7 @@ $lastMessageBody = strlen($lastMessageBody) > 30 ? mb_substr($lastMessageBody, 0
 {{-- -------------------- Search Item -------------------- --}}
 @if($get == 'search_item')
 <table class="messenger-list-item" data-contact="{{ $user->id }}">
-    <tr data-action="0">
+    <tr class="teer" data-action="0">
         {{-- Avatar side --}}
         <td>
             @if($user->foto == null)

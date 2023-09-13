@@ -229,10 +229,13 @@ body {
   display: none;
 }
 .messenger-list-item {
-  margin: 0;
-  width: 100%;
+  border-radius: 15px;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
   cursor: pointer;
-  transition: background 0.1s;
+  background-color: #f2f3f2;
+  transition: background 0.2s;
 }
 .m-list-active span,
 .m-list-active p {
@@ -243,6 +246,14 @@ body {
 .m-list-active:hover,
 .m-list-active:focus {
   background: var(--primary-color) !important;
+  border-radius: 15px;
+  width: 90%;
+  margin-left: 5%;
+}
+.teer{
+  border-radius: 15px;
+  width: 90%;
+  margin-left: 5%;
 }
 .m-list-active b {
   background: #fff !important;
