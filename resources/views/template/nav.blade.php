@@ -310,7 +310,7 @@
                       </li> --}}
                             </ul>
 
-                            <div class="user_option" style="margin-left: 190px;">
+                            <div class="user_option" style="margin-left: 120px;">
 
 
                                 @if (Auth::check() && $notification != null)
