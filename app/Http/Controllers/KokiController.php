@@ -112,22 +112,22 @@ class KokiController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            "judul_video" => "required",
             "deskripsi_video" => "required",
             "upload_video" => "required|mimes:mp4|max:50000"
         ];
         $validasi = Validator::make($request->all(), $rules);
         if ($validasi->fails()) {
-            return response()->json($validasi->errors()->first(), 422);
+            //return response()->json($validasi->errors()->first(), 422);
+            return redirect()->back()->with("error", $validasi->errors()->first());
         }
         $up = upload_video::create([
             "users_id" => Auth::user()->id,
-            "judul_video" => $request->judul_video,
             "deskripsi_video" => $request->deskripsi_video,
             "upload_video" => $request->file("upload_video")->store("video-user", "public")
         ]);
         if ($up) {
-            return response()->json(["message" => "Sukses upload video!"]);
+            //return response()->json(["message" => "Sukses upload video!"]);
+            return redirect()->back()->with("success", "Sukses upload video");
         }
     }
     /**

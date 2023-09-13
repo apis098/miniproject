@@ -11,7 +11,6 @@ class upload_video extends Model
     protected $table = "upload_videos";
     protected $fillable = [
         "users_id",
-        "judul_video",
         "deskripsi_video",
         "upload_video"
     ];
@@ -21,7 +20,7 @@ class upload_video extends Model
     }
     public function comment_veed()
     {
-        return $this->hasMany(comment_veed::class);
+        return $this->hasMany(comment_veed::class, "veed_id");
     }
     public function reply_comment_veed()
     {

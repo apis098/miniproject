@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('upload_videos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("users_id");
-            $table->string("judul_video");
             $table->string("deskripsi_video");
             $table->string("upload_video");
 
