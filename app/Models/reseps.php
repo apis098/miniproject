@@ -18,6 +18,7 @@ class reseps extends Model
         'porsi_orang',
         'lama_memasak',
         'pengeluaran_memasak',
+        'isPremium'
     ];
     public function User()
     {
@@ -77,5 +78,8 @@ class reseps extends Model
     }
     public function tag_comment() {
         return $this->hasMany(tagReplyComments::class);
+    }
+    public function resep_premium() {
+        return $this->hasMany(ResepPremiums::class);
     }
 }

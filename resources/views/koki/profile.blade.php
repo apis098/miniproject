@@ -49,6 +49,10 @@
                         <p class="mt-2"
                             style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             {{ $userLogin->name }}<br>
+                            @if ($userLogin->isSuperUser === "yes")
+                                <a style="font-size: 18px;" href="">Verified</a>
+                            @endif
+                            <br>
                             <span
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $userLogin->email }}</span>
                         </p>

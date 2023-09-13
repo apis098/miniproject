@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\kategori_makanan;
 use App\Models\hari_reseps;
 use App\Models\kategori_reseps;
+use App\Models\User;
 use Illuminate\Validation\Validator as ValidationValidator;
 
 class ResepsController extends Controller
@@ -61,6 +62,12 @@ class ResepsController extends Controller
      */
     public function store(Request $request)
     {
+        $allUser = User::where("isSuperUser", "yes")->pluck('id')->toArray();
+        if (in_array(Auth::user()->id, $allUser)) {
+            $isPremium = "yes";
+        } else {
+            $isPremium = "no";
+        }
         //dd($request->all());
         $rules = [
             "nama_resep" => "required",
@@ -121,7 +128,8 @@ class ResepsController extends Controller
                 "deskripsi_resep" => $request->deskripsi_resep,
                 "porsi_orang" => $request->porsi_orang,
                 "lama_memasak" => $time,
-                "pengeluaran_memasak" => $price
+                "pengeluaran_memasak" => $price,
+                "isPremium" => $isPremium
             ]);
 
             if ($create_recipe) {

@@ -25,7 +25,8 @@ class AdminSeeder extends Seeder
         'name' => 'koki',
         'email' => 'koki@gmail.com',
         'password' => Hash::make('koki123'),
-        'role' => 'koki'
+        'role' => 'koki',
+        'isSuperUser' => 'yes'
        ],
     );
     User::create([

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'role',
         'foto', 
+        'isSuperUser'
     ];
 
     /**
@@ -87,5 +88,7 @@ class User extends Authenticatable
     public function like_reply_comment_veed() {
         return $this->hasMany(like_reply_comment_veed::class);
     }
-
+    public function resep_premium() {
+        return $this->hasMany(ResepPremiums::class);
+    }
 }
