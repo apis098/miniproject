@@ -584,7 +584,6 @@
                     contentType: false,
                     success: function success(response) {
                         if (response.success) {
-                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -611,7 +610,6 @@
                 contentType: false,
                 success: function success(response) {
                     if (response.success) {
-                        $("body").load('/veed');
                         iziToast.show({
                             backgroundColor: '#F7941E',
                             title: '<i class="fa-regular fa-circle-question"></i>',
@@ -685,7 +683,6 @@
                     },
                     success: function success(response) {
                         if (response.success) {
-                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -712,7 +709,6 @@
                     },
                     success: function success(response) {
                         if (response.success) {
-                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -737,7 +733,6 @@
                     method: "POST",
                     success: function success(response) {
                         if (response.success) {
-                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
