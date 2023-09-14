@@ -117,19 +117,20 @@ class KokiController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            "deskripsi_video" => "required",
+            "deskripsi_video" => "required|max:225",
             "upload_video" => "required|mimes:mp4|max:50000"
         ];
         $messages = [
             "deskripsi_video.required" => "Deskripsi video harus diisi!",
+            "deskripsi_video.max" => "Deskripsi video tidak boleh lebih dari 225 karakter!",
             "upload_video.required" => "Video harus diupload!",
             "upload_video.mimes" => "Video harus berekstensikan mp4!",
             "upload_video.max" => "Video tidak boleh melebihi 50MB!"
         ];
         $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
-            //return response()->json($validasi->errors()->first(), 422);
-            return redirect()->back()->with("error", $validasi->errors()->first());
+            return response()->json($validasi->errors()->first(), 422);
+            //return redirect()->back()->with("error", $validasi->errors()->first());
         }
         $up = upload_video::create([
             "users_id" => Auth::user()->id,
@@ -137,8 +138,11 @@ class KokiController extends Controller
             "upload_video" => $request->file("upload_video")->store("video-user", "public")
         ]);
         if ($up) {
-            //return response()->json(["message" => "Sukses upload video!"]);
-            return redirect()->back()->with("success", "Sukses upload video");
+            return response()->json([
+                "message" => "Sukses upload video!",
+                "success" => true
+            ]);
+            //return redirect()->back()->with("success", "Sukses upload video");
         }
     }
     /**
