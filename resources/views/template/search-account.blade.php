@@ -239,7 +239,7 @@
                                                 style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"><b
                                                     class="ms-3 me-3">Ikuti</b></button>
                                         @endif
-
+                                        <a class="btn btn-outline-dark zoom-effects" style="border-radius: 10px; box-shadow:0px 4px 4px rgba(0,0,0,0.25);" href="/roomchat/{{$row->id}}"><b><i class="fa-regular fa-comment-dots mb-1 mt-1"></i></b></a>
                                     </form>
                                 </div>
                             </div>
