@@ -281,7 +281,7 @@
                             <span class=""> </span>
                         </button>
 
-                        <div class="collapse navbar-collapse" class="ms-4" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mt-3 me-2 justify-content-center " style="margin-left: 20px">
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
                                     <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Beranda</b></a>
@@ -866,9 +866,9 @@
                             </div>
                             @endif
                         @else
-                            <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects"
+                            <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects ms-5"
                                 style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
-                                    class="me-2 ms-2">Masuk</b></a>
+                                    class="me-2 ms-2">Masuk/Daftar</b></a>
                             @endif
                         </div>
                 </div>
