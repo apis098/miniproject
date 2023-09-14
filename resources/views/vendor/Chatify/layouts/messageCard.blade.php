@@ -30,7 +30,7 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
             <div class="image-file chat-image" style="background-image: url('/storage/attachments/{{$attachment->file}}')">
                 <div>{{ $attachment->title }}</div>
             </div>
-            <div style="margin-bottom:5px">
+            <div style="margin-bottom:5px" class="ms-3 mt-1">
                 {!! $timeAndSeen !!}
             </div>
         </div>
