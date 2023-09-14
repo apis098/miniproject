@@ -103,7 +103,7 @@
         {{-- nav actions --}}
         <nav>
             <p>Detail Pengguna</p>
-            <a href="#"><i class="fas fa-times"></i></a>
+            <a href="#"><i class="fas fa-times mb-3"></i></a>
         </nav>
         {!! view('Chatify::layouts.info')->render() !!}
     </div>
