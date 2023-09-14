@@ -40,7 +40,7 @@
                             <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px" style="border-radius: 50%"
                                 alt="">
                             @endif
-                            <button type="submit" class="btn btn-warning zoom-effects text-light btn-sm rounded-circle p-2"
+                            <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
                                 style="position: absolute;  right: -2px; background-color:#F7941E;" data-toggle="modal"
                                 data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
@@ -60,6 +60,7 @@
                         </p>
                         <form action="{{route('Followers.store',$user->id)}}" method="POST">
                             @csrf
+                            <div class="me-1">
                                 @if(Auth::check() && $user->followers()->where('follower_id', auth()->user()->id)->count() > 0)
                                 <button type="submit" class="btn  text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-3 me-3">Diikuti</b></button>
                                 @elseif(Auth::check() && $userLogin->followers()->where('follower_id', $user->id)->exists())
@@ -67,7 +68,8 @@
                                 @else
                                 <button type="submit" class="btn text-light float-center mb-4 zoom-effects" style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-3 me-3">Ikuti</b></button>
                                 @endif
-
+                                <a class="btn btn-outline-dark mb-4 zoom-effects" style="border-radius: 10px; box-shadow:0px 4px 4px rgba(0,0,0,0.25);" href="/roomchat/{{$user->id}}"><i class="fa-regular fa-comment-dots"></i></a>
+                            </div>
                             </form>
                     </div>
                 </div>
