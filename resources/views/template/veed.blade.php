@@ -39,18 +39,19 @@
                 <div class="card">
                     <div class="card-body">
                         @if (Auth::check())
-                            <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
+                                id="formUploadVideo">
                                 @csrf
-                                <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="floatingTextarea"
+                                <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
                                     rows="5" required>{{ old('deskripsi_video') }}</textarea>
                                 <br>
                                 <input type="file" name="upload_video" id="inputVideo" hidden>
                                 <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
                                     style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
-                                    <span style="font-weight: 600; color: black;">Tambahkan Video</span>
+                                    <div style="font-weight: 600; color: black;">Tambahkan Video</div>
                                 </a>
 
-                                <button type="submit" href="#" class="btn "
+                                <button type="submit" class="btn " id="buttonUploadVideo"
                                     style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                     <span style="font-weight: 600; color: white;">Upload</span>
                                 </button>
@@ -166,8 +167,8 @@
                                             data-bs-target="#exampleModal{{ $urut }}"></i>
                                         <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
                                         <!--
-                                                                                modal komentar feed
-                                                                            -->
+                                                                                            modal komentar feed
+                                                                                        -->
                                         <div class="modal" id="exampleModal{{ $urut }}" tabindex="-1">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -612,6 +613,44 @@
         crossorigin="anonymous"></script>
 
     <script>
+        // upload video feed ajax
+        $("#formUploadVideo").submit(function(e) {
+            e.preventDefault();
+            let data = new FormData($(this)[0]);
+            $.ajax({
+                url: "{{ route('upload.video') }}",
+                method: "POST",
+                processData: false,
+                contentType: false,
+                data: data,
+                success: function success(response) {
+                    if (response.success) {
+                        $("#inputVideo").val('');
+                        $("#deskripsi_video").val('');
+                        document.getElementById("aVideo").textContent = "Tambahkan Video";
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                    }
+                },
+                error: function error(xhr, status, errors) {
+                    iziToast.show({
+                        backgroundColor: '#F7941E',
+                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        message: xhr.responseText,
+                        position: 'topCenter',
+                    });
+                }
+            });
+        });
+
         // like reply comment feed ajax
         function likeReplyComment(num) {
             $("#formLikeReplyComment" + num).submit(function(event) {
@@ -695,8 +734,6 @@
                 });
             });
         }
-    </script>
-    <script>
         // membuka mengklik input file upload video
         function openV() {
             document.getElementById("inputVideo").click();
