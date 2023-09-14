@@ -71,7 +71,7 @@
             </div>
             <div class="mt-4 ml-3">
                 <div class="col-lg-6 mt-5 ml-5">
-                    <div style="position: absolute; right: -500px; top: -245px;" class="d-flex">
+                    <div style="position: absolute; right: -475px; top: -200px;" class="d-flex">
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
                                 <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
