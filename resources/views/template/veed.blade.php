@@ -166,8 +166,8 @@
                                             data-bs-target="#exampleModal{{ $urut }}"></i>
                                         <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
                                         <!--
-                                                                    modal komentar feed
-                                                                -->
+                                                                                modal komentar feed
+                                                                            -->
                                         <div class="modal" id="exampleModal{{ $urut }}" tabindex="-1">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -238,8 +238,8 @@
                                                         <!-- list komentar feed start -->
                                                         @php
                                                             $komen_veed = \App\Models\comment_veed::query()
-                                                             ->where("veed_id", $item_video->id)
-                                                             ->get();
+                                                                ->where('veed_id', $item_video->id)
+                                                                ->get();
                                                         @endphp
                                                         @foreach ($komen_veed as $nomer => $item_comment)
                                                             <div class="media row mb-2 mx-auto d-flex mt-5">
@@ -385,7 +385,7 @@
                                                                                     ->get();
                                                                                 
                                                                             @endphp
-                                                                            @foreach ($reply_comments as $reply_comment)
+                                                                            @foreach ($reply_comments as $numeric => $reply_comment)
                                                                                 @php
                                                                                     if (Auth::check()) {
                                                                                         // memeriksa apakah balasan komentar veed sudah di like atau belum
@@ -423,10 +423,12 @@
                                                                                             @if (Auth::check())
                                                                                                 @if ($isLike2sd)
                                                                                                     <form
+                                                                                                        id="formLikeReplyComment{{ $numeric }}"
                                                                                                         action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                         method="post">
                                                                                                         @csrf
                                                                                                         <button
+                                                                                                            onclick="likeReplyComment({{ $numeric }})"
                                                                                                             type="submit"
                                                                                                             class="btn ">
                                                                                                             <i
@@ -435,10 +437,12 @@
                                                                                                     </form>
                                                                                                 @else
                                                                                                     <form
+                                                                                                        id="formLikeReplyComment{{ $numeric }}"
                                                                                                         action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                         method="post">
                                                                                                         @csrf
                                                                                                         <button
+                                                                                                            onclick="likeReplyComment({{ $numeric }})"
                                                                                                             type="submit"
                                                                                                             class="btn ">
                                                                                                             <i
@@ -608,6 +612,32 @@
         crossorigin="anonymous"></script>
 
     <script>
+        // like reply comment feed ajax
+        function likeReplyComment(num) {
+            $("#formLikeReplyComment" + num).submit(function(event) {
+                event.preventDefault();
+                let rutes = $(this).attr("action");
+                $.ajax({
+                    url: rutes,
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        if (response.success) {
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    }
+                });
+            });
+        }
         // like comment feed ajax
         function likeCFeed(num) {
             $("#likeCommentFeed" + num).submit(function(event) {
