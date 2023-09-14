@@ -58,8 +58,13 @@
                             </div>
                             <div class="col-md-6">
                                 <div style="text-align: right;">
-                                    <img src="{{ asset('images/landingpage.png') }}" alt="Gambar Contoh"
+                                    <img src="{{ asset('images/background-home.png') }}" alt="Gambar Contoh"
                                         style="width: 90%; max-width: 500px;">
+                                </div>
+                                <div style="text-align: right;">
+                                    <img src="{{ asset('images/depan-foto.png') }}" alt="Gambar Contoh"
+                                        style="width: 95%; max-width: 500px; position:absolute; left: 70px;
+                                        top: 5px;">
                                 </div>
                             </div>
                         </div>
