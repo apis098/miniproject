@@ -236,7 +236,12 @@
                                                         @endif
                                                         <!-- form komentar feed end -->
                                                         <!-- list komentar feed start -->
-                                                        @foreach ($comment_veed->where('veed_id', $item_video->id)->get() as $nomer => $item_comment)
+                                                        @php
+                                                            $komen_veed = \App\Models\comment_veed::query()
+                                                             ->where("veed_id", $item_video->id)
+                                                             ->get();
+                                                        @endphp
+                                                        @foreach ($komen_veed as $nomer => $item_comment)
                                                             <div class="media row mb-2 mx-auto d-flex mt-5">
                                                                 <div class="col-1" style="margin-left: 20px;">
                                                                     <img width="50px" height="50px"
