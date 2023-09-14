@@ -815,34 +815,7 @@
         });
 
     </script> --}}
-    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
-        crossorigin="anonymous"></script>
-    @if (Auth::check())
-    <script>
-        // like feed
-        $("document").ready(function() {
-            function likeFeed(num) {
-                $("#buttonLikeVeed" + num).click(function(e) {
-                    e.preventDefault();
-                    $.ajax({
-                        url: "/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}",
-                        method: "POST",
-                        success: function success(response) {
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
-                        }
-                    });
-                });
-            }
-        });
-    </script>
-    @endif
+   
     <script>
         // membuka mengklik input file upload video
         function openV() {
