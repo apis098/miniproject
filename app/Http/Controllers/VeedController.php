@@ -48,10 +48,11 @@ class VeedController extends Controller
         $footer = footer::first();
 
         $video_pembelajaran = upload_video::latest()->get();
-        $comment_veed = comment_veed::latest();
+        $comment_veed = comment_veed::orderBy('created_at', 'desc');
         $reply_comment_veed = reply_comment_veed::query()->orderBy("created_at", "desc");
         return view("template.veed", compact("reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
+
     public function sukai_veed(string $user_id, string $veed_id)
     {
         $cek = like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();
@@ -60,18 +61,18 @@ class VeedController extends Controller
                 "users_id" => $user_id,
                 "veed_id" => $veed_id
             ]);
+
             return response()->json([
                 "success" => true,
-                "message" => "Sukses memberi like!"
+                "message" => "Sukses memberi like!",
             ]);
-            //return redirect()->back()->with('success', 'Sukses memberi like!');
         } elseif ($cek == 1) {
             like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->delete();
+
             return response()->json([
                 "success" => true,
-                "message" => "Sukses membatalkan like!"
+                "message" => "Sukses membatalkan like!",
             ]);
-            //return redirect()->back()->with('success', 'Sukses membatalkan like!');
         }
     }
     public function komentar_veed(Request $request, string $user_id, string $veed_id)
@@ -102,14 +103,16 @@ class VeedController extends Controller
                 "comment_veed_id" => $komentar_veed_id,
                 "veed_id" => $veed_id
             ]);
-            return redirect()->back()->with('success', 'Sukses memberi like!');
+            return response()->json([
+                "success" => true,
+                "message" => "Anda berhasil mengirimkan like!"
+            ]);
         } elseif ($countIsLike == 1) {
             $isLike->delete();
             return response()->json([
                 "success" => true,
-                "message" => "Anda berhasil membatalkan memberi like veed!"
+                "message" => "Anda berhasil membatalkan memberi like!"
             ]);
-            return redirect()->back()->with('success', 'Sukses membatalkan like!');
         }
     }
     public function balas_komentar_veed(Request $request, string $users_id, string $comment_id, string $veed_id)

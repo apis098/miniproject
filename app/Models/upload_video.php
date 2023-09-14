@@ -28,7 +28,7 @@ class upload_video extends Model
     }
     public function like_veed()
     {
-        return $this->hasMany(like_veed::class);
+        return $this->hasMany(like_veed::class, "veed_id");
     }
     public function like_comment_veed() 
     {

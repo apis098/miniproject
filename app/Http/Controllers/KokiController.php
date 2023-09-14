@@ -115,7 +115,13 @@ class KokiController extends Controller
             "deskripsi_video" => "required",
             "upload_video" => "required|mimes:mp4|max:50000"
         ];
-        $validasi = Validator::make($request->all(), $rules);
+        $messages = [
+            "deskripsi_video.required" => "Deskripsi video harus diisi!",
+            "upload_video.required" => "Video harus diupload!",
+            "upload_video.mimes" => "Video harus berekstensikan mp4!",
+            "upload_video.max" => "Video tidak boleh melebihi 50MB!"
+        ];
+        $validasi = Validator::make($request->all(), $rules, $messages);
         if ($validasi->fails()) {
             //return response()->json($validasi->errors()->first(), 422);
             return redirect()->back()->with("error", $validasi->errors()->first());
