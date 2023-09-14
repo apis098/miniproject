@@ -2,7 +2,7 @@
 @section('content')
 @section('content-header')
     <!-- slider section -->
-    <section class="slider_section">
+    <section class="slider_section" style="padding:1%">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -58,13 +58,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div style="text-align: right;">
-                                    <img src="{{ asset('images/background-home.png') }}" alt="Gambar Contoh"
-                                        style="width: 90%; max-width: 500px;">
-                                </div>
-                                <div style="text-align: right;">
-                                    <img src="{{ asset('images/depan-foto.png') }}" alt="Gambar Contoh"
-                                        style="width: 95%; max-width: 500px; position:absolute; left: 70px;
-                                        top: 5px;">
+                                    <img src="{{ asset('images/group 161.png') }}" alt="Gambar Contoh"
+                                        style="width: 100%; height:100%">
                                 </div>
                             </div>
                         </div>
@@ -332,7 +327,7 @@
     @if ($categories_foods->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p style="color:white"><b>Tidak ada data</b></p>
         </div>
     @endif
     <div class="row">
@@ -820,7 +815,7 @@
     <section class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6 my-5">
                     <div class="detail-box mx-3">
                         <div class="heading_container">
                             <h2 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">
