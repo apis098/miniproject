@@ -213,12 +213,10 @@
                                                                             class="form-control rounded-3 me-3" style="margin-top: 12px" placeholder="Masukkan komentar...">
                                                                             <button type="button" onclick="harusLogin()"
                                                                             id="buttonCommentVeed"
-                                                                            class="btn" style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
+                                                                            class="btn text-white" style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
                                                                         </div>
                                                             </form>
-                                                            <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
-                                                                onclick="harusLogin()" width="15px" height="15px"
-                                                                alt="">
+
                                                         @endif
                                                         <!-- form komentar feed end -->
                                                         <!-- list komentar feed start -->
@@ -281,7 +279,8 @@
                                                                         @else
                                                                             <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                 onclick="harusLogin()" width="15px"
-                                                                                height="15px" alt="">
+                                                                                height="40px" alt="">
+                                                                                &nbsp;  &nbsp;
                                                                         @endif
                                                                         <span class="mx-1 my-auto">
                                                                             {{ $countLike }}
@@ -313,30 +312,32 @@
                                                                                     action="/balas/komentar/{{ Auth::user()->id }}/{{ $item_comment->id }}/{{ $item_video->id }}"
                                                                                     method="POST">
                                                                                     @csrf
-                                                                                    <label for="komentarBalasan"
-                                                                                        class="form-label">Komentar
-                                                                                        Balasan</label>
+                                                                                    <div class="d-flex mb-3">
                                                                                     <input type="text"
                                                                                         name="komentarBalasan"
-                                                                                        class="form-control"
-                                                                                        id="komentarBalasan" required>
+                                                                                        class="form-control me-3"
+                                                                                        id="komentarBalasan" placeholder="Balas Komentar Dari " required>
+
                                                                                     <button type="submit"
-                                                                                        class="btn btn-primary my-2">Kirim</button>
+                                                                                        class="btn text-white"  style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                        >Kirim</button>
+                                                                                    </div>
+                                                                                    {{-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/18.webp"  class="border rounded-circle me-5"
+                                                                                    alt="Avatar"  width="50px" height="50px" style="margin-top: ; margin-left: 10px;" /> --}}
                                                                                 </form>
                                                                             @else
                                                                                 <form action="">
                                                                                     @csrf
-                                                                                    <label for="komentarBalasan"
-                                                                                        class="form-label">Komentar
-                                                                                        Balasan</label>
+                                                                                    <div class="d-flex mb-3">
                                                                                     <input type="text"
                                                                                         name="komentarBalasan"
-                                                                                        class="form-control"
-                                                                                        id="komentarBalasan" required>
+                                                                                        class="form-control me-3"
+                                                                                        id="komentarBalasan"  placeholder="Balas Komentar Dari " required>
                                                                                     <button type="button"
                                                                                         onclick="harusLogin()"
-                                                                                        class="btn btn-primary my-2">Kirim</button>
-                                                                                </form>
+                                                                                        class="btn text-white"   style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
+                                                                                    </div>
+                                                                                    </form>
                                                                             @endif
                                                                             @php
                                                                                 // mengambil data balasan komentar veed
@@ -360,20 +361,23 @@
                                                                                         ->where('veed_id', $item_video->id)
                                                                                         ->count();
                                                                                 @endphp
-                                                                                <div
-                                                                                    class="card rounded border border-black row">
-                                                                                    <div class="col-2">
+                                                                                <div class=" rounded  border-black row">
+                                                                                    <div class="col-1 mt-2">
                                                                                         <img width="50px" height="50px"
                                                                                             class="rounded-circle"
                                                                                             src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                             alt="{{ $reply_comment->user->name }}">
                                                                                     </div>
-                                                                                    <div class="col-10">
-                                                                                        <span>{{ $reply_comment->user->name }}</span>
-                                                                                        <br>
-                                                                                        <span>{{ $reply_comment->created_at->diffForHumans() }}</span>
+                                                                                    <div class=" media-body col-10 border-black rounded" style="margin-left: 20px; margin-top: -50px;">
+                                                                                        <div class="d-flex " style="margin-top: 60px; ">
+                                                                                        <span><strong>{{ $reply_comment->user->name }}</strong></span>
+
+                                                                                        <small style="margin-left: 310px;">{{ $reply_comment->created_at->diffForHumans() }}</small>
+
+                                                                                    </div>
                                                                                         <p>{{ $reply_comment->komentar }}
                                                                                         </p>
+                                                                                        <div class="d-flex flex-row">
                                                                                         @if (Auth::check())
                                                                                             @if ($isLike2sd)
                                                                                                 <form
@@ -381,7 +385,7 @@
                                                                                                     method="post">
                                                                                                     @csrf
                                                                                                     <button type="submit"
-                                                                                                        class="btn btn-light">
+                                                                                                        class="btn ">
                                                                                                         <i
                                                                                                             class="fa-solid fa-thumbs-up"></i>
                                                                                                     </button>
@@ -392,7 +396,7 @@
                                                                                                     method="post">
                                                                                                     @csrf
                                                                                                     <button type="submit"
-                                                                                                        class="btn btn-light">
+                                                                                                        class="btn ">
                                                                                                         <i
                                                                                                             class="fa-regular fa-thumbs-up"></i>
                                                                                                     </button>
@@ -402,10 +406,15 @@
                                                                                             <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                                 onclick="harusLogin()"
                                                                                                 width="15px"
-                                                                                                height="15px"
+                                                                                                height="40px"
                                                                                                 alt="">
+                                                                                                &nbsp; &nbsp;
                                                                                         @endif
-                                                                                        {{ $countLike2sd }}
+                                                                                        <span class="mx-1 my-auto">
+                                                                                            {{ $countLike2sd }}
+                                                                                        </span>
+                                                                                        <a href="" type="button" class="btn"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></a>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             @endforeach
@@ -806,6 +815,34 @@
         });
 
     </script> --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
+    @if (Auth::check())
+    <script>
+        // like feed
+        $("document").ready(function() {
+            function likeFeed(num) {
+                $("#buttonLikeVeed" + num).click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: "/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}",
+                        method: "POST",
+                        success: function success(response) {
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+    @endif
     <script>
         // membuka mengklik input file upload video
         function openV() {
