@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\footer;
 use Illuminate\Http\Request;
@@ -29,6 +30,10 @@ class KokiController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount=[];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -40,7 +45,7 @@ class KokiController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('koki.profile', compact('recipes','notification','footer', 'resep_sendiri','unreadNotificationCount','userLogin','favorite'));
+        return view('koki.profile', compact('messageCount','recipes','notification','footer', 'resep_sendiri','unreadNotificationCount','userLogin','favorite'));
     }
     public function updateProfile(Request $request)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use App\Models\complaint;
 use App\Models\favorite;
 use App\Models\footer;
@@ -40,6 +41,10 @@ class ReplyController extends Controller
         $footer = footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         // $balasanKomentar = [];
         // if($replies->isNotEmpty()){
         //     $balasanKomentar = $replies->first()->repliesComment->sortByDesc('likes');
@@ -56,7 +61,7 @@ class ReplyController extends Controller
             ->paginate(10);
         }
         $title = "Data balasan keluhan ";
-        return view('replies.detail', compact('data','footer', 'title', 'replies','repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
+        return view('replies.detail', compact('messageCount','data','footer', 'title', 'replies','repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
     }
     public function reply(Request $request, $id)
     {

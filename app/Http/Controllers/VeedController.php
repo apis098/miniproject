@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use App\Models\comment_veed;
 use App\Models\like_comment_veed;
 use App\Models\upload_video;
@@ -27,6 +28,10 @@ class VeedController extends Controller
         $favorite = [];
         $unreadNotificationCount = [];
         $admin = false;
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $id_user = Auth::user()->id;
             $id_admin = User::where("role", "admin")->first();
@@ -50,7 +55,7 @@ class VeedController extends Controller
         $video_pembelajaran = upload_video::latest()->get();
         $comment_veed = comment_veed::orderBy('created_at', 'desc');
         $reply_comment_veed = reply_comment_veed::query()->orderBy("created_at", "desc");
-        return view("template.veed", compact("reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact("messageCount","reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
 
     public function sukai_veed(string $user_id, string $veed_id)

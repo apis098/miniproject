@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahan_reseps;
+use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\followers;
 use App\Models\footer;
@@ -33,6 +34,10 @@ class ResepsController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -46,7 +51,7 @@ class ResepsController extends Controller
         }
         $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep", compact('messageCount','categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -211,6 +216,10 @@ class ResepsController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -222,7 +231,7 @@ class ResepsController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view("koki.resep-edit", compact("footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep-edit", compact("messageCount","footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**

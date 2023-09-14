@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\followers;
 use App\Models\footer;
@@ -21,7 +22,10 @@ class followersController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
-    
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
@@ -62,7 +66,7 @@ class followersController extends Controller
            }
         }
     
-        return view('template.search-account', compact('user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
+        return view('template.search-account', compact('messageCount','user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
     }
     
     public function show_profile($id){
@@ -74,6 +78,10 @@ class followersController extends Controller
         $footer= footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -85,7 +93,7 @@ class followersController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('template.profile-oranglain',compact('recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
+        return view('template.profile-oranglain',compact('messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahan_reseps;
+use App\Models\ChMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\reseps;
@@ -27,6 +28,10 @@ class FiltersController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -114,7 +119,7 @@ class FiltersController extends Controller
         }
         $recipes = $recipess->paginate(3);
         //dd($recipes);
-        return view('template.resep', compact('toolsCooks', 'special_day','footer','categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('toolsCooks','messageCount', 'special_day','footer','categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function filter_resep(Request $request)
     {
@@ -123,6 +128,10 @@ class FiltersController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -250,6 +259,6 @@ class FiltersController extends Controller
         }*/
         //dd($recipes->paginate(6));
         $recipes->paginate(6);
-        return view('template.resep', compact('toolsCooks','footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('messageCount','toolsCooks','footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

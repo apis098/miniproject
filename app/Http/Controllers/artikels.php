@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\basic_tips;
+use App\Models\ChMessage;
 use App\Models\comment_recipes;
 use App\Models\favorite;
 use App\Models\reseps;
@@ -27,6 +28,10 @@ class artikels extends Controller
         $favorite = [];
         $unreadNotificationCount = [];
         $admin = false;
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $id_user = Auth::user()->id;
             $id_admin = User::where("role", "admin")->first();
@@ -49,6 +54,6 @@ class artikels extends Controller
         $show_resep = reseps::find($id);
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
-        return view('template.artikel', compact('idAdmin','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.artikel', compact('idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

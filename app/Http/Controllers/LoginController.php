@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\complaint;
@@ -82,11 +83,40 @@ class LoginController extends Controller
         $recipes = reseps::whereDate('created_at', today())->take(3)->get();
         $userLogin = Auth::user();
         $jumlah_resep = reseps::all()->count();
-        $foto_resep= reseps::take(5)->get();
+        $foto_resep = reseps::take(5)->get();
         $footer = footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        return view('template.home', compact('messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+    }
+
+    public function kursus()
+    {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $footer = footer::first();
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -98,30 +128,8 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-
-        return view('template.home', compact('favorite_resep','recipes','categories_foods','top_users','real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
+        return view('template.kursus', compact('messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
-
-      public function kursus()
-      {
-          $userLogin = Auth::user();
-          $notification = [];
-          $favorite = [];
-          $footer = footer::first();
-          $unreadNotificationCount = [];
-         if ($userLogin) {
-              $notification = notifications::where('user_id', auth()->user()->id)
-                  ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                  ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-              $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
-          }
-          if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
-                  ->orderBy('created_at', 'desc')
-                     ->paginate(10);
-          }
-          return view('template.kursus', compact('notification','footer','unreadNotificationCount', 'userLogin', 'favorite'));
-      }
 
     public function keluhan()
     {
@@ -129,11 +137,15 @@ class LoginController extends Controller
         $real_reseps = reseps::has("likes")->orderBy("likes", "desc")->take(10)->paginate(6);
         $userLogin = Auth::user();
         $jumlah_resep = reseps::all()->count();
-        $foto_resep= reseps::take(5)->get();
+        $foto_resep = reseps::take(5)->get();
         $footer = footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -146,25 +158,25 @@ class LoginController extends Controller
                 ->paginate(10);
         }
 
-        return view('template.keluhan', compact('real_reseps', 'userLogin', 'complaints','footer', 'notification', 'unreadNotificationCount', 'favorite','jumlah_resep','foto_resep'));
+        return view('template.keluhan', compact('messageCount','real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
 
 }
-        $userLogin = Auth::user();
-        $notification = [];
-        $favorite = [];
-        $footer = footer::first();
-        $unreadNotificationCount = [];
-        if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
-        }
-        if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-        return view('template.kursus', compact('notification','footer','unreadNotificationCount', 'userLogin', 'favorite'));
+$userLogin = Auth::user();
+$notification = [];
+$favorite = [];
+$footer = footer::first();
+$unreadNotificationCount = [];
+if ($userLogin) {
+    $notification = notifications::where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+        ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+    $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+}
+if ($userLogin) {
+    $favorite = favorite::where('user_id_from', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(10);
+}
+return view('template.kursus', compact('notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
