@@ -76,7 +76,7 @@
                 </div>
                 <!-- foreach video pembelajaran start -->
                 @foreach ($video_pembelajaran as $urut => $item_video)
-                    <div class="card mt-4" style="max-width: 42rem;">
+                    <div class="card mt-4 mb-5" style="max-width: 42rem;">
                         <!-- Data -->
                         <div class="card-header" style="background-color: white">
 
