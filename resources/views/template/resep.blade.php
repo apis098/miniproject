@@ -100,16 +100,16 @@
             }
 
             /* button{
-                                                                                        background-color: #F7941E;
-                                                                                        border: none;
-                                                                                        height: 45px;
-                                                                                        width: 90px;
-                                                                                        color: #ffffff;
-                                                                                        position: absolute;
-                                                                                        right: 1px;
-                                                                                        top: 0px;
-                                                                                        border-radius: 15px
-                                                                                    } */
+                                                                                            background-color: #F7941E;
+                                                                                            border: none;
+                                                                                            height: 45px;
+                                                                                            width: 90px;
+                                                                                            color: #ffffff;
+                                                                                            position: absolute;
+                                                                                            right: 1px;
+                                                                                            top: 0px;
+                                                                                            border-radius: 15px
+                                                                                        } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -238,7 +238,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" style="font-weight: 700;">Filter Lanjutan</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" style="border: none;background:none"  data-bs-dismiss="modal" aria-label="Close">
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1816_441)">
+                            <path d="M14.1386 13.9456L19.516 19.6906M13.907 19.5516L19.7476 14.0847M9.52654 23.6518C13.2235 27.6015 19.5337 27.7579 23.5491 23.9994C27.5645 20.2408 27.825 13.9341 24.128 9.98446C20.4311 6.03478 14.1209 5.87837 10.1055 9.63689C6.09008 13.3954 5.82955 19.7021 9.52654 23.6518Z" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_1816_441">
+                            <rect width="23.6071" height="24" fill="white" transform="translate(17.5215) rotate(46.8927)"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('resep.home') }}" method="GET">
@@ -247,7 +258,8 @@
                         @endif
                         <div class="mb-3">
                             <label for="ingredients" class="form-label">Nama Bahan</label>
-                            <select style="border: 1px solid black" name="ingredients[]" aria-placeholder="Masukkan nama bahan" multiple="multiple" id="ingredients"
+                            <select style="border: 1px solid black" name="ingredients[]"
+                                aria-placeholder="Masukkan nama bahan" multiple="multiple" id="ingredients"
                                 class="cari form-control">
                                 <option value="" disabled>Masukkan Nama Bahan</option>
 
@@ -266,14 +278,16 @@
                             <div class="row">
                                 <div class="col-5">
                                     <input type="text" name="min_price" id="minHargaInput" placeholder="Minimal"
-                                        class="form-control " style="border-radius: 10px;font-size: 13px;border: 1px solid black;">
+                                        class="form-control "
+                                        style="border-radius: 10px;font-size: 13px;border: 1px solid black;">
                                 </div>
                                 <div class="col-2 my-auto">
                                     <div class="garis"></div>
                                 </div>
                                 <div class="col-5">
                                     <input type="text" name="max_price" class="form-control" id="maxHargaInput"
-                                        placeholder="Maksimal" style="border-radius:10px; font-size:13px;border:1px solid black;">
+                                        placeholder="Maksimal"
+                                        style="border-radius:10px; font-size:13px;border:1px solid black;">
                                 </div>
                             </div>
                         </div>
@@ -282,12 +296,14 @@
                             <div class="row">
                                 <div class="col-5">
                                     <div class="row mx-auto">
-                                    <input type="text" name="min_time" class="col-6 form-control mr-1" placeholder="Minimal"
-                                        style="border-radius: 10px; font-size:13px;border: 1px solid black;">
-                                    <select name="min_timer" id="" class="col-5" style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
-                                        <option value="menit">menit</option>
-                                        <option value="jam">jam</option>
-                                    </select>
+                                        <input type="text" name="min_time" class="col-6 form-control mr-1"
+                                            placeholder="Minimal"
+                                            style="border-radius: 10px; font-size:13px;border: 1px solid black;">
+                                        <select name="min_timer" id="" class="col-5"
+                                            style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
+                                            <option value="menit">menit</option>
+                                            <option value="jam">jam</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-2 my-3">
@@ -295,12 +311,15 @@
                                 </div>
                                 <div class="col-5">
                                     <div class="row mx-auto">
-                                    <input type="text" name="max_time" class="col-6 form-control mr-1" placeholder="Maksimal"
-                                        style="border-radius: 10px;font-size:13px;border: 1px solid black;">
-                                    <select name="max_timer" class="col-5" style="background-color: white;;border-radius: 10px; border: 1px solid;font-size:13px;" id="">
-                                        <option value="menit">menit</option>
-                                        <option value="jam">jam</option>
-                                    </select>
+                                        <input type="text" name="max_time" class="col-6 form-control mr-1"
+                                            placeholder="Maksimal"
+                                            style="border-radius: 10px;font-size:13px;border: 1px solid black;">
+                                        <select name="max_timer" class="col-5"
+                                            style="background-color: white;;border-radius: 10px; border: 1px solid;font-size:13px;"
+                                            id="">
+                                            <option value="menit">menit</option>
+                                            <option value="jam">jam</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -319,16 +338,14 @@
                             <label for="hari" class="form-label">Hari spesial</label>
                             <div class="row" style="width: 100%;">
                                 @foreach ($special_day as $nums => $d)
-                                <div class="col-lg-3 mb-3" style="width:100%;">
-                                    <input type="hidden" id="input_pilih_hari{{ $nums }}"
-                                        value="{{ $d->nama }}">
-                                    <button id="pilih_hari{{ $nums }}"
-                                        onclick="pilih_hari({{ $nums }})" class="btn btn-light"
-                                        type="button"
-                                        style="border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $d->nama }}</button>
-                                </div>
-
-
+                                    <div class="col-lg-3 mb-3" style="width:100%;">
+                                        <input type="hidden" id="input_pilih_hari{{ $nums }}"
+                                            value="{{ $d->nama }}">
+                                        <button id="pilih_hari{{ $nums }}"
+                                            onclick="pilih_hari({{ $nums }})" class="btn btn-light"
+                                            type="button"
+                                            style="border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $d->nama }}</button>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -336,14 +353,14 @@
                             <label for="jenis_makanan" class="form-label">Jenis Makanan</label>
                             <div class="row">
                                 @foreach ($categories_foods_all as $num => $f)
-                                <div class="col-lg-3 mb-3" style="width: 100px;">
-                                    <input id="input_jenis_makanan{{ $num }}" type="hidden"
-                                        value="{{ $f->nama_makanan }}">
-                                    <button id="pilih_jenis_makanan{{ $num }}"
-                                        onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
-                                        type="button"
-                                        style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
-                                </div>
+                                    <div class="col-lg-3 mb-3" style="width: 100px;">
+                                        <input id="input_jenis_makanan{{ $num }}" type="hidden"
+                                            value="{{ $f->nama_makanan }}">
+                                        <button id="pilih_jenis_makanan{{ $num }}"
+                                            onclick="pilih_jenis_makanan({{ $num }})" class="btn btn-light"
+                                            type="button"
+                                            style="width: 100%;border: 1px solid black; border-radius: 10px;font-size: 10px;">{{ $f->nama_makanan }}</button>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -427,11 +444,116 @@
                             <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
-                                <button type="submit" style="position: absolute;  right: 110px; background-color:#F7941E; "
-                                class="btn btn-warning btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
-                                data-bs-target="#mymodal">
-                                <i class="fa-solid fa-circle-check" style="width:100%;height:100%"></i>
+                            <button type="button" style="position: absolute;  right: 70%; background-color:#F7941E; "
+                                class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    viewBox="0 0 20 20">
+                                    <g fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
+                                            clip-rule="evenodd" />
+                                        <path
+                                            d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
+                                        <path fill-rule="evenodd"
+                                            d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
+                                            clip-rule="evenodd" />
+                                    </g>
+                                </svg>
                             </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" style="font-family:poppins"
+                                                id="staticBackdropLabel">Beli premium dulu ya!!!</h1>
+                                            <button type="button" style="border:none; background:none " data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_1816_441)">
+                                                    <path d="M14.1386 13.9456L19.516 19.6906M13.907 19.5516L19.7476 14.0847M9.52654 23.6518C13.2235 27.6015 19.5337 27.7579 23.5491 23.9994C27.5645 20.2408 27.825 13.9341 24.128 9.98446C20.4311 6.03478 14.1209 5.87837 10.1055 9.63689C6.09008 13.3954 5.82955 19.7021 9.52654 23.6518Z" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </g>
+                                                    <defs>
+                                                    <clipPath id="clip0_1816_441">
+                                                    <rect width="23.6071" height="24" fill="white" transform="translate(17.5215) rotate(46.8927)"/>
+                                                    </clipPath>
+                                                    </defs>
+                                                    </svg>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-4 mb-3">
+                                                    <div class="card" style="width: 18rem;border-radius:15px">
+                                                        <img src="{{ asset('images/pemula.png') }}" class="card-img-top"
+                                                            alt="">
+                                                        <div class=card-body">
+                                                            <h5 class="card-title text-center">pemula</h5>
+                                                            <p class="text-center">1 bulan</p>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                            <div class="card-body">
+                                                                <p class="text-center" style="font-family:poppins"><b>Rp.40.000,00</b></p>
+                                                                <br>
+                                                                <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                                                 Beli Sekarang</a>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 mb-3">
+                                                    <div class="card" style="width: 18rem;border-radius:15px">
+                                                        <img src="{{ asset('images/reguler.png') }}" class="card-img-top"
+                                                            alt="">
+                                                        <div class=card-body">
+                                                            <h5 class="card-title text-center" style="margin-top: 27%;">reguler</h5>
+                                                            <p class="text-center">1 bulan</p>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                            <div class="card-body">
+                                                                <p class="text-center" style="font-family:poppins"><b>Rp.120.000,00</b></p>
+                                                                <br>
+                                                                <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                                                 Beli Sekarang</a>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 mb-3">
+                                                    <div class="card" style="width: 18rem;border-radius:15px">
+                                                        <img src="{{ asset('images/langganan2.png') }}" class="card-img-top"
+                                                            alt="">
+                                                        <div class=card-body">
+                                                            <h5 class="card-title text-center" style="margin-top: 28%;">langganan</h5>
+                                                            <p class="text-center">1 bulan</p>
+                                                        </div>
+                                                        <ul class="list-group list-group-flush">
+                                                            <div class="card-body">
+                                                                <p class="text-center" style="font-family:poppins"><b>Rp.240.000,00</b></p>
+                                                                <br>
+                                                                <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                                                 Beli Sekarang</a>
+                                                            </div>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  End Modal-->
+
                         </div>
                         <div class="card-body mx-4">
                             <div class="row">
@@ -440,18 +562,21 @@
                                         <a style="color: black; font-size: 24px; margin-left:-1px"
                                             href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                             {{ $item->nama_resep }}
-                                         </a>
+                                        </a>
                                     </h5>
                                     <span>Oleh {{ $item->User->name }}</span> <br>
-                                    <p class="mt-2 my-2">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>
+                                    <p class="mt-2 my-2">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
+                                    </p>
                                 </div>
                                 <div class="col-12 row  mb-3 mx-1 ">
                                     <div class="col-6">
-                                    <img width="20px" height="20px" src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
                                         {{ $item->likes }} suka
                                     </div>
                                     <div class="col-6 mx-auto">
-                                        <img width="20px" height="20px" src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
                                         @if ($item->lama_memasak >= 60)
                                             {{ number_format($item->lama_memasak / 60, 1) }} jam
                                         @else
@@ -459,11 +584,14 @@
                                         @endif
                                     </div>
                                     <div class="col-6 my-3">
-                                        <img width="20px" height="20px" src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}" alt="">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
+                                            alt="">
                                         {{ $item->comment_recipes->count() }} Komen
                                     </div>
                                     <div class="col-6 my-3 mx-auto">
-                                        <img width="20px" height="20px" src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
                                         {{ $item->favorite_count }} Favorit
                                     </div>
                                 </div>
