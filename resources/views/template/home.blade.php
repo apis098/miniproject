@@ -8,7 +8,7 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-7 col-lg-6">
+                            <div class="col-md-7 col-lg-6 mt-5">
                                 <div class="detail-box mt-5">
                                     <h3 class="text-poppins"><b>
                                             Resep - Resep Terpopuler</b>
@@ -57,7 +57,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div style="text-align: right;">
+                                <div style="text-align: right; margin-top:-16%;">
                                     <img src="{{ asset('images/group 161.png') }}" alt="Gambar Contoh"
                                         style="width: 100%; height:100%">
                                 </div>
