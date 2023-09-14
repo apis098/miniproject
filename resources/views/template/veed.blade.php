@@ -1,6 +1,6 @@
 @extends('template.nav')
 @section('content')
-    <section class="text-align-center mt-5">
+    <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
         <div class="row justify-content-center">
@@ -138,8 +138,7 @@
                                                     action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
                                                     <button style="border: none; background-color:white;"
                                                         onclick="likeFeed({{ $urut }})">
-                                                        <i class="fa-regular fa-thumbs-up"
-                                                            id="thumbs-up-regular{{ $urut }}"></i>
+                                                        <i id="likeB{{$urut}}" class="fa-regular fa-thumbs-up"></i>
                                                     </button>
                                                 </form>
                                             @elseif($isLikeVeed == 1)
@@ -148,7 +147,7 @@
                                                     <button style="border: none; background-color:white;"
                                                         onclick="likeFeed({{ $urut }})">
                                                         <i class="fa-solid fa-thumbs-up"
-                                                            id="thumbs-up-solid{{ $urut }}"></i>
+                                                           id="likeB{{$urut}}"></i>
                                                     </button>
                                                 </form>
                                             @endif
@@ -160,15 +159,13 @@
                                                 </button>
                                             </form>
                                         @endif
-                                        <span class="my-auto">{{ $countLikeVeed }}</span>
+                                        <span class="my-auto" id="countLikeFeed">{{ $countLikeVeed }}</span>
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
                                         <i class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal{{ $urut }}"></i>
                                         <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
-                                        <!--
-                                                                                            modal komentar feed
-                                                                                        -->
+                                        <!-- modal komentar feed -->
                                         <div class="modal" id="exampleModal{{ $urut }}" tabindex="-1">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -208,10 +205,7 @@
                                                                         style="margin-top: 12px"
                                                                         placeholder="Masukkan komentar...">
 
-                                                                    {{-- <div class="form-outline w-100">
-
-                                                                        </div> --}} <button type="submit"
-                                                                        id="buttonCommentVeed"
+                                                                    <button type="submit" id="buttonCommentVeed"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light"><b
                                                                             class="me-3 ms-3">Kirim</b></button>
@@ -309,15 +303,17 @@
                                                                                 height="40px" alt="">
                                                                             &nbsp; &nbsp;
                                                                         @endif
-                                                                        <span class="mx-1 my-auto">
+                                                                        <span class=" my-auto">
                                                                             {{ $countLike }}
                                                                         </span>
-                                                                        <a data-bs-toggle="collapse"
-                                                                            href="#collapseExample{{ $nomer }}"
-                                                                            role="button" aria-expanded="false"
-                                                                            aria-controls="collapseExample{{ $nomer }}"
-                                                                            class="btn"><svg
-                                                                                xmlns="http://www.w3.org/2000/svg"
+
+                                                                        <a href="#"
+                                                                            class="text-secondary my-auto ml-2"
+                                                                            data-toggle="collapse"
+                                                                            data-target="#collapse{{ $item_comment->id }}"
+                                                                            aria-expanded="true"
+                                                                            aria-controls="collapseOne">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 width="22" height="22"
                                                                                 viewBox="0 0 24 24">
                                                                                 <path fill="currentColor"
@@ -325,26 +321,16 @@
                                                                             </svg>
                                                                             &nbsp; <small>Balas</small>
                                                                         </a>
-                                                                        {{-- <span class="my-auto ml-auto">
-                                                                            <a class="text-secondary"
-                                                                                data-bs-toggle="collapse"
-                                                                                href="#collapseExample{{ $nomer }}"
-                                                                                role="button" aria-expanded="false"
-                                                                                aria-controls="collapseExample{{ $nomer }}">
-
-                                                                                        <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-
-                                                                            </a>
-                                                                        </span> --}}
                                                                     </div>
                                                                     <!-- Komentar Balasan Collapse Start -->
                                                                     <div class="collapse"
-                                                                        id="collapseExample{{ $nomer }}">
+                                                                        id="collapse{{ $item_comment->id }}">
 
                                                                         <div class="card card-body">
                                                                             @if (Auth::check())
                                                                                 <form
-                                                                                    action="/balas/komentar/{{ Auth::user()->id }}/{{ $item_comment->id }}/{{ $item_video->id }}"
+                                                                                    id="formBalasKomentar{{ $nomer++ }}"
+                                                                                    action="{{ route('balas.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
                                                                                     method="POST">
                                                                                     @csrf
                                                                                     <div class="d-flex mb-3">
@@ -352,15 +338,14 @@
                                                                                             name="komentarBalasan"
                                                                                             class="form-control me-3"
                                                                                             id="komentarBalasan"
-                                                                                            placeholder="Balas Komentar Dari "
+                                                                                            placeholder="Balas Komentar Dari"
                                                                                             required>
 
                                                                                         <button type="submit"
+                                                                                            onclick="balas_komentar({{ $nomer++ }})"
                                                                                             class="btn text-white"
                                                                                             style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
                                                                                     </div>
-                                                                                    {{-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/18.webp"  class="border rounded-circle me-5"
-                                                                                    alt="Avatar"  width="50px" height="50px" style="margin-top: ; margin-left: 10px;" /> --}}
                                                                                 </form>
                                                                             @else
                                                                                 <form action="">
@@ -401,7 +386,7 @@
                                                                                         ->where('veed_id', $item_video->id)
                                                                                         ->count();
                                                                                 @endphp
-                                                                                <div class=" rounded  border-black row">
+                                                                                <div class="rounded  border-black row">
                                                                                     <div class="col-1 mt-2">
                                                                                         <img width="50px" height="50px"
                                                                                             class="rounded-circle"
@@ -462,6 +447,7 @@
                                                                                             <span class="mx-1 my-auto">
                                                                                                 {{ $countLike2sd }}
                                                                                             </span>
+                                                                                            <!--
                                                                                             <a href=""
                                                                                                 type="button"
                                                                                                 class="btn"><svg
@@ -472,7 +458,7 @@
                                                                                                     <path
                                                                                                         fill="currentColor"
                                                                                                         d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                                                                </svg></a>
+                                                                                                </svg></a>-->
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -497,28 +483,9 @@
                                         <!-- gift end -->
                                     </span>
                                 </div>
-                                {{-- <div>
-              <a href="" class="text-muted"> 8 comments </a>
-            </div> --}}
+
                             </div>
-                            <!-- Reactions -->
 
-                            <!-- Buttons -->
-
-                            <!-- Buttons -->
-
-                            <!-- Comments -->
-
-                            <!-- Input -->
-
-                            <!-- Input -->
-
-                            <!-- Answers -->
-
-                            <!-- Single answer -->
-
-
-                            <!-- Single answer -->
                             <div class="d-flex mb-3">
 
                                 <div>
@@ -528,20 +495,10 @@
                                         </a>
 
                                     </div>
-                                    {{-- <a href="" class="text-muted small ms-3 me-2"><strong>Like</strong></a>
-              <a href="" class="text-muted small me-2"><strong>Reply</strong></a> --}}
+
                                 </div>
                             </div>
 
-                            <!-- Single answer -->
-
-
-                            <!-- Single answer -->
-
-
-                            <!-- Answers -->
-
-                            <!-- Comments -->
                         </div>
                     </div>
                 @endforeach
@@ -613,6 +570,70 @@
         crossorigin="anonymous"></script>
 
     <script>
+        // komentar reply feed ajax
+        function balas_komentar(num) {
+            $("#formBalasKomentar").submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    data: data,
+                    method: "POST",
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        if (response.success) {
+                            $("body").load('/veed');
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    },
+                });
+            });
+        }
+        // komentar feed ajax
+        $("#buttonCommentVeed").click(function(event) {
+            event.preventDefault();
+            let route = $("#formCommentVeed").attr("action");
+            let data = new FormData($("#formCommentVeed")[0]);
+            $.ajax({
+                url: route,
+                method: "POST",
+                data: data,
+                processData: false,
+                contentType: false,
+                success: function success(response) {
+                    if (response.success) {
+                        $("body").load('/veed');
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                    }
+                },
+                error: function error(xhr, status, errors) {
+                    iziToast.show({
+                        backgroundColor: '#F7941E',
+                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        message: xhr.responseText,
+                        position: 'topCenter',
+                    });
+                }
+            });
+        });
         // upload video feed ajax
         $("#formUploadVideo").submit(function(e) {
             e.preventDefault();
@@ -627,6 +648,7 @@
                     if (response.success) {
                         $("#inputVideo").val('');
                         $("#deskripsi_video").val('');
+                        $("body").load('/veed');
                         document.getElementById("aVideo").textContent = "Tambahkan Video";
                         iziToast.show({
                             backgroundColor: '#F7941E',
@@ -650,7 +672,6 @@
                 }
             });
         });
-
         // like reply comment feed ajax
         function likeReplyComment(num) {
             $("#formLikeReplyComment" + num).submit(function(event) {
@@ -664,6 +685,7 @@
                     },
                     success: function success(response) {
                         if (response.success) {
+                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -690,6 +712,7 @@
                     },
                     success: function success(response) {
                         if (response.success) {
+                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -714,6 +737,7 @@
                     method: "POST",
                     success: function success(response) {
                         if (response.success) {
+                            $("body").load('/veed');
                             iziToast.show({
                                 backgroundColor: '#F7941E',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -744,7 +768,6 @@
                 document.getElementById("aVideo").textContent = file.name;
             });
         }
-
         // onclick alert harus login
         function harusLogin() {
             iziToast.show({

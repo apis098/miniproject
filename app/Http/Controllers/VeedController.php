@@ -61,22 +61,35 @@ class VeedController extends Controller
     public function sukai_veed(string $user_id, string $veed_id)
     {
         $cek = like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();
+       
         if ($cek == 0) {
             like_veed::create([
                 "users_id" => $user_id,
                 "veed_id" => $veed_id
             ]);
-
+            $isLikeVeed = \App\Models\like_veed::query()
+            ->where('users_id', Auth::user()->id)
+            ->where('veed_id', $veed_id)
+            ->count();
+            $countLikeFeed = like_veed::where("veed_id", $veed_id)->count();
             return response()->json([
                 "success" => true,
                 "message" => "Sukses memberi like!",
+                'is' => $isLikeVeed,
+                'count' => $countLikeFeed
             ]);
         } elseif ($cek == 1) {
             like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->delete();
-
+            $isLikeVeed = \App\Models\like_veed::query()
+            ->where('users_id', Auth::user()->id)
+            ->where('veed_id', $veed_id)
+            ->count();
+            $countLikeFeed = like_veed::where("veed_id", $veed_id)->count();
             return response()->json([
                 "success" => true,
                 "message" => "Sukses membatalkan like!",
+                'is' => $isLikeVeed,
+                'count' => $countLikeFeed
             ]);
         }
     }
@@ -129,6 +142,10 @@ class VeedController extends Controller
             "komentar" => $request->komentarBalasan
         ]);
         if ($store_comment) {
+            /*return response()->json([
+                "success" => true,
+                "message" => "Sukses membalas komentar!"
+            ]);*/
             return redirect()->back()->with("success", "Sukses membalas komentar!");
         }
     }
