@@ -52,7 +52,7 @@
                             @if ($userLogin->isSuperUser === "yes")
                                 <a style="font-size: 18px;" href="">Verified</a>
                             @endif
-                            <br>
+                           
                             <span
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $userLogin->email }}</span>
                         </p>
@@ -61,11 +61,11 @@
                                 <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
                             </span>
                         </button>
-                        <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
+                        {{-- <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
                             <span style="font-weight: 600">
-                                <a href="/koki/upload-video" style="color: rgb(255, 255, 255);">Upload Video</a>
-                            </span>
-                        </button>
+                                <a href="/roomchat/roomchat" style="color: rgb(255, 255, 255);"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="3.5" cy="7" r=".5"/><circle cx="6.75" cy="7" r=".5"/><circle cx="10" cy="7" r=".5"/><path d="M7 .5a6.5 6.5 0 0 0-5.41 10.1L.5 13.5l3.65-.66A6.5 6.5 0 1 0 7 .5Z"/></g></svg></a>
+                            </span> 
+                        </button> --}}
                     </div>
                 </div>
             </div>
