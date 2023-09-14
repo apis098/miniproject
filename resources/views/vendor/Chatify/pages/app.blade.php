@@ -79,7 +79,7 @@
         {{-- Messaging area --}}
         <div class="m-body messages-container app-scroll">
             <div class="messages">
-                <p class="message-hint center-el"><span>Please select a chat to start messaging</span></p>
+                <p class="message-hint center-el"><span>pilih satu kontak untuk memulai percakapan</span></p>
             </div>
             {{-- Typing indicator --}}
             <div class="typing-indicator">
