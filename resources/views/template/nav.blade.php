@@ -794,7 +794,8 @@
                                                 </a>
                                                 <div class="dropdown-divider"></div>
                                                 <a href="#" style="width: 230px;"
-                                                    class="dropdown-item text-orange">
+                                                    class="dropdown-item text-orange"  data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">
                                                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
                                                         width="20" height="20" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -876,6 +877,103 @@
             </div>
             @yield('content-header')
     </div>
+
+
+
+ <!-- Modal -->
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+ data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+ aria-hidden="true">
+ <div class="modal-dialog modal-xl">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h1 class="modal-title fs-5" style="font-family:poppins;  color: black; font-size: 35px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word"
+                 id="staticBackdropLabel">Upgrade Ke Premium</h1>
+             <button type="button" style="border:none; background:none " data-bs-dismiss="modal"
+                 aria-label="Close">
+                 <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <g clip-path="url(#clip0_1816_441)">
+                     <path d="M14.1386 13.9456L19.516 19.6906M13.907 19.5516L19.7476 14.0847M9.52654 23.6518C13.2235 27.6015 19.5337 27.7579 23.5491 23.9994C27.5645 20.2408 27.825 13.9341 24.128 9.98446C20.4311 6.03478 14.1209 5.87837 10.1055 9.63689C6.09008 13.3954 5.82955 19.7021 9.52654 23.6518Z" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                     </g>
+                     <defs>
+                     <clipPath id="clip0_1816_441">
+                     <rect width="23.6071" height="24" fill="white" transform="translate(17.5215) rotate(46.8927)"/>
+                     </clipPath>
+                     </defs>
+                     </svg>
+             </button>
+         </div>
+         <div class="modal-body">
+             <div class="row">
+                 <div class="col-lg-4 mb-3">
+                     <div class="card" style="width: 18rem;border-radius:15px">
+                         <img src="{{ asset('images/pemula.png') }}" class="card-img-top"
+                             alt="">
+                         <div class=card-body">
+                             <h5 class="card-title text-center">pemula</h5>
+                             <p class="text-center">1 bulan</p>
+                         </div>
+                         <ul class="list-group list-group-flush">
+                             <div class="card-body">
+                                 <p class="text-center" style="font-family:poppins"><b>Rp.40.000,00</b></p>
+                                 <br>
+                                 <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                  Beli Sekarang</a>
+                             </div>
+                         </ul>
+                     </div>
+                 </div>
+
+                 <div class="col-lg-4 mb-3">
+                     <div class="card" style="width: 18rem;border-radius:15px">
+                         <img src="{{ asset('images/reguler.png') }}" class="card-img-top"
+                             alt="">
+                         <div class=card-body">
+                             <h5 class="card-title text-center" style="margin-top: 27%;">reguler</h5>
+                             <p class="text-center">1 bulan</p>
+                         </div>
+                         <ul class="list-group list-group-flush">
+                             <div class="card-body">
+                                 <p class="text-center" style="font-family:poppins"><b>Rp.120.000,00</b></p>
+                                 <br>
+                                 <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                  Beli Sekarang</a>
+                             </div>
+                         </ul>
+                     </div>
+                 </div>
+
+                 <div class="col-lg-4 mb-3">
+                     <div class="card" style="width: 18rem;border-radius:15px">
+                         <img src="{{ asset('images/langganan2.png') }}" class="card-img-top"
+                             alt="">
+                         <div class=card-body">
+                             <h5 class="card-title text-center" style="margin-top: 28%;">langganan</h5>
+                             <p class="text-center">1 bulan</p>
+                         </div>
+                         <ul class="list-group list-group-flush">
+                             <div class="card-body">
+                                 <p class="text-center" style="font-family:poppins"><b>Rp.240.000,00</b></p>
+                                 <br>
+                                 <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                  Beli Sekarang</a>
+                             </div>
+                         </ul>
+                     </div>
+                 </div>
+
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
+<!--  End Modal-->
+
+
+
     {{-- Modal alasan --}}
     @foreach ($notification as $row)
         <div class="modal fade" id="modalAlasan{{ $row->id }}" tabindex="-1" role="dialog"
