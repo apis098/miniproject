@@ -38,7 +38,7 @@ class AdminController extends Controller
                 ->whereYear("created_at", $tahun)
                 ->count();
             }
-        } else {
+        } else { 
             for ($i=1; $i <= 12 ; $i++) { 
                 $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
             }

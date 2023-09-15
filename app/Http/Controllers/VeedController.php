@@ -75,6 +75,7 @@ class VeedController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "Sukses memberi like!",
+                'like' => true,
                 'is' => $isLikeVeed,
                 'count' => $countLikeFeed
             ]);
@@ -88,6 +89,7 @@ class VeedController extends Controller
             return response()->json([
                 "success" => true,
                 "message" => "Sukses membatalkan like!",
+                'like' => false,
                 'is' => $isLikeVeed,
                 'count' => $countLikeFeed
             ]);
