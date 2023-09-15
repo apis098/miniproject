@@ -51,7 +51,7 @@ class ResepsController extends Controller
         }
         $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('messageCount','categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep", compact('messageCount', 'categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -69,9 +69,9 @@ class ResepsController extends Controller
     {
         $allUser = User::where("isSuperUser", "yes")->pluck('id')->toArray();
         if (in_array(Auth::user()->id, $allUser)) {
-            if($request->premium == "yes") {
+            if ($request->premium == "yes") {
                 $isPremium = "yes";
-            } elseif($request->premium == "no") {
+            } elseif ($request->premium == "no") {
                 $isPremium = "no";
             }
         } else {
@@ -235,7 +235,7 @@ class ResepsController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view("koki.resep-edit", compact("messageCount","footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep-edit", compact("messageCount", "footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
@@ -325,6 +325,9 @@ class ResepsController extends Controller
             $update_resep->lama_memasak = $timer;
             $price = str_replace([',', '.'], '', $request->pengeluaran_memasak);
             $update_resep->pengeluaran_memasak = $price;
+            if ($request->has('premium')) {
+                $update_resep->isPremium = $request->premium;
+            }
             $update_resep->save();
             if ($request->has('hari_khusus')) {
                 $update_resep->hari_resep()->sync($request->hari_khusus);
@@ -352,7 +355,7 @@ class ResepsController extends Controller
                 foreach ($request->hapus_langkah as $key => $v) {
                     $d = (int)$v;
                     $lr = langkah_reseps::where("id", $d)->first();
-                    Storage::delete("public/".$lr->foto_langkah);
+                    Storage::delete("public/" . $lr->foto_langkah);
                     $lr->delete();
                 }
             }

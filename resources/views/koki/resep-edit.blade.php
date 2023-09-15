@@ -371,6 +371,20 @@
                     </script>
                     <br>
                     <br>
+                    @if (Auth::user()->isSuperUser === 'yes')
+                    <div class="mt-2 mx-2">
+                        <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
+                            <b> Resep anda gratis / premium? </b>
+                        </label> <br>
+                        <input type="radio" class="btn-check" name="premium" id="success-outlined"
+                            autocomplete="off" value="no" {{ $edit_resep->isPremium == "no" ? "checked" : "" }}>
+                        <label class="btn btn-outline-success mr-3" for="success-outlined">Gratis</label>
+
+                        <input type="radio" class="btn-check" name="premium" id="danger-outlined"
+                            autocomplete="off" value="yes" {{ $edit_resep->isPremium == "yes" ? "checked" : "" }}>
+                        <label class="btn btn-outline-danger" for="danger-outlined">Premium</label>
+                    </div>
+                @endif
                     <button type="submit" class="btn text-white mb-4" id="button-edit-recipe"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
                         Resep {{ $edit_resep->nama_resep }}</button>
