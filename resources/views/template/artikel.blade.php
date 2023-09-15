@@ -1,9 +1,17 @@
 @extends('template.nav')
 @section('content')
-    @if ($Premium === true)
-        <script>
-            window.location = '/resep?premium=yes';
-        </script>
+    @if (Auth::check())
+        @if (Auth::user()->id != $show_resep->User->id)
+            <script>
+                window.location = '/resep?premium=yes';
+            </script>
+        @endif
+    @else
+        @if ($Premium === true)
+            <script>
+                window.location = '/resep?premium=yes';
+            </script>
+        @endif
     @endif
     <style>
         .btn-edit {

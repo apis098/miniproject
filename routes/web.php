@@ -32,6 +32,7 @@ use App\Models\notifications;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mockery\Undefined;
+use App\Http\Controllers\detail_kursusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,11 +48,15 @@ use Mockery\Undefined;
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
+
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
-Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
+
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
+//kursus
+Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
+route::get('/detail',[detail_kursusController::class,'detail_kursus'])->name('detail.kursus');
 // veed
 Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
 
