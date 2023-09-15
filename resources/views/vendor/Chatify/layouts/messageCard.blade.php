@@ -21,7 +21,8 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
                 {{-- If attachment is a file --}}
                 @if(isset($attachment->file))
                     <?php
-                    $videoExtensions = ['mp4', 'avi', 'mkv']; // Daftar ekstensi video yang Anda ingin periksa
+                    $videoExtensions = ['mp4', 'avi', 'mkv']; 
+                    $mp3file = ['mp3'];
                     $fileExtension = pathinfo($attachment->file, PATHINFO_EXTENSION);
                     ?>
                     @if(in_array(strtolower($fileExtension), $videoExtensions))
@@ -30,6 +31,12 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
                         </video>
                         <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
                             <span class="fas fa-file"></span> {{$attachment->title}}</a>
+                    @elseif(in_array(strtolower($fileExtension), $mp3file))
+                      <audio style="margin-left:9%; margin-top:1%;"  controls>
+                        <source src="/storage/attachments/{{$attachment->file}}" type="audio/mpeg">
+                      </audio>
+                      <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
+                        <span class="fas fa-file"></span> {{$attachment->title}}</a>
                     @else
                         <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
                         <span class="fas fa-file"></span> {{$attachment->title}}</a>

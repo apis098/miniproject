@@ -1419,7 +1419,14 @@ $(document).ready(function () {
         fileExtension.toString().toLowerCase()
       )
     ) {
-      alert("file type not allowed");
+      iziToast.show({
+        backgroundColor: '#F7941E',
+        title: '<i class="fa-solid fa-triangle-exclamation"></i></i>',
+        titleColor: 'white',
+        messageColor: 'white',
+        message: 'File tidak di izinkan!',
+        position: 'topCenter',
+    });
       fileElement.val("");
       return false;
     }
