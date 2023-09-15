@@ -1,5 +1,10 @@
 @extends('template.nav')
 @section('content')
+    @if ($Premium === true)
+        <script>
+            window.location = '/resep?premium=yes';
+        </script>
+    @endif
     <style>
         .btn-edit {
             background: #F7941E;
@@ -61,12 +66,12 @@
                         @endforeach
                     @endif
                     <div class="mt-2">
-                    @if ($show_resep->hari_resep)
-                        @foreach ($show_resep->hari_resep()->get() as $hr)
-                            <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
-                        @endforeach
-                    @endif
-                </div>
+                        @if ($show_resep->hari_resep)
+                            @foreach ($show_resep->hari_resep()->get() as $hr)
+                                <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="mt-4 ml-3">
@@ -89,7 +94,7 @@
                                         $userLogin &&
                                             !$show_resep->likes()->where('user_id', auth()->user()->id)->exists())
                                         <button type="submit"
-                                             class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
                                             style="border-color: #F7941E;">
                                             <svg xmlns="http://www.w3.org/2000/svg" style="color: #F7941E" width="21"
                                                 height="21" viewBox="0 0 16 16">
@@ -454,9 +459,9 @@
                                         {{ $userLog === 1 ? 'disabled' : '' }} class="form-control rounded-3 me-5"
                                         placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                    <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                        class="btn btn-sm text-light ms-3"><b
-                                            class="me-3 ms-3">Kirim</b></button>
+                                    <button type="submit"
+                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                        class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
                     </div>
@@ -638,9 +643,9 @@
                                         class="form-control form-control-sm rounded-3 me-5"
                                         placeholder="Balas komentar dari {{ $row->user->name }}....">
 
-                                    <button type="submit" style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                        class="btn btn-sm text-light ms-3"><b
-                                            class="me-3 ms-3">Kirim</b></button>
+                                    <button type="submit"
+                                        style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                        class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
                         @else
@@ -652,8 +657,7 @@
 
                                     <button type="button" onclick="harusLogin()"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                        class="btn btn-sm text-light ms-3"><b
-                                            class="me-3 ms-3">Kirim</b></button>
+                                        class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
                         @endif

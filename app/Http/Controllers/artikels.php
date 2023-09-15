@@ -14,12 +14,21 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
 use App\Models\footer;
 use App\Models\like_comment_recipes;
+use App\Models\ResepPremiums;
 use App\Models\User;
 
 class artikels extends Controller
 {
     public function artikel_resep(string $id, string $judul)
     {
+        // check isPremium
+        $r = reseps::find($id);
+        $isPremium = $r->isPremium;
+        if ($isPremium == "yes") {
+            $Premium = true;
+        } elseif($isPremium == "no") {
+            $Premium = false;
+        }
         $idAdmin = User::where('role', 'admin')->first();
         $userLogin = Auth::user();
         // untuk user belum login
@@ -54,6 +63,6 @@ class artikels extends Controller
         $show_resep = reseps::find($id);
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
-        return view('template.artikel', compact('idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.artikel', compact('Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

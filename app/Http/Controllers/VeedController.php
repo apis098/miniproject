@@ -125,13 +125,16 @@ class VeedController extends Controller
             ]);
             return response()->json([
                 "success" => true,
-                "message" => "Anda berhasil mengirimkan like!"
+                "message" => "Anda berhasil mengirimkan like!",
+                "like" => true,
             ]);
         } elseif ($countIsLike == 1) {
             $isLike->delete();
             return response()->json([
                 "success" => true,
-                "message" => "Anda berhasil membatalkan memberi like!"
+                "message" => "Anda berhasil membatalkan memberi like!",
+                "like" => false
+                
             ]);
         }
     }
