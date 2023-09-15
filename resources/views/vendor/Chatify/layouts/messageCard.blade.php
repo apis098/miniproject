@@ -23,7 +23,7 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
                 <video style="margin-top:-5%;" controls width="360" height="250">
                     <source src="/storage/attachments/{{$attachment->file}}" type="video/mp4">
                   </video>
-                <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download">
+                <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
                     <span class="fas fa-file"></span> {{$attachment->title}}</a>
                 @endif
             </div>
