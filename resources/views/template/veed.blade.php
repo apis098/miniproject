@@ -742,7 +742,7 @@
                                 $("#countLikeFeed" + num).html(response.count);
                             } else {
                                 $("#likeB" + num).removeClass("fa-solid");
-                                $("#likeB" + num).addClass("fa-reguler");
+                                $("#likeB" + num).addClass("fa-regular");
                                 $("#countLikeFeed" + num).html(response.count);
                             }
                         }
