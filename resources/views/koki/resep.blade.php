@@ -155,7 +155,8 @@
                         <div id="porsi_orang_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
-                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama Memasak</b></label>
+                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama
+                                Memasak</b></label>
                         <input type="text" name="lama_memasak" class="form-control col-10"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
@@ -331,6 +332,20 @@
                             });
                         });
                     </script>
+                    @if (Auth::user()->isSuperUser === 'yes')
+                        <div class="mt-2 mx-2">
+                            <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
+                                <b> Resep anda gratis / premium? </b>
+                            </label> <br>
+                            <input type="radio" class="btn-check" name="premium" id="success-outlined"
+                                autocomplete="off" value="no">
+                            <label class="btn btn-outline-success mr-3" for="success-outlined">Gratis</label>
+
+                            <input type="radio" class="btn-check" name="premium" id="danger-outlined"
+                                autocomplete="off" value="yes">
+                            <label class="btn btn-outline-danger" for="danger-outlined">Premium</label>
+                        </div>
+                    @endif
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="button-add-recipe">Tambah
@@ -359,7 +374,8 @@
                     success: function success(response) {
                         $("#button-add-recipe").prop('disabled', false);
 
-                        window.location.href = "/koki/index?message-success=Sukses menambahkan resep!";
+                        window.location.href =
+                            "/koki/index?message-success=Sukses menambahkan resep!";
                     },
                     error: function error(xhr, status, errors) {
                         $("#button-add-recipe").prop('disabled', false);
@@ -398,22 +414,22 @@
         }
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("formFile").addEventListener("change", function(event) {
-            const svgElement = document.getElementById("svg");
-            const divElement = document.getElementById("div");
-            var input = event.target;
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById("profile-image").style.display = "block";
-                    svgElement.style.display = "none";
-                    divElement.classList.remove('border-dark');
-                    divElement.classList.remove('mb-5');
-                    divElement.classList.add('border-light');
-                    document.getElementById("profile-image").setAttribute("src", e.target.result);
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        });
+                const svgElement = document.getElementById("svg");
+                const divElement = document.getElementById("div");
+                var input = event.target;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById("profile-image").style.display = "block";
+                        svgElement.style.display = "none";
+                        divElement.classList.remove('border-dark');
+                        divElement.classList.remove('mb-5');
+                        divElement.classList.add('border-light');
+                        document.getElementById("profile-image").setAttribute("src", e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
         });
 
         document.getElementById("inputan").addEventListener("change", function(event) {

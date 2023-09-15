@@ -69,7 +69,11 @@ class ResepsController extends Controller
     {
         $allUser = User::where("isSuperUser", "yes")->pluck('id')->toArray();
         if (in_array(Auth::user()->id, $allUser)) {
-            $isPremium = "yes";
+            if($request->premium == "yes") {
+                $isPremium = "yes";
+            } elseif($request->premium == "no") {
+                $isPremium = "no";
+            }
         } else {
             $isPremium = "no";
         }
