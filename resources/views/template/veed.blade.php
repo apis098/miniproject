@@ -278,7 +278,7 @@
                                                                             @csrf
                                                                             <button type="submit" class="btn"
                                                                                 onclick="likeCommentFeed({{ $nomer }})">
-                                                                                <i class="fa-solid fa-thumbs-up"></i>
+                                                                                <i class="fa-solid fa-thumbs-up" id="iLikeComment{{ $nomer }}"></i>
                                                                             </button>
 
                                                                         </form>
@@ -288,9 +288,9 @@
                                                                             id="formLikeCommentFeed{{ $nomer }}"
                                                                             method="POST">
                                                                             @csrf
-                                                                            <button type="submit" class="btn"
+                                                                            <button type="submit" class="btn" 
                                                                                 onclick="likeCommentFeed({{ $nomer }})">
-                                                                                <i class="fa-regular fa-thumbs-up"></i>
+                                                                                <i class="fa-regular fa-thumbs-up" id="iLikeComment{{ $nomer }}"></i>
                                                                             </button>
                                                                         </form>
                                                                     @endif
@@ -300,7 +300,7 @@
                                                                         height="40px" alt="">
                                                                     &nbsp; &nbsp;
                                                                 @endif
-                                                                <span class=" my-auto">
+                                                                <span class="my-auto" id="countLikeComment{{ $nomer }}">
                                                                     {{ $countLike }}
                                                                 </span>
 
@@ -691,7 +691,6 @@
             });
         }
 
-
         // like comment feed ajax
         function likeCommentFeed(nums) {
             $("#formLikeCommentFeed" + nums).off('submit');
@@ -714,6 +713,15 @@
                                 message: response.message,
                                 position: 'topCenter',
                             });
+                            if (response.like) {
+                                $("#iLikeComment" + nums).removeClass("fa-regular");
+                                $("#iLikeComment" + nums).addClass("fa-solid");
+                                $("#countLikeComment" + nums).text(response.count);
+                            } else {
+                                $("#iLikeComment" + nums).removeClass("fa-solid");
+                                $("#iLikeComment" + nums).addClass("fa-regular");
+                                $("#countLikeComment" + nums).text(response.count);
+                            }
                         }
                     }
                 });
