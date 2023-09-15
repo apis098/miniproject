@@ -48,13 +48,15 @@
                     <div class="card-body text-center">
                         <p class="mt-2"
                             style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            {{ $userLogin->name }}<br>
-                            
+                            {{ $userLogin->name }}
+                            @if ($userLogin->isSuperUser === "yes")
+                                <a style="font-size: 18px; width=20px; height=20px;position: absolute;top: 224px;left: 205px;" href=""><img src="{{ asset('img/r.png') }}"  alt=""></a>
+                            @endif
+                            <br>
+
                             <span
                             style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $userLogin->email }}</span>
-                            @if ($userLogin->isSuperUser === "yes")
-                                <a style="font-size: 18px;" href=""><img src="{{ asset('img/r.png') }}" width="20px;" height="20px;" alt=""></a>
-                            @endif
+
                         </p>
                         <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
                             <span style="font-weight: 600">
@@ -64,7 +66,7 @@
                         {{-- <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
                             <span style="font-weight: 600">
                                 <a href="/roomchat/roomchat" style="color: rgb(255, 255, 255);"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="3.5" cy="7" r=".5"/><circle cx="6.75" cy="7" r=".5"/><circle cx="10" cy="7" r=".5"/><path d="M7 .5a6.5 6.5 0 0 0-5.41 10.1L.5 13.5l3.65-.66A6.5 6.5 0 1 0 7 .5Z"/></g></svg></a>
-                            </span> 
+                            </span>
                         </button> --}}
                     </div>
                 </div>
@@ -193,7 +195,7 @@
                             </div>
                         </div>
                     </div>
-               
+
                 <div class=" d-flex " style="margin-right: -10%;">
                     <ul class="nav mb-3" style="margin-left: -17px;" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -259,7 +261,7 @@
                                                     {{ $r->nama_resep }}
                                                 </a> <br>
                                                 <!-- Modal -->
-        
+
                                                 <span class="ai">
                                                     Oleh {{ $r->User->name }}
                                                 </span>
@@ -272,7 +274,7 @@
                         {{$recipes->links('vendor.pagination.default')}}
                     </div>
                     {{-- end tab 1 --}}
-    
+
                     {{-- start tab 2 --}}
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                             tabindex="0">
@@ -295,7 +297,7 @@
                             {{-- {{$recipes->links('vendor.pagination.default')}} --}}
                     </div>
                     {{-- end tab 2 --}}
-    
+
                     {{-- start tab 3 --}}
                     <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                             tabindex="0">
@@ -314,7 +316,7 @@
                                                        cara mengocok bumbu dengan baik dan benar
                                                     </a> <br>
                                                     <!-- Modal -->
-            
+
                                                     <span class="ai">
                                                         Oleh drs moh hatta.gmail.com
                                                     </span>
@@ -327,12 +329,12 @@
                             {{-- {{$recipes->links('vendor.pagination.default')}} --}}
                     </div>
                     {{-- end tab 3 --}}
-    
-                   
+
+
                 </div>
             </div>
-    
-       
+
+
         <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
         <!-- jQuery CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -345,7 +347,7 @@
             const a_tab = document.getElementById("a-tab");
             const ab = document.getElementById("pp2");
             const a_tab2 = document.getElementById("a-tab2");
-    
+
             a_tab.addEventListener('click', function(event) {
                 event.preventDefault();
                 o.style.display = "block";
@@ -353,8 +355,8 @@
                 border2.style.display = "none";
                 ab.style.display = "none";
             });
-    
-    
+
+
             click1.addEventListener('click', function(event) {
                 event.preventDefault();
                 border1.style.display = "block";
@@ -362,7 +364,7 @@
                 o.style.display = "none";
                 ab.style.display = "none";
             });
-    
+
             click2.addEventListener("click", function(event) {
                 event.preventDefault();
                 border2.removeAttribute('hidden');
@@ -371,7 +373,7 @@
                 o.style.display = "none";
                 ab.style.display = "none";
             });
-    
+
             a_tab2.addEventListener('click', function(event) {
                 event.preventDefault();
                 ab.removeAttribute('hidden');
@@ -379,7 +381,7 @@
                 border2.style.display = "none";
                 border1.style.display = "none";
                 o.style.display = "none";
-    
+
             });
         </script>
                 {{-- <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep anda</b></h4>
@@ -389,7 +391,7 @@
                     <p><b>Tidak ada data</b></p>
                 </div>
                 @endif --}}
-               
+
             </div>
 
         </div>
