@@ -444,9 +444,9 @@
                             <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
-                            <button type="button" style="position: absolute;  right: 70%; background-color:#F7941E; "
+                            <button id="buttonPremium" type="button" style="position: absolute;  right: 70%; background-color:#F7941E; "
                                 class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
-                                data-bs-target="#staticBackdrop">
+                                data-bs-target="#staticBackdrop{{$num}}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     viewBox="0 0 20 20">
                                     <g fill="currentColor">
@@ -463,7 +463,7 @@
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                            <div class="modal fade" id="staticBackdrop{{$num}}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-xl">
@@ -603,4 +603,10 @@
         </div>
         {{ $recipes->links('vendor.pagination.default') }}
     </div>
+    <script>
+        const url = new URLSearchParams(window.location.search);
+        if (url.get("premium") == "yes") {
+            document.getElementById("buttonPremium").click();
+        }
+    </script>
 @endsection
