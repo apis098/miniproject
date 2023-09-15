@@ -118,7 +118,7 @@
                         <div class="card-body">
                             <!-- Reactions -->
                             <div class="d-flex justify-content-between mb-2">
-                                <div>
+
                                     <span class="d-flex flex-row" style="color: black;">
                                         <!-- like feed start -->
                                         @php
@@ -153,6 +153,7 @@
                                                         </button>
                                                     </form>
                                                 @endif
+                                            </div>
                                             @else
                                                 <form>
                                                     <button style="border: none; background-color:white;"
@@ -160,9 +161,8 @@
                                                         <i class="fa-regular fa-thumbs-up"></i>
                                                     </button>
                                                 </form>
-                                        @endif
-                                </div>
-                                <span class="my-auto" id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
+                                                @endif
+                                                <span class="my-auto" id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
                                 <!-- like feed end -->
                                 <!-- komentar feed start -->
                                 <i onclick="openModel({{ $urut }})"
@@ -288,7 +288,7 @@
                                                                             id="formLikeCommentFeed{{ $nomer }}"
                                                                             method="POST">
                                                                             @csrf
-                                                                            <button type="submit" class="btn" 
+                                                                            <button type="submit" class="btn"
                                                                                 onclick="likeCommentFeed({{ $nomer }})">
                                                                                 <i class="fa-regular fa-thumbs-up" id="iLikeComment{{ $nomer }}"></i>
                                                                             </button>
@@ -473,7 +473,7 @@
                                 <i class="fa-solid fa-gift ml-3 mr-1 my-auto"></i>
                                 <!-- gift end -->
                                 </span>
-                            </div>
+
 
                         </div>
 
