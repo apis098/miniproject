@@ -278,7 +278,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a >
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
