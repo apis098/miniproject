@@ -361,7 +361,7 @@
                                                                         $reply_comments = App\Models\reply_comment_veed::query()
                                                                             ->where('comment_id', $item_comment->id)
                                                                             ->get();
-                                                                        
+
                                                                     @endphp
                                                                     @foreach ($reply_comments as $numeric => $reply_comment)
                                                                         @php
@@ -515,7 +515,7 @@
                         <div>
                             <div class="bg-light rounded-3 px-3 py-1">
                                 <a href="" class="text-dark mb-0">
-                                    <strong>Resep baru siap di jiltod</strong>
+                                    <strong>Resep baru siap di Masak</strong>
                                 </a>
                             </div>
 
