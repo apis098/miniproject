@@ -224,7 +224,7 @@
                                                 </div>
                                                 <div class=" col-8">
                                                     <a type="button"  class="as" href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
-                                                        {{ $r->nama_resep }}
+                                                        <strong> {{ $r->nama_resep }} </strong>  
                                                     </a> <br>
                                                     <!-- Modal -->
 
@@ -278,7 +278,7 @@
                                                         width="55px" height="55px" alt="dsdaa">
                                                 </div>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <div class=" col-9" >
+                                                <div class=" col-9" style="margin-top: -8px;">
                                                     <a type="button"  class="as" href="">
                                                      <strong style="font-size: 17px;"> cara mengocok bumbu dengan baik dan benar</strong>
                                                     </a> <br>

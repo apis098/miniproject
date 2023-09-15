@@ -258,7 +258,7 @@
                                             </div>
                                             <div class=" col-8">
                                                 <a type="button"  class="as" href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
-                                                    {{ $r->nama_resep }}
+                                                 <strong> {{ $r->nama_resep }} </strong>  
                                                 </a> <br>
                                                 <!-- Modal -->
 
@@ -307,13 +307,14 @@
                                         <div class="card p-3"
                                             style="width: 360px; height: 95%; border-radius: 15px; border: 0.50px black solid">
                                             <div class="row my-1">
-                                                <div class="col-4">
-                                                    <img class="rounded-circle mb-1" style="max-width:55px;" src="img/3.jpg"
+                                                <div class="col-2">
+                                                    <img class="rounded-circle mt-1" style="max-width:55px; margin-left: 10px;" src="{{asset('img/3.jpg')}}"
                                                         width="55px" height="55px" alt="dsdaa">
                                                 </div>
-                                                <div class=" col-8">
-                                                    <a type="button"  class="as" href="">
-                                                       cara mengocok bumbu dengan baik dan benar
+                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div class=" col-9">
+                                                   <a type="button"  class="as" href="">
+                                                    <strong>   cara mengocok bumbu dengan baik dan benar </strong>
                                                     </a> <br>
                                                     <!-- Modal -->
 
