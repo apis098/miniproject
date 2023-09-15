@@ -19,12 +19,21 @@ $timeAndSeen = "<span data-time='$created_at' class='message-time'>
                 {!! ($message == null && $attachment != null && @$attachment->type != 'file') ? $attachment->title : nl2br($message) !!}
                 {!! $timeAndSeen !!}
                 {{-- If attachment is a file --}}
-                @if(@$attachment->type == 'file')
-                <video style="margin-top:-5%;" controls width="360" height="250">
-                    <source src="/storage/attachments/{{$attachment->file}}" type="video/mp4">
-                  </video>
-                <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
-                    <span class="fas fa-file"></span> {{$attachment->title}}</a>
+                @if(isset($attachment->file))
+                    <?php
+                    $videoExtensions = ['mp4', 'avi', 'mkv']; // Daftar ekstensi video yang Anda ingin periksa
+                    $fileExtension = pathinfo($attachment->file, PATHINFO_EXTENSION);
+                    ?>
+                    @if(in_array(strtolower($fileExtension), $videoExtensions))
+                        <video class="video" controls width="370" height="210">
+                            <source src="/storage/attachments/{{$attachment->file}}" type="video/mp4">
+                        </video>
+                        <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
+                            <span class="fas fa-file"></span> {{$attachment->title}}</a>
+                    @else
+                        <a href="{{ route(config('chatify.attachments.download_route_name'), ['fileName'=>$attachment->file]) }}" class="file-download @if(!$isSender) text-dark @endif">
+                        <span class="fas fa-file"></span> {{$attachment->title}}</a>
+                    @endif
                 @endif
             </div>
         @endif

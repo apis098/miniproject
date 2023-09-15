@@ -609,6 +609,14 @@ body {
   padding: 10px;
 }
 
+.video{
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius:19px ;
+  border-top-right-radius: 19px;
+  margin-top: 10px;
+}
+
 .attachment-preview > p {
   margin: 0;
   font-size: 12px;
