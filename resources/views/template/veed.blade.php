@@ -165,11 +165,12 @@
                                 <span class="my-auto" id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
                                 <!-- like feed end -->
                                 <!-- komentar feed start -->
-                                <i class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
+                                <i onclick="openModel({{ $urut }})"
+                                    class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal{{ $urut }}"></i>
                                 <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
                                 <!-- modal komentar feed -->
-                                <div class="modal" id="exampleModal{{ $urut }}" tabindex="-1">
+                                <div class="modal" id="exampleModal{{ $urut }}">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -276,7 +277,7 @@
                                                                             method="POST">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                onclick="likeCFeed({{ $nomer }})">
+                                                                                onclick="likeCommentFeed({{ $nomer }})">
                                                                                 <i class="fa-solid fa-thumbs-up"></i>
                                                                             </button>
 
@@ -288,7 +289,7 @@
                                                                             method="POST">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                onclick="likeCFeed({{ $nomer }})">
+                                                                                onclick="likeCommentFeed({{ $nomer }})">
                                                                                 <i class="fa-regular fa-thumbs-up"></i>
                                                                             </button>
                                                                         </form>
@@ -438,17 +439,17 @@
                                                                                         {{ $countLike2sd }}
                                                                                     </span>
                                                                                     <!--
-                                                                                                                <a href=""
-                                                                                                                    type="button"
-                                                                                                                    class="btn"><svg
-                                                                                                                        xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="22"
-                                                                                                                        height="22"
-                                                                                                                        viewBox="0 0 24 24">
-                                                                                                                        <path
-                                                                                                                            fill="currentColor"
-                                                                                                                            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                                                                                    </svg></a>-->
+                                                                                                                            <a href=""
+                                                                                                                                type="button"
+                                                                                                                                class="btn"><svg
+                                                                                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                                                                                    width="22"
+                                                                                                                                    height="22"
+                                                                                                                                    viewBox="0 0 24 24">
+                                                                                                                                    <path
+                                                                                                                                        fill="currentColor"
+                                                                                                                                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                                                                                                </svg></a>-->
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -558,6 +559,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
         // komentar reply feed ajax
@@ -688,14 +690,16 @@
                 });
             });
         }
+
+
         // like comment feed ajax
-        function likeCFeed(nums) {
+        function likeCommentFeed(nums) {
             $("#formLikeCommentFeed" + nums).off('submit');
             $("#formLikeCommentFeed" + nums).submit(function(event) {
                 event.preventDefault();
-                let rute = $(this).attr("action");
+                let rutte = $(this).attr("action");
                 $.ajax({
-                    url: rute,
+                    url: rutte,
                     method: "POST",
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",
@@ -715,6 +719,7 @@
                 });
             });
         }
+
         // like feed ajax
         function likeFeed(num) {
             // sebelumnya ngebug duplikasi aksi, dengan ini akan menonaktifkan aksi yang sebelumnya.
