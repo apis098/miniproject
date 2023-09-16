@@ -273,24 +273,24 @@
                                                                     @if ($isLike == 1)
                                                                         <form
                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            id="formLikeCommentFeed{{ $nomer }}"
+                                                                            id="formLikeCommentFeed{{ $item_comment->id }}"
                                                                             method="POST">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                onclick="likeCommentFeed({{ $nomer }})">
-                                                                                <i class="fa-solid fa-thumbs-up" id="iLikeComment{{ $nomer }}"></i>
+                                                                                onclick="likeCommentFeed({{ $item_comment->id }})">
+                                                                                <i class="fa-solid fa-thumbs-up" id="iLikeComment{{ $item_comment->id }}"></i>
                                                                             </button>
 
                                                                         </form>
                                                                     @elseif($isLike == 0)
                                                                         <form
                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            id="formLikeCommentFeed{{ $nomer }}"
+                                                                            id="formLikeCommentFeed{{ $item_comment->id }}"
                                                                             method="POST">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                onclick="likeCommentFeed({{ $nomer }})">
-                                                                                <i class="fa-regular fa-thumbs-up" id="iLikeComment{{ $nomer }}"></i>
+                                                                                onclick="likeCommentFeed({{ $item_comment->id }})">
+                                                                                <i class="fa-regular fa-thumbs-up" id="iLikeComment{{ $item_comment->id }}"></i>
                                                                             </button>
                                                                         </form>
                                                                     @endif
@@ -300,7 +300,7 @@
                                                                         height="40px" alt="">
                                                                     &nbsp; &nbsp;
                                                                 @endif
-                                                                <span class="my-auto" id="countLikeComment{{ $nomer }}">
+                                                                <span class="my-auto" id="countLikeComment{{ $item_comment->id }}">
                                                                     {{ $countLike }}
                                                                 </span>
 
@@ -401,12 +401,12 @@
                                                                                     @if (Auth::check())
                                                                                         @if ($isLike2sd)
                                                                                             <form
-                                                                                                id="formLikeReplyComment{{ $numeric }}"
+                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                 method="post">
                                                                                                 @csrf
                                                                                                 <button
-                                                                                                    onclick="likeReplyComment({{ $numeric }})"
+                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})"
                                                                                                     type="submit"
                                                                                                     class="btn ">
                                                                                                     <i
@@ -415,14 +415,14 @@
                                                                                             </form>
                                                                                         @else
                                                                                             <form
-                                                                                                id="formLikeReplyComment{{ $numeric }}"
+                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                 method="post">
                                                                                                 @csrf
                                                                                                 <button
-                                                                                                    onclick="likeReplyComment({{ $numeric }})"
+                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})"
                                                                                                     type="submit"
-                                                                                                    class="btn ">
+                                                                                                    class="btn">
                                                                                                     <i
                                                                                                         class="fa-regular fa-thumbs-up"></i>
                                                                                                 </button>
@@ -559,8 +559,6 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script>
         // komentar reply feed ajax
         function balas_komentar(num) {
@@ -705,14 +703,7 @@
                     },
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
+                            
                             if (response.like) {
                                 $("#iLikeComment" + nums).removeClass("fa-regular");
                                 $("#iLikeComment" + nums).addClass("fa-solid");
@@ -741,14 +732,7 @@
                     method: "POST",
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
+                            
                             if (response.like) {
                                 $("#likeB" + num).removeClass("fa-reguler");
                                 $("#likeB" + num).addClass("fa-solid");
