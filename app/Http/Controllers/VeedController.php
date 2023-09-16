@@ -177,18 +177,30 @@ class VeedController extends Controller
                 "reply_comment_veed_id" => $reply_comment_id,
                 "veed_id" => $veed_id
             ]);
+            $countLike = like_reply_comment_veed::query()
+             ->where('users_id', $user_id)
+             ->where('veed_id', $veed_id)
+             ->count();
             return response()->json([
                 "success" => true,
-                "message" => "Sukses memberikan like!"
+                "message" => "Sukses memberikan like!",
+                "like" => true,
+                "countLike" => $countLike
             ]);
         } elseif ($check == 1) {
             like_reply_comment_veed::where("users_id", $user_id)
                 ->where("reply_comment_veed_id", $reply_comment_id)
                 ->where("veed_id", $veed_id)
                 ->delete();
+            $countLike = like_reply_comment_veed::query()
+             ->where('users_id', $user_id)
+             ->where('veed_id', $veed_id)
+             ->count();
             return response()->json([
                 "success" => true,
-                "message" => "Sukses membatalkan like!"
+                "message" => "Sukses membatalkan like!",
+                "like" => false,
+                "countLike" => $countLike
             ]);
         }
     }
