@@ -118,7 +118,7 @@
                         <div class="card-body">
                             <!-- Reactions -->
                             <div class="d-flex justify-content-between mb-2">
-                                <div>
+
                                     <span class="d-flex flex-row" style="color: black;">
                                         <!-- like feed start -->
                                         @php
@@ -153,6 +153,7 @@
                                                         </button>
                                                     </form>
                                                 @endif
+                                            </div>
                                             @else
                                                 <form>
                                                     <button style="border: none; background-color:white;"
@@ -160,9 +161,8 @@
                                                         <i class="fa-regular fa-thumbs-up"></i>
                                                     </button>
                                                 </form>
-                                        @endif
-                                </div>
-                                <span class="my-auto" id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
+                                                @endif
+                                                <span class="my-auto" id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
                                 <!-- like feed end -->
                                 <!-- komentar feed start -->
                                 <i onclick="openModel({{ $urut }})"
@@ -273,24 +273,24 @@
                                                                     @if ($isLike == 1)
                                                                         <form
                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            id="formLikeCommentFeed{{ $nomer }}"
+                                                                            id="formLikeCommentFeed{{ $item_comment->id }}"
                                                                             method="POST">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                onclick="likeCommentFeed({{ $nomer }})">
-                                                                                <i class="fa-solid fa-thumbs-up"></i>
+                                                                                onclick="likeCommentFeed({{ $item_comment->id }})">
+                                                                                <i class="fa-solid fa-thumbs-up" id="iLikeComment{{ $item_comment->id }}"></i>
                                                                             </button>
 
                                                                         </form>
                                                                     @elseif($isLike == 0)
                                                                         <form
                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            id="formLikeCommentFeed{{ $nomer }}"
+                                                                            id="formLikeCommentFeed{{ $item_comment->id }}"
                                                                             method="POST">
                                                                             @csrf
                                                                             <button type="submit" class="btn"
-                                                                                onclick="likeCommentFeed({{ $nomer }})">
-                                                                                <i class="fa-regular fa-thumbs-up"></i>
+                                                                                onclick="likeCommentFeed({{ $item_comment->id }})">
+                                                                                <i class="fa-regular fa-thumbs-up" id="iLikeComment{{ $item_comment->id }}"></i>
                                                                             </button>
                                                                         </form>
                                                                     @endif
@@ -300,7 +300,7 @@
                                                                         height="40px" alt="">
                                                                     &nbsp; &nbsp;
                                                                 @endif
-                                                                <span class=" my-auto">
+                                                                <span class="my-auto" id="countLikeComment{{ $item_comment->id }}">
                                                                     {{ $countLike }}
                                                                 </span>
 
@@ -401,12 +401,12 @@
                                                                                     @if (Auth::check())
                                                                                         @if ($isLike2sd)
                                                                                             <form
-                                                                                                id="formLikeReplyComment{{ $numeric }}"
+                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                 method="post">
                                                                                                 @csrf
                                                                                                 <button
-                                                                                                    onclick="likeReplyComment({{ $numeric }})"
+                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})"
                                                                                                     type="submit"
                                                                                                     class="btn ">
                                                                                                     <i
@@ -415,14 +415,14 @@
                                                                                             </form>
                                                                                         @else
                                                                                             <form
-                                                                                                id="formLikeReplyComment{{ $numeric }}"
+                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                 method="post">
                                                                                                 @csrf
                                                                                                 <button
-                                                                                                    onclick="likeReplyComment({{ $numeric }})"
+                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})"
                                                                                                     type="submit"
-                                                                                                    class="btn ">
+                                                                                                    class="btn">
                                                                                                     <i
                                                                                                         class="fa-regular fa-thumbs-up"></i>
                                                                                                 </button>
@@ -473,7 +473,7 @@
                                 <i class="fa-solid fa-gift ml-3 mr-1 my-auto"></i>
                                 <!-- gift end -->
                                 </span>
-                            </div>
+
 
                         </div>
 
@@ -559,8 +559,6 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <script>
         // komentar reply feed ajax
         function balas_komentar(num) {
@@ -691,7 +689,6 @@
             });
         }
 
-
         // like comment feed ajax
         function likeCommentFeed(nums) {
             $("#formLikeCommentFeed" + nums).off('submit');
@@ -706,14 +703,16 @@
                     },
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
+                            
+                            if (response.like) {
+                                $("#iLikeComment" + nums).removeClass("fa-regular");
+                                $("#iLikeComment" + nums).addClass("fa-solid");
+                                $("#countLikeComment" + nums).text(response.count);
+                            } else {
+                                $("#iLikeComment" + nums).removeClass("fa-solid");
+                                $("#iLikeComment" + nums).addClass("fa-regular");
+                                $("#countLikeComment" + nums).text(response.count);
+                            }
                         }
                     }
                 });
@@ -733,14 +732,7 @@
                     method: "POST",
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
+                            
                             if (response.like) {
                                 $("#likeB" + num).removeClass("fa-reguler");
                                 $("#likeB" + num).addClass("fa-solid");

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
@@ -10,9 +9,6 @@ use App\Http\Controllers\likeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
-use App\Models\complaint;
-use App\Models\reseps;
-use App\Models\footer;
 use App\Http\Controllers\artikels;
 use App\Http\Controllers\favoriteController;
 use App\Http\Controllers\FiltersController;
@@ -24,15 +20,9 @@ use App\Http\Controllers\KategoriMakananController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\komentar_resep;
 use App\Http\Controllers\LikeCommentController;
-use App\Http\Controllers\testingController;
 use App\Http\Controllers\VeedController;
-use App\Models\bahan_reseps;
-use App\Models\favorite;
-use App\Models\notifications;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Mockery\Undefined;
 use App\Http\Controllers\detail_kursusController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,3 +162,6 @@ Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController:
 Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [VeedController::class, 'sukai_balasan_komentar_veed'])->name('sukai.balasan.komentar.veed');
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
+
+// testing payment
+Route::get('/testing-payment', [PaymentController::class, 'channel_pembayaran'])->name('testing.payment');

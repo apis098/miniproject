@@ -55,22 +55,22 @@ class VeedController extends Controller
         $video_pembelajaran = upload_video::latest()->get();
         $comment_veed = comment_veed::orderBy('created_at', 'desc');
         $reply_comment_veed = reply_comment_veed::query()->orderBy("created_at", "desc");
-        return view("template.veed", compact("messageCount","reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact("messageCount", "reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
 
     public function sukai_veed(string $user_id, string $veed_id)
     {
         $cek = like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();
-       
+
         if ($cek == 0) {
             like_veed::create([
                 "users_id" => $user_id,
                 "veed_id" => $veed_id
             ]);
             $isLikeVeed = \App\Models\like_veed::query()
-            ->where('users_id', Auth::user()->id)
-            ->where('veed_id', $veed_id)
-            ->count();
+                ->where('users_id', Auth::user()->id)
+                ->where('veed_id', $veed_id)
+                ->count();
             $countLikeFeed = like_veed::where("veed_id", $veed_id)->count();
             return response()->json([
                 "success" => true,
@@ -82,9 +82,9 @@ class VeedController extends Controller
         } elseif ($cek == 1) {
             like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->delete();
             $isLikeVeed = \App\Models\like_veed::query()
-            ->where('users_id', Auth::user()->id)
-            ->where('veed_id', $veed_id)
-            ->count();
+                ->where('users_id', Auth::user()->id)
+                ->where('veed_id', $veed_id)
+                ->count();
             $countLikeFeed = like_veed::where("veed_id", $veed_id)->count();
             return response()->json([
                 "success" => true,
@@ -123,18 +123,29 @@ class VeedController extends Controller
                 "comment_veed_id" => $komentar_veed_id,
                 "veed_id" => $veed_id
             ]);
+            // mendapatkan jumlah like tiap komentar
+            $countLike = \App\Models\like_comment_veed::query()
+                ->where('comment_veed_id', $komentar_veed_id)
+                ->where('veed_id', $veed_id)
+                ->count();
             return response()->json([
                 "success" => true,
                 "message" => "Anda berhasil mengirimkan like!",
                 "like" => true,
+                "count" => $countLike
             ]);
         } elseif ($countIsLike == 1) {
             $isLike->delete();
+            // mendapatkan jumlah like tiap komentar
+            $countLike = \App\Models\like_comment_veed::query()
+                ->where('comment_veed_id', $komentar_veed_id)
+                ->where('veed_id', $veed_id)
+                ->count();
             return response()->json([
                 "success" => true,
                 "message" => "Anda berhasil membatalkan memberi like!",
-                "like" => false
-                
+                "like" => false,
+                "count" => $countLike
             ]);
         }
     }
@@ -166,18 +177,30 @@ class VeedController extends Controller
                 "reply_comment_veed_id" => $reply_comment_id,
                 "veed_id" => $veed_id
             ]);
+            $countLike = like_reply_comment_veed::query()
+             ->where('users_id', $user_id)
+             ->where('veed_id', $veed_id)
+             ->count();
             return response()->json([
                 "success" => true,
-                "message" => "Sukses memberikan like!"
+                "message" => "Sukses memberikan like!",
+                "like" => true,
+                "countLike" => $countLike
             ]);
         } elseif ($check == 1) {
             like_reply_comment_veed::where("users_id", $user_id)
                 ->where("reply_comment_veed_id", $reply_comment_id)
                 ->where("veed_id", $veed_id)
                 ->delete();
+            $countLike = like_reply_comment_veed::query()
+             ->where('users_id', $user_id)
+             ->where('veed_id', $veed_id)
+             ->count();
             return response()->json([
-                "success" => true, 
-                "message" => "Sukses membatalkan like!"
+                "success" => true,
+                "message" => "Sukses membatalkan like!",
+                "like" => false,
+                "countLike" => $countLike
             ]);
         }
     }
