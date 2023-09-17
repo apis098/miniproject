@@ -87,6 +87,7 @@ function updateSelectedContact(user_id) {
 // Loading svg
 function loadingSVG(size = "25px", className = "", style = "") {
   return `
+<div class="loading-spinner">
 <svg style="${style}" class="loadingSVG ${className}" xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 40 40" stroke="#ffffff">
 <g fill="none" fill-rule="evenodd">
 <g transform="translate(2 2)" stroke-width="3">
@@ -97,6 +98,7 @@ function loadingSVG(size = "25px", className = "", style = "") {
 </g>
 </g>
 </svg>
+</div>
 `;
 }
 function loadingWithContainer(className) {
@@ -1392,7 +1394,7 @@ $(document).ready(function () {
     let sendCard = $(".messenger-sendCard");
     reader.readAsDataURL(file);
     reader.addEventListener("loadstart", (e) => {
-      $("#message-form").before(loadingSVG());
+      $("#message-form");
     });
     reader.addEventListener("load", (e) => {
       $(".messenger-sendCard").find(".loadingSVG").remove();
