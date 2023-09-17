@@ -88,9 +88,11 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::get('voice-note', [testingController::class, 'voice_note'])->name('voice.note');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
 Route::get('delete/profile', [KokiController::class, 'deleteProfilePicture'])->name('delete.profile');
+
 
 
 //Keluhan user
