@@ -20,7 +20,7 @@ class PaymentController extends Controller
         // create data in resep_premiums table
         ResepPremiums::create([
             'users_id' => auth()->user()->id,
-            'reseps_id' => 1,
+            'bulan' => 1,
             'reference' => $get->reference,
             'merchant_ref' => $get->merchant_ref,
             'total_amount' => $get->amount,

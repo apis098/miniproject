@@ -11,7 +11,7 @@ class ResepPremiums extends Model
     protected $table = "resep_premiums";
     protected $fillable = [
         "users_id",
-        "reseps_id",
+        "bulan",
         "reference", 
         "merchant_ref",
         "total_amount",
@@ -20,7 +20,5 @@ class ResepPremiums extends Model
     public function user() {
         return $this->belongsTo(User::class, 'users_id');
     }
-    public function resep() {
-        return $this->belongsTo(reseps::class, 'reseps_id');
-    }
+    
 }

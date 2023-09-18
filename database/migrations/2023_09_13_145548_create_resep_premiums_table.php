@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('resep_premiums', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("users_id");
-            $table->unsignedBigInteger("reseps_id");
+            $table->integer('bulan');
             $table->string('reference');
             $table->string('merchant_ref')->nullable();
             $table->bigInteger('total_amount');
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
-            $table->foreign("reseps_id")->references("id")->on("reseps")->onDelete("cascade");
         });
     }
 
