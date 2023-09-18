@@ -664,23 +664,20 @@
                                                             Ke
                                                         </div>
                                                         
-                                                                <div class="container mt-1"
-                                                                    style="margin-top: -35px; margin-left: -5px; ">
+                                                                <div class="container mt-1">
                                                                     <div class="search"
                                                                         style="border-radius: 10px; border: 0.50px black solid; ">
                                                                         <div class="row">
                                                                             <div class="col-sm-4">
-                                                                                <div>
                                                                                     <div class="search-2"> <i
                                                                                             class='bx bxs-map'></i>
                                                                                         <form action="/veed"
-                                                                                            method="GET" class="inputt">
+                                                                                            method="GET">
                                                                                             <input type="text"
                                                                                                 name="resep" autofocus
-                                                                                                placeholder="Cari " class="inputt">
+                                                                                                placeholder="Cari">
                                                                                         </form>
                                                                                     </div>
-                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
