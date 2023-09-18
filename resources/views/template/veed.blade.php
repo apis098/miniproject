@@ -1,8 +1,7 @@
 @extends('template.nav')
 @section('content')
-
-<style>
-     .search {
+    <style>
+        .search {
             background-color: #fff;
             padding: 0px 10px;
             border-radius: 5px;
@@ -64,16 +63,16 @@
         }
 
         /* button{
-                background-color: #F7941E;
-                border: none;
-                height: 45px;
-                width: 90px;
-                color: #ffffff;
-                position: absolute;
-                right: 1px;
-                top: 0px;
-                border-radius: 15px
-            } */
+                    background-color: #F7941E;
+                    border: none;
+                    height: 45px;
+                    width: 90px;
+                    color: #ffffff;
+                    position: absolute;
+                    right: 1px;
+                    top: 0px;
+                    border-radius: 15px
+                } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -83,7 +82,7 @@
         }
 
         .search-2 button {
-            position: absolute;
+            position: relative;
             right: 4px;
             top: -2px;
             border: none;
@@ -114,7 +113,15 @@
                 top: 5px
             }
         }
-</style>
+
+    @media (max-width: 640px){
+        .inputt{
+            max-width: 20px;
+            width: 10px;
+            size: 12px;
+        }
+    }
+    </style>
     <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
@@ -163,7 +170,11 @@
                                 <input type="file" name="upload_video" id="inputVideo" hidden>
                                 <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
                                     style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
-                                    <div style="font-weight: 600; color: black;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z"/></svg> Tambahkan Video</div>
+                                    <div style="font-weight: 600; color: black;"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="25" height="25" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
+                                        </svg> Tambahkan Video</div>
                                 </a>
 
                                 <button type="submit" class="btn " id="buttonUploadVideo"
@@ -179,7 +190,11 @@
                                 <br>
                                 <a href="#" class="btn btn-light" onclick="harusLogin()"
                                     style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
-                                    <span style="font-weight: 600; color: black;">Tambahkan Video</span>
+                                    <span style="font-weight: 600; color: black;"><svg xmlns="http://www.w3.org/2000/svg"
+                                            width="25" height="25" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
+                                        </svg> Tambahkan Video</span>
                                 </a>
 
                                 <button type="button" href="#" class="btn " onclick="harusLogin()"
@@ -234,510 +249,637 @@
                             <!-- Reactions -->
                             <div class="d-flex justify-content-between mb-2">
 
-                                    <span class="d-flex flex-row" style="color: black;">
-                                        <!-- like feed start -->
-                                        @php
-                                            // mendapatkan total like veed
-                                            $countLikeVeed = \App\Models\like_veed::where('veed_id', $item_video->id)->count();
-                                        @endphp
-                                        @if (Auth::check())
-                                            <div id="feed{{ $urut }}">
-                                                @php
-                                                    // mengecek apakah user sudah
-                                                    $isLikeVeed = \App\Models\like_veed::query()
-                                                        ->where('users_id', Auth::user()->id)
-                                                        ->where('veed_id', $item_video->id)
-                                                        ->count();
-                                                @endphp
-                                                @if ($isLikeVeed == 0)
-                                                    <form id="formLikeVeed{{ $urut }}"
-                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button style="border: none; background-color:white;"
-                                                            onclick="likeFeed({{ $urut }})">
-                                                            <i id="likeB{{ $urut }}"
-                                                                class="fa-regular fa-thumbs-up"></i>
-                                                        </button>
-                                                    </form>
-                                                @elseif($isLikeVeed == 1)
-                                                    <form id="formLikeVeed{{ $urut }}"
-                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button style="border: none; background-color:white;"
-                                                            onclick="likeFeed({{ $urut }})">
-                                                            <i class="fa-solid fa-thumbs-up"
-                                                                id="likeB{{ $urut }}"></i>
-                                                        </button>
-                                                    </form>
-                                                @endif
-                                            </div>
-                                            @else
-                                                <form>
+                                <span class="d-flex flex-row" style="color: black;">
+                                    <!-- like feed start -->
+                                    @php
+                                        // mendapatkan total like veed
+                                        $countLikeVeed = \App\Models\like_veed::where('veed_id', $item_video->id)->count();
+                                    @endphp
+                                    @if (Auth::check())
+                                        <div id="feed{{ $urut }}">
+                                            @php
+                                                // mengecek apakah user sudah
+                                                $isLikeVeed = \App\Models\like_veed::query()
+                                                    ->where('users_id', Auth::user()->id)
+                                                    ->where('veed_id', $item_video->id)
+                                                    ->count();
+                                            @endphp
+                                            @if ($isLikeVeed == 0)
+                                                <form id="formLikeVeed{{ $urut }}"
+                                                    action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
                                                     <button style="border: none; background-color:white;"
-                                                        id="buttonLikeVeed" type="button" onclick="harusLogin()">
-                                                        <i class="fa-regular fa-thumbs-up"></i>
+                                                        onclick="likeFeed({{ $urut }})">
+                                                        <i id="likeB{{ $urut }}"
+                                                            class="fa-regular fa-thumbs-up"></i>
                                                     </button>
                                                 </form>
-                                                @endif
-                                                <span class="my-auto" id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
-                                <!-- like feed end -->
-                                <!-- komentar feed start -->
-                                <i onclick="openModel({{ $urut }})"
-                                    class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal{{ $urut }}"></i>
-                                <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
-                                <!-- modal komentar feed -->
-                                <div class="modal" id="exampleModal{{ $urut }}">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                    Komentar</h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body d">
-                                                <!-- form komentar feed start -->
-                                                @if (Auth::user())
-                                                    <form id="formCommentVeed"
-                                                        action="{{ route('komentar.veed', [Auth::user()->id, $item_video->id]) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        <div class="d-flex mb-3">
+                                            @elseif($isLikeVeed == 1)
+                                                <form id="formLikeVeed{{ $urut }}"
+                                                    action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
+                                                    <button style="border: none; background-color:white;"
+                                                        onclick="likeFeed({{ $urut }})">
+                                                        <i class="fa-solid fa-thumbs-up"
+                                                            id="likeB{{ $urut }}"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    @else
+                                        <form>
+                                            <button style="border: none; background-color:white;" id="buttonLikeVeed"
+                                                type="button" onclick="harusLogin()">
+                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            </button>
+                                        </form>
+                                    @endif
+                                    <span class="my-auto"
+                                        id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
+                                    <!-- like feed end -->
+                                    <!-- komentar feed start -->
+                                    <i onclick="openModel({{ $urut }})"
+                                        class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal{{ $urut }}"></i>
+                                    <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
+                                    <!-- modal komentar feed -->
+                                    <div class="modal" id="exampleModal{{ $urut }}">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                        Komentar</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body d">
+                                                    <!-- form komentar feed start -->
+                                                    @if (Auth::user())
+                                                        <form id="formCommentVeed"
+                                                            action="{{ route('komentar.veed', [Auth::user()->id, $item_video->id]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <div class="d-flex mb-3">
 
 
-                                                            @if (Auth::user()->foto)
-                                                                <img src="{{ asset('storage' . Auth::user()->foto) }}"
-                                                                    class="border rounded-circle me-5" alt="Avatar"
-                                                                    style="height: 60px; margin-left: 20px;" />
-                                                            @else
+                                                                @if (Auth::user()->foto)
+                                                                    <img src="{{ asset('storage' . Auth::user()->foto) }}"
+                                                                        class="border rounded-circle me-5" alt="Avatar"
+                                                                        style="height: 60px; margin-left: 20px;" />
+                                                                @else
+                                                                    <img src="{{ asset('images/default.jpg') }}"
+                                                                        class="border rounded-circle me-5" alt="Avatar"
+                                                                        style="height: 60px; margin-left: 20px;" />
+                                                                @endif
+                                                                <input type="text" id="comment-veed1"
+                                                                    name="commentVeed" width="500px"
+                                                                    class="form-control rounded-3 me-3"
+                                                                    style="margin-top: 12px"
+                                                                    placeholder="Masukkan komentar...">
+
+                                                                <button type="submit" id="buttonCommentVeed"
+                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                    class="btn  btn-sm text-light"><b
+                                                                        class="me-3 ms-3">Kirim</b></button>
+
+                                                            </div>
+                                                        </form>
+                                                    @else
+                                                        <form>
+                                                            <div class="d-flex mb-3">
                                                                 <img src="{{ asset('images/default.jpg') }}"
                                                                     class="border rounded-circle me-5" alt="Avatar"
                                                                     style="height: 60px; margin-left: 20px;" />
-                                                            @endif
-                                                            <input type="text" id="comment-veed1" name="commentVeed"
-                                                                width="500px" class="form-control rounded-3 me-3"
-                                                                style="margin-top: 12px"
-                                                                placeholder="Masukkan komentar...">
-
-                                                            <button type="submit" id="buttonCommentVeed"
-                                                                style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                                class="btn  btn-sm text-light"><b
-                                                                    class="me-3 ms-3">Kirim</b></button>
-
-                                                        </div>
-                                                    </form>
-                                                @else
-                                                    <form>
-                                                        <div class="d-flex mb-3">
-                                                            <img src="{{ asset('images/default.jpg') }}"
-                                                                class="border rounded-circle me-5" alt="Avatar"
-                                                                style="height: 60px; margin-left: 20px;" />
-                                                            <input type="text" id="comment-veed1" name="commentVeed"
-                                                                width="500px" class="form-control rounded-3 me-3"
-                                                                style="margin-top: 12px"
-                                                                placeholder="Masukkan komentar...">
-                                                            <button type="button" onclick="harusLogin()"
-                                                                id="buttonCommentVeed" class="btn text-white"
-                                                                style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
-                                                        </div>
-                                                    </form>
-                                                @endif
-                                                <!-- form komentar feed end -->
-                                                <!-- list komentar feed start -->
-                                                @php
-                                                    $komen_veed = \App\Models\comment_veed::query()
-                                                        ->where('veed_id', $item_video->id)
-                                                        ->get();
-                                                @endphp
-                                                @foreach ($komen_veed as $nomer => $item_comment)
-                                                    <div class="media row mb-2 mx-auto d-flex mt-5">
-                                                        <div class="col-1" style="margin-left: 20px;">
-                                                            <img width="50px" height="50px" class="rounded-circle"
-                                                                src="{{ $item_comment->user->foto ? asset('storage/' . $item_comment->user->foto) : asset('images/default.jpg') }}"
-                                                                alt="{{ $item_comment->user->name }}">
-                                                        </div>
-                                                        <div class=" media-body ml-3 col-10 border-black rounded">
-                                                            <div class="d-flex">
-                                                                <h5 class="">
-                                                                    <strong>{{ $item_comment->user->name }}</strong>
-                                                                </h5>
-                                                                <small class=""
-                                                                    style="margin-left: 440px;">{{ $item_comment->created_at->diffForHumans() }}</small>
+                                                                <input type="text" id="comment-veed1"
+                                                                    name="commentVeed" width="500px"
+                                                                    class="form-control rounded-3 me-3"
+                                                                    style="margin-top: 12px"
+                                                                    placeholder="Masukkan komentar...">
+                                                                <button type="button" onclick="harusLogin()"
+                                                                    id="buttonCommentVeed" class="btn text-white"
+                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
                                                             </div>
-                                                            <p>{{ $item_comment->komentar }}</p>
+                                                        </form>
+                                                    @endif
+                                                    <!-- form komentar feed end -->
+                                                    <!-- list komentar feed start -->
+                                                    @php
+                                                        $komen_veed = \App\Models\comment_veed::query()
+                                                            ->where('veed_id', $item_video->id)
+                                                            ->get();
+                                                    @endphp
+                                                    @foreach ($komen_veed as $nomer => $item_comment)
+                                                        <div class="media row mb-2 mx-auto d-flex mt-5">
+                                                            <div class="col-1" style="margin-left: 20px;">
+                                                                <img width="50px" height="50px" class="rounded-circle"
+                                                                    src="{{ $item_comment->user->foto ? asset('storage/' . $item_comment->user->foto) : asset('images/default.jpg') }}"
+                                                                    alt="{{ $item_comment->user->name }}">
+                                                            </div>
+                                                            <div class=" media-body ml-3 col-10 border-black rounded">
+                                                                <div class="d-flex">
+                                                                    <h5 class="">
+                                                                        <strong>{{ $item_comment->user->name }}</strong>
+                                                                    </h5>
+                                                                    <small class=""
+                                                                        style="margin-left: 440px;">{{ $item_comment->created_at->diffForHumans() }}</small>
+                                                                </div>
+                                                                <p>{{ $item_comment->komentar }}</p>
 
-                                                            <div class="d-flex flex-row">
-                                                                @php
-                                                                    // mendapatkan jumlah like tiap komentar
-                                                                    $countLike = \App\Models\like_comment_veed::query()
-                                                                        ->where('comment_veed_id', $item_comment->id)
-                                                                        ->where('veed_id', $item_video->id)
-                                                                        ->count();
-                                                                @endphp
-                                                                @if (Auth::user())
+                                                                <div class="d-flex flex-row">
                                                                     @php
-                                                                        // mengecek apakah user sudah like atau belum, kalau nilainya 1 maka sudah like kalau 0 maka belum like
-                                                                        $isLike = \App\Models\like_comment_veed::query()
-                                                                            ->where('users_id', Auth::user()->id)
+                                                                        // mendapatkan jumlah like tiap komentar
+                                                                        $countLike = \App\Models\like_comment_veed::query()
                                                                             ->where('comment_veed_id', $item_comment->id)
                                                                             ->where('veed_id', $item_video->id)
                                                                             ->count();
                                                                     @endphp
-                                                                    @if ($isLike == 1)
-                                                                        <form
-                                                                            action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            id="formLikeCommentFeed{{ $item_comment->id }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn"
-                                                                                onclick="likeCommentFeed({{ $item_comment->id }})">
-                                                                                <i class="fa-solid fa-thumbs-up" id="iLikeComment{{ $item_comment->id }}"></i>
-                                                                            </button>
-
-                                                                        </form>
-                                                                    @elseif($isLike == 0)
-                                                                        <form
-                                                                            action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            id="formLikeCommentFeed{{ $item_comment->id }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            <button type="submit" class="btn"
-                                                                                onclick="likeCommentFeed({{ $item_comment->id }})">
-                                                                                <i class="fa-regular fa-thumbs-up" id="iLikeComment{{ $item_comment->id }}"></i>
-                                                                            </button>
-                                                                        </form>
-                                                                    @endif
-                                                                @else
-                                                                    <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
-                                                                        onclick="harusLogin()" width="15px"
-                                                                        height="40px" alt="">
-                                                                    &nbsp; &nbsp;
-                                                                @endif
-                                                                <span class="my-auto" id="countLikeComment{{ $item_comment->id }}">
-                                                                    {{ $countLike }}
-                                                                </span>
-
-                                                                <a href="#" class="text-secondary my-auto ml-2"
-                                                                    data-toggle="collapse"
-                                                                    data-target="#collapse{{ $item_comment->id }}"
-                                                                    aria-expanded="true" aria-controls="collapseOne">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="22"
-                                                                        height="22" viewBox="0 0 24 24">
-                                                                        <path fill="currentColor"
-                                                                            d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
-                                                                    </svg>
-                                                                    &nbsp; <small>Balas</small>
-                                                                </a>
-                                                            </div>
-                                                            <!-- Komentar Balasan Collapse Start -->
-                                                            <div class="collapse" id="collapse{{ $item_comment->id }}">
-
-                                                                <div class="card card-body">
-                                                                    @if (Auth::check())
-                                                                        <form id="formBalasKomentar{{ $nomer++ }}"
-                                                                            action="{{ route('balas.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
-                                                                            method="POST">
-                                                                            @csrf
-                                                                            <div class="d-flex mb-3">
-                                                                                <input type="text"
-                                                                                    name="komentarBalasan"
-                                                                                    class="form-control me-3"
-                                                                                    id="komentarBalasan"
-                                                                                    placeholder="Balas Komentar Dari"
-                                                                                    required>
-
-                                                                                <button type="submit"
-                                                                                    onclick="balas_komentar({{ $nomer++ }})"
-                                                                                    class="btn text-white"
-                                                                                    style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    @else
-                                                                        <form action="">
-                                                                            @csrf
-                                                                            <div class="d-flex mb-3">
-                                                                                <input type="text"
-                                                                                    name="komentarBalasan"
-                                                                                    class="form-control me-3"
-                                                                                    id="komentarBalasan"
-                                                                                    placeholder="Balas Komentar Dari "
-                                                                                    required>
-                                                                                <button type="button"
-                                                                                    onclick="harusLogin()"
-                                                                                    class="btn text-white"
-                                                                                    style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
-                                                                            </div>
-                                                                        </form>
-                                                                    @endif
-                                                                    @php
-                                                                        // mengambil data balasan komentar veed
-                                                                        $reply_comments = App\Models\reply_comment_veed::query()
-                                                                            ->where('comment_id', $item_comment->id)
-                                                                            ->get();
-
-                                                                    @endphp
-                                                                    @foreach ($reply_comments as $numeric => $reply_comment)
+                                                                    @if (Auth::user())
                                                                         @php
-                                                                            if (Auth::check()) {
-                                                                                // memeriksa apakah balasan komentar veed sudah di like atau belum
-                                                                                $isLike2sd = App\Models\like_reply_comment_veed::query()
-                                                                                    ->where('users_id', Auth::user()->id)
-                                                                                    ->where('reply_comment_veed_id', $reply_comment->id)
-                                                                                    ->where('veed_id', $item_video->id)
-                                                                                    ->exists();
-                                                                            }
-                                                                            $countLike2sd = App\Models\like_reply_comment_veed::query()
-                                                                                ->where('reply_comment_veed_id', $reply_comment->id)
+                                                                            // mengecek apakah user sudah like atau belum, kalau nilainya 1 maka sudah like kalau 0 maka belum like
+                                                                            $isLike = \App\Models\like_comment_veed::query()
+                                                                                ->where('users_id', Auth::user()->id)
+                                                                                ->where('comment_veed_id', $item_comment->id)
                                                                                 ->where('veed_id', $item_video->id)
                                                                                 ->count();
                                                                         @endphp
-                                                                        <div class="rounded  border-black row">
-                                                                            <div class="col-1 mt-2">
-                                                                                <img width="50px" height="50px"
-                                                                                    class="rounded-circle"
-                                                                                    src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
-                                                                                    alt="{{ $reply_comment->user->name }}">
-                                                                            </div>
-                                                                            <div class=" media-body col-10 border-black rounded"
-                                                                                style="margin-left: 20px; margin-top: -50px;">
-                                                                                <div class="d-flex "
-                                                                                    style="margin-top: 60px; ">
-                                                                                    <span><strong>{{ $reply_comment->user->name }}</strong></span>
+                                                                        @if ($isLike == 1)
+                                                                            <form
+                                                                                action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
+                                                                                id="formLikeCommentFeed{{ $item_comment->id }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                <button type="submit" class="btn"
+                                                                                    onclick="likeCommentFeed({{ $item_comment->id }})">
+                                                                                    <i class="fa-solid fa-thumbs-up"
+                                                                                        id="iLikeComment{{ $item_comment->id }}"></i>
+                                                                                </button>
 
-                                                                                    <small
-                                                                                        style="margin-left: 310px;">{{ $reply_comment->created_at->diffForHumans() }}</small>
+                                                                            </form>
+                                                                        @elseif($isLike == 0)
+                                                                            <form
+                                                                                action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
+                                                                                id="formLikeCommentFeed{{ $item_comment->id }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                <button type="submit" class="btn"
+                                                                                    onclick="likeCommentFeed({{ $item_comment->id }})">
+                                                                                    <i class="fa-regular fa-thumbs-up"
+                                                                                        id="iLikeComment{{ $item_comment->id }}"></i>
+                                                                                </button>
+                                                                            </form>
+                                                                        @endif
+                                                                    @else
+                                                                        <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                                            onclick="harusLogin()" width="15px"
+                                                                            height="40px" alt="">
+                                                                        &nbsp; &nbsp;
+                                                                    @endif
+                                                                    <span class="my-auto"
+                                                                        id="countLikeComment{{ $item_comment->id }}">
+                                                                        {{ $countLike }}
+                                                                    </span>
 
-                                                                                </div>
-                                                                                <p>{{ $reply_comment->komentar }}
-                                                                                </p>
-                                                                                <div class="d-flex flex-row">
-                                                                                    @if (Auth::check())
-                                                                                        @if ($isLike2sd)
-                                                                                            <form
-                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
-                                                                                                action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                method="post">
-                                                                                                @csrf
-                                                                                                <button
-                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})"
-                                                                                                    type="submit"
-                                                                                                    class="btn ">
-                                                                                                    <i
-                                                                                                        class="fa-solid fa-thumbs-up"></i>
-                                                                                                </button>
-                                                                                            </form>
-                                                                                        @else
-                                                                                            <form
-                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
-                                                                                                action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                method="post">
-                                                                                                @csrf
-                                                                                                <button
-                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})"
-                                                                                                    type="submit"
-                                                                                                    class="btn">
-                                                                                                    <i
-                                                                                                        class="fa-regular fa-thumbs-up"></i>
-                                                                                                </button>
-                                                                                            </form>
-                                                                                        @endif
-                                                                                    @else
-                                                                                        <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
-                                                                                            onclick="harusLogin()"
-                                                                                            width="15px" height="40px"
-                                                                                            alt="">
-                                                                                        &nbsp; &nbsp;
-                                                                                    @endif
-                                                                                    <span class="mx-1 my-auto">
-                                                                                        {{ $countLike2sd }}
-                                                                                    </span>
-                                                                                    <!--
-                                                                                                                            <a href=""
-                                                                                                                                type="button"
-                                                                                                                                class="btn"><svg
-                                                                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                                                                    width="22"
-                                                                                                                                    height="22"
-                                                                                                                                    viewBox="0 0 24 24">
-                                                                                                                                    <path
-                                                                                                                                        fill="currentColor"
-                                                                                                                                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                                                                                                </svg></a>-->
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
+                                                                    <a href="#" class="text-secondary my-auto ml-2"
+                                                                        data-toggle="collapse"
+                                                                        data-target="#collapse{{ $item_comment->id }}"
+                                                                        aria-expanded="true" aria-controls="collapseOne">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                            width="22" height="22"
+                                                                            viewBox="0 0 24 24">
+                                                                            <path fill="currentColor"
+                                                                                d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
+                                                                        </svg>
+                                                                        &nbsp; <small>Balas</small>
+                                                                    </a>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                                <!-- list komentar feed end -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- komentar feed end -->
+                                                                <!-- Komentar Balasan Collapse Start -->
+                                                                <div class="collapse"
+                                                                    id="collapse{{ $item_comment->id }}">
 
-                                <!-- Bagikan feed start -->
-                                <i class="fa-solid fa-reply fa-flip-horizontal ml-3 mr-1 my-auto"
-                                data-bs-toggle="modal"
-                                    data-bs-target="#bagikan"></i>
-                                <span class="my-auto">5</span>
+                                                                    <div class="card card-body">
+                                                                        @if (Auth::check())
+                                                                            <form
+                                                                                id="formBalasKomentar{{ $nomer++ }}"
+                                                                                action="{{ route('balas.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
+                                                                                method="POST">
+                                                                                @csrf
+                                                                                <div class="d-flex mb-3">
+                                                                                    <input type="text"
+                                                                                        name="komentarBalasan"
+                                                                                        class="form-control me-3"
+                                                                                        id="komentarBalasan"
+                                                                                        placeholder="Balas Komentar Dari"
+                                                                                        required>
 
-                                <!-- modal Bagikan start -->
-                                <div class="modal" id="bagikan">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                    Bagikan</h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="d-flex ">
-                                                    <div class="mt-2">
-                                                    Ke
-                                                </div>
-                                                <div  style="margin-left: 30px;">
-                                                    <form action="">
-                                                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                                                            <div class="search" style="border-radius: 10px; border: 0.50px black solid; ">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div>
-                                                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                                                <form action="/veed" method="GET">
-                                                                                    <input type="text" name="resep" autofocus
-                                                                                        placeholder="Cari ">
-                                                                                </form>
+                                                                                    <button type="submit"
+                                                                                        onclick="balas_komentar({{ $nomer++ }})"
+                                                                                        class="btn text-white"
+                                                                                        style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        @else
+                                                                            <form action="">
+                                                                                @csrf
+                                                                                <div class="d-flex mb-3">
+                                                                                    <input type="text"
+                                                                                        name="komentarBalasan"
+                                                                                        class="form-control me-3"
+                                                                                        id="komentarBalasan"
+                                                                                        placeholder="Balas Komentar Dari "
+                                                                                        required>
+                                                                                    <button type="button"
+                                                                                        onclick="harusLogin()"
+                                                                                        class="btn text-white"
+                                                                                        style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        @endif
+                                                                        @php
+                                                                            // mengambil data balasan komentar veed
+                                                                            $reply_comments = App\Models\reply_comment_veed::query()
+                                                                                ->where('comment_id', $item_comment->id)
+                                                                                ->get();
+                                                                            
+                                                                        @endphp
+                                                                        @foreach ($reply_comments as $numeric => $reply_comment)
+                                                                            @php
+                                                                                if (Auth::check()) {
+                                                                                    // memeriksa apakah balasan komentar veed sudah di like atau belum
+                                                                                    $isLike2sd = App\Models\like_reply_comment_veed::query()
+                                                                                        ->where('users_id', Auth::user()->id)
+                                                                                        ->where('reply_comment_veed_id', $reply_comment->id)
+                                                                                        ->where('veed_id', $item_video->id)
+                                                                                        ->exists();
+                                                                                }
+                                                                                $countLike2sd = App\Models\like_reply_comment_veed::query()
+                                                                                    ->where('reply_comment_veed_id', $reply_comment->id)
+                                                                                    ->where('veed_id', $item_video->id)
+                                                                                    ->count();
+                                                                            @endphp
+                                                                            <div class="rounded  border-black row">
+                                                                                <div class="col-1 mt-2">
+                                                                                    <img width="50px" height="50px"
+                                                                                        class="rounded-circle"
+                                                                                        src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
+                                                                                        alt="{{ $reply_comment->user->name }}">
+                                                                                </div>
+                                                                                <div class=" media-body col-10 border-black rounded"
+                                                                                    style="margin-left: 20px; margin-top: -50px;">
+                                                                                    <div class="d-flex "
+                                                                                        style="margin-top: 60px; ">
+                                                                                        <span><strong>{{ $reply_comment->user->name }}</strong></span>
+
+                                                                                        <small
+                                                                                            style="margin-left: 310px;">{{ $reply_comment->created_at->diffForHumans() }}</small>
+
+                                                                                    </div>
+                                                                                    <p>{{ $reply_comment->komentar }}
+                                                                                    </p>
+                                                                                    <div class="d-flex flex-row">
+                                                                                        @if (Auth::check())
+                                                                                            @if ($isLike2sd)
+                                                                                                <form
+                                                                                                    id="formLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                    action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
+                                                                                                    method="post">
+                                                                                                    @csrf
+                                                                                                    <button
+                                                                                                        onclick="likeReplyComment({{ $reply_comment->id }})"
+                                                                                                        type="submit"
+                                                                                                        class="btn ">
+                                                                                                        <i
+                                                                                                            class="fa-solid fa-thumbs-up"></i>
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            @else
+                                                                                                <form
+                                                                                                    id="formLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                    action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
+                                                                                                    method="post">
+                                                                                                    @csrf
+                                                                                                    <button
+                                                                                                        onclick="likeReplyComment({{ $reply_comment->id }})"
+                                                                                                        type="submit"
+                                                                                                        class="btn">
+                                                                                                        <i
+                                                                                                            class="fa-regular fa-thumbs-up"></i>
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            @endif
+                                                                                        @else
+                                                                                            <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                                                                onclick="harusLogin()"
+                                                                                                width="15px"
+                                                                                                height="40px"
+                                                                                                alt="">
+                                                                                            &nbsp; &nbsp;
+                                                                                        @endif
+                                                                                        <span class="mx-1 my-auto">
+                                                                                            {{ $countLike2sd }}
+                                                                                        </span>
+                                                                                        <!--
+                                                                                                                                <a href=""
+                                                                                                                                    type="button"
+                                                                                                                                    class="btn"><svg
+                                                                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                                                                        width="22"
+                                                                                                                                        height="22"
+                                                                                                                                        viewBox="0 0 24 24">
+                                                                                                                                        <path
+                                                                                                                                            fill="currentColor"
+                                                                                                                                            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                                                                                                    </svg></a>-->
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                        @endforeach
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </form>
-                                                </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- modal Bagikan end -->
-
-                                <!-- gift start -->
-                                <i class="fa-solid fa-gift ml-3 mr-1 my-auto"  data-bs-toggle="modal"
-                                data-bs-target="#gift"></i>
-
-                                 <!-- modal Bagikan start -->
-                                 <div class="modal" id="gift">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title"
-                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                    Beri Donasi</h5>
-                                                <button type="button" class="close" data-bs-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="d-flex ">
-
+                                                    @endforeach
+                                                    <!-- list komentar feed end -->
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- modal Bagikan end -->
-                                <!-- gift end -->
+                                    <!-- komentar feed end -->
+
+                                    <!-- Bagikan feed start -->
+                                    <i class="fa-solid fa-reply fa-flip-horizontal ml-3 mr-1 my-auto"
+                                        data-bs-toggle="modal" data-bs-target="#bagikan"></i>
+                                    <span class="my-auto">5</span>
+
+                                    <!-- modal Bagikan start -->
+
+                                    <style>
+                                        /* Gaya khusus untuk checkbox */
+                                        .select-checkbox {
+                                            display: none;
+                                            /* Sembunyikan checkbox asli */
+                                        }
+
+                                        /* Gaya label checkbox */
+                                        .select-checkbox+label {
+                                            display: inline-block;
+                                            width: 25px;
+                                            /* Sesuaikan lebar sesuai keinginan Anda */
+                                            height: 25px;
+                                            /* Sesuaikan tinggi sesuai keinginan Anda */
+                                            border: 1px solid #000;
+                                            /* Atur garis tepi */
+                                            border-radius: 50%;
+                                            /* Membuat checkbox bundar */
+                                            cursor: pointer;
+                                            /* Ganti kursor saat diarahkan ke checkbox */
+                                            vertical-align: middle;
+                                            /* Atur pemosisian vertikal */
+                                        }
+
+                                        /* Gaya label checkbox yang dicentang */
+                                        .select-checkbox:checked+label {
+                                            background-color: #F7941E;
+                                            /* Warna latar belakang saat dicentang */
+                                            border: none;
+                                        }
+                                    </style>
+
+                                    <div class="modal" id="bagikan">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                        Bagikan</h5>
+                                                    <button type="button" class="close mr-2" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="d-flex ">
+                                                        <div class="mt-2"
+                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                            Ke
+                                                        </div>
+                                                        
+                                                                <div class="container mt-1"
+                                                                    style="margin-top: -35px; margin-left: -5px; ">
+                                                                    <div class="search"
+                                                                        style="border-radius: 10px; border: 0.50px black solid; ">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-4">
+                                                                                <div>
+                                                                                    <div class="search-2"> <i
+                                                                                            class='bx bxs-map'></i>
+                                                                                        <form action="/veed"
+                                                                                            method="GET" class="inputt">
+                                                                                            <input type="text"
+                                                                                                name="resep" autofocus
+                                                                                                placeholder="Cari " class="inputt">
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                       
+                                                    </div>
+                                                    <h3 class="mt-4"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                        Disarankan</h3>
+                                                        <div class="d-flex mt-4">
+                                                            <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                <a href="">
+                                                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                                                        class="border rounded-circle me-2" alt="Avatar"
+                                                                        style="height: 55px" />
+                                                                </a>
+                                                            </div>
+                                                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9" >
+                                                                <div class=" rounded-3 px-3 py-1">
+                                                                    <a href="" class="text-dark mb-0">
+                                                                        <strong>Cewe Cuantik</strong>
+                                                                    </a>
+                                                                    <a href="" class="text-muted d-block">
+                                                                        <small>Cuantik2gmail.com sfsfssbsfb</small>
+                                                                    </a>
+                                                                </div>
+    
+                                                            </div>
+                                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                                                <input type="checkbox" class="select-checkbox"
+                                                                    id="checkbox1">
+                                                                <label for="checkbox1"></label>
+                                                            </div>
+    
+                                                        </div>
+                                                    <div class="d-flex mt-4">
+                                                        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                            <a href="">
+                                                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                                                    class="border rounded-circle me-2" alt="Avatar"
+                                                                    style="height: 55px" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9" >
+                                                            <div class=" rounded-3 px-3 py-1">
+                                                                <a href="" class="text-dark mb-0">
+                                                                    <strong>Cewe Cuantik</strong>
+                                                                </a>
+                                                                <a href="" class="text-muted d-block">
+                                                                    <small>Cuantik2gmail.com sfsfssbsfb</small>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                                            <input type="checkbox" class="select-checkbox"
+                                                                id="checkbox2">
+                                                            <label for="checkbox2"></label>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="d-flex mt-4">
+                                                        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                            <a href="">
+                                                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                                                    class="border rounded-circle me-2" alt="Avatar"
+                                                                    style="height: 55px" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9" >
+                                                            <div class=" rounded-3 px-3 py-1">
+                                                                <a href="" class="text-dark mb-0">
+                                                                    <strong>Cewe Cuantik</strong>
+                                                                </a>
+                                                                <a href="" class="text-muted d-block">
+                                                                    <small>Cuantik2gmail.com sfsfssbsfb</small>
+                                                                </a>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                                            <input type="checkbox" class="select-checkbox"
+                                                                id="checkbox3">
+                                                            <label for="checkbox3"></label>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal Bagikan end -->
+
+                                    <!-- gift start -->
+                                    <i class="fa-solid fa-gift ml-3 mr-1 my-auto" data-bs-toggle="modal"
+                                        data-bs-target="#gift"></i>
+
+                                    <!-- modal Bagikan start -->
+                                    <div class="modal" id="gift">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                        Beri Donasi</h5>
+                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="d-flex ">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal Bagikan end -->
+                                    <!-- gift end -->
                                 </span>
 
 
+                            </div>
+
+                            <div class="d-flex mb-3">
+
+                                <div>
+                                    <div class="rounded-3 py-1">
+                                        <a href="" class="text-dark mb-0">
+                                            <strong>{{ $item_video->deskripsi_video }}.</strong>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
                         </div>
+                    </div>
+                @endforeach
+                <!-- foreach video pembelajaran end -->
+            </div>
 
+            <!-- feed end -->
+
+            <!-- diikuti start -->
+            <div class="col-md-3">
+                <div class="card" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
+                    <div class="card-header text-white text-center"
+                        style="background-color: #F7941E;   border-top-right-radius: 10px;
+            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                        Diikuti
+                    </div>
+                    <div class="card-body" style="height: 500px;">
                         <div class="d-flex mb-3">
-
+                            <a href="">
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                            </a>
                             <div>
-                                <div class="rounded-3 py-1">
+                                <div class="bg-light rounded-3 px-3 py-1">
                                     <a href="" class="text-dark mb-0">
-                                        <strong>{{ $item_video->deskripsi_video }}.</strong>
+                                        <strong>Resep baru siap di Masak</strong>
                                     </a>
-
                                 </div>
 
                             </div>
                         </div>
-
                     </div>
-            </div>
-            @endforeach
-            <!-- foreach video pembelajaran end -->
-        </div>
-
-        <!-- feed end -->
-
-        <!-- diikuti start -->
-        <div class="col-md-3">
-            <div class="card" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
-                <div class="card-header text-white text-center"
-                    style="background-color: #F7941E;   border-top-right-radius: 10px;
-            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                    Diikuti
                 </div>
-                <div class="card-body" style="height: 500px;">
-                    <div class="d-flex mb-3">
-                        <a href="">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="border rounded-circle me-2"
-                                alt="Avatar" style="height: 40px" />
-                        </a>
-                        <div>
-                            <div class="bg-light rounded-3 px-3 py-1">
-                                <a href="" class="text-dark mb-0">
-                                    <strong>Resep baru siap di Masak</strong>
-                                </a>
-                            </div>
 
+                <div class="card mt-5 mb-5" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
+                    <div class="card-header text-white text-center"
+                        style="background-color: #F7941E;   border-top-right-radius: 10px;
+            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                        Belum Dibaca
+                    </div>
+                    <div class="card-body" style="height: 500px;">
+                        <div class="d-flex mb-3">
+                            <a href="">
+                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                            </a>
+                            <div>
+                                <div class="bg-light rounded-3 px-3 py-1">
+                                    <a href="" class="text-dark mb-0">
+                                        <strong>Bunda Rahma</strong>
+                                    </a>
+                                    <a href="" class="text-muted d-block">
+                                        <small>2 Pesan Baru</small>
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="card mt-5 mb-5" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
-                <div class="card-header text-white text-center"
-                    style="background-color: #F7941E;   border-top-right-radius: 10px;
-            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                    Belum Dibaca
-                </div>
-                <div class="card-body" style="height: 500px;">
-                    <div class="d-flex mb-3">
-                        <a href="">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp" class="border rounded-circle me-2"
-                                alt="Avatar" style="height: 40px" />
-                        </a>
-                        <div>
-                            <div class="bg-light rounded-3 px-3 py-1">
-                                <a href="" class="text-dark mb-0">
-                                    <strong>Bunda Rahma</strong>
-                                </a>
-                                <a href="" class="text-muted d-block">
-                                    <small>2 Pesan Baru</small>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         </div>
         <!-- diikuti end -->
@@ -746,6 +888,28 @@
 
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
+    {{-- <script>
+            // Ambil semua elemen checkbox dengan kelas select-checkbox
+const checkboxes = document.querySelectorAll('.select-checkbox');
+
+// Tambahkan event listener untuk setiap checkbox
+checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            // Checkbox dicentang, lakukan aksi yang diinginkan
+            // Contoh: console.log('Checkbox dicentang');
+        } else {
+            // Checkbox tidak dicentang, lakukan aksi yang diinginkan
+            // Contoh: console.log('Checkbox tidak dicentang');
+        }
+    });
+});
+
+function toggleCheckbox(checkbox) {
+        checkbox.checked = !checkbox.checked;
+    }
+
+        </script> --}}
     <script>
         // komentar reply feed ajax
         function balas_komentar(num) {
