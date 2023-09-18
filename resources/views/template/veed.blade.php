@@ -1,5 +1,120 @@
 @extends('template.nav')
 @section('content')
+
+<style>
+     .search {
+            background-color: #fff;
+            padding: 0px 10px;
+            border-radius: 5px;
+            width: 700px;
+        }
+
+        .search-1 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-1 input {
+            height: 45px;
+            border: none;
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 10px;
+            border-right: 2px solid #eee
+        }
+
+        .search-1 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        .search-1 i {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        ::placeholder {
+            color: #eee;
+            opacity: 1
+        }
+
+        .search-2 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-2 input {
+            height: 35px;
+            border: none;
+            width: 100%;
+            padding-left: 15px;
+            padding-right: 100px;
+
+
+        }
+
+        .search-2 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        /* button{
+                background-color: #F7941E;
+                border: none;
+                height: 45px;
+                width: 90px;
+                color: #ffffff;
+                position: absolute;
+                right: 1px;
+                top: 0px;
+                border-radius: 15px
+            } */
+        .search-2 i {
+            position: absolute;
+            top: 12px;
+            left: -10px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        .search-2 button {
+            position: absolute;
+            right: 4px;
+            top: -2px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 90px;
+            border-radius: 4px
+        }
+
+
+        @media (max-width:800px) {
+            .search-1 input {
+                border-right: none;
+                border-bottom: 1px solid #eee
+            }
+
+            .search-2 i {
+                left: 4px
+            }
+
+            .search-2 input {
+                padding-left: 34px
+            }
+
+            .search-2 button {
+                height: 37px;
+                top: 5px
+            }
+        }
+</style>
     <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
@@ -465,12 +580,84 @@
                                     </div>
                                 </div>
                                 <!-- komentar feed end -->
-                                <!-- reply feed start -->
-                                <i class="fa-solid fa-reply fa-flip-horizontal ml-3 mr-1 my-auto"></i>
-                                <span class="my-auto">0</span>
-                                <!-- reply feed end -->
+
+                                <!-- Bagikan feed start -->
+                                <i class="fa-solid fa-reply fa-flip-horizontal ml-3 mr-1 my-auto"
+                                data-bs-toggle="modal"
+                                    data-bs-target="#bagikan"></i>
+                                <span class="my-auto">5</span>
+
+                                <!-- modal Bagikan start -->
+                                <div class="modal" id="bagikan">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                    Bagikan</h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="d-flex ">
+                                                    <div class="mt-2">
+                                                    Ke
+                                                </div>
+                                                <div  style="margin-left: 30px;">
+                                                    <form action="">
+                                                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                                            <div class="search" style="border-radius: 10px; border: 0.50px black solid; ">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div>
+                                                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                                                <form action="/veed" method="GET">
+                                                                                    <input type="text" name="resep" autofocus
+                                                                                        placeholder="Cari ">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- modal Bagikan end -->
+
                                 <!-- gift start -->
-                                <i class="fa-solid fa-gift ml-3 mr-1 my-auto"></i>
+                                <i class="fa-solid fa-gift ml-3 mr-1 my-auto"  data-bs-toggle="modal"
+                                data-bs-target="#gift"></i>
+
+                                 <!-- modal Bagikan start -->
+                                 <div class="modal" id="gift">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title"
+                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                    Beri Donasi</h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="d-flex ">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- modal Bagikan end -->
                                 <!-- gift end -->
                                 </span>
 
