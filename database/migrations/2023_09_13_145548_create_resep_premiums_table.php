@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("users_id");
             $table->unsignedBigInteger("reseps_id");
+            $table->string('reference');
+            $table->string('merchant_ref')->nullable();
+            $table->bigInteger('total_amount');
+            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
             $table->timestamps();
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
