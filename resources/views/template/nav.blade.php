@@ -867,11 +867,13 @@
                             </div>
                             @endif
                         @else
+                        <div class="ms-5">
                             <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects ms-5"
                                 style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
                                     class="me-2 ms-2">Masuk</b></a>
-                            @endif
+                          
                         </div>
+                        @endif
                 </div>
                 </nav>
             </div>
