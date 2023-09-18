@@ -171,6 +171,19 @@
                 margin-left: 33%;
                 bottom: 10%
             }
+
+
+
+
+                .intro-1{
+
+                font-size: 16px;
+                }
+
+                .close{
+
+                color: #fff;
+                }
         </style>
 
         <div class="container py-5">
@@ -464,89 +477,36 @@
 
                             <!-- Modal -->
                             <div class="modal fade" id="staticBackdrop{{$num}}" data-bs-backdrop="static"
-                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                aria-hidden="true">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h1 class="modal-title fs-5" style="font-family:poppins"
-                                                id="staticBackdropLabel">Beli premium dulu ya!!!</h1>
-                                            <button type="button" style="border:none; background:none " data-bs-dismiss="modal"
+                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content" style="border-radius: 15px">
+                                        <div class="modal-body" style="border-radius: 15px; background:#F7941E">
+                                            <button type="button" style="margin-left: 96%;" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close">
-                                                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <g clip-path="url(#clip0_1816_441)">
-                                                    <path d="M14.1386 13.9456L19.516 19.6906M13.907 19.5516L19.7476 14.0847M9.52654 23.6518C13.2235 27.6015 19.5337 27.7579 23.5491 23.9994C27.5645 20.2408 27.825 13.9341 24.128 9.98446C20.4311 6.03478 14.1209 5.87837 10.1055 9.63689C6.09008 13.3954 5.82955 19.7021 9.52654 23.6518Z" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </g>
-                                                    <defs>
-                                                    <clipPath id="clip0_1816_441">
-                                                    <rect width="23.6071" height="24" fill="white" transform="translate(17.5215) rotate(46.8927)"/>
-                                                    </clipPath>
-                                                    </defs>
-                                                    </svg>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
+                                           </button>
+
                                             <div class="row">
-                                                <div class="col-lg-4 mb-3">
-                                                    <div class="card" style="width: 18rem;border-radius:15px">
-                                                        <img src="{{ asset('images/pemula.png') }}" class="card-img-top"
-                                                            alt="">
-                                                        <div class=card-body">
-                                                            <h5 class="card-title text-center">pemula</h5>
-                                                            <p class="text-center">1 bulan</p>
-                                                        </div>
-                                                        <ul class="list-group list-group-flush">
-                                                            <div class="card-body">
-                                                                <p class="text-center" style="font-family:poppins"><b>Rp.40.000,00</b></p>
-                                                                <br>
-                                                                <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
-                                                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
-                                                                 Beli Sekarang</a>
-                                                            </div>
-                                                        </ul>
+                                                <div class="col-md-6">
+                                                    <div class="text-center">
+                                                        <img src="{{ asset('images/anoying.jpg') }}" style="height: 100%; width: 100%;border-radius:15px; {{-- position: absolute; left: -15%; top: -11%;  --}}">
                                                     </div>
                                                 </div>
 
-                                                <div class="col-lg-4 mb-3">
-                                                    <div class="card" style="width: 18rem;border-radius:15px">
-                                                        <img src="{{ asset('images/reguler.png') }}" class="card-img-top"
-                                                            alt="">
-                                                        <div class=card-body">
-                                                            <h5 class="card-title text-center" style="margin-top: 27%;">reguler</h5>
-                                                            <p class="text-center">1 bulan</p>
+                                                <div class="col-md-6">
+                                                    <div class="text-white mt-5">
+                                                        <h1 class="mb-0" style="font-family:poppins">Premium</h1>
+                                                        <span class="intro-1">Ingin bisa mengakses resep?</span>
+
+                                                        <div class="mt-4">
+                                                            <span class="intro-2">Dengan premium, anda bisa melihat resep-resep
+                                                                 dan video-video tutorial dari koki terverifikasi</span>
                                                         </div>
-                                                        <ul class="list-group list-group-flush">
-                                                            <div class="card-body">
-                                                                <p class="text-center" style="font-family:poppins"><b>Rp.120.000,00</b></p>
-                                                                <br>
-                                                                <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
-                                                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
-                                                                 Beli Sekarang</a>
-                                                            </div>
-                                                        </ul>
+                                                        <div class="mt-4 mb-5">
+                                                            <a href="#" class="btn" style="background-color:white ;font-family:poppins;border:black;border-radius:15px ">Dapatkan premium <i class="fa fa-long-arrow-right"></i></a>
+                                                        </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="col-lg-4 mb-3">
-                                                    <div class="card" style="width: 18rem;border-radius:15px">
-                                                        <img src="{{ asset('images/langganan2.png') }}" class="card-img-top"
-                                                            alt="">
-                                                        <div class=card-body">
-                                                            <h5 class="card-title text-center" style="margin-top: 28%;">langganan</h5>
-                                                            <p class="text-center">1 bulan</p>
-                                                        </div>
-                                                        <ul class="list-group list-group-flush">
-                                                            <div class="card-body">
-                                                                <p class="text-center" style="font-family:poppins"><b>Rp.240.000,00</b></p>
-                                                                <br>
-                                                                <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
-                                                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
-                                                                 Beli Sekarang</a>
-                                                            </div>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -610,3 +570,95 @@
         }
     </script>
 @endsection
+
+  <!-- Modal -->
+  {{-- <div class="modal fade" id="staticBackdrop{{$num}}" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" style="font-family:poppins"
+                  id="staticBackdropLabel">Beli premium dulu ya!!!</h1>
+              <button type="button" style="border:none; background:none " data-bs-dismiss="modal"
+                  aria-label="Close">
+                  <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_1816_441)">
+                      <path d="M14.1386 13.9456L19.516 19.6906M13.907 19.5516L19.7476 14.0847M9.52654 23.6518C13.2235 27.6015 19.5337 27.7579 23.5491 23.9994C27.5645 20.2408 27.825 13.9341 24.128 9.98446C20.4311 6.03478 14.1209 5.87837 10.1055 9.63689C6.09008 13.3954 5.82955 19.7021 9.52654 23.6518Z" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      </g>
+                      <defs>
+                      <clipPath id="clip0_1816_441">
+                      <rect width="23.6071" height="24" fill="white" transform="translate(17.5215) rotate(46.8927)"/>
+                      </clipPath>
+                      </defs>
+                      </svg>
+              </button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col-lg-4 mb-3">
+                      <div class="card" style="width: 18rem;border-radius:15px">
+                          <img src="{{ asset('images/pemula.png') }}" class="card-img-top"
+                              alt="">
+                          <div class=card-body">
+                              <h5 class="card-title text-center">pemula</h5>
+                              <p class="text-center">1 bulan</p>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                              <div class="card-body">
+                                  <p class="text-center" style="font-family:poppins"><b>Rp.40.000,00</b></p>
+                                  <br>
+                                  <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                   Beli Sekarang</a>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 mb-3">
+                      <div class="card" style="width: 18rem;border-radius:15px">
+                          <img src="{{ asset('images/reguler.png') }}" class="card-img-top"
+                              alt="">
+                          <div class=card-body">
+                              <h5 class="card-title text-center" style="margin-top: 27%;">reguler</h5>
+                              <p class="text-center">1 bulan</p>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                              <div class="card-body">
+                                  <p class="text-center" style="font-family:poppins"><b>Rp.120.000,00</b></p>
+                                  <br>
+                                  <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                   Beli Sekarang</a>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4 mb-3">
+                      <div class="card" style="width: 18rem;border-radius:15px">
+                          <img src="{{ asset('images/langganan2.png') }}" class="card-img-top"
+                              alt="">
+                          <div class=card-body">
+                              <h5 class="card-title text-center" style="margin-top: 28%;">langganan</h5>
+                              <p class="text-center">1 bulan</p>
+                          </div>
+                          <ul class="list-group list-group-flush">
+                              <div class="card-body">
+                                  <p class="text-center" style="font-family:poppins"><b>Rp.240.000,00</b></p>
+                                  <br>
+                                  <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
+                                   Beli Sekarang</a>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div> --}}
+<!--  End Modal-->
