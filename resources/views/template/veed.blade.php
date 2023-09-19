@@ -1,127 +1,9 @@
 @extends('template.nav')
 @section('content')
-    <style>
-        .search {
-            background-color: #fff;
-            padding: 0px 10px;
-            border-radius: 5px;
-            width: 700px;
-        }
-
-        .search-1 {
-            position: relative;
-            width: 100%
-        }
-
-        .search-1 input {
-            height: 45px;
-            border: none;
-            width: 100%;
-            padding-left: 25px;
-            padding-right: 10px;
-            border-right: 2px solid #eee
-        }
-
-        .search-1 input:focus {
-            border-color: none;
-            box-shadow: none;
-            outline: none
-        }
-
-        .search-1 i {
-            position: absolute;
-            top: 12px;
-            left: 5px;
-            font-size: 24px;
-            color: #eee
-        }
-
-        ::placeholder {
-            color: #eee;
-            opacity: 1
-        }
-
-        .search-2 {
-            position: relative;
-            width: 100%
-        }
-
-        .search-2 input {
-            height: 35px;
-            border: none;
-            width: 100%;
-            padding-left: 15px;
-            padding-right: 100px;
-
-
-        }
-
-        .search-2 input:focus {
-            border-color: none;
-            box-shadow: none;
-            outline: none
-        }
-
-        /* button{
-                    background-color: #F7941E;
-                    border: none;
-                    height: 45px;
-                    width: 90px;
-                    color: #ffffff;
-                    position: absolute;
-                    right: 1px;
-                    top: 0px;
-                    border-radius: 15px
-                } */
-        .search-2 i {
-            position: absolute;
-            top: 12px;
-            left: -10px;
-            font-size: 24px;
-            color: #eee
-        }
-
-        .search-2 button {
-            position: relative;
-            right: 4px;
-            top: -2px;
-            border: none;
-            height: 38px;
-            background-color: #F7941E;
-            color: #fff;
-            width: 90px;
-            border-radius: 4px
-        }
-
-
-        @media (max-width:800px) {
-            .search-1 input {
-                border-right: none;
-                border-bottom: 1px solid #eee
-            }
-
-            .search-2 i {
-                left: 4px
-            }
-
-            .search-2 input {
-                padding-left: 34px
-            }
-
-            .search-2 button {
-                height: 37px;
-                top: 5px
-            }
-        }
-
-    @media (max-width: 640px){
-        .inputt{
-            max-width: 20px;
-            width: 10px;
-            size: 12px;
-        }
-    }
-    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+@push('style')
+    @powerGridStyles
+@endpush
     <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
@@ -500,7 +382,7 @@
                                                                             $reply_comments = App\Models\reply_comment_veed::query()
                                                                                 ->where('comment_id', $item_comment->id)
                                                                                 ->get();
-                                                                            
+
                                                                         @endphp
                                                                         @foreach ($reply_comments as $numeric => $reply_comment)
                                                                             @php
@@ -644,12 +526,127 @@
                                             border: none;
                                         }
                                     </style>
+                                    <style>
+
+        .search {
+            background-color: #fff;
+            padding: 0px 10px;
+            border-radius: 5px;
+            width: 650px;
+        }
+
+        .search-1 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-1 input {
+            height: 45px;
+            border: none;
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 10px;
+            border-right: 2px solid #eee
+        }
+
+        .search-1 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        .search-1 i {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        ::placeholder {
+            color: #eee;
+            opacity: 1
+        }
+
+        .search-2 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-2 input {
+            height: 35px;
+            border: none;
+            width: 100%;
+            padding-left: 15px;
+            padding-right: 100px;
+
+
+        }
+
+        .search-2 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        /* button{
+                background-color: #F7941E;
+                border: none;
+                height: 45px;
+                width: 90px;
+                color: #ffffff;
+                position: absolute;
+                right: 1px;
+                top: 0px;
+                border-radius: 15px
+            } */
+        .search-2 i {
+            position: absolute;
+            top: 12px;
+            left: -10px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        .search-2 button {
+            position: absolute;
+            right: 4px;
+            top: -2px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 90px;
+            border-radius: 4px
+        }
+
+
+        @media (max-width:800px) {
+            .search-1 input {
+                border-right: none;
+                border-bottom: 1px solid #eee
+            }
+
+            .search-2 i {
+                left: 4px
+            }
+
+            .search-2 input {
+                padding-left: 34px
+            }
+
+            .search-2 button {
+                height: 37px;
+                top: 5px
+            }
+        }
+                                    </style>
 
                                     <div class="modal" id="bagikan">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title"
+                                                    <h5 class="modal-title ml-3"
                                                         style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                         Bagikan</h5>
                                                     <button type="button" class="close mr-2" data-bs-dismiss="modal"
@@ -659,32 +656,32 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="d-flex ">
-                                                        <div class="mt-2"
+                                                        <div class="col-1 mt-2"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                             Ke
                                                         </div>
-                                                        
-                                                                <div class="container mt-1">
-                                                                    <div class="search"
-                                                                        style="border-radius: 10px; border: 0.50px black solid; ">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-4">
-                                                                                    <div class="search-2"> <i
-                                                                                            class='bx bxs-map'></i>
-                                                                                        <form action="/veed"
-                                                                                            method="GET">
-                                                                                            <input type="text"
-                                                                                                name="resep" autofocus
-                                                                                                placeholder="Cari">
-                                                                                        </form>
-                                                                                    </div>
+
+                                                        <form action="">
+                                                            <div class="container mt-1 justify-content-end">
+                                                                <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                                                                    <div class="row">
+                                                                        <div class="col-11">
+                                                                            <div>
+                                                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                                                    <form action="/admin/laporan-pengguna" method="GET">
+                                                                                        <input type="text" name="resep" autofocus
+                                                                                            placeholder="Cari Laporan Resep">
+                                                                                    </form>
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                       
+                                                            </div>
+                                                        </form>
+
                                                     </div>
-                                                    <h3 class="mt-4"
+                                                    <h3 class="mt-4 ml-3"
                                                         style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                         Disarankan</h3>
                                                         <div class="d-flex mt-4">
@@ -704,14 +701,14 @@
                                                                         <small>Cuantik2gmail.com sfsfssbsfb</small>
                                                                     </a>
                                                                 </div>
-    
+
                                                             </div>
                                                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
                                                                 <input type="checkbox" class="select-checkbox"
                                                                     id="checkbox1">
                                                                 <label for="checkbox1"></label>
                                                             </div>
-    
+
                                                         </div>
                                                     <div class="d-flex mt-4">
                                                         <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
@@ -780,17 +777,77 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title"
+                                                    <h5 class="modal-title ml-3"
                                                         style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                         Beri Donasi</h5>
-                                                    <button type="button" class="close" data-bs-dismiss="modal"
+                                                    <button type="button" class="close mr-2" data-bs-dismiss="modal"
                                                         aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="d-flex ">
+                                                        <div class="col-lg-3 my-1">
+                                                            <div class="card"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/kecil.png') }}" class="card-img-top"
+                                                                        alt="">
+                                                                    <div class=card-body">
+                                                                        <h5 class="card-title text-center" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Kecil</h5>
+                                                                        <p class="text-center" style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Rp. 5.000,00</p>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
 
+                                                        <div class="col-lg-3 my-1">
+                                                            <div class="card"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/sedang.png') }}" class="card-img-top"
+                                                                alt="">
+                                                            <div class=card-body">
+                                                                <h5 class="card-title text-center" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Sedang</h5>
+                                                                <p class="text-center" style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Rp. 10.000,00</p>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 my-1">
+                                                            <div class="card"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/besar.png') }}" class="card-img-top"
+                                                                        alt="">
+                                                                    <div class=card-body">
+                                                                        <h5 class="card-title text-center" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Besar</h5>
+                                                                        <p class="text-center"  style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Rp. 20.000,00</p>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-3 my-1">
+                                                            <div class="card"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/lainnya.png') }}" class="card-img-top"
+                                                                        alt="">
+                                                                    <div class=card-body">
+                                                                        <a href="#" data-bs-toggle="modal"
+                                                                        data-bs-target="#nilai" class="card-title " style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                        <p class="text-center"   style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">Masukkan Nilai</p>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="d-flex mt-4 ml-3">
+                                                        <input type="text" id="comment-veed1"
+                                                        name="commentVeed" width="500px"
+                                                        class="form-control rounded-3 me-3"
+                                                        style="margin-top: 12px; border-radius:100px;"
+                                                        placeholder="Tambahkan komentar...">
+
+                                                    <button type="submit" id="buttonCommentVeed"
+                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn  btn-sm text-light">
+                                                        <b class="me-3 ms-3">Kirim</b></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -802,7 +859,41 @@
 
 
                             </div>
-
+                                {{-- modal lainnya --}}
+                                <div class="modal fade" id="nilai" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <form action="" method="POST">
+                                                @csrf
+                                                @method('put')
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="reportModal"
+                                                        style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                        Masukkan Nilai</h5>
+                                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body d-flex align-items-center col-12 mb-3">
+                                                    <input type="number" id="comment-veed1"
+                                                    name="commentVeed" width="500px"
+                                                    class="form-control rounded-3 me-3"
+                                                    style="margin-top: 12px; border-radius:100px;"
+                                                    placeholder="Masukkan Jumlah...">
+                                                    
+                                                    <button type="submit" class="btn text-light rounded-3"
+                                                    style="margin-top: 12px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                    class="ms-2 me-2">Kirim</b>
+                                                </button>
+                                                
+                                            </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- end modal --}}
                             <div class="d-flex mb-3">
 
                                 <div>
