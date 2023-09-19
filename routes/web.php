@@ -41,7 +41,7 @@ Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('a
 
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
-
+Route::get('penawaran-prem',[LoginController::class,'penawaran_prem'])->name('penawaran.prem');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 //kursus
