@@ -137,10 +137,12 @@ class KokiController extends Controller
             "deskripsi_video" => $request->deskripsi_video,
             "upload_video" => $request->file("upload_video")->store("video-user", "public")
         ]);
+        $video_pembelajaran = upload_video::latest()->get();
         if ($up) {
             return response()->json([
                 "message" => "Sukses upload video!",
-                "success" => true
+                "success" => true,
+                "update" => $video_pembelajaran
             ]);
             //return redirect()->back()->with("success", "Sukses upload video");
         }

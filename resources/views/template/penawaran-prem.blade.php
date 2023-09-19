@@ -105,7 +105,7 @@
                             </ul>
                         </div>
                         <div class="pricing-footer text-center">
-                            <a href="#" class="btn btn-transparent-md">Beli Sekarang</a>
+                            <a href="/testing-payment/14900/pemula" class="btn btn-transparent-md">Beli Sekarang</a>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                             </ul>
                         </div>
                         <div class="pricing-footer text-center">
-                            <a href="#" class="btn btn-transparent-md">Beli sekarang!</a>
+                            <a href="/testing-payment/59900/standar" class="btn btn-transparent-md">Beli sekarang!</a>
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                             </ul>
                         </div>
                         <div class="pricing-footer text-center">
-                            <a href="#" class="btn btn-transparent-md">Beli sekarang!</a>
+                            <a href="/testing-payment/169900/platinum" class="btn btn-transparent-md">Beli sekarang!</a>
                         </div>
                     </div>
                 </div>

@@ -26,7 +26,9 @@ class TripayPaymentController extends Controller
         $error = curl_error($curl);
 
         curl_close($curl);
-        return $channel = json_decode($response)->data;
+
+        $channel = json_decode($response)->data;
+        return $channel;
         //echo empty($error) ? $response : $error;
     }
     public function requestTransaksi($method, $amount, $name_product, $name, $email)
@@ -72,7 +74,6 @@ class TripayPaymentController extends Controller
 
         curl_close($curl);
         $response = json_decode($response)->data;
-        //dd($response);
         return $response ? $response : $error;
     }
     public function detailPembayaran($reference)

@@ -102,11 +102,13 @@ class VeedController extends Controller
             "veed_id" => $veed_id,
             "komentar" => $request->commentVeed
         ]);
+        $komen_veed = comment_veed::latest()->get();
         if ($store_comment) {
             //return redirect()->back()->with('success', 'Sukses mengirim komentar!');
             return response()->json([
                 "success" => true,
-                "message" => "Anda berhasil memberi komentar!"
+                "message" => "Anda berhasil memberi komentar!",
+                "update" => $komen_veed
             ]);
         }
     }
