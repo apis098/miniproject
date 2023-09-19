@@ -1022,7 +1022,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-6 footer-col">
                     <div class="footer_detail ">
-                        <h1>HummaCook</h1>
+                        <h1 style="font-family:dancing script">HummaCook</h1>
                         <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan
                             Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang,
                             dan bahan-bahan masakannya yang mudah untuk didapatkan. </p>
