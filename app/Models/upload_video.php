@@ -12,7 +12,8 @@ class upload_video extends Model
     protected $fillable = [
         "users_id",
         "deskripsi_video",
-        "upload_video"
+        "upload_video",
+        'isPremium'
     ];
     public function user()
     {

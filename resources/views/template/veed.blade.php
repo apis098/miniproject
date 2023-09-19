@@ -58,7 +58,20 @@
                                                 d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
                                         </svg> Tambahkan Video</div>
                                 </a>
+                                @if (Auth::user()->isSuperUser === 'yes')
+                                    <div class="mt-2 mx-2">
+                                        <label for="isPremium" class="form-label" style="font-weight: 600;">
+                                            <b> Feed anda gratis / premium? </b>
+                                        </label> <br>
+                                        <input type="radio" class="btn-check" name="isPpremium" id="success-outlined"
+                                            autocomplete="off" value="no">
+                                        <label class="btn btn-outline-success mr-3" for="success-outlined">Gratis</label>
 
+                                        <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
+                                            autocomplete="off" value="yes">
+                                        <label class="btn btn-outline-danger" for="danger-outlined">Premium</label>
+                                    </div>
+                                @endif
                                 <button type="submit" class="btn " id="buttonUploadVideo"
                                     style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                     <span style="font-weight: 600; color: white;">Upload</span>
@@ -97,11 +110,11 @@
                                 <div class="d-flex mb-1">
                                     <a href="">
                                         @if ($item_video->user->foto)
-                                            <img src="{{ asset('storage/' . $item_vide->user->foto) }}"
+                                            <img src="{{ asset('storage/' . $item_video->user->foto) }}"
                                                 class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
                                         @else
-                                            <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle me-2"
-                                                alt="Avatar" style="height: 40px" />
+                                            <img src="{{ asset('images/default.jpg') }}"
+                                                class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
                                         @endif
                                     </a>
                                     <div style="margin-top: 8px;">
@@ -119,7 +132,8 @@
 
                             <!-- Media -->
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                                <video width="100%" height="100%" controls>
+                                <video {{ $item_video->isPremium === 'yes' ? 'class=feed' : '' }} width="100%"
+                                    height="100%" controls>
                                     <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
@@ -192,8 +206,7 @@
                                                         <h5 class="modal-title"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                             Komentar</h5>
-                                                        <button       
-                                                         type="button" class="close" data-bs-dismiss="modal"
+                                                        <button type="button" class="close" data-bs-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -219,13 +232,16 @@
                                                                             alt="Avatar"
                                                                             style="height: 60px; margin-left: 20px;" />
                                                                     @endif
-                                                                    <input type="text" id="comment_veed{{$urut}}"
+                                                                    <input type="text"
+                                                                        id="comment_veed{{ $urut }}"
                                                                         name="commentVeed" width="500px"
                                                                         class="form-control rounded-3 me-3"
                                                                         style="margin-top: 12px"
                                                                         placeholder="Masukkan komentar...">
 
-                                                                    <button type="submit" id="buttonCommentVeed{{ $urut }}" onclick="komentar_feed({{ $urut }})"
+                                                                    <button type="submit"
+                                                                        id="buttonCommentVeed{{ $urut }}"
+                                                                        onclick="komentar_feed({{ $urut }})"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light"><b
                                                                             class="me-3 ms-3">Kirim</b></button>
@@ -252,7 +268,7 @@
                                                         <!-- form komentar feed end -->
 
                                                         <!-- list komentar feed start -->
-                                                        <div id="komen_feed{{$urut}}">
+                                                        <div id="komen_feed{{ $urut }}">
                                                             @foreach ($item_video->comment_veed as $nomer => $item_comment)
                                                                 <div class="media row mb-2 mx-auto d-flex mt-5">
                                                                     <div class="col-1" style="margin-left: 20px;">
@@ -385,7 +401,7 @@
                                                                                         </div>
                                                                                     </form>
                                                                                 @endif
-                                                                               
+
                                                                                 <div id="reply_comments">
                                                                                     @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                         @php
@@ -402,7 +418,8 @@
                                                                                                 ->where('veed_id', $item_video->id)
                                                                                                 ->count();
                                                                                         @endphp
-                                                                                        <div class="rounded d-flex flex-row border-black">
+                                                                                        <div
+                                                                                            class="rounded d-flex flex-row border-black">
                                                                                             <div class="mt-5 me-3">
                                                                                                 <img width="50px"
                                                                                                     height="50px"
@@ -410,7 +427,8 @@
                                                                                                     src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                     alt="{{ $reply_comment->user->name }}">
                                                                                             </div>
-                                                                                            <div class="media-body border-black rounded">
+                                                                                            <div
+                                                                                                class="media-body border-black rounded">
                                                                                                 <div class="d-flex "
                                                                                                     style="margin-top: 60px; ">
                                                                                                     <span><strong>{{ $reply_comment->user->name }}</strong></span>
@@ -461,7 +479,8 @@
                                                                                                             alt="">
                                                                                                         &nbsp; &nbsp;
                                                                                                     @endif
-                                                                                                    <span id="countLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                    <span
+                                                                                                        id="countLikeReplyComment{{ $reply_comment->id }}"
                                                                                                         class="mx-1 my-auto">
                                                                                                         {{ $countLike2sd }}
                                                                                                     </span>
@@ -584,16 +603,16 @@
                                             }
 
                                             /* button{
-                            background-color: #F7941E;
-                            border: none;
-                            height: 45px;
-                            width: 90px;
-                            color: #ffffff;
-                            position: absolute;
-                            right: 1px;
-                            top: 0px;
-                            border-radius: 15px
-                        } */
+                                    background-color: #F7941E;
+                                    border: none;
+                                    height: 45px;
+                                    width: 90px;
+                                    color: #ffffff;
+                                    position: absolute;
+                                    right: 1px;
+                                    top: 0px;
+                                    border-radius: 15px
+                                } */
                                             .search-2 i {
                                                 position: absolute;
                                                 top: 12px;
@@ -793,9 +812,11 @@
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
                                                                         <div class="text-center">
-                                                                        <a href="#" class="card-title text-center"
-                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Kecil</a></div>
+                                                                            <a href="#"
+                                                                                class="card-title text-center"
+                                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                Kecil</a>
+                                                                        </div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 5.000,00</p>
@@ -810,9 +831,11 @@
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
                                                                         <div class="text-center">
-                                                                        <a href="#" class="card-title text-center"
-                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Sedang</a></div>
+                                                                            <a href="#"
+                                                                                class="card-title text-center"
+                                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                Sedang</a>
+                                                                        </div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 10.000,00</p>
@@ -827,9 +850,11 @@
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
                                                                         <div class="text-center">
-                                                                        <a href="#" class="card-title text-center"
-                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Besar</a></div>
+                                                                            <a href="#"
+                                                                                class="card-title text-center"
+                                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                Besar</a>
+                                                                        </div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 20.000,00</p>
@@ -844,9 +869,11 @@
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
                                                                         <div class="text-center">
-                                                                        <a href="#" data-bs-toggle="modal"
-                                                                            data-bs-target="#nilai" class="card-title "
-                                                                            style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a></div>
+                                                                            <a href="#" data-bs-toggle="modal"
+                                                                                data-bs-target="#nilai"
+                                                                                class="card-title "
+                                                                                style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                        </div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Masukkan Nilai</p>
@@ -990,7 +1017,60 @@
         <!-- diikuti end -->
 
     </section>
+    <button hidden id="buttonPremiums" type="button" style="position: absolute;  right: 70%; background-color:#F7941E; "
+        class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
+        data-bs-target="#staticBackdrops">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20">
+            <g fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
+                    clip-rule="evenodd" />
+                <path
+                    d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
+                <path fill-rule="evenodd" d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
+                    clip-rule="evenodd" />
+            </g>
+        </svg>
+    </button>
+    <!-- Modal untuk penawaran premium -->
+    <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 15px">
+                <div class="modal-body" style="border-radius: 15px; background:#F7941E">
+                    <button type="button" style="margin-left: 96%;" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close">
+                    </button>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <img src="{{ asset('images/anoying.jpg') }}"
+                                    style="height: 100%; width: 100%;border-radius:15px; {{-- position: absolute; left: -15%; top: -11%;  --}}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="text-white mt-5">
+                                <h1 class="mb-0" style="font-family:poppins">Premium</h1>
+                                <span class="intro-1">Ingin bisa mengakses resep?</span>
+
+                                <div class="mt-4">
+                                    <span class="intro-2">Dengan premium, anda bisa melihat resep-resep
+                                        dan video-video tutorial dari koki terverifikasi</span>
+                                </div>
+                                <div class="mt-4 mb-5">
+                                    <a href="{{ route('penawaran.prem') }}" class="btn"
+                                        style="background-color:white ;font-family:poppins;border:black;border-radius:15px ">Dapatkan
+                                        premium <i class="fa fa-long-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     {{-- <script>
@@ -1047,44 +1127,44 @@ function toggleCheckbox(checkbox) {
         }
         // komentar feed ajax
         function komentar_feed(num) {
-        $("#formCommentVeed" + num).submit(function(event) {
-            event.preventDefault();
-            let route = $(this).attr("action");
-            let data = new FormData($(this)[0]);
-            $.ajax({
-                url: route,
-                method: "POST",
-                data: data,
-                processData: false,
-                contentType: false,
-                success: function success(response) {
-                    if (response.success) {
+            $("#formCommentVeed" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        if (response.success) {
+                            iziToast.destroy();
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                            $('#komen_feed' + num).html(response.update);
+                        }
+                    },
+                    error: function error(xhr, status, errors) {
                         iziToast.destroy();
                         iziToast.show({
                             backgroundColor: '#F7941E',
                             title: '<i class="fa-regular fa-circle-question"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
-                            message: response.message,
+                            message: xhr.responseText,
                             position: 'topCenter',
                         });
-                        $('#komen_feed' + num).html(response.update);
                     }
-                },
-                error: function error(xhr, status, errors) {
-                    iziToast.destroy();
-                    iziToast.show({
-                        backgroundColor: '#F7941E',
-                        title: '<i class="fa-regular fa-circle-question"></i>',
-                        titleColor: 'white',
-                        messageColor: 'white',
-                        message: xhr.responseText,
-                        position: 'topCenter',
-                    });
-                }
+                });
             });
-        });
-    }
+        }
         // upload video feed ajax
         $("#formUploadVideo").submit(function(e) {
             e.preventDefault();
@@ -1265,5 +1345,22 @@ function toggleCheckbox(checkbox) {
                 position: 'topCenter',
             });
         }
+    </script>
+    <script>
+        // mengambil semua class pada video dengan nilai feed yang hanya ada di video premium
+        let videoPremium = document.querySelectorAll(".feed");
+        // dilakukan forEach karena untuk mengatasi ada banyak video dengan class feed
+        videoPremium.forEach(video => {
+            // addEventListener timeupdate ini untuk memberikan event setiap detiknya video berputar
+            video.addEventListener("timeupdate", function() {
+                // video.currentTime ini untuk mengambil data sudah berapa lama video berputar 
+                if (video.currentTime > 5) {
+                    // jika sudah lebih dari 5 detik maka video di pause
+                    video.pause();
+                    // membuka modal penawaran premium
+                    $("#buttonPremiums").click();
+                }
+            });
+        });
     </script>
 @endsection

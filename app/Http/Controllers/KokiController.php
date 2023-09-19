@@ -132,10 +132,22 @@ class KokiController extends Controller
             return response()->json($validasi->errors()->first(), 422);
             //return redirect()->back()->with("error", $validasi->errors()->first());
         }
+        $allUser = User::where("isSuperUser", "yes")->pluck('id')->toArray();
+        $isPremium = "no";
+
+        if (in_array(Auth::user()->id, $allUser)) {
+            if ($request->isPremium == "yes") {
+                $isPremium = "yes";
+            } elseif ($request->isPremium == "no") {
+                $isPremium = "no";
+            }
+        } 
+        
         $up = upload_video::create([
             "users_id" => Auth::user()->id,
             "deskripsi_video" => $request->deskripsi_video,
-            "upload_video" => $request->file("upload_video")->store("video-user", "public")
+            "upload_video" => $request->file("upload_video")->store("video-user", "public"),
+            "isPremium" => $isPremium
         ]);
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {

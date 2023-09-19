@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("users_id");
             $table->string("deskripsi_video");
             $table->string("upload_video");
+            $table->enum('isPremium', ['yes', 'no'])->default('no');
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
