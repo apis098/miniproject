@@ -187,7 +187,7 @@ ul.social-links li a i {
   }
 
   .services .iconbox-red i {
-    color: #ff5828;
+    color: #f7941e;
   }
 
   .services .iconbox-red:hover .icon i {
@@ -195,7 +195,7 @@ ul.social-links li a i {
   }
 
   .services .iconbox-red:hover .icon path {
-    fill: #ff5828;
+    fill: #f7941e;
   }
 
   .services .iconbox-teal i {
