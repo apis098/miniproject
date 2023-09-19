@@ -503,7 +503,7 @@
                                                                  dan video-video tutorial dari koki terverifikasi</span>
                                                         </div>
                                                         <div class="mt-4 mb-5">
-                                                            <a href="#" class="btn" style="background-color:white ;font-family:poppins;border:black;border-radius:15px ">Dapatkan premium <i class="fa fa-long-arrow-right"></i></a>
+                                                            <a href="{{ route('penawaran.prem') }}" class="btn" style="background-color:white ;font-family:poppins;border:black;border-radius:15px ">Dapatkan premium <i class="fa fa-long-arrow-right"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -608,7 +608,7 @@
                               <div class="card-body">
                                   <p class="text-center" style="font-family:poppins"><b>Rp.40.000,00</b></p>
                                   <br>
-                                  <a href="#"  class="btn btn-lg" style=" color:white; background: #F7941E;
+                                  <a href=""  class="btn btn-lg" style=" color:white; background: #F7941E;
                                    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; margin-left:35px">
                                    Beli Sekarang</a>
                               </div>

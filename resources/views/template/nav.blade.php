@@ -793,7 +793,7 @@
                                                     Favorite
                                                 </a>
                                                 <div class="dropdown-divider"></div>
-                                                <a href="#" style="width: 230px;"
+                                                <a href="{{ route('penawaran.prem') }}" style="width: 230px;"
                                                     class="dropdown-item text-orange"  data-bs-toggle="modal"
                                                     data-bs-target="#staticBackdrop">
                                                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
@@ -871,7 +871,7 @@
                             <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects ms-5"
                                 style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
                                     class="me-2 ms-2">Masuk</b></a>
-                          
+
                         </div>
                         @endif
                 </div>
