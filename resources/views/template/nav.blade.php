@@ -794,8 +794,7 @@
                                                 </a>
                                                 <div class="dropdown-divider"></div>
                                                 <a href="{{ route('penawaran.prem') }}" style="width: 230px;"
-                                                    class="dropdown-item text-orange"  data-bs-toggle="modal"
-                                                    data-bs-target="#staticBackdrop">
+                                                    class="dropdown-item text-orange">
                                                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
                                                         width="20" height="20" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
