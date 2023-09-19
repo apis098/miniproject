@@ -792,9 +792,10 @@
                                                                     <img src="{{ asset('img/kecil.png') }}"
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
-                                                                        <h5 class="card-title text-center"
+                                                                        <div class="text-center">
+                                                                        <a href="#" class="card-title text-center"
                                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Kecil</h5>
+                                                                            Kecil</a></div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 5.000,00</p>
@@ -808,9 +809,10 @@
                                                                     <img src="{{ asset('img/sedang.png') }}"
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
-                                                                        <h5 class="card-title text-center"
+                                                                        <div class="text-center">
+                                                                        <a href="#" class="card-title text-center"
                                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Sedang</h5>
+                                                                            Sedang</a></div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 10.000,00</p>
@@ -824,9 +826,10 @@
                                                                     <img src="{{ asset('img/besar.png') }}"
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
-                                                                        <h5 class="card-title text-center"
+                                                                        <div class="text-center">
+                                                                        <a href="#" class="card-title text-center"
                                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Besar</h5>
+                                                                            Besar</a></div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 20.000,00</p>
@@ -840,9 +843,10 @@
                                                                     <img src="{{ asset('img/lainnya.png') }}"
                                                                         class="card-img-top" alt="">
                                                                     <div class=card-body">
+                                                                        <div class="text-center">
                                                                         <a href="#" data-bs-toggle="modal"
                                                                             data-bs-target="#nilai" class="card-title "
-                                                                            style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                            style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a></div>
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Masukkan Nilai</p>
