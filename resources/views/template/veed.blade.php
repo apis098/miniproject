@@ -192,7 +192,8 @@
                                                         <h5 class="modal-title"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                             Komentar</h5>
-                                                        <button type="button" class="close" data-bs-dismiss="modal"
+                                                        <button       
+                                                         type="button" class="close" data-bs-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
@@ -252,10 +253,7 @@
 
                                                         <!-- list komentar feed start -->
                                                         <div id="komen_feed{{$urut}}">
-                                                            @php
-                                                            $komen_veed = \App\Models\comment_veed::latest()->get();
-                                                        @endphp
-                                                            @foreach ($komen_veed as $nomer => $item_comment)
+                                                            @foreach ($item_video->comment_veed as $nomer => $item_comment)
                                                                 <div class="media row mb-2 mx-auto d-flex mt-5">
                                                                     <div class="col-1" style="margin-left: 20px;">
                                                                         <img width="50px" height="50px"
@@ -387,15 +385,9 @@
                                                                                         </div>
                                                                                     </form>
                                                                                 @endif
-                                                                                @php
-                                                                                    // mengambil data balasan komentar veed
-                                                                                    $reply_comments = App\Models\reply_comment_veed::query()
-                                                                                        ->where('comment_id', $item_comment->id)
-                                                                                        ->get();
-                                                                                    
-                                                                                @endphp
+                                                                               
                                                                                 <div id="reply_comments">
-                                                                                    @foreach ($reply_comments as $numeric => $reply_comment)
+                                                                                    @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                         @php
                                                                                             if (Auth::check()) {
                                                                                                 // memeriksa apakah balasan komentar veed sudah di like atau belum
@@ -410,17 +402,15 @@
                                                                                                 ->where('veed_id', $item_video->id)
                                                                                                 ->count();
                                                                                         @endphp
-                                                                                        <div
-                                                                                            class="rounded  border-black row">
-                                                                                            <div class="col-1 mt-2">
+                                                                                        <div class="rounded d-flex flex-row border-black">
+                                                                                            <div class="mt-5 me-3">
                                                                                                 <img width="50px"
                                                                                                     height="50px"
                                                                                                     class="rounded-circle"
                                                                                                     src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                     alt="{{ $reply_comment->user->name }}">
                                                                                             </div>
-                                                                                            <div class=" media-body col-10 border-black rounded"
-                                                                                                style="margin-left: 20px; margin-top: -50px;">
+                                                                                            <div class="media-body border-black rounded">
                                                                                                 <div class="d-flex "
                                                                                                     style="margin-top: 60px; ">
                                                                                                     <span><strong>{{ $reply_comment->user->name }}</strong></span>
@@ -444,7 +434,7 @@
                                                                                                                     onclick="likeReplyComment({{ $reply_comment->id }})"
                                                                                                                     type="submit"
                                                                                                                     class="btn ">
-                                                                                                                    <i
+                                                                                                                    <i id="iconLikeReplyComment{{ $reply_comment->id }}"
                                                                                                                         class="fa-solid fa-thumbs-up"></i>
                                                                                                                 </button>
                                                                                                             </form>
@@ -458,7 +448,7 @@
                                                                                                                     onclick="likeReplyComment({{ $reply_comment->id }})"
                                                                                                                     type="submit"
                                                                                                                     class="btn">
-                                                                                                                    <i
+                                                                                                                    <i id="iconLikeReplyComment{{ $reply_comment->id }}"
                                                                                                                         class="fa-regular fa-thumbs-up"></i>
                                                                                                                 </button>
                                                                                                             </form>
@@ -471,22 +461,10 @@
                                                                                                             alt="">
                                                                                                         &nbsp; &nbsp;
                                                                                                     @endif
-                                                                                                    <span
+                                                                                                    <span id="countLikeReplyComment{{ $reply_comment->id }}"
                                                                                                         class="mx-1 my-auto">
                                                                                                         {{ $countLike2sd }}
                                                                                                     </span>
-                                                                                                    <!--
-                                                                                                                                            <a href=""
-                                                                                                                                                type="button"
-                                                                                                                                                class="btn"><svg
-                                                                                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                                                                                    width="22"
-                                                                                                                                                    height="22"
-                                                                                                                                                    viewBox="0 0 24 24">
-                                                                                                                                                    <path
-                                                                                                                                                        fill="currentColor"
-                                                                                                                                                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                                                                                                                </svg></a>-->
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -1165,6 +1143,15 @@ function toggleCheckbox(checkbox) {
                                 message: response.message,
                                 position: 'topCenter',
                             });
+                            if (response.like) {
+                                $("#iconLikeReplyComment" + num).removeClass("fa-regular");
+                                $("#iconLikeReplyComment" + num).addClass("fa-solid");
+                                $("#countLikeReplyComment" + num).text(response.countLike);
+                            } else {
+                                $("#iconLikeReplyComment" + num).removeClass("fa-solid");
+                                $("#iconLikeReplyComment" + num).addClass("fa-regular");
+                                $("#countLikeReplyComment" + num).text(response.countLike);
+                            }
                         }
                     }
                 });

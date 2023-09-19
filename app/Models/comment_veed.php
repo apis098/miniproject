@@ -24,7 +24,7 @@ class comment_veed extends Model
     }
     public function reply_comment_veed() 
     {
-        return $this->hasMany(reply_comment_veed::class);
+        return $this->hasMany(reply_comment_veed::class, "comment_id"); 
     }
     public function like_comment_veed() {
         return $this->hasMany(like_comment_veed::class);

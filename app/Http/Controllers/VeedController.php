@@ -53,9 +53,9 @@ class VeedController extends Controller
         $footer = footer::first();
 
         $video_pembelajaran = upload_video::latest()->get();
-        $comment_veed = comment_veed::latest()->get();
+
         $reply_comment_veed = reply_comment_veed::latest()->get();
-        return view("template.veed", compact("messageCount", "reply_comment_veed", "video_pembelajaran", "comment_veed", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact("messageCount", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
 
     public function sukai_veed(string $user_id, string $veed_id)
@@ -102,13 +102,14 @@ class VeedController extends Controller
             "veed_id" => $veed_id,
             "komentar" => $request->commentVeed
         ]);
-        $komen_veed = comment_veed::latest()->get();
+        $item_video = upload_video::where('id', $veed_id)->first();
+        $update = $item_video->comment_veed;
         if ($store_comment) {
             //return redirect()->back()->with('success', 'Sukses mengirim komentar!');
             return response()->json([
                 "success" => true,
                 "message" => "Anda berhasil memberi komentar!",
-                "update" => $komen_veed
+                "update" => $update
             ]);
         }
     }
