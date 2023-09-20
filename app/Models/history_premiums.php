@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ResepPremiums extends Model
+class history_premiums extends Model
 {
     use HasFactory;
-    protected $table = "resep_premiums";
+    protected $table = 'history_premiums';
     protected $fillable = [
         "users_id",
-        "bulan",
-        "reference", 
+        "premiums_id",
+        "reference",
         "merchant_ref",
         "total_amount",
         "status"
@@ -20,5 +20,7 @@ class ResepPremiums extends Model
     public function user() {
         return $this->belongsTo(User::class, 'users_id');
     }
-    
+    public function premium() {
+        return $this->belongsTo(premiums::class, 'premiums_id');
+    }
 }

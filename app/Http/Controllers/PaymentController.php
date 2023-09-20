@@ -10,6 +10,8 @@ use App\Models\ChMessage;
 use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\history_premiums;
+use App\Models\user_premiums;
 
 class PaymentController extends Controller
 {
@@ -55,9 +57,9 @@ class PaymentController extends Controller
         $getRequest = new TripayPaymentController();
         $get = $getRequest->requestTransaksi($request->method,$request->amount, $request->name_product, $request->name, $request->email);
         // create data in resep_premiums table
-        ResepPremiums::create([
+        history_premiums::create([
             'users_id' => auth()->user()->id,
-            'bulan' => 1,
+            'premiums_id' => 1,
             'reference' => $get->reference,
             'merchant_ref' => $get->merchant_ref,
             'total_amount' => $get->amount,
@@ -105,7 +107,38 @@ class PaymentController extends Controller
     }
     // halaman daftar transaksi
     public function daftar_transaksi() {
-        $daftar_transaksi = ResepPremiums::latest()->where('users_id', auth()->user()->id)->get();
-        return view('testing.daftarPaymentTesting', compact("daftar_transaksi"));
+        $idAdmin = User::where('role', 'admin')->first();
+        $userLogin = Auth::user();
+        // untuk user belum login
+        $userLog = 1;
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $admin = false;
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $id_user = Auth::user()->id;
+            $id_admin = User::where("role", "admin")->first();
+            if ($id_user == $id_admin->id) {
+                $admin = true;
+            } 
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            // jika user sudah login
+            $userLog = 2;
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        $footer = footer::first();
+        $daftar_transaksi = history_premiums::latest()->where('users_id', auth()->user()->id)->get();
+        return view('testing.daftarPaymentTesting', compact("daftar_transaksi", "messageCount", "notification", "unreadNotificationCount", "userLogin", "footer", "favorite"));
     }
 }

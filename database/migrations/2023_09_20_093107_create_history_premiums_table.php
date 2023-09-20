@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resep_premiums', function (Blueprint $table) {
+        Schema::create('history_premiums', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("users_id");
-            $table->integer('bulan');
+            $table->unsignedBigInteger('premiums_id');
             $table->string('reference');
             $table->string('merchant_ref')->nullable();
             $table->bigInteger('total_amount');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
+            $table->foreign("premiums_id")->references("id")->on("premiums")->onDelete("cascade");
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resep_premiums');
+        Schema::dropIfExists('history_premiums');
     }
 };

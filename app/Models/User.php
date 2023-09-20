@@ -88,7 +88,7 @@ class User extends Authenticatable
     public function like_reply_comment_veed() {
         return $this->hasMany(like_reply_comment_veed::class);
     }
-    public function resep_premium() {
-        return $this->hasMany(ResepPremiums::class);
+    public function user_premiums() {
+        return $this->hasMany(history_premiums::class, 'users_id');
     }
 }
