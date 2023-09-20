@@ -541,118 +541,117 @@
                                             }
                                         </style>
                                         <style>
-                                            .search {
-                                                background-color: #fff;
-                                                padding: 0px 10px;
-                                                border-radius: 5px;
-                                                width: 650px;
-                                            }
 
-                                            .search-1 {
-                                                position: relative;
-                                                width: 100%
-                                            }
+        .search {
+            background-color: #fff;
+            padding: 4px;
+            border-radius: 5px;
+            width: 200%;
+        }
 
-                                            .search-1 input {
-                                                height: 45px;
-                                                border: none;
-                                                width: 100%;
-                                                padding-left: 25px;
-                                                padding-right: 10px;
-                                                border-right: 2px solid #eee
-                                            }
+        .search-1 {
+            position: relative;
+            width: 100%
+        }
 
-                                            .search-1 input:focus {
-                                                border-color: none;
-                                                box-shadow: none;
-                                                outline: none
-                                            }
+        .search-1 input {
+            height: 45px;
+            border: none;
+            width: 100%;
+            padding-left: 34px;
+            padding-right: 10px;
+            border-right: 2px solid #eee
+        }
 
-                                            .search-1 i {
-                                                position: absolute;
-                                                top: 12px;
-                                                left: 5px;
-                                                font-size: 24px;
-                                                color: #eee
-                                            }
+        .search-1 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
 
-                                            ::placeholder {
-                                                color: #eee;
-                                                opacity: 1
-                                            }
+        .search-1 i {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            font-size: 10px;
+            color: #eee
+        }
 
-                                            .search-2 {
-                                                position: relative;
-                                                width: 100%
-                                            }
+        ::placeholder {
+            color: grey;
+            opacity: 1
+        }
 
-                                            .search-2 input {
-                                                height: 35px;
-                                                border: none;
-                                                width: 100%;
-                                                padding-left: 15px;
-                                                padding-right: 100px;
+        .search-2 {
+            position: relative;
+            width: 40%;
+            margin-left: -5%
+        }
 
+        .search-2 input {
+            height: 45px;
+            border: 0.50px black solid;
+            width: 280%;
+            border-radius: 15px;
+            color: #000;
+            padding-left: 18px;
+            padding-right: 100px;
+            text-align: center
+        }
 
-                                            }
-
-                                            .search-2 input:focus {
-                                                border-color: none;
-                                                box-shadow: none;
-                                                outline: none
-                                            }
-
-                                            /* button{
-                                    background-color: #F7941E;
-                                    border: none;
-                                    height: 45px;
-                                    width: 90px;
-                                    color: #ffffff;
-                                    position: absolute;
-                                    right: 1px;
-                                    top: 0px;
-                                    border-radius: 15px
-                                } */
-                                            .search-2 i {
-                                                position: absolute;
-                                                top: 12px;
-                                                left: -10px;
-                                                font-size: 24px;
-                                                color: #eee
-                                            }
-
-                                            .search-2 button {
-                                                position: absolute;
-                                                right: 4px;
-                                                top: -2px;
-                                                border: none;
-                                                height: 38px;
-                                                background-color: #F7941E;
-                                                color: #fff;
-                                                width: 90px;
-                                                border-radius: 4px
-                                            }
+        .search-2 input:focus {
+            box-shadow: none;
+        }
 
 
-                                            @media (max-width:800px) {
-                                                .search-1 input {
-                                                    border-right: none;
-                                                    border-bottom: 1px solid #eee
-                                                }
+        .search-2 i {
+            position: absolute;
+            top: 12px;
+            left: -10px;
+            font-size: 14px;
+            color: #eee
+        }
 
-                                                .search-2 i {
-                                                    left: 4px
-                                                }
+        .search-2 button {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            border: none;
+            height: 45px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 60px;
+        }
 
-                                                .search-2 input {
-                                                    padding-left: 34px
-                                                }
 
-                                                .search-2 button {
-                                                    height: 37px;
-                                                    top: 5px
-                                                }
-                                            }
+        @media (max-width: 767px) {
+            .search-1 input {
+
+                border-bottom: 1px solid #0000
+            }
+
+            .search-2 i {
+                left: 4px
+            }
+
+            .search-2 input {
+                padding-left: 34px
+            }
+
+            .search-2 button {
+                height: 30px;
+                top: 4px
+            }
+
+            .d-flex {
+        flex-wrap: nowrap;
+    }
+
+    .col-1 {
+        white-space: nowrap;
+    }
+
+        }
                                         </style>
 
                                         <div class="modal" id="bagikan">
@@ -668,37 +667,24 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <div class="d-flex ">
-                                                            <div class="col-1 mt-2"
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="col-1 mt-2 me-3"
                                                                 style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                                 Ke
                                                             </div>
 
-                                                            <form action="">
-                                                                <div class="container mt-1 justify-content-end">
-                                                                    <div class="search"
-                                                                        style="border-radius: 15px; border: 0.50px black solid; ">
-                                                                        <div class="row">
-                                                                            <div class="col-11">
-                                                                                <div>
-                                                                                    <div class="search-2"> <i
-                                                                                            class='bx bxs-map'></i>
-                                                                                        <form
-                                                                                            action="/admin/laporan-pengguna"
-                                                                                            method="GET">
-                                                                                            <input type="text"
-                                                                                                name="resep" autofocus
-                                                                                                placeholder="Cari Laporan Resep">
-                                                                                        </form>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                            <div class="search" style="border-radius: 15px;">
+                                                                <div class="col-lg-11 mt-2">
+                                                                    <div class="search-2"> <i class='bx bxs-map'></i>
+                                                                        <form action="#" method="GET">
+                                                                            <input type="text" name="" style="text-align: left;" placeholder="Cari..."
+                                                                                value="{{-- {{ request()->nama_resep }} --}}">
+                                                                        </form>
                                                                     </div>
                                                                 </div>
-                                                            </form>
-
+                                                            </div>
                                                         </div>
+
                                                         <h3 class="mt-4 ml-3"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                             Disarankan</h3>
@@ -1353,7 +1339,7 @@ function toggleCheckbox(checkbox) {
         videoPremium.forEach(video => {
             // addEventListener timeupdate ini untuk memberikan event setiap detiknya video berputar
             video.addEventListener("timeupdate", function() {
-                // video.currentTime ini untuk mengambil data sudah berapa lama video berputar 
+                // video.currentTime ini untuk mengambil data sudah berapa lama video berputar
                 if (video.currentTime > 5) {
                     // jika sudah lebih dari 5 detik maka video di pause
                     video.pause();
