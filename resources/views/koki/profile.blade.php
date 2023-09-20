@@ -63,6 +63,17 @@
                                 <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
                             </span>
                         </button>
+                        @if (Auth::check())
+                        @if (Auth::user()->isSuperUser == "yes")
+                        <br>
+                        <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
+                            <span style="font-weight: 600">
+                                <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Kursus</a>
+                            </span>
+                        </button>
+                        @endif
+                            
+                        @endif
                         {{-- <button style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn text-light mb-3">
                             <span style="font-weight: 600">
                                 <a href="/roomchat/roomchat" style="color: rgb(255, 255, 255);"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="3.5" cy="7" r=".5"/><circle cx="6.75" cy="7" r=".5"/><circle cx="10" cy="7" r=".5"/><path d="M7 .5a6.5 6.5 0 0 0-5.41 10.1L.5 13.5l3.65-.66A6.5 6.5 0 1 0 7 .5Z"/></g></svg></a>

@@ -160,12 +160,14 @@ class VeedController extends Controller
             "veed_id" => $veed_id,
             "komentar" => $request->komentarBalasan
         ]);
+        $item_comment = reply_comment_veed::where('comment_id', $comment_id)->first();
+        $up = $item_comment->reply_comment_veed;
         if ($store_comment) {
-            /*return response()->json([
+            return response()->json([
                 "success" => true,
-                "message" => "Sukses membalas komentar!"
-            ]);*/
-            return redirect()->back()->with("success", "Sukses membalas komentar!");
+                "message" => "Sukses membalas komentar!",
+                "update" => $up
+            ]);
         }
     }
     public function sukai_balasan_komentar_veed(string $user_id, string $reply_comment_id, $veed_id)
@@ -183,6 +185,7 @@ class VeedController extends Controller
             $countLike = like_reply_comment_veed::query()
              ->where('users_id', $user_id)
              ->where('veed_id', $veed_id)
+             ->where('reply_comment_veed_id', $reply_comment_id)
              ->count();
             return response()->json([
                 "success" => true,
@@ -198,6 +201,7 @@ class VeedController extends Controller
             $countLike = like_reply_comment_veed::query()
              ->where('users_id', $user_id)
              ->where('veed_id', $veed_id)
+             ->where('reply_comment_veed_id', $reply_comment_id)
              ->count();
             return response()->json([
                 "success" => true,

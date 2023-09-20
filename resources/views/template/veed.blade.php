@@ -63,8 +63,8 @@
                                         <label for="isPremium" class="form-label" style="font-weight: 600;">
                                             <b> Feed anda gratis / premium? </b>
                                         </label> <br>
-                                        <input type="radio" class="btn-check" name="isPpremium" id="success-outlined"
-                                            autocomplete="off" value="no">
+                                        <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
+                                            autocomplete="off" value="no" checked>
                                         <label class="btn btn-outline-success mr-3" for="success-outlined">Gratis</label>
 
                                         <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
@@ -239,7 +239,7 @@
                                                                             style="height: 60px; margin-left: 20px;" />
                                                                     @endif
                                                                     <input type="text"
-                                                                        id="comment_veed{{ $urut }}"
+                                                                        id="input_comment_feed{{ $urut }}"
                                                                         name="commentVeed" width="500px"
                                                                         class="form-control rounded-3 me-3"
                                                                         style="margin-top: 12px"
@@ -372,7 +372,7 @@
                                                                             <div class="card card-body">
                                                                                 @if (Auth::check())
                                                                                     <form
-                                                                                        id="formBalasKomentar{{ $nomer++ }}"
+                                                                                        id="formBalasKomentar{{ $item_comment->id }}"
                                                                                         action="{{ route('balas.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
                                                                                         method="POST">
                                                                                         @csrf
@@ -380,12 +380,12 @@
                                                                                             <input type="text"
                                                                                                 name="komentarBalasan"
                                                                                                 class="form-control me-3"
-                                                                                                id="komentarBalasan"
+                                                                                                id="inputKomentarBalasan{{ $item_comment->id }}"
                                                                                                 placeholder="Balas Komentar Dari"
                                                                                                 required>
 
                                                                                             <button type="submit"
-                                                                                                onclick="balas_komentar({{ $nomer++ }})"
+                                                                                                onclick="balas_komentar({{ $item_comment->id }})"
                                                                                                 class="btn text-white"
                                                                                                 style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
                                                                                         </div>
@@ -408,7 +408,7 @@
                                                                                     </form>
                                                                                 @endif
 
-                                                                                <div id="reply_comments">
+                                                                                <div id="reply_comments{{ $item_comment->id }}">
                                                                                     @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                         @php
                                                                                             if (Auth::check()) {
@@ -1088,7 +1088,7 @@ function toggleCheckbox(checkbox) {
         // komentar reply feed ajax
         function balas_komentar(num) {
             $("#formBalasKomentar" + num).off('submit');
-            $("#formBalasKomentar").submit(function(e) {
+            $("#formBalasKomentar" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
@@ -1109,12 +1109,15 @@ function toggleCheckbox(checkbox) {
                                 message: response.message,
                                 position: 'topCenter',
                             });
+                            $("#reply_comments" + num).html(response.update);
+                            $("#inputKomentarBalasan" + num).val('');
                         }
                     },
                 });
             });
         }
         // komentar feed ajax
+        
         function komentar_feed(num) {
             $("#formCommentVeed" + num).submit(function(event) {
                 event.preventDefault();
@@ -1137,7 +1140,7 @@ function toggleCheckbox(checkbox) {
                                 message: response.message,
                                 position: 'topCenter',
                             });
-                            $('#komen_feed' + num).html(response.update);
+                            $("#input_comment_feed" + num).val('');
                         }
                     },
                     error: function error(xhr, status, errors) {
@@ -1154,6 +1157,7 @@ function toggleCheckbox(checkbox) {
                 });
             });
         }
+       
         // upload video feed ajax
         $("#formUploadVideo").submit(function(e) {
             e.preventDefault();
