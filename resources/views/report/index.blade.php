@@ -381,6 +381,7 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($reportResep as $row)
                             <div id="search-results">
                                 <tr class="mt-5">
@@ -400,6 +401,12 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if ($reportResep->count() == 0)
+                    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+                        <img src="{{asset('images/data.png')}}" style="width: 15em">
+                        <p><b>Tidak ada data</b></p>
+                    </div>
+                @endif
 
                     {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
                 </div>

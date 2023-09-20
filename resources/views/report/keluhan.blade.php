@@ -453,6 +453,13 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if ($reportComplaint->count() == 0)
+                    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+                        <img src="{{asset('images/data.png')}}" style="width: 15em">
+                        <p><b>Tidak ada data</b></p>
+                    </div>
+                @endif
+
                     {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
                 </div>
                 {{-- end --}}

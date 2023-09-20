@@ -129,7 +129,7 @@
                                         </a>
                                         <a href="" class="text-muted d-block"
                                             style="float: right; margin-left: 390px">
-                                            <small>{{ $item_video->created_at->diffForHumans() }}</small>
+                                            <small> {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                         </a>
                                     </div>
                                 </div>
@@ -290,7 +290,7 @@
                                                                                 <strong>{{ $item_comment->user->name }}</strong>
                                                                             </h5>
                                                                             <small class=""
-                                                                                style="margin-left: 440px;">{{ $item_comment->created_at->diffForHumans() }}</small>
+                                                                                style="margin-left: 420px;"> {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                         </div>
                                                                         <p>{{ $item_comment->komentar }}</p>
 
@@ -424,23 +424,20 @@
                                                                                                 ->where('veed_id', $item_video->id)
                                                                                                 ->count();
                                                                                         @endphp
-                                                                                        <div
-                                                                                            class="rounded d-flex flex-row border-black">
-                                                                                            <div class="mt-5 me-3">
+                                                                                        <div class="rounded d-flex flex-row border-black ">
+                                                                                            <div class="mt-1 me-3">
                                                                                                 <img width="50px"
                                                                                                     height="50px"
                                                                                                     class="rounded-circle"
                                                                                                     src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                     alt="{{ $reply_comment->user->name }}">
                                                                                             </div>
-                                                                                            <div
-                                                                                                class="media-body border-black rounded">
-                                                                                                <div class="d-flex "
-                                                                                                    style="margin-top: 60px; ">
+                                                                                            <div class="media-body border-black rounded mb">
+                                                                                                <div class="d-flex mt-2">
                                                                                                     <span><strong>{{ $reply_comment->user->name }}</strong></span>
 
                                                                                                     <small
-                                                                                                        style="margin-left: 310px;">{{ $reply_comment->created_at->diffForHumans() }}</small>
+                                                                                                        style="margin-left: 310px;">{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
 
                                                                                                 </div>
                                                                                                 <p>{{ $reply_comment->komentar }}
