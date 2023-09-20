@@ -102,6 +102,12 @@
                 </div>
                 <!-- foreach video pembelajaran start -->
                 <div id="video_pembelajaran">
+                    @if ($video_pembelajaran->count() == 0)
+                    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 7em">
+                        <img src="{{asset('images/data.png')}}" style="width: 15em">
+                        <p><b>Tidak ada data</b></p>
+                    </div>
+                @endif
                     @foreach ($video_pembelajaran as $urut => $item_video)
                         <div class="card mt-4 mb-5" style="max-width: 42rem;">
                             <!-- Data -->
