@@ -57,8 +57,8 @@
         }
 
         .table-custom td {
-            padding-top: 30px;
-            padding-bottom: 30px;
+            padding-top: 25px;
+            padding-bottom: 25px;
             width: 195px;
             border-top: 1px solid black;
             border-bottom: 1px solid black;
@@ -213,16 +213,16 @@
         }
 
         /* button{
-                    background-color: #F7941E;
-                    border: none;
-                    height: 45px;
-                    width: 90px;
-                    color: #ffffff;
-                    position: absolute;
-                    right: 1px;
-                    top: 0px;
-                    border-radius: 15px
-                } */
+                        background-color: #F7941E;
+                        border: none;
+                        height: 45px;
+                        width: 90px;
+                        color: #ffffff;
+                        position: absolute;
+                        right: 1px;
+                        top: 0px;
+                        border-radius: 15px
+                    } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -297,15 +297,29 @@
                 @foreach ($daftar_transaksi as $data)
                     <tr>
                         <td style="border-left:1px solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
-                            {{ $data->user->name }}</td>
-                        <td style="border-right:1px solid black;">
-                            
+                           @if ($data->user->foto)
+                               <img class="mr-3" style="border-radius: 50%;" src="{{ asset('storage/'.$data->user->foto) }}" alt="default-profile" width="70px" height="70px">
+                           @else
+                               <img class="mr-3" style="border-radius: 50%;" src="{{ asset('images/default.jpg') }}" alt="{{ $data->user->foto }}" width="70px" height="70px">
+                           @endif
+                            {{ $data->user->name }}
+                        </td>
+                        <td>
+                            {{ $data->premium->name_premium }}
+                        </td>
+                        <td>
+                            RP {{ number_format($data->total_amount, 2, ',', '.') }}
                         </td>
                         <td style="border-right: 1px solid black;">
-                            {{ $data->total_amount }}
-                        </td>
-                        <td style="border-right: 1px solid black;">
-                            {{ $data->status }}
+                            @if ($data->status == 'paid')
+                                <button type="button" style="background-color: #F7941E; border: none;border-radius:10px;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" class="btn btn-primary">
+                                    <a style="color: white;" href="/detail-pembayaran/{{ $data->reference }}"> Sudah Dibayar </a>
+                                </button>
+                            @else
+                                <button type="button" style="background-color: #F7941E; border: none;border-radius:10px;box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);" class="btn btn-primary">
+                                    <a style="color: white;" href="/detail-pembayaran/{{ $data->reference }}"> Belum Dibayar </a>
+                                </button>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
