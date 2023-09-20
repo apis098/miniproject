@@ -18,4 +18,7 @@ class premiums extends Model
     public function user_premiums() {
         return $this->hasMany(history_premiums::class, 'premiums_id');
     }
+    public function fitur_premiums() {
+        return $this->hasMany(fitur_premiums::class, 'premiums_id');
+    }
 }
