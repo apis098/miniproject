@@ -212,6 +212,12 @@
                         {{-- start tab 1 --}}
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                             tabindex="0">
+                            @if ($recipes->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
+                                <img src="{{asset('images/data.png')}}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
                                 @foreach ($recipes as $r)
                                     <div class="col-lg-4 my-1">
@@ -224,7 +230,7 @@
                                                 </div>
                                                 <div class=" col-8">
                                                     <a type="button"  class="as" href="/artikel/{{$r->id}}/{{$r->nama_resep}}">
-                                                        <strong> {{ $r->nama_resep }} </strong>  
+                                                        <strong> {{ $r->nama_resep }} </strong>
                                                     </a> <br>
                                                     <!-- Modal -->
 
@@ -244,6 +250,12 @@
                         {{-- start tab 2 --}}
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                                 tabindex="0">
+                                {{-- @if ($recipes->count() == 0)
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
+                                    <img src="{{asset('images/data.png')}}" style="width: 15em">
+                                    <p><b>Tidak ada data</b></p>
+                                </div>
+                            @endif --}}
                                 <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
                                     {{-- @foreach ($recipes as $r) --}}
                                         <div class="col-lg-4 my-1">
@@ -267,6 +279,12 @@
                         {{-- start tab 3 --}}
                         <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                             tabindex="0">
+                            {{-- @if ($recipes->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
+                                <img src="{{asset('images/data.png')}}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif --}}
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
                                 {{-- @foreach ($recipes as $r) --}}
                                     <div class="col-lg-4 my-1">

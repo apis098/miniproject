@@ -803,6 +803,18 @@
                                                     Upgrade
                                                 </a>
                                                 <div class="dropdown-divider"></div>
+                                                <a href="#" style="width: 230px;"
+                                                    class="dropdown-item text-orange">
+                                                    <svg  class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="currentColor" d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z"/></svg>
+                                                    Top up
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a href="#" style="width: 230px;"
+                                                    class="dropdown-item text-orange">
+                                                    <svg  class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z"/></svg>
+                                                    Riwayat Top up
+                                                </a>
+                                                <div class="dropdown-divider"></div>
                                                 <a href="{{ route('actionlogout') }}" style="width: 230px;"
                                                     class="dropdown-item text-orange">
                                                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
