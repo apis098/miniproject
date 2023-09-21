@@ -23,6 +23,7 @@ use App\Http\Controllers\LikeCommentController;
 use App\Http\Controllers\VeedController;
 use App\Http\Controllers\detail_kursusController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\KursusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,6 +141,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
+        Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video');
     });
