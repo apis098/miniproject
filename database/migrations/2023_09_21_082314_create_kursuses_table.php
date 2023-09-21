@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('jumlah_pelajaran');
             $table->enum('tipe_kursus', ['perorangan', 'grup']);
             $table->string('lama_kursus');
+            $table->enum('status', ['ditunggu', 'diterima', 'ditolak'])->default('ditunggu');
             $table->timestamps();
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");

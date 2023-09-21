@@ -18,7 +18,8 @@ class kursus extends Model
         "tarif_per_jam",
         "jumlah_pelajaran",
         "tipe_kursus",
-        "lama_kursus"
+        "lama_kursus",
+        "status"
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");

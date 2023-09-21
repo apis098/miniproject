@@ -54,8 +54,8 @@
                     <div class="mt-5">
                         <label for="exampleFormControlInput1" class="form-label text-poppins"
                             style="font: Poppins"><b>Nama</b></label>
-                        <input type="#" name="#" class="form-control" id="#"
-                            placeholder="Masukkan nama kursus" value="{{ old('#') }}" required>
+                        <input type="text" name="nama_kursus" class="form-control" id="#"
+                            placeholder="Masukkan nama kursus" value="{{ old('nama_kursus') }}">
                         @error('#')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -65,7 +65,7 @@
                     </div>
                     <div class="mt-2" style="margin-bottom: 20px">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
-                        <textarea name="#" class="form-control" placeholder="Masukkan deskripsi kursus" id="floatingTextarea" required>{{ old('#') }}</textarea>
+                        <textarea name="deskripsi_kursus" class="form-control" placeholder="Masukkan deskripsi kursus" id="floatingTextarea">{{ old('#') }}</textarea>
                         @error('#')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -77,8 +77,8 @@
                     <div>
                         <div class="mt-2" style="margin-bottom: 20px">
                             <label for="exampleFormControlInput1" class="form-label"><b>Lokasi</b></label>
-                            <input type="text" name="#" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan lokasi kursus" value="{{ old('#') }}" required>
+                            <input type="text" name="lokasi_kursus" class="form-control" id="exampleFormControlInput1"
+                                placeholder="Masukkan lokasi kursus" value="{{ old('#') }}">
                             @error('#')
                                 <div class="alert alert-danger">
                                     {{ $message }}
@@ -89,8 +89,8 @@
                         <div>
                             <div class="mt-2" style="margin-bottom: 20px">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Tarif perjam</b></label>
-                                <input type="number" name="#" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="Masukkan tarif per jam" value="{{ old('#') }}" required>
+                                <input type="number" name="tarif_per_jam" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Masukkan tarif per jam" value="{{ old('#') }}">
                                 @error('#')
                                     <div class="alert alert-danger">
                                         {{ $message }}
@@ -102,9 +102,9 @@
                                 <div class="mt-2" style="margin-bottom: 20px">
                                     <label for="exampleFormControlInput1" class="form-label"><b>Jumlah
                                             pelajaran</b></label>
-                                    <input type="number" name="#" class="form-control"
+                                    <input type="number" name="jumlah_pelajaran" class="form-control"
                                         id="exampleFormControlInput1" placeholder="Masukkan jumlah pelajaran"
-                                        value="{{ old('#') }}" required>
+                                        value="{{ old('#') }}">
                                     @error('#')
                                         <div class="alert alert-danger">
                                             {{ $message }}
@@ -118,10 +118,10 @@
                                     <label for="exampleFormControlInput1" class="form-label"
                                         style="margin-left: -10px;"><b>
                                             Tipe Kursus</b></label>
-                                    <input type="text" name="#" class="form-control col-10"
+                                    <input type="text" name="tipe_kursus" class="form-control col-10"
                                         id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                                        value="{{ old('#') }}" required>
-                                    <select name="#" id="#" class="form-control col-2">
+                                        value="{{ old('#') }}">
+                                    <select name="informasi_tipe_kursus" id="#" class="form-control col-2">
                                         <option value="grup" {{ old('#') == 'grup' ? 'selected' : '' }}>grup</option>
                                         <option value="perorangan" {{ old('#') == 'perorangan' ? 'selected' : '' }}>
                                             perorangan</option>
@@ -138,10 +138,10 @@
                                     <label for="exampleFormControlInput1" class="form-label"
                                         style="margin-left: -10px;"><b>
                                             Lama kursus</b></label>
-                                    <input type="text" name="#" class="form-control col-10"
+                                    <input type="text" name="lama_kursus" class="form-control col-10"
                                         id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                                        value="{{ old('#') }}" required>
-                                    <select name="#" id="#" class="form-control col-2">
+                                        value="{{ old('#') }}">
+                                    <select name="informasi_lama_kursus" id="#" class="form-control col-2">
                                         <option value="menit" {{ old('#') == 'menit' ? 'selected' : '' }}>menit</option>
                                         <option value="jam" {{ old('#') == 'jam' ? 'selected' : '' }}>jam</option>
                                     </select>
@@ -160,7 +160,7 @@
                                 <div class="row">
                                     <div class="col-lg-3 mb-4">
                                         <input type="text" id="jenis_kursus" value="jenis_kursus"
-                                            style="display: none;">
+                                            style="display: none;" value="memanggang">
                                         <button id="pilih_jenis_kursus" onclick="pilih_jenis_kursus(1)"
                                             class="btn btn-light" type="button"
                                             style="width: 100%; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
@@ -210,12 +210,14 @@
         crossorigin="anonymous"></script>
     <script>
         $("document").ready(function () {
-            $("#formTambahKursus").submit(function () {
+            $("#formTambahKursus").submit(function (event) {
+                event.preventDefault();
                 let route = $(this).attr('action');
                 let data = new FormData($(this)[0]);
                 $.ajax({
                     url: route,
                     method: "POST",
+                    data: data,
                     contentType: false,
                     processData: false,
                     success: function success(response) {
