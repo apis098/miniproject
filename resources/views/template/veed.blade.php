@@ -1140,6 +1140,9 @@ function toggleCheckbox(checkbox) {
                                 message: response.message,
                                 position: 'topCenter',
                             });
+                            $("#komen_feed" + num).html(response.update);
+                           
+                            console.log(response.update);
                             $("#input_comment_feed" + num).val('');
                         }
                     },
