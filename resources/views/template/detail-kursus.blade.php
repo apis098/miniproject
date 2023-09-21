@@ -148,7 +148,100 @@
                         <div class="d-flex">
                             <img src="{{ asset('images/default.jpg') }}" alt="" width="5%" height="5%"
                                 class="img-fluid rounded-circle mb-3 shadow-sm">
-                            <p class="text center my-1 mx-3"><b>maz tatang</b></p>
+                            <p class="text center my-1 mx-3"><b>Kadehara kazuha</b></p>
+
+                            <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
+                                    <path id="Vector"
+                                        d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
+                                        fill="#F4DD0A" stroke="black" />
+                                </g>
+                                <span class="mx-1">5</span>
+                            </svg>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et
+                            facere dolore. Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum
+                            enim quo quidem sint! Qui ratione placeat ut quibusdam soluta qui dolore dignissimos non dolores
+                            quaerat quo voluptatibus itaque. Sit reprehenderit quia in velit incidunt vel suscipit
+                            dignissimos a veritatis facere vel vero excepturi. Aut eligendi delectus ut inventore aliquid ea
+                            provident velit et debitis voluptas. Sit recusandae voluptas nam omnis velit sit exercitationem
+                            molestiae cum unde quae in placeat quisquam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="d-flex">
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="5%" height="5%"
+                                class="img-fluid rounded-circle mb-3 shadow-sm">
+                            <p class="text center my-1 mx-3"><b>Raiden Ei</b></p>
+
+                            <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
+                                    <path id="Vector"
+                                        d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
+                                        fill="#F4DD0A" stroke="black" />
+                                </g>
+                                <span class="mx-1">5</span>
+                            </svg>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et
+                            facere dolore. Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum
+                            enim quo quidem sint! Qui ratione placeat ut quibusdam soluta qui dolore dignissimos non dolores
+                            quaerat quo voluptatibus itaque. Sit reprehenderit quia in velit incidunt vel suscipit
+                            dignissimos a veritatis facere vel vero excepturi. Aut eligendi delectus ut inventore aliquid ea
+                            provident velit et debitis voluptas. Sit recusandae voluptas nam omnis velit sit exercitationem
+                            molestiae cum unde quae in placeat quisquam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="d-flex">
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="5%" height="5%"
+                                class="img-fluid rounded-circle mb-3 shadow-sm">
+                            <p class="text center my-1 mx-3"><b>Kokomi</b></p>
+
+                            <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
+                                    <path id="Vector"
+                                        d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
+                                        fill="#F4DD0A" stroke="black" />
+                                </g>
+                                <span class="mx-1">4</span>
+                            </svg>
+                        </div>
+                        <p>
+                            Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et
+                            facere dolore. Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum
+                            enim quo quidem sint! Qui ratione placeat ut quibusdam soluta qui dolore dignissimos non dolores
+                            quaerat quo voluptatibus itaque. Sit reprehenderit quia in velit incidunt vel suscipit
+                            dignissimos a veritatis facere vel vero excepturi. Aut eligendi delectus ut inventore aliquid ea
+                            provident velit et debitis voluptas. Sit recusandae voluptas nam omnis velit sit exercitationem
+                            molestiae cum unde quae in placeat quisquam.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="d-flex">
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="5%" height="5%"
+                                class="img-fluid rounded-circle mb-3 shadow-sm">
+                            <p class="text center my-1 mx-3"><b>childe</b></p>
 
                             <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
