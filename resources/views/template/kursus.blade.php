@@ -262,6 +262,111 @@
                         </button>
                     </div>
                     <!-- End button modal -->
+                    <!-- Modal -->
+    <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="font-weight: 700;">Filter Lanjutan</h5>
+                    <button type="button" style="border: none;background:none" data-bs-dismiss="modal" aria-label="Close">
+                        <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_1816_441)">
+                                <path
+                                    d="M14.1386 13.9456L19.516 19.6906M13.907 19.5516L19.7476 14.0847M9.52654 23.6518C13.2235 27.6015 19.5337 27.7579 23.5491 23.9994C27.5645 20.2408 27.825 13.9341 24.128 9.98446C20.4311 6.03478 14.1209 5.87837 10.1055 9.63689C6.09008 13.3954 5.82955 19.7021 9.52654 23.6518Z"
+                                    stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_1816_441">
+                                    <rect width="23.6071" height="24" fill="white"
+                                        transform="translate(17.5215) rotate(46.8927)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="GET">
+                        {{-- @if (request()->nama_resep)
+                            <input type="text" hidden name="nama_resep" value="{{ request()->nama_resep }}">
+                        @endif --}}
+                        <div class="mb-3">
+                            <label for="kursus" class="form-label">Nama kursus</label>
+                            <select style="border: 1px solid black" name="kursus[]"
+                                aria-placeholder="Masukkan nama kursus" multiple="multiple" id="kursus"
+                                class="cari form-control">
+                                <option value="" disabled>Masukkan Nama kursus</option>
+                                    <option value="asdf">asdf</option>
+
+                            </select>
+                        </div>
+                        <style>
+                            #pbb {
+                                background-color: white;
+                            }
+                        </style>
+                        <div class="mb-3">
+                            <label for="harga" class="form-label">Rentang Harga</label>
+                            <div class="row">
+                                <div class="col-5">
+                                    <input type="text" name="min_price" id="minHargaInput" placeholder="Minimal"
+                                        class="form-control "
+                                        style="border-radius: 10px;font-size: 13px;border: 1px solid black;">
+                                </div>
+                                <div class="col-2 my-auto">
+                                    <div class="garis"></div>
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" name="max_price" class="form-control" id="maxHargaInput"
+                                        placeholder="Maksimal"
+                                        style="border-radius:10px; font-size:13px;border:1px solid black;">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="waktu" class="form-label">Waktu</label>
+                            <div class="row">
+                                <div class="col-5">
+                                    <div class="row mx-auto">
+                                        <input type="text" name="min_time" class="col-6 form-control mr-1"
+                                            placeholder="Minimal"
+                                            style="border-radius: 10px; font-size:13px;border: 1px solid black;">
+                                        <select name="min_timer" id="" class="col-5"
+                                            style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
+                                            <option value="menit">menit</option>
+                                            <option value="jam">jam</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-2 my-3">
+                                    <div class="garis"></div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row mx-auto">
+                                        <input type="text" name="max_time" class="col-6 form-control mr-1"
+                                            placeholder="Maksimal"
+                                            style="border-radius: 10px;font-size:13px;border: 1px solid black;">
+                                        <select name="max_timer" class="col-5"
+                                            style="background-color: white;;border-radius: 10px; border: 1px solid;font-size:13px;"
+                                            id="">
+                                            <option value="menit">menit</option>
+                                            <option value="jam">jam</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-light"
+                                style="background-color: #F7941E; border-radius: 15px;">
+                                <span style="font-weight: 600;color: white;">Cari</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
                 </div>
             </div>
         </div>
@@ -280,8 +385,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <a href="/detail" style="font-family: poppins;font-weight:bold">cara merebus
-                                            dengan benar</a>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -315,7 +419,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -348,7 +452,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -381,7 +485,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -414,7 +518,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -447,7 +551,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -487,7 +591,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -521,7 +625,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -554,7 +658,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -587,7 +691,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -620,7 +724,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -653,7 +757,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -693,7 +797,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -727,7 +831,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -760,7 +864,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -793,7 +897,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -826,7 +930,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -859,7 +963,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -899,7 +1003,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -933,7 +1037,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -966,7 +1070,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -999,7 +1103,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -1032,7 +1136,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
@@ -1065,7 +1169,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <p>Merebus</p>
-                                        <h5 style="font-family: poppins;font-weight:bold">cara merebus dengan benar</h5>
+                                        <a href="/detail" class="btn" style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
                                     </div>
                                     <div class="col-12 mt-3 row">
                                         <div class="col-6 d-flex">
