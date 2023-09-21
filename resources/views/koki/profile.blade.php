@@ -237,6 +237,7 @@
                                 </a>
                             </li>
 
+                            @if ($userLogin->isSuperUser === "yes")
                             <li class="nav-item" role="presentation" style="margin-left: 60px;">
                                 <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab"
                                     data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
@@ -248,6 +249,20 @@
                                     </div>
                                 </button>
                             </li>
+                            @else
+                            <li hidden class="nav-item" role="presentation" style="margin-left: 60px;">
+                                <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab"
+                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
+                                    aria-controls="pills-contact" aria-selected="false">
+                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus
+                                        Dibuat</h5>
+                                    <div id="pp" class="ms-1"
+                                        style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
+                                    </div>
+                                </button>
+                            </li>
+                            @endif
+
                         </ul>
 
                     </div>
