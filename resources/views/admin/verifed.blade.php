@@ -301,7 +301,7 @@
                                     <td style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">100.000</td>
                                     <td style="border-right:1px solid black;">
                                         <a href="#" type="button"
-                                            class="btn btn-sm rounded-3 text-light"
+                                            class="btn btn-sm rounded-3 text-light me-2"
                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b class="ms-2 me-2" style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b></a>
                                             <a href="#" type="button"
                                             class="btn btn-sm rounded-3 text-light"
