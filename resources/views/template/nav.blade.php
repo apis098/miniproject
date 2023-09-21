@@ -1041,7 +1041,7 @@
         style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-sm-6 footer-col">
+                <div class="col-sm-12 col-md-6 col-lg-4 footer-col">
                     <div class="footer_detail ">
                         <h1 style="font-family:dancing script">HummaCook</h1>
                         <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan
@@ -1066,7 +1066,7 @@
 
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 mt-2 footer-col" style="text-align: center;">
+                <div class="col-sm-12 col-md-6 col-lg-4 mt-2 footer-col" style="text-align: center;">
                     <div class="footer_contact mt-2">
                         <h5 class="fw-bold">Kontak</h5>
                         <div class="contact_link_box mt-4">
@@ -1086,7 +1086,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-12 footer-col">
+                <div class="col-sm-12 col-md-12 col-lg-4 footer-col">
                     <h1 class="footer-title mt-4">
                         {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
                         <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
