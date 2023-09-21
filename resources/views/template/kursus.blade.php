@@ -149,19 +149,7 @@
             background-color: black;
         }
 
-        .btn-fil {
-            position: absolute;
-            background: #F7941E;
-            border-radius: 15px;
-            color: white;
-            border: none;
-            font-size: 22px;
-            font-family: Poppins;
-            letter-spacing: 0.48px;
-            margin-left: 40%;
-            bottom: 15%;
-            text-align: center;
-        }
+
     </style>
 
     <div class="container-fluid py-5">
@@ -253,7 +241,19 @@
                     </div>
                     <!-- Button Modal -->
                     <div>
-                        <button class="btn btn-fil" data-bs-toggle="modal" data-bs-target="#filter">
+                        <button class="btn " data-bs-toggle="modal" style="
+                            position: absolute;
+                            background: #F7941E;
+                            border-radius: 15px;
+                            color: white;
+                            border: none;
+                            font-size: 22px;
+                            font-family: Poppins;
+                            letter-spacing: 0.48px;
+                            margin-left: 40%;
+                            bottom: 15%;
+                            text-align: center;
+                        " data-bs-target="#filter">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />

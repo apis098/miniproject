@@ -100,16 +100,16 @@
             }
 
             /* button{
-                                                                                                                background-color: #F7941E;
-                                                                                                                border: none;
-                                                                                                                height: 45px;
-                                                                                                                width: 90px;
-                                                                                                                color: #ffffff;
-                                                                                                                position: absolute;
-                                                                                                                right: 1px;
-                                                                                                                top: 0px;
-                                                                                                                border-radius: 15px
-                                                                                                            } */
+                                                                                                                            background-color: #F7941E;
+                                                                                                                            border: none;
+                                                                                                                            height: 45px;
+                                                                                                                            width: 90px;
+                                                                                                                            color: #ffffff;
+                                                                                                                            position: absolute;
+                                                                                                                            right: 1px;
+                                                                                                                            top: 0px;
+                                                                                                                            border-radius: 15px
+                                                                                                                        } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -494,23 +494,25 @@
                                             </button>
 
                                             <div class="row">
-                                                    <div class="text-center">
-                                                        <img src="{{ asset('images/crown-prem.png') }}"
-                                                            style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
+                                                <div class="text-center">
+                                                    <img src="{{ asset('images/crown-prem.png') }}"
+                                                        style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
 
-                                                        </div>
-                                                    <div class="text-black text-center">
-                                                        <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke premium</h2>
+                                                </div>
+                                                <div class="text-black text-center">
+                                                    <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke
+                                                        premium</h2>
 
-                                                            <span class="intro-2">
-                                                                Upgrade ke premium sekarang juga untuk membuka akses ke resep resep premium kami.</span>
+                                                    <span class="intro-2">
+                                                        Upgrade ke premium sekarang juga untuk membuka akses ke resep resep
+                                                        premium kami.</span>
 
-                                                        <div class="mt-4 mb-5">
-                                                            <a href="{{ route('penawaran.prem') }}" class="btn"
-                                                                style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
-                                                                lebih lanjut</a>
-                                                        </div>
+                                                    <div class="mt-4 mb-5">
+                                                        <a href="{{ route('penawaran.prem') }}" class="btn"
+                                                            style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
+                                                            lebih lanjut</a>
                                                     </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -523,31 +525,34 @@
                             <div class="row">
                                 <div class="col-12 mx-3 mb-3">
                                     @if (Auth::check())
-                                        @if ($item->isPremium === 'yes')
-                                            @if (Auth::user()->id != $item->User->id)
-                                                <h5>
-                                                    <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                        onclick="openButtonPremium()">
-                                                        {{ $item->nama_resep }}
-                                                    </a>
-                                                </h5>
-                                            @else
-                                                <h5>
-                                                    <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                        href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                                        {{ $item->nama_resep }}
-                                                    </a>
-                                                </h5>
-                                            @endif
+                                        <!-- untuk yang sudah login -->
+                                        <!-- untuk admin -->
+                                        @if (Auth::user()->role === 'admin')
+                                            <h5>
+                                                <a style="color: black; font-size: 24px; margin-left:-1px"
+                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                                    {{ $item->nama_resep }}
+                                                </a>
+                                            </h5>
+                                        @elseif (Auth::user()->id == $item->User->id)
+                                            <!-- untuk kokinya sendiri -->
+                                            <h5>
+                                                <a style="color: black; font-size: 24px; margin-left:-1px"
+                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                                    {{ $item->nama_resep }}
+                                                </a>
+                                            </h5>
                                         @else
-                                        <h5>
-                                            <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                                {{ $item->nama_resep }}
-                                            </a>
-                                        </h5>
+                                            <!-- untuk koki lain -->
+                                            <h5>
+                                                <a style="color: black; font-size: 24px; margin-left:-1px"
+                                                    onclick="openButtonPremium()">
+                                                    {{ $item->nama_resep }}
+                                                </a>
+                                            </h5>
                                         @endif
                                     @else
+                                        <!-- untuk yang belum login -->
                                         @if ($item->isPremium === 'yes')
                                             <h5>
                                                 <a style="color: black; font-size: 24px; margin-left:-1px"
@@ -609,6 +614,7 @@
         if (url.get("premium") == "yes") {
             document.getElementById("buttonPremium").click();
         }
+
         function openButtonPremium() {
             document.getElementById("buttonPremium").click();
         }
