@@ -160,7 +160,39 @@
                                 </p>
                             </a>
                         </li>
-                    </li>
+
+
+                    <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                    <a href="{{ route('verifed') }}"
+                        class="nav-link mx-4 {{ request()->is('admin/verifed') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2 20v-1a7 7 0 0 1 7-7v0"/><path d="M15.804 12.313a1.618 1.618 0 0 1 2.392 0c.325.357.79.55 1.272.527a1.618 1.618 0 0 1 1.692 1.692c-.023.481.17.947.526 1.272c.705.642.705 1.75 0 2.392c-.356.325-.549.79-.526 1.272a1.618 1.618 0 0 1-1.692 1.692a1.618 1.618 0 0 0-1.272.526a1.618 1.618 0 0 1-2.392 0a1.618 1.618 0 0 0-1.272-.526a1.618 1.618 0 0 1-1.692-1.692a1.618 1.618 0 0 0-.527-1.272a1.618 1.618 0 0 1 0-2.392c.357-.325.55-.79.527-1.272a1.618 1.618 0 0 1 1.692-1.692c.481.023.947-.17 1.272-.527Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m15.364 17l1.09 1.09l2.182-2.18M9 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8Z"/></g></svg>
+                        <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                          Verified
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                    <a href="{{ route('blocked.user.status') }}"
+                        class="nav-link mx-4 {{ request()->is('admin/blocked-user') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="currentColor" d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z"/></svg>
+                        <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                          Kursus
+                        </p>
+                    </a>
+                </li>
+                    <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                    <a href="{{ route('blocked.user.status') }}"
+                        class="nav-link mx-4 {{ request()->is('admin/blocked-user') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                        width="25" height="25" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                    </svg>
+                        <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                          Premium
+                        </p>
+                    </a>
+                </li>
                     <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                     <a href="{{ route('blocked.user.status') }}"
                         class="nav-link mx-4 {{ request()->is('admin/blocked-user') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">

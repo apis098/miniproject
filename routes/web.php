@@ -36,6 +36,11 @@ use App\Http\Controllers\KursusController;
 |
 */
 
+Route::get('verifed', function () {
+    return view('admin.verifed');
+})->name('verifed');
+
+
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');

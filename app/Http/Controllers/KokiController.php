@@ -72,7 +72,7 @@ class KokiController extends Controller
 
             $user->foto = $profilePicturePath;
         }
-        
+
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
@@ -117,7 +117,7 @@ class KokiController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            "deskripsi_video" => "required|max:225",
+            "deskripsi_video" => "required|max:400",
             "upload_video" => "required|mimes:mp4|max:50000"
         ];
         $messages = [
@@ -141,8 +141,8 @@ class KokiController extends Controller
             } elseif ($request->isPremium == "no") {
                 $isPremium = "no";
             }
-        } 
-        
+        }
+
         $up = upload_video::create([
             "users_id" => Auth::user()->id,
             "deskripsi_video" => $request->deskripsi_video,
