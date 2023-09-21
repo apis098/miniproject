@@ -12,8 +12,8 @@
 
         .btn-outline-warning {}
     </style>
-    <form  id="#" action="#" method="post" enctype="multipart/form-data">
-        {{-- @csrf --}}
+    <form id="formTambahKursus" action="/koki/kursus" method="post" enctype="multipart/form-data">
+        @csrf
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 mb-5">
@@ -65,8 +65,7 @@
                     </div>
                     <div class="mt-2" style="margin-bottom: 20px">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
-                        <textarea name="#" class="form-control" placeholder="Masukkan deskripsi kursus" id="floatingTextarea"
-                            required>{{ old('#') }}</textarea>
+                        <textarea name="#" class="form-control" placeholder="Masukkan deskripsi kursus" id="floatingTextarea" required>{{ old('#') }}</textarea>
                         @error('#')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -85,84 +84,92 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        <div id="#" class="alert alert-danger" style="display: none;"></div>
-                    </div>
-                    <div>
-                        <div class="mt-2" style="margin-bottom: 20px">
-                            <label for="exampleFormControlInput1" class="form-label"><b>Tarif perjam</b></label>
-                            <input type="number" name="#" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan tarif per jam" value="{{ old('#') }}" required>
-                            @error('#')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        <div id="#" class="alert alert-danger" style="display: none;"></div>
-                    </div>
-                    <div>
-                        <div class="mt-2" style="margin-bottom: 20px">
-                            <label for="exampleFormControlInput1" class="form-label"><b>Jumlah pelajaran</b></label>
-                            <input type="number" name="#" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan jumlah pelajaran" value="{{ old('#') }}" required>
-                            @error('#')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        <div id="#" class="alert alert-danger" style="display: none;"></div>
-                    </div>
-                
-
-                    <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
-                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>
-                         Tipe Kursus</b></label>
-                        <input type="text" name="#" class="form-control col-10"
-                            id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                            value="{{ old('#') }}" required>
-                        <select name="#" id="#" class="form-control col-2">
-                            <option value="grup" {{ old('#') == 'grup' ? 'selected' : '' }}>grup</option>
-                            <option value="perorangan" {{ old('#') == 'perorangan' ? 'selected' : '' }}>perorangan</option>
-                        </select>
-                        @error('#')
-                            <div class="alert alert-danger">
-                                {{-- {{ $message }} --}}
-                            </div>
-                        @enderror
-                        <div id="#_error" style="display: none;" class="alert alert-danger"></div>
-                    </div>
-
-                    <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
-                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>
-                                Lama kursus</b></label>
-                        <input type="text" name="#" class="form-control col-10"
-                            id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                            value="{{ old('#') }}" required>
-                        <select name="#" id="#" class="form-control col-2">
-                            <option value="menit" {{ old('#') == 'menit' ? 'selected' : '' }}>menit</option>
-                            <option value="jam" {{ old('#') == 'jam' ? 'selected' : '' }}>jam</option>
-                        </select>
-                        @error('#')
-                            <div class="alert alert-danger">
-                                {{-- {{ $message }} --}}
-                            </div>
-                        @enderror
-                        <div id="#_error" style="display: none;" class="alert alert-danger"></div>
-                    </div>
-
-                    <br>
-                    <label for="#" class="form-label" style="font-weight: 600;">
-                        <b> Jenis Kursus </b>
-                    </label>
-                    <div class="row">
-                        <div class="col-lg-3 mb-4">
-                            <input type="text" id="jenis_kursus" value="jenis_kursus" style="display: none;">
-                            <button id="pilih_jenis_kursus" onclick="pilih_jenis_kursus(1)" class="btn btn-light" type="button" style="width: 100%; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                <span style="font-size: 15px;">Memanggang</span>
-                            </button>
+                            <div id="#" class="alert alert-danger" style="display: none;"></div>
                         </div>
-                    </div>
-                    </div>
-                    <br>
+                        <div>
+                            <div class="mt-2" style="margin-bottom: 20px">
+                                <label for="exampleFormControlInput1" class="form-label"><b>Tarif perjam</b></label>
+                                <input type="number" name="#" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="Masukkan tarif per jam" value="{{ old('#') }}" required>
+                                @error('#')
+                                    <div class="alert alert-danger">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                                <div id="#" class="alert alert-danger" style="display: none;"></div>
+                            </div>
+                            <div>
+                                <div class="mt-2" style="margin-bottom: 20px">
+                                    <label for="exampleFormControlInput1" class="form-label"><b>Jumlah
+                                            pelajaran</b></label>
+                                    <input type="number" name="#" class="form-control"
+                                        id="exampleFormControlInput1" placeholder="Masukkan jumlah pelajaran"
+                                        value="{{ old('#') }}" required>
+                                    @error('#')
+                                        <div class="alert alert-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                    <div id="#" class="alert alert-danger" style="display: none;"></div>
+                                </div>
+
+
+                                <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
+                                    <label for="exampleFormControlInput1" class="form-label"
+                                        style="margin-left: -10px;"><b>
+                                            Tipe Kursus</b></label>
+                                    <input type="text" name="#" class="form-control col-10"
+                                        id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
+                                        value="{{ old('#') }}" required>
+                                    <select name="#" id="#" class="form-control col-2">
+                                        <option value="grup" {{ old('#') == 'grup' ? 'selected' : '' }}>grup</option>
+                                        <option value="perorangan" {{ old('#') == 'perorangan' ? 'selected' : '' }}>
+                                            perorangan</option>
+                                    </select>
+                                    @error('#')
+                                        <div class="alert alert-danger">
+                                            {{-- {{ $message }} --}}
+                                        </div>
+                                    @enderror
+                                    <div id="#_error" style="display: none;" class="alert alert-danger"></div>
+                                </div>
+
+                                <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
+                                    <label for="exampleFormControlInput1" class="form-label"
+                                        style="margin-left: -10px;"><b>
+                                            Lama kursus</b></label>
+                                    <input type="text" name="#" class="form-control col-10"
+                                        id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
+                                        value="{{ old('#') }}" required>
+                                    <select name="#" id="#" class="form-control col-2">
+                                        <option value="menit" {{ old('#') == 'menit' ? 'selected' : '' }}>menit</option>
+                                        <option value="jam" {{ old('#') == 'jam' ? 'selected' : '' }}>jam</option>
+                                    </select>
+                                    @error('#')
+                                        <div class="alert alert-danger">
+                                            {{-- {{ $message }} --}}
+                                        </div>
+                                    @enderror
+                                    <div id="#_error" style="display: none;" class="alert alert-danger"></div>
+                                </div>
+
+                                <br>
+                                <label for="#" class="form-label" style="font-weight: 600;">
+                                    <b> Jenis Kursus </b>
+                                </label>
+                                <div class="row">
+                                    <div class="col-lg-3 mb-4">
+                                        <input type="text" id="jenis_kursus" value="jenis_kursus"
+                                            style="display: none;">
+                                        <button id="pilih_jenis_kursus" onclick="pilih_jenis_kursus(1)"
+                                            class="btn btn-light" type="button"
+                                            style="width: 100%; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                                            <span style="font-size: 15px;">Memanggang</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                         </div>
                     </div>
                     <style>
@@ -172,27 +179,27 @@
                             font-weight: 400;
                         }
                     </style>
-                   <script>
-                    function pilih_jenis_kursus(num) {
-                        const pilih_jenis_kursus = document.getElementById("pilih_jenis_kursus");
-                        const jenis_kursus = document.getElementById("jenis_kursus");
+                    <script>
+                        function pilih_jenis_kursus(num) {
+                            const pilih_jenis_kursus = document.getElementById("pilih_jenis_kursus");
+                            const jenis_kursus = document.getElementById("jenis_kursus");
 
-                        if (pilih_jenis_kursus.classList.contains("btn-light")) {
-                            pilih_jenis_kursus.classList.remove("btn-light");
-                            pilih_jenis_kursus.classList.add("btn-filter");
-                            jenis_kursus.setAttribute("name", "jenis_kursus[]");
-                        } else if (pilih_jenis_kursus.classList.contains("btn-filter")) {
-                            pilih_jenis_kursus.classList.remove("btn-filter");
-                            pilih_jenis_kursus.classList.add("btn-light");
-                            jenis_kursus.removeAttribute("name");
+                            if (pilih_jenis_kursus.classList.contains("btn-light")) {
+                                pilih_jenis_kursus.classList.remove("btn-light");
+                                pilih_jenis_kursus.classList.add("btn-filter");
+                                jenis_kursus.setAttribute("name", "jenis_kursus[]");
+                            } else if (pilih_jenis_kursus.classList.contains("btn-filter")) {
+                                pilih_jenis_kursus.classList.remove("btn-filter");
+                                pilih_jenis_kursus.classList.add("btn-light");
+                                jenis_kursus.removeAttribute("name");
+                            }
                         }
-                    }
-                </script>
+                    </script>
 
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        id="button-add-recipe">Buat kursus
-                        </button>
+                        id="buttonTambahKursus">Buat kursus
+                    </button>
                 </div>
             </div>
         </div>
@@ -201,8 +208,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
-
     <script>
+        $("document").ready(function () {
+            $("#formTambahKursus").submit(function () {
+                let route = $(this).attr('action');
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    contentType: false,
+                    processData: false,
+                    success: function success(response) {
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                    }, 
+                    error: function error(xhr, status, errors) {
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: xhr.responseText,
+                            position: 'topCenter',
+                        });
+                    } 
+                });
+            });
+        });
         function klik() {
             document.getElementById("formFile").click();
             document.getElementById('formFile').addEventListener('change', function() {
@@ -211,6 +249,7 @@
 
             });
         }
+
         function inputfilee() {
             document.getElementById("inputan").click();
             document.getElementById('inputan').addEventListener('change', function() {

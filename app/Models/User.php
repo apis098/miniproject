@@ -91,4 +91,7 @@ class User extends Authenticatable
     public function user_premiums() {
         return $this->hasMany(history_premiums::class, 'users_id');
     }
+    public function kursus() {
+        return $this->hasMany(kursus::class, "users_id");
+    }
 }

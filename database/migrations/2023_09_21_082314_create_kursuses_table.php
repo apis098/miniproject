@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('kursuses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger("users_id");
+            $table->string('nama_kursus');
+            $table->text('deskripsi_kursus');
+            $table->string('lokasi_kursus');
+            $table->bigInteger('tarif_per_jam');
+            $table->integer('jumlah_pelajaran');
+            $table->enum('tipe_kursus', ['perorangan', 'grup']);
+            $table->string('lama_kursus');
             $table->timestamps();
+
+            $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
         });
     }
 
