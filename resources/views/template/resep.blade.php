@@ -571,7 +571,7 @@
                                 </div>
                                 <div class="col-12 row  mb-3 mx-1 ">
                                     <div class="col-6">
-                                        <img width="20px" height="20px"
+                                        <img class="mb-1" width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
                                         {{ $item->likes }} suka
                                     </div>
