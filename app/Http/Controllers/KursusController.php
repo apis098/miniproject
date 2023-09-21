@@ -79,6 +79,27 @@ class KursusController extends Controller
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         }
+        $store = kursus::create([
+            "users_id" => Auth::user()->id,
+            "nama_kursus" => $request->nama_kursus,
+            "foto_kursus" => $request->file("foto_kursus")->store("photo-courses", "public"),
+            "deskripsi_kursus" => $request->deskripsi_kursus,
+            "lokasi_kursus" => $request->lokasi_kursus,
+            "tarif_per_jam" => $request->tarif_per_jam,
+            "jumlah_pelajaran" => $request->jumlah_pelajaran,
+            "tipe_kursus" => $request->tipe_kursus,
+            "lama_kursus" => $request->lama_kursus,
+        ]);
+        if ($store) {
+            return response()->json([
+                "success" => true,
+                "message" => "sukses menambahkan kursus, harap menunggu konfirmasi admin.",
+            ]);
+        } else {
+            return response()->json([
+                "success" => false,
+            ]);
+        }
     }
 
     /**

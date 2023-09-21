@@ -19,9 +19,8 @@
                 <div class="col-lg-3 mb-5">
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="card-body text-center">
-                            <img id="image-course" src=""
-                                style="max-width: 250px; display:none; margin-left:-15px;" alt="" id="uploadedImage"
-                                class="">
+                            <img id="image-course" src="" style="max-width: 250px; display:none; margin-left:-15px;"
+                                alt="" id="uploadedImage" class="">
                             <svg id="svg-course" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
                                 height="100" viewBox="0 0 24 24">
                                 <path fill="currentColor"
@@ -36,8 +35,8 @@
                             <p
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                 Pilih File</p>
-                            <input name="foto_kursus" class="form-control my-auto mx-1" style="display: none;" type="file"
-                                id="formFile">
+                            <input name="foto_kursus" class="form-control my-auto mx-1" style="display: none;"
+                                type="file" id="formFile">
                         </button>
                         <div class="col-8 my-auto text-truncate" id="infos"
                             style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -89,8 +88,9 @@
                         <div>
                             <div class="mt-2" style="margin-bottom: 20px">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Tarif perjam</b></label>
-                                <input type="number" name="tarif_per_jam" class="form-control" id="exampleFormControlInput1"
-                                    placeholder="Masukkan tarif per jam" value="{{ old('#') }}">
+                                <input type="number" name="tarif_per_jam" class="form-control"
+                                    id="exampleFormControlInput1" placeholder="Masukkan tarif per jam"
+                                    value="{{ old('#') }}">
                                 @error('#')
                                     <div class="alert alert-danger">
                                         {{ $message }}
@@ -209,8 +209,8 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script>
-        $("document").ready(function () {
-            $("#formTambahKursus").submit(function (event) {
+        $("document").ready(function() {
+            $("#formTambahKursus").submit(function(event) {
                 event.preventDefault();
                 let route = $(this).attr('action');
                 let data = new FormData($(this)[0]);
@@ -221,15 +221,20 @@
                     contentType: false,
                     processData: false,
                     success: function success(response) {
-                        iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
-                            titleColor: 'white',
-                            messageColor: 'white',
-                            message: response.message,
-                            position: 'topCenter',
-                        });
-                    }, 
+                        if (response.success) {
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                            setTimeout(() => {
+                                window.location.href = "/koki/index";
+                            }, 5000);
+                        }
+                    },
                     error: function error(xhr, status, errors) {
                         iziToast.show({
                             backgroundColor: '#F7941E',
@@ -239,10 +244,11 @@
                             message: xhr.responseText,
                             position: 'topCenter',
                         });
-                    } 
+                    }
                 });
             });
         });
+
         function klik() {
             document.getElementById("formFile").click();
             document.getElementById('formFile').addEventListener('change', function() {
