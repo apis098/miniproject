@@ -1374,7 +1374,9 @@ function toggleCheckbox(checkbox) {
             // addEventListener timeupdate ini untuk memberikan event setiap detiknya video berputar
             video.addEventListener("timeupdate", function() {
                 // video.currentTime ini untuk mengambil data sudah berapa lama video berputar
-                if (video.currentTime > 5) {
+                // video.duration untuk mendapatkan total waktu video.
+                let time = video.duration * 0.1;
+                if (video.currentTime > time) {
                     // jika sudah lebih dari 5 detik maka video di pause
                     video.pause();
                     // membuka modal penawaran premium
