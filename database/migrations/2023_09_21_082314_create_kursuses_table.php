@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("users_id");
             $table->string('nama_kursus');
+            $table->string('foto_kursus');
             $table->text('deskripsi_kursus');
             $table->string('lokasi_kursus');
             $table->bigInteger('tarif_per_jam');

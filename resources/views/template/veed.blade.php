@@ -64,8 +64,7 @@
                                             <b> Feed anda gratis / premium? </b>
                                         </label> <br>
                                         <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                            autocomplete="off" value="no"
-                                            checked>
+                                            autocomplete="off" value="no" checked>
                                         <label
                                             style="border:none;float:left; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"
                                             class="btn btn-outline-warning mr-3" for="success-outlined">Gratis</label>
@@ -142,13 +141,32 @@
                                 </div>
 
                             </div>
+                            <style>
 
+                                .vjs-big-play-button {
+                                   margin-left: 275px;
+                                   margin-right: 100px;
+                                   margin-bottom: 100px;
+                                   margin-top: 100px;
+                                }
+                            </style>
                             <!-- Media -->
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                                <video {{ $item_video->isPremium === 'yes' ? 'class=feed' : '' }} width="100%"
-                                    height="100%" controls>
-                                    <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4">
-                                    Your browser does not support the video tag.
+                                <video
+                                @if ($item_video->isPremium === 'yes')
+                                    class="video-js vjs-theme-city feed"
+                                @else
+                                   class="video-js vjs-theme-city"
+                                @endif
+                                id="my-video" controls preload="auto" width="640"
+                                    height="264"  data-setup="{}">
+                                    <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
+                                    <p class="vjs-no-js">
+                                        To view this video please enable JavaScript, and consider upgrading to a
+                                        web browser that
+                                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                            video</a>
+                                    </p>
                                 </video>
                                 <a href="#!">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
@@ -1035,37 +1053,31 @@
     <!-- Modal untuk penawaran premium -->
     <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
             <div class="modal-content" style="border-radius: 15px">
-                <div class="modal-body" style="border-radius: 15px; background:#F7941E">
-                    <button type="button" style="margin-left: 96%;" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close">
+                <div class="modal-body" style="border-radius: 15px;">
+                    <button type="button" style="margin-left: 96%;" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close">
                     </button>
 
                     <div class="row">
-                        <div class="col-md-6">
                             <div class="text-center">
-                                <img src="{{ asset('images/anoying.jpg') }}"
-                                    style="height: 100%; width: 100%;border-radius:15px; {{-- position: absolute; left: -15%; top: -11%;  --}}">
-                            </div>
-                        </div>
+                                <img src="{{ asset('images/crown-prem.png') }}"
+                                    style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
 
-                        <div class="col-md-6">
-                            <div class="text-white mt-5">
-                                <h1 class="mb-0" style="font-family:poppins">Premium</h1>
-                                <span class="intro-1">Ingin bisa mengakses resep?</span>
-
-                                <div class="mt-4">
-                                    <span class="intro-2">Dengan premium, anda bisa melihat resep-resep
-                                        dan video-video tutorial dari koki terverifikasi</span>
                                 </div>
+                            <div class="text-black text-center">
+                                <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke premium</h2>
+
+                                    <span class="intro-2">
+                                        Upgrade ke premium sekarang juga untuk membuka akses ke resep resep premium kami.</span>
+
                                 <div class="mt-4 mb-5">
                                     <a href="{{ route('penawaran.prem') }}" class="btn"
-                                        style="background-color:white ;font-family:poppins;border:black;border-radius:15px ">Dapatkan
-                                        premium <i class="fa fa-long-arrow-right"></i></a>
+                                        style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
+                                        lebih lanjut</a>
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1073,6 +1085,7 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
+        <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
     {{-- <script>
             // Ambil semua elemen checkbox dengan kelas select-checkbox
 const checkboxes = document.querySelectorAll('.select-checkbox');

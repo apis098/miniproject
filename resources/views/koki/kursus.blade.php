@@ -19,10 +19,10 @@
                 <div class="col-lg-3 mb-5">
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="card-body text-center">
-                            <img id="profile-image" src="{{ asset('images/default.jpg') }}"
+                            <img id="image-course" src=""
                                 style="max-width: 250px; display:none; margin-left:-15px;" alt="" id="uploadedImage"
                                 class="">
-                            <svg id="svg" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
+                            <svg id="svg-course" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
                                 height="100" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M5 21q-.825 0-1.413-.588T3 19v-6h2v6h6v2H5Zm8 0v-2h6v-6h2v6q0 .825-.588 1.413T19 21h-6Zm-7-4l3-4l2.25 3l3-4L18 17H6Zm-3-6V5q0-.825.588-1.413T5 3h6v2H5v6H3Zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6h-2Zm-3.5-1q-.65 0-1.075-.425T14 8.5q0-.65.425-1.075T15.5 7q.65 0 1.075.425T17 8.5q0 .65-.425 1.075T15.5 10Z" />
@@ -36,7 +36,7 @@
                             <p
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                 Pilih File</p>
-                            <input name="foto_resep" class="form-control my-auto mx-1" style="display: none;" type="file"
+                            <input name="foto_kursus" class="form-control my-auto mx-1" style="display: none;" type="file"
                                 id="formFile">
                         </button>
                         <div class="col-8 my-auto text-truncate" id="infos"
@@ -246,7 +246,15 @@
             document.getElementById('formFile').addEventListener('change', function() {
                 var selectedFile = event.target.files[0];
                 document.getElementById('infos').textContent = selectedFile.name;
-
+                if (selectedFile) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById("image-course").src = e.target.result;
+                        document.getElementById("svg-course").style.display = "none";
+                        document.getElementById("image-course").style.display = "block";
+                    }
+                    reader.readAsDataURL(selectedFile);
+                }
             });
         }
 

@@ -12,6 +12,7 @@ class kursus extends Model
     protected $fillable = [
         "users_id",
         "nama_kursus",
+        "foto_kursus",
         "deskripsi_kursus", 
         "lokasi_kursus",
         "tarif_per_jam",
