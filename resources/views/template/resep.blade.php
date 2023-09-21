@@ -486,38 +486,31 @@
                             <div class="modal fade" id="staticBackdrop{{ $num }}" data-bs-backdrop="static"
                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                 aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog">
                                     <div class="modal-content" style="border-radius: 15px">
-                                        <div class="modal-body" style="border-radius: 15px; background:#F7941E">
+                                        <div class="modal-body" style="border-radius: 15px;">
                                             <button type="button" style="margin-left: 96%;" class="btn-close"
                                                 data-bs-dismiss="modal" aria-label="Close">
                                             </button>
 
                                             <div class="row">
-                                                <div class="col-md-6">
                                                     <div class="text-center">
-                                                        <img src="{{ asset('images/anoying.jpg') }}"
-                                                            style="height: 100%; width: 100%;border-radius:15px; {{-- position: absolute; left: -15%; top: -11%;  --}}">
-                                                    </div>
-                                                </div>
+                                                        <img src="{{ asset('images/crown-prem.png') }}"
+                                                            style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
 
-                                                <div class="col-md-6">
-                                                    <div class="text-white mt-5">
-                                                        <h1 class="mb-0" style="font-family:poppins">Premium</h1>
-                                                        <span class="intro-1">Ingin bisa mengakses resep?</span>
-
-                                                        <div class="mt-4">
-                                                            <span class="intro-2">Dengan premium, anda bisa melihat
-                                                                resep-resep
-                                                                dan video-video tutorial dari koki terverifikasi</span>
                                                         </div>
+                                                    <div class="text-black text-center">
+                                                        <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke premium</h2>
+
+                                                            <span class="intro-2">
+                                                                Upgrade ke premium sekarang juga untuk membuka akses ke resep resep premium kami.</span>
+
                                                         <div class="mt-4 mb-5">
                                                             <a href="{{ route('penawaran.prem') }}" class="btn"
-                                                                style="background-color:white ;font-family:poppins;border:black;border-radius:15px ">Dapatkan
-                                                                premium <i class="fa fa-long-arrow-right"></i></a>
+                                                                style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
+                                                                lebih lanjut</a>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -639,7 +632,7 @@
                       </g>
                       <defs>
                       <clipPath id="clip0_1816_441">
-                      <rect width="23.6071" height="24" fill="white" transform="translate(17.5215) rotate(46.8927)"/>
+                      <rect width="23.6071" height="24" fill="black" transform="translate(17.5215) rotate(46.8927)"/>
                       </clipPath>
                       </defs>
                       </svg>
