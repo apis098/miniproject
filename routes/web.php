@@ -72,12 +72,12 @@ Route::post('/favorite-delete/multiple', [favoriteController::class, 'destroyFav
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout
 
-Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::get('login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actionlogin');
 
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
-Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::get('register', [RegisterController::class, 'register'])->name('register')->middleware('guest');
 Route::get('voice-note', [testingController::class, 'voice_note'])->name('voice.note');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');

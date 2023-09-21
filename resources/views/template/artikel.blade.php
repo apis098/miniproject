@@ -1,7 +1,7 @@
 @extends('template.nav')
 @section('content')
     @if (Auth::check())
-        @if (Auth::user()->id != $show_resep->User->id)
+        @if (Auth::user()->id != $show_resep->User->id && $Premium === true)
             <script>
                 window.location = '/resep?premium=yes';
             </script>

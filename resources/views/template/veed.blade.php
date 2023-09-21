@@ -64,12 +64,17 @@
                                             <b> Feed anda gratis / premium? </b>
                                         </label> <br>
                                         <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                            autocomplete="off" value="no" checked>
-                                        <label class="btn btn-outline-success mr-3" for="success-outlined">Gratis</label>
+                                            autocomplete="off" value="no"
+                                            checked>
+                                        <label
+                                            style="border:none;float:left; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"
+                                            class="btn btn-outline-warning mr-3" for="success-outlined">Gratis</label>
 
                                         <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
                                             autocomplete="off" value="yes">
-                                        <label class="btn btn-outline-danger" for="danger-outlined">Premium</label>
+                                        <label
+                                            style="border:none;float:left; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"
+                                            class="btn btn-outline-dark" for="danger-outlined">Premium</label>
                                     </div>
                                 @endif
                                 <button type="submit" class="btn " id="buttonUploadVideo"
@@ -103,11 +108,12 @@
                 <!-- foreach video pembelajaran start -->
                 <div id="video_pembelajaran">
                     @if ($video_pembelajaran->count() == 0)
-                    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 7em">
-                        <img src="{{asset('images/data.png')}}" style="width: 15em">
-                        <p><b>Tidak ada data</b></p>
-                    </div>
-                @endif
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 7em">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
                     @foreach ($video_pembelajaran as $urut => $item_video)
                         <div class="card mt-4 mb-5" style="max-width: 42rem;">
                             <!-- Data -->
@@ -129,7 +135,8 @@
                                         </a>
                                         <a href="" class="text-muted d-block"
                                             style="float: right; margin-left: 390px">
-                                            <small> {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                            <small>
+                                                {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                         </a>
                                     </div>
                                 </div>
@@ -290,7 +297,8 @@
                                                                                 <strong>{{ $item_comment->user->name }}</strong>
                                                                             </h5>
                                                                             <small class=""
-                                                                                style="margin-left: 420px;"> {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                                                                style="margin-left: 420px;">
+                                                                                {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                         </div>
                                                                         <p>{{ $item_comment->komentar }}</p>
 
@@ -408,7 +416,8 @@
                                                                                     </form>
                                                                                 @endif
 
-                                                                                <div id="reply_comments{{ $item_comment->id }}">
+                                                                                <div
+                                                                                    id="reply_comments{{ $item_comment->id }}">
                                                                                     @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                         @php
                                                                                             if (Auth::check()) {
@@ -424,7 +433,8 @@
                                                                                                 ->where('veed_id', $item_video->id)
                                                                                                 ->count();
                                                                                         @endphp
-                                                                                        <div class="rounded d-flex flex-row border-black ">
+                                                                                        <div
+                                                                                            class="rounded d-flex flex-row border-black ">
                                                                                             <div class="mt-1 me-3">
                                                                                                 <img width="50px"
                                                                                                     height="50px"
@@ -432,7 +442,8 @@
                                                                                                     src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                     alt="{{ $reply_comment->user->name }}">
                                                                                             </div>
-                                                                                            <div class="media-body border-black rounded mb">
+                                                                                            <div
+                                                                                                class="media-body border-black rounded mb">
                                                                                                 <div class="d-flex mt-2">
                                                                                                     <span><strong>{{ $reply_comment->user->name }}</strong></span>
 
@@ -544,117 +555,116 @@
                                             }
                                         </style>
                                         <style>
+                                            .search {
+                                                background-color: #fff;
+                                                padding: 4px;
+                                                border-radius: 5px;
+                                                width: 200%;
+                                            }
 
-        .search {
-            background-color: #fff;
-            padding: 4px;
-            border-radius: 5px;
-            width: 200%;
-        }
+                                            .search-1 {
+                                                position: relative;
+                                                width: 100%
+                                            }
 
-        .search-1 {
-            position: relative;
-            width: 100%
-        }
+                                            .search-1 input {
+                                                height: 45px;
+                                                border: none;
+                                                width: 100%;
+                                                padding-left: 34px;
+                                                padding-right: 10px;
+                                                border-right: 2px solid #eee
+                                            }
 
-        .search-1 input {
-            height: 45px;
-            border: none;
-            width: 100%;
-            padding-left: 34px;
-            padding-right: 10px;
-            border-right: 2px solid #eee
-        }
+                                            .search-1 input:focus {
+                                                border-color: none;
+                                                box-shadow: none;
+                                                outline: none
+                                            }
 
-        .search-1 input:focus {
-            border-color: none;
-            box-shadow: none;
-            outline: none
-        }
+                                            .search-1 i {
+                                                position: absolute;
+                                                top: 12px;
+                                                left: 5px;
+                                                font-size: 10px;
+                                                color: #eee
+                                            }
 
-        .search-1 i {
-            position: absolute;
-            top: 12px;
-            left: 5px;
-            font-size: 10px;
-            color: #eee
-        }
+                                            ::placeholder {
+                                                color: grey;
+                                                opacity: 1
+                                            }
 
-        ::placeholder {
-            color: grey;
-            opacity: 1
-        }
+                                            .search-2 {
+                                                position: relative;
+                                                width: 40%;
+                                                margin-left: -5%
+                                            }
 
-        .search-2 {
-            position: relative;
-            width: 40%;
-            margin-left: -5%
-        }
+                                            .search-2 input {
+                                                height: 45px;
+                                                border: 0.50px black solid;
+                                                width: 280%;
+                                                border-radius: 15px;
+                                                color: #000;
+                                                padding-left: 18px;
+                                                padding-right: 100px;
+                                                text-align: center
+                                            }
 
-        .search-2 input {
-            height: 45px;
-            border: 0.50px black solid;
-            width: 280%;
-            border-radius: 15px;
-            color: #000;
-            padding-left: 18px;
-            padding-right: 100px;
-            text-align: center
-        }
-
-        .search-2 input:focus {
-            box-shadow: none;
-        }
-
-
-        .search-2 i {
-            position: absolute;
-            top: 12px;
-            left: -10px;
-            font-size: 14px;
-            color: #eee
-        }
-
-        .search-2 button {
-            position: absolute;
-            right: 0px;
-            top: 0px;
-            border: none;
-            height: 45px;
-            background-color: #F7941E;
-            color: #fff;
-            width: 60px;
-        }
+                                            .search-2 input:focus {
+                                                box-shadow: none;
+                                            }
 
 
-        @media (max-width: 767px) {
-            .search-1 input {
+                                            .search-2 i {
+                                                position: absolute;
+                                                top: 12px;
+                                                left: -10px;
+                                                font-size: 14px;
+                                                color: #eee
+                                            }
 
-                border-bottom: 1px solid #0000
-            }
+                                            .search-2 button {
+                                                position: absolute;
+                                                right: 0px;
+                                                top: 0px;
+                                                border: none;
+                                                height: 45px;
+                                                background-color: #F7941E;
+                                                color: #fff;
+                                                width: 60px;
+                                            }
 
-            .search-2 i {
-                left: 4px
-            }
 
-            .search-2 input {
-                padding-left: 34px
-            }
+                                            @media (max-width: 767px) {
+                                                .search-1 input {
 
-            .search-2 button {
-                height: 30px;
-                top: 4px
-            }
+                                                    border-bottom: 1px solid #0000
+                                                }
 
-            .d-flex {
-        flex-wrap: nowrap;
-    }
+                                                .search-2 i {
+                                                    left: 4px
+                                                }
 
-    .col-1 {
-        white-space: nowrap;
-    }
+                                                .search-2 input {
+                                                    padding-left: 34px
+                                                }
 
-        }
+                                                .search-2 button {
+                                                    height: 30px;
+                                                    top: 4px
+                                                }
+
+                                                .d-flex {
+                                                    flex-wrap: nowrap;
+                                                }
+
+                                                .col-1 {
+                                                    white-space: nowrap;
+                                                }
+
+                                            }
                                         </style>
 
                                         <div class="modal" id="bagikan">
@@ -680,7 +690,9 @@
                                                                 <div class="col-lg-11 mt-2">
                                                                     <div class="search-2"> <i class='bx bxs-map'></i>
                                                                         <form action="#" method="GET">
-                                                                            <input type="text" name="" style="text-align: left;" placeholder="Cari..."
+                                                                            <input type="text" name=""
+                                                                                style="text-align: left;"
+                                                                                placeholder="Cari..."
                                                                                 value="{{-- {{ request()->nama_resep }} --}}">
                                                                         </form>
                                                                     </div>
@@ -1007,8 +1019,7 @@
 
     </section>
     <button hidden id="buttonPremiums" type="button" style="position: absolute;  right: 70%; background-color:#F7941E; "
-        class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
-        data-bs-target="#staticBackdrops">
+        class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal" data-bs-target="#staticBackdrops">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20">
             <g fill="currentColor">
                 <path fill-rule="evenodd"
@@ -1117,7 +1128,7 @@ function toggleCheckbox(checkbox) {
             });
         }
         // komentar feed ajax
-        
+
         function komentar_feed(num) {
             $("#formCommentVeed" + num).submit(function(event) {
                 event.preventDefault();
@@ -1141,7 +1152,7 @@ function toggleCheckbox(checkbox) {
                                 position: 'topCenter',
                             });
                             $("#komen_feed" + num).html(response.update);
-                           
+
                             console.log(response.update);
                             $("#input_comment_feed" + num).val('');
                         }
@@ -1160,7 +1171,7 @@ function toggleCheckbox(checkbox) {
                 });
             });
         }
-       
+
         // upload video feed ajax
         $("#formUploadVideo").submit(function(e) {
             e.preventDefault();
