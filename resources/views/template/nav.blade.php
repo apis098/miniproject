@@ -854,7 +854,7 @@
                                         <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
                                     </div>
                                     <div class="dropdown-divider"></div>
-                                    <a href="/koki/index" class="dropdown-item text-orange" style="width: 230px">
+                                    <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
                                         <svg style="vertical-align: top; margin-left: -5px"
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 36 36">

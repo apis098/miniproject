@@ -37,11 +37,6 @@ use App\Http\Controllers\TripayCallbackController;
 |
 */
 
-Route::get('verifed', function () {
-    return view('admin.verifed');
-})->name('verifed');
-
-
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
@@ -122,6 +117,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
         Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
         Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('/verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
+        Route::get('/tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
+        Route::get('/kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::get('/keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
