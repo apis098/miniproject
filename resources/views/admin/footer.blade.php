@@ -198,9 +198,9 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3 row">
-                                <label for="input" class="col-sm-2 col-form-label fw-bold">Facebook</label>
+                                <label for="input" class="col-sm-2 col-form-label fw-bold">Facebook</label>style="width: 250%;font-family:poppins; "
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 250%;font-family:poppins; "
+                                    <input type="text" class="form-control" id="input" name="facebook" 
                                         value="{{ $item->facebook }}">
                                 </div>
                             </div>

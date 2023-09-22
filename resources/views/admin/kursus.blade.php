@@ -284,9 +284,9 @@
                     <table class="table-custom">
                         <thead>
                             <tr>
+                                <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">Gambar</th>
+                                <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">Nama Kursus</th>
                                 <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">Nama Pengguna</th>
-                                <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">Jumlah Suka</th>
-                                <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">Jumlah Pengikut</th>
                                 <th scope="col" style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">Aksi</th>
                             </tr>
                         </thead>
@@ -295,10 +295,15 @@
 
                             <div id="search-results">
                                 <tr class="mt-5">
-                                    <td style="border-left:1px solid black;  font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"" class="mt">Glsg
+                                    <td style="border-left:1px solid black;  font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"" class="mt">
+
+                                        <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp"
+                                        class="img-fluid shadow-1-strong rounded" style=" width: 150px;
+                                        height: 80px;" alt="Hollywood Sign on The Hill" />
+
                                     </td>
-                                    <td style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">100.000</td>
-                                    <td style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">100.000</td>
+                                    <td style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">Cara Memanggang</td>
+                                    <td style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">Alexandra Daddario</td>
                                     <td style="border-right:1px solid black;">
                                         <a href="#" type="button"
                                             class="btn btn-sm rounded-3 text-light me-2"

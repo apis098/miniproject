@@ -42,6 +42,12 @@ class KursusController extends Controller
     }
 
 
+
+    public function kursus(){
+
+        return view('admin.kursus');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -62,7 +68,7 @@ class KursusController extends Controller
             'lokasi_kursus' => "required",
             'tarif_per_jam' => "required",
             'jumlah_pelajaran' => "required",
-            'tipe_kursus' => "required", 
+            'tipe_kursus' => "required",
             'lama_kursus' => "required",
         ];
         $message = [

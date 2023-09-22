@@ -26,20 +26,20 @@ class AdminController extends Controller
         $year = 2018;
         $yearsu = date('Y') - $year;
         $years = [];
-        for ($i=0; $i <= $yearsu; $i++) { 
-            $years[] = $year++; 
+        for ($i=0; $i <= $yearsu; $i++) {
+            $years[] = $year++;
         }
         $month = [];
         if ($request->has("tahun")) {
             $tahun = $request->tahun;
-            for ($i=1; $i <= 12; $i++) { 
+            for ($i=1; $i <= 12; $i++) {
                 $month[] = DB::table("users")
                 ->whereMonth('created_at', $i)
                 ->whereYear("created_at", $tahun)
                 ->count();
             }
-        } else { 
-            for ($i=1; $i <= 12 ; $i++) { 
+        } else {
+            for ($i=1; $i <= 12 ; $i++) {
                 $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
             }
         }
@@ -49,6 +49,19 @@ class AdminController extends Controller
             ], compact("jumlah_user", "jumlah_resep", "jumlah_report","month", "years", "reports", "reseps"));
 
 
+    }
+
+
+    public function verifed(Request $request){
+
+
+
+        return view('admin.verifed');
+    }
+
+    public function tawaran() {
+        
+        return view('admin.tawaran');
     }
 
     public function updateProfile(Request $request)
