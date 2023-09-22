@@ -145,13 +145,13 @@
             border-radius: 10px;
             margin-left: 10px;
             border: 0.50px black solid;
-            
+
         }
 
         .garis {
             border-bottom: #F7941E 2px solid;
         }
-        
+
     </style>
 
     <div class=" d-flex justify-content-center" style="margin-left:-60px">
@@ -198,9 +198,9 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3 row">
-                                <label for="input" class="col-sm-2 col-form-label fw-bold">Facebook</label>style="width: 250%;font-family:poppins; "
+                                <label for="input" class="col-sm-2 col-form-label fw-bold">Facebook</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input" name="facebook" 
+                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 250%;font-family:poppins; "
                                         value="{{ $item->facebook }}">
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                             value="{{ $item->telegram }}" hidden>
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
-                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                             border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
                         </form>
                     </div>
@@ -276,7 +276,7 @@
                             value="{{ $item->youtube }}" hidden>
                             <input type="text" class="form-control" id="input" name="facebook"
                             value="{{ $item->facebook }}" hidden>
-                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                             border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
                         </form>
                     </div>
@@ -308,7 +308,7 @@
                             value="{{ $item->kontak }}" hidden>
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
-                            <button type="submit" class="btn text-white " style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+                            <button type="submit" class="btn text-white " style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                             border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
                         </form>
                     </div>
