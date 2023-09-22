@@ -24,6 +24,7 @@ use App\Http\Controllers\VeedController;
 use App\Http\Controllers\detail_kursusController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\KursusController;
+use App\Http\Controllers\TripayCallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -175,3 +176,5 @@ Route::get('/testing-payment/{price}/{name_product}', [PaymentController::class,
 Route::post('/request-pembayaran', [PaymentController::class, 'dapatkan_transaksi'])->name('request.pembayaran')->middleware(['auth', 'role:koki']);
 Route::get('/detail-pembayaran/{reference}', [PaymentController::class, 'detail_pembayaran'])->name('detail.pembayaran')->middleware('auth', 'role:koki');
 Route::get('/daftar-transaksi', [PaymentController::class, 'daftar_transaksi'])->name('daftar.transaksi');
+
+Route::post('/callback', [TripayCallbackController::class, "handle"]);

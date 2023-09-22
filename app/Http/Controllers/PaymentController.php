@@ -58,7 +58,7 @@ class PaymentController extends Controller
         $get = $getRequest->requestTransaksi($request->method,$request->amount, $request->name_product, $request->name, $request->email);
         // create data in resep_premiums table
         history_premiums::create([
-            'users_id' => auth()->user()->id,
+            'users_id' => auth()->user()->id, 
             'premiums_id' => 1,
             'reference' => $get->reference,
             'merchant_ref' => $get->merchant_ref,
