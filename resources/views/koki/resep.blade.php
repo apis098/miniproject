@@ -16,7 +16,7 @@
         @csrf
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 mb-5">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="card-body text-center">
                             <img id="profile-image" src="{{ asset('images/default.jpg') }}"
@@ -50,7 +50,7 @@
                     @enderror
                     <div id="foto_resep_error" style="display: none;" class="alert alert-danger"></div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-8 col-md-6 col-sm-12">
                     <div class="mt-5">
                         <label for="exampleFormControlInput1" class="form-label text-poppins"
                             style="font: Poppins"><b>Nama</b></label>
@@ -157,10 +157,10 @@
                     <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama
                                 Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control col-10"
+                        <input type="text" name="lama_memasak" class="form-control col-lg-10 col-md-9 col-sm-8"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
-                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-2">
+                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-lg-2 col-md-3 col-sm-4">
                             <option value="menit" {{ old('lama_memasak2') == 'menit' ? 'selected' : '' }}>menit</option>
                             <option value="jam" {{ old('lama_memasak2') == 'jam' ? 'selected' : '' }}>jam</option>
                         </select>
@@ -185,8 +185,10 @@
                     <br>
                     <div class="mb-4 mx-1" style="margin-bottom: 20px">
                         <div class="row">
+                        <div class="col-lg-12">
+                        <div class="row">
                             <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
-                            <div id="div2" class="card my-4 col-lg-4 mx-3 border border-dark"
+                            <div id="div2" class="card my-4 col-lg-4 col-md-12 mx-3 border border-dark"
                                 style="border-radius: 15px;">
                                 <div class="card-body text-center">
                                     <img id="gambar" src="{{ asset('images/default.jpg') }}"
@@ -199,11 +201,11 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="col-lg-7 my-auto mx-1">
+                            <div class="col-lg-7 col-md-12 my-auto">
 
                                 {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
-                                <div class="row ms-3"
+                                <div class="row ms-3 my-2"
                                     style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                     <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
@@ -225,18 +227,21 @@
                                 <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
                                 </div>
                             </div>
-                            <input type="text" class="form-control mb-2 mx-3" name="judul_langkah[]"
-                                placeholder="Masukkan judul langkah..." required>
-                            <textarea class="mx-3" maxlength="255" class="form-control" name="langkah_resep[]" cols="30" rows="5"
-                                placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
-
-                            @error('langkah_resep.*')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                            <div id="langkah_resep.0_error" style="display: none;" class="alert alert-danger"></div>
                         </div>
+                        </div>
+                        <div class="col-12 mx-2">
+                        <input type="text" class="form-control mb-2 mx-1" name="judul_langkah[]"
+                            placeholder="Masukkan judul langkah..." required>
+                        <textarea class="mx-1 form-control" maxlength="255" class="form-control" name="langkah_resep[]"
+                            placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
+                        </div>
+                        </div>
+                        @error('langkah_resep.*')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <div id="langkah_resep.0_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <div id="new-input2">
 
@@ -253,7 +258,7 @@
                         </label>
                         <div class="row">
                             @foreach ($categories_food as $num => $f)
-                                <div class="col-lg-3 mb-4">
+                                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
                                     <input type="text" id="jenis_makanan{{ $num }}"
                                         value="{{ $f->id }}" style="display: none;">
                                     <button id="pilih_jenis_makanan{{ $num }}"
@@ -273,7 +278,7 @@
                         </label>
                         <div class="row">
                             @foreach ($special_days as $int => $d)
-                                <div class="col-lg-3 mb-4">
+                                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
                                     <input type="text" id="hari_khusus{{ $int }}"
                                         value="{{ $d->id }}" style="display: none;">
                                     <button id="pilih_hari_khusus{{ $int }}"
