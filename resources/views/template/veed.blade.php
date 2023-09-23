@@ -918,6 +918,118 @@
                                         </div>
                                         <!-- modal Bagikan end -->
                                         <!-- gift end -->
+
+                                         {{-- @if (Auth::check() && auth()->user()->id != $row->users_id && auth()->user()->role != 'admin') --}}
+                                        <button type="button" data-toggle="modal" data-target="#Modald{{-- $row->id --}}"
+                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                        </button>
+                                        {{-- modal --}}
+                                        <div class="modal fade" id="Modald{{-- $row->id --}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="reportModal"
+                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                            Laporkan komentar</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
+                                                        {{-- @csrf --}}
+                                                        <div class="modal-body d-flex align-items-center">
+                                                            <!-- Tambahkan kelas "align-items-center" -->
+                                                            {{-- @if ($row->foto)
+                                                                <img class="me-2" src="{{ asset('storage/' . $row->foto) }}"
+                                                                    width="106px" height="104px" style="border-radius: 50%"
+                                                                    alt="">
+                                                                <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                              @else --}}
+                                                                <img class="me-2" src="{{ asset('images/default.jpg') }}"
+                                                                    width="106px" height="104px" style="border-radius: 50%"
+                                                                    alt="">
+                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                    placeholder="Alasan..."></textarea>
+                                                            {{-- @endif --}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-light text-light"
+                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                    class="ms-2 me-2">Laporkan</b></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end Modal --}}
+                                    {{-- @elseif(Auth::check() && auth()->user()->role == 'admin') --}}
+                                        <button type="button" data-toggle="modal" data-target="#blockModal{{-- $row->id --}}"
+                                            class="yuhu text-danger btn-sm rounded-5 "><svg xmlns="http://www.w3.org/2000/svg"
+                                                width="20" height="20" viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                    fill="currentColor" fill-rule="nonzero" />
+                                            </svg>
+                                        </button>
+                                        {{-- modal --}}
+                                        <div class="modal fade" id="blockModal{{-- $row->id --}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="reportModal"
+                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                            Blokir komentar</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
+                                                        {{-- @csrf --}}
+                                                        <div class="modal-body d-flex align-items-center">
+                                                            <!-- Tambahkan kelas "align-items-center" -->
+                                                            {{-- @if ($row->foto)
+                                                                <img class="me-2" src="{{ asset('storage/' . $row->foto) }}"
+                                                                    width="106px" height="104px" style="border-radius: 50%"
+                                                                    alt="">
+                                                                <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                              @else --}}
+                                                                <img class="me-2" src="{{ asset('images/default.jpg') }}"
+                                                                    width="106px" height="104px" style="border-radius: 50%"
+                                                                    alt="">
+                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                    placeholder="Alasan..."></textarea>
+                                                            {{-- @endif --}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-light text-light"
+                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                    class="ms-2 me-2">Blokir</b></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end Modal --}}
+                                    {{-- @elseif(Auth::check() && auth()->user()->id == $row->users_id) --}}
+                                        <form method="POST" action="{{-- route('delete.comment',$row->id) --}}"
+                                            id="delete-comment-form{{-- $row->id --}}">
+                                            {{-- @csrf
+                                            @method('DELETE') --}}
+                                            <button type="button" onclick="confirmation({{-- $row->id --}})"
+                                                class="yuhu text-danger btn-sm rounded-5 ">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    {{-- @elseif(empty(auth()->user()->id)) --}}
+                                        <button type="button" onclick="harusLogin()" class="yuhu text-danger btn-sm rounded-5 "><i
+                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                        </button>
+                                    {{-- @endif --}}
                                     </span>
 
 
@@ -1358,11 +1470,44 @@ function toggleCheckbox(checkbox) {
             iziToast.destroy();
             iziToast.show({
                 backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
+                title: '<i class="fa-solid fa-exclamation"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda harus login terlebih dahulu!',
                 position: 'topCenter',
+                progressBarColor: 'white',
+            });
+        }
+        function confirmation() {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+                position: 'topCenter',
+                progressBarColor: 'white',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('delete-comment-form' + num).submit();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
             });
         }
     </script>
