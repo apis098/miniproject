@@ -211,4 +211,10 @@ class VeedController extends Controller
             ]);
         }
     }
+    public function hapus_komentar_feed(string $id) {
+
+    }
+    public function hapus_balasan_komentar_feed(string $id) {
+        
+    }
 }

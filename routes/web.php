@@ -147,9 +147,13 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::resource('resep', ResepsController::class);
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
-        Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video');
     });
 });
+
+// feed route
+Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video')->middleware("auth");
+Route::delete('/hapus_feed/{id}', [KokiController::class, "hapus_feed"])->name('hapus.feed')->middleware("auth");
+
 
 // like dan komentar pada artikel resep
 Route::post('/komentar-resep/{user}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
@@ -166,6 +170,9 @@ Route::post("/komentar-veed/{user_id}/{veed_id}", [VeedController::class, 'komen
 Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
 Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');
 Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [VeedController::class, 'sukai_balasan_komentar_veed'])->name('sukai.balasan.komentar.veed');
+Route::delete("/hapus_komentar_feed/{id}", [VeedController::class, "hapus_komentar_feed"])->name('hapus.komentar.feed');
+Route::delete("/hapus_balasan_komentar_feed/{id}", [VeedController::class, "hapus_balasan_komentar_feed"])->name('hapus.balasan.komentar.feed');
+
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
 

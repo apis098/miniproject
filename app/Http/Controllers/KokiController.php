@@ -159,6 +159,16 @@ class KokiController extends Controller
             //return redirect()->back()->with("success", "Sukses upload video");
         }
     }
+    public function hapus_feed(string $id) {
+        $feed = upload_video::find($id);
+        Storage::delete($feed->upload_video);
+        $feed->delete();
+        $video_pembelajaran = upload_video::latest()->get();
+        return response()->json([
+            "success" => "sukses menghapus feed anda!",
+            "update" => $video_pembelajaran
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
