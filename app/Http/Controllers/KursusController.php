@@ -44,8 +44,8 @@ class KursusController extends Controller
 
 
     public function kursus(){
-
-        return view('admin.kursus');
+        $all_course = kursus::all();
+        return view('admin.kursus', compact("all_course"));
     }
 
     /**
