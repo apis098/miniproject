@@ -14,28 +14,23 @@
                     <button type="button"class="btn"
                         style=" background: #F7941E;color:white;
                          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                        Memanggang
+                        {{ $detail_course->jenis_kursus }}
                     </button>
                     <br>
                     <br>
-                    <h2><b> Cara memanggang yang baik dan benar </b></h2>
+                    <h2><b> {{ $detail_course->nama_kursus }} </b></h2>
                     <div class="my-3 mt-5">
                         <h3 class="mb-3"><b>Tentang kursus</b></h3>
 
-                        <p>Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et
-                            facere dolore. Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum
-                            enim quo quidem sint! Qui ratione placeat ut quibusdam soluta qui dolore dignissimos non dolores
-                            quaerat quo voluptatibus itaque. Sit reprehenderit quia in velit incidunt vel suscipit
-                            dignissimos a veritatis facere vel vero excepturi. Aut eligendi delectus ut inventore aliquid ea
-                            provident velit et debitis voluptas. Sit recusandae voluptas nam omnis velit sit exercitationem
-                            molestiae cum unde quae in placeat quisquam.
+                        <p>
+                            {{ $detail_course->deskripsi_kursus }}
                         </p>
 
                     </div>
                     <div class=" mt-3">
                         <h3><b>Lokasi kursus</b></h3>
                         <button type="button" class="btn mt-3" style=" border-radius: 15px; border: 1px black solid">
-                            <i class="fas fa-regular fa-location-dot"></i> Malang
+                            <i class="fas fa-regular fa-location-dot"></i> {{ $detail_course->lokasi_kursus }}
                         </button>
                     </div>
                     <br>
@@ -44,8 +39,14 @@
                 <div class="col-xl-3 col-sm-4 mb-4 my-4">
                     <div class="bg-white shadow-sm py-5 border border-secondary text-center"
                         style="border-radius: 20px; height:25rem;">
+                        @if ($detail_course->user->foto)
+                        <img src="{{ asset('images/'.$detail_course->user->foto) }}" alt="" width="50%" height="50%"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        @else
                         <img src="{{ asset('images/default.jpg') }}" alt="" width="50%" height="50%"
-                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                        @endif
+
                         <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
                             style="position: absolute;  right: 75px; background-color:#F7941E;" data-toggle="modal"
                             data-target="#exampleModalCenter">
@@ -56,7 +57,7 @@
                         </button>
                         <h5 class="mb-0">
                             <a href="#" style="color: black">
-                                Kamisato Ayaka
+                                {{ $detail_course->user->name }}
                             </a>
                         </h5>
                         <div class="d-flex justify-content-center mt-2 ">
@@ -68,7 +69,7 @@
                                         fill="#F4DD0A" stroke="black" />
                                 </g>
                             </svg>
-                            <p>5 (50 ulasan)</p>
+                            <p>0 (0 ulasan)</p>
                         </div>
                         <div class="justify-content-center">
                             {{-- <form action="#" method="POST">
@@ -123,16 +124,23 @@
                     <div class="row">
                         <div class="col-lg-3 mx-4">
                             <h5><b>Tarif per jam</b></h5>
-                            <p>Rp.100.000</p>
+                            <p>Rp. {{ number_format($detail_course->tarif_per_jam, 2, ",", ".") }}</p>
                         </div>
                         <div class="col-xl-4 mx-3">
                             <h5><b>Tarif paket</b></h5>
-                            <p>5 jam = Rp.300.000,00</p>
-                            <p>10 jam = Rp.600.000,00</p>
+                            @foreach ($detail_course->paket_kursus as $item)
+                            <p>
+                                @if ($item->waktu >= 60)
+                                    {{ $item->waktu / 60 }} Jam
+                                @else
+                                    {{ $item->waktu }} Menit
+                                @endif
+                                 = {{ number_format($item->harga, 2, ",", ".") }}</p>
+                            @endforeach
                         </div>
                         <div class="col-lg-3 mx-4">
-                            <h5><b>Waktu kusus</b></h5>
-                            <p>200 menit</p>
+                            <h5><b>Waktu kursus</b></h5>
+                            <p>0 menit</p>
                         </div>
                     </div>
                 </div>

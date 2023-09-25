@@ -48,7 +48,7 @@ Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 //kursus
 Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
-route::get('/detail',[detail_kursusController::class,'detail_kursus'])->name('detail.kursus');
+route::get('/detail_kursus/{id}',[detail_kursusController::class,'detail_kursus'])->name('detail.kursus');
 // veed
 Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\kursus;
 use App\Models\notifications;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ use Illuminate\Support\Facades\Auth;
 class detail_kursusController extends Controller
 {
 
-    public function detail_kursus(){
+    public function detail_kursus(string $id){
+        $detail_course = kursus::find($id);
         $idAdmin = User::where('role', 'admin')->first();
         $userLogin = Auth::user();
         // untuk user belum login
@@ -45,7 +47,7 @@ class detail_kursusController extends Controller
                 ->paginate(10);
         }
         $footer = footer::first();
-        return view('template.detail-kursus', compact('idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.detail-kursus', compact('detail_course','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
 }
