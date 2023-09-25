@@ -14,6 +14,7 @@ use App\Models\favorite;
 use App\Models\footer;
 use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
+use App\Models\Reply;
 use App\Models\reply_comment_veed;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
 
@@ -212,9 +213,13 @@ class VeedController extends Controller
         }
     }
     public function hapus_komentar_feed(string $id) {
-
+        $COMMENT = comment_veed::find($id);
+        $COMMENT->delete();
+        return redirect()->back()->with('success', 'sukses menghapus komentar feed!');
     }
     public function hapus_balasan_komentar_feed(string $id) {
-        
+        $reply_comment = reply_comment_veed::find($id);
+        $reply_comment->delete();
+        return redirect()->back()->with('success', 'sukses menghapus balasan komentar feed!');
     }
 }

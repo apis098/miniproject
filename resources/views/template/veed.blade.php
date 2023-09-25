@@ -435,11 +435,13 @@
                                                                                     @elseif(Auth::user()->id == $item_comment->user->id)
                                                                                         {{-- Hapus Komentar --}}
                                                                                         <form method="POST"
-                                                                                            action="{{-- route('delete.comment',$row->id) --}}"
-                                                                                            id="delete-comment-form{{-- $row->id --}}">
-
+                                                                                            action="{{ route('hapus.komentar.feed',$item_comment->id) }}"
+                                                                                            id="delete-comment-form{{ $item_comment->id }}">
+                                                                                            @csrf
+                                                                                            @method("DELETE")
+                                                                                            <button type="submit" hidden id="delete-comment-button{{ $item_comment->id }}">Delete</button>
                                                                                             <button type="button"
-                                                                                                onclick="confirmation({{-- $row->id --}})"
+                                                                                                onclick="confirmation_delete_comment_feed({{ $item_comment->id }})"
                                                                                                 class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                 <i
                                                                                                     class="fa-solid fa-trash"></i>
@@ -738,12 +740,14 @@
                                                                                                             {{-- Hapus Komentar --}}
                                                                                                             <form
                                                                                                                 method="POST"
-                                                                                                                action="{{-- route('delete.comment',$row->id) --}}"
-                                                                                                                id="delete-comment-form{{-- $row->id --}}">
-
+                                                                                                                action="{{ route('hapus.balasan.komentar.feed',$reply_comment->id) }}"
+                                                                                                                id="delete-reply-comment-form{{ $reply_comment->id }}">
+                                                                                                                @csrf
+                                                                                                                @method("DELETE")
+                                                                                                                <button type="submit" id="delete-reply-comment-button{{ $reply_comment->id }}" hidden>Delete</button>
                                                                                                                 <button
                                                                                                                     type="button"
-                                                                                                                    onclick="confirmation({{-- $row->id --}})"
+                                                                                                                    onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
                                                                                                                     class="yuhu text-danger btn-sm rounded-5 ">
                                                                                                                     <i class="fa-solid fa-trash"></i>
                                                                                                                 </button>
@@ -1286,11 +1290,13 @@
                                                     </div>
                                                 @elseif(Auth::user()->id == $item_video->user->id)
                                                     {{-- Hapus Komentar --}}
-                                                    <form method="POST" action="{{-- route('delete.comment',$row->id) --}}"
-                                                        id="delete-comment-form{{-- $row->id --}}">
-
+                                                    <form method="POST" action="{{ route('hapus.feed', $item_video->id) }}"
+                                                        id="delete-feed-form{{$item_video->id}}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" hidden id="delete-feed-button{{ $item_video->id }}"></button>
                                                         <button type="button"
-                                                            onclick="confirmation({{-- $row->id --}})"
+                                                            onclick="confirmation_delete_feed({{ $item_video->id }})"
                                                             class="yuhu text-danger btn-sm rounded-5 ">
                                                             <i class="fa-solid fa-trash"></i>
                                                         </button>
@@ -1803,7 +1809,7 @@ function toggleCheckbox(checkbox) {
             });
         }
 
-        function confirmation() {
+        function confirmation_delete_comment_feed(num) {
             iziToast.show({
                 backgroundColor: '#F7941E',
                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -1818,7 +1824,71 @@ function toggleCheckbox(checkbox) {
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('delete-comment-form' + num).submit();
+                                document.getElementById('delete-comment-button' + num).click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        function confirmation_delete_feed(num) {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus feed anda?',
+                position: 'topCenter',
+                progressBarColor: 'white',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                $("#delete-feed-button" + num).click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        function confirmation_delete_reply_comment(num) {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+                position: 'topCenter',
+                progressBarColor: 'white',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('delete-reply-comment-button' + num).click();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
