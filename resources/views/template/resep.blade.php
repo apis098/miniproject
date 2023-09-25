@@ -323,7 +323,7 @@
                                             placeholder="Minimal"
                                             style="border-radius: 10px; font-size:13px;border: 1px solid black;">
                                         <select name="min_timer" id="" class="col-5"
-                                            style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
+                                            style="background-color: white;border-radius: 10px; border: 1px solid; font-size: 13px;">
                                             <option value="menit">menit</option>
                                             <option value="jam">jam</option>
                                         </select>
@@ -463,9 +463,8 @@
             @foreach ($recipes as $num => $item)
                 <div class="col-lg-4 mb-2 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                        <div class="card-header my-3 text-center mx-auto" style="background-color: white;width:100%;">
-
-                            <img width="80%" class="rounded-circle" height="80%"
+                        <div class="card-header my-3 mx-auto" style="background-color: white">
+                            <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                             @if ($item->isPremium === 'yes')

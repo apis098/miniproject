@@ -13,6 +13,36 @@
 
 <!-- end about section -->
 
+<style>
+    /* CSS untuk Tampilan Desktop */
+.image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+}
+
+.image-container img {
+    width: 100%;
+    max-width: none;
+}
+
+/* CSS untuk Tampilan Mobile */
+@media (max-width: 768px) {
+    .image-container {
+        position: relative;
+        z-index: initial;
+    }
+
+    .image-container img {
+        width: 110%; /* Sesuaikan sesuai kebutuhan */
+        margin-top: -20%; /* Sesuaikan sesuai kebutuhan */
+    }
+}
+
+</style>
+
 <!-- book section -->
 <section class="book_section layout_padding">
     <div class="container">
@@ -57,7 +87,7 @@
                 </div>
             </div>
             <div class="col ms-5">
-                <div>
+                <div class="image-container">
                     <img src="{{ asset('images/home.png') }}" alt="Gambar Contoh"
                         style="width: 110%; margin-top: -20%;">
                 </div>
@@ -67,16 +97,16 @@
     </div>
 </section>
 <!-- end book section -->
-<div class="row ms-1 mb-4 me-1" style="margin-top: -4%;">
+{{-- <div class="row ms-1 mb-4 me-1" style="margin-top: -4%;">
     <div class="ms-5 input-group">
         <div class="ms-1">
-            <h3 class="fw-bold">Keluhan Pengguna</h3>
+            <h3 class="fw-bold mx-5">Keluhan Pengguna</h3>
         </div>
-        {{-- <div class="ms-auto me-5">
+        <div class="ms-auto me-5">
             {{ $complaints->links('vendor.pagination.default') }}
-        </div> --}}
+        </div>
     </div>
-</div>
+</div> --}}
 @if ($complaints->count() == 0)
     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
         <img src="images/data.png" style="width: 15em">
@@ -86,9 +116,10 @@
 
 <div class="container mb-5">
     <div class="row mb-5">
+        <h3 class="fw-bold">Keluhan Pengguna</h3>
         @foreach ($complaints as $item)
             <div class="col-lg-4">
-                <div class="card p-0" style=" border-radius: 15px; border: 1px black solid">
+                <div class="card p-0 mt-4 mb-2" style=" border-radius: 15px; border: 1px black solid">
                     <div class="card-body ">
                         <div class="widget-49">
                             <div class="widget-49-title-wrapper">

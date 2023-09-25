@@ -152,6 +152,35 @@
             border-bottom: #F7941E 2px solid;
         }
 
+        @media (max-width: 768px) {
+    /* Aturan CSS untuk layar dengan lebar maksimum 768px */
+    .my-5 {
+        margin: 0;
+    }
+
+    .ml-5 {
+        margin-left: 0;
+    }
+
+    .mr-3 {
+        margin-right: 0;
+    }
+
+    /* ... (aturan CSS lainnya) ... */
+
+    /* Mengubah lebar input pada formulir */
+    .form-control {
+        width: 100%;
+    }
+
+    /* Mengatur margin pada tombol Hapus dan Tambah Paket */
+    .btn-delete,
+    .btn-add {
+        margin-left: 0;
+    }
+}
+
+
     </style>
 
     <div class=" d-flex justify-content-center" style="margin-left:-130px">
