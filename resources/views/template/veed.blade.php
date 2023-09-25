@@ -42,6 +42,21 @@
 
                 <div class="card">
                     <div class="card-body">
+                        @if (Auth::user()->isSuperUser === 'yes')
+                        <div class="">
+                            <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
+                                autocomplete="off" value="no" checked>
+                            <label
+                                style="border:none;float:left;  background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
+                                class="btn btn-outline-warning mr-3 mb-3" for="success-outlined">Premium</label>
+
+                            <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
+                                autocomplete="off" value="yes">
+                            <label
+                                style="border:none;float:left;  border-radius: 10px; border: 1px black solid; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
+                                class="btn btn-outline-dark" for="danger-outlined">Gratis</label>
+                        </div>
+                    @endif
                         @if (Auth::check())
                             <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
                                 id="formUploadVideo">
@@ -58,24 +73,6 @@
                                                 d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
                                         </svg> Tambahkan Video</div>
                                 </a>
-                                @if (Auth::user()->isSuperUser === 'yes')
-                                    <div class="mt-2 mx-2">
-                                        <label for="isPremium" class="form-label" style="font-weight: 600;">
-                                            <b> Feed anda gratis / premium? </b>
-                                        </label> <br>
-                                        <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                            autocomplete="off" value="no" checked>
-                                        <label
-                                            style="border:none;float:left; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"
-                                            class="btn btn-outline-warning mr-3" for="success-outlined">Gratis</label>
-
-                                        <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
-                                            autocomplete="off" value="yes">
-                                        <label
-                                            style="border:none;float:left; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px"
-                                            class="btn btn-outline-dark" for="danger-outlined">Premium</label>
-                                    </div>
-                                @endif
                                 <button type="submit" class="btn " id="buttonUploadVideo"
                                     style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                     <span style="font-weight: 600; color: white;">Upload</span>
@@ -443,7 +440,7 @@
 
                                                                                             <button type="button"
                                                                                                 onclick="confirmation({{-- $row->id --}})"
-                                                                                                class="yuhu text-danger btn-sm rounded-5 ">
+                                                                                                class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                 <i
                                                                                                     class="fa-solid fa-trash"></i>
                                                                                             </button>
@@ -748,8 +745,7 @@
                                                                                                                     type="button"
                                                                                                                     onclick="confirmation({{-- $row->id --}})"
                                                                                                                     class="yuhu text-danger btn-sm rounded-5 ">
-                                                                                                                    <i
-                                                                                                                        class="fa-solid fa-trash"></i>
+                                                                                                                    <i class="fa-solid fa-trash"></i>
                                                                                                                 </button>
                                                                                                             </form>
                                                                                                         @elseif(Auth::user()->role == 'admin')

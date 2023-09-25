@@ -22,8 +22,10 @@
                     </svg>
                     <i class="fas fa-legular fa-file-lines"></i>
                   </div>
+                <div class="mt-5">
                 <h4>Resep Premium</h4>
                 <p>Resep yang sudah teruji dan terjamin keautentikannya.</p>
+            </div>
               </div>
             </div>
 
@@ -35,8 +37,10 @@
                         </svg>
                         <i class="fas fa-solid fa-display"></i>
                       </div>
+                      <div class="mt-5">
                 <h4>Feed</h4>
                 <p>Dengan akses penuh terhadap feed anda tidak akan meihat tutorial yang terpotong.</p>
+                      </div>
               </div>
             </div>
 
@@ -48,8 +52,10 @@
                     </svg>
                     <i class="fas fa-regular fa-layer-group"></i>
                 </div>
+                <div class="mt-5">
                 <h4>Pilihan premium</h4>
                 <p>Anda Bisa menyesuaikan pilihan premium sesuai keinginan anda.</p>
+                </div>
               </div>
             </div>
 
