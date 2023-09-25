@@ -42,21 +42,23 @@
 
                 <div class="card">
                     <div class="card-body">
-                        @if (Auth::user()->isSuperUser === 'yes')
-                        <div class="">
-                            <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                autocomplete="off" value="no" checked>
-                            <label
-                                style="border:none;float:left;  background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
-                                class="btn btn-outline-warning mr-3 mb-3" for="success-outlined">Premium</label>
+                        @if (Auth::user())
+                            @if (Auth::user()->isSuperUser === 'yes')
+                                <div class="">
+                                    <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
+                                        autocomplete="off" value="no" checked>
+                                    <label
+                                        style="border:none;float:left;  background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
+                                        class="btn btn-outline-warning mr-3 mb-3" for="success-outlined">Premium</label>
 
-                            <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
-                                autocomplete="off" value="yes">
-                            <label
-                                style="border:none;float:left;  border-radius: 10px; border: 1px black solid; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
-                                class="btn btn-outline-dark" for="danger-outlined">Gratis</label>
-                        </div>
-                    @endif
+                                    <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
+                                        autocomplete="off" value="yes">
+                                    <label
+                                        style="border:none;float:left;  border-radius: 10px; border: 1px black solid; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
+                                        class="btn btn-outline-dark" for="danger-outlined">Gratis</label>
+                                </div>
+                            @endif
+                        @endif
                         @if (Auth::check())
                             <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
                                 id="formUploadVideo">
@@ -374,12 +376,13 @@
                                                                                 @if (Auth::user())
                                                                                     @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user->id)
                                                                                         {{-- Laporkan Komentar --}}
-                                                                                        <a  data-bs-toggle="modal"
+                                                                                        <a data-bs-toggle="modal"
                                                                                             href="#ModalL{{ $item_comment->id }}"
                                                                                             class="yuhu text-danger btn-sm rounded-5 "><i
                                                                                                 class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                                            </a>
-                                                                                        <div class="modal fade" data-bs-backdrop="static"
+                                                                                        </a>
+                                                                                        <div class="modal fade"
+                                                                                            data-bs-backdrop="static"
                                                                                             id="ModalL{{ $item_comment->id }}"
                                                                                             tabindex="-1" role="dialog"
                                                                                             aria-labelledby="exampleModalCenterTitle"
@@ -435,11 +438,12 @@
                                                                                     @elseif(Auth::user()->id == $item_comment->user->id)
                                                                                         {{-- Hapus Komentar --}}
                                                                                         <form method="POST"
-                                                                                            action="{{ route('hapus.komentar.feed',$item_comment->id) }}"
+                                                                                            action="{{ route('hapus.komentar.feed', $item_comment->id) }}"
                                                                                             id="delete-comment-form{{ $item_comment->id }}">
                                                                                             @csrf
-                                                                                            @method("DELETE")
-                                                                                            <button type="submit" hidden id="delete-comment-button{{ $item_comment->id }}">Delete</button>
+                                                                                            @method('DELETE')
+                                                                                            <button type="submit" hidden
+                                                                                                id="delete-comment-button{{ $item_comment->id }}">Delete</button>
                                                                                             <button type="button"
                                                                                                 onclick="confirmation_delete_comment_feed({{ $item_comment->id }})"
                                                                                                 class="yuhu text-danger btn-sm rounded-5 float-end">
@@ -463,7 +467,8 @@
                                                                                                     fill-rule="nonzero" />
                                                                                             </svg>
                                                                                         </button>
-                                                                                        <div class="modal fade" data-bs-backdrop="static"
+                                                                                        <div class="modal fade"
+                                                                                            data-bs-backdrop="static"
                                                                                             id="blockMod{{ $item_comment->id }}"
                                                                                             tabindex="-1" role="dialog"
                                                                                             aria-labelledby="exampleModalCenterTitle"
@@ -740,16 +745,20 @@
                                                                                                             {{-- Hapus Komentar --}}
                                                                                                             <form
                                                                                                                 method="POST"
-                                                                                                                action="{{ route('hapus.balasan.komentar.feed',$reply_comment->id) }}"
+                                                                                                                action="{{ route('hapus.balasan.komentar.feed', $reply_comment->id) }}"
                                                                                                                 id="delete-reply-comment-form{{ $reply_comment->id }}">
                                                                                                                 @csrf
-                                                                                                                @method("DELETE")
-                                                                                                                <button type="submit" id="delete-reply-comment-button{{ $reply_comment->id }}" hidden>Delete</button>
+                                                                                                                @method('DELETE')
+                                                                                                                <button
+                                                                                                                    type="submit"
+                                                                                                                    id="delete-reply-comment-button{{ $reply_comment->id }}"
+                                                                                                                    hidden>Delete</button>
                                                                                                                 <button
                                                                                                                     type="button"
                                                                                                                     onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
                                                                                                                     class="yuhu text-danger btn-sm rounded-5 ">
-                                                                                                                    <i class="fa-solid fa-trash"></i>
+                                                                                                                    <i
+                                                                                                                        class="fa-solid fa-trash"></i>
                                                                                                                 </button>
                                                                                                             </form>
                                                                                                         @elseif(Auth::user()->role == 'admin')
@@ -1290,11 +1299,13 @@
                                                     </div>
                                                 @elseif(Auth::user()->id == $item_video->user->id)
                                                     {{-- Hapus Komentar --}}
-                                                    <form method="POST" action="{{ route('hapus.feed', $item_video->id) }}"
-                                                        id="delete-feed-form{{$item_video->id}}">
+                                                    <form method="POST"
+                                                        action="{{ route('hapus.feed', $item_video->id) }}"
+                                                        id="delete-feed-form{{ $item_video->id }}">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" hidden id="delete-feed-button{{ $item_video->id }}"></button>
+                                                        <button type="submit" hidden
+                                                            id="delete-feed-button{{ $item_video->id }}"></button>
                                                         <button type="button"
                                                             onclick="confirmation_delete_feed({{ $item_video->id }})"
                                                             class="yuhu text-danger btn-sm rounded-5 ">
@@ -1841,6 +1852,7 @@ function toggleCheckbox(checkbox) {
                 }
             });
         }
+
         function confirmation_delete_feed(num) {
             iziToast.show({
                 backgroundColor: '#F7941E',
@@ -1873,6 +1885,7 @@ function toggleCheckbox(checkbox) {
                 }
             });
         }
+
         function confirmation_delete_reply_comment(num) {
             iziToast.show({
                 backgroundColor: '#F7941E',
@@ -1888,7 +1901,8 @@ function toggleCheckbox(checkbox) {
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('delete-reply-comment-button' + num).click();
+                                document.getElementById('delete-reply-comment-button' + num)
+                                    .click();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
