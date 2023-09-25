@@ -98,74 +98,100 @@
                                 @enderror
                                 <div id="#" class="alert alert-danger" style="display: none;"></div>
                             </div>
-                            <div>
-                                <div class="mt-2" style="margin-bottom: 20px">
-                                    <label for="exampleFormControlInput1" class="form-label"><b>Jumlah
-                                            pelajaran</b></label>
-                                    <input type="number" name="jumlah_pelajaran" class="form-control"
-                                        id="exampleFormControlInput1" placeholder="Masukkan jumlah pelajaran"
-                                        value="{{ old('#') }}">
-                                    @error('#')
-                                        <div class="alert alert-danger">
-                                            {{ $message }}
+                            <div class="mt-2" style="margin-bottom: 20px;">
+                                <label for="paket_kursus" class="form-label"><b>Paket Kursus</b></label>
+                                <div class="row" id="row1">
+                                    <div class="col-6">
+                                        <div class="row ml-1">
+                                            <input type="text" name="paket_kursus_waktu[]" id="paket_kursus"
+                                                placeholder="masukkan waktu kursus" class="form-control col-8">
+                                            <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
+                                                id="paket_kursus">
+                                                <option value="menit">menit</option>
+                                                <option value="jam">jam</option>
+                                            </select>
                                         </div>
-                                    @enderror
-                                    <div id="#" class="alert alert-danger" style="display: none;"></div>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
+                                            placeholder="masukkan harganya" class="form-control">
+                                    </div>
                                 </div>
-
+                                <div id="dynamic-input-paket-kursus"></div>
+                                <button class="btn btn-primary my-2" type="button"
+                                    id="button_tambah_paket_kursus">Tambah Paket Kursus</button>
+                            </div>
+                            <script>
+                                let num = 2;
+                                document.getElementById("button_tambah_paket_kursus").addEventListener("click", function() {
+                                    num++;
+                                    const createElement = document.createElement("div");
+                                    createElement.innerHTML = `
+                                    <div class="row my-3" id="row${num}">
+                                    <div class="col-6">
+                                        <div class="row ml-1">
+                                            <input type="text" name="paket_kursus_waktu[]" id="paket_kursus"
+                                                placeholder="masukkan waktu kursus" class="form-control col-8">
+                                            <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
+                                                id="paket_kursus">
+                                                <option value="menit">menit</option>
+                                                <option value="jam">jam</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                        <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
+                                            placeholder="masukkan harganya" class="form-control col-9">
+                                        <button class="btn btn-danger col-3" onclick="tutup_paket_kursus(${num})">Tutup</button>
+                                        </div>
+                                    </div>
+                                    </div>`;
+                                    document.getElementById("dynamic-input-paket-kursus").appendChild(createElement);
+                                });
+                                
+                                function tutup_paket_kursus(num) {
+                                    document.getElementById("row"+num).remove();
+                                }
+                            </script>
+                            <div>
 
                                 <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
-                                    <label for="exampleFormControlInput1" class="form-label"
-                                        style="margin-left: -10px;"><b>
+                                    <label for="tipe_kursus" class="form-label" style="margin-left: -10px;"><b>
                                             Tipe Kursus</b></label>
                                     <input type="text" name="tipe_kursus" class="form-control col-10"
-                                        id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                                        value="{{ old('#') }}">
-                                    <select name="informasi_tipe_kursus" id="#" class="form-control col-2">
-                                        <option value="grup" {{ old('#') == 'grup' ? 'selected' : '' }}>grup</option>
-                                        <option value="perorangan" {{ old('#') == 'perorangan' ? 'selected' : '' }}>
+                                        id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
+                                        value="{{ old('tipe_kursus') }}">
+                                    <select name="informasi_tipe_kursus" id="informasi_tipe_kursus90"
+                                        class="form-control col-2">
+                                        <option value="grup" {{ old('tipe_kursus') == 'grup' ? 'selected' : '' }}>grup
+                                        </option>
+                                        <option value="perorangan"
+                                            {{ old('tipe_kursus') == 'perorangan' ? 'selected' : '' }}>
                                             perorangan</option>
                                     </select>
-                                    @error('#')
-                                        <div class="alert alert-danger">
-                                            {{-- {{ $message }} --}}
-                                        </div>
-                                    @enderror
-                                    <div id="#_error" style="display: none;" class="alert alert-danger"></div>
                                 </div>
-
-                                <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
-                                    <label for="exampleFormControlInput1" class="form-label"
-                                        style="margin-left: -10px;"><b>
-                                            Lama kursus</b></label>
-                                    <input type="text" name="lama_kursus" class="form-control col-10"
-                                        id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
-                                        value="{{ old('#') }}">
-                                    <select name="informasi_lama_kursus" id="#" class="form-control col-2">
-                                        <option value="menit" {{ old('#') == 'menit' ? 'selected' : '' }}>menit</option>
-                                        <option value="jam" {{ old('#') == 'jam' ? 'selected' : '' }}>jam</option>
-                                    </select>
-                                    @error('#')
-                                        <div class="alert alert-danger">
-                                            {{-- {{ $message }} --}}
-                                        </div>
-                                    @enderror
-                                    <div id="#_error" style="display: none;" class="alert alert-danger"></div>
-                                </div>
-
+                                <script>
+                                    let informasi_tipe_kursus = document.getElementById("informasi_tipe_kursus90");
+                                    let tipe_kursus = document.getElementById("tipe_kursus90");
+                                    informasi_tipe_kursus.addEventListener("click", function() {
+                                        if (informasi_tipe_kursus.value === "perorangan") {
+                                            tipe_kursus.disabled = true;
+                                            tipe_kursus.value = '1';
+                                        } else {
+                                            tipe_kursus.disabled = false;
+                                            tipe_kursus.value = '';
+                                        }
+                                    });
+                                </script>
                                 <br>
                                 <label for="#" class="form-label" style="font-weight: 600;">
                                     <b> Jenis Kursus </b>
                                 </label>
-                                <div class="row">
-                                    <div class="col-lg-3 mb-4">
-                                        <input type="text" id="jenis_kursus" value="jenis_kursus"
-                                            style="display: none;" value="memanggang">
-                                        <button id="pilih_jenis_kursus" onclick="pilih_jenis_kursus(1)"
-                                            class="btn btn-light" type="button"
-                                            style="width: 100%; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                                            <span style="font-size: 15px;">Memanggang</span>
-                                        </button>
+                                <div>
+                                    <div class="mb-4">
+                                        <input type="text" id="jenis_kursus" name="jenis_kursus"
+                                            placeholder="Masukkan jenis kursus..." class="form-control">
                                     </div>
                                 </div>
                             </div>

@@ -16,12 +16,14 @@ class kursus extends Model
         "deskripsi_kursus", 
         "lokasi_kursus",
         "tarif_per_jam",
-        "jumlah_pelajaran",
         "tipe_kursus",
-        "lama_kursus",
+        "jenis_kursus",
         "status"
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");
+    }
+    public function paket_kursus() {
+        return $this->hasMany(paket_kursuses::class, "kursus_id");
     }
 }

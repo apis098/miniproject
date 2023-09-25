@@ -19,9 +19,8 @@ return new class extends Migration
             $table->text('deskripsi_kursus');
             $table->string('lokasi_kursus');
             $table->bigInteger('tarif_per_jam');
-            $table->integer('jumlah_pelajaran');
             $table->enum('tipe_kursus', ['perorangan', 'grup']);
-            $table->string('lama_kursus');
+            $table->string('jenis_kursus');
             $table->enum('status', ['ditunggu', 'diterima', 'ditolak'])->default('ditunggu');
             $table->timestamps();
 

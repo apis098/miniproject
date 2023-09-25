@@ -7,6 +7,7 @@ use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kursus;
 use App\Models\notifications;
+use App\Models\paket_kursuses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -67,9 +68,10 @@ class KursusController extends Controller
             'deskripsi_kursus' => "required",
             'lokasi_kursus' => "required",
             'tarif_per_jam' => "required",
-            'jumlah_pelajaran' => "required",
             'tipe_kursus' => "required",
-            'lama_kursus' => "required",
+            "paket_kursus_waktu.*" => "required",
+            "informasi_paket_kursus_waktu.*" => "required",
+            "paket_kursus_harga.*" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -77,9 +79,10 @@ class KursusController extends Controller
             'deskripsi_kursus.required'=> "deskripsi kursus wajib diisi!",
             'lokasi_kursus.required' => "lokasi kursus wajib diisi!",
             'tarif_per_jam.required' => "tarif per jam wajib diisi!",
-            'jumlah_pelajaran.required' => "jumlah pelajaran wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
-            'lama_kursus.required' => "lama kursus wajib diisi!",
+            "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
+            "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
+            "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!"
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
@@ -92,11 +95,22 @@ class KursusController extends Controller
             "deskripsi_kursus" => $request->deskripsi_kursus,
             "lokasi_kursus" => $request->lokasi_kursus,
             "tarif_per_jam" => $request->tarif_per_jam,
-            "jumlah_pelajaran" => $request->jumlah_pelajaran,
             "tipe_kursus" => $request->tipe_kursus,
-            "lama_kursus" => $request->lama_kursus,
+            "jenis_kursus" => $request->jenis_kursus
         ]);
         if ($store) {
+            foreach ($request->paket_kursus_waktu as $num => $waktu) {
+                if ($request->informasi_paket_kursus_waktu[$num] === "jam") {
+                    $waktu *= 60;
+                }
+                
+                paket_kursuses::create([
+                    "kursus_id" => $store->id,
+                    "waktu" => $waktu,
+                    "harga" => $request->paket_kursus_harga[$num]
+                ]);
+            }
+            paket_kursuses::create([]);
             return response()->json([
                 "success" => true,
                 "message" => "sukses menambahkan kursus, harap menunggu konfirmasi admin.",

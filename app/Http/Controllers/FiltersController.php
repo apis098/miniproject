@@ -11,13 +11,9 @@ use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kategori_makanan;
-use App\Models\kategori_reseps;
 use App\Models\special_days;
 use App\Models\toolsCooks;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
-use function Laravel\Prompts\search;
 
 class FiltersController extends Controller
 {
