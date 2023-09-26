@@ -183,51 +183,81 @@
 
     </style>
 
-    <div class=" d-flex justify-content-center" style="margin-left:-130px">
-        <div class="my-5 ml-5" style="margin-right: 20%;">
-                        <form action="" method="post">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-3 form-group d-flex">
-                                <label for="input" class="col-sm-2  me-3 col-form-label fw-bold">Nama</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Masukkan Nama Paket" id="input" name="facebook" style="width: 285%;font-family:poppins; "
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="mb-3 form-group d-flex">
-                                <label for="input1" class="col-sm-2 me-3  col-form-label fw-bold">Harga</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Masukkan Harga Paket" id="input1" name="youtube" style="width: 285%;font-family:poppins"
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="mb-3 form-group d-flex">
-                                <label for="input2" class="col-sm-2 me-3  col-form-label fw-bold">Durasi</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Masukkan Durasi Aktif Paket" id="input2" name="twitter" style="width: 285%;font-family:poppins"
-                                        value="">
-                                </div>
-                            </div>
-                            <div class="mb-3 form-group d-flex">
-                                <label for="input3" class="col-sm-2 me-3  col-form-label fw-bold">Detail</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" placeholder="Masukkan Detail Paket" id="input3" name="instagram" style="width: 252%;font-family:poppins"
-                                        value="">
-                                </div>
-                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 10px; margin-left: 123%;font-family:poppins; padding: 5px 20px;  font-size: 17px; font-weight: 600; word-wrap: break-word">Hapus</button>
-                            </div>
-                        </form>
-                        <div class="float-end text-nowrap" >
-                            <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 10px;font-family:poppins; margin-left: 370%; padding: 5px 20px;  font-size: 17px; font-weight: 600; word-wrap: break-word">Tambah Paket</button>
-                        </div>
+<div class=" d-flex justify-content-center ms-3" style="overflow-x:hidden;">
+    <div class="my-5" style="margin-left: 15rem;">
+
+      <div class="mb-3 row">
+        <label class="col-sm-1 col-form-label fw-bold">Nama</label>
+        <div class="col-sm-10">
+            <input type="text" id="comment-veed1" name="commentVeed"
+                class="form-control "
+                style="  width: 61rem; margin-left: -30px"
+                placeholder="Masukkan Nama Paket...">
         </div>
-    </div>
+      </div>
+      <!-- /.form group -->
 
+      <!-- Color Picker -->
+      <div class="mb-3 row">
+        <label class="col-sm-1 col-form-label fw-bold">Harga </label>
+        <div class="col-sm-10">
+            <input type="text" id="comment-veed1" name="commentVeed"
+            class="form-control "
+            style="  width: 61rem; margin-left: -30px"
+            placeholder="Masukkan Harga Paket...">
     </div>
+        <!-- /.input group -->
+      </div>
+      <div class="mb-3 row">
+        <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
+        <div class="col-sm-10">
+            <input type="text" id="comment-veed1" name="commentVeed"
+            class="form-control "
+            style="  width: 61rem; margin-left: -30px"
+            placeholder="Masukkan Durasi Aktif Paket...">
+    </div>
+        <!-- /.input group -->
+      </div>
 
+
+
+      <!-- /.form group -->
+
+      <!-- time Picker -->
+      {{-- <div class="d-flex">
+        <div class="mb-3 row">
+          <label class="col-sm-2 col-form-label fw-bold">Detail</label>
+          <div class="col-sm-10">
+          <div class="d-flex" id="timepicker" data-target-input="nearest">
+            <input type="text" class="form-control" style="width: 250%;font-family:poppins; ">
+            <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+              &nbsp  <div class="input-group-text"><i class="far fa-clock"></i></div>
+            </div>
+            </div>
+        </div>
+          <!-- /.input group -->
+        </div>
+        <!-- /.form group -->
+      </div> --}}
+
+      <div class="d-flex">
+          <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
+          <input type="text" id="comment-veed1" name="commentVeed"
+              class="form-control me-2"
+              style="  width: 55rem;"
+              placeholder="Masukkan Detail Paket...">
+
+          <button type="submit" class="btn text-light rounded-3"
+              style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                  class="ms-2 me-2">Hapus</b>
+          </button>
+        </div>
+        <button type="button" class="btn text-light rounded-3 mt-3 float-end"
+        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+            class="ms-2 me-2">Tambah Paket</b>
+    </button>
+</div>
+</div>
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
     </div>

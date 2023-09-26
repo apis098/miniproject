@@ -198,30 +198,30 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3 row">
-                                <label for="input" class="col-sm-2 col-form-label fw-bold">Facebook</label>
+                                <label for="input" class="col-sm-2 col-form-label fw-bold " >Facebook</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 250%;font-family:poppins; "
+                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 250%;font-family:poppins; margin-left: 10px;"
                                         value="{{ $item->facebook }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="input1" class="col-sm-2 col-form-label fw-bold">Youtube</label>
+                                <label for="input1" class="col-sm-2 col-form-label fw-bold " >Youtube</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input1" name="youtube" style="width: 250%;font-family:poppins"
+                                    <input type="text" class="form-control" id="input1" name="youtube" style="width: 250%;font-family:poppins; margin-left: 10px;"
                                         value="{{ $item->youtube }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="input2" class="col-sm-2 col-form-label fw-bold">Twitter</label>
+                                <label for="input2" class="col-sm-2 col-form-label fw-bold " >Twitter</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input2" name="twitter" style="width: 250%;font-family:poppins"
+                                    <input type="text" class="form-control" id="input2" name="twitter" style="width: 250%;font-family:poppins; margin-left: 10px;"
                                         value="{{ $item->twitter }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label for="input3" class="col-sm-2 col-form-label fw-bold">Instagram</label>
+                                <label for="input3" class="col-sm-2 col-form-label fw-bold " >Instagram</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input3" name="instagram" style="width: 250%;font-family:poppins"
+                                    <input type="text" class="form-control" id="input3" name="instagram" style="width: 250%;font-family:poppins; margin-left: 10px;"
                                         value="{{ $item->instagram }}">
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
                             <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
+                            border-radius: 15px;margin-left: 213%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
