@@ -39,14 +39,23 @@ class KursusController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.kursus', compact('messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.kursus', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
 
 
-    public function kursus(){
-        $all_course = kursus::all();
+    public function kursus()
+    {
+        $all_course = kursus::where("status", "ditunggu")->get();
         return view('admin.kursus', compact("all_course"));
+    }
+
+    public function eksekusi_kursus(string $status, string $id)
+    {
+        $update_status = kursus::find($id);
+        $update_status->status = $status;
+        $update_status->save();
+        return redirect()->back()->with('success', 'sukses mengeksekusi kursus!');
     }
 
     /**
@@ -76,7 +85,7 @@ class KursusController extends Controller
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
             'foto_kursus.required' => "foto kursus wajib diisi!",
-            'deskripsi_kursus.required'=> "deskripsi kursus wajib diisi!",
+            'deskripsi_kursus.required' => "deskripsi kursus wajib diisi!",
             'lokasi_kursus.required' => "lokasi kursus wajib diisi!",
             'tarif_per_jam.required' => "tarif per jam wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
@@ -103,7 +112,7 @@ class KursusController extends Controller
                 if ($request->informasi_paket_kursus_waktu[$num] === "jam") {
                     $waktu *= 60;
                 }
-                
+
                 paket_kursuses::create([
                     "kursus_id" => $store->id,
                     "waktu" => $waktu,

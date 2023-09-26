@@ -120,6 +120,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
         Route::get('/tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
         Route::get('/kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
+        // verifikasi kursus
+        Route::patch('/verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::get('/keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
@@ -183,3 +185,8 @@ Route::get('/detail-pembayaran/{reference}', [PaymentController::class, 'detail_
 Route::get('/daftar-transaksi', [PaymentController::class, 'daftar_transaksi'])->name('daftar.transaksi');
 
 Route::post('/callback', [TripayCallbackController::class, "handle"]);
+
+// testing leaflet
+Route::get("/leafletjs", function () {
+    return view('testing.leaflet');
+});

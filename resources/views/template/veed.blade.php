@@ -221,7 +221,8 @@
                                             id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
-                                        <i onclick="openModel({{ $urut }})"
+
+                                        <i type="button" onclick="openModel({{ $urut }})" id="button-modal-komentar-feed{{ $urut }}"
                                             class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal{{ $urut }}"></i>
                                         <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
@@ -1617,10 +1618,8 @@ function toggleCheckbox(checkbox) {
                                 message: response.message,
                                 position: 'topCenter',
                             });
-                            $("#komen_feed" + num).html(response.update);
-
-                            console.log(response.update);
                             $("#input_comment_feed" + num).val('');
+                            $("#komen_feed" + num).html(response.update);
                         }
                     },
                     error: function error(xhr, status, errors) {
