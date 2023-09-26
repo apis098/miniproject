@@ -357,7 +357,7 @@
                                                                                     style=" border-radius: 12px; border: 1px black solid">
                                                                                     <i
                                                                                         class="fas fa-regular fa-location-dot"></i>
-                                                                                    {{ $item->lokasi_kursus }}
+                                                                                    {{ $item->nama_lokasi }}
                                                                                 </button>
                                                                             </div>
                                                                             <br>
@@ -446,19 +446,23 @@
                                                                                 </div>
                                                                                 <div class="col-xl-4 mx-3">
                                                                                     <h5><b>Tarif paket</b></h5>
-                                                                                    <p>RP
-                                                                                        {{ number_format($item->tarif_per_jam, 2, ',', '.') }}
-                                                                                        / jam</p>
+                                                                                    <p>
+                                                                                        @foreach ($item->paket_kursus as $paket)
+                                                                                            <p>
+                                                                                                @if ($paket->waktu >= 60)
+                                                                                                    {{ number_format($paket->waktu / 60, 1) }} Jam
+                                                                                                @else
+                                                                                                    {{ $paket->waktu }} Menit
+                                                                                                @endif
+                                                                                                : RP {{ number_format($paket->harga, 2, ',', '.') }}
+                                                                                            </p>
+                                                                                        @endforeach
+                                                                                    </p>
                                                                                 </div>
                                                                                 <div class="col-lg-3 mx-4">
                                                                                     <h5><b>Waktu kusus</b></h5>
                                                                                     <p>
-                                                                                        @if ($item->lama_kursus >= 60)
-                                                                                            {{ $item->lama_kursus / 60 }}
-                                                                                            Jam
-                                                                                        @else
-                                                                                            {{ $item->lama_kursus }} Menit
-                                                                                        @endif
+                                                                                        0 menit
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
