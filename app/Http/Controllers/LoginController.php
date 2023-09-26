@@ -129,7 +129,7 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $kursus_terbaru = kursus::paginate(6);
+        $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
         return view('template.kursus', compact('kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 

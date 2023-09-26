@@ -78,6 +78,7 @@ class KursusController extends Controller
             'lokasi_kursus' => "required",
             'tarif_per_jam' => "required",
             'tipe_kursus' => "required",
+            'jumlah_siswa' => "required",
             "paket_kursus_waktu.*" => "required",
             "informasi_paket_kursus_waktu.*" => "required",
             "paket_kursus_harga.*" => "required"
@@ -89,6 +90,7 @@ class KursusController extends Controller
             'lokasi_kursus.required' => "lokasi kursus wajib diisi!",
             'tarif_per_jam.required' => "tarif per jam wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
+            'jumlah_siswa.required' => "jumlah siswa harus diisi!",
             "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
             "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
             "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!"
@@ -105,6 +107,7 @@ class KursusController extends Controller
             "lokasi_kursus" => $request->lokasi_kursus,
             "tarif_per_jam" => $request->tarif_per_jam,
             "tipe_kursus" => $request->tipe_kursus,
+            "jumlah_siswa" => $request->jumlah_siswa,
             "jenis_kursus" => $request->jenis_kursus
         ]);
         if ($store) {
@@ -112,14 +115,12 @@ class KursusController extends Controller
                 if ($request->informasi_paket_kursus_waktu[$num] === "jam") {
                     $waktu *= 60;
                 }
-
                 paket_kursuses::create([
                     "kursus_id" => $store->id,
                     "waktu" => $waktu,
                     "harga" => $request->paket_kursus_harga[$num]
                 ]);
             }
-            paket_kursuses::create([]);
             return response()->json([
                 "success" => true,
                 "message" => "sukses menambahkan kursus, harap menunggu konfirmasi admin.",

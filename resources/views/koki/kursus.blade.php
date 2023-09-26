@@ -159,10 +159,10 @@
                                 <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                                     <label for="tipe_kursus" class="form-label" style="margin-left: -10px;"><b>
                                             Tipe Kursus</b></label>
-                                    <input type="text" name="tipe_kursus" class="form-control col-10"
+                                    <input type="text" name="jumlah_siswa" class="form-control col-10"
                                         id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
-                                        value="{{ old('tipe_kursus') }}">
-                                    <select name="informasi_tipe_kursus" id="informasi_tipe_kursus90"
+                                        value="{{ old('jumlah_siswa') }}">
+                                    <select name="tipe_kursus" id="informasi_tipe_kursus90"
                                         class="form-control col-2">
                                         <option value="grup" {{ old('tipe_kursus') == 'grup' ? 'selected' : '' }}>grup
                                         </option>

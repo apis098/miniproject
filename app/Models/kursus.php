@@ -17,6 +17,7 @@ class kursus extends Model
         "lokasi_kursus",
         "tarif_per_jam",
         "tipe_kursus",
+        "jumlah_siswa",
         "jenis_kursus",
         "status"
     ];
