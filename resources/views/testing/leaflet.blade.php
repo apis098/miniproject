@@ -25,7 +25,7 @@
 
 <body>
     <div id="map"></div>
-    <form action="/save-location" method="POST">
+    <form action="/save-location/{{ Auth::user()->id }}" method="POST">
         @csrf
         <label for="address">Address:</label>
         <input type="text" name="address" id="address" disabled>

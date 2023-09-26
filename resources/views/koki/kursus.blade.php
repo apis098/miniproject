@@ -1,5 +1,20 @@
 @extends('template.nav')
 @section('content')
+    <!-- Leaflet JS Link Start -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet JS Link End -->
+    <!-- Leaflet Control Geocoder Start -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <!-- Leaflet Control Geocoder End -->
+    <style>
+        #map {
+            height: 180px;
+        }
+    </style>
     <style>
         .custom-input-file {
             border: 1px solid black;
@@ -76,14 +91,10 @@
                     <div>
                         <div class="mt-2" style="margin-bottom: 20px">
                             <label for="exampleFormControlInput1" class="form-label"><b>Lokasi</b></label>
-                            <input type="text" name="lokasi_kursus" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Masukkan lokasi kursus" value="{{ old('#') }}">
-                            @error('#')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                            <div id="#" class="alert alert-danger" style="display: none;"></div>
+                            <div id="map"></div>
+                            <input type="text" name="nama_lokasi" id="address" hidden>
+                            <input type="text" name="latitude" id="latitude" hidden>                    
+                            <input type="text" name="longitude" id="longitude" hidden>
                         </div>
                         <div>
                             <div class="mt-2" style="margin-bottom: 20px">
@@ -149,9 +160,9 @@
                                     </div>`;
                                     document.getElementById("dynamic-input-paket-kursus").appendChild(createElement);
                                 });
-                                
+
                                 function tutup_paket_kursus(num) {
-                                    document.getElementById("row"+num).remove();
+                                    document.getElementById("row" + num).remove();
                                 }
                             </script>
                             <div>
@@ -162,8 +173,7 @@
                                     <input type="text" name="jumlah_siswa" class="form-control col-10"
                                         id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
                                         value="{{ old('jumlah_siswa') }}">
-                                    <select name="tipe_kursus" id="informasi_tipe_kursus90"
-                                        class="form-control col-2">
+                                    <select name="tipe_kursus" id="informasi_tipe_kursus90" class="form-control col-2">
                                         <option value="grup" {{ old('tipe_kursus') == 'grup' ? 'selected' : '' }}>grup
                                         </option>
                                         <option value="perorangan"
@@ -231,6 +241,41 @@
         </div>
     </form>
     <div id="erroro"></div>
+    <script>
+        var map = L.map('map').setView([0, 0], 2);
+        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        var geocoder = L.Control.geocoder({
+                defaultMarkGeocode: false,
+                geocodingQueryParams: {
+                    addressdetails: 1,
+                    format: 'json'
+                },
+                collapsed: false,
+                geocoder: L.Control.Geocoder.nominatim({
+                    geocodingQueryParams: {
+                        countrycodes: 'ID',
+                        limit: 5
+                    }
+                })
+            })
+            .on('markgeocode', function(e) {
+                var bbox = e.geocode.bbox;
+                var poly = L.polygon([
+                    bbox.getSouthEast(),
+                    bbox.getNorthEast(),
+                    bbox.getNorthWest(),
+                    bbox.getSouthWest()
+                ]).addTo(map);
+                map.fitBounds(poly.getBounds());
+                console.log(e.geocode);
+                document.getElementById("address").value = e.geocode.properties.display_name;
+                document.getElementById("latitude").value = e.geocode.center.lat;
+                document.getElementById("longitude").value = e.geocode.center.lng;
+            })
+            .addTo(map);
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>

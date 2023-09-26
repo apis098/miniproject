@@ -75,7 +75,9 @@ class KursusController extends Controller
             'nama_kursus' => "required",
             'foto_kursus' => "required|image|mimes:png,jpg,jpeg|max:50000",
             'deskripsi_kursus' => "required",
-            'lokasi_kursus' => "required",
+            'nama_lokasi' => "required",
+            'latitude' => "required",
+            'longitude' => "required",
             'tarif_per_jam' => "required",
             'tipe_kursus' => "required",
             'jumlah_siswa' => "required",
@@ -87,7 +89,9 @@ class KursusController extends Controller
             'nama_kursus.required' => "nama kursus wajib diisi!",
             'foto_kursus.required' => "foto kursus wajib diisi!",
             'deskripsi_kursus.required' => "deskripsi kursus wajib diisi!",
-            'lokasi_kursus.required' => "lokasi kursus wajib diisi!",
+            'nama_lokasi.required' => "lokasi kursus wajib diisi!",
+            'latitude.required' => 'latitude harus terisi!',
+            'longitude.required' => 'longitude harus terisi',
             'tarif_per_jam.required' => "tarif per jam wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
@@ -99,24 +103,26 @@ class KursusController extends Controller
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         }
-        $store = kursus::create([
+        $tambah_kursus = kursus::create([
             "users_id" => Auth::user()->id,
             "nama_kursus" => $request->nama_kursus,
             "foto_kursus" => $request->file("foto_kursus")->store("photo-courses", "public"),
             "deskripsi_kursus" => $request->deskripsi_kursus,
-            "lokasi_kursus" => $request->lokasi_kursus,
+            "nama_lokasi" => $request->nama_lokasi,
+            "latitude" => $request->latitude,
+            "longitude" => $request->longitude,
             "tarif_per_jam" => $request->tarif_per_jam,
             "tipe_kursus" => $request->tipe_kursus,
             "jumlah_siswa" => $request->jumlah_siswa,
             "jenis_kursus" => $request->jenis_kursus
         ]);
-        if ($store) {
+        if ($tambah_kursus) {
             foreach ($request->paket_kursus_waktu as $num => $waktu) {
                 if ($request->informasi_paket_kursus_waktu[$num] === "jam") {
                     $waktu *= 60;
                 }
                 paket_kursuses::create([
-                    "kursus_id" => $store->id,
+                    "kursus_id" => $tambah_kursus->id,
                     "waktu" => $waktu,
                     "harga" => $request->paket_kursus_harga[$num]
                 ]);
