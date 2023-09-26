@@ -30,7 +30,7 @@
                     <div class=" mt-3">
                         <h3><b>Lokasi kursus</b></h3>
                         <button type="button" class="btn mt-3" style=" border-radius: 15px; border: 1px black solid">
-                            <i class="fas fa-regular fa-location-dot"></i> {{ $detail_course->lokasi_kursus }}
+                            <i class="fas fa-regular fa-location-dot"></i> {{ $detail_course->nama_lokasi }}
                         </button>
                     </div>
                     <br>
