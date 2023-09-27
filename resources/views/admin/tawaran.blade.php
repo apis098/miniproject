@@ -153,117 +153,138 @@
         }
 
         @media (max-width: 768px) {
-    /* Aturan CSS untuk layar dengan lebar maksimum 768px */
-    .my-5 {
-        margin: 0;
-    }
 
-    .ml-5 {
-        margin-left: 0;
-    }
+            /* Aturan CSS untuk layar dengan lebar maksimum 768px */
+            .my-5 {
+                margin: 0;
+            }
 
-    .mr-3 {
-        margin-right: 0;
-    }
+            .ml-5 {
+                margin-left: 0;
+            }
 
-    /* ... (aturan CSS lainnya) ... */
+            .mr-3 {
+                margin-right: 0;
+            }
 
-    /* Mengubah lebar input pada formulir */
-    .form-control {
-        width: 100%;
-    }
+            /* ... (aturan CSS lainnya) ... */
 
-    /* Mengatur margin pada tombol Hapus dan Tambah Paket */
-    .btn-delete,
-    .btn-add {
-        margin-left: 0;
-    }
-}
+            /* Mengubah lebar input pada formulir */
+            .form-control {
+                width: 100%;
+            }
 
-
+            /* Mengatur margin pada tombol Hapus dan Tambah Paket */
+            .btn-delete,
+            .btn-add {
+                margin-left: 0;
+            }
+        }
     </style>
-
-<div class=" d-flex justify-content-center ms-3" style="overflow-x:hidden;">
-    <div class="my-5" style="margin-left: 15rem;">
-
-      <div class="mb-3 row">
-        <label class="col-sm-1 col-form-label fw-bold">Nama</label>
-        <div class="col-sm-10">
-            <input type="text" id="comment-veed1" name="commentVeed"
-                class="form-control "
-                style="  width: 61rem; margin-left: -30px"
-                placeholder="Masukkan Nama Paket...">
-        </div>
-      </div>
-      <!-- /.form group -->
-
-      <!-- Color Picker -->
-      <div class="mb-3 row">
-        <label class="col-sm-1 col-form-label fw-bold">Harga </label>
-        <div class="col-sm-10">
-            <input type="text" id="comment-veed1" name="commentVeed"
-            class="form-control "
-            style="  width: 61rem; margin-left: -30px"
-            placeholder="Masukkan Harga Paket...">
-    </div>
-        <!-- /.input group -->
-      </div>
-      <div class="mb-3 row">
-        <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
-        <div class="col-sm-10">
-            <input type="text" id="comment-veed1" name="commentVeed"
-            class="form-control "
-            style="  width: 61rem; margin-left: -30px"
-            placeholder="Masukkan Durasi Aktif Paket...">
-    </div>
-        <!-- /.input group -->
-      </div>
-
-
-
-      <!-- /.form group -->
-
-      <!-- time Picker -->
-      {{-- <div class="d-flex">
-        <div class="mb-3 row">
-          <label class="col-sm-2 col-form-label fw-bold">Detail</label>
-          <div class="col-sm-10">
-          <div class="d-flex" id="timepicker" data-target-input="nearest">
-            <input type="text" class="form-control" style="width: 250%;font-family:poppins; ">
-            <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-              &nbsp  <div class="input-group-text"><i class="far fa-clock"></i></div>
-            </div>
+    <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+        @csrf
+        <div class=" d-flex justify-content-center ms-3" style="overflow-x:hidden;">
+            <div class="my-5" style="margin-left: 15rem;">
+                <div class="mb-3 row">
+                    <label class="col-sm-1 col-form-label fw-bold">Nama</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="comment-veed1" name="nama_paket" class="form-control "
+                            style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Nama Paket...">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-1 col-form-label fw-bold">Harga </label>
+                    <div class="col-sm-10">
+                        <input type="text" id="comment-veed1" name="harga_paket" class="form-control "
+                            style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Harga Paket...">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
+                    <div class="col-sm-10">
+                        <input type="text" id="comment-veed1" name="durasi_paket" class="form-control "
+                            style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Durasi Aktif Paket...">
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
+                    <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
+                        style="width: 55rem;" placeholder="Masukkan Detail Paket...">
+                </div>
+                <div id="details"></div>
+                <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-3 float-start"
+                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                        class="ms-2 me-2">Tambah
+                        Detail</b>
+                </button> <br>
+                <button type="submit" class="btn text-light rounded-3 mt-3 float-end"
+                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                        class="ms-2 me-2">Tambah
+                        Paket</b>
+                </button>
             </div>
         </div>
-          <!-- /.input group -->
-        </div>
-        <!-- /.form group -->
-      </div> --}}
+    </form>
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let num  = 1;
+        document.getElementById("button-add-detail").addEventListener("click", function(e) {1
+            num++;
+            let div = document.createElement('div');
+            div.innerHTML = `
+            <div class="d-flex my-2" id="detail${num}">
+            <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
+                <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
+                    style="width: 55rem;" placeholder="Masukkan Detail Paket...">
 
-      <div class="d-flex">
-          <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
-          <input type="text" id="comment-veed1" name="commentVeed"
-              class="form-control me-2"
-              style="  width: 55rem;"
-              placeholder="Masukkan Detail Paket...">
+            <button type="button" onclick="hapus_details(${num})" class="btn text-light rounded-3"
+                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                    class="ms-2 me-2">Hapus</b>
+            </button>
+            </div>
+            `;
+            document.getElementById("details").appendChild(div);
+        });
+        function hapus_details(num) {
+            document.getElementById("detail"+num).remove();
+        }
+        $("#form-upload-tawaran").submit(function(e) {
+            e.preventDefault();
+            const data = new FormData($("#form-upload-tawaran")[0]);
+            $.ajax({
+                url: "{{ route('upload.tawaran') }}",
+                method: "POST",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function(response) {
+                    if (response.message) {
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
 
-          <button type="submit" class="btn text-light rounded-3"
-              style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                  class="ms-2 me-2">Hapus</b>
-          </button>
-        </div>
-        <button type="button" class="btn text-light rounded-3 mt-3 float-end"
-        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-            class="ms-2 me-2">Tambah Paket</b>
-    </button>
-</div>
-</div>
-    <div class="d-flex justify-content-center" style="margin-top: -2%;">
-        {{-- {!! $holidays->links('modern-pagination') !!} --}}
-    </div>
-    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    <!-- jQuery CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+                        });
+                        window.reload();
+                        console.log(response.message);
+                    }
+                },
+                error: function error(xhr, status, errors) {
+                    iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: xhr.responseText,
+                            position: 'topCenter',
+                        });
+                    console.log(xhr.responseText);
+                }
+            });
+        });
+    </script>
 @endsection

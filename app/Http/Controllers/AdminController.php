@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\detail_premiums;
+use App\Models\premiums;
 use App\Models\Report;
 use App\Models\reseps;
 use Illuminate\Http\Request;
@@ -109,5 +111,42 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Profil berhasil diperbarui');
     }
 
+    public function upload_tawaran(Request $request) {
+        $rules = [
+            "nama_paket" => "required",
+            "harga_paket" => "required",
+            "durasi_paket" => "required",
+            "detail_paket.*" => "required"
+        ];
+        $message = [
+            "nama_paket.required" => "nama paket harus terisi!",
+            "harga_paket.required" => "harga paket harus terisi!",
+            "durasi_paket.required" => "durasi paket harus terisi!",
+            "detail_paket.*.required" => "detail paket harus diisi!"
+        ];
+        $validasi = Validator::make($request->all(), $rules, $message);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+        $premium_create = premiums::create([
+            "nama_paket" => $request->nama_paket,
+            "harga_paket" => $request->harga_paket,
+            "durasi_paket" => $request->durasi_paket
+        ]);
 
+        if ($premium_create) {
+            foreach ($request->detail_paket as $d) {
+                detail_premiums::create([
+               "premium_id" => $premium_create->id,
+                    "detail" => $d
+                ]);
+            }
+        
+
+        return response()->json([
+            "success" => true,
+            "message" => "sukses menambahkan penawaran produk!"
+        ]); 
+    }
+    }
 }

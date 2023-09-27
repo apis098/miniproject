@@ -120,6 +120,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
         Route::get('/tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
         Route::get('/kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
+        // tambah penawaran
+        Route::post('/upload_penawaran', [AdminController::class, 'upload_tawaran'])->name('upload.tawaran');
         // verifikasi kursus
         Route::patch('/verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
         //report

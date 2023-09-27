@@ -1,5 +1,9 @@
 @extends('template.nav')
 @section('content')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <style>
         h1,
         h2,
@@ -27,24 +31,50 @@
                         </p>
 
                     </div>
-                    <div class=" mt-3">
+                    <div class="mt-3">
                         <h3><b>Lokasi kursus</b></h3>
                         <button type="button" class="btn mt-3" style=" border-radius: 15px; border: 1px black solid">
                             <i class="fas fa-regular fa-location-dot"></i> {{ $detail_course->nama_lokasi }}
                         </button>
                     </div>
                     <br>
+                    <div id="map" style="height: 300px;"></div>
+                    <script>
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition((posisi) => {
+                                var map = L.map('map');
 
+                                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                    attribution: '© OpenStreetMap contributors'
+                                }).addTo(map);
+
+                                let latitude = posisi.coords.latitude;
+                                let longitude = posisi.coords.longitude;
+
+                                let lat = {{ $detail_course->latitude }}
+                                let long = {{ $detail_course->longitude }}
+
+                                L.Routing.control({
+                                    waypoints: [
+                                        L.latLng(latitude, longitude),
+                                        L.latLng(lat, long)
+                                    ],
+                                    routeWhileDragging: true
+                                }).addTo(map);
+
+                            });
+                        }
+                    </script>
                 </div>
                 <div class="col-xl-3 col-sm-4 mb-4 my-4">
                     <div class="bg-white shadow-sm py-5 border border-secondary text-center"
                         style="border-radius: 20px; height:25rem;">
                         @if ($detail_course->user->foto)
-                        <img src="{{ asset('images/'.$detail_course->user->foto) }}" alt="" width="50%" height="50%"
-                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                            <img src="{{ asset('images/' . $detail_course->user->foto) }}" alt="" width="50%"
+                                height="50%" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         @else
-                        <img src="{{ asset('images/default.jpg') }}" alt="" width="50%" height="50%"
-                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="50%" height="50%"
+                                class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                         @endif
 
                         <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
@@ -76,7 +106,7 @@
                                     @csrf --}}
                             <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
                                 style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-3 me-3">Reservasi khusus</b></button>
+                                    class="ms-3 me-3">Reservasi kursus</b></button>
                             {{-- </form> --}}
                         </div>
                         <!-- Modal -->
@@ -124,18 +154,19 @@
                     <div class="row">
                         <div class="col-lg-3 mx-4">
                             <h5><b>Tarif per jam</b></h5>
-                            <p>Rp. {{ number_format($detail_course->tarif_per_jam, 2, ",", ".") }}</p>
+                            <p>Rp. {{ number_format($detail_course->tarif_per_jam, 2, ',', '.') }}</p>
                         </div>
                         <div class="col-xl-4 mx-3">
                             <h5><b>Tarif paket</b></h5>
                             @foreach ($detail_course->paket_kursus as $item)
-                            <p>
-                                @if ($item->waktu >= 60)
-                                    {{ $item->waktu / 60 }} Jam
-                                @else
-                                    {{ $item->waktu }} Menit
-                                @endif
-                                 = {{ number_format($item->harga, 2, ",", ".") }}</p>
+                                <p>
+                                    @if ($item->waktu >= 60)
+                                        {{ number_format($item->waktu / 60, 1) }} Jam
+                                    @else
+                                        {{ $item->waktu }} Menit
+                                    @endif
+                                    = {{ number_format($item->harga, 2, ',', '.') }}
+                                </p>
                             @endforeach
                         </div>
                         <div class="col-lg-3 mx-4">
