@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\notifications;
 use App\Models\reseps;
 use App\Models\upload_video;
+use App\Models\Report;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
@@ -79,6 +81,45 @@ class KokiController extends Controller
 
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
     }
+
+    public function beranda(Request $request)
+    {
+        $koki = User::find(Auth::user()->id);
+        $jumlah_user = User::all()->count();
+        $jumlah_resep = reseps::all()->count();
+        $jumlah_report = Report::all()->count();
+        $reports = Report::orderBy("created_at", "desc")->get();
+        $reseps = reseps::orderBy("created_at", "desc")->get();
+        $datetime = User::pluck("created_at");
+        $year = 2018;
+        $yearsu = date('Y') - $year;
+        $years = [];
+        for ($i=0; $i <= $yearsu; $i++) {
+            $years[] = $year++;
+        }
+        $month = [];
+        if ($request->has("tahun")) {
+            $tahun = $request->tahun;
+            for ($i=1; $i <= 12; $i++) {
+                $month[] = DB::table("users")
+                ->whereMonth('created_at', $i)
+                ->whereYear("created_at", $tahun)
+                ->count();
+            }
+        } else {
+            for ($i=1; $i <= 12 ; $i++) {
+                $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
+            }
+        }
+        $data_chartjs = [];
+        return view('koki.beranda',[
+            'koki'=> $koki,
+            ], compact("jumlah_user", "jumlah_resep", "jumlah_report","month", "years", "reports", "reseps"));
+
+
+    }
+
+
     public function deleteProfilePicture()
     {
         $user = Auth::user();

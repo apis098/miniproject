@@ -151,6 +151,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::resource('resep', ResepsController::class);
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
+        Route::get('/beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
     });
 });
 

@@ -759,7 +759,7 @@
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
                                             style="width: 255px; border-radius:13px;">
                                             <div class="input-group">
-                                                <a href="#">
+                                                <a href="/koki/beranda">
                                                     @if ($userLogin->foto)
                                                         <img class="mr-3 ms-2 mb-1 rounded-circle"
                                                             src="{{ asset('storage/' . $userLogin->foto) }}"
