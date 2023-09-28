@@ -102,12 +102,26 @@
                             <p>0 (0 ulasan)</p>
                         </div>
                         <div class="justify-content-center">
-                            {{-- <form action="#" method="POST">
-                                    @csrf --}}
-                            <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
-                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-3 me-3">Reservasi kursus</b></button>
-                            {{-- </form> --}}
+                            @if (Auth::user())
+                                {{-- untuk koki pemilik kursus --}}
+                                @if (Auth::user()->id == $detail_course->user->id)
+                                <form action="{{ route('kursus.edit', $detail_course->id) }}">
+                                    <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                            class="ms-3 me-3">Edit Kursus</b></button>
+                                </form>
+                                @else
+                                    {{-- untuk koki lain atau user lain --}}
+                                    <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
+                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                            class="ms-3 me-3">Reservasi kursus</b></button>
+                                @endif
+                            @else
+                                {{-- untuk yang belum login --}}
+                                <button type="button" class="btn text-light float-center mt-1 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-3 me-3">Reservasi kursus</b></button>
+                            @endif
                         </div>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"

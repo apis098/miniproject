@@ -10,6 +10,7 @@ use App\Models\notifications;
 use App\Models\paket_kursuses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class KursusController extends Controller
@@ -82,6 +83,7 @@ class KursusController extends Controller
             'tipe_kursus' => "required",
             'jumlah_siswa' => "required",
             "paket_kursus_waktu.*" => "required",
+            "jenis_kursus" => "required",
             "informasi_paket_kursus_waktu.*" => "required",
             "paket_kursus_harga.*" => "required"
         ];
@@ -95,6 +97,7 @@ class KursusController extends Controller
             'tarif_per_jam.required' => "tarif per jam wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
+            'jenis_kursus.required' => "jenis kursus harus diisi!",
             "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
             "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
             "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!"
@@ -149,17 +152,89 @@ class KursusController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(kursus $kursus)
+    public function edit(string $id)
     {
-        //
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $footer = footer::first();
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        $kursus = kursus::find($id);
+        return view('koki.kursus-edit', compact('kursus','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, kursus $kursus)
+    public function update(Request $request, string $id)
     {
-        //
+        $rules = [
+            'nama_kursus' => "required",
+            'foto_kursus' => "image|mimes:png,jpg,jpeg|max:50000",
+            'deskripsi_kursus' => "required",
+            'nama_lokasi' => "required",
+            'latitude' => "required",
+            'longitude' => "required",
+            'tarif_per_jam' => "required",
+            'tipe_kursus' => "required",
+            'jumlah_siswa' => "required",
+            "jenis_kursus" => "required",
+            "paket_kursus_waktu.*" => "required",
+            "informasi_paket_kursus_waktu.*" => "required",
+            "paket_kursus_harga.*" => "required"
+        ];
+        $message = [
+            'nama_kursus.required' => "nama kursus wajib diisi!",
+            'deskripsi_kursus.required' => "deskripsi kursus wajib diisi!",
+            'nama_lokasi.required' => "lokasi kursus wajib diisi!",
+            'latitude.required' => 'latitude harus terisi!',
+            'longitude.required' => 'longitude harus terisi',
+            'tarif_per_jam.required' => "tarif per jam wajib diisi!",
+            'tipe_kursus.required' => "tipe kursus wajib diisi!",
+            'jumlah_siswa.required' => "jumlah siswa harus diisi!",
+            "jenis_kursus.required" => "jenis_kursus harus diisi!",
+            "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
+            "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
+            "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!"
+        ];
+        $validasi = Validator::make($request->all(), $rules, $message);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+        $edit_kursus = kursus::find($id);
+        $edit_kursus->nama_kursus = $request->nama_kursus;
+        if ($request->hasFile('foto_kursus')) {
+            Storage::delete("public/".$edit_kursus->foto_kursus);
+            $edit_kursus->foto_kursus = $request->file('foto_kursus')->store('photo-course', 'public');
+        }
+        $edit_kursus->deskripsi_kursus = $request->deskripsi_kursus;
+        $edit_kursus->nama_lokasi = $request->nama_lokasi;
+        $edit_kursus->latitude = $request->latitude;
+        $edit_kursus->longitude = $request->longitude;
+        $edit_kursus->tarif_per_jam = $request->tarif_per_jam;
+        $edit_kursus->tipe_kursus = $request->tipe_kursus;
+        $edit_kursus->jumlah_siswa = $request->jumlah_siswa;
+        $edit_kursus->jenis_kursus = $request->jenis_kursus;
+        $edit_kursus->save();
+        return response()->json([
+            "success" => true,
+            "message" => "sukses mengedit kursus!"
+        ]);
     }
 
     /**
