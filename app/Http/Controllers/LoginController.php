@@ -157,7 +157,6 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-
         return view('template.keluhan', compact('messageCount','real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 

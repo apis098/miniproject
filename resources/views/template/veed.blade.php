@@ -80,6 +80,10 @@
                                     style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                     <span style="font-weight: 600; color: white;">Upload</span>
                                 </button>
+                                <button type="submit" class="btn " id="buttonUploadVideo"
+                                    style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                    <span style="font-weight: 600; color: white;">Upload</span>
+                                </button>
                             </form>
                         @else
                             <form>
@@ -377,12 +381,13 @@
                                                                                 @if (Auth::user())
                                                                                     @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user->id)
                                                                                         {{-- Laporkan Komentar --}}
-                                                                                        <a  data-bs-toggle="modal"
+                                                                                        <a data-bs-toggle="modal"
                                                                                             href="#ModalL{{ $item_comment->id }}"
                                                                                             class="yuhu text-danger btn-sm rounded-5 "><i
                                                                                                 class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                                            </a>
-                                                                                        <div class="modal fade" data-bs-backdrop="static"
+                                                                                        </a>
+                                                                                        <div class="modal fade"
+                                                                                            data-bs-backdrop="static"
                                                                                             id="ModalL{{ $item_comment->id }}"
                                                                                             tabindex="-1" role="dialog"
                                                                                             aria-labelledby="exampleModalCenterTitle"
@@ -464,7 +469,8 @@
                                                                                                     fill-rule="nonzero" />
                                                                                             </svg>
                                                                                         </button>
-                                                                                        <div class="modal fade" data-bs-backdrop="static"
+                                                                                        <div class="modal fade"
+                                                                                            data-bs-backdrop="static"
                                                                                             id="blockMod{{ $item_comment->id }}"
                                                                                             tabindex="-1" role="dialog"
                                                                                             aria-labelledby="exampleModalCenterTitle"
@@ -1130,7 +1136,7 @@
                                         <i class="fa-solid fa-gift ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                             data-bs-target="#gift"></i>
 
-                                        <!-- modal Bagikan start -->
+                                        <!-- modal Gift start -->
                                         <div class="modal" id="gift">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
@@ -1146,7 +1152,7 @@
                                                     <div class="modal-body">
                                                         <div class="d-flex ">
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card"
+                                                                <div class="card" id="card" data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/kecil.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1165,7 +1171,7 @@
                                                             </div>
 
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card"
+                                                                <div class="card " id="card" data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/sedang.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1179,12 +1185,14 @@
                                                                         <p class="text-center"
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Rp. 10.000,00</p>
+                                                                        <input type="radio" name="radio-group"
+                                                                            id="radio2">
                                                                     </div>
                                                                 </div>
                                                             </div>
 
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card"
+                                                                <div class="card" id="card" data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/besar.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1203,7 +1211,7 @@
                                                             </div>
 
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card"
+                                                                <button type="button" data-bs-toggle="modal" data-bs-target="#nilai" id="card" class="card" data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/lainnya.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1218,7 +1226,7 @@
                                                                             style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                             Masukkan Nilai</p>
                                                                     </div>
-                                                                </div>
+                                                                </button>
                                                             </div>
 
                                                         </div>
@@ -1237,9 +1245,31 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- modal Bagikan end -->
+                                        <!-- modal gift end -->
                                         <!-- gift end -->
+                                        <script>
+                                            const cardElements = document.querySelectorAll("#card");
+                                            cardElements.forEach((cardElement) => {
+                                                cardElement.addEventListener("click", () => {
+                                                    function toggleCardSelection(cardElement) {
+                                                        const isSelected = cardElement.getAttribute("data-card-selected") === "true";
 
+                                                        // Toggle status seleksi
+                                                        cardElement.setAttribute("data-card-selected", isSelected ? "false" : "true");
+
+                                                        // Ganti border outline sesuai status seleksi
+                                                        if (isSelected) {
+                                                            cardElement.style.border = "0.50px black solid";
+                                                        } else {
+                                                            cardElement.style.border =
+                                                            "2px solid orange"; 
+                                                        }
+                                                    }
+                                                    toggleCardSelection(cardElement);
+
+                                                });
+                                            });
+                                        </script>
                                         <!-- Laporkan, blokir -->
                                         <div class="mx-2">
                                             {{-- --}}
