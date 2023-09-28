@@ -79,10 +79,7 @@
                                     style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                     <span style="font-weight: 600; color: white;">Upload</span>
                                 </button>
-                                <button type="submit" class="btn " id="buttonUploadVideo"
-                                    style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                    <span style="font-weight: 600; color: white;">Upload</span>
-                                </button>
+
                             </form>
                         @else
                             <form>
@@ -146,10 +143,8 @@
                             </div>
                             <style>
                                 .vjs-big-play-button {
-                                    margin-left: 275px;
-                                    margin-right: 100px;
-                                    margin-bottom: 100px;
-                                    margin-top: 100px;
+                                    margin-left: 250px;
+                                    margin-top: 120px;
                                 }
                             </style>
                             <!-- Media -->
@@ -158,7 +153,7 @@
                                     @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
                                 @else
                                    class="video-js vjs-theme-city" @endif
-                                    id="my-video" controls preload="auto" width="640" height="264"
+                                    id="my-video" controls preload="auto" width="615" height="315"
                                     data-setup="{}">
                                     <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
                                     <p class="vjs-no-js">
@@ -226,13 +221,14 @@
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
 
-                                        <i type="button" onclick="openModel({{ $urut }})" id="button-modal-komentar-feed{{ $urut }}"
+                                        <i type="button" onclick="openModel({{ $urut }})"
+                                            id="button-modal-komentar-feed{{ $urut }}"
                                             class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                             data-bs-target="#exampleModal{{ $urut }}"></i>
                                         <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
                                         <!-- modal komentar feed -->
                                         <div class="modal" id="exampleModal{{ $urut }}">
-                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
@@ -1160,7 +1156,8 @@
                                                     <div class="modal-body">
                                                         <div class="d-flex ">
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card" id="card" data-card-selected="false"
+                                                                <div class="card" id="card"
+                                                                    data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/kecil.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1179,7 +1176,8 @@
                                                             </div>
 
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card " id="card" data-card-selected="false"
+                                                                <div class="card " id="card"
+                                                                    data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/sedang.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1200,7 +1198,8 @@
                                                             </div>
 
                                                             <div class="col-lg-3 my-1">
-                                                                <div class="card" id="card" data-card-selected="false"
+                                                                <div class="card" id="card"
+                                                                    data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/besar.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1219,7 +1218,9 @@
                                                             </div>
 
                                                             <div class="col-lg-3 my-1">
-                                                                <button type="button" data-bs-toggle="modal" data-bs-target="#nilai" id="card" class="card" data-card-selected="false"
+                                                                <button type="button" data-bs-toggle="modal"
+                                                                    data-bs-target="#nilai" id="card" class="card"
+                                                                    data-card-selected="false"
                                                                     style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                     <img src="{{ asset('img/lainnya.png') }}"
                                                                         class="card-img-top" alt="">
@@ -1270,7 +1271,7 @@
                                                             cardElement.style.border = "0.50px black solid";
                                                         } else {
                                                             cardElement.style.border =
-                                                            "2px solid orange"; 
+                                                                "2px solid orange";
                                                         }
                                                     }
                                                     toggleCardSelection(cardElement);
@@ -1718,22 +1719,15 @@ function toggleCheckbox(checkbox) {
                     },
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.destroy();
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
                             if (response.like) {
                                 $("#iconLikeReplyComment" + num).removeClass("fa-regular");
                                 $("#iconLikeReplyComment" + num).addClass("fa-solid");
+                                $("#iconLikeReplyComment" + num).addClass("text-warning");
                                 $("#countLikeReplyComment" + num).text(response.countLike);
                             } else {
                                 $("#iconLikeReplyComment" + num).removeClass("fa-solid");
                                 $("#iconLikeReplyComment" + num).addClass("fa-regular");
+                                $("#iconLikeReplyComment" + num).removeClass("text-warning");
                                 $("#countLikeReplyComment" + num).text(response.countLike);
                             }
                         }
@@ -1757,21 +1751,15 @@ function toggleCheckbox(checkbox) {
                     success: function success(response) {
                         if (response.success) {
                             iziToast.destroy();
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
                             if (response.like) {
                                 $("#iLikeComment" + nums).removeClass("fa-regular");
                                 $("#iLikeComment" + nums).addClass("fa-solid");
+                                $("#iLikeComment" + nums).addClass("text-warning");
                                 $("#countLikeComment" + nums).text(response.count);
                             } else {
                                 $("#iLikeComment" + nums).removeClass("fa-solid");
                                 $("#iLikeComment" + nums).addClass("fa-regular");
+                                $("#iLikeComment" + nums).removeClass("text-warning");
                                 $("#countLikeComment" + nums).text(response.count);
                             }
                         }
@@ -1793,22 +1781,15 @@ function toggleCheckbox(checkbox) {
                     method: "POST",
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.destroy();
-                            iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
                             if (response.like) {
                                 $("#likeB" + num).removeClass("fa-reguler");
                                 $("#likeB" + num).addClass("fa-solid");
+                                $("#likeB" + num).addClass("text-warning");
                                 $("#countLikeFeed" + num).html(response.count);
                             } else {
                                 $("#likeB" + num).removeClass("fa-solid");
                                 $("#likeB" + num).addClass("fa-regular");
+                                $("#likeB" + num).removeClass("text-warning");
                                 $("#countLikeFeed" + num).html(response.count);
                             }
                         }
@@ -1946,6 +1927,47 @@ function toggleCheckbox(checkbox) {
                 }
             });
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const likeForms = document.querySelectorAll("#like-form");
+
+            likeForms.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector("#like-button");
+                    const icon = button.querySelector("i");
+                    const svg = button.querySelector("svg");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.liked) {
+                            button.classList.remove('text-dark');
+                            button.classList.add('text-warning');
+                            icon.setAttribute('class', 'fa-solid fa-thumbs-up');
+                            document.getElementById("like-count-balasan" + responseData
+                                    .reply_id)
+                                .textContent = responseData.likes;
+                        } else {
+                            button.classList.remove('text-warning');
+                            button.classList.add('text-dark');
+                            icon.setAttribute('class', 'fa-regular fa-thumbs-up');
+                            document.getElementById("like-count-balasan" + responseData
+                                    .reply_id)
+                                .textContent = responseData.likes;
+                        }
+                    }
+                });
+            });
+        });
     </script>
     <script>
         // mengambil semua class pada video dengan nilai feed yang hanya ada di video premium
