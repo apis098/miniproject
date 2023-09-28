@@ -48,7 +48,7 @@ Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 //kursus
 Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
-route::get('/detail',[detail_kursusController::class,'detail_kursus'])->name('detail.kursus');
+route::get('/detail_kursus/{id}',[detail_kursusController::class,'detail_kursus'])->name('detail.kursus');
 // veed
 Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
 
@@ -120,6 +120,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
         Route::get('/tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
         Route::get('/kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
+        // tambah penawaran
+        Route::post('/upload_penawaran', [AdminController::class, 'upload_tawaran'])->name('upload.tawaran');
+        // verifikasi kursus
+        Route::patch('/verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
         //report
         Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
         Route::get('/keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
@@ -147,9 +151,14 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::resource('resep', ResepsController::class);
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
-        Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video');
+        Route::get('/beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
     });
 });
+
+// feed route
+Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video')->middleware("auth");
+Route::delete('/hapus_feed/{id}', [KokiController::class, "hapus_feed"])->name('hapus.feed')->middleware("auth");
+
 
 // like dan komentar pada artikel resep
 Route::post('/komentar-resep/{user}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
@@ -166,6 +175,9 @@ Route::post("/komentar-veed/{user_id}/{veed_id}", [VeedController::class, 'komen
 Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
 Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');
 Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [VeedController::class, 'sukai_balasan_komentar_veed'])->name('sukai.balasan.komentar.veed');
+Route::delete("/hapus_komentar_feed/{id}", [VeedController::class, "hapus_komentar_feed"])->name('hapus.komentar.feed');
+Route::delete("/hapus_balasan_komentar_feed/{id}", [VeedController::class, "hapus_balasan_komentar_feed"])->name('hapus.balasan.komentar.feed');
+
 //followers
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
 
@@ -176,3 +188,8 @@ Route::get('/detail-pembayaran/{reference}', [PaymentController::class, 'detail_
 Route::get('/daftar-transaksi', [PaymentController::class, 'daftar_transaksi'])->name('daftar.transaksi');
 
 Route::post('/callback', [TripayCallbackController::class, "handle"]);
+
+// testing leaflet
+Route::get("/leafletjs", function () {
+    return view('testing.leaflet');
+});

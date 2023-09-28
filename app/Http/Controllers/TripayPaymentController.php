@@ -103,7 +103,6 @@ class TripayPaymentController extends Controller
 
         curl_close($curl);
         $response = json_decode($response)->data;
-
         return $response ? $response : $error;
     }
     public function getPaymentChannels()

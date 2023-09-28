@@ -10,15 +10,17 @@ class premiums extends Model
     use HasFactory;
     protected $table = "premiums";
     protected $fillable = [
-        "name_premium",
-        "price_premium",
-        "information_premium",
-        "timeInDays_premium"
+        "nama_paket",
+        "harga_paket",
+        "durasi_paket"
     ];
     public function user_premiums() {
         return $this->hasMany(history_premiums::class, 'premiums_id');
     }
     public function fitur_premiums() {
         return $this->hasMany(fitur_premiums::class, 'premiums_id');
+    }
+    public function detail_premium() {
+        return $this->hasMany(detail_premiums::class, "premium_id");
     }
 }

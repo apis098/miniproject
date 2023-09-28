@@ -27,20 +27,17 @@
 
         .btn-outline-warning {}
     </style>
-    <form id="formTambahKursus" action="/koki/kursus" method="post" enctype="multipart/form-data">
+    <form id="formTambahKursus" action="{{ route('kursus.update', $kursus->id) }}" method="post" enctype="multipart/form-data">
         @csrf
+        @method("PUT")
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 mb-5">
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="card-body text-center">
-                            <img id="image-course" src="" style="max-width: 250px; display:none; margin-left:-15px;"
-                                alt="" id="uploadedImage" class="">
-                            <svg id="svg-course" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
-                                height="100" viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                    d="M5 21q-.825 0-1.413-.588T3 19v-6h2v6h6v2H5Zm8 0v-2h6v-6h2v6q0 .825-.588 1.413T19 21h-6Zm-7-4l3-4l2.25 3l3-4L18 17H6Zm-3-6V5q0-.825.588-1.413T5 3h6v2H5v6H3Zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6h-2Zm-3.5-1q-.65 0-1.075-.425T14 8.5q0-.65.425-1.075T15.5 7q.65 0 1.075.425T17 8.5q0 .65-.425 1.075T15.5 10Z" />
-                            </svg>
+                            <img id="image-course" src="{{ asset('storage/' . $kursus->foto_kursus) }}"
+                                style="max-width: 250px; margin-left:-15px;" alt="{{ $kursus->foto_kursus }}"
+                                id="uploadedImage" class="">
                         </div>
                     </div>
                     <div class="row"
@@ -69,7 +66,7 @@
                         <label for="exampleFormControlInput1" class="form-label text-poppins"
                             style="font: Poppins"><b>Nama</b></label>
                         <input type="text" name="nama_kursus" class="form-control" id="#"
-                            placeholder="Masukkan nama kursus" value="{{ old('nama_kursus') }}">
+                            placeholder="Masukkan nama kursus" value="{{ $kursus->nama_kursus }}">
                         @error('#')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -79,7 +76,7 @@
                     </div>
                     <div class="mt-2" style="margin-bottom: 20px">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
-                        <textarea name="deskripsi_kursus" class="form-control" placeholder="Masukkan deskripsi kursus" id="floatingTextarea">{{ old('#') }}</textarea>
+                        <textarea name="deskripsi_kursus" class="form-control" placeholder="Masukkan deskripsi kursus" id="floatingTextarea">{{ $kursus->deskripsi_kursus }}</textarea>
                         @error('#')
                             <div class="alert alert-danger">
                                 {{ $message }}
@@ -92,16 +89,16 @@
                         <div class="mt-2" style="margin-bottom: 20px">
                             <label for="exampleFormControlInput1" class="form-label"><b>Lokasi</b></label>
                             <div id="map"></div>
-                            <input type="text" name="nama_lokasi" id="address" hidden>
-                            <input type="text" name="latitude" id="latitude" hidden>                    
-                            <input type="text" name="longitude" id="longitude" hidden>
+                            <input type="text" name="nama_lokasi" value="{{ $kursus->nama_lokasi }}" id="address" hidden>
+                            <input type="text" name="latitude" value="{{ $kursus->latitude }}" id="latitude" hidden>
+                            <input type="text" name="longitude" value="{{ $kursus->longitude }}" id="longitude" hidden>
                         </div>
                         <div>
                             <div class="mt-2" style="margin-bottom: 20px">
                                 <label for="exampleFormControlInput1" class="form-label"><b>Tarif perjam</b></label>
                                 <input type="number" name="tarif_per_jam" class="form-control"
                                     id="exampleFormControlInput1" placeholder="Masukkan tarif per jam"
-                                    value="{{ old('#') }}">
+                                    value="{{ $kursus->tarif_per_jam }}">
                                 @error('#')
                                     <div class="alert alert-danger">
                                         {{ $message }}
@@ -109,55 +106,57 @@
                                 @enderror
                                 <div id="#" class="alert alert-danger" style="display: none;"></div>
                             </div>
-                            <div class="mt-2" style="margin-bottom: 20px;">
-                                <label for="paket_kursus" class="form-label"><b>Paket Kursus</b></label>
-                                <div class="row" id="row1">
-                                    <div class="col-6">
-                                        <div class="row ml-1">
-                                            <input type="text" name="paket_kursus_waktu[]" id="paket_kursus"
-                                                placeholder="masukkan waktu kursus" class="form-control col-8">
-                                            <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
-                                                id="paket_kursus">
-                                                <option value="menit">menit</option>
-                                                <option value="jam">jam</option>
-                                            </select>
+                            @foreach ($kursus->paket_kursus as $item)
+                                <div class="mt-2" style="margin-bottom: 20px;">
+                                    <label for="paket_kursus" class="form-label"><b>Paket Kursus</b></label>
+                                    <div class="row" id="row1">
+                                        <div class="col-6">
+                                            <div class="row ml-1">
+                                                <input type="text" name="paket_kursus_waktu[]" value="{{ $item->waktu }}" id="paket_kursus"
+                                                    placeholder="masukkan waktu kursus" class="form-control col-8">
+                                                <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
+                                                    id="paket_kursus">
+                                                    <option value="menit">menit</option>
+                                                    <option value="jam">jam</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
+                                                placeholder="masukkan harganya" class="form-control" value="{{ $item->harga }}">
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
-                                            placeholder="masukkan harganya" class="form-control">
-                                    </div>
                                 </div>
-                                <div id="dynamic-input-paket-kursus"></div>
-                                <button class="btn btn-primary my-2" type="button"
-                                    id="button_tambah_paket_kursus">Tambah Paket Kursus</button>
-                            </div>
+                            @endforeach
+                            <div id="dynamic-input-paket-kursus"></div>
+                            <button class="btn btn-primary my-2" type="button" id="button_tambah_paket_kursus">Tambah
+                                Paket Kursus</button>
                             <script>
                                 let num = 2;
                                 document.getElementById("button_tambah_paket_kursus").addEventListener("click", function() {
                                     num++;
                                     const createElement = document.createElement("div");
                                     createElement.innerHTML = `
-                                    <div class="row my-3" id="row${num}">
-                                    <div class="col-6">
-                                        <div class="row ml-1">
-                                            <input type="text" name="paket_kursus_waktu[]" id="paket_kursus"
-                                                placeholder="masukkan waktu kursus" class="form-control col-8">
-                                            <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
-                                                id="paket_kursus">
-                                                <option value="menit">menit</option>
-                                                <option value="jam">jam</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                        <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
-                                            placeholder="masukkan harganya" class="form-control col-9">
-                                        <button class="btn btn-danger col-3" onclick="tutup_paket_kursus(${num})">Tutup</button>
-                                        </div>
-                                    </div>
-                                    </div>`;
+                             <div class="row my-3" id="row${num}">
+                             <div class="col-6">
+                                 <div class="row ml-1">
+                                     <input type="text" name="paket_kursus_waktu[]" id="paket_kursus"
+                                         placeholder="masukkan waktu kursus" class="form-control col-8">
+                                     <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
+                                         id="paket_kursus">
+                                         <option value="menit">menit</option>
+                                         <option value="jam">jam</option>
+                                     </select>
+                                 </div>
+                             </div>
+                             <div class="col-6">
+                                 <div class="row">
+                                 <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
+                                     placeholder="masukkan harganya" class="form-control col-9">
+                                 <button class="btn btn-danger col-3" onclick="tutup_paket_kursus(${num})">Tutup</button>
+                                 </div>
+                             </div>
+                             </div>`;
                                     document.getElementById("dynamic-input-paket-kursus").appendChild(createElement);
                                 });
 
@@ -172,12 +171,12 @@
                                             Tipe Kursus</b></label>
                                     <input type="text" name="jumlah_siswa" class="form-control col-10"
                                         id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
-                                        value="{{ old('jumlah_siswa') }}">
+                                        value="{{ $kursus->jumlah_siswa }}">
                                     <select name="tipe_kursus" id="informasi_tipe_kursus90" class="form-control col-2">
-                                        <option value="grup" {{ old('tipe_kursus') == 'grup' ? 'selected' : '' }}>grup
+                                        <option value="grup" {{ $kursus->tipe_kursus == 'grup' ? 'selected' : '' }}>grup
                                         </option>
                                         <option value="perorangan"
-                                            {{ old('tipe_kursus') == 'perorangan' ? 'selected' : '' }}>
+                                            {{ $kursus->tipe_kursus == 'perorangan' ? 'selected' : '' }}>
                                             perorangan</option>
                                     </select>
                                 </div>
@@ -201,7 +200,8 @@
                                 <div>
                                     <div class="mb-4">
                                         <input type="text" id="jenis_kursus" name="jenis_kursus"
-                                            placeholder="Masukkan jenis kursus..." class="form-control">
+                                            value="{{ $kursus->jenis_kursus }}" placeholder="Masukkan jenis kursus..."
+                                            class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
 
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        id="buttonTambahKursus">Buat kursus
+                        id="buttonTambahKursus">Edit kursus
                     </button>
                 </div>
             </div>
@@ -275,6 +275,8 @@
                 document.getElementById("longitude").value = e.geocode.center.lng;
             })
             .addTo(map);
+            var marker = L.marker(['{{ $kursus->latitude }}', '{{ $kursus->longitude }}']).addTo(map);
+            marker.bindPopup("Ini lokasi kursus anda.").openPopup();
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="

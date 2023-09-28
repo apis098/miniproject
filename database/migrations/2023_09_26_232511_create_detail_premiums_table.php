@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('premiums', function (Blueprint $table) {
+        Schema::create('detail_premiums', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_paket');
-            $table->bigInteger('harga_paket');
-            $table->integer('durasi_paket');
+            $table->unsignedBigInteger('premium_id');
+            $table->text('detail');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('premiums');
+        Schema::dropIfExists('detail_premiums');
     }
 };

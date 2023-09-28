@@ -100,16 +100,16 @@
             }
 
             /* button{
-                                                                                                                                background-color: #F7941E;
-                                                                                                                                border: none;
-                                                                                                                                height: 45px;
-                                                                                                                                width: 90px;
-                                                                                                                                color: #ffffff;
-                                                                                                                                position: absolute;
-                                                                                                                                right: 1px;
-                                                                                                                                top: 0px;
-                                                                                                                                border-radius: 15px
-                                                                                                                            } */
+                                                                                                                                    background-color: #F7941E;
+                                                                                                                                    border: none;
+                                                                                                                                    height: 45px;
+                                                                                                                                    width: 90px;
+                                                                                                                                    color: #ffffff;
+                                                                                                                                    position: absolute;
+                                                                                                                                    right: 1px;
+                                                                                                                                    top: 0px;
+                                                                                                                                    border-radius: 15px
+                                                                                                                                } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -185,7 +185,13 @@
                 color: #fff;
             }
         </style>
-
+        <style>
+            @media only screen and (max-width: 1200px) {
+                #filter-name {
+                    display: none;
+                }
+            }
+        </style>
         <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
@@ -221,14 +227,7 @@
                                 <path fill="currentColor"
                                     d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />
                             </svg>
-                            <span id="filter">filter</span>
-                            <style>
-                                @media only screen and (max-width: 1200px) {
-                                    #filter {
-                                        display: none;
-                                    }
-                                }
-                            </style>
+                            <span id="filter-name">filter</span>
                         </button>
                     </div>
                 </div>
@@ -324,7 +323,7 @@
                                             placeholder="Minimal"
                                             style="border-radius: 10px; font-size:13px;border: 1px solid black;">
                                         <select name="min_timer" id="" class="col-5"
-                                            style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
+                                            style="background-color: white;border-radius: 10px; border: 1px solid; font-size: 13px;">
                                             <option value="menit">menit</option>
                                             <option value="jam">jam</option>
                                         </select>
@@ -464,9 +463,8 @@
             @foreach ($recipes as $num => $item)
                 <div class="col-lg-4 mb-2 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                        <div class="card-header my-3 text-center mx-auto" style="background-color: white;width:100%;">
-                            
-                            <img width="80%" class="rounded-circle" height="80%"
+                        <div class="card-header my-3 mx-auto" style="background-color: white">
+                            <img width="260px" class="rounded-circle" height="260px"
                                 style="border: 0.50px black solid; max-width:260px;"
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                             @if ($item->isPremium === 'yes')

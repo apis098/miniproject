@@ -20,6 +20,9 @@
                         <br>
                         Expired Time : {{ date('d F Y, h:i:s A', $detail->expired_time) }} <br>
                     </div>
+                    @if ($detail->payment_method === "QRISC")
+                    <img src="{{$detail->qr_url}}" alt="">
+                    @endif
                 </div>
             </div>
             <div class="col-4">

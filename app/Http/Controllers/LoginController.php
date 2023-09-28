@@ -11,6 +11,7 @@ use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kategori_makanan;
+use App\Models\kursus;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -128,7 +129,8 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.kursus', compact('messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
+        return view('template.kursus', compact('kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function keluhan()

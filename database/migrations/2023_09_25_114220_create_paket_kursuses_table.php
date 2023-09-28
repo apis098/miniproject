@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('premiums', function (Blueprint $table) {
+        Schema::create('paket_kursuses', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_paket');
-            $table->bigInteger('harga_paket');
-            $table->integer('durasi_paket');
+            $table->unsignedBigInteger('kursus_id');
+            $table->integer('waktu');
+            $table->bigInteger('harga');
             $table->timestamps();
+
+            $table->foreign('kursus_id')->references('id')->on('kursuses')->onDelete('cascade');
         });
     }
 
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('premiums');
+        Schema::dropIfExists('paket_kursuses');
     }
 };
