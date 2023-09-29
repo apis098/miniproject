@@ -1,5 +1,10 @@
 @extends('template.nav')
 @section('content')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
         ::placeholder {
             text-align: center;
@@ -371,6 +376,33 @@
                 </div>
             </div>
         </div>
+        <div id="leaflet" style="height: 180px"></div>
+        <script>
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(posisi) {
+                    let lat = posisi.coords.latitude;
+                    let lng = posisi.coords.longitude;
+                    var map = L.map('leaflet').setView([lat, lng], 18);
+
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+                    var array = {!! json_encode($lokasi_kursus) !!};
+                    L.circle([lat, lng], {
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.5,
+                        radius: 500
+                    }).bindPopup('Lokasi anda!').addTo(map);
+                    array.forEach(element => {
+                        L.marker([element.latitude, element.longitude]).addTo(map)
+                            .bindPopup("<a href='/detail_kursus/"+element.id_kursus+"'>"+element.nama_kursus+"</a>")
+                            .openPopup();
+                    });
+                });
+            }
+        </script>
+        <a href=""></a>
         <div class="mx-4">
             <div class="tab-content mb-5 mx-1 my-5" id="pills-tabContent">
                 {{-- start tab 1 --}}

@@ -130,7 +130,15 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
-        return view('template.kursus', compact('kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $lokasi_kursus = $kursus_terbaru->map(function ($posisi) {
+            return [
+                'latitude' => $posisi->latitude,
+                'longitude' => $posisi->longitude,
+                'id_kursus' => $posisi->id,
+                'nama_kursus' => $posisi->nama_kursus
+            ];
+        });
+        return view('template.kursus', compact('lokasi_kursus','kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function keluhan()
