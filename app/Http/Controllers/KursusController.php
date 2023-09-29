@@ -196,7 +196,10 @@ class KursusController extends Controller
             "jenis_kursus" => "required",
             "paket_kursus_waktu.*" => "required",
             "informasi_paket_kursus_waktu.*" => "required",
-            "paket_kursus_harga.*" => "required"
+            "paket_kursus_harga.*" => "required",
+            "tambahan_paket_kursus_waktu.*" => "required",
+            "tambahan_informasi_paket_kursus_waktu.*" => "required",
+            "tambahan_paket_kursus_harga.*" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -210,7 +213,10 @@ class KursusController extends Controller
             "jenis_kursus.required" => "jenis_kursus harus diisi!",
             "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
             "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
-            "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!"
+            "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!",
+            "tambahan_paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
+            "tambahan_informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
+            "tambahan_paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!",
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
@@ -231,6 +237,7 @@ class KursusController extends Controller
         $edit_kursus->jumlah_siswa = $request->jumlah_siswa;
         $edit_kursus->jenis_kursus = $request->jenis_kursus;
         $edit_kursus->save();
+        
         return response()->json([
             "success" => true,
             "message" => "sukses mengedit kursus!"

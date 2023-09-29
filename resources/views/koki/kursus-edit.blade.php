@@ -140,9 +140,9 @@
                              <div class="row my-3" id="row${num}">
                              <div class="col-6">
                                  <div class="row ml-1">
-                                     <input type="text" name="paket_kursus_waktu[]" id="paket_kursus"
+                                     <input type="text" name="tambahan_paket_kursus_waktu[]" id="paket_kursus"
                                          placeholder="masukkan waktu kursus" class="form-control col-8">
-                                     <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
+                                     <select class="form-control col-4" name="tambahan_informasi_paket_kursus_waktu[]"
                                          id="paket_kursus">
                                          <option value="menit">menit</option>
                                          <option value="jam">jam</option>
@@ -151,7 +151,7 @@
                              </div>
                              <div class="col-6">
                                  <div class="row">
-                                 <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
+                                 <input type="text" name="tambahan_paket_kursus_harga[]" id="paket_kursus"
                                      placeholder="masukkan harganya" class="form-control col-9">
                                  <button class="btn btn-danger col-3" onclick="tutup_paket_kursus(${num})">Tutup</button>
                                  </div>
