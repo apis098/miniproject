@@ -141,6 +141,15 @@ class KokiController extends Controller
 
     }
 
+     public function income_koki(Request $request)
+    {
+        $koki = User::find(Auth::user()->id);
+
+      return view('koki.income-koki',compact("koki"));
+
+
+    }
+
 
     public function deleteProfilePicture()
     {
