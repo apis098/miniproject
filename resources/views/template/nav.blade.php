@@ -324,8 +324,8 @@
                                 <div class="user_option" style="margin-left: 100px;">
                                 @else
                                     <div class="user_option" style="margin-left: 65px;">
-                            @endif
-                            @if (Auth::check() && $notification != null)
+                             @endif
+                             @if (Auth::check() && $notification != null)
                                 {{-- dropdown notifikasi --}}
                                 @if ($messageCount > 0)
                                     <a href="{{ url('/roomchat') }}" class="text-light ">
