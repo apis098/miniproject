@@ -91,6 +91,28 @@ class KokiController extends Controller
         $reports = Report::orderBy("created_at", "desc")->get();
         $reseps = reseps::orderBy("created_at", "desc")->get();
         $datetime = User::pluck("created_at");
+        $resep_sendiri = reseps::where("user_id", Auth::user()->id)->get();
+        $recipes = reseps::where("user_id", Auth::user()->id)->paginate(6);
+        $userLogin = Auth::user();
+        $footer = footer::first();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount=[];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        }
         $year = 2018;
         $yearsu = date('Y') - $year;
         $years = [];
@@ -114,7 +136,7 @@ class KokiController extends Controller
         $data_chartjs = [];
         return view('koki.beranda',[
             'koki'=> $koki,
-            ], compact("jumlah_user", "jumlah_resep", "jumlah_report","month", "years", "reports", "reseps"));
+            ], compact("jumlah_user", "jumlah_resep",'messageCount','recipes','notification','footer', 'resep_sendiri','unreadNotificationCount','userLogin','favorite', "jumlah_report","month", "years", "reports", "reseps"));
 
 
     }
