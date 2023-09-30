@@ -312,7 +312,7 @@
                                                                                 <strong>{{ $item_comment->user->name }}</strong>
                                                                             </h5>
                                                                             <small class=""
-                                                                                style="margin-left: 420px;">
+                                                                                style="margin-left: 755px;">
                                                                                 {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                         </div>
                                                                         <p>{{ $item_comment->komentar }}</p>
@@ -1137,8 +1137,8 @@
                                         <!-- modal Bagikan end -->
 
                                         <!-- gift start -->
-                                        <i class="fa-solid fa-gift ml-3 mr-1 my-auto" data-bs-toggle="modal"
-                                            data-bs-target="#gift"></i>
+                                        <a class="text-dark" href=""><i class="fa-solid fa-gift ml-3 mr-1 my-auto" data-bs-toggle="modal"
+                                            data-bs-target="#gift"></i></a>
 
                                         <!-- modal Gift start -->
                                         <div class="modal" id="gift">
