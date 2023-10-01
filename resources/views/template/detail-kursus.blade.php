@@ -59,7 +59,8 @@
                                         L.latLng(latitude, longitude),
                                         L.latLng(lat, long)
                                     ],
-                                    routeWhileDragging: true
+                                    routeWhileDragging: true,
+                                    draggableWaypoints: false // mencegah titik tempat diubah.
                                 }).addTo(map);
 
                             });
