@@ -150,6 +150,15 @@ class KokiController extends Controller
 
     }
 
+     public function views_recipe(Request $request)
+    {
+        $koki = User::find(Auth::user()->id);
+
+      return view('koki.views-recipe',compact("koki"));
+
+
+    }
+
 
     public function deleteProfilePicture()
     {
@@ -236,52 +245,5 @@ class KokiController extends Controller
         Storage::delete("public/".$feed->upload_video);
         $feed->delete();
         return redirect()->back()->with('success', 'sukses menghapus feed anda!');
-    }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register - HummaCook</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -188,6 +189,11 @@
         display: block;
 
     }
+    .card{
+        align-items:center;
+        margin-top: 10px;
+    }
+
 
     }
 
@@ -198,7 +204,7 @@
     }
     .content-container{
         margin-top:10px;
-        width:45%;
+        width:50%;
 
     }
     .bg-image{
@@ -217,6 +223,7 @@
 </head>
 
 <body>
+
     <div class="register-container">
         <div class="bg-image">
             <div class="humma-cook">HummaCook</div>
@@ -243,7 +250,7 @@
                 <form action="{{ route('actionregister') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="">
-                        <div class="row">
+                        <div class="d-flex">
 
                             <div class="card my-3 col-3">
                                 <div class="card-body text-center" style="margin-left:-4px" >
@@ -258,11 +265,12 @@
                             </div>
 
 
-                            <div class="col-lg-7 my-auto mx-1 ">
+                            <div class="col-8 my-auto mx-1 ">
                                 {{-- <input name="profile_picture" id="profile_picture" class="input-file my-auto mx-1"
                                                          type="file" class="formFile"> --}}
                                 <div class="row ms-3"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40x;">
+
                                     <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px; padding: 9px 12px; right: 2px;">
                                         <div
@@ -304,13 +312,13 @@
                     <!-- Password input -->
                     <div class="form mb-3">
                         <input type="password" name="password" id="pass2"
-                            class="form-control username rounded-4 form-input" placeholder="password..." required>
+                            class="form-control username rounded-4 form-input" placeholder="Password..." required>
                         <a id="mybutton2" onclick="change('pass2','mybutton2')"><span id="mybutton2" class="left-pan"><i
                                     class="fa-solid fa-eye"></i></span></a>
                     </div>
                     <div class="form mb-3">
                       <input type="password" name="copassword" id="pass"
-                          class="form-control username rounded-4 form-input" placeholder="password..." required>
+                          class="form-control username rounded-4 form-input" placeholder="Konfirmasi password..." required>
                       <a id="mybutton" onclick="change('pass','mybutton')"><span id="mybutton" class="left-pan"><i
                                   class="fa-solid fa-eye"></i></span></a>
                   </div>
@@ -323,11 +331,8 @@
                 </form>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </section>
+      </div>
+
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

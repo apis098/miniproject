@@ -194,7 +194,7 @@
     }
     .content-container{
         margin-top:10px;
-        width:45%;
+        width:50%;
 
     }
     .bg-image{

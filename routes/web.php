@@ -153,6 +153,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('/beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
         Route::get('income-koki',[KokiController::class,'income_koki'])->name('koki.income');
+        Route::get('views-recipe',[KokiController::class,'views_recipe'])->name('koki.recipe');
     });
 });
 
