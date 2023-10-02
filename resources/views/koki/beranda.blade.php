@@ -10,15 +10,14 @@
             border-radius: 30px;
         }
     </style>
-
-<div class="content-header" style="overflow-x:hidden">
-    <div class="container">
+<div style="overflow-x:hidden">
+<div class="content-header mx-5" >
             <div class="d-flex mt-1">
-        <div class="col-sm-6" style="margin-left: 11em; ">
+        <div class="col-sm-6" >
             <h4>Selamat datang kembali viktor</h4>
             <p>Berikut Beberapa Rekapan Terbaru</p>
         </div>
-        <div class="col-sm-6 " style="margin-left: 17em; ">
+        <div class="col-sm-6 " style="margin-left: 21em; ">
             @if ($messageCount == 0)
                                 <div class="d-flex mt-3 mx-2" style="">
                                 @else
@@ -444,7 +443,7 @@
                                         @else
                                             <img loading="lazy" class="mr-3 rounded-circle"
                                                 src="{{ asset('images/default.jpg') }}" alt="profile image"
-                                                style="max-width:60px">
+                                                style="max-width:55px">
                                         @endif
                                     </a>
                                     @if (auth()->user()->role === 'koki')
@@ -590,14 +589,14 @@
 
     </div>
 
-</div>
+
 </div>
     <!-- Sale & Revenue Start -->
-    <div class=" container-fluid  px-4 su">
+    <div class=" container-fluid  px-4 su mx-4">
         <div class="row g-2 su">
-            <div class="col-sm-3 col-lg-3" style="margin-left: 17em; ">
+            <div class="col-sm-3 col-lg-3 mx-3">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
-                    style="border: 1px solid #333;">
+                    style="border: 1px solid #333;  width: 320px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">1000</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengikut</p>
@@ -605,10 +604,9 @@
                     <i class="fas fa-user-circle fa-3x"></i>
                 </div>
             </div>
-
-            <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
-                <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
-                    style="border: 1px solid #333;">
+            <div class="col-sm-3 col-lg-3 ml-5" >
+                <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-1"
+                    style="border: 1px solid #333; width: 320px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">100</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Resep</p>
@@ -616,9 +614,9 @@
                     <i class="fas fa-book fa-3x"></i>
                 </div>
             </div>
-            <div class="col-sm-3 col-lg-3" style="margin-left: 1em">
-                <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
-                    style="border: 1px solid #333;">
+            <div class="col-sm-3 col-lg-3 ml-4" >
+                <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-5"
+                    style="border: 1px solid #333; width: 320px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">2000</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Suka</p>
@@ -629,7 +627,7 @@
         </div>
         <div class="row mt-3 me-2">
             <!-- Example single danger button -->
-            <div class="col-lg-10" style="margin-left: 15em">
+            <div class="col-lg-10">
                 {{-- <div class="btn-group ">
                     <button type="button" style="width: 10%; margin-left: 34px;border-radius: 15px;background-color: #F7941E; border: none;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         class="btn btn-warning dropdown-toggle mb-3" data-bs-toggle="dropdown" aria-expanded="false">
@@ -648,7 +646,7 @@
                         @endforeach
                     </ul>
                 </div> --}}
-                <div style="max-width:1000px; margin: 0 auto; margin-top: -5px">
+                <div class="mx-3" style="width:990px; margin: 0 auto; margin-top: -5px">
                     <div class="panel h-full xl:col-span-2 w-full">
                         <div class="mb-3 flex items-center dark:text-white-light">
                             <h5 class="text-lg fw-bold">Diagram Pendapatan</h5>
@@ -692,94 +690,36 @@
 
         <!-- Widgets Start -->
 
-        <div class="container-fluid pt-4 px-4 ms-3">
-            <div class="ms-1 " style="display: flex; align-items: center;">
-                <h5 class="fw-bold" style="margin-left: 11.5em; margin-bottom: 1;">Komentar Feed Terbaru</h5>
-                <h5 class="fw-bold" style="margin-left: 16.2em; margin-bottom: 1;">Komentar Resep Terbaru</h5>
+        <div class="container-fluid pt-4 mr-5">
+            <div class="ms-1" style="display: flex;">
+                <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
+                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 313px;">Komentar Resep Terbaru</h5>
             </div>
 
-            <div class="row g-4 mb-5 ml-5" style="margin-left: 3em; ">
-                <div class="col-12 col-md-6 col-xl-5 ms-auto ms-5" style="mar">
-                    <div class="h-100 rounded-4 p-4 border border-dark border-2 ">
-                        <div class="d-flex align-items-center justify-content-start mb-2">
-                        </div>
-                        <div class="overflow-auto" style="height: 250px;">
-                            {{-- @foreach ($reseps as $rsp)
-                            <div class="border-bottom py-3">
-                                <a href="#" class="text-decoration-none d-flex text-dark">
-                                    <img class="rounded-circle flex-shrink-0" src="{{ asset('storage/'.$rsp->foto_resep) }}"
-                                        alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">{{ $rsp->nama_resep }}</h6>
-                                            <small>{{ \Carbon\Carbon::parse($rsp->created_at)->locale('id_ID')->diffForHumans() }}</small>
-
-                                        </div>
-                                        <span>
-                                            Oleh {{ $rsp->user->name }}
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
-                            @endforeach
-                            @forelse ($reseps as $rsp)
-
-                            @empty
-
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                                    style="margin-top: 2em">
-                                    <img src="{{asset('images/data.png')}}" style="width: 15em">
-                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                                </div>
-
-                            @endforelse --}}
-                        </div>
+            <div class="d-flex">
+            <div class="col-lg-6">
+                <div class="card p-4 mt-2 mb-2" style="width: 470px; height: 400px; border-radius: 15px; border: 1px black solid">
+                    <div class="card-body ">
+                      
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-xl-5 ms-3">
-                    <div class="h-100 rounded-4 p-4 border border-dark border-2" style="background-color: white">
-                        <div class="d-flex align-items-center justify-content-start mb-2">
-                        </div>
-                        <div class="overflow-auto" style="height: 250px">
-                        {{-- @foreach ($reports as $r)
-                            <!-- Konten laporan terbaru -->
-                            <div class="border-bottom py-3">
-                                <a href="#" class="text-decoration-none d-flex text-dark">
-                                    @if ($r->user->foto)
-                                        <img class="rounded-circle flex-shrink-0"
-                                            src="{{ asset('storage/' . $r->user->foto) }}" alt="{{ $r->user->foto }}"
-                                            style="width: 40px; height: 40px;">
-                                    @else
-                                        <img class="rounded-circle flex-shrink-0"
-                                            src="{{ asset('images/default.jpg') }}" alt="{{ $r->user->foto }}"
-                                            style="width: 40px; height: 40px;">
-                                    @endif
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">{{ $r->user->name }}</h6>
-                                            <small>{{\Carbon\Carbon::parse($r->created_at)->locale('id_ID')->diffForHumans()}}</small>
-                                        </div>
-                                        <span>{{ $r->description }}</span>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
-                        @forelse ($reports as $r)
-                        @empty
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                                style="margin-top: 2em">
-                                <img src="{{asset('images/data.png')}}" style="width: 15em">
-                                <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                            </div>
-                        @endforelse --}}
-                        </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card p-4 mt-2 mb-2" style="width: 470px; height: 400px; border-radius: 15px; border: 1px black solid">
+                    <div class="card-body ">
+                      
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
 
+
+            </div>
+        </div>
+    
+    </div>
+    </div>
+    </div>
+</div>
 @endsection

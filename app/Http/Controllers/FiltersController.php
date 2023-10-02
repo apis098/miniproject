@@ -257,4 +257,8 @@ class FiltersController extends Controller
         $recipes->paginate(6);
         return view('template.resep', compact('messageCount','toolsCooks','footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
+    public function filterKursus(Request $request)
+    {
+        
+    }
 }

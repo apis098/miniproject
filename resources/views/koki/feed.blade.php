@@ -203,9 +203,9 @@
         .search-2 input {
             height: 45px;
             border: 0.50px black solid;
-            width: 137%;
+            width: 368%;
             border-radius: 15px;
-            margin-left: 80px;
+            margin-right: 80px;
             color: #000;
             padding-left: 18px;
             padding-right: 100px;
@@ -227,14 +227,19 @@
 
         .search-2 button {
             position: absolute;
-            margin-left: 136%;
+            margin-left: 344%;
             top: 0px;
             border: none;
             height: 45px;
             background-color: #F7941E;
             color: #fff;
-            width: 90px;
+            width: 70px;
         }
+
+        .placeholder-centered::placeholder {
+          text-align: center;
+        }
+
 
         @media (max-width:800px) {
             .search-1 input {
@@ -258,32 +263,52 @@
     </style>
 
     <div class=" d-flex justify-content-center ms-3" style="overflow-x:hidden">
-        <div class="my-5 ml-5" style="margin-right: -15%;">
+        <div class="my-1 ml-5" style="margin-right: 30%;">
 
 
 
 
-            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
+
                     <div class="search" style="border-radius: 15px;">
                         <div class="col-lg-11 mt-2">
                             <div class="search-2"> <i class='bx bxs-map'></i>
                                 <form action="#" method="GET">
-                                    <input type="text" name="" style="text-align: left;" placeholder="Cari..."
+                                    <input class="placeholder-centered" type="text" name="" style="text-align: left;" placeholder="Search for something ..."
                                         value="{{-- {{ request()->nama_resep }} --}}">
                                     <button type="submit" class="zoom-effects"
                                         style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                        Cari
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+                                    </svg>
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    {{-- start tab 1 --}}
-                   
-                </div>
-            </div>
+
+                    <div class="row gx-5">
+                        <div class="col-md-6 mb-4">
+                          <div class="bg-image hover-overlay ripple shadow-2-strong rounded-5" data-mdb-ripple-color="light">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/slides/080.webp" class="img-fluid" />
+                            <a href="#!">
+                              <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                            </a>
+                          </div>
+                        </div>
+                      
+                        <div class="col-md-6 mb-4">
+                          <span class="badge bg-danger px-2 py-1 shadow-1-strong mb-3">News of the day</span>
+                          <h4><strong>Facilis consequatur eligendi</strong></h4>
+                          <p class="text-muted">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequatur
+                            eligendi quisquam doloremque vero ex debitis veritatis placeat unde animi laborum
+                            sapiente illo possimus, commodi dignissimos obcaecati illum maiores corporis.
+                          </p>
+                          <button type="button" class="btn btn-primary">Read more</button>
+                        </div>
+                      </div>
 
         </div>
     </div>

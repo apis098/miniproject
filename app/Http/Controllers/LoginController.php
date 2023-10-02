@@ -107,7 +107,7 @@ class LoginController extends Controller
         return view('template.home', compact('messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
-    public function kursus()
+    public function kursus(Request $request)
     {
         $userLogin = Auth::user();
         $notification = [];
@@ -129,7 +129,15 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
+        if ($request->cari_nama_kursus) {
+        $kursus_terbaru = kursus::query()
+         ->where('status', 'diterima')
+         ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
+         ->paginate(6);
+        } else {
         $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
+        }
+        $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
         $lokasi_kursus = $kursus_terbaru->map(function ($posisi) {
             return [
                 'latitude' => $posisi->latitude,
@@ -138,7 +146,7 @@ class LoginController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        return view('template.kursus', compact('lokasi_kursus','kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('jenis_kursus','lokasi_kursus','kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function keluhan()
