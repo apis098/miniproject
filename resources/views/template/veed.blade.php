@@ -1022,7 +1022,7 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title ml-3"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                            Bagikan Konten Dari {{$item_video->user->name}}</h5>
+                                                            Bagikan Kepada</h5>
                                                         <button type="button" class="close mr-2" data-bs-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
@@ -1079,8 +1079,8 @@
                                                             </div>
                                                             <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
                                                                 <input type="checkbox" class="select-checkbox"
-                                                                    id="checkbox1">
-                                                                <label for="checkbox1"></label>
+                                                                    id="checkbox{{$following->id}}">
+                                                                <label for="checkbox{{$following->id}}"></label>
                                                             </div>
                                                         
                                                         </div>
