@@ -82,6 +82,11 @@ class KokiController extends Controller
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
     }
 
+    public function feed(Request $request)
+    {
+        return view('koki.feed');
+    }
+
     public function beranda(Request $request)
     {
         $koki = User::find(Auth::user()->id);
@@ -141,7 +146,7 @@ class KokiController extends Controller
 
     }
 
-     public function income_koki(Request $request)
+     public function incomeKoki(Request $request)
     {
         $koki = User::find(Auth::user()->id);
 
@@ -150,7 +155,7 @@ class KokiController extends Controller
 
     }
 
-     public function views_recipe(Request $request)
+     public function viewsRecipe(Request $request)
     {
         $koki = User::find(Auth::user()->id);
 

@@ -170,7 +170,7 @@ class LoginController extends Controller
         return view('template.keluhan', compact('messageCount','real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
-    public function penawaran_prem()
+    public function penawaranPrem()
     {
         $userLogin = Auth::user();
         $notification = [];

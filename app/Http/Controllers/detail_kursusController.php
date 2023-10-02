@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class detail_kursusController extends Controller
 {
 
-    public function detail_kursus(string $id){
+    public function detailKursus(string $id){
         $detail_course = kursus::find($id);
         $idAdmin = User::where('role', 'admin')->first();
         $userLogin = Auth::user();
