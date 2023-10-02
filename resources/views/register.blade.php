@@ -324,7 +324,7 @@
                   </div>
                     <br>
                     <!-- Submit button -->
-                    <p>Sudah punya akun? Masuk <a style="color: #f7941e;" href="{{ route('login') }}">Masuk</a>
+                    <p>Sudah punya akun?<a style="color: #f7941e;" href="{{ route('login') }}">Masuk</a>
                     </p>
                     <!-- Login buttons -->
                     <button type="submit" class="button-buat rounded-4"> <b style="color:white">Buat</b></button>
@@ -335,7 +335,6 @@
 
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <!-- Include Bootstrap JS (make sure the path is correct) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
