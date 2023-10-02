@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChMessage;
 use App\Models\comment_veed;
 use App\Models\like_comment_veed;
+use App\Models\Share;
 use App\Models\upload_video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ class VeedController extends Controller
         $user_following = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-            $user_following = followers::where('follower_id',auth()->user()->id)->paginate(4    );
+            $user_following = followers::where('follower_id', auth()->user()->id)->paginate(4);
         }
         if ($userLogin) {
             $id_user = Auth::user()->id;
@@ -45,7 +46,7 @@ class VeedController extends Controller
                 $admin = true;
             }
             $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') 
+                ->orderBy('created_at', 'desc')
                 ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             $userLog = 2;
@@ -63,8 +64,8 @@ class VeedController extends Controller
 
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
-    
-        return view("template.veed", compact("messageCount","user_following", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+
+        return view("template.veed", compact("messageCount", "user_following", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
 
     public function sukai_veed(string $user_id, string $veed_id)
@@ -192,10 +193,10 @@ class VeedController extends Controller
                 "veed_id" => $veed_id
             ]);
             $countLike = like_reply_comment_veed::query()
-             ->where('users_id', $user_id)
-             ->where('veed_id', $veed_id)
-             ->where('reply_comment_veed_id', $reply_comment_id)
-             ->count();
+                ->where('users_id', $user_id)
+                ->where('veed_id', $veed_id)
+                ->where('reply_comment_veed_id', $reply_comment_id)
+                ->count();
             return response()->json([
                 "success" => true,
                 "message" => "Sukses memberikan like!",
@@ -208,10 +209,10 @@ class VeedController extends Controller
                 ->where("veed_id", $veed_id)
                 ->delete();
             $countLike = like_reply_comment_veed::query()
-             ->where('users_id', $user_id)
-             ->where('veed_id', $veed_id)
-             ->where('reply_comment_veed_id', $reply_comment_id)
-             ->count();
+                ->where('users_id', $user_id)
+                ->where('veed_id', $veed_id)
+                ->where('reply_comment_veed_id', $reply_comment_id)
+                ->count();
             return response()->json([
                 "success" => true,
                 "message" => "Sukses membatalkan like!",
@@ -220,23 +221,35 @@ class VeedController extends Controller
             ]);
         }
     }
-    public function hapus_komentar_feed(string $id) {
+    public function hapus_komentar_feed(string $id)
+    {
         $COMMENT = comment_veed::find($id);
         $COMMENT->delete();
         return redirect()->back()->with('success', 'sukses menghapus komentar feed!');
     }
-    public function hapus_balasan_komentar_feed(string $id) {
+    public function hapus_balasan_komentar_feed(string $id)
+    {
         $reply_comment = reply_comment_veed::find($id);
         $reply_comment->delete();
         return redirect()->back()->with('success', 'sukses menghapus balasan komentar feed!');
     }
-    public function shareVeed(Request $request,$id){
-        $feedId = upload_video::findOrFail($id);
-        $userId = $request->input('user_id');
-        if($userId != auth()->user()->id){
-            alert('sukses');
-        }else{
-            alert('gagal');
+    public function shareVeed(Request $request, $id)
+    {
+        if (Auth::check()) {
+            $userIds = $request->input('user_id', []); // Mendapatkan array user_id yang dicentang
+
+            foreach ($userIds as $userId) {
+                $data = new Share();
+                $data->user_id = $userId;
+                $data->sender_id = auth()->user()->id;
+                $data->feed_id = $id;
+                $data->save();
+            }
+
+            return redirect()->back()->with('success', 'Konten yang anda bagikan telah terkirim!');
+        } else {
+            return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
     }
+
 }

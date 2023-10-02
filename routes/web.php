@@ -111,7 +111,9 @@ Route::post('/laporan-komentar/{id}',[ReportController::class,'storeReply'])->na
 Route::post('/laporan-komentar-balasan/{id}',[ReportController::class,'storeReplyComment'])->name('report.reply.comment');
 Route::post('/laporan-keluhan/{id}',[ReportController::class,'storeComplaint'])->name('report.complaint');
 
-
+Route::prefix('share-content')->group(function (){
+    Route::post('feed/{id}',[VeedController::class,'shareVeed'])->name('share.feed');
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {

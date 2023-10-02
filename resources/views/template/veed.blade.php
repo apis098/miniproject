@@ -1048,47 +1048,49 @@
                                                         <h3 class="mt-4 ml-3"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                             Disarankan</h3>
-                                                        @foreach($user_following as $following)
-                                                        <div class="d-flex mt-4">
-                                                            <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
-                                                                <a href="">
-                                                                    @if($following->user->foto)
-                                                                        <img src="{{ asset('storage/' . $following->user->foto) }}"
-                                                                        class="border rounded-circle me-2" alt="Avatar"
-                                                                        style="height: 55px" />
-                                                                    @else
-                                                                        <img src="{{ asset('images/default.jpg') }}"
+                                                        <form action="{{route('share.feed',$item_video->id)}}" method="POST">
+                                                            @csrf
+                                                            @foreach($user_following as $following)
+                                                            <div class="d-flex mt-4">
+                                                                <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                    <a href="">
+                                                                        @if($following->user->foto)
+                                                                            <img src="{{ asset('storage/' . $following->user->foto) }}"
                                                                             class="border rounded-circle me-2" alt="Avatar"
                                                                             style="height: 55px" />
-                                                                    @endif
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
-                                                                <div class=" rounded-3 px-3 py-1">
-                                                                    <a href="" class="text-dark mb-0">
-                                                                        <strong>{{$following->user->name}}</strong>
-                                                                    </a>
-                                                                    <a href="" class="text-muted d-block">
-                                                                        <small>{{$following->user->email}}</small>
+                                                                        @else
+                                                                            <img src="{{ asset('images/default.jpg') }}"
+                                                                                class="border rounded-circle me-2" alt="Avatar"
+                                                                                style="height: 55px" />
+                                                                        @endif
                                                                     </a>
                                                                 </div>
+                                                                <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
+                                                                    <div class=" rounded-3 px-3 py-1">
+                                                                        <a href="" class="text-dark mb-0">
+                                                                            <strong>{{$following->user->name}}</strong>
+                                                                        </a>
+                                                                        <a href="" class="text-muted d-block">
+                                                                            <small>{{$following->user->email}}</small>
+                                                                        </a>
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
+                                                                    <input type="checkbox" class="select-checkbox" name="user_id[]"
+                                                                        id="checkbox{{$following->id}}" value="{{$following->user->id}}">
+                                                                    <label for="checkbox{{$following->id}}"></label>
+                                                                </div>
+                                                            
                                                             </div>
-                                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
-                                                                <input type="checkbox" class="select-checkbox"
-                                                                    id="checkbox{{$following->id}}">
-                                                                <label for="checkbox{{$following->id}}"></label>
-                                                            </div>
-                                                        
-                                                        </div>
-                                                        @endforeach
+                                                            @endforeach
                                                      
                                                             <div class="d-flex align-items-center  mt-4">
-                                                                <button class="btn btn-light fw-bolder text-light col-lg-12 " type="button" style="border-radius: 10px; background-color:#F7941E;">
+                                                                <button class="btn btn-light fw-bolder text-light col-lg-12 " type="submit" style="border-radius: 10px; background-color:#F7941E;">
                                                                    <p class="mt-1 mb-1">Bagikan</p>
                                                                 </button>
                                                             </div>
-                                                     
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
