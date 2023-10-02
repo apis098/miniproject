@@ -98,6 +98,10 @@
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
 
+        <!-- Load Leaflet from CDN -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css">
+
         <style>
             .custom_nav-container .navbar-nav .nav-item.active .nav-link {
                 color: #F7941E;
@@ -293,7 +297,8 @@
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mt-3 me-2 justify-content-center " style="margin-left: 20px">
-                                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}" style="font-size: 15px;">
+                                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
+                                    style="font-size: 15px;">
                                     <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Beranda</b></a>
                                 </li>
                                 <li class="nav-item {{ request()->is('resep') ? 'active' : '' }}"
@@ -324,8 +329,8 @@
                                 <div class="user_option" style="margin-left: 100px;">
                                 @else
                                     <div class="user_option" style="margin-left: 65px;">
-                             @endif
-                             @if (Auth::check() && $notification != null)
+                            @endif
+                            @if (Auth::check() && $notification != null)
                                 {{-- dropdown notifikasi --}}
                                 @if ($messageCount > 0)
                                     <a href="{{ url('/roomchat') }}" class="text-light ">
@@ -854,7 +859,8 @@
                                         <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
                                     </div>
                                     <div class="dropdown-divider"></div>
-                                    <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
+                                    <a href="/admin/dashboard" class="dropdown-item text-orange"
+                                        style="width: 230px">
                                         <svg style="vertical-align: top; margin-left: -5px"
                                             xmlns="http://www.w3.org/2000/svg" width="25" height="25"
                                             viewBox="0 0 36 36">
@@ -1267,6 +1273,16 @@
         }
     </script>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet-vector@4.1.0/dist/esri-leaflet-vector.js"></script>
+
+<!-- Load Esri Leaflet Geocoder from CDN -->
+<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js"></script>
+
+
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
@@ -1294,6 +1310,42 @@
                     placeholder: {
                         id: '-1',
                         text: 'Masukkan Nama Bahan'
+                    },
+                    dropdownParent: $('#filter')
+
+                });
+                $('.cari1').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        id: '-1',
+                        text: 'Masukkan Nama Provinsi'
+                    },
+                    dropdownParent: $('#filter')
+
+                });
+                $('.cari2').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        id: '-1',
+                        text: 'Masukkan Nama Kabupaten'
+                    },
+                    dropdownParent: $('#filter')
+
+                });
+                $('.cari3').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        id: '-1',
+                        text: 'Masukkan Nama Kota'
+                    },
+                    dropdownParent: $('#filter')
+
+                });
+                $('.cari4').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        id: '-1',
+                        text: 'Masukkan Nama Desa'
                     },
                     dropdownParent: $('#filter')
 
