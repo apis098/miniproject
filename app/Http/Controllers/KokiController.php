@@ -146,7 +146,7 @@ class KokiController extends Controller
 
     }
 
-     public function income_koki(Request $request)
+     public function incomeKoki(Request $request)
     {
         $koki = User::find(Auth::user()->id);
 
@@ -155,7 +155,7 @@ class KokiController extends Controller
 
     }
 
-     public function views_recipe(Request $request)
+     public function viewsRecipe(Request $request)
     {
         $koki = User::find(Auth::user()->id);
 

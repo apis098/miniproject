@@ -4,31 +4,11 @@
         @powerGridStyles
     @endpush
     <style>
-        .table-rounded thead th:first-child {
-            border-top-left-radius: 10px;
-        }
-
-        .table-rounded thead th:last-child {
-            border-top-right-radius: 10px;
-        }
-
-        .table-rounded tbody tr:last-child td:first-child {
-            border-bottom-left-radius: 10px;
-        }
-
-        .table-rounded tbody tr:last-child td:last-child {
-            border-bottom-right-radius: 10px;
-        }
-
-        .btn-group-vertical {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .zoom-effects:hover {
-            transform: scale(0.97);
-        }
-
+       /* Gaya untuk tombol "Cari" */
+            .zoom-effects {
+                margin-left: 10px; /* Tambahkan jarak antara input dan tombol */
+                /* Selain itu, Anda dapat menambahkan properti lain sesuai keinginan Anda */
+            }
         .intro-1 {
             font-size: 20px
         }
@@ -49,109 +29,9 @@
             background-color: #fff;
         }
 
-        .table-custom {
-            text-align: center;
-        }
-
-        .table-custom {
-            text-align: center;
-            border-collapse: separate;
-            border-spacing: 0px 15px;
-        }
-
-        .table-custom td {
-            padding-top: 30px;
-            padding-bottom: 30px;
-            width: 195px;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            border-left: none;
-            border-right: none;
-            top: 10px;
-            overflow: hidden;
-            font-weight: bolder;
-        }
-
-        .table-custom th {
-            padding: 10px;
-            width: 195px;
-            background-color: #F7941E;
-            margin-bottom: 50px;
-            color: #fff;
-        }
-
-        .table-custom thead {
-            margin-bottom: 50px;
-        }
-
-        .table-custom td:first-child {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-
-        .table-custom td:last-child {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        .table-custom th:first-child {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-
-        .table-custom th:last-child {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        tr {
-            padding: 30px;
-        }
-
-        .yuhu {
-            background: none;
-            color: inherit;
-            border: none;
-            padding: 0;
-            font: inherit;
-            cursor: pointer;
-            outline: inherit;
-        }
-
-        .btn-edit {
-            background: #F7941E;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
-            color: white;
-            font-size: 18px;
-            font-family: 'poppins';
-            font-weight: 500;
-            word-wrap: break-word;
-            border: none;
-            letter-spacing: 0.20px;
-        }
-
-        .btn-hapus {
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            font-size: 17px;
-            font-family: 'Poppins';
-            font-weight: 500;
-            letter-spacing: 0.20px;
-            word-wrap: break-word;
-            color: black;
-            border-radius: 10px;
-            margin-left: 10px;
-            border: 0.50px black solid
-        }
-
         .garis {
             border-bottom: #F7941E 2px solid;
         }
-
-        .fa-circle {}
-
 
 
         .search {
@@ -189,14 +69,15 @@
             color: #eee
         }
 
-        ::placeholder {
+        /* ::placeholder {
             color: #eee;
             opacity: 1
-        }
+        } */
 
+        /* Gaya untuk form pencarian */
         .search-2 {
-            position: relative;
-            width: 100%
+            display: flex;
+            align-items: center;
         }
 
         .search-2 input {
@@ -268,36 +149,37 @@
         }
     </style>
 
-    <div class="d-flex" style="margin-left:20%">
-        <div class="my-3 ml-3" style="margin-right: -15%;">
-            <form action="">
-                <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                    <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                    <div class="search-2"> <i class='bx bxs-map'></i>
-                                        <form action="#" method="GET">
-                                            <input type="text" name="profil" placeholder="Search For Something">
-                                            <button type="submit" class="zoom-effects"
-                                                style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
-                                        </form>
-                                    </div>
+<div class="d-flex" style="margin-left: 20%;">
+    <div class="my-3 ml-3" style="margin-right: -15%;">
+        <form action="">
+            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
+                <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                <form action="#" method="GET">
+                                    <input type="text" name="profil" placeholder="Search For Something">
+                                    <button type="submit" class="zoom-effects"
+                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                 </div>
+                </div>
+            </div>
 
-            </form>
-            <button
-            style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-            class="btn text-light mb-3">
-            <span style="font-weight: 600">
-                <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
-            </span>
+            <!-- Tombol "Buat Resep" dipindahkan ke sini -->
+            <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                class="btn text-light mb-3">
+                <span style="font-weight: 600">
+                    <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
+                </span>
             </button>
-        </div>
+        </form>
     </div>
-    </div>
+</div>
+
+
     <!-- jQuery CDN -->
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"

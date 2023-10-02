@@ -43,12 +43,12 @@ Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('a
 
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
-Route::get('penawaran-prem',[LoginController::class,'penawaran_prem'])->name('penawaran.prem');
+Route::get('penawaran-prem',[LoginController::class,'penawaranPrem'])->name('penawaran.prem');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 //kursus
 Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
-route::get('/detail_kursus/{id}',[detail_kursusController::class,'detail_kursus'])->name('detail.kursus');
+route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
 // veed
 Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
 
@@ -153,8 +153,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('/beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
         Route::get('/feed', [KokiController::class, 'feed'])->name('koki.feed');
-        Route::get('income-koki',[KokiController::class,'income_koki'])->name('koki.income');
-        Route::get('views-recipe',[KokiController::class,'views_recipe'])->name('koki.recipe');
+        Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
+        Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
     });
 });
 
