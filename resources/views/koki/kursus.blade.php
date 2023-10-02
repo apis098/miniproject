@@ -237,52 +237,33 @@
     </form>
     <div id="erroro"></div>
     <script>
-        if (navigator.geolocation) {
+   if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((posisi) => {
-                // memanggil div dengan id map yang digunakan untuk menampilkan maps
-                const map = L.map("map", {
-                    minZoom: 2,
-                });
-                // data latitude dan longitude posisi saat ini dari browser
-                const latitude_now = posisi.coords.latitude;
-                const longitude_now = posisi.coords.longitude;
-                // api key dari arcgis
-                const apiKey =
-                    "AAPK63e9bf53d41f4a8d97159a1225654603jx2fDa28RyvdpARWl6kkFnnDWAGyGfoyDHC5EC7PihxInfSJdLsZ4-omoCOlU0aa";
-                // memberi tahu kalau menggunakan arcgis untuk maps-nya
-                const basemapEnum = "arcgis/streets";
-                // set view awalan di koordinat posisi saat ini dari browser
-                map.setView([latitude_now, longitude_now], 13);
-                // menampilkan maps dengan esri leaflet x arcgis
-                L.esri.Vector.vectorBasemapLayer(basemapEnum, {
-                    apiKey: apiKey
-                }).addTo(map);
-                // membuat fitur search lokasi 
-                const searchControl = L.esri.Geocoding.geosearch({
-                    position: "topright",
-                    placeholder: "cari dan tandai lokasi kursus anda!",
-                    useMapBounds: false,
+                let latitude = posisi.coords.latitude;
+                let longitude = posisi.coords.longitude;
+                var map = L.map("map").setView([latitude, longitude], 12);
+                var tiles = L.esri.basemapLayer("Streets").addTo(map);
 
+                // create the geocoding control and add it to the map
+                var searchControl = L.esri.Geocoding.geosearch({
+                    position: "topright",
+                    placeholder: "Masukkan alamat lengkap kursus anda!",
                     providers: [
                         L.esri.Geocoding.arcgisOnlineProvider({
-                            apiKey: apiKey,
-                            nearby: {
-                                lat: latitude,
-                                lng: longitude
-                            },
-                            maxResult: 5
+                            // API Key to be passed to the ArcGIS Online Geocoding Service
+                            apikey: 'AAPK63e9bf53d41f4a8d97159a1225654603jx2fDa28RyvdpARWl6kkFnnDWAGyGfoyDHC5EC7PihxInfSJdLsZ4-omoCOlU0aa'
                         })
-                    ],
+                    ]
                 }).addTo(map);
-                const result_search = L.layerGroup().addTo(map);
-                searchControl.on("result_search", (data) => {
-                    result_search.clearLayers();
-                    for (let index = data.result_search.length - 1; index >= 1; index--) {
-                        const marker = L.marker(data.result_search[index].latlng);
-                        const latLngString = `${Math.round(data.results[i].latlng.lng * 100000) / 100000}, ${Math.round(data.results[i].latlng.lat * 100000) / 100000}`;
-                        marker.bindPopup(`<b>${latLngString}</b><p>${data.result_search[index].properties.LongLabel}</p>`);
-                        result_search.addLayer(marker);
-                        marker.openPopup();
+
+                // create an empty layer group to store the results and add it to the map
+                var results = L.layerGroup().addTo(map);
+
+                // listen for the results event and add every result to the map
+                searchControl.on("results", function(data) {
+                    results.clearLayers();
+                    for (var i = data.results.length - 1; i >= 0; i--) {
+                        results.addLayer(L.marker(data.results[i].latlng));
                     }
                 });
             });

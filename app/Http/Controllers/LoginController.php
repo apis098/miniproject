@@ -6,13 +6,17 @@ use App\Models\ChMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\complaint;
+use App\Models\District;
 use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kategori_makanan;
 use App\Models\kursus;
+use App\Models\Province;
+use App\Models\Regency;
 use App\Models\User;
+use App\Models\Village;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
@@ -138,6 +142,10 @@ class LoginController extends Controller
         $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
         }
         $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
+        $provinsi = Province::pluck('name');
+        $regency = Regency::pluck('name');
+        $district = District::pluck('name');
+        $village = Village::pluck('name');
         $lokasi_kursus = $kursus_terbaru->map(function ($posisi) {
             return [
                 'latitude' => $posisi->latitude,
@@ -146,7 +154,7 @@ class LoginController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        return view('template.kursus', compact('jenis_kursus','lokasi_kursus','kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('district', 'village','regency','provinsi','jenis_kursus','lokasi_kursus','kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function keluhan()
