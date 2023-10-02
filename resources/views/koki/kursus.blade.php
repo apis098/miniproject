@@ -1,16 +1,11 @@
 @extends('template.nav')
 @section('content')
-    <!-- Leaflet JS Link Start -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!-- Leaflet JS Link End -->
-    <!-- Leaflet Control Geocoder Start -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <!-- Leaflet Control Geocoder End -->
     <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
         #map {
             height: 180px;
         }
@@ -93,7 +88,7 @@
                             <label for="exampleFormControlInput1" class="form-label"><b>Lokasi</b></label>
                             <div id="map"></div>
                             <input type="text" name="nama_lokasi" id="address" hidden>
-                            <input type="text" name="latitude" id="latitude" hidden>                    
+                            <input type="text" name="latitude" id="latitude" hidden>
                             <input type="text" name="longitude" id="longitude" hidden>
                         </div>
                         <div>
@@ -242,39 +237,56 @@
     </form>
     <div id="erroro"></div>
     <script>
-        var map = L.map('map').setView([0, 0], 2);
-        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var geocoder = L.Control.geocoder({
-                defaultMarkGeocode: false,
-                geocodingQueryParams: {
-                    addressdetails: 1,
-                    format: 'json'
-                },
-                collapsed: false,
-                geocoder: L.Control.Geocoder.nominatim({
-                    geocodingQueryParams: {
-                        countrycodes: 'ID',
-                        limit: 5
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((posisi) => {
+                // memanggil div dengan id map yang digunakan untuk menampilkan maps
+                const map = L.map("map", {
+                    minZoom: 2,
+                });
+                // data latitude dan longitude posisi saat ini dari browser
+                const latitude_now = posisi.coords.latitude;
+                const longitude_now = posisi.coords.longitude;
+                // api key dari arcgis
+                const apiKey =
+                    "AAPK63e9bf53d41f4a8d97159a1225654603jx2fDa28RyvdpARWl6kkFnnDWAGyGfoyDHC5EC7PihxInfSJdLsZ4-omoCOlU0aa";
+                // memberi tahu kalau menggunakan arcgis untuk maps-nya
+                const basemapEnum = "arcgis/streets";
+                // set view awalan di koordinat posisi saat ini dari browser
+                map.setView([latitude_now, longitude_now], 13);
+                // menampilkan maps dengan esri leaflet x arcgis
+                L.esri.Vector.vectorBasemapLayer(basemapEnum, {
+                    apiKey: apiKey
+                }).addTo(map);
+                // membuat fitur search lokasi 
+                const searchControl = L.esri.Geocoding.geosearch({
+                    position: "topright",
+                    placeholder: "cari dan tandai lokasi kursus anda!",
+                    useMapBounds: false,
+
+                    providers: [
+                        L.esri.Geocoding.arcgisOnlineProvider({
+                            apiKey: apiKey,
+                            nearby: {
+                                lat: latitude,
+                                lng: longitude
+                            },
+                            maxResult: 5
+                        })
+                    ],
+                }).addTo(map);
+                const result_search = L.layerGroup().addTo(map);
+                searchControl.on("result_search", (data) => {
+                    result_search.clearLayers();
+                    for (let index = data.result_search.length - 1; index >= 1; index--) {
+                        const marker = L.marker(data.result_search[index].latlng);
+                        const latLngString = `${Math.round(data.results[i].latlng.lng * 100000) / 100000}, ${Math.round(data.results[i].latlng.lat * 100000) / 100000}`;
+                        marker.bindPopup(`<b>${latLngString}</b><p>${data.result_search[index].properties.LongLabel}</p>`);
+                        result_search.addLayer(marker);
+                        marker.openPopup();
                     }
-                })
-            })
-            .on('markgeocode', function(e) {
-                var bbox = e.geocode.bbox;
-                var poly = L.polygon([
-                    bbox.getSouthEast(),
-                    bbox.getNorthEast(),
-                    bbox.getNorthWest(),
-                    bbox.getSouthWest()
-                ]).addTo(map);
-                map.fitBounds(poly.getBounds());
-                console.log(e.geocode);
-                document.getElementById("address").value = e.geocode.properties.display_name;
-                document.getElementById("latitude").value = e.geocode.center.lat;
-                document.getElementById("longitude").value = e.geocode.center.lng;
-            })
-            .addTo(map);
+                });
+            });
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
