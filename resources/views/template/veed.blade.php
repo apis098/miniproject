@@ -1082,6 +1082,13 @@
                                                         
                                                         </div>
                                                         @endforeach
+                                                     
+                                                            <div class="d-flex align-items-center  mt-4">
+                                                                <button class="btn btn-light fw-bolder text-light col-lg-12 " type="button" style="border-radius: 10px; background-color:#F7941E;">
+                                                                   <p class="mt-1 mb-1">Bagikan</p>
+                                                                </button>
+                                                            </div>
+                                                     
                                                     </div>
                                                 </div>
                                             </div>
