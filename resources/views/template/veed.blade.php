@@ -1078,8 +1078,8 @@
                                                                 </div>
                                                                 <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
                                                                     <input type="checkbox" class="select-checkbox" name="user_id[]"
-                                                                        id="checkbox{{$following->id}}" value="{{$following->user->id}}">
-                                                                    <label for="checkbox{{$following->id}}"></label>
+                                                                        id="checkbox-{{$item_video->id}}-{{$following->user->id}}" value="{{$following->user->id}}">
+                                                                    <label for="checkbox-{{$item_video->id}}-{{$following->user->id}}"></label>
                                                                 </div>
                                                             
                                                             </div>
