@@ -11,12 +11,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\notifications;
 use App\Models\favorite;
+use App\Models\followers;
 use App\Models\footer;
 use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
 use App\Models\Reply;
 use App\Models\reply_comment_veed;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
+
+use function Laravel\Prompts\alert;
 
 class VeedController extends Controller
 {
@@ -30,8 +33,10 @@ class VeedController extends Controller
         $unreadNotificationCount = [];
         $admin = false;
         $messageCount = [];
+        $user_following = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+            $user_following = followers::where('follower_id',auth()->user()->id)->paginate(4);
         }
         if ($userLogin) {
             $id_user = Auth::user()->id;
@@ -58,8 +63,8 @@ class VeedController extends Controller
 
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
-        
-        return view("template.veed", compact("messageCount", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+    
+        return view("template.veed", compact("messageCount","user_following", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
 
     public function sukai_veed(string $user_id, string $veed_id)
@@ -224,5 +229,14 @@ class VeedController extends Controller
         $reply_comment = reply_comment_veed::find($id);
         $reply_comment->delete();
         return redirect()->back()->with('success', 'sukses menghapus balasan komentar feed!');
+    }
+    public function shareVeed(Request $request,$id){
+        $feedId = upload_video::findOrFail($id);
+        $userId = $request->input('user_id');
+        if($userId != auth()->user()->id){
+            alert('sukses');
+        }else{
+            alert('gagal');
+        }
     }
 }

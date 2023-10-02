@@ -867,7 +867,7 @@
 
                                         <!-- Bagikan feed start -->
                                         <i class="fa-solid fa-reply fa-flip-horizontal ml-3 mr-1 my-auto"
-                                            data-bs-toggle="modal" data-bs-target="#bagikan"></i>
+                                            data-bs-toggle="modal" data-bs-target="#bagikan{{$item_video->id}}"></i>
                                         <span class="my-auto">5</span>
 
                                         <!-- modal Bagikan start -->
@@ -1015,24 +1015,24 @@
 
                                             }
                                         </style>
-
-                                        <div class="modal" id="bagikan">
+                                        {{-- modal bagikan --}}
+                                        <div class="modal" id="bagikan{{ $item_video->id }}">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title ml-3"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                            Bagikan</h5>
+                                                            Bagikan Konten Dari {{$item_video->user->name}}</h5>
                                                         <button type="button" class="close mr-2" data-bs-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">
+                                                    <div class="modal-body mb-4">
                                                         <div class="d-flex align-items-center">
-                                                            <div class="col-1 mt-2 me-3"
+                                                            <div class="col-2 mt-2 me-1"
                                                                 style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                                                Ke
+                                                                Kepada
                                                             </div>
 
                                                             <div class="search" style="border-radius: 15px;">
@@ -1041,8 +1041,7 @@
                                                                         <form action="#" method="GET">
                                                                             <input type="text" name=""
                                                                                 style="text-align: left;"
-                                                                                placeholder="Cari..."
-                                                                                value="{{-- {{ request()->nama_resep }} --}}">
+                                                                                placeholder="Cari...">
                                                                         </form>
                                                                     </div>
                                                                 </div>
@@ -1052,88 +1051,45 @@
                                                         <h3 class="mt-4 ml-3"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                             Disarankan</h3>
+                                                        @foreach($user_following as $following)
                                                         <div class="d-flex mt-4">
                                                             <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
                                                                 <a href="">
-                                                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                                                    @if($following->user->foto)
+                                                                        <img src="{{ asset('storage/' . $following->user->foto) }}"
                                                                         class="border rounded-circle me-2" alt="Avatar"
                                                                         style="height: 55px" />
+                                                                    @else
+                                                                        <img src="{{ asset('images/default.jpg') }}"
+                                                                            class="border rounded-circle me-2" alt="Avatar"
+                                                                            style="height: 55px" />
+                                                                    @endif
                                                                 </a>
                                                             </div>
                                                             <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
                                                                 <div class=" rounded-3 px-3 py-1">
                                                                     <a href="" class="text-dark mb-0">
-                                                                        <strong>Cewe Cuantik</strong>
+                                                                        <strong>{{$following->user->name}}</strong>
                                                                     </a>
                                                                     <a href="" class="text-muted d-block">
-                                                                        <small>Cuantik2gmail.com sfsfssbsfb</small>
+                                                                        <small>{{$following->user->email}}</small>
                                                                     </a>
                                                                 </div>
 
                                                             </div>
-                                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
                                                                 <input type="checkbox" class="select-checkbox"
                                                                     id="checkbox1">
                                                                 <label for="checkbox1"></label>
                                                             </div>
-
+                                                        
                                                         </div>
-                                                        <div class="d-flex mt-4">
-                                                            <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
-                                                                <a href="">
-                                                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                                                        class="border rounded-circle me-2" alt="Avatar"
-                                                                        style="height: 55px" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
-                                                                <div class=" rounded-3 px-3 py-1">
-                                                                    <a href="" class="text-dark mb-0">
-                                                                        <strong>Cewe Cuantik</strong>
-                                                                    </a>
-                                                                    <a href="" class="text-muted d-block">
-                                                                        <small>Cuantik2gmail.com sfsfssbsfb</small>
-                                                                    </a>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-                                                                <input type="checkbox" class="select-checkbox"
-                                                                    id="checkbox2">
-                                                                <label for="checkbox2"></label>
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="d-flex mt-4">
-                                                            <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
-                                                                <a href="">
-                                                                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                                                        class="border rounded-circle me-2" alt="Avatar"
-                                                                        style="height: 55px" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
-                                                                <div class=" rounded-3 px-3 py-1">
-                                                                    <a href="" class="text-dark mb-0">
-                                                                        <strong>Cewe Cuantik</strong>
-                                                                    </a>
-                                                                    <a href="" class="text-muted d-block">
-                                                                        <small>Cuantik2gmail.com sfsfssbsfb</small>
-                                                                    </a>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
-                                                                <input type="checkbox" class="select-checkbox"
-                                                                    id="checkbox3">
-                                                                <label for="checkbox3"></label>
-                                                            </div>
-
-                                                        </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!-- modal Bagikan end -->
 
                                         <!-- gift start -->
