@@ -1088,7 +1088,7 @@
                                         </div>
 
                                         <!-- modal Bagikan end -->
-
+                                        <div class="d-flex" style="margin-left: 280px;">
                                         <!-- gift start -->
                                         <a type="button" class="text-dark me-2"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                             data-bs-target="#gift"></i></a>
@@ -1353,9 +1353,14 @@
                                                 </button>
                                             @endif
                                             {{-- --}}
-                                        </div>
-                                    </span>
-
+                                            
+                                        </div> 
+                                        <a type="button" class="ms-3" href="">
+                                            <i class="fa-regular fa-xl text-dark fa-bookmark"></i>
+                                        </a>
+                                    </div>
+                                </span>
+                            
 
                                 </div>
                                 {{-- modal lainnya --}}
