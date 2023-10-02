@@ -125,8 +125,8 @@
                             </a>
                         </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
-                            <a href="#"
-                                class="nav-link mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-orange' : 'text-white' }} {{ request()->is('admin/keluhan') ? 'activet text-orange' : 'text-white' }} {{ request()->is('admin/komentar') ? 'activet text-orange' : 'text-white' }} {{ request()->is('admin/profil') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
+                            <a href="{{route('koki.feed')}}"
+                                class="nav-link mx-4 {{ request()->is('koki.feed') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
                                 <svg  style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="currentColor" d="M20.565 3.18a.809.809 0 0 0-.81-.02l-1.13.56c-1.63.87-3.82.83-6.5-.13a9.141 9.141 0 0 0-7.3.52l-.76.41v-.96a.5.5 0 0 0-1 0v16.88a.5.5 0 0 0 1 0V15.9a.836.836 0 0 0 .2-.08l1.03-.55a8.163 8.163 0 0 1 6.5-.46c2.95 1.06 5.41 1.08 7.3.07l1.44-.72a.759.759 0 0 0 .4-.66V3.82a.751.751 0 0 0-.37-.64Zm-.63 10.16l-1.31.66c-1.63.87-3.82.83-6.5-.13a9.141 9.141 0 0 0-7.3.52l-.76.4V5.65L5.3 4.99a8.122 8.122 0 0 1 6.5-.46c2.95 1.06 5.41 1.08 7.29.08l.85-.43Z"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Feed

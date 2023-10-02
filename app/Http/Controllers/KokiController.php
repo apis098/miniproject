@@ -82,6 +82,11 @@ class KokiController extends Controller
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
     }
 
+    public function feed(Request $request)
+    {
+        return view('koki.feed');
+    }
+
     public function beranda(Request $request)
     {
         $koki = User::find(Auth::user()->id);
