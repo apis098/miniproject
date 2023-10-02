@@ -36,7 +36,7 @@ class VeedController extends Controller
         $user_following = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-            $user_following = followers::where('follower_id',auth()->user()->id)->paginate(4);
+            $user_following = followers::where('follower_id',auth()->user()->id)->paginate(4    );
         }
         if ($userLogin) {
             $id_user = Auth::user()->id;

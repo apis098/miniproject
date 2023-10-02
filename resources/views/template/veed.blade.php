@@ -191,19 +191,17 @@
                                                 @if ($isLikeVeed == 0)
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button style="border: none; background-color:white;"
+                                                        <button class="text-dark me-1" style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
-                                                            <i id="likeB{{ $urut }}"
-                                                                class="fa-regular fa-thumbs-up"></i>
+                                                            <i id="likeB{{ $urut }}" class="fa-regular fa-lg fa-thumbs-up"></i>
                                                         </button>
                                                     </form>
                                                 @elseif($isLikeVeed == 1)
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button style="border: none; background-color:white;"
+                                                        <button class="text-warning me-1" style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
-                                                            <i class="fa-solid fa-thumbs-up"
-                                                                id="likeB{{ $urut }}"></i>
+                                                            <i class="fa-solid fa-lg fa-thumbs-up" id="likeB{{ $urut }}"></i>
                                                         </button>
                                                     </form>
                                                 @endif
@@ -220,12 +218,10 @@
                                             id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
-
-                                        <i type="button" onclick="openModel({{ $urut }})"
-                                            id="button-modal-komentar-feed{{ $urut }}"
-                                            class="fa-regular fa-comment ml-3 mr-1 my-auto" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal{{ $urut }}"></i>
-                                        <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
+                                        <a type="button" class="ms-3 text-dark" onclick="openModel({{ $urut }})" id="button-modal-komentar-feed{{ $urut }}" href="#"  data-bs-toggle="modal"data-bs-target="#exampleModal{{ $urut }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16"><path fill="currentColor" d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z"/></svg>
+                                            <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
+                                        </a>
                                         <!-- modal komentar feed -->
                                         <div class="modal" id="exampleModal{{ $urut }}">
                                             <div class="modal-dialog modal-xl">
@@ -866,9 +862,10 @@
                                         <!-- komentar feed end -->
 
                                         <!-- Bagikan feed start -->
-                                        <i class="fa-solid fa-reply fa-flip-horizontal ml-3 mr-1 my-auto"
-                                            data-bs-toggle="modal" data-bs-target="#bagikan{{$item_video->id}}"></i>
-                                        <span class="my-auto">5</span>
+                                        <a class="ml-3 mr-1 my-auto text-dark" href="#" data-bs-toggle="modal" data-bs-target="#bagikan{{$item_video->id}}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285"/></svg>
+                                            <span class="my-auto">5</span>
+                                        </a>
 
                                         <!-- modal Bagikan start -->
 
@@ -1093,7 +1090,7 @@
                                         <!-- modal Bagikan end -->
 
                                         <!-- gift start -->
-                                        <a class="text-dark" href=""><i class="fa-solid fa-gift ml-3 mr-1 my-auto" data-bs-toggle="modal"
+                                        <a type="button" class="text-dark me-2"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" data-bs-toggle="modal"
                                             data-bs-target="#gift"></i></a>
 
                                         <!-- modal Gift start -->
@@ -1243,8 +1240,8 @@
                                                     {{-- Laporkan Komentar --}}
                                                     <button type="button" data-bs-toggle="modal"
                                                         data-bs-target="#Modalsd{{ $urut }}"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                        class="yuhu text-dark btn-sm rounded-5 "><i
+                                                            class="fa-solid fa-xl mt-1 fa-triangle-exclamation me-2"></i>
                                                     </button>
                                                     <div class="modal fade" id="Modalsd{{ $urut }}"
                                                         tabindex="-1" role="dialog"
@@ -1294,17 +1291,17 @@
                                                             id="delete-feed-button{{ $item_video->id }}"></button>
                                                         <button type="button"
                                                             onclick="confirmation_delete_feed({{ $item_video->id }})"
-                                                            class="yuhu text-danger btn-sm rounded-5 ">
-                                                            <i class="fa-solid fa-trash"></i>
+                                                            class="yuhu text-dark btn-sm rounded-5 ">
+                                                            <i class="fa-solid fa-lg fa-trash"></i>
                                                         </button>
                                                     </form>
                                                 @elseif(Auth::user()->role == 'admin')
                                                     {{-- Blokir Komentar --}}
                                                     <button type="button" data-toggle="modal"
                                                         data-target="#blocksModal{{ $item_video->id }}"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="20"
-                                                            height="20" viewBox="0 0 24 24">
+                                                        class="yuhu text-dark btn-sm rounded-5 "><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="26"
+                                                            height="26" viewBox="0 0 24 24">
                                                             <path
                                                                 d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
                                                                 fill="currentColor" fill-rule="nonzero" />
@@ -1351,8 +1348,8 @@
                                             @else
                                                 {{-- Untuk user belum login --}}
                                                 <button type="button" onclick="harusLogin()"
-                                                    class="yuhu text-danger btn-sm rounded-5 "><i
-                                                        class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                    class="yuhu text-dark btn-sm rounded-5 "><i
+                                                        class="fa-solid fa-xl fa-triangle-exclamation me-2"></i>
                                                 </button>
                                             @endif
                                             {{-- --}}
@@ -1744,8 +1741,8 @@ function toggleCheckbox(checkbox) {
                                 $("#countLikeFeed" + num).html(response.count);
                             } else {
                                 $("#likeB" + num).removeClass("fa-solid");
-                                $("#likeB" + num).addClass("fa-regular");
                                 $("#likeB" + num).removeClass("text-warning");
+                                $("#likeB" + num).addClass("fa-regular");
                                 $("#countLikeFeed" + num).html(response.count);
                             }
                         }
