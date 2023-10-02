@@ -170,9 +170,9 @@
                                 <div class="col-lg-12">
                                     <div class="d-flex">
                                         <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="#" method="GET">
-                                                <input type="text" name="" style="text-align: left;"
-                                                    placeholder="Search for something ..." value="{{-- {{ request()->nama_resep }} --}}">
+                                            <form action="{{ route('kursus') }}" method="GET">
+                                                <input type="text" name="cari_nama_kursus" style="text-align: left;"
+                                                    placeholder="Cari nama kursus ..." value="{{ request()->cari_nama_kursus  }}">
                                                 <button type="submit" class="zoom-effects"
                                                     style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -294,16 +294,17 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="#" method="GET">
-                                        {{-- @if (request()->nama_resep)
-                            <input type="text" hidden name="nama_resep" value="{{ request()->nama_resep }}">
-                        @endif --}}
+                                    <form action="{{ route('filter.kursus') }}" method="POST">
+                                        @csrf
                                         <div class="mb-3">
-                                            <label for="kursus" class="form-label">Nama kursus</label>
-                                            <select style="border: 1px solid black" name="kursus[]"
-                                                aria-placeholder="Masukkan nama kursus" multiple="multiple"
+                                            <label for="kursus" class="form-label">Jenis kursus</label>
+                                            <select style="border: 1px solid black" name="jenis_kursus[]"
+                                                aria-placeholder="Masukkan jenis kursus" multiple="multiple"
                                                 id="kursus" class="cari form-control">
-                                                <option value="" disabled>Masukkan Nama kursus</option>
+                                                <option value="" disabled>Masukkan Jenis kursus</option>
+                                                @foreach ($jenis_kursus as $item_jenis)
+                                                    <option value="{{ $item_jenis }}">{{ $item_jenis }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <style>
@@ -312,7 +313,7 @@
                                             }
                                         </style>
                                         <div class="mb-3">
-                                            <label for="harga" class="form-label">Rentang Harga</label>
+                                            <label for="harga" class="form-label">Rentang Tarif Per Jam</label>
                                             <div class="row">
                                                 <div class="col-5">
                                                     <input type="text" name="min_price" id="minHargaInput"
@@ -330,7 +331,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="waktu" class="form-label">Waktu</label>
+                                            <label for="waktu" class="form-label">Rentang Waktu</label>
                                             <div class="row">
                                                 <div class="col-5">
                                                     <div class="row mx-auto">
