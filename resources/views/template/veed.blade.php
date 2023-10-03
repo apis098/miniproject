@@ -1031,7 +1031,7 @@
                                         </style>
                                         {{-- modal bagikan --}}
                                         <div class="modal" id="bagikan{{ $item_video->id }}">
-                                            <div class="modal-dialog modal-lg">
+                                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title ml-3"
