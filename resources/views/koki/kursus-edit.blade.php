@@ -1,15 +1,5 @@
 @extends('template.nav')
 @section('content')
-    <!-- Leaflet JS Link Start -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-    <!-- Leaflet JS Link End -->
-    <!-- Leaflet Control Geocoder Start -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-    <!-- Leaflet Control Geocoder End -->
     <style>
         #map {
             height: 180px;
@@ -29,7 +19,7 @@
     </style>
     <form id="formTambahKursus" action="{{ route('kursus.update', $kursus->id) }}" method="post" enctype="multipart/form-data">
         @csrf
-        @method("PUT")
+        @method('PUT')
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 mb-5">
@@ -89,7 +79,8 @@
                         <div class="mt-2" style="margin-bottom: 20px">
                             <label for="exampleFormControlInput1" class="form-label"><b>Lokasi</b></label>
                             <div id="map"></div>
-                            <input type="text" name="nama_lokasi" value="{{ $kursus->nama_lokasi }}" id="address" hidden>
+                            <input type="text" name="nama_lokasi" value="{{ $kursus->nama_lokasi }}" id="address"
+                                hidden>
                             <input type="text" name="latitude" value="{{ $kursus->latitude }}" id="latitude" hidden>
                             <input type="text" name="longitude" value="{{ $kursus->longitude }}" id="longitude" hidden>
                         </div>
@@ -112,7 +103,8 @@
                                     <div class="row" id="row1">
                                         <div class="col-6">
                                             <div class="row ml-1">
-                                                <input type="text" name="paket_kursus_waktu[]" value="{{ $item->waktu }}" id="paket_kursus"
+                                                <input type="text" name="paket_kursus_waktu[]"
+                                                    value="{{ $item->waktu }}" id="paket_kursus"
                                                     placeholder="masukkan waktu kursus" class="form-control col-8">
                                                 <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
                                                     id="paket_kursus">
@@ -123,7 +115,8 @@
                                         </div>
                                         <div class="col-6">
                                             <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
-                                                placeholder="masukkan harganya" class="form-control" value="{{ $item->harga }}">
+                                                placeholder="masukkan harganya" class="form-control"
+                                                value="{{ $item->harga }}">
                                         </div>
                                     </div>
                                 </div>
@@ -242,41 +235,34 @@
     </form>
     <div id="erroro"></div>
     <script>
-        var map = L.map('map').setView([0, 0], 2);
-        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        var geocoder = L.Control.geocoder({
-                defaultMarkGeocode: false,
-                geocodingQueryParams: {
-                    addressdetails: 1,
-                    format: 'json'
-                },
-                collapsed: false,
-                geocoder: L.Control.Geocoder.nominatim({
-                    geocodingQueryParams: {
-                        countrycodes: 'ID',
-                        limit: 5
-                    }
+        var map = L.map("map").setView(['{{ $kursus->latitude }}', '{{ $kursus->longitude }}'], 13);
+        var markers = L.marker(['{{ $kursus->latitude }}', '{{ $kursus->longitude }}']).addTo(map);
+        markers.bindPopup("Ini lokasi kursus anda.").openPopup();
+        var tiles = L.esri.basemapLayer("Streets").addTo(map);
+
+        // create the geocoding control and add it to the map
+        var searchControl = L.esri.Geocoding.geosearch({
+            providers: [
+                L.esri.Geocoding.arcgisOnlineProvider({
+                    // API Key to be passed to the ArcGIS Online Geocoding Service
+                    apikey: 'AAPK63e9bf53d41f4a8d97159a1225654603jx2fDa28RyvdpARWl6kkFnnDWAGyGfoyDHC5EC7PihxInfSJdLsZ4-omoCOlU0aa'
                 })
-            })
-            .on('markgeocode', function(e) {
-                var bbox = e.geocode.bbox;
-                var poly = L.polygon([
-                    bbox.getSouthEast(),
-                    bbox.getNorthEast(),
-                    bbox.getNorthWest(),
-                    bbox.getSouthWest()
-                ]).addTo(map);
-                map.fitBounds(poly.getBounds());
-                console.log(e.geocode);
-                document.getElementById("address").value = e.geocode.properties.display_name;
-                document.getElementById("latitude").value = e.geocode.center.lat;
-                document.getElementById("longitude").value = e.geocode.center.lng;
-            })
-            .addTo(map);
-            var marker = L.marker(['{{ $kursus->latitude }}', '{{ $kursus->longitude }}']).addTo(map);
-            marker.bindPopup("Ini lokasi kursus anda.").openPopup();
+            ]
+        }).addTo(map);
+
+        // create an empty layer group to store the results and add it to the map
+        var results = L.layerGroup().addTo(map);
+
+        // listen for the results event and add every result to the map
+        searchControl.on("results", function(data) {
+            results.clearLayers();
+            results.addLayer(L.marker(data.results[0].latlng));
+            console.log(data.results[0]);
+            // memasukkan nilai pada inputan hidden mengenai lokasi kursus.
+            document.getElementById("address").value = data.results[0].properties.LongLabel;
+            document.getElementById("latitude").value = data.results[0].properties.Y;
+            document.getElementById("longitude").value = data.results[0].properties.X;
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
