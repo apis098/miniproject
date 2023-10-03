@@ -1,8 +1,5 @@
 @extends('layouts.nav_koki')
 @section('konten')
-    @push('style')
-        @powerGridStyles
-    @endpush
     <style>
        /* Gaya untuk tombol "Cari" */
             .zoom-effects {
@@ -38,7 +35,7 @@
             background-color: #fff;
             padding: 0px 10px;
             border-radius: 5px;
-            width: 250%;
+            width: 100%;
         }
 
         .search-1 {
@@ -144,13 +141,13 @@
 
             .search-2 button {
                 height: 37px;
-                top: 5px
+                top: -2px
             }
         }
     </style>
 
-<div class="d-flex" style="margin-left: 20%;">
-    <div class="my-3 ml-3" style="margin-right: -15%;">
+<div class="d-flex   ms-3" style="overflow-x:hidden">
+    <div class="my-3 ml-3">
         <form action="">
             <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
                 <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
@@ -179,7 +176,7 @@
     </div>
 </div>
 
-
+@endsection
     <!-- jQuery CDN -->
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"

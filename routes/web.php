@@ -117,33 +117,33 @@ Route::prefix('share-content')->group(function (){
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('/complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
-        Route::get('/reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
-        Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.index');
-        Route::get('/verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
-        Route::get('/tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
-        Route::get('/kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
+        Route::get('complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
+        Route::get('reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
+        Route::get('dashboard', [AdminController::class, 'index'])->name('admin.index');
+        Route::get('verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
+        Route::get('tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
+        Route::get('kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
         // tambah penawaran
-        Route::post('/upload_penawaran', [AdminController::class, 'upload_tawaran'])->name('upload.tawaran');
+        Route::post('upload_penawaran', [AdminController::class, 'upload_tawaran'])->name('upload.tawaran');
         // verifikasi kursus
-        Route::patch('/verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
+        Route::patch('verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
         //report
-        Route::get('/laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
-        Route::get('/keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
-        Route::get('/komentar', [ReportController::class, 'komentar'])->name('Report.komentar');
-        Route::get('/profil', [ReportController::class, 'profil'])->name('Report.profil');
-        Route::put('/content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
-        Route::put('/block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
-        Route::get('/random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
-        Route::get('/blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status');
-        Route::put('/unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
-        Route::delete('/report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
+        Route::get('laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
+        Route::get('keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
+        Route::get('komentar', [ReportController::class, 'komentar'])->name('Report.komentar');
+        Route::get('profil', [ReportController::class, 'profil'])->name('Report.profil');
+        Route::put('content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
+        Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
+        Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
+        Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status');
+        Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
+        Route::delete('report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
          // special_days
-         Route::resource('/special-days', special_days_controller::class);
+         Route::resource('special-days', special_days_controller::class);
         //  kategori makanan
-         Route::resource('/kategori-makanan',KategoriMakananController::class);
+         Route::resource('kategori-makanan',KategoriMakananController::class);
         // footer
-        Route::resource('/footer',FooterController::class);
+        Route::resource('footer',FooterController::class);
     });
 });
 
@@ -154,8 +154,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::resource('resep', ResepsController::class);
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
-        Route::get('/beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
-        Route::get('/feed', [KokiController::class, 'feed'])->name('koki.feed');
+        Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
+        Route::get('feed', [KokiController::class, 'feed'])->name('koki.feed');
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
     });
