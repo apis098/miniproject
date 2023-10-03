@@ -191,17 +191,21 @@
                                                 @if ($isLikeVeed == 0)
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button class="text-dark me-1" style="border: none; background-color:white;"
+                                                        <button class="text-dark me-1"
+                                                            style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
-                                                            <i id="likeB{{ $urut }}" class="fa-regular fa-lg fa-thumbs-up"></i>
+                                                            <i id="likeB{{ $urut }}"
+                                                                class="fa-regular fa-lg fa-thumbs-up"></i>
                                                         </button>
                                                     </form>
                                                 @elseif($isLikeVeed == 1)
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button class="text-warning me-1" style="border: none; background-color:white;"
+                                                        <button class="text-warning me-1"
+                                                            style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
-                                                            <i class="fa-solid fa-lg fa-thumbs-up" id="likeB{{ $urut }}"></i>
+                                                            <i class="fa-solid fa-lg fa-thumbs-up"
+                                                                id="likeB{{ $urut }}"></i>
                                                         </button>
                                                     </form>
                                                 @endif
@@ -218,8 +222,15 @@
                                             id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
-                                        <a type="button" class="ms-3 text-dark" onclick="openModel({{ $urut }})" id="button-modal-komentar-feed{{ $urut }}" href="#"  data-bs-toggle="modal"data-bs-target="#exampleModal{{ $urut }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16"><path fill="currentColor" d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z"/></svg>
+                                        <a type="button" class="ms-3 text-dark"
+                                            onclick="openModel({{ $urut }})"
+                                            id="button-modal-komentar-feed{{ $urut }}" href="#"
+                                            data-bs-toggle="modal"data-bs-target="#exampleModal{{ $urut }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                                viewBox="0 0 16 16">
+                                                <path fill="currentColor"
+                                                    d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
+                                            </svg>
                                             <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
                                         </a>
                                         <!-- modal komentar feed -->
@@ -862,8 +873,14 @@
                                         <!-- komentar feed end -->
 
                                         <!-- Bagikan feed start -->
-                                        <a class="ml-3 mr-1 my-auto text-dark" href="#" data-bs-toggle="modal" data-bs-target="#bagikan{{$item_video->id}}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285"/></svg>
+                                        <a class="ml-3 mr-1 my-auto text-dark" href="#" data-bs-toggle="modal"
+                                            data-bs-target="#bagikan{{ $item_video->id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25"
+                                                viewBox="0 0 512 512">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="32"
+                                                    d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
+                                            </svg>
                                             <span class="my-auto">5</span>
                                         </a>
 
@@ -1035,11 +1052,11 @@
                                                             <div class="search" style="border-radius: 15px;">
                                                                 <div class="col-lg-11 mt-2">
                                                                     <div class="search-2"> <i class='bx bxs-map'></i>
-                                                                        <form action="#" method="GET">
-                                                                            <input type="text" name=""
-                                                                                style="text-align: left;"
-                                                                                placeholder="Cari...">
-                                                                        </form>
+
+                                                                        <input id="search" type="text"
+                                                                            name="" style="text-align: left;"
+                                                                            placeholder="Cari...">
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1048,46 +1065,57 @@
                                                         <h3 class="mt-4 ml-3"
                                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                             Disarankan</h3>
-                                                        <form action="{{route('share.feed',$item_video->id)}}" method="POST">
+                                                        <form action="{{ route('share.feed', $item_video->id) }}"
+                                                            method="POST">
                                                             @csrf
-                                                            @foreach($user_following as $following)
-                                                            <div class="d-flex mt-4">
-                                                                <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
-                                                                    <a href="">
-                                                                        @if($following->user->foto)
-                                                                            <img src="{{ asset('storage/' . $following->user->foto) }}"
-                                                                            class="border rounded-circle me-2" alt="Avatar"
-                                                                            style="height: 55px" />
-                                                                        @else
-                                                                            <img src="{{ asset('images/default.jpg') }}"
-                                                                                class="border rounded-circle me-2" alt="Avatar"
-                                                                                style="height: 55px" />
-                                                                        @endif
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
-                                                                    <div class=" rounded-3 px-3 py-1">
-                                                                        <a href="" class="text-dark mb-0">
-                                                                            <strong>{{$following->user->name}}</strong>
-                                                                        </a>
-                                                                        <a href="" class="text-muted d-block">
-                                                                            <small>{{$following->user->email}}</small>
-                                                                        </a>
-                                                                    </div>
+                                                            @foreach ($user_following as $following)
+                                                                <div class="element-pencarian">
+                                                                   <div class="d-flex mt-4">
+                                                                        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                            <a class="foto" href="">
+                                                                                @if ($following->user->foto)
+                                                                                    <img src="{{ asset('storage/' . $following->user->foto) }}"
+                                                                                        class="border rounded-circle me-2"
+                                                                                        alt="Avatar" style="height: 55px" />
+                                                                                @else
+                                                                                    <img src="{{ asset('images/default.jpg') }}"
+                                                                                        class="border rounded-circle me-2"
+                                                                                        alt="Avatar" style="height: 55px" />
+                                                                                @endif
+                                                                            </a>
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
+                                                                            <div class="nama rounded-3 px-3 py-1">
+                                                                                <a href="" class="text-dark mb-0">
+                                                                                    <strong
+                                                                                        class="input-name">{{ $following->user->name }}</strong>
+                                                                                </a>
+                                                                                <a href="" class="text-muted d-block">
+                                                                                    <small>{{ $following->user->email }}</small>
+                                                                                </a>
+                                                                            </div>
 
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
+                                                                            <input type="checkbox" class="select-checkbox"
+                                                                                name="user_id[]"
+                                                                                id="checkbox-{{ $item_video->id }}-{{ $following->user->id }}"
+                                                                                value="{{ $following->user->id }}">
+                                                                            <label
+                                                                                for="checkbox-{{ $item_video->id }}-{{ $following->user->id }}"></label>
+                                                                        </div>
+                                                                   </div>
                                                                 </div>
-                                                                <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
-                                                                    <input type="checkbox" class="select-checkbox" name="user_id[]"
-                                                                        id="checkbox-{{$item_video->id}}-{{$following->user->id}}" value="{{$following->user->id}}">
-                                                                    <label for="checkbox-{{$item_video->id}}-{{$following->user->id}}"></label>
-                                                                </div>
-                                                            
-                                                            </div>
                                                             @endforeach
-                                                     
+
                                                             <div class="d-flex align-items-center  mt-4">
-                                                                <button class="btn btn-light fw-bolder text-light col-lg-12 " type="submit" style="border-radius: 10px; background-color:#F7941E;">
-                                                                   <p class="mt-1 mb-1">Bagikan</p>
+                                                                <button
+                                                                    class="btn btn-light fw-bolder text-light col-lg-12 "
+                                                                    type="submit"
+                                                                    style="border-radius: 10px; background-color:#F7941E;">
+                                                                    <p class="mt-1 mb-1">Bagikan</p>
                                                                 </button>
                                                             </div>
                                                         </form>
@@ -1095,281 +1123,296 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <script>
+                                            $(document).ready(function() {
+                                                $('#search').on('input', function() {
+                                                    var value = $(this).val().toLowerCase();
+                                                    $('.element-pencarian').filter(function() {
+                                                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                                    });
+                                                });
+                                            });
+                                        </script>
+                                        
 
                                         <!-- modal Bagikan end -->
                                         <div class="d-flex" style="margin-left: 280px;">
-                                        <!-- gift start -->
-                                        <a type="button" class="text-dark me-2"><i class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" data-bs-toggle="modal"
-                                            data-bs-target="#gift"></i></a>
+                                            <!-- gift start -->
+                                            <a type="button" class="text-dark me-2"><i
+                                                    class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
+                                                    data-bs-toggle="modal" data-bs-target="#gift"></i></a>
 
-                                        <!-- modal Gift start -->
-                                        <div class="modal" id="gift">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title ml-3"
-                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                            Beri Donasi</h5>
-                                                        <button type="button" class="close mr-2" data-bs-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="d-flex ">
-                                                            <div class="col-lg-3 my-1">
-                                                                <div class="card" id="card"
-                                                                    data-card-selected="false"
-                                                                    style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                                                    <img src="{{ asset('img/kecil.png') }}"
-                                                                        class="card-img-top" alt="">
-                                                                    <div class=card-body">
-                                                                        <div class="text-center">
-                                                                            <a href="#"
-                                                                                class="card-title text-center"
-                                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                Kecil</a>
-                                                                        </div>
-                                                                        <p class="text-center"
-                                                                            style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                            Rp. 5.000,00</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-3 my-1">
-                                                                <div class="card " id="card"
-                                                                    data-card-selected="false"
-                                                                    style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                                                    <img src="{{ asset('img/sedang.png') }}"
-                                                                        class="card-img-top" alt="">
-                                                                    <div class=card-body">
-                                                                        <div class="text-center">
-                                                                            <a href="#"
-                                                                                class="card-title text-center"
-                                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                Sedang</a>
-                                                                        </div>
-                                                                        <p class="text-center"
-                                                                            style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                            Rp. 10.000,00</p>
-                                                                        <input type="radio" name="radio-group"
-                                                                            id="radio2">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-3 my-1">
-                                                                <div class="card" id="card"
-                                                                    data-card-selected="false"
-                                                                    style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                                                    <img src="{{ asset('img/besar.png') }}"
-                                                                        class="card-img-top" alt="">
-                                                                    <div class=card-body">
-                                                                        <div class="text-center">
-                                                                            <a href="#"
-                                                                                class="card-title text-center"
-                                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                Besar</a>
-                                                                        </div>
-                                                                        <p class="text-center"
-                                                                            style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                            Rp. 20.000,00</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-3 my-1">
-                                                                <button type="button" data-bs-toggle="modal"
-                                                                    data-bs-target="#nilai" id="card" class="card"
-                                                                    data-card-selected="false"
-                                                                    style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                                                    <img src="{{ asset('img/lainnya.png') }}"
-                                                                        class="card-img-top" alt="">
-                                                                    <div class=card-body">
-                                                                        <div class="text-center">
-                                                                            <a href="#" data-bs-toggle="modal"
-                                                                                data-bs-target="#nilai"
-                                                                                class="card-title "
-                                                                                style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
-                                                                        </div>
-                                                                        <p class="text-center"
-                                                                            style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                            Masukkan Nilai</p>
-                                                                    </div>
-                                                                </button>
-                                                            </div>
-
+                                            <!-- modal Gift start -->
+                                            <div class="modal" id="gift">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title ml-3"
+                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                Beri Donasi</h5>
+                                                            <button type="button" class="close mr-2"
+                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
                                                         </div>
-                                                        <div class="d-flex mt-4 ml-3">
-                                                            <input type="text" id="comment-veed1" name="commentVeed"
-                                                                width="500px" class="form-control rounded-3 me-3"
-                                                                style="margin-top: 12px; border-radius:100px;"
-                                                                placeholder="Tambahkan komentar...">
+                                                        <div class="modal-body">
+                                                            <div class="d-flex ">
+                                                                <div class="col-lg-3 my-1">
+                                                                    <div class="card" id="card"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/kecil.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <div class="text-center">
+                                                                                <a href="#"
+                                                                                    class="card-title text-center"
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Kecil</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Rp. 5.000,00</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                            <button type="submit" id="buttonCommentVeed"
-                                                                style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                                class="btn  btn-sm text-light">
-                                                                <b class="me-3 ms-3">Kirim</b></button>
+                                                                <div class="col-lg-3 my-1">
+                                                                    <div class="card " id="card"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/sedang.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <div class="text-center">
+                                                                                <a href="#"
+                                                                                    class="card-title text-center"
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Sedang</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Rp. 10.000,00</p>
+                                                                            <input type="radio" name="radio-group"
+                                                                                id="radio2">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 my-1">
+                                                                    <div class="card" id="card"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/besar.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <div class="text-center">
+                                                                                <a href="#"
+                                                                                    class="card-title text-center"
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Besar</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Rp. 20.000,00</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-3 my-1">
+                                                                    <button type="button" data-bs-toggle="modal"
+                                                                        data-bs-target="#nilai" id="card"
+                                                                        class="card" data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/lainnya.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <div class="text-center">
+                                                                                <a href="#" data-bs-toggle="modal"
+                                                                                    data-bs-target="#nilai"
+                                                                                    class="card-title "
+                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Masukkan Nilai</p>
+                                                                        </div>
+                                                                    </button>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="d-flex mt-4 ml-3">
+                                                                <input type="text" id="comment-veed1"
+                                                                    name="commentVeed" width="500px"
+                                                                    class="form-control rounded-3 me-3"
+                                                                    style="margin-top: 12px; border-radius:100px;"
+                                                                    placeholder="Tambahkan komentar...">
+
+                                                                <button type="submit" id="buttonCommentVeed"
+                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                    class="btn  btn-sm text-light">
+                                                                    <b class="me-3 ms-3">Kirim</b></button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- modal gift end -->
-                                        <!-- gift end -->
-                                        <script>
-                                            const cardElements = document.querySelectorAll("#card");
-                                            cardElements.forEach((cardElement) => {
-                                                cardElement.addEventListener("click", () => {
-                                                    function toggleCardSelection(cardElement) {
-                                                        const isSelected = cardElement.getAttribute("data-card-selected") === "true";
+                                            <!-- modal gift end -->
+                                            <!-- gift end -->
+                                            <script>
+                                                const cardElements = document.querySelectorAll("#card");
+                                                cardElements.forEach((cardElement) => {
+                                                    cardElement.addEventListener("click", () => {
+                                                        function toggleCardSelection(cardElement) {
+                                                            const isSelected = cardElement.getAttribute("data-card-selected") === "true";
 
-                                                        // Toggle status seleksi
-                                                        cardElement.setAttribute("data-card-selected", isSelected ? "false" : "true");
+                                                            // Toggle status seleksi
+                                                            cardElement.setAttribute("data-card-selected", isSelected ? "false" : "true");
 
-                                                        // Ganti border outline sesuai status seleksi
-                                                        if (isSelected) {
-                                                            cardElement.style.border = "0.50px black solid";
-                                                        } else {
-                                                            cardElement.style.border =
-                                                                "2px solid orange";
+                                                            // Ganti border outline sesuai status seleksi
+                                                            if (isSelected) {
+                                                                cardElement.style.border = "0.50px black solid";
+                                                            } else {
+                                                                cardElement.style.border =
+                                                                    "2px solid orange";
+                                                            }
                                                         }
-                                                    }
-                                                    toggleCardSelection(cardElement);
+                                                        toggleCardSelection(cardElement);
 
+                                                    });
                                                 });
-                                            });
-                                        </script>
-                                        <!-- Laporkan, blokir -->
-                                        <div class="mx-2">
-                                            {{-- --}}
-                                            @if (Auth::user())
-                                                @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_video->user->id)
-                                                    {{-- Laporkan Komentar --}}
-                                                    <button type="button" data-bs-toggle="modal"
-                                                        data-bs-target="#Modalsd{{ $urut }}"
-                                                        class="yuhu text-dark btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-xl mt-1 fa-triangle-exclamation me-2"></i>
-                                                    </button>
-                                                    <div class="modal fade" id="Modalsd{{ $urut }}"
-                                                        tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="reportModal"
-                                                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                        Laporkan
-                                                                        komentar</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
-                                                                    {{-- @csrf --}}
-                                                                    <div class="modal-body d-flex align-items-center">
-
-                                                                        <img class="me-2"
-                                                                            src="{{ asset('images/default.jpg') }}"
-                                                                            width="106px" height="104px"
-                                                                            style="border-radius: 50%" alt="">
-                                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                            placeholder="Alasan..."></textarea>
-                                                                        {{-- @endif --}}
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="submit"
-                                                                            class="btn btn-light text-light"
-                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                class="ms-2 me-2">Laporkan</b></button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                @elseif(Auth::user()->id == $item_video->user->id)
-                                                    {{-- Hapus Komentar --}}
-                                                    <form method="POST"
-                                                        action="{{ route('hapus.feed', $item_video->id) }}"
-                                                        id="delete-feed-form{{ $item_video->id }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" hidden
-                                                            id="delete-feed-button{{ $item_video->id }}"></button>
-                                                        <button type="button"
-                                                            onclick="confirmation_delete_feed({{ $item_video->id }})"
-                                                            class="yuhu text-dark btn-sm rounded-5 ">
-                                                            <i class="fa-solid fa-lg fa-trash"></i>
+                                            </script>
+                                            <!-- Laporkan, blokir -->
+                                            <div class="mx-2">
+                                                {{-- --}}
+                                                @if (Auth::user())
+                                                    @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_video->user->id)
+                                                        {{-- Laporkan Komentar --}}
+                                                        <button type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#Modalsd{{ $urut }}"
+                                                            class="yuhu text-dark btn-sm rounded-5 "><i
+                                                                class="fa-solid fa-xl mt-1 fa-triangle-exclamation me-2"></i>
                                                         </button>
-                                                    </form>
-                                                @elseif(Auth::user()->role == 'admin')
-                                                    {{-- Blokir Komentar --}}
-                                                    <button type="button" data-toggle="modal"
-                                                        data-target="#blocksModal{{ $item_video->id }}"
-                                                        class="yuhu text-dark btn-sm rounded-5 "><svg
-                                                            xmlns="http://www.w3.org/2000/svg" width="26"
-                                                            height="26" viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                                fill="currentColor" fill-rule="nonzero" />
-                                                        </svg>
-                                                    </button>
-                                                    <div class="modal fade" id="blocskModal{{ $item_video->id }}"
-                                                        tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="reportModal"
-                                                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                        Blokir komentar
-                                                                    </h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
-                                                                    {{-- @csrf --}}
-                                                                    <div class="modal-body d-flex align-items-center">
+                                                        <div class="modal fade" id="Modalsd{{ $urut }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="reportModal"
+                                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                            Laporkan
+                                                                            komentar</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
+                                                                        {{-- @csrf --}}
+                                                                        <div class="modal-body d-flex align-items-center">
 
-                                                                        <img class="me-2"
-                                                                            src="{{ asset('images/default.jpg') }}"
-                                                                            width="106px" height="104px"
-                                                                            style="border-radius: 50%" alt="">
-                                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                            placeholder="Alasan..."></textarea>
-                                                                        {{-- @endif --}}
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="submit"
-                                                                            class="btn btn-light text-light"
-                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                class="ms-2 me-2">Blokir</b></button>
-                                                                    </div>
-                                                                </form>
+                                                                            <img class="me-2"
+                                                                                src="{{ asset('images/default.jpg') }}"
+                                                                                width="106px" height="104px"
+                                                                                style="border-radius: 50%" alt="">
+                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                                placeholder="Alasan..."></textarea>
+                                                                            {{-- @endif --}}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit"
+                                                                                class="btn btn-light text-light"
+                                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                    class="ms-2 me-2">Laporkan</b></button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    @elseif(Auth::user()->id == $item_video->user->id)
+                                                        {{-- Hapus Komentar --}}
+                                                        <form method="POST"
+                                                            action="{{ route('hapus.feed', $item_video->id) }}"
+                                                            id="delete-feed-form{{ $item_video->id }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" hidden
+                                                                id="delete-feed-button{{ $item_video->id }}"></button>
+                                                            <button type="button"
+                                                                onclick="confirmation_delete_feed({{ $item_video->id }})"
+                                                                class="yuhu text-dark btn-sm rounded-5 ">
+                                                                <i class="fa-solid fa-lg fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    @elseif(Auth::user()->role == 'admin')
+                                                        {{-- Blokir Komentar --}}
+                                                        <button type="button" data-toggle="modal"
+                                                            data-target="#blocksModal{{ $item_video->id }}"
+                                                            class="yuhu text-dark btn-sm rounded-5 "><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="26"
+                                                                height="26" viewBox="0 0 24 24">
+                                                                <path
+                                                                    d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                                    fill="currentColor" fill-rule="nonzero" />
+                                                            </svg>
+                                                        </button>
+                                                        <div class="modal fade" id="blocskModal{{ $item_video->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered"
+                                                                role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="reportModal"
+                                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                            Blokir komentar
+                                                                        </h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
+                                                                        {{-- @csrf --}}
+                                                                        <div class="modal-body d-flex align-items-center">
+
+                                                                            <img class="me-2"
+                                                                                src="{{ asset('images/default.jpg') }}"
+                                                                                width="106px" height="104px"
+                                                                                style="border-radius: 50%" alt="">
+                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                                placeholder="Alasan..."></textarea>
+                                                                            {{-- @endif --}}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit"
+                                                                                class="btn btn-light text-light"
+                                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                    class="ms-2 me-2">Blokir</b></button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @else
+                                                    {{-- Untuk user belum login --}}
+                                                    <button type="button" onclick="harusLogin()"
+                                                        class="yuhu text-dark btn-sm rounded-5 "><i
+                                                            class="fa-solid fa-xl fa-triangle-exclamation me-2"></i>
+                                                    </button>
                                                 @endif
-                                            @else
-                                                {{-- Untuk user belum login --}}
-                                                <button type="button" onclick="harusLogin()"
-                                                    class="yuhu text-dark btn-sm rounded-5 "><i
-                                                        class="fa-solid fa-xl fa-triangle-exclamation me-2"></i>
-                                                </button>
-                                            @endif
-                                            {{-- --}}
-                                            
-                                        </div> 
-                                        <a type="button" class="ms-3" href="">
-                                            <i class="fa-regular fa-xl text-dark fa-bookmark"></i>
-                                        </a>
-                                    </div>
-                                </span>
-                            
+                                                {{-- --}}
+
+                                            </div>
+                                            <a type="button" class="ms-3" href="">
+                                                <i class="fa-regular fa-xl text-dark fa-bookmark"></i>
+                                            </a>
+                                        </div>
+                                    </span>
+
 
                                 </div>
                                 {{-- modal lainnya --}}
