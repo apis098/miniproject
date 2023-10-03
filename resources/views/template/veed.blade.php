@@ -1227,7 +1227,7 @@
                                                                         <img src="{{ asset('img/lainnya.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
-                                                                            <div class="text-center">
+                                                                            <div class="mx-4 mt-2">
                                                                                 <a href="#" data-bs-toggle="modal"
                                                                                     data-bs-target="#nilai"
                                                                                     class="card-title "
