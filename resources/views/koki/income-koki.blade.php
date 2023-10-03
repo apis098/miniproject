@@ -196,7 +196,7 @@
                 <div class="col-sm-3 col-lg-3 mb-3">
                     <div class="rounded-4 text-center  p-4 counter-card"
                         style="border: 1px solid #333;">
-                        <div class="ms-2" style="margin-top: -3%">
+                        <div class="ms-2 mt-1" style="margin-top: -3%">
                             <img src="{{ asset('images/alfamidi.png') }}" alt="" width="50%" height="50%">
                             <p class="my-2" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
                                 Alfamidi</p>
