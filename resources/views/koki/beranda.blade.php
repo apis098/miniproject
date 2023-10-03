@@ -17,7 +17,7 @@
             <h4>Selamat datang kembali viktor</h4>
             <p>Berikut Beberapa Rekapan Terbaru</p>
         </div>
-        <div class="col-sm-6 " style="margin-left: 21em; ">
+        <div class="col-sm-6" style="margin-left: 37%;">
             @if ($messageCount == 0)
                                 <div class="d-flex mt-3 mx-2" style="">
                                 @else
@@ -48,7 +48,7 @@
                                     </a>
                                 @endif
 
-                                <a data-toggle="dropdown" class="text-dark ms-1 mx-3" href="#">
+                                <a data-toggle="dropdown" class="text-dark ms-1 " href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -57,8 +57,8 @@
                                 </a>
 
                                 <div class="text-light me-2">
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-1"
-                                        style="width: 350px; border-radius:13px; margin-right:-92%;">
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3"
+                                        style="">
                                         @foreach ($notification as $row)
                                             @if ($row->sender->id != auth()->user()->id)
                                                 <div class="dropdown-divider"></div>
@@ -431,11 +431,13 @@
                                 </div>
                                 @if ($unreadNotificationCount > 0)
                                     <span class="badge badge-danger rounded-pill mb-4 me-2"
-                                        style="margin-left: -33px;">{{ $unreadNotificationCount }}</span>
+                                        style="margin-left: -25px; margin-top: -5px">{{ $unreadNotificationCount }}</span>
                                 @endif
+
+                                
                                 {{-- dropdown profile & logout --}}
                                 <div class="input-group dropdown">
-                                    <a data-toggle="dropdown" class="me-4" href="#" style="margin-top: -17px">
+                                    <a data-toggle="dropdown" class="" href="#" style="margin-top: -17px">
                                         @if ($userLogin->foto)
                                             <img loading="lazy" class="mr-3 rounded-circle"
                                                 src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
