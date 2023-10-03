@@ -97,10 +97,19 @@
 
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+<!-- Load Leaflet from CDN-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet-src.js"></script>
 
-        <!-- Load Leaflet from CDN -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
-        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.css">
+<!-- Load Esri Leaflet from CDN -->
+<script src="https://unpkg.com/esri-leaflet"></script>
+
+<!-- Esri Leaflet Geocoder -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css"
+/>
+<script src="https://unpkg.com/esri-leaflet-geocoder"></script>
 
         <style>
             .custom_nav-container .navbar-nav .nav-item.active .nav-link {
@@ -1272,16 +1281,6 @@
             });
         }
     </script>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-
-<!-- Load Esri Leaflet from CDN -->
-<script src="https://unpkg.com/esri-leaflet@3.0.10/dist/esri-leaflet.js"></script>
-<script src="https://unpkg.com/esri-leaflet-vector@4.1.0/dist/esri-leaflet-vector.js"></script>
-
-<!-- Load Esri Leaflet Geocoder from CDN -->
-<script src="https://unpkg.com/esri-leaflet-geocoder@3.1.4/dist/esri-leaflet-geocoder.js"></script>
-
 
     <!-- popper js -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"

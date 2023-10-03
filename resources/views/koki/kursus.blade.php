@@ -237,37 +237,38 @@
     </form>
     <div id="erroro"></div>
     <script>
-                navigator.geolocation.getCurrentPosition((posisi) => {
-                    let latitude = posisi.coords.latitude;
-                    let longitude = posisi.coords.longitude;
-                    var map = L.map("map").setView([0, 0], 12);
-                    var tiles = L.esri.basemapLayer("Streets").addTo(map);
+        let latitude = 0;
+        let longitude = 0;
+        navigator.geolocation.getCurrentPosition((posisi) => {
+            latitude = posisi.coords.latitude;
+            longitude = posisi.coords.longitude;
+        });
+        var map = L.map("map");
+        var tiles = L.esri.basemapLayer("Streets").addTo(map);
 
-                    // create the geocoding control and add it to the map
-                    var searchControl = L.esri.Geocoding.geosearch({
-                        providers: [
-                            L.esri.Geocoding.arcgisOnlineProvider({
-                                // API Key to be passed to the ArcGIS Online Geocoding Service
-                                apikey: 'AAPK63e9bf53d41f4a8d97159a1225654603jx2fDa28RyvdpARWl6kkFnnDWAGyGfoyDHC5EC7PihxInfSJdLsZ4-omoCOlU0aa'
-                            })
-                        ]
-                    }).addTo(map);
+        // create the geocoding control and add it to the map
+        var searchControl = L.esri.Geocoding.geosearch({
+            providers: [
+                L.esri.Geocoding.arcgisOnlineProvider({
+                    // API Key to be passed to the ArcGIS Online Geocoding Service
+                    apikey: 'AAPK63e9bf53d41f4a8d97159a1225654603jx2fDa28RyvdpARWl6kkFnnDWAGyGfoyDHC5EC7PihxInfSJdLsZ4-omoCOlU0aa'
+                })
+            ]
+        }).addTo(map);
 
-                    // create an empty layer group to store the results and add it to the map
-                    var results = L.layerGroup().addTo(map);
+        // create an empty layer group to store the results and add it to the map
+        var results = L.layerGroup().addTo(map);
 
-                    // listen for the results event and add every result to the map
-                    searchControl.on("results", function(data) {
-                        results.clearLayers();
-                        results.addLayer(L.marker(data.results[0].latlng));
-                        console.log(data.results[0]);
-                        // memasukkan nilai pada inputan hidden mengenai lokasi kursus.
-                        document.getElementById("address").value = data.results[0].properties.LongLabel;
-                        document.getElementById("latitude").value = data.results[0].properties.Y;
-                        document.getElementById("longitude").value = data.results[0].properties.X;
-                    });
-                });
-            
+        // listen for the results event and add every result to the map
+        searchControl.on("results", function(data) {
+            results.clearLayers();
+            results.addLayer(L.marker(data.results[0].latlng));
+            console.log(data.results[0]);
+            // memasukkan nilai pada inputan hidden mengenai lokasi kursus.
+            document.getElementById("address").value = data.results[0].properties.LongLabel;
+            document.getElementById("latitude").value = data.results[0].properties.Y;
+            document.getElementById("longitude").value = data.results[0].properties.X;
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
