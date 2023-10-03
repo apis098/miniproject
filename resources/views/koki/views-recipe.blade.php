@@ -39,7 +39,7 @@
             height: 100%;
         }
 
-        .search-1 { 
+        .search-1 {
             position: relative;
             width: 100%
         }
@@ -169,47 +169,338 @@
             </span>
         </button>
     </div>
-    <div class="mx-5 my-5">
+    <div class=" mx-1 my-4">
         <div class="row">
             {{-- @foreach ($recipes as $num => $item) --}}
-                <div class="col-lg-4 mb-2 col-sm-12 col-md-6">
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-body my-3 mx-auto" style="background-color: white">
-                            <img width="170px" class="rounded-circle" height="170px"
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
                                 style="border: 0.50px black solid; max-width:170px;"
                                 src="{{ asset('images/dark-food.jpg') }}" />
-                        
+
                             <div class="row">
-                                <div class="col-12">
-                                            <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    href="#">
-                                                    robak
-                                                </a>
-                                            </h5>
-                                </div>   
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-5">
                                         <img class="mb-1" width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
                                         50 suka
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-7">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
                                             200 Komen
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 my-2">
                                         <img width="20px" height="20px"
-                                            src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
                                             alt="">
                                             6 Favorit
                                     </div>
                                 </div>
-                            </div>
+
                         </div>
                     </div>
-                </div>       
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 mb-2 col-sm-12 col-md-6">
+                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                        <div class="card-body my-3 mx-auto" style="background-color: white">
+
+                            <img width="170px" class="rounded-circle mx-3 mb-3" height="170px"
+                                style="border: 0.50px black solid; max-width:170px;"
+                                src="{{ asset('images/dark-food.jpg') }}" />
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="#">
+                                            robak
+                                        </a>
+                                    </h5>
+                                </div>
+                            </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <img class="mb-1" width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                        50 suka
+                                    </div>
+                                    <div class="col-7">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            200 Komen
+                                    </div>
+                                    <div class="col-6 my-2">
+                                        <img width="20px" height="20px"
+                                            src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                            alt="">
+                                            6 Favorit
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
         </div>
         {{-- {{ $recipes->links('vendor.pagination.default') }} --}}
     </div>
