@@ -1,5 +1,7 @@
 @extends('layouts.navbar')
 @section('konten')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+
     @push('style')
         @powerGridStyles
     @endpush
@@ -188,21 +190,21 @@
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Nama</label>
                     <div class="col-sm-10">
-                        <input type="text" id="comment-veed1" name="nama_paket" class="form-control "
+                        <input type="text" id="nama" name="nama_paket" class="form-control "
                             style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Nama Paket...">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Harga </label>
                     <div class="col-sm-10">
-                        <input type="text" id="comment-veed1" name="harga_paket" class="form-control "
+                        <input type="text" id="harga" name="harga_paket" class="form-control "
                             style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Harga Paket...">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
                     <div class="col-sm-10">
-                        <input type="text" id="comment-veed1" name="durasi_paket" class="form-control "
+                        <input type="text" id="durasi" name="durasi_paket" class="form-control "
                             style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Durasi Aktif Paket...">
                     </div>
                 </div>
@@ -225,11 +227,16 @@
             </div>
         </div>
     </form>
-        <!-- jQuery CDN -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery CDN -->
+    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
+        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+    <!-- jQuery CDN -->
     <script>
-        let num  = 1;
-        document.getElementById("button-add-detail").addEventListener("click", function(e) {1
+        let num = 1;
+        document.getElementById("button-add-detail").addEventListener("click", function(e) {
             num++;
             let div = document.createElement('div');
             div.innerHTML = `
@@ -246,42 +253,47 @@
             `;
             document.getElementById("details").appendChild(div);
         });
+
         function hapus_details(num) {
-            document.getElementById("detail"+num).remove();
+            document.getElementById("detail" + num).remove();
         }
-        $("#form-upload-tawaran").submit(function(e) {
-            e.preventDefault();
-            const data = new FormData($("#form-upload-tawaran")[0]);
+        $("#form-upload-tawaran").submit(function(event) {
+            event.preventDefault();
+            const route = $(this).attr("action");
+            const data = new FormData($(this)[0]);
             $.ajax({
-                url: "{{ route('upload.tawaran') }}",
+                url: route,
                 method: "POST",
                 contentType: false,
                 processData: false,
                 data: data,
-                success: function(response) {
-                    if (response.message) {
-                        iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
-                            titleColor: 'white',
-                            messageColor: 'white',
-                            message: response.message,
-                            position: 'topCenter',
+                success: function success(response) {
+                    iziToast.destroy();
+                    iziToast.show({
+                        backgroundColor: '#F7941E',
+                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        message: response.message,
+                        position: 'topCenter',
 
-                        });
-                        window.reload();
-                        console.log(response.message);
-                    }
+                    });
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                    console.log(response.message);
+
                 },
                 error: function error(xhr, status, errors) {
+                    iziToast.destroy();
                     iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
-                            titleColor: 'white',
-                            messageColor: 'white',
-                            message: xhr.responseText,
-                            position: 'topCenter',
-                        });
+                        backgroundColor: '#F7941E',
+                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        titleColor: 'white',
+                        messageColor: 'white',
+                        message: xhr.responseText,
+                        position: 'topCenter',
+                    });
                     console.log(xhr.responseText);
                 }
             });
