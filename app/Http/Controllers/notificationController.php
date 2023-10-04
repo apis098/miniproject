@@ -71,8 +71,7 @@ class notificationController extends Controller
     public function shareVeed($id){
         $notification = notifications::findOrFail($id);
         $notification->status = 'sudah';
-        $notification->save();
-        
+        $notification->save();  
     }
     // public function blockComplaint($id){
     //     $notificattion = notifications::findOrFail($id);

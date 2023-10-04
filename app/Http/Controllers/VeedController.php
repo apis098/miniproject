@@ -67,7 +67,48 @@ class VeedController extends Controller
 
         return view("template.veed", compact("messageCount", "user_following", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
+    public function detailVeed($id){
+        $userLogin = Auth::user();
+        // untuk user belum login
+        $userLog = 1;
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $admin = false;
+        $messageCount = [];
+        $user_following = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+            $user_following = followers::where('follower_id', auth()->user()->id)->get();
+        }
+        if ($userLogin) {
+            $id_user = Auth::user()->id;
+            $id_admin = User::where("role", "admin")->first();
+            if ($id_user == $id_admin->id) {
+                $admin = true;
+            }
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $userLog = 2;
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        $footer = footer::first();
 
+        $item_video = upload_video::findOrFail($id);
+
+        $reply_comment_veed = reply_comment_veed::latest()->get();
+
+        // $tripay = new TripayPaymentController();
+        // $channels = $tripay->getPaymentChannels();
+
+        return view("template.detailVeed", compact("messageCount", "user_following", "reply_comment_veed", "item_video", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+    }
     public function sukai_veed(string $user_id, string $veed_id)
     {
         $cek = like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();

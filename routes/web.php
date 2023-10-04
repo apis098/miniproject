@@ -113,6 +113,7 @@ Route::post('/laporan-keluhan/{id}',[ReportController::class,'storeComplaint'])-
 
 Route::prefix('share-content')->group(function (){
     Route::post('feed/{id}',[VeedController::class,'shareVeed'])->name('share.feed');
+    Route::get('detail/feed/{id}',[VeedController::class,'detailVeed'])->name('detail.feed');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
