@@ -68,6 +68,12 @@ class notificationController extends Controller
         $resepName = $notificattion->resep->nama_resep;
         return redirect('/artikel/' . $resepId . '/' . $resepName);
     }
+    public function shareVeed($id){
+        $notification = notifications::findOrFail($id);
+        $notification->status = 'sudah';
+        $notification->save();
+        
+    }
     // public function blockComplaint($id){
     //     $notificattion = notifications::findOrFail($id);
     //     $notificattion->status = 'sudah';

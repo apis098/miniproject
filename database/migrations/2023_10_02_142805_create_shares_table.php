@@ -25,7 +25,15 @@ return new class extends Migration
             $table->foreign('resep_id')->references('id')->on('reseps')->onDelete('cascade');
             $table->foreign('keluhan_id')->references('id')->on('complaints')->onDelete('cascade');
         });
+        Schema::table('notifications',function (Blueprint $table){
+            $table->unsignedBigInteger('veed_id')->nullable();
+            $table->unsignedBigInteger('share_id')->nullable();
+
+            $table->foreign('veed_id')->references('id')->on('upload_videos')->onDelete('cascade');
+            $table->foreign('share_id')->references('id')->on('shares')->onDelete('cascade');
+        });
     }
+    
 
     /**
      * Reverse the migrations.

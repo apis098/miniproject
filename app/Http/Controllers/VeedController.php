@@ -239,11 +239,19 @@ class VeedController extends Controller
             $userIds = $request->input('user_id', []); // Mendapatkan array user_id yang dicentang
 
             foreach ($userIds as $userId) {
+                // insert data share
                 $data = new Share();
                 $data->user_id = $userId;
                 $data->sender_id = auth()->user()->id;
                 $data->feed_id = $id;
                 $data->save();
+                // insert data notifikasi
+                $notification = new notifications();
+                $notification->user_id = $userId;
+                $notification->notification_from = auth()->user()->id;
+                $notification->veed_id = $id;
+                $notification->share_id = $data->id;
+                $notification->save();
             }
 
             return redirect()->back()->with('success', 'Konten yang anda bagikan telah terkirim!');
