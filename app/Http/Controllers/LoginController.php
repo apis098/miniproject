@@ -134,12 +134,12 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         if ($request->cari_nama_kursus) {
-        $kursus_terbaru = kursus::query()
-         ->where('status', 'diterima')
-         ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
-         ->paginate(6);
+            $kursus_terbaru = kursus::query()
+                ->where('status', 'diterima')
+                ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
+                ->paginate(6);
         } else {
-        $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
+            $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
         }
         $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
@@ -154,7 +154,7 @@ class LoginController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        return view('template.kursus', compact('district', 'village','regency','provinsi','jenis_kursus','lokasi_kursus','kursus_terbaru','messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function keluhan()
@@ -183,7 +183,7 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.keluhan', compact('messageCount','real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+        return view('template.keluhan', compact('messageCount', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
     public function penawaranPrem()
@@ -208,27 +208,6 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.penawaran-prem', compact('messageCount','notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.penawaran-prem', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
-
 }
-$userLogin = Auth::user();
-$notification = [];
-$favorite = [];
-$footer = footer::first();
-$unreadNotificationCount = [];
-if ($userLogin) {
-    $notification = notifications::where('user_id', auth()->user()->id)
-        ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-        ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-    $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
-}
-if ($userLogin) {
-    $favorite = favorite::where('user_id_from', auth()->user()->id)
-        ->orderBy('created_at', 'desc')
-        ->paginate(10);
-}
-return view('template.kursus', compact('notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
-
-
-

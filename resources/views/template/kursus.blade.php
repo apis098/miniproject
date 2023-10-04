@@ -309,18 +309,6 @@
                                             </select>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="provinsi_lokasi_kursus" class="form-label">Provinsi Lokasi
-                                                Kursus</label>
-                                            <select style="border: 1px solid black" name="provinsi_lokasi_kursus"
-                                                aria-placeholder="Masukkan provinsi lokasi kursus" id="lokasi_kursus"
-                                                class="cari1 form-control">
-                                                <option value="" disabled>Masukkan provinsi Lokasi Kursus</option>
-                                                @foreach ($provinsi as $item_provinsi)
-                                                    <option value="{{ $item_provinsi }}">{{ $item_provinsi }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="kabupaten_lokasi_kursus" class="form-label">Kabupaten Lokasi
                                                 Kursus</label>
                                             <select name="kabupaten_lokasi_kursus" id="kabupaten_lokasi_kursus"
@@ -331,29 +319,6 @@
                                                 </option>
                                                 @foreach ($regency as $item_daerah)
                                                     <option value="{{ $item_daerah }}">{{ $item_daerah }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="kota_lokasi_kursus" class="form-label">Kota Lokasi Kursus</label>
-                                            <select name="kota_lokasi_kursus" id="kota_lokasi_kursus"
-                                                style="border: 1px solid black"
-                                                aria-placeholder="Masukkan kota lokasi kursus" class="cari3 form-control">
-                                                <option value="" disabled>Masukkan nama kota lokasi kursus...
-                                                </option>
-                                                @foreach ($district as $item_kota)
-                                                    <option value="{{ $item_kota }}">{{ $item_kota }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="desa_lokasi_kursus" class="form-label">Desa Lokasi Kursus</label>
-                                            <select name="desa_lokasi_kursus" id="desa_lokasi_kursus"
-                                                style="border: 1px solid black;"
-                                                aria-placeholder="Masukkan desa lokasi kursus" class="cari4 form-control">
-                                                <option value="" disabled>Masukkan nama desa lokasi kursus</option>
-                                                @foreach ($village as $item_desa)
-                                                    <option value="{{ $item_desa }}">{{ $item_desa }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

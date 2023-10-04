@@ -14,6 +14,12 @@ use App\Models\kategori_makanan;
 use App\Models\special_days;
 use App\Models\toolsCooks;
 use Illuminate\Support\Facades\Validator;
+use App\Models\kursus;
+use App\Models\District;
+use App\Models\Province;
+use App\Models\Village;
+use App\Models\Regency;
+use Illuminate\Support\Facades\DB;
 
 class FiltersController extends Controller
 {
@@ -53,7 +59,6 @@ class FiltersController extends Controller
             if ($request->max_timer === 'jam') {
                 $request->merge(["max_time" => $request->max_time * 60]);
             }
-
         }
         $validator  = Validator::make($request->all(), [
             'min_price' => 'lte:max_price|required_with:max_price',
@@ -65,7 +70,7 @@ class FiltersController extends Controller
             'min_time.lte' => 'Minimal waktu tidak boleh melebihi maksimal waktu!',
             'min_price.required_with' => "Maksimal harga harus terisi!",
             "max_price.required_with" => "Minimal harga harus terisi!",
-           "min_time.required_with" => "Maksimal waktu harus terisi!",
+            "min_time.required_with" => "Maksimal waktu harus terisi!",
             "max_time.required_with" => "Minimal waktu harus terisi!"
         ]);
         if ($validator->fails()) {
@@ -88,7 +93,7 @@ class FiltersController extends Controller
             $max = $request->max_time;
             $recipess->whereBetween('lama_memasak', [$min, $max]);
         }
-        
+
         if ($request->has('ingredients')) {
             $bahan = $request->ingredients;
             $recipess->whereHas('bahan', function ($query) use ($bahan) {
@@ -115,7 +120,7 @@ class FiltersController extends Controller
         }
         $recipes = $recipess->paginate(3);
         //dd($recipes);
-        return view('template.resep', compact('toolsCooks','messageCount', 'special_day','footer','categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('toolsCooks', 'messageCount', 'special_day', 'footer', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function filter_resep(Request $request)
     {
@@ -216,49 +221,80 @@ class FiltersController extends Controller
                 $query->whereIn('nama_makanan', $categories_foods);
             });
         }
-        /*
-        if ($request->has('nama_resep')) {
-            $recipes = reseps::query()
-                ->where("nama_resep", "like", "%" . $request->nama_resep . "%")
-                ->whereBetween('pengeluaran_memasak', [$min_price, $max_price])
-                ->whereBetween('lama_memasak', [$min, $max])
-                ->whereHas('alat', function ($query) use ($tools) {
-                    $query->whereIn('nama_alat', $tools);
-                })
-                ->whereHas('bahan', function ($query) use ($ingredients) {
-                    $query->whereIn("nama_bahan", $ingredients);
-                })
-                ->whereHas("hari_resep", function ($query) use ($days) {
-                    $query->whereIn('nama', $days);
-                })
-                ->whereHas("kategori_resep", function ($query) use ($categories_foods) {
-                    $query->whereIn('nama_makanan', $categories_foods);
-                })
-                ->paginate(6);
-        } else {
-            $recipes = reseps::query()
-                ->whereBetween('pengeluaran_memasak', [$min_price, $max_price])
-                ->whereBetween('lama_memasak', [$min, $max])
-                ->whereHas('alat', function ($query) use ($tools) {
-                    $query->whereIn('nama_alat', $tools);
-                })
-                ->whereHas('bahan', function ($query) use ($ingredients) {
-                    $query->whereIn("nama_bahan", $ingredients);
-                })
-                ->whereHas("hari_resep", function ($query) use ($days) {
-                    $query->whereIn('nama', $days);
-                })
-                ->whereHas("kategori_resep", function ($query) use ($categories_foods) {
-                    $query->whereIn('nama_makanan', $categories_foods);
-                })
-                ->paginate(6);
-        }*/
-        //dd($recipes->paginate(6));
         $recipes->paginate(6);
-        return view('template.resep', compact('messageCount','toolsCooks','footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('messageCount', 'toolsCooks', 'footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
-    public function filterKursus(Request $request)
+    public function filter_kursus(Request $request)
     {
-        
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $footer = footer::first();
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        // validasi filter
+        $validator  = Validator::make($request->all(), [
+            'min_price' => 'lte:max_price|required_with:max_price',
+            'max_price' => 'required_with:min_price',
+            'min_time' => 'lte:max_time|required_with:max_time',
+            'max_time' => 'required_with:min_time'
+        ], [
+            'min_price.lte' => 'Minimal harga tidak boleh melebihi maksimal harga!',
+            'min_time.lte' => 'Minimal waktu tidak boleh melebihi maksimal waktu!',
+            'min_price.required_with' => "Maksimal harga harus terisi!",
+            "max_price.required_with" => "Minimal harga harus terisi!",
+            "min_time.required_with" => "Maksimal waktu harus terisi!",
+            "max_time.required_with" => "Minimal waktu harus terisi!"
+        ]);
+        if ($validator->fails()) {
+            //return redirect()->back()->withErrors($validator);
+            return redirect('resep')->with('error', $validator->errors()->all());
+        }
+        $kursus_terbaru = kursus::query()->where('status', 'diterima');
+        if ($request->has('cari_nama_kursus')) {
+            $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
+        }
+        if ($request->has('jenis_kursus')) {
+            foreach ($request->jenis_kursus as $key => $jenis) {
+                // orWhere digunakan agar menampilkan kursus yang berisi semua atau salah satu dari jenis kursus yang dipilih
+                $kursus_terbaru->orWhere('jenis_kursus', 'like', '%' . $jenis . '%');
+            }
+        }
+        if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
+            $minprice = str_replace(['.', ','], '', $request->min_price);
+            $maxprice = str_replace(['.', ','], '', $request->max_price);
+            $min_price = (int)$minprice;
+            $max_price = (int)$maxprice;
+            $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+        }
+        $kursus_terbaru->paginate(6);
+        $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
+        $provinsi = Province::pluck('name');
+        $regency = Regency::pluck('name');
+        $district = District::pluck('name');
+        $village = Village::pluck('name');
+        $lokasi_kursus = $kursus_terbaru->map(function ($posisi) {
+            return [
+                'latitude' => $posisi->latitude,
+                'longitude' => $posisi->longitude,
+                'id_kursus' => $posisi->id,
+                'nama_kursus' => $posisi->nama_kursus
+            ];
+        });
+        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
