@@ -203,9 +203,9 @@
         .search-2 input {
             height: 45px;
             border: 0.50px black solid;
-            width: 135%;
+            width: 128%;
             border-radius: 15px;
-            margin-left: 30px;
+            margin-left: 60px;
             color: #000;
             padding-left: 18px;
             padding-right: 100px;
@@ -227,7 +227,7 @@
 
         .search-2 button {
             position: absolute;
-            margin-left: 133%;
+            margin-left: 127%;
             top: 0px;
             border: none;
             height: 45px;
@@ -285,9 +285,9 @@
             {{-- <img src="" alt="" width="150%" height="85%"> --}}
             <div class="d-flex mt-4">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-3 mx-2">
                     <img src="{{ asset('img/3.jpg') }}" style="width: 100%; height: 100%; margin-left: -25px;"
-                    class="rounded float-start mr-3" alt="...">
+                    class="rounded float-end " alt="...">
                     </div>
                     <div class="col-8">
                         <strong class="me-5 w-75" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -305,7 +305,7 @@
                                     </svg>
                                     &nbsp; <span class="my-auto">10</span>
                                 </a>
-                                a <a type="button" class="ms-3 text-dark" onclick="openModel()" id="button-modal-komentar-feed"
+                                <a type="button" class="ms-3 text-dark" onclick="openModel()" id="button-modal-komentar-feed"
                                     href="#" data-bs-toggle="modal"data-bs-target="#exampleModal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16">
                                         <path fill="currentColor"
@@ -330,7 +330,7 @@
                                 </button>
 
                                 <a class="my-auto text-dark float-end" style="margin-right: -35px;" href="#"
-                                    data-bs-toggle="modal" data-bs-target="#bagikan">
+                                data-toggle="modal" data-target="#edit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                                         <path fill="none" stroke="currentColor" stroke-width="1.5"
                                             d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
@@ -339,12 +339,51 @@
                                 </a>
 
                             </p>
+                              {{-- modal edit --}}
+      <div class="modal fade" id="edit" tabindex="-1"
+      role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" style="border-radius: 15px">
+              <div class="modal-body">
+                  <div class="d-flex justify-content-between">
+                      <h5 class="modal-title" id="exampleModalLabel"
+                          style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                          Edit
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa-regular text-dark fa-circle-xmark"></i>
+                        </button>
+                  </div>
+                  <br>
+                  <form action=""
+                      method="POST">
+                      @csrf
+                      <div class="">
+                          <div class="col-sm-10">
+                              <textarea class="form-control"
+                                  value=""
+                                  name="nama_makanan" id="nama"
+                                  style="border-radius:10px; width:120%;"></textarea>
+                          </div>
+                      </div>
+                      <br>
+                      <button type="submit"
+                          class="btn btn-sm d-flex justify-content-end text-white"
+                          style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  {{-- end modal edit --}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
