@@ -121,6 +121,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin.index');
         Route::get('verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
+        Route::patch('verifed/{id}/{status}', [AdminController::class, 'action_verifed'])->name('action.verified');
         Route::get('tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
         Route::get('kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
         // tambah penawaran

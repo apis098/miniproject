@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('role');
             $table->string('status')->default('aktif');
-            $table->enum("isSuperUser", ["yes", "no"])->default("no");
+            $table->enum("isSuperUser", ["yes", "no", "ditolak"])->default("no");
             $table->rememberToken();
             $table->timestamps();
         });

@@ -28,41 +28,55 @@ class AdminController extends Controller
         $year = 2018;
         $yearsu = date('Y') - $year;
         $years = [];
-        for ($i=0; $i <= $yearsu; $i++) {
+        for ($i = 0; $i <= $yearsu; $i++) {
             $years[] = $year++;
         }
         $month = [];
         if ($request->has("tahun")) {
             $tahun = $request->tahun;
-            for ($i=1; $i <= 12; $i++) {
+            for ($i = 1; $i <= 12; $i++) {
                 $month[] = DB::table("users")
-                ->whereMonth('created_at', $i)
-                ->whereYear("created_at", $tahun)
-                ->count();
+                    ->whereMonth('created_at', $i)
+                    ->whereYear("created_at", $tahun)
+                    ->count();
             }
         } else {
-            for ($i=1; $i <= 12 ; $i++) {
+            for ($i = 1; $i <= 12; $i++) {
                 $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
             }
         }
         $data_chartjs = [];
-        return view('admin.index',[
-            'admin'=> $admin,
-            ], compact("jumlah_user", "jumlah_resep", "jumlah_report","month", "years", "reports", "reseps"));
-
-
+        return view('admin.index', [
+            'admin' => $admin,
+        ], compact("jumlah_user", "jumlah_resep", "jumlah_report", "month", "years", "reports", "reseps"));
     }
 
 
-    public function verifed(Request $request){
-
-
-
-        return view('admin.verifed');
+    public function verifed(Request $request)
+    {
+        $verified = User::where('followers', '10000')->where('isSuperUser', 'no')->paginate(6);
+        return view('admin.verifed', compact('verified'));
     }
 
-    public function tawaran() {
-        
+    public function action_verifed(string $id, string $status)
+    {
+        if ($status === "diterima") {
+            $status = "menerima";
+            $user = User::find($id);
+            $user->isSuperUser = "yes";
+            $user->save();
+        } else if($status === "ditolak") {
+            $status = "menolak";
+            $user = User::find($id);
+            $user->isSuperUser = "ditolak";
+            $user->save();
+        }
+        return redirect()->back();
+    }
+
+    public function tawaran()
+    {
+
         return view('admin.tawaran');
     }
 
@@ -111,7 +125,8 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Profil berhasil diperbarui');
     }
 
-    public function upload_tawaran(Request $request) {
+    public function upload_tawaran(Request $request)
+    {
         $rules = [
             "nama_paket" => "required",
             "harga_paket" => "required",
@@ -137,16 +152,16 @@ class AdminController extends Controller
         if ($premium_create) {
             foreach ($request->detail_paket as $d) {
                 detail_premiums::create([
-               "premium_id" => $premium_create->id,
+                    "premium_id" => $premium_create->id,
                     "detail" => $d
                 ]);
             }
-        
 
-        return response()->json([
-            "success" => true,
-            "message" => "sukses menambahkan penawaran produk!"
-        ]); 
-    }
+
+            return response()->json([
+                "success" => true,
+                "message" => "sukses menambahkan penawaran produk!"
+            ]);
+        }
     }
 }

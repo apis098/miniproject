@@ -269,7 +269,7 @@
                     <div class="search-2"> <i class='bx bxs-map'></i>
                         <form action="#" method="GET">
                             <input class="placeholder-centered" type="text" name="" style="text-align: left;"
-                                placeholder="Search for something ..." value="{{-- {{ request()->nama_resep }} --}}">
+                                placeholder="Search for something ..." value=" {{ request()->nama_feed }} ">
                             <button type="submit" class="zoom-effects"
                                 style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
