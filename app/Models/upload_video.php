@@ -13,7 +13,8 @@ class upload_video extends Model
         "users_id",
         "deskripsi_video",
         "upload_video",
-        'isPremium'
+        'isPremium',
+        'uuid',
     ];
     public function user()
     {

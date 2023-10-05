@@ -58,7 +58,7 @@ class VeedController extends Controller
         }
         $footer = footer::first();
 
-        $video_pembelajaran = upload_video::latest()->get();
+        $video_pembelajaran = upload_video::inRandomOrder()->get();
 
         $reply_comment_veed = reply_comment_veed::latest()->get();
 

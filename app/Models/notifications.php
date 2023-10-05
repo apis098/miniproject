@@ -42,4 +42,8 @@ class notifications extends Model
     {
         return $this->belongsTo(reseps::class);
     }
+    public function veed()
+    {
+        return $this->belongsTo(upload_video::class,'veed_id');
+    }
 }

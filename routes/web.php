@@ -51,7 +51,7 @@ Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
 Route::post('filter_lanjutan_kursus', [FiltersController::class, 'filter_kursus'])->name('filter.kursus');
 route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
 // veed
-Route::get('veed', [VeedController::class, 'index'])->name('veed.index');
+Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 
 
 //Search user account
@@ -60,6 +60,7 @@ Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profil
 Route::put('/status-baca/follow/{id}', [notificationController::class, 'followNotification'])->name('follow.notification');
 Route::put('/status-baca/like-replies/{id}', [notificationController::class, 'repliesNotification'])->name('replies.notification');
 Route::put('/status-baca/like-resep/{id}', [notificationController::class, 'likeResep'])->name('resep.like.notification');
+Route::put('/status-baca/shared-feed/{id}', [notificationController::class, 'shareVeed'])->name('share.veed.notification');
 Route::put('/status-baca/profile-blocked/{id}', [notificationController::class, 'blockedProfile'])->name('profile.blocked.notification');
 Route::put('/status-baca/replies-blocked/{id}', [notificationController::class, 'repliesBlocked'])->name('replies.blocked.notification');
 Route::put('/status-baca/tambah-resep/{id}', [notificationController::class, 'recipesNotification'])->name('resep.read.notification');

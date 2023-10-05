@@ -13,6 +13,7 @@ use App\Models\reseps;
 use App\Models\upload_video;
 use App\Models\Report;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -242,7 +243,8 @@ class KokiController extends Controller
             "users_id" => Auth::user()->id,
             "deskripsi_video" => $request->deskripsi_video,
             "upload_video" => $request->file("upload_video")->store("video-user", "public"),
-            "isPremium" => $isPremium
+            "isPremium" => $isPremium,
+            "uuid" => Str::random(10),
         ]);
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {

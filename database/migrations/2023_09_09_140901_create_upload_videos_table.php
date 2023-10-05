@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('upload_videos', function (Blueprint $table) {
             $table->id();
+            $table->uuid()->unique();
             $table->unsignedBigInteger("users_id");
             $table->string("deskripsi_video");
             $table->string("upload_video");

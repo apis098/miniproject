@@ -36,10 +36,98 @@
                 </div>
             </div>
             <!-- rekomendasi chef end -->
+            <style>
+                .posisi {
+                    margin-top: -3%;
+                }
 
+                .form {
+                    position: relative;
+                }
+
+                .form .fa-search {
+                    position: absolute;
+                    top: 40px;
+                    left: 20px;
+                    color: #9ca3af;
+
+                }
+
+                .form span {
+
+                    position: absolute;
+                    right: 17px;
+                    top: 13px;
+                    padding: 2px;
+                    border-left: 1px solid #d1d5db;
+
+                }
+
+                .left-pan {
+                    padding-left: 7px;
+                    margin-top: 20px;
+                }
+
+                .left-pan i {
+                    padding-left: 10px;
+                }
+
+                .form-input {
+                    margin-left: -3.5%;
+                    width: 107%;
+                    height: 55px;
+                    text-indent: 33px;
+                    border-radius: 10px;
+                }
+
+                .form-input:focus {
+
+                    box-shadow: none;
+                    border: solid rgb(123, 215, 232) 3px;
+                }
+            </style>
             <!-- feed start -->
             <div class="col-md-6">
+                <div class="card border border-0 posisi">
+                    <div class="card-body form">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control form-input search-video" placeholder="Cari...">
+                    </div>
+                </div>
+                <div class="card border border-0 posisi" hidden>
+                    <div class="card-body form">
+                        <i class="fa fa-search"></i>
+                        <input type="text" class="form-control form-input search-uuid" value="{{ request()->uuid }}"
+                            placeholder="Cari...">
+                    </div>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('.search-video').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.item-video').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                    $(document).ready(function() {
+                        // Ambil nilai awal dari input
+                        var initialValue = $('.search-uuid').val().toLowerCase();
 
+                        // Fungsi pencarian
+                        $('.search-uuid').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.item-video').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+
+                        // Jalankan fungsi pencarian dengan nilai awal
+                        $('.item-video').filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(initialValue) > -1)
+                        });
+                    });
+                </script>
                 <div class="card">
                     <div class="card-body">
                         @if (Auth::user())
@@ -114,10 +202,10 @@
                         </div>
                     @endif
                     @foreach ($video_pembelajaran as $urut => $item_video)
-                        <div class="card mt-4 mb-5" style="max-width: 42rem;">
+                        <div class="card mt-4 mb-5 item-video" style="max-width: 42rem;">
                             <!-- Data -->
                             <div class="card-header" style="background-color: white">
-
+                                <p id="uuid" hidden>{{ $item_video->uuid }}</p>
                                 <div class="d-flex mb-1">
                                     <a href="">
                                         @if ($item_video->user->foto)
@@ -1070,17 +1158,20 @@
                                                             @csrf
                                                             @foreach ($user_following as $following)
                                                                 <div class="element-pencarian">
-                                                                   <div class="d-flex mt-4">
-                                                                        <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                    <div class="d-flex mt-4">
+                                                                        <div
+                                                                            class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
                                                                             <a class="foto" href="">
                                                                                 @if ($following->user->foto)
                                                                                     <img src="{{ asset('storage/' . $following->user->foto) }}"
                                                                                         class="border rounded-circle me-2"
-                                                                                        alt="Avatar" style="height: 55px" />
+                                                                                        alt="Avatar"
+                                                                                        style="height: 55px" />
                                                                                 @else
                                                                                     <img src="{{ asset('images/default.jpg') }}"
                                                                                         class="border rounded-circle me-2"
-                                                                                        alt="Avatar" style="height: 55px" />
+                                                                                        alt="Avatar"
+                                                                                        style="height: 55px" />
                                                                                 @endif
                                                                             </a>
                                                                         </div>
@@ -1091,7 +1182,8 @@
                                                                                     <strong
                                                                                         class="input-name">{{ $following->user->name }}</strong>
                                                                                 </a>
-                                                                                <a href="" class="text-muted d-block">
+                                                                                <a href=""
+                                                                                    class="text-muted d-block">
                                                                                     <small>{{ $following->user->email }}</small>
                                                                                 </a>
                                                                             </div>
@@ -1106,7 +1198,7 @@
                                                                             <label
                                                                                 for="checkbox-{{ $item_video->id }}-{{ $following->user->id }}"></label>
                                                                         </div>
-                                                                   </div>
+                                                                    </div>
                                                                 </div>
                                                             @endforeach
 
@@ -1133,7 +1225,7 @@
                                                 });
                                             });
                                         </script>
-                                        
+
 
                                         <!-- modal Bagikan end -->
                                         <div class="d-flex" style="margin-left: 280px;">

@@ -479,7 +479,7 @@
                                                         </form>
                                                     @elseif($row->veed_id != null && $row->share_id != null)
                                                         <form
-                                                            action="{{ route('resep.read.notification', $row->id) }}"
+                                                            action="{{ route('share.veed.notification', $row->id) }}"
                                                             method="POST">
                                                             @method('PUT')
                                                             @csrf
@@ -490,10 +490,6 @@
                                                                         src="{{ asset('images/badge.png') }}"
                                                                         alt="profile image" style="max-width:10px">
                                                                 @endif
-                                                                {{-- <input hidden type="text"
-                                                                    value="{{ $row->complaint_id }}"
-                                                                    name="replies_id" id="replies_id"
-                                                                    class="form-control"> --}}
                                                             </button>
                                                         </form>
                                                     @elseif($row->like_reply_comment_recipes_id != null && $row->resep_id != null)

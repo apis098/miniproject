@@ -72,6 +72,8 @@ class notificationController extends Controller
         $notification = notifications::findOrFail($id);
         $notification->status = 'sudah';
         $notification->save();  
+        $uuid = $notification->veed->uuid;
+        return redirect()->route('veed.index',$uuid);
     }
     // public function blockComplaint($id){
     //     $notificattion = notifications::findOrFail($id);
