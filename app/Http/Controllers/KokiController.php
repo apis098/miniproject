@@ -82,6 +82,11 @@ class KokiController extends Controller
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
     }
 
+    public function profilage(Request $request)
+    {
+        return view('koki.profilage');
+    }
+
     public function feed(Request $request)
     {
         return view('koki.feed');
