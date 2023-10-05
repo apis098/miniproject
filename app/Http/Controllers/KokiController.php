@@ -104,6 +104,8 @@ class KokiController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
+
+
         return view('koki.profilage', compact('messageCount','notification','unreadNotificationCount','userLogin','favorite'));
     }
 

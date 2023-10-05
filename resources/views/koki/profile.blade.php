@@ -130,7 +130,7 @@
                                     <div class="col-8" style="margin-left:35%;">
                                         <input type="text" value="{{ $userLogin->name }}" name="name"
                                             class="form-control form-control-sm">
-                                        <input type="text" name="email" value="{{ $userLogin->email }}"
+                                        <input type="email" name="email" value="{{ $userLogin->email }}"
                                             class="form-control form-control-sm mt-3">
                                     </div>
 

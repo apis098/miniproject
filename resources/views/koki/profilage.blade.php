@@ -30,25 +30,26 @@
             </svg>
         </button>
     </div>
-
+    <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
+        @csrf
 <div class="mb-3 row mt-5">
     <label class="col-sm-1 col-form-label fw-bold mx-4">Nama</label>
     <div class="col-sm-10">
-        <input type="text" id="nama" name="nama_paket" class="form-control "
+        <input type="text" id="nama" name="name" value="{{ $userLogin->name }}" class="form-control "
             style=" width: 101%;  " placeholder="Masukkan Nama...">
     </div>
 </div>
 <div class="mb-3 row">
     <label class="col-sm-1 col-form-label fw-bold mx-4">Email </label>
     <div class="col-sm-10">
-        <input type="email" id="harga" name="harga_paket" class="form-control "
+        <input type="email" id="harga" name="email" value="{{ $userLogin->email }}" class="form-control "
             style=" width: 101%;  " placeholder="Masukkan Email...">
     </div>
 </div>
 <div class="mb-3 row">
     <label class="col-sm-1 col-form-label mx-4"> <strong style="margin-left: 13px;">Password</strong></label>
     <div class="col-sm-10">
-        <input type="password" id="durasi" name="durasi_paket" class="form-control "
+        <input type="text" id="durasi" name="password" value="{{ $userLogin->password }}" class="form-control "
             style=" width: 101%;  " placeholder="Masukkan Password...">
     </div>
 </div>
@@ -57,5 +58,6 @@
                           class="btn btn-sm d-flex float-end text-white mr-4"
                           style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
 
+                        </form>
 </div>
 @endsection
