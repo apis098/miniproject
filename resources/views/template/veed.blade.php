@@ -1501,12 +1501,16 @@
                                             </div>
                                             <form action="{{ route('favorite.feed.store', $item_video->id) }}" method="POST" id="favorite-form{{$item_video->id}}" class="favorite-form{{$item_video->id}}"> 
                                                 @csrf
-                                                @if ($item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                                @if (Auth::check()&&$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                     <button type="button" id="favorite-button{{ $item_video->id }}" onclick="toggleFavorite({{$item_video->id}})" class="ms-3 yuhu">
                                                             <i class="text-orange fa-solid fa-xl fa-bookmark icons{{$item_video->id}}"></i>
                                                     </button>
-                                                @else
+                                                @elseif(Auth::check()&&!$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                     <button type="button" id="favorite-button{{ $item_video->id }}" onclick="toggleFavorite({{$item_video->id}})" class="ms-3 yuhu ">
+                                                        <i class="fa-regular fa-xl fa-bookmark icons{{$item_video->id}}"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button" id="favorite-button{{ $item_video->id }}" onclick="harusLogin()" class="ms-3 yuhu ">
                                                         <i class="fa-regular fa-xl fa-bookmark icons{{$item_video->id}}"></i>
                                                     </button>
                                                 @endif
