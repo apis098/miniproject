@@ -11,13 +11,13 @@
         }
     </style>
     <div style="overflow-x:hidden">
-        <div class="content-header mx-4">
+        <div class="content-header mx-5">
             <div class="d-flex mt-1">
                 <div class="col-sm-6">
                     <h4>Selamat datang kembali viktor</h4>
                     <p>Berikut Beberapa Rekapan Terbaru</p>
                 </div>
-                <div class="col-sm-6" style="margin-left: 35%;">
+                <div class="col-sm-6" style="margin-left: 36%;">
                     <div class="d-flex mt-4">
                         @if (Auth::check() && $notification != null)
                             {{-- dropdown notifikasi --}}
@@ -527,11 +527,11 @@
     </div>
 
     <!-- Sale & Revenue Start -->
-    <div class=" container-fluid  px-4 su">
+    <div class=" container-fluid  px-4 su mx-4">
         <div class="row g-2 su">
             <div class="col-sm-3 col-lg-3 mx-3">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
-                    style="border: 1px solid #333;  width: 290px">
+                    style="border: 1px solid #333;  width: 285px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">1000</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengikut</p>
@@ -541,7 +541,7 @@
             </div>
             <div class="col-sm-3 col-lg-3 ml-5">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-1"
-                    style="border: 1px solid #333; width: 290px">
+                    style="border: 1px solid #333; width: 285px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">100</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Resep</p>
@@ -551,7 +551,7 @@
             </div>
             <div class="col-sm-3 col-lg-3 ml-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-5"
-                    style="border: 1px solid #333; width: 290px">
+                    style="border: 1px solid #333; width: 285px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">2000</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Suka</p>
@@ -565,7 +565,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-lg-12">
-                <div class="mx-3" style="width: 890px;">
+                <div class="mx-3" style="width: 920px;">
                     <div class="panel h-full w-full">
                         <div class="mb-3 flex items-center dark:text-white-light">
                             <h5 class="text-lg fw-bold">Diagram Pendapatan</h5>
@@ -612,7 +612,7 @@
         <div class="container-fluid pt-4 mr-5">
             <div class="ms-1" style="display: flex;">
                 <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
-                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 250px;">Komentar Resep Terbaru</h5>
+                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 300px;">Komentar Resep Terbaru</h5>
             </div>
 
             <div class="d-flex">
