@@ -264,14 +264,17 @@ class FiltersController extends Controller
             //return redirect()->back()->withErrors($validator);
             return redirect('resep')->with('error', $validator->errors()->all());
         }
-        $kursus_terbaru = kursus::query()->where('status', 'diterima');
+        $kursus_terbaru = kursus::query()->where('status', 'diterima')->whereDate('waktu_diterima', today());
+        $semua_kursus = kursus::query()->where('status', 'diterima');
         if ($request->has('cari_nama_kursus')) {
+            $semua_kursus->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
             $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
         }
         if ($request->has('jenis_kursus')) {
             foreach ($request->jenis_kursus as $key => $jenis) {
                 // orWhere digunakan agar menampilkan kursus yang berisi semua atau salah satu dari jenis kursus yang dipilih
                 $kursus_terbaru->orWhere('jenis_kursus', 'like', '%' . $jenis . '%');
+                $semua_kursus->orWhere('jenis_kursus', 'like', '%' . $jenis . '%');
             }
         }
         if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
@@ -280,14 +283,16 @@ class FiltersController extends Controller
             $min_price = (int)$minprice;
             $max_price = (int)$maxprice;
             $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+            $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
         }
-        $kursus_terbaru->paginate(6);
+        $kursus_terbaru = $kursus_terbaru->paginate(6);
+        $semua_kursus = $semua_kursus->paginate(6);
         $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
         $regency = Regency::pluck('name');
         $district = District::pluck('name');
         $village = Village::pluck('name');
-        $lokasi_kursus = $kursus_terbaru->map(function ($posisi) {
+        $lokasi_kursus = kursus::all()->map(function ($posisi) {
             return [
                 'latitude' => $posisi->latitude,
                 'longitude' => $posisi->longitude,
@@ -295,6 +300,6 @@ class FiltersController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('semua_kursus','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
