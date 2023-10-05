@@ -1,9 +1,5 @@
 @extends('template.nav')
 @section('content')
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <style>
         h1,
         h2,
@@ -106,11 +102,11 @@
                             @if (Auth::user())
                                 {{-- untuk koki pemilik kursus --}}
                                 @if (Auth::user()->id == $detail_course->user->id)
-                                <form action="{{ route('kursus.edit', $detail_course->id) }}">
-                                    <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Edit Kursus</b></button>
-                                </form>
+                                    <form action="{{ route('kursus.edit', $detail_course->id) }}">
+                                        <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
+                                            style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                class="ms-3 me-3">Edit Kursus</b></button>
+                                    </form>
                                 @else
                                     {{-- untuk koki lain atau user lain --}}
                                     <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"

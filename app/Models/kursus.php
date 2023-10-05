@@ -13,15 +13,16 @@ class kursus extends Model
         "users_id",
         "nama_kursus",
         "foto_kursus",
-        "deskripsi_kursus", 
+        "deskripsi_kursus",
         "nama_lokasi",
-        "latitude", 
+        "latitude",
         "longitude",
         "tarif_per_jam",
         "tipe_kursus",
         "jumlah_siswa",
         "jenis_kursus",
-        "status"
+        "status",
+        "waktu_diterima"
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");

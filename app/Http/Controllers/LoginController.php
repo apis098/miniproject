@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
+use DateTimeZone;
 use App\Models\ChMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -134,19 +136,27 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         if ($request->cari_nama_kursus) {
-            $kursus_terbaru = kursus::query()
+            $semua_kursus = kursus::query()
                 ->where('status', 'diterima')
                 ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
                 ->paginate(6);
+            $kursus_terbaru = kursus::query()
+                ->where('status', 'diterima')
+                ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
+                ->whereDate('waktu_diterima', today())
+                ->paginate(6);
         } else {
-            $kursus_terbaru = kursus::where('status', 'diterima')->paginate(6);
+            $semua_kursus = kursus::where('status', 'diterima')->paginate(6);
+            $kursus_terbaru = kursus::where('status', 'diterima')
+            ->whereDate('waktu_diterima', today())
+            ->paginate(6);
         }
         $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
         $regency = Regency::pluck('name');
         $district = District::pluck('name');
         $village = Village::pluck('name');
-        $lokasi_kursus = $kursus_terbaru->map(function ($posisi) {
+        $lokasi_kursus = kursus::all()->map(function ($posisi) {
             return [
                 'latitude' => $posisi->latitude,
                 'longitude' => $posisi->longitude,
@@ -154,7 +164,7 @@ class LoginController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function keluhan()
