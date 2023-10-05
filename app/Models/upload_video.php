@@ -15,6 +15,7 @@ class upload_video extends Model
         "upload_video",
         'isPremium',
         'uuid',
+        'favorite_count',
     ];
     public function user()
     {
@@ -27,6 +28,10 @@ class upload_video extends Model
     public function reply_comment_veed()
     {
         return $this->hasMany(reply_comment_veed::class);
+    }
+    public function favorite()
+    {
+        return $this->hasMany(favorite::class,'feed_id');
     }
     public function like_veed()
     {

@@ -233,11 +233,10 @@
 
             .text-orange {
                 color: #F7941E;
+                
             }
 
-            .text-orange:hover {
-                color: #F7941E;
-            }
+          
 
             .slider_section .detail-box a {
                 background-color: #ffffff;
@@ -1147,22 +1146,25 @@
                         @foreach ($favorite as $row)
                             <form action="{{ route('favorite.delete.multiple') }}" method="POST">
                                 @csrf
-                                <div class="modal-body d-flex align-items-center">
-                                    <input type="checkbox" name="selected_ids[]"
-                                        class="form-check-input ms-3 data-checkbox" data-id="{{ $row->id }}">
-                                    <img src="{{ asset('storage/' . $row->resep->foto_resep) }}" class=" ms-5 me-2"
-                                        style="border-radius: 10px;max-width:106px" alt="">
-                                    <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
-                                        <div style="justify-content: space-between;" class="mb-1">
-                                            <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
-                                                {{ $row->resep->nama_resep }}</h6>
+                                @if($row->resep_id != null)
+                                    <div class="modal-body d-flex align-items-center">
+                                        <input type="checkbox" name="selected_ids[]"
+                                            class="form-check-input ms-3 data-checkbox" data-id="{{ $row->id }}">
+                                        <img src="{{ asset('storage/' . $row->resep->foto_resep) }}" class=" ms-5 me-2"
+                                            style="border-radius: 10px;max-width:106px" alt="">
+                                        <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
+                                            <div style="justify-content: space-between;" class="mb-1">
+                                                <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
+                                                    {{ $row->resep->nama_resep }}</h6>
 
-                                            <small
-                                                class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
+                                                <small
+                                                    class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
 
-                                        </div>
-                                    </a>
-                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endif
+                            </form>
                         @endforeach
                         @forelse ($favorite as $row)
                         @empty

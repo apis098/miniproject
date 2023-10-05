@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('resep_id');
+            $table->unsignedBigInteger('resep_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_id_from');
             $table->timestamps();

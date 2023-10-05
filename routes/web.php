@@ -71,6 +71,7 @@ Route::put('/status-baca/blokir-keluhan/{id}', [notificationController::class, '
 
 // artikel
 Route::post('/favorite-store/{id}', [favoriteController::class, 'store'])->name('favorite.store');
+Route::post('/favorite-feed-store/{id}', [favoriteController::class, 'storeVeed'])->name('favorite.feed.store');
 Route::post('/favorite-delete/multiple', [favoriteController::class, 'destroyFavorite'])->name('favorite.delete.multiple');
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');

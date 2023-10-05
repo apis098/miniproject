@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\favorite;
 use App\Models\reseps;
+use App\Models\upload_video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Gd\Shapes\EllipseShape;
 
 class favoriteController extends Controller
 {
@@ -37,7 +39,35 @@ class favoriteController extends Controller
             ]);
         }
         if (!$user) {
-            return response()->json(['error' => 'User authentication required']);
+            return redirect()->route('login')->with(['error' => 'Silahkan login terlebih dahulu']);
+        }
+    }
+    public function storeVeed($id){
+        $user = Auth::user();
+        $feed = upload_video::findOrFail($id);
+        if($user && !$feed->favorite()->where('user_id_from', auth()->user()->id)->exists()){
+            $favorite = new favorite();
+            $favorite->user_id_from = auth()->user()->id;
+            $favorite->user_id = $feed->users_id;
+            $favorite->feed_id = $feed->id;
+            $feed->increment('favorite_count');
+            $favorite->save();
+            return response()->json([
+                'favorited' => true,
+                'feed_id' => $id,
+            ]);
+        }
+        if($user && $feed->favorite()->where('user_id_from',auth()->user()->id)->exists()){
+            $feed->favorite()->where('user_id_from',auth()->user()->id)->delete();
+            $feed->decrement('favorite_count');
+            $feed->save();
+            return response()->json([
+                'favorited' => false,
+                'feed_id' => $id,
+            ]);
+        }
+        if(!$user){
+            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
         }
     }
     public function destroyFavorite(Request $request)

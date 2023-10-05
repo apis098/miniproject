@@ -1499,9 +1499,51 @@
                                                 {{-- --}}
 
                                             </div>
-                                            <a type="button" class="ms-3" href="">
-                                                <i class="fa-regular fa-xl text-dark fa-bookmark"></i>
-                                            </a>
+                                            <form action="{{ route('favorite.feed.store', $item_video->id) }}" method="POST" id="favorite-form{{$item_video->id}}" class="favorite-form{{$item_video->id}}"> 
+                                                @csrf
+                                                @if ($item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                                    <button type="button" id="favorite-button{{ $item_video->id }}" onclick="toggleFavorite({{$item_video->id}})" class="ms-3 yuhu">
+                                                            <i class="text-orange fa-solid fa-xl fa-bookmark icons{{$item_video->id}}"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="button" id="favorite-button{{ $item_video->id }}" onclick="toggleFavorite({{$item_video->id}})" class="ms-3 yuhu ">
+                                                        <i class="fa-regular fa-xl fa-bookmark icons{{$item_video->id}}"></i>
+                                                    </button>
+                                                @endif
+                                              </form>
+                                              <script>
+                                                function toggleFavorite(videoId) {
+                                                    // Menggunakan JavaScript untuk mengirim permintaan Ajax
+                                                    var form = document.getElementById('favorite-form' + videoId);
+                                                    const button = form.querySelector("#favorite-button" + videoId);
+                                                    const icon = button.querySelector("i");
+                                                    var xhr = new XMLHttpRequest();
+                                                    xhr.open('POST', form.action, true);
+                                                    xhr.setRequestHeader('X-CSRF-TOKEN', form.querySelector('input[name="_token"]').value);
+                                                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                                    
+                                                    xhr.onreadystatechange = function () {
+                                                        if (xhr.readyState === 4 && xhr.status === 200) {
+                                                            // Handle response (mungkin Anda ingin memperbarui ikon favorit berdasarkan respons dari server)
+                                                            var response = JSON.parse(xhr.responseText);
+                                                            if (response.favorited) {
+                                                            // Reset button color and SVG her
+                                                                icon.classList.remove('text-dark');
+                                                                icon.classList.remove('fa-regular');
+                                                                icon.classList.add('fa-solid');
+                                                                icon.classList.add('text-orange');
+                                                            } else {
+                                                                icon.classList.remove('text-orange');
+                                                                icon.classList.add('text-dark');
+                                                                icon.classList.remove('fa-solid');
+                                                                icon.classList.add('fa-regular');
+                                                            }
+                                                        }
+                                                    };
+                                                    
+                                                    xhr.send('_token=' + encodeURIComponent(form.querySelector('input[name="_token"]').value));
+                                                }
+                                            </script>
                                         </div>
                                     </span>
 
@@ -1886,11 +1928,11 @@ function toggleCheckbox(checkbox) {
                             if (response.like) {
                                 $("#likeB" + num).removeClass("fa-reguler");
                                 $("#likeB" + num).addClass("fa-solid");
-                                $("#likeB" + num).addClass("text-warning");
+                                $("#likeB" + num).addClass("text-orange");
                                 $("#countLikeFeed" + num).html(response.count);
                             } else {
                                 $("#likeB" + num).removeClass("fa-solid");
-                                $("#likeB" + num).removeClass("text-warning");
+                                $("#likeB" + num).removeClass("text-orange");
                                 $("#likeB" + num).addClass("fa-regular");
                                 $("#countLikeFeed" + num).html(response.count);
                             }

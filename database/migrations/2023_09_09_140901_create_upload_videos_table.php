@@ -17,11 +17,16 @@ return new class extends Migration
             $table->unsignedBigInteger("users_id");
             $table->string("deskripsi_video");
             $table->string("upload_video");
+            $table->integer("favorite_count")->default(0);
             $table->enum('isPremium', ['yes', 'no'])->default('no');
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
         });
+        Schema::table('favorites',function (Blueprint $table){
+            $table->unsignedBigInteger('feed_id')->nullable();
+            $table->foreign("feed_id")->references("id")->on("upload_videos");
+        }); 
     }
 
     /**
