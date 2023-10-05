@@ -17,7 +17,7 @@
                     <h4>Selamat datang kembali viktor</h4>
                     <p>Berikut Beberapa Rekapan Terbaru</p>
                 </div>
-                <div class="col-sm-6" style="margin-left: 37%;">
+                <div class="col-sm-6" style="margin-left: 36%;">
                     <div class="d-flex mt-4">
                         @if (Auth::check() && $notification != null)
                             {{-- dropdown notifikasi --}}
@@ -525,13 +525,13 @@
         </div>
 
     </div>
-   
+
     <!-- Sale & Revenue Start -->
     <div class=" container-fluid  px-4 su mx-4">
         <div class="row g-2 su">
             <div class="col-sm-3 col-lg-3 mx-3">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
-                    style="border: 1px solid #333;  width: 320px">
+                    style="border: 1px solid #333;  width: 285px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">1000</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengikut</p>
@@ -541,7 +541,7 @@
             </div>
             <div class="col-sm-3 col-lg-3 ml-5">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-1"
-                    style="border: 1px solid #333; width: 320px">
+                    style="border: 1px solid #333; width: 285px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">100</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Resep</p>
@@ -551,7 +551,7 @@
             </div>
             <div class="col-sm-3 col-lg-3 ml-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-5"
-                    style="border: 1px solid #333; width: 320px">
+                    style="border: 1px solid #333; width: 285px">
                     <div class="ms-1">
                         <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">2000</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Suka</p>
@@ -563,34 +563,15 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3 me-2">
-            <!-- Example single danger button -->
-            <div class="col-lg-10">
-                {{-- <div class="btn-group ">
-                    <button type="button" style="width: 10%; margin-left: 34px;border-radius: 15px;background-color: #F7941E; border: none;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        class="btn btn-warning dropdown-toggle mb-3" data-bs-toggle="dropdown" aria-expanded="false">
-                        @if (request()->has('tahun'))
-                            {{ request()->tahun }}
-                        @else
-                            {{ date('Y') }}
-                        @endif
-                    </button>
-                    <ul class="dropdown-menu">
-                        @foreach ($years as $y)
-                            <li>
-                                <a class="dropdown-item"
-                                    href="/admin/dashboard?tahun={{ $y }}">{{ $y }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div> --}}
-                <div class="mx-3" style="width:990px; margin: 0 auto; margin-top: -5px">
-                    <div class="panel h-full xl:col-span-2 w-full">
+        <div class="row mt-3">
+            <div class="col-lg-12">
+                <div class="mx-3" style="width: 920px;">
+                    <div class="panel h-full w-full">
                         <div class="mb-3 flex items-center dark:text-white-light">
                             <h5 class="text-lg fw-bold">Diagram Pendapatan</h5>
                         </div>
                     </div>
-                    <canvas id="myBarChart" style="border: 1px solid black; border-radius: 15px"></canvas>
+                    <canvas id="myBarChart" style="border: 1px solid black; border-radius: 15px; width: 100%;"></canvas>
                 </div>
             </div>
         </div>
@@ -631,13 +612,13 @@
         <div class="container-fluid pt-4 mr-5">
             <div class="ms-1" style="display: flex;">
                 <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
-                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 313px;">Komentar Resep Terbaru</h5>
+                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 300px;">Komentar Resep Terbaru</h5>
             </div>
 
             <div class="d-flex">
                 <div class="col-lg-6">
                     <div class="card p-4 mt-2 mb-2"
-                        style="width: 470px; height: 400px; border-radius: 15px; border: 1px black solid">
+                        style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
 
                         </div>
@@ -646,7 +627,7 @@
 
                 <div class="col-lg-6">
                     <div class="card p-4 mt-2 mb-2"
-                        style="width: 470px; height: 400px; border-radius: 15px; border: 1px black solid">
+                        style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
 
                         </div>
