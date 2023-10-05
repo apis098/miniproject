@@ -97,19 +97,22 @@
 
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-<!-- Load Leaflet from CDN-->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet-src.js"></script>
 
-<!-- Load Esri Leaflet from CDN -->
-<script src="https://unpkg.com/esri-leaflet"></script>
+ <!-- Load Leaflet from CDN-->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+ <script src="https://unpkg.com/leaflet/dist/leaflet-src.js"></script>
 
-<!-- Esri Leaflet Geocoder -->
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css"
-/>
-<script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+ <!-- Load Esri Leaflet from CDN -->
+ <script src="https://unpkg.com/esri-leaflet"></script>
+
+ <!-- Esri Leaflet Geocoder -->
+ <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css" />
+ <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
         <style>
             .custom_nav-container .navbar-nav .nav-item.active .nav-link {

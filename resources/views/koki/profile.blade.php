@@ -30,7 +30,7 @@
                                 <img src="{{ asset('images/default.jpg') }}" width="146px" height="144px"
                                     style="border-radius: 50%" alt="">
                             @endif
-                            <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
+                            <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; border: none"
                                 class="btn btn-warning btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
                                 data-bs-target="#mymodal">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 48 48">
@@ -130,7 +130,7 @@
                                     <div class="col-8" style="margin-left:35%;">
                                         <input type="text" value="{{ $userLogin->name }}" name="name"
                                             class="form-control form-control-sm">
-                                        <input type="text" name="email" value="{{ $userLogin->email }}"
+                                        <input type="email" name="email" value="{{ $userLogin->email }}"
                                             class="form-control form-control-sm mt-3">
                                     </div>
 

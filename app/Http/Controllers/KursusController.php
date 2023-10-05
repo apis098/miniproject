@@ -8,6 +8,8 @@ use App\Models\footer;
 use App\Models\kursus;
 use App\Models\notifications;
 use App\Models\paket_kursuses;
+use DateTime;
+use DateTimeZone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +57,10 @@ class KursusController extends Controller
     {
         $update_status = kursus::find($id);
         $update_status->status = $status;
+        if ($status === 'diterima') {
+            $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+            $update_status->waktu_diterima = $currentTime->format('Y-m-d H:i:s');
+        }
         $update_status->save();
         return redirect()->back()->with('success', 'sukses mengeksekusi kursus!');
     }
@@ -237,7 +243,7 @@ class KursusController extends Controller
         $edit_kursus->jumlah_siswa = $request->jumlah_siswa;
         $edit_kursus->jenis_kursus = $request->jenis_kursus;
         $edit_kursus->save();
-        
+
         return response()->json([
             "success" => true,
             "message" => "sukses mengedit kursus!"
