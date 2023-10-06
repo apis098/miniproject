@@ -344,13 +344,43 @@
                             </label> <br>
                             <input type="radio" class="btn-check" name="premium" id="success-outlined"
                                 autocomplete="off" value="no">
-                            <label class="btn btn-outline-success mr-3" for="success-outlined">Gratis</label>
+                            <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
 
                             <input type="radio" class="btn-check" name="premium" id="danger-outlined"
                                 autocomplete="off" value="yes">
-                            <label class="btn btn-outline-danger" for="danger-outlined">Premium</label>
+                            <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
                         </div>
                     @endif
+                    <style>
+                        .btn-select {
+                            background: #F7941E;
+                            border-radius: 15px;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            color: #EAEAEA;
+                        }
+                        .btn-no-select {
+                            background: #EAEAEA;
+                            border-radius: 15px;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            color: black;
+                        }
+                    </style>
+                    <script>
+                        const free_button = document.getElementById("free");
+                        const prem_button = document.getElementById("prem");
+                        free_button.addEventListener("click", function () {
+                            free_button.classList.remove("btn-no-select");
+                            free_button.classList.add("btn-select");
+                            prem_button.classList.remove("btn-select");
+                            prem_button.classList.add("btn-no-select");
+                        });
+                        prem_button.addEventListener("click", function () {
+                            prem_button.classList.remove("btn-no-select");
+                            prem_button.classList.add("btn-select");
+                            free_button.classList.remove("btn-select");
+                            free_button.classList.add("btn-no-select");
+                        });
+                    </script>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="button-add-recipe">Tambah
