@@ -23,7 +23,6 @@ return new class extends Migration
             $table->bigInteger('tarif_per_jam');
             $table->enum('tipe_kursus', ['perorangan', 'grup']);
             $table->integer('jumlah_siswa');
-            $table->string('jenis_kursus');
             $table->enum('status', ['ditunggu', 'diterima', 'ditolak'])->default('ditunggu');
             $table->timestamp('waktu_diterima')->nullable();
             $table->timestamps();

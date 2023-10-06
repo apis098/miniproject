@@ -16,6 +16,7 @@ use App\Models\toolsCooks;
 use Illuminate\Support\Facades\Validator;
 use App\Models\kursus;
 use App\Models\District;
+use App\Models\jenis_kursuses;
 use App\Models\Province;
 use App\Models\Village;
 use App\Models\Regency;
@@ -264,18 +265,22 @@ class FiltersController extends Controller
             //return redirect()->back()->withErrors($validator);
             return redirect('resep')->with('error', $validator->errors()->all());
         }
-        $kursus_terbaru = kursus::query()->where('status', 'diterima')->whereDate('waktu_diterima', today());
-        $semua_kursus = kursus::query()->where('status', 'diterima');
+        $kursus_terbaru = kursus::query();
+        $kursus_terbaru->where('status', 'diterima')->whereDate('waktu_diterima', today());
+        $semua_kursus = kursus::query();
+        $semua_kursus->where('status', 'diterima');
         if ($request->has('cari_nama_kursus')) {
             $semua_kursus->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
             $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
         }
         if ($request->has('jenis_kursus')) {
-            foreach ($request->jenis_kursus as $key => $jenis) {
-                // orWhere digunakan agar menampilkan kursus yang berisi semua atau salah satu dari jenis kursus yang dipilih
-                $kursus_terbaru->orWhere('jenis_kursus', 'like', '%' . $jenis . '%');
-                $semua_kursus->orWhere('jenis_kursus', 'like', '%' . $jenis . '%');
-            }
+            $jenis_kursuses = $request->jenis_kursus;
+            $semua_kursus->whereHas('jenis_kursus', function ($q) use ($jenis_kursuses) {
+                $q->whereIn('jenis_kursus', $jenis_kursuses);
+            });
+            $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursuses) {
+                $q->whereIn('jenis_kursus', $jenis_kursuses);
+            });
         }
         if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
             $minprice = str_replace(['.', ','], '', $request->min_price);
@@ -285,9 +290,9 @@ class FiltersController extends Controller
             $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
             $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
         }
-        $kursus_terbaru = $kursus_terbaru->paginate(6);
-        $semua_kursus = $semua_kursus->paginate(6);
-        $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
+        $kursus_terbaru = $kursus_terbaru->get();
+        $semua_kursus = $semua_kursus->get();
+        $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
         $regency = Regency::pluck('name');
         $district = District::pluck('name');
@@ -300,6 +305,6 @@ class FiltersController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        return view('template.kursus', compact('semua_kursus','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('semua_kursus', 'district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

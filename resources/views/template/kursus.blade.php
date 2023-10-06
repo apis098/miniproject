@@ -317,6 +317,7 @@
                                                 class="cari2 form-control">
                                                 <option value="" disabled>Masukkan nama kabupaten lokasi kursus...
                                                 </option>
+                                                <option value=""></option>
                                                 @foreach ($regency as $item_daerah)
                                                     <option value="{{ $item_daerah }}">{{ $item_daerah }}</option>
                                                 @endforeach
@@ -443,7 +444,9 @@
                                         <div class="col-12">
                                             <button type="button"class="btn"
                                                 style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                                {{ $semua->jenis_kursus }}
+                                                @foreach ($semua->jenis_kursus as $item)
+                                                 {{ $item->jenis_kursus }}
+                                                @endforeach
                                             </button> <br>
                                             <a href="{{ route('detail.kursus', $semua->id) }}" class="btn"
                                                 style="font-family: poppins;font-weight:bold">{{ $semua->nama_kursus }}</a>
@@ -495,7 +498,9 @@
                                         <div class="col-12">
                                             <button type="button"class="btn"
                                             style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                            {{ $baru->jenis_kursus }}
+                                            @foreach ($baru->jenis_kursuses as $item_jenis)
+                                             {{ $item_jenis->jenis_kursus }}
+                                            @endforeach
                                         </button> <br>
                                             <a href="{{ route('detail.kursus', $baru->id) }}" class="btn"
                                                 style="font-family: poppins;font-weight:bold">{{ $baru->nama_kursus }}</a>
