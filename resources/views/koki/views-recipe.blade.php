@@ -188,10 +188,10 @@
             </span>
         </button>
     </div>
-    <div class=" mx-1 my-4">
+    <div class="mx-1 my-4">
         <div class="row">
             {{-- @foreach ($recipes as $num => $item) --}}
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-2">
+                <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
                     <div class="card-body" style="border-radius: 15px; border: 0.50px black solid">
                         <div class=" my-3 mx-auto" style="background-color: white">
 
