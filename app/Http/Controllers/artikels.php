@@ -46,7 +46,7 @@ class artikels extends Controller
             $id_admin = User::where("role", "admin")->first();
             if ($id_user == $id_admin->id) {
                 $admin = true;
-            } 
+            }
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
