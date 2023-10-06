@@ -18,6 +18,7 @@ use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
 use App\Models\Reply;
 use App\Models\reply_comment_veed;
+use App\Models\reseps;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
 
 use function Laravel\Prompts\alert;
@@ -35,6 +36,9 @@ class VeedController extends Controller
         $admin = false;
         $messageCount = [];
         $allUser = User::where('role','koki')->whereNot('id',auth()->user())->get();
+        $top_users = User::has("followers")->orderBy("followers", "desc")->take(5)->get();
+        // $resep = reseps::where('user_id',$top_users->id)->count();
+        // dd($resep);
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
             // $user_following = followers::where('follower_id', auth()->user()->id)->get();
@@ -61,11 +65,10 @@ class VeedController extends Controller
         $video_pembelajaran = upload_video::inRandomOrder()->get();
 
         $reply_comment_veed = reply_comment_veed::latest()->get();
-
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
 
-        return view("template.veed", compact("messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact("top_users","messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id){
         $userLogin = Auth::user();

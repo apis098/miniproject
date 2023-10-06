@@ -374,7 +374,7 @@
 
                             {{-- dropdown profile & logout --}}
                             <div class="input-group dropdown">
-                                <a data-toggle="dropdown" class="" href="#" style="margin-top: -17px">
+                                <a data-toggle="dropdown" class="" href="#" style="margin-top: -20px">
                                     @if ($userLogin->foto)
                                         <img loading="lazy" class="mr-3 rounded-circle"
                                             src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
@@ -612,7 +612,7 @@
         <div class="container-fluid pt-4 mr-5">
             <div class="ms-1" style="display: flex;">
                 <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
-                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 300px;">Komentar Resep Terbaru</h5>
+                <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 270px;">Komentar Resep Terbaru</h5>
             </div>
 
             <div class="d-flex">

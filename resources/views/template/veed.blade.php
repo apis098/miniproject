@@ -15,23 +15,35 @@
                         Rekomendasi Chef
                     </div>
                     <div class="card-body" style="height: 400px;">
-                        <div class="d-flex mb-3">
-                            <a href="">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                            </a>
-                            <div>
-                                <div class="bg-light rounded-3 px-3 py-1">
-                                    <a href="" class="text-dark mb-0">
-                                        <strong>Malcolm Dosh</strong>
-                                    </a>
-                                    <a href="" class="text-muted d-block">
-                                        <small>20 Resep</small>
-                                    </a>
-                                </div>
+                        @foreach($top_users as $row)
+                            <div class="d-flex mb-3">
+                                @if($row->foto)
+                                <a href="">
+                                    <img src="{{ asset('storage/' . $row->foto) }}"
+                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                                </a>
+                                @else
+                                <a href="">
+                                    <img src="{{ asset('images/default.jpg') }}"
+                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                                </a>
+                                @endif
+                                <div>
+                                    <div class="bg-light rounded-3 px-3 py-1">
+                                        <a href="" class="text-dark mb-0">
+                                            <strong>{{$row->name}}</strong>
+                                        </a>
+                                        @php
+                                            $resep_count = \App\Models\reseps::where('user_id',$row->id)->count();    
+                                        @endphp
+                                        <a href="" class="text-muted d-block">
+                                            <small>{{$resep_count}} Resep dibuat</small>
+                                        </a>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
