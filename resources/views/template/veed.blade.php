@@ -302,7 +302,7 @@
                                             <form>
                                                 <button style="border: none; background-color:white;" id="buttonLikeVeed"
                                                     type="button" onclick="harusLogin()">
-                                                    <i class="fa-regular fa-thumbs-up"></i>
+                                                    <i class="fa-regular fa-lg fa-thumbs-up"></i>
                                                 </button>
                                             </form>
                                         @endif
@@ -1156,13 +1156,13 @@
                                                         <form action="{{ route('share.feed', $item_video->id) }}"
                                                             method="POST">
                                                             @csrf
-                                                            @foreach ($user_following as $following)
+                                                            @foreach ($allUser as $user)
                                                                 <div class="element-pencarian">
                                                                     <div class="d-flex mt-4">
                                                                         <div
                                                                             class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
                                                                             <a class="foto" href="">
-                                                                                @if ($following->user->foto)
+                                                                                @if ($user->foto)
                                                                                     <img src="{{ asset('storage/' . $following->user->foto) }}"
                                                                                         class="border rounded-circle me-2"
                                                                                         alt="Avatar"
@@ -1180,11 +1180,11 @@
                                                                             <div class="nama rounded-3 px-3 py-1">
                                                                                 <a href="" class="text-dark mb-0">
                                                                                     <strong
-                                                                                        class="input-name">{{ $following->user->name }}</strong>
+                                                                                        class="input-name">{{ $user->name }}</strong>
                                                                                 </a>
                                                                                 <a href=""
                                                                                     class="text-muted d-block">
-                                                                                    <small>{{ $following->user->email }}</small>
+                                                                                    <small>{{ $user->email }}</small>
                                                                                 </a>
                                                                             </div>
 
@@ -1193,10 +1193,10 @@
                                                                             class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
                                                                             <input type="checkbox" class="select-checkbox"
                                                                                 name="user_id[]"
-                                                                                id="checkbox-{{ $item_video->id }}-{{ $following->user->id }}"
-                                                                                value="{{ $following->user->id }}">
+                                                                                id="checkbox-{{ $item_video->id }}-{{ $user->id }}"
+                                                                                value="{{ $user->id }}">
                                                                             <label
-                                                                                for="checkbox-{{ $item_video->id }}-{{ $following->user->id }}"></label>
+                                                                                for="checkbox-{{ $item_video->id }}-{{ $user->id }}"></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>

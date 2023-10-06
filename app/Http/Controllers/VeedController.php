@@ -34,10 +34,10 @@ class VeedController extends Controller
         $unreadNotificationCount = [];
         $admin = false;
         $messageCount = [];
-        $user_following = [];
+        $allUser = User::where('role','koki')->whereNot('id',auth()->user()->id)->get();
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-            $user_following = followers::where('follower_id', auth()->user()->id)->get();
+            // $user_following = followers::where('follower_id', auth()->user()->id)->get();
         }
         if ($userLogin) {
             $id_user = Auth::user()->id;
@@ -65,7 +65,7 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
 
-        return view("template.veed", compact("messageCount", "user_following", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact("messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id){
         $userLogin = Auth::user();
