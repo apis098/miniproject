@@ -16,6 +16,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 class KursusController extends Controller
 {
@@ -47,7 +51,74 @@ class KursusController extends Controller
         return view('koki.kursus', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
-
+    public function kursus_template(Request $request)
+    {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $footer = footer::first();
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
+        $semua_kursus = kursus::query()->where('status', 'diterima');
+        $kursus_terbaru = kursus::query()->where('status', 'diterima')->whereDate('waktu_diterima', today());
+        if ($request->cari_nama_kursus) {
+            $semua_kursus->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
+                ->paginate(6);
+            $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
+                ->paginate(6);
+        }
+        if ($request->isMethod('post')) {
+            if ($request->has('jenis_kursus')) {
+                $jenis_kursus = $request->jenis_kursus;
+                $semua_kursus->whereHas('jenis_kursus', function ($query) use ($jenis_kursus) {
+                    $query->whereIn('jenis_kursus', $jenis_kursus);
+                });
+                $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
+                    $q->whereIn('jenis_kursus', $jenis_kursus);
+                });
+            }
+            if ($request->has('min_price') && $request->has('max_price')) {
+                if ($request->min_price != NULL && $request->max_price != NULL) {
+                    $minprice = str_replace(['.', ','], '', $request->min_price);
+                    $maxprice = str_replace(['.', ','], '', $request->max_price);
+                    $min_price = (int)$minprice;
+                    $max_price = (int)$maxprice;
+                    $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+                    $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+                }
+            }
+        }
+        $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
+        $provinsi = Province::pluck('name');
+        $regency = Regency::pluck('name');
+        $district = District::pluck('name');
+        $village = Village::pluck('name');
+        $lokasi_kursus = $semua_kursus->get()->map(function ($posisi) {
+            return [
+                'latitude' => $posisi->latitude,
+                'longitude' => $posisi->longitude,
+                'id_kursus' => $posisi->id,
+                'nama_kursus' => $posisi->nama_kursus
+            ];
+        });
+        $semua_kursus = $semua_kursus->paginate(6);
+        $kursus_terbaru = $kursus_terbaru->paginate(6);
+        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+    }
 
     public function kursus()
     {

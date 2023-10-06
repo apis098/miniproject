@@ -295,7 +295,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('filter.kursus') }}" method="POST">
+                                    <form action="{{ route('kursus') }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="kursus" class="form-label">Jenis kursus</label>

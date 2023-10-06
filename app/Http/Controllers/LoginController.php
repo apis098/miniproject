@@ -114,60 +114,6 @@ class LoginController extends Controller
         return view('template.home', compact('messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
-    public function kursus(Request $request)
-    {
-        $userLogin = Auth::user();
-        $notification = [];
-        $favorite = [];
-        $footer = footer::first();
-        $unreadNotificationCount = [];
-        $messageCount = [];
-        if ($userLogin) {
-            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-        }
-        if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
-        }
-        if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-        if ($request->cari_nama_kursus) {
-            $semua_kursus = kursus::query()
-                ->where('status', 'diterima')
-                ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
-                ->paginate(6);
-            $kursus_terbaru = kursus::query()
-                ->where('status', 'diterima')
-                ->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
-                ->whereDate('waktu_diterima', today())
-                ->paginate(6);
-        } else {
-            $semua_kursus = kursus::where('status', 'diterima')->paginate(6);
-            $kursus_terbaru = kursus::where('status', 'diterima')
-            ->whereDate('waktu_diterima', today())
-            ->paginate(6);
-        }
-        $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
-        $provinsi = Province::pluck('name');
-        $regency = Regency::pluck('name');
-        $district = District::pluck('name');
-        $village = Village::pluck('name');
-        $lokasi_kursus = kursus::where('status', 'diterima')->get()->map(function ($posisi) {
-            return [
-                'latitude' => $posisi->latitude,
-                'longitude' => $posisi->longitude,
-                'id_kursus' => $posisi->id,
-                'nama_kursus' => $posisi->nama_kursus
-            ];
-        });
-        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
-    }
-
     public function keluhan()
     {
         $complaints = complaint::paginate(3);
