@@ -289,10 +289,10 @@
                                                 @elseif($isLikeVeed == 1)
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button class="text-warning me-1"
+                                                        <button class=" me-1"
                                                             style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
-                                                            <i class="fa-solid fa-lg fa-thumbs-up"
+                                                            <i class="text-orange fa-solid fa-lg fa-thumbs-up"
                                                                 id="likeB{{ $urut }}"></i>
                                                         </button>
                                                     </form>
@@ -471,11 +471,10 @@
                                                                                 {{-- --}}
                                                                                 @if (Auth::user())
                                                                                     @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user->id)
-                                                                                        {{-- Laporkan Komentar --}}
                                                                                         <a data-bs-toggle="modal"
                                                                                             href="#ModalL{{ $item_comment->id }}"
                                                                                             class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                                                class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                                                                class="fa-solid fa-triangle-exclamation"></i>
                                                                                         </a>
                                                                                         <div class="modal fade"
                                                                                             data-bs-backdrop="static"
@@ -491,8 +490,8 @@
                                                                                                         <h5 class="modal-title"
                                                                                                             id="reportModal"
                                                                                                             style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                                                            Laporkan!
-                                                                                                            komentar</h5>
+                                                                                                            Laporkan
+                                                                                                            Postingan!</h5>
                                                                                                         <button
                                                                                                             type="button"
                                                                                                             class="close"
@@ -502,9 +501,7 @@
                                                                                                                 aria-hidden="true">&times;</span>
                                                                                                         </button>
                                                                                                     </div>
-                                                                                                    <form
-                                                                                                        action="{{-- route('Report.comment.recipes',$row->id) --}}"
-                                                                                                        method="POST">
+                                                                                                    <form action="{{route('repeort.feed')}}" method="POST">
                                                                                                         {{-- @csrf --}}
                                                                                                         <div
                                                                                                             class="modal-body d-flex align-items-center">
@@ -1119,43 +1116,42 @@
                                         </style>
                                         {{-- modal bagikan --}}
                                         <div class="modal" id="bagikan{{ $item_video->id }}">
-                                            <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title ml-3"
-                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                            Bagikan Kepada</h5>
-                                                        <button type="button" class="close mr-2" data-bs-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body mb-4">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="col-2 mt-2 me-1"
-                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                                                Kepada
-                                                            </div>
+                                            <form action="{{ route('share.feed', $item_video->id) }}" method="POST">
+                                                @csrf
+                                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title ml-3"
+                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                Bagikan Kepada</h5>
+                                                            <button type="button" class="close mr-2"
+                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body mb-4">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="col-2 mt-2 me-1"
+                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                    Kepada
+                                                                </div>
 
-                                                            <div class="search" style="border-radius: 15px;">
-                                                                <div class="col-lg-11 mt-2">
-                                                                    <div class="search-2"> <i class='bx bxs-map'></i>
+                                                                <div class="search" style="border-radius: 15px;">
+                                                                    <div class="col-lg-11 mt-2">
+                                                                        <div class="search-2"> <i class='bx bxs-map'></i>
 
-                                                                        <input id="search" type="text"
-                                                                            name="" style="text-align: left;"
-                                                                            placeholder="Cari...">
+                                                                            <input id="search" type="text"
+                                                                                name="" style="text-align: left;"
+                                                                                placeholder="Cari...">
 
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
 
-                                                        <h3 class="mt-4 ml-3"
-                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                                            Disarankan</h3>
-                                                        <form action="{{ route('share.feed', $item_video->id) }}"
-                                                            method="POST">
-                                                            @csrf
+                                                            <h3 class="mt-4 ml-3"
+                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                Disarankan</h3>
                                                             @foreach ($allUser as $user)
                                                                 <div class="element-pencarian">
                                                                     <div class="d-flex mt-4">
@@ -1163,7 +1159,7 @@
                                                                             class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
                                                                             <a class="foto" href="">
                                                                                 @if ($user->foto)
-                                                                                    <img src="{{ asset('storage/' . $following->user->foto) }}"
+                                                                                    <img src="{{ asset('storage/' . $user->foto) }}"
                                                                                         class="border rounded-circle me-2"
                                                                                         alt="Avatar"
                                                                                         style="height: 55px" />
@@ -1202,18 +1198,17 @@
                                                                 </div>
                                                             @endforeach
 
-                                                            <div class="d-flex align-items-center  mt-4">
-                                                                <button
-                                                                    class="btn btn-light fw-bolder text-light col-lg-12 "
-                                                                    type="submit"
-                                                                    style="border-radius: 10px; background-color:#F7941E;">
-                                                                    <p class="mt-1 mb-1">Bagikan</p>
-                                                                </button>
-                                                            </div>
-                                                        </form>
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-center">
+                                                            <button class="btn btn-light fw-bolder text-light col-lg-11"
+                                                                type="submit"
+                                                                style="border-radius: 10px; background-color:#F7941E;">
+                                                                <p class="mt-1 mb-1">Bagikan</p>
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
                                         <script>
                                             $(document).ready(function() {
@@ -1383,7 +1378,7 @@
                                                         <button type="button" data-bs-toggle="modal"
                                                             data-bs-target="#Modalsd{{ $urut }}"
                                                             class="yuhu text-dark btn-sm rounded-5 "><i
-                                                                class="fa-solid fa-xl mt-1 fa-triangle-exclamation me-2"></i>
+                                                                class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1"></i>
                                                         </button>
                                                         <div class="modal fade" id="Modalsd{{ $urut }}"
                                                             tabindex="-1" role="dialog"
@@ -1401,8 +1396,8 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
-                                                                        {{-- @csrf --}}
+                                                                    <form action="{{route('report.feed',$item_video->id)}}" method="POST">
+                                                                        @csrf
                                                                         <div class="modal-body d-flex align-items-center">
 
                                                                             <img class="me-2"
@@ -1499,23 +1494,35 @@
                                                 {{-- --}}
 
                                             </div>
-                                            <form action="{{ route('favorite.feed.store', $item_video->id) }}" method="POST" id="favorite-form{{$item_video->id}}" class="favorite-form{{$item_video->id}}"> 
+                                            <form action="{{ route('favorite.feed.store', $item_video->id) }}"
+                                                method="POST" id="favorite-form{{ $item_video->id }}"
+                                                class="favorite-form{{ $item_video->id }}">
                                                 @csrf
-                                                @if (Auth::check()&&$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
-                                                    <button type="button" id="favorite-button{{ $item_video->id }}" onclick="toggleFavorite({{$item_video->id}})" class="ms-3 yuhu">
-                                                            <i class="text-orange fa-solid fa-xl fa-bookmark icons{{$item_video->id}}"></i>
+                                                @if (Auth::check() &&
+                                                        $item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                                    <button type="button" id="favorite-button{{ $item_video->id }}"
+                                                        onclick="toggleFavorite({{ $item_video->id }})"
+                                                        class="ms-3 yuhu">
+                                                        <i
+                                                            class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
                                                     </button>
-                                                @elseif(Auth::check()&&!$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
-                                                    <button type="button" id="favorite-button{{ $item_video->id }}" onclick="toggleFavorite({{$item_video->id}})" class="ms-3 yuhu ">
-                                                        <i class="fa-regular fa-xl fa-bookmark icons{{$item_video->id}}"></i>
+                                                @elseif(Auth::check() &&
+                                                        !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                                    <button type="button" id="favorite-button{{ $item_video->id }}"
+                                                        onclick="toggleFavorite({{ $item_video->id }})"
+                                                        class="ms-3 yuhu ">
+                                                        <i
+                                                            class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
                                                     </button>
                                                 @else
-                                                    <button type="button" id="favorite-button{{ $item_video->id }}" onclick="harusLogin()" class="ms-3 yuhu ">
-                                                        <i class="fa-regular fa-xl fa-bookmark icons{{$item_video->id}}"></i>
+                                                    <button type="button" id="favorite-button{{ $item_video->id }}"
+                                                        onclick="harusLogin()" class="ms-3 yuhu ">
+                                                        <i
+                                                            class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
                                                     </button>
                                                 @endif
-                                              </form>
-                                              <script>
+                                            </form>
+                                            <script>
                                                 function toggleFavorite(videoId) {
                                                     // Menggunakan JavaScript untuk mengirim permintaan Ajax
                                                     var form = document.getElementById('favorite-form' + videoId);
@@ -1525,13 +1532,13 @@
                                                     xhr.open('POST', form.action, true);
                                                     xhr.setRequestHeader('X-CSRF-TOKEN', form.querySelector('input[name="_token"]').value);
                                                     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                                                    
-                                                    xhr.onreadystatechange = function () {
+
+                                                    xhr.onreadystatechange = function() {
                                                         if (xhr.readyState === 4 && xhr.status === 200) {
                                                             // Handle response (mungkin Anda ingin memperbarui ikon favorit berdasarkan respons dari server)
                                                             var response = JSON.parse(xhr.responseText);
                                                             if (response.favorited) {
-                                                            // Reset button color and SVG her
+                                                                // Reset button color and SVG her
                                                                 icon.classList.remove('text-dark');
                                                                 icon.classList.remove('fa-regular');
                                                                 icon.classList.add('fa-solid');
@@ -1544,7 +1551,7 @@
                                                             }
                                                         }
                                                     };
-                                                    
+
                                                     xhr.send('_token=' + encodeURIComponent(form.querySelector('input[name="_token"]').value));
                                                 }
                                             </script>

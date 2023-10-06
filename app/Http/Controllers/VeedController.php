@@ -34,7 +34,7 @@ class VeedController extends Controller
         $unreadNotificationCount = [];
         $admin = false;
         $messageCount = [];
-        $allUser = User::where('role','koki')->whereNot('id',auth()->user()->id)->get();
+        $allUser = User::where('role','koki')->whereNot('id',auth()->user())->get();
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
             // $user_following = followers::where('follower_id', auth()->user()->id)->get();

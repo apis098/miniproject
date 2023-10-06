@@ -107,7 +107,9 @@
                 color: #F7941E;
                 background: white;
             }
+            .video-fav{
 
+            }
             .nav-link:hover {}
 
             .nav-link {
@@ -1149,6 +1151,24 @@
                                             </div>
                                         </a>
                                     </div>
+                                @elseif($row->feed_id != null)
+                                    <div class="modal-body d-flex align-items-center">
+                                        <input type="checkbox" name="selected_ids[]"
+                                            class="form-check-input ms-3 data-checkbox" data-id="{{ $row->id }}">
+                                            <video class="video ms-5 video-fav" controls width="180" height="120">
+                                                <source src="/storage/{{$row->veed->upload_video}}" type="video/mp4">
+                                            </video>
+                                        <a href="/artikel/{{ $row->veed->id }}/{{ $row->veed->deskripsi_video }}">
+                                            <div style="justify-content: space-between;" class="mb-1">
+                                                <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
+                                                    {{ $row->veed->deskripsi_video }}</h6>
+
+                                                <small
+                                                    class="text-secondary ms-3 me-3">{{ strlen($row->veed->deskripsi_video) > 80 ? substr($row->veed->deskripsi_video, 0, 80) . '...' : $row->veed->deskripsi_video }}</small>
+
+                                            </div>
+                                        </a>
+                                    </div>
                                 @endif
                             </form>
                         @endforeach
@@ -1312,7 +1332,7 @@
                     placeholder: {
                         id: '-1',
                         text: 'Masukkan Nama Bahan'
-                    },
+                    },avo
                     dropdownParent: $('#filter')
 
                 });

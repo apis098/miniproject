@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['complaint_id', 'user_id','reply_id','user_id_sender','description','profile_id','comment_id','reply_comment_id'];
+    protected $fillable = ['feed_id','complaint_id', 'user_id','reply_id','user_id_sender','description','profile_id','comment_id','reply_comment_id'];
 
     public function complaint()
     {
@@ -38,5 +38,9 @@ class Report extends Model
     public function reply_complaint()
     {
         return $this->belongsTo(replyComplaint::class,'reply_id_complaint');
+    }
+    public function feed()
+    {
+        return $this->belongsTo(upload_video::class,'feed_id');
     }
 }

@@ -11,6 +11,7 @@ use App\Models\comment_recipes;
 use App\Models\replyCommentRecipe;
 use App\Models\Report;
 use App\Models\reseps;
+use App\Models\upload_video;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -105,8 +106,7 @@ class ReportController extends Controller
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.keluhan',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
-    }
-
+    }   
     public function komentar(Request $request){
 
         $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
@@ -218,12 +218,30 @@ class ReportController extends Controller
     public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);
         $report = new Report();
-        $report->resep_id = $resep->id;
-        $report->user_id = $resep->user_id;
-        $report->user_id_sender = auth()->user()->id;
-        $report->description = $request->description;
-        $report->save();
+        if(Auth::check()){
+            $report->resep_id = $resep->id;
+            $report->user_id = $resep->user_id;
+            $report->user_id_sender = auth()->user()->id;
+            $report->description = $request->description;
+            $report->save();
+        }else{
+            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+        }
         return redirect()->back()->with('success','Laporan anda telah terkirim');
+    }
+    public function storeVeed(Request $request,$id){
+        $feed = upload_video::findOrFail($id);
+        if(Auth::check()){
+            $report = new Report();
+            $report->user_Id = $feed->users_id;
+            $report->user_id_sender = auth()->user()->id;
+            $report->description = $request->description;
+            $report->feed_id = $id;
+            $report->save();
+            return redirect()->back()->with('success','Berhasil melaporkan postingan');
+        }else{
+            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+        }
     }
     public function storeReplyComment(Request $request,$id){
         if(Auth::check()){
@@ -308,6 +326,9 @@ class ReportController extends Controller
             if($request->profile_id != null){
                 $report->profile_id = $request->profile_id;
             }
+            if($request->feed_id != null){
+                $report->feed_id = $request->feed_id;
+            }
             $report->description = $request->description;
             $report->user_id_sender = $userId;
             $report->save();
@@ -317,7 +338,8 @@ class ReportController extends Controller
             return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
         }
     }
-
+    
+  
     public function randomName($id){
         $report = Report::findOrFail($id);
         $report->user->delete();

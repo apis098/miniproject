@@ -109,6 +109,7 @@ Route::post('/laporan-pengguna-store', [ReportController::class, 'store'])->name
 Route::post('/laporan-komentar-resep-store/{id}', [ReportController::class, 'store_comment_recipes'])->name('Report.comment.recipes');
 Route::post('/laporan-balasan-komentar-resep-store/{id}', [ReportController::class, 'reply_comment_recipes'])->name('Report.reply.comment.recipes');
 Route::post('/laporan-resep/{id}',[ReportController::class,'storeResep'])->name('report.resep');
+Route::post('/laporan-feed/{id}',[ReportController::class,'storeVeed'])->name('report.feed');
 Route::post('/laporan-komentar/{id}',[ReportController::class,'storeReply'])->name('report.reply');
 Route::post('/laporan-komentar-balasan/{id}',[ReportController::class,'storeReplyComment'])->name('report.reply.comment');
 Route::post('/laporan-keluhan/{id}',[ReportController::class,'storeComplaint'])->name('report.complaint');
