@@ -15,29 +15,29 @@
                         Rekomendasi Chef
                     </div>
                     <div class="card-body" style="height: 400px;">
-                        @foreach($top_users as $row)
+                        @foreach ($top_users as $row)
                             <div class="d-flex mb-3">
-                                @if($row->foto)
-                                <a href="">
-                                    <img src="{{ asset('storage/' . $row->foto) }}"
-                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                </a>
+                                @if ($row->foto)
+                                    <a href="">
+                                        <img src="{{ asset('storage/' . $row->foto) }}" class="border rounded-circle me-2"
+                                            alt="Avatar" style="height: 40px" />
+                                    </a>
                                 @else
-                                <a href="">
-                                    <img src="{{ asset('images/default.jpg') }}"
-                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                </a>
+                                    <a href="">
+                                        <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle me-2"
+                                            alt="Avatar" style="height: 40px" />
+                                    </a>
                                 @endif
                                 <div>
                                     <div class="bg-light rounded-3 px-3 py-1">
                                         <a href="" class="text-dark mb-0">
-                                            <strong>{{$row->name}}</strong>
+                                            <strong>{{ $row->name }}</strong>
                                         </a>
                                         @php
-                                            $resep_count = \App\Models\reseps::where('user_id',$row->id)->count();    
+                                            $resep_count = \App\Models\reseps::where('user_id', $row->id)->count();
                                         @endphp
                                         <a href="" class="text-muted d-block">
-                                            <small>{{$resep_count}} Resep dibuat</small>
+                                            <small>{{ $resep_count }} Resep dibuat</small>
                                         </a>
                                     </div>
 
@@ -144,18 +144,15 @@
                     <div class="card-body">
                         @if (Auth::user())
                             @if (Auth::user()->isSuperUser === 'yes')
-                                <div class="">
+                                <div class="d-flex">
+
                                     <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                        autocomplete="off" value="no" checked>
-                                    <label
-                                        style="border:none;float:left;  background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
-                                        class="btn btn-outline-warning mr-3 mb-3" for="success-outlined">Premium</label>
+                                        autocomplete="off" value="no">
+                                    <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
 
                                     <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
                                         autocomplete="off" value="yes">
-                                    <label
-                                        style="border:none;float:left;  border-radius: 10px; border: 1px black solid; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word"
-                                        class="btn btn-outline-dark" for="danger-outlined">Gratis</label>
+                                    <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
                                 </div>
                             @endif
                         @endif
@@ -204,6 +201,37 @@
                         @endif
                     </div>
                 </div>
+                <style>
+                    .btn-select {
+                        background: #F7941E;
+                        border-radius: 15px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        color: #EAEAEA;
+                    }
+
+                    .btn-no-select {
+                        background: #EAEAEA;
+                        border-radius: 15px;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        color: black;
+                    }
+                </style>
+                <script>
+                    const free_button = document.getElementById("free");
+                    const prem_button = document.getElementById("prem");
+                    free_button.addEventListener("click", function() {
+                        free_button.classList.remove("btn-no-select");
+                        free_button.classList.add("btn-select");
+                        prem_button.classList.remove("btn-select");
+                        prem_button.classList.add("btn-no-select");
+                    });
+                    prem_button.addEventListener("click", function() {
+                        prem_button.classList.remove("btn-no-select");
+                        prem_button.classList.add("btn-select");
+                        free_button.classList.remove("btn-select");
+                        free_button.classList.add("btn-no-select");
+                    });
+                </script>
                 <!-- foreach video pembelajaran start -->
                 <div id="video_pembelajaran">
                     @if ($video_pembelajaran->count() == 0)
@@ -513,7 +541,9 @@
                                                                                                                 aria-hidden="true">&times;</span>
                                                                                                         </button>
                                                                                                     </div>
-                                                                                                    <form action="{{route('repeort.feed')}}" method="POST">
+                                                                                                    <form
+                                                                                                        action="{{ route('repeort.feed') }}"
+                                                                                                        method="POST">
                                                                                                         {{-- @csrf --}}
                                                                                                         <div
                                                                                                             class="modal-body d-flex align-items-center">
@@ -1408,7 +1438,9 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="{{route('report.feed',$item_video->id)}}" method="POST">
+                                                                    <form
+                                                                        action="{{ route('report.feed', $item_video->id) }}"
+                                                                        method="POST">
                                                                         @csrf
                                                                         <div class="modal-body d-flex align-items-center">
 
