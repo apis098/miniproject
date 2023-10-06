@@ -1,5 +1,12 @@
 @extends('template.nav')
 @section('content')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
     <style>
         h1,
         h2,
@@ -14,7 +21,9 @@
                     <button type="button"class="btn"
                         style=" background: #F7941E;color:white;
                          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                        {{ $detail_course->jenis_kursus }}
+                         @foreach ($detail_course->jenis_kursuses as $item)
+                             {{ $item->jenis_kursus }}
+                         @endforeach
                     </button>
                     <br>
                     <br>

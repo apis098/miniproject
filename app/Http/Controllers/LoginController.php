@@ -13,6 +13,7 @@ use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\jenis_kursuses;
 use App\Models\kategori_makanan;
 use App\Models\kursus;
 use App\Models\Province;
@@ -151,12 +152,12 @@ class LoginController extends Controller
             ->whereDate('waktu_diterima', today())
             ->paginate(6);
         }
-        $jenis_kursus = kursus::pluck('jenis_kursus')->unique();
+        $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
         $regency = Regency::pluck('name');
         $district = District::pluck('name');
         $village = Village::pluck('name');
-        $lokasi_kursus = kursus::all()->map(function ($posisi) {
+        $lokasi_kursus = kursus::where('status', 'diterima')->get()->map(function ($posisi) {
             return [
                 'latitude' => $posisi->latitude,
                 'longitude' => $posisi->longitude,

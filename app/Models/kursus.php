@@ -20,7 +20,6 @@ class kursus extends Model
         "tarif_per_jam",
         "tipe_kursus",
         "jumlah_siswa",
-        "jenis_kursus",
         "status",
         "waktu_diterima"
     ];
@@ -29,5 +28,8 @@ class kursus extends Model
     }
     public function paket_kursus() {
         return $this->hasMany(paket_kursuses::class, "kursus_id");
+    }
+    public function jenis_kursus() {
+        return $this->hasOne(jenis_kursuses::class, 'id_kursus');
     }
 }

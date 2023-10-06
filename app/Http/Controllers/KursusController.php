@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\jenis_kursuses;
 use App\Models\kursus;
 use App\Models\notifications;
 use App\Models\paket_kursuses;
+use App\Models\pivot_jenis_kursuses;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -123,7 +125,6 @@ class KursusController extends Controller
             "tarif_per_jam" => $request->tarif_per_jam,
             "tipe_kursus" => $request->tipe_kursus,
             "jumlah_siswa" => $request->jumlah_siswa,
-            "jenis_kursus" => $request->jenis_kursus
         ]);
         if ($tambah_kursus) {
             foreach ($request->paket_kursus_waktu as $num => $waktu) {
@@ -136,6 +137,11 @@ class KursusController extends Controller
                     "harga" => $request->paket_kursus_harga[$num]
                 ]);
             }
+            jenis_kursuses::create([
+                'id_kursus' => $tambah_kursus->id,
+                'jenis_kursus' => $request->jenis_kursus
+            ]);
+
             return response()->json([
                 "success" => true,
                 "message" => "sukses menambahkan kursus, harap menunggu konfirmasi admin.",
@@ -181,7 +187,7 @@ class KursusController extends Controller
                 ->paginate(10);
         }
         $kursus = kursus::find($id);
-        return view('koki.kursus-edit', compact('kursus','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.kursus-edit', compact('kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     /**
@@ -231,7 +237,7 @@ class KursusController extends Controller
         $edit_kursus = kursus::find($id);
         $edit_kursus->nama_kursus = $request->nama_kursus;
         if ($request->hasFile('foto_kursus')) {
-            Storage::delete("public/".$edit_kursus->foto_kursus);
+            Storage::delete("public/" . $edit_kursus->foto_kursus);
             $edit_kursus->foto_kursus = $request->file('foto_kursus')->store('photo-course', 'public');
         }
         $edit_kursus->deskripsi_kursus = $request->deskripsi_kursus;
