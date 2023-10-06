@@ -45,6 +45,7 @@ Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
 Route::get('penawaran-prem',[LoginController::class,'penawaranPrem'])->name('penawaran.prem');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
+Route::get('riwayat', [LoginController::class, 'riwayat'])->name('riwayat');
 
 //kursus
 Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_template'])->name('kursus');
