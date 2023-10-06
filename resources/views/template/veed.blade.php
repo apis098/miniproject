@@ -1419,7 +1419,6 @@
                                                             </div>
                                                         </div>
                                                     @elseif(Auth::user()->id == $item_video->user->id)
-                                                        {{-- Hapus Komentar --}}
                                                         <form method="POST"
                                                             action="{{ route('hapus.feed', $item_video->id) }}"
                                                             id="delete-feed-form{{ $item_video->id }}">
@@ -1434,7 +1433,6 @@
                                                             </button>
                                                         </form>
                                                     @elseif(Auth::user()->role == 'admin')
-                                                        {{-- Blokir Komentar --}}
                                                         <button type="button" data-toggle="modal"
                                                             data-target="#blocksModal{{ $item_video->id }}"
                                                             class="yuhu text-dark btn-sm rounded-5 "><svg
