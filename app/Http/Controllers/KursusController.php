@@ -87,6 +87,19 @@ class KursusController extends Controller
                 $semua_kursus->whereHas('jenis_kursus', function ($query) use ($jenis_kursus) {
                     $query->whereIn('jenis_kursus', $jenis_kursus);
                 });
+                $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
+                    $q->whereIn('jenis_kursus', $jenis_kursus);
+                });
+            }
+            if ($request->has('min_price') && $request->has('max_price')) {
+                if ($request->min_price != NULL && $request->max_price != NULL) {
+                    $minprice = str_replace(['.', ','], '', $request->min_price);
+                    $maxprice = str_replace(['.', ','], '', $request->max_price);
+                    $min_price = (int)$minprice;
+                    $max_price = (int)$maxprice;
+                    $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+                    $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+                }
             }
         }
         $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
