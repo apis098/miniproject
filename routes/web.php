@@ -47,8 +47,7 @@ Route::get('penawaran-prem',[LoginController::class,'penawaranPrem'])->name('pen
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
 
 //kursus
-Route::get('kursus', [LoginController::class, 'kursus'])->name('kursus');
-Route::post('filter_lanjutan_kursus', [FiltersController::class, 'filter_kursus'])->name('filter.kursus');
+Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_template'])->name('kursus');
 route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
