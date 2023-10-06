@@ -444,7 +444,7 @@
                                         <div class="col-12">
                                             <button type="button"class="btn"
                                                 style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                                @foreach ($semua->jenis_kursuses as $item)
+                                                @foreach ($semua->jenis_kursus as $item)
                                                  {{ $item->jenis_kursus }}
                                                 @endforeach
                                             </button> <br>

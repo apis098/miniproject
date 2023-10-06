@@ -30,6 +30,6 @@ class kursus extends Model
         return $this->hasMany(paket_kursuses::class, "kursus_id");
     }
     public function jenis_kursus() {
-        return $this->hasOne(jenis_kursuses::class, 'id_kursus');
+        return $this->hasMany(jenis_kursuses::class, 'id_kursus');
     }
 }
