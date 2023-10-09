@@ -184,7 +184,7 @@ Route::delete('/hapus/komentar-resep/{id}', [komentar_resep::class, 'delete_comm
 Route::delete('/hapus/komentar-resep-reply/{id}', [komentar_resep::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth');
 
 // like dan komentar pada veed
-Route::post("like/veed/{pengirim_id}/{penerima_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
+Route::post("/like/veed/{user_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
 Route::post("/komentar-veed/{user_id}/{veed_id}", [VeedController::class, 'komentar_veed'])->name('komentar.veed');
 Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
 Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');
