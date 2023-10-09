@@ -152,7 +152,7 @@ class VeedController extends Controller
     public function komentar_veed(Request $request, string $pengirim_id, string $penerima_id, string $veed_id)
     {
         $store_comment = comment_veed::create([
-            "pengitim_id" => $pengirim_id,
+            "pengirim_id" => $pengirim_id,
             "penerima_id" => $penerima_id,
             "veed_id" => $veed_id,
             "komentar" => $request->commentVeed

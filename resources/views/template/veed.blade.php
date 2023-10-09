@@ -378,12 +378,10 @@
                                                         <!-- form komentar feed start -->
                                                         @if (Auth::user())
                                                             <form id="formCommentVeed{{ $urut }}"
-                                                                action="{{ route('komentar.veed', [Auth::user()->id, $item_video->id]) }}"
+                                                                action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id, $item_video->id]) }}"
                                                                 method="post">
                                                                 @csrf
                                                                 <div class="d-flex mb-3">
-
-
                                                                     @if (Auth::user()->foto)
                                                                         <img src="{{ asset('storage' . Auth::user()->foto) }}"
                                                                             class="border rounded-circle me-5"
@@ -1088,7 +1086,7 @@
                                                         <div class="row">
                                                             @if (Auth::user())
                                                                 <form id="formCommentVeed{{ $urut }}"
-                                                                    action="{{ route('komentar.veed', [Auth::user()->id, $item_video->id]) }}"
+                                                                    action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id,$item_video->id]) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     <div class="d-flex mb-3">
@@ -1150,26 +1148,39 @@
                                                             <!-- list komentar feed start -->
                                                             <div id="komen_feed{{ $urut }}">
                                                                 @foreach ($item_video->comment_veed as $nomer => $item_comment)
-                                                                    <div class="media row mb-2 d-flex" style="width: 131%; margin-left:-11%;">
+                                                                    <div class="media row mb-2 d-flex"
+                                                                        style="width: 131%; margin-left:-11%;">
                                                                         <div class="d-flex col-11">
+                                                                            @if ($item_comment->user_pengirim->foto)
                                                                             <img width="38px" height="38px"
-                                                                                class="rounded-circle"
-                                                                                src="{{ $item_comment->user->foto ? asset('storage/' . $item_comment->user->foto) : asset('images/default.jpg') }}"
-                                                                                alt="{{ $item_comment->user->name }}">
+                                                                            class="rounded-circle"
+                                                                            src="{{ asset('storage/' . $item_comment->user_pengirim->foto) }}"
 
+                                                                            alt="{{ $item_comment->user_pengirim->name }}">
+
+                                                                            @else
+                                                                            <img width="38px" height="38px"
+                                                                            class="rounded-circle"
+                                                                            src="{{ asset('images/default.jpg') }}"
+
+                                                                            alt="{{ $item_comment->user_pengirim->name }}">
+
+                                                                            @endif
                                                                             <p class="ms-2 mt-2">
-                                                                                {{ $item_comment->user->name }}</p>
+                                                                                {{ $item_comment->user_pengirim->name }}</p>
                                                                             <div
                                                                                 class="d-flex flex-row-reverse ml-auto mt-2">
                                                                                 <small>
                                                                                     {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                             </div>
                                                                         </div>
-                                                                        <div class=" media-body ms-1 col-10 border-black rounded">
+                                                                        <div
+                                                                            class=" media-body ms-1 col-10 border-black rounded">
                                                                             <div class="d-flex">
                                                                                 <p>{{ $item_comment->komentar }}</p>
                                                                             </div>
-                                                                            <div class="d-flex flex-row " style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                            <div class="d-flex flex-row "
+                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                 @php
                                                                                     // mendapatkan jumlah like tiap komentar
                                                                                     $countLike = \App\Models\like_comment_veed::query()
@@ -1228,7 +1239,7 @@
                                                                                 <div class="m-2 mr-auto">
                                                                                     {{-- --}}
                                                                                     @if (Auth::user())
-                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user->id)
+                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user_pengirim->id)
                                                                                             <a data-bs-toggle="modal"
                                                                                                 href="#ModalL{{ $item_comment->id }}"
                                                                                                 class="yuhu text-danger btn-sm rounded-5 "><i
@@ -1291,7 +1302,7 @@
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
-                                                                                        @elseif(Auth::user()->id == $item_comment->user->id)
+                                                                                        @elseif(Auth::user()->id == $item_comment->user_pengirim->id)
                                                                                             {{-- Hapus Komentar --}}
                                                                                             <form method="POST"
                                                                                                 action="{{ route('hapus.komentar.feed', $item_comment->id) }}"
@@ -1725,7 +1736,7 @@
             </div> --}}
                                                     {{-- <div class="container">
                 <div class="row">
-                  
+
                 </div>
             </div> --}}
                                                 </div>
