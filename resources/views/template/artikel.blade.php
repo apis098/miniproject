@@ -526,7 +526,7 @@
                             <div class="d-flex">
                                 <span>
                                     <div class="font-weight-semibold ms-1 me-2">
-                                        <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
+                                        <small class="font-weight-bolder me-2">{{ $row->user_pengirim->name }}</small>
                                         @if ($row->count() > 0)
                                             <div class="text-black" style="font-size: 13px">
                                                 <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
@@ -651,7 +651,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" id="reply_comment" name="reply_comment" width="500px"
                                         class="form-control form-control-sm rounded-3 me-5"
-                                        placeholder="Balas komentar dari {{ $row->user->name }}....">
+                                        placeholder="Balas komentar dari {{ $row->user_pengirim->name }}....">
 
                                     <button type="submit"
                                         style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"

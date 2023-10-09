@@ -35,7 +35,7 @@ class VeedController extends Controller
         $unreadNotificationCount = [];
         $admin = false;
         $messageCount = [];
-        $allUser = User::where('role','koki')->whereNot('id',auth()->user())->get();
+        $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(5)->get();
         // $resep = reseps::where('user_id',$top_users->id)->count();
         // dd($resep);
@@ -68,9 +68,10 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
 
-        return view("template.veed", compact("top_users","messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact("top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
-    public function detailVeed($id){
+    public function detailVeed($id)
+    {
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -159,14 +160,12 @@ class VeedController extends Controller
         ]);
         $item_video = upload_video::where('id', $veed_id)->first();
         $update = $item_video->comment_veed;
-        if ($store_comment) {
-            //return redirect()->back()->with('success', 'Sukses mengirim komentar!');
-            return response()->json([
-                "success" => true,
-                "message" => "Anda berhasil memberi komentar!",
-                "update" => $update
-            ]);
-        }
+        //return redirect()->back()->with('success', 'Sukses mengirim komentar!');
+        return response()->json([
+            "success" => true,
+            "message" => "Anda berhasil memberi komentar!",
+            "update" => $update
+        ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
     {
@@ -304,5 +303,4 @@ class VeedController extends Controller
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
     }
-
 }

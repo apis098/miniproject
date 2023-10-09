@@ -1085,7 +1085,7 @@
                                                     <div class="container">
                                                         <div class="row">
                                                             @if (Auth::user())
-                                                                <form id="formCommentVeed{{ $urut }}"
+                                                                <form id="formCommentFeed{{ $item_video->id }}"
                                                                     action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id,$item_video->id]) }}"
                                                                     method="post">
                                                                     @csrf
@@ -1114,7 +1114,7 @@
 
                                                                             <button type="submit"
                                                                                 id="buttonCommentVeed{{ $urut }}"
-                                                                                onclick="komentar_feed({{ $urut }})"
+                                                                                onclick="komentar_feed({{ $item_video->id }})"
                                                                                 style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                     class="me-3 ms-3">Kirim</b></button>
@@ -1136,7 +1136,7 @@
                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                 placeholder="Masukkan komentar...">
-                                                                            <button type="submit" id="buttonCommentVeed"
+                                                                            <button type="button" id="buttonCommentVeed"
                                                                                 onclick="harusLogin()"
                                                                                 style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                                 class="btn btn-sm mb-1 text-light"><b
@@ -1274,7 +1274,7 @@
                                                                                                             </button>
                                                                                                         </div>
                                                                                                         <form
-                                                                                                            action="{{ route('repeort.feed') }}"
+                                                                                                            action="{{ route('report.feed', $item_video->id) }}"
                                                                                                             method="POST">
                                                                                                             {{-- @csrf --}}
                                                                                                             <div
@@ -1919,7 +1919,7 @@ function toggleCheckbox(checkbox) {
         // komentar feed ajax
 
         function komentar_feed(num) {
-            $("#formCommentVeed" + num).submit(function(event) {
+            $("#formCommentFeed" + num).submit(function(event) {
                 event.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
