@@ -107,16 +107,16 @@
         </div>
     </div>
 </div> --}}
-@if ($complaints->count() == 0)
+<div class="container mb-5">
+    <div class="row mb-5">
+        <h3 class="fw-bold">Keluhan Pengguna</h3>
+        @if ($complaints->count() == 0)
     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
         <img src="images/data.png" style="width: 15em">
         <p><b>Tidak ada data</b></p>
     </div>
 @endif
 
-<div class="container mb-5">
-    <div class="row mb-5">
-        <h3 class="fw-bold">Keluhan Pengguna</h3>
         @foreach ($complaints as $item)
             <div class="col-lg-4">
                 <div class="card p-0 mt-4 mb-2" style=" border-radius: 15px; border: 1px black solid">
