@@ -340,41 +340,41 @@
 
                             </p>
                               {{-- modal edit --}}
-      <div class="modal fade" id="edit" tabindex="-1"
-      role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content" style="border-radius: 15px">
-              <div class="modal-body">
-                  <div class="d-flex justify-content-between">
-                      <h5 class="modal-title" id="exampleModalLabel"
-                          style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
-                          Edit
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <i class="fa-regular text-dark fa-circle-xmark"></i>
-                        </button>
-                  </div>
-                  <br>
-                  <form action=""
-                      method="POST">
-                      @csrf
-                      <div class="">
-                          <div class="col-sm-10">
-                              <textarea class="form-control"
-                                  value=""
-                                  name="nama_makanan" id="nama"
-                                  style="border-radius:10px; width:120%;"></textarea>
-                          </div>
-                      </div>
-                      <br>
-                      <button type="submit"
-                          class="btn btn-sm d-flex justify-content-end text-white"
-                          style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
+                    <div class="modal fade" id="edit" tabindex="-1"
+                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content" style="border-radius: 15px">
+                                <div class="modal-body">
+                                    <div class="d-flex justify-content-between">
+                                        <h5 class="modal-title" id="exampleModalLabel"
+                                            style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                                            Edit
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i class="fa-regular text-dark fa-circle-xmark"></i>
+                                            </button>
+                                    </div>
+                                    <br>
+                                    <form action=""
+                                        method="POST">
+                                        @csrf
+                                        <div class="">
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control"
+                                                    value=""
+                                                    name="nama_makanan" id="nama"
+                                                    style="border-radius:10px; width:120%;"></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <button type="submit"
+                                            class="btn btn-sm d-flex justify-content-end text-white"
+                                            style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
   {{-- end modal edit --}}
                     </div>
                 </div>
