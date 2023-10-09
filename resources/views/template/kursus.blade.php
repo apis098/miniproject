@@ -445,7 +445,7 @@
                                             <button type="button"class="btn"
                                                 style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                                 @foreach ($semua->jenis_kursus as $item)
-                                                 {{ $item->jenis_kursus }}
+                                                    {{ $item->jenis_kursus }}
                                                 @endforeach
                                             </button> <br>
                                             <a href="{{ route('detail.kursus', $semua->id) }}" class="btn"
@@ -489,7 +489,7 @@
                     <div class="row mx-1" style="margin-left: -50px">
                         @foreach ($kursus_terbaru as $baru)
                             <div class="card mx-3 mb-5" style="width: 30%; border-radius:15px">
-                                <img src="{{ asset('storage/'.$baru->foto_kursus) }}" class="card-img-top"
+                                <img src="{{ asset('storage/' . $baru->foto_kursus) }}" class="card-img-top"
                                     style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
                                        border-top-right-radius: calc(0.5rem - 1px);"
                                     alt="...">
@@ -497,11 +497,11 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <button type="button"class="btn"
-                                            style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                            @foreach ($baru->jenis_kursuses as $item_jenis)
-                                             {{ $item_jenis->jenis_kursus }}
-                                            @endforeach
-                                        </button> <br>
+                                                style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                                @foreach ($baru->jenis_kursuses as $item_jenis)
+                                                    {{ $item_jenis->jenis_kursus }}
+                                                @endforeach
+                                            </button> <br>
                                             <a href="{{ route('detail.kursus', $baru->id) }}" class="btn"
                                                 style="font-family: poppins;font-weight:bold">{{ $baru->nama_kursus }}</a>
                                         </div>
