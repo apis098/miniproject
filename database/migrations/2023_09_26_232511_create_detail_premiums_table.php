@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detail_premiums', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('premium_id');
+            $table->unsignedBigInteger('premiums_id');
             $table->text('detail');
             $table->timestamps();
         });

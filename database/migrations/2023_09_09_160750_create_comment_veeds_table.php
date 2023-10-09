@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('comment_veeds', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("users_id");
+            $table->unsignedBigInteger("pengirim_id");
+            $table->unsignedBigInteger("penerima_id");
             $table->unsignedBigInteger("veed_id");
             $table->text("komentar");
             $table->timestamps();
 
-            $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
+            $table->foreign("pengirim_id")->references("id")->on("users")->onDelete("cascade");
+            $table->foreign("penerima_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("veed_id")->references("id")->on("upload_videos")->onDelete("cascade");
         });
     }

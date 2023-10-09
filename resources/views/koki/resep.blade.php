@@ -31,7 +31,7 @@
                     </div>
                     <div class="row"
                         style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
-                        <button type="button" onclick="klik()" class="col-4"
+                        <button type="button" onclick="kliks()" class="col-4"
                             style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 39px;">
                             <p
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
@@ -431,7 +431,7 @@
 
         num = 0;
 
-        function klik() {
+        function kliks() {
             num++;
             document.getElementById("formFile").click();
             document.getElementById('formFile').addEventListener('change', function(event) {

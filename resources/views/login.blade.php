@@ -144,7 +144,7 @@
           .content-container{
             text-align:center;
             margin-top:40%;
-            width: fit-content
+            width: 50%
 
 
             }
@@ -163,7 +163,7 @@
     .content-container{
         text-align:center;
         margin-top:23%;
-        width: fit-content
+        width:50%
 
     }
     .bg-image{

@@ -165,7 +165,7 @@
                         </li>
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
-                            <a href=""
+                            <a href="{{route('koki.favorite')}}"
                                 class="nav-link mx-4 {{ request()->is('koki/favorite') ? 'activet text-orange' : 'text-white' }}" style="width: 12em">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m11 13.5l-4-4l-4 4v-12a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Z"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">

@@ -14,7 +14,7 @@
         <div class="content-header mx-5">
             <div class="d-flex mt-1">
                 <div class="col-sm-6">
-                    <h4>Selamat datang kembali viktor</h4>
+                    <h4>Selamat datang kembali {{ $koki->name }}</h4>
                     <p>Berikut Beberapa Rekapan Terbaru</p>
                 </div>
                 <div class="col-sm-6" style="margin-left: 36%;">
@@ -330,6 +330,7 @@
                                                                     src="{{ asset('images/badge.png') }}"
                                                                     alt="profile image" style="max-width:10px">
                                                             @endif
+                                                            0
                                                         </button>
                                                         <input type="text" hidden name="follower_id" id="follower_id"
                                                             value="{{ $row->follower_id }}" class="form-control">
@@ -533,7 +534,7 @@
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
                     style="border: 1px solid #333;  width: 285px">
                     <div class="ms-1">
-                        <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">1000</h6>
+                        <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">{{ $koki->followers }}</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Pengikut</p>
                     </div>
                     <i class="fas fa-user-circle fa-3x"></i>
@@ -543,7 +544,7 @@
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-1"
                     style="border: 1px solid #333; width: 285px">
                     <div class="ms-1">
-                        <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">100</h6>
+                        <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">{{ $jumlah_resep }}</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Resep</p>
                     </div>
                     <i class="fas fa-book fa-3x"></i>
@@ -553,7 +554,7 @@
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card ml-5"
                     style="border: 1px solid #333; width: 285px">
                     <div class="ms-1">
-                        <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">2000</h6>
+                        <h6 class="mb-0" style="font-size: 24px; font-weight: bold;">{{ $koki->like }}</h6>
                         <p class="mb-2" style="font-size: 14px; font-weight: bold;">Suka</p>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 20 20">
@@ -614,13 +615,37 @@
                 <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
                 <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 270px;">Komentar Resep Terbaru</h5>
             </div>
-
+            {{ dd($komentar_feed->count() . " " . $komentar_resep->count()) }}
             <div class="d-flex">
                 <div class="col-lg-6">
                     <div class="card p-4 mt-2 mb-2"
                         style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
+                            @if ($komentar_feed->count() == 0)
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: -3em">
+                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                    <p><b>Tidak ada data</b></p>
+                                </div>
+                            @endif
+                            @foreach ($komentar_feed as $commentFeed)
+                            <div class="border-bottom py-3">
+                                <a href="#" class="text-decoration-none d-flex text-dark">
+                                    <img class="rounded-circle flex-shrink-0" src=""
+                                        alt="" style="width: 40px; height: 40px;">
+                                    <div class="w-100 ms-3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-0">Nama User</h6>
+                                            <small>{{ \Carbon\Carbon::parse($commentFeed->created_at)->locale('id_ID')->diffForHumans() }}</small>
 
+                                        </div>
+                                        <span>
+                                            Oleh Nama User
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -629,7 +654,31 @@
                     <div class="card p-4 mt-2 mb-2"
                         style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
+                            @if ($komentar_resep->count() == 0)
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: -3em">
+                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                    <p><b>Tidak ada data</b></p>
+                                </div>
+                            @endif
+                            @foreach ($komentar_resep as $commentRecipe)
+                            <div class="border-bottom py-3">
+                                <a href="#" class="text-decoration-none d-flex text-dark">
+                                    <img class="rounded-circle flex-shrink-0" src=""
+                                        alt="" style="width: 40px; height: 40px;">
+                                    <div class="w-100 ms-3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-0">Nama User</h6>
+                                            <small>{{ \Carbon\Carbon::parse($commentRecipe->created_at)->locale('id_ID')->diffForHumans() }}</small>
 
+                                        </div>
+                                        <span>
+                                            Oleh Nama User
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

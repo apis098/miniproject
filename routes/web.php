@@ -45,6 +45,7 @@ Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
 Route::get('penawaran-prem',[LoginController::class,'penawaranPrem'])->name('penawaran.prem');
 Route::get('keluhan', [LoginController::class, 'keluhan'])->name('keluhan');
+Route::get('riwayat', [LoginController::class, 'riwayat'])->name('riwayat');
 
 //kursus
 Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_template'])->name('kursus');
@@ -164,6 +165,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
         Route::get('komentar',[KokiController::class,'komentar'])->name('koki.komentar');
+        Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
     });
 });
 
@@ -172,8 +174,8 @@ Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.vid
 Route::delete('/hapus_feed/{id}', [KokiController::class, "hapus_feed"])->name('hapus.feed')->middleware("auth");
 
 
-// like dan komentar pada artikel resep
-Route::post('/komentar-resep/{user}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
+// like dan favorite pada artikel resep
+Route::post('/komentar-resep/{pengirim}/{penerima}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
 Route::post('/balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
 Route::post('/koki/sukai/{id}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::class, 'like_reply_comment_recipe'])->name('like.reply.comment.recipe')->middleware("auth");
@@ -182,7 +184,7 @@ Route::delete('/hapus/komentar-resep/{id}', [komentar_resep::class, 'delete_comm
 Route::delete('/hapus/komentar-resep-reply/{id}', [komentar_resep::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth');
 
 // like dan komentar pada veed
-Route::post("like/veed/{user_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
+Route::post("like/veed/{pengirim_id}/{penerima_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
 Route::post("/komentar-veed/{user_id}/{veed_id}", [VeedController::class, 'komentar_veed'])->name('komentar.veed');
 Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
 Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');

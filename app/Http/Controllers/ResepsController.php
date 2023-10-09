@@ -68,6 +68,7 @@ class ResepsController extends Controller
     public function store(Request $request)
     {
         $allUser = User::where("isSuperUser", "yes")->pluck('id')->toArray();
+        $isPremium = "no";
         if (in_array(Auth::user()->id, $allUser)) {
             if ($request->premium == "yes") {
                 $isPremium = "yes";

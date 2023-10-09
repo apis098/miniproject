@@ -29,13 +29,15 @@ return new class extends Migration
         });
         Schema::create('comment_recipes', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('pengirim_id');
+            $table->unsignedBigInteger('penerima_id');
             $table->unsignedBigInteger('recipes_id');
             $table->integer('likes')->default(0);
             $table->text('comment');
             $table->timestamps();
 
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('pengirim_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('penerima_id')->references("id")->on("users")->onDelete("cascade");
             $table->foreign('recipes_id')->references('id')->on('reseps')->onDelete('cascade');
         });
         Schema::create('reply_comment_recipes', function (Blueprint $table) {
@@ -45,7 +47,7 @@ return new class extends Migration
             $table->unsignedBigInteger("recipe_id");
             $table->unsignedBigInteger("comment_id");
             $table->text("komentar");
-            
+
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("recipe_id")->references("id")->on("reseps")->onDelete("cascade");
             $table->foreign("comment_id")->references("id")->on("comment_recipes")->onDelete("cascade");

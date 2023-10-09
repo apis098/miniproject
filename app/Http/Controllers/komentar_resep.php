@@ -11,21 +11,23 @@ use Illuminate\Support\Facades\Validator;
 
 class komentar_resep extends Controller
 {
-    public function toComment(Request $request, string $user, string $recipe, string $comment = null)
+    public function toComment(Request $request, string $pengirim, string $penerima, string $recipe, string $comment = null)
     {
         $c = null;
         $komentar = $request->komentar;
         $resepData  = reseps::findOrFail($recipe);
         if ($comment != null) {
             $c = replyCommentRecipe::create([
-                'users_id' => $user,
+                'pengirim_id' => $pengirim,
+                'penerima_id' => $penerima,
                 'recipe_id' => $recipe,
                 'comment_id' => $comment,
                 'komentar' => $komentar
             ]);
         } else {
             $c = comment_recipes::create([
-                'users_id' => $user,
+                'pengirim_id' => $pengirim,
+                'penerima_id' => $penerima,
                 'recipes_id' => $recipe,
                 "comment" => $komentar
             ]);
@@ -37,7 +39,7 @@ class komentar_resep extends Controller
                 $notifications->resep_id = $resepData->id;
                 $notifications->save();
             }
-            
+
         }
         if ($c) {
             return redirect()->back()->with('success', 'Sukses memberikan komentar!');

@@ -835,7 +835,7 @@
                                                 Top up
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="#" style="width: 230px;"
+                                            <a href="{{route('riwayat')}}" style="width: 230px;"
                                                 class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
                                                     height="20" viewBox="0 0 24 24">

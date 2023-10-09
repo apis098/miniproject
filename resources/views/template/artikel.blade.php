@@ -462,7 +462,7 @@
                         </b></h5>
                     <div class="col-10">
                         @if (Auth::check())
-                            <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->id }}">
+                            <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->user_id }}/{{ $show_resep->id }}">
                                 @csrf
                                 <div class="input-group">
                                     <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
