@@ -16,6 +16,7 @@ use App\Models\footer;
 use App\Models\jenis_kursuses;
 use App\Models\kategori_makanan;
 use App\Models\kursus;
+use App\Models\premiums;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\User;
@@ -165,7 +166,8 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.penawaran-prem', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $penawaran_premium = premiums::all();
+        return view('template.penawaran-prem', compact('penawaran_premium','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function riwayat()
