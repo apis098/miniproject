@@ -217,16 +217,16 @@
         }
 
         /* button{
-                background-color: #F7941E;
-                border: none;
-                height: 45px;
-                width: 90px;
-                color: #ffffff;
-                position: absolute;
-                right: 1px;
-                top: 0px;
-                border-radius: 15px
-            } */
+                        background-color: #F7941E;
+                        border: none;
+                        height: 45px;
+                        width: 90px;
+                        color: #ffffff;
+                        position: absolute;
+                        right: 1px;
+                        top: 0px;
+                        border-radius: 15px
+                    } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -273,8 +273,8 @@
         <div class="my-5 ml-5" style="margin-right: -15%;">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.index')}}" class="nav-link mr-5 active" type="button"
-                        aria-selected="true">
+                    <a href="#" class="nav-link mr-5 active" id="button-resep" data-bs-toggle="tab"
+                        data-bs-target="#resep" type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                             Laporan resep
                             @if ($statusResep > 0)
@@ -290,7 +290,8 @@
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.keluhan')}}"  class="nav-link mr-5"  type="button"
+                    <a href="#" class="nav-link mr-5" id="button-keluhan" data-bs-toggle="tab"
+                        data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                             Laporan keluhan
@@ -302,13 +303,14 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="b" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
+                        <div id="border2" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.komentar')}}" class="nav-link mr-5 yuhu mt-2"  type="button"
+                    <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-komentar" data-bs-toggle="tab"
+                        data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                             Laporan komentar
@@ -320,13 +322,13 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="f" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
+                        <div id="border3" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
                             hidden></div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a href="{{route('Report.profil')}}"  class="nav-link mr-5 yuhu mt-2"
-                       type="button"
+                    <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-profile" data-bs-toggle="tab"
+                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                         aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                             Laporan profile
@@ -338,7 +340,7 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="pp" class="ms-3"
+                        <div id="border4" class="ms-3"
                             style="width: 80%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                     </a>
                 </li>
@@ -347,7 +349,7 @@
 
 
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                <div class="tab-pane fade show active" id="resep" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
@@ -357,9 +359,9 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" name="resep" autofocus
+                                                    <input type="text" id="search-resep" name="resep" autofocus
                                                         placeholder="Cari Laporan Resep">
-                                                    <button  type="submit" class="zoom-effects"
+                                                    <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
                                                 </form>
                                             </div>
@@ -370,7 +372,7 @@
                         </div>
                     </form>
                     {{-- start tab 1 --}}
-                    <table class="table-custom">
+                    <table id="table-resep" class="table-custom">
                         <thead>
                             <tr>
                                 <th scope="col">Pelapor</th>
@@ -383,35 +385,38 @@
                         <tbody>
 
                             @foreach ($reportResep as $row)
-                            <div id="search-results">
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">{{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button  type="button" data-toggle="modal"
-                                            data-target="#modalResep{{ $row->resep_id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
-                                </tr>
-                            </div>
+                                <div id="search-results">
+                                    <tr class="mt-5">
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
+                                        </td>
+                                        <td>{{ $row->user->name }}</td>
+                                        <td>{{ $row->description }}</td>
+                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                        <td style="border-right:1px solid black;">
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#modalResep{{ $row->resep_id }}"
+                                                class="btn btn-light btn-sm rounded-3 text-light"
+                                                style="background-color: #F7941E;"><b
+                                                    class="ms-2 me-2">Detail</b></button>
+                                        </td>
+                                    </tr>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
                     @if ($reportResep->count() == 0)
-                    <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
-                        <img src="{{asset('images/data.png')}}" style="width: 15em">
-                        <p><b>Tidak ada data</b></p>
-                    </div>
-                @endif
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 5em; margin-left:-5%;">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
 
                     {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
                 </div>
                 {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                <div class="tab-pane fade" id="keluhan" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
@@ -421,8 +426,8 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
-                                                        placeholder="Cari Laporan Resep">
+                                                    <input type="text" id="search-keluhan" name="d"
+                                                        placeholder="Cari Laporan Keluhan">
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
                                                 </form>
@@ -434,7 +439,7 @@
                         </div>
                     </form>
 
-                    <table class="table-custom">
+                    <table id="table-keluhan" class="table-custom">
                         <thead>
                             <tr>
                                 <th scope="col">Pelapor</th>
@@ -463,10 +468,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if ($reportComplaint->count() == 0)
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 5em; margin-left:-5%;">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
                     {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
-                </div> --}}
+                </div>
                 {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                <div class="tab-pane fade" id="komentar" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
@@ -476,7 +488,7 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
+                                                    <input type="text" id="search-komentar" name="d"
                                                         placeholder="Cari Laporan Resep">
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
@@ -489,7 +501,7 @@
                         </div>
                     </form>
 
-                    <table class="table-custom">
+                    <table id="table-komentar" class="table-custom">
                         <thead>
                             <tr>
                                 <th scope="col">Pelapor</th>
@@ -518,10 +530,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if ($allComments->count() == 0)
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 5em; margin-left:-5%;">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
                     {{ $reportReply->links('vendor.pagination.defaultReportReply') }}
-                </div> --}}
+                </div>
                 {{-- end --}}
-                {{-- <div class="tab-pane fade" id="pills-user" role="tabpanel" aria-labelledby="pills-contact-tab"
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
@@ -531,7 +550,7 @@
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="" name="d"
+                                                    <input type="text" id="search-profile" name="d"
                                                         placeholder="Cari Laporan Resep">
                                                     <button type="submit" class="zoom-effects"
                                                         style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
@@ -544,7 +563,7 @@
                         </div>
                     </form>
 
-                    <table class="table-custom">
+                    <table id="table-profile" class="table-custom">
                         <thead>
                             <tr>
                                 <th scope="col">Pelapor</th>
@@ -573,8 +592,15 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if ($reportProfile->count() == 0)
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 5em; margin-left:-5%;">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
                     {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
-                </div> --}}
+                </div>
             </div>
 
         </div>
@@ -584,48 +610,82 @@
     <script>
         let debounceTimer;
 
-    $(document).ready(function() {
-    $('#search-input').keyup(function() {
-        var query = $(this).val(); // Ambil nilai dari input pencarian
-        clearTimeout(debounceTimer);
+        $(document).ready(function() {
+            $('#search-input').keyup(function() {
+                var query = $(this).val(); // Ambil nilai dari input pencarian
+                clearTimeout(debounceTimer);
 
-        debounceTimer = setTimeout(function(){
-            get(1)
-        }, 500);
+                debounceTimer = setTimeout(function() {
+                    get(1)
+                }, 500);
 
-        // Lakukan permintaan Ajax ke titik akhir pencarian hanya jika panjang query lebih dari 2 karakter
-        if (query.length > 2) {
-            $.ajax({
-                url: '/admin/laporan-pengguna', // Ganti URL sesuai dengan titik akhir pencarian Anda
-                type: 'GET',
-                data: { query: query },
-                success: function(response) {
-                    // Tampilkan hasil pencarian di dalam div #search-results
-                    $('#search-results').html(response);
-                },
-                beforeSend: function() {
-                    $('#loading'). html(showLoading())
+                // Lakukan permintaan Ajax ke titik akhir pencarian hanya jika panjang query lebih dari 2 karakter
+                if (query.length > 2) {
+                    $.ajax({
+                        url: '/admin/laporan-pengguna', // Ganti URL sesuai dengan titik akhir pencarian Anda
+                        type: 'GET',
+                        data: {
+                            query: query
+                        },
+                        success: function(response) {
+                            // Tampilkan hasil pencarian di dalam div #search-results
+                            $('#search-results').html(response);
+                        },
+                        beforeSend: function() {
+                            $('#loading').html(showLoading())
+                        }
+                    });
+                } else {
+                    // Kosongkan hasil pencarian jika panjang query kurang dari 3 karakter
+                    $('#search-results').empty();
                 }
             });
-        } else {
-            // Kosongkan hasil pencarian jika panjang query kurang dari 3 karakter
-            $('#search-results').empty();
-        }
-    });
-});
+        });
 
 
-function showLoading() {
-    return `<div class="d-flex justify-content-center" style="">
+        function showLoading() {
+            return `<div class="d-flex justify-content-center" style="">
         <div class="spinner-border my-auto" role="status">
             <span class="visually-hidden">Loading...</span>
             </div></div>`
 
-}
-
+        }
     </script>
-
     <script>
+        $(document).ready(function() {
+            $('#search-resep').on('input', function() {
+                var value = $(this).val().toLowerCase();
+                $('#table-resep').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        $(document).ready(function() {
+            $('#search-keluhan').on('input', function() {
+                var value = $(this).val().toLowerCase();
+                $('#table-keluhan').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        $(document).ready(function() {
+            $('#search-komentar').on('input', function() {
+                var value = $(this).val().toLowerCase();
+                $('#table-komentar').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+        $(document).ready(function() {
+            $('#search-profile').on('input', function() {
+                var value = $(this).val().toLowerCase();
+                $('#table-profile').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    {{-- <script>
         const click1 = document.getElementById("click1");
         const click3 = document.getElementById("click3");
         const border1 = document.getElementById("border1");
@@ -670,7 +730,7 @@ function showLoading() {
             underline.style.display = "none";
             o.style.display = "none";
         });
-    </script>
+    </script> --}}
     </div>
     <!-- Modal Keluhan -->
     @foreach ($data as $row)
@@ -830,74 +890,74 @@ function showLoading() {
     {{-- akhir modal --}}
     {{-- modal komentar --}}
     @foreach ($allComments as $row)
-            <div class="modal fade" id="modalKomentar{{ $row->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="reportModal"
-                                style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                Detail</h5>
-                            <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body d-flex align-items-center col-12">
-                            <!-- Tambahkan kelas "align-items-center" -->
-                            <div class="col-3 mt-2  ms-3">
-                                @if ($row->user->foto)
-                                    <img class="" src="{{ asset('storage/' . $row->user->foto) }}" width="100px"
-                                        height="100px" style="border-radius: 50%" alt="">
-                                @else
-                                    <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
-                                        height="100px" style="border-radius: 50%" alt="">
-                                @endif
-                                {{-- <div></div>
+        <div class="modal fade" id="modalKomentar{{ $row->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportModal"
+                            style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                            Detail</h5>
+                        <button type="button" class="close text-black" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center col-12">
+                        <!-- Tambahkan kelas "align-items-center" -->
+                        <div class="col-3 mt-2  ms-3">
+                            @if ($row->user->foto)
+                                <img class="" src="{{ asset('storage/' . $row->user->foto) }}" width="100px"
+                                    height="100px" style="border-radius: 50%" alt="">
+                            @else
+                                <img class="" src="{{ asset('images/default.jpg') }}" width="100px"
+                                    height="100px" style="border-radius: 50%" alt="">
+                            @endif
+                            {{-- <div></div>
                                 <span class="widget-49-pro-title fw-bolder"
                                     style="margin-left: 30px;">{{ $row->user->name }}</span><br>
                                 <small class="text-secondary ms-2"><i>{{ $row->user->email }}</i></small> --}}
-                            </div>
-                            <div class="col-md-8">
-                                <div class="widget-49-meeting-info">
-
-                                </div>
-                                @if(!empty($row->replies->reply))
-                                    <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
-                                @elseif(!empty($row->reply_complaint->reply))
-                                <textarea  readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_complaint->reply }}</textarea>
-                                @endif
+                        </div>
+                        <div class="col-md-8">
+                            <div class="widget-49-meeting-info">
 
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
-                                id="deleteLaporan{{ $row->id }}">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" onclick="confirmation({{ $row->id }})"
-                                    class="btn btn-light text-black"
-                                    style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                        class="ms-2 me-2">Hapus Laporan</b></button>
-                            </form>
+                            @if (!empty($row->replies->reply))
+                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
+                            @elseif(!empty($row->reply_complaint->reply))
+                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_complaint->reply }}</textarea>
+                            @endif
 
-                            <button type="button" data-target="#modalTerimalaporan{{ $row->id }}"
-                                data-toggle="modal" data-dismiss="modal" class="btn btn-light text-light rounded-3"
-                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-2 me-2">Terima Laporan</b></button>
-                            <form action="{{ route('block.user', $row->id) }}" method="POST"
-                                id="formBlokir{{ $row->id }}">
-                                @csrf
-                                @method('put')
-                                <button type="button" onclick="buttonAllert({{ $row->id }})"
-                                    id="buttonBlokir{{ $row->id }}"
-                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
-                                </button>
-                            </form>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                            id="deleteLaporan{{ $row->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" onclick="confirmation({{ $row->id }})"
+                                class="btn btn-light text-black"
+                                style=" border-radius: 10px; border: 0.50px black solid; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Hapus Laporan</b></button>
+                        </form>
+
+                        <button type="button" data-target="#modalTerimalaporan{{ $row->id }}" data-toggle="modal"
+                            data-dismiss="modal" class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Terima Laporan</b></button>
+                        <form action="{{ route('block.user', $row->id) }}" method="POST"
+                            id="formBlokir{{ $row->id }}">
+                            @csrf
+                            @method('put')
+                            <button type="button" onclick="buttonAllert({{ $row->id }})"
+                                id="buttonBlokir{{ $row->id }}"
+                                style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     @endforeach
     {{-- end Modal --}}
     {{-- Model Terima laporan --}}
@@ -1406,6 +1466,43 @@ function showLoading() {
                     }
                 });
             });
+        });
+    </script>
+    <script>
+        const resep = document.getElementById("button-resep");
+        const keluhan = document.getElementById("button-keluhan");
+        const border1 = document.getElementById("border1");
+        const border2 = document.getElementById("border2");
+        const komentar = document.getElementById("button-komentar");
+        const border3 = document.getElementById("border3");
+        const profile = document.getElementById("button-profile");
+        const border4 = document.getElementById("border4");
+        resep.addEventListener('click', function() {
+            border1.style.display = "block";
+            border2.style.display = "none";
+            border3.style.display = "none";
+            border4.style.display = "none";
+        });
+        keluhan.addEventListener("click", function() {
+            border2.removeAttribute('hidden');
+            border2.style.display = "block";
+            border1.style.display = "none";
+            border3.style.display = "none";
+            border4.style.display = "none";
+        });
+
+        komentar.addEventListener("click", function() {
+            border3.removeAttribute('hidden');
+            border3.style.display = "block";
+            border1.style.display = "none";
+            border2.style.display = "none";
+            border4.style.display = "none";
+        });
+        profile.addEventListener("click", function() {
+            border4.style.display = "block";
+            border1.style.display = "none";
+            border2.style.display = "none";
+            border3.style.display = "none";
         });
     </script>
     <script>
