@@ -165,6 +165,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
         Route::get('komentar',[KokiController::class,'komentar'])->name('koki.komentar');
+        Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
     });
 });
 
@@ -173,7 +174,7 @@ Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.vid
 Route::delete('/hapus_feed/{id}', [KokiController::class, "hapus_feed"])->name('hapus.feed')->middleware("auth");
 
 
-// like dan komentar pada artikel resep
+// like dan favorite pada artikel resep
 Route::post('/komentar-resep/{user}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
 Route::post('/balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
 Route::post('/koki/sukai/{id}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
