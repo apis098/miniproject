@@ -31,6 +31,7 @@ class ReportController extends Controller
                 ->paginate(6, ['*'], "report-resep-page");
         }
         $data = Report::all();
+        $reportVeed = Report::whereNotNull("feed_id")->paginate(6, ["*"], "report-veed-page");
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
         $reportReply = Report::whereNotNull("reply_id")->orWhereNotNull('reply_comment_id')->paginate(6, ['*'], "report-reply-page");
         $reportReplyComment = Report::whereNotNull("reply_id_complaint")->orWhereNotNull('comment_id')->paginate(6, ['*'], "report-reply-page");
@@ -49,6 +50,7 @@ class ReportController extends Controller
                 $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
                 $statusProfile = $data->whereNotNull('profile_id')->count();
                 $statusResep = $data->whereNotNull('resep_id')->count();
+                $statusVeed = $data->whereNotNull('feed_id')->count();
                 $statusComplaint = $data->whereNotNull('complaint_id')->count();
                 $statusKomentar = $data->whereNotNull('reply_id')->count();
                 $userLog = 2;
@@ -60,7 +62,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+        return view('report.index',compact('allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
 
     public function keluhan(Request $request){
