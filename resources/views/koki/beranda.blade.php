@@ -615,7 +615,7 @@
                 <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
                 <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 270px;">Komentar Resep Terbaru</h5>
             </div>
-            {{ dd($komentar_feed->count() . " " . $komentar_resep->count()) }}
+            {{$komentar_feed->count() . " " . $komentar_resep->count()}}
             <div class="d-flex">
                 <div class="col-lg-6">
                     <div class="card p-4 mt-2 mb-2"
