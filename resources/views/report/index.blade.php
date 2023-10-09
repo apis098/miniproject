@@ -685,52 +685,6 @@
             });
         });
     </script>
-    {{-- <script>
-        const click1 = document.getElementById("click1");
-        const click3 = document.getElementById("click3");
-        const border1 = document.getElementById("border1");
-        const border3 = document.getElementById("border3");
-        const click2 = document.getElementById("c");
-        const border2 = document.getElementById("b");
-        const underline = document.getElementById("f");
-        const buttonTab = document.getElementById("button-tab");
-        const o = document.getElementById("pp");
-        const a_tab = document.getElementById("a-tab");
-        buttonTab.addEventListener("click", function() {
-            tab3();
-        });
-
-        function tab3() {
-            event.preventDefault();
-            border1.style.display = "none";
-            border2.style.display = "none";
-            underline.style.display = "block";
-            underline.removeAttribute('hidden');
-            o.style.display = "none";
-        }
-        a_tab.addEventListener('click', function() {
-            event.preventDefault();
-            o.style.display = "block";
-            underline.style.display = "none";
-            border1.style.display = "none";
-            border2.style.display = "none";
-        });
-        click1.addEventListener('click', function() {
-            event.preventDefault();
-            border1.style.display = "block";
-            border2.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-        click2.addEventListener("click", function() {
-            event.preventDefault();
-            border2.removeAttribute('hidden');
-            border2.style.display = "block";
-            border1.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-    </script> --}}
     </div>
     <!-- Modal Keluhan -->
     @foreach ($data as $row)
