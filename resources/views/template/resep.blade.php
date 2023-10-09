@@ -552,7 +552,7 @@
                                             <!-- untuk koki lain -->
                                             <h5>
                                                 <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    onclick="openButtonPremium()">
+                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                                     {{ $item->nama_resep }}
                                                 </a>
                                             </h5>

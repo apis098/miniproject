@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
+use App\Models\comment_recipes;
+use App\Models\comment_veed;
 use App\Models\favorite;
 use App\Models\footer;
 use Illuminate\Http\Request;
@@ -117,14 +119,9 @@ class KokiController extends Controller
     public function beranda(Request $request)
     {
         $koki = User::find(Auth::user()->id);
-        $jumlah_user = User::all()->count();
-        $jumlah_resep = reseps::all()->count();
-        $jumlah_report = Report::all()->count();
-        $reports = Report::orderBy("created_at", "desc")->get();
-        $reseps = reseps::orderBy("created_at", "desc")->get();
-        $datetime = User::pluck("created_at");
-        $resep_sendiri = reseps::where("user_id", Auth::user()->id)->get();
-        $recipes = reseps::where("user_id", Auth::user()->id)->paginate(6);
+        $jumlah_resep = reseps::where("user_id", Auth::user()->id)->count();
+        $komentar_feed = comment_veed::where("users_id", Auth::user()->id)->get();
+        $komentar_resep = comment_recipes::where('users_id', Auth::user()->id)->get();
         $userLogin = Auth::user();
         $footer = footer::first();
         $notification = [];
@@ -145,30 +142,7 @@ class KokiController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $year = 2018;
-        $yearsu = date('Y') - $year;
-        $years = [];
-        for ($i=0; $i <= $yearsu; $i++) {
-            $years[] = $year++;
-        }
-        $month = [];
-        if ($request->has("tahun")) {
-            $tahun = $request->tahun;
-            for ($i=1; $i <= 12; $i++) {
-                $month[] = DB::table("users")
-                ->whereMonth('created_at', $i)
-                ->whereYear("created_at", $tahun)
-                ->count();
-            }
-        } else {
-            for ($i=1; $i <= 12 ; $i++) {
-                $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
-            }
-        }
-        $data_chartjs = [];
-        return view('koki.beranda',[
-            'koki'=> $koki,
-            ], compact("jumlah_user", "jumlah_resep",'messageCount','recipes','notification','footer', 'resep_sendiri','unreadNotificationCount','userLogin','favorite', "jumlah_report","month", "years", "reports", "reseps"));
+        return view('koki.beranda', compact("komentar_feed", "komentar_resep","koki", "jumlah_resep",'messageCount','notification','footer','unreadNotificationCount','userLogin','favorite'));
 
 
     }
