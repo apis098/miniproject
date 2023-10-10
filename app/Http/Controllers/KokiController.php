@@ -119,9 +119,9 @@ class KokiController extends Controller
     public function beranda(Request $request)
     {
         $koki = User::find(Auth::user()->id);
-        $jumlah_resep = reseps::where("user_id", Auth::user()->id)->count();
-        $komentar_feed = comment_veed::where("users_id", Auth::user()->id)->get();
-        $komentar_resep = comment_recipes::where('users_id', Auth::user()->id)->get();
+        $jumlah_resep = reseps::where("pengirim_id", Auth::user()->id)->count();
+        $komentar_feed = comment_veed::where("pengirim_id", Auth::user()->id)->get();
+        $komentar_resep = comment_recipes::where('pengirim_id', Auth::user()->id)->get();
         $userLogin = Auth::user();
         $footer = footer::first();
         $notification = [];
@@ -178,7 +178,7 @@ class KokiController extends Controller
 
       return view('koki.favorite', compact("koki"));
     }
-    
+
     public function kursus(Request $request){
         $koki = User::find(Auth::user()->id);
 

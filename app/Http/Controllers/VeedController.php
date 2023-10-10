@@ -152,19 +152,17 @@ class VeedController extends Controller
     }
     public function komentar_veed(Request $request, string $pengirim_id, string $penerima_id, string $veed_id)
     {
-        $store_comment = comment_veed::create([
+        comment_veed::create([
             "pengirim_id" => $pengirim_id,
             "penerima_id" => $penerima_id,
             "veed_id" => $veed_id,
             "komentar" => $request->commentVeed
         ]);
-        $item_video = upload_video::where('id', $veed_id)->first();
-        $update = $item_video->comment_veed;
-        //return redirect()->back()->with('success', 'Sukses mengirim komentar!');
+        $item_video = upload_video::find($veed_id);
         return response()->json([
             "success" => true,
             "message" => "Anda berhasil memberi komentar!",
-            "update" => $update
+            "up" => $item_video->comment_veed->sortByDesc('created_at')->values()->all(),
         ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)

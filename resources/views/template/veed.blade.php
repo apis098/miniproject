@@ -1086,7 +1086,7 @@
                                                         <div class="row">
                                                             @if (Auth::user())
                                                                 <form id="formCommentFeed{{ $item_video->id }}"
-                                                                    action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id,$item_video->id]) }}"
+                                                                    action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id, $item_video->id]) }}"
                                                                     method="post">
                                                                     @csrf
                                                                     <div class="d-flex mb-3">
@@ -1106,7 +1106,7 @@
                                                                         </div>
                                                                         <div class="d-flex">
                                                                             <input type="text"
-                                                                                id="input_comment_feed{{ $urut }}"
+                                                                                id="input_comment_veed{{ $item_video->id }}"
                                                                                 name="commentVeed"
                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
                                                                                 class="form-control-sm border border-dark border-5 me-3"
@@ -1145,29 +1145,26 @@
                                                                     </div>
                                                                 </form>
                                                             @endif
-                                                            <!-- list komentar feed start -->
-                                                            <div id="komen_feed{{ $urut }}">
-                                                                @foreach ($item_video->comment_veed as $nomer => $item_comment)
+                                                            <!-- 00000 list komentar feed start 00000 -->
+                                                            <div id="komen_feed{{ $item_video->id }}">
+                                                                @foreach ($item_video->comment_veed->sortByDesc('created_at') as $nomer => $item_comment)
                                                                     <div class="media row mb-2 d-flex"
                                                                         style="width: 131%; margin-left:-11%;">
                                                                         <div class="d-flex col-11">
                                                                             @if ($item_comment->user_pengirim->foto)
-                                                                            <img width="38px" height="38px"
-                                                                            class="rounded-circle"
-                                                                            src="{{ asset('storage/' . $item_comment->user_pengirim->foto) }}"
-
-                                                                            alt="{{ $item_comment->user_pengirim->name }}">
-
+                                                                                <img width="38px" height="38px"
+                                                                                    class="rounded-circle"
+                                                                                    src="{{ asset('storage/' . $item_comment->user_pengirim->foto) }}"
+                                                                                    alt="{{ $item_comment->user_pengirim->name }}">
                                                                             @else
-                                                                            <img width="38px" height="38px"
-                                                                            class="rounded-circle"
-                                                                            src="{{ asset('images/default.jpg') }}"
-
-                                                                            alt="{{ $item_comment->user_pengirim->name }}">
-
+                                                                                <img width="38px" height="38px"
+                                                                                    class="rounded-circle"
+                                                                                    src="{{ asset('images/default.jpg') }}"
+                                                                                    alt="{{ $item_comment->user_pengirim->name }}">
                                                                             @endif
                                                                             <p class="ms-2 mt-2">
-                                                                                {{ $item_comment->user_pengirim->name }}</p>
+                                                                                {{ $item_comment->user_pengirim->name }}
+                                                                            </p>
                                                                             <div
                                                                                 class="d-flex flex-row-reverse ml-auto mt-2">
                                                                                 <small>
@@ -1732,13 +1729,6 @@
                                                             <!-- list komentar feed end -->
                                                         </div>
                                                     </div>
-                                                    {{-- </div>
-            </div> --}}
-                                                    {{-- <div class="container">
-                <div class="row">
-
-                </div>
-            </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -1862,28 +1852,6 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
-    {{-- <script>
-            // Ambil semua elemen checkbox dengan kelas select-checkbox
-const checkboxes = document.querySelectorAll('.select-checkbox');
-
-// Tambahkan event listener untuk setiap checkbox
-checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            // Checkbox dicentang, lakukan aksi yang diinginkan
-            // Contoh: console.log('Checkbox dicentang');
-        } else {
-            // Checkbox tidak dicentang, lakukan aksi yang diinginkan
-            // Contoh: console.log('Checkbox tidak dicentang');
-        }
-    });
-});
-
-function toggleCheckbox(checkbox) {
-        checkbox.checked = !checkbox.checked;
-    }
-
-        </script> --}}
     <script>
         // komentar reply feed ajax
         function balas_komentar(num) {
@@ -1940,8 +1908,7 @@ function toggleCheckbox(checkbox) {
                                 message: response.message,
                                 position: 'topCenter',
                             });
-                            $("#input_comment_feed" + num).val('');
-                            $("#komen_feed" + num).html(response.update);
+                            $("#input_comment_veed" + num).val('');
                         }
                     },
                     error: function error(xhr, status, errors) {
