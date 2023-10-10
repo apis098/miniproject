@@ -460,6 +460,9 @@ class ReportController extends Controller
                 $profile->save();
                 $report->delete();
             }
+            if($report->feed_id != null){
+                $report->feed->delete();
+            }
             return redirect()->back()->with('success','Pengguna berhasil diblokir');
         }else{
             return redirect()->back()->with('error','User sudah diblokir');
