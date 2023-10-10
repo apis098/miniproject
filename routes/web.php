@@ -66,6 +66,7 @@ Route::put('/status-baca/replies-blocked/{id}', [notificationController::class, 
 Route::put('/status-baca/tambah-resep/{id}', [notificationController::class, 'recipesNotification'])->name('resep.read.notification');
 Route::put('/status-baca/blokir-resep/{id}', [notificationController::class, 'blockedRecipes'])->name('blockedRecipes.notification');
 Route::put('/status-baca/blokir-komentar/{id}', [notificationController::class, 'blockedComent'])->name('blockedComent.notification');
+Route::put('/status-baca/blokir-feed/{id}', [notificationController::class, 'blockedFeed'])->name('blockedFeed.notification');
 Route::put('/status-baca/blokir-keluhan/{id}', [notificationController::class, 'blockedComplaint'])->name('blockedComplaint.notification');
 
 

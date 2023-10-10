@@ -51,7 +51,13 @@ class notificationController extends Controller
         $notificattion = notifications::findOrFail($id);
         $notificattion->status = 'sudah';
         $notificattion->save();
-        return redirect()->back()->with('info','Komentar kamu telah diblokir');
+        return redirect()->back();
+    }
+    public function blockedFeed($id){
+        $notification = notifications::findPrFail($id);
+        $notification->status = 'sudah';
+        $notification->save();
+        return redirect()->back();
     }
     public function repliesBlocked($id){
         $notificattion = notifications::findOrFail($id);

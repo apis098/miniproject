@@ -402,6 +402,16 @@ class ReportController extends Controller
             $notification->save();
             return redirect()->back()->with('success', 'Resep telah diblokir');
         }
+        if($report->feed_id != null){
+            $report->feed->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->veed_id_report = 1;
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            return redirect()->back()->with('success', 'Postingan telah diblokir');
+        }
         if($report->profile_id != null){
             if ($report->user->foto) {
                 Storage::disk('public')->delete($report->user->foto);

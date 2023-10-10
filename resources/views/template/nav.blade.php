@@ -659,6 +659,24 @@
                                                                     class="form-control">
                                                             </button>
                                                         </form>
+                                                    @elseif($row->veed_id_report != null)
+                                                        <form
+                                                            action="{{ route('blockedFeed.notification', $row->id) }}"
+                                                            method="POST">
+                                                            @method('PUT')
+                                                            @csrf
+                                                            <button class="yuhu mt-2" type="button"
+                                                                data-toggle="modal"
+                                                                data-target="#modalAlasan{{ $row->id }}">
+                                                                <small class="mt-1 ms-1 text-secondary">Postingan
+                                                                    kamu telah diblokir</small>
+                                                                @if ($row->status == 'belum')
+                                                                    <img class="ms-2 mb-2 rounded-circle"
+                                                                        src="{{ asset('images/badge.png') }}"
+                                                                        alt="profile image" style="max-width:10px">
+                                                                @endif
+                                                            </button>
+                                                        </form>
                                                     @elseif($row->follower_id != null && $row->complaint_id == null)
                                                         <form action="{{ route('follow.notification', $row->id) }}"
                                                             method="POST">
@@ -1137,7 +1155,7 @@
                             <h5 class="modal-title" id="exampleModalCenterTitle"
                                 style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                 Alasan diblokir</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="submit" class="close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
