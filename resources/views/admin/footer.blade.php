@@ -154,8 +154,8 @@
 
     </style>
 
-    <div class=" d-flex justify-content-center" style="margin-left:-60px">
-        <div class="my-5 ml-5" style="margin-right: 20%;">
+    <div class=" d-flex justify-content-start">
+        <div class="my-5 ml-3">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">
