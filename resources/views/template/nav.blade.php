@@ -292,7 +292,7 @@
                         </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mt-3 me-2 justify-content-center " style="margin-left: 20px">
+                            <ul class="navbar-nav mt-2 me-2 justify-content-center " style="margin-left: -2%">
                                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
                                     style="font-size: 15px;">
                                     <a class="nav-link" id="navbar" href="{{ route('home') }}"><b>Beranda</b></a>
@@ -825,7 +825,7 @@
                                                 Upgrade
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="#" style="width: 230px;"
+                                            <a href="#" style="width: 230px;" data-bs-toggle="modal" data-bs-target="#topup"
                                                 class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
                                                     height="20" viewBox="0 0 256 256">
@@ -909,9 +909,9 @@
                         </div>
                         @endif
                     @else
-                        <div class="ms-5">
-                            <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects ms-5"
-                                style=" border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
+                        <div class="mx-5">
+                            <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects mx-5"
+                                style="border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
                                     class="me-2 ms-2">Masuk</b></a>
 
                         </div>
@@ -922,7 +922,108 @@
             @yield('content-header')
     </div>
 
+    <div class="modal" id="topup">
+        <div class="modal-dialog ">
+            <div class="modal-content text-center">
+                <div class="d-flex">
+                    <div class="col-11">
+                    <h5 class="modal-title ml-1 mt-3"
+                        style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                        Top Up</h5>
+                    </div>
+                    <div class="col-1">
+                    <button type="button" class="close mr-1 mt-3"
+                        data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    </div>
+                <div class="modal-body">
+                        <div class="col-lg-3 my-3">
+                            <div class="card" id="card"
+                                data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
+                                <div class=card-body">
+                                    <div class="d-flex">
+                                    <div class="text-start mx-3 mt-2">
+                                        <a href="#"
+                                            class="card-title"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                            Kecil</a>
+                                            <p class="text-start mt-1"
+                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Rp. 20.000,00</p>
+                                            </div>
+                                            <div class="ml-5">
+                                    <img src="{{ asset('img/4.png') }}"
+                                    class="mx-5" width="90px" height="88px;" alt="">
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 my-3">
+                            <div class="card " id="card"
+                                data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                {{-- <img src="{{ asset('img/sedang.png') }}"
+                                    class="card-img-top" alt=""> --}}
+                                    <div class=card-body">
+                                        <div class="d-flex">
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#"
+                                                class="card-title"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Sedang</a>
+                                                <p class="text-start mt-1"
+                                                    style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                    Rp. 50.000,00</p>
+                                                </div>
+                                                <div class="ml-5">
+                                        <img src="{{ asset('img/5.png') }}"
+                                        class="mx-5" width="90px" height="88px;" alt="">
+                                    </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 my-1">
+                            <div class="card" id="card"
+                            data-card-selected="false"
+                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+
+                            <div class=card-body">
+                                        <div class="d-flex">
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#"
+                                                class="card-title"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Besar</a>
+                                                <p class="text-start mt-1"
+                                                    style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                    Rp. 100.000,00</p>
+                                                </div>
+                                                <div class="ml-5">
+                                        <img src="{{ asset('img/2.png') }}"
+                                        class="mx-5" width="90px" height="88px;" alt="">
+                                    </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+
+                    </div>
+                        <button type="submit" id="buttonCommentVeed"
+                            style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn btn-sm text-light mb-3 mx-4">
+                            <b class="me-3 ms-3">Kirim</b></button>
+            </div>
+        </div>
+    </div>
+    <!-- modal gift end -->
 
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
