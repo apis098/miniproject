@@ -488,7 +488,7 @@
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                                         <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
-                                                data-target="#modalResep{{ $row->feed_id }}"
+                                                data-target="#modalFeed"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
                                                 style="background-color: #F7941E;"><b
                                                     class="ms-2 me-2">Detail</b></button>
@@ -498,7 +498,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    @if ($reportResep->count() == 0)
+                    @if ($reportVeed->count() == 0)
                         <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: 5em; margin-left:-5%;">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
@@ -1334,10 +1334,71 @@
                     </div>
                 </div>
             </div>
+            {{-- modal feed --}}
+            <div class="modal fade bd-example-modalrounded-5" id="modalFeed" tabindex="-1"
+                role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog ">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title fw-bolder">Detail</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i class="fa-regular text-dark fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <div class="d-flex justify-content-center row">
+                                    <div class="col-md-12">
+                                        <div class="feed">
+                                            <div class="bg-white border ">
+                                                <div>
+                                                    <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                                                        <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
+                                                            <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                                                        </div>
+                                                        <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="{{asset('images/dark-food.jpg')}}"></div>
+                                                <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ route('Report.destroy', $row->id) }}" method="POST"
+                                id="deleteLaporan{{ $row->id }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" onclick="confirmation({{ $row->id }})"
+                                    class="btn btn-outline-dark rounded-3"
+                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Hapus Laporan</b></button>
+                            </form>
+                            <button type="button" data-toggle="modal"
+                                data-target="#modalTerimalaporan{{ $row->id }}" data-dismiss="modal"
+                                class="btn btn-light text-light rounded-3"
+                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                    class="ms-2 me-2">Terima Laporan</b></button>
+                            <form action="{{ route('block.user', $row->id) }}" method="POST"
+                                id="formBlokir{{ $row->id }}">
+                                @csrf
+                                @method('put')
+                                <button type="button" onclick="buttonAllert({{ $row->id }})"
+                                    id="buttonBlokir{{ $row->id }}"
+                                    style="background-color: #F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-light text-light rounded-3 me-2"><b>Blokir pengguna</b>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         @endif
     @endforeach
     {{-- end modal --}}
-
+    
     @foreach ($data as $row)
         @if ($row->id != '')
             <div class="modal fade" id="replyModal{{ $row->id }}" data-backdrop="static" data-keyboard="false"

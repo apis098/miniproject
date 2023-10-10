@@ -38,6 +38,7 @@ class ReportController extends Controller
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
         $allComments = $reportReply->concat($reportReplyComment);
         $dataComment = Report::whereNotNull("reply_id")
+        
             ->orWhereNotNull("reply_comment_id")
             ->orWhereNotNull("feed_id")
             ->paginate(6, ['*'], "report-profile-page");
