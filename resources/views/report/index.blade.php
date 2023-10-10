@@ -205,8 +205,8 @@
             border: none;
             border-radius: 15px;
             width: 100%;
-          
-            
+
+
 
         }
 
@@ -244,7 +244,7 @@
             color: #fff;
             margin-left: -6%;
             width: 90px;
-            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25); 
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
         .cari2 {
@@ -255,7 +255,7 @@
             background-color: #F7941E;
             color: #fff;
             width: 90px;
-            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25); 
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
 
@@ -280,6 +280,7 @@
         }
     </style>
 
+<div class="" style="overflow-x:hidden">
     <div class=" d-flex justify-content-center ms-3">
         <div class="my-5">
             <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
@@ -694,6 +695,7 @@
             
         </div>
     </div>
+</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
@@ -1371,6 +1373,7 @@
                     </div>
                 </div>
             </div>
+
         @endif
     @endforeach
     {{-- end modal edit --}}

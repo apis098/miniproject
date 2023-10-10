@@ -256,8 +256,8 @@
             }
         }
     </style>
-    <div class=" d-flex justify-content-center ms-3" style="overflow-x:hidden">
-        <div class="my-5 ml-5" style="margin-right: -15%;">
+    <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden">
+        <div class="my-5 ml-3">
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">

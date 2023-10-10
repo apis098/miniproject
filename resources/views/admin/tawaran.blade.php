@@ -185,8 +185,8 @@
     </style>
     <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
         @csrf
-        <div class=" d-flex justify-content-center ms-3" style="overflow-x:hidden;">
-            <div class="my-5" style="margin-left: 15rem;">
+        <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
+            <div class="my-5 ml-3">
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Nama</label>
                     <div class="col-sm-10">

@@ -615,18 +615,25 @@
                 <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
                 <h5 class="fw-bold" style="margin-bottom: 1; margin-left: 270px;">Komentar Resep Terbaru</h5>
             </div>
-            {{$komentar_feed->count() . " " . $komentar_resep->count()}}
+            {{-- {{$komentar_feed->count() . " " . $komentar_resep->count()}} --}}
+            <style>
+                .card-body {
+overflow-y: auto; /* atau overflow-y: scroll; */
+max-height: 350px; /* Ganti dengan ketinggian maksimum yang Anda inginkan */
+}
+
+            </style>
             <div class="d-flex">
                 <div class="col-lg-6">
                     <div class="card p-4 mt-2 mb-2"
                         style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
                             @if ($komentar_feed->count() == 0)
-                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                                    style="margin-top: -3em">
-                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p><b>Tidak ada data</b></p>
-                                </div>
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 2em">
+                            <img src="{{asset('images/data.png')}}" style="width: 15em">
+                            <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                        </div>
                             @endif
                             @foreach ($komentar_feed as $commentFeed)
                             <div class="border-bottom py-3">
@@ -655,11 +662,11 @@
                         style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
                             @if ($komentar_resep->count() == 0)
-                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                                    style="margin-top: -3em">
-                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p><b>Tidak ada data</b></p>
-                                </div>
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 2em">
+                            <img src="{{asset('images/data.png')}}" style="width: 15em">
+                            <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                        </div>
                             @endif
                             @foreach ($komentar_resep as $commentRecipe)
                             <div class="border-bottom py-3">
