@@ -37,6 +37,10 @@ class ReportController extends Controller
         $reportReplyComment = Report::whereNotNull("reply_id_complaint")->orWhereNotNull('comment_id')->paginate(6, ['*'], "report-reply-page");
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
         $allComments = $reportReply->concat($reportReplyComment);
+        $dataComment = Report::whereNotNull("reply_id")
+            ->orWhereNotNull("reply_comment_id")
+            ->orWhereNotNull("feed_id")
+            ->paginate(6, ['*'], "report-profile-page");
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;

@@ -287,7 +287,7 @@
                     <a href="#" class="nav-link mr-5 active" id="button-resep" data-bs-toggle="tab"
                         data-bs-target="#resep" type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                            Laporan resep
+                            Resep
                             @if ($statusResep > 0)
                                 <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" viewBox="0 0 24 24">
@@ -296,7 +296,7 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
+                        <div id="border1" class="ms-2" style="width: 80%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
                 </li>
@@ -305,7 +305,7 @@
                         data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
-                            Laporan keluhan
+                            Keluhan
                             @if ($statusComplaint > 0)
                                 <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" viewBox="0 0 24 24">
@@ -314,7 +314,7 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="border2" class="ms-3" style="width: 78%; height: 80%; border: 1px #F7941E solid;"
+                        <div id="border2" class="ms-2" style="width: 75%; height: 80%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
                     </a>
@@ -324,7 +324,7 @@
                         data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
-                            Laporan komentar
+                            Komentar
                             @if ($statusKomentar > 0)
                                 <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" viewBox="0 0 24 24">
@@ -333,7 +333,7 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="border3" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
+                        <div id="border3" class="ms-2" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
                             hidden></div>
                     </a>
                 </li>
@@ -342,7 +342,7 @@
                         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                         aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                            Laporan profile
+                            Profile
                             @if ($statusProfile > 0)
                                 <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                     height="12" viewBox="0 0 24 24">
@@ -351,8 +351,26 @@
                                 </svg>
                             @endif
                         </h5>
-                        <div id="border4" class="ms-3"
-                            style="width: 80%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                        <div id="border4" class="ms-2"
+                            style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                    </a>
+                </li>
+                <li class="nav-item tabs" role="presentation">
+                    <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-feed" data-bs-toggle="tab"
+                        data-bs-target="#feed" type="button" role="tab" aria-controls="feed"
+                        aria-selected="false">
+                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                            Feed
+                            @if ($statusVeed > 0)
+                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                    height="12" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                </svg>
+                            @endif
+                        </h5>
+                        <div id="border5" class="ms-2"
+                            style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                     </a>
                 </li>
             </ul>
@@ -405,6 +423,71 @@
                                         <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
                                                 data-target="#modalResep{{ $row->resep_id }}"
+                                                class="btn btn-light btn-sm rounded-3 text-light"
+                                                style="background-color: #F7941E;"><b
+                                                    class="ms-2 me-2">Detail</b></button>
+                                        </td>
+                                    </tr>
+                                </div>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @if ($reportResep->count() == 0)
+                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                            style="margin-top: 5em; margin-left:-5%;">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
+
+                    {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
+                </div>
+                {{-- end --}}
+                <div class="tab-pane fade show" id="feed" role="tabpanel" aria-labelledby="pills-home-tab"
+                    tabindex="0">
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="search">
+                                <div class="row">
+                                    <div class="col-11">
+                                        <div>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/laporan-pengguna" method="GET">
+                                                    <input type="text" id="search-resep" name="resep" autofocus placeholder="Cari Laporan Resep">
+                                                    <button type="submit" class="zoom-effects cari2 ms-4">Cari</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {{-- start tab 1 --}}
+                    <table id="table-resep" class="table-custom">
+                        <thead>
+                            <tr>
+                                <th scope="col">Pelapor</th>
+                                <th scope="col">User</th>
+                                <th scope="col">Subjek</th>
+                                <th scope="col">Melanggar</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($reportVeed as $row)
+                                <div id="search-results">
+                                    <tr class="mt-5">
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
+                                        </td>
+                                        <td>{{ $row->user->name }}</td>
+                                        <td>{{ $row->description }}</td>
+                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                        <td style="border-right:1px solid black;">
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#modalResep{{ $row->feed_id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
                                                 style="background-color: #F7941E;"><b
                                                     class="ms-2 me-2">Detail</b></button>
@@ -608,7 +691,7 @@
                     {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
                 </div>
             </div>
-
+            
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -1437,11 +1520,14 @@
         const border3 = document.getElementById("border3");
         const profile = document.getElementById("button-profile");
         const border4 = document.getElementById("border4");
+        const border5 = document.getElementById("border5");
+        const feed = document.getElementById("button-feed");
         resep.addEventListener('click', function() {
             border1.style.display = "block";
             border2.style.display = "none";
             border3.style.display = "none";
             border4.style.display = "none";
+            border5.style.display = "none";
         });
         keluhan.addEventListener("click", function() {
             border2.removeAttribute('hidden');
@@ -1449,6 +1535,7 @@
             border1.style.display = "none";
             border3.style.display = "none";
             border4.style.display = "none";
+            border5.style.display = "none";
         });
 
         komentar.addEventListener("click", function() {
@@ -1457,12 +1544,21 @@
             border1.style.display = "none";
             border2.style.display = "none";
             border4.style.display = "none";
+            border5.style.display = "none";
         });
         profile.addEventListener("click", function() {
             border4.style.display = "block";
             border1.style.display = "none";
             border2.style.display = "none";
             border3.style.display = "none";
+            border5.style.display = "none";
+        });
+        feed.addEventListener("click", function() {
+            border5.style.display = "block";
+            border1.style.display = "none";
+            border2.style.display = "none";
+            border3.style.display = "none";
+            border4.style.display = "none";
         });
     </script>
     <script>
