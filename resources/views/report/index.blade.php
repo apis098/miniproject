@@ -37,6 +37,7 @@
         .close {
             color: #fff
         }
+
         .close:hover {
             color: #fff
         }
@@ -159,7 +160,8 @@
             padding: 0px 15px;
             border-radius: 5px;
             width: 845px;
-            border-radius: 15px; border: 0.50px black solid;
+            border-radius: 15px;
+            border: 0.50px black solid;
         }
 
         .search-1 {
@@ -217,16 +219,16 @@
         }
 
         /* button{
-                        background-color: #F7941E;
-                        border: none;
-                        height: 45px;
-                        width: 90px;
-                        color: #ffffff;
-                        position: absolute;
-                        right: 1px;
-                        top: 0px;
-                        border-radius: 15px
-                    } */
+                            background-color: #F7941E;
+                            border: none;
+                            height: 45px;
+                            width: 90px;
+                            color: #ffffff;
+                            position: absolute;
+                            right: 1px;
+                            top: 0px;
+                            border-radius: 15px
+                        } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -247,6 +249,7 @@
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
+
         .cari2 {
             position: absolute;
             top: -2px;
@@ -280,140 +283,274 @@
         }
     </style>
 
-<div class="" style="overflow-x:hidden">
-    <div class=" d-flex justify-content-center ms-3">
-        <div class="my-5">
-            <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
-                <li class="nav-item tabs" role="presentation">
-                    <a href="#" class="nav-link mr-5 active" id="button-resep" data-bs-toggle="tab"
-                        data-bs-target="#resep" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                            Resep
-                            @if ($statusResep > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
-                                    height="12" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
-                                </svg>
-                            @endif
-                        </h5>
-                        <div id="border1" class="ms-2" style="width: 80%; height: 100%; border: 1px #F7941E solid;">
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item tabs" role="presentation">
-                    <a href="#" class="nav-link mr-5" id="button-keluhan" data-bs-toggle="tab"
-                        data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
-                        aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
-                            Keluhan
-                            @if ($statusComplaint > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
-                                    height="12" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
-                                </svg>
-                            @endif
-                        </h5>
-                        <div id="border2" class="ms-2" style="width: 75%; height: 80%; border: 1px #F7941E solid;"
-                            hidden>
-                        </div>
-                    </a>
-                </li>
-                <li class="nav-item tabs" role="presentation">
-                    <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-komentar" data-bs-toggle="tab"
-                        data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
-                        aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
-                            Komentar
-                            @if ($statusKomentar > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
-                                    height="12" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
-                                </svg>
-                            @endif
-                        </h5>
-                        <div id="border3" class="ms-2" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
-                            hidden></div>
-                    </a>
-                </li>
-                <li class="nav-item tabs" role="presentation">
-                    <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-profile" data-bs-toggle="tab"
-                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
-                        aria-selected="false">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                            Profile
-                            @if ($statusProfile > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
-                                    height="12" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
-                                </svg>
-                            @endif
-                        </h5>
-                        <div id="border4" class="ms-2"
-                            style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
-                    </a>
-                </li>
-                <li class="nav-item tabs" role="presentation">
-                    <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-feed" data-bs-toggle="tab"
-                        data-bs-target="#feed" type="button" role="tab" aria-controls="feed"
-                        aria-selected="false">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                            Feed
-                            @if ($statusVeed > 0)
-                                <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
-                                    height="12" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
-                                </svg>
-                            @endif
-                        </h5>
-                        <div id="border5" class="ms-2"
-                            style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
-                    </a>
-                </li>
-            </ul>
+    <div class="" style="overflow-x:hidden">
+        <div class=" d-flex justify-content-center ms-3">
+            <div class="my-5">
+                <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
+                    <li class="nav-item tabs" role="presentation">
+                        <a href="#" class="nav-link mr-5 active" id="button-resep" data-bs-toggle="tab"
+                            data-bs-target="#resep" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                                Resep
+                                @if ($statusResep > 0)
+                                    <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                @endif
+                            </h5>
+                            <div id="border1" class="ms-2" style="width: 80%; height: 100%; border: 1px #F7941E solid;">
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item tabs" role="presentation">
+                        <a href="#" class="nav-link mr-5" id="button-keluhan" data-bs-toggle="tab"
+                            data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
+                            aria-selected="false">
+                            <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                                Keluhan
+                                @if ($statusComplaint > 0)
+                                    <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                @endif
+                            </h5>
+                            <div id="border2" class="ms-2" style="width: 75%; height: 80%; border: 1px #F7941E solid;"
+                                hidden>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item tabs" role="presentation">
+                        <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-komentar" data-bs-toggle="tab"
+                            data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
+                            aria-selected="false">
+                            <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                                Komentar
+                                @if ($statusKomentar > 0)
+                                    <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                @endif
+                            </h5>
+                            <div id="border3" class="ms-2" style="width: 80%; height: 100%; border: 1px #F7941E solid;"
+                                hidden></div>
+                        </a>
+                    </li>
+                    <li class="nav-item tabs" role="presentation">
+                        <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-profile" data-bs-toggle="tab"
+                            data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                            aria-selected="false">
+                            <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                                Profile
+                                @if ($statusProfile > 0)
+                                    <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                @endif
+                            </h5>
+                            <div id="border4" class="ms-2"
+                                style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item tabs" role="presentation">
+                        <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-feed" data-bs-toggle="tab"
+                            data-bs-target="#feed" type="button" role="tab" aria-controls="feed"
+                            aria-selected="false">
+                            <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                                Feed
+                                @if ($statusVeed > 0)
+                                    <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                @endif
+                            </h5>
+                            <div id="border5" class="ms-2"
+                                style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                        </a>
+                    </li>
+                </ul>
 
 
 
-            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="resep" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-11">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" id="search-resep" name="resep" autofocus placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects cari2 ms-4">Cari</button>
-                                                </form>
+                <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="resep" role="tabpanel"
+                        aria-labelledby="pills-home-tab" tabindex="0">
+                        <form action="">
+                            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <div>
+                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                    <form action="/admin/laporan-pengguna" method="GET">
+                                                        <input type="text" id="search-resep" name="resep" autofocus
+                                                            placeholder="Cari Laporan Resep">
+                                                        <button type="submit"
+                                                            class="zoom-effects cari2 ms-4">Cari</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    {{-- start tab 1 --}}
-                    <table id="table-resep" class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        </form>
+                        {{-- start tab 1 --}}
+                        <table id="table-resep" class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pelapor</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Melanggar</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                            @foreach ($reportResep as $row)
-                                <div id="search-results">
+                                @foreach ($reportResep as $row)
+                                    <div id="search-results">
+                                        <tr class="mt-5">
+                                            <td style="border-left:1px solid black;" class="mt">
+                                                {{ $row->userSender->name }}
+                                            </td>
+                                            <td>{{ $row->user->name }}</td>
+                                            <td>{{ $row->description }}</td>
+                                            <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                            <td style="border-right:1px solid black;">
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#modalResep{{ $row->resep_id }}"
+                                                    class="btn btn-light btn-sm rounded-3 text-light"
+                                                    style="background-color: #F7941E;"><b
+                                                        class="ms-2 me-2">Detail</b></button>
+                                            </td>
+                                        </tr>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @if ($reportResep->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 5em; margin-left:-5%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
+
+                        {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
+                    </div>
+                    {{-- end --}}
+                    <div class="tab-pane fade show" id="feed" role="tabpanel" aria-labelledby="pills-home-tab"
+                        tabindex="0">
+                        <form action="">
+                            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-11">
+                                            <div>
+                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                    <form action="/admin/laporan-pengguna" method="GET">
+                                                        <input type="text" id="search-resep" name="resep" autofocus
+                                                            placeholder="Cari Laporan Resep">
+                                                        <button type="submit"
+                                                            class="zoom-effects cari2 ms-4">Cari</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        {{-- start tab 1 --}}
+                        <table id="table-resep" class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pelapor</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Melanggar</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach ($reportVeed as $row)
+                                    <div id="search-results">
+                                        <tr class="mt-5">
+                                            <td style="border-left:1px solid black;" class="mt">
+                                                {{ $row->userSender->name }}
+                                            </td>
+                                            <td>{{ $row->user->name }}</td>
+                                            <td>{{ $row->description }}</td>
+                                            <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                            <td style="border-right:1px solid black;">
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#modalFeed{{ $row->feed_id }}"
+                                                    class="btn btn-light btn-sm rounded-3 text-light"
+                                                    style="background-color: #F7941E;"><b
+                                                        class="ms-2 me-2">Detail</b></button>
+                                            </td>
+                                        </tr>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @if ($reportVeed->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 5em; margin-left:-5%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
+
+                        {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
+                    </div>
+                    {{-- end --}}
+                    <div class="tab-pane fade" id="keluhan" role="tabpanel" aria-labelledby="pills-profile-tab"
+                        tabindex="0">
+                        <form action="">
+                            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                    <form action="/admin/special-days" method="GET">
+                                                        <input type="text" id="search-keluhan" name="d"
+                                                            placeholder="Cari Laporan Keluhan">
+                                                        <button type="submit" class="zoom-effects cari">Cari</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table id="table-keluhan" class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pelapor</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Melanggar</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($reportComplaint as $row)
                                     <tr class="mt-5">
                                         <td style="border-left:1px solid black;" class="mt">
                                             {{ $row->userSender->name }}
@@ -423,62 +560,59 @@
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                                         <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
-                                                data-target="#modalResep{{ $row->resep_id }}"
+                                                data-target="#modalComplaint{{ $row->complaint_id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
                                                 style="background-color: #F7941E;"><b
                                                     class="ms-2 me-2">Detail</b></button>
                                         </td>
                                     </tr>
-                                </div>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @if ($reportResep->count() == 0)
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 5em; margin-left:-5%;">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
-
-                    {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
-                </div>
-                {{-- end --}}
-                <div class="tab-pane fade show" id="feed" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-11">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" id="search-resep" name="resep" autofocus placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects cari2 ms-4">Cari</button>
-                                                </form>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @if ($reportComplaint->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 5em; margin-left:-5%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
+                        {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
+                    </div>
+                    {{-- end --}}
+                    <div class="tab-pane fade" id="komentar" role="tabpanel" aria-labelledby="pills-contact-tab"
+                        tabindex="0">
+                        <form action="">
+                            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                    <form action="/admin/special-days" method="GET">
+                                                        <input type="text" id="search-komentar" name="d"
+                                                            placeholder="Cari Laporan Resep">
+                                                        <button type="submit" class="zoom-effects cari">Cari</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
-                    {{-- start tab 1 --}}
-                    <table id="table-resep" class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                        </form>
 
-                            @foreach ($reportVeed as $row)
-                                <div id="search-results">
+                        <table id="table-komentar" class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pelapor</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Melanggar</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($allComments as $row)
                                     <tr class="mt-5">
                                         <td style="border-left:1px solid black;" class="mt">
                                             {{ $row->userSender->name }}
@@ -488,214 +622,91 @@
                                         <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
                                         <td style="border-right:1px solid black;">
                                             <button type="button" data-toggle="modal"
-                                                data-target="#modalFeed"
+                                                data-target="#modalKomentar{{ $row->id }}"
                                                 class="btn btn-light btn-sm rounded-3 text-light"
                                                 style="background-color: #F7941E;"><b
                                                     class="ms-2 me-2">Detail</b></button>
                                         </td>
                                     </tr>
-                                </div>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @if ($reportVeed->count() == 0)
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 5em; margin-left:-5%;">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
-
-                    {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
-                </div>
-                {{-- end --}}
-                <div class="tab-pane fade" id="keluhan" role="tabpanel" aria-labelledby="pills-profile-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="search-keluhan" name="d"
-                                                        placeholder="Cari Laporan Keluhan">
-                                                    <button type="submit" class="zoom-effects cari">Cari</button>
-                                                </form>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @if ($allComments->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 5em; margin-left:-5%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
+                        {{ $reportReply->links('vendor.pagination.defaultReportReply') }}
+                    </div>
+                    {{-- end --}}
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="pills-contact-tab"
+                        tabindex="0">
+                        <form action="">
+                            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                    <form action="/admin/special-days" method="GET">
+                                                        <input type="text" id="search-profile" name="d"
+                                                            placeholder="Cari Laporan Resep">
+                                                        <button type="submit" class="zoom-effects cari">Cari</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
-                    <table id="table-keluhan" class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reportComplaint as $row)
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">
-                                        {{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#modalComplaint{{ $row->complaint_id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
+                        <table id="table-profile" class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pelapor</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Melanggar</th>
+                                    <th scope="col">Aksi</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @if ($reportComplaint->count() == 0)
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 5em; margin-left:-5%;">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
-                    {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
-                </div>
-                {{-- end --}}
-                <div class="tab-pane fade" id="komentar" role="tabpanel" aria-labelledby="pills-contact-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="search-komentar" name="d"
-                                                        placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects cari">Cari</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            </thead>
+                            <tbody>
+                                @foreach ($reportProfile as $row)
+                                    <tr class="mt-5">
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
+                                        </td>
+                                        <td>{{ $row->user->name }}</td>
+                                        <td>{{ $row->description }}</td>
+                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                        <td style="border-right:1px solid black;">
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#modalProfile{{ $row->profile_id }}"
+                                                class="btn btn-light btn-sm rounded-3 text-light"
+                                                style="background-color: #F7941E;"><b
+                                                    class="ms-2 me-2">Detail</b></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @if ($reportProfile->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 5em; margin-left:-5%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
                             </div>
-                        </div>
-                    </form>
-
-                    <table id="table-komentar" class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($allComments as $row)
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">
-                                        {{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#modalKomentar{{ $row->id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @if ($allComments->count() == 0)
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 5em; margin-left:-5%;">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
-                    {{ $reportReply->links('vendor.pagination.defaultReportReply') }}
+                        @endif
+                        {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
+                    </div>
                 </div>
-                {{-- end --}}
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="pills-contact-tab"
-                    tabindex="0">
-                    <form action="">
-                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" >
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div>
-                                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                                <form action="/admin/special-days" method="GET">
-                                                    <input type="text" id="search-profile" name="d"
-                                                        placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects cari">Cari</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
 
-                    <table id="table-profile" class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col">Pelapor</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Subjek</th>
-                                <th scope="col">Melanggar</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($reportProfile as $row)
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">
-                                        {{ $row->userSender->name }}
-                                    </td>
-                                    <td>{{ $row->user->name }}</td>
-                                    <td>{{ $row->description }}</td>
-                                    <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
-                                    <td style="border-right:1px solid black;">
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#modalProfile{{ $row->profile_id }}"
-                                            class="btn btn-light btn-sm rounded-3 text-light"
-                                            style="background-color: #F7941E;"><b class="ms-2 me-2">Detail</b></button>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @if ($reportProfile->count() == 0)
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 5em; margin-left:-5%;">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
-                    {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
-                </div>
             </div>
-            
         </div>
     </div>
-</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
@@ -1251,7 +1262,8 @@
                                                                         style="color: black; font-size: 21px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                                         {{ $item_bahan->nama_bahan }}
                                                                     </span> <br>
-                                                                    <p class="ms-3">{{ $item_bahan->takaran_bahan }}</p>
+                                                                    <p class="ms-3">{{ $item_bahan->takaran_bahan }}
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1334,8 +1346,13 @@
                     </div>
                 </div>
             </div>
+        @endif
+    @endforeach
+    {{-- end modal --}}
+    @foreach ($data as $row)
+        @if ($row->feed_id != null)
             {{-- modal feed --}}
-            <div class="modal fade bd-example-modalrounded-5" id="modalFeed" tabindex="-1"
+            <div class="modal fade bd-example-modalrounded-5" id="modalFeed{{ $row->feed_id }}" tabindex="-1"
                 role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog ">
                     <div class="modal-content">
@@ -1352,15 +1369,43 @@
                                         <div class="feed">
                                             <div class="bg-white border ">
                                                 <div>
-                                                    <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
-                                                        <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">
-                                                            <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>
+                                                    <div
+                                                        class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
+                                                        <div class="d-flex flex-row align-items-center feed-text px-2"><img
+                                                                class="rounded-circle"
+                                                                src="{{ $row->user->foto ? asset('storage/' . $row->user->foto) : asset('images/default.jpg') }}" width="45">
+                                                            <div class="d-flex flex-column flex-wrap ml-2"><span
+                                                                    class="font-weight-bold">{{$row->user->name}}</span><span
+                                                                    class="text-black-50 time">{{ \Carbon\Carbon::parse($row->feed->created_at)->locale('id_ID')->diffForHumans() }}</span></div>
                                                         </div>
-                                                        <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>
+                                                        <div class="feed-icon px-2"><i
+                                                                class="fa fa-ellipsis-v text-black-50"></i></div>
                                                     </div>
                                                 </div>
-                                                <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="{{asset('images/dark-food.jpg')}}"></div>
-                                                <div class="p-2 px-3"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></div>
+                                                <div class="feed-image p-2 px-3">
+                                                    {{-- <img class="img-fluid img-responsive" src="{{asset('images/dark-food.jpg')}}"> --}}
+                                                    <style>
+                                                        .video-container {
+                                                            position: relative;
+                                                            padding-bottom: 56.25%;
+                                                            overflow: hidden;
+                                                        }
+
+                                                        .video {
+                                                            position: absolute;
+                                                            top: 0;
+                                                            left: 0;
+                                                            width: 100%;
+                                                            height: 100%;
+                                                        }
+                                                    </style>
+                                                    <div class="video-container">
+                                                        <video class="video" controls>
+                                                            <source src="{{asset('storage/'.$row->feed->upload_video)}}" type="video/mp4">
+                                                        </video>
+                                                    </div>
+                                                </div>
+                                                <div class="p-2 px-3"><span>{{$row->feed->deskripsi_video}}</span></div>
                                             </div>
                                         </div>
                                     </div>
@@ -1397,8 +1442,7 @@
             </div>
         @endif
     @endforeach
-    {{-- end modal --}}
-    
+
     @foreach ($data as $row)
         @if ($row->id != '')
             <div class="modal fade" id="replyModal{{ $row->id }}" data-backdrop="static" data-keyboard="false"
@@ -1434,7 +1478,6 @@
                     </div>
                 </div>
             </div>
-
         @endif
     @endforeach
     {{-- end modal edit --}}
