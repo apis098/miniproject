@@ -1393,8 +1393,8 @@
 
                                                         .video {
                                                             position: absolute;
-                                                            top: 0;
                                                             left: 0;
+                                                            top: -10%;
                                                             width: 100%;
                                                             height: 100%;
                                                         }
@@ -1405,7 +1405,7 @@
                                                         </video>
                                                     </div>
                                                 </div>
-                                                <div class="p-2 px-3"><span>{{$row->feed->deskripsi_video}}</span></div>
+                                                <div class="p-2 px-3" style="margin-top: -7%;"><span>{{$row->feed->deskripsi_video}}</span></div>
                                             </div>
                                         </div>
                                     </div>
