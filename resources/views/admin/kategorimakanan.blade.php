@@ -49,7 +49,7 @@
         }
 
         .table-custom {
-            width: 230%;
+            width: 210%;
             text-align: center;
             border-collapse: separate;
             border-spacing: 0px 15px;
@@ -264,14 +264,15 @@
             }
         }
     </style>
-    <div class=" d-flex justify-content-center ms-1" style="overflow-x:hidden">
+    <div class=""  style="overflow-x:hidden">
+    <div class=" d-flex" style="margin-left: 20%;">
         <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-            <div class="my-5 ml-5" style="margin-right:%; ">
+            <div class="my-5" style="margin-right:%; ">
                 <button type="button" class="btn btn-sm" data-toggle="modal"
-                    style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -165px;"
+                    style=" border-radius: 10px; border: 0.50px black solid; font-size: 18px; font-family: Poppins; font-weight: 500; letter-spacing: 0.20px; word-wrap: break-word; margin-left: -40%;"
                     data-target="#exampleModal">Tambah</button>
                 <form action="">
-                    <div class="container" style="margin-top: -35px; margin-right: -538px; ">
+                    <div class="container" style="margin-top: -35px; margin-right: -107%; ">
                         <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
                             <div class="row">
                                 <div class="col-md-12">
@@ -343,7 +344,7 @@
                             <tr>
                                 <td
                                     style="border-left:1px solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
-                                    {{ $data->nama_makanan }}</td>
+                                    {{ Str::limit($data->nama_makanan, 15, '...') }}</td>
                                 <td style="border-right:1px solid black;">
                                     <div>
                                         <button type="button" class="btn text-white"
@@ -411,12 +412,13 @@
             @empty
                 <div class="d-flex flex-column h-100 justify-content-center text-center align-items-center mx-5"
                     style="margin-top: -50px;">
-                    <img src="{{ asset('images/data.png') }}" style="width: 20em; margin-right: -250px;">
-                    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
+                    <img src="{{ asset('images/data.png') }}" style="width: 20em; margin-right: -140px;">
+                    <p style="color: #1d1919; margin-right: -120px;"><b>Tidak ada data</b></p>
                 </div>
             @endforelse
         </div>
     </div>
+</div>
     {{-- end --}}
     </div>
     </div>
