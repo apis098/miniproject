@@ -162,6 +162,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
         Route::get('feed', [KokiController::class, 'feed'])->name('koki.feed');
+        Route::get('kursus', [KokiController::class, 'kursus'])->name('koki.kursus');
         Route::get('profilage', [KokiController::class, 'profilage'])->name('koki.profilage');
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');

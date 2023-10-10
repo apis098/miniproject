@@ -182,7 +182,7 @@
 <div class="container my-3">
     <div class="row mx-3">
     <div class="d-flex justify-content-between align-items-center">
-        <div class="search" style="border-radius: 15px; border: 0.50px black solid;">
+        <div class="search mx-2" style="border-radius: 15px; border: 0.50px black solid;">
             <div class="col-lg-12">
                 <div class="search-2"><i class='bx bxs-map'></i>
                     <form action="#" method="GET">
@@ -198,7 +198,7 @@
         <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
             class="btn btn-lg">
             <span style="font-weight: 600">
-                <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
+                <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Kursus</a>
             </span>
         </button>
     </div>
