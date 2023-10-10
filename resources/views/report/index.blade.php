@@ -37,7 +37,6 @@
         .close {
             color: #fff
         }
-
         .close:hover {
             color: #fff
         }
@@ -63,7 +62,7 @@
         .table-custom td {
             padding-top: 30px;
             padding-bottom: 30px;
-            width: 195px;
+            width: 175px;
             border-top: 1px solid black;
             border-bottom: 1px solid black;
             border-left: none;
@@ -75,7 +74,7 @@
 
         .table-custom th {
             padding: 10px;
-            width: 195px;
+            width: 175px;
             background-color: #F7941E;
             margin-bottom: 50px;
             color: #fff;
@@ -157,9 +156,10 @@
 
         .search {
             background-color: #fff;
-            padding: 0px 10px;
+            padding: 0px 15px;
             border-radius: 5px;
-            width: 968px;
+            width: 845px;
+            border-radius: 15px; border: 0.50px black solid;
         }
 
         .search-1 {
@@ -197,16 +197,16 @@
 
         .search-2 {
             position: relative;
-            width: 100%
+            width: 100%;
         }
 
         .search-2 input {
             height: 35px;
             border: none;
+            border-radius: 15px;
             width: 100%;
-            padding-left: 15px;
-            padding-right: 100px;
-
+          
+            
 
         }
 
@@ -235,18 +235,29 @@
             color: #eee
         }
 
-        .search-2 button {
+        .cari {
             position: absolute;
-            right: 4px;
+            top: -2px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            margin-left: -6%;
+            width: 90px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25); 
+            border-radius: 15px;
+        }
+        .cari2 {
+            position: absolute;
             top: -2px;
             border: none;
             height: 38px;
             background-color: #F7941E;
             color: #fff;
             width: 90px;
-            border-radius: 4px
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25); 
+            border-radius: 15px;
         }
-
 
         @media (max-width:800px) {
             .search-1 input {
@@ -270,9 +281,9 @@
     </style>
 
     <div class=" d-flex justify-content-center ms-3">
-        <div class="my-5 ml-5" style="margin-right: -15%;">
-            <ul class="nav mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
+        <div class="my-5">
+            <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
+                <li class="nav-item tabs" role="presentation">
                     <a href="#" class="nav-link mr-5 active" id="button-resep" data-bs-toggle="tab"
                         data-bs-target="#resep" type="button" role="tab" aria-controls="profile" aria-selected="false">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
@@ -289,7 +300,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item tabs" role="presentation">
                     <a href="#" class="nav-link mr-5" id="button-keluhan" data-bs-toggle="tab"
                         data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                         aria-selected="false">
@@ -308,7 +319,7 @@
                         </div>
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item tabs" role="presentation">
                     <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-komentar" data-bs-toggle="tab"
                         data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
                         aria-selected="false">
@@ -326,7 +337,7 @@
                             hidden></div>
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item tabs" role="presentation">
                     <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-profile" data-bs-toggle="tab"
                         data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
                         aria-selected="false">
@@ -353,16 +364,14 @@
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                            <div class="search">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-11">
                                         <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/laporan-pengguna" method="GET">
-                                                    <input type="text" id="search-resep" name="resep" autofocus
-                                                        placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                    <input type="text" id="search-resep" name="resep" autofocus placeholder="Cari Laporan Resep">
+                                                    <button type="submit" class="zoom-effects cari2 ms-4">Cari</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -420,7 +429,7 @@
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                            <div class="search">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div>
@@ -428,8 +437,7 @@
                                                 <form action="/admin/special-days" method="GET">
                                                     <input type="text" id="search-keluhan" name="d"
                                                         placeholder="Cari Laporan Keluhan">
-                                                    <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                    <button type="submit" class="zoom-effects cari">Cari</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -482,7 +490,7 @@
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                            <div class="search">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div>
@@ -490,8 +498,7 @@
                                                 <form action="/admin/special-days" method="GET">
                                                     <input type="text" id="search-komentar" name="d"
                                                         placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                    <button type="submit" class="zoom-effects cari">Cari</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -544,7 +551,7 @@
                     tabindex="0">
                     <form action="">
                         <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                            <div class="search" style="border-radius: 15px; border: 0.50px black solid; ">
+                            <div class="search" >
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div>
@@ -552,8 +559,7 @@
                                                 <form action="/admin/special-days" method="GET">
                                                     <input type="text" id="search-profile" name="d"
                                                         placeholder="Cari Laporan Resep">
-                                                    <button type="submit" class="zoom-effects"
-                                                        style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">Cari</button>
+                                                    <button type="submit" class="zoom-effects cari">Cari</button>
                                                 </form>
                                             </div>
                                         </div>
