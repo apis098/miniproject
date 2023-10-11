@@ -5,11 +5,12 @@
             style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
             Metode Pembayaran
         </h1>
-        <div class="row"> 
+        <div class="row">
             @foreach ($channel as $num => $channel_pembayaran)
                 <div class="col-lg-4 mx-2 my-2 card" style="max-width: 250px; max-height: 250px;">
                     <form action="{{ route('request.pembayaran') }}" method="post">
                         @csrf
+                        <input type="hidden" name="id" value="{{ request()->id }}">
                         <input type="hidden" name="amount" value="{{ request()->price }}">
                         <input type="hidden" name="name_product" value="{{ request()->name_product }}">
                         <input type="hidden" name="method" value="{{ $channel_pembayaran->code }}">

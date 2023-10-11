@@ -119,7 +119,7 @@
                                 </ul>
                             </div>
                             <div class="pricing-footer text-center">
-                                <a href="/testing-payment/{{ $item_prem->harga_paket }}/{{ $item_prem->nama_paket }}" class="btn btn-transparent-md">Beli Sekarang</a>
+                                <a href="/testing-payment/{{ $item_prem->id }}/{{ $item_prem->harga_paket }}/{{ $item_prem->nama_paket }}" class="btn btn-transparent-md">Beli Sekarang</a>
                             </div>
                         </div>
                     </div>

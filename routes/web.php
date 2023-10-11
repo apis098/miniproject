@@ -197,7 +197,7 @@ Route::delete("/hapus_balasan_komentar_feed/{id}", [VeedController::class, "hapu
 Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
 
 // testing payment
-Route::get('/testing-payment/{price}/{name_product}', [PaymentController::class, 'channel_pembayaran'])->name('testing.payment')->middleware(['auth', 'role:koki']);
+Route::get('/testing-payment/{id}/{price}/{name_product}', [PaymentController::class, 'channel_pembayaran'])->name('testing.payment')->middleware(['auth', 'role:koki']);
 Route::post('/request-pembayaran', [PaymentController::class, 'dapatkan_transaksi'])->name('request.pembayaran')->middleware(['auth', 'role:koki']);
 Route::get('/detail-pembayaran/{reference}', [PaymentController::class, 'detail_pembayaran'])->name('detail.pembayaran')->middleware('auth', 'role:koki');
 Route::get('/daftar-transaksi', [PaymentController::class, 'daftar_transaksi'])->name('daftar.transaksi');
