@@ -158,7 +158,7 @@
             background-color: #fff;
             padding: 4px;
             border-radius: 5px;
-            width: 200%;
+            width: 210%;
         }
 
         .search-1 {
@@ -196,7 +196,7 @@
 
         .search-2 {
             position: relative;
-            width: 40%;
+            width: 35%;
             margin-left: -5%
         }
 
@@ -256,89 +256,91 @@
             }
         }
     </style>
-    <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden">
-        <div class="my-5 ml-3">
-            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
-                    <div class="search" style="border-radius: 15px;">
-                        <div class="col-lg-11 mt-2">
-                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                <form action="#" method="GET">
-                                    <input type="text" name="" style="text-align: left;" placeholder="Cari..."
-                                        value="{{ request()->nama_verified }}">
-                                    <button type="submit" class="zoom-effects"
-                                        style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                        Cari
-                                    </button>
-                                </form>
+    <div style="overflow-x:hidden">
+        <div class=" d-flex justify-content-start ms-3">
+            <div class="my-5 ml-3">
+                <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                        tabindex="0">
+                        <div class="search" style="border-radius: 15px;">
+                            <div class="col-lg-12 mt-2">
+                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                    <form action="#" method="GET">
+                                        <input type="text" name="" style="text-align: left;" placeholder="Cari..."
+                                            value="{{ request()->nama_verified }}">
+                                        <button type="submit" class="zoom-effects"
+                                            style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
+                                            Cari
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        {{-- start tab 1 --}}
+                        <table class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col"
+                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
+                                        Nama Pengguna</th>
+                                    <th scope="col"
+                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
+                                        Jumlah Suka</th>
+                                    <th scope="col"
+                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
+                                        Jumlah Pengikut</th>
+                                    <th scope="col"
+                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
+                                        Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <div id="search-results">
+                                    @foreach ($verified as $num => $data_verified)
+                                        <tr class="mt-5">
+                                            <td style="border-left:1px solid black;  font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word""
+                                                class="mt">{{ $data_verified->name }}
+                                            </td>
+                                            <td
+                                                style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
+                                                {{ $data_verified->like }}</td>
+                                            <td
+                                                style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
+                                                {{ $data_verified->followers }}</td>
+                                            <td style="border-right:1px solid black;">
+                                                <form id="action_accept_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="button" onclick="confirmation_accept({{ $num }})" class="btn btn-sm rounded-3 text-light me-2"
+                                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
+                                                            class="ms-2 me-2"
+                                                            style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
+                                                    </button>
+                                                </form>
+                                                <form id="action_menolak_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="button" onclick="confirmation_menolak({{ $num }})" class="btn btn-sm rounded-3 text-light"
+                                                        style=" border-radius: 15px; border: 1px black solid"><b
+                                                            class="ms-2 me-2"
+                                                            style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </div>
+                            </tbody>
+                        </table>
+                        @if ($verified->count() == 0)
+                            <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
                     </div>
-                    {{-- start tab 1 --}}
-                    <table class="table-custom">
-                        <thead>
-                            <tr>
-                                <th scope="col"
-                                    style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                    Nama Pengguna</th>
-                                <th scope="col"
-                                    style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                    Jumlah Suka</th>
-                                <th scope="col"
-                                    style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                    Jumlah Pengikut</th>
-                                <th scope="col"
-                                    style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                    Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <div id="search-results">
-                                @foreach ($verified as $num => $data_verified)
-                                    <tr class="mt-5">
-                                        <td style="border-left:1px solid black;  font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word""
-                                            class="mt">{{ $data_verified->name }}
-                                        </td>
-                                        <td
-                                            style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
-                                            {{ $data_verified->like }}</td>
-                                        <td
-                                            style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
-                                            {{ $data_verified->followers }}</td>
-                                        <td style="border-right:1px solid black;">
-                                            <form id="action_accept_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="button" onclick="confirmation_accept({{ $num }})" class="btn btn-sm rounded-3 text-light me-2"
-                                                    style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
-                                                        class="ms-2 me-2"
-                                                        style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
-                                                </button>
-                                            </form>
-                                            <form id="action_menolak_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('PATCH')
-                                                <button type="button" onclick="confirmation_menolak({{ $num }})" class="btn btn-sm rounded-3 text-light"
-                                                    style=" border-radius: 15px; border: 1px black solid"><b
-                                                        class="ms-2 me-2"
-                                                        style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
-                                                </button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </div>
-                        </tbody>
-                    </table>
-                    @if ($verified->count() == 0)
-                        <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -346,8 +348,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-
-
         let debounceTimer;
 
         $(document).ready(function() {
@@ -438,14 +438,6 @@
             o.style.display = "none";
         });
     </script>
-    </div>
-
-
-
-
-    <div class="d-flex justify-content-center" style="margin-top: -2%;">
-        {{-- {!! $holidays->links('modern-pagination') !!} --}}
-    </div>
 
     <!-- jQuery CDN -->
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
@@ -651,25 +643,5 @@
                 });
             });
         });
-        // $(document).ready(function() {
-        //     $('#buttonModal').on('click', function() {
-        //         var complaintId = $(this).data('complaint-id');
-
-        //         $.ajax({
-        //             url: '/show-reply-by/' + complaintId,
-        //             type: 'GET',
-        //             dataType: 'html',
-        //             success: function(data) {
-        //                 $('#replyData').html(data); // Memasukkan data balasan ke dalam modal
-        //                 $('#repliesModal').modal('show'); // Menampilkan modal
-        //             },
-        //             error: function() {
-        //                 // Tampilkan pesan error jika data balasan tidak berhasil dimuat
-        //                 $('#replyData').html('<p>Failed to load replies.</p>');
-        //                 $('#repliesModal').modal('show');
-        //             }
-        //         });
-        //     });
-        // });
     </script>
 @endsection

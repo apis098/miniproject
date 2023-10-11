@@ -143,7 +143,7 @@ class KursusController extends Controller
      */
     public function create()
     {
-        //
+        return view('koki.kursus');
     }
 
     /**

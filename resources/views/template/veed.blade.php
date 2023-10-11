@@ -1093,7 +1093,7 @@
                                                                         <div class="me-3"
                                                                             style="margin-left: -40px; margin-top:-1.1%;">
                                                                             @if (Auth::user()->foto)
-                                                                                <img src="{{ asset('storage' . Auth::user()->foto) }}"
+                                                                                <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                     class="border rounded-circle"
                                                                                     alt="Avatar"
                                                                                     style="height: 40px;" />
