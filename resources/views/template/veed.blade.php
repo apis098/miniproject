@@ -359,7 +359,7 @@
                                                 <path fill="currentColor"
                                                     d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
                                             </svg>
-                                            <span class="my-auto">{{ $item_video->comment_veed->count() }}</span>
+                                            <span class="my-auto" id="jumlah_komentar_feed{{ $item_video->id }}">{{ $item_video->comment_veed->count() }}</span>
                                         </button>
                                         <!-- modal komentar feed -->
                                         <div class="modal" id="exampleModal{{ $urut }}">
@@ -1460,7 +1460,8 @@
                                                                                         </form>
                                                                                     @endif
 
-                                                                                    <div id="reply_comments{{ $item_comment->id }}">
+                                                                                    <div
+                                                                                        id="reply_comments{{ $item_comment->id }}">
                                                                                         @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                             @php
                                                                                                 if (Auth::check()) {
@@ -1914,22 +1915,23 @@
                             let jumlah_like = response.jumlah_like_veed;
                             let veed_id = response.veed_id;
                             let time = response.time;
+                            let foto = '';
+                            if (pengirim['foto'] != null) {
+                                foto = 'storage/' + pengirim['foto'];
+                            } else {
+                                foto = 'images/default.jpg';
+                            }
                             console.log(pengirim);
                             let innerHtml = `
                             <div class="media row mb-2 d-flex"
                                                                         style="width: 131%; margin-left:-11%;">
                                                                         <div class="d-flex col-11">
-                                                                            @if ($item_comment->user_pengirim->foto)
+
                                                                                 <img width="38px" height="38px"
                                                                                     class="rounded-circle"
-                                                                                    src="{{ asset('storage/' . $item_comment->user_pengirim->foto) }}"
-                                                                                    alt="{{ $item_comment->user_pengirim->name }}">
-                                                                            @else
-                                                                                <img width="38px" height="38px"
-                                                                                    class="rounded-circle"
-                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                    alt="{{ $item_comment->user_pengirim->name }}">
-                                                                            @endif
+                                                                                    src="${foto}"
+                                                                                    alt="">
+
                                                                             <p class="ms-2 mt-2">
                                                                                 ${pengirim['name']}
                                                                             </p>
@@ -1948,29 +1950,7 @@
                                                                             <div class="d-flex flex-row "
                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                 @if (Auth::user())
-                                                                                    @php
-                                                                                        // mengecek apakah user sudah like atau belum, kalau nilainya 1 maka sudah like kalau 0 maka belum like
-                                                                                        $isLike = \App\Models\like_comment_veed::query()
-                                                                                            ->where('users_id', Auth::user()->id)
-                                                                                            ->where('comment_veed_id', $item_comment->id)
-                                                                                            ->where('veed_id', $item_video->id)
-                                                                                            ->count();
-                                                                                    @endphp
-                                                                                    @if ($isLike == 1)
-                                                                                        <form
-                                                                                            action="/like/${pengirim['id']}/${up['id']}/${veed_id}"
-                                                                                            id="formLikeCommentFeed${up['id']}"
-                                                                                            method="POST">
-                                                                                            @csrf
-                                                                                            <button type="submit"
-                                                                                                class="btn"
-                                                                                                onclick="likeCommentFeed(${up['id']})">
-                                                                                                <i class="fa-solid fa-thumbs-up"
-                                                                                                    id="iLikeComment${up['id']}"></i>
-                                                                                            </button>
 
-                                                                                        </form>
-                                                                                    @elseif($isLike == 0)
                                                                                         <form
                                                                                         action="/like/${pengirim['id']}/${up['id']}/${veed_id}"
 
@@ -1984,7 +1964,6 @@
                                                                                                     id="iLikeComment${up['id']}"></i>
                                                                                             </button>
                                                                                         </form>
-                                                                                    @endif
                                                                                 @else
                                                                                     <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                         onclick="harusLogin()"
@@ -1993,79 +1972,15 @@
                                                                                     &nbsp; &nbsp;
                                                                                 @endif
                                                                                 <span class="my-auto"
-                                                                                    id="countLikeComment{{ $item_comment->id }}">
-                                                                                    ${jumlah_like}
+                                                                                    id="countLikeComment${up['id']}">
+                                                                                    <p class="my-auto" id="jumlah_like${up['id']}">0</p>
+
                                                                                 </span>
                                                                                 <div class="m-2 mr-auto">
                                                                                     {{-- --}}
-                                                                                    @if (Auth::user())
-                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user_pengirim->id)
-                                                                                            <a data-bs-toggle="modal"
-                                                                                                href="#ModalL${up['id']}"
-                                                                                                class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                                                    class="fa-solid fa-triangle-exclamation"></i>
-                                                                                            </a>
-                                                                                            <div class="modal fade"
-                                                                                                data-bs-backdrop="static"
-                                                                                                id="ModalL${up['id']}"
-                                                                                                tabindex="-1"
-                                                                                                role="dialog"
-                                                                                                aria-labelledby="exampleModalCenterTitle"
-                                                                                                aria-hidden="true">
-                                                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                                                    role="document">
-                                                                                                    <div
-                                                                                                        class="modal-content">
-                                                                                                        <div
-                                                                                                            class="modal-header">
-                                                                                                            <h5 class="modal-title"
-                                                                                                                id="reportModal"
-                                                                                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                                                                Laporkan
-                                                                                                                Postingan!
-                                                                                                            </h5>
-                                                                                                            <button
-                                                                                                                type="button"
-                                                                                                                class="close"
-                                                                                                                data-bs-dismiss="modal"
-                                                                                                                aria-label="Close">
-                                                                                                                <span
-                                                                                                                    aria-hidden="true">&times;</span>
-                                                                                                            </button>
-                                                                                                        </div>
-                                                                                                        <form
-                                                                                                            action="{{ route('report.feed', $item_video->id) }}"
-                                                                                                            method="POST">
-                                                                                                            {{-- @csrf --}}
-                                                                                                            <div
-                                                                                                                class="modal-body d-flex align-items-center">
-
-                                                                                                                <img class="me-2"
-                                                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                                                    width="106px"
-                                                                                                                    height="104px"
-                                                                                                                    style="border-radius: 50%"
-                                                                                                                    alt="">
-                                                                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                                                                    placeholder="Alasan..."></textarea>
-                                                                                                                {{-- @endif --}}
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="modal-footer">
-                                                                                                                <button
-                                                                                                                    type="submit"
-                                                                                                                    class="btn btn-light text-light"
-                                                                                                                    style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                                                        class="ms-2 me-2">Laporkan</b></button>
-                                                                                                            </div>
-                                                                                                        </form>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        @elseif(Auth::user()->id == $item_comment->user_pengirim->id)
-                                                                                            {{-- Hapus Komentar --}}
+                                                                                    {{-- Hapus Komentar --}}
                                                                                             <form method="POST"
-                                                                                                action="{{ route('hapus.komentar.feed', $item_comment->id) }}"
+                                                                                                action="/hapus_komentar_feed/${up['id']}"
                                                                                                 id="delete-comment-form${up['id']}">
                                                                                                 @csrf
                                                                                                 @method('DELETE')
@@ -2079,89 +1994,6 @@
                                                                                                         class="fa-solid fa-trash"></i>
                                                                                                 </button>
                                                                                             </form>
-                                                                                        @elseif(Auth::user()->role == 'admin')
-                                                                                            {{-- Blokir Komentar --}}
-                                                                                            <button type="button"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#blockMod${up['id']}"
-                                                                                                class="yuhu text-danger btn-sm rounded-5 "><svg
-                                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                                    width="20"
-                                                                                                    height="20"
-                                                                                                    viewBox="0 0 24 24">
-                                                                                                    <path
-                                                                                                        d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                                                                        fill="currentColor"
-                                                                                                        fill-rule="nonzero" />
-                                                                                                </svg>
-                                                                                            </button>
-                                                                                            <div class="modal fade"
-                                                                                                data-bs-backdrop="static"
-                                                                                                id="blockMod${up['id']}"
-                                                                                                tabindex="-1"
-                                                                                                role="dialog"
-                                                                                                aria-labelledby="exampleModalCenterTitle"
-                                                                                                aria-hidden="true">
-                                                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                                                    role="document">
-                                                                                                    <div
-                                                                                                        class="modal-content">
-                                                                                                        <div
-                                                                                                            class="modal-header">
-                                                                                                            <h5 class="modal-title"
-                                                                                                                id="reportModal"
-                                                                                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                                                                Blokir
-                                                                                                                komentar
-                                                                                                            </h5>
-                                                                                                            <button
-                                                                                                                type="button"
-                                                                                                                class="close"
-                                                                                                                data-bs-dismiss="modal"
-                                                                                                                data-bs-target="blockMod${up['id']}"
-                                                                                                                aria-label="Close">
-                                                                                                                <span
-                                                                                                                    aria-hidden="true">&times;</span>
-                                                                                                            </button>
-                                                                                                        </div>
-                                                                                                        <form
-                                                                                                            action="{{-- route('Report.comment.recipes',$row->id) --}}"
-                                                                                                            method="POST">
-                                                                                                            {{-- @csrf --}}
-                                                                                                            <div
-                                                                                                                class="modal-body d-flex align-items-center">
-
-                                                                                                                <img class="me-2"
-                                                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                                                    width="106px"
-                                                                                                                    height="104px"
-                                                                                                                    style="border-radius: 50%"
-                                                                                                                    alt="">
-                                                                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                                                                    placeholder="Alasan..."></textarea>
-                                                                                                                {{-- @endif --}}
-                                                                                                            </div>
-                                                                                                            <div
-                                                                                                                class="modal-footer">
-                                                                                                                <button
-                                                                                                                    type="submit"
-                                                                                                                    class="btn btn-light text-light"
-                                                                                                                    style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                                                        class="ms-2 me-2">Blokir</b></button>
-                                                                                                            </div>
-                                                                                                        </form>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        @endif
-                                                                                    @else
-                                                                                        {{-- Untuk user belum login --}}
-                                                                                        <button type="button"
-                                                                                            onclick="harusLogin()"
-                                                                                            class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                                                class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                                                        </button>
-                                                                                    @endif
                                                                                     {{-- --}}
                                                                                 </div>
                                                                                 <a href="#"
@@ -2273,6 +2105,14 @@
             $("#formLikeCommentFeed" + nums).off('submit');
             $("#formLikeCommentFeed" + nums).submit(function(event) {
                 event.preventDefault();
+                let nilai = parseInt($("#jumlah_like" + nums).text());
+                if (nilai == 1) {
+                    $("#jumlah_like" + nums).empty().append('0');
+
+                } else {
+                    $("#jumlah_like" + nums).empty().append('1');
+                }
+
                 let rutte = $(this).attr("action");
                 $.ajax({
                     url: rutte,
