@@ -179,12 +179,6 @@ class KokiController extends Controller
       return view('koki.favorite', compact("koki"));
     }
 
-    public function kursus(Request $request){
-        $koki = User::find(Auth::user()->id);
-
-      return view('koki.kursus', compact("koki"));
-    }
-
 
 
     public function deleteProfilePicture()

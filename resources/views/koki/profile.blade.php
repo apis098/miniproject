@@ -59,21 +59,21 @@
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $userLogin->email }}</span>
 
                         </p>
-                        <button
+                        {{-- <button
                             style="border-radius: 15px;background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                             class="btn text-light mb-3">
                             <span style="font-weight: 600">
                                 <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Resep</a>
                             </span>
-                        </button>
+                        </button> --}}
                         @if (Auth::check())
                             @if (Auth::user()->isSuperUser == 'yes')
-                                <br>
+                                {{-- <br> --}}
                                 <button
-                                    style="border-radius: 15px;background-color:white; border: 1px solid black;"
+                                    style="border-radius: 10px;background-color:white; border: 1px solid black;"
                                     class="btn text-light mb-3">
                                     <span style="font-weight: 600">
-                                        <a href="{{route('kursus.index')}}" style="color: black;">Buat Kursus</a>
+                                        <a href="/koki/beranda" style="color: black;">Dashboard</a>
                                     </span>
                                 </button>
                             @endif
