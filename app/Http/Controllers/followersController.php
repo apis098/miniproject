@@ -112,13 +112,18 @@ class followersController extends Controller
                 'user_id' => $userfollowing->id,
             ]);
             $notifications->save();
-            return redirect()->back()->with('success', 'anda mengikuti pengguna dengan username:'.$userfollowing->name);
+           
+            return response()->json([
+                'followed' => true,
+            ]);
         } else if ($userLogin && $userfollowing->followers()->where('follower_id', auth()->user()->id)->exists()) {
             $userfollowing->decrement('followers');
             $userfollowing->followers()->where('follower_id', auth()->user()->id)->delete();
-            return redirect()->back()->with('info', 'anda batal mengikuti pengguna dengan username: '.$userfollowing->name );
+            return response()->json([
+                'followed' => false,
+            ]);
         } else {
-            return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
+            return response()->json(['status' => 'error']);
         }
     }
  

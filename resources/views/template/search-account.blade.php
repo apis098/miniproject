@@ -98,16 +98,16 @@
             }
 
             /* button{
-                        background-color: #F7941E;
-                        border: none;
-                        height: 45px;
-                        width: 90px;
-                        color: #ffffff;
-                        position: absolute;
-                        right: 1px;
-                        top: 0px;
-                        border-radius: 15px
-                    } */
+                                    background-color: #F7941E;
+                                    border: none;
+                                    height: 45px;
+                                    width: 90px;
+                                    color: #ffffff;
+                                    position: absolute;
+                                    right: 1px;
+                                    top: 0px;
+                                    border-radius: 15px
+                                } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -186,70 +186,111 @@
         </div>
     </div>
     @if ($user->count() == 0)
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <img src="{{asset('images/data.png')}}" style="width: 15em">
-        <p><b>Tidak ada data</b></p>
-    </div>
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
     @endif
     <div class="container mt-4">
         <div class="row text-center">
 
             <!-- Team item -->
             @foreach ($user as $row)
-                    <div class="col-xl-3 col-sm-4 mb-5">
-                        <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
-                            <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
-                                style="border-radius: 20px; height:22rem;">
-                                @if ($row->foto)
-                                    <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="50%" height="50%"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                @else
-                                    <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                                @endif
+                <div class="col-xl-3 col-sm-4 mb-5">
+                    <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
+                        <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
+                            style="border-radius: 20px; height:22rem;">
+                            @if ($row->foto)
+                                <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="50%" height="50%"
+                                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                            @else
+                                <img src="{{ asset('images/default.jpg  ') }}" alt="" width="50%" height="50%"
+                                    class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                            @endif
 
-                                <h5 class="mb-0">{{ strlen($row->name) > 10 ? substr($row->name, 0, 10) . '...' : $row->name }}</h5> <span
-                                    class="small text-muted">{{ $row->email }}</span>
-                                <div class="d-flex justify-content-center mt-3 me-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42"
-                                        viewBox="0 0 256 256">
-                                        <path fill="currentColor"
-                                            d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
-                                    </svg>
-                                    <p class="mt-2 ms-1">{{ $row->resep->count() }} Resep</p>
-                                </div>
-                                <div class="justify-content-center">
-                                    <form action="{{ route('Followers.store', $row->id) }}" method="POST">
-                                        @csrf
-                                        @if (Auth::check() &&
-                                                $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                            <button type="submit"
-                                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
-                                                    class="ms-3 me-3">Diikuti</b></button>
-                                        @elseif(Auth::check() &&
-                                                $userLogin->followers()->where('follower_id', $row->id)->exists())
-                                            <button type="submit"
-                                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
-                                                    class="ms-3 me-3">Ikuti balik</b></button>
-                                        @else
-                                            <button type="submit"
-                                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                                style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"><b
-                                                    class="ms-3 me-3">Ikuti</b></button>
-                                        @endif
-                                        <a class="btn btn-outline-dark zoom-effects" style="border-radius: 10px; box-shadow:0px 4px 4px rgba(0,0,0,0.25);" href="/roomchat/{{$row->id}}"><b><i class="fa-regular fa-comment-dots mb-1 mt-1"></i></b></a>
-                                    </form>
-                                </div>
+                            <h5 class="mb-0">
+                                {{ strlen($row->name) > 10 ? substr($row->name, 0, 10) . '...' : $row->name }}</h5> <span
+                                class="small text-muted">{{ $row->email }}</span>
+                            <div class="d-flex justify-content-center mt-3 me-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
+                                </svg>
+                                <p class="mt-2 ms-1">{{ $row->resep->count() }} Resep</p>
                             </div>
-                        </a>
-                    </div>
+                            <div class="justify-content-center">
+                                <form id="followForm" action="{{ route('Followers.store', $row->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    @if (Auth::check() &&
+                                            $row->followers()->where('follower_id', auth()->user()->id)->count() > 0)
+                                        <button type="submit" class="btn text-light follow-btn float-center mt-3 mb-3 zoom-effects"
+                                            {{-- onclick="storeFollow({{ $row->id }})" --}}
+                                            id="follow-button" data-user-id="{{ $row->id }}"
+                                            style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
+                                                class="ms-3 me-3 text-status">Batal ikuti</b></button>
+                                    @elseif(Auth::check() &&
+                                            $userLogin->followers()->where('follower_id', $row->id)->exists())
+                                        <button type="submit" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                            {{-- onclick="storeFollow({{ $row->id }})" --}}
+                                            id="follow-button" data-user-id="{{ $row->id }}"
+                                            style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
+                                                class="ms-3 me-3 text-status">Ikuti balik</b></button>
+                                    @else
+                                        <button type="submit" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                            {{-- onclick="storeFollow({{ $row->id }})" --}}
+                                            id="follow-button" data-user-id="{{ $row->id }}"
+                                            style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;"><b
+                                                class="ms-3 me-3 text-status">Ikuti</b></button>
+                                    @endif
+                                    <a class="btn btn-outline-dark zoom-effects"
+                                        style="border-radius: 10px; box-shadow:0px 4px 4px rgba(0,0,0,0.25);"
+                                        href="/roomchat/{{ $row->id }}"><b><i
+                                                class="fa-regular fa-comment-dots mb-1 mt-1"></i></b></a>
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
             @endforeach
 
         </div>
-        {{$user->links('vendor.pagination.default')}}
+        {{ $user->links('vendor.pagination.default') }}
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const followForm = document.querySelectorAll("#followForm");
 
+            followForm.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector(".text-status");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.followed) {
+                            // Reset button color and SVG here
+                            button.textContent = "Batal ikuti";
+                            // document.getElementById("like-count-" + responseData.resep_id)
+                            //     .textContent = responseData.likes;
+                            // Modify SVG appearance if needed
+                        } else {
+                            // Update button color and SVG here
+                            button.textContent = "Ikuti";
+                        }
+                    }
+                });
+            });
+        });
+    </script>
     <!-- end food section -->
 @endsection

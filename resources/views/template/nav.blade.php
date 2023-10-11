@@ -1283,7 +1283,7 @@
                                             <video class="video ms-5 video-fav" controls width="180" height="120">
                                                 <source src="/storage/{{$row->veed->upload_video}}" type="video/mp4">
                                             </video>
-                                        <a href="/artikel/{{ $row->veed->id }}/{{ $row->veed->deskripsi_video }}">
+                                        <a href="/veed/{{ $row->veed->uuid }}">
                                             <div style="justify-content: space-between;" class="mb-1">
                                                 <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
                                                     {{ $row->veed->deskripsi_video }}</h6>
