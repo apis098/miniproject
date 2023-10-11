@@ -940,6 +940,7 @@
             @yield('content-header')
     </div>
 
+    {{-- Modal Top Up --}}
     <div class="modal" id="topup">
         <div class="modal-dialog ">
             <div class="modal-content text-center">
@@ -964,20 +965,19 @@
 
                                 <div class=card-body">
                                     <div class="d-flex">
-                                    <div class="text-start mx-3 mt-2">
-                                        <a href="#"
-                                            class="card-title"
-                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Kecil</a>
-                                            <p class="text-start mt-1"
-                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                Rp. 20.000,00</p>
-                                            </div>
-                                            <div class="ml-5">
-                                    <img src="{{ asset('img/4.png') }}"
-                                    class="mx-5" width="90px" height="88px;" alt="">
-                                </div>
-                                </div>
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#" class="card-title" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Kecil
+                                            </a>
+                                            <p class="text-start mt-1" style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Rp. 20.000,00
+                                            </p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px" height="92px;" alt="">
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -990,20 +990,19 @@
                                     class="card-img-top" alt=""> --}}
                                     <div class=card-body">
                                         <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#"
-                                                class="card-title"
-                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Sedang</a>
-                                                <p class="text-start mt-1"
-                                                    style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                    Rp. 50.000,00</p>
-                                                </div>
-                                                <div class="ml-5">
-                                        <img src="{{ asset('img/5.png') }}"
-                                        class="mx-5" width="90px" height="88px;" alt="">
-                                    </div>
-                                    </div>
+                                            <div class="text-start mx-3 mt-2">
+                                                <a href="#" class="card-title" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                    Sedang
+                                                </a>
+                                                <p class="text-start mt-1" style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                    Rp. 50.000,00
+                                                </p>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <img src="{{ asset('img/5.png') }}" class="mr-2" width="100px" height="92px;" alt="">
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                             </div>
                         </div>
@@ -1014,22 +1013,21 @@
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                             <div class=card-body">
-                                        <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#"
-                                                class="card-title"
-                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Besar</a>
-                                                <p class="text-start mt-1"
-                                                    style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                    Rp. 100.000,00</p>
-                                                </div>
-                                                <div class="ml-5">
-                                        <img src="{{ asset('img/2.png') }}"
-                                        class="mx-5" width="90px" height="88px;" alt="">
+                                <div class="d-flex">
+                                    <div class="text-start mx-3 mt-2">
+                                        <a href="#" class="card-title" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                            Besar
+                                        </a>
+                                        <p class="text-start mt-1" style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                            Rp. 100.000,00
+                                        </p>
                                     </div>
+                                    <div class="ms-auto">
+                                        <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px" height="92px;" alt="">
                                     </div>
-                                    </div>
+                                </div>
+                                
+                            </div>
                             </div>
                         </div>
 
