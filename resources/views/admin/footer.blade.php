@@ -154,8 +154,8 @@
 
     </style>
 
-    <div class=" d-flex justify-content-start">
-        <div class="my-5 ml-3">
+    <div class=" d-flex justify-content-start" style="overflow-x: hidden">
+        <div class="my-5 ml-4">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">
@@ -200,28 +200,28 @@
                             <div class="mb-3 row">
                                 <label for="input" class="col-sm-2 col-form-label fw-bold " >Facebook</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 250%;font-family:poppins; margin-left: 10px;"
+                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
                                         value="{{ $item->facebook }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input1" class="col-sm-2 col-form-label fw-bold " >Youtube</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input1" name="youtube" style="width: 250%;font-family:poppins; margin-left: 10px;"
+                                    <input type="text" class="form-control" id="input1" name="youtube" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
                                         value="{{ $item->youtube }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input2" class="col-sm-2 col-form-label fw-bold " >Twitter</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input2" name="twitter" style="width: 250%;font-family:poppins; margin-left: 10px;"
+                                    <input type="text" class="form-control" id="input2" name="twitter" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
                                         value="{{ $item->twitter }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input3" class="col-sm-2 col-form-label fw-bold " >Instagram</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input3" name="instagram" style="width: 250%;font-family:poppins; margin-left: 10px;"
+                                    <input type="text" class="form-control" id="input3" name="instagram" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
                                         value="{{ $item->instagram }}">
                                 </div>
                             </div>
@@ -234,7 +234,7 @@
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
                             <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 213%;font-family:poppins">Edit</button>
+                            border-radius: 15px;margin-left: 206%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
@@ -247,23 +247,23 @@
                             <div class="mb-3 row">
                                 <label for="input4" class="col-sm-2 col-form-label fw-bold">Telfon</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input4" name="kontak" style="width: 250%;font-family:poppins"
+                                    <input type="text" class="form-control" id="input4" name="kontak" style="width: 240%;font-family:poppins;max-width:240%"
                                         value="{{ $item->kontak }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input5" class="col-sm-2 col-form-label fw-bold">Telegram</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input5" name="telegram" style="width: 250%;font-family:poppins"
-                                        value="{{ $item->telegram }}">
+                                    <input type="text" class="form-control" id="input5" name="telegram" style="width: 240%;font-family:poppins;max-width:240% "
+                                       value="{{ $item->telegram }}">
 
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input6" class="col-sm-2 col-form-label fw-bold">E-mail</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input6" name="email" style="width: 250%;font-family:poppins"
-                                        value="{{ $item->email }}">
+                                    <input type="text" class="form-control" id="input6" name="email" style="width: 240%;font-family:poppins;max-width:240% "
+                                       value="{{ $item->email }}">
                                 </div>
                             </div>
                             <input type="text" class="form-control" id="input7" name="lokasi"
@@ -277,7 +277,7 @@
                             <input type="text" class="form-control" id="input" name="facebook"
                             value="{{ $item->facebook }}" hidden>
                             <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
+                            border-radius: 15px;margin-left: 206%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
@@ -290,8 +290,8 @@
                             <div class="mb-3 row">
                                 <label for="input7" class="col-sm-2 col-form-label fw-bold">Lokasi</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input7" name="lokasi" style="width: 250%;font-family:poppins;"
-                                        value="{{ $item->lokasi }}">
+                                    <input type="text" class="form-control" id="input7" name="lokasi" style="width: 240%;font-family:poppins;max-width:240%"
+                                    value="{{ $item->lokasi }}">
                                 </div>
                             </div>
                             <input type="text" class="form-control" id="input3" name="instagram"
@@ -309,7 +309,7 @@
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
                             <button type="submit" class="btn text-white " style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 210%;font-family:poppins">Edit</button>
+                            border-radius: 15px;margin-left: 206%;font-family:poppins">Edit</button>
                         </form>
                     </div>
                 @endforeach

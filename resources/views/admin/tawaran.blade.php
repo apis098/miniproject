@@ -186,32 +186,32 @@
     <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
         @csrf
         <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
-            <div class="my-5 ml-3">
+            <div class="my-5 ml-5">
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Nama</label>
                     <div class="col-sm-10">
                         <input type="text" id="nama" name="nama_paket" class="form-control "
-                            style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Nama Paket...">
+                            style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Nama Paket...">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Harga </label>
                     <div class="col-sm-10">
                         <input type="text" id="harga" name="harga_paket" class="form-control "
-                            style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Harga Paket...">
+                            style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga Paket...">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
                     <div class="col-sm-10">
                         <input type="text" id="durasi" name="durasi_paket" class="form-control "
-                            style="  width: 61rem; margin-left: -30px" placeholder="Masukkan Durasi Aktif Paket...">
+                            style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Durasi Aktif Paket...">
                     </div>
                 </div>
                 <div class="d-flex">
                     <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
                     <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                        style="width: 55rem;" placeholder="Masukkan Detail Paket...">
+                        style="width: 45rem;" placeholder="Masukkan Detail Paket...">
                 </div>
                 <div id="details"></div>
                 <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-3 float-start"
@@ -243,7 +243,7 @@
             <div class="d-flex my-2" id="detail${num}">
             <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
                 <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                    style="width: 55rem;" placeholder="Masukkan Detail Paket...">
+                    style="width: 45rem;" placeholder="Masukkan Detail Paket...">
 
             <button type="button" onclick="hapus_details(${num})" class="btn text-light rounded-3"
                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
