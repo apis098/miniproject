@@ -239,10 +239,11 @@
     }
 
 </style>
-    <div class=" d-flex justify-content-start ms-3 ml-5" style="overflow-x:hidden">
+
+    <div class=" d-flex justify-content-start ms-3">
         <div class="my-4 ml-5">
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                 tabindex="0">
                 <table class="table-custom">
                     <thead>
@@ -254,7 +255,7 @@
                     </thead>
                     <tbody>
                         @foreach ($user as $data)
-                            <tr>
+                            <tr class="mt-5">
                                 <td style="border-left:1px solid black; color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
                                     {{ $data->name }}</td>
                                  <td style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
@@ -272,20 +273,18 @@
                                 </td>
                             </tr>
                         @endforeach
-                        </tr>
                     </tbody>
                 </table>
                 @forelse ($user as $data)
                 @empty
                 <div class="d-flex flex-column h-100 justify-content-center align-items-center mx-5">
-                    <img src="{{ asset('images/data.png') }}" style="width: 20em;  margin-right: -250px;">
-                    <p style="color: #1d1919; margin-right: -215px;"><b>Tidak ada data</b></p>
+                    <img src="{{ asset('images/data.png') }}" style="width: 20em;margin-right: -250px; ">
+                    <p style="color: #1d1919; margin-right: -250px;"><b>Tidak ada data</b></p>
                 </div>
                 @endforelse
             </div>
         </div>
     </div>
-  </div>
     {{-- end modal edit --}}
 
     {{-- <div style="margin-top: -5em;  margin-left: 10em;">

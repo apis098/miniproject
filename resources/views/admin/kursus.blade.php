@@ -158,7 +158,7 @@
             background-color: #fff;
             padding: 4px;
             border-radius: 5px;
-            width: 200%;
+            width: 210%;
         }
 
         .search-1 {
@@ -196,7 +196,7 @@
 
         .search-2 {
             position: relative;
-            width: 40%;
+            width: 35%;
             margin-left: -5%
         }
 
@@ -256,14 +256,14 @@
             }
         }
     </style>
-
-    <div class=" d-flex justify-content-sart ms-3" style="overflow-x:hidden">
+    <div style="overflow-x:hidden">
+    <div class=" d-flex justify-content-start ms-3">
         <div class="my-5 ml-3">
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <div class="search" style="border-radius: 15px;">
-                        <div class="col-lg-11 mt-2">
+                        <div class="col-lg-12 mt-2">
                             <div class="search-2"> <i class='bx bxs-map'></i>
                                 <form action="#" method="GET">
                                     <input type="text" name="" style="text-align: left;" placeholder="Cari..."
@@ -679,7 +679,7 @@
 
         </div>
     </div>
-
+    </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
@@ -839,13 +839,6 @@
             o.style.display = "none";
         });
     </script>
-    </div>
-
-
-
-
-    <div class="d-flex justify-content-center" style="margin-top: -2%;">
-        {{-- {!! $holidays->links('modern-pagination') !!} --}}
     </div>
 
     <!-- jQuery CDN -->
