@@ -153,8 +153,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 });
 
+
 // role koki
 Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function () {
+    Route::get('/tambah-kursus');
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
