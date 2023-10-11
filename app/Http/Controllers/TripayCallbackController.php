@@ -15,7 +15,7 @@ class TripayCallbackController extends Controller
     // Isi dengan private key anda
     protected $privateKey = 'LRR6K-CgOdX-tLsns-BVPVY-2kHvM';
 
-    public function handle(Request $request, string $user, string $hari)
+    public function handle(Request $request)
     {
         $callbackSignature = $request->server('HTTP_X_CALLBACK_SIGNATURE');
         $json = $request->getContent();
@@ -50,10 +50,10 @@ class TripayCallbackController extends Controller
 
         if ($data->is_closed_payment === 1) {
             $invoice = history_premiums::where('reference', $tripayReference)
-                ->where('status', '=', 'UNPAID')
+                ->where('status', '=', 'unpaid')
                 ->first();
 
-            if (! $invoice) {
+            if (!$invoice) {
                 return Response::json([
                     'success' => false,
                     'message' => 'No invoice found or already paid: ' . $invoiceId,
@@ -80,15 +80,15 @@ class TripayCallbackController extends Controller
                     ]);
             }
 
-            $user = User::find($user);
-            $user->status_langganan = "sudah berlangganan";
+            $user = User::find(6);
+            $user->status_langganan = "sedang berlangganan";
             $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
             $awal_langganan = $currentTime->format('Y-m-d H:i:s');
             $user->awal_langganan = $awal_langganan;
             $akhir_langganan = new DateTime($awal_langganan);
-            $akhir_langganan->add(new DateInterval('P' . $hari . 'D'));
-            $user->akhir_langganan = $user->langganan + 60;
+            $user->akhir_langganan = $akhir_langganan->add(new DateInterval('P60D'));
             $user->save();
+
             return Response::json(['success' => true]);
         }
     }
