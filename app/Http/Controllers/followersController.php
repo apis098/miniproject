@@ -112,16 +112,31 @@ class followersController extends Controller
                 'user_id' => $userfollowing->id,
             ]);
             $notifications->save();
-           
-            return response()->json([
-                'followed' => true,
-            ]);
+            if(!$userLogin->followers()->where('follower_id',$userfollowing->id)->exists()){
+                return response()->json([
+                    'followed' => true,
+                    'hisFollowing'=>false,
+                ]);
+            }else{
+                return response()->json([
+                    'followed' => true,
+                    'hisFollowing'=>true,
+                ]);
+            }
         } else if ($userLogin && $userfollowing->followers()->where('follower_id', auth()->user()->id)->exists()) {
             $userfollowing->decrement('followers');
             $userfollowing->followers()->where('follower_id', auth()->user()->id)->delete();
-            return response()->json([
-                'followed' => false,
-            ]);
+            if(!$userLogin->followers()->where('follower_id',$userfollowing->id)->exists()){
+                return response()->json([
+                    'followed' => false,
+                    'hisFollowing'=>false,
+                ]);
+            }else{
+                return response()->json([
+                    'followed' => false,
+                    'hisFollowing'=>true,
+                ]);
+            }
         } else {
             return response()->json(['status' => 'error']);
         }

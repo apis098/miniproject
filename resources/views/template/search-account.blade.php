@@ -285,7 +285,11 @@
                             // Modify SVG appearance if needed
                         } else {
                             // Update button color and SVG here
-                            button.textContent = "Ikuti";
+                            if(responseData.hisFollowing){
+                                button.textContent = "Ikuti balik";
+                            }else{
+                                button.textContent = "Ikuti";   
+                            }
                         }
                     }
                 });
