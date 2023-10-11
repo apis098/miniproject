@@ -161,6 +161,7 @@ class VeedController extends Controller
 
         $comment_veed = comment_veed::find($new->id);
         $pengirim_veed = User::find($pengirim_id);
+        $commentId = $comment_veed->id;
         $jumlah_like_veed = like_comment_veed::query()
         ->where('comment_veed_id', $comment_veed->id)
         ->where('veed_id', $veed_id)
@@ -174,6 +175,7 @@ class VeedController extends Controller
             "jumlah_like_veed" => $jumlah_like_veed,
             "veed_id" => $veed_id,
             "time" => $time,
+            "commentId" => $commentId,
         ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
