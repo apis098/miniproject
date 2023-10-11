@@ -1913,6 +1913,7 @@
                             let pengirim = response.pengirim;
                             let jumlah_like = response.jumlah_like_veed;
                             let veed_id = response.veed_id;
+                            let time = response.time;
                             console.log(pengirim);
                             let innerHtml = `
                             <div class="media row mb-2 d-flex"
@@ -1935,7 +1936,8 @@
                                                                             <div
                                                                                 class="d-flex flex-row-reverse ml-auto mt-2">
                                                                                 <small>
-                                                                                    {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                                                                    ${time}
+                                                                                    </small>
                                                                             </div>
                                                                         </div>
                                                                         <div

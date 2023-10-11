@@ -165,6 +165,7 @@ class VeedController extends Controller
         ->where('comment_veed_id', $comment_veed->id)
         ->where('veed_id', $veed_id)
         ->count();
+        $time =  \Carbon\Carbon::parse($comment_veed->created_at)->locale('id_ID')->diffForHumans();
         return response()->json([
             "success" => true,
             "message" => "Anda berhasil memberi komentar!",
@@ -172,6 +173,7 @@ class VeedController extends Controller
             "pengirim" => $pengirim_veed,
             "jumlah_like_veed" => $jumlah_like_veed,
             "veed_id" => $veed_id,
+            "time" => $time,
         ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
