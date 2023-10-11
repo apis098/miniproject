@@ -1543,8 +1543,8 @@
                                                                                                         class="rounded d-flex flex-row border-black ">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
-                                                                                                            <img width="40px"
-                                                                                                                height="40px"
+                                                                                                            <img width="38px"
+                                                                                                                height="38px"
                                                                                                                 class="rounded-circle"
                                                                                                                 src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                                 alt="{{ $reply_comment->user->name }}">
@@ -1629,15 +1629,15 @@
                                                                                                                     class="m-2 mr-auto">
                                                                                                                     {{-- --}}
                                                                                                                     @if (Auth::user())
-                                                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user_pengirim->id)
-                                                                                                                            <a data-bs-toggle="modal"
-                                                                                                                                href="#ModalL{{ $item_comment->id }}"
+                                                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
+                                                                                                                            <a data-bs-toggle="modal" data-target="#ModalLapors{{ $reply_comment->id }}"
+                                                                                                                                href="#ModalLapors{{ $reply_comment->id }}"
                                                                                                                                 class="yuhu text-danger btn-sm rounded-5 "><i
                                                                                                                                     class="fa-solid fa-triangle-exclamation"></i>
                                                                                                                             </a>
                                                                                                                             <div class="modal fade"
                                                                                                                                 data-bs-backdrop="static"
-                                                                                                                                id="ModalL{{ $item_comment->id }}"
+                                                                                                                                id="ModalLapors{{ $reply_comment->id }}"
                                                                                                                                 tabindex="-1"
                                                                                                                                 role="dialog"
                                                                                                                                 aria-labelledby="exampleModalCenterTitle"
@@ -1692,21 +1692,21 @@
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </div>
-                                                                                                                        @elseif(Auth::user()->id == $item_comment->user_pengirim->id)
+                                                                                                                        @elseif(Auth::user()->id == $reply_comment->user->id)
                                                                                                                             {{-- Hapus Komentar --}}
                                                                                                                             <form
                                                                                                                                 method="POST"
-                                                                                                                                action="{{ route('hapus.komentar.feed', $item_comment->id) }}"
-                                                                                                                                id="delete-comment-form{{ $item_comment->id }}">
+                                                                                                                                action="{{ route('hapus.balasan.komentar.feed', $reply_comment->id) }}"
+                                                                                                                                id="delete-comment-form{{ $reply_comment->id }}">
                                                                                                                                 @csrf
                                                                                                                                 @method('DELETE')
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     hidden
-                                                                                                                                    id="delete-comment-button{{ $item_comment->id }}">Delete</button>
+                                                                                                                                    id="delete-comment-button{{ $reply_comment->id }}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
-                                                                                                                                    onclick="confirmation_delete_comment_feed({{ $item_comment->id }})"
+                                                                                                                                    onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
                                                                                                                                     class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                                                     <i
                                                                                                                                         class="fa-solid fa-trash"></i>
@@ -1717,7 +1717,7 @@
                                                                                                                             <button
                                                                                                                                 type="button"
                                                                                                                                 data-bs-toggle="modal"
-                                                                                                                                data-bs-target="#blockMod{{ $item_comment->id }}"
+                                                                                                                                data-bs-target="#blookModal{{ $reply_comment->id }}"
                                                                                                                                 class="yuhu text-danger btn-sm rounded-5 "><svg
                                                                                                                                     xmlns="http://www.w3.org/2000/svg"
                                                                                                                                     width="20"
@@ -1731,7 +1731,7 @@
                                                                                                                             </button>
                                                                                                                             <div class="modal fade"
                                                                                                                                 data-bs-backdrop="static"
-                                                                                                                                id="blockMod{{ $item_comment->id }}"
+                                                                                                                                id="{{ $reply_comment->id }}"
                                                                                                                                 tabindex="-1"
                                                                                                                                 role="dialog"
                                                                                                                                 aria-labelledby="exampleModalCenterTitle"
