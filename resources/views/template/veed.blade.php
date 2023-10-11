@@ -2201,6 +2201,7 @@
         }
 
         function confirmation_delete_comment_feed(num) {
+            iziToast.destroy();
             iziToast.show({
                 backgroundColor: '#F7941E',
                 title: '<i class="fa-regular fa-circle-question"></i>',
