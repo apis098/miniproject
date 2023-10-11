@@ -48,7 +48,7 @@ class KursusController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.kursus', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('kursus.index', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function kursus_template(Request $request)
@@ -143,7 +143,7 @@ class KursusController extends Controller
      */
     public function create()
     {
-        return view('koki.kursus');
+       //
     }
 
     /**
@@ -258,7 +258,7 @@ class KursusController extends Controller
                 ->paginate(10);
         }
         $kursus = kursus::find($id);
-        return view('koki.kursus-edit', compact('kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('kursus.kursus-edit', compact('kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     /**

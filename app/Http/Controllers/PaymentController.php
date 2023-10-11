@@ -34,7 +34,7 @@ class PaymentController extends Controller
             $id_admin = User::where("role", "admin")->first();
             if ($id_user == $id_admin->id) {
                 $admin = true;
-            } 
+            }
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
@@ -58,8 +58,8 @@ class PaymentController extends Controller
         $get = $getRequest->requestTransaksi($request->method,$request->amount, $request->name_product, $request->name, $request->email);
         // create data in resep_premiums table
         history_premiums::create([
-            'users_id' => auth()->user()->id, 
-            'premiums_id' => 1,
+            'users_id' => auth()->user()->id,
+            'premiums_id' => $request->id,
             'reference' => $get->reference,
             'merchant_ref' => $get->merchant_ref,
             'total_amount' => $get->amount,
@@ -87,7 +87,7 @@ class PaymentController extends Controller
             $id_admin = User::where("role", "admin")->first();
             if ($id_user == $id_admin->id) {
                 $admin = true;
-            } 
+            }
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
@@ -124,7 +124,7 @@ class PaymentController extends Controller
             $id_admin = User::where("role", "admin")->first();
             if ($id_user == $id_admin->id) {
                 $admin = true;
-            } 
+            }
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
                 ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman

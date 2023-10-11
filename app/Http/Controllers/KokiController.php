@@ -172,6 +172,12 @@ class KokiController extends Controller
       return view('koki.komentar',compact("koki"));
     }
 
+     public function kursus(Request $request)
+    {
+        $koki = User::find(Auth::user()->id);
+
+      return view('koki.kursus',compact("koki"));
+    }
 
     public function favorite(Request $request){
         $koki = User::find(Auth::user()->id);
