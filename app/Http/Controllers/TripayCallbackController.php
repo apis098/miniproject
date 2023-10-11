@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\history_premiums;
+use App\Models\User;
+use DateInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use DateTime;
+use DateTimeZone;
 
 class TripayCallbackController extends Controller
 {
     // Isi dengan private key anda
     protected $privateKey = 'LRR6K-CgOdX-tLsns-BVPVY-2kHvM';
 
-    public function handle(Request $request)
+    public function handle(Request $request, string $user, string $hari)
     {
         $callbackSignature = $request->server('HTTP_X_CALLBACK_SIGNATURE');
         $json = $request->getContent();
@@ -76,6 +80,15 @@ class TripayCallbackController extends Controller
                     ]);
             }
 
+            $user = User::find($user);
+            $user->status_langganan = "sudah berlangganan";
+            $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
+            $awal_langganan = $currentTime->format('Y-m-d H:i:s');
+            $user->awal_langganan = $awal_langganan;
+            $akhir_langganan = new DateTime($awal_langganan);
+            $akhir_langganan->add(new DateInterval('P' . $hari . 'D'));
+            $user->akhir_langganan = $user->langganan + 60;
+            $user->save();
             return Response::json(['success' => true]);
         }
     }

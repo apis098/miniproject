@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('role');
             $table->string('status')->default('aktif');
             $table->enum("isSuperUser", ["yes", "no", "ditolak"])->default("no");
+            $table->enum("status_langganan", ["sedang berlangganan", "belum berlangganan"])->default("belum berlangganan");
+            $table->timestamp("awal_langganan")->nullable();
+            $table->timestamp("akhir_langganan")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

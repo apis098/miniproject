@@ -102,8 +102,10 @@ class PaymentController extends Controller
         }
         $footer = footer::first();
         $detail_pembayaran = new TripayPaymentController();
+        $premium = history_premiums::where('reference', $reference)->first();
+        $hari = $premium->premium->durasi_paket;
         $detail = $detail_pembayaran->detailPembayaran($reference);
-        return view('testing.detailPaymentTesting', compact("detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
+        return view('testing.detailPaymentTesting', compact("hari","detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
     // halaman daftar transaksi
     public function daftar_transaksi() {
