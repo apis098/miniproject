@@ -198,7 +198,7 @@
         <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
             class="btn btn-lg">
             <span style="font-weight: 600">
-                <a href="/koki/resep" style="color: rgb(255, 255, 255);">Buat Kursus</a>
+                <a href="{{route('kursus.index')}}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
             </span>
         </button>
     </div>
