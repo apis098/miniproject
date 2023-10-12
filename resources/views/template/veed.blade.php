@@ -142,24 +142,26 @@
                 </script>
                 <div class="card">
                     <div class="card-body">
-                        @if (Auth::user())
-                            @if (Auth::user()->isSuperUser === 'yes')
-                                <div class="d-flex">
-
-                                    <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                        autocomplete="off" value="no">
-                                    <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
-
-                                    <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
-                                        autocomplete="off" value="yes">
-                                    <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
-                                </div>
-                            @endif
-                        @endif
                         @if (Auth::check())
                             <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
                                 id="formUploadVideo">
                                 @csrf
+                                @if (Auth::user())
+                                    @if (Auth::user()->isSuperUser === 'yes')
+                                        <div class="d-flex">
+
+                                            <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
+                                                autocomplete="off" value="no">
+                                            <label class="btn btn-select mr-3" id="free"
+                                                for="success-outlined">Gratis</label>
+
+                                            <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
+                                                autocomplete="off" value="yes">
+                                            <label class="btn btn-no-select" id="prem"
+                                                for="danger-outlined">Premium</label>
+                                        </div>
+                                    @endif
+                                @endif
                                 <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
                                     rows="5" maxlength="1000" required>{{ old('deskripsi_video') }}</textarea>
                                 <br>
@@ -1594,7 +1596,7 @@
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment({{ $reply_comment->id }})">
                                                                                                                                 <i class="fa-solid fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                    id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
                                                                                                                             </button>
 
                                                                                                                         </form>
@@ -1609,7 +1611,7 @@
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment({{ $reply_comment->id }})">
                                                                                                                                 <i class="fa-regular fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                    id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
                                                                                                                             </button>
                                                                                                                         </form>
                                                                                                                     @endif
@@ -1622,7 +1624,10 @@
                                                                                                                     &nbsp;
                                                                                                                     &nbsp;
                                                                                                                 @endif
-                                                                                                                <span id="countLikeReplyComment{{ $reply_comment->id }}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                <span
+                                                                                                                    id="countLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                    class="my-auto"
+                                                                                                                    style="margin-left: -1%;">
                                                                                                                     {{ $countLike2sd }}
                                                                                                                 </span>
                                                                                                                 <div
@@ -1630,7 +1635,8 @@
                                                                                                                     {{-- --}}
                                                                                                                     @if (Auth::user())
                                                                                                                         @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
-                                                                                                                            <a data-bs-toggle="modal" data-target="#ModalLapors{{ $reply_comment->id }}"
+                                                                                                                            <a data-bs-toggle="modal"
+                                                                                                                                data-target="#ModalLapors{{ $reply_comment->id }}"
                                                                                                                                 href="#ModalLapors{{ $reply_comment->id }}"
                                                                                                                                 class="yuhu text-danger btn-sm rounded-5 "><i
                                                                                                                                     class="fa-solid fa-triangle-exclamation"></i>
@@ -1814,7 +1820,8 @@
                                                                                                                             d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                     </svg>
                                                                                                                     &nbsp;
-                                                                                                                    <small class="me-4 ">Balas</small>
+                                                                                                                    <small
+                                                                                                                        class="me-4 ">Balas</small>
                                                                                                                 </a>
                                                                                                             </div>
                                                                                                         </div>
