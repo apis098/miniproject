@@ -95,7 +95,7 @@
         .search-2 input {
             height: 45px;
             border: none;
-            width: 700px;
+            width: 200%;
             padding-left: 15px;
             padding-right: 100px;
 
@@ -179,31 +179,291 @@
             }
         }
     </style>
-<div class="container my-3">
-    <div class="row mx-3">
-    <div class="d-flex justify-content-between align-items-center">
-        <div class="search mx-2" style="border-radius: 15px; border: 0.50px black solid;">
-            <div class="col-lg-12">
-                <div class="search-2"><i class='bx bxs-map'></i>
-                    <form action="#" method="GET">
-                        <input type="text" name="profil" placeholder="Search For Something">
-                        <button type="submit" class="zoom-effects"
-                            style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z"/></svg>
-                        </button>
-                    </form>
+
+<div class=" d-flex justify-content-start">
+    <div class="my-4 ml-5">
+        <ul class="nav mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                    aria-selected="true">
+                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus Dibuat</h5>
+                    <div id="border1" class="ms-1" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
+                    aria-selected="false">
+                    <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus Disukai</h5>
+                    <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
+                        hidden>
+                    </div>
+                </a>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <a id="a-tab" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
+                    data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
+                    aria-selected="false">
+                    <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus Disimpan</h5>
+                    <div id="pp" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="container my-3">
+            <div class="row mr-5">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="search mx-2" style="border-radius: 15px; border: 0.50px black solid;">
+                    <div class="col-lg-12">
+                        <div class="search-2"><i class='bx bxs-map'></i>
+                            <form action="#" method="GET">
+                                <input type="text" name="profil" placeholder="Search For Something">
+                                <button type="submit" class="zoom-effects"
+                                    style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z"/></svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                    class="btn btn-lg">
+                    <span style="font-weight: 600">
+                        <a href="{{route('kursus.create')}}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
+                    </span>
+                </button>
+            </div>
             </div>
         </div>
-        <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-            class="btn btn-lg">
-            <span style="font-weight: 600">
-                <a href="{{route('kursus.create')}}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
-            </span>
-        </button>
-    </div>
+
+        <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                tabindex="0">
+                {{-- start tab 1 --}}
+                <div class="d-flex">
+                    <div class="card my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar sekali</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card mx-4 my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mx-0 my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style=" width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   </div>
+            </div>
+            {{-- end --}}
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                tabindex="0">
+                {{-- start tab 2 --}}
+                <div class="d-flex">
+                    <div class="card my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar sekali awokwowkwowkwo</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card mx-4 my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mx-0 my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style=" width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   </div>
+
+            </div>
+            {{-- end --}}
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                tabindex="0">
+                {{-- start tab 3 --}}
+                   <div class="d-flex">
+                    <div class="card my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar aiyaiyaaa umikumik kecau</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card mx-4 my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mx-0 my-3" style="width: 30%; border-radius:15px">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                                    style=" width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                    alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="col-12">
+                                    <h5>Merebus</h5>
+                                    <a href="/detail" class="btn"
+                                        style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                   </div>
+            </div>
+        </div>
+        {{-- end --}}
     </div>
 </div>
+<script>
+    const click1 = document.getElementById("click1");
+    const click2 = document.getElementById("c");
+    const border1 = document.getElementById("border1");
+    const border2 = document.getElementById("b");
+    const o = document.getElementById("pp");
+    const a_tab = document.getElementById("a-tab");
+
+    a_tab.addEventListener('click', function(event) {
+        event.preventDefault();
+        o.style.display = "block";
+        border1.style.display = "none";
+        border2.style.display = "none";
+    });
+
+    click1.addEventListener('click', function(event) {
+        event.preventDefault();
+        border1.style.display = "block";
+        border2.style.display = "none";
+        o.style.display = "none";
+    });
+
+    click2.addEventListener("click", function(event) {
+        event.preventDefault();
+        border2.removeAttribute('hidden');
+        border2.style.display = "block";
+        border1.style.display = "none";
+        o.style.display = "none";
+    });
+</script>
+
+
 
 
 <!-- jQuery CDN -->
