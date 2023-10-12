@@ -100,16 +100,16 @@
             }
 
             /* button{
-                                                                                                                                    background-color: #F7941E;
-                                                                                                                                    border: none;
-                                                                                                                                    height: 45px;
-                                                                                                                                    width: 90px;
-                                                                                                                                    color: #ffffff;
-                                                                                                                                    position: absolute;
-                                                                                                                                    right: 1px;
-                                                                                                                                    top: 0px;
-                                                                                                                                    border-radius: 15px
-                                                                                                                                } */
+                                                                                                                                        background-color: #F7941E;
+                                                                                                                                        border: none;
+                                                                                                                                        height: 45px;
+                                                                                                                                        width: 90px;
+                                                                                                                                        color: #ffffff;
+                                                                                                                                        position: absolute;
+                                                                                                                                        right: 1px;
+                                                                                                                                        top: 0px;
+                                                                                                                                        border-radius: 15px
+                                                                                                                                    } */
             .search-2 i {
                 position: absolute;
                 top: 12px;
@@ -530,52 +530,12 @@
                         <div class="card-body mx-4">
                             <div class="row">
                                 <div class="col-12 mx-3 mb-3">
-                                    @if (Auth::check())
-                                        <!-- untuk yang sudah login -->
-                                        <!-- untuk admin -->
-                                        @if (Auth::user()->role === 'admin')
-                                            <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                                    {{ $item->nama_resep }}
-                                                </a>
-                                            </h5>
-                                        @elseif (Auth::user()->id == $item->User->id)
-                                            <!-- untuk kokinya sendiri -->
-                                            <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                                    {{ $item->nama_resep }}
-                                                </a>
-                                            </h5>
-                                        @else
-                                            <!-- untuk koki lain -->
-                                            <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                                    {{ $item->nama_resep }}
-                                                </a>
-                                            </h5>
-                                        @endif
-                                    @else
-                                        <!-- untuk yang belum login -->
-                                        @if ($item->isPremium === 'yes')
-                                            <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    onclick="openButtonPremium()">
-                                                    {{ $item->nama_resep }}
-                                                </a>
-                                            </h5>
-                                        @else
-                                            <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                                    {{ $item->nama_resep }}
-                                                </a>
-                                            </h5>
-                                        @endif
-                                    @endif
-
+                                    <!-- untuk koki lain -->
+                                    <h5>
+                                        <a style="color: black; font-size: 24px; margin-left:-1px"
+                                            href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                            {{ $item->nama_resep }}</a>
+                                    </h5>
                                     <span>Oleh {{ $item->User->name }}</span> <br>
                                     <p class="mt-2 my-2">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
                                     </p>

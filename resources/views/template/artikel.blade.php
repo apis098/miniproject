@@ -1,20 +1,5 @@
 @extends('template.nav')
 @section('content')
-    @if (Auth::check())
-        @if (Auth::user()->role != 'admin')
-            @if (Auth::user()->id != $show_resep->User->id && $Premium === true)
-                <script>
-                    window.location = '/resep?premium=yes';
-                </script>
-            @endif
-        @endif
-    @else
-        @if ($Premium === true)
-            <script>
-                window.location = '/resep?premium=yes';
-            </script>
-        @endif
-    @endif
     <style>
         .btn-edit {
             background: #F7941E;

@@ -39,7 +39,7 @@ use App\Http\Controllers\TripayCallbackController;
 
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
-Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep');
+Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep')->middleware('auth.premium');
 
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
