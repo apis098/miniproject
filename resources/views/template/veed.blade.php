@@ -1500,6 +1500,9 @@
                                                                                             @endif
                                                                                             <div
                                                                                                 id="reply_comments{{ $item_comment->id }}">
+                                                                                                <div id="repliesCommentList{{$item_comment->id}}">
+
+                                                                                                </div>
                                                                                                 @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                                     @php
                                                                                                         if (Auth::check()) {
@@ -1520,9 +1523,7 @@
                                                                                                             ->where('veed_id', $item_video->id)
                                                                                                             ->count();
                                                                                                     @endphp
-                                                                                                    <div id="repliesCommentList{{$item_comment->id}}">
-
-                                                                                                    </div>
+                                                                 
                                                                                                     <div class="rounded d-flex flex-row border-black ">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
