@@ -220,7 +220,6 @@ tr {
                 </div>
             </a>
         </li>
-`
         <li class="nav-item" role="presentation">
             <a id="click2" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
                 data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
@@ -335,5 +334,6 @@ tr {
         });
     });
 </script>
+
 
 @endsection
