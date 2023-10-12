@@ -161,7 +161,7 @@
                                 id="formUploadVideo">
                                 @csrf
                                 <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
-                                    rows="5" required>{{ old('deskripsi_video') }}</textarea>
+                                    rows="5" maxlength="1000" required>{{ old('deskripsi_video') }}</textarea>
                                 <br>
                                 <input type="file" name="upload_video" id="inputVideo" hidden>
                                 <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
@@ -1479,7 +1479,7 @@
                                                                                                             id="inputKomentarBalasan{{ $item_comment->id }}"
                                                                                                             placeholder="Balas Komentar Dari"
                                                                                                             required>
-        
+
                                                                                                         <button type="submit"
                                                                                                             onclick="balas_komentar({{ $item_comment->id }})"
                                                                                                             class="btn text-white"
