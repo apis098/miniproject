@@ -117,7 +117,7 @@
                         data-accordion="false">
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"  >
                             <a href="{{ route('koki.beranda') }}"
-                                class="nav-link mx-4  {{ request()->routeIs('koki.beranda') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3  {{ request()->routeIs('koki.beranda') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="m221.56 100.85l-79.95-75.47l-.16-.15a19.93 19.93 0 0 0-26.91 0l-.17.15l-79.93 75.47a20.07 20.07 0 0 0-6.44 14.7V208a20 20 0 0 0 20 20h48a20 20 0 0 0 20-20v-44h24v44a20 20 0 0 0 20 20h48a20 20 0 0 0 20-20v-92.45a20.07 20.07 0 0 0-6.44-14.7ZM204 204h-40v-44a20 20 0 0 0-20-20h-32a20 20 0 0 0-20 20v44H52v-86.72l76-71.75l76 71.75Z"/></svg>
                                 <p  style="margin-left: 10px;   font-size: 20px; font-family: Poppins; font-weight: 500; ">
                                     Beranda
@@ -126,17 +126,17 @@
                         </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.feed')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/feed') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/feed') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg  style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 20 20"><path fill="currentColor" d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm6 0v12h8V4H6zM2 5v2h2V5H2zm0 4v2h2V9H2zm0 4v2h2v-2H2zm14-8v2h2V5h-2zm0 4v2h2V9h-2zm0 4v2h2v-2h-2zM8 7l5 3l-5 3V7z"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
-                                Feed
+                                <p  style="margin-left: 15px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                 Feed
                                 </p>
                             </a>
                         </li>
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.recipe')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/views-recipe') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/views-recipe') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M2.5 5.5a5 5 0 0 1 10 0m-11 0h12m-13 3H4A2.5 2.5 0 0 1 6.5 11h0m-3 0h5a2 2 0 0 1 2 2h0a.5.5 0 0 1-.5.5H.5"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Resep
@@ -148,9 +148,9 @@
                             @if (Auth::user()->isSuperUser == 'yes')
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.kursus')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/kursus') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/kursus') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="currentColor" d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                <p  style="margin-left: 18px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Kursus
                                 </p>
                             </a>
@@ -160,9 +160,9 @@
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.profilage')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/profilage') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/profilage') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                <p  style="margin-left: 12px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Profil
                                 </p>
                             </a>
@@ -170,7 +170,7 @@
 
                         {{-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.favorite')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/favorite') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/favorite') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m11 13.5l-4-4l-4 4v-12a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Z"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Favorit
@@ -180,9 +180,9 @@
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.income')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/income-koki') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/income-koki') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10.02v1.01m0-6.02v.94m0 7.54c3.5 0 6-1.24 6-4c0-3-1.5-5-4.5-6.5l1.18-1.52a.66.66 0 0 0-.56-1H4.88a.66.66 0 0 0-.56 1L5.5 3C2.5 4.51 1 6.51 1 9.51c0 2.74 2.5 3.98 6 3.98Z"/><path d="M6 9.56A1.24 1.24 0 0 0 7 10a1.12 1.12 0 0 0 1.19-1A1.12 1.12 0 0 0 7 8a1.12 1.12 0 0 1-1.19-1A1.11 1.11 0 0 1 7 6a1.26 1.26 0 0 1 1 .4"/></g></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                <p  style="margin-left: 12px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Penghasilan
                                 </p>
                             </a>
@@ -190,9 +190,9 @@
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.komentar')}}"
-                                class="nav-link mx-4 {{ request()->is('koki/komentar') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                                class="nav-link mx-3 {{ request()->is('koki/komentar') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="currentColor" d="m10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                <p  style="margin-left: 12px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Komentar
                                 </p >
                             </a>
