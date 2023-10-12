@@ -17,6 +17,15 @@ class AuthenticateUserPremium
        // mencari resep dengan id yang sama dengan $recipeId
        $resep = reseps::find($recipeId);
 
+       // untuk user yang belum login
+       if (!Auth::check()) {
+        if ($resep->isPremium === "yes") {
+            return redirect()->back()->with('error', 'Anda harus berlangganan terlebih dahulu!');
+        } else {
+            return $next($request);
+        }
+       }
+
        // jika admin maka bebas masuk ke resep
        if (Auth::user()->role === "admin") {
         return $next($request);
