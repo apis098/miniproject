@@ -182,7 +182,7 @@
 
 <div class=" d-flex justify-content-start">
     <div class="my-4 ml-5">
-        <ul class="nav mb-3" id="pills-tab" role="tablist">
+        <ul class="nav mb-2" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
