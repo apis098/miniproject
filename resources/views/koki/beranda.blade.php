@@ -618,10 +618,11 @@
             {{-- {{$komentar_feed->count() . " " . $komentar_resep->count()}} --}}
             <style>
                 .card-body {
-overflow-y: auto; /* atau overflow-y: scroll; */
-max-height: 350px; /* Ganti dengan ketinggian maksimum yang Anda inginkan */
-}
-
+                    overflow-y: auto;
+                    /* atau overflow-y: scroll; */
+                    max-height: 350px;
+                    /* Ganti dengan ketinggian maksimum yang Anda inginkan */
+                }
             </style>
             <div class="d-flex">
                 <div class="col-lg-6">
@@ -629,29 +630,34 @@ max-height: 350px; /* Ganti dengan ketinggian maksimum yang Anda inginkan */
                         style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
                             @if ($komentar_feed->count() == 0)
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 2em">
-                            <img src="{{asset('images/data.png')}}" style="width: 15em">
-                            <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                        </div>
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: 2em">
+                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                </div>
                             @endif
                             @foreach ($komentar_feed as $commentFeed)
-                            <div class="border-bottom py-3">
-                                <a href="#" class="text-decoration-none d-flex text-dark">
-                                    <img class="rounded-circle flex-shrink-0" src=""
-                                        alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">Nama User</h6>
-                                            <small>{{ \Carbon\Carbon::parse($commentFeed->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                <div class="border-bottom py-3">
+                                    <a href="#" class="text-decoration-none d-flex text-dark">
+                                        @if ($commentFeed->user_pengirim->foto)
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('storage/'.$commentFeed->user_pengirim->foto) }}" alt=""
+                                        style="width: 40px; height: 40px;">
+                                        @else
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/default.jpg') }}" alt=""
+                                        style="width: 40px; height: 40px;">
+                                        @endif
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">Nama User</h6>
+                                                <small>{{ \Carbon\Carbon::parse($commentFeed->created_at)->locale('id_ID')->diffForHumans() }}</small>
 
+                                            </div>
+                                            <span>
+                                                Oleh Nama User
+                                            </span>
                                         </div>
-                                        <span>
-                                            Oleh Nama User
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -662,29 +668,34 @@ max-height: 350px; /* Ganti dengan ketinggian maksimum yang Anda inginkan */
                         style="width: 435px; height: 400px; border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
                             @if ($komentar_resep->count() == 0)
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 2em">
-                            <img src="{{asset('images/data.png')}}" style="width: 15em">
-                            <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                        </div>
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: 2em">
+                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                </div>
                             @endif
                             @foreach ($komentar_resep as $commentRecipe)
-                            <div class="border-bottom py-3">
-                                <a href="#" class="text-decoration-none d-flex text-dark">
-                                    <img class="rounded-circle flex-shrink-0" src=""
-                                        alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">Nama User</h6>
-                                            <small>{{ \Carbon\Carbon::parse($commentRecipe->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                <div class="border-bottom py-3">
+                                    <a href="#" class="text-decoration-none d-flex text-dark">
+                                        @if ($commentRecipe->user_pengirim->foto)
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('storage/'.$commentRecipe->user_pengirim->foto) }}" alt=""
+                                        style="width: 40px; height: 40px;">
+                                        @else
+                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/default.jpg') }}" alt=""
+                                            style="width: 40px; height: 40px;">
+                                        @endif
+                                        <div class="w-100 ms-3">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h6 class="mb-0">Nama User</h6>
+                                                <small>{{ \Carbon\Carbon::parse($commentRecipe->created_at)->locale('id_ID')->diffForHumans() }}</small>
 
+                                            </div>
+                                            <span>
+                                                Oleh Nama User
+                                            </span>
                                         </div>
-                                        <span>
-                                            Oleh Nama User
-                                        </span>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
