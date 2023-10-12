@@ -62,7 +62,8 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
             integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer" />
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -107,9 +108,9 @@
                 color: #F7941E;
                 background: white;
             }
-            .video-fav{
 
-            }
+            .video-fav {}
+
             .nav-link:hover {}
 
             .nav-link {
@@ -471,7 +472,8 @@
                                                             @method('PUT')
                                                             @csrf
                                                             <button class="yuhu mt-2" type="submit">
-                                                                <small class="mt-1 ms-1 text-secondary">Membagikan video kepada anda</small>
+                                                                <small class="mt-1 ms-1 text-secondary">Membagikan
+                                                                    video kepada anda</small>
                                                                 @if ($row->status == 'belum')
                                                                     <img class="ms-2 mb-2 rounded-circle"
                                                                         src="{{ asset('images/badge.png') }}"
@@ -819,14 +821,19 @@
                                             <div class="dropdown-divider"></div>
                                             <a href="/koki/beranda" class="dropdown-item text-orange"
                                                 style="width: 230px">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z" clip-rule="evenodd"/></svg>
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                        d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
                                                 Dashboard
                                             </a>
                                             <div class="dropdown-divider"></div>
                                             <a href="#" data-toggle="modal" data-target="#favoriteModal"
                                                 style="width: 230px;" class="dropdown-item text-orange">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="21" class="me-1"
-                                                    height="21" viewBox="0 0 24 24">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="21"
+                                                    class="me-1" height="21" viewBox="0 0 24 24">
                                                     <path fill="currentColor"
                                                         d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
                                                 </svg>
@@ -843,8 +850,8 @@
                                                 Upgrade
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="#" style="width: 230px;" data-bs-toggle="modal" data-bs-target="#topup"
-                                                class="dropdown-item text-orange">
+                                            <a href="#" style="width: 230px;" data-bs-toggle="modal"
+                                                data-bs-target="#topup" class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
                                                     height="20" viewBox="0 0 256 256">
                                                     <path fill="currentColor"
@@ -853,7 +860,7 @@
                                                 Top up
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a href="{{route('riwayat')}}" style="width: 230px;"
+                                            <a href="{{ route('riwayat') }}" style="width: 230px;"
                                                 class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
                                                     height="20" viewBox="0 0 24 24">
@@ -946,96 +953,100 @@
             <div class="modal-content text-center">
                 <div class="d-flex">
                     <div class="col-11">
-                    <h5 class="modal-title ml-1 mt-3"
-                        style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                        Top Up</h5>
+                        <h5 class="modal-title ml-1 mt-3"
+                            style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                            Top Up</h5>
                     </div>
                     <div class="col-1">
-                    <button type="button" class="close mr-1 mt-3"
-                        data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <button type="button" class="close mr-1 mt-3" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    </div>
+                </div>
                 <div class="modal-body">
-                        <div class="col-lg-3 my-3">
-                            <div class="card" id="card"
-                                data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-
-                                <div class=card-body">
-                                    <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#" class="card-title" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Kecil
-                                            </a>
-                                            <p class="text-start mt-1" style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                Rp. 20.000,00
-                                            </p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px" height="92px;" alt="">
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 my-3">
-                            <div class="card " id="card"
-                                data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                {{-- <img src="{{ asset('img/sedang.png') }}"
-                                    class="card-img-top" alt=""> --}}
-                                    <div class=card-body">
-                                        <div class="d-flex">
-                                            <div class="text-start mx-3 mt-2">
-                                                <a href="#" class="card-title" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                    Sedang
-                                                </a>
-                                                <p class="text-start mt-1" style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                    Rp. 50.000,00
-                                                </p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <img src="{{ asset('img/5.png') }}" class="mr-2" width="100px" height="92px;" alt="">
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3 my-1">
-                            <div class="card" id="card"
-                            data-card-selected="false"
+                    <div id="topUpKecil" class="col-lg-3 my-3">
+                        <div class="card" id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                             <div class=card-body">
                                 <div class="d-flex">
                                     <div class="text-start mx-3 mt-2">
-                                        <a href="#" class="card-title" style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                        <a href="#" class="card-title"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                            Kecil
+                                        </a>
+                                        <p class="text-start mt-1"
+                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                            Rp. 20.000,00
+                                        </p>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px"
+                                            height="92px;" alt="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="topUpSedang" class="col-lg-3 my-3">
+                        <div class="card " id="card" data-card-selected="false"
+                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                            {{-- <img src="{{ asset('img/sedang.png') }}"
+                                    class="card-img-top" alt=""> --}}
+                            <div class=card-body">
+                                <div class="d-flex">
+                                    <div class="text-start mx-3 mt-2">
+                                        <a href="#" class="card-title"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                            Sedang
+                                        </a>
+                                        <p class="text-start mt-1"
+                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                            Rp. 50.000,00
+                                        </p>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <img src="{{ asset('img/5.png') }}" class="mr-2" width="100px"
+                                            height="92px;" alt="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 my-1">
+                        <div class="card" id="card" data-card-selected="false"
+                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+
+                            <div class=card-body">
+                                <div class="d-flex">
+                                    <div class="text-start mx-3 mt-2">
+                                        <a href="#" class="card-title"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                             Besar
                                         </a>
-                                        <p class="text-start mt-1" style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                        <p class="text-start mt-1"
+                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                             Rp. 100.000,00
                                         </p>
                                     </div>
                                     <div class="ms-auto">
-                                        <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px" height="92px;" alt="">
+                                        <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px"
+                                            height="92px;" alt="">
                                     </div>
                                 </div>
-                                
-                            </div>
+
                             </div>
                         </div>
-
                     </div>
-                        <button type="submit" id="buttonCommentVeed"
-                            style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn btn-sm text-light mb-3 mx-4">
-                            <b class="me-3 ms-3">Kirim</b></button>
+                </div>
+                <button type="submit" id="buttonCommentVeed"
+                    style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                    class="btn btn-sm text-light mb-3 mx-4">
+                    <b class="me-3 ms-3">Kirim</b></button>
             </div>
         </div>
     </div>
@@ -1113,7 +1124,8 @@
 
                         <div class="col-lg-4 mb-3">
                             <div class="card" style="width: 18rem;border-radius:15px">
-                                <img src="{{ asset('images/langganan2.png') }}" class="card-img-top" alt="">
+                                <img src="{{ asset('images/langganan2.png') }}" class="card-img-top"
+                                    alt="">
                                 <div class=card-body">
                                     <h5 class="card-title text-center" style="margin-top: 28%;">langganan</h5>
                                     <p class="text-center">1 bulan</p>
@@ -1257,12 +1269,14 @@
                         @foreach ($favorite as $row)
                             <form action="{{ route('favorite.delete.multiple') }}" method="POST">
                                 @csrf
-                                @if($row->resep_id != null)
+                                @if ($row->resep_id != null)
                                     <div class="modal-body d-flex align-items-center">
                                         <input type="checkbox" name="selected_ids[]"
-                                            class="form-check-input ms-3 data-checkbox" data-id="{{ $row->id }}">
-                                        <img src="{{ asset('storage/' . $row->resep->foto_resep) }}" class=" ms-5 me-2"
-                                            style="border-radius: 10px;max-width:106px" alt="">
+                                            class="form-check-input ms-3 data-checkbox"
+                                            data-id="{{ $row->id }}">
+                                        <img src="{{ asset('storage/' . $row->resep->foto_resep) }}"
+                                            class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
+                                            alt="">
                                         <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
                                             <div style="justify-content: space-between;" class="mb-1">
                                                 <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
@@ -1277,10 +1291,11 @@
                                 @elseif($row->feed_id != null)
                                     <div class="modal-body d-flex align-items-center">
                                         <input type="checkbox" name="selected_ids[]"
-                                            class="form-check-input ms-3 data-checkbox" data-id="{{ $row->id }}">
-                                            <video class="video ms-5 video-fav" controls width="180" height="120">
-                                                <source src="/storage/{{$row->veed->upload_video}}" type="video/mp4">
-                                            </video>
+                                            class="form-check-input ms-3 data-checkbox"
+                                            data-id="{{ $row->id }}">
+                                        <video class="video ms-5 video-fav" controls width="180" height="120">
+                                            <source src="/storage/{{ $row->veed->upload_video }}" type="video/mp4">
+                                        </video>
                                         <a href="/veed/{{ $row->veed->uuid }}">
                                             <div style="justify-content: space-between;" class="mb-1">
                                                 <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
@@ -1455,7 +1470,8 @@
                     placeholder: {
                         id: '-1',
                         text: 'Masukkan Nama Bahan'
-                    },avo
+                    },
+                    avo
                     dropdownParent: $('#filter')
 
                 });

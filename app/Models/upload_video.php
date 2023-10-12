@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class upload_video extends Model
 {
@@ -37,12 +38,17 @@ class upload_video extends Model
     {
         return $this->hasMany(like_veed::class, "veed_id");
     }
-    public function like_comment_veed() 
+    public function like_comment_veed()
     {
         return $this->hasMany(like_comment_veed::class);
     }
     public function like_reply_comment_veed()
     {
         return $this->hasMany(like_reply_comment_veed::class);
+    }
+    public function checkLikeFeed(string $id) {
+        return like_veed::where('users_id', $id)
+        ->where('veed_id', $this->id)
+        ->exists();
     }
 }

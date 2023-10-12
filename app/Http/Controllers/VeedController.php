@@ -67,7 +67,7 @@ class VeedController extends Controller
         $reply_comment_veed = reply_comment_veed::latest()->get();
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
-
+      
         return view("template.veed", compact("top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)

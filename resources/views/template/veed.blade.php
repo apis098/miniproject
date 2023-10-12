@@ -33,11 +33,8 @@
                                         <a href="" class="text-dark mb-0">
                                             <strong>{{ $row->name }}</strong>
                                         </a>
-                                        @php
-                                            $resep_count = \App\Models\reseps::where('user_id', $row->id)->count();
-                                        @endphp
                                         <a href="" class="text-muted d-block">
-                                            <small>{{ $resep_count }} Resep dibuat</small>
+                                            <small>{{ $row->resep->count() }} Resep dibuat</small>
                                         </a>
                                     </div>
 
@@ -303,30 +300,10 @@
 
                                     <span class="d-flex flex-row" style="color: black;">
                                         <!-- like feed start -->
-                                        @php
-                                            // mendapatkan total like veed
-                                            $countLikeVeed = \App\Models\like_veed::where('veed_id', $item_video->id)->count();
-                                        @endphp
                                         @if (Auth::check())
                                             <div id="feed{{ $urut }}">
-                                                @php
-                                                    // mengecek apakah user sudah
-                                                    $isLikeVeed = \App\Models\like_veed::query()
-                                                        ->where('users_id', Auth::user()->id)
-                                                        ->where('veed_id', $item_video->id)
-                                                        ->count();
-                                                @endphp
-                                                @if ($isLikeVeed == 0)
-                                                    <form id="formLikeVeed{{ $urut }}"
-                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button class="text-dark me-1"
-                                                            style="border: none; background-color:white;"
-                                                            onclick="likeFeed({{ $urut }})">
-                                                            <i id="likeB{{ $urut }}"
-                                                                class="fa-regular fa-lg fa-thumbs-up"></i>
-                                                        </button>
-                                                    </form>
-                                                @elseif($isLikeVeed == 1)
+
+                                                @if ($item_video->checkLikeFeed(Auth::user()->id))
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
                                                         <button class=" me-1"
@@ -336,7 +313,18 @@
                                                                 id="likeB{{ $urut }}"></i>
                                                         </button>
                                                     </form>
+                                                @else
+                                                    <form id="formLikeVeed{{ $urut }}"
+                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
+                                                        <button class="text-dark me-1"
+                                                            style="border: none; background-color:white;"
+                                                            onclick="likeFeed({{ $urut }})">
+                                                            <i id="likeB{{ $urut }}"
+                                                                class="fa-regular fa-lg fa-thumbs-up"></i>
+                                                        </button>
+                                                    </form>
                                                 @endif
+
                                             </div>
                                         @else
                                             <form>
@@ -347,7 +335,7 @@
                                             </form>
                                         @endif
                                         <span class="my-auto"
-                                            id="countLikeFeed{{ $urut }}">{{ $countLikeVeed }}</span>
+                                            id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
                                         <button type="button" class="ms-3 yuhu text-dark" {{-- onclick="openModel({{ $urut }})" --}}
@@ -1428,7 +1416,7 @@
                                                                                         <div class="row">
                                                                                             @if (Auth::check())
                                                                                                 <form
-                                                                                                    id="formReplyComment{{$item_comment->id}}"
+                                                                                                    id="formReplyComment{{ $item_comment->id }}"
                                                                                                     action="{{ route('balas.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
                                                                                                     method="post">
                                                                                                     @csrf
@@ -1482,7 +1470,7 @@
                                                                                                             class="d-flex">
                                                                                                             <input
                                                                                                                 type="text"
-                                                                                                                id="inputKomentarBalasan{{$item_comment->id}}"
+                                                                                                                id="inputKomentarBalasan{{ $item_comment->id }}"
                                                                                                                 name="commentVeed"
                                                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
@@ -1500,7 +1488,8 @@
                                                                                             @endif
                                                                                             <div
                                                                                                 id="reply_comments{{ $item_comment->id }}">
-                                                                                                <div id="repliesCommentList{{$item_comment->id}}">
+                                                                                                <div
+                                                                                                    id="repliesCommentList{{ $item_comment->id }}">
 
                                                                                                 </div>
                                                                                                 @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
@@ -1523,8 +1512,9 @@
                                                                                                             ->where('veed_id', $item_video->id)
                                                                                                             ->count();
                                                                                                     @endphp
-                                                                 
-                                                                                                    <div class="rounded d-flex flex-row border-black ">
+
+                                                                                                    <div
+                                                                                                        class="rounded d-flex flex-row border-black ">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -1578,7 +1568,7 @@
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment({{ $reply_comment->id }})">
                                                                                                                                 <i class="fa-solid fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                    id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
                                                                                                                             </button>
 
                                                                                                                         </form>
@@ -1593,7 +1583,7 @@
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment({{ $reply_comment->id }})">
                                                                                                                                 <i class="fa-regular fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                    id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
                                                                                                                             </button>
                                                                                                                         </form>
                                                                                                                     @endif
@@ -1606,7 +1596,10 @@
                                                                                                                     &nbsp;
                                                                                                                     &nbsp;
                                                                                                                 @endif
-                                                                                                                <span id="countLikeReplyComment{{ $reply_comment->id }}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                <span
+                                                                                                                    id="countLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                    class="my-auto"
+                                                                                                                    style="margin-left: -1%;">
                                                                                                                     {{ $countLike2sd }}
                                                                                                                 </span>
                                                                                                                 <div
@@ -1614,7 +1607,8 @@
                                                                                                                     {{-- --}}
                                                                                                                     @if (Auth::user())
                                                                                                                         @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
-                                                                                                                            <a data-bs-toggle="modal" data-target="#ModalLapors{{ $reply_comment->id }}"
+                                                                                                                            <a data-bs-toggle="modal"
+                                                                                                                                data-target="#ModalLapors{{ $reply_comment->id }}"
                                                                                                                                 href="#ModalLapors{{ $reply_comment->id }}"
                                                                                                                                 class="yuhu text-danger btn-sm rounded-5 "><i
                                                                                                                                     class="fa-solid fa-triangle-exclamation"></i>
@@ -1798,7 +1792,8 @@
                                                                                                                             d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                     </svg>
                                                                                                                     &nbsp;
-                                                                                                                    <small class="me-4 ">Balas</small>
+                                                                                                                    <small
+                                                                                                                        class="me-4 ">Balas</small>
                                                                                                                 </a>
                                                                                                             </div>
                                                                                                         </div>
@@ -1987,7 +1982,7 @@
                     contentType: false,
                     success: function success(response) {
                         if (response.success) {
-                            $("#inputKomentarBalasan"+num).val("");
+                            $("#inputKomentarBalasan" + num).val("");
                             // $("#input_comment_veed" + num).val('');
                             let up = response.up;
                             let pengirim = response.pengirim;
@@ -2030,23 +2025,7 @@
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex flex-row "
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
-                                                                                                                @php
-                                                                                                                    // mendapatkan jumlah like tiap komentar
-                                                                                                                    $countLike = \App\Models\like_comment_veed::query()
-                                                                                                                        ->where('comment_veed_id',$reply_comment->id)
-                                                                                                                        ->where('veed_id', $item_video->id)
-                                                                                                                        ->count();
-                                                                                                                @endphp
                                                                                                                 @if (Auth::user())
-                                                                                                                    @php
-                                                                                                                        // mengecek apakah user sudah like atau belum, kalau nilainya 1 maka sudah like kalau 0 maka belum like
-                                                                                                                        $isLike = \App\Models\like_comment_veed::query()
-                                                                                                                            ->where('users_id', Auth::user()->id)
-                                                                                                                            ->where('comment_veed_id', $reply_comment->id)
-                                                                                                                            ->where('veed_id', $item_video->id)
-                                                                                                                            ->count();
-                                                                                                                    @endphp
-                                                                                                                    @if ($isLike2sd)
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
                                                                                                                             id="formLikeReplyComment${up['id']}"
@@ -2061,7 +2040,6 @@
                                                                                                                             </button>
 
                                                                                                                         </form>
-                                                                                                                    @elseif($isLike3sd)
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
                                                                                                                             id="formLikeReplyComment${up['id']}"
@@ -2075,7 +2053,6 @@
                                                                                                                                 id="iconLikeReplyComment${up['id']}"></i>
                                                                                                                             </button>
                                                                                                                         </form>
-                                                                                                                    @endif
                                                                                                                 @else
                                                                                                                     <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                                                         onclick="harusLogin()"
@@ -2086,13 +2063,12 @@
                                                                                                                     &nbsp;
                                                                                                                 @endif
                                                                                                                 <span id="countLikeReplyComment${up['id']}" class="my-auto" style="margin-left: -1%;">
-                                                                                                                    {{ $countLike2sd }}
                                                                                                                 </span>
                                                                                                                 <div
                                                                                                                     class="m-2 mr-auto">
                                                                                                                     {{-- --}}
                                                                                                                     @if (Auth::user())
-                                                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== ${up['user']['id']})
+                                                                                                                        @if (Auth::user()->role != 'admin')
                                                                                                                             <a data-bs-toggle="modal" data-target="#ModalLapors${up['id']}"
                                                                                                                                 href="#ModalLapors${up['id']}"
                                                                                                                                 class="yuhu text-danger btn-sm rounded-5 "><i
@@ -2126,9 +2102,7 @@
                                                                                                                                                     aria-hidden="true">&times;</span>
                                                                                                                                             </button>
                                                                                                                                         </div>
-                                                                                                                                        <form
-                                                                                                                                            action="{{ route('report.feed', ${veed_id}) }}"
-                                                                                                                                            method="POST">
+                                                                                                                                        <form                                                                                                                                            method="POST">
                                                                                                                                             {{-- @csrf --}}
                                                                                                                                             <div
                                                                                                                                                 class="modal-body d-flex align-items-center">
@@ -2155,7 +2129,7 @@
                                                                                                                                     </div>
                                                                                                                                 </div>
                                                                                                                             </div>
-                                                                                                                        @elseif(Auth::user()->id == ${up['user']['id']})
+                                                                                                                        @elseif (Auth::user()->id == ${up['user']['id']})
                                                                                                                             {{-- Hapus Komentar --}}
                                                                                                                             <form
                                                                                                                                 method="POST"
@@ -2175,7 +2149,7 @@
                                                                                                                                         class="fa-solid fa-trash"></i>
                                                                                                                                 </button>
                                                                                                                             </form>
-                                                                                                                        @elseif(Auth::user()->role == 'admin')
+                                                                                                                        @elseif (Auth::user()->role == 'admin')
                                                                                                                             {{-- Blokir Komentar --}}
                                                                                                                             <button
                                                                                                                                 type="button"
@@ -2444,7 +2418,7 @@
                 });
             });
         }
-        
+
         // upload video feed ajax
         $("#formUploadVideo").submit(function(e) {
             e.preventDefault();
