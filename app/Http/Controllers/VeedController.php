@@ -226,12 +226,20 @@ class VeedController extends Controller
             "komentar" => $request->komentarBalasan
         ]);
         $item_comment = reply_comment_veed::where('comment_id', $comment_id)->first();
-        $up = $item_comment->reply_comment_veed;
+        $dataReplies = reply_comment_veed::findOrFail($store_comment->id);
+        $jumlah_like_veed = like_reply_comment_veed::query();
+        $user_sender = User::findOrFail(auth()->user()->id);
+        $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
         if ($store_comment) {
             return response()->json([
                 "success" => true,
-                "message" => "Sukses membalas komentar!",
-                "update" => $up
+                "message" => "Anda berhasil memberi komentar!",
+                "up" => $dataReplies,
+                "pengirim" => $user_sender,
+                "jumlah_like_veed" => $jumlah_like_veed,
+                "veed_id" => $veed_id,
+                "time" => $time,
+                "commentId" => $comment_id,
             ]);
         }
     }
