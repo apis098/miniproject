@@ -23,9 +23,5 @@ class like_reply_comment_veed extends Model
     public function veed() {
         return $this->belongsTo(upload_video::class, "veed_id");
     }
-    public function likeReplyCommentVeed($user_id){
-        return like_reply_comment_veed::where('users_id',$user_id)
-        ->where('reply_comment_veed_id',$this->id)
-        ->exists();
-    }
+    
 }

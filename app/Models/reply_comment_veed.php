@@ -27,4 +27,9 @@ class reply_comment_veed extends Model
     public function like_reply_comment_veed() {
         return $this->hasMany(like_reply_comment_veed::class);
     }
+    public function likeReplyCommentVeed($user_id){
+        return like_reply_comment_veed::where('users_id',$user_id)
+        ->where('reply_comment_veed_id',$this->id)
+        ->exists();
+    }
 }

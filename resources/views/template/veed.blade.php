@@ -1486,19 +1486,6 @@
                                                                                                 </div>
                                                                                                 @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                                     @php
-                                                                                                        if (Auth::check()) {
-                                                                                                            // memeriksa apakah balasan komentar veed sudah di like atau belum
-                                                                                                            $isLike2sd = App\Models\like_reply_comment_veed::query()
-                                                                                                                ->where('users_id', Auth::user()->id)
-                                                                                                                ->where('reply_comment_veed_id', $reply_comment->id)
-                                                                                                                ->where('veed_id', $item_video->id)
-                                                                                                                ->exists();
-                                                                                                            $isLike3sd = App\Models\like_reply_comment_veed::query()
-                                                                                                                ->where('users_id', Auth::user()->id)
-                                                                                                                ->where('reply_comment_veed_id', $reply_comment->id)
-                                                                                                                ->where('veed_id', $item_video->id)
-                                                                                                                ->doesntExist();
-                                                                                                        }
                                                                                                         $countLike2sd = App\Models\like_reply_comment_veed::query()
                                                                                                             ->where('reply_comment_veed_id', $reply_comment->id)
                                                                                                             ->where('veed_id', $item_video->id)
@@ -1533,23 +1520,10 @@
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex flex-row "
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
-                                                                                                                @php
-                                                                                                                    // mendapatkan jumlah like tiap komentar
-                                                                                                                    $countLike = \App\Models\like_comment_veed::query()
-                                                                                                                        ->where('comment_veed_id', $item_comment->id)
-                                                                                                                        ->where('veed_id', $item_video->id)
-                                                                                                                        ->count();
-                                                                                                                @endphp
+                                                                                                               
                                                                                                                 @if (Auth::user())
-                                                                                                                    @php
-                                                                                                                        // mengecek apakah user sudah like atau belum, kalau nilainya 1 maka sudah like kalau 0 maka belum like
-                                                                                                                        $isLike = \App\Models\like_comment_veed::query()
-                                                                                                                            ->where('users_id', Auth::user()->id)
-                                                                                                                            ->where('comment_veed_id', $item_comment->id)
-                                                                                                                            ->where('veed_id', $item_video->id)
-                                                                                                                            ->count();
-                                                                                                                    @endphp
-                                                                                                                    @if ($isLike2sd)
+                                                                                                                   
+                                                                                                                    @if ($reply_comment->likeReplyCommentVeed(auth()->user()->id))
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                                             id="formLikeReplyComment{{ $reply_comment->id }}"
@@ -1559,12 +1533,12 @@
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment({{ $reply_comment->id }})">
-                                                                                                                                <i class="fa-solid fa-thumbs-up"
+                                                                                                                                <i class="fa-solid text-warning fa-thumbs-up"
                                                                                                                                     id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
                                                                                                                             </button>
 
                                                                                                                         </form>
-                                                                                                                    @elseif($isLike3sd)
+                                                                                                                    @else
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                                             id="formLikeReplyComment{{ $reply_comment->id }}"
