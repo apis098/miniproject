@@ -51,4 +51,5 @@ class upload_video extends Model
         ->where('veed_id', $this->id)
         ->exists();
     }
+    
 }

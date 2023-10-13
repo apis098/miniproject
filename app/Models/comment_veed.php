@@ -34,4 +34,10 @@ class comment_veed extends Model
     public function like_comment_veed() {
         return $this->hasMany(like_comment_veed::class);
     }
+    public function likeCommentVeed($user_id)
+    {
+        return like_comment_veed::where('users_id',$user_id)
+        ->where('comment_veed_id',$this->id)
+        ->exists();
+    }
 }

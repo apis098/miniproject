@@ -1176,15 +1176,7 @@
                                                                                         ->count();
                                                                                 @endphp
                                                                                 @if (Auth::user())
-                                                                                    @php
-                                                                                        // mengecek apakah user sudah like atau belum, kalau nilainya 1 maka sudah like kalau 0 maka belum like
-                                                                                        $isLike = \App\Models\like_comment_veed::query()
-                                                                                            ->where('users_id', Auth::user()->id)
-                                                                                            ->where('comment_veed_id', $item_comment->id)
-                                                                                            ->where('veed_id', $item_video->id)
-                                                                                            ->count();
-                                                                                    @endphp
-                                                                                    @if ($isLike == 1)
+                                                                                    @if ($item_comment->likeCommentVeed(Auth::user()->id))
                                                                                         <form
                                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
                                                                                             id="formLikeCommentFeed{{ $item_comment->id }}"
@@ -1193,12 +1185,12 @@
                                                                                             <button type="submit"
                                                                                                 class="btn"
                                                                                                 onclick="likeCommentFeed({{ $item_comment->id }})">
-                                                                                                <i class="fa-solid fa-thumbs-up"
+                                                                                                <i class="fa-solid text-warning fa-thumbs-up"
                                                                                                     id="iLikeComment{{ $item_comment->id }}"></i>
                                                                                             </button>
 
                                                                                         </form>
-                                                                                    @elseif($isLike == 0)
+                                                                                    @else
                                                                                         <form
                                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
                                                                                             id="formLikeCommentFeed{{ $item_comment->id }}"
