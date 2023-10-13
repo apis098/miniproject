@@ -169,7 +169,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('profilage', [KokiController::class, 'profilage'])->name('koki.profilage');
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
-        Route::get('komentar',[KokiController::class,'komentar'])->name('koki.komentar');
+        Route::get('diskusi',[KokiController::class,'jawaban_diskusi'])->name('koki.diskusi');
         Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
     });
 });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChMessage;
 use App\Models\comment_recipes;
 use App\Models\comment_veed;
+use App\Models\complaint;
 use App\Models\favorite;
 use App\Models\footer;
 use Illuminate\Http\Request;
@@ -168,11 +169,11 @@ class KokiController extends Controller
 
     }
 
-     public function komentar(Request $request)
+     public function jawaban_diskusi(Request $request)
     {
         $koki = User::find(Auth::user()->id);
-
-      return view('koki.komentar',compact("koki"));
+        $complaints = complaint::where('user_id', Auth::user()->id)->get();
+       return view('koki.diskusi',compact("koki", "complaints"));
     }
 
      public function kursus(Request $request)

@@ -189,11 +189,11 @@
                         </li>
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
-                            <a href="{{route('koki.komentar')}}"
-                                class="nav-link mx-3 {{ request()->is('koki/komentar') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
+                            <a href="{{route('koki.diskusi')}}"
+                                class="nav-link mx-3 {{ request()->is('koki/diskusi') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
                                 <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"><path fill="currentColor" d="m10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z"/></svg>
                                 <p  style="margin-left: 12px; font-size: 20px; font-family: Poppins; font-weight: 500;">
-                                Komentar
+                                Diskusi
                                 </p >
                             </a>
                         </li>

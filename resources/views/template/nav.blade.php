@@ -964,8 +964,8 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <div id="topUpKecil" class="col-lg-3 my-3">
-                        <div class="card" id="card" data-card-selected="false"
+                    <div class="col-lg-3 my-3">
+                        <div id="topUpKecil" class="card" id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                             <div class=card-body">
@@ -990,8 +990,8 @@
                         </div>
                     </div>
 
-                    <div id="topUpSedang" class="col-lg-3 my-3">
-                        <div class="card " id="card" data-card-selected="false"
+                    <div class="col-lg-3 my-3">
+                        <div id="topUpSedang" class="card " id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                             {{-- <img src="{{ asset('img/sedang.png') }}"
                                     class="card-img-top" alt=""> --}}
@@ -1018,7 +1018,7 @@
                     </div>
 
                     <div class="col-lg-3 my-1">
-                        <div class="card" id="card" data-card-selected="false"
+                        <div class="card" id="topUpBesar" id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                             <div class=card-body">
@@ -1043,6 +1043,26 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    const topUpKecil = document.getElementById('topUpKecil');
+                    const topUpSedang = document.getElementById('topUpSedang');
+                    const topUpBesar = document.getElementById('topUpBesar');
+                    topUpKecil.addEventListener('click', function () {
+                        topUpKecil.style.backgroundColor = "#F7941E";
+                        topUpBesar.style.backgroundColor = "white";
+                        topUpSedang.style.backgroundColor = "white";
+                    });
+                    topUpSedang.addEventListener("click", function () {
+                        topUpSedang.style.backgroundColor = "#F7941E";
+                        topUpKecil.style.backgroundColor = "white";
+                        topUpBesar.style.backgroundColor = "white";
+                    });
+                    topUpBesar.addEventListener("click",  function () {
+                        topUpBesar.style.backgroundColor = "#F7941E";
+                        topUpKecil.style.backgroundColor = "white";
+                        topUpSedang.style.backgroundColor = "white";
+                    });
+                </script>
                 <button type="submit" id="buttonCommentVeed"
                     style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                     class="btn btn-sm text-light mb-3 mx-4">
