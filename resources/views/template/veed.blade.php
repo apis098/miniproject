@@ -1936,6 +1936,7 @@
         }
         // balas komentar ajaxx
         function replies_comment(num) {
+            $('#formReplyComment' + num).off('submit');
             $("#formReplyComment" + num).submit(function(event) {
                 event.preventDefault();
                 let route = $(this).attr("action");
@@ -2232,6 +2233,7 @@
         // komentar feed ajax
 
         function komentar_feed(num) {
+            $('#formCommentFeed' + num).off('submit');
             $("#formCommentFeed" + num).submit(function(event) {
                 event.preventDefault();
                 let route = $(this).attr("action");
