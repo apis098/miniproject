@@ -137,7 +137,7 @@
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.recipe')}}"
                                 class="nav-link mx-3 {{ request()->is('koki/views-recipe') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M2.5 5.5a5 5 0 0 1 10 0m-11 0h12m-13 3H4A2.5 2.5 0 0 1 6.5 11h0m-3 0h5a2 2 0 0 1 2 2h0a.5.5 0 0 1-.5.5H.5"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M7 3h0a6.5 6.5 0 0 1 6.5 6.5v0a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v0A6.5 6.5 0 0 1 7 3Zm0 0V1.5m-6.5 11h13"/></svg>
                                 <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
                                 Resep
                                 </p>
