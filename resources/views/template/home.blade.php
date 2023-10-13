@@ -265,22 +265,22 @@
                     </div>
                     <div class="justify-content-center">
                         @if (Auth::check())
-                            <form action="{{ route('Followers.store', $iu->id) }}" method="POST">
+                            <form id="followForm" action="{{ route('Followers.store', $iu->id) }}" method="POST">
                                 @csrf
                                 @if (Auth::check() &&
                                         $iu->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                    <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    <button type="submit" id="follow-button" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Diikuti</b></button>
+                                            class="ms-3 text-status me-3">Batal ikuti</b></button>
                                 @elseif(Auth::check() &&
                                         $userLogin->followers()->where('follower_id', $iu->id)->exists())
-                                    <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    <button type="submit" id="follow-button" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Ikuti balik</b></button>
+                                            class="ms-3 text-status me-3">Ikuti balik</b></button>
                                 @else
-                                    <button type="submit" class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    <button type="submit" id="follow-button" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
                                         style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
-                                            class="ms-3 me-3">Ikuti</b></button>
+                                            class="ms-3 text-status me-3">Ikuti</b></button>
                                 @endif
 
                             </form>
@@ -860,5 +860,42 @@
             position: 'topCenter',
         });
     }
+    document.addEventListener("DOMContentLoaded", function() {
+            const followForm = document.querySelectorAll("#followForm");
+
+            followForm.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector(".text-status");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.followed) {
+                            // Reset button color and SVG here
+                            button.textContent = "Batal ikuti";
+                            // document.getElementById("like-count-" + responseData.resep_id)
+                            //     .textContent = responseData.likes;
+                            // Modify SVG appearance if needed
+                        } else {
+                            // Update button color and SVG here
+                            if(responseData.hisFollowing){
+                                button.textContent = "Ikuti balik";
+                            }else{
+                                button.textContent = "Ikuti";   
+                            }
+                        }
+                    }
+                });
+            });
+        });
 </script>
+
 @endsection

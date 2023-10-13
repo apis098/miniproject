@@ -2364,7 +2364,7 @@
                             $("#new_komentar_feed" + num).append(innerHtml);
 
                             balasButton.addEventListener('click', function() {
-                                
+                                     
                             });
                         }
                     },
