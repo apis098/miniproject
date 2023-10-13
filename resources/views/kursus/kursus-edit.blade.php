@@ -206,7 +206,10 @@
                                 <div>
                                     <div class="mb-4">
                                         <input type="text" id="jenis_kursus" name="jenis_kursus"
-                                            value="{{ $kursus->jenis_kursus }}" placeholder="Masukkan jenis kursus..."
+                                        @foreach ($kursus->jenis_kursus as $item)
+                                          value="{{ $item->jenis_kursus }}"
+                                        @endforeach
+                                             placeholder="Masukkan jenis kursus..."
                                             class="form-control">
                                     </div>
                                 </div>

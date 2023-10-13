@@ -338,8 +338,9 @@ class KursusController extends Controller
         $edit_kursus->tarif_per_jam = $request->tarif_per_jam;
         $edit_kursus->tipe_kursus = $request->tipe_kursus;
         $edit_kursus->jumlah_siswa = $request->jumlah_siswa;
-        $edit_kursus->jenis_kursus = $request->jenis_kursus;
         $edit_kursus->save();
+        $jenisKursus = jenis_kursuses::where('id_kursus', $edit_kursus->id)->first();
+        $jenisKursus->jenis_kursus = $request->jenis_kursus;
 
         return response()->json([
             "success" => true,
