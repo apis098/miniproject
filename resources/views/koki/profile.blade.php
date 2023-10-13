@@ -213,57 +213,64 @@
 
                     <div class=" d-flex " style="margin-right: -10%;">
                         <ul class="nav mb-3" style="margin-left: -17px;" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <a id="click1" class="nav-link mr-4 active" id="pills-home-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-home" type="button" role="tab"
-                                    aria-controls="pills-home" aria-selected="true">
-                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Resep
-                                        Dibuat</h5>
+                            <li class="nav-item tabs" role="presentation">
+                                <a id="button-biografi" class="nav-link mr-4 active" data-bs-toggle="tab"
+                                    data-bs-target="#resep" type="button" role="tab" aria-controls="resep"
+                                    aria-selected="false">
+                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Biografi</h5>
                                     <div id="border1" class="ms-1"
                                         style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                                     </div>
                                 </a>
                             </li>
 
-                            <li class="nav-item" role="presentation" style="margin-left: 70px;">
-                                <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-profile" type="button" role="tab"
-                                    aria-controls="pills-profile" aria-selected="false">
-                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Video
-                                        Dibuat </h5>
-                                    <div id="b" class="ms-0"
+                            <li class="nav-item tabs" role="presentation">
+                                <a id="button-resep-dibuat" class="nav-link mr-4" data-bs-toggle="tab"
+                                    data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
+                                    aria-selected="false">
+                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h5>
+                                    <div id="border2" class="ms-1"
+                                        style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li class="nav-item tabs" role="presentation" style="margin-left: 10px;">
+                                <a id="button-video-dibuat" class="nav-link mr-5" data-bs-toggle="tab"
+                                    data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
+                                    aria-selected="false">
+                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Video Dibuat </h5>
+                                    <div id="border3" class="ms-0"
                                         style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
                                     </div>
                                 </a>
                             </li>
 
                             @if ($userLogin->isSuperUser === "yes")
-                            <li class="nav-item" role="presentation" style="margin-left: 60px;">
-                                <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab"
-                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
-                                    aria-controls="pills-contact" aria-selected="false">
-                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus
-                                        Dibuat</h5>
-                                    <div id="pp" class="ms-1"
-                                        style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
-                                    </div>
-                                </button>
-                            </li>
+                                <li class="nav-item tabs" role="presentation" style="margin-left: 0px;">
+                                    <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2" data-bs-toggle="tab"
+                                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                        aria-selected="false">
+                                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus Dibuat</h5>
+                                        <div id="border4" class="ms-1"
+                                            style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
+                                        </div>
+                                    </button>
+                                </li>
                             @else
-                            <li hidden class="nav-item" role="presentation" style="margin-left: 60px;">
-                                <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab"
-                                    data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
-                                    aria-controls="pills-contact" aria-selected="false">
-                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus
-                                        Dibuat</h5>
-                                    <div id="pp" class="ms-1"
-                                        style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
-                                    </div>
-                                </button>
-                            </li>
+                                <li hidden class="nav-item tabs" role="presentation" style="margin-left: 0px;">
+                                    <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2" data-bs-toggle="tab"
+                                        data-bs-target="#profile" type="button" role="tab" aria-controls="profile"
+                                        aria-selected="false">
+                                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus Dibuat</h5>
+                                        <div id="border4" class="ms-1"
+                                            style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
+                                        </div>
+                                    </button>
+                                </li>
                             @endif
-
                         </ul>
+
 
                     </div>
                 </div>
@@ -272,7 +279,7 @@
                 <div class="mx-1">
                     <div class="tab-content mb-5 mx-1 my-5" id="pills-tabContent">
                         {{-- start tab 1 --}}
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                        <div class="tab-pane fade" id="keluhan" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
                             @if ($recipes->count() == 0)
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center"
@@ -313,8 +320,8 @@
                         {{-- end tab 1 --}}
 
                         {{-- start tab 2 --}}
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
-                            aria-labelledby="pills-profile-tab" tabindex="0">
+                        <div class="tab-pane fade" id="komentar" role="tabpanel"
+                            aria-labelledby="pills-home-tab" tabindex="0">
                             {{-- @if ($vidio->count() == 0)
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
                                 <img src="{{asset('images/data.png')}}" style="width: 15em">
@@ -343,8 +350,8 @@
                         {{-- end tab 2 --}}
 
                         {{-- start tab 3 --}}
-                        <div class="tab-pane fade" id="pills-contact" role="tabpanel"
-                            aria-labelledby="pills-contact-tab" tabindex="0">
+                        <div class="tab-pane fade " id="profile" role="tabpanel"
+                            aria-labelledby="pills-profile-tab" tabindex="0">
                             {{-- @if ($kursus->count() == 0)
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
                                 <img src="{{asset('images/data.png')}}" style="width: 15em">
@@ -382,8 +389,14 @@
                             {{-- {{$recipes->links('vendor.pagination.default')}} --}}
                         </div>
                         {{-- end tab 3 --}}
-
-
+                        {{-- start tab 4 --}}
+                        <div class="tab-pane fade show active" id="resep" role="tabpanel"
+                        aria-labelledby="pills-contact-tab" tabindex="0">
+                        <div class="row mb-5" style="margin-top: -50px; margin-left: -5px;">
+                        <textarea class="" name="" id="" cols="30" rows="8" style="border-radius: 10px; color: black; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.40px; word-wrap: break-word" readonly>Aliquam erat volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Clas aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce pharetra nec est hendrerit molestie. In hac habitasse platea dictumst. Suspendisse aliquam nibh id massa laoreet, id hendrerit elit dictum. Pellentesque dapibus magna ac mattis porta. Aenean elementum nec lectus ut varius. Suspendisse suscipit dolor lacus, ac tincidunt augue euismod nec. Integer </textarea>
+                        </div>
+                        </div>
+                        {{-- end tab 4 --}}
                     </div>
                 </div>
 
@@ -392,50 +405,45 @@
                 <!-- jQuery CDN -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
                 <script>
-                    const click1 = document.getElementById("click1");
-                    const click2 = document.getElementById("c");
-                    const border1 = document.getElementById("border1");
-                    const border2 = document.getElementById("b");
-                    const o = document.getElementById("pp");
-                    const a_tab = document.getElementById("a-tab");
-                    const ab = document.getElementById("pp2");
-                    const a_tab2 = document.getElementById("a-tab2");
+                  const biografi = document.getElementById("button-biografi");
+const resepDibuat = document.getElementById("button-resep-dibuat");
+const border1 = document.getElementById("border1");
+const border2 = document.getElementById("border2");
+const videoDibuat = document.getElementById("button-video-dibuat");
+const border3 = document.getElementById("border3");
+const kursusDibuat = document.getElementById("button-kursus-dibuat");
+const border4 = document.getElementById("border4");
 
-                    a_tab.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        o.style.display = "block";
-                        border1.style.display = "none";
-                        border2.style.display = "none";
-                        ab.style.display = "none";
-                    });
+biografi.addEventListener('click', function() {
+    border1.style.display = "block";
+    border2.style.display = "none";
+    border3.style.display = "none";
+    border4.style.display = "none";
+});
 
+resepDibuat.addEventListener("click", function() {
+    border2.removeAttribute('hidden');
+    border2.style.display = "block";
+    border1.style.display = "none";
+    border3.style.display = "none";
+    border4.style.display = "none";
+});
 
-                    click1.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        border1.style.display = "block";
-                        border2.style.display = "none";
-                        o.style.display = "none";
-                        ab.style.display = "none";
-                    });
+videoDibuat.addEventListener("click", function() {
+    border3.removeAttribute('hidden');
+    border3.style.display = "block";
+    border1.style.display = "none";
+    border2.style.display = "none";
+    border4.style.display = "none";
+});
 
-                    click2.addEventListener("click", function(event) {
-                        event.preventDefault();
-                        border2.removeAttribute('hidden');
-                        border2.style.display = "block";
-                        border1.style.display = "none";
-                        o.style.display = "none";
-                        ab.style.display = "none";
-                    });
+kursusDibuat.addEventListener("click", function() {
+    border4.style.display = "block";
+    border1.style.display = "none";
+    border2.style.display = "none";
+    border3.style.display = "none";
+});
 
-                    a_tab2.addEventListener('click', function(event) {
-                        event.preventDefault();
-                        ab.removeAttribute('hidden');
-                        ab.style.display = "block";
-                        border2.style.display = "none";
-                        border1.style.display = "none";
-                        o.style.display = "none";
-
-                    });
                 </script>
                 {{-- <h4 class="mt-1 mb-4" style="font-weight: 600; margin-top:-15px"><b>Resep anda</b></h4>
                 @if ($recipes->count() == 0)
