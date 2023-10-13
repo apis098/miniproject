@@ -2001,24 +2001,13 @@
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment(${up['id']})">
-                                                                                                                                <i class="fa-solid fa-thumbs-up"
+                                                                                                                                <i class="fa-regular fa-thumbs-up"
                                                                                                                                 id="iconLikeReplyComment${up['id']}"></i>
                                                                                                                             </button>
 
                                                                                                                         </form>
-                                                                                                                        <form
-                                                                                                                            action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
-                                                                                                                            id="formLikeReplyComment${up['id']}"
-                                                                                                                            method="POST">
-                                                                                                                            @csrf
-                                                                                                                            <button
-                                                                                                                                type="submit"
-                                                                                                                                class="btn"
-                                                                                                                                onclick="likeReplyComment(${up['id']})">
-                                                                                                                                <i class="fa-regular fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment${up['id']}"></i>
-                                                                                                                            </button>
-                                                                                                                        </form>
+                                                                                                
+                                                                                                                       
                                                                                                                 @else
                                                                                                                     <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                                                         onclick="harusLogin()"
@@ -2029,6 +2018,7 @@
                                                                                                                     &nbsp;
                                                                                                                 @endif
                                                                                                                 <span id="countLikeReplyComment${up['id']}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                    0
                                                                                                                 </span>
                                                                                                                 <div
                                                                                                                     class="m-2 mr-auto">
