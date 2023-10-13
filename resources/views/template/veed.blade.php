@@ -2263,6 +2263,7 @@
                             let time = response.time;
                             let commentId = response.commentId
                             let foto = '';
+                            let pengirimId = response.pengirim.id;
                             if (pengirim['foto'] != null) {
                                 foto = 'storage/' + pengirim['foto'];
                             } else {
@@ -2346,7 +2347,7 @@
                                                                                 <a href="#"
                                                                                     class="text-secondary my-auto ml-2"
                                                                                     data-toggle="collapse"
-                                                                                    da#colta-target="#collapse${up['id']}"
+                                                                                    data-target="#collapse${up['id']}"
                                                                                     aria-expanded="true"
                                                                                     aria-controls="collapseOne">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -2358,8 +2359,13 @@
                                                                                     &nbsp; <small>Balas</small>
                                                                                 </a>
                                                                             </div>
+                                                                            
                                                                         </div>`;
                             $("#new_komentar_feed" + num).append(innerHtml);
+
+                            balasButton.addEventListener('click', function() {
+                                
+                            });
                         }
                     },
                     error: function error(xhr, status, errors) {
