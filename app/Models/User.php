@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'followers',
         'password',
+        'biodata',
         'role',
         'foto',
         'isSuperUser',

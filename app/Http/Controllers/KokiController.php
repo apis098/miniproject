@@ -80,6 +80,9 @@ class KokiController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        if ($request->has('biodata')) {
+            $user->biodata = $request->biodata;
+        }
         $user->save();
 
         return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
@@ -268,4 +271,17 @@ class KokiController extends Controller
         $feed->delete();
         return redirect()->back()->with('success', 'sukses menghapus feed anda!');
     }
+    public function updatePassword(Request $request)
+    {
+        if ($request->password != $request->password_confirmation) {
+            return redirect()->back()->with('error', 'Password baru dengan konfirmasi password tidak cocok!');
+        }
+        $userLogin = User::find(Auth::user()->id);
+        if (Hash::check($request->oldPass, $userLogin->password)) {
+            $userLogin->password = bcrypt($request->password);
+            $userLogin->save();
+            return redirect()->back()->with('success', 'Anda sukses mengupdate password!');
+        }
+    }
+
 }

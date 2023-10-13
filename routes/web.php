@@ -87,6 +87,7 @@ Route::get('register', [RegisterController::class, 'register'])->name('register'
 Route::get('voice-note', [testingController::class, 'voice_note'])->name('voice.note');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
+Route::post('update/password', [KokiController::class, 'updatePassword'])->name('update.password');
 Route::get('delete/profile', [KokiController::class, 'deleteProfilePicture'])->name('delete.profile');
 
 
