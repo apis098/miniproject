@@ -965,7 +965,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-lg-3 my-3">
-                        <div id="topUpKecil" class="card" id="card" data-card-selected="false"
+                        <div id="topUpKecil" class="card border-2" id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                             <div class=card-body">
@@ -991,7 +991,7 @@
                     </div>
 
                     <div class="col-lg-3 my-3">
-                        <div id="topUpSedang" class="card " id="card" data-card-selected="false"
+                        <div id="topUpSedang" class="card border-2" id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                             {{-- <img src="{{ asset('img/sedang.png') }}"
                                     class="card-img-top" alt=""> --}}
@@ -1018,7 +1018,7 @@
                     </div>
 
                     <div class="col-lg-3 my-1">
-                        <div class="card" id="topUpBesar" id="card" data-card-selected="false"
+                        <div class="card border-2" id="topUpBesar" id="card" data-card-selected="false"
                             style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                             <div class=card-body">
@@ -1048,19 +1048,19 @@
                     const topUpSedang = document.getElementById('topUpSedang');
                     const topUpBesar = document.getElementById('topUpBesar');
                     topUpKecil.addEventListener('click', function () {
-                        topUpKecil.style.backgroundColor = "#F7941E";
-                        topUpBesar.style.backgroundColor = "white";
-                        topUpSedang.style.backgroundColor = "white";
+                        topUpKecil.style.borderColor = "#F7941E";
+                        topUpBesar.style.borderColor = "black";
+                        topUpSedang.style.borderColor = "black";
                     });
                     topUpSedang.addEventListener("click", function () {
-                        topUpSedang.style.backgroundColor = "#F7941E";
-                        topUpKecil.style.backgroundColor = "white";
-                        topUpBesar.style.backgroundColor = "white";
+                        topUpSedang.style.borderColor = "#F7941E";
+                        topUpKecil.style.borderColor = "black";
+                        topUpBesar.style.borderColor = "black";
                     });
                     topUpBesar.addEventListener("click",  function () {
-                        topUpBesar.style.backgroundColor = "#F7941E";
-                        topUpKecil.style.backgroundColor = "white";
-                        topUpSedang.style.backgroundColor = "white";
+                        topUpBesar.style.borderColor = "#F7941E";
+                        topUpKecil.style.borderColor = "black";
+                        topUpSedang.style.borderColor = "black";
                     });
                 </script>
                 <button type="submit" id="buttonCommentVeed"
