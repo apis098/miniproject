@@ -2035,7 +2035,7 @@
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     hidden
-                                                                                                                                    id="delete-comment-button${up['id']}">Delete</button>
+                                                                                                                                    id="delete-reply-comment-button${up['id']}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
                                                                                                                                     onclick="confirmation_delete_reply_comment(${up['id']})"
