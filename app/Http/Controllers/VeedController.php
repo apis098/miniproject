@@ -67,7 +67,7 @@ class VeedController extends Controller
         $reply_comment_veed = reply_comment_veed::latest()->get();
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
-      
+
         return view("template.veed", compact("top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)
@@ -288,13 +288,17 @@ class VeedController extends Controller
     {
         $COMMENT = comment_veed::find($id);
         $COMMENT->delete();
-        return redirect()->back()->with('success', 'sukses menghapus komentar feed!');
+        return response()->json([
+            "message" => "Sukses menghapus komentar feed!"
+        ]);
     }
     public function hapus_balasan_komentar_feed(string $id)
     {
         $reply_comment = reply_comment_veed::find($id);
         $reply_comment->delete();
-        return redirect()->back()->with('success', 'sukses menghapus balasan komentar feed!');
+        return response()->json([
+            "message" => "Sukses menghapus balasan komentar feed!"
+        ]);
     }
     public function shareVeed(Request $request, $id)
     {

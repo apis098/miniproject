@@ -1138,7 +1138,7 @@
                                                             <!-- 00000 list komentar feed start 00000 -->
                                                             <div id="komen_feed{{ $item_video->id }}">
                                                                 @foreach ($item_video->comment_veed->sortByDesc('created_at') as $nomer => $item_comment)
-                                                                    <div class="media row mb-2 d-flex"
+                                                                    <div class="media row mb-2 d-flex" id="komen_veed_ini{{ $item_comment->id }}"
                                                                         style="width: 131%; margin-left:-11%;">
                                                                         <div class="d-flex col-11">
                                                                             @if ($item_comment->user_pengirim->foto)
@@ -1288,7 +1288,7 @@
                                                                                                 id="delete-comment-form{{ $item_comment->id }}">
                                                                                                 @csrf
                                                                                                 @method('DELETE')
-                                                                                                <button type="submit"
+                                                                                                <button type="submit" onclick="deletedCommentFeed({{ $item_comment->id }})"
                                                                                                     hidden
                                                                                                     id="delete-comment-button{{ $item_comment->id }}">Delete</button>
                                                                                                 <button type="button"
@@ -1492,7 +1492,7 @@
                                                                                                             ->count();
                                                                                                     @endphp
 
-                                                                                                    <div
+                                                                                                    <div id="balasan_komentar_ini{{ $reply_comment->id }}"
                                                                                                         class="rounded d-flex flex-row border-black ">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
@@ -1641,13 +1641,13 @@
                                                                                                                             <form
                                                                                                                                 method="POST"
                                                                                                                                 action="{{ route('hapus.balasan.komentar.feed', $reply_comment->id) }}"
-                                                                                                                                id="delete-comment-form{{ $reply_comment->id }}">
+                                                                                                                                id="delete-reply-comment-form{{ $reply_comment->id }}">
                                                                                                                                 @csrf
                                                                                                                                 @method('DELETE')
                                                                                                                                 <button
                                                                                                                                     type="submit"
-                                                                                                                                    hidden
-                                                                                                                                    id="delete-comment-button{{ $reply_comment->id }}">Delete</button>
+                                                                                                                                    hidden onclick="deletedReplyCommentFeed({{ $reply_comment->id }})"
+                                                                                                                                    id="delete-reply-comment-button{{ $reply_comment->id }}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
                                                                                                                                     onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
@@ -2693,6 +2693,55 @@
                 onClosing: function(instance, toast, closedBy) {
                     console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
                 }
+            });
+        }
+        function deletedCommentFeed(num) {
+            $("#delete-comment-form"+num).submit(function(event){
+                event.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        $("#komen_veed_ini"+num).empty();
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                    }
+                });
+            });
+        }
+        function deletedReplyCommentFeed(num)
+        {
+            $("#delete-reply-comment-form"+num).submit(function(event){
+                event.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        $("#balasan_komentar_ini"+num).empty();
+                        iziToast.show({
+                            backgroundColor: '#F7941E',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'white',
+                            messageColor: 'white',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                    }
+                });
             });
         }
     </script>
