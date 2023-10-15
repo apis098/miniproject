@@ -1965,7 +1965,7 @@
                             }
                             console.log(pengirim);
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black ">
+                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -2029,12 +2029,12 @@
                                                                                                                             <form
                                                                                                                                 method="POST"
                                                                                                                                 action="/hapus_balasan_komentar_feed/${up['id']}"
-                                                                                                                                id="delete-comment-form${up['id']}">
+                                                                                                                                id="delete-reply-comment-form${up['id']}">
                                                                                                                                 @csrf
                                                                                                                                 @method('DELETE')
                                                                                                                                 <button
                                                                                                                                     type="submit"
-                                                                                                                                    hidden
+                                                                                                                                    hidden onclick="deletedReplyCommentFeed(${up['id']})"
                                                                                                                                     id="delete-reply-comment-button${up['id']}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
@@ -2124,7 +2124,7 @@
                             }
                             console.log(pengirim);
                             let innerHtml = `
-                            <div class="media row mb-2 d-flex"
+                            <div class="media row mb-2 d-flex" id="komen_veed_ini${up['id']}"
                                                                         style="width: 131%; margin-left:-11%;">
                                                                         <div class="d-flex col-11">
 
@@ -2186,7 +2186,7 @@
                                                                                                 @csrf
                                                                                                 @method('DELETE')
                                                                                                 <button type="submit"
-                                                                                                    hidden
+                                                                                                    hidden onclick="deletedCommentFeed(${up['id']})"
                                                                                                     id="delete-comment-button${up['id']}">Delete</button>
                                                                                                 <button type="button"
                                                                                                     onclick="confirmation_delete_comment_feed(${up['id']})"
