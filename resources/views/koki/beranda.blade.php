@@ -15,7 +15,7 @@
             <div class="d-flex mt-1">
                 <div class="col-sm-6">
                     <h4>Selamat datang kembali {{ $koki->name }}</h4>
-                    <p>Berikut Beberapa Rekapan Terbaru</p>
+                    <p>Saldo anda Rp {{ number_format($koki->saldo, 2, ',', '.') }}</p>
                 </div>
                 <div class="col-sm-6" style="margin-left: 36%;">
                     <div class="d-flex mt-4">
