@@ -1120,7 +1120,7 @@
                         if (inputValue.trim() === "") {
                             displayElement.textContent = "Masukkan nilai...";
                         } else {
-                            displayElement.textContent = "Rp." + formattedValue;
+                            displayElement.textContent = "Rp. " + formattedValue + ",00";
                         }
 
                     });
