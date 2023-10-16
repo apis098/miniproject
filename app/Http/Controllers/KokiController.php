@@ -9,6 +9,7 @@ use App\Models\complaint;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kursus;
+use App\Models\likes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -160,8 +161,11 @@ class KokiController extends Controller
     public function viewsRecipe(Request $request)
     {
         $koki = User::find(Auth::user()->id);
-
-        return view('koki.views-recipe', compact("koki"));
+        $resep_dibuat = reseps::where("user_id", Auth::user()->id)->get();
+        $id_user = Auth::user()->id;
+        $resep_disukai = reseps::join('likes', 'reseps.id', '=', 'likes.resep_id')->get();
+        $resep_favorite = reseps::join('favorites', 'reseps.id', '=', 'favorites.resep_id')->get();
+        return view('koki.views-recipe', compact("koki", "resep_dibuat", "resep_disukai", "resep_favorite"));
     }
 
     public function jawaban_diskusi(Request $request)
