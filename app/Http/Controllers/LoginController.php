@@ -144,7 +144,7 @@ class LoginController extends Controller
         return view('template.keluhan', compact('messageCount', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
-    public function penawaranPrem()
+    public function penawaranPremium()
     {
         $userLogin = Auth::user();
         $notification = [];
@@ -167,7 +167,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         $penawaran_premium = premiums::all();
-        return view('template.penawaran-prem', compact('penawaran_premium','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.penawaran-premium', compact('penawaran_premium','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function riwayat()

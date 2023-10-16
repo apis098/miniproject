@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col-5">
                             <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle" width="100%"
-                            Favorit              height="100%" alt="">
+                                Favorit height="100%" alt="">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -205,7 +205,7 @@
 
 
 {{-- start koki terpopuler --}}
-<section class="container mt-5 mb-5" >
+<section class="container mt-5 mb-5">
     <div class=" input-group">
         <div class=" mx-2">
             <h3 class="fw-bold ml-3">Koki terpopuler</h3>
@@ -269,16 +269,19 @@
                                 @csrf
                                 @if (Auth::check() &&
                                         $iu->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                    <button type="submit" id="follow-button" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    <button type="submit" id="follow-button"
+                                        class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-3 text-status me-3">Batal ikuti</b></button>
                                 @elseif(Auth::check() &&
                                         $userLogin->followers()->where('follower_id', $iu->id)->exists())
-                                    <button type="submit" id="follow-button" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    <button type="submit" id="follow-button"
+                                        class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-3 text-status me-3">Ikuti balik</b></button>
                                 @else
-                                    <button type="submit" id="follow-button" class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    <button type="submit" id="follow-button"
+                                        class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
                                         style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
                                             class="ms-3 text-status me-3">Ikuti</b></button>
                                 @endif
@@ -300,21 +303,24 @@
 {{-- end koki terpopuler --}}
 
 <style>
-    .btn-custom{
-     width: 100%; /* Atur lebar tetap untuk tombol */
-     padding: 20px; /* Atur padding agar tombol terlihat bagus */
-     text-align: center; /* Pusatkan teks di dalam tombol */
-     border:none;
-     background: white;
-     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-     border-radius: 15px;
-     color: #F7941E;
-     font-size: 18px;
-     font-family: Poppins;
-     font-weight: 500;
-     word-wrap: break-word;
+    .btn-custom {
+        width: 100%;
+        /* Atur lebar tetap untuk tombol */
+        padding: 20px;
+        /* Atur padding agar tombol terlihat bagus */
+        text-align: center;
+        /* Pusatkan teks di dalam tombol */
+        border: none;
+        background: white;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 15px;
+        color: #F7941E;
+        font-size: 18px;
+        font-family: Poppins;
+        font-weight: 500;
+        word-wrap: break-word;
     }
- </style>
+</style>
 
 <div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 15px">
     <div class=" input-group" style="margin-left:4.5%">
@@ -358,55 +364,123 @@
         </div>
     @endif
     <div class="row">
-    @foreach ($recipes as $num => $item)
-        <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
-            <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                <div class="card-header my-3 mx-auto" style="background-color: white">
-                    <img width="260px" class="rounded-circle" height="260px"
-                        style="border: 0.50px black solid; max-width:260px;"
-                        src="{{ asset('storage/' . $item->foto_resep) }}" />
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <h5>
-                                <a style="color: black; font-size: 24px;"
-                                    href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                    {{ $item->nama_resep }}
-                                </a>
-                            </h5>
-                            <span>Oleh {{ $item->User->name }}</span> <br>
-                            <p class="mt-3">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>
-                        </div>
-                        <div class="col-12 row mb-3">
-                            <div class="col-6 mx-auto">
-                                <img width="20px" height="20px" src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
-                                {{ $item->likes }} suka
+        @foreach ($recipes as $num => $item)
+            <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
+                <div class="card" style="border-radius: 15px; border: 0.50px black solid">
+                    <div class="card-header my-3 mx-auto" style="background-color: white">
+                        <img width="260px" class="rounded-circle" height="260px"
+                            style="border: 0.50px black solid; max-width:260px;"
+                            src="{{ asset('storage/' . $item->foto_resep) }}" />
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>
+                                    <a style="color: black; font-size: 24px;"
+                                        href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                        {{ $item->nama_resep }}
+                                    </a>
+                                </h5>
+                                <span>Oleh {{ $item->User->name }}</span> <br>
+                                <p class="mt-3">RP. {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}</p>
                             </div>
-                            <div class="col-6 mx-auto">
-                               <img width="20px" height="20px" src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
-                                @if ($item->lama_memasak >= 60)
-                                    {{ number_format($item->lama_memasak / 60, 1) }} jam
-                                @else
-                                    {{ $item->lama_memasak }} menit
-                                @endif
-                            </div>
-                            <div class="col-6 my-2">
-                                <img width="20px" height="20px" src="{{asset('images/🦆 icon _comment square chat message_.svg')}}" alt="">
-                                {{ $item->comment_recipes->count() }} Komentar
-                            </div>
-                            <div class="col-6 my-2">
-                                <img width="20px" height="20px" src="{{asset('images/🦆 icon _bookmark save_.svg')}}" alt="">
-                                {{ $item->favorite_count }} Favorit
+                            <div class="col-12 row mb-3">
+                                <div class="col-6 mx-auto">
+                                    <img width="20px" height="20px"
+                                        src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
+                                    {{ $item->likes }} suka
+                                </div>
+                                <div class="col-6 mx-auto">
+                                    <img width="20px" height="20px"
+                                        src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                    @if ($item->lama_memasak >= 60)
+                                        {{ number_format($item->lama_memasak / 60, 1) }} jam
+                                    @else
+                                        {{ $item->lama_memasak }} menit
+                                    @endif
+                                </div>
+                                <div class="col-6 my-2">
+                                    <img width="20px" height="20px"
+                                        src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
+                                        alt="">
+                                    {{ $item->comment_recipes->count() }} Komentar
+                                </div>
+                                <div class="col-6 my-2">
+                                    <img width="20px" height="20px"
+                                        src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
+                                    {{ $item->favorite_count }} Favorit
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
     </div>
 </section>
+
+
+{{-- start feed populer  --}}
+<section class="container mt-5 mb-5">
+    <div class=" input-group">
+            <h3 class="fw-bold ml-3 mb-5 mx-3">Feed Populer Minggu Ini</h3>
+    </div>
+    {{-- @if ($recipes->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif --}}
+    {{-- @foreach ($favorite_resep as $num => $item) --}}
+
+    <div class="d-flex">
+        <div class="card my-3" style="width: 30%; border-radius:15px;">
+            <div class="" style="border: 1px solid
+            #000; border-radius: 15px 15px 0 0;">
+            <!-- Foto dan Nama di atas -->
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                        style="max-width: 100%;height: 100%; object-fit: cover;object-position: center;border-top-left-radius:15px; border-top-right-radius: 15px;"
+                        alt="...">
+              </div>
+            </div>
+            <!-- Ikon "Top 1" di belakang -->
+            <div class="card-body" style="border-bottom: 1px solid #000 ;border-left:1px solid #000; border-right:1px solid #000; border-radius: 0 0 15px 15px;">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex justify-content-start">
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                height="30px" style="border-radius: 50%">
+                            &nbsp;
+                            <div class="text-center">
+                                <span>alex</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex justify-content-end">
+                            <svg width="23" height="20" viewBox="0 0 29 26" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="&#240;&#159;&#166;&#134; icon &#34;trophy&#34;">
+                                    <path id="Vector"
+                                        d="M23.0625 3.6444V4.1444H23.5625H28.5V7.28879C28.5 10.0346 26.2872 12.2554 23.5625 12.2554C23.0478 12.2554 22.5492 12.1744 22.0815 12.027L21.731 11.9166L21.521 12.2181C20.2832 13.9951 18.3989 15.2804 16.2127 15.7258L15.8125 15.8073V16.2157V21.8646V22.3646H16.3125H18.125C19.6805 22.3646 20.9728 23.5077 21.2108 25.009H7.78921C8.02718 23.5077 9.31951 22.3646 10.875 22.3646H12.6875H13.1875V21.8646V16.2157V15.8073L12.7873 15.7258C10.6009 15.2803 8.71496 13.9949 7.47921 12.2184L7.26852 11.9155L6.91697 12.0275C6.45122 12.1759 5.95504 12.2554 5.4375 12.2554C2.71284 12.2554 0.5 10.0346 0.5 7.28879V4.1444H5.4375H5.9375V3.6444V0.5H23.0625V3.6444ZM5.4375 11.0924H5.9375V11.0565C5.9987 11.0483 6.0592 11.0388 6.11886 11.028L6.71123 10.9213L6.49765 10.3585C6.13637 9.4066 5.9375 8.37151 5.9375 7.28879V5.46659V4.96659H5.4375H2.15144H1.65144V5.46659V7.28879C1.65144 9.38479 3.34834 11.0924 5.4375 11.0924ZM22.5022 10.3606L22.2891 10.9232L22.8811 11.0298C23.0991 11.0691 23.3264 11.0924 23.5625 11.0924C25.6538 11.0924 27.3486 9.38261 27.3486 7.28879V5.46842V4.96842H26.8486H23.5625H23.0625V5.46842V7.29061C23.0625 8.37319 22.8637 9.40655 22.5022 10.3606Z"
+                                        stroke="black" />
+                                </g>
+                            </svg>
+                            &nbsp;
+                            Top 1
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- @endforeach --}}
+</section>
+
 
 <!-- book section -->
 {{-- <section class="book_section layout_padding">
@@ -811,44 +885,45 @@
         color: #727686;
     }
 </style>
-       <!-- about section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 my-5">
-                    <div class="detail-box mx-3">
-                        <div class="heading_container">
-                            <h2 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">
-                                Tentang Kami
-                            </h2>
-                        </div>
-                        <p class="mt-4">
-                             Selamat Datang di HummaCook! HummaCook adalah online
-                            media portal yang menyajikan kumpulan aneka resep masakan
-                            untuk menginspirasi para pehobi masak. Menyajikan resep-resep
-                            rumahan yang mudah dibuat oleh semua orang, dan
-                            bahan-bahan masakan yang mudah didapatkan. Resep-resep
-                            ditulis oleh teman-teman food blogger seantero Nusantara yang
-                            sudah berpengalaman di bidang masak memasak. Harapan
-                            kami semua orang bisa memasak dengan mudah dan berhasil,
-                            supaya dapat disajikan dengan sempurna untuk keluarga
-                            tercinta. Semua resep di sini telah teruji dapur dan foto yang
-                            ditampilkan adalah original/hasil aslinya. Terima Kasih.
-                        </p>
-                        {{-- <a href="">
+<!-- about section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 my-5">
+                <div class="detail-box mx-3">
+                    <div class="heading_container">
+                        <h2 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">
+                            Tentang Kami
+                        </h2>
+                    </div>
+                    <p class="mt-4">
+                        Selamat Datang di HummaCook! HummaCook adalah online
+                        media portal yang menyajikan kumpulan aneka resep masakan
+                        untuk menginspirasi para pehobi masak. Menyajikan resep-resep
+                        rumahan yang mudah dibuat oleh semua orang, dan
+                        bahan-bahan masakan yang mudah didapatkan. Resep-resep
+                        ditulis oleh teman-teman food blogger seantero Nusantara yang
+                        sudah berpengalaman di bidang masak memasak. Harapan
+                        kami semua orang bisa memasak dengan mudah dan berhasil,
+                        supaya dapat disajikan dengan sempurna untuk keluarga
+                        tercinta. Semua resep di sini telah teruji dapur dan foto yang
+                        ditampilkan adalah original/hasil aslinya. Terima Kasih.
+                    </p>
+                    {{-- <a href="">
                             Baca Selengkapnya
                         </a> --}}
-                    </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="img-box">
-                        <img src="{{ asset('images/tentang.png') }}" alt="" style="max-width: 100%; margin-top: -10%">
-                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="img-box">
+                    <img src="{{ asset('images/tentang.png') }}" alt=""
+                        style="max-width: 100%; margin-top: -10%">
                 </div>
             </div>
         </div>
-    </section>
-    <!-- end about section -->
+    </div>
+</section>
+<!-- end about section -->
 <script>
     function harusLogin() {
         iziToast.show({
@@ -861,41 +936,41 @@
         });
     }
     document.addEventListener("DOMContentLoaded", function() {
-            const followForm = document.querySelectorAll("#followForm");
+        const followForm = document.querySelectorAll("#followForm");
 
-            followForm.forEach(form => {
-                form.addEventListener("submit", async function(event) {
-                    event.preventDefault();
+        followForm.forEach(form => {
+            form.addEventListener("submit", async function(event) {
+                event.preventDefault();
 
-                    const button = form.querySelector(".text-status");
+                const button = form.querySelector(".text-status");
 
-                    const response = await fetch(form.action, {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-Token": "{{ csrf_token() }}",
-                        },
-                    });
+                const response = await fetch(form.action, {
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                });
 
-                    if (response.ok) {
-                        const responseData = await response.json();
-                        if (responseData.followed) {
-                            // Reset button color and SVG here
-                            button.textContent = "Batal ikuti";
-                            // document.getElementById("like-count-" + responseData.resep_id)
-                            //     .textContent = responseData.likes;
-                            // Modify SVG appearance if needed
+                if (response.ok) {
+                    const responseData = await response.json();
+                    if (responseData.followed) {
+                        // Reset button color and SVG here
+                        button.textContent = "Batal ikuti";
+                        // document.getElementById("like-count-" + responseData.resep_id)
+                        //     .textContent = responseData.likes;
+                        // Modify SVG appearance if needed
+                    } else {
+                        // Update button color and SVG here
+                        if (responseData.hisFollowing) {
+                            button.textContent = "Ikuti balik";
                         } else {
-                            // Update button color and SVG here
-                            if(responseData.hisFollowing){
-                                button.textContent = "Ikuti balik";
-                            }else{
-                                button.textContent = "Ikuti";   
-                            }
+                            button.textContent = "Ikuti";
                         }
                     }
-                });
+                }
             });
         });
+    });
 </script>
 
 @endsection
