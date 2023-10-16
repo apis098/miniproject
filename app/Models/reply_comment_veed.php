@@ -32,4 +32,8 @@ class reply_comment_veed extends Model
         ->where('reply_comment_veed_id',$this->id)
         ->exists();
     }
+    public function balasRepliesCommentsFeeds()
+    {
+        return $this->hasMany(balasRepliesCommentsFeeds::class, "reply_comment_id");
+    }
 }
