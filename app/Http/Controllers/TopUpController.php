@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TopUpController extends Controller
 {
@@ -26,8 +28,27 @@ class TopUpController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $check = Auth::check();
+        if($check){
+          if($request->inputanLainya != null){
+            $user = User::findOrFail(auth()->user()->id);
+            $saldo_sebelumnya = $user->saldo;
+            $saldo_baru = $request->inputanLainya;
+            $user->saldo = $saldo_sebelumnya + $saldo_baru;
+            $user->save();
+            return redirect()->back()->with('success','Selamat transaksi anda berhasil!');
+          }else{
+            $user = User::findOrFail(auth()->user()->id);
+            $saldo_sebelumnya = $user->saldo;
+            $saldo_baru = $request->input('inputanTopUp');
+            $user->saldo = $saldo_sebelumnya + $saldo_baru;
+            $user->save();
+            return redirect()->back()->with('success','Selamat transaksi anda berhasil!');
+          }
+        }else{
+            return redirect()->route('login')->with('info','silahkan login terlebih dahulu');
+        }
     }
 
     /**

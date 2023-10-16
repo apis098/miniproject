@@ -963,118 +963,121 @@
                         </button>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <div class="col-lg-3 my-3">
-                        <div id="topUpKecil" class="card border-2" id="card" data-card-selected="false"
-                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-
-                            <div class=card-body">
-                                <div class="d-flex">
-                                    <div class="text-start mx-3 mt-2">
-                                        <a href="#" class="card-title"
-                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Kecil
-                                        </a>
-                                        <p class="text-start mt-1"
-                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            Rp. 20.000,00
-                                        </p>
+                <form action="{{route('topup.store')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="col-lg-3 my-3">
+                            <label for="inputanKecil" id="topUpKecil" class="card border-2" id="card" data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                <input type="radio" id="inputanKecil" style="display: none;" name="inputanTopUp" value="20000">
+                                <div class=card-body">
+                                    <div class="d-flex">
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#" class="card-title"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Kecil
+                                            </a>
+                                            <p class="text-start mt-1"
+                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Rp. 20.000,00
+                                            </p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px"
+                                                height="92px;" alt="">
+                                        </div>
                                     </div>
-                                    <div class="ms-auto">
-                                        <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px"
-                                            height="92px;" alt="">
+
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-3 my-3">
+                            <label for="inputanSedang" id="topUpSedang" class="card border-2" id="card" data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                {{-- <img src="{{ asset('img/sedang.png') }}"
+                                        class="card-img-top" alt=""> --}}
+                                    <input type="radio"  style="display: none;"  id="inputanSedang" name="inputanTopUp" value="50000">
+                                <div class=card-body">
+                                    <div class="d-flex">
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#" class="card-title"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Sedang
+                                            </a>
+                                            <p class="text-start mt-1"
+                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Rp. 50.000,00
+                                            </p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <img src="{{ asset('img/5.png') }}" class="mr-2" width="100px"
+                                                height="92px;" alt="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-3 my-1">
+                            <label for="inputanBesar" class="card border-2" id="topUpBesar" id="card" data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                <input type="radio"  style="display: none;" id="inputanBesar" name="inputanTopUp" value="100000">
+                                <div class=card-body">
+                                    <div class="d-flex">
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#" class="card-title"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Besar
+                                            </a>
+                                            <p class="text-start mt-1"
+                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Rp. 100.000,00
+                                            </p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <img src="{{ asset('img/money.png') }}" class="mr-2 mb-2" width="100px"
+                                                height="92px;" alt="">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="col-lg-3 my-3">
+                            <div id="topUpLainya" class="card border-2" id="card" data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+
+                                <div class=card-body">
+                                    <div class="d-flex">
+                                        <div class="text-start mx-3 mt-2">
+                                            <a href="#" id="anotherText" class="card-title"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Lainya
+                                            </a>
+                                            <p class="text-start mt-1" id="displayInput"
+                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Masukkan nilai....
+                                            </p>
+                                        </div>
+                                        <div class="ms-auto">
+                                            <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px"
+                                                height="92px;" alt="">
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-3 my-3">
-                        <div id="topUpSedang" class="card border-2" id="card" data-card-selected="false"
-                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                            {{-- <img src="{{ asset('img/sedang.png') }}"
-                                    class="card-img-top" alt=""> --}}
-                            <div class=card-body">
-                                <div class="d-flex">
-                                    <div class="text-start mx-3 mt-2">
-                                        <a href="#" class="card-title"
-                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Sedang
-                                        </a>
-                                        <p class="text-start mt-1"
-                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            Rp. 50.000,00
-                                        </p>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <img src="{{ asset('img/5.png') }}" class="mr-2" width="100px"
-                                            height="92px;" alt="">
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
+                            <input type="number" id="inputan" name="inputanLainya" class="form-control border-2"
+                                style="border-radius: 10px; border:solid #F7941E;"
+                                placeholder="Masukkan nominal lainya...">
                         </div>
                     </div>
-
-                    <div class="col-lg-3 my-1">
-                        <div class="card border-2" id="topUpBesar" id="card" data-card-selected="false"
-                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-
-                            <div class=card-body">
-                                <div class="d-flex">
-                                    <div class="text-start mx-3 mt-2">
-                                        <a href="#" class="card-title"
-                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Besar
-                                        </a>
-                                        <p class="text-start mt-1"
-                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            Rp. 100.000,00
-                                        </p>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <img src="{{ asset('img/money.png') }}" class="mr-2 mb-2" width="100px"
-                                            height="92px;" alt="">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 my-3">
-                        <div id="topUpLainya" class="card border-2" id="card" data-card-selected="false"
-                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-
-                            <div class=card-body">
-                                <div class="d-flex">
-                                    <div class="text-start mx-3 mt-2">
-                                        <a href="#" id="anotherText" class="card-title"
-                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Lainya
-                                        </a>
-                                        <p class="text-start mt-1" id="displayInput"
-                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            Masukkan nilai....
-                                        </p>
-                                    </div>
-                                    <div class="ms-auto">
-                                        <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px"
-                                            height="92px;" alt="">
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
-                        <input type="number" id="inputan" class="form-control border-2"
-                            style="border-radius: 10px; border:solid #F7941E;"
-                            placeholder="Masukkan nominal lainya...">
-                    </div>
-                </div>
                 <script>
                     const topUpKecil = document.getElementById('topUpKecil');
                     const topUpSedang = document.getElementById('topUpSedang');
@@ -1140,6 +1143,7 @@
                     style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                     class="btn btn-sm text-light mb-3 mx-4">
                     <b class="me-3 ms-3">Kirim</b></button>
+                </form>
             </div>
         </div>
     </div>

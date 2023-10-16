@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('like')->default(0);
             $table->string('foto')->nullable();
             $table->string('email')->unique();
+            $table->integer('saldo')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('biodata')->nullable();

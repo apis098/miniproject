@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'biodata',
         'role',
+        'saldo',
         'foto',
         'isSuperUser',
         'status_langganan',

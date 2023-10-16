@@ -24,6 +24,7 @@ use App\Http\Controllers\VeedController;
 use App\Http\Controllers\detail_kursusController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\KursusController;
+use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\TripayCallbackController;
 
 /*
@@ -171,6 +172,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
         Route::get('diskusi',[KokiController::class,'jawaban_diskusi'])->name('koki.diskusi');
         Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
+        // Route::resource('topup',TopUpController::class);
+        Route::post('topup',[TopUpController::class,'store'])->name('topup.store');
     });
 });
 
