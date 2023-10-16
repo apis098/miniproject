@@ -1142,7 +1142,7 @@
                 <button type="submit" id="buttonCommentVeed"
                     style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                     class="btn btn-sm text-light mb-3 mx-4">
-                    <b class="me-3 ms-3">Kirim</b></button>
+                    <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
                 </form>
             </div>
         </div>

@@ -712,9 +712,9 @@
                                                         <div class="modal-body">
                                                             <div class="d-flex ">
                                                                 <div class="col-lg-3 my-1">
-                                                                    <div class="card" id="card"
+                                                                    <div class="card border-2" id="smallGift"
                                                                         data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
                                                                         <img src="{{ asset('img/kecil.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -732,9 +732,9 @@
                                                                 </div>
 
                                                                 <div class="col-lg-3 my-1">
-                                                                    <div class="card " id="card"
+                                                                    <div class="card border-2" id="mediumGift"
                                                                         data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
                                                                         <img src="{{ asset('img/sedang.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -754,9 +754,9 @@
                                                                 </div>
 
                                                                 <div class="col-lg-3 my-1">
-                                                                    <div class="card" id="card"
+                                                                    <div class="card border-2" id="extraGift"
                                                                         data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
                                                                         <img src="{{ asset('img/besar.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -774,20 +774,18 @@
                                                                 </div>
 
                                                                 <div class="col-lg-3 my-1">
-                                                                    <button type="button" data-bs-toggle="modal"
-                                                                        data-bs-target="#nilai" id="card"
-                                                                        class="card" data-card-selected="false"
+                                                                    <button type="button" id="moreGift"
+                                                                        class="card border-2" data-card-selected="false"
                                                                         style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                         <img src="{{ asset('img/lainnya.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
                                                                             <div class="mx-4 mt-2">
-                                                                                <a href="#" data-bs-toggle="modal"
-                                                                                    data-bs-target="#nilai"
+                                                                                <a href="#"
                                                                                     class="card-title "
                                                                                     style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
                                                                             </div>
-                                                                            <p class="text-center"
+                                                                            <p id="displayNumber" class="text-center"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Masukkan Nilai</p>
                                                                         </div>
@@ -796,11 +794,16 @@
 
                                                             </div>
                                                             <div class="d-flex mt-4 ml-3">
-                                                                <input type="text" id="comment-veed1"
+                                                                <input type="number" id="moreInput"
                                                                     name="commentVeed" width="500px"
-                                                                    class="form-control rounded-3 me-3"
-                                                                    style="margin-top: 12px; border-radius:100px;"
-                                                                    placeholder="Tambahkan komentar...">
+                                                                    class="form-control border-2 rounded-3 me-3"
+                                                                    style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
+                                                                    placeholder="Masukkan jumlah donasi lainya...">
+                                                                <input type="text" id="message"
+                                                                    name="commentVeed" width="500px"
+                                                                    class="form-control border-2 rounded-3 me-3"
+                                                                    style="margin-top: 12px; border:solid black; border-radius:100px;"
+                                                                    placeholder="Tambahkan pesan untuk pembuat...">
 
                                                                 <button type="submit" id="buttonCommentVeed"
                                                                     style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -814,27 +817,66 @@
                                             <!-- modal gift end -->
                                             <!-- gift end -->
                                             <script>
-                                                const cardElements = document.querySelectorAll("#card");
-                                                cardElements.forEach((cardElement) => {
-                                                    cardElement.addEventListener("click", () => {
-                                                        function toggleCardSelection(cardElement) {
-                                                            const isSelected = cardElement.getAttribute("data-card-selected") === "true";
-
-                                                            // Toggle status seleksi
-                                                            cardElement.setAttribute("data-card-selected", isSelected ? "false" : "true");
-
-                                                            // Ganti border outline sesuai status seleksi
-                                                            if (isSelected) {
-                                                                cardElement.style.border = "0.50px black solid";
-                                                            } else {
-                                                                cardElement.style.border =
-                                                                    "2px solid orange";
-                                                            }
-                                                        }
-                                                        toggleCardSelection(cardElement);
-
-                                                    });
+                                                const smallGift = document.getElementById('smallGift');
+                                                const mediumGift = document.getElementById('mediumGift');
+                                                const extraGift = document.getElementById('extraGift');
+                                                const moreGift = document.getElementById('moreGift');
+                                                const moreInput = document.getElementById('moreInput');
+                                                const displayNumber = document.getElementById("displayNumber");
+                                                const message = document.getElementById("message");
+                                                // const anotherText = document.getElementById("anotherText");
+                                                smallGift.addEventListener('click', function() {
+                                                    smallGift.style.borderColor = "#F7941E";
+                                                    message.style.borderColor = "#F7941E";
+                                                    mediumGift.style.borderColor = "black";
+                                                    extraGift.style.borderColor = "black";
+                                                    moreGift.style.borderColor = "black";
+                                                    inputanLainya.style.display = "none";
                                                 });
+                                                mediumGift.addEventListener("click", function() {
+                                                    mediumGift.style.borderColor = "#F7941E";
+                                                    message.style.borderColor = "#F7941E";
+                                                    smallGift.style.borderColor = "black";
+                                                    extraGift.style.borderColor = "black";
+                                                    moreGift.style.borderColor = "black";
+                                                    moreInput.style.display = "none";
+                                                });
+                                                extraGift.addEventListener("click", function() {
+                                                    extraGift.style.borderColor = "#F7941E";
+                                                    message.style.borderColor = "#F7941E";
+                                                    smallGift.style.borderColor = "black";
+                                                    mediumGift.style.borderColor = "black";
+                                                    moreGift.style.borderColor = "black";
+                                                    moreInput.style.display = "none";
+                                                });
+                                                moreGift.addEventListener('click', function() {
+                                                    moreGift.style.borderColor = "#F7941E";
+                                                    message.style.borderColor = "#F7941E";
+                                                    smallGift.style.borderColor = "black";
+                                                    mediumGift.style.borderColor = "black";
+                                                    extraGift.style.borderColor = "black";
+                                                    moreInput.style.display = "block";
+                                                    moreInput.style.borderColor = "#F7941E";
+                                                });
+                                                moreInput.addEventListener("input", function() {
+                                                const inputValue = moreInput.value;
+                                                const formattedValue = formatNumber(inputValue);
+                                                displayNumber.textContent = formattedValue;
+                                                if (inputValue.trim() === "") {
+                                                    displayNumber.textContent = "Masukkan nilai";
+                                                } else {
+                                                    displayNumber.textContent = "Rp. " + formattedValue + ",00";
+                                                }
+
+                                            });
+
+                                            function formatNumber(number) {
+                                                // Hapus semua titik yang ada
+                                                const cleanValue = number.replace(/\./g, '');
+
+                                                // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                                                return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                            }
                                             </script>
                                             <!-- Laporkan, blokir -->
                                             <div class="mx-2">
