@@ -75,10 +75,13 @@ class KursusController extends Controller
         }
         $semua_kursus = kursus::query()->where('status', 'diterima');
         $kursus_terbaru = kursus::query()->where('status', 'diterima')->whereDate('waktu_diterima', today());
+        $kursus_termurah = kursus::query()->orderBy("tarif_per_jam", "asc");
         if ($request->cari_nama_kursus) {
             $semua_kursus->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
                 ->paginate(6);
             $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
+                ->paginate(6);
+            $kursus_termurah->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
                 ->paginate(6);
         }
         if ($request->isMethod('post')) {
@@ -90,6 +93,9 @@ class KursusController extends Controller
                 $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
                     $q->whereIn('jenis_kursus', $jenis_kursus);
                 });
+                $kursus_termurah->whereHas('jenis_kursus', function ($qq) use ($jenis_kursus) {
+                    $qq->whereIn("jenis_kursus", $jenis_kursus);
+                });
             }
             if ($request->has('min_price') && $request->has('max_price')) {
                 if ($request->min_price != NULL && $request->max_price != NULL) {
@@ -98,6 +104,7 @@ class KursusController extends Controller
                     $min_price = (int)$minprice;
                     $max_price = (int)$maxprice;
                     $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
+                    $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
                     $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
                 }
             }
@@ -117,7 +124,8 @@ class KursusController extends Controller
         });
         $semua_kursus = $semua_kursus->paginate(6);
         $kursus_terbaru = $kursus_terbaru->paginate(6);
-        return view('template.kursus', compact('district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $kursus_termurah = $kursus_termurah->paginate(6);
+        return view('template.kursus', compact('kursus_termurah','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function kursus()
