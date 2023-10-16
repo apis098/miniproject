@@ -48,6 +48,7 @@
             padding: 0px 15px;
             border-radius: 5px;
             width: 76%;
+            height: 10%;
             border-radius: 15px;
             border: 0.50px black solid;
         }
@@ -140,7 +141,7 @@
 
         .cari2 {
             position: absolute;
-            top: -1px;
+            top: -2px;
             right: -20px;
             border: none;
             height: 38px;
