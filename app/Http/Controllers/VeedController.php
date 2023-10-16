@@ -67,8 +67,8 @@ class VeedController extends Controller
         $reply_comment_veed = reply_comment_veed::latest()->get();
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
-
-        return view("template.veed", compact("top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        $count_comment = comment_veed::count();
+        return view("template.veed", compact("count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)
     {
@@ -176,6 +176,7 @@ class VeedController extends Controller
             "veed_id" => $veed_id,
             "time" => $time,
             "commentId" => $commentId,
+            "active" => true,
         ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
