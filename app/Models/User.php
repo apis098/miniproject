@@ -99,4 +99,12 @@ class User extends Authenticatable
     public function kursus() {
         return $this->hasMany(kursus::class, "users_id");
     }
+    public function pengirim_balasanKomentarFeed()
+    {
+        return $this->hasMany(balasRepliesCommentsFeeds::class, "pengirim_reply_comment_id");
+    }
+    public function pemilik_balasanKomentarFeed()
+    {
+        return $this->hasMany(balasRepliesCommentsFeeds::class, "pemilik_reply_comment_id");
+    }
 }
