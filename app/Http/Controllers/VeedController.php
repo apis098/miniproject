@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\balasRepliesCommentsFeeds;
 use App\Models\ChMessage;
 use App\Models\comment_veed;
 use App\Models\like_comment_veed;
@@ -326,5 +327,18 @@ class VeedController extends Controller
         } else {
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
+    }
+    public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id)
+    {
+        balasRepliesCommentsFeeds::create([
+            "pengirim_reply_comment_id" => $pengirim_id,
+            "pemilik_reply_comment_id" => $pemilik_id,
+            "reply_comment_id" => $comment_id,
+            "komentar" => $request->komentar
+        ]);
+        return response()->json([
+            "success" => true,
+            "message" => "Sukses membalas komentar balasan feed!",
+        ]);
     }
 }

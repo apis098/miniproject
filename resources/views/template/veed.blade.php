@@ -1748,7 +1748,7 @@
                                                                                                                 <a href="#"
                                                                                                                     class="text-secondary my-auto me-5"
                                                                                                                     data-toggle="collapse"
-                                                                                                                    data-target="#collapse{{ $item_comment->id }}"
+                                                                                                                    data-target="#collapse2{{ $reply_comment->id }}"
                                                                                                                     aria-expanded="true"
                                                                                                                     aria-controls="collapseOne">
                                                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -1764,9 +1764,134 @@
                                                                                                                         class="me-4 ">Balas</small>
                                                                                                                 </a>
                                                                                                             </div>
+
+
                                                                                                         </div>
+
                                                                                                     </div>
+                                                                                                    <div class="collapse"
+                                                                                                        id="collapse2{{ $reply_comment->id }}">
+                                                                                                        <div
+                                                                                                            class="card card-body">
+                                                                                                            @if (Auth::check())
+                                                                                                                <form
+                                                                                                                    style="margin-left: -10px;"
+                                                                                                                    id="formBalasRepliesCommentsFeeds{{ $reply_comment->id }}"
+                                                                                                                    action="{{ route('balas.replies.comments.feeds', [Auth::user()->id, $reply_comment->user->id, $reply_comment->id]) }}"
+                                                                                                                    method="post">
+                                                                                                                    @csrf
+                                                                                                                    <div
+                                                                                                                        class="d-flex">
+                                                                                                                        <div>
+                                                                                                                            @if (Auth::user()->foto)
+                                                                                                                                <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                                                                                                    class="border rounded-circle"
+                                                                                                                                    alt="Avatar"
+                                                                                                                                    style="height: 40px;" />
+                                                                                                                            @else
+                                                                                                                                <img src="{{ asset('images/default.jpg') }}"
+                                                                                                                                    class="border rounded-circle"
+                                                                                                                                    alt="Avatar"
+                                                                                                                                    style="height: 40px;" />
+                                                                                                                            @endif
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="d-flex">
+                                                                                                                            <input
+                                                                                                                                type="text"
+                                                                                                                                id="inputBalasRepliesCommentsFeeds{{ $reply_comment->id }}"
+                                                                                                                                name="komentar"
+                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                                class="form-control-sm border border-dark border-5 me-3"
+                                                                                                                                placeholder="Masukkan komentar...">
+
+                                                                                                                            <button
+                                                                                                                                type="submit"
+                                                                                                                                id="buttonComment2Veed{{ $reply_comment->id }}"
+                                                                                                                                onclick="balas_replies_comments_feeds({{ $reply_comment->id }})"
+                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                class="btn btn-sm mb-1 text-light"><b
+                                                                                                                                    class="me-3 ms-3">Kirim</b></button>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </form>
+                                                                                                            @else
+                                                                                                                <form>
+                                                                                                                    <div
+                                                                                                                        class="d-flex mb-3">
+                                                                                                                        <div class="me-3"
+                                                                                                                            style="margin-left: -40px; margin-top:-1.1%;">
+                                                                                                                            <img src="{{ asset('images/default.jpg') }}"
+                                                                                                                                class="border rounded-circle"
+                                                                                                                                alt="Avatar"
+                                                                                                                                style="height: 40px;" />
+                                                                                                                        </div>
+                                                                                                                        <div
+                                                                                                                            class="d-flex">
+                                                                                                                            <input
+                                                                                                                                type="text"
+                                                                                                                                id="inputKomentarBalasan{{ $reply_comment->id }}"
+                                                                                                                                name="commentVeed"
+                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
+                                                                                                                                class="form-control-sm border border-dark border-5 me-3"
+                                                                                                                                placeholder="Masukkan komentar...">
+                                                                                                                            <button
+                                                                                                                                type="button"
+                                                                                                                                id="buttonCommentVeed"
+                                                                                                                                onclick="harusLogin()"
+                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                class="btn btn-sm mb-1 text-light"><b
+                                                                                                                                    class="me-3 ms-3">Kirim</b></button>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </form>
+                                                                                                            @endif
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                    @foreach ($reply_comment->balasRepliesCommentsFeeds as $reply_replyComment)
+                                                                                                        <div id="balasan_komentar_ini{{ $reply_replyComment->id }}"
+                                                                                                            class="rounded d-flex flex-row border-black ">
+                                                                                                            <div style="margin-left:-0.7%;"
+                                                                                                                class="mt-1 me-3">
+                                                                                                                @if ($reply_replyComment->user_pengirim->foto)
+                                                                                                                <img width="38px"
+                                                                                                                    height="38px"
+                                                                                                                    class="rounded-circle"
+                                                                                                                    src="{{ asset('storage/' . $reply_replyComment->user_pengirim->foto) }}"
+                                                                                                                    alt="{{ $reply_replyComment->user_pengirim->name }}">
+                                                                                                                @else
+                                                                                                                <img width="38px"
+                                                                                                                height="38px"
+                                                                                                                class="rounded-circle"
+                                                                                                                src="{{ asset('images/default.jpg') }}"
+                                                                                                                alt="{{ $reply_replyComment->user_pengirim->name }}">
+                                                                                                                @endif
+
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="media-body border-black rounded mb">
+                                                                                                                <div
+                                                                                                                    class="d-flex mt-2">
+                                                                                                                    <span><strong>{{ $reply_replyComment->user_pengirim->name }}</strong></span>
+
+                                                                                                                    <small
+                                                                                                                        style="margin-left: 310px;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}</small>
+
+                                                                                                                </div>
+                                                                                                                <div
+                                                                                                                    class="d-flex">
+                                                                                                                    <a href="">{{ "@".$reply_replyComment->user_pemilik->name." " }}</a>
+                                                                                                                    <p>{{ $reply_replyComment->komentar }}
+                                                                                                                    </p>
+                                                                                                                </div>
+
+                                                                                                            </div>
+
+                                                                                                        </div>
                                                                                                 @endforeach
+                                                                                                @endforeach
+
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -1905,6 +2030,40 @@
         crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
     <script>
+        // balas komentar balasan di feed
+        function balas_replies_comments_feeds(num) {
+            $("#formBalasRepliesCommentsFeeds" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        $("#inputBalasRepliesCommentsFeeds" + num).val('');
+                        if (response.success) {
+                            iziToast.show({
+                                backgroundColor: '#F7941E',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'white',
+                                messageColor: 'white',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    },
+                    error: function error(xhr, status, erorr) {
+
+                    }
+                });
+            });
+        }
         // komentar reply feed ajax
         function balas_komentar(num) {
             $("#formBalasKomentar" + num).off('submit');

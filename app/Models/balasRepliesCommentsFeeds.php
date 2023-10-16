@@ -27,4 +27,16 @@ class balasRepliesCommentsFeeds extends Model
     {
         return $this->belongsTo(reply_comment_veed::class, "reply_comment_id");
     }
+    public function like_replies_comments_feeds()
+    {
+        return $this->hasMany(likeBalasRepliesCommentsFeeds::class, "reply_comment_id");
+    }
+    public function isLikeRepliesCommentsFeeds(string $id)
+    {
+        return likeBalasRepliesCommentsFeeds::where("user_id", $id)->where("reply_comment_id", $this->id)->exists();
+    }
+    public function countLikeRepliesCommentsFeeds(string $id)
+    {
+        return likeBalasRepliesCommentsFeeds::where("user_id", $id)->where("reply_comment_id", $this->id)->count();
+    }
 }
