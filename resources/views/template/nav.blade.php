@@ -1042,25 +1042,70 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-lg-3 my-3">
+                        <div id="topUpLainya" class="card border-2" id="card" data-card-selected="false"
+                            style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+
+                            <div class=card-body">
+                                <div class="d-flex">
+                                    <div class="text-start mx-3 mt-2">
+                                        <a href="#" class="card-title"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                            Jumlah lainya 
+                                        </a>
+                                        <p class="text-start mt-1"
+                                            style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                            Rp. ......
+                                        </p>
+                                    </div>
+                                    <div class="ms-auto">
+                                        <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px"
+                                            height="92px;" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
+                            <input type="text" class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;" placeholder="Masukkan nominal lainya...">
+                    </div>
                 </div>
                 <script>
                     const topUpKecil = document.getElementById('topUpKecil');
                     const topUpSedang = document.getElementById('topUpSedang');
                     const topUpBesar = document.getElementById('topUpBesar');
+                    const topUpLainya = document.getElementById('topUpLainya');
+                    const inputanLainya = document.getElementById('inputanLainya');
                     topUpKecil.addEventListener('click', function () {
                         topUpKecil.style.borderColor = "#F7941E";
                         topUpBesar.style.borderColor = "black";
                         topUpSedang.style.borderColor = "black";
+                        topUpLainya.style.borderColor = "black";
+                        inputanLainya.style.display = "none";
                     });
                     topUpSedang.addEventListener("click", function () {
                         topUpSedang.style.borderColor = "#F7941E";
                         topUpKecil.style.borderColor = "black";
                         topUpBesar.style.borderColor = "black";
+                        topUpLainya.style.borderColor = "black";
+                        inputanLainya.style.display = "none";
                     });
                     topUpBesar.addEventListener("click",  function () {
                         topUpBesar.style.borderColor = "#F7941E";
                         topUpKecil.style.borderColor = "black";
                         topUpSedang.style.borderColor = "black";
+                        topUpLainya.style.borderColor = "black";
+                        inputanLainya.style.display = "none";
+                    });
+                    topUpLainya.addEventListener('click', function(){
+                        topUpLainya.style.borderColor = "#F7941E";
+                        topUpKecil.style.borderColor = "black";
+                        topUpSedang.style.borderColor = "black";
+                        topUpBesar.style.borderColor = "black";
+                        inputanLainya.style.display = "block";
                     });
                 </script>
                 <button type="submit" id="buttonCommentVeed"
