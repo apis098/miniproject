@@ -1052,11 +1052,11 @@
                                     <div class="text-start mx-3 mt-2">
                                         <a href="#" class="card-title"
                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Jumlah lainya 
+                                            Jumlah lainya
                                         </a>
-                                        <p class="text-start mt-1"
+                                        <p class="text-start mt-1" id="displayInput"
                                             style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                            Rp. ......
+                                            Masukkan nilai....
                                         </p>
                                     </div>
                                     <div class="ms-auto">
@@ -1065,12 +1065,14 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
 
                     <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
-                            <input type="text" class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;" placeholder="Masukkan nominal lainya...">
+                        <input type="number" id="inputan" class="form-control border-2"
+                            style="border-radius: 10px; border:solid #F7941E;"
+                            placeholder="Masukkan nominal lainya...">
                     </div>
                 </div>
                 <script>
@@ -1079,34 +1081,57 @@
                     const topUpBesar = document.getElementById('topUpBesar');
                     const topUpLainya = document.getElementById('topUpLainya');
                     const inputanLainya = document.getElementById('inputanLainya');
-                    topUpKecil.addEventListener('click', function () {
+                    const inputElement = document.getElementById("inputan");
+                    const displayElement = document.getElementById("displayInput");
+                    topUpKecil.addEventListener('click', function() {
                         topUpKecil.style.borderColor = "#F7941E";
                         topUpBesar.style.borderColor = "black";
                         topUpSedang.style.borderColor = "black";
                         topUpLainya.style.borderColor = "black";
                         inputanLainya.style.display = "none";
                     });
-                    topUpSedang.addEventListener("click", function () {
+                    topUpSedang.addEventListener("click", function() {
                         topUpSedang.style.borderColor = "#F7941E";
                         topUpKecil.style.borderColor = "black";
                         topUpBesar.style.borderColor = "black";
                         topUpLainya.style.borderColor = "black";
                         inputanLainya.style.display = "none";
                     });
-                    topUpBesar.addEventListener("click",  function () {
+                    topUpBesar.addEventListener("click", function() {
                         topUpBesar.style.borderColor = "#F7941E";
                         topUpKecil.style.borderColor = "black";
                         topUpSedang.style.borderColor = "black";
                         topUpLainya.style.borderColor = "black";
                         inputanLainya.style.display = "none";
                     });
-                    topUpLainya.addEventListener('click', function(){
+                    topUpLainya.addEventListener('click', function() {
                         topUpLainya.style.borderColor = "#F7941E";
                         topUpKecil.style.borderColor = "black";
                         topUpSedang.style.borderColor = "black";
                         topUpBesar.style.borderColor = "black";
                         inputanLainya.style.display = "block";
                     });
+                    inputElement.addEventListener("input", function() {
+                        const inputValue = inputElement.value;
+                        // Format nilai dengan titik sebagai pemisah ribuan
+                        const formattedValue = formatNumber(inputValue);
+                        // Tampilkan nilai yang diformat pada elemen p
+                        displayElement.textContent = formattedValue;
+                        if (inputValue.trim() === "") {
+                            displayElement.textContent = "Masukkan nilai...";
+                        } else {
+                            displayElement.textContent = "Rp." + formattedValue;
+                        }
+
+                    });
+
+                    function formatNumber(number) {
+                        // Hapus semua titik yang ada
+                        const cleanValue = number.replace(/\./g, '');
+
+                        // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                        return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                    }
                 </script>
                 <button type="submit" id="buttonCommentVeed"
                     style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
