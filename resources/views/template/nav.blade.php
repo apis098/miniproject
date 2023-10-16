@@ -1034,7 +1034,7 @@
                                         </p>
                                     </div>
                                     <div class="ms-auto">
-                                        <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px"
+                                        <img src="{{ asset('img/money.png') }}" class="mr-2 mb-2" width="100px"
                                             height="92px;" alt="">
                                     </div>
                                 </div>
@@ -1050,9 +1050,9 @@
                             <div class=card-body">
                                 <div class="d-flex">
                                     <div class="text-start mx-3 mt-2">
-                                        <a href="#" class="card-title"
+                                        <a href="#" id="anotherText" class="card-title"
                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                            Jumlah lainya
+                                            Lainya
                                         </a>
                                         <p class="text-start mt-1" id="displayInput"
                                             style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
@@ -1060,7 +1060,7 @@
                                         </p>
                                     </div>
                                     <div class="ms-auto">
-                                        <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px"
+                                        <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px"
                                             height="92px;" alt="">
                                     </div>
                                 </div>
@@ -1083,6 +1083,7 @@
                     const inputanLainya = document.getElementById('inputanLainya');
                     const inputElement = document.getElementById("inputan");
                     const displayElement = document.getElementById("displayInput");
+                    const anotherText = document.getElementById("anotherText");
                     topUpKecil.addEventListener('click', function() {
                         topUpKecil.style.borderColor = "#F7941E";
                         topUpBesar.style.borderColor = "black";
@@ -1119,7 +1120,9 @@
                         displayElement.textContent = formattedValue;
                         if (inputValue.trim() === "") {
                             displayElement.textContent = "Masukkan nilai...";
+                            anotherText.textContent = "Lainya";
                         } else {
+                            anotherText.textContent = "Jumlah lainya:"
                             displayElement.textContent = "Rp. " + formattedValue + ",00";
                         }
 
