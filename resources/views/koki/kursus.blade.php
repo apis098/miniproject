@@ -45,10 +45,11 @@
 
         .search {
             background-color: #fff;
-            padding: 0px 10px;
+            padding: 0px 15px;
             border-radius: 5px;
-            width: 80%;
-            height: 100%;
+            width: 76%;
+            border-radius: 15px;
+            border: 0.50px black solid;
         }
 
         .search-1 {
@@ -57,7 +58,7 @@
         }
 
         .search-1 input {
-            height: 50px;
+            height: 45px;
             border: none;
             width: 100%;
             padding-left: 25px;
@@ -79,23 +80,22 @@
             color: #eee
         }
 
-        /* ::placeholder {
-                        color: #eee;
-                        opacity: 1
-                    } */
+        ::placeholder {
+            color: #eee;
+            opacity: 1
+        }
 
-        /* Gaya untuk form pencarian */
         .search-2 {
-            display: flex;
-            align-items: center;
+            position: relative;
+            width: 100%;
         }
 
         .search-2 input {
-            height: 45px;
+            height: 35px;
             border: none;
-            width: 200%;
-            padding-left: 15px;
-            padding-right: 100px;
+            border-radius: 15px;
+            width: 100%;
+
 
 
         }
@@ -125,42 +125,31 @@
             color: #eee
         }
 
-        .search-2 button {
+        .cari {
             position: absolute;
-            right: 4px;
             top: -2px;
             border: none;
-            height: 49px;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            margin-left: -6%;
+            width: 90px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
+        }
+
+        .cari2 {
+            position: absolute;
+            top: -1px;
+            right: -20px;
+            border: none;
+            height: 38px;
             background-color: #F7941E;
             color: #fff;
             width: 90px;
-            border-radius: 4px
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
         }
-
-
-        .intro-1 {
-            font-size: 1.5rem;
-            /* Contoh ukuran font dalam rem */
-        }
-
-        .col-6 {
-            font-size: 1em;
-            /* Contoh ukuran font dalam em */
-        }
-
-
-
-        @media (max-width: 768px) {
-
-            /* Gaya yang akan diterapkan pada layar dengan lebar maksimum 768px */
-            .card {
-                width: 100%;
-                /* Mengisi seluruh lebar kontainer */
-                margin-bottom: 20px;
-                /* Tambahkan jarak antara card */
-            }
-        }
-
 
         @media (max-width:800px) {
             .search-1 input {
@@ -178,12 +167,12 @@
 
             .search-2 button {
                 height: 37px;
-                top: -2px
+                top: 5px
             }
         }
     </style>
 
-    <div class=" d-flex justify-content-start">
+    <div class="">
         <div class="my-4 ml-5">
             <ul class="nav mb-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -218,7 +207,7 @@
                 </li>
             </ul>
 
-            <div class="container my-3">
+            {{-- <div class="container my-3">
                 <div class="row mr-5">
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="search mx-2" style="border-radius: 15px; border: 0.50px black solid;">
@@ -240,22 +229,52 @@
                         </div>
                         <button
                             style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn btn-lg">
+                            class="btn">
                             <span style="font-weight: 600">
                                 <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
                             </span>
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
+                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                        <div class="d-flex">
+                        <div class="search">
+                            <div class="row">
+                                <div class="col-12">
+                                        <div class="search-2"> <i class='bx bxs-map'></i>
+                                            <form action="/admin/laporan-pengguna" method="GET">
+                                                <input type="text" id="search-resep" name="resep" autofocus
+                                                    placeholder="Cari Kursusmu">
+                                                <button type="submit"
+                                                    class=" zoom-effects cari2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                </svg></button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                            style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn ml-4">
+                            <span style="font-weight: 600">
+                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
+                            </span>
+                        </button>
+                        </div>
+                    </div>
                     {{-- start tab 1 --}}
                     <div class="d-flex">
                         @foreach ($kursus_sendiri as $mycourse)
-                            <div class="card my-3" style="width: 30%; border-radius:15px">
+                            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
                                 <div class="row">
                                     <div class="col-12">
                                         <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
@@ -265,14 +284,11 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="col-12">
-                                            <button type="button"class="btn"
-                                                style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                                @foreach ($mycourse->jenis_kursus as $item)
-                                                    {{ $item->jenis_kursus }}
-                                                @endforeach
-                                            </button> <br>
+                                           <strong>  @foreach ($mycourse->jenis_kursus as $item)
+                                            {{ $item->jenis_kursus }}
+                                        @endforeach</strong> <br>
                                             <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
-                                                style="font-family: poppins;font-weight:bold;border:none;">
+                                                style="font-family: poppins;border:none;">
                                                 {{ $mycourse->nama_kursus }}
                                             </a>
                                         </div>
@@ -287,63 +303,62 @@
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
                     {{-- start tab 2 --}}
+                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                        <div class="d-flex">
+                        <div class="search">
+                            <div class="row">
+                                <div class="col-12">
+                                        <div class="search-2"> <i class='bx bxs-map'></i>
+                                            <form action="/admin/laporan-pengguna" method="GET">
+                                                <input type="text" id="search-resep" name="resep" autofocus
+                                                    placeholder="Cari Kursusmu">
+                                                <button type="submit"
+                                                    class=" zoom-effects cari2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                </svg></button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                            style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn ml-4">
+                            <span style="font-weight: 600">
+                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
+                            </span>
+                        </button>
+                        </div>
+                    </div>
+                    {{-- start tab 1 --}}
                     <div class="d-flex">
-                        <div class="card my-3" style="width: 30%; border-radius:15px">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                        style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                        alt="...">
-                                </div>
-                                <div class="card-body">
+                        @foreach ($kursus_sendiri as $mycourse)
+                            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                <div class="row">
                                     <div class="col-12">
-                                        <h5>Merebus</h5>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar sekali
-                                            awokwowkwowkwo</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="card mx-4 my-3" style="width: 30%; border-radius:15px">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                        style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                        <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
+                                            style="max-width:100%; width:100%; border-top-left-radius:15px;
                                                border-top-right-radius: 15px"
-                                        alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-12">
-                                        <h5>Merebus</h5>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                            alt="...">
                                     </div>
+                                    <div class="card-body">
+                                        <div class="col-12">
+                                           <strong>  @foreach ($mycourse->jenis_kursus as $item)
+                                            {{ $item->jenis_kursus }}
+                                        @endforeach</strong> <br>
+                                            <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                style="font-family: poppins;border:none;">
+                                                {{ $mycourse->nama_kursus }}
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="card mx-0 my-3" style="width: 30%; border-radius:15px">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                        style=" width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                        alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-12">
-                                        <h5>Merebus</h5>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                 </div>
@@ -351,63 +366,62 @@
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     {{-- start tab 3 --}}
+                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                        <div class="d-flex">
+                        <div class="search">
+                            <div class="row">
+                                <div class="col-12">
+                                        <div class="search-2"> <i class='bx bxs-map'></i>
+                                            <form action="/admin/laporan-pengguna" method="GET">
+                                                <input type="text" id="search-resep" name="resep" autofocus
+                                                    placeholder="Cari Kursusmu">
+                                                <button type="submit"
+                                                    class=" zoom-effects cari2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                    viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                </svg></button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                            style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn ml-4">
+                            <span style="font-weight: 600">
+                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
+                            </span>
+                        </button>
+                        </div>
+                    </div>
+                    {{-- start tab 1 --}}
                     <div class="d-flex">
-                        <div class="card my-3" style="width: 30%; border-radius:15px">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                        style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                        alt="...">
-                                </div>
-                                <div class="card-body">
+                        @foreach ($kursus_sendiri as $mycourse)
+                            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                <div class="row">
                                     <div class="col-12">
-                                        <h5>Merebus</h5>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar
-                                            aiyaiyaaa umikumik kecau</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="card mx-4 my-3" style="width: 30%; border-radius:15px">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                        style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                        <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
+                                            style="max-width:100%; width:100%; border-top-left-radius:15px;
                                                border-top-right-radius: 15px"
-                                        alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-12">
-                                        <h5>Merebus</h5>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
+                                            alt="...">
                                     </div>
+                                    <div class="card-body">
+                                        <div class="col-12">
+                                           <strong>  @foreach ($mycourse->jenis_kursus as $item)
+                                            {{ $item->jenis_kursus }}
+                                        @endforeach</strong> <br>
+                                            <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                style="font-family: poppins;border:none;">
+                                                {{ $mycourse->nama_kursus }}
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="card mx-0 my-3" style="width: 30%; border-radius:15px">
-                            <div class="row">
-                                <div class="col-12">
-                                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                        style=" width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                        alt="...">
-                                </div>
-                                <div class="card-body">
-                                    <div class="col-12">
-                                        <h5>Merebus</h5>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
