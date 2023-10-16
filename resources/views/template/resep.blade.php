@@ -514,7 +514,7 @@
                                                         premium kami.</span>
 
                                                     <div class="mt-4 mb-5">
-                                                        <a href="{{ route('penawaran.prem') }}" class="btn"
+                                                        <a href="{{ route('penawaran.premium') }}" class="btn"
                                                             style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
                                                             lebih lanjut</a>
                                                     </div>
