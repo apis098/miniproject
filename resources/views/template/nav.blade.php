@@ -1483,23 +1483,26 @@
 
             if (selectedIds.length === 0) {
                 iziToast.show({
-                    backgroundColor: '#F7941E',
+                    backgroundColor: 'red',
                     title: '<i class="fa-solid fa-triangle-exclamation"></i> Peringatan',
                     titleColor: 'white',
                     messageColor: 'white',
                     message: 'Pilih setidaknya satu data yang akan dihapus.',
                     position: 'topCenter',
+                    progressBarColor: 'white',
                 });
                 return;
             }
 
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda yakin ingin menghapus data terpilih?',
                 position: 'topCenter',
+                progressBarColor: 'white',
+                    close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -1518,12 +1521,13 @@
                             },
                             error: function(xhr, status, error) {
                                 iziToast.show({
-                                    backgroundColor: '#F7941E',
+                                    backgroundColor: 'red',
                                     title: '<i class="fa-regular fa-circle-xmark"></i> Error',
                                     titleColor: 'white',
                                     messageColor: 'white',
                                     message: 'Terjadi kesalahan saat menghapus data',
                                     position: 'topCenter',
+                                    progressBarColor: 'white',
                                 });
                                 console.log(xhr.responseText);
                             }

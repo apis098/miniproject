@@ -614,26 +614,7 @@
                     });
                 });
             });
-            // $(document).ready(function() {
-            //     $('#buttonModal').on('click', function() {
-            //         var complaintId = $(this).data('complaint-id');
-
-            //         $.ajax({
-            //             url: '/show-reply-by/' + complaintId,
-            //             type: 'GET',
-            //             dataType: 'html',
-            //             success: function(data) {
-            //                 $('#replyData').html(data); // Memasukkan data balasan ke dalam modal
-            //                 $('#repliesModal').modal('show'); // Menampilkan modal
-            //             },
-            //             error: function() {
-            //                 // Tampilkan pesan error jika data balasan tidak berhasil dimuat
-            //                 $('#replyData').html('<p>Failed to load replies.</p>');
-            //                 $('#repliesModal').modal('show');
-            //             }
-            //         });
-            //     });
-            // });
+          
         </script>
         <script>
             $(document).ready(function() {

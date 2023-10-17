@@ -38,12 +38,13 @@
                     data: dataUpload,
                     success: function success(response) {
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'green',
+                            title: '<i class="fa-solid fa-check"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: response.message,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                         setTimeout(() => {
                             window.location.href = "/koki/index";
@@ -52,11 +53,12 @@
                     error: function error(xhr) {
                         iziToast.show({
                             backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            title: '<i class="fa-solid fa-exclamation"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });
