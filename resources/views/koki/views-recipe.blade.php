@@ -245,10 +245,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mx-1 my-4">
+                    <div class=" my-4">
                         @if ($resep_dibuat->count() < 1)
-                            <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                                style="margin-top: -3em">
+                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center"
+                                >
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                                 <p><b>Tidak ada data</b></p>
                             </div>
@@ -363,10 +363,10 @@
                         </div>
                     </div>
 
-                    <div class="mx-1 my-4">
+                    <div class=" my-4">
                         @if ($resep_disukai->count() < 1)
-                            <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                                style="margin-top: -3em">
+                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center"
+                                >
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                                 <p><b>Tidak ada data</b></p>
                             </div>
@@ -482,10 +482,10 @@
                         </div>
                     </div>
 
-                    <div class="mx-1 my-4">
+                    <div class=" my-4">
                         @if ($resep_favorite->count() < 1)
-                            <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                                style="margin-top: -3em">
+                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center"
+                                >
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                                 <p><b>Tidak ada data</b></p>
                             </div>

@@ -82,7 +82,7 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-1 col-form-label mx-4"> <strong
-                                    style="margin-left: 13px;">Biodata</strong></label>
+                                    style="margin-left: 13px;">Biodata </strong></label>
                             <div class="col-sm-10">
                                 <textarea id="durasi" name="biodata" value="{{-- $userLogin->password --}}" class="form-control rounded-2"
                                     style=" width: 100%;  " placeholder="Masukkan Biodata..." rows="3">
@@ -106,7 +106,7 @@
                     {{-- start tab 2 --}}
                     @csrf
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">password lama</label>
+                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Lama :</label>
                         <div class="col-sm-9">
                             <input type="password" id="oldpass" name="oldPass" value="{{-- $userLogin->name --}}"
                                 class="form-control rounded-2 " style=" width: 100%; "
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">password baru</label>
+                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Baru :</label>
                         <div class="col-sm-9">
                             <input type="password" id="newpass" name="password" value="{{-- $userLogin->name --}}"
                                 class="form-control rounded-2" style=" width: 100%;  "
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">konfirmasi password</label>
+                        <label class="col-sm-2 col-form-label fw-bold mx-3">Konfirmasi : </label>
                         <div class="col-sm-9">
                             <input type="password" id="copassword" name="password_confirmation"
                                 value="{{-- $userLogin->name --}}" class="form-control rounded-2" style=" width: 100%;  "

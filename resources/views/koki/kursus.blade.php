@@ -272,6 +272,15 @@
                         </button>
                         </div>
                     </div>
+
+                    <div class=" my-4">
+                        @if ($kursus_sendiri->count() < 1)
+                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center"
+                                >
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
                     {{-- start tab 1 --}}
                     <div class="d-flex">
                         @foreach ($kursus_sendiri as $mycourse)

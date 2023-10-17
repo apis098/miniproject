@@ -1,6 +1,5 @@
 @extends('template.nav')
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -2102,12 +2101,13 @@
                         $("#inputBalasRepliesCommentsFeeds" + num).val('');
                         if (response.success) {
                             iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                backgroundColor: 'green',
+                                title: '<i class="fa-solid fa-check"></i>',
                                 titleColor: 'white',
                                 messageColor: 'white',
                                 message: response.message,
                                 position: 'topCenter',
+                                progressBarColor: 'white',
                             });
                         }
                     },
@@ -2134,12 +2134,13 @@
                         if (response.success) {
                             iziToast.destroy();
                             iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                backgroundColor: 'green',
+                                title: '<i class="fa-solid fa-check"></i>',
                                 titleColor: 'white',
                                 messageColor: 'white',
                                 message: response.message,
                                 position: 'topCenter',
+                                progressBarColor: 'white',
                             });
                             $("#reply_comments" + num).html(response.update);
                             $("#inputKomentarBalasan" + num).val('');
@@ -2287,12 +2288,13 @@
                     error: function error(xhr, status, errors) {
                         iziToast.destroy();
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'red',
+                            title: '<i class="fa-solid fa-triangle-exclamation"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });
@@ -2317,24 +2319,27 @@
                         document.getElementById("aVideo").textContent = "Tambahkan Video";
                         document.getElementById("video_pembelajaran").html(response.update);
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'green',
+                            title: '<i class="fa-solid fa-check"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: response.message,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 },
                 error: function error(xhr, status, errors) {
                     iziToast.show({
-                        backgroundColor: '#F7941E',
-                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        backgroundColor: 'red',
+                        title: '<i class="fa-solid fa-triangle-exclamation"></i>',
                         titleColor: 'white',
                         messageColor: 'white',
                         message: xhr.responseText,
                         position: 'topCenter',
+                        progressBarColor: 'white',
                     });
+
                 }
             });
         });
@@ -2459,8 +2464,8 @@
         function harusLogin() {
             iziToast.destroy();
             iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-solid fa-exclamation"></i>',
+                backgroundColor: 'red',
+                title: '',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda harus login terlebih dahulu!',
@@ -2472,13 +2477,14 @@
         function confirmation_delete_comment_feed(num) {
             iziToast.destroy();
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -2505,13 +2511,14 @@
 
         function confirmation_delete_feed(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus feed anda?',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -2538,13 +2545,14 @@
 
         function confirmation_delete_reply_comment(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -2583,12 +2591,13 @@
                     success: function success(response) {
                         $("#komen_veed_ini" + num).empty();
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'green',
+                            title: '<i class="fa-solid fa-check"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: response.message,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });
@@ -2608,12 +2617,13 @@
                     success: function success(response) {
                         $("#balasan_komentar_ini" + num).empty();
                         iziToast.show({
-                            backgroundColor: '#F7941E',
+                            backgroundColor: 'green',
                             title: '<i class="fa-regular fa-circle-question"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: response.message,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });
@@ -2700,12 +2710,13 @@
                             if (response.success) {
                                 iziToast.destroy();
                                 iziToast.show({
-                                    backgroundColor: '#F7941E',
-                                    title: '<i class="fa-regular fa-circle-question"></i>',
+                                    backgroundColor: 'green',
+                                    title: '<i class="fa-solid fa-check"></i>',
                                     titleColor: 'white',
                                     messageColor: 'white',
                                     message: response.message,
                                     position: 'topCenter',
+                                    progressBarColor: 'white',
                                 });
                                 $("#input_comment_veed" + num).val('');
                                 let up = response.up;
@@ -2888,8 +2899,8 @@
                         error: function error(xhr, status, errors) {
                             iziToast.destroy();
                             iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                backgroundColor: 'red',
+                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
                                 titleColor: 'white',
                                 messageColor: 'white',
                                 message: xhr.responseText,
