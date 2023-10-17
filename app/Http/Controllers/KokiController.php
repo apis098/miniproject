@@ -163,8 +163,14 @@ class KokiController extends Controller
         $koki = User::find(Auth::user()->id);
         $resep_dibuat = reseps::where("user_id", Auth::user()->id)->get();
         $id_user = Auth::user()->id;
-        $resep_disukai = reseps::join('likes', 'reseps.id', '=', 'likes.resep_id')->get();
-        $resep_favorite = reseps::join('favorites', 'reseps.id', '=', 'favorites.resep_id')->get();
+        $resep_disukai = reseps::whereHas('likes', function ($query) use ($id_user) {
+            $query->where("user_id", $id_user);
+        });
+        $resep_disukai = $resep_disukai->get();
+        $resep_favorite = reseps::whereHas('favorite', function ($query) use ($id_user) {
+            $query->where("user_id_from", $id_user);
+        });
+        $resep_favorite = $resep_favorite->get();
         return view('koki.views-recipe', compact("koki", "resep_dibuat", "resep_disukai", "resep_favorite"));
     }
 

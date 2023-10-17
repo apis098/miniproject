@@ -2808,7 +2808,8 @@
                                                                                 <div class="card-body">
                                                                                     <div class="container">
                                                                                         <div class="row">
-                                                                                                <form
+                                                                                            @if (Auth::check())
+                                                                                            <form
                                                                                                     id="formReplyComment${up['id']}"
                                                                                                     action="/balas/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
                                                                                                     method="post">
@@ -2848,6 +2849,8 @@
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </form>
+
+                                                                                            @endif
 
                                                                                             <div
                                                                                                 id="reply_comments${up['id']}">
