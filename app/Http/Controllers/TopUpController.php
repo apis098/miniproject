@@ -56,7 +56,10 @@ class TopUpController extends Controller
                 ->paginate(10);
         }
         $footer = footer::first();
-        return view('tripay.paymentsMethod', compact('userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
+        $tripay = new TripayPaymentController();
+        $channels = $tripay->getPaymentChannels();
+     
+        return view('tripay.paymentsMethod', compact('channels','userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
     }
     /**
      * Store a newly created resource in storage.
