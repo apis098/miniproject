@@ -20,6 +20,6 @@ class likes extends Model
     }
     public function resep()
     {
-        return $this->belongsTo(reseps::class);
+        return $this->belongsTo(reseps::class, "resep_id");
     }
 }

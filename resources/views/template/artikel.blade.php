@@ -648,7 +648,7 @@
                                 <div class="input-group mb-3">
                                     <input type="text" id="reply_comment" name="reply_comment" width="500px"
                                         class="form-control form-control-sm rounded-3 me-5"
-                                        placeholder="Balas komentar dari {{ $row->user->name }}....">
+                                        placeholder="Balas komentar dari {{ $row->user_pengirim->name }}....">
 
                                     <button type="button" onclick="harusLogin()"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"

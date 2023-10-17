@@ -328,12 +328,12 @@
                         class="rounded float-end " alt="...">
                         </div>
                         <div class="col-8">
-                            <strong class="me-5 w-75" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <strong class="me-5 w-75" ><a href="#" class="text-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
                                 printer took a galley of type and scrambled it to make a type specimen book. It has survived not
                                 only five centuries, but also the leap into electronic typesetting, remaining essentially
                                 unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-                                Ipsum passages, and more recently with desktop publishing software like Aldus.</strong>
+                                Ipsum passages, and more recently with desktop publishing software like Aldus.</a></strong>
                                 <p>
                                     <a type="button" class="mr-1 text-dark" onclick="openModel()" id="button-modal-komentar-feed"
                                         href="#" data-bs-toggle="modal"data-bs-target="#exampleModal">
@@ -425,12 +425,12 @@
                         class="rounded float-end " alt="...">
                         </div>
                         <div class="col-8">
-                            <strong class="me-5 w-75" >Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <strong class="me-5 w-75" ><a href="#" class="text-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
                                 printer took a galley of type and scrambled it to make a type specimen book. It has survived not
                                 only five centuries, but also the leap into electronic typesetting, remaining essentially
                                 unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
-                                Ipsum passages, and more recently with desktop publishing software like Aldus.</strong>
+                                Ipsum passages, and more recently with desktop publishing software like Aldus.</a></strong>
                                 <p>
                                     <a type="button" class="mr-1 text-dark" onclick="openModel()" id="button-modal-komentar-feed"
                                         href="#" data-bs-toggle="modal"data-bs-target="#exampleModal">

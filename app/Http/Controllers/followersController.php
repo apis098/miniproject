@@ -8,6 +8,7 @@ use App\Models\followers;
 use App\Models\footer;
 use App\Models\notifications;
 use App\Models\reseps;
+use App\Models\upload_video;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,7 @@ class followersController extends Controller
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            
+
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->count();
@@ -65,15 +66,16 @@ class followersController extends Controller
             ->paginate(8);
            }
         }
-    
+
         return view('template.search-account', compact('messageCount','user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
     }
-    
+
     public function show_profile($id){
-        
+
         $user = User::findOrFail($id);
         $userLogin = Auth::user();
-        $recipes = reseps::where('user_id', $id)->paginate(6);
+        $recipes = reseps::where('user_id', $user->id)->take(6)->orderBy('created_at', 'asc')->get();
+        $upload_video = upload_video::where('users_id', $user->id)->orderBy('created_at', 'asc')->take(6)->get();
         $notification = [];
         $footer= footer::first();
         $favorite = [];
@@ -93,7 +95,7 @@ class followersController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('template.profile-oranglain',compact('messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
+        return view('template.profile-oranglain',compact('upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)
     {
@@ -141,5 +143,5 @@ class followersController extends Controller
             return response()->json(['status' => 'error']);
         }
     }
- 
+
 }
