@@ -1,6 +1,5 @@
 @extends('template.nav')
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     <style>
         .card {
 
@@ -591,7 +590,6 @@
         {{-- collapse --}}
     </section>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const readMoreButtons = document.querySelectorAll(".read-more-button");
@@ -714,12 +712,14 @@
 
         function confirmation(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda yakin ingin mengahpus komentar?',
                 position: 'topCenter',
+                close:false,
+                progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
@@ -740,12 +740,14 @@
 
         function confirmationReply(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda yakin ingin mengahpus komentar?',
                 position: 'topCenter',
+                close:false,
+                progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {

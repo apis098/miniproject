@@ -418,7 +418,7 @@
                         //alert(xhr.responseText);
                         iziToast.show({
                             backgroundColor: 'red',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            title: '<i class="fa-solid fa-exclamation"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,

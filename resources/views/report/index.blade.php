@@ -1,6 +1,5 @@
 @extends('layouts.navbar')
 @section('konten')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -1490,16 +1489,18 @@
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
         integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
     <script>
         function DeleteData() {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
+                close:false,
+                progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -1526,12 +1527,14 @@
 
         function buttonAllert(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda yakin ingin memblookir pengguna tersebut?',
                 position: 'topCenter',
+                close:false,
+                progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
@@ -1552,12 +1555,14 @@
 
         function confirmation(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda yakin ingin mengahpus laporan?',
                 position: 'topCenter',
+                close:false,
+                progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
