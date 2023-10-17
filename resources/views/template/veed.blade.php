@@ -700,117 +700,122 @@
                                             <div class="modal" id="gift">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title ml-3"
-                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                Beri Donasi</h5>
-                                                            <button type="button" class="close mr-2"
-                                                                data-bs-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="d-flex ">
-                                                                <div class="col-lg-3 my-1">
-                                                                    <div class="card border-2" id="smallGift"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
-                                                                        <img src="{{ asset('img/kecil.png') }}"
-                                                                            class="card-img-top" alt="">
-                                                                        <div class=card-body">
-                                                                            <div class="text-center">
-                                                                                <a href="#"
-                                                                                    class="card-title text-center"
-                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Kecil</a>
-                                                                            </div>
-                                                                            <p class="text-center"
-                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                Rp. 5.000,00</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-3 my-1">
-                                                                    <div class="card border-2" id="mediumGift"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
-                                                                        <img src="{{ asset('img/sedang.png') }}"
-                                                                            class="card-img-top" alt="">
-                                                                        <div class=card-body">
-                                                                            <div class="text-center">
-                                                                                <a href="#"
-                                                                                    class="card-title text-center"
-                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Sedang</a>
-                                                                            </div>
-                                                                            <p class="text-center"
-                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                Rp. 10.000,00</p>
-                                                                            <input type="radio" name="radio-group"
-                                                                                id="radio2">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-3 my-1">
-                                                                    <div class="card border-2" id="extraGift"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
-                                                                        <img src="{{ asset('img/besar.png') }}"
-                                                                            class="card-img-top" alt="">
-                                                                        <div class=card-body">
-                                                                            <div class="text-center">
-                                                                                <a href="#"
-                                                                                    class="card-title text-center"
-                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Besar</a>
-                                                                            </div>
-                                                                            <p class="text-center"
-                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                Rp. 20.000,00</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="col-lg-3 my-1">
-                                                                    <button type="button" id="moreGift"
-                                                                        class="card border-2" data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                                                        <img src="{{ asset('img/lainnya.png') }}"
-                                                                            class="card-img-top" alt="">
-                                                                        <div class=card-body">
-                                                                            <div class="mx-4 mt-2">
-                                                                                <a href="#"
-                                                                                    class="card-title "
-                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
-                                                                            </div>
-                                                                            <p id="displayNumber" class="text-center"
-                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                Masukkan Nilai</p>
-                                                                        </div>
-                                                                    </button>
-                                                                </div>
-
+                                                        <form action="{{route('donation.store',$item_video->user->id)}}" method="POST">
+                                                            @csrf
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title ml-3"
+                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                    Beri Donasi</h5>
+                                                                <button type="button" class="close mr-2"
+                                                                    data-bs-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
                                                             </div>
-                                                            <div class="d-flex mt-4 ml-3">
-                                                                <input type="number" id="moreInput"
-                                                                    name="commentVeed" width="500px"
-                                                                    class="form-control border-2 rounded-3 me-3"
-                                                                    style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
-                                                                    placeholder="Masukkan jumlah donasi lainya...">
-                                                                <input type="text" id="message"
-                                                                    name="commentVeed" width="500px"
-                                                                    class="form-control border-2 rounded-3 me-3"
-                                                                    style="margin-top: 12px; border:solid black; border-radius:100px;"
-                                                                    placeholder="Tambahkan pesan untuk pembuat...">
+                                                            <div class="modal-body">
+                                                                <div class="d-flex ">
+                                                                    <label for="inputKecil" class="col-lg-3 my-1">
+                                                                        <div class="card border-2" id="smallGift"
+                                                                            data-card-selected="false"
+                                                                            style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                            <img src="{{ asset('img/kecil.png') }}"
+                                                                                class="card-img-top" alt="">
+                                                                            <div class=card-body">
+                                                                                <input hidden type="radio" value="5000" name="giftInput" id="inputKecil">
+                                                                                <div class="text-center">
+                                                                                    <a href="#"
+                                                                                        class="card-title text-center"
+                                                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                        Kecil</a>
+                                                                                </div>
+                                                                                <p class="text-center"
+                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                    Rp. 5.000,00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </label>
 
-                                                                <button type="submit" id="buttonCommentVeed"
-                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                                    class="btn  btn-sm text-light">
-                                                                    <b class="me-3 ms-3">Kirim</b></button>
+                                                                    <label for="mediumInput" class="col-lg-3 my-1">
+                                                                        <div class="card border-2" id="mediumGift"
+                                                                            data-card-selected="false"
+                                                                            style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                            <img src="{{ asset('img/sedang.png') }}"
+                                                                                class="card-img-top" alt="">
+                                                                            <div class=card-body">
+                                                                                <input hidden type="radio" value="10000" name="giftInput" id="mediumInput">
+                                                                                <div class="text-center">
+                                                                                    <a href="#"
+                                                                                        class="card-title text-center"
+                                                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                        Sedang</a>
+                                                                                </div>
+                                                                                <p class="text-center"
+                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                    Rp. 10.000,00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </label>
+
+                                                                    <label for="extraInput" class="col-lg-3 my-1">
+                                                                        <div class="card border-2" id="extraGift"
+                                                                            data-card-selected="false"
+                                                                            style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                            <img src="{{ asset('img/besar.png') }}"
+                                                                                class="card-img-top" alt="">
+                                                                            <div class=card-body">
+                                                                                <input hidden type="radio" value="20000" name="giftInput" id="extraInput">
+                                                                                <div class="text-center">
+                                                                                    <a href="#"
+                                                                                        class="card-title text-center"
+                                                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                        Besar</a>
+                                                                                </div>
+                                                                                <p class="text-center"
+                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                    Rp. 20.000,00</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </label>
+
+                                                                    <label for="moreInput" class="col-lg-3 my-1">
+                                                                        <button type="button" id="moreGift"
+                                                                            class="card border-2" data-card-selected="false"
+                                                                            style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                            <img src="{{ asset('img/lainnya.png') }}"
+                                                                                class="card-img-top" alt="">
+                                                                            <div class=card-body">
+                                                                              
+                                                                                <div class="mx-4 mt-2">
+                                                                                    <a href="#"
+                                                                                        class="card-title "
+                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                                </div>
+                                                                                <p id="displayNumber" class="text-center"
+                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                    Masukkan Nilai</p>
+                                                                            </div>
+                                                                        </button>
+                                                                    </label>
+
+                                                                </div>
+                                                                <div class="d-flex mt-4 ml-3">
+                                                                    <input type="number" id="moreInput"
+                                                                        name="moreInput" width="500px"
+                                                                        class="form-control border-2 rounded-3 me-3"
+                                                                        style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
+                                                                        placeholder="Masukkan jumlah donasi lainya...">
+                                                                    <input type="text" id="message"
+                                                                        name="commentVeed" width="500px"
+                                                                        class="form-control border-2 rounded-3 me-3"
+                                                                        style="margin-top: 12px; border:solid black; border-radius:100px;"
+                                                                        placeholder="Tambahkan pesan untuk pembuat...">
+
+                                                                    <button type="submit" id="buttonCommentVeed"
+                                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                        class="btn  btn-sm text-light">
+                                                                        <b class="me-3 ms-3">Kirim</b></button>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -832,6 +837,8 @@
                                                     extraGift.style.borderColor = "black";
                                                     moreGift.style.borderColor = "black";
                                                     inputanLainya.style.display = "none";
+                                                    moreInput.value = "";
+                                                    displayNumber.textContent = "Masukkan nilai";
                                                 });
                                                 mediumGift.addEventListener("click", function() {
                                                     mediumGift.style.borderColor = "#F7941E";
@@ -840,6 +847,8 @@
                                                     extraGift.style.borderColor = "black";
                                                     moreGift.style.borderColor = "black";
                                                     moreInput.style.display = "none";
+                                                    moreInput.value = "";
+                                                    displayNumber.textContent = "Masukkan nilai";
                                                 });
                                                 extraGift.addEventListener("click", function() {
                                                     extraGift.style.borderColor = "#F7941E";
@@ -848,6 +857,8 @@
                                                     mediumGift.style.borderColor = "black";
                                                     moreGift.style.borderColor = "black";
                                                     moreInput.style.display = "none";
+                                                    moreInput.val = "";
+                                                    displayNumber.textContent = "Masukkan nilai";
                                                 });
                                                 moreGift.addEventListener('click', function() {
                                                     moreGift.style.borderColor = "#F7941E";

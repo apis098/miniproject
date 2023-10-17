@@ -18,6 +18,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\special_days_controller;
 use App\Http\Controllers\KategoriMakananController;
 use App\Http\Controllers\FooterController;
+use App\Http\Controllers\donationController;
 use App\Http\Controllers\komentar_resep;
 use App\Http\Controllers\LikeCommentController;
 use App\Http\Controllers\VeedController;
@@ -172,8 +173,9 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
         Route::get('diskusi',[KokiController::class,'jawaban_diskusi'])->name('koki.diskusi');
         Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
-        // Route::resource('topup',TopUpController::class);
-        Route::post('topup',[TopUpController::class,'store'])->name('topup.store');
+        Route::resource('topup',TopUpController::class);
+        // Route::resource('donation',donationController::class);
+        Route::post('donation/{user_recipient}',[donationController::class,'store'])->name('donation.store');
     });
 });
 
