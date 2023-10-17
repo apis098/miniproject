@@ -163,6 +163,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
+        Route::get('payments-method-page',[TopUpController::class,'paymentsPage'])->name('paymesnts.page');
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
