@@ -35,6 +35,7 @@
         }
 
         .btn-outline-warning {}
+
     </style>
 
     <form id="formTambahKursus" action="/koki/kursus" method="post" enctype="multipart/form-data">
@@ -303,26 +304,31 @@
                     success: function success(response) {
                         if (response.success) {
                             iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                backgroundColor: 'green',
+                                title: '<i class="fa-solid fa-check"></i>',
                                 titleColor: 'white',
                                 messageColor: 'white',
                                 message: response.message,
                                 position: 'topCenter',
+                                progressBarColor:'white',
+
                             });
                             setTimeout(() => {
-                                window.location.href = "/koki/index";
+                                window.location.href = "{{route('koki.kursus')}}";
                             }, 5000);
                         }
                     },
                     error: function error(xhr, status, errors) {
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'red',
+                            title: '<i class="fa-solid fa-exclamation"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,
                             position: 'topCenter',
+                            progressBarColor: 'white',
+
+
                         });
                     }
                 });

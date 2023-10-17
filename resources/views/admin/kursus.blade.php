@@ -1,6 +1,5 @@
 @extends('layouts.navbar')
 @section('konten')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -685,12 +684,14 @@
     <script>
         function confirmation_accept_course(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'green',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menerima kursus ini?',
                 position: 'topCenter',
+                progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -718,12 +719,14 @@
 
         function confirmation_tolak_course(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
+                backgroundColor: 'red',
+                title: '<i class="fa-solid fa-exclamation"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
-                message: 'Apakah Anda yakin tidak ingin menerima kursus ini?',
+                message: 'Anda yakin menolak kursus ini',
                 position: 'topCenter',
+                progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -792,224 +795,12 @@
 
         }
     </script>
-
-    <script>
-        const click1 = document.getElementById("click1");
-        const click3 = document.getElementById("click3");
-        const border1 = document.getElementById("border1");
-        const border3 = document.getElementById("border3");
-        const click2 = document.getElementById("c");
-        const border2 = document.getElementById("b");
-        const underline = document.getElementById("f");
-        const buttonTab = document.getElementById("button-tab");
-        const o = document.getElementById("pp");
-        const a_tab = document.getElementById("a-tab");
-        buttonTab.addEventListener("click", function() {
-            tab3();
-        });
-
-        function tab3() {
-            event.preventDefault();
-            border1.style.display = "none";
-            border2.style.display = "none";
-            underline.style.display = "block";
-            underline.removeAttribute('hidden');
-            o.style.display = "none";
-        }
-        a_tab.addEventListener('click', function() {
-            event.preventDefault();
-            o.style.display = "block";
-            underline.style.display = "none";
-            border1.style.display = "none";
-            border2.style.display = "none";
-        });
-        click1.addEventListener('click', function() {
-            event.preventDefault();
-            border1.style.display = "block";
-            border2.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-        click2.addEventListener("click", function() {
-            event.preventDefault();
-            border2.removeAttribute('hidden');
-            border2.style.display = "block";
-            border1.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-    </script>
     </div>
 
     <!-- jQuery CDN -->
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
         integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
-    <script>
-        function DeleteData() {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Apakah Anda yakin ingin menghapus data ini?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-                        instance, toast) {
-                        instance.hide({
-                            transitionOut: 'fadeOutUp',
-                            onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('delete-form').submit();
-                            }
-                        }, toast, 'buttonName');
-                    }, false], // true to focus
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-                        instance, toast) {
-                        instance.hide({}, toast, 'buttonName');
-                    }]
-                ],
-                onOpening: function(instance, toast) {
-                    console.info('callback abriu!');
-                },
-                onClosing: function(instance, toast, closedBy) {
-                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-                }
-            });
-        }
-
-        function buttonAllert(num) {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('formBlokir' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-
-        function confirmation(num) {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Anda yakin ingin mengahpus laporan?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('deleteLaporan' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const favoriteForm = document.querySelectorAll(".favorite-form");
-
-            favoriteForm.forEach(form1 => {
-                form1.addEventListener("submit", async function(event) {
-                    event.preventDefault();
-
-                    const button1 = form1.querySelector(
-                        ".favorite-button"); // Menggunakan form1
-                    const svg1 = button1.querySelector("svg"); // Menggunakan button1
-
-                    const response = await fetch(form1.action, {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-Token": "{{ csrf_token() }}",
-                        },
-                    });
-
-                    if (response.ok) {
-                        const responseData1 = await response.json();
-                        if (responseData1.favorited) {
-                            // Reset button color and SVG here
-                            button1.style.backgroundColor = "#F7941E";
-                            svg1.style.color = "white";
-                            // Modify SVG appearance if needed
-                            document.getElementById("fav-count-" + responseData1.resep_id)
-                                .textContent = responseData1.favorite_count;
-                        } else {
-                            // Update button color and SVG here
-                            button1.style.backgroundColor = "white";
-                            svg1.style.color = "#F7941E";
-                            button1.style.borderColor = "#F7941E";
-                            document.getElementById("fav-count-" + responseData1.resep_id)
-                                .textContent = responseData1.favorite_count;
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        const deskripsi = document.getElementById("deskripsi");
-        const langkah = document.getElementById("langkah");
-        const borderDeskripsi = document.getElementById("borderDeskripsi");
-        const borderLangkah = document.getElementById("borderLangkah");
-        const bahan = document.getElementById("bahan");
-        const borderBahan = document.getElementById("borderBahan");
-        const alat = document.getElementById("alat");
-        const borderAlat = document.getElementById("borderAlat");
-        deskripsi.addEventListener('click', function() {
-            borderDeskripsi.style.display = "block";
-            borderLangkah.style.display = "none";
-            borderBahan.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-        bahan.addEventListener("click", function() {
-            borderBahan.removeAttribute('hidden');
-            borderBahan.style.display = "block";
-            borderDeskripsi.style.display = "none";
-            borderLangkah.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-
-        langkah.addEventListener("click", function() {
-            borderLangkah.style.display = "block";
-            borderDeskripsi.style.display = "none";
-            borderBahan.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-        alat.addEventListener("click", function() {
-            borderAlat.style.display = "block";
-            borderLangkah.style.display = "none";
-            borderDeskripsi.style.display = "none";
-            borderBahan.style.display = "none";
-        });
-    </script>
 
     <script>
         $(document).ready(function() {
@@ -1020,25 +811,5 @@
                 });
             });
         });
-        // $(document).ready(function() {
-        //     $('#buttonModal').on('click', function() {
-        //         var complaintId = $(this).data('complaint-id');
-
-        //         $.ajax({
-        //             url: '/show-reply-by/' + complaintId,
-        //             type: 'GET',
-        //             dataType: 'html',
-        //             success: function(data) {
-        //                 $('#replyData').html(data); // Memasukkan data balasan ke dalam modal
-        //                 $('#repliesModal').modal('show'); // Menampilkan modal
-        //             },
-        //             error: function() {
-        //                 // Tampilkan pesan error jika data balasan tidak berhasil dimuat
-        //                 $('#replyData').html('<p>Failed to load replies.</p>');
-        //                 $('#repliesModal').modal('show');
-        //             }
-        //         });
-        //     });
-        // });
     </script>
 @endsection

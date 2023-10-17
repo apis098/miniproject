@@ -1,6 +1,5 @@
 @extends('layouts.navbar')
 @section('konten')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
     @push('style')
         @powerGridStyles
@@ -231,8 +230,6 @@
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
         integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <!-- jQuery CDN -->
     <script>
         let num = 1;
@@ -270,12 +267,13 @@
                 success: function success(response) {
                     iziToast.destroy();
                     iziToast.show({
-                        backgroundColor: '#F7941E',
+                        backgroundColor: 'green',
                         title: '<i class="fa-regular fa-circle-question"></i>',
                         titleColor: 'white',
                         messageColor: 'white',
                         message: response.message,
                         position: 'topCenter',
+                        progressBarColor: 'white',
 
                     });
                     setTimeout(() => {
@@ -287,12 +285,14 @@
                 error: function error(xhr, status, errors) {
                     iziToast.destroy();
                     iziToast.show({
-                        backgroundColor: '#F7941E',
-                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        backgroundColor: 'red',
+                        title: '<i class="fa-solid fa-exclamation"></i>',
                         titleColor: 'white',
                         messageColor: 'white',
                         message: xhr.responseText,
                         position: 'topCenter',
+                        progressBarColor: 'white',
+
                     });
                     console.log(xhr.responseText);
                 }

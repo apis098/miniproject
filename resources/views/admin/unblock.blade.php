@@ -1,5 +1,4 @@
 @extends('layouts.navbar')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
 @section('konten')
     @push('style')
         @powerGridStyles
@@ -295,16 +294,17 @@
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
         integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
         function DeleteData() {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
+                progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -330,12 +330,14 @@
         }
         function konfirmasi(num){
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
-                message: 'Anda yakin ingin melakukan unblock?',
+                message: 'Anda yakin untuk unblock akun tersebut?',
                 position: 'topCenter',
+                progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function (instance, toast) {
                         // Jika pengguna menekan tombol "Ya", kirim form
