@@ -1,6 +1,5 @@
 @extends('template.nav')
 @section('content')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
     @push('style')
         @powerGridStyles
     @endpush
@@ -1619,12 +1618,13 @@ function toggleCheckbox(checkbox) {
                         if (response.success) {
                             iziToast.destroy();
                             iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                backgroundColor:'green',
+                                title:'<i class="fa-solid fa-check"></i>',
                                 titleColor: 'white',
                                 messageColor: 'white',
                                 message: response.message,
                                 position: 'topCenter',
+                                progressBarColor: 'white',
                             });
                             $("#reply_comments" + num).html(response.update);
                             $("#inputKomentarBalasan" + num).val('');
@@ -1650,12 +1650,13 @@ function toggleCheckbox(checkbox) {
                         if (response.success) {
                             iziToast.destroy();
                             iziToast.show({
-                                backgroundColor: '#F7941E',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                backgroundColor: 'green',
+                                title: '<i class="fa-solid fa-check"></i>',
                                 titleColor: 'white',
                                 messageColor: 'white',
                                 message: response.message,
                                 position: 'topCenter',
+                                progressBarColor: 'white',
                             });
                             $("#input_comment_feed" + num).val('');
                             $("#komen_feed" + num).html(response.update);
@@ -1664,12 +1665,13 @@ function toggleCheckbox(checkbox) {
                     error: function error(xhr, status, errors) {
                         iziToast.destroy();
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'red',
+                            title: '<i class="fa-solid fa-triangle-exclamation"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });
@@ -1694,23 +1696,25 @@ function toggleCheckbox(checkbox) {
                         document.getElementById("aVideo").textContent = "Tambahkan Video";
                         document.getElementById("video_pembelajaran").html(response.update);
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: 'green',
+                            title: '<i class="fa-solid fa-check"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: response.message,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 },
                 error: function error(xhr, status, errors) {
                     iziToast.show({
-                        backgroundColor: '#F7941E',
-                        title: '<i class="fa-regular fa-circle-question"></i>',
+                        backgroundColor: 'red',
+                        title: '<i class="fa-solid fa-triangle-exclamation"></i></i>',
                         titleColor: 'white',
                         messageColor: 'white',
                         message: xhr.responseText,
                         position: 'topCenter',
+                        progressBarColor: 'white',
                     });
                 }
             });
@@ -1828,7 +1832,7 @@ function toggleCheckbox(checkbox) {
         function harusLogin() {
             iziToast.destroy();
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-solid fa-exclamation"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
@@ -1840,13 +1844,14 @@ function toggleCheckbox(checkbox) {
 
         function confirmation_delete_comment_feed(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -1873,13 +1878,14 @@ function toggleCheckbox(checkbox) {
 
         function confirmation_delete_feed(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus feed anda?',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -1906,13 +1912,14 @@ function toggleCheckbox(checkbox) {
 
         function confirmation_delete_reply_comment(num) {
             iziToast.show({
-                backgroundColor: '#F7941E',
+                backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 progressBarColor: 'white',
+                close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
