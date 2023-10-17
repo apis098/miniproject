@@ -32,7 +32,8 @@ class KokiController extends Controller
     public function index()
     {
         $resep_sendiri = reseps::where("user_id", Auth::user()->id)->get();
-        $recipes = reseps::where("user_id", Auth::user()->id)->paginate(6);
+        $recipes = reseps::where("user_id", Auth::user()->id)->take(6)->get();
+        $videos = upload_video::where("users_id", Auth::user()->id)->take(6)->get();
         $userLogin = Auth::user();
         $footer = footer::first();
         $notification = [];
@@ -53,7 +54,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.profile', compact('messageCount', 'recipes', 'notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.profile', compact('messageCount', 'recipes', 'videos','notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function updateProfile(Request $request)
     {

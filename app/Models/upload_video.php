@@ -51,5 +51,16 @@ class upload_video extends Model
         ->where('veed_id', $this->id)
         ->exists();
     }
-    
+    public function countLikeFeed()
+    {
+        return like_veed::where("veed_id", $this->id)->count();
+    }
+    public function countCommentFeed()
+    {
+        return comment_veed::where("veed_id", $this->id)->count();
+    }
+    public function countShareFeed()
+    {
+        return Share::where("feed_id", $this->id)->count();
+    }
 }
