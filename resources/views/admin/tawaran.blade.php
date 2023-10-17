@@ -213,13 +213,13 @@
                         style="width: 45rem;" placeholder="Masukkan Detail Paket...">
                 </div>
                 <div id="details"></div>
-                <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-3 float-start"
+                <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 float-start"
                     style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                         class="ms-2 me-2">Tambah
                         Detail</b>
                 </button> <br>
-                <button type="submit" class="btn text-light rounded-3 mt-3 float-end"
-                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                <button type="submit" class="btn text-light rounded-3 float-end"
+                    style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                         class="ms-2 me-2">Tambah
                         Paket</b>
                 </button>
