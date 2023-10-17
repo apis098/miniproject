@@ -328,7 +328,8 @@
                         class="rounded float-end " alt="...">
                         </div>
                         <div class="col-8">
-                            <strong class="me-5 w-75" ><a href="#" class="text-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <strong class="me-5 w-75" ><a href="#"  data-toggle="modal"
+                                data-target="#view" class="text-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
                                 printer took a galley of type and scrambled it to make a type specimen book. It has survived not
                                 only five centuries, but also the leap into electronic typesetting, remaining essentially
@@ -425,7 +426,8 @@
                         class="rounded float-end " alt="...">
                         </div>
                         <div class="col-8">
-                            <strong class="me-5 w-75" ><a href="#" class="text-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            <strong class="me-5 w-75" ><a href="#"  data-toggle="modal"
+                                data-target="#view" class="text-black">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
                                 printer took a galley of type and scrambled it to make a type specimen book. It has survived not
                                 only five centuries, but also the leap into electronic typesetting, remaining essentially
@@ -743,6 +745,211 @@
         {{-- end --}}
     </div>
 </div>
+
+
+{{-- Modal untuk Feed --}}
+
+<div class="modal" id="view">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6" style="margin-left:-8px;">
+                                <img src="{{ asset('img/3.jpg') }}" alt="Mobirise"  style="height: 100%; width:100%">
+
+                        </div>
+
+
+
+                        <div class="col-md-12 col-lg-6 ">
+                                <!-- Data -->
+                                <div class="mt-3" style="background-color: white">
+                                    <div class="d-flex mb-1 ">
+                                        <a href="">
+                                            {{-- @if ($item_video->user->foto)
+                                                <img src="{{ asset('storage/' . $item_video->user->foto) }}"
+                                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                                            @else --}}
+                                                <img src="{{ asset('images/default.jpg') }}"
+                                                    class="border rounded-circle me-2 " alt="Avatar" style="height: 40px" />
+                                            {{-- @endif --}}
+                                        </a>
+                                        <div style="margin-top: 8px;">
+                                            <a href="" class="text-dark ">
+                                                <strong class="text-center ">Sikukuntul</strong>
+                                            </a>
+                                            <a href="#" class="text-muted d-block"
+                                                style="float: right; margin-left: 390px;">
+                                                <button type="button" class="close ml-2" data-dismiss="modal" aria-label="Close">
+                                                    <i class="fa-regular text-dark fa-circle-xmark"></i>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <hr style="background-color: black">
+                                <style>
+                                    .vjs-big-play-button {
+                                        margin-left: 250px;
+                                        margin-top: 120px;
+                                    }
+                                </style>
+                                <!-- Media -->
+                                <div class="" data-mdb-ripple-color="light">
+                                    {{-- <video
+                                        @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                    @else
+                                    class="video-js vjs-theme-city" @endif
+                                        id="my-video" controls preload="auto" width="615" height="315"
+                                        data-setup="{}">
+                                        <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
+                                        <p class="vjs-no-js">
+                                            To view this video please enable JavaScript, and consider upgrading to a
+                                            web browser that
+                                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                                video</a>
+                                        </p>
+                                    </video> --}}
+                                    <div class="d-flex mb-3 mt-3">
+                                        <a href="">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                            class="border rounded-circle me-2" alt="Avatar" style="height: 50px" />
+                                        </a>
+                                            <div class="col-11">
+                                            <div class=" rounded-3 py-1">
+                                                <a type="button" class="mr-3 text-dark float-end" onclick="openModel()" id="button-modal-komentar-feed"
+                                                href="#" data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+                                                    <path fill="currentColor"
+                                                        d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                                </svg>
+                                            </a>
+                                                    <strong class="text-dark me-2">Siapapun Itu Kocak</strong>
+                                                    <br>
+                                                     <span>Bagus Banget bbdkadajddj bddadakdjasd bkdadkahad bdadhadad adbdhakda ddkdkda dadhd ddkhd dhdkhda k!!!</span>
+
+
+                                                <div class="d-flex">
+                                                <small class="text-muted d-block me-3">1 hari yang lalu</small>
+                                                <small class="text-bold">Balas</small>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="d-flex mb-3 mt-2">
+                                        <a href="">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                            class="border rounded-circle me-2" alt="Avatar" style="height: 50px" />
+                                        </a>
+                                            <div class="col-11">
+                                            <div class=" rounded-3 py-1">
+                                                <a href="" class="text-dark mb-0">
+                                                    <strong>Siapapun Itu Kocak</strong>
+                                                </a>
+                                                <div class="d-flex">
+                                                    <small class="text-muted d-block me-3">1 hari yang lalu</small>
+                                                    <small class="text-bold">Balas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="d-flex mb-3 mt-2">
+                                        <a href="">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                            class="border rounded-circle me-2" alt="Avatar" style="height: 50px" />
+                                        </a>
+                                            <div class="col-11">
+                                            <div class=" rounded-3 py-1">
+                                                <a href="" class="text-dark mb-0">
+                                                    <strong>Siapapun Itu Kocak</strong>
+                                                </a>
+                                                <div class="d-flex">
+                                                    <small class="text-muted d-block me-3">1 hari yang lalu</small>
+                                                    <small class="text-bold">Balas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="d-flex mb-3 mt-2">
+                                        <a href="">
+                                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                                            class="border rounded-circle me-2" alt="Avatar" style="height: 50px" />
+                                        </a>
+                                            <div class="col-11">
+                                            <div class=" rounded-3 py-1">
+                                                <a href="" class="text-dark mb-0">
+                                                    <strong>Siapapun Itu Kocak</strong>
+                                                </a>
+                                                <div class="d-flex">
+                                                    <small class="text-muted d-block me-3">1 hari yang lalu</small>
+                                                    <small class="text-bold">Balas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <a href="#!">
+                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                    </a>
+                                </div>
+                                <hr style="background-color: black">
+                                <p class="ml-3">
+                                    <a type="button" class="mr-1 text-dark" onclick="openModel()" id="button-modal-komentar-feed"
+                                        href="#" data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                        </svg>
+                                    </a>
+                                    <a type="button" class="ms-3 text-dark" onclick="openModel()" id="button-modal-komentar-feed"
+                                        href="#" data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16">
+                                            <path fill="currentColor"
+                                                d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
+                                        </svg>
+                                    </a>
+                                    <a class="ml-3 mr-1 my-auto text-dark" href="#" data-bs-toggle="modal"
+                                        data-bs-target="#bagikan">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 512 512">
+                                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="32"
+                                                d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
+                                        </svg>
+                                    </a>
+
+
+                                    <button type="button" onclick="confirmation_delete_comment_feed()"
+                                        class="yuhu mr-3 rounded-5 float-end">
+                                        <i class="fa-regular fa-xl fa-bookmark icons1"></i>
+                                    </button>
+                                </p>
+                                <Strong class="my-auto ml-3">500 Suka</Strong>
+                                <small class="text-muted d-block ml-3 mt-1 mb-2">20 Agustus 2023</small>
+                                <hr style="background-color: black">
+                                  <div class="d-flex mb-3 ml-3">
+                                                                    <input type="text"
+                                                                        name="commentVeed" width="500px"
+                                                                        class="form-control rounded-3 me-3"
+                                                                        placeholder="Masukkan komentar...">
+
+                                                                    <button type="submit"
+                                                                        style="height: 40px; margin-right: 20px;  background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                        class="btn  btn-sm text-light"><b
+                                                                            class="me-3 ms-3">Kirim</b></button>
+
+                                                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <script>
     const click1 = document.getElementById("click1");
     const click2 = document.getElementById("c");
