@@ -9,6 +9,17 @@
         .su {
             border-radius: 30px;
         }
+
+        .yuhu {
+                background: none;
+                color: inherit;
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                outline: inherit;
+            }
+            
     </style>
     <div style="overflow-x:hidden">
         <div class="content-header mx-5">
