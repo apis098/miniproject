@@ -455,12 +455,13 @@
                     error: function error(xhr, status, errors) {
                         //alert(xhr.responseText);
                         iziToast.show({
-                            backgroundColor: '#F7941E',
-                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            backgroundColor: '#red',
+                            title: '<i class="fa-solid fa-exclamation"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });

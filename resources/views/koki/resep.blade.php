@@ -410,19 +410,20 @@
                         $("#button-add-recipe").prop('disabled', false);
 
                         window.location.href =
-                            "/koki/index?message-success=Sukses menambahkan resep!";
+                            "{{route('koki.recipe')}}?message-success=Sukses menambahkan resep!";
                     },
                     error: function error(xhr, status, errors) {
                         $("#button-add-recipe").prop('disabled', false);
 
                         //alert(xhr.responseText);
                         iziToast.show({
-                            backgroundColor: '#F7941E',
+                            backgroundColor: 'red',
                             title: '<i class="fa-regular fa-circle-question"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
                             message: xhr.responseText,
                             position: 'topCenter',
+                            progressBarColor: 'white',
                         });
                     }
                 });
