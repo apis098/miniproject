@@ -174,7 +174,7 @@ class VeedController extends Controller
             "up" => $comment_veed,
             "pengirim" => $pengirim_veed,
             "jumlah_like_veed" => $jumlah_like_veed,
-            "veed_id" => $veed_id,
+            "veed_id" => $new->veed_id,
             "time" => $time,
             "commentId" => $commentId,
             "active" => true,
