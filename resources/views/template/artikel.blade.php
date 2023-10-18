@@ -800,7 +800,7 @@
 
             if (message) {
                 iziToast.show({
-                    backgroundColor: 'a1dfb0',
+                    backgroundColor: '#a1dfb0',
                     title: '<i class="fa-solid fa-check"></i>',
                     titleColor: 'dark',
                     messageColor: 'dark',
