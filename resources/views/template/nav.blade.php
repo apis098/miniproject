@@ -973,85 +973,33 @@
                 <form action="{{route('topup.store')}}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <div class="col-lg-3 my-3">
-                            <label for="inputanKecil" id="topUpKecil" class="card border-2" id="card" data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                <input type="radio" id="inputanKecil" style="display: none;" name="inputanTopUp" value="20000">
-                                <div class=card-body">
-                                    <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#" class="card-title"
-                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Kecil
-                                            </a>
-                                            <p class="text-start mt-1"
-                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                Rp. 20.000,00
-                                            </p>
+                        @foreach($categorytopup as $topup)
+                            <div class="col-lg-3 my-3">
+                                <label for="inputanKecil{{$loop->iteration}}" id="topUp{{$loop->iteration}}" class="card border-2" id="card" data-card-selected="false"
+                                    style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                    <input type="radio" id="inputanKecil{{$loop->iteration}}" style="display:none ;" name="inputanTopUp" value="{{$topup->price}}">
+                                    <div class=card-body">
+                                        <div class="d-flex">
+                                            <div class="text-start mx-3 mt-2">
+                                                <a href="#" class="card-title"
+                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                    {{$topup->name}}
+                                                </a>
+                                                <p class="text-start mt-1"
+                                                    style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                    Rp. {{number_format($topup->price,2,',','.')}}
+                                                </p>
+                                            </div>
+                                            <div class="ms-auto">
+                                                <img src="{{ asset('images/'.$topup->foto) }}" class="mr-2" width="100px"
+                                                    height="92px;" alt="">
+                                            </div>
                                         </div>
-                                        <div class="ms-auto">
-                                            <img src="{{ asset('img/4.png') }}" class="mr-2" width="100px"
-                                                height="92px;" alt="">
-                                        </div>
+
                                     </div>
-
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="col-lg-3 my-3">
-                            <label for="inputanSedang" id="topUpSedang" class="card border-2" id="card" data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                {{-- <img src="{{ asset('img/sedang.png') }}"
-                                        class="card-img-top" alt=""> --}}
-                                    <input type="radio"  style="display: none;"  id="inputanSedang" name="inputanTopUp" value="50000">
-                                <div class=card-body">
-                                    <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#" class="card-title"
-                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Sedang
-                                            </a>
-                                            <p class="text-start mt-1"
-                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                Rp. 50.000,00
-                                            </p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <img src="{{ asset('img/5.png') }}" class="mr-2" width="100px"
-                                                height="92px;" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="col-lg-3 my-1">
-                            <label for="inputanBesar" class="card border-2" id="topUpBesar" id="card" data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                <input type="radio"  style="display: none;" id="inputanBesar" name="inputanTopUp" value="100000">
-                                <div class=card-body">
-                                    <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#" class="card-title"
-                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Besar
-                                            </a>
-                                            <p class="text-start mt-1"
-                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                Rp. 100.000,00
-                                            </p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <img src="{{ asset('img/money.png') }}" class="mr-2 mb-2" width="100px"
-                                                height="92px;" alt="">
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </label>
-                        </div>
+                                </label>
+                            </div>
+                        @endforeach
 
                         <div class="col-lg-3 my-3">
                             <div id="topUpLainya" class="card border-2" id="card" data-card-selected="false"
@@ -1086,9 +1034,9 @@
                         </div>
                     </div>
                 <script>
-                    const topUpKecil = document.getElementById('topUpKecil');
-                    const topUpSedang = document.getElementById('topUpSedang');
-                    const topUpBesar = document.getElementById('topUpBesar');
+                    const topUpKecil = document.getElementById('topUp1');
+                    const topUpSedang = document.getElementById('topUp2');
+                    const topUpBesar = document.getElementById('topUp3');
                     const topUpLainya = document.getElementById('topUpLainya');
                     const inputanLainya = document.getElementById('inputanLainya');
                     const inputElement = document.getElementById("inputan");

@@ -10,6 +10,7 @@ use App\Models\likes;
 use App\Models\notifications;
 use App\Models\Reply;
 use App\Models\replyComplaint;
+use App\Models\TopUpCategories;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,7 @@ class ReplyController extends Controller
         $footer = footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -61,7 +63,7 @@ class ReplyController extends Controller
             ->paginate(10);
         }
         $title = "Data balasan keluhan ";
-        return view('replies.detail', compact('messageCount','data','footer', 'title', 'replies','repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
+        return view('replies.detail', compact('categorytopup','messageCount','data','footer', 'title', 'replies','repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
     }
     public function reply(Request $request, $id)
     {

@@ -7,6 +7,7 @@ use App\Models\favorite;
 use App\Models\footer;
 use App\Models\kursus;
 use App\Models\notifications;
+use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +24,7 @@ class detail_kursusController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         if ($userLogin) {
@@ -47,7 +49,7 @@ class detail_kursusController extends Controller
                 ->paginate(10);
         }
         $footer = footer::first();
-        return view('template.detail-kursus', compact('detail_course','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.detail-kursus', compact('categorytopup','detail_course','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
 }

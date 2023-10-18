@@ -6,6 +6,7 @@ use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\notifications;
+use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,11 +28,15 @@ class TopUpController extends Controller
     {
         //
     }
+    public function paymentMethod(Request $request){
+        
+    }
     public function paymentsPage(){
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         if ($userLogin) {
@@ -59,11 +64,29 @@ class TopUpController extends Controller
         $tripay = new TripayPaymentController();
         $channels = $tripay->getPaymentChannels();
      
-        return view('tripay.paymentsMethod', compact('channels','userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
+        return view('tripay.paymentsMethod', compact('categorytopup','channels','userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
     }
     /**
      * Store a newly created resource in storage.
      */
+    public function categories(Request $request){
+        $data = TopUpCategories::count();
+        if($data >= 3){
+            return redirect()->back()->with('error','Jumlah kategori telah mencapai batas maksimum');
+        }else{
+            $categories = new TopUpCategories();
+            $categories->name = $request->name;
+            $categories->price = $request->price;
+            $lastItem = TopUpCategories::latest()->first();
+            if ($lastItem) {
+                $order = intval(substr($lastItem->foto, -5, 1));
+                $nextOrder = $order + 1;
+                $categories->foto = "image{$nextOrder}.png";
+            }
+            $categories->save();
+            return redirect()->back()->with('success','berhasil menambahkan kategori');
+        }
+    }
     public function store(Request $request)
     {   
         $check = Auth::check();

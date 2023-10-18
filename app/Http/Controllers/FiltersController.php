@@ -20,6 +20,7 @@ use App\Models\jenis_kursuses;
 use App\Models\Province;
 use App\Models\Village;
 use App\Models\Regency;
+use App\Models\TopUpCategories;
 use Illuminate\Support\Facades\DB;
 
 class FiltersController extends Controller
@@ -31,6 +32,7 @@ class FiltersController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();  
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -121,7 +123,7 @@ class FiltersController extends Controller
         }
         $recipes = $recipess->paginate(3);
         //dd($recipes);
-        return view('template.resep', compact('toolsCooks', 'messageCount', 'special_day', 'footer', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('categorytopup','toolsCooks', 'messageCount', 'special_day', 'footer', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function filter_resep(Request $request)
     {
@@ -130,6 +132,7 @@ class FiltersController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -223,6 +226,6 @@ class FiltersController extends Controller
             });
         }
         $recipes->paginate(6);
-        return view('template.resep', compact('messageCount', 'toolsCooks', 'footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.resep', compact('categorytopup','messageCount', 'toolsCooks', 'footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

@@ -17,6 +17,7 @@ use App\Models\notifications;
 use App\Models\reseps;
 use App\Models\upload_video;
 use App\Models\Report;
+use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,7 @@ class KokiController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -54,7 +56,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.profile', compact('messageCount', 'recipes', 'videos','notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.profile', compact('categorytopup','messageCount', 'recipes', 'videos','notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function updateProfile(Request $request)
     {
@@ -98,6 +100,7 @@ class KokiController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -115,7 +118,7 @@ class KokiController extends Controller
         }
 
 
-        return view('koki.profilage', compact('messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.profilage', compact('categorytopup','messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function feed(Request $request)
@@ -149,6 +152,7 @@ class KokiController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -164,7 +168,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.beranda', compact("komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.beranda', compact('categorytopup',"komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function incomeKoki(Request $request)
@@ -236,6 +240,7 @@ class KokiController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -247,7 +252,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view("koki.upload-video", compact('userLogin', 'notification', 'favorite', 'footer', 'unreadNotificationCount'));
+        return view("koki.upload-video", compact('categorytopup','userLogin', 'notification', 'favorite', 'footer', 'unreadNotificationCount'));
     }
     public function upload(Request $request)
     {

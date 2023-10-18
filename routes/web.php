@@ -147,6 +147,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status');
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
         Route::delete('report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
+        Route::post('topup-categories',[TopUpController::class,'categories'])->name('categories.topup.store');
          // special_days
          Route::resource('special-days', special_days_controller::class);
         //  kategori makanan
@@ -163,7 +164,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
-        Route::get('payments-method-page',[TopUpController::class,'paymentsPage'])->name('paymesnts.page');
+        Route::get('payments-method-page/{category}/{category_id}/{price}',[TopUpController::class,'paymentsPage'])->name('paymesnts.page');
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
@@ -175,6 +176,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('diskusi',[KokiController::class,'jawaban_diskusi'])->name('koki.diskusi');
         Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
         Route::resource('topup',TopUpController::class);
+        Route::post('payment-method',[TopUpController::class,'paymentMethod'])->name('koki.payment.list');
         // Route::resource('donation',donationController::class);
         Route::post('donation/{user_recipient}',[donationController::class,'store'])->name('donation.store');
     });

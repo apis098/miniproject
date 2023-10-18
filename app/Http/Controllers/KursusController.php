@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
+use App\Models\TopUpCategories;
 use App\Models\Village;
 
 class KursusController extends Controller
@@ -58,6 +59,7 @@ class KursusController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -125,7 +127,7 @@ class KursusController extends Controller
         $semua_kursus = $semua_kursus->paginate(6);
         $kursus_terbaru = $kursus_terbaru->paginate(6);
         $kursus_termurah = $kursus_termurah->paginate(6);
-        return view('template.kursus', compact('kursus_termurah','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('categorytopup','kursus_termurah','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function kursus()
@@ -156,6 +158,7 @@ class KursusController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -171,7 +174,7 @@ class KursusController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('kursus.index', compact('messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
+        return view('kursus.index', compact('categorytopup','messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
 
     /**
@@ -270,6 +273,7 @@ class KursusController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -286,7 +290,7 @@ class KursusController extends Controller
                 ->paginate(10);
         }
         $kursus = kursus::find($id);
-        return view('kursus.kursus-edit', compact('kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('kursus.kursus-edit', compact('kursus','categorytopup','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     /**

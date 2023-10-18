@@ -182,50 +182,122 @@
             }
         }
     </style>
-    <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
-        @csrf
-        <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
-            <div class="my-5 ml-5">
-                <div class="mb-3 row">
-                    <label class="col-sm-1 col-form-label fw-bold">Nama</label>
-                    <div class="col-sm-10">
-                        <input type="text" id="nama" name="nama_paket" class="form-control "
-                            style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Nama Paket...">
+    <div class="d-flex mt-3 ms-5  justify-content-start">
+        <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
+            <li class="nav-item tabs" role="presentation">
+                <a href="#" class="nav-link mr-5 active" id="button-berlangganan" data-bs-toggle="tab"
+                    data-bs-target="#berlangganan" type="button" role="tab" aria-controls="profile"
+                    aria-selected="false">
+                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                        Berlangganan
+                    </h5>
+                    <div id="border1" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;">
+                    </div>
+                </a>
+            </li>
+            <li class="nav-item tabs" role="presentation">
+                <a href="#" class="nav-link mr-5" id="button-topUp" data-bs-toggle="tab"
+                    data-bs-target="#topUp" type="button" role="tab" aria-controls="keluhan"
+                    aria-selected="false">
+                    <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+                        Top up Saldo
+                    </h5>
+                    <div id="border2" class="ms-3" style="width: 70%; height: 80%; border: 1px #F7941E solid; display:none;">
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="berlangganan" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+            <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+                @csrf
+                <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
+                    <div class=" ml-5">
+                        <div class="mb-3 row">
+                            <label class="col-sm-1 col-form-label fw-bold">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="nama" name="nama_paket" class="form-control "
+                                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Nama Paket...">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-1 col-form-label fw-bold">Harga </label>
+                            <div class="col-sm-10">
+                                <input type="text" id="harga" name="harga_paket" class="form-control "
+                                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga Paket...">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
+                            <div class="col-sm-10">
+                                <input type="text" id="durasi" name="durasi_paket" class="form-control "
+                                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Durasi Aktif Paket...">
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
+                            <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
+                                style="width: 45rem;" placeholder="Masukkan Detail Paket...">
+                        </div>
+                        <div id="details"></div>
+                        <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 float-start"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Tambah
+                                Detail</b>
+                        </button> <br>
+                        <button type="submit" class="btn text-light rounded-3 float-end"
+                            style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Tambah
+                                Paket</b>
+                        </button>
                     </div>
                 </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-1 col-form-label fw-bold">Harga </label>
-                    <div class="col-sm-10">
-                        <input type="text" id="harga" name="harga_paket" class="form-control "
-                            style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga Paket...">
-                    </div>
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
-                    <div class="col-sm-10">
-                        <input type="text" id="durasi" name="durasi_paket" class="form-control "
-                            style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Durasi Aktif Paket...">
-                    </div>
-                </div>
-                <div class="d-flex">
-                    <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
-                    <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                        style="width: 45rem;" placeholder="Masukkan Detail Paket...">
-                </div>
-                <div id="details"></div>
-                <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 float-start"
-                    style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                        class="ms-2 me-2">Tambah
-                        Detail</b>
-                </button> <br>
-                <button type="submit" class="btn text-light rounded-3 float-end"
-                    style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                        class="ms-2 me-2">Tambah
-                        Paket</b>
-                </button>
-            </div>
+            </form>
         </div>
-    </form>
+        <div class="tab-pane fade show" id="topUp" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+            <form action="{{ route('categories.topup.store') }}" method="post">
+                @csrf
+                <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
+                    <div class=" ml-5">
+                        <div class="mb-3 row">
+                            <label class="col-sm-1 col-form-label fw-bold">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="nama_topup" name="name" class="form-control "
+                                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Nama Kategori...">
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label class="col-sm-1 col-form-label fw-bold">Harga </label>
+                            <div class="col-sm-10">
+                                <input type="text" id="harga_topup" name="price" class="form-control "
+                                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga default...">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn text-light rounded-3 float-end"
+                            style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Tambah</b>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const btnTopUp = document.getElementById("button-topUp");
+        const btnBerlangganan = document.getElementById("button-berlangganan");
+        const border1 = document.getElementById("border1");
+        const border2 = document.getElementById("border2");
+        btnTopUp.addEventListener('click', function() {
+            border2.style.display = "block";
+            border1.style.display = "none";
+        });
+        btnBerlangganan.addEventListener("click", function() {
+            border1.style.display = "block";
+            border2.style.display = "none";
+        });
+    </script>
     <!-- jQuery CDN -->
     <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.slim.js"

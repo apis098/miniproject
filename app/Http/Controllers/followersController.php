@@ -8,6 +8,7 @@ use App\Models\followers;
 use App\Models\footer;
 use App\Models\notifications;
 use App\Models\reseps;
+use App\Models\TopUpCategories;
 use App\Models\upload_video;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class followersController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -67,7 +69,7 @@ class followersController extends Controller
            }
         }
 
-        return view('template.search-account', compact('messageCount','user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
+        return view('template.search-account', compact('categorytopup','messageCount','user','footer','notification', 'userLogin', 'unreadNotificationCount','favorite'));
     }
 
     public function show_profile($id){
@@ -80,6 +82,7 @@ class followersController extends Controller
         $footer= footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -95,7 +98,7 @@ class followersController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('template.profile-oranglain',compact('upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
+        return view('template.profile-oranglain',compact('categorytopup','upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)
     {

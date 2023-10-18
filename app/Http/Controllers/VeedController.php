@@ -20,6 +20,7 @@ use App\Models\like_veed;
 use App\Models\Reply;
 use App\Models\reply_comment_veed;
 use App\Models\reseps;
+use App\Models\TopUpCategories;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
 
 use function Laravel\Prompts\alert;
@@ -34,6 +35,7 @@ class VeedController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
@@ -69,7 +71,7 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
         $count_comment = comment_veed::count();
-        return view("template.veed", compact("count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact('categorytopup',"count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)
     {
@@ -79,6 +81,7 @@ class VeedController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         $user_following = [];
@@ -112,7 +115,7 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
 
-        return view("template.detailVeed", compact("messageCount", "user_following", "reply_comment_veed", "item_video", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.detailVeed", compact('categorytopup',"messageCount", "user_following", "reply_comment_veed", "item_video", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function sukai_veed(string $user_id, string $veed_id)
     {

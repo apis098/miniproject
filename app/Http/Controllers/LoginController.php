@@ -19,6 +19,7 @@ use App\Models\kursus;
 use App\Models\premiums;
 use App\Models\Province;
 use App\Models\Regency;
+use App\Models\TopUpCategories;
 use App\Models\User;
 use App\Models\Village;
 use Carbon\Carbon;
@@ -91,6 +92,7 @@ class LoginController extends Controller
         $categories_foods = kategori_makanan::all();
         $recipes = reseps::whereDate('created_at', today())->take(3)->get();
         $userLogin = Auth::user();
+        $categorytopup  =  TopUpCategories::all();
         $jumlah_resep = reseps::all()->count();
         $foto_resep = reseps::take(5)->get();
         $footer = footer::first();
@@ -112,7 +114,7 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.home', compact('messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+        return view('template.home', compact('categorytopup','messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
     public function keluhan()
@@ -124,6 +126,7 @@ class LoginController extends Controller
         $foto_resep = reseps::take(5)->get();
         $footer = footer::first();
         $notification = [];
+        $categorytopup  =  TopUpCategories::all();
         $favorite = [];
         $unreadNotificationCount = [];
         $messageCount = [];
@@ -141,7 +144,7 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.keluhan', compact('messageCount', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+        return view('template.keluhan', compact('messageCount','categorytopup', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
     public function penawaranPremium()
@@ -150,6 +153,7 @@ class LoginController extends Controller
         $notification = [];
         $favorite = [];
         $footer = footer::first();
+        $categorytopup  =  TopUpCategories::all();
         $unreadNotificationCount = [];
         $messageCount = [];
         if ($userLogin) {
@@ -167,7 +171,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         $penawaran_premium = premiums::all();
-        return view('template.penawaran-premium', compact('penawaran_premium','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.penawaran-premium', compact('penawaran_premium','categorytopup','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function riwayat()
@@ -177,6 +181,7 @@ class LoginController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -192,6 +197,6 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.riwayat', compact('messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.riwayat', compact('messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

@@ -11,6 +11,7 @@ use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\history_premiums;
+use App\Models\TopUpCategories;
 use App\Models\user_premiums;
 
 class PaymentController extends Controller
@@ -24,6 +25,7 @@ class PaymentController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         if ($userLogin) {
@@ -50,7 +52,7 @@ class PaymentController extends Controller
         $footer = footer::first();
         $channels = new TripayPaymentController();
         $channel = $channels->getPaymentMerchant();
-        return view('testing.paymentTesting', compact('channel', 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
+        return view('testing.paymentTesting', compact('categorytopup','channel', 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
     // memberi request pembayaran ke tripay
     public function dapatkan_transaksi(Request $request) {
@@ -77,6 +79,7 @@ class PaymentController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         if ($userLogin) {
@@ -105,7 +108,7 @@ class PaymentController extends Controller
         $premium = history_premiums::where('reference', $reference)->first();
         $hari = $premium->premium->durasi_paket;
         $detail = $detail_pembayaran->detailPembayaran($reference);
-        return view('testing.detailPaymentTesting', compact("hari","detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
+        return view('testing.detailPaymentTesting', compact('categorytopup',"hari","detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
     // halaman daftar transaksi
     public function daftar_transaksi() {
@@ -116,6 +119,7 @@ class PaymentController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $admin = false;
         $messageCount = [];
         if ($userLogin) {
@@ -141,6 +145,6 @@ class PaymentController extends Controller
         }
         $footer = footer::first();
         $daftar_transaksi = history_premiums::latest()->where('users_id', auth()->user()->id)->get();
-        return view('testing.daftarPaymentTesting', compact("daftar_transaksi", "messageCount", "notification", "unreadNotificationCount", "userLogin", "footer", "favorite"));
+        return view('testing.daftarPaymentTesting', compact('categorytopup',"daftar_transaksi", "messageCount", "notification", "unreadNotificationCount", "userLogin", "footer", "favorite"));
     }
 }

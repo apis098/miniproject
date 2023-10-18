@@ -11,6 +11,7 @@ use App\Models\comment_recipes;
 use App\Models\replyCommentRecipe;
 use App\Models\Report;
 use App\Models\reseps;
+use App\Models\TopUpCategories;
 use App\Models\upload_video;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -48,6 +49,7 @@ class ReportController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount=[];
+        $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -67,7 +69,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
+        return view('report.index',compact('categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
 
     public function keluhan(Request $request){
@@ -93,6 +95,7 @@ class ReportController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount=[];
+        $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -111,7 +114,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.keluhan',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+        return view('report.keluhan',compact('categorytopup','allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
     }   
     public function komentar(Request $request){
@@ -140,6 +143,7 @@ class ReportController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount=[];
+        $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -158,7 +162,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.komentar',compact('allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+        return view('report.komentar',compact('categorytoptup','allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
     }
 
@@ -189,6 +193,7 @@ class ReportController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount=[];
+        $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
@@ -207,7 +212,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.profil',compact('allReport','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
+        return view('report.profil',compact('categorytopup','allReport','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
     }
 

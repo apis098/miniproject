@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\kategori_makanan;
 use App\Models\hari_reseps;
 use App\Models\kategori_reseps;
+use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Validation\Validator as ValidationValidator;
 
@@ -221,6 +222,7 @@ class ResepsController extends Controller
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
+        $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -236,7 +238,7 @@ class ResepsController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view("koki.resep-edit", compact("messageCount", "footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep-edit", compact('categorytopup',"messageCount", "footer", "categories_foods", "edit_resep", "special_days", "notification", 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**

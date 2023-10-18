@@ -15,6 +15,7 @@ use App\Models\notifications;
 use App\Models\footer;
 use App\Models\like_comment_recipes;
 use App\Models\ResepPremiums;
+use App\Models\TopUpCategories;
 use App\Models\User;
 
 class artikels extends Controller
@@ -63,6 +64,7 @@ class artikels extends Controller
         $show_resep = reseps::find($id);
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
-        return view('template.artikel', compact('Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $categorytopup  =  TopUpCategories::all();
+        return view('template.artikel', compact('categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
