@@ -1493,11 +1493,11 @@
                 iziToast.show({
                     backgroundColor: 'red',
                     title: '<i class="fa-solid fa-triangle-exclamation"></i> Peringatan',
-                    titleColor: 'white',
-                    messageColor: 'white',
+                    titleColor: 'dark',
+                    messageColor: 'dark',
                     message: 'Pilih setidaknya satu data yang akan dihapus.',
                     position: 'topCenter',
-                    progressBarColor: 'white',
+                    progressBarColor: 'dark',
                 });
                 return;
             }
@@ -1505,11 +1505,11 @@
             iziToast.show({
                 backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Anda yakin ingin menghapus data terpilih?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                     close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -1529,13 +1529,13 @@
                             },
                             error: function(xhr, status, error) {
                                 iziToast.show({
-                                    backgroundColor: 'red',
+                                    backgroundColor: '#f2a5a8',
                                     title: '<i class="fa-regular fa-circle-xmark"></i> Error',
-                                    titleColor: 'white',
-                                    messageColor: 'white',
+                                    titleColor: 'dark',
+                                    messageColor: 'dark',
                                     message: 'Terjadi kesalahan saat menghapus data',
                                     position: 'topCenter',
-                                    progressBarColor: 'white',
+                                    progressBarColor: 'dark',
                                 });
                                 console.log(xhr.responseText);
                             }

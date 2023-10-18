@@ -13,28 +13,47 @@
         h3 {
             font-family: "poppins", sans-serif
         }
+        .rating {
+        font-size: 20px;
+        }
+
+        .fas.fa-star {
+        color: #ccc; /* Warna saat bintang belum terisi */
+        }
+
+        .fas.fa-star.active {
+        color: #fdd835; /* Warna saat bintang sudah terisi */
+        }
+
     </style>
     <section>
         <div class="container">
             <div class="row">
                 <div class="col lg-6 mb-5 my-5">
+                    <h3 class="mb-3"><b> {{ $detail_course->nama_kursus }} </b></h3>
+
                     <button type="button"class="btn"
                         style=" background: #F7941E;color:white;
-                         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                         @foreach ($detail_course->jenis_kursus as $item)
-                             {{ $item->jenis_kursus }}
-                         @endforeach
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                        @foreach ($detail_course->jenis_kursus as $item)
+                            {{ $item->jenis_kursus }}
+                        @endforeach
                     </button>
-                    <br>
-                    <br>
-                    <h2><b> {{ $detail_course->nama_kursus }} </b></h2>
-                    <div class="my-3 mt-5">
-                        <h3 class="mb-3"><b>Tentang kursus</b></h3>
-
+                    <div class="my-3 mt-3">
                         <p>
                             {{ $detail_course->deskripsi_kursus }}
                         </p>
-
+                        <div class="d-flex">
+                            <div class="rating">
+                            <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span style="color: blue;font-size:15px">(100 ratings)</span>
+                                <span class="mx-3" style="font-size: 15px">200 siswa</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="mt-3">
                         <h3><b>Lokasi kursus</b></h3>
@@ -71,6 +90,51 @@
                             });
                         }
                     </script>
+                      <script>
+                const stars = document.querySelectorAll('.fas.fa-star');
+                let rating = 0;
+
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', () => {
+                        if (index === rating) {
+                            // Jika bintang yang sudah diberi peringkat diklik lagi, batalkan peringkat.
+                            rating = 0;
+                        } else {
+                            rating = index + 1;
+                        }
+
+                        stars.forEach((s, i) => {
+                            if (i <= index) {
+                                s.classList.add('active');
+                            } else {
+                                s.classList.remove('active');
+                            }
+                        });
+
+                        // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
+                        console.log(`Anda memberi peringkat: ${rating} bintang`);
+                    });
+
+                    star.addEventListener('mouseover', () => {
+                        stars.forEach((s, i) => {
+                            if (i <= index) {
+                                s.classList.add('active');
+                            } else {
+                                s.classList.remove('active');
+                            }
+                        });
+                    });
+
+                    star.addEventListener('mouseout', () => {
+                        stars.forEach((s, i) => {
+                            if (i >= rating) {
+                                s.classList.remove('active');
+                            }
+                        });
+                    });
+                });
+
+                        </script>
                 </div>
                 <div class="col-xl-3 col-sm-4 mb-4 my-4">
                     <div class="bg-white shadow-sm py-5 border border-secondary text-center"

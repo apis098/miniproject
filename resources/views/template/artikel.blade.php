@@ -800,13 +800,13 @@
 
             if (message) {
                 iziToast.show({
-                    backgroundColor: 'green',
+                    backgroundColor: 'a1dfb0',
                     title: '<i class="fa-solid fa-check"></i>',
-                    titleColor: 'white',
-                    messageColor: 'white',
+                    titleColor: 'dark',
+                    messageColor: 'dark',
                     message: message,
                     position: 'topRight',
-                    progressBarColor: 'white',
+                    progressBarColor: 'dark',
                 });
                 setTimeout(() => {
                     window.location.href = window.location.origin + window.location.pathname;
@@ -858,12 +858,12 @@
             iziToast.show({
                 backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 close:false,
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -893,12 +893,12 @@
             iziToast.show({
                 backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 close:false,
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -967,11 +967,11 @@
             iziToast.show({
                 backgroundColor: 'red',
                 title: '<i class="fa-solid fa-triangle-exclamation"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Silahkan Login Terlebih Dahulu!',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
             });
         }
 
@@ -979,12 +979,12 @@
             iziToast.show({
                 backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
                 close:false,
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
