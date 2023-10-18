@@ -269,8 +269,6 @@
         }
     </style>
 
-
-
     <div class="d-flex justify-content-start" style="overflow-x: hidden">
         <div class="col-12 my-4 ml-5">
             <ul class="nav mb-2" id="pills-tab" role="tablist">
@@ -305,7 +303,6 @@
                     </a>
                 </li>
             </ul>
-
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
@@ -337,12 +334,17 @@
                     @endif
                     {{-- start tab 1 --}}
                     @foreach ($data['feed_dibuat'] as $feed_buat)
-                        <div class="d-flex mt-4">
+                    <form id="delete-data{{ $feed_buat->id }}" action="/hapus_feed/{{ $feed_buat->id }}" method="post">
+                    @csrf
+                    @method("DELETE")
+
+                    </form>
+                        <div class="d-flex mt-4" id="feed_buat{{ $feed_buat->id }}">
                             <div class="row">
                                 <div class="col-3 mx-2">
-                                    <video src="{{ asset('storage/'.$feed_buat->upload_video) }}"
-                                        style="width: 100%; height: 100%; margin-left: -25px;" class="rounded float-end "
-                                        ></video>
+                                    <video src="{{ asset('storage/' . $feed_buat->upload_video) }}"
+                                        style="width: 100%; height: 100%; margin-left: -25px;"
+                                        class="rounded float-end "></video>
 
                                 </div>
                                 <div class="col-8">
@@ -381,7 +383,7 @@
                                         </a>
 
 
-                                        <button type="button" onclick="confirmation_delete_comment_feed()"
+                                        <button type="button" onclick="DeleteData({{ $feed_buat->id }})"
                                             class="yuhu text-danger rounded-5 float-end mr-4">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
@@ -409,21 +411,22 @@
                                                             Edit
                                                         </h5>
                                                         <button type="button" class="close mr-2" data-dismiss="modal"
-                                                            aria-label="Close">
+                                                            aria-label="Close" id="closeModalEdit{{ $feed_buat->id }}">
                                                             <i class="fa-regular text-dark fa-circle-xmark"></i>
                                                         </button>
                                                     </div>
                                                     <br>
-                                                    <form action="" method="POST">
+                                                    <form id="formUpdateFeed({{ $feed_buat->id }})" action="{{ route('update.feed', $feed_buat->id) }}" method="POST">
                                                         @csrf
+                                                        @method("PUT")
                                                         <div class="">
                                                             <div class="col-sm-10">
-                                                                <textarea class="form-control" value="" name="nama_makanan" id="nama"
+                                                                <textarea class="form-control" value="" name="deskripsi_video" id="nama"
                                                                     style="border-radius:10px; width:120%;"></textarea>
                                                             </div>
                                                         </div>
                                                         <br>
-                                                        <button type="submit"
+                                                        <button type="submit" onclick="buttonUpdateFeed{{ $feed_buat->id }}"
                                                             class="btn btn-sm d-flex justify-content-end text-white"
                                                             style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
                                                     </form>
@@ -444,20 +447,20 @@
                     <div class="search {{ $data['feed_disukai']->count() < 1 ? 'search-tab1' : 'search-tab2-tab3' }} mx-4"
                         style="border-radius: 15px;">
 
-                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                <form action="#" method="GET">
-                                    <input class="placeholder-centered" type="text" name=""
-                                        style="text-align: left;" placeholder="Search for something ...">
-                                    <button type="submit" class="zoom-effects"
-                                        style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </div>
+                        <div class="search-2"> <i class='bx bxs-map'></i>
+                            <form action="#" method="GET">
+                                <input class="placeholder-centered" type="text" name=""
+                                    style="text-align: left;" placeholder="Search for something ...">
+                                <button type="submit" class="zoom-effects"
+                                    style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
 
                     </div>
                     @if ($data['feed_disukai']->count() < 1)
@@ -558,9 +561,9 @@
                         <div class="d-flex mt-4">
                             <div class="row">
                                 <div class="col-3 mx-2">
-                                    <video src="{{ asset('storage/'.$feed_favorite->upload_video) }}"
-                                        style="width: 100%; height: 100%; margin-left: -25px;" class="rounded float-end "
-                                        ></video>
+                                    <video src="{{ asset('storage/' . $feed_favorite->upload_video) }}"
+                                        style="width: 100%; height: 100%; margin-left: -25px;"
+                                        class="rounded float-end "></video>
                                 </div>
                                 <div class="col-8">
                                     <strong class="me-5 w-75"> <a href="#" data-toggle="modal" data-target="#view"
@@ -612,8 +615,6 @@
             {{-- end --}}
         </div>
     </div>
-
-
     {{-- Modal untuk Feed --}}
 
     <div class="modal" id="view">
@@ -827,219 +828,13 @@
         </div>
     </div>
     </div>
-
-
-
-
-
-    <script>
-        const click1 = document.getElementById("click1");
-        const click2 = document.getElementById("c");
-        const border1 = document.getElementById("border1");
-        const border2 = document.getElementById("b");
-        const o = document.getElementById("pp");
-        const a_tab = document.getElementById("a-tab");
-
-        a_tab.addEventListener('click', function(event) {
-            event.preventDefault();
-            o.style.display = "block";
-            border1.style.display = "none";
-            border2.style.display = "none";
-        });
-
-        click1.addEventListener('click', function(event) {
-            event.preventDefault();
-            border1.style.display = "block";
-            border2.style.display = "none";
-            o.style.display = "none";
-        });
-
-        click2.addEventListener("click", function(event) {
-            event.preventDefault();
-            border2.removeAttribute('hidden');
-            border2.style.display = "block";
-            border1.style.display = "none";
-            o.style.display = "none";
-        });
-    </script>
-
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        function confirmation_accept_course(num) {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Apakah Anda yakin ingin menerima kursus ini?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-                        instance, toast) {
-                        instance.hide({
-                            transitionOut: 'fadeOutUp',
-                            onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('form_terima_eksekusi_kursus' + num)
-                                    .submit();
-                            }
-                        }, toast, 'buttonName');
-                    }, false], // true to focus
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-                        instance, toast) {
-                        instance.hide({}, toast, 'buttonName');
-                    }]
-                ],
-                onOpening: function(instance, toast) {
-                    console.info('callback abriu!');
-                },
-                onClosing: function(instance, toast, closedBy) {
-                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-                }
-            });
-        }
-
-        function confirmation_tolak_course(num) {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Apakah Anda yakin tidak ingin menerima kursus ini?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-                        instance, toast) {
-                        instance.hide({
-                            transitionOut: 'fadeOutUp',
-                            onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('form_tolak_eksekusi_kursus' + num)
-                                    .submit();
-                            }
-                        }, toast, 'buttonName');
-                    }, false], // true to focus
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-                        instance, toast) {
-                        instance.hide({}, toast, 'buttonName');
-                    }]
-                ],
-                onOpening: function(instance, toast) {
-                    console.info('callback abriu!');
-                },
-                onClosing: function(instance, toast, closedBy) {
-                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-                }
-            });
-        }
-
-        let debounceTimer;
-
-        $(document).ready(function() {
-            $('#search-input').keyup(function() {
-                var query = $(this).val(); // Ambil nilai dari input pencarian
-                clearTimeout(debounceTimer);
-
-                debounceTimer = setTimeout(function() {
-                    get(1)
-                }, 500);
-
-                // Lakukan permintaan Ajax ke titik akhir pencarian hanya jika panjang query lebih dari 2 karakter
-                if (query.length > 2) {
-                    $.ajax({
-                        url: '/admin/laporan-pengguna', // Ganti URL sesuai dengan titik akhir pencarian Anda
-                        type: 'GET',
-                        data: {
-                            query: query
-                        },
-                        success: function(response) {
-                            // Tampilkan hasil pencarian di dalam div #search-results
-                            $('#search-results').html(response);
-                        },
-                        beforeSend: function() {
-                            $('#loading').html(showLoading())
-                        }
-                    });
-                } else {
-                    // Kosongkan hasil pencarian jika panjang query kurang dari 3 karakter
-                    $('#search-results').empty();
-                }
-            });
-        });
-
-
-        function showLoading() {
-            return `<div class="d-flex justify-content-center" style="">
-        <div class="spinner-border my-auto" role="status">
-            <span class="visually-hidden">Loading...</span>
-            </div></div>`
-
-        }
-    </script>
-
-    <script>
-        const click1 = document.getElementById("click1");
-        const click3 = document.getElementById("click3");
-        const border1 = document.getElementById("border1");
-        const border3 = document.getElementById("border3");
-        const click2 = document.getElementById("c");
-        const border2 = document.getElementById("b");
-        const underline = document.getElementById("f");
-        const buttonTab = document.getElementById("button-tab");
-        const o = document.getElementById("pp");
-        const a_tab = document.getElementById("a-tab");
-        buttonTab.addEventListener("click", function() {
-            tab3();
-        });
-
-        function tab3() {
-            event.preventDefault();
-            border1.style.display = "none";
-            border2.style.display = "none";
-            underline.style.display = "block";
-            underline.removeAttribute('hidden');
-            o.style.display = "none";
-        }
-        a_tab.addEventListener('click', function() {
-            event.preventDefault();
-            o.style.display = "block";
-            underline.style.display = "none";
-            border1.style.display = "none";
-            border2.style.display = "none";
-        });
-        click1.addEventListener('click', function() {
-            event.preventDefault();
-            border1.style.display = "block";
-            border2.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-        click2.addEventListener("click", function() {
-            event.preventDefault();
-            border2.removeAttribute('hidden');
-            border2.style.display = "block";
-            border1.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-    </script>
     </div>
-
-
-
-
-    <div class="d-flex justify-content-center" style="margin-top: -2%;">
-        {{-- {!! $holidays->links('modern-pagination') !!} --}}
-    </div>
-
     <!-- jQuery CDN -->
-    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
-        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
-        function DeleteData() {
+        function DeleteData(num) {
             iziToast.show({
                 backgroundColor: '#F7941E',
                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -1053,7 +848,19 @@
                         instance.hide({
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('delete-form').submit();
+                                $.ajax({
+                                    url: $("#delete-data"+num).attr("action"),
+                                    method: "DELETE",
+                                    headers: {
+                                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                    },
+                                    success: function (response) {
+                                        if (response.success) {
+                                            $("#feed_buat"+num).empty();
+                                        }
+                                    }
+                                });
+                                document.getElementById('delete-data'+num).submit();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
@@ -1070,166 +877,32 @@
                 }
             });
         }
-
-        function buttonAllert(num) {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('formBlokir' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-
-        function confirmation(num) {
-            iziToast.show({
-                backgroundColor: '#F7941E',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
-                message: 'Anda yakin ingin mengahpus laporan?',
-                position: 'topCenter',
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('deleteLaporan' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const favoriteForm = document.querySelectorAll(".favorite-form");
-
-            favoriteForm.forEach(form1 => {
-                form1.addEventListener("submit", async function(event) {
-                    event.preventDefault();
-
-                    const button1 = form1.querySelector(
-                        ".favorite-button"); // Menggunakan form1
-                    const svg1 = button1.querySelector("svg"); // Menggunakan button1
-
-                    const response = await fetch(form1.action, {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-Token": "{{ csrf_token() }}",
-                        },
-                    });
-
-                    if (response.ok) {
-                        const responseData1 = await response.json();
-                        if (responseData1.favorited) {
-                            // Reset button color and SVG here
-                            button1.style.backgroundColor = "#F7941E";
-                            svg1.style.color = "white";
-                            // Modify SVG appearance if needed
-                            document.getElementById("fav-count-" + responseData1.resep_id)
-                                .textContent = responseData1.favorite_count;
-                        } else {
-                            // Update button color and SVG here
-                            button1.style.backgroundColor = "white";
-                            svg1.style.color = "#F7941E";
-                            button1.style.borderColor = "#F7941E";
-                            document.getElementById("fav-count-" + responseData1.resep_id)
-                                .textContent = responseData1.favorite_count;
-                        }
+        function buttonUpdateFeed(num)
+        {
+            $("#formUpdateFeed" + num).submit(function (event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = $(this).serialize();
+                $.ajax({
+                    url: route,
+                    method: "P",
+                    data: data,
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        iziToast.show({
+                            backgroundColor: '#a1dfb0',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message: response.message,
+                            position: 'topCenter',
+                            progressBarColor: 'dark',
+                        });
                     }
                 });
             });
-        });
-    </script>
-    <script>
-        const deskripsi = document.getElementById("deskripsi");
-        const langkah = document.getElementById("langkah");
-        const borderDeskripsi = document.getElementById("borderDeskripsi");
-        const borderLangkah = document.getElementById("borderLangkah");
-        const bahan = document.getElementById("bahan");
-        const borderBahan = document.getElementById("borderBahan");
-        const alat = document.getElementById("alat");
-        const borderAlat = document.getElementById("borderAlat");
-        deskripsi.addEventListener('click', function() {
-            borderDeskripsi.style.display = "block";
-            borderLangkah.style.display = "none";
-            borderBahan.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-        bahan.addEventListener("click", function() {
-            borderBahan.removeAttribute('hidden');
-            borderBahan.style.display = "block";
-            borderDeskripsi.style.display = "none";
-            borderLangkah.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-
-        langkah.addEventListener("click", function() {
-            borderLangkah.style.display = "block";
-            borderDeskripsi.style.display = "none";
-            borderBahan.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-        alat.addEventListener("click", function() {
-            borderAlat.style.display = "block";
-            borderLangkah.style.display = "none";
-            borderDeskripsi.style.display = "none";
-            borderBahan.style.display = "none";
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#search').on('input', function() {
-                var value = $(this).val().toLowerCase();
-                $('#table tbody tr').filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-        // $(document).ready(function() {
-        //     $('#buttonModal').on('click', function() {
-        //         var complaintId = $(this).data('complaint-id');
-
-        //         $.ajax({
-        //             url: '/show-reply-by/' + complaintId,
-        //             type: 'GET',
-        //             dataType: 'html',
-        //             success: function(data) {
-        //                 $('#replyData').html(data); // Memasukkan data balasan ke dalam modal
-        //                 $('#repliesModal').modal('show'); // Menampilkan modal
-        //             },
-        //             error: function() {
-        //                 // Tampilkan pesan error jika data balasan tidak berhasil dimuat
-        //                 $('#replyData').html('<p>Failed to load replies.</p>');
-        //                 $('#repliesModal').modal('show');
-        //             }
-        //         });
-        //     });
-        // });
+        }
     </script>
 @endsection
