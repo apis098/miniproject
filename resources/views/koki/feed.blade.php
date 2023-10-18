@@ -161,11 +161,11 @@
         }
 
         .search-tab1 {
-            width: 190%;
+            width: 175%;
         }
 
         .search-tab2-tab3 {
-            width: 190%;
+            width: 175%;
         }
 
         .search-1 {
@@ -272,7 +272,7 @@
 
 
     <div class="d-flex justify-content-start" style="overflow-x: hidden">
-        <div class="my-4 ml-5">
+        <div class="col-12 my-4 ml-5">
             <ul class="nav mb-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
@@ -330,7 +330,7 @@
 
                     @if ($data['feed_dibuat']->count() < 1)
                         <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: -3em;">
+                            style="margin-top: -3em; margin-right:15%;">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
                             <p><b>Tidak ada data</b></p>
                         </div>
@@ -382,11 +382,11 @@
 
 
                                         <button type="button" onclick="confirmation_delete_comment_feed()"
-                                            class="yuhu text-danger rounded-5 float-end">
+                                            class="yuhu text-danger rounded-5 float-end mr-4">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
 
-                                        <a class="my-auto text-dark float-end mx-2" style="margin-right: -35px;"
+                                        <a class="my-auto text-dark float-end mx-2 mr-2" style="margin-right: -35px;"
                                             href="#" data-toggle="modal" data-target="#edit">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24">
@@ -443,7 +443,7 @@
                     tabindex="0">
                     <div class="search {{ $data['feed_disukai']->count() < 1 ? 'search-tab1' : 'search-tab2-tab3' }} mx-4"
                         style="border-radius: 15px;">
-                        <div class=" ">
+
                             <div class="search-2"> <i class='bx bxs-map'></i>
                                 <form action="#" method="GET">
                                     <input class="placeholder-centered" type="text" name=""
@@ -458,11 +458,11 @@
                                     </button>
                                 </form>
                             </div>
-                        </div>
+
                     </div>
                     @if ($data['feed_disukai']->count() < 1)
                         <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: -3em">
+                            style="margin-top: -3em; margin-right:15%;">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
                             <p><b>Tidak ada data</b></p>
                         </div>
@@ -548,7 +548,7 @@
                     </div>
                     @if ($data['feed_favorite']->count() < 1)
                         <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: -3em">
+                            style="margin-top: -3em; margin-right:15%;">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
                             <p><b>Tidak ada data</b></p>
                         </div>
