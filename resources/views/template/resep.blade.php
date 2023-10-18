@@ -193,7 +193,7 @@
             }
         </style>
 
-        <div class="container py-5">
+        <div class="container py-5 mx-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
                     <h1 class="mb-5"
