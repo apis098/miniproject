@@ -255,7 +255,7 @@
 <body class="sub_page">
     <div class="hero_area">
         <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
-            
+
         </div>
         <!-- header section strats -->
         <div class="container">
@@ -288,13 +288,13 @@
                                             </a>
                                         @endif
                                     </div>
-            
+
                                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                         aria-expanded="false" aria-label="Toggle navigation">
                                         <span class=""> </span>
                                     </button>
-            
+
                                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                         <ul class="navbar-nav mt-2 me-2 justify-content-center " style="margin-left: -2%">
                                             <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
@@ -315,7 +315,7 @@
                                                 style="font-size: 15px">
                                                 <a class="nav-link" id="navbar" href="{{ url('veed') }}"><b>Feed</b></a>
                                             </li>
-            
+
                                             <li class="nav-item {{ request()->is('keluhan') ? 'active' : '' }} me-2"
                                                 style="font-size: 15px">
                                                 <a class="nav-link" id="navbar"
@@ -361,7 +361,7 @@
                                                     <path fill="currentColor"
                                                         d="M10.35 14.01C7.62 13.91 2 15.27 2 18v2h9.54c-2.47-2.76-1.23-5.89-1.19-5.99zm9.08 4.01c.36-.59.57-1.28.57-2.02c0-2.21-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4c.74 0 1.43-.22 2.02-.57L20.59 22L22 20.59l-2.57-2.57zM16 18c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z" />
                                                 </svg></a>
-            
+
                                             <a data-toggle="dropdown" class="text-light ms-1" href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                                     viewBox="0 0 24 24">
@@ -369,7 +369,7 @@
                                                         d="M5 19q-.425 0-.713-.288T4 18q0-.425.288-.713T5 17h1v-7q0-2.075 1.25-3.688T10.5 4.2v-.7q0-.625.438-1.063T12 2q.625 0 1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h1q.425 0 .713.288T20 18q0 .425-.288.713T19 19H5Zm7 3q-.825 0-1.413-.588T10 20h4q0 .825-.588 1.413T12 22Z" />
                                                 </svg>
                                             </a>
-            
+
                                             <div class="text-light me-2">
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-1"
                                                     style="width: 350px; border-radius:13px; margin-right:-92%;">
@@ -919,7 +919,7 @@
                                                     </svg>
                                                     &nbsp; Dashboard
                                                 </a>
-            
+
                                                 <div class="dropdown-divider"></div>
                                                 <a href="{{ route('actionlogout') }}" style="width: 230px;"
                                                     class="dropdown-item text-orange">
@@ -941,7 +941,7 @@
                                         <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects mx-5"
                                             style="border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
                                                 class="me-2 ms-2">Masuk</b></a>
-            
+
                                     </div>
                                     @endif
                             </div>
@@ -1579,7 +1579,7 @@
                         id: '-1',
                         text: 'Masukkan Nama Bahan'
                     },
-                    avo
+
                     dropdownParent: $('#filter')
 
                 });

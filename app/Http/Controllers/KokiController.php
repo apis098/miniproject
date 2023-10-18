@@ -120,7 +120,22 @@ class KokiController extends Controller
 
     public function feed(Request $request)
     {
-        return view('koki.feed');
+        $id_user = Auth::user()->id;
+        $feed_dibuat = upload_video::where("users_id", $id_user)->get();
+        $feed_disukai = upload_video::whereHas("like_veed", function ($query) use ($id_user) {
+            $query->where("users_id", $id_user);
+        });
+        $feed_disukai = $feed_disukai->get();
+        $feed_favorite = upload_video::whereHas("favorite", function ($query) use ($id_user) {
+            $query->where("user_id_from", $id_user);
+        });
+        $feed_favorite = $feed_favorite->get();
+        $data = [
+            "feed_dibuat" => $feed_dibuat,
+            "feed_disukai" => $feed_disukai,
+            "feed_favorite" => $feed_favorite
+        ];
+        return view('koki.feed', compact('data'));
     }
 
     public function beranda(Request $request)
