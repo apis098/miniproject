@@ -947,6 +947,7 @@
                             </div>
                             </nav>
                         </div>
+                        </div>
                         @yield('content-header')
                     </header>
                 </div>

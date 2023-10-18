@@ -1,6 +1,6 @@
-<div style="background-color: #F7941E" class="radius-bawah">
-    @extends('template.nav')
+  @extends('template.nav')
     @section('content')
+@section('content-header')
         <style>
             .radius-bawah {
                 border-bottom-left-radius: 30px;
@@ -192,6 +192,7 @@
                 }
             }
         </style>
+
         <div class="container py-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
@@ -221,7 +222,7 @@
                         </div>
                     </form>
                     <!-- Button Modal -->
-                    <div>
+                    <div class="mt-3">
                         <button class="btn btn-fil" data-bs-toggle="modal" data-bs-target="#filter">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="currentColor"
@@ -232,8 +233,9 @@
                     </div>
                 </div>
             </div>
-        </div><!-- End -->
-    </div>
+        </div>
+        <!-- End -->
+    @endsection
     <div class="ms-5 mt-5 input-group">
         <div class="ms-1">
             <h3 class="fw-bold">Hasil Pencarian</h3>
