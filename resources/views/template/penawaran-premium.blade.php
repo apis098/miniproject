@@ -104,7 +104,7 @@
                                 </div>
                                 <!-- Price -->
                                 <div class="price change-color">
-                                    <h4><span>Rp</span>{{ number_format($item_prem->harga_paket, 2, '.', ',') }}</h4>
+                                    <h4><span>Rp</span>{{ number_format($item_prem->harga_paket, 2, ',', '.') }}</h4>
                                     <p class="change-color">/{{ $item_prem->durasi_paket / 30 }} Bulan</p>
                                 </div>
                             </div>
