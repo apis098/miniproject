@@ -112,16 +112,16 @@
 
             <div class="row mb-1 justify-content-center mx-5 ml-5">
                 <div class="col-sm-3 col-lg-4">
-                    <h3 style=" color: black; font-size: 30px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Top Up</h3>
+                    <h3 style=" color: black; font-size: 30px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Transaksi</h3>
                 </div>
             </div>
 
             <table class="table-custom"" >
                 <thead>
                     <tr>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Pembelian</th>
+                        <th scope="col">Nama Paket</th>
                         <th scope="col">Jumlah</th>
+                        <th scope="col">Masa Aktif</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -129,7 +129,7 @@
 
                         <tr class="mt-5">
                             <td style="border-left:1px solid black;" class="">
-                                <div class="d-flex mx-5">
+                                {{-- <div class="d-flex mx-5">
                                     <a href="">
                                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
                                             class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
@@ -140,10 +140,14 @@
 
 
                                     </div>
-                                </div></td>
-                            <td>Pembelian 1 Bulan</td>
+                                </div> --}}
+
+
+                                Pembelian 1 Bulan
+                            </td>
                             <td>Rp. 40.000,00</td>
-                            <td style="border-right:1px solid black;">   <button type="submit" class="btn ml-2" id="buttonUploadVideo"
+                            <td>Sd 20 November 2023</td>
+                            <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2" id="buttonUploadVideo"
                                 style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                 <span style="font-weight: 600; color: white;">Belum Dibayar</span>
                             </button></td>
