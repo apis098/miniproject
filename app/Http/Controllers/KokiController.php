@@ -299,7 +299,12 @@ class KokiController extends Controller
         $feed = upload_video::find($id);
         Storage::delete("public/" . $feed->upload_video);
         $feed->delete();
-        return redirect()->back()->with('success', 'sukses menghapus feed anda!');
+        $countFeed = upload_video::where("users_id", $id)->exists();
+        return response()->json([
+            "success" => true,
+            "message" => "Sukses menghapus data!",
+            "countFeed" => $countFeed
+        ]);
     }
     public function updatePassword(Request $request)
     {
@@ -312,5 +317,17 @@ class KokiController extends Controller
             $userLogin->save();
             return redirect()->back()->with('success', 'Anda sukses mengupdate password!');
         }
+    }
+    public function updateFeed(Request $request, string $id)
+    {
+        $update = upload_video::find($id);
+        $update->deskripsi_video = $request->deskripsi_video;
+        $update->save();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Sukses mengupdate feed!",
+            "deskripsi_video_baru" => $update->deskripsi_video
+        ]);
     }
 }
