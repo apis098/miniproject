@@ -684,13 +684,13 @@
     <script>
         function confirmation_accept_course(num) {
             iziToast.show({
-                backgroundColor: 'green',
+                backgroundColor: 'a1dfb0',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menerima kursus ini?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -719,13 +719,13 @@
 
         function confirmation_tolak_course(num) {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#f2a5a8',
                 title: '<i class="fa-solid fa-exclamation"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Anda yakin menolak kursus ini',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(

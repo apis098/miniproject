@@ -417,13 +417,13 @@
 
                         //alert(xhr.responseText);
                         iziToast.show({
-                            backgroundColor: 'red',
+                            backgroundColor: '#f2a5a8',
                             title: '<i class="fa-solid fa-exclamation"></i>',
-                            titleColor: 'white',
-                            messageColor: 'white',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
                             message: xhr.responseText,
                             position: 'topCenter',
-                            progressBarColor: 'white',
+                            progressBarColor: 'dark',
                         });
                     }
                 });

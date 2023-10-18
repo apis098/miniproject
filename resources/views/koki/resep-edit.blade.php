@@ -443,7 +443,7 @@
                         }
                         /*
                         iziToast.show({
-                            backgroundColor: '#F7941E',
+                            backgroundColor: '#a1dfb0',
                             title: '<i class="fa-regular fa-circle-question"></i>',
                             titleColor: 'white',
                             messageColor: 'white',
@@ -455,13 +455,13 @@
                     error: function error(xhr, status, errors) {
                         //alert(xhr.responseText);
                         iziToast.show({
-                            backgroundColor: '#red',
+                            backgroundColor: '#f2a5a8',
                             title: '<i class="fa-solid fa-exclamation"></i>',
-                            titleColor: 'white',
-                            messageColor: 'white',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
                             message: xhr.responseText,
                             position: 'topCenter',
-                            progressBarColor: 'white',
+                            progressBarColor: 'dark',
                         });
                     }
                 });

@@ -298,28 +298,28 @@
                     success: function success(response) {
                         if (response.success) {
                             iziToast.show({
-                                backgroundColor: 'green',
+                                backgroundColor: 'a1dfb0',
                                 title: '<i class="fa-solid fa-check"></i>',
-                                titleColor: 'white',
-                                messageColor: 'white',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
                                 message: response.message,
                                 position: 'topCenter',
-                                progressBarColor:'white',
+                                progressBarColor:'dark',
                             });
                             setTimeout(() => {
-                                window.location.href = "{{route('koki.kursus')}}";
+                                window.history.back();
                             }, 5000);
                         }
                     },
                     error: function error(xhr, status, errors) {
                         iziToast.show({
-                            backgroundColor: '#F7941E',
+                            backgroundColor: '##f2a5a8',
                             title: '<i class="fa-solid fa-exclamation"></i>',
-                            titleColor: 'white',
-                            messageColor: 'white',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
                             message: xhr.responseText,
                             position: 'topCenter',
-                            progressBarColor:'white',
+                            progressBarColor:'dark',
                         });
                     }
                 });

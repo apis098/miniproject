@@ -423,13 +423,13 @@
     <script>
         function DeleteData() {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#f2a5a8',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(

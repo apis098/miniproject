@@ -446,13 +446,13 @@
     <script>
         function DeleteData() {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#f2a5a8',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -480,13 +480,13 @@
 
         function buttonAllert(num) {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#f2a5a8',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Anda yakin ingin memblookir pengguna tersebut?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
@@ -508,13 +508,13 @@
 
         function confirmation_accept(num) {
             iziToast.show({
-                backgroundColor: 'green',
+                backgroundColor: '#a4e3b2',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah anda yakin ingin menerima user ini menjadi koki terverifikasi?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
@@ -535,13 +535,13 @@
         }
         function confirmation_menolak(num) {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#f2a5a8',
                 title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'white',
-                messageColor: 'white',
+                titleColor: 'dark',
+                messageColor: 'dark',
                 message: 'Apakah anda yakin ingin menolak user ini menjadi koki terverifikasi?',
                 position: 'topCenter',
-                progressBarColor: 'white',
+                progressBarColor: 'dark',
                 close:false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
