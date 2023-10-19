@@ -108,16 +108,16 @@
         }
 
         /* button{
-                            background-color: #F7941E;
-                            border: none;
-                            height: 45px;
-                            width: 90px;
-                            color: #ffffff;
-                            position: absolute;
-                            right: 1px;
-                            top: 0px;
-                            border-radius: 15px
-                        } */
+                                    background-color: #F7941E;
+                                    border: none;
+                                    height: 45px;
+                                    width: 90px;
+                                    color: #ffffff;
+                                    position: absolute;
+                                    right: 1px;
+                                    top: 0px;
+                                    border-radius: 15px
+                                } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -244,19 +244,19 @@
                     tabindex="0">
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                         <div class="d-flex">
-                        <div class="search">
-                            <div class="row">
-                                <div class="col-12">
+                            <div class="search">
+                                <div class="row">
+                                    <div class="col-12">
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari Kursusmu">
-                                                <button type="submit"
-                                                    class=" zoom-effects cari2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                    viewBox="0 0 256 256">
-                                                    <path fill="currentColor"
-                                                        d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
-                                                </svg></button>
+                                                <button type="submit" class=" zoom-effects cari2"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                        viewBox="0 0 256 256">
+                                                        <path fill="currentColor"
+                                                            d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                    </svg></button>
                                             </form>
                                         </div>
 
@@ -264,248 +264,273 @@
                                 </div>
                             </div>
                             <button
-                            style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn ml-4">
-                            <span style="font-weight: 600">
-                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
-                            </span>
-                        </button>
+                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn ml-4">
+                                <span style="font-weight: 600">
+                                    <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
+                                        Kursus</a>
+                                </span>
+                            </button>
                         </div>
                     </div>
 
                     <div class=" my-4">
                         @if ($kursus_sendiri->count() < 1)
-                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center"
-                                >
+                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center">
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                                 <p><b>Tidak ada data</b></p>
                             </div>
                         @endif
-                    {{-- start tab 1 --}}
-                    <div class="d-flex">
-                        @foreach ($kursus_sendiri as $mycourse)
-                            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
-                                            style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                            alt="...">
-                                    </div>
-                                    <div class="card-body">
+                        {{-- start tab 1 --}}
+                        <div class="d-flex">
+                            @foreach ($kursus_sendiri as $mycourse)
+                                <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                    <div class="row">
                                         <div class="col-12">
-                                           <strong>  @foreach ($mycourse->jenis_kursus as $item)
-                                            {{ $item->jenis_kursus }}
-                                        @endforeach</strong> <br>
-                                            <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
-                                                style="font-family: poppins;border:none;">
-                                                {{ $mycourse->nama_kursus }}
-                                            </a>
+                                            <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
+                                                style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                                alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <button type="button"class="btn"
+                                                    style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                                    @foreach ($mycourse->jenis_kursus as $item)
+                                                        {{ $item->jenis_kursus }}
+                                                    @endforeach
+                                                </button>
+                                                <button type="button"class="btn"
+                                                    style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                                    {{ $mycourse->status }}
+                                                </button>
+                                                <br>
+                                                @if ($mycourse->status === 'diterima')
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                    style="font-family: poppins;border:none;">
+                                                    {{ $mycourse->nama_kursus }}
+                                                </a>
+                                                @else
+                                                <a href="" class="btn"
+                                                    style="font-family: poppins;border:none;">
+                                                    {{ $mycourse->nama_kursus }}
+                                                </a>
+                                                @endif
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    {{-- end --}}
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                        tabindex="0">
+                        {{-- start tab 2 --}}
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="d-flex">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/laporan-pengguna" method="GET">
+                                                    <input type="text" id="search-resep" name="resep" autofocus
+                                                        placeholder="Cari Kursusmu">
+                                                    <button type="submit" class=" zoom-effects cari2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="32"
+                                                            height="32" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                        </svg></button>
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
-
                                 </div>
+                                <button
+                                    style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn ml-4">
+                                    <span style="font-weight: 600">
+                                        <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
+                                            Kursus</a>
+                                    </span>
+                                </button>
                             </div>
-                        @endforeach
+                        </div>
+                        {{-- start tab 1 --}}
+                        <div class="d-flex">
+                            @foreach ($kursus_sendiri as $mycourse)
+                                <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
+                                                class="card-img-top"
+                                                style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                                alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <strong>
+                                                    @foreach ($mycourse->jenis_kursus as $item)
+                                                        {{ $item->jenis_kursus }}
+                                                    @endforeach
+                                                </strong>
+                                                <br>
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                    style="font-family: poppins;border:none;">
+                                                    {{ $mycourse->nama_kursus }}
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                    </div>
+                    {{-- end --}}
+                    <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                        tabindex="0">
+                        {{-- start tab 3 --}}
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="d-flex">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/laporan-pengguna" method="GET">
+                                                    <input type="text" id="search-resep" name="resep" autofocus
+                                                        placeholder="Cari Kursusmu">
+                                                    <button type="submit" class=" zoom-effects cari2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="32"
+                                                            height="32" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                        </svg></button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn ml-4">
+                                    <span style="font-weight: 600">
+                                        <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
+                                            Kursus</a>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        {{-- start tab 1 --}}
+                        <div class="d-flex">
+                            @foreach ($kursus_sendiri as $mycourse)
+                                <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
+                                                class="card-img-top"
+                                                style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                                alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <strong>
+                                                    @foreach ($mycourse->jenis_kursus as $item)
+                                                        {{ $item->jenis_kursus }}
+                                                    @endforeach
+                                                </strong> <br>
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                    style="font-family: poppins;border:none;">
+                                                    {{ $mycourse->nama_kursus }}
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
                 {{-- end --}}
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-                    tabindex="0">
-                    {{-- start tab 2 --}}
-                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                        <div class="d-flex">
-                        <div class="search">
-                            <div class="row">
-                                <div class="col-12">
-                                        <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="/admin/laporan-pengguna" method="GET">
-                                                <input type="text" id="search-resep" name="resep" autofocus
-                                                    placeholder="Cari Kursusmu">
-                                                <button type="submit"
-                                                    class=" zoom-effects cari2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                    viewBox="0 0 256 256">
-                                                    <path fill="currentColor"
-                                                        d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
-                                                </svg></button>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                            style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn ml-4">
-                            <span style="font-weight: 600">
-                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
-                            </span>
-                        </button>
-                        </div>
-                    </div>
-                    {{-- start tab 1 --}}
-                    <div class="d-flex">
-                        @foreach ($kursus_sendiri as $mycourse)
-                            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
-                                            style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                            alt="...">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="col-12">
-                                           <strong>  @foreach ($mycourse->jenis_kursus as $item)
-                                            {{ $item->jenis_kursus }}
-                                        @endforeach</strong> <br>
-                                            <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
-                                                style="font-family: poppins;border:none;">
-                                                {{ $mycourse->nama_kursus }}
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                </div>
-                {{-- end --}}
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
-                    tabindex="0">
-                    {{-- start tab 3 --}}
-                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
-                        <div class="d-flex">
-                        <div class="search">
-                            <div class="row">
-                                <div class="col-12">
-                                        <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="/admin/laporan-pengguna" method="GET">
-                                                <input type="text" id="search-resep" name="resep" autofocus
-                                                    placeholder="Cari Kursusmu">
-                                                <button type="submit"
-                                                    class=" zoom-effects cari2"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                    viewBox="0 0 256 256">
-                                                    <path fill="currentColor"
-                                                        d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
-                                                </svg></button>
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                            style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn ml-4">
-                            <span style="font-weight: 600">
-                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
-                            </span>
-                        </button>
-                        </div>
-                    </div>
-                    {{-- start tab 1 --}}
-                    <div class="d-flex">
-                        @foreach ($kursus_sendiri as $mycourse)
-                            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
-                                            style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                            alt="...">
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="col-12">
-                                           <strong>  @foreach ($mycourse->jenis_kursus as $item)
-                                            {{ $item->jenis_kursus }}
-                                        @endforeach</strong> <br>
-                                            <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
-                                                style="font-family: poppins;border:none;">
-                                                {{ $mycourse->nama_kursus }}
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
             </div>
-            {{-- end --}}
         </div>
-    </div>
-    <script>
-        const click1 = document.getElementById("click1");
-        const click2 = document.getElementById("c");
-        const border1 = document.getElementById("border1");
-        const border2 = document.getElementById("b");
-        const o = document.getElementById("pp");
-        const a_tab = document.getElementById("a-tab");
+        <script>
+            const click1 = document.getElementById("click1");
+            const click2 = document.getElementById("c");
+            const border1 = document.getElementById("border1");
+            const border2 = document.getElementById("b");
+            const o = document.getElementById("pp");
+            const a_tab = document.getElementById("a-tab");
 
-        a_tab.addEventListener('click', function(event) {
-            event.preventDefault();
-            o.style.display = "block";
-            border1.style.display = "none";
-            border2.style.display = "none";
-        });
+            a_tab.addEventListener('click', function(event) {
+                event.preventDefault();
+                o.style.display = "block";
+                border1.style.display = "none";
+                border2.style.display = "none";
+            });
 
-        click1.addEventListener('click', function(event) {
-            event.preventDefault();
-            border1.style.display = "block";
-            border2.style.display = "none";
-            o.style.display = "none";
-        });
+            click1.addEventListener('click', function(event) {
+                event.preventDefault();
+                border1.style.display = "block";
+                border2.style.display = "none";
+                o.style.display = "none";
+            });
 
-        click2.addEventListener("click", function(event) {
-            event.preventDefault();
-            border2.removeAttribute('hidden');
-            border2.style.display = "block";
-            border1.style.display = "none";
-            o.style.display = "none";
-        });
-    </script>
-
+            click2.addEventListener("click", function(event) {
+                event.preventDefault();
+                border2.removeAttribute('hidden');
+                border2.style.display = "block";
+                border1.style.display = "none";
+                o.style.display = "none";
+            });
+        </script>
 
 
 
-    <!-- jQuery CDN -->
-    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
-        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
 
-    
-    <script>
-        $(document).ready(function() {
-            $('#search').on('input', function() {
-                var value = $(this).val().toLowerCase();
-                $('#table tbody tr').filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        <!-- jQuery CDN -->
+        <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
+            integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                $('#search').on('input', function() {
+                    var value = $(this).val().toLowerCase();
+                    $('#table tbody tr').filter(function() {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
             });
-        });
-        // $(document).ready(function() {
-        //     $('#buttonModal').on('click', function() {
-        //         var complaintId = $(this).data('complaint-id');
+            // $(document).ready(function() {
+            //     $('#buttonModal').on('click', function() {
+            //         var complaintId = $(this).data('complaint-id');
 
-        //         $.ajax({
-        //             url: '/show-reply-by/' + complaintId,
-        //             type: 'GET',
-        //             dataType: 'html',
-        //             success: function(data) {
-        //                 $('#replyData').html(data); // Memasukkan data balasan ke dalam modal
-        //                 $('#repliesModal').modal('show'); // Menampilkan modal
-        //             },
-        //             error: function() {
-        //                 // Tampilkan pesan error jika data balasan tidak berhasil dimuat
-        //                 $('#replyData').html('<p>Failed to load replies.</p>');
-        //                 $('#repliesModal').modal('show');
-        //             }
-        //         });
-        //     });
-        // });
-    </script>
-@endsection
+            //         $.ajax({
+            //             url: '/show-reply-by/' + complaintId,
+            //             type: 'GET',
+            //             dataType: 'html',
+            //             success: function(data) {
+            //                 $('#replyData').html(data); // Memasukkan data balasan ke dalam modal
+            //                 $('#repliesModal').modal('show'); // Menampilkan modal
+            //             },
+            //             error: function() {
+            //                 // Tampilkan pesan error jika data balasan tidak berhasil dimuat
+            //                 $('#replyData').html('<p>Failed to load replies.</p>');
+            //                 $('#repliesModal').modal('show');
+            //             }
+            //         });
+            //     });
+            // });
+        </script>
+    @endsection
