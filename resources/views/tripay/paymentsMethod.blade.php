@@ -107,22 +107,27 @@
                     @if ($channel->active)
                         <div class="col-12 col-md-4 col-lg-3 d-flex align-items-stretch">
                             <div class="card w-100">
-                                <div class="card-body shadow" style="min-height: 236px; padding: 1rem;">
-                                    <div class="d-flex mb-2">
-                                        <div class="mr-auto text-left pr-2 payment-name fw-bolder mb-3">{{$channel->name}}</div>
+                                <form action="{{route('topup.transaction')}}" method="POST">
+                                    @csrf
+                                    <div class="card-body shadow" style="min-height: 236px; padding: 1rem;">
+                                        <div class="d-flex mb-2">
+                                            <div class="mr-auto text-left pr-2 payment-name fw-bolder mb-3">{{$channel->name}}</div>
+                                        </div>
+                                        <div class="text-center">
+                                            <img src="{{$channel->icon_url}}" alt="" class="img-fluid" style="height: 35px;">
+                                        </div>
+                                        <input type="hidden" id="method" name="method" value="{{$channel->code}}">
+                                        <input type="hidden" id="price" name="price" value="{{request()->price}}">
+                                        <p class="biaya mt-3 mb-0">Biaya Admin : Rp {{number_format($channel->fee_customer->flat, 2, ',', '.')}}</p>
+                                        <p class="biaya">Kategori : {{$channel->group}}</p>
+                                        <div class="text-end">
+                                            <button type="submit" class="btn text-light follow-btn float-center zoom-effects"
+                                            id="follow-button"
+                                            style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
+                                                class="ms-3 me-3 text-status">Pilih</b></button>
+                                        </div> 
                                     </div>
-                                    <div class="text-center">
-                                        <img src="{{$channel->icon_url}}" alt="" class="img-fluid" style="height: 35px;">
-                                    </div>
-                                    <p class="biaya mt-3 mb-0">Biaya Admin : Rp {{number_format($channel->fee_customer->flat, 2, ',', '.')}}</p>
-                                    <p class="biaya">Kategori : {{$channel->group}}</p>
-                                    <div class="text-end">
-                                        <button type="submit" class="btn text-light follow-btn float-center zoom-effects"
-                                        id="follow-button"
-                                        style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
-                                            class="ms-3 me-3 text-status">Pilih</b></button>
-                                    </div> 
-                                </div>
+                                </form>
                             </div>
                         </div>
                     @endif

@@ -20,7 +20,12 @@ class TopUpController extends Controller
     {
         $tripay = new TripayPaymentController();
     }
-
+    public function transaction(Request $request){
+        $tripay =  new TripayPaymentController();
+        $price = $request->price ;
+        $method = $request->method;
+        $tripay->requestTransaction($method,$price);
+    }
     /**
      * Show the form for creating a new resource.
      */
