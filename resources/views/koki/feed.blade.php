@@ -885,7 +885,7 @@
                 let data = $(this).serialize();
                 $.ajax({
                     url: route,
-                    method: "P",
+                    method: "PUT",
                     data: data,
                     headers: {
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",
