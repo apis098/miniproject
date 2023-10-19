@@ -70,6 +70,128 @@
     <!-- end slider section -->
 @endsection
 
+<section class="container mt-5 mb-5">
+
+    <div class=" input-group">
+        <div class="">
+            <h3 class="fw-bold ml-3">Resep Premium Terfavorit</h3>
+        </div>
+    </div>
+    {{-- @if ($real_reseps->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif --}}
+    <div class="row container mt-4">
+        {{-- @foreach ($real_reseps as $num => $item) --}}
+            <div class="col-lg-4 mb-3">
+                <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
+                    <div class="row">
+                        <div class="col-5">
+                            <img src="{{ asset('images/default.jpg') }}" class="rounded-circle" width="100%"
+                                Favorit height="100%" alt="">
+                        </div>
+                        <div class="col-7">
+                            <span style="font-weight: 600;" class="my-1">Depa Bakar</span> <br>
+                            <div class="d-flex flex-row my-2">
+                                <div class="">
+                                    {{-- @if ($item->User->foto)
+                                        <img src="{{ asset('storage/' . $item->User->foto) }}" width="30px"
+                                            height="30px" style="border-radius: 50%;" alt="">
+                                    @else --}}
+                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                            height="30px" style="border-radius: 50%">
+                                    {{-- @endif --}}
+                                </div> &nbsp;
+                                <div class="mt-1">
+                                    <span>Trisqi Gtg bgt</span>
+                                </div>
+                            </div>
+                            <div class="row my-1">
+                                <div class="col-6 my-2">
+                                    <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
+                                        alt="">
+                                    Top 1
+                                </div>
+                                <div class="col-6">
+                                    <form action=""
+                                        method="get">
+                                        <button type="submit" class="btn btn-light"
+                                            style="background-color: #f39c12; border-radius: 12px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border:none;">
+                                            <span style="font-weight: 600; color: white;">Lihat</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{-- @endforeach --}}
+    </div>
+</section>
+
+<section class="container mt-5 mb-5">
+    <div class=" input-group">
+            <h3 class="fw-bold ml-3 mb-3 mx-3">Feed Premium Terfavorit</h3>
+    </div>
+    {{-- @if ($recipes->count() == 0)
+        <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
+            <img src="images/data.png" style="width: 15em">
+            <p><b>Tidak ada data</b></p>
+        </div>
+    @endif --}}
+    {{-- @foreach ($favorite_resep as $num => $item) --}}
+
+    <div class="d-flex">
+        <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
+            <div class="" style="border: 1px solid
+            #000; border-radius: 15px 15px 0 0;">
+            <!-- Foto dan Nama di atas -->
+            <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
+                    <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
+                        style="max-width: 100%;height: 100%; object-fit: cover;object-position: center;border-top-left-radius:15px; border-top-right-radius: 15px;"
+                        alt="...">
+              </div>
+            </div>
+            <!-- Ikon "Top 1" di belakang -->
+            <div class="card-body" style="border-bottom: 1px solid #000 ;border-left:1px solid #000; border-right:1px solid #000; border-radius: 0 0 15px 15px;">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="d-flex justify-content-start">
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                height="30px" style="border-radius: 50%">
+                            &nbsp;
+                            <div class="text-center">
+                                <span>alex</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex justify-content-end">
+                            <svg width="23" height="20" viewBox="0 0 29 26" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g id="&#240;&#159;&#166;&#134; icon &#34;trophy&#34;">
+                                    <path id="Vector"
+                                        d="M23.0625 3.6444V4.1444H23.5625H28.5V7.28879C28.5 10.0346 26.2872 12.2554 23.5625 12.2554C23.0478 12.2554 22.5492 12.1744 22.0815 12.027L21.731 11.9166L21.521 12.2181C20.2832 13.9951 18.3989 15.2804 16.2127 15.7258L15.8125 15.8073V16.2157V21.8646V22.3646H16.3125H18.125C19.6805 22.3646 20.9728 23.5077 21.2108 25.009H7.78921C8.02718 23.5077 9.31951 22.3646 10.875 22.3646H12.6875H13.1875V21.8646V16.2157V15.8073L12.7873 15.7258C10.6009 15.2803 8.71496 13.9949 7.47921 12.2184L7.26852 11.9155L6.91697 12.0275C6.45122 12.1759 5.95504 12.2554 5.4375 12.2554C2.71284 12.2554 0.5 10.0346 0.5 7.28879V4.1444H5.4375H5.9375V3.6444V0.5H23.0625V3.6444ZM5.4375 11.0924H5.9375V11.0565C5.9987 11.0483 6.0592 11.0388 6.11886 11.028L6.71123 10.9213L6.49765 10.3585C6.13637 9.4066 5.9375 8.37151 5.9375 7.28879V5.46659V4.96659H5.4375H2.15144H1.65144V5.46659V7.28879C1.65144 9.38479 3.34834 11.0924 5.4375 11.0924ZM22.5022 10.3606L22.2891 10.9232L22.8811 11.0298C23.0991 11.0691 23.3264 11.0924 23.5625 11.0924C25.6538 11.0924 27.3486 9.38261 27.3486 7.28879V5.46842V4.96842H26.8486H23.5625H23.0625V5.46842V7.29061C23.0625 8.37319 22.8637 9.40655 22.5022 10.3606Z"
+                                        stroke="black" />
+                                </g>
+                            </svg>
+                            &nbsp;
+                            Top 1
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- @endforeach --}}
+</section>
+
 <!-- offer section -->
 
 <section class="container mt-5 mb-5">
