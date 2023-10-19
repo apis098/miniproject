@@ -139,10 +139,12 @@ class KursusController extends Controller
     public function eksekusi_kursus(string $status, string $id)
     {
         $update_status = kursus::find($id);
-        $update_status->status = $status;
         if ($status === 'diterima') {
+            $update_status->status = $status;
             $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
             $update_status->waktu_diterima = $currentTime->format('Y-m-d H:i:s');
+        } else if($status === "ditolak") {
+            kursus::find($id)->delete();
         }
         $update_status->save();
         return redirect()->back()->with('success', 'sukses mengeksekusi kursus!');

@@ -35,7 +35,6 @@
         }
 
         .btn-outline-warning {}
-
     </style>
 
     <form id="formTambahKursus" action="/koki/kursus" method="post" enctype="multipart/form-data">
@@ -259,7 +258,8 @@
             latitude = posisi.coords.latitude;
             longitude = posisi.coords.longitude;
         });
-        var map = L.map("map");
+        //var map = L.map('map').setView([0, 0], 13);
+        var map = L.map("map").setView([-2.5489, 118.0149], 5);
         var tiles = L.esri.basemapLayer("Streets").addTo(map);
 
         // create the geocoding control and add it to the map
@@ -310,12 +310,13 @@
                                 messageColor: 'dark',
                                 message: response.message,
                                 position: 'topCenter',
-                                progressBarColor:'dark',
+                                progressBarColor: 'dark',
 
                             });
+                            $("#buttonTambahKursus").attr('type', 'button');
                             setTimeout(() => {
-                                window.location.href = "{{route('koki.kursus')}}";
-                            }, 5000);
+                                window.location.href = "{{ route('koki.kursus') }}";
+                            }, 1000);
                         }
                     },
                     error: function error(xhr, status, errors) {
