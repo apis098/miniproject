@@ -105,7 +105,11 @@
                                 <!-- Price -->
                                 <div class="price change-color">
                                     <h4><span>Rp</span>{{ number_format($item_prem->harga_paket, 2, ',', '.') }}</h4>
+                                    @if ($item_prem->durasi_paket % 30 === 0)
                                     <p class="change-color">/{{ $item_prem->durasi_paket / 30 }} Bulan</p>
+                                    @else
+                                    <p class="change-color">/{{ $item_prem->durasi_paket }} Hari</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class="pricing-body animated-card">
