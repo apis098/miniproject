@@ -971,7 +971,8 @@
                         </button>
                     </div>
                 </div>
-                <form action="{{route('topup.store')}}" method="POST">
+                
+                <form action="{{route('payments.method.get')}}" method="POST">
                     @csrf
                     <div class="modal-body">
                         @foreach($categorytopup as $topup)
@@ -1034,71 +1035,71 @@
                                 placeholder="Masukkan nominal lainya...">
                         </div>
                     </div>
-                <script>
-                    const topUpKecil = document.getElementById('topUp1');
-                    const topUpSedang = document.getElementById('topUp2');
-                    const topUpBesar = document.getElementById('topUp3');
-                    const topUpLainya = document.getElementById('topUpLainya');
-                    const inputanLainya = document.getElementById('inputanLainya');
-                    const inputElement = document.getElementById("inputan");
-                    const displayElement = document.getElementById("displayInput");
-                    const anotherText = document.getElementById("anotherText");
-                    topUpKecil.addEventListener('click', function() {
-                        topUpKecil.style.borderColor = "#F7941E";
-                        topUpBesar.style.borderColor = "black";
-                        topUpSedang.style.borderColor = "black";
-                        topUpLainya.style.borderColor = "black";
-                        inputanLainya.style.display = "none";
-                    });
-                    topUpSedang.addEventListener("click", function() {
-                        topUpSedang.style.borderColor = "#F7941E";
-                        topUpKecil.style.borderColor = "black";
-                        topUpBesar.style.borderColor = "black";
-                        topUpLainya.style.borderColor = "black";
-                        inputanLainya.style.display = "none";
-                    });
-                    topUpBesar.addEventListener("click", function() {
-                        topUpBesar.style.borderColor = "#F7941E";
-                        topUpKecil.style.borderColor = "black";
-                        topUpSedang.style.borderColor = "black";
-                        topUpLainya.style.borderColor = "black";
-                        inputanLainya.style.display = "none";
-                    });
-                    topUpLainya.addEventListener('click', function() {
-                        topUpLainya.style.borderColor = "#F7941E";
-                        topUpKecil.style.borderColor = "black";
-                        topUpSedang.style.borderColor = "black";
-                        topUpBesar.style.borderColor = "black";
-                        inputanLainya.style.display = "block";
-                    });
-                    inputElement.addEventListener("input", function() {
-                        const inputValue = inputElement.value;
-                        // Format nilai dengan titik sebagai pemisah ribuan
-                        const formattedValue = formatNumber(inputValue);
-                        // Tampilkan nilai yang diformat pada elemen p
-                        displayElement.textContent = formattedValue;
-                        if (inputValue.trim() === "") {
-                            displayElement.textContent = "Masukkan nilai...";
-                            anotherText.textContent = "Lainya";
-                        } else {
-                            anotherText.textContent = "Jumlah lainya:"
-                            displayElement.textContent = "Rp. " + formattedValue + ",00";
+                    <script>
+                        const topUpKecil = document.getElementById('topUp1');
+                        const topUpSedang = document.getElementById('topUp2');
+                        const topUpBesar = document.getElementById('topUp3');
+                        const topUpLainya = document.getElementById('topUpLainya');
+                        const inputanLainya = document.getElementById('inputanLainya');
+                        const inputElement = document.getElementById("inputan");
+                        const displayElement = document.getElementById("displayInput");
+                        const anotherText = document.getElementById("anotherText");
+                        topUpKecil.addEventListener('click', function() {
+                            topUpKecil.style.borderColor = "#F7941E";
+                            topUpBesar.style.borderColor = "black";
+                            topUpSedang.style.borderColor = "black";
+                            topUpLainya.style.borderColor = "black";
+                            inputanLainya.style.display = "none";
+                        });
+                        topUpSedang.addEventListener("click", function() {
+                            topUpSedang.style.borderColor = "#F7941E";
+                            topUpKecil.style.borderColor = "black";
+                            topUpBesar.style.borderColor = "black";
+                            topUpLainya.style.borderColor = "black";
+                            inputanLainya.style.display = "none";
+                        });
+                        topUpBesar.addEventListener("click", function() {
+                            topUpBesar.style.borderColor = "#F7941E";
+                            topUpKecil.style.borderColor = "black";
+                            topUpSedang.style.borderColor = "black";
+                            topUpLainya.style.borderColor = "black";
+                            inputanLainya.style.display = "none";
+                        });
+                        topUpLainya.addEventListener('click', function() {
+                            topUpLainya.style.borderColor = "#F7941E";
+                            topUpKecil.style.borderColor = "black";
+                            topUpSedang.style.borderColor = "black";
+                            topUpBesar.style.borderColor = "black";
+                            inputanLainya.style.display = "block";
+                        });
+                        inputElement.addEventListener("input", function() {
+                            const inputValue = inputElement.value;
+                            // Format nilai dengan titik sebagai pemisah ribuan
+                            const formattedValue = formatNumber(inputValue);
+                            // Tampilkan nilai yang diformat pada elemen p
+                            displayElement.textContent = formattedValue;
+                            if (inputValue.trim() === "") {
+                                displayElement.textContent = "Masukkan nilai...";
+                                anotherText.textContent = "Lainya";
+                            } else {
+                                anotherText.textContent = "Jumlah lainya:"
+                                displayElement.textContent = "Rp. " + formattedValue + ",00";
+                            }
+
+                        });
+
+                        function formatNumber(number) {
+                            // Hapus semua titik yang ada
+                            const cleanValue = number.replace(/\./g, '');
+
+                            // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                            return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                         }
-
-                    });
-
-                    function formatNumber(number) {
-                        // Hapus semua titik yang ada
-                        const cleanValue = number.replace(/\./g, '');
-
-                        // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
-                        return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                    }
-                </script>
-                <button type="submit" id="buttonCommentVeed"
-                    style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                    class="btn btn-sm text-light mb-3 mx-4">
-                    <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
+                        </script>
+                    <button type="submit" id="buttonCommentVeed"
+                        style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                        class="btn btn-sm text-light mb-3 mx-4">
+                        <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
                 </form>
             </div>
         </div>

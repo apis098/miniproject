@@ -29,9 +29,15 @@ class TopUpController extends Controller
         //
     }
     public function paymentMethod(Request $request){
-        
+        if($request->inputanLainya != null){
+            $price = $request->inputanLainya;
+            return redirect('/koki/payments-method-page/'.$price);
+          }else{
+            $price = $request->inputanTopUp;
+            return redirect('/koki/payments-method-page/'.$price);
+          }
     }
-    public function paymentsPage($category,$category_id,$price){
+    public function paymentsPage(){
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];

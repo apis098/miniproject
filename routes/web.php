@@ -125,6 +125,7 @@ Route::prefix('share-content')->group(function (){
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
+        Route::put('/topup/categories/{id}', [TopUpController::class, 'update'])->name('update.categories');
         Route::get('complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
         Route::get('reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin.index');
@@ -164,7 +165,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
         Route::resource('resep', ResepsController::class);
-        Route::get('payments-method-page/{category}/{category_id}/{price}',[TopUpController::class,'paymentsPage'])->name('paymesnts.page');
+        Route::get('payments-method-page/{price?}',[TopUpController::class,'paymentsPage'])->name('payments.page');
+        Route::post('get-payment-method',[TopUpController::class,'paymentMethod'])->name('payments.method.get');
         Route::resource('kursus', KursusController::class);
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
