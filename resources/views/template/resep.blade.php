@@ -198,7 +198,7 @@
                 <div class="col-lg-8 mx-auto">
                     <h1 class="mb-5"
                         style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
-                        Cari resep masakan <br />
+                        Cari resep masakan <br/>
                     </h1>
                     <form action="">
                         <div class="container">

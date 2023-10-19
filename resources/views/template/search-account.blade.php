@@ -1,6 +1,6 @@
-<div style="background-color: #F7941E" class="radius-bawah">
     @extends('template.nav')
     @section('content')
+    @section('content-header')
         <style>
             .radius-bawah {
                 border-bottom-left-radius: 30px;
@@ -150,7 +150,7 @@
             }
         </style>
 
-        <div class="container py-5">
+        <div class="container py-5 mx-5">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
                     <h1 class=" font-poppins mb-5"><b>Temukan teman <br> memasak</b></h1>
@@ -178,7 +178,7 @@
                 </div>
             </div>
         </div><!-- End -->
-    </div>
+        @endsection
 
     <div class="ms-5 mt-5 input-group">
         <div class="ms-3">
@@ -248,7 +248,7 @@
                                         href="/roomchat/{{ $row->id }}"><b><i
                                                 class="fa-regular fa-comment-dots mb-1 mt-1"></i></b></a>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </a>
@@ -288,7 +288,7 @@
                             if(responseData.hisFollowing){
                                 button.textContent = "Ikuti balik";
                             }else{
-                                button.textContent = "Ikuti";   
+                                button.textContent = "Ikuti";
                             }
                         }
                     }
