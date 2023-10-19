@@ -89,17 +89,21 @@ class TripayCallbackController extends Controller
             $user = User::find($id_user);
 
             $user->status_langganan = "sedang berlangganan";
-            if ($user->status_langganan == "sedang berlangganan") {
-                $awal_langganan = $user->akhir_langganan;
+            $awal_langganan = null;
+            if ($user->awal_langganan != null) {
+                $awal_langganan = $user->awal_langganan;
+                $user->awal_langganan = $awal_langganan;
+                $akhir_langganan = new DateTime($user->akhir_langganan);
+                $user->akhir_langganan = $akhir_langganan->add(new DateInterval('P' . $hari . 'D'));
+
             } else {
                 $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
                 $awal_langganan = $currentTime->format('Y-m-d H:i:s');
+                $user->awal_langganan = $awal_langganan;
+                $akhir_langganan = new DateTime($awal_langganan);
+                $user->akhir_langganan = $akhir_langganan->add(new DateInterval('P' . $hari . 'D'));
 
             }
-            $user->awal_langganan = $awal_langganan;
-            $akhir_langganan = new DateTime($awal_langganan);
-            $user->akhir_langganan = $akhir_langganan->add(new DateInterval('P' . $hari . 'D'));
-
 
             $user->save();
 
