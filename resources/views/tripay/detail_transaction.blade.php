@@ -15,11 +15,11 @@
           <div class="row d-flex justify-content-center pb-5">
             <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
               <div class="py-4 d-flex flex-row">
-                <h5><i class="text-orange fa-solid fa-file-invoice-dollar"></i> <b>Detail Transaksi</b> |</h5>
-                <span class="ps-2">Topup</span>
+                <h5><i class="text-orange fa-solid fa-lg fa-file-invoice-dollar"></i> <b>Detail Transaksi</b> |</h5>
+                <span class="ps-2">TopUp</span>
               </div>
               <h4 class="text-orange fw-bolder">Rp. {{number_format($detail_transaction->amount,2,',','.')}}</h4>
-              <h4>#{{$detail_transaction->reference}}0</h4>
+              <h4>#{{$detail_transaction->reference}}</h4>
                 <div class="">
                     <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
                         <b class="text-light">Belum dibayar</b>
@@ -99,11 +99,11 @@
                     </a>
                     <div class="collapse" id="internetBanking{{$loop->iteration}}">
                         <div class="card card-body">
-                                <ul class="list-group list-group-flush">
-                                    @foreach($instruction->steps as $step)
-                                        <li class="text-sm list-group-item p-0"><small>{{$loop->iteration}}. {!! $step !!}</small></li>
-                                    @endforeach
-                                </ul>
+                            <ul class="list-group list-group-flush">
+                                @foreach($instruction->steps as $step)
+                                    <li class="text-sm list-group-item p-0"><small>{{$loop->iteration}}. {!! $step !!}</small></li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                 @endforeach
