@@ -85,6 +85,11 @@ class TripayCallbackController extends Controller
             $id_user = $history_transaksi->users_id;
             $premiums = $history_transaksi->premiums_id;
             $premium = premiums::find($premiums);
+            $saldo = $premium->harga_paket;
+            $admin = User::where('role', 'admin')->first();
+            $total_saldo = $admin->saldo + $saldo;
+            $admin->saldo = $total_saldo;
+            $admin->save();
             $hari = $premium->durasi_paket;
             $user = User::find($id_user);
 
