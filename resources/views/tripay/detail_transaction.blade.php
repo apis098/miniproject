@@ -93,11 +93,11 @@
                   <h4 class="fw-bolder">Instruksi Pembayaran</h4>
                 </div>
                 @foreach($detail_transaction->instructions as $instruction)
-                    <a href="#" data-toggle="collapse" data-target="#internetBanking" class="p-2 d-flex text-dark">
+                    <a href="#" data-toggle="collapse" data-target="#internetBanking{{$loop->iteration}}" class="p-2 d-flex text-dark">
                     <div class="col-8 fs-6">{{$instruction->title}}</div>
                     <div class="ms-auto"><i class="fa-solid fa-chevron-down"></i></div>
                     </a>
-                    <div class="collapse" id="internetBanking">
+                    <div class="collapse" id="internetBanking{{$loop->iteration}}">
                         <div class="card card-body">
                                 <ul class="list-group list-group-flush">
                                     @foreach($instruction->steps as $step)
