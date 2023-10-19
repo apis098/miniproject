@@ -6,6 +6,7 @@ use App\Models\detail_premiums;
 use App\Models\premiums;
 use App\Models\Report;
 use App\Models\reseps;
+use App\Models\TopUpCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -75,9 +76,9 @@ class AdminController extends Controller
     }
 
     public function tawaran()
-    {
-
-        return view('admin.tawaran');
+    {   
+        $categoryTopUp = TopUpCategories::all();
+        return view('admin.tawaran',compact('categoryTopUp'));
     }
 
     public function updateProfile(Request $request)

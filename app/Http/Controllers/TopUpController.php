@@ -31,7 +31,7 @@ class TopUpController extends Controller
     public function paymentMethod(Request $request){
         
     }
-    public function paymentsPage(){
+    public function paymentsPage($category,$category_id,$price){
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
@@ -132,7 +132,13 @@ class TopUpController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = TopUpCategories::findOrFail($id);
+        $data->name = $request->name;
+        $data->price = $request->price;
+        $foto = $data->foto;
+        $data->foto = $foto;
+        $data->save();
+        return redirect()->back()->with('success','Kategori top up berhasil diupdate');
     }
 
     /**

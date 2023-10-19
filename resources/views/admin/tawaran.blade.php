@@ -1,6 +1,5 @@
 @extends('layouts.navbar')
 @section('konten')
-
     @push('style')
         @powerGridStyles
     @endpush
@@ -196,20 +195,21 @@
                 </a>
             </li>
             <li class="nav-item tabs" role="presentation">
-                <a href="#" class="nav-link mr-5" id="button-topUp" data-bs-toggle="tab"
-                    data-bs-target="#topUp" type="button" role="tab" aria-controls="keluhan"
-                    aria-selected="false">
+                <a href="#" class="nav-link mr-5" id="button-topUp" data-bs-toggle="tab" data-bs-target="#topUp"
+                    type="button" role="tab" aria-controls="keluhan" aria-selected="false">
                     <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                         Top up Saldo
                     </h5>
-                    <div id="border2" class="ms-3" style="width: 70%; height: 80%; border: 1px #F7941E solid; display:none;">
+                    <div id="border2" class="ms-3"
+                        style="width: 70%; height: 80%; border: 1px #F7941E solid; display:none;">
                     </div>
                 </a>
             </li>
         </ul>
     </div>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="berlangganan" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
+        <div class="tab-pane fade show active" id="berlangganan" role="tabpanel" aria-labelledby="pills-home-tab"
+            tabindex="0">
             <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
                 @csrf
                 <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
@@ -269,19 +269,112 @@
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-1 col-form-label fw-bold">Harga </label>
-                            <div class="col-sm-10">
-                                <input type="text" id="harga_topup" name="price" class="form-control "
+                            <div class="col-sm-10 d-flex">
+                                <input type="text" id="harga_topup" name="price" class="form-control me-3"
                                     style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga default...">
+                                <button type="submit" class="btn text-light rounded-3 float-end"
+                                    style=" background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-right:-2%;"><b
+                                        class="ms-2 me-2">Simpan</b>
+                                </button>
                             </div>
                         </div>
                         <br>
-                        <button type="submit" class="btn text-light rounded-3 float-end"
-                            style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                class="ms-2 me-2">Tambah</b>
-                        </button>
                     </div>
                 </div>
             </form>
+            <div class="container">
+                <div class="row ">
+                    <div class="d-flex justify-content-start ms-5">
+                        <h5 class="fw-bolder ms-1">
+                            Penawaran kategori topup
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="d-flex justify-content-center">
+                        <table id="table-resep" class="table-custom" style="width: 90%;">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($categoryTopUp as $topup)
+                                    <div id="search-results">
+                                        <tr class="mt-5">
+                                            <td style="border-left:1px solid black;" class="mt">
+                                                {{ $topup->name }}
+                                            </td>
+                                            <td>Rp. {{ number_format($topup->price, 2, ',', '.') }}</td>
+                                            <td style="border-right:1px solid black;">
+                                                <div class="d-flex justify-content-center">
+                                                    <button type="button" data-bs-toggle="modal"
+                                                        data-bs-target="#modalEdit{{ $topup->id }}"
+                                                        class="btn btn-light btn-sm rounded-3 text-light me-2"
+                                                        style="background-color: #F7941E;"><b class="ms-2 me-2 mb-2 mt-2">
+                                                            <i class="fa-solid fa-pencil"></i></b>
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-3">
+                                                        <b class="ms-2 me-2 mb-2 mt-2">
+                                                            <i class="fa-solid fa-trash"></i></b>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </div>
+                                    <div class="modal fade" id="modalEdit{{ $topup->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered " role="document">
+                                            <div class="modal-content" style="border-radius: 15px">
+                                                <div class="modal-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="modal-title" id="exampleModalLabel"
+                                                            style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                                                            Edit</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <br>
+                                                    <form action="{{ route('update.categories',$topup->id) }}" method="POST">
+                                                        @method('PUT')
+                                                        @csrf
+                                                        <div class="">
+                                                            <div class="col-sm-10">
+                                                                <label for="name">
+                                                                    Nama kategori
+                                                                </label>
+                                                                <input type="text" id="name" class="form-control mb-3"
+                                                                    name="name" value="{{$topup->name}}"
+                                                                    style="border-radius:10px; width:120%;">
+                                                                <label for="price">
+                                                                    Harga
+                                                                </label>
+                                                                <input type="text" id="price" class="form-control"
+                                                                    name="price" value="{{$topup->price}}"
+                                                                    style="border-radius:10px; width:120%;">
+                                                                <br>
+                                                                <button type="submit"
+                                                                    class="btn btn-sm text-white d-flex justify-content-xxl-end"
+                                                                    style="  margin-left: 350px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
+                                                                    Simpan
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script>

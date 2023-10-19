@@ -121,14 +121,7 @@
                                         id="follow-button"
                                         style="background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"><b
                                             class="ms-3 me-3 text-status">Pilih</b></button>
-                                    </div> <!----> <!----> <!---->
-                                    {{-- <div class="mt-2 quote">Pembayaran dengan cara scan QR Code yang dapat digunakan di
-                                        berbagai dompet digital seperti OVO, Dana, GoPay dll yang nama pada tagihan
-                                        pembayaran dapat disesuaikan dengan nama merchant. Nama yang tampil : "<b>Nama
-                                            Merchant</b>" <br>
-                                        <b>Supported by: </b><img class="img-fluid ml-2 mt-1"
-                                            src="https://tripay.co.id/images/shopeepay-2.png">
-                                    </div> --}}
+                                    </div> 
                                 </div>
                             </div>
                         </div>

@@ -35,6 +35,7 @@ class ResepsController extends Controller
         $favorite = [];
         $footer = footer::first();
         $unreadNotificationCount = [];
+        $categorytopup = TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -52,7 +53,7 @@ class ResepsController extends Controller
         }
         $categories_food = kategori_makanan::all();
         $special_days = special_days::all();
-        return view("koki.resep", compact('messageCount', 'categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
+        return view("koki.resep", compact('categorytopup','messageCount', 'categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
     /**
