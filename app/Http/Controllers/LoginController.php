@@ -20,6 +20,7 @@ use App\Models\premiums;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\TopUpCategories;
+use App\Models\transactionTopUp;
 use App\Models\User;
 use App\Models\Village;
 use Carbon\Carbon;
@@ -198,6 +199,8 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('template.riwayat', compact('messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $history_top_up = transactionTopUp::where('user_id',auth()->user()->id)->get();
+
+        return view('template.riwayat', compact('history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

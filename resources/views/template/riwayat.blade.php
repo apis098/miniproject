@@ -109,8 +109,8 @@
 </style>
     <div class="container pt-4 px-5">
 
-        <div class="my-4 ml-5">
-            <ul class="nav mb-2" id="pills-tab" role="tablist">
+        <div class="my-4 justify-content-center">
+            <ul class="nav mb-2 d-flex justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
@@ -157,39 +157,36 @@
                     <table class="table-custom"" >
                         <thead>
                             <tr>
-
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Waktu</th>
+                                <th scope="col">Nominal</th>
+                                <th scope="col">Kode Referensi</th>
+                                <th scope="col">Tanggal</th>
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($history_top_up as $history)
                                 <tr class="mt-5">
                                     <td style="border-left:1px solid black;" class="">
-                                        {{-- <div class="d-flex mx-5">
-                                            <a href="">
-                                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                            </a>
-                                            <div class="mt-2">
-
-                                                        <strong>Bunda Rahma</strong>
-
-
-                                            </div>
-                                        </div> --}}
-
-
-                                        Rp. 40.000,00
+                                        Rp. {{number_format($history->price,2,',','.')}}
                                     </td>
-                                    <td>30 November 2023</td>
+                                    <td>#{{$history->reference}}</td>
+                                    <td>{{ $history->created_at->format('j F Y') }}</td>
                                     <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2" id="buttonUploadVideo"
                                         style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                    @if($history->status == "PAID")
+                                        <span style="font-weight: 600; color: white;">Sudah Dibayar</span>
+                                    @elseif($history->status == "UNPAID")
                                         <span style="font-weight: 600; color: white;">Belum Dibayar</span>
+                                    @elseif($history->status == "EXPIRED")
+                                        <span style="font-weight: 600; color: white;">Hangus</span>
+                                    @elseif($history->status == "REFUND")
+                                        <span style="font-weight: 600; color: white;">Dikembalikan</span>
+                                    @else
+                                        <span style="font-weight: 600; color: white;">Gagal</span>
+                                    @endif
                                     </button></td>
                                 </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
 
