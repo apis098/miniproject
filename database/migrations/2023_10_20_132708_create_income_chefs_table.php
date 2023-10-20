@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->foreign("chef_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
-            $table->foreign("feed_id")->references("id")->on("uplaod_video")->onDelete("cascade");
+            $table->foreign("feed_id")->references("id")->on("upload_videos")->onDelete("cascade");
             $table->foreign("resep_id")->references("id")->on("reseps")->onDelete("cascade");
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ShowRecipePremium;
 use App\Models\basic_tips;
 use App\Models\ChMessage;
 use App\Models\comment_recipes;
@@ -22,10 +23,12 @@ class artikels extends Controller
 {
     public function artikel_resep(string $id, string $judul)
     {
+
         // check isPremium
         $r = reseps::find($id);
         $isPremium = $r->isPremium;
         if ($isPremium == "yes") {
+            event(new ShowRecipePremium(Auth::user()->id, $r->user->id, $id, "resep"));
             $Premium = true;
         } elseif($isPremium == "no") {
             $Premium = false;
