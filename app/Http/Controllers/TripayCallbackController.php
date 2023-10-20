@@ -138,7 +138,7 @@ class TripayCallbackController extends Controller
         }
 
         $data = json_decode($json);
-
+        
         if (JSON_ERROR_NONE !== json_last_error()) {
             return Response::json([
                 'success' => false,
@@ -154,7 +154,6 @@ class TripayCallbackController extends Controller
             $transaction = transactionTopUp::where('reference', $tripayReference)
                 ->where('status', '=', 'UNPAID')
                 ->first();
-
             if (!$transaction) {
                 return Response::json([
                     'success' => false,
@@ -165,6 +164,11 @@ class TripayCallbackController extends Controller
             switch ($status) {
                 case 'PAID':
                     $transaction->update(['status' => 'PAID']);
+                    $user = User::findOrFail($transaction->user_id);
+                    $saldo_lama = $user->saldo;
+                    $saldo_baru = $transaction->price;
+                    $user->saldo = $saldo_lama + $saldo_baru;
+                    $user->save();
                     break;
 
                 case 'EXPIRED':
