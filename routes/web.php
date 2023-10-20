@@ -220,7 +220,7 @@ Route::get('/daftar-transaksi', [PaymentController::class, 'daftar_transaksi'])-
 
 Route::post('/callback', [TripayCallbackController::class, "handle"]);
 
-
+Route::post('/callback/top-up',[TripayCallbackController::class,'TopUpHandle']);
 // testing leaflet
 Route::get("/leafletjs", function () {
     return view('testing.leaflet');
