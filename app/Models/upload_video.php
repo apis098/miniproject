@@ -64,5 +64,8 @@ class upload_video extends Model
     {
         return Share::where("feed_id", $this->id)->count();
     }
-   
+    public function AuthenticateFeedPremium($id)
+    {
+        return User::where('id', $id)->where('status_langganan', 'sudah berlangganan')->exists();
+    }
 }

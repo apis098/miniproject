@@ -16,7 +16,7 @@
                         </div>
                         Payment Name : {{ $detail->payment_name }} <br>
                         Amount : RP. {{ number_format($detail->amount, 2, ',', '.') }} <br>
-                        Status : {{ $detail->status }}
+                        Status : <span style="text-transform: uppercase;">{{ $detail_transaksi->status }}</span>
                         <br>
                         Expired Time : {{ date('d F Y, h:i:s A', $detail->expired_time) }} <br>
                     </div>

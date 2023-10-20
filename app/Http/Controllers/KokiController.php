@@ -19,6 +19,7 @@ use App\Models\upload_video;
 use App\Models\Report;
 use App\Models\TopUpCategories;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -168,7 +169,10 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.beranda', compact('categorytopup',"komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $waktuSekarang = Carbon::parse($koki->awal_langganan);
+        $waktuAkhirLangganan = Carbon::parse($koki->akhir_langganan);
+        $waktu = $waktuSekarang->diffInDays($waktuAkhirLangganan);
+        return view('koki.beranda', compact('categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function incomeKoki(Request $request)
@@ -298,7 +302,7 @@ class KokiController extends Controller
     {
         $feed = upload_video::where("id",$id)->first();
         $src = $feed->upload_video;
-        
+
         Storage::delete("public/" . $src);
         $feed->delete();
         $countFeed = upload_video::where("users_id", $id)->exists();

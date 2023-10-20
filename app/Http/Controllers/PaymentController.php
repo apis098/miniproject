@@ -108,7 +108,8 @@ class PaymentController extends Controller
         $premium = history_premiums::where('reference', $reference)->first();
         $hari = $premium->premium->durasi_paket;
         $detail = $detail_pembayaran->detailPembayaran($reference);
-        return view('testing.detailPaymentTesting', compact('categorytopup',"hari","detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
+        $detail_transaksi = history_premiums::where("reference", $reference)->first();
+        return view('testing.detailPaymentTesting', compact('categorytopup',"hari","detail_transaksi","detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
     // halaman daftar transaksi
     public function daftar_transaksi() {

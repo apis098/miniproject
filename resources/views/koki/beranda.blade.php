@@ -11,15 +11,14 @@
         }
 
         .yuhu {
-                background: none;
-                color: inherit;
-                border: none;
-                padding: 0;
-                font: inherit;
-                cursor: pointer;
-                outline: inherit;
-            }
-            
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+        }
     </style>
     <div style="overflow-x:hidden">
         <div class="content-header mx-5">
@@ -27,9 +26,13 @@
                 <div class="col-sm-6">
                     <h4>Selamat datang kembali {{ $koki->name }}</h4>
                     <p>Saldo anda Rp {{ number_format($koki->saldo, 2, ',', '.') }}</p>
+                    <p>Waktu Langganan : {{ $waktu }} Hari</p>
                 </div>
                 <div class="col-sm-6" style="margin-left: 36%;">
                     <div class="d-flex mt-4">
+                        <div class="">
+
+                        </div>
                         @if (Auth::check() && $notification != null)
                             {{-- dropdown notifikasi --}}
                             <a href="{{ url('/roomchat') }}" class="text-dark ">
@@ -49,6 +52,8 @@
                                         d="M5 19q-.425 0-.713-.288T4 18q0-.425.288-.713T5 17h1v-7q0-2.075 1.25-3.688T10.5 4.2v-.7q0-.625.438-1.063T12 2q.625 0 1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h1q.425 0 .713.288T20 18q0 .425-.288.713T19 19H5Zm7 3q-.825 0-1.413-.588T10 20h4q0 .825-.588 1.413T12 22Z" />
                                 </svg>
                             </a>
+
+
 
                             <div class="text-light me-2">
                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3" style="">
@@ -531,7 +536,9 @@
 
                     </div>
                     @endif
+
                 </div>
+
             </div>
 
         </div>
@@ -651,11 +658,13 @@
                                 <div class="border-bottom py-3">
                                     <a href="#" class="text-decoration-none d-flex text-dark">
                                         @if ($commentFeed->user_pengirim->foto)
-                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('storage/'.$commentFeed->user_pengirim->foto) }}" alt=""
-                                        style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0"
+                                                src="{{ asset('storage/' . $commentFeed->user_pengirim->foto) }}"
+                                                alt="" style="width: 40px; height: 40px;">
                                         @else
-                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/default.jpg') }}" alt=""
-                                        style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0"
+                                                src="{{ asset('images/default.jpg') }}" alt=""
+                                                style="width: 40px; height: 40px;">
                                         @endif
                                         <div class="w-100 ms-3">
                                             <div class="d-flex w-100 justify-content-between">
@@ -689,11 +698,13 @@
                                 <div class="border-bottom py-3">
                                     <a href="#" class="text-decoration-none d-flex text-dark">
                                         @if ($commentRecipe->user_pengirim->foto)
-                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('storage/'.$commentRecipe->user_pengirim->foto) }}" alt=""
-                                        style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0"
+                                                src="{{ asset('storage/' . $commentRecipe->user_pengirim->foto) }}"
+                                                alt="" style="width: 40px; height: 40px;">
                                         @else
-                                        <img class="rounded-circle flex-shrink-0" src="{{ asset('images/default.jpg') }}" alt=""
-                                            style="width: 40px; height: 40px;">
+                                            <img class="rounded-circle flex-shrink-0"
+                                                src="{{ asset('images/default.jpg') }}" alt=""
+                                                style="width: 40px; height: 40px;">
                                         @endif
                                         <div class="w-100 ms-3">
                                             <div class="d-flex w-100 justify-content-between">
