@@ -66,6 +66,6 @@ class upload_video extends Model
     }
     public function AuthenticateFeedPremium($id)
     {
-        return User::where('id', $id)->where('status_langganan', 'sudah berlangganan')->exists();
+        return User::where('id',$id)->where('status_langganan', 'sedang berlangganan')->exists();
     }
 }

@@ -273,20 +273,57 @@
                             </style>
                             <!-- Media -->
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                                <video
-                                    @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                @if (Auth::check())
+                                    @if ($item_video->AuthenticateFeedPremium(Auth::user()->id))
+                                        <video class="video-js vjs-theme-city" 
+                                            id="my-video" controls preload="auto" width="615" height="315"
+                                            data-setup="{}">
+                                            <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                                type="video/mp4" />
+                                            <p class="vjs-no-js">
+                                                To view this video please enable JavaScript, and consider upgrading to a
+                                                web browser that
+                                                <a href="https://videojs.com/html5-video-support/"
+                                                    target="_blank">supports HTML5
+                                                    video</a>
+                                            </p>
+                                        </video>
+                                    @else
+                                        <video
+                                            @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                            @else
+                                            class="video-js vjs-theme-city" @endif
+                                            id="my-video" controls preload="auto" width="615" height="315"
+                                            data-setup="{}">
+                                            <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                                type="video/mp4" />
+                                            <p class="vjs-no-js">
+                                                To view this video please enable JavaScript, and consider upgrading to a
+                                                web browser that
+                                                <a href="https://videojs.com/html5-video-support/"
+                                                    target="_blank">supports HTML5
+                                                    video</a>
+                                            </p>
+                                        </video>
+                                    @endif
                                 @else
-                                class="video-js vjs-theme-city" @endif
-                                    id="my-video" controls preload="auto" width="615" height="315"
-                                    data-setup="{}">
-                                    <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
-                                    <p class="vjs-no-js">
-                                        To view this video please enable JavaScript, and consider upgrading to a
-                                        web browser that
-                                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
-                                            video</a>
-                                    </p>
-                                </video>
+                                    <video
+                                        @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                        @else
+                                        class="video-js vjs-theme-city" @endif
+                                        id="my-video" controls preload="auto" width="615" height="315"
+                                        data-setup="{}">
+                                        <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                            type="video/mp4" />
+                                        <p class="vjs-no-js">
+                                            To view this video please enable JavaScript, and consider upgrading to a
+                                            web browser that
+                                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports
+                                                HTML5
+                                                video</a>
+                                        </p>
+                                    </video>
+                                @endif
                                 <a href="#!">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
                                 </a>
@@ -699,7 +736,8 @@
                                             <div class="modal" id="gift">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <form action="{{route('donation.store',$item_video->user->id)}}" method="POST">
+                                                        <form action="{{ route('donation.store', $item_video->user->id) }}"
+                                                            method="POST">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title ml-3"
@@ -719,7 +757,9 @@
                                                                             <img src="{{ asset('img/kecil.png') }}"
                                                                                 class="card-img-top" alt="">
                                                                             <div class=card-body">
-                                                                                <input hidden type="radio" value="5000" name="giftInput" id="inputKecil">
+                                                                                <input hidden type="radio"
+                                                                                    value="5000" name="giftInput"
+                                                                                    id="inputKecil">
                                                                                 <div class="text-center">
                                                                                     <a href="#"
                                                                                         class="card-title text-center"
@@ -740,7 +780,9 @@
                                                                             <img src="{{ asset('img/sedang.png') }}"
                                                                                 class="card-img-top" alt="">
                                                                             <div class=card-body">
-                                                                                <input hidden type="radio" value="10000" name="giftInput" id="mediumInput">
+                                                                                <input hidden type="radio"
+                                                                                    value="10000" name="giftInput"
+                                                                                    id="mediumInput">
                                                                                 <div class="text-center">
                                                                                     <a href="#"
                                                                                         class="card-title text-center"
@@ -761,7 +803,9 @@
                                                                             <img src="{{ asset('img/besar.png') }}"
                                                                                 class="card-img-top" alt="">
                                                                             <div class=card-body">
-                                                                                <input hidden type="radio" value="20000" name="giftInput" id="extraInput">
+                                                                                <input hidden type="radio"
+                                                                                    value="20000" name="giftInput"
+                                                                                    id="extraInput">
                                                                                 <div class="text-center">
                                                                                     <a href="#"
                                                                                         class="card-title text-center"
@@ -777,15 +821,15 @@
 
                                                                     <label for="moreInput" class="col-lg-3 my-1">
                                                                         <button type="button" id="moreGift"
-                                                                            class="card border-2" data-card-selected="false"
+                                                                            class="card border-2"
+                                                                            data-card-selected="false"
                                                                             style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                             <img src="{{ asset('img/lainnya.png') }}"
                                                                                 class="card-img-top" alt="">
                                                                             <div class=card-body">
 
                                                                                 <div class="mx-4 mt-2">
-                                                                                    <a href="#"
-                                                                                        class="card-title "
+                                                                                    <a href="#" class="card-title "
                                                                                         style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
                                                                                 </div>
                                                                                 <p id="displayNumber" class="text-center"
@@ -797,8 +841,8 @@
 
                                                                 </div>
                                                                 <div class="d-flex mt-4 ml-3">
-                                                                    <input type="number" id="moreInput"
-                                                                        name="moreInput" width="500px"
+                                                                    <input type="number" id="moreInput" name="moreInput"
+                                                                        width="500px"
                                                                         class="form-control border-2 rounded-3 me-3"
                                                                         style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
                                                                         placeholder="Masukkan jumlah donasi lainya...">
@@ -869,24 +913,24 @@
                                                     moreInput.style.borderColor = "#F7941E";
                                                 });
                                                 moreInput.addEventListener("input", function() {
-                                                const inputValue = moreInput.value;
-                                                const formattedValue = formatNumber(inputValue);
-                                                displayNumber.textContent = formattedValue;
-                                                if (inputValue.trim() === "") {
-                                                    displayNumber.textContent = "Masukkan nilai";
-                                                } else {
-                                                    displayNumber.textContent = "Rp. " + formattedValue + ",00";
+                                                    const inputValue = moreInput.value;
+                                                    const formattedValue = formatNumber(inputValue);
+                                                    displayNumber.textContent = formattedValue;
+                                                    if (inputValue.trim() === "") {
+                                                        displayNumber.textContent = "Masukkan nilai";
+                                                    } else {
+                                                        displayNumber.textContent = "Rp. " + formattedValue + ",00";
+                                                    }
+
+                                                });
+
+                                                function formatNumber(number) {
+                                                    // Hapus semua titik yang ada
+                                                    const cleanValue = number.replace(/\./g, '');
+
+                                                    // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                                                    return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                                                 }
-
-                                            });
-
-                                            function formatNumber(number) {
-                                                // Hapus semua titik yang ada
-                                                const cleanValue = number.replace(/\./g, '');
-
-                                                // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
-                                                return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                                            }
                                             </script>
                                             <!-- Laporkan, blokir -->
                                             <div class="mx-2">
@@ -1907,17 +1951,17 @@
                                                                                                             <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
                                                                                                                 @if ($reply_replyComment->user_pengirim->foto)
-                                                                                                                <img width="38px"
-                                                                                                                    height="38px"
-                                                                                                                    class="rounded-circle"
-                                                                                                                    src="{{ asset('storage/' . $reply_replyComment->user_pengirim->foto) }}"
-                                                                                                                    alt="{{ $reply_replyComment->user_pengirim->name }}">
+                                                                                                                    <img width="38px"
+                                                                                                                        height="38px"
+                                                                                                                        class="rounded-circle"
+                                                                                                                        src="{{ asset('storage/' . $reply_replyComment->user_pengirim->foto) }}"
+                                                                                                                        alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                                                                                 @else
-                                                                                                                <img width="38px"
-                                                                                                                height="38px"
-                                                                                                                class="rounded-circle"
-                                                                                                                src="{{ asset('images/default.jpg') }}"
-                                                                                                                alt="{{ $reply_replyComment->user_pengirim->name }}">
+                                                                                                                    <img width="38px"
+                                                                                                                        height="38px"
+                                                                                                                        class="rounded-circle"
+                                                                                                                        src="{{ asset('images/default.jpg') }}"
+                                                                                                                        alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                                                                                 @endif
 
                                                                                                             </div>
@@ -1933,7 +1977,8 @@
                                                                                                                 </div>
                                                                                                                 <div
                                                                                                                     class="d-flex">
-                                                                                                                    <a href="">{{ "@".$reply_replyComment->user_pemilik->name." " }}</a>
+                                                                                                                    <a
+                                                                                                                        href="">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
                                                                                                                     <p>{{ $reply_replyComment->komentar }}
                                                                                                                     </p>
                                                                                                                 </div>
@@ -1941,7 +1986,7 @@
                                                                                                             </div>
 
                                                                                                         </div>
-                                                                                                @endforeach
+                                                                                                    @endforeach
                                                                                                 @endforeach
 
                                                                                             </div>
@@ -2484,7 +2529,7 @@
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -2518,7 +2563,7 @@
                 message: 'Apakah Anda yakin ingin menghapus feed anda?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -2552,7 +2597,7 @@
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
