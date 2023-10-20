@@ -21,11 +21,10 @@ class IncomeChefsController extends Controller
         $pemasukan = $saldo_admin / $total_konten_premium;
         $income = income_chefs::where('chef_id', $chef)
         ->where('user_id', $user)->where('status', $status)
-        ->where('pemasukan', $pemasukan)
         ->exists();
         $pengguna = User::find($user);
         if ($chef != $user && $pengguna->role != "admin") {
-            if (!$income) {
+            if ($income != true) {
                 income_chefs::create([
                     "chef_id" => $chef,
                     "user_id" => $user,

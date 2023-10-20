@@ -27,6 +27,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\TripayCallbackController;
+use App\Http\Controllers\IncomeChefsController;
 
 /*
 |--------------------------------------------------------------------------

@@ -3,6 +3,18 @@
     @push('style')
         @powerGridStyles
     @endpush
+    <script>
+           function userAccessFeedPrem(num)
+            {
+                $.ajax({
+                    url: "/pemasukan-koki/"+num+"/{{ Auth::user()->id }}/feed",
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                });
+            }
+    </script>
     <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
@@ -138,24 +150,25 @@
                 </script>
                 <div class="card">
                     <div class="card-body">
-                        @if (Auth::user())
-                            @if (Auth::user()->isSuperUser === 'yes')
-                                <div class="d-flex">
 
-                                    <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                        autocomplete="off" value="no">
-                                    <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
-
-                                    <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
-                                        autocomplete="off" value="yes">
-                                    <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
-                                </div>
-                            @endif
-                        @endif
                         @if (Auth::check())
                             <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
                                 id="formUploadVideo">
                                 @csrf
+                                @if (Auth::user()->isSuperUser === 'yes')
+                                    <div class="d-flex">
+
+                                        <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
+                                            autocomplete="off" value="no">
+                                        <label class="btn btn-select mr-3" id="free"
+                                            for="success-outlined">Gratis</label>
+
+                                        <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
+                                            autocomplete="off" value="yes">
+                                        <label class="btn btn-no-select" id="prem"
+                                            for="danger-outlined">Premium</label>
+                                    </div>
+                                @endif
                                 <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
                                     rows="5" required>{{ old('deskripsi_video') }}</textarea>
                                 <br>
@@ -275,9 +288,8 @@
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                                 @if (Auth::check())
                                     @if ($item_video->AuthenticateFeedPremium(Auth::user()->id, $item_video->id))
-                                        <video class="video-js vjs-theme-city"
-                                            id="my-video" controls preload="auto" width="615" height="315"
-                                            data-setup="{}">
+                                        <video class="video-js vjs-theme-city" onclick="userAccessFeedPrem({{ $item_video->user->id }})" id="my-video" controls preload="auto"
+                                            width="615" height="315" data-setup="{}">
                                             <source src="{{ asset('storage/' . $item_video->upload_video) }}"
                                                 type="video/mp4" />
                                             <p class="vjs-no-js">
@@ -736,7 +748,8 @@
                                             <div class="modal" id="gift">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <form action="{{ route('donation.store', $item_video->user->id) }}"
+                                                        <form
+                                                            action="{{ route('donation.store', $item_video->user->id) }}"
                                                             method="POST">
                                                             @csrf
                                                             <div class="modal-header">
