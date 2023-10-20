@@ -199,7 +199,7 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $history_top_up = transactionTopUp::where('user_id',auth()->user()->id)->get();
+        $history_top_up = transactionTopUp::where('user_id',auth()->user()->id)->latest()->get();
 
         return view('template.riwayat', compact('history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
