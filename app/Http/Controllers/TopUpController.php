@@ -7,6 +7,7 @@ use App\Models\favorite;
 use App\Models\footer;
 use App\Models\notifications;
 use App\Models\TopUpCategories;
+use App\Models\transactionTopUp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,12 +23,21 @@ class TopUpController extends Controller
     }
     public function transaction(Request $request){
         $tripay =  new TripayPaymentController();
-
+        //tripay insert data
         $price = $request->price ;
         $method = $request->method;
-
+        
         $transaction = $tripay->requestTransaction($method,$price);
+        // insert in database 
 
+        transactionTopUp::create([
+            'user_id'=>auth()->user()->id,
+            'price'=>$price,
+            'reference'=>$transaction->reference,
+            'merchant_ref'=>$transaction->merchant_ref,
+            'total_amount'=>$transaction->amount,
+            'status'=>$transaction->status,
+        ]);
         return redirect()->route('detail.transaction',[
             'reference' => $transaction->reference,
 

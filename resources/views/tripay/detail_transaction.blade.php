@@ -22,12 +22,26 @@
               <h4>#{{$detail_transaction->reference}}</h4>
                 <div class="">
                     <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
+                      @if($detail_transaction->status == "PAID")
+                        <b class="text-light">Sudah dibayar</b>
+                      @elseif($detail_transaction->status == "UNPAID")
                         <b class="text-light">Belum dibayar</b>
+                      @elseif($detail_transaction->status == "REFUND")
+                        <b class="text-light">Dikembalikan</b>
+                      @elseif($detail_transaction->status == "EXPIRED")
+                        <b class="text-light">Terlambat</b>
+                      @else
+                        <b class="text-light">Gagal</b>
+                      @endif
                     </div>
                 </div>
+              @php
+                 $expired_time  = $detail_transaction->expired_time;
+                 $time_format = date('Y-m-d g:i A', $expired_time);
+              @endphp
               <div class="rounded d-flex mt-2" style="background-color: #f8f9fa;">
                 <div class="p-2">Tenggat pembayaran:</div>
-                <div class="ms-auto p-2">20 October 2023, 03:08:00 PM</div>
+                <div class="ms-auto p-2">{{$time_format}}</div>
               </div>
               <p class="mt-2 font-italic">
                 <i class="text-orange fa-solid fa-circle-info"></i> Silahkan lakukan pembayaran sebelum tenggat pembayaran,jika anda belum melakukan pembayaran pada tenggat yang ditentukan maka transaksi akan dianggap hangus.
