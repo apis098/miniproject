@@ -64,8 +64,18 @@ class upload_video extends Model
     {
         return Share::where("feed_id", $this->id)->count();
     }
-    public function AuthenticateFeedPremium($id)
+    public function AuthenticateFeedPremium($id, $feed)
     {
-        return User::where('id', $id)->where('status_langganan', 'sudah berlangganan')->exists();
+        $user = User::find($id);
+        $video = upload_video::find($feed);
+        if ($user->role === "admin") {
+            return true;
+        } else if ($user->role === "koki" && $user->status_langganan === "sedang berlangganan") {
+            return true;
+        } else if($video->user->id === $id) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

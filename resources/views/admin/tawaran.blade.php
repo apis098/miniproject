@@ -241,7 +241,7 @@
                                 style="width: 45rem;" placeholder="Masukkan Detail Paket...">
                         </div>
                         <div id="details"></div>
-                        <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 float-start"
+                        <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 mb-3 float-start"
                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                 class="ms-2 me-2">Tambah
                                 Detail</b>
@@ -254,6 +254,230 @@
                     </div>
                 </div>
             </form>
+
+            <style>
+
+.pricing .pricing-item {
+  border: 1px solid #0a0a0a;
+  border-radius: 15px;
+}
+@media (max-width: 991px) {
+  .pricing .pricing-item {
+    margin-bottom: 30px;
+  }
+}
+/* Animasi untuk kartu yang bergetar */
+.animated-card {
+    transition: transform 0.2s; /* Efek transisi untuk perubahan transformasi */
+ }
+
+ .animated-card:hover {
+    transform: translateY(-5px); /* Kartu akan bergerak ke atas saat di-hover */
+ }
+
+.pricing .pricing-item .pricing-heading {
+  padding: 20px 40px 30px 40px;
+  background: #fafafa;
+  border-bottom: 1px solid #a8a8a8;
+  border-radius: 15px;
+}
+
+/* CSS untuk perubahan warna latar belakang saat card di-hover */
+.animated-card .pricing-heading {
+    background-color: #ffffff; /* Warna latar belakang awal (putih) */
+    transition: background-color 0.2s; /* Efek transisi untuk perubahan warna */
+ }
+
+ .animated-card:hover .pricing-heading {
+    background-color: #f7941e; /* Warna latar belakang saat di-hover */
+ }
+ /* CSS untuk perubahan warna teks saat card di-hover */
+.animated-card .change-color {
+    color: #000000; /* Warna teks awal (hitam) */
+    transition: color 0.2s; /* Efek transisi untuk perubahan warna */
+ }
+
+ .animated-card:hover .change-color {
+    color: #ffffff; /* Warna teks saat di-hover (putih) */
+ }
+
+.pricing .pricing-item .pricing-heading .title h6 {
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 50px;
+  border-bottom: 1px solid #050505;
+}
+.pricing .pricing-item .pricing-heading .price {
+  margin-top: 28px;
+}
+.pricing .pricing-item .pricing-heading .price h2 {
+  font-size: 3.625rem;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+.pricing .pricing-item .pricing-heading .price h2 span {
+  font-size: 1.5625rem;
+}
+.pricing .pricing-item .pricing-body {
+  padding: 45px 40px;
+}
+.pricing .pricing-item .pricing-body ul.feature-list li {
+  list-style: none;
+}
+.pricing .pricing-item .pricing-body ul.feature-list li p span {
+  margin-right: 15px;
+}
+.pricing .pricing-item .pricing-body ul.feature-list li p span.available {
+  color: #f7941e;
+}
+.pricing .pricing-item .pricing-body ul.feature-list li p span.unavailable {
+  color: #100f0f;
+}
+.pricing .pricing-item .pricing-body ul.feature-list li:not(:last-child) {
+  margin-bottom: 15px;
+}
+.pricing .pricing-item .pricing-footer {
+  padding-bottom: 40px;
+}
+.pricing .pricing-item.featured {
+  border: none;
+  box-shadow: 0px 0px 30px 0px rgba(11, 29, 66, 0.15);
+}
+.pricing .pricing-item.featured .pricing-heading {
+  background: #f7941e;
+  border-bottom: 1px solid #f7941e;
+}
+.pricing .pricing-item.featured .pricing-heading .title h6 {
+  color: #fff;
+  border-bottom: 1px solid #f7941e;
+}
+.pricing .pricing-item.featured .pricing-heading .price {
+  margin-top: 28px;
+}
+.pricing .pricing-item.featured .pricing-heading .price h2 {
+  color: #fff;
+  font-size: 3.625rem;
+  margin-bottom: 0px;
+}
+.pricing .pricing-item.featured .pricing-heading .price h2 span {
+  font-size: 1.5625rem;
+}
+.pricing .pricing-item.featured .pricing-heading .price p {
+  color: #fff;
+}
+.pricing.two .pricing-item {
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+}
+@media (max-width: 991px) {
+  .pricing.two .pricing-item {
+    margin-bottom: 30px;
+  }
+}
+.pricing.two .pricing-item .pricing-heading {
+  position: relative;
+  margin-bottom: 10px;
+}
+.pricing.two .pricing-item .pricing-heading .title h6 {
+  position: relative;
+}
+.pricing.two .pricing-item .pricing-heading .price {
+  position: relative;
+}
+.pricing.two .pricing-item .pricing-heading:before {
+  content: "";
+  position: absolute;
+  bottom: -25%;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 64px 500px 0 0;
+  border-color: #fafafa transparent transparent transparent;
+}
+@media (max-width: 991px) {
+  .pricing.two .pricing-item .pricing-heading:before {
+    content: none;
+  }
+}
+.pricing.two .pricing-item .pricing-body {
+  padding: 70px 40px 45px;
+}
+.pricing.two .pricing-item .pricing-body ul.feature-list li p span.available {
+  color: #f7941e;
+}
+.pricing.two .pricing-item.featured .pricing-heading:before {
+  border-color: #f7941e transparent transparent transparent;
+}
+
+.beli {
+    border: 1px solid #000000;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 120px;
+
+    /* Tambahkan properti berikut */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+.beli:hover {
+    background-color: #f7941e;
+    color: #fff;
+    border: 1px solid #f7941e;
+}
+
+
+
+            </style>
+
+            <section class="section pricing mx-5 mb-3">
+                <div class="container">
+                    <div class="row">
+                        @if ($penawaran_premium->count() == 0)
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                            <p><b>Tidak ada data</b></p>
+                        </div>
+                    @endif
+                        @foreach ($penawaran_premium as $item_prem)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="pricing-item animated-card">
+                                    <div class="pricing-heading">
+                                        <!-- Title -->
+                                        <div class="title change-color">
+                                            <h6>{{ $item_prem->nama_paket }}</h6>
+                                        </div>
+                                        <!-- Price -->
+                                        <div class="price change-color">
+                                            <h4><span>Rp</span>{{ number_format($item_prem->harga_paket, 2, ',', '.') }}</h4>
+                                            @if ($item_prem->durasi_paket % 30 === 0)
+                                            <p class="change-color">/{{ $item_prem->durasi_paket / 30 }} Bulan</p>
+                                            @else
+                                            <p class="change-color">/{{ $item_prem->durasi_paket }} Hari</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="pricing-body animated-card">
+                                        <!-- Feature List -->
+                                        <ul class="feature-list m-0 p-0">
+                                            @foreach ($item_prem->detail_premium as $item_fiturPrem)
+                                            <li>
+                                                <p style="color: black;"><span class="fa fa-check-circle available"></span>{{ $item_fiturPrem->detail }}</p>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </section>
+
         </div>
         <div class="tab-pane fade show" id="topUp" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
             <form action="{{ route('categories.topup.store') }}" method="post">
@@ -271,7 +495,7 @@
                             <label class="col-sm-1 col-form-label fw-bold">Harga </label>
                             <div class="col-sm-10 d-flex">
                                 <input type="text" id="harga_topup" name="price" class="form-control me-3"
-                                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga default...">
+                                    style="  width: 52rem; margin-left:-15px " placeholder="Masukkan Harga default...">
                                 <button type="submit" class="btn text-light rounded-3 float-end"
                                     style=" background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-right:-2%;"><b
                                         class="ms-2 me-2">Simpan</b>
