@@ -15,7 +15,8 @@ class income_chefs extends Model
         "feed_id",
         "resep_id",
         "status",
-        "pemasukan"
+        "pemasukan",
+        "status_penarikan"
     ];
     public function chef()
     {

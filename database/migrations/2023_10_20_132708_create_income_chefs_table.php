@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger("resep_id")->nullable();
             $table->enum('status', ['resep', 'feed', 'sawer']);
             $table->bigInteger('pemasukan');
+            $table->enum('status_penarikan', ['bisa ditarik', 'sudah ditarik', 'tidak bisa ditarik'])->default('bisa ditarik');
             $table->timestamps();
 
             $table->foreign("chef_id")->references("id")->on("users")->onDelete("cascade");
