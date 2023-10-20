@@ -78,4 +78,8 @@ class upload_video extends Model
             return false;
         }
     }
+    public function income_chefs()
+    {
+        return $this->hasMany(income_chefs::class, "feed_id");
+    }
 }

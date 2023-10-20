@@ -79,4 +79,8 @@ class reseps extends Model
     public function tag_comment() {
         return $this->hasMany(tagReplyComments::class);
     }
+    public function income_chefs()
+    {
+        return $this->hasMany(income_chefs::class, "resep_id");
+    }
 }

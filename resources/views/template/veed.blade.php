@@ -4,10 +4,10 @@
         @powerGridStyles
     @endpush
     <script>
-           function userAccessFeedPrem(num)
+           function userAccessFeedPrem(num, num2)
             {
                 $.ajax({
-                    url: "/pemasukan-koki/"+num+"/{{ Auth::user()->id }}/feed",
+                    url: "/pemasukan-koki/"+num+"/{{ Auth::user()->id }}/"+num2+"/feed",
                     method: "POST",
                     headers: {
                         "X-CSRF-Token": "{{ csrf_token() }}",
@@ -288,7 +288,7 @@
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                                 @if (Auth::check())
                                     @if ($item_video->AuthenticateFeedPremium(Auth::user()->id, $item_video->id))
-                                        <video class="video-js vjs-theme-city" onclick="userAccessFeedPrem({{ $item_video->user->id }})" id="my-video" controls preload="auto"
+                                        <video class="video-js vjs-theme-city" onclick="userAccessFeedPrem({{ $item_video->user->id }}, {{ $item_video->id }})" id="my-video" controls preload="auto"
                                             width="615" height="315" data-setup="{}">
                                             <source src="{{ asset('storage/' . $item_video->upload_video) }}"
                                                 type="video/mp4" />

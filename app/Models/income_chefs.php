@@ -12,6 +12,8 @@ class income_chefs extends Model
     protected $fillable = [
         "chef_id",
         "user_id",
+        "feed_id",
+        "resep_id",
         "status",
         "pemasukan"
     ];
@@ -22,5 +24,13 @@ class income_chefs extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function feed()
+    {
+        return $this->belongsTo(upload_video::class, "feed_id");
+    }
+    public function resep()
+    {
+        return $this->belongsTo(reseps::class, "resep_id");
     }
 }

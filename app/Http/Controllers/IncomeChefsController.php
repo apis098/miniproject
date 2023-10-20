@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 
 class IncomeChefsController extends Controller
 {
-    public function pemasukan_koki($chef, $user, $status)
+    // pemasukan per klik koki untuk feed
+    public function pemasukan_koki($chef, $user, $content,$status)
     {
         // pemasukan per klik dihitung dari  total saldo admin dibagi jumlah konten premium
         $saldoAdmin = User::where('role', 'admin')->first();
@@ -20,7 +21,9 @@ class IncomeChefsController extends Controller
         $total_konten_premium  = $total_resep_premium + $total_feed_premium;
         $pemasukan = $saldo_admin / $total_konten_premium;
         $income = income_chefs::where('chef_id', $chef)
-        ->where('user_id', $user)->where('status', $status)
+        ->where('user_id', $user)
+        ->where('feed_id', $content)
+        ->where('status', $status)
         ->exists();
         $pengguna = User::find($user);
         if ($chef != $user && $pengguna->role != "admin") {
@@ -28,6 +31,7 @@ class IncomeChefsController extends Controller
                 income_chefs::create([
                     "chef_id" => $chef,
                     "user_id" => $user,
+                    "feed_id" => $content,
                     "status" => $status,
                     "pemasukan" => $pemasukan
                 ]);
@@ -45,4 +49,6 @@ class IncomeChefsController extends Controller
             "success" => "true"
         ]);
     }
+    // pemasukan per klik koki untuk resep
+
 }
