@@ -274,8 +274,8 @@
                             <!-- Media -->
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                                 @if (Auth::check())
-                                    @if ($item_video->AuthenticateFeedPremium(Auth::user()->id))
-                                        <video class="video-js vjs-theme-city" 
+                                    @if ($item_video->AuthenticateFeedPremium(Auth::user()->id, $item_video->id))
+                                        <video class="video-js vjs-theme-city"
                                             id="my-video" controls preload="auto" width="615" height="315"
                                             data-setup="{}">
                                             <source src="{{ asset('storage/' . $item_video->upload_video) }}"
