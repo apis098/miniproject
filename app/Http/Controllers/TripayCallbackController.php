@@ -81,15 +81,17 @@ class TripayCallbackController extends Controller
                         'message' => 'Unrecognized payment status',
                     ]);
             }
-
             $history_transaksi = history_premiums::where("reference", $tripayReference)->first();
             $id_user = $history_transaksi->users_id;
             $premiums = $history_transaksi->premiums_id;
             $premium = premiums::find($premiums);
-            $saldo = $premium->harga_paket;
+            $saldo = $premium->harga_paket * 0.8;
+            $saldo_pemasukan = $premium->harga_paket * 0.2;
             $admin = User::where('role', 'admin')->first();
             $total_saldo = $admin->saldo + $saldo;
+            $total_saldo_pemasukan = $admin->saldo_pemasukan + $saldo_pemasukan;
             $admin->saldo = $total_saldo;
+            $admin->saldo_pemasukan = $total_saldo_pemasukan;
             $admin->save();
             $hari = $premium->durasi_paket;
             $user = User::find($id_user);
@@ -136,7 +138,7 @@ class TripayCallbackController extends Controller
         }
 
         $data = json_decode($json);
-         
+
         if (JSON_ERROR_NONE !== json_last_error()) {
             return Response::json([
                 'success' => false,
@@ -152,7 +154,7 @@ class TripayCallbackController extends Controller
             $transaction = transactionTopUp::where('reference', $tripayReference)
                 ->where('status', '=', 'UNPAID')
                 ->first();
-                
+
             if (!$transaction) {
                 return Response::json([
                     'success' => false,

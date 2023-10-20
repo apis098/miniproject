@@ -26,6 +26,7 @@ class User extends Authenticatable
         'biodata',
         'role',
         'saldo',
+        'saldo_pemasukan',
         'foto',
         'isSuperUser',
         'status_langganan',
