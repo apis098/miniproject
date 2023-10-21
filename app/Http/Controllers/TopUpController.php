@@ -40,7 +40,6 @@ class TopUpController extends Controller
         ]);
         return redirect()->route('detail.transaction',[
             'reference' => $transaction->reference,
-
         ]);
     }
     public function detailTransaction($reference){
@@ -75,7 +74,7 @@ class TopUpController extends Controller
         $footer = footer::first();
         $tripay = new TripayPaymentController();
         $detail_transaction = $tripay->detailTransaction($reference);
-     
+
         return view('tripay.detail_transaction', compact('detail_transaction','categorytopup','userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
     }
     /**

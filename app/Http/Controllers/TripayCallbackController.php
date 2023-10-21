@@ -149,7 +149,6 @@ class TripayCallbackController extends Controller
         $transactionId = $data->merchant_ref;
         $tripayReference = $data->reference;
         $status = strtoupper((string) $data->status);
-
         if ($data->is_closed_payment === 1) {
             $transaction = transactionTopUp::where('reference', $tripayReference)
                 ->where('status', '=', 'UNPAID')
@@ -164,11 +163,6 @@ class TripayCallbackController extends Controller
             switch ($status) {
                 case 'PAID':
                     $transaction->update(['status' => 'PAID']);
-                    $user = User::findOrFail($transaction->user_id);
-                    $saldo_lama = $user->saldo;
-                    $saldo_baru = $transaction->price;
-                    $user->saldo = $saldo_lama + $saldo_baru;
-                    $user->save();
                     break;
 
                 case 'EXPIRED':
@@ -187,7 +181,11 @@ class TripayCallbackController extends Controller
             }
 
             $history_transaksi = transactionTopUp::where("reference", $tripayReference)->first();
-
+            $user = User::findOrFail($transaction->user_id);
+            $saldo_lama = $user->saldo;
+            $saldo_baru = $transaction->price;
+            $user->saldo = $saldo_lama + $saldo_baru;
+            $user->save();
             return Response::json(['success' => true]);
         }
     }
