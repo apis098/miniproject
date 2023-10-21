@@ -196,7 +196,7 @@
                                 </svg>
                                 <p
                                     style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
-                                    footer
+                                    Footer
                                 </p>
                             </a>
                         </li>
