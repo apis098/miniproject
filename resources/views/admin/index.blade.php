@@ -90,15 +90,15 @@
                         datasets: [{
                             label: 'Total Pengguna',
                             data: @json($month),
-                            backgroundColor: 'orange',
+                            backgroundColor: 'grey',
                         },{
                             label: 'Pengguna Premium',
                             data: @json($monthPrem),
-                            backgroundColor: 'black',
+                            backgroundColor: 'orange',
                         },{
                             label: 'Koki Terverifikasi',
                             data: @json($monthSuper),
-                            backgroundColor: 'red',
+                            backgroundColor: 'blue',
                         }]
                     },
                     options: {

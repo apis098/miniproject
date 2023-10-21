@@ -606,11 +606,11 @@
                     datasets: [{
                         label: 'Saldo Belum Diambil',
                         data: @json($saldo_belumDiambil),
-                        backgroundColor: 'orange',
+                        backgroundColor: 'green',
                     }, {
                         label: "Saldo Sudah Diambil",
                         data: @json($saldo_sudahDiambil),
-                        backgroundColor: 'green',
+                        backgroundColor: 'orange',
                     }]
                 },
                 options: {

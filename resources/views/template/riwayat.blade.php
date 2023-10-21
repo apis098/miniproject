@@ -1,7 +1,7 @@
 @extends('template.nav')
 @section('content')
-<style>
-          .table-rounded thead th:first-child {
+    <style>
+        .table-rounded thead th:first-child {
             border-top-left-radius: 10px;
         }
 
@@ -105,8 +105,7 @@
         tr {
             padding: 30px;
         }
-
-</style>
+    </style>
     <div class="container pt-4 px-5">
 
         <div class="my-4 justify-content-center">
@@ -115,7 +114,9 @@
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark ms-2" style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Top Up</h5>
+                        <h5 class="text-dark ms-2"
+                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Riwayat Top Up</h5>
                         <div id="border1" class="ms-1" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -125,7 +126,9 @@
                     <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="text-dark" style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Penarikan</h5>
+                        <h5 class="text-dark"
+                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Riwayat Penarikan</h5>
                         <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
@@ -136,7 +139,9 @@
                     <a id="a-tab" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark" style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Transaksi</h5>
+                        <h5 class="text-dark"
+                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Riwayat Transaksi</h5>
                         <div id="pp" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -154,7 +159,7 @@
                         </div>
                     </div> --}}
 
-                    <table class="table-custom"" >
+                    <table class="table-custom"">
                         <thead>
                             <tr>
                                 <th scope="col">Nominal</th>
@@ -164,27 +169,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($history_top_up as $history)
+                            @foreach ($history_top_up as $history)
                                 <tr class="mt-5">
                                     <td style="border-left:1px solid black;" class="">
-                                        Rp. {{number_format($history->price,2,',','.')}}
+                                        Rp. {{ number_format($history->price, 2, ',', '.') }}
                                     </td>
-                                    <td>#{{$history->reference}}</td>
+                                    <td>#{{ $history->reference }}</td>
                                     <td>{{ $history->created_at->format('j F Y') }}</td>
-                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2" id="buttonUploadVideo"
-                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                    @if($history->status == "PAID")
-                                        <span style="font-weight: 600; color: white;">Sudah Dibayar</span>
-                                    @elseif($history->status == "UNPAID")
-                                        <span style="font-weight: 600; color: white;">Belum Dibayar</span>
-                                    @elseif($history->status == "EXPIRED")
-                                        <span style="font-weight: 600; color: white;">Hangus</span>
-                                    @elseif($history->status == "REFUND")
-                                        <span style="font-weight: 600; color: white;">Dikembalikan</span>
-                                    @else
-                                        <span style="font-weight: 600; color: white;">Gagal</span>
-                                    @endif
-                                    </button></td>
+                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                            id="buttonUploadVideo"
+                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                            @if ($history->status == 'PAID')
+                                                <span style="font-weight: 600; color: white;">Sudah Dibayar</span>
+                                            @elseif($history->status == 'UNPAID')
+                                                <span style="font-weight: 600; color: white;">Belum Dibayar</span>
+                                            @elseif($history->status == 'EXPIRED')
+                                                <span style="font-weight: 600; color: white;">Hangus</span>
+                                            @elseif($history->status == 'REFUND')
+                                                <span style="font-weight: 600; color: white;">Dikembalikan</span>
+                                            @else
+                                                <span style="font-weight: 600; color: white;">Gagal</span>
+                                            @endif
+                                        </button></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -198,7 +204,7 @@
 
                     {{-- start tab 2 --}}
 
-                    <table class="table-custom"" >
+                    <table class="table-custom"">
                         <thead>
                             <tr>
 
@@ -208,31 +214,17 @@
                             </tr>
                         </thead>
                         <tbody>
-
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="">
-                                        {{-- <div class="d-flex mx-5">
-                                            <a href="">
-                                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                            </a>
-                                            <div class="mt-2">
-
-                                                        <strong>Bunda Rahma</strong>
-
-
-                                            </div>
-                                        </div> --}}
-
-
-                                        Rp. 40.000,00
-                                    </td>
-                                    <td>20 November 2023</td>
-                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2" id="buttonUploadVideo"
+                            <tr class="mt-5">
+                                <td style="border-left:1px solid black;" class="">
+                                    Rp. 40.000,00
+                                </td>
+                                <td>20 November 2023</td>
+                                <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                        id="buttonUploadVideo"
                                         style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                         <span style="font-weight: 600; color: white;">Menunggu</span>
                                     </button></td>
-                                </tr>
+                            </tr>
 
                         </tbody>
                     </table>
@@ -242,43 +234,49 @@
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
 
-                    <table class="table-custom"" >
+                    <table class="table-custom"">
                         <thead>
                             <tr>
                                 <th scope="col">Nama Paket</th>
                                 <th scope="col">Jumlah</th>
-                                <th scope="col">Masa Aktif</th>
+                                <th scope="col">Detail</th>
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($history_transaksi as $transaksi)
                                 <tr class="mt-5">
                                     <td style="border-left:1px solid black;" class="">
-                                        {{-- <div class="d-flex mx-5">
-                                            <a href="">
-                                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                            </a>
-                                            <div class="mt-2">
-
-                                                        <strong>Bunda Rahma</strong>
-
-
-                                            </div>
-                                        </div> --}}
-
-
-                                        Pembelian 1 Bulan
+                                        {{ $transaksi->premium->nama_paket }}
                                     </td>
-                                    <td>Rp. 40.000,00</td>
-                                    <td>Sd 20 November 2023</td>
-                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2" id="buttonUploadVideo"
-                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                        <span style="font-weight: 600; color: white;">Belum Dibayar</span>
-                                    </button></td>
+                                    <td>Rp. {{ number_format($transaksi->premium->harga_paket, 2, '.', ',') }}</td>
+                                    <td>
+                                        <button type="button" class="btn ml-2 text-light" id="buttonUploadVideo"
+                                            style="background: #F7941E;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                            <a href="/detail-pembayaran/{{ $transaksi->reference }}" style="font-weight: 600;color:#fff;">
+                                                Lihat Detail
+                                            </a>
+                                        </button>
+                                    </td>
+                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                            id="buttonUploadVideo"
+                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                            <span style="font-weight: 600; color: white;">
+                                                @if ($transaksi->status == 'paid')
+                                                    <b class="text-light">Sudah dibayar</b>
+                                                @elseif($transaksi->status == 'unpaid')
+                                                    <b class="text-light">Belum dibayar</b>
+                                                @elseif($transaksi->status == 'refund')
+                                                    <b class="text-light">Dikembalikan</b>
+                                                @elseif($transaksi->status == 'expired')
+                                                    <b class="text-light">Terlambat</b>
+                                                @else
+                                                    <b class="text-light">Gagal</b>
+                                                @endif
+                                            </span>
+                                        </button></td>
                                 </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -319,5 +317,4 @@
             o.style.display = "none";
         });
     </script>
-
 @endsection

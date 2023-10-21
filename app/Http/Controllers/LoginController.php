@@ -13,6 +13,7 @@ use App\Models\reseps;
 use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\history_premiums;
 use App\Models\jenis_kursuses;
 use App\Models\kategori_makanan;
 use App\Models\kursus;
@@ -203,7 +204,7 @@ class LoginController extends Controller
                 ->paginate(10);
         }
         $history_top_up = transactionTopUp::where('user_id',auth()->user()->id)->latest()->get();
-
-        return view('template.riwayat', compact('history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $history_transaksi = history_premiums::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        return view('template.riwayat', compact('history_transaksi','history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
