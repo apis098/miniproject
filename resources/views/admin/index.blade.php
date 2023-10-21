@@ -59,7 +59,7 @@
                                 {{ date('Y') }}
                             @endif
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="overflow: scroll; height: 100px;">
                             @foreach ($years as $y)
                                 <li>
                                     <a class="dropdown-item"
@@ -92,6 +92,14 @@
                             label: 'Total Pengguna',
                             data: @json($month),
                             backgroundColor: 'orange',
+                        },{
+                            label: 'Pengguna Premium',
+                            data: @json($monthPrem),
+                            backgroundColor: 'black',
+                        },{
+                            label: 'Koki Terverifikasi',
+                            data: @json($monthSuper),
+                            backgroundColor: 'red',
                         }]
                     },
                     options: {

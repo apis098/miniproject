@@ -44,16 +44,28 @@ class AdminController extends Controller
                     ->whereMonth('created_at', $i)
                     ->whereYear("created_at", $tahun)
                     ->count();
+                $monthPrem[] = DB::table("users")
+                    ->whereMonth('created_at', $i)
+                    ->whereYear('created_at', $tahun)
+                    ->where('status_langganan', 'sedang berlangganan')
+                    ->count();
+                $monthSuper[] = DB::table("users")
+                    ->whereMonth('created_at', $i)
+                    ->whereYear('created_at', $tahun)
+                    ->where('isSuperUser', 'yes')
+                    ->count();
             }
         } else {
             for ($i = 1; $i <= 12; $i++) {
                 $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
+                $monthPrem[] = DB::table("users")->whereMonth('created_at', $i)->where('status_langganan', 'sedang berlangganan')->count();
+                $monthSuper[] = DB::table("users")->whereMonth('created_at', $i)->where('isSuperUser', 'yes')->count();
             }
         }
         $data_chartjs = [];
         return view('admin.index', [
             'admin' => $admin,
-        ], compact("jumlah_user", "jumlah_resep", "jumlah_report", "month", "years", "reports", "reseps"));
+        ], compact("jumlah_user", "jumlah_resep", "jumlah_report", "monthPrem", "monthSuper","month", "years", "reports", "reseps"));
     }
 
 
@@ -70,7 +82,7 @@ class AdminController extends Controller
             $user = User::find($id);
             $user->isSuperUser = "yes";
             $user->save();
-        } else if($status === "ditolak") {
+        } else if ($status === "ditolak") {
             $status = "menolak";
             $user = User::find($id);
             $user->isSuperUser = "ditolak";
@@ -104,7 +116,7 @@ class AdminController extends Controller
         }
         $penawaran_premium = premiums::all();
         $categoryTopUp = TopUpCategories::all();
-        return view('admin.tawaran',compact('categoryTopUp','penawaran_premium','categorytopup','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('admin.tawaran', compact('categoryTopUp', 'penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function updateProfile(Request $request)
