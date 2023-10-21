@@ -594,7 +594,6 @@
                 </div>
             </div>
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             var ctx = document.getElementById('myBarChart').getContext('2d');
@@ -605,9 +604,13 @@
                         'Oktober', 'November', 'Desember'
                     ],
                     datasets: [{
-                        label: 'Total Pendapatan',
-                        data: 10,
+                        label: 'Saldo Belum Diambil',
+                        data: @json($saldo_belumDiambil),
                         backgroundColor: 'orange',
+                    }, {
+                        label: "Saldo Sudah Diambil",
+                        data: @json($saldo_sudahDiambil),
+                        backgroundColor: 'green',
                     }]
                 },
                 options: {
@@ -615,7 +618,7 @@
                         y: {
                             beginAtZero: true
                         },
-                        x: {
+                       x: {
                             grid: {
                                 display: false
                             }

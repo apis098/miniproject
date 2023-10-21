@@ -173,7 +173,24 @@ class KokiController extends Controller
         $waktuSekarang = Carbon::now();
         $waktuAkhirLangganan = Carbon::parse($koki->akhir_langganan);
         $waktu = $waktuSekarang->diffInDays($waktuAkhirLangganan);
-        return view('koki.beranda', compact('categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $saldo_sudahDiambil = [];
+        $saldo_belumDiambil = [];
+        $year = 2023;
+        for ($i=1; $i <= 12; $i++) {
+            $saldo_sudahDiambil[] = DB::table('income_chefs')
+            ->where('chef_id', Auth::user()->id)
+            ->where('status_penarikan', 'sudah ditarik')
+            ->whereMonth('created_at', $i)
+            ->whereYear('created_at', $year)
+            ->sum('pemasukan');
+            $saldo_belumDiambil[] = DB::table('income_chefs')
+            ->where('chef_id', Auth::user()->id)
+            ->where('status_penarikan', 'bisa ditarik')
+            ->whereMonth('created_at', $i)
+            ->whereYear('created_at', $year)
+            ->sum('pemasukan');
+        }
+        return view('koki.beranda', compact('saldo_sudahDiambil', 'saldo_belumDiambil','categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function incomeKoki(Request $request)

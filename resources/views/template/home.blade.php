@@ -157,11 +157,11 @@
     @endif
     @foreach ($feed_premium_favorite as $num => $feed)
         @if (Auth::check())
-            @if ($item_video->AuthenticateFeedPremium(Auth::user()->id, $item_video->id))
+            @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
                 <video class="video-js vjs-theme-city"
-                    onclick="userAccessFeedPrem({{ $item_video->user->id }}, {{ $item_video->id }})" id="my-video"
+                    onclick="userAccessFeedPrem({{ $feed->user->id }}, {{ $feed->id }})" id="my-video"
                     controls preload="auto" width="615" height="315" data-setup="{}">
-                    <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
+                    <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
                         web browser that
@@ -171,11 +171,11 @@
                 </video>
             @else
                 <video
-                    @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                    @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
             @else
             class="video-js vjs-theme-city" @endif
                     id="my-video" controls preload="auto" width="615" height="315" data-setup="{}">
-                    <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
+                    <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a
                         web browser that
@@ -186,11 +186,11 @@
             @endif
         @else
             <video
-                @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
         @else
         class="video-js vjs-theme-city" @endif
                 id="my-video" controls preload="auto" width="615" height="315" data-setup="{}">
-                <source src="{{ asset('storage/' . $item_video->upload_video) }}" type="video/mp4" />
+                <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
                 <p class="vjs-no-js">
                     To view this video please enable JavaScript, and consider upgrading to a
                     web browser that
