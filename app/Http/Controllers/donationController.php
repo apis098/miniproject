@@ -37,7 +37,10 @@ class donationController extends Controller
             $user_sender = User::findOrFail(auth()->user()->id);
             if($request->input('moreInput') != null){
                 if($user_sender->saldo < $request->input('moreInput')){
-                    return redirect()->back()->with('error','Maaf saldo anda tidak cukup, silahkan melakukan top up terlebih dahulu');
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Maaf saldo anda tidak mencukupi silahkan melakukan top Up terlebih dahulu",
+                    ]);
                 }else{
                     $saldo_lama = $penerima->saldo_pemasukan;
                     $saldo_baru = $request->input('moreInput');
@@ -56,11 +59,17 @@ class donationController extends Controller
                         $notification->message = $request->input('message');
                      }
                      $notification->save();
-                    return redirect()->back()->with('success','Berhasil mengirim donasi');
+                     return response()->json([
+                        'success' => true,
+                        'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
+                    ]);
                 }
             }else{
                 if($user_sender->saldo < $request->input('giftInput')){
-                    return redirect()->back()->with('error','Maaf saldo anda tidak cukup, silahkan melakukan top up terlebih dahulu');
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Maaf saldo anda tidak mencukupi silahkan melakukan top Up terlebih dahulu",
+                    ]);
                 }else{
                     $saldo_lama = $penerima->saldo_pemasukan;
                     $saldo_baru = $request->input('giftInput');
@@ -79,7 +88,10 @@ class donationController extends Controller
                        $notification->message = $request->input('message');
                     }
                     $notification->save();
-                    return redirect()->back()->with('success','Berhasil mengirim donasi');
+                    return response()->json([
+                        'success' => true,
+                        'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
+                    ]);
                 }
             }
         }else{

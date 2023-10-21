@@ -751,8 +751,8 @@
                                             <div class="modal" id="gift">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <form
-                                                            action="{{ route('donation.store', $item_video->user->id) }}"
+                                                        <form 
+                                                            action="{{ route('donation.store', $item_video->user->id) }}" id="gift-form"
                                                             method="POST">
                                                             @csrf
                                                             <div class="modal-header">
@@ -868,7 +868,7 @@
                                                                         style="margin-top: 12px; border:solid black; border-radius:100px;"
                                                                         placeholder="Tambahkan pesan untuk pembuat...">
 
-                                                                    <button type="submit" id="buttonCommentVeed"
+                                                                    <button type="submit" id="giftButton"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light">
                                                                         <b class="me-3 ms-3">Kirim</b></button>
@@ -2142,6 +2142,46 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+    <script>
+        $(document).ready(function () {
+        $('#giftButton').click(function (e) {
+            e.preventDefault();
+            // const input_message = document.getElementById('message');
+            // const more_input = document.getElementById('moreInput');
+            const giftForm = document.getElementById('gift-form');
+            const route = giftForm.getAttribute('action');
+            // let route = form.attr("action");
+            var formData = $('#gift-form').serialize();
+            $.ajax({
+                type: "POST",
+                url: route,
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        iziToast.show({
+                            backgroundColor: '#a1dfb0',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message : response.message,
+                            position: 'topCenter',
+                            progressBarColor: 'dark',
+                        });
+                    } else {
+                        iziToast.show({
+                                backgroundColor: '#f2a5a8',
+                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                        });
+                    }
+                }
+            });
+        });
+    });
+    </script>
     <script>
         // balas komentar balasan di feed
         function balas_replies_comments_feeds(num) {
