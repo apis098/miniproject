@@ -1,61 +1,84 @@
 @extends('template.nav')
 @section('content')
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-8">
-                <div style="border: 1px solid black; border-radius: 15px;" class="p-2">
-                    <a href="/daftar-transaksi">Daftar Transaksi</a>
-                    <div class="">
-                        <div class="d-flex flex-row">
-                            <button type="button" class="rounded-circle"
-                                style="background-color:#F7941E;border:none;width: 40px;height: 40px;">
-                                <i style="color: white" class="fa-solid fa-dollar-sign"></i>
-                            </button>
-                            <h5 class="my-auto mx-2">Detail Transaksi</h5>
-                            <span class="my-auto ml-auto">#{{ $detail->merchant_ref }}</span> <br>
-                        </div>
-                        Payment Name : {{ $detail->payment_name }} <br>
-                        Amount : RP. {{ number_format($detail->amount, 2, ',', '.') }} <br>
-                        Status : <span style="text-transform: uppercase;">{{ $detail_transaksi->status }}</span>
-                        <br>
-                        Expired Time : {{ date('d F Y, h:i:s A', $detail->expired_time) }} <br>
+<style>
+    .card{
+        border:none;
+        border-radius: 15px;
+        box-shadow: 0 24px 39px rgba(0, 0, 0, .09), 0 0 6px rgba(0, 0, 0, .09);
+        transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    }
+</style>
+<section>
+    <div class="container py-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="row d-flex justify-content-center pb-5">
+            <div class="col-md-7 col-xl-5 mb-4 mb-md-0">
+              <div class="py-4 d-flex flex-row">
+                <h5><i class="text-orange fa-solid fa-lg fa-file-invoice-dollar"></i> <b>Detail Transaksi</b> |</h5>
+                <span class="ps-2">Langganan</span>
+              </div>
+              <h4 class="text-orange fw-bolder">Rp. {{number_format($detail->amount,2,',','.')}}</h4>
+              <h4>#{{$detail->reference}}</h4>
+                <div class="">
+                    <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
+                      @if($detail->status == "PAID")
+                        <b class="text-light">Sudah dibayar</b>
+                      @elseif($detail->status == "UNPAID")
+                        <b class="text-light">Belum dibayar</b>
+                      @elseif($detail->status == "REFUND")
+                        <b class="text-light">Dikembalikan</b>
+                      @elseif($detail->status == "EXPIRED")
+                        <b class="text-light">Terlambat</b>
+                      @else
+                        <b class="text-light">Gagal</b>
+                      @endif
                     </div>
-                    @if ($detail->payment_method === 'QRISC')
-                        <img src="{{ $detail->qr_url }}" alt="">
-                    @endif
                 </div>
+              @php
+                 $expired_time  = $detail->expired_time;
+                 $time_format = date('Y-m-d g:i A', $expired_time);
+              @endphp
+              <div class="rounded d-flex mt-2" style="background-color: #f8f9fa;">
+                <div class="p-2">Tenggat pembayaran:</div>
+                <div class="ms-auto p-2">{{$time_format}}</div>
+              </div>
+              <p class="mt-2 font-italic">
+                <i class="text-orange fa-solid fa-circle-info"></i> Silahkan lakukan pembayaran sebelum tenggat pembayaran,jika anda belum melakukan pembayaran pada tenggat yang ditentukan maka transaksi akan dianggap hangus.
+              </p>
+              <hr />
             </div>
-            <div class="col-4">
-                <div class="accordion" style="border: 1px solid black; border-radius: 15px;" id="accordionExample">
-                    <h2
-                        style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; margin-left: 19px;">
-                        Instruksi</h2>
-                    @foreach ($detail->instructions as $no_urut => $instruksi)
-                        <div class="accordion-item" style="border: none;">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse{{ $no_urut }}" aria-expanded="false"
-                                    aria-controls="collapse{{ $no_urut }}">
-                                    <span
-                                        style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">{{ $instruksi->title }}</span>
-                                </button>
-                            </h2>
-                            <div id="collapse{{ $no_urut }}" class="accordion-collapse collapse"
-                                data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="">
 
-                                        @foreach ($instruksi->steps as $no => $step)
-                                            {{ $no + 1 }}. {!! $step !!} <br>
-                                        @endforeach
+            <div class="col-md-5 col-xl-4 offset-xl-1">
+              <div class="py-1 d-flex justify-content-end">
 
-                                    </div>
-                                </div>
-                            </div>
+              </div>
+              <div class="rounded d-flex flex-column p-3" style="background-color: #f8f9fa;">
+                <div class="p-2 me-3">
+                  <h4 class="fw-bolder">Instruksi Pembayaran</h4>
+                </div>
+                @foreach($detail->instructions as $instruction)
+                    <a href="#" data-toggle="collapse" data-target="#internetBanking{{$loop->iteration}}" class="p-2 d-flex text-dark">
+                    <div class="col-8 fs-6">{{$instruction->title}}</div>
+                    <div class="ms-auto"><i class="fa-solid fa-chevron-down"></i></div>
+                    </a>
+                    <div class="collapse" id="internetBanking{{$loop->iteration}}">
+                        <div class="card card-body">
+                            <ul class="list-group list-group-flush">
+                                @foreach($instruction->steps as $step)
+                                    <li class="text-sm list-group-item p-0"><small>{{$loop->iteration}}. {!! $step !!}</small></li>
+                                @endforeach
+                            </ul>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
+                <div class="border-top px-2 mx-2"></div>
+
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </section>
 @endsection
