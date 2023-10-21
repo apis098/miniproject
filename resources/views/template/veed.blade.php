@@ -2146,11 +2146,10 @@
         $(document).ready(function () {
         $('#giftButton').click(function (e) {
             e.preventDefault();
-            // const input_message = document.getElementById('message');
-            // const more_input = document.getElementById('moreInput');
+            const input_message = document.getElementById('message');
+            const more_input = document.getElementById('moreInput');
             const giftForm = document.getElementById('gift-form');
             const route = giftForm.getAttribute('action');
-            // let route = form.attr("action");
             var formData = $('#gift-form').serialize();
             $.ajax({
                 type: "POST",
@@ -2158,6 +2157,8 @@
                 data: formData,
                 success: function (response) {
                     if (response.success) {
+                        input_message.value = "";
+                        more_input.value = "";
                         iziToast.show({
                             backgroundColor: '#a1dfb0',
                             title: '<i class="fa-regular fa-circle-question"></i>',
