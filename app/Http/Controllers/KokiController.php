@@ -175,6 +175,7 @@ class KokiController extends Controller
         $waktu = $waktuSekarang->diffInDays($waktuAkhirLangganan);
         $saldo_sudahDiambil = [];
         $saldo_belumDiambil = [];
+        $total_saldo = [];
         $year = 2023;
         for ($i=1; $i <= 12; $i++) {
             $saldo_sudahDiambil[] = DB::table('income_chefs')
@@ -189,8 +190,13 @@ class KokiController extends Controller
             ->whereMonth('created_at', $i)
             ->whereYear('created_at', $year)
             ->sum('pemasukan');
+            $total_saldo[] = DB::table('income_chefs')
+            ->where('chef_id', Auth::user()->id)
+            ->whereMonth('created_at', $i)
+            ->whereYear('created_at', $year)
+            ->sum('pemasukan');
         }
-        return view('koki.beranda', compact('saldo_sudahDiambil', 'saldo_belumDiambil','categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.beranda', compact('total_saldo','saldo_sudahDiambil', 'saldo_belumDiambil','categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function incomeKoki(Request $request)

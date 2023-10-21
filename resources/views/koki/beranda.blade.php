@@ -604,12 +604,8 @@
                         'Oktober', 'November', 'Desember'
                     ],
                     datasets: [{
-                        label: 'Saldo Belum Diambil',
-                        data: @json($saldo_belumDiambil),
-                        backgroundColor: 'green',
-                    }, {
-                        label: "Saldo Sudah Diambil",
-                        data: @json($saldo_sudahDiambil),
+                        label: 'Todal Saldo',
+                        data: @json($total_saldo),
                         backgroundColor: 'orange',
                     }]
                 },
@@ -618,7 +614,7 @@
                         y: {
                             beginAtZero: true
                         },
-                       x: {
+                        x: {
                             grid: {
                                 display: false
                             }
