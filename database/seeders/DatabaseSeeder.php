@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         IndoRegionRegencySeeder::class,
         IndoRegionDistrictSeeder::class,
         IndoRegionVillageSeeder::class,
+        hariDanKategoriResep::class,
+        PenawaranPremiumSeed::class,
        ]);
     }
 }
