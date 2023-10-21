@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('veed_id_report')->nullable();
             $table->string('random_name')->nullable();
             $table->string('alasan')->nullable();
+            $table->string('message')->nullable();
+            $table->integer('gift_id')->nullable();
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('like_reply_id')->nullable(); 
             $table->unsignedBigInteger('reply_id_comment')->nullable();

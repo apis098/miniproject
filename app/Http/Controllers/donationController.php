@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\notifications;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,6 +47,15 @@ class donationController extends Controller
                     $saldo_lama_pengirim = $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
+                     // mengirim notifikasi
+                     $notification = new notifications();
+                     $notification->notification_from = auth()->user()->id;
+                     $notification->user_id = $user_recipient;
+                     $notification->gift_id = 1;
+                     if($request->input('message')!=null){
+                        $notification->message = $request->input('message');
+                     }
+                     $notification->save();
                     return redirect()->back()->with('success','Berhasil mengirim donasi');
                 }
             }else{
@@ -60,6 +70,15 @@ class donationController extends Controller
                     $saldo_lama_pengirim =  $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
+                    // mengirim notifikasi
+                    $notification = new notifications();
+                    $notification->notification_from = auth()->user()->id;
+                    $notification->user_id = $user_recipient;
+                    $notification->gift_id = 1;
+                    if($request->input('message')!=null){
+                       $notification->message = $request->input('message');
+                    }
+                    $notification->save();
                     return redirect()->back()->with('success','Berhasil mengirim donasi');
                 }
             }

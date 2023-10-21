@@ -863,7 +863,7 @@
                                                                         style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
                                                                         placeholder="Masukkan jumlah donasi lainya...">
                                                                     <input type="text" id="message"
-                                                                        name="commentVeed" width="500px"
+                                                                        name="message" width="500px"
                                                                         class="form-control border-2 rounded-3 me-3"
                                                                         style="margin-top: 12px; border:solid black; border-radius:100px;"
                                                                         placeholder="Tambahkan pesan untuk pembuat...">
