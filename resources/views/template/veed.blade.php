@@ -3,18 +3,19 @@
     @push('style')
         @powerGridStyles
     @endpush
-    <script>
-           function userAccessFeedPrem(num, num2)
-            {
+    @if (Auth::check())
+        <script>
+            function userAccessFeedPrem(num, num2) {
                 $.ajax({
-                    url: "/pemasukan-koki/"+num+"/{{ Auth::user()->id }}/"+num2+"/feed",
+                    url: "/pemasukan-koki/" + num + "/{{ Auth::user()->id }}/" + num2 + "/feed",
                     method: "POST",
                     headers: {
                         "X-CSRF-Token": "{{ csrf_token() }}",
                     },
                 });
             }
-    </script>
+        </script>
+    @endif
     <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
@@ -288,8 +289,10 @@
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                                 @if (Auth::check())
                                     @if ($item_video->AuthenticateFeedPremium(Auth::user()->id, $item_video->id))
-                                        <video class="video-js vjs-theme-city" onclick="userAccessFeedPrem({{ $item_video->user->id }}, {{ $item_video->id }})" id="my-video" controls preload="auto"
-                                            width="615" height="315" data-setup="{}">
+                                        <video class="video-js vjs-theme-city"
+                                            onclick="userAccessFeedPrem({{ $item_video->user->id }}, {{ $item_video->id }})"
+                                            id="my-video" controls preload="auto" width="615" height="315"
+                                            data-setup="{}">
                                             <source src="{{ asset('storage/' . $item_video->upload_video) }}"
                                                 type="video/mp4" />
                                             <p class="vjs-no-js">
