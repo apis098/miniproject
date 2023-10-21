@@ -151,20 +151,11 @@
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
-
-                    {{-- start tab 1 --}}
-                    {{-- <div class="row mb-1 justify-content-center mx-5 ml-5">
-                        <div class="col-sm-3 col-lg-4">
-                            <h3 style=" color: black; font-size: 30px; font-family: Poppins; font-weight: 600; word-wrap: break-word">Riwayat Transaksi</h3>
-                        </div>
-                    </div> --}}
-
-                    <table class="table-custom"">
+                    <table class="table-custom">
                         <thead>
                             <tr>
                                 <th scope="col">Nominal</th>
-                                <th scope="col">Kode Referensi</th>
-                                <th scope="col">Tanggal</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
@@ -174,23 +165,27 @@
                                     <td style="border-left:1px solid black;" class="">
                                         Rp. {{ number_format($history->price, 2, ',', '.') }}
                                     </td>
-                                    <td>#{{ $history->reference }}</td>
-                                    <td>{{ $history->created_at->format('j F Y') }}</td>
-                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                    <td>
+                                        @if ($history->status == 'PAID')
+                                            <span class="badge" style="background-color: #F7941E;">Sudah Dibayar</span>
+                                        @elseif($history->status == 'UNPAID')
+                                            <span class="badge badge-dark text-light">Belum Dibayar</span>
+                                        @elseif($history->status == 'EXPIRED')
+                                            <span class="badge bg-dark">Hangus</span>
+                                        @elseif($history->status == 'REFUND')
+                                            <span class="badge bg-dark text-light">Dikembalikan</span>
+                                        @else
+                                            <span class="badge bg-dark text-light">Gagal</span>
+                                        @endif
+                                    </td>
+                                    {{-- <td>{{ $history->created_at->format('j F Y') }}</td> --}}
+                                    <td style="border-right:1px solid black;">
+                                        <a href="#" class="btn ml-2 text-light"
                                             id="buttonUploadVideo"
                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                            @if ($history->status == 'PAID')
-                                                <span style="font-weight: 600; color: white;">Sudah Dibayar</span>
-                                            @elseif($history->status == 'UNPAID')
-                                                <span style="font-weight: 600; color: white;">Belum Dibayar</span>
-                                            @elseif($history->status == 'EXPIRED')
-                                                <span style="font-weight: 600; color: white;">Hangus</span>
-                                            @elseif($history->status == 'REFUND')
-                                                <span style="font-weight: 600; color: white;">Dikembalikan</span>
-                                            @else
-                                                <span style="font-weight: 600; color: white;">Gagal</span>
-                                            @endif
-                                        </button></td>
+                                            Lihat detail
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
