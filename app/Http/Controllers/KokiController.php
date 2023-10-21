@@ -8,6 +8,7 @@ use App\Models\comment_veed;
 use App\Models\complaint;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\income_chefs;
 use App\Models\kursus;
 use App\Models\likes;
 use Illuminate\Http\Request;
@@ -169,7 +170,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $waktuSekarang = Carbon::parse($koki->awal_langganan);
+        $waktuSekarang = Carbon::now();
         $waktuAkhirLangganan = Carbon::parse($koki->akhir_langganan);
         $waktu = $waktuSekarang->diffInDays($waktuAkhirLangganan);
         return view('koki.beranda', compact('categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
@@ -178,8 +179,14 @@ class KokiController extends Controller
     public function incomeKoki(Request $request)
     {
         $koki = User::find(Auth::user()->id);
-
-        return view('koki.income-koki', compact("koki"));
+        $income_koki = income_chefs::where('chef_id', Auth::user()->id)->get();
+        $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
+        $saldo_belumDiambil = $saldo1->sum('pemasukan');
+        $saldo2 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'sudah ditarik');
+        $saldo_sudahDiambil = $saldo2->sum('pemasukan');
+        $saldo = income_chefs::where('chef_id', Auth::user()->id);
+        $saldo_total = $saldo->sum('pemasukan');
+        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total"));
     }
 
     public function viewsRecipe(Request $request)

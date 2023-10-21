@@ -244,7 +244,7 @@ class="btn">
                             <p class="mb-1 " style="font-size: 14px; font-weight: bold;">28 agustus - 12 september</p>
                         </div>
                         <span class="d-flex justify-content-end " style="color: black;
-                         font-size: 40px; font-weight: 275;">200K</span>
+                         font-size: 40px; font-weight: 275;">RP {{ number_format($saldo_belumDiambil, 2, ",", ".") }}</span>
                     </div>
                 </div>
 
@@ -256,7 +256,7 @@ class="btn">
                             <p class="mb-1 " style="font-size: 14px; font-weight: bold;">31 agustus - 12 oktober</p>
                         </div>
                         <span class="d-flex justify-content-end " style="color: black;
-                         font-size: 40px; font-weight: 275;">200K</span>
+                         font-size: 40px; font-weight: 275;">RP {{ number_format($saldo_sudahDiambil, 2, ",", ".") }}</span>
                     </div>
                 </div>
 
@@ -268,7 +268,7 @@ class="btn">
                             <p class="mb-1 " style="font-size: 14px; font-weight: bold;">28 agustus - 12 desember</p>
                         </div>
                         <span class="d-flex justify-content-end " style="color: black;
-                         font-size: 40px; font-weight: 275;">400K</span>
+                         font-size: 40px; font-weight: 275;">RP {{ number_format($saldo_total, 2, ",", ".") }}</span>
                     </div>
                 </div>
 
@@ -291,22 +291,39 @@ class="btn">
             <table class="table-custom"" >
                 <thead>
                     <tr>
-                        <th scope="col">Resep</th>
+                        <th scope="col">Jenis Konten</th>
+                        <th scope="col">Konten</th>
                         <th scope="col">Tanggal</th>
-                        <th scope="col">Suka</th>
                         <th scope="col">Pendapatan</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                        <tr class="mt-5">
-                            <td style="border-left:1px solid black;" class="">
-                            nasi padang</td>
-                            <td>28 juni 2022</td>
-                            <td>200Rb suka</td>
-                            <td style="border-right:1px solid black;">Rp.2.000.000,00</td>
-                        </tr>
-
+                    @foreach ($income_koki as $income)
+                    <tr class="mt-5">
+                        <td style="border-left:1px solid black;" class="">
+                            {{ $income->status }}
+                        </td>
+                        <td>
+                            @if ($income->status === "resep")
+                             {{ $income->resep->nama_resep }}
+                            @elseif ($income->status === "feed")
+                            <video style="width: 100px;border-radius:10%;" src="{{ asset('storage/'.$income->feed->upload_video) }}"></video>
+                            @elseif($income->status === "sawer")
+                             -
+                            @endif
+                        </td>
+                        <td>
+                            {{ $income->created_at }}
+                        </td>
+                        <td>
+                            RP {{ number_format($income->pemasukan, 2, ',', '.') }}
+                        </td>
+                        <td style="border-right:1px solid black;">
+                            {{ $income->status_penarikan }}
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
     </div>
