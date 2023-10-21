@@ -21,6 +21,7 @@ use App\Models\Province;
 use App\Models\Regency;
 use App\Models\TopUpCategories;
 use App\Models\transactionTopUp;
+use App\Models\upload_video;
 use App\Models\User;
 use App\Models\Village;
 use Carbon\Carbon;
@@ -84,10 +85,10 @@ class LoginController extends Controller
     {
         $complaints = complaint::paginate(3, ['*'], 'complaint-page');
         $reseps = reseps::query();
-        $real_reseps = $reseps->has("likes")->orderBy("likes", "desc")->take(3)->get();
+        $real_reseps = $reseps->withCount("likes")->orderBy("likes_count", "desc")->take(3)->get();
         $real_reseps = $reseps->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
         $resep = reseps::query();
-        $favorite_resep = $resep->has('favorite')->orderBy('favorite_count', 'desc')->take(3)->get();
+        $favorite_resep = $resep->withCount('favorite')->orderBy('favorite_count', 'desc')->take(3)->get();
         $favorite_resep = $resep->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(4)->get();
         $categories_foods = kategori_makanan::all();
@@ -115,8 +116,10 @@ class LoginController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-
-        return view('template.home', compact('categorytopup','messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
+        $feed_premium_favorite = upload_video::query()->where('isPremium', 'yes')->orderBy('favorite_count', 'desc')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
+        $resep_premium_favorite = reseps::query()->withCount('favorite')->orderBy('favorite_count', 'desc')->where('isPremium', 'yes')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
+        $feed_populer = upload_video::query()->withCount('like_veed')->orderBy('like_veed_count', 'desc')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
+        return view('template.home', compact('feed_premium_favorite','feed_populer','resep_premium_favorite','categorytopup','messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 
     public function keluhan()
