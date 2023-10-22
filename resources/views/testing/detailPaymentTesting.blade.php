@@ -21,19 +21,27 @@
               <h4 class="text-orange fw-bolder">Rp. {{number_format($detail->amount,2,',','.')}}</h4>
               <h4>#{{$detail->reference}}</h4>
                 <div class="">
-                    <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
                       @if($detail_transaksi->status == "paid")
+                      <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
                         <b class="text-light">Sudah dibayar</b>
+                      </div>
                       @elseif($detail_transaksi->status == "unpaid")
+                      <div class="col-lg-4 badge text-center badge-dark">
                         <b class="text-light">Belum dibayar</b>
+                      </div>
                       @elseif($detail_transaksi->status == "refund")
+                      <div class="col-lg-4 badge text-center badge-dark">
                         <b class="text-light">Dikembalikan</b>
+                      </div>
                       @elseif($detail_transaksi->status == "expired")
-                        <b class="text-light">Terlambat</b>
+                      <div class="col-lg-4 badge text-center badge-dark">
+                        <b class="text-light">Hangus</b>
+                      </div>
                       @else
+                      <div class="col-lg-4 badge text-center badge-dark">
                         <b class="text-light">Gagal</b>
+                      </div>
                       @endif
-                    </div>
                 </div>
               @php
                  $expired_time  = $detail->expired_time;

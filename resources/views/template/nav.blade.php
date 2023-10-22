@@ -954,10 +954,10 @@
             </div>
         </div>
     </div>
-
+ 
     {{-- Modal Top Up --}}
-    <div class="modal" id="topup">
-        <div class="modal-dialog ">
+    <div class="modal " id="topup">
+        <div class="modal-dialog">
             <div class="modal-content text-center">
                 <div class="d-flex">
                     <div class="col-11">
