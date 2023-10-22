@@ -156,7 +156,7 @@
                             <tr>
                                 <th scope="col">Nominal</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Status</th>
+                                <th scope="col">Detail</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -180,8 +180,8 @@
                                     </td>
                                     {{-- <td>{{ $history->created_at->format('j F Y') }}</td> --}}
                                     <td style="border-right:1px solid black;">
-                                        <a href="koki/detail-transaction/{{$history->reference}}" class="btn ml-2 text-light"
-                                            id="buttonUploadVideo"
+                                        <a href="koki/detail-transaction/{{ $history->reference }}"
+                                            class="btn ml-2 text-light" id="buttonUploadVideo"
                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                             Lihat detail
                                         </a>
@@ -209,18 +209,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="mt-5">
-                                <td style="border-left:1px solid black;" class="">
-                                    Rp. 40.000,00
-                                </td>
-                                <td>20 November 2023</td>
-                                <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
-                                        id="buttonUploadVideo"
-                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                        <span style="font-weight: 600; color: white;">Menunggu</span>
-                                    </button></td>
-                            </tr>
-
+                            @foreach ($history_penarikan as $tarik)
+                                <tr class="mt-5">
+                                    <td style="border-left:1px solid black;" class="">
+                                        Rp. {{ number_format($tarik->pemasukan, 2, '.', ',') }}
+                                    </td>
+                                    <td></td>
+                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                            id="buttonUploadVideo"
+                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                            <span style="font-weight: 600; color: white;">Menunggu</span>
+                                        </button></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 
@@ -233,9 +234,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">Nama Paket</th>
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Detail</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Detail</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -244,32 +244,28 @@
                                     <td style="border-left:1px solid black;" class="">
                                         {{ $transaksi->premium->nama_paket }}
                                     </td>
-                                    <td>Rp. {{ number_format($transaksi->premium->harga_paket, 2, '.', ',') }}</td>
                                     <td>
+                                        @if ($transaksi->status == 'paid')
+                                            <span class="badge" style="background-color: #F7941E;">Sudah Dibayar</span>
+                                        @elseif($transaksi->status == 'unpaid')
+                                            <span class="badge" style="background-color: #F7941E;">Belum Dibayar</span>
+                                        @elseif($transaksi->status == 'refund')
+                                            <span class="badge" style="background-color: #F7941E;">Dikembalikan</span>
+                                        @elseif($transaksi->status == 'expired')
+                                            <span class="badge" style="background-color: #F7941E;">Terlambat</span>
+                                        @else
+                                            <span class="badge" style="background-color: #F7941E;">Gagal</span>
+                                        @endif
+                                    </td>
+                                    <td style="border-right:1px solid black;">
                                         <button type="button" class="btn ml-2 text-light" id="buttonUploadVideo"
                                             style="background: #F7941E;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                            <a href="/detail-pembayaran/{{ $transaksi->reference }}" style="font-weight: 600;color:#fff;">
+                                            <a href="/detail-pembayaran/{{ $transaksi->reference }}"
+                                                style="font-weight: 600;color:#fff;">
                                                 Lihat Detail
                                             </a>
                                         </button>
                                     </td>
-                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
-                                            id="buttonUploadVideo"
-                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                            <span style="font-weight: 600; color: white;">
-                                                @if ($transaksi->status == 'paid')
-                                                    <b class="text-light">Sudah dibayar</b>
-                                                @elseif($transaksi->status == 'unpaid')
-                                                    <b class="text-light">Belum dibayar</b>
-                                                @elseif($transaksi->status == 'refund')
-                                                    <b class="text-light">Dikembalikan</b>
-                                                @elseif($transaksi->status == 'expired')
-                                                    <b class="text-light">Terlambat</b>
-                                                @else
-                                                    <b class="text-light">Gagal</b>
-                                                @endif
-                                            </span>
-                                        </button></td>
                                 </tr>
                             @endforeach
                         </tbody>

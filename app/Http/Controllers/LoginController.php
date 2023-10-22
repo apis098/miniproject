@@ -14,6 +14,7 @@ use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\history_premiums;
+use App\Models\income_chefs;
 use App\Models\jenis_kursuses;
 use App\Models\kategori_makanan;
 use App\Models\kursus;
@@ -205,6 +206,7 @@ class LoginController extends Controller
         }
         $history_top_up = transactionTopUp::where('user_id',auth()->user()->id)->latest()->get();
         $history_transaksi = history_premiums::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        return view('template.riwayat', compact('history_transaksi','history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $history_penarikan = income_chefs::where('chef_id', Auth::user()->id)->where("status_penarikan", "sudah ditarik")->latest()->get();
+        return view('template.riwayat', compact('history_penarikan','history_transaksi','history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
