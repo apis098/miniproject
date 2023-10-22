@@ -75,7 +75,10 @@ class TopUpController extends Controller
         $tripay = new TripayPaymentController();
         $detail_transaction = $tripay->detailTransaction($reference);
 
-        return view('tripay.detail_transaction', compact('detail_transaction','categorytopup','userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
+        $referece = $detail_transaction->reference;
+        $data_transaction = transactionTopUp::where('reference', $reference)->first();
+
+        return view('tripay.detail_transaction', compact('data_transaction','detail_transaction','categorytopup','userLogin','footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
     }
     /**
      * Show the form for creating a new resource.

@@ -22,13 +22,13 @@
               <h4>#{{$detail_transaction->reference}}</h4>
                 <div class="">
                     <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
-                      @if($detail_transaction->status == "PAID")
+                      @if($data_transaction->status == "PAID")
                         <b class="text-light">Sudah dibayar</b>
-                      @elseif($detail_transaction->status == "UNPAID")
+                      @elseif($data_transaction->status == "UNPAID")
                         <b class="text-light">Belum dibayar</b>
-                      @elseif($detail_transaction->status == "REFUND")
+                      @elseif($data_transaction->status == "REFUND")
                         <b class="text-light">Dikembalikan</b>
-                      @elseif($detail_transaction->status == "EXPIRED")
+                      @elseif($data_transaction->status == "EXPIRED")
                         <b class="text-light">Terlambat</b>
                       @else
                         <b class="text-light">Gagal</b>
@@ -43,59 +43,10 @@
                 <div class="p-2">Tenggat pembayaran:</div>
                 <div class="ms-auto p-2">{{$time_format}}</div>
               </div>
-              <p class="mt-2 font-italic">
+              <small class="mt-2 font-italic">
                 <i class="text-orange fa-solid fa-circle-info"></i> Silahkan lakukan pembayaran sebelum tenggat pembayaran,jika anda belum melakukan pembayaran pada tenggat yang ditentukan maka transaksi akan dianggap hangus.
-              </p>
+              </small>
               <hr />
-              {{-- <div class="pt-2">
-                <div class="d-flex pb-2">
-                  <div>
-                    <p>
-                      <b>Patient Balance <span class="text-success">$13.24</span></b>
-                    </p>
-                  </div>
-                  <div class="ms-auto">
-                    <p class="text-primary">
-                      <i class="fas fa-plus-circle text-primary pe-1"></i>Add payment card
-                    </p>
-                  </div>
-                </div>
-                <p>
-                  This is an estimate for the portion of your order (not covered by
-                  insurance) due today . once insurance finalizes their review refunds
-                  and/or balances will reconcile automatically.
-                </p>
-                <form class="pb-3">
-                  <div class="d-flex flex-row pb-3">
-                    <div class="d-flex align-items-center pe-2">
-                      <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel1"
-                        value="" aria-label="..." checked />
-                    </div>
-                    <div class="rounded border d-flex w-100 p-3 align-items-center">
-                      <p class="mb-0">
-                        <i class="fab fa-cc-visa fa-lg text-primary pe-2"></i>Visa Debit
-                        Card
-                      </p>
-                      <div class="ms-auto">************3456</div>
-                    </div>
-                  </div>
-  
-                  <div class="d-flex flex-row">
-                    <div class="d-flex align-items-center pe-2">
-                      <input class="form-check-input" type="radio" name="radioNoLabel" id="radioNoLabel2"
-                        value="" aria-label="..." />
-                    </div>
-                    <div class="rounded border d-flex w-100 p-3 align-items-center">
-                      <p class="mb-0">
-                        <i class="fab fa-cc-mastercard fa-lg text-dark pe-2"></i>Mastercard
-                        Office
-                      </p>
-                      <div class="ms-auto">************1038</div>
-                    </div>
-                  </div>
-                </form>
-                <input type="button" value="Proceed to payment" class="btn btn-primary btn-block btn-lg" />
-              </div> --}}
             </div>
   
             <div class="col-md-5 col-xl-4 offset-xl-1">
