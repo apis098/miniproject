@@ -765,7 +765,7 @@
                                                 <small class="text-muted d-block me-3">1 hari yang lalu</small>
                                                 <small class="text-bold">Balas</small>
                                             </div>
-                                        </div>
+                                       </div>
                                     </div>
                                 </div>
                                 <a href="#!">

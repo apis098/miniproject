@@ -10,6 +10,8 @@
     <!-- Esri Leaflet Geocoder -->
     <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css" />
     <script src="https://unpkg.com/esri-leaflet-geocoder"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
     <style>
         /* Gaya untuk tombol "Cari" */
         .zoom-effects {
@@ -248,8 +250,8 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="/admin/laporan-pengguna" method="GET">
-                                                <input type="text" id="search-resep" name="resep" autofocus
+                                            <form action="" method="GET">
+                                                <input type="text" id="search-resep-sendiri" name="resep" autofocus
                                                     placeholder="Cari Kursusmu">
                                                 <button type="submit" class=" zoom-effects cari2"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -282,9 +284,9 @@
                             </div>
                         @endif
                         {{-- start tab 1 --}}
-                        <div class="d-flex">
+                        <div class="d-flex" id="myCourse">
                             @foreach ($kursus_sendiri as $mycourse)
-                                <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                <div class="card my-3 ml-3 myCourse" style="width: 30%; border-radius:15px">
                                     <div class="row">
                                         <div class="col-12">
                                             <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
@@ -325,6 +327,16 @@
                             @endforeach
                         </div>
                     </div>
+                    <script>
+                        $(document).ready(function(){
+                            $('#search-resep-sendiri').on("input", function(){
+                                let value = $(this).val().toLowerCase();
+                                $(".myCourse").filter(function(){
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                                });
+                            });
+                        });
+                    </script>
                     {{-- end --}}
                     <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                         tabindex="0">
