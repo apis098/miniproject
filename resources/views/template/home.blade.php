@@ -102,7 +102,7 @@
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
-                            <img src="{{ asset('images/default.jpg') }}" class="rounded-circle" width="100%" Favorit
+                            <img src="{{ asset('storage/'.$resep->foto_resep) }}" class="rounded-circle" width="100%" Favorit
                                 height="100%" alt="">
                         </div>
                         <div class="col-7">
