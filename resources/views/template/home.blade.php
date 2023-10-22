@@ -156,53 +156,95 @@
         </div>
     @endif
     @foreach ($feed_premium_favorite as $num => $feed)
-        @if (Auth::check())
-            @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
-                <video class="video-js vjs-theme-city"
-                    onclick="userAccessFeedPrem({{ $feed->user->id }}, {{ $feed->id }})" id="my-video"
-                    controls preload="auto" width="615" height="315" data-setup="{}">
-                    <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a
-                        web browser that
-                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
-                            video</a>
-                    </p>
-                </video>
-            @else
-                <video
-                    @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
+        <div class="d-flex mb-3">
+            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
+                <div class="" style="border-radius: 15px 15px 0 0;">
+                    @if (Auth::check())
+                        @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
+                            <video class="video-js vjs-theme-city" style="border-radius: 15px 15px 0 0;"
+                                onclick="userAccessFeedPrem({{ $feed->user->id }}, {{ $feed->id }})"
+                                id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
+                                <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                        @else
+                            <video style="border-radius: 15px 15px 0 0;"
+                                @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
             @else
             class="video-js vjs-theme-city" @endif
-                    id="my-video" controls preload="auto" width="615" height="315" data-setup="{}">
-                    <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a
-                        web browser that
-                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
-                            video</a>
-                    </p>
-                </video>
-            @endif
-        @else
-            <video
-                @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                id="my-video" controls preload="auto" width="100%" height="100%"
+                                data-setup="{}">
+                                <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                        @endif
+                    @else
+                        <video style="border-radius: 15px 15px 0 0"
+                            @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
         @else
         class="video-js vjs-theme-city" @endif
-                id="my-video" controls preload="auto" width="615" height="315" data-setup="{}">
-                <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
-                <p class="vjs-no-js">
-                    To view this video please enable JavaScript, and consider upgrading to a
-                    web browser that
-                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports
-                        HTML5
-                        video</a>
-                </p>
-            </video>
-        @endif
+                            id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
+                            <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports
+                                    HTML5
+                                    video</a>
+                            </p>
+                        </video>
+                    @endif
+                    <!-- Ikon "Top 1" di belakang -->
+                    <div class="card-body"
+                        style="border-bottom: 1px solid #000 ;border-left:1px solid #000; border-right:1px solid #000; border-radius: 0 0 15px 15px;">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="d-flex justify-content-start">
+                                    @if ($feed->User->foto)
+                                        <img src="{{ asset('storage/' . $feed->User->foto) }}" width="30px"
+                                            height="30px" style="border-radius: 50%;" alt="">
+                                    @else
+                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                            height="30px" style="border-radius: 50%">
+                                    @endif
+                                    &nbsp;
+                                    <div class="text-center">
+                                        <span>{{ $feed->user->name }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex justify-content-end">
+                                    <svg width="23" height="20" viewBox="0 0 29 26" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="&#240;&#159;&#166;&#134; icon &#34;trophy&#34;">
+                                            <path id="Vector"
+                                                d="M23.0625 3.6444V4.1444H23.5625H28.5V7.28879C28.5 10.0346 26.2872 12.2554 23.5625 12.2554C23.0478 12.2554 22.5492 12.1744 22.0815 12.027L21.731 11.9166L21.521 12.2181C20.2832 13.9951 18.3989 15.2804 16.2127 15.7258L15.8125 15.8073V16.2157V21.8646V22.3646H16.3125H18.125C19.6805 22.3646 20.9728 23.5077 21.2108 25.009H7.78921C8.02718 23.5077 9.31951 22.3646 10.875 22.3646H12.6875H13.1875V21.8646V16.2157V15.8073L12.7873 15.7258C10.6009 15.2803 8.71496 13.9949 7.47921 12.2184L7.26852 11.9155L6.91697 12.0275C6.45122 12.1759 5.95504 12.2554 5.4375 12.2554C2.71284 12.2554 0.5 10.0346 0.5 7.28879V4.1444H5.4375H5.9375V3.6444V0.5H23.0625V3.6444ZM5.4375 11.0924H5.9375V11.0565C5.9987 11.0483 6.0592 11.0388 6.11886 11.028L6.71123 10.9213L6.49765 10.3585C6.13637 9.4066 5.9375 8.37151 5.9375 7.28879V5.46659V4.96659H5.4375H2.15144H1.65144V5.46659V7.28879C1.65144 9.38479 3.34834 11.0924 5.4375 11.0924ZM22.5022 10.3606L22.2891 10.9232L22.8811 11.0298C23.0991 11.0691 23.3264 11.0924 23.5625 11.0924C25.6538 11.0924 27.3486 9.38261 27.3486 7.28879V5.46842V4.96842H26.8486H23.5625H23.0625V5.46842V7.29061C23.0625 8.37319 22.8637 9.40655 22.5022 10.3606Z"
+                                                stroke="black" />
+                                        </g>
+                                    </svg>
+                                    &nbsp;
+                                    Top {{ $num += 1 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endforeach
 </section>
-
+<br><br>
 <!-- offer section -->
 
 <section class="container mt-5 mb-5">
@@ -565,15 +607,54 @@
         </div>
     @endif
     @foreach ($feed_populer as $num => $feed)
-        <div class="d-flex">
-            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
-                <div class="" style="border: 1px solid
-        #000; border-radius: 15px 15px 0 0;">
-                    <!-- Foto dan Nama di atas -->
-                    <div class="d-flex justify-content-center align-items-center" style="height: 150px;">
-                        <video src="{{ asset('storage/' . $feed->upload_video) }}"></video>
-                    </div>
-                </div>
+    <div class="d-flex mb-3">
+        <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
+            <div class="" style="border-radius: 15px 15px 0 0;">
+                @if (Auth::check())
+                    @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
+                        <video class="video-js vjs-theme-city" style="border-radius: 15px 15px 0 0;"
+                            onclick="userAccessFeedPrem({{ $feed->user->id }}, {{ $feed->id }})"
+                            id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
+                            <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                    video</a>
+                            </p>
+                        </video>
+                    @else
+                        <video style="border-radius: 15px 15px 0 0;"
+                            @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
+        @else
+        class="video-js vjs-theme-city" @endif
+                            id="my-video" controls preload="auto" width="100%" height="100%"
+                            data-setup="{}">
+                            <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a
+                                web browser that
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                    video</a>
+                            </p>
+                        </video>
+                    @endif
+                @else
+                    <video style="border-radius: 15px 15px 0 0"
+                        @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
+    @else
+    class="video-js vjs-theme-city" @endif
+                        id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
+                        <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                        <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a
+                            web browser that
+                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports
+                                HTML5
+                                video</a>
+                        </p>
+                    </video>
+                @endif
                 <!-- Ikon "Top 1" di belakang -->
                 <div class="card-body"
                     style="border-bottom: 1px solid #000 ;border-left:1px solid #000; border-right:1px solid #000; border-radius: 0 0 15px 15px;">
@@ -609,10 +690,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
+    </div>
     @endforeach
 </section>
 
@@ -1108,6 +1188,54 @@
         });
     });
 </script>
+<button hidden id="buttonPremiums" type="button"
+style="position: absolute;  right: 70%; background-color:#F7941E; "
+class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal" data-bs-target="#staticBackdrops">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20">
+    <g fill="currentColor">
+        <path fill-rule="evenodd"
+            d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
+            clip-rule="evenodd" />
+        <path
+            d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
+        <path fill-rule="evenodd" d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
+            clip-rule="evenodd" />
+    </g>
+</svg>
+</button>
+<!-- Modal untuk penawaran premium -->
+<div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content" style="border-radius: 15px">
+        <div class="modal-body" style="border-radius: 15px;">
+            <button type="button" style="margin-left: 96%;" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close">
+            </button>
+
+            <div class="row">
+                <div class="text-center">
+                    <img src="{{ asset('images/crown-prem.png') }}"
+                        style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
+
+                </div>
+                <div class="text-black text-center">
+                    <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke premium</h2>
+
+                    <span class="intro-2">
+                        Upgrade ke premium sekarang juga untuk membuka akses ke resep resep premium kami.</span>
+
+                    <div class="mt-4 mb-5">
+                        <a href="{{ route('penawaran.premium') }}" class="btn"
+                            style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
+                            lebih lanjut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <script>
     // mengambil semua class pada video dengan nilai feed yang hanya ada di video premium
     let videoPremium = document.querySelectorAll(".feed");
