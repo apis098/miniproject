@@ -22,13 +22,13 @@
               <h4>#{{$detail->reference}}</h4>
                 <div class="">
                     <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
-                      @if($detail->status == "PAID")
+                      @if($detail_transaksi->status == "paid")
                         <b class="text-light">Sudah dibayar</b>
-                      @elseif($detail->status == "UNPAID")
+                      @elseif($detail_transaksi->status == "unpaid")
                         <b class="text-light">Belum dibayar</b>
-                      @elseif($detail->status == "REFUND")
+                      @elseif($detail_transaksi->status == "refund")
                         <b class="text-light">Dikembalikan</b>
-                      @elseif($detail->status == "EXPIRED")
+                      @elseif($detail_transaksi->status == "expired")
                         <b class="text-light">Terlambat</b>
                       @else
                         <b class="text-light">Gagal</b>
@@ -43,9 +43,9 @@
                 <div class="p-2">Tenggat pembayaran:</div>
                 <div class="ms-auto p-2">{{$time_format}}</div>
               </div>
-              <p class="mt-2 font-italic">
+              <small class="mt-2 font-italic">
                 <i class="text-orange fa-solid fa-circle-info"></i> Silahkan lakukan pembayaran sebelum tenggat pembayaran,jika anda belum melakukan pembayaran pada tenggat yang ditentukan maka transaksi akan dianggap hangus.
-              </p>
+              </small>
               <hr />
             </div>
 
