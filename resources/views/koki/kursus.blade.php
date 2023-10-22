@@ -276,13 +276,7 @@
                         </div>
                     </div>
 
-                    <div class=" my-4">
-                        @if ($kursus_sendiri->count() < 1)
-                            <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center">
-                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                <p><b>Tidak ada data</b></p>
-                            </div>
-                        @endif
+
                         {{-- start tab 1 --}}
                         <div class="d-flex" id="myCourse">
                             @foreach ($kursus_sendiri as $mycourse)
@@ -313,11 +307,16 @@
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
                                                 @else
-                                                <a href="" class="btn"
+                                                <a href="" class="btn text-break mt-1"
                                                     style="font-family: poppins;border:none;">
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
                                                 @endif
+
+                                                <a href="{{route('koki.content')}}" class="btn mt-2 float-end"
+                                                style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                                Tambah Konten
+                                            </a>
 
                                             </div>
                                         </div>
