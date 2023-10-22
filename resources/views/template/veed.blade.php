@@ -751,7 +751,7 @@
                                             <div class="modal" id="gift">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
-                                                        <form 
+                                                        <form
                                                             action="{{ route('donation.store', $item_video->user->id) }}" id="gift-form"
                                                             method="POST">
                                                             @csrf
@@ -2313,15 +2313,15 @@
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
-                                                                                                                            id="formLikeReplyComment${random}"
+                                                                                                                            id="formLikeReplyComment${up['id']}"
                                                                                                                             method="POST">
                                                                                                                             @csrf
                                                                                                                             <button
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
-                                                                                                                                onclick="likeReplyComment(${random})">
+                                                                                                                                onclick="likeReplyComment(${up['id']})">
                                                                                                                                 <i class="fa-regular fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment${random}"></i>
+                                                                                                                                id="iconLikeReplyComment${up['id']}"></i>
                                                                                                                             </button>
 
                                                                                                                         </form>
@@ -2336,7 +2336,7 @@
                                                                                                                     &nbsp;
                                                                                                                     &nbsp;
                                                                                                                 @endif
-                                                                                                                <span id="countLikeReplyComment${random}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                <span id="countLikeReplyComment${up['id']}" class="my-auto" style="margin-left: -1%;">
                                                                                                                     0
                                                                                                                 </span>
                                                                                                                 <div
@@ -2347,16 +2347,16 @@
                                                                                                                             <form
                                                                                                                                 method="POST"
                                                                                                                                 action="/hapus_balasan_komentar_feed/${up['id']}"
-                                                                                                                                id="delete-reply-comment-form${random}">
+                                                                                                                                id="delete-reply-comment-form${up['id']}">
                                                                                                                                 @csrf
                                                                                                                                 @method('DELETE')
                                                                                                                                 <button
                                                                                                                                     type="submit"
-                                                                                                                                    hidden onclick="deletedReplyCommentFeed(${random})"
-                                                                                                                                    id="delete-reply-comment-button${random}">Delete</button>
+                                                                                                                                    hidden onclick="deletedReplyCommentFeed(${up['id']})"
+                                                                                                                                    id="delete-reply-comment-button${up['id']}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
-                                                                                                                                    onclick="confirmation_delete_reply_comment(${random})"
+                                                                                                                                    onclick="confirmation_delete_reply_comment(${up['id']})"
                                                                                                                                     class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                                                     <i
                                                                                                                                         class="fa-solid fa-trash"></i>
@@ -2367,7 +2367,7 @@
                                                                                                                 <a href="#"
                                                                                                                     class="text-secondary my-auto me-5"
                                                                                                                     data-toggle="collapse"
-                                                                                                                    data-target="#collapse${random}"
+                                                                                                                    data-target="#collapse${up['id']}"
                                                                                                                     aria-expanded="true"
                                                                                                                     aria-controls="collapseOne">
                                                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
