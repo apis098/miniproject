@@ -322,7 +322,7 @@
                                                                     </button>
                                                                     <div class="container">
                                                                         <div class="row">
-                                                                            <div class="col lg-6 mb-5 my-3">
+                                                                            <div class="col lg-6 my-3">
                                                                                 <button type="button"class="btn"
                                                                                     style=" background: #F7941E;color:white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.36px; word-wrap: break-word">
                                                                                     @foreach ($item->jenis_kursus as $jenis_kursus)
@@ -356,15 +356,14 @@
                                                                                         {{ $item->nama_lokasi }}
                                                                                     </button>
                                                                                 </div>
-                                                                                <br>
 
                                                                             </div>
                                                                             <div class="col-xl-3 col-sm-4 mb-4 my-5">
                                                                                 <div class="bg-white shadow-sm py-5 border border-secondary text-center"
-                                                                                    style="border-radius: 20px; height:18rem;">
+                                                                                    style="border-radius: 20px; height:16rem;">
                                                                                     <img src="{{ asset('storage/' . $item->foto_kursus) }}"
-                                                                                        alt="" width="50%"
-                                                                                        height="50%"
+                                                                                        alt="" width="70%"
+                                                                                        height="70%"
                                                                                         class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                                                                                     <h5 class="mb-0">
                                                                                         <a href="#"
@@ -385,20 +384,19 @@
                                                                         </div>
 
                                                                         <div class="card mb-5"
-                                                                            style="width: 77%;margin-top:-15px;border-radius:15px;  border: 1px black solid">
-                                                                            <div class="card-body mx-5">
+                                                                            style="width: 74%;margin-top:-15px;border-radius:15px;  border: 1px black solid">
+                                                                            <div class="card-body mx-2">
                                                                                 <div class="d-flex">
                                                                                     <div class="col-lg-3 mx-4">
                                                                                         <h5><b>Tarif per jam</b></h5>
-                                                                                        <p>RP
+                                                                                        <span>RP
                                                                                             {{ number_format($item->tarif_per_jam, 2, ',', '.') }}
-                                                                                        </p>
+                                                                                        </span>
                                                                                     </div>
                                                                                     <div class="col-xl-4 mx-3">
                                                                                         <h5><b>Tarif paket</b></h5>
-                                                                                        <p>
                                                                                             @foreach ($item->paket_kursus as $paket)
-                                                                                                <p>
+                                                                                                <span>
                                                                                                     @if ($paket->waktu >= 60)
                                                                                                         {{ number_format($paket->waktu / 60, 1) }}
                                                                                                         Jam
@@ -408,15 +406,14 @@
                                                                                                     @endif
                                                                                                     : RP
                                                                                                     {{ number_format($paket->harga, 2, ',', '.') }}
-                                                                                                </p>
+                                                                                                </span>
                                                                                             @endforeach
-                                                                                        </p>
                                                                                     </div>
                                                                                     <div class="col-lg-3 mx-4">
-                                                                                        <h5><b>Waktu kusus</b></h5>
-                                                                                        <p>
+                                                                                        <h5><b>Waktu kursus</b></h5>
+                                                                                        <span>
                                                                                             0 menit
-                                                                                        </p>
+                                                                                        </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -432,20 +429,21 @@
                                             </td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
-                                                <a href="#" class="text-black" data-toggle="modal"
-                                                    data-target="#modalKursus"> {{ $item->nama_kursus }}</a>
+                                                <a href="#" class="text-black"  data-toggle="modal"
+                                                data-target="#modalKursus{{ $item->id }}">{{ Str::limit($item->nama_kursus, 30, '...') }}</a>
                                             </td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
                                                 {{ $item->user->name }}
                                             </td>
                                             <td style="border-right:1px solid black;" class="">
+                                                <div class="d-flex">
                                                 <form id="form_terima_eksekusi_kursus{{ $item->id }}"
                                                     action="{{ route('eksekusi.kursus', ['diterima', $item->id]) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('PATCH')
-                                                    <button type="button" class="btn btn-sm rounded-3 text-light me-2 my-2"
+                                                    <button type="button" class="btn btn-sm rounded-3 text-light me-2"
                                                         onclick="confirmation_accept_course({{ $item->id }})"
                                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                             class="ms-2 me-2"
@@ -462,6 +460,7 @@
                                                             class="ms-2 me-2"
                                                             style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b></a>
                                                 </form>
+                                            </div>
                                             </td>
                                         </tr>
                                     </div>

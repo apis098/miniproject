@@ -290,24 +290,30 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="col-12">
-                                                <button type="button"class="btn"
-                                                    style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                               <strong>
                                                     @foreach ($mycourse->jenis_kursus as $item)
                                                         {{ $item->jenis_kursus }}
                                                     @endforeach
-                                                </button>
-                                                <button type="button"class="btn"
-                                                    style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                                    {{ $mycourse->status }}
-                                                </button>
+                                                </strong>
+                                                    @if($mycourse->status  === 'ditunggu')
+                                                    <div class="float-end">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 22q-1.875 0-3.513-.713t-2.85-1.924q-1.212-1.213-1.924-2.85T3 13q0-1.875.713-3.513t1.924-2.85q1.213-1.212 2.85-1.924T12 4q1.875 0 3.513.713t2.85 1.925q1.212 1.212 1.925 2.85T21 13q0 1.875-.713 3.513t-1.924 2.85q-1.213 1.212-2.85 1.925T12 22Zm2.8-4.8l1.4-1.4l-3.2-3.2V8h-2v5.4l3.8 3.8ZM5.6 2.35L7 3.75L2.75 8l-1.4-1.4L5.6 2.35Zm12.8 0l4.25 4.25l-1.4 1.4L17 3.75l1.4-1.4Z"/></svg>
+                                                </div>
+                                                    @elseif ($mycourse->status === 'diterima')
+                                                    <div class="float-end">
+                                                        <div class="float-end">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z"/></svg>
+                                                        </div>
+                                                    </div>
+                                                    @endif
                                                 <br>
                                                 @if ($mycourse->status === 'diterima')
-                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn text-break mt-1 text-start fst-normal"
                                                     style="font-family: poppins;border:none;">
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
                                                 @else
-                                                <a href="" class="btn text-break mt-1"
+                                                <a href="#" class="btn text-break mt-1 text-start fst-normal"
                                                     style="font-family: poppins;border:none;">
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
