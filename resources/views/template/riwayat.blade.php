@@ -210,17 +210,17 @@
                         </thead>
                         <tbody>
                             @foreach ($history_penarikan as $tarik)
-                                <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="">
-                                        Rp. {{ number_format($tarik->pemasukan, 2, '.', ',') }}
-                                    </td>
-                                    <td></td>
-                                    <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
-                                            id="buttonUploadVideo"
-                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                            <span style="font-weight: 600; color: white;">Menunggu</span>
-                                        </button></td>
-                                </tr>
+                            <tr class="mt-5">
+                                <td style="border-left:1px solid black;" class="">
+                                    Rp. {{ number_format($tarik->pemasukan, 2, '.', ',') }}
+                                </td>
+                                <td>20 November 2023</td>
+                                <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                        id="buttonUploadVideo"
+                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                        <span style="font-weight: 600; color: white;">Menunggu</span>
+                                    </button></td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

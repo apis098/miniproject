@@ -171,7 +171,7 @@
                                     <div class="d-flex">
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="{{ route('kursus') }}" method="GET">
-                                                <input type="text" name="cari_nama_kursus" style="text-align: left;"
+                                                <input type="text" id="cari_nama_kursus" name="cari_nama_kursus" style="text-align: left;"
                                                     placeholder="Cari nama kursus ..."
                                                     value="{{ request()->cari_nama_kursus }}">
                                                 <button type="submit" class="zoom-effects"
@@ -424,7 +424,7 @@
         <div class="mx-4">
             <div class="tab-content mb-5 mx-1 my-5" id="pills-tabContent">
                 {{-- start tab 1 --}}
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                <div class="tab-pane courses fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     @if ($semua_kursus->count() == 0)
                         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -478,7 +478,7 @@
                 {{-- end tab 1 --}}
 
                 {{-- start tab 2 --}}
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                <div class="tab-pane courses fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
                     @if ($kursus_terbaru->count() == 0)
                         <div class="d-flex flex-column justify-content-center align-items-center">
@@ -532,7 +532,7 @@
                 {{-- end tab 2 --}}
 
                 {{-- start tab 3 --}}
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                <div class="tab-pane courses fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <div class="row mx-1" style="margin-left: -50px">
                         @foreach ($kursus_termurah as $murah)
@@ -580,7 +580,7 @@
                 {{-- end tab 3 --}}
 
                 {{-- start tab 4 --}}
-                <div class="tab-pane fade" id="pills-terbaik" role="tabpanel" aria-labelledby="pills-terbaik-tab"
+                <div class="tab-pane courses fade" id="pills-terbaik" role="tabpanel" aria-labelledby="pills-terbaik-tab"
                     tabindex="0">
                     <div class="row mx-1" style="margin-left: -50px">
                         <div class="card mx-3 mb-5" style="width: 30%; border-radius:15px">
@@ -841,6 +841,15 @@
             border1.style.display = "none";
             o.style.display = "none";
 
+        });
+
+        $(document).ready(function(){
+            $("#cari_nama_kursus").on("input",  function(){
+                let value = $(this).val().toLowerCase();
+                $(".courses").filter(function(){
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
         });
     </script>
 @endsection
