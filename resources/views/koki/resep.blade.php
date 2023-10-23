@@ -18,10 +18,10 @@
             <div class="row" style="border-color: white">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3" style="border-color: white;max-width:280px;">
                     <div id="div" class="mt-5 mb-5 border border-dark" style="border-radius: 15px;">
-                        <div class="text-center mb-4" style="border-color: white;border:none;display:flex;justify-content:center;align-item:center;">
+                        <div class="mb-4 text-center" style="border-color: white;border:none;">
                             <img src="" style="display:none;" alt=""
                                 id="uploadedPhoto" class="">
-                            <svg id="svgPhoto" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5 mr-5 ml-5" width="100"
+                            <svg id="svgPhoto" xmlns="http://www.w3.org/2000/svg" class="m-5 p-1" width="100"
                                 height="100" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M5 21q-.825 0-1.413-.588T3 19v-6h2v6h6v2H5Zm8 0v-2h6v-6h2v6q0 .825-.588 1.413T19 21h-6Zm-7-4l3-4l2.25 3l3-4L18 17H6Zm-3-6V5q0-.825.588-1.413T5 3h6v2H5v6H3Zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6h-2Zm-3.5-1q-.65 0-1.075-.425T14 8.5q0-.65.425-1.075T15.5 7q.65 0 1.075.425T17 8.5q0 .65-.425 1.075T15.5 10Z" />
