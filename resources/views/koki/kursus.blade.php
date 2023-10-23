@@ -397,7 +397,7 @@
                                                     @endforeach
                                                 </strong>
                                                 <br>
-                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn text-start fst-normal"
                                                     style="font-family: poppins;border:none;">
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
@@ -464,7 +464,7 @@
                                                         {{ $item->jenis_kursus }}
                                                     @endforeach
                                                 </strong> <br>
-                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn"
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn text-start fst-normal"
                                                     style="font-family: poppins;border:none;">
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
