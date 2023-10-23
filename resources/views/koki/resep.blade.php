@@ -14,15 +14,14 @@
     </style>
     <form id="form-add-recipe" action="/koki/resep" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-5">
-                    <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
-                        <div class="card-body text-center">
-                            <img src="{{ asset('images/default.jpg') }}"
-                                style="max-width: 250px; display:none; margin-left:-15px;" alt="" id="uploadedPhoto"
-                                class="">
-                            <svg id="svgPhoto" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
+        <div class="container" style="border-color: #EAEAEA;">
+            <div class="row" style="border-color: white">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3" style="border-color: white;max-width:280px;">
+                    <div id="div" class="mt-5 mb-5 border border-dark" style="border-radius: 15px;">
+                        <div class="text-center mb-4" style="border-color: white;border:none;display:flex;justify-content:center;align-item:center;">
+                            <img src="" style="display:none;" alt=""
+                                id="uploadedPhoto" class="">
+                            <svg id="svgPhoto" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5 mr-5 ml-5" width="100"
                                 height="100" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M5 21q-.825 0-1.413-.588T3 19v-6h2v6h6v2H5Zm8 0v-2h6v-6h2v6q0 .825-.588 1.413T19 21h-6Zm-7-4l3-4l2.25 3l3-4L18 17H6Zm-3-6V5q0-.825.588-1.413T5 3h6v2H5v6H3Zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6h-2Zm-3.5-1q-.65 0-1.075-.425T14 8.5q0-.65.425-1.075T15.5 7q.65 0 1.075.425T17 8.5q0 .65-.425 1.075T15.5 10Z" />
@@ -185,56 +184,58 @@
                     <br>
                     <div class="mb-4 mx-1" style="margin-bottom: 20px">
                         <div class="row">
-                        <div class="col-lg-12">
-                        <div class="row">
-                            <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
-                            <div id="div2" class="card my-4 col-lg-4 col-md-12 mx-3 border border-dark"
-                                style="border-radius: 15px;">
-                                <div class="card-body text-center">
-                                    <img id="gambar" src="{{ asset('images/default.jpg') }}"
-                                        style="max-width: 250px; display:none; margin-left:-15px;" alt=""
-                                        id="uploadedImage" class="">
-                                    <svg id="svg2" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5"
-                                        width="100" height="100" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M5 21q-.825 0-1.413-.588T3 19v-6h2v6h6v2H5Zm8 0v-2h6v-6h2v6q0 .825-.588 1.413T19 21h-6Zm-7-4l3-4l2.25 3l3-4L18 17H6Zm-3-6V5q0-.825.588-1.413T5 3h6v2H5v6H3Zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6h-2Zm-3.5-1q-.65 0-1.075-.425T14 8.5q0-.65.425-1.075T15.5 7q.65 0 1.075.425T17 8.5q0 .65-.425 1.075T15.5 10Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="col-lg-7 col-md-12 my-auto">
-
-                                {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
-                                    class="formFile"> --}}
-                                <div class="row ms-3 my-2"
-                                    style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
-                                    <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
-                                        style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
-                                        <div
-                                            style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                            Pilih File</div>
-                                        <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
-                                            style="display: none;" type="file" id="inputan2" required>
-                                    </button>
-                                    <div class="col-8 my-auto text-truncate" id="fileinfo"
-                                        style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                        Tidak ada file terpilih</div>
-                                </div>
-                                @error('foto_langkah_resep.*')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
+                                    <div id="div2" class="card my-4 col-lg-4 col-md-12 mx-3 border border-dark"
+                                        style="border-radius: 15px;">
+                                        <div class="card-body text-center">
+                                            <img id="gambar" src="{{ asset('images/default.jpg') }}"
+                                                style="max-width: 250px; display:none; margin-left:-15px;" alt=""
+                                                id="uploadedImage" class="">
+                                            <svg id="svg2" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5"
+                                                width="100" height="100" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M5 21q-.825 0-1.413-.588T3 19v-6h2v6h6v2H5Zm8 0v-2h6v-6h2v6q0 .825-.588 1.413T19 21h-6Zm-7-4l3-4l2.25 3l3-4L18 17H6Zm-3-6V5q0-.825.588-1.413T5 3h6v2H5v6H3Zm16 0V5h-6V3h6q.825 0 1.413.588T21 5v6h-2Zm-3.5-1q-.65 0-1.075-.425T14 8.5q0-.65.425-1.075T15.5 7q.65 0 1.075.425T17 8.5q0 .65-.425 1.075T15.5 10Z" />
+                                            </svg>
+                                        </div>
                                     </div>
-                                @enderror
-                                <div id="foto_langkah_resep.0_error" style="display: none;" class="alert alert-danger">
+                                    <div class="col-lg-7 col-md-12 my-auto">
+
+                                        {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
+                                    class="formFile"> --}}
+                                        <div class="row ms-3 my-2"
+                                            style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                                            <button type="button" id="inputanfile" onclick="inputfilee()"
+                                                class="col-4"
+                                                style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
+                                                <div
+                                                    style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                    Pilih File</div>
+                                                <input name="foto_langkah_resep[]" class="form-control my-auto mx-1"
+                                                    style="display: none;" type="file" id="inputan2" required>
+                                            </button>
+                                            <div class="col-8 my-auto text-truncate" id="fileinfo"
+                                                style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                Tidak ada file terpilih</div>
+                                        </div>
+                                        @error('foto_langkah_resep.*')
+                                            <div class="alert alert-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                        <div id="foto_langkah_resep.0_error" style="display: none;"
+                                            class="alert alert-danger">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
-                        <div class="col-12 mx-2">
-                        <input type="text" class="form-control mb-2 mx-1" name="judul_langkah[]"
-                            placeholder="Masukkan judul langkah..." required>
-                        <textarea class="mx-1 form-control" maxlength="255" class="form-control" name="langkah_resep[]"
-                            placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
-                        </div>
+                            <div class="col-12 mx-2">
+                                <input type="text" class="form-control mb-2 mx-1" name="judul_langkah[]"
+                                    placeholder="Masukkan judul langkah..." required>
+                                <textarea class="mx-1 form-control" maxlength="255" class="form-control" name="langkah_resep[]"
+                                    placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
+                            </div>
                         </div>
                         @error('langkah_resep.*')
                             <div class="alert alert-danger">
@@ -358,6 +359,7 @@
                             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                             color: #EAEAEA;
                         }
+
                         .btn-no-select {
                             background: #EAEAEA;
                             border-radius: 15px;
@@ -368,13 +370,13 @@
                     <script>
                         const free_button = document.getElementById("free");
                         const prem_button = document.getElementById("prem");
-                        free_button.addEventListener("click", function () {
+                        free_button.addEventListener("click", function() {
                             free_button.classList.remove("btn-no-select");
                             free_button.classList.add("btn-select");
                             prem_button.classList.remove("btn-select");
                             prem_button.classList.add("btn-no-select");
                         });
-                        prem_button.addEventListener("click", function () {
+                        prem_button.addEventListener("click", function() {
                             prem_button.classList.remove("btn-no-select");
                             prem_button.classList.add("btn-select");
                             free_button.classList.remove("btn-select");
@@ -410,7 +412,7 @@
                         $("#button-add-recipe").prop('disabled', false);
 
                         window.location.href =
-                            "{{route('koki.recipe')}}?message-success=Sukses menambahkan resep!";
+                            "{{ route('koki.recipe') }}?message-success=Sukses menambahkan resep!";
                     },
                     error: function error(xhr, status, errors) {
                         $("#button-add-recipe").prop('disabled', false);
@@ -445,6 +447,9 @@
                         document.getElementById('uploadedPhoto').setAttribute("src", event.target.result);
                         document.getElementById('uploadedPhoto').style.display = "block";
                         document.getElementById('svgPhoto').style.display = "none";
+                        document.getElementById('div').classList.remove("border-dark");
+                        document.getElementById('uploadedPhoto').style.borderRadius = "5%";
+                        document.getElementById('uploadedPhoto').style.maxWidth = "250px";
                     };
                     read.readAsDataURL(input.files[0]);
                 }
@@ -470,8 +475,6 @@
         });
     </script>
     <script>
-
-
         function inputfilee() {
             document.getElementById("inputan2").click();
             document.getElementById('inputan2').addEventListener('change', function() {
