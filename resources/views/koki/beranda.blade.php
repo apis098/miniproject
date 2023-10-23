@@ -584,7 +584,7 @@
         </div>
         <div class="row mt-3">
             <div class="col-lg-12">
-                <div class="mx-3" style="width: 920px;">
+                <div class="mx-3" style="width: 94%;">
                     <div class="panel h-full w-full">
                         <div class="mb-3 flex items-center dark:text-white-light">
                             <h5 class="text-lg fw-bold">Diagram Pendapatan</h5>
