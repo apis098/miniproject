@@ -155,8 +155,8 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
+    <div class="d-flex ms-4 mb-3">
     @foreach ($feed_premium_favorite as $num => $feed)
-        <div class="d-flex mb-3">
             <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
                 <div class="" style="border-radius: 15px 15px 0 0;">
                     @if (Auth::check())
@@ -241,8 +241,8 @@
                     </div>
                 </div>
             </div>
-        </div>
     @endforeach
+    </div>
 </section>
 <br><br>
 <!-- offer section -->
