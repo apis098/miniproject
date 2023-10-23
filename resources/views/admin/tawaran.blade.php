@@ -448,10 +448,9 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="pricing-item animated-card">
                                     <div class="pricing-heading">
-                                        <button type="submit "
+                                        <button type="button "
                                         style=" right: 10%; top: -2%; position: absolute; background-color:#F7941E; border: none; width: 10%; height: 7%;"
-                                        class="btn btn-warning btn-sm text-light rounded-circle d-flex" data-bs-toggle="modal"
-                                        data-bs-target="#mymodal">
+                                        class="btn btn-warning btn-sm text-light rounded-circle d-flex" data-toggle="modal" data-target="#edit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24">
                                                 <path fill="none" stroke="currentColor" stroke-width="3.5"
@@ -620,6 +619,74 @@
         </div>
     </div>
 </div>
+
+  {{-- modal edit --}}
+  <div class="modal fade" id="edit" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="border-radius: 15px">
+          <div class="modal-body">
+              <div class="d-flex justify-content-between">
+                  <h5 class="modal-title ml-2" id="exampleModalLabel"
+                      style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                      Edit
+                  </h5>
+                  <button type="button" class="close mr-2" data-dismiss="modal"
+                      aria-label="Close" id="closeModalEdit">
+                      <i class="fa-regular text-dark fa-circle-xmark"></i>
+                  </button>
+              </div>
+              <form id="formUpdateFeed()" action="" method="POST">
+                  @csrf
+                  @method("PUT")
+                  <div class="mt-4">
+                      <div class="col-sm-12">
+                        <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+                            @csrf
+                            <div class=" d-flex mr-5" style="overflow-x:hidden;">
+                                <div class="ml-4">
+                                    <div class="mb-3 row ml-1">
+                                        <label class="col-sm-1 col-form-label fw-bold">Nama</label>  &nbsp; &nbsp; &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="text" id="nama" name="nama_paket" class="form-control"
+                                                style="  width: 38rem; margin-left:-15px " placeholder="Masukkan Nama Paket...">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ml-1 ">
+                                        <label class="col-sm-1 col-form-label fw-bold">Harga </label>  &nbsp;  &nbsp; &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="text" id="harga" name="harga_paket" class="form-control "
+                                                style="  width: 38rem; margin-left:-15px " placeholder="Masukkan Harga Paket...">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ml-1">
+                                        <label class="col-sm-1 col-form-label fw-bold">Durasi </label>  &nbsp;  &nbsp; &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="text" id="durasi" name="durasi_paket" class="form-control "
+                                                style="  width: 38rem; margin-left:-15px " placeholder="Masukkan Durasi Aktif Paket...">
+                                        </div>
+                                    </div>
+                                    <div class="d-flex ml-2">
+                                        <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                        <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
+                                            style="width: 39rem;" placeholder="Masukkan Detail Paket...">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                      </div>
+                  </div>
+                  <br>
+                  <button type="submit" onclick="buttonUpdateFeed"
+                      class="btn btn-sm d-flex justify-content-end text-white float-end"
+                      style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+{{-- end modal edit --}}
+
     <script>
         const btnTopUp = document.getElementById("button-topUp");
         const btnBerlangganan = document.getElementById("button-berlangganan");
