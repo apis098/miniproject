@@ -497,7 +497,10 @@
                     @endif
                     {{-- start tab 2 --}}
                     @foreach ($data['feed_disukai'] as $feed_suka)
-                        <div class="d-flex mt-4">
+                    <form id="formUnlikeFeed{{ $feed_suka->id }}" action="{{ route('sukai.veed', [Auth::user()->id, $feed_suka->id]) }}" method="post">
+
+                    </form>
+                        <div class="d-flex mt-4" id="card_like_feed{{ $feed_suka->id }}">
                             <div class="row">
                                 <div class="col-3">
                                     <video src="{{ asset('storage/' . $feed_suka->upload_video) }}"
@@ -541,7 +544,7 @@
                                         </a>
 
 
-                                        <button type="button" onclick="confirmation_delete_comment_feed()"
+                                        <button type="button" onclick="confirmationUnlikeFeed({{ $feed_suka->id }})"
                                             class="yuhu text-danger rounded-5 float-end">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
@@ -583,7 +586,8 @@
                     @endif
                     @foreach ($data['feed_favorite'] as $feed_favorite)
                         {{-- start tab 3 --}}
-                        <div class="d-flex mt-4">
+                        <form id="formUnfavoriteFeed{{ $feed_favorite->id }}" action="{{ route('favorite.feed.store', $feed_favorite->id) }}" method="post"></form>
+                        <div class="d-flex mt-4" id="card_feed_favorite{{ $feed_favorite->id }}">
                             <div class="row">
                                 <div class="col-3 mx-2">
                                     <video src="{{ asset('storage/' . $feed_favorite->upload_video) }}"
@@ -626,7 +630,7 @@
                                         </a>
 
 
-                                        <button type="button" onclick="confirmation_delete_comment_feed()"
+                                        <button type="button" onclick="confirmationUnfavoriteFeed({{ $feed_favorite->id }})"
                                             class="yuhu text-danger rounded-5 float-end">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
@@ -859,6 +863,91 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
+        function confirmationUnfavoriteFeed(num)
+        {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                $.ajax({
+                                    url: $("#formUnfavoriteFeed" + num).attr("action"),
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                            $("#card_feed_favorite" + num).empty();
+                                        
+                                    }
+                                });
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        function confirmationUnlikeFeed(num)
+        {
+            iziToast.show({
+                backgroundColor: '#F7941E',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'white',
+                messageColor: 'white',
+                message: 'Apakah Anda yakin ingin menghapus data ini?',
+                position: 'topCenter',
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                $.ajax({
+                                    url: $("#formUnlikeFeed" + num).attr("action"),
+                                    method: "POST",
+                                    headers: {
+                                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                                    },
+                                    success: function(response) {
+                                        if (response.success) {
+                                            $("#card_like_feed" + num).empty();
+                                        }
+                                    }
+                                });
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
         function DeleteData(num) {
             iziToast.show({
                 backgroundColor: '#F7941E',
