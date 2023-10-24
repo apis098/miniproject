@@ -313,7 +313,7 @@
                         1.1  <span class="ml-4">lorem ipsum von lenong</span>
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
-                                <span class="me-3">2 jam 10 menit</span>
+                                <span class="me-3">30 Menit</span>
                                 <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
@@ -337,7 +337,7 @@
                         1.1  <span class="ml-4">lorem ipsum von lenong</span>
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
-                                <span class="me-3">2 jam 10 menit</span>
+                                <span class="me-3">30 Menit</span>
                                 <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
@@ -361,7 +361,7 @@
                         1.1  <span class="ml-4">lorem ipsum von lenong</span>
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
-                                <span class="me-3">2 jam 10 menit</span>
+                                <span class="me-3">30 Menit</span>
                                 <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
@@ -385,7 +385,7 @@
                         1.1  <span class="ml-4">lorem ipsum von lenong</span>
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
-                                <span class="me-3">2 jam 10 menit</span>
+                                <span class="me-3">30 Menit</span>
                                 <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
