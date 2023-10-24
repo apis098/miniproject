@@ -666,11 +666,14 @@
                                                 style="  width: 38rem; margin-left:-15px " placeholder="Masukkan Durasi Aktif Paket...">
                                         </div>
                                     </div>
-                                    <div class="d-flex ml-2">
-                                        <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp;  &nbsp;  &nbsp;
-                                        <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                                            style="width: 39rem;" placeholder="Masukkan Detail Paket...">
+                                    <div class="mb-3 row ml-1">
+                                        <label class="col-sm-1 col-form-label fw-bold">Detail </label>  &nbsp;  &nbsp; &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="text" id="durasi" name="durasi_paket" class="form-control "
+                                                style="  width: 38rem; margin-left:-15px " placeholder="Masukkan Detail Paket...">
+                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
