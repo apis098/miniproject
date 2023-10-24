@@ -116,6 +116,13 @@ class TripayCallbackController extends Controller
 
             $user->save();
 
+            $admin = User::where('role','admin')->first();
+            $notification = new notifications();
+            $notification->user_id = $user->id;
+            $notification->notification_from = $admin->id;
+            $notification->top_up_id = $transaction->id;
+            $notification->message = "Berhasil!,anda telah berlangganan ".$premium->durasi_paket." hari";
+            $notification->save();
             return Response::json(['success' => true]);
         }
     }

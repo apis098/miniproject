@@ -372,7 +372,7 @@
 
                                             <div class="text-light me-2">
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-1"
-                                                    style="width: 380px; border-radius:13px; margin-right:-105%;">
+                                                    style="width: 400px; border-radius:13px; margin-right:-105%;">
                                                     @foreach ($notification as $row)
                                                         @if ($row->sender->id != auth()->user()->id)
                                                             <div class="dropdown-divider"></div>
