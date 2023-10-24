@@ -49,5 +49,11 @@ class reservasiKursusController extends Controller
         return view('kursus.reservasi-kursus', compact('categorytopup','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
+    public function invoiceKursus(Request $request){
+
+        
+        return view('kursus.invoice-kursus');
+
+    }
 
 }
