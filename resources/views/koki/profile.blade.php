@@ -435,10 +435,11 @@
                         {{-- start tab 4 --}}
                         <div class="tab-pane fade show active" id="resep" role="tabpanel"
                             aria-labelledby="pills-contact-tab" tabindex="0">
-                            <div class="row mb-5" style="margin-top: -50px; margin-left: -5px;">
-                                <textarea class="" name="" id="" cols="30" rows="8"
-                                    style="border-radius: 10px; color: black; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.40px; word-wrap: break-word"
-                                    readonly>{{$userLogin->biodata}} </textarea>
+                            <div class="card mb-5" style="margin-top: -50px; border-radius: 10px; margin-left: -5px; border: 1px solid #777">
+                                <p class="text-start ml-3 mt-2 me-3"
+                                    readonly>
+                            {{ trim($userLogin->biodata) }}
+                            </p>
                             </div>
                         </div>
                         {{-- end tab 4 --}}
