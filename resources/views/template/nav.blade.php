@@ -1419,6 +1419,24 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script>
+        @if(session('error'))
+            iziToast.error({
+                title: 'Gagal',
+                message: '{{ session('error') }}',
+                position: 'topCenter'
+            });
+        @endif
+    </script>
+    <script>
+        @if(session('success'))
+            iziToast.success({
+                title: 'Sukses',
+                message: '{{ session('success') }}',
+                position: 'topCenter'
+            });
+        @endif
+    </script>
+    <script>
         $(document).ready(function() {
             $("#buttonaddrecipe").click(function(event) {
                 event.preventDefault();

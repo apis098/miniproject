@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('saldo_pemasukan')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text('biodata')->nullable();
+            $table->string('biodata',900)->default('Hi!,Saya menggunakan hummacook untuk meyalurkan hobi saya😊');
             $table->string('role');
             $table->string('status')->default('aktif');
             $table->enum("isSuperUser", ["yes", "no", "ditolak"])->default("no");

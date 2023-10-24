@@ -11,6 +11,7 @@ use App\Models\transactionTopUp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class TopUpController extends Controller
 {
@@ -88,13 +89,27 @@ class TopUpController extends Controller
         //
     }
     public function paymentMethod(Request $request){
-        if($request->inputanLainya != null){
-            $price = $request->inputanLainya;
-            return redirect('/koki/payments-method-page/'.$price);
-          }else{
-            $price = $request->inputanTopUp;
-            return redirect('/koki/payments-method-page/'.$price);
-          }
+        $rules = [
+            'inputanLainya'=>'min:0|integer',
+        ];
+        $messages = [
+            'inputanLainya.min' => 'Inputan tidak boleh minus',
+        ];
+        $validate = Validator::make($request->all(),$rules,$messages);
+        if($validate->fails()){
+            $errorMessage = $validate->errors()->first();
+            return redirect()->back()->with('error', $errorMessage);
+        }else{
+            if($request->inputanLainya != null){
+                $price = $request->inputanLainya;
+                return redirect('/koki/payments-method-page/'.$price);
+              }elseif($request->inputanTopUp == null  && $request->inputanLainya == null){
+                return redirect()->back()->with('errors',$validate->errors()->first());
+              }else{
+                $price = $request->inputanTopUp;
+                return redirect('/koki/payments-method-page/'.$price);
+              }
+        }
     }
     public function paymentsPage(){
         $userLogin = Auth::user();

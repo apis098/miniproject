@@ -438,9 +438,7 @@
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -5px;">
                                 <textarea class="" name="" id="" cols="30" rows="8"
                                     style="border-radius: 10px; color: black; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.40px; word-wrap: break-word"
-                                    readonly>
-                            {{ trim($userLogin->biodata) }}
-                        </textarea>
+                                    readonly>{{$userLogin->biodata}} </textarea>
                             </div>
                         </div>
                         {{-- end tab 4 --}}
