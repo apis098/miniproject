@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\history_premiums;
+use App\Models\notifications;
 use App\Models\premiums;
 use App\Models\transactionTopUp;
 use App\Models\User;
@@ -186,6 +187,14 @@ class TripayCallbackController extends Controller
             $saldo_baru = $transaction->price;
             $user->saldo = $saldo_lama + $saldo_baru;
             $user->save();
+
+            $admin = User::where('role','admin')->first();
+            $notification = new notifications();
+            $notification->user_id = $user->id;
+            $notification->notification_from = $admin->id;
+            $notification->top_up_id = $transaction->id;
+            $notification->message = "Top up sebesar Rp.".number_format($transaction->price,2,',','.')." berhasil!";
+            $notification->save();
             return Response::json(['success' => true]);
         }
     }

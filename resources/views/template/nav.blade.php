@@ -372,7 +372,7 @@
 
                                             <div class="text-light me-2">
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-1"
-                                                    style="width: 350px; border-radius:13px; margin-right:-112%;">
+                                                    style="width: 380px; border-radius:13px; margin-right:-105%;">
                                                     @foreach ($notification as $row)
                                                         @if ($row->sender->id != auth()->user()->id)
                                                             <div class="dropdown-divider"></div>
@@ -418,6 +418,24 @@
                                                                         <button class="yuhu mt-2" type="submit">
                                                                             <small class="mt-1 ms-1 text-secondary">Menyukai
                                                                                 komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image" style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->top_up_id != null)
+                                                                    <form action="#"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small class="mt-1 ms-1 text-secondary">{{$row->message}}</small>
                                                                             @if ($row->status == 'belum')
                                                                                 <img class="ms-2 mb-2 rounded-circle"
                                                                                     src="{{ asset('images/badge.png') }}"

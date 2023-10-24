@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('alasan')->nullable();
             $table->string('message')->nullable();
             $table->integer('gift_id')->nullable();
+            $table->integer('top_up_id')->nullable();
             $table->unsignedBigInteger('like_id')->nullable(); 
             $table->unsignedBigInteger('like_reply_id')->nullable(); 
             $table->unsignedBigInteger('reply_id_comment')->nullable();
