@@ -119,8 +119,8 @@
 
                             stars.forEach((star, index) => {
                                 star.addEventListener('click', () => {
-                                    if (index === rating) {
-                                        // Jika bintang yang sudah diberi peringkat diklik lagi, batalkan peringkat.
+                                    if (index === 0 && rating === 1) {
+                                        // Jika bintang pertama sudah dinyalakan dan diklik lagi, matikan bintang tersebut.
                                         rating = 0;
                                     } else {
                                         rating = index + 1;
@@ -136,24 +136,6 @@
 
                                     // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
                                     console.log(`Anda memberi peringkat: ${rating} bintang`);
-                                });
-
-                                star.addEventListener('mouseover', () => {
-                                    stars.forEach((s, i) => {
-                                        if (i <= index) {
-                                            s.classList.add('actived');
-                                        } else {
-                                            s.classList.remove('actived');
-                                        }
-                                    });
-                                });
-
-                                star.addEventListener('mouseout', () => {
-                                    stars.forEach((s, i) => {
-                                        if (i >= rating) {
-                                            s.classList.remove('actived');
-                                        }
-                                    });
                                 });
                             });
                         </script>
@@ -227,7 +209,8 @@
 
                             .card {
                                 border: 1px solid #777;
-
+                                overflow: hidden;
+                                border-radius:10px;
                             }
 
                             .accordion-collapse {
@@ -238,7 +221,7 @@
                             }
                         </style>
                         <h3 class="fw-bold mb-3">konten kursus</h3>
-                        <div class="card" style="border-radius:10px;">
+                        <div class="card">
                             <button class="accordion active"> <b>cara memanggang</b> <span>2 jam 10 menit</span>
                             </button>
                             <div class="panel">
@@ -356,9 +339,10 @@
                                         </form>
                                     @else
                                         {{-- untuk koki lain atau user lain --}}
-                                        <button type="submit" class="btn text-light float-center mt-1 mb-3 zoom-effects"
+                                        <a href="{{ route('reservasi.kursus') }}" type="button"
+                                            class="btn text-light float-center mt-1 mb-3 zoom-effects"
                                             style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-3 me-3">Reservasi kursus</b></button>
+                                                class="ms-3 me-3">Reservasi kursus</b></a>
 
                                         <button type="submit" class="btn text-dark float-center mt-1 mb-3 zoom-effects"
                                             style="border:1px solid #000; border-radius: 15px;"><b
@@ -413,9 +397,8 @@
                     <h3><b>Deskripsi</b></h3>
                 </div>
 
-                <div
-                    style=" color: black; font-size:17px; font-family: Poppins; font-weight: 400; letter-spacing: 0.20px; word-wrap: break-word">
-                    Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et facere
+                <div style=" color: black; font-size:17px; font-family: Poppins; font-weight: 400; letter-spacing: 0.50px; word-wrap: break-word">
+                   <p> Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et facere
                     dolore.
                     Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum enim quo quidem sint!
                     Qui
@@ -423,7 +406,7 @@
                     Sit reprehenderit quia in velit incidunt vel suscipit dignissimos a veritatis facere vel vero excepturi.
                     Aut eligendi delectus ut inventore aliquid ea provident velit et debitis voluptas. Sit recusandae
                     voluptas nam omnis velit sit
-                    exercitationem molestiae cum unde quae in placeat quisquam.<br />
+                    exercitationem molestiae cum unde quae in placeat quisquam.</p>
                 </div>
 
                 {{-- <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
@@ -454,8 +437,22 @@
                     </div>
                 </div> --}}
 
-                <div class="my-5 mt-4">
+                <div class="my-4 mt-4">
                     <h3><b>Ulasan</b></h3>
+                </div>
+                <div class="col-10 mb-5">
+                    {{-- @if (Auth::check()) --}}
+                        <form method="POST" action="#">
+                            @csrf
+                            <div class="input-group" style="margin-left: -15px;">
+                                <input type="text" id="reply" name="komentar" maxlength="255" style="border-radius: 10px;"
+                                    {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control"
+                                    placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
+                                <button type="submit"
+                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                    class="btn btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
+                            </div>
+                        </form>
                 </div>
 
                 <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
