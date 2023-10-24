@@ -197,7 +197,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
 // feed route
 Route::post('upload-video', [KokiController::class, 'upload'])->name('upload.video')->middleware("auth");
 Route::post('/hapus_feed/{id}', [KokiController::class, "hapus_feed"])->name('hapus.feed')->middleware("auth");
-Route::put("/update-feed/{id}", [KokiController::class, "updateFeed"])->name("update.feed")->middleware("auth");
+Route::post("/update-feed/{id}", [KokiController::class, "updateFeed"])->name("update.feed")->middleware("auth");
 
 // like dan favorite pada artikel resep
 Route::post('/komentar-resep/{pengirim}/{penerima}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");

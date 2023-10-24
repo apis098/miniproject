@@ -287,8 +287,8 @@
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Feed Disukai</h5>
-                        <div id="b" class="ms-" style="width: 100%;display:none; height: 100%; border: 1px #F7941E solid;"
-                            >
+                        <div id="b" class="ms-"
+                            style="width: 100%;display:none; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
                 </li>
@@ -310,17 +310,17 @@
                 let garis_tab1 = document.getElementById("border1");
                 let garis_tab2 = document.getElementById("b");
                 let garis_tab3 = document.getElementById("pp");
-                tab1.addEventListener("click", function () {
+                tab1.addEventListener("click", function() {
                     garis_tab1.style.display = "block";
                     garis_tab2.style.display = "none";
                     garis_tab3.style.display = "none";
                 });
-                tab2.addEventListener("click", function () {
+                tab2.addEventListener("click", function() {
                     garis_tab2.style.display = "block";
                     garis_tab1.style.display = "none";
                     garis_tab3.style.display = "none";
                 });
-                tab3.addEventListener("click", function () {
+                tab3.addEventListener("click", function() {
                     garis_tab3.style.display = "block";
                     garis_tab1.style.display = "none";
                     garis_tab2.style.display = "none";
@@ -357,11 +357,11 @@
                     @endif
                     {{-- start tab 1 --}}
                     @foreach ($data['feed_dibuat'] as $feed_buat)
-                    <form id="delete-data{{ $feed_buat->id }}" action="/hapus_feed/{{ $feed_buat->id }}" method="post">
-                    @csrf
-                    @method("DELETE")
+                        <form id="delete-data{{ $feed_buat->id }}" action="/hapus_feed/{{ $feed_buat->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
 
-                    </form>
+                        </form>
                         <div class="d-flex mt-4" id="feed_buat{{ $feed_buat->id }}">
                             <div class="row">
                                 <div class="col-3 mx-2">
@@ -412,7 +412,7 @@
                                         </button>
 
                                         <a class="my-auto text-dark float-end mx-2 mr-2" style="margin-right: -35px;"
-                                            href="#" data-toggle="modal" data-target="#edit">
+                                            href="#" data-toggle="modal" data-target="#edit{{ $feed_buat->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24">
                                                 <path fill="none" stroke="currentColor" stroke-width="1.5"
@@ -423,7 +423,7 @@
 
                                     </p>
                                     {{-- modal edit --}}
-                                    <div class="modal fade" id="edit" tabindex="-1" role="dialog"
+                                    <div class="modal fade" id="edit{{ $feed_buat->id }}" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content" style="border-radius: 15px">
@@ -439,17 +439,19 @@
                                                         </button>
                                                     </div>
                                                     <br>
-                                                    <form id="formUpdateFeed({{ $feed_buat->id }})" action="{{ route('update.feed', $feed_buat->id) }}" method="POST">
+                                                    <form id="formUpdateFeed{{ $feed_buat->id }}"
+                                                        action="{{ route('update.feed', $feed_buat->id) }}"
+                                                        method="POST">
                                                         @csrf
-                                                        @method("PUT")
                                                         <div class="">
                                                             <div class="col-sm-10">
-                                                                <textarea class="form-control" value="" name="deskripsi_video" id="nama"
-                                                                    style="border-radius:10px; width:120%;"></textarea>
+                                                                <textarea class="form-control" value="" name="deskripsi_video" id="deskripsi_video{{ $feed_buat->id }}"
+                                                                    style="border-radius:10px; width:120%;">{{ $feed_buat->deskripsi_video }}</textarea>
                                                             </div>
                                                         </div>
                                                         <br>
-                                                        <button type="submit" onclick="buttonUpdateFeed{{ $feed_buat->id }}"
+                                                        <button type="submit"
+                                                            onclick="buttonUpdateFeed({{ $feed_buat->id }})"
                                                             class="btn btn-sm d-flex justify-content-end text-white"
                                                             style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
                                                     </form>
@@ -788,7 +790,7 @@
                                                 <small class="text-muted d-block me-3">1 hari yang lalu</small>
                                                 <small class="text-bold">Balas</small>
                                             </div>
-                                       </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <a href="#!">
@@ -872,18 +874,17 @@
                             transitionOut: 'fadeOutUp',
                             onClosing: function(instance, toast, closedBy) {
                                 $.ajax({
-                                    url: $("#delete-data"+num).attr("action"),
+                                    url: $("#delete-data" + num).attr("action"),
                                     method: "POST",
                                     headers: {
                                         "X-CSRF-TOKEN": "{{ csrf_token() }}",
                                     },
-                                    success: function (response) {
+                                    success: function(response) {
                                         if (response.success) {
-                                            $("#feed_buat"+num).empty();
+                                            $("#feed_buat" + num).empty();
                                         }
                                     }
                                 });
-                                //document.getElementById('delete-data'+num).submit();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus
@@ -900,19 +901,21 @@
                 }
             });
         }
-        function buttonUpdateFeed(num)
-        {
-            $("#formUpdateFeed" + num).submit(function (event) {
+
+        function buttonUpdateFeed(num) {
+            $("#formUpdateFeed" + num).off("submit");
+            $("#formUpdateFeed" + num).submit(function(event) {
                 event.preventDefault();
-                let route = $(this).attr("action");
-                let data = $(this).serialize();
+                let route = $("#formUpdateFeed" + num).attr("action");
+                let data = $("#formUpdateFeed"+num).serialize();
+                let deskripsi_video = $("#deskripsi_video" + num).val();
                 $.ajax({
                     url: route,
-                    method: "PUT",
-                    data: data,
+                    method: "POST",
                     headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}"
                     },
+                    data: data,
                     success: function success(response) {
                         iziToast.show({
                             backgroundColor: '#a1dfb0',
