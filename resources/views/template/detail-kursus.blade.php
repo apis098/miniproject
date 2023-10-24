@@ -445,12 +445,12 @@
                         <form method="POST" action="#">
                             @csrf
                             <div class="input-group" style="margin-left: -15px;">
-                                <input type="text" id="reply" name="komentar" maxlength="255" style="border-radius: 10px;"
+                                <input type="text" id="reply" name="komentar" maxlength="255" style="border-radius: 10px;width: 150px;"
                                     {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control"
                                     placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
                                 <button type="submit"
-                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                    class="btn btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
+                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
+                                    class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
                             </div>
                         </form>
                 </div>
