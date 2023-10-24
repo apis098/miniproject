@@ -287,8 +287,8 @@
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Feed Disukai</h5>
-                        <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
-                            hidden>
+                        <div id="b" class="ms-" style="width: 100%;display:none; height: 100%; border: 1px #F7941E solid;"
+                            >
                         </div>
                     </a>
                 </li>
@@ -303,6 +303,29 @@
                     </a>
                 </li>
             </ul>
+            <script>
+                let tab1 = document.getElementById("click1");
+                let tab2 = document.getElementById("c");
+                let tab3 = document.getElementById("a-tab");
+                let garis_tab1 = document.getElementById("border1");
+                let garis_tab2 = document.getElementById("b");
+                let garis_tab3 = document.getElementById("pp");
+                tab1.addEventListener("click", function () {
+                    garis_tab1.style.display = "block";
+                    garis_tab2.style.display = "none";
+                    garis_tab3.style.display = "none";
+                });
+                tab2.addEventListener("click", function () {
+                    garis_tab2.style.display = "block";
+                    garis_tab1.style.display = "none";
+                    garis_tab3.style.display = "none";
+                });
+                tab3.addEventListener("click", function () {
+                    garis_tab3.style.display = "block";
+                    garis_tab1.style.display = "none";
+                    garis_tab2.style.display = "none";
+                });
+            </script>
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
@@ -850,7 +873,7 @@
                             onClosing: function(instance, toast, closedBy) {
                                 $.ajax({
                                     url: $("#delete-data"+num).attr("action"),
-                                    method: "DELETE",
+                                    method: "POST",
                                     headers: {
                                         "X-CSRF-TOKEN": "{{ csrf_token() }}",
                                     },
@@ -860,7 +883,7 @@
                                         }
                                     }
                                 });
-                                document.getElementById('delete-data'+num).submit();
+                                //document.getElementById('delete-data'+num).submit();
                             }
                         }, toast, 'buttonName');
                     }, false], // true to focus

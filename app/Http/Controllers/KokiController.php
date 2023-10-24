@@ -337,10 +337,8 @@ class KokiController extends Controller
     }
     public function hapus_feed(string $id)
     {
-        $feed = upload_video::where("id",$id)->first();
-        $src = $feed->upload_video;
-
-        Storage::delete("public/" . $src);
+        $feed = upload_video::findOrFail($id);
+        Storage::delete("public/" . $feed->upload_video);
         $feed->delete();
         $countFeed = upload_video::where("users_id", $id)->exists();
         return response()->json([
