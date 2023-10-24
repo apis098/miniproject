@@ -51,8 +51,9 @@
                             style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             {{ $userLogin->name }}
                             @if ($userLogin->isSuperUser === 'yes')
-                                <a style="font-size: 18px; width=20px; height=20px;position: absolute;top: 224px;left: 205px;"
-                                    href=""><img src="{{ asset('img/r.png') }}" alt=""></a>
+                            <span style="background-color:rgb(58, 123, 243);border-radius:50%;">
+                                    <i class="fa-solid fa-check p-2 text-white"></i>
+                            </span>
                             @endif
                             <br>
 

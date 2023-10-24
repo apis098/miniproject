@@ -17,7 +17,6 @@ class kursus extends Model
         "nama_lokasi",
         "latitude",
         "longitude",
-        "tarif_per_jam",
         "tipe_kursus",
         "jumlah_siswa",
         "status",
@@ -25,9 +24,6 @@ class kursus extends Model
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");
-    }
-    public function paket_kursus() {
-        return $this->hasMany(paket_kursuses::class, "kursus_id");
     }
     public function jenis_kursus() {
         return $this->hasMany(jenis_kursuses::class, 'id_kursus');

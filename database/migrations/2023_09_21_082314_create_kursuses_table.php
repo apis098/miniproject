@@ -20,8 +20,7 @@ return new class extends Migration
             $table->text('nama_lokasi');
             $table->decimal('latitude', 10, 8);
             $table->decimal('longitude', 11, 8);
-            $table->bigInteger('tarif_per_jam');
-            $table->enum('tipe_kursus', ['perorangan', 'grup']);
+            $table->string('tipe_kursus');
             $table->integer('jumlah_siswa');
             $table->enum('status', ['ditunggu', 'diterima', 'ditolak'])->default('ditunggu');
             $table->timestamp('waktu_diterima')->nullable();

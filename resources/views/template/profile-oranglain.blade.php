@@ -54,6 +54,11 @@
                         <p class=""
                             style="width: 100%; height: 100%; color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             {{ $user->name }}
+                            @if ($user->isSuperUser === 'yes')
+                            <span style="background-color:rgb(58, 123, 243);border-radius:50%;">
+                                    <i class="fa-solid fa-check p-2 text-white"></i>
+                            </span>
+                            @endif
                             <br>
                             <span
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $user->email }}</span>
