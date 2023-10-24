@@ -28,6 +28,9 @@ use App\Http\Controllers\KursusController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\TripayCallbackController;
 use App\Http\Controllers\IncomeChefsController;
+use App\Http\Controllers\reservasiKursusController;
+use App\Http\Controllers\testingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +55,8 @@ Route::get('riwayat', [LoginController::class, 'riwayat'])->name('riwayat');
 
 //kursus
 Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_template'])->name('kursus');
-route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
+Route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
+Route::get('/reservasi-kursus',[reservasiKursusController::class,'reservasiKursus'])->name('reservasi.kursus');
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 
