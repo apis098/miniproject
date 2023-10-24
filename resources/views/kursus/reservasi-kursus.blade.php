@@ -30,8 +30,7 @@
                             </div>
                             <!-- Price -->
                             <div class="price change-color">
-                                <h4><span>Rp</span>20.000 {{-- number_format($item_prem->harga_paket, 2, ',', '.') --}}</h4>
-                                <p class="change-color">/Jam</p>
+                              <span>harga <p>50.000</p></span>
                             </div>
                         </div>
                         <div class="pricing-body">
@@ -44,9 +43,6 @@
                                     <p style="color: black;"><span class="">1.4</span>membakar nasi{{-- $item_fiturPrem->detail --}}</p>
                                 </li>
                             </ul>
-                        </div>
-                        <div class="pricing-footer text-center">
-                            <a href="#" class="btn btn-transparent-md">pilih</a>
                         </div>
                     </div>
                 </div>

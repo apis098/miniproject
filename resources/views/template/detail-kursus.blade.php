@@ -397,7 +397,7 @@
                     <h3><b>Deskripsi</b></h3>
                 </div>
 
-                <div style=" color: black; font-size:17px; font-family: Poppins; font-weight: 400; letter-spacing: 0.50px; word-wrap: break-word">
+                <div class="w-75" style=" color: black; font-size:17px; font-family: Poppins; font-weight: 400; letter-spacing: 0.50px; word-wrap: break-word">
                    <p> Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et facere
                     dolore.
                     Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum enim quo quidem sint!
@@ -407,7 +407,7 @@
                     Aut eligendi delectus ut inventore aliquid ea provident velit et debitis voluptas. Sit recusandae
                     voluptas nam omnis velit sit
                     exercitationem molestiae cum unde quae in placeat quisquam.</p>
-                </div>
+            </div>
 
                 {{-- <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
                     <div class="card-body mx-5">
@@ -443,7 +443,7 @@
                 <div class="col-10 mb-5">
                     {{-- @if (Auth::check()) --}}
                         <form method="POST" action="#">
-                            @csrf
+                            {{-- @csrf --}}
                             <div class="input-group" style="margin-left: -15px;">
                                 <input type="text" id="reply" name="komentar" maxlength="255" style="border-radius: 10px;width: 150px;"
                                     {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control"
