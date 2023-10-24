@@ -375,49 +375,6 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-
-                                                                        <div class="my-5 mt-4">
-                                                                            <h3
-                                                                                style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                                                                <b>Tarif per jam</b>
-                                                                            </h3>
-                                                                        </div>
-
-                                                                        <div class="card mb-5"
-                                                                            style="width: 74%;margin-top:-15px;border-radius:15px;  border: 1px black solid">
-                                                                            <div class="card-body mx-2">
-                                                                                <div class="d-flex">
-                                                                                    <div class="col-lg-3 mx-4">
-                                                                                        <h5><b>Tarif per jam</b></h5>
-                                                                                        <span>RP
-                                                                                            {{ number_format($item->tarif_per_jam, 2, ',', '.') }}
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div class="col-xl-4 mx-3">
-                                                                                        <h5><b>Tarif paket</b></h5>
-                                                                                            @foreach ($item->paket_kursus as $paket)
-                                                                                                <span>
-                                                                                                    @if ($paket->waktu >= 60)
-                                                                                                        {{ number_format($paket->waktu / 60, 1) }}
-                                                                                                        Jam
-                                                                                                    @else
-                                                                                                        {{ $paket->waktu }}
-                                                                                                        Menit
-                                                                                                    @endif
-                                                                                                    : RP
-                                                                                                    {{ number_format($paket->harga, 2, ',', '.') }}
-                                                                                                </span>
-                                                                                            @endforeach
-                                                                                    </div>
-                                                                                    <div class="col-lg-3 mx-4">
-                                                                                        <h5><b>Waktu kursus</b></h5>
-                                                                                        <span>
-                                                                                            0 menit
-                                                                                        </span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
                                                                 </section>
                                                             </div>
                                                         </div>

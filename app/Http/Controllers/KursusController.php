@@ -77,14 +77,12 @@ class KursusController extends Controller
         }
         $semua_kursus = kursus::query()->where('status', 'diterima');
         $kursus_terbaru = kursus::query()->where('status', 'diterima')->whereDate('waktu_diterima', today());
-        $kursus_termurah = kursus::query()->orderBy("tarif_per_jam", "asc");
         if ($request->cari_nama_kursus) {
             $semua_kursus->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
                 ->paginate(6);
             $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
                 ->paginate(6);
-            $kursus_termurah->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
-                ->paginate(6);
+
         }
         if ($request->isMethod('post')) {
             if ($request->has('jenis_kursus')) {
@@ -95,9 +93,7 @@ class KursusController extends Controller
                 $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
                     $q->whereIn('jenis_kursus', $jenis_kursus);
                 });
-                $kursus_termurah->whereHas('jenis_kursus', function ($qq) use ($jenis_kursus) {
-                    $qq->whereIn("jenis_kursus", $jenis_kursus);
-                });
+
             }
             if ($request->has('min_price') && $request->has('max_price')) {
                 if ($request->min_price != NULL && $request->max_price != NULL) {
@@ -106,7 +102,6 @@ class KursusController extends Controller
                     $min_price = (int)$minprice;
                     $max_price = (int)$maxprice;
                     $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
-                    $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
                     $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
                 }
             }
@@ -126,8 +121,7 @@ class KursusController extends Controller
         });
         $semua_kursus = $semua_kursus->paginate(6);
         $kursus_terbaru = $kursus_terbaru->paginate(6);
-        $kursus_termurah = $kursus_termurah->paginate(6);
-        return view('template.kursus', compact('categorytopup','kursus_termurah','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('categorytopup','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function kursus()
@@ -191,13 +185,10 @@ class KursusController extends Controller
             'nama_lokasi' => "required",
             'latitude' => "required",
             'longitude' => "required",
-            'tarif_per_jam' => "required",
             'tipe_kursus' => "required",
             'jumlah_siswa' => "required",
             "paket_kursus_waktu.*" => "required",
             "jenis_kursus" => "required",
-            "informasi_paket_kursus_waktu.*" => "required",
-            "paket_kursus_harga.*" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -206,13 +197,9 @@ class KursusController extends Controller
             'nama_lokasi.required' => "lokasi kursus wajib diisi!",
             'latitude.required' => 'latitude harus terisi!',
             'longitude.required' => 'longitude harus terisi',
-            'tarif_per_jam.required' => "tarif per jam wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
             'jenis_kursus.required' => "jenis kursus harus diisi!",
-            "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
-            "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
-            "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!"
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
@@ -226,21 +213,10 @@ class KursusController extends Controller
             "nama_lokasi" => $request->nama_lokasi,
             "latitude" => $request->latitude,
             "longitude" => $request->longitude,
-            "tarif_per_jam" => $request->tarif_per_jam,
             "tipe_kursus" => $request->tipe_kursus,
             "jumlah_siswa" => $request->jumlah_siswa,
         ]);
         if ($tambah_kursus) {
-            foreach ($request->paket_kursus_waktu as $num => $waktu) {
-                if ($request->informasi_paket_kursus_waktu[$num] === "jam") {
-                    $waktu *= 60;
-                }
-                paket_kursuses::create([
-                    "kursus_id" => $tambah_kursus->id,
-                    "waktu" => $waktu,
-                    "harga" => $request->paket_kursus_harga[$num]
-                ]);
-            }
             jenis_kursuses::create([
                 'id_kursus' => $tambah_kursus->id,
                 'jenis_kursus' => $request->jenis_kursus
@@ -307,16 +283,9 @@ class KursusController extends Controller
             'nama_lokasi' => "required",
             'latitude' => "required",
             'longitude' => "required",
-            'tarif_per_jam' => "required",
             'tipe_kursus' => "required",
             'jumlah_siswa' => "required",
             "jenis_kursus" => "required",
-            "paket_kursus_waktu.*" => "required",
-            "informasi_paket_kursus_waktu.*" => "required",
-            "paket_kursus_harga.*" => "required",
-            "tambahan_paket_kursus_waktu.*" => "required",
-            "tambahan_informasi_paket_kursus_waktu.*" => "required",
-            "tambahan_paket_kursus_harga.*" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -324,16 +293,9 @@ class KursusController extends Controller
             'nama_lokasi.required' => "lokasi kursus wajib diisi!",
             'latitude.required' => 'latitude harus terisi!',
             'longitude.required' => 'longitude harus terisi',
-            'tarif_per_jam.required' => "tarif per jam wajib diisi!",
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
             "jenis_kursus.required" => "jenis_kursus harus diisi!",
-            "paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
-            "informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
-            "paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!",
-            "tambahan_paket_kursus_waktu.*.required" => "paket kursus bagian waktu belum terisi semua!",
-            "tambahan_informasi_paket_kursus_waktu.*.required" => "informasi paket kursus waktu belum terisi semua!",
-            "tambahan_paket_kursus_harga.*.required" => "paket kursus bagian harga belum terisi semua!",
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
@@ -349,13 +311,12 @@ class KursusController extends Controller
         $edit_kursus->nama_lokasi = $request->nama_lokasi;
         $edit_kursus->latitude = $request->latitude;
         $edit_kursus->longitude = $request->longitude;
-        $edit_kursus->tarif_per_jam = $request->tarif_per_jam;
         $edit_kursus->tipe_kursus = $request->tipe_kursus;
         $edit_kursus->jumlah_siswa = $request->jumlah_siswa;
         $edit_kursus->save();
         $jenisKursus = jenis_kursuses::where('id_kursus', $edit_kursus->id)->first();
         $jenisKursus->jenis_kursus = $request->jenis_kursus;
-
+        $jenisKursus->save();
         return response()->json([
             "success" => true,
             "message" => "sukses mengedit kursus!"

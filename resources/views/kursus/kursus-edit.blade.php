@@ -98,78 +98,9 @@
                             <input type="text" name="longitude" value="{{ $kursus->longitude }}" id="longitude" hidden>
                         </div>
                         <div>
-                            <div class="mt-2" style="margin-bottom: 20px">
-                                <label for="exampleFormControlInput1" class="form-label"><b>Tarif perjam</b></label>
-                                <input type="number" name="tarif_per_jam" class="form-control"
-                                    id="exampleFormControlInput1" placeholder="Masukkan tarif per jam"
-                                    value="{{ $kursus->tarif_per_jam }}">
-                                @error('#')
-                                    <div class="alert alert-danger">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                                <div id="#" class="alert alert-danger" style="display: none;"></div>
-                            </div>
-                            @foreach ($kursus->paket_kursus as $item)
-                                <div class="mt-2" style="margin-bottom: 20px;">
-                                    <label for="paket_kursus" class="form-label"><b>Paket Kursus</b></label>
-                                    <div class="row" id="row1">
-                                        <div class="col-6">
-                                            <div class="row ml-1">
-                                                <input type="text" name="paket_kursus_waktu[]"
-                                                    value="{{ $item->waktu }}" id="paket_kursus"
-                                                    placeholder="masukkan waktu kursus" class="form-control col-8">
-                                                <select class="form-control col-4" name="informasi_paket_kursus_waktu[]"
-                                                    id="paket_kursus">
-                                                    <option value="menit">menit</option>
-                                                    <option value="jam">jam</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="text" name="paket_kursus_harga[]" id="paket_kursus"
-                                                placeholder="masukkan harganya" class="form-control"
-                                                value="{{ $item->harga }}">
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                            <div id="dynamic-input-paket-kursus"></div>
-                            <button class="btn btn-primary my-2" type="button" id="button_tambah_paket_kursus">Tambah
-                                Paket Kursus</button>
-                            <script>
-                                let num = 2;
-                                document.getElementById("button_tambah_paket_kursus").addEventListener("click", function() {
-                                    num++;
-                                    const createElement = document.createElement("div");
-                                    createElement.innerHTML = `
-                             <div class="row my-3" id="row${num}">
-                             <div class="col-6">
-                                 <div class="row ml-1">
-                                     <input type="text" name="tambahan_paket_kursus_waktu[]" id="paket_kursus"
-                                         placeholder="masukkan waktu kursus" class="form-control col-8">
-                                     <select class="form-control col-4" name="tambahan_informasi_paket_kursus_waktu[]"
-                                         id="paket_kursus">
-                                         <option value="menit">menit</option>
-                                         <option value="jam">jam</option>
-                                     </select>
-                                 </div>
-                             </div>
-                             <div class="col-6">
-                                 <div class="row">
-                                 <input type="text" name="tambahan_paket_kursus_harga[]" id="paket_kursus"
-                                     placeholder="masukkan harganya" class="form-control col-9">
-                                 <button class="btn btn-danger col-3" onclick="tutup_paket_kursus(${num})">Tutup</button>
-                                 </div>
-                             </div>
-                             </div>`;
-                                    document.getElementById("dynamic-input-paket-kursus").appendChild(createElement);
-                                });
+                          
 
-                                function tutup_paket_kursus(num) {
-                                    document.getElementById("row" + num).remove();
-                                }
-                            </script>
+
                             <div>
 
                                 <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
