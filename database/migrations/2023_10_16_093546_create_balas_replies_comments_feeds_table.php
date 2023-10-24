@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("pengirim_reply_comment_id");
             $table->unsignedBigInteger("pemilik_reply_comment_id");
             $table->unsignedBigInteger("reply_comment_id");
+            $table->unsignedBigInteger("parent_id")->nullable();
             $table->text("komentar");
             $table->timestamps();
 

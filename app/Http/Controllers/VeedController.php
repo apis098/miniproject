@@ -331,14 +331,24 @@ class VeedController extends Controller
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
     }
-    public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id)
+    public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id, string $parent_id)
     {
-        balasRepliesCommentsFeeds::create([
-            "pengirim_reply_comment_id" => $pengirim_id,
-            "pemilik_reply_comment_id" => $pemilik_id,
-            "reply_comment_id" => $comment_id,
-            "komentar" => $request->komentar
-        ]);
+        if ($parent_id != null) {
+            balasRepliesCommentsFeeds::create([
+                "pengirim_reply_comment_id" => $pengirim_id,
+                "pemilik_reply_comment_id" => $pemilik_id,
+                "reply_comment_id" => $comment_id,
+                "parent_id"=>$parent_id,
+                "komentar" => $request->komentar
+            ]);
+        } else {
+            balasRepliesCommentsFeeds::create([
+                "pengirim_reply_comment_id" => $pengirim_id,
+                "pemilik_reply_comment_id" => $pemilik_id,
+                "reply_comment_id" => $comment_id,
+                "komentar" => $request->komentar
+            ]);
+        }
         return response()->json([
             "success" => true,
             "message" => "Sukses membalas komentar balasan feed!",
