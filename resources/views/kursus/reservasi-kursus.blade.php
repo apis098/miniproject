@@ -12,38 +12,22 @@
             border-radius: 10px;
             outline: none;
             font-size: 15px;
-            transition: 0.4s;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .active,
-        .accordion:hover {
-            background-color: transparent;
-        }
-
-        .accordion::before {
-            content: '\f107';
-            color: #777;
-            font-weight: bold;
-            font-family: 'FontAwesome';
-            margin-left: 10px;
-        }
-
-        .active::before {
-            content: '\f106';
-        }
-
-        .panel {
-            background-color: white;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.2s ease-out;
+        .selected {
+            background-color: orange;
+            color: white
         }
 
         .accordion b {
-            margin-left: -65%;
+            margin-left: -70%;
+        }
+
+        .accordion i {
+            margin-left: 1%;
         }
 
         .card {
@@ -78,9 +62,12 @@
                 exercitationem molestiae cum unde quae in placeat quisquam.</p>
         </div>
 
-        <h3 class="fw-bold mb-3">konten kursus</h3>
-        <div class="card">
-            <button class="accordion active"> <b>cara memanggang</b> <span>2 jam 10 menit</span>
+        <h3 class="fw-bold mb-4">konten kursus</h3>
+        <div class="card mb-4">
+            <button class="accordion">
+                <i class="fa-solid fa-chevron-down"></i>
+                <b style="margin-left: -70%;">cara memanggang</b>
+                <span>2 jam 10 menit <br> Rp.300.000</span>
             </button>
             <div class="panel">
                 <table class="table table-borderless">
@@ -102,8 +89,11 @@
 
         </div>
         <br>
-        <div class="card" style="border-radius:10px;">
-            <button class="accordion active"> <b>memanggang bebek</b> <span>2 jam 10 menit</span>
+        <div class="card mb-3" style="border-radius:10px;">
+            <button class="accordion">
+                <i class="fa-solid fa-chevron-down"></i>
+                <b>cara memanggang</b>
+                <span>2 jam 10 menit <br> Rp.300.000</span>
             </button>
             <div class="panel">
                 <table class="table table-borderless">
@@ -122,28 +112,33 @@
                     </tbody>
                 </table>
             </div>
-
+        </div>
+        <div class="d-flex justify-content-end">
+            <div class="d-flex align-items-end flex-column">
+            <span class="font-size-15 fw-bold">Total harga</span>
+            <p>Rp.300.000</p>
+        </div>
+        <button type="submit"
+        style=" height:40px;background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
+        class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
         </div>
 
     </div>
     <script>
         window.onload = function() {
             var acc = document.getElementsByClassName("accordion");
-            var i;
 
-            for (i = 0; i < acc.length; i++) {
+            for (var i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-
-                    if (panel.style.maxHeight) {
-                        panel.style.maxHeight = null;
+                    if (this.classList.contains("selected")) {
+                        // Unselect jika sudah terpilih
+                        this.classList.remove("selected");
                     } else {
-                        panel.style.maxHeight = panel.scrollHeight + "px";
+                        // Select jika belum terpilih
+                        this.classList.add("selected");
                     }
                 });
             }
         };
     </script>
-
 @endsection
