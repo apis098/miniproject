@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
+use PhpParser\Node\Stmt\TryCatch;
 
 class KokiController extends Controller
 {
@@ -328,20 +329,27 @@ class KokiController extends Controller
             "isPremium" => $isPremium,
             "uuid" => Str::random(10),
         ]);
-/*
+
         $video = upload_video::findOrFail($up->id);
-
+        $ffmpeg = FFMpeg::fromDisk('public')->open($video->upload_video);
+        $durasi = $ffmpeg->getDurationInSeconds();
+        $endDuration = $durasi * 0.1;
         if ($isPremium === "yes") {
-            $outputPath = storage_path('preview/' . $video->upload_video);
-            $feed = FFMpeg::open($video->upload_video);
-
-            $feed->addFilter(function(VideoFilters $filters){
-                $filters->clip(TimeCode::fromSeconds(0), TimeCode::fromSeconds(10));
-            })
-            ->export()
-            ->save($outputPath);
+            try {
+                FFMpeg::fromDisk('public')
+                ->open($video->upload_video)
+                ->addFilter(function (VideoFilters $filters) use ($endDuration) {
+                    $filters->clip(TimeCode::fromSeconds(0), TimeCode::fromSeconds($endDuration));
+                })
+                ->export()
+                ->toDisk('public')
+                ->inFormat(new \FFMpeg\Format\Video\X264)
+                ->save('video-user-prem/'.$video->upload_video);
+            } catch (\Throwable $th) {
+                throw $th;
+            }
         }
-*/
+
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {
             return response()->json([
