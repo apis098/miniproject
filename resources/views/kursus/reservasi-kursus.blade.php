@@ -18,7 +18,7 @@
         }
 
         .selected {
-            background-color: orange;
+            background-color: #F7941E;
             color: white
         }
 
