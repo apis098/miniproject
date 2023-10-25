@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         IndoRegionVillageSeeder::class,
         hariDanKategoriResep::class,
         PenawaranPremiumSeed::class,
+        TopUpCategoriesSeeder::class,
        ]);
     }
 }

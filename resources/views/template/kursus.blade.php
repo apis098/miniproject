@@ -505,6 +505,7 @@
                                             <a href="{{ route('detail.kursus', $baru->id) }}" class="btn"
                                                 style="font-family: poppins;font-weight:bold">{{ $baru->nama_kursus }}</a>
                                         </div>
+                                        
                                         <div class="col-12 mt-3 row">
                                             <div class="col-6 d-flex">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -535,7 +536,7 @@
                 <div class="tab-pane courses fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <div class="row mx-1" style="margin-left: -50px">
-                     
+
                     </div>
                 </div>
                 {{-- end tab 3 --}}
