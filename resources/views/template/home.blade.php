@@ -608,6 +608,7 @@
     @endif
     @foreach ($feed_populer as $num => $feed)
     <div class="d-flex mb-3">
+        <div class="col-12">
         <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
             <div class="" style="border-radius: 15px 15px 0 0;">
                 @if (Auth::check())
@@ -693,6 +694,7 @@
             </div>
         </div>
     </div>
+</div>
     @endforeach
 </section>
 

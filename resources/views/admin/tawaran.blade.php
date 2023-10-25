@@ -449,17 +449,18 @@
                                 <div class="pricing-item animated-card">
                                     <div class="pricing-heading">
                                         <button type="button "
-                                        style=" right: 10%; top: -2%; position: absolute; background-color:#F7941E; border: none; width: 10%; height: 7%;"
-                                        class="btn btn-warning btn-sm text-light rounded-circle d-flex" data-toggle="modal" data-target="#edit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24">
-                                                <path fill="none" stroke="currentColor" stroke-width="3.5"
-                                                    d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
+                                        style=" right: 5%; top: -5%; position: absolute;  border: none;"
+                                        class="btn btn-lg text-light rounded-circle " data-toggle="modal" data-target="#edit">
+                                        <svg width="31" height="44" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
+                                            <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
                                             </svg>
+
+                                        </button>
                                     </button>
                                         <button type="button "
                                         style=" right: -4%; top: -3%; position: absolute; border: none;"
-                                        class="btn  btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
+                                        class="btn  btn-sm text-light rounded-circle p-2 " data-bs-toggle="modal"
                                         data-bs-target="#mymodal">
                                         <i class="fa-regular text-danger fa-circle-xmark fa-2xl" ></i>
                                     </button>
