@@ -328,22 +328,20 @@ class KokiController extends Controller
             "isPremium" => $isPremium,
             "uuid" => Str::random(10),
         ]);
-
+/*
         $video = upload_video::findOrFail($up->id);
 
         if ($isPremium === "yes") {
-            $outputPath = public_path('preview/' . $video->upload_video);
+            $outputPath = storage_path('preview/' . $video->upload_video);
             $feed = FFMpeg::open($video->upload_video);
 
             $feed->addFilter(function(VideoFilters $filters){
                 $filters->clip(TimeCode::fromSeconds(0), TimeCode::fromSeconds(10));
             })
             ->export()
-            ->toDisk('public')
-            ->inFormat(new \FFMpeg\Format\Video\X264)
             ->save($outputPath);
         }
-
+*/
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {
             return response()->json([
