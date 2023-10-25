@@ -22,6 +22,7 @@ use App\Models\reply_comment_veed;
 use App\Models\reseps;
 use App\Models\TopUpCategories;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
+use Illuminate\Support\Facades\Crypt;
 
 use function Laravel\Prompts\alert;
 
@@ -356,6 +357,17 @@ class VeedController extends Controller
     }
     public function sukaiBalasRepliesCommentsFeeds(string $user, string $comment)
     {
-        
+
+    }
+    public function lihat_feed_premium(string $video)
+    {
+        $feed = Crypt::decrypt($video);
+        $videoPath = storage_path('app/'.$feed);
+        if (!file_exists($videoPath)) {
+            abort(404);
+        }
+        return response()->file($videoPath, [
+            "Content-Type" => 'video/mp4',
+        ]);
     }
 }

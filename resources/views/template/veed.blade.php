@@ -293,7 +293,7 @@
                                             onclick="userAccessFeedPrem({{ $item_video->user->id }}, {{ $item_video->id }})"
                                             id="my-video" controls preload="auto" width="615" height="315"
                                             data-setup="{}">
-                                            <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                            <source src="{{ route("lihat.feed.premium", ['video' => encrypt($item_video->upload_video)]) }}"
                                                 type="video/mp4" />
                                             <p class="vjs-no-js">
                                                 To view this video please enable JavaScript, and consider upgrading to a
@@ -310,7 +310,7 @@
                                             class="video-js vjs-theme-city" @endif
                                             id="my-video" controls preload="auto" width="615" height="315"
                                             data-setup="{}">
-                                            <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                            <source src="{{ route("lihat.feed.premium", ['video' => encrypt($item_video->upload_video)]) }}"
                                                 type="video/mp4" />
                                             <p class="vjs-no-js">
                                                 To view this video please enable JavaScript, and consider upgrading to a
@@ -328,7 +328,7 @@
                                         class="video-js vjs-theme-city" @endif
                                         id="my-video" controls preload="auto" width="615" height="315"
                                         data-setup="{}">
-                                        <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                        <source src="{{ route("lihat.feed.premium", ['video' => encrypt($item_video->upload_video)]) }}"
                                             type="video/mp4" />
                                         <p class="vjs-no-js">
                                             To view this video please enable JavaScript, and consider upgrading to a

@@ -318,13 +318,15 @@ class KokiController extends Controller
         } else {
             $isPremium = "no";
         }
-        $up = upload_video::create([
-            "users_id" => Auth::user()->id,
-            "deskripsi_video" => $request->deskripsi_video,
-            "upload_video" => $request->file("upload_video")->store("video-user", "local"),
-            "isPremium" => $isPremium,
-            "uuid" => Str::random(10),
-        ]);
+
+            $up = upload_video::create([
+                "users_id" => Auth::user()->id,
+                "deskripsi_video" => $request->deskripsi_video,
+                "upload_video" => $request->file("upload_video")->store("video-user", "local"),
+                "isPremium" => $isPremium,
+                "uuid" => Str::random(10),
+            ]);
+        
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {
             return response()->json([
