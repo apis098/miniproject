@@ -64,7 +64,7 @@
 
         <h3 class="fw-bold mb-4">konten kursus</h3>
         <div class="card mb-4">
-            <button class="accordion">
+            <button class="accordion" data-price="300000">
                 <i class="fa-solid fa-chevron-down"></i>
                 <b style="margin-left: -70%;">cara memanggang</b>
                 <span>2 jam 10 menit <br> Rp.300.000</span>
@@ -90,7 +90,7 @@
         </div>
         <br>
         <div class="card mb-3" style="border-radius:10px;">
-            <button class="accordion">
+            <button class="accordion" data-price="300000">
                 <i class="fa-solid fa-chevron-down"></i>
                 <b>cara memanggang</b>
                 <span>2 jam 10 menit <br> Rp.300.000</span>
@@ -115,28 +115,37 @@
         </div>
         <div class="d-flex justify-content-end">
             <div class="d-flex align-items-end flex-column">
-            <span class="font-size-15 fw-bold">Total harga</span>
-            <p>Rp.300.000</p>
-        </div>
-        <button type="submit"
-        style=" height:40px;background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
-        class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
+                <span class="font-size-15 fw-bold">Total harga</span>
+                <p id="totalHarga">Rp.0</p>
+            </div>
+            <button type="submit"
+                style="height: 40px; background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-left: 30px;"
+                class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
         </div>
 
     </div>
     <script>
         window.onload = function() {
             var acc = document.getElementsByClassName("accordion");
+            var totalHargaElement = document.getElementById("totalHarga");
+            var totalHarga = 0;
 
             for (var i = 0; i < acc.length; i++) {
                 acc[i].addEventListener("click", function() {
                     if (this.classList.contains("selected")) {
                         // Unselect jika sudah terpilih
                         this.classList.remove("selected");
+                        // Kurangi harga ketika di-unselect
+                        totalHarga -= parseInt(this.getAttribute("data-price"));
                     } else {
                         // Select jika belum terpilih
                         this.classList.add("selected");
+                        // Tambahkan harga ketika di-select
+                        totalHarga += parseInt(this.getAttribute("data-price"));
                     }
+
+                    // Perbarui tampilan total harga
+                    totalHargaElement.textContent = "Rp." + totalHarga;
                 });
             }
         };
