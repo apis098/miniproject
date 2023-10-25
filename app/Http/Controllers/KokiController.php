@@ -321,7 +321,7 @@ class KokiController extends Controller
         $up = upload_video::create([
             "users_id" => Auth::user()->id,
             "deskripsi_video" => $request->deskripsi_video,
-            "upload_video" => $request->file("upload_video")->store("video-user", "public"),
+            "upload_video" => $request->file("upload_video")->store("video-user", "local"),
             "isPremium" => $isPremium,
             "uuid" => Str::random(10),
         ]);

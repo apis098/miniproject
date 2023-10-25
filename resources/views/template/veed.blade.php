@@ -2002,7 +2002,7 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
 
                                                                                                                 @if (Auth::user())
-                                                                                                                    @if ($reply_replyComment->isLikeRepliesCommentsFeeds(auth()->user()->id))
+                                                                                                                    @if ($reply_comment->likeReplyCommentVeed(auth()->user()->id))
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                                             id="formLikeReplyComment{{ $reply_comment->id }}"
