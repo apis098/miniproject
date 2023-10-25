@@ -13,6 +13,7 @@ class balasRepliesCommentsFeeds extends Model
         "pengirim_reply_comment_id",
         "pemilik_reply_comment_id",
         "reply_comment_id",
+        "parent_id",
         "komentar"
     ];
     public function user_pengirim()

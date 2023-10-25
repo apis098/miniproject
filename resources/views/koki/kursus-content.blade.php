@@ -179,9 +179,242 @@
 
 
             </style>
+{{--
+<style>
+    .accordion {
+        background-color: transparent;
+        color: #444;
+        cursor: pointer;
+        padding: 5px;
+        width: 100%;
+        border: 0.01ch #777 solid;
+        text-align: left;
+        border-radius: 10px;
+        outline: none;
+        font-size: 15px;
+        transition: 0.4s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .active,
+    .accordion:hover {
+        background-color: transparent;
+    }
+
+    .accordion::before {
+        content: '\f107';
+        color: #777;
+        font-weight: bold;
+        font-family: 'FontAwesome';
+        margin-left: 10px;
+    }
+
+    .active::before {
+        content: '\f106';
+    }
+
+    .panel {
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .accordion b {
+        margin-left: -70%;
+    }
+
+    .card {
+        border: 1px solid #777;
+        overflow: hidden;
+        border-radius:10px;
+    }
+
+    .accordion-collapse {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        /* Animasi dengan efek slide */
+    }
+</style> --}}
+
+
 
 <div class="">
     <div class="my-4 ml-5">
+
+        <a href="#" class="btn btn-light"
+        style="background-color: white; border: 0.50px black solid; border-radius: 10px; width: 95%">
+        <div style="font-weight: 600; color: black;"> Tambahkan Judul Sesi</div>
+    </a>
+
+
+        {{-- <div class="card mt-2" style="width: 95%">
+            <button class="accordion active"> <b>cara memanggang</b> <span>2 jam 10 menit</span> <br>    <span>Rp. 100.000,00</span>
+            </button>
+            <div class="panel">
+                <table class="table table-borderless">
+                    <tbody>
+                        <tr>
+                            <th scope="row" style="width: 5%;text-align: center;">1.1</th>
+                            <td>waduh</td>
+                            <td style="width: 20%;text-align: end;">30 menit</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" style="width: 5%;text-align: center;">1.2</th>
+                            <td>ayaiya</td>
+                            <td style="width: 20%;text-align: end;">30 menit</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div> --}}
+
+        <div class="card mt-2" style="width: 95%; border-radius: 10px;">
+            <div class="card-header" style="border-radius: 10px;">
+                <div class="d-flex">
+                <div class="col-12">
+                  <strong>Menanak Kucing</strong>
+                    <div class="float-end">
+                        <div class="d-flex justify-content-end">
+                        <span class="me-3">2 jam 10 menit</span>
+                        <a href="#" class="p-1 mr-1" style="border: none; ">
+                            <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
+                                <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
+                                </svg>
+
+                        </a>
+
+                        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="2" height="15"
+                                viewBox="0 0 24 24">
+                                <path fill="none" stroke="currentColor" stroke-width="3.5"
+                                    d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
+                            </svg> --}}
+                        <button type="button "
+                        style="  border: none;"
+                        class="btn btn-md text-light rounded-circle p-1" data-bs-toggle="modal"
+                        data-bs-target="#mymodal">
+                        <i class="fa-regular text-danger fa-circle-xmark fa-xl" ></i>
+                    </button>
+                </div>
+                <span>Rp. 100.000,00</span>
+            </div>
+                </div>
+            </div>
+            </div>
+            <div class="card-body" style="border-radius: 10px;">
+                <div class="d-flex mb-2">
+                    <div class="col-12">
+                        1.1  <span class="ml-4">lorem ipsum von lenong</span>
+                        <div class="float-end">
+                            <div class="d-flex justify-content-end ">
+                                <span class="me-3">30 Menit</span>
+                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                    <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
+                                        <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
+                                        </svg>
+
+                                </a>
+
+                                <button type="button "
+                                style="  border: none; margin-top: -3%"
+                                class="btn btn-md text-light rounded-circle p-1" data-bs-toggle="modal"
+                                data-bs-target="#mymodal">
+                                <i class="fa-regular text-danger fa-circle-xmark fa-xl" ></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex mb-2">
+                    <div class="col-12">
+                        1.1  <span class="ml-4">lorem ipsum von lenong</span>
+                        <div class="float-end">
+                            <div class="d-flex justify-content-end ">
+                                <span class="me-3">30 Menit</span>
+                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                    <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
+                                        <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
+                                        </svg>
+
+                                </a>
+
+                                <button type="button "
+                                style="  border: none; margin-top: -3%"
+                                class="btn btn-md text-light rounded-circle p-1" data-bs-toggle="modal"
+                                data-bs-target="#mymodal">
+                                <i class="fa-regular text-danger fa-circle-xmark fa-xl" ></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex mb-2">
+                    <div class="col-12">
+                        1.1  <span class="ml-4">lorem ipsum von lenong</span>
+                        <div class="float-end">
+                            <div class="d-flex justify-content-end ">
+                                <span class="me-3">30 Menit</span>
+                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                    <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
+                                        <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
+                                        </svg>
+
+                                </a>
+
+                                <button type="button "
+                                style="  border: none; margin-top: -3%"
+                                class="btn btn-md text-light rounded-circle p-1" data-bs-toggle="modal"
+                                data-bs-target="#mymodal">
+                                <i class="fa-regular text-danger fa-circle-xmark fa-xl" ></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex mb-2">
+                    <div class="col-12">
+                        1.1  <span class="ml-4">lorem ipsum von lenong</span>
+                        <div class="float-end">
+                            <div class="d-flex justify-content-end ">
+                                <span class="me-3">30 Menit</span>
+                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                    <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
+                                        <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
+                                        </svg>
+
+                                </a>
+
+                                <button type="button "
+                                style="  border: none; margin-top: -3%"
+                                class="btn btn-md text-light rounded-circle p-1" data-bs-toggle="modal"
+                                data-bs-target="#mymodal">
+                                <i class="fa-regular text-danger fa-circle-xmark fa-xl" ></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <a href="#" class="btn btn-light"
+        style="background-color: #F7941E; border-radius: 10px; width: 100%">
+        <div style="font-weight: 600; color: white;"> Tambahkan Detail Sesi</div>
+    </a>
+                </div>
+                </div>
+            </div>
+
+
+
 
 <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
     @csrf
@@ -312,50 +545,29 @@
 </div>
 {{-- end modal edit --}}
 
-<section class="section pricing mx-5 mb-3">
-    <div class="container">
-        <div class="row">
-                <div class="col-lg-4 col-md-6 mb-1">
-                    <div class="pricing-item animated-card">
-                        <div class="pricing-heading">
-                            <button type="submit "
-                            style=" right: 10%; top: -2%; position: absolute; background-color:#F7941E; border: none; width: 11%; height: 8%;"
-                            class="btn btn-warning btn-sm text-light rounded-circle d-flex"  data-toggle="modal" data-target="#edit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                    viewBox="0 0 24 24">
-                                    <path fill="none" stroke="currentColor" stroke-width="3.5"
-                                        d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
-                                </svg>
-                        </button>
-                            <button type="button "
-                            style=" right: -4%; top: -3%; position: absolute; border: none;"
-                            class="btn  btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
-                            data-bs-target="#mymodal">
-                            <i class="fa-regular text-danger fa-circle-xmark fa-2xl" ></i>
-                        </button>
-                            <!-- Title -->
-                            <div class="title change-color">
-                                <h6>Konten Kursus</h6>
-                            </div>
-                        </div>
-                        <div class="pricing-body animated-card">
-                            <!-- Feature List -->
-                            <ul class="feature-list m-0 p-0">
-                                <li>
-                                    <p style="color: black;"><span class="fa fa-check-circle available"></span>kasdjdkdkajd</p>
-                                    <p style="color: black;"><span class="fa fa-check-circle available"></span>kdadjajdakdjsadk</p>
-                                    <p style="color: black;"><span class="fa fa-check-circle available"></span>Belajar memasak kangkung bersama kami dengan benar</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-</section>
 
 
     </div>
 </div>
+
+<script>
+    window.onload = function() {
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+    };
+</script>
 
 @endsection
