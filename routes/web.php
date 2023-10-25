@@ -215,6 +215,7 @@ Route::post("/komentar-veed/{pengirim_id}/{penerima_id}/{veed_id}", [VeedControl
 Route::post("/like/{user_id}/{komentar_veed_id}/{veed_id}", [VeedController::class, 'like_komentar_veed'])->name('like.komentar.veed');
 Route::post("/balas/komentar/{user_id}/{comment_id}/{veed_id}", [VeedController::class, 'balas_komentar_veed'])->name('balas.komentar.veed');
 Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [VeedController::class, 'sukai_balasan_komentar_veed'])->name('sukai.balasan.komentar.veed');
+Route::post("/sukai/reply_balasan/komentar/{user_id}/{comment_id}", [VeedController::class, 'sukaBalasRepliesCommentsFeeds'])->name('sukai.reply_balasan.komentar');
 Route::delete("/hapus_komentar_feed/{id}", [VeedController::class, "hapus_komentar_feed"])->name('hapus.komentar.feed');
 Route::delete("/hapus_balasan_komentar_feed/{id}", [VeedController::class, "hapus_balasan_komentar_feed"])->name('hapus.balasan.komentar.feed');
 Route::post("/balas_komentar_balasan_feed/{pengirim_id}/{pemilik_id}/{comment_id}/{parent_id?}", [VeedController::class, 'balasRepliesCommentsFeeds'])->name('balas.replies.comments.feeds')->middleware("auth");

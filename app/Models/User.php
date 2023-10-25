@@ -113,4 +113,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(likeBalasRepliesCommentsFeeds::class, "user_id");
     }
+    public function parent_balas_replies_comment()
+    {
+        return $this->hasMany(balasRepliesCommentsFeeds::class, "parent_id");
+    }
 }

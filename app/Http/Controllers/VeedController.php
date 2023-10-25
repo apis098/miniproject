@@ -331,7 +331,7 @@ class VeedController extends Controller
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
     }
-    public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id, string $parent_id)
+    public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id, string $parent_id = null)
     {
         if ($parent_id != null) {
             balasRepliesCommentsFeeds::create([
@@ -353,5 +353,9 @@ class VeedController extends Controller
             "success" => true,
             "message" => "Sukses membalas komentar balasan feed!",
         ]);
+    }
+    public function sukaiBalasRepliesCommentsFeeds(string $user, string $comment)
+    {
+        
     }
 }

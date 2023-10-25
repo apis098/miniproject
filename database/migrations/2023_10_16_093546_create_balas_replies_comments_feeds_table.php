@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign("pengirim_reply_comment_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("pemilik_reply_comment_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("reply_comment_id")->references("id")->on("reply_comment_veeds")->onDelete("cascade");
+            $table->foreign("parent_id")->references("id")->on("users")->onDelete("cascade");
         });
     }
 
