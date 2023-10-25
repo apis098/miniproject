@@ -324,7 +324,7 @@ class KokiController extends Controller
         $up = upload_video::create([
             "users_id" => Auth::user()->id,
             "deskripsi_video" => $request->deskripsi_video,
-            "upload_video" => $request->file("upload_video")->store("video-user", "local"),
+            "upload_video" => $request->file("upload_video")->store("video-user", "public"),
             "isPremium" => $isPremium,
             "uuid" => Str::random(10),
         ]);
@@ -332,13 +332,14 @@ class KokiController extends Controller
         $video = upload_video::findOrFail($up->id);
 
         if ($isPremium === "yes") {
-            $outputPath = storage_path('app/preview/' . $video->upload_video);
+            $outputPath = public_path('preview/' . $video->upload_video);
             $feed = FFMpeg::open($video->upload_video);
 
             $feed->addFilter(function(VideoFilters $filters){
                 $filters->clip(TimeCode::fromSeconds(0), TimeCode::fromSeconds(10));
             })
             ->export()
+            ->toDisk('public')
             ->inFormat(new \FFMpeg\Format\Video\X264)
             ->save($outputPath);
         }
