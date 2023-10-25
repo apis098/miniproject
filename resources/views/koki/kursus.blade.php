@@ -208,6 +208,16 @@
                         </div>
                     </a>
                 </li>
+
+                <li class="nav-item" role="presentation">
+                    <a id="fer" class="nav-link mr-5" id="pills-kita-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-kita" type="button" role="tab" aria-controls="pills-kita"
+                        aria-selected="false">
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus Dipesan</h5>
+                        <div id="border5" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
+                        </div>
+                    </a>
+                </li>
             </ul>
 
             {{-- <div class="container my-3">
@@ -476,6 +486,72 @@
                             @endforeach
                         </div>
                     </div>
+
+                    <div class="tab-pane fade" id="pills-kita" role="tabpanel" aria-labelledby="pills-kita-tab"
+                        tabindex="0">
+                        {{-- start tab 3 --}}
+                        <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                            <div class="d-flex">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/laporan-pengguna" method="GET">
+                                                    <input type="text" id="search-resep" name="resep" autofocus
+                                                        placeholder="Cari Kursusmu">
+                                                    <button type="submit" class=" zoom-effects cari2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="32"
+                                                            height="32" viewBox="0 0 256 256">
+                                                            <path fill="currentColor"
+                                                                d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
+                                                        </svg></button>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn ml-4">
+                                    <span style="font-weight: 600">
+                                        <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
+                                            Kursus</a>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        {{-- start tab 1 --}}
+                        <div class="d-flex">
+                            @foreach ($kursus_sendiri as $mycourse)
+                                <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
+                                                class="card-img-top"
+                                                style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
+                                                alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <strong>
+                                                    @foreach ($mycourse->jenis_kursus as $item)
+                                                        {{ $item->jenis_kursus }}
+                                                    @endforeach
+                                                </strong> <br>
+                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn text-start fst-normal"
+                                                    style="font-family: poppins;border:none;">
+                                                    {{ $mycourse->nama_kursus }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
                 </div>
                 {{-- end --}}
             </div>
@@ -487,12 +563,15 @@
             const border2 = document.getElementById("b");
             const o = document.getElementById("pp");
             const a_tab = document.getElementById("a-tab");
+            const fer = document.getElementById("fer");
+            const border5 = document.getElementById("border5");
 
             a_tab.addEventListener('click', function(event) {
                 event.preventDefault();
                 o.style.display = "block";
                 border1.style.display = "none";
                 border2.style.display = "none";
+                border5.style.display = "none";
             });
 
             click1.addEventListener('click', function(event) {
@@ -500,6 +579,7 @@
                 border1.style.display = "block";
                 border2.style.display = "none";
                 o.style.display = "none";
+                border5.style.display = "none";
             });
 
             click2.addEventListener("click", function(event) {
@@ -508,8 +588,18 @@
                 border2.style.display = "block";
                 border1.style.display = "none";
                 o.style.display = "none";
+                border5.style.display = "none";
+            });
+
+            fer.addEventListener("click", function(event) {
+                event.preventDefault();
+                border5.style.display = "block";
+                border1.style.display = "none";
+                border2.style.display = "none";
+                o.style.display = "none";
             });
         </script>
+
 
 
 
