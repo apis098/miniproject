@@ -245,7 +245,7 @@
 <div class="">
     <div class="my-4 ml-5">
 
-        <a href="#" class="btn btn-light"
+        <a href="#" class="btn btn-light" data-toggle="modal" data-target="#judul"
         style="background-color: white; border: 0.50px black solid; border-radius: 10px; width: 95%">
         <div style="font-weight: 600; color: black;"> Tambahkan Judul Sesi</div>
     </a>
@@ -274,15 +274,15 @@
 
         </div> --}}
 
-        <div class="card mt-2" style="width: 95%; border-radius: 10px;">
-            <div class="card-header" style="border-radius: 10px;">
+        <div class="card mt-2" style="width: 95%; border-radius: 10px;  border: 1px solid #777">
+            <div class="card-header" style="border-radius: 10px; border: 1px solid #777">
                 <div class="d-flex">
                 <div class="col-12">
                   <strong>Menanak Kucing</strong>
                     <div class="float-end">
                         <div class="d-flex justify-content-end">
                         <span class="me-3">2 jam 10 menit</span>
-                        <a href="#" class="p-1 mr-1" style="border: none; ">
+                        <a href="#" data-toggle="modal" data-target="#judulEdit" class="p-1 mr-1" style="border: none; ">
                             <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
                                 <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
@@ -307,14 +307,14 @@
                 </div>
             </div>
             </div>
-            <div class="card-body" style="border-radius: 10px;">
+            <div class="card-body" style="border-radius: 10px; ">
                 <div class="d-flex mb-2">
                     <div class="col-12">
                         1.1  <span class="ml-4">lorem ipsum von lenong</span>
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
                                 <span class="me-3">30 Menit</span>
-                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                <a href="#" data-toggle="modal" data-target="#editSesi" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
                                         <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
@@ -338,7 +338,7 @@
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
                                 <span class="me-3">30 Menit</span>
-                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                <a href="#" data-toggle="modal" data-target="#editSesi" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
                                         <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
@@ -362,7 +362,7 @@
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
                                 <span class="me-3">30 Menit</span>
-                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                <a href="#" data-toggle="modal" data-target="#editSesi" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
                                         <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
@@ -386,7 +386,7 @@
                         <div class="float-end">
                             <div class="d-flex justify-content-end ">
                                 <span class="me-3">30 Menit</span>
-                                <a href="#" class="p-1 mr-1" style="border: none; margin-top: -4%">
+                                <a href="#" data-toggle="modal" data-target="#editSesi" class="p-1 mr-1" style="border: none; margin-top: -4%">
                                     <svg width="25" height="33" viewBox="0 0 27 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z" fill="#F7941E"/>
                                         <path d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z" fill="white"/>
@@ -405,7 +405,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <a href="#" class="btn btn-light"
+                    <a href="#" class="btn btn-light" data-toggle="modal" data-target="#Sesi"
         style="background-color: #F7941E; border-radius: 10px; width: 100%">
         <div style="font-weight: 600; color: white;"> Tambahkan Detail Sesi</div>
     </a>
@@ -416,60 +416,74 @@
 
 
 
-<form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
-    @csrf
-    <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
-        <div class="mt-4">
-            <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Nama</label> &nbsp; &nbsp;
-                <div class="col-sm-10">
-                    <input type="text" id="nama" name="nama_paket" class="form-control "
-                        style="  width: 49rem; margin-left:-15px " placeholder="Masukkan Nama Kontenn...">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Waktu </label> &nbsp; &nbsp;
-                <div class="col-sm-10">
-                    <input type="time" id="harga" name="harga_paket" class="form-control "
-                        style="  width: 49rem; margin-left:-15px " placeholder="Masukkan Waktu Konten...">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Harga </label> &nbsp; &nbsp;
-                <div class="col-sm-10">
-                    <input type="number" id="durasi" name="durasi_paket" class="form-control "
-                        style="  width: 49rem; margin-left:-15px " placeholder="Masukkan Harga Konten...">
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Tanggal </label> &nbsp; &nbsp;
-                <div class="col-sm-10">
-                    <input type="date" id="durasi" name="durasi_paket" class="form-control "
-                        style="  width: 49rem; margin-left:-15px " placeholder="Masukkan Tanggal Konten...">
-                </div>
-            </div>
-            <div class="d-flex">
-                <label class="col-form-label fw-bold me-2">Sesi </label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                    style="width: 44rem;" placeholder="Masukkan Sesi Konten...">
-            </div>
-            <div id="details"></div>
-            <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 mb-3 float-start"
-                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                    class="ms-2 me-2">Tambah
-                    Sesi</b>
-            </button> <br>
-            <button type="submit" class="btn text-light rounded-3 float-end"
-                style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                    class="ms-2 me-2">Tambahkan
-                    </b>
-            </button>
-        </div>
-    </div>
-</form>
 
-  {{-- modal edit --}}
-  <div class="modal fade" id="edit" tabindex="-1" role="dialog"
+
+  {{-- modal Tambah Judul Sesi --}}
+  <div class="modal fade" id="judul" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="border-radius: 15px">
+          <div class="modal-body">
+              <div class="d-flex justify-content-between">
+                  <h5 class="modal-title ml-2" id="exampleModalLabel"
+                      style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                      Tambah
+                  </h5>
+                  <button type="button" class="close mr-2" data-dismiss="modal"
+                      aria-label="Close" id="closeModalEdit">
+                      <i class="fa-regular text-dark fa-circle-xmark"></i>
+                  </button>
+              </div>
+              <form id="formUpdateFeed()" action="" method="POST">
+                  @csrf
+                  @method("PUT")
+                  <div class="mt-4">
+                      <div class="col-sm-12">
+                        <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+                            @csrf
+                            <div class=" d-flex mr-5" style="overflow-x:hidden;">
+                                <div class="ml-4">
+                                    <div class="mb-3 row ml-1">
+                                        <label class="col-sm-1 col-form-label fw-bold">Nama</label>  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="text" id="nama" name="nama_paket" class="form-control"
+                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Nama Yang Sesuai...">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ml-1 ">
+                                        <label class="col-sm-1 col-form-label fw-bold">Waktu </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="time" id="harga" name="harga_paket" class="form-control "
+                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Jumlah Waktu Dalam Menit...">
+                                        </div>
+                                    </div>
+                                    <div class="mb-3 row ml-1">
+                                        <label class="col-sm-1 col-form-label fw-bold">Harga </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                        <div class="col-sm-10">
+                                            <input type="number" id="durasi" name="durasi_paket" class="form-control "
+                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Harga...">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                      </div>
+                  </div>
+                  <br>
+                  <button type="submit" onclick="buttonUpdateFeed"
+                      class="btn btn-sm d-flex justify-content-end text-white float-end"
+                      style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Oke</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+{{-- end modal Tambah Judul Sesi --}}
+
+
+  {{-- modal Edit Judul Sesi --}}
+  <div class="modal fade" id="judulEdit" tabindex="-1" role="dialog"
   aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content" style="border-radius: 15px">
@@ -497,35 +511,21 @@
                                         <label class="col-sm-1 col-form-label fw-bold">Nama</label>  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;
                                         <div class="col-sm-10">
                                             <input type="text" id="nama" name="nama_paket" class="form-control"
-                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Nama Konten...">
+                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Nama Yang Sesuai...">
                                         </div>
                                     </div>
                                     <div class="mb-3 row ml-1 ">
                                         <label class="col-sm-1 col-form-label fw-bold">Waktu </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
                                         <div class="col-sm-10">
                                             <input type="time" id="harga" name="harga_paket" class="form-control "
-                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Waktu Konten...">
+                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Jumlah Waktu Dalam Menit...">
                                         </div>
                                     </div>
                                     <div class="mb-3 row ml-1">
                                         <label class="col-sm-1 col-form-label fw-bold">Harga </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
                                         <div class="col-sm-10">
                                             <input type="number" id="durasi" name="durasi_paket" class="form-control "
-                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Harga Konten...">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ml-1">
-                                        <label class="col-sm-1 col-form-label fw-bold">Tanggal </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
-                                        <div class="col-sm-10">
-                                            <input type="date" id="durasi" name="durasi_paket" class="form-control "
-                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Tanggal Konten...">
-                                        </div>
-                                    </div>
-                                    <div class="mb-3 row ml-1">
-                                        <label class="col-sm-1 col-form-label fw-bold">Sesi </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
-                                        <div class="col-sm-10">
-                                            <input type="text" id="durasi" name="durasi_paket" class="form-control "
-                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Sesi Konten...">
+                                                style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Harga...">
                                         </div>
                                     </div>
 
@@ -537,13 +537,125 @@
                   <br>
                   <button type="submit" onclick="buttonUpdateFeed"
                       class="btn btn-sm d-flex justify-content-end text-white float-end"
-                      style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                      style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Oke</button>
               </form>
           </div>
       </div>
   </div>
 </div>
-{{-- end modal edit --}}
+{{-- end modal Edit Judul Sesi --}}
+
+ {{-- modal Tambah Detail Sesi --}}
+ <div class="modal fade" id="Sesi" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-lg" role="document">
+     <div class="modal-content" style="border-radius: 15px">
+         <div class="modal-body">
+             <div class="d-flex justify-content-between">
+                 <h5 class="modal-title ml-2" id="exampleModalLabel"
+                     style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                     Tambah
+                 </h5>
+                 <button type="button" class="close mr-2" data-dismiss="modal"
+                     aria-label="Close" id="closeModalEdit">
+                     <i class="fa-regular text-dark fa-circle-xmark"></i>
+                 </button>
+             </div>
+             <form id="formUpdateFeed()" action="" method="POST">
+                 @csrf
+                 @method("PUT")
+                 <div class="mt-4">
+                     <div class="col-sm-12">
+                       <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+                           @csrf
+                           <div class=" d-flex mr-5" style="overflow-x:hidden;">
+                               <div class="ml-4">
+                                   <div class="mb-3 row ml-1">
+                                       <label class="col-sm-1 col-form-label fw-bold">Nama</label>  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                       <div class="col-sm-10">
+                                           <input type="text" id="nama" name="nama_paket" class="form-control"
+                                               style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Nama Yang Sesuai...">
+                                       </div>
+                                   </div>
+                                   <div class="mb-3 row ml-1 ">
+                                       <label class="col-sm-1 col-form-label fw-bold">Waktu </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                       <div class="col-sm-10">
+                                           <input type="time" id="harga" name="harga_paket" class="form-control "
+                                               style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Jumlah Waktu Dalam Menit...">
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </form>
+                     </div>
+                 </div>
+                 <br>
+                 <button type="submit" onclick="buttonUpdateFeed"
+                     class="btn btn-sm d-flex justify-content-end text-white float-end"
+                     style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Oke</button>
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
+{{-- end modal Tambah Detail Sesi --}}
+
+ {{-- modal Edit Detail Sesi --}}
+ <div class="modal fade" id="editSesi" tabindex="-1" role="dialog"
+ aria-labelledby="exampleModalLabel" aria-hidden="true">
+ <div class="modal-dialog modal-lg" role="document">
+     <div class="modal-content" style="border-radius: 15px">
+         <div class="modal-body">
+             <div class="d-flex justify-content-between">
+                 <h5 class="modal-title ml-2" id="exampleModalLabel"
+                     style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                     Edit
+                 </h5>
+                 <button type="button" class="close mr-2" data-dismiss="modal"
+                     aria-label="Close" id="closeModalEdit">
+                     <i class="fa-regular text-dark fa-circle-xmark"></i>
+                 </button>
+             </div>
+             <form id="formUpdateFeed()" action="" method="POST">
+                 @csrf
+                 @method("PUT")
+                 <div class="mt-4">
+                     <div class="col-sm-12">
+                       <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+                           @csrf
+                           <div class=" d-flex mr-5" style="overflow-x:hidden;">
+                               <div class="ml-4">
+                                   <div class="mb-3 row ml-1">
+                                       <label class="col-sm-1 col-form-label fw-bold">Nama</label>  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                       <div class="col-sm-10">
+                                           <input type="text" id="nama" name="nama_paket" class="form-control"
+                                               style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Nama Yang Sesuai...">
+                                       </div>
+                                   </div>
+                                   <div class="mb-3 row ml-1 ">
+                                       <label class="col-sm-1 col-form-label fw-bold">Waktu </label>  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+                                       <div class="col-sm-10">
+                                           <input type="time" id="harga" name="harga_paket" class="form-control "
+                                               style="  width: 37rem; margin-left:-15px " placeholder="Masukkan Jumlah Waktu Dalam Menit...">
+                                       </div>
+                                   </div>
+
+                               </div>
+                           </div>
+                       </form>
+                     </div>
+                 </div>
+                 <br>
+                 <button type="submit" onclick="buttonUpdateFeed"
+                     class="btn btn-sm d-flex justify-content-end text-white float-end"
+                     style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Oke</button>
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
+{{-- end modal Edit Detail Sesi --}}
 
 
 
