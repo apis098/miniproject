@@ -430,7 +430,7 @@
                                                                         </button>
                                                                     </form>
                                                                 @elseif($row->top_up_id != null)
-                                                                    <form action="#"
+                                                                    <form action="{{route('topUp.notification',$row->id)}}"
                                                                         method="POST">
                                                                         @method('PUT')
                                                                         @csrf

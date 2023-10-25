@@ -88,10 +88,10 @@ class notificationController extends Controller
         $uuid = $notification->veed->uuid;
         return redirect()->route('veed.index',$uuid);
     }
-    // public function blockComplaint($id){
-    //     $notificattion = notifications::findOrFail($id);
-    //     $notificattion->status = 'sudah';
-    //     $notificattion->save();
-    //     return redirect()->back();
-    // }
+    public function top_up($id){
+        $notification = notifications::findOrFail($id);
+        $notification->status = 'sudah';
+        $notification->save();  
+        return redirect('/koki/beranda');
+    }
 }

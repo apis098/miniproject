@@ -76,6 +76,7 @@ Route::put('/status-baca/blokir-resep/{id}', [notificationController::class, 'bl
 Route::put('/status-baca/blokir-komentar/{id}', [notificationController::class, 'blockedComent'])->name('blockedComent.notification');
 Route::put('/status-baca/blokir-feed/{id}', [notificationController::class, 'blockedFeed'])->name('blockedFeed.notification');
 Route::put('/status-baca/blokir-keluhan/{id}', [notificationController::class, 'blockedComplaint'])->name('blockedComplaint.notification');
+Route::put('/status-baca/top-up/{id}', [notificationController::class, 'top_up'])->name('topUp.notification');
 
 
 // artikel
