@@ -21,6 +21,9 @@ use App\Models\Report;
 use App\Models\TopUpCategories;
 use App\Models\User;
 use Carbon\Carbon;
+use FFMpeg\Coordinate\TimeCode;
+use FFMpeg\Filters\Video\VideoFilters;
+use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -58,7 +61,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.profile', compact('categorytopup','messageCount', 'recipes', 'videos','notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.profile', compact('categorytopup', 'messageCount', 'recipes', 'videos', 'notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function updateProfile(Request $request)
     {
@@ -120,7 +123,7 @@ class KokiController extends Controller
         }
 
 
-        return view('koki.profilage', compact('categorytopup','messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.profilage', compact('categorytopup', 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function feed(Request $request)
@@ -177,26 +180,26 @@ class KokiController extends Controller
         $saldo_belumDiambil = [];
         $total_saldo = [];
         $year = 2023;
-        for ($i=1; $i <= 12; $i++) {
+        for ($i = 1; $i <= 12; $i++) {
             $saldo_sudahDiambil[] = DB::table('income_chefs')
-            ->where('chef_id', Auth::user()->id)
-            ->where('status_penarikan', 'sudah ditarik')
-            ->whereMonth('created_at', $i)
-            ->whereYear('created_at', $year)
-            ->sum('pemasukan');
+                ->where('chef_id', Auth::user()->id)
+                ->where('status_penarikan', 'sudah ditarik')
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', $year)
+                ->sum('pemasukan');
             $saldo_belumDiambil[] = DB::table('income_chefs')
-            ->where('chef_id', Auth::user()->id)
-            ->where('status_penarikan', 'bisa ditarik')
-            ->whereMonth('created_at', $i)
-            ->whereYear('created_at', $year)
-            ->sum('pemasukan');
+                ->where('chef_id', Auth::user()->id)
+                ->where('status_penarikan', 'bisa ditarik')
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', $year)
+                ->sum('pemasukan');
             $total_saldo[] = DB::table('income_chefs')
-            ->where('chef_id', Auth::user()->id)
-            ->whereMonth('created_at', $i)
-            ->whereYear('created_at', $year)
-            ->sum('pemasukan');
+                ->where('chef_id', Auth::user()->id)
+                ->whereMonth('created_at', $i)
+                ->whereYear('created_at', $year)
+                ->sum('pemasukan');
         }
-        return view('koki.beranda', compact('total_saldo','saldo_sudahDiambil', 'saldo_belumDiambil','categorytopup',"waktu","komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('koki.beranda', compact('total_saldo', 'saldo_sudahDiambil', 'saldo_belumDiambil', 'categorytopup', "waktu", "komentar_feed", "komentar_resep", "koki", "jumlah_resep", 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function incomeKoki(Request $request)
@@ -293,7 +296,7 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view("koki.upload-video", compact('categorytopup','userLogin', 'notification', 'favorite', 'footer', 'unreadNotificationCount'));
+        return view("koki.upload-video", compact('categorytopup', 'userLogin', 'notification', 'favorite', 'footer', 'unreadNotificationCount'));
     }
     public function upload(Request $request)
     {
@@ -318,15 +321,28 @@ class KokiController extends Controller
         } else {
             $isPremium = "no";
         }
+        $up = upload_video::create([
+            "users_id" => Auth::user()->id,
+            "deskripsi_video" => $request->deskripsi_video,
+            "upload_video" => $request->file("upload_video")->store("video-user", "local"),
+            "isPremium" => $isPremium,
+            "uuid" => Str::random(10),
+        ]);
 
-            $up = upload_video::create([
-                "users_id" => Auth::user()->id,
-                "deskripsi_video" => $request->deskripsi_video,
-                "upload_video" => $request->file("upload_video")->store("video-user", "local"),
-                "isPremium" => $isPremium,
-                "uuid" => Str::random(10),
-            ]);
-        
+        $video = upload_video::findOrFail($up->id);
+
+        if ($isPremium === "yes") {
+            $outputPath = storage_path('app/preview/' . $video->upload_video);
+            $feed = FFMpeg::open($video->upload_video);
+
+            $feed->addFilter(function(VideoFilters $filters){
+                $filters->clip(TimeCode::fromSeconds(0), TimeCode::fromSeconds(10));
+            })
+            ->export()
+            ->inFormat(new \FFMpeg\Format\Video\X264)
+            ->save($outputPath);
+        }
+
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {
             return response()->json([

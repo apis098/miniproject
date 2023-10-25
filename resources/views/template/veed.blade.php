@@ -2791,6 +2791,7 @@
                     }
                 },
                 error: function error(xhr, status, errors) {
+                    console.log(xhr.responseText);
                     iziToast.show({
                         backgroundColor: '#f2a5a8',
                         title: '<i class="fa-solid fa-triangle-exclamation"></i>',

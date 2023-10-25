@@ -169,6 +169,7 @@ return [
         AzisHapidin\IndoRegion\IndoRegionServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -186,6 +187,7 @@ return [
         'Chatify' => Chatify\Facades\ChatifyMessenger::class,
         // 'Example' => App\Facades\Example::class,
         'Crypt' => Illuminate\Support\Facades\Crypt::class,
+        'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class
     ])->toArray(),
 
 ];
