@@ -992,6 +992,152 @@
         </div>
     </div>
             @yield('content')   
+     <!-- footer section -->
+     <footer class="footer_section"
+     style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
+     <div class="container">
+         <div class="row">
+             <div class="col-sm-12 col-md-6 col-lg-4 footer-col">
+                 <div class="footer_detail ">
+                     <h1 style="font-family:dancing script">HummaCook</h1>
+                     <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan
+                         Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang,
+                         dan bahan-bahan masakannya yang mudah untuk didapatkan. </p>
+                     <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
+                         <a href="{{ $footer->facebook }}" target="_blank">
+                             <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                         </a>
+                         <a href="{{ $footer->youtube }}" target="_blank">
+                             <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                         </a>
+                         <a href="{{ $footer->twitter }}" target="_blank">
+                             <i class="fa-brands fa-twitter" aria-hidden="true"></i>
+                         </a>
+                         <a href="{{ $footer->instagram }}" target="_blank">
+                             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                         </a>
+
+                     </div>
+
+
+                 </div>
+             </div>
+             <div class="col-sm-12 col-md-6 col-lg-4 mt-2 footer-col" style="text-align: center;">
+                 <div class="footer_contact mt-2">
+                     <h5 class="fw-bold">Kontak</h5>
+                     <div class="contact_link_box mt-4">
+
+                         <a href="{{ $footer->kontak }}" target="_blank">
+                             <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
+                             <span>{{ $footer->kontak }}</span>
+                         </a>
+                         <a href="{{ $footer->telegram }}" target="_blank">
+                             <i class="fa-brands fa-telegram" aria-hidden="true" style="margin-left: -2em"></i>
+                             <span>{{ $footer->telegram }}</span>
+                         </a>
+                         <a href="{{ $footer->email }}" target="_blank">
+                             <i class="fas fa-envelope" aria-hidden="true" style="margin-left:-1em"></i>
+                             <span>{{ $footer->email }}</span>
+                         </a>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-sm-12 col-md-12 col-lg-4 footer-col">
+                 <h1 class="footer-title mt-4">
+                     {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
+                     <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
+                 </h1>
+                 <iframe src="{{ $footer->lokasi }}" height="200" style="border:0;margin-top:8%"
+                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+             </div>
+         </div>
+
+         <!-- Modal -->
+         <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+             <div class="modal-dialog modal-dialog-centered" role="document">
+                 <div class="modal-content">
+                     <div class="modal-header">
+                         <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Resep
+                             favorite</h5>
+                         {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                             <span aria-hidden="true">&times;</span>
+                         </button>
+
+                     </div>
+                     @foreach ($favorite as $row)
+                         <form action="{{ route('favorite.delete.multiple') }}" method="POST">
+                             @csrf
+                             @if ($row->resep_id != null)
+                                 <div class="modal-body d-flex align-items-center">
+                                     <input type="checkbox" name="selected_ids[]"
+                                         class="form-check-input ms-3 data-checkbox"
+                                         data-id="{{ $row->id }}">
+                                     <img src="{{ asset('storage/' . $row->resep->foto_resep) }}"
+                                         class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
+                                         alt="">
+                                     <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
+                                         <div style="justify-content: space-between;" class="mb-1">
+                                             <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
+                                                 {{ $row->resep->nama_resep }}</h6>
+
+                                             <small
+                                                 class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
+
+                                         </div>
+                                     </a>
+                                 </div>
+                             @elseif($row->feed_id != null)
+                                 <div class="modal-body d-flex align-items-center">
+                                     <input type="checkbox" name="selected_ids[]"
+                                         class="form-check-input ms-3 data-checkbox"
+                                         data-id="{{ $row->id }}">
+                                     <video class="video ms-5 video-fav" controls width="180" height="120">
+                                         <source src="/storage/{{ $row->veed->upload_video }}" type="video/mp4">
+                                     </video>
+                                     <a href="/veed/{{ $row->veed->uuid }}">
+                                         <div style="justify-content: space-between;" class="mb-1">
+                                             <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
+                                                 {{ $row->veed->deskripsi_video }}</h6>
+
+                                             <small
+                                                 class="text-secondary ms-3 me-3">{{ strlen($row->veed->deskripsi_video) > 80 ? substr($row->veed->deskripsi_video, 0, 80) . '...' : $row->veed->deskripsi_video }}</small>
+
+                                         </div>
+                                     </a>
+                                 </div>
+                             @endif
+                         </form>
+                     @endforeach
+                     @forelse ($favorite as $row)
+                     @empty
+                         <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                             style="margin-top: 2em">
+                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                             <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                         </div>
+                     @endforelse
+                     <div class="modal-footer">
+                         <div class="me-4">
+                             <input name="select-all" style="margin-left: -25%;" type="checkbox"
+                                 class="form-check-input" id="select-all">
+                             <div class="me-5">
+                                 <label for="select-all" class="text-dark me-5">Pilih semua</label>
+                             </div>
+                         </div>
+                         <button onclick="deleteSelected()" class="btn  btn-sm text-light ms-5"
+                             style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                 class="ms-2 me-2">Hapus
+                                 dari favorit</b></button>
+                     </div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+         {{-- end Modal --}}
+     </div>
+ </footer>
     {{-- Modal Top Up --}}      
     <div class="modal " id="topup">
         <div class="modal-dialog">
@@ -1286,152 +1432,7 @@
     </div>
 
 
-    <!-- footer section -->
-    <footer class="footer_section"
-        style="background-color: #F7941E; border-top-left-radius: 35px; border-top-right-radius: 35px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-6 col-lg-4 footer-col">
-                    <div class="footer_detail ">
-                        <h1 style="font-family:dancing script">HummaCook</h1>
-                        <p class="mt-3 text-start text-white">Tempat Dimana Anda Bisa Menemukan Resep-Resep Populer dan
-                            Mudah untuk Dimengerti, Menyajikan Resep-Resep rumahan yang mudah dibuat oleh semua orang,
-                            dan bahan-bahan masakannya yang mudah untuk didapatkan. </p>
-                        <div class="footer_social mt-4"> <!-- Increase the margin-top value as needed -->
-                            <a href="{{ $footer->facebook }}" target="_blank">
-                                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ $footer->youtube }}" target="_blank">
-                                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ $footer->twitter }}" target="_blank">
-                                <i class="fa-brands fa-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ $footer->instagram }}" target="_blank">
-                                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                            </a>
-
-                        </div>
-
-
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4 mt-2 footer-col" style="text-align: center;">
-                    <div class="footer_contact mt-2">
-                        <h5 class="fw-bold">Kontak</h5>
-                        <div class="contact_link_box mt-4">
-
-                            <a href="{{ $footer->kontak }}" target="_blank">
-                                <i class="fa fa-phone" aria-hidden="true" style="margin-left: -2em"></i>
-                                <span>{{ $footer->kontak }}</span>
-                            </a>
-                            <a href="{{ $footer->telegram }}" target="_blank">
-                                <i class="fa-brands fa-telegram" aria-hidden="true" style="margin-left: -2em"></i>
-                                <span>{{ $footer->telegram }}</span>
-                            </a>
-                            <a href="{{ $footer->email }}" target="_blank">
-                                <i class="fas fa-envelope" aria-hidden="true" style="margin-left:-1em"></i>
-                                <span>{{ $footer->email }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-12 col-lg-4 footer-col">
-                    <h1 class="footer-title mt-4">
-                        {{-- <i class="fa fa-map-marker" aria-hidden="true" style="margin-right:25%;"></i> --}}
-                        <h5 class="fw-bold" style="margin-top: -0.5em;">Maps</h5>
-                    </h1>
-                    <iframe src="{{ $footer->lokasi }}" height="200" style="border:0;margin-top:8%"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="favoriteModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title text-dark fw-bolder ms-3 me-5" id="exampleModalLongTitle">Resep
-                                favorite</h5>
-                            {{-- <p class="text-dark ms-5 mt-1 fw-bolder">pilih semua</p> --}}
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-
-                        </div>
-                        @foreach ($favorite as $row)
-                            <form action="{{ route('favorite.delete.multiple') }}" method="POST">
-                                @csrf
-                                @if ($row->resep_id != null)
-                                    <div class="modal-body d-flex align-items-center">
-                                        <input type="checkbox" name="selected_ids[]"
-                                            class="form-check-input ms-3 data-checkbox"
-                                            data-id="{{ $row->id }}">
-                                        <img src="{{ asset('storage/' . $row->resep->foto_resep) }}"
-                                            class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
-                                            alt="">
-                                        <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
-                                            <div style="justify-content: space-between;" class="mb-1">
-                                                <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
-                                                    {{ $row->resep->nama_resep }}</h6>
-
-                                                <small
-                                                    class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                                @elseif($row->feed_id != null)
-                                    <div class="modal-body d-flex align-items-center">
-                                        <input type="checkbox" name="selected_ids[]"
-                                            class="form-check-input ms-3 data-checkbox"
-                                            data-id="{{ $row->id }}">
-                                        <video class="video ms-5 video-fav" controls width="180" height="120">
-                                            <source src="/storage/{{ $row->veed->upload_video }}" type="video/mp4">
-                                        </video>
-                                        <a href="/veed/{{ $row->veed->uuid }}">
-                                            <div style="justify-content: space-between;" class="mb-1">
-                                                <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
-                                                    {{ $row->veed->deskripsi_video }}</h6>
-
-                                                <small
-                                                    class="text-secondary ms-3 me-3">{{ strlen($row->veed->deskripsi_video) > 80 ? substr($row->veed->deskripsi_video, 0, 80) . '...' : $row->veed->deskripsi_video }}</small>
-
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endif
-                            </form>
-                        @endforeach
-                        @forelse ($favorite as $row)
-                        @empty
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                                style="margin-top: 2em">
-                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                <p style="color: #1d1919"><b>Tidak ada data</b></p>
-                            </div>
-                        @endforelse
-                        <div class="modal-footer">
-                            <div class="me-4">
-                                <input name="select-all" style="margin-left: -25%;" type="checkbox"
-                                    class="form-check-input" id="select-all">
-                                <div class="me-5">
-                                    <label for="select-all" class="text-dark me-5">Pilih semua</label>
-                                </div>
-                            </div>
-                            <button onclick="deleteSelected()" class="btn  btn-sm text-light ms-5"
-                                style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-2 me-2">Hapus
-                                    dari favorit</b></button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            {{-- end Modal --}}
-        </div>
-    </footer>
+   
     <!-- footer section -->
     <!-- jQery -->
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
