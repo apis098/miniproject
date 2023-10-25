@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\income_chefs;
 use App\Models\notifications;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class donationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,$user_recipient)
+    public function store(Request $request,$user_recipient,$feed_id)
     {
         $check = Auth::check();
         if($check){
@@ -50,6 +51,14 @@ class donationController extends Controller
                     $saldo_lama_pengirim = $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
+
+                    $income = new income_chefs();
+                    $income->chef_id  = $user_recipient;
+                    $income->user_id = auth()->user()->id;
+                    $income->feed_id = $feed_id;
+                    $income->status = "sawer";
+                    $income->pemasukan = $saldo_baru;
+                    $income->save();
                      // mengirim notifikasi
                      $notification = new notifications();
                      $notification->notification_from = auth()->user()->id;
@@ -79,6 +88,15 @@ class donationController extends Controller
                     $saldo_lama_pengirim =  $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
+
+                    $income = new income_chefs();
+                    $income->chef_id  = $user_recipient;
+                    $income->user_id = auth()->user()->id;
+                    $income->feed_id = $feed_id;
+                    $income->status = "sawer";
+                    $income->pemasukan = $saldo_baru;
+                    $income->save();
+                    
                     // mengirim notifikasi
                     $notification = new notifications();
                     $notification->notification_from = auth()->user()->id;

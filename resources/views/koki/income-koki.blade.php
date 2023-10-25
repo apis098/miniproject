@@ -309,8 +309,8 @@ class="btn">
                              {{ $income->resep->nama_resep }}
                             @elseif ($income->status === "feed")
                             <video style="width: 100px;border-radius:10%;" src="{{ asset('storage/'.$income->feed->upload_video) }}"></video>
-                            @elseif($income->status === "sawer")
-                             -
+                            @elseif($income->status === "sawer" && $income->feed_id != null)
+                            <video style="width: 100px;border-radius:10%;" src="{{ asset('storage/'.$income->feed->upload_video) }}"></video>
                             @endif
                         </td>
                         <td>
