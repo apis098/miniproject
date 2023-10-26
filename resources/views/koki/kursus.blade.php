@@ -329,7 +329,7 @@
                                                 </a>
                                                 @endif
 
-                                                <a href="{{route('koki.content')}}" class="btn mt-2 float-end"
+                                                <a href="{{route('koki.content', $mycourse->id)}}" class="btn mt-2 float-end"
                                                 style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                                 Tambah Konten
                                             </a>

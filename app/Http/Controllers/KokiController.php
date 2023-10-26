@@ -246,10 +246,10 @@ class KokiController extends Controller
         return view('koki.kursus', compact("koki", "kursus_sendiri"));
     }
 
-    public function kursusContent(Request $request)
+    public function kursusContent(string $id)
     {
         $koki = User::find(Auth::user()->id);
-        $kursus_sendiri = kursus::where('users_id', Auth::user()->id)->get();
+        $kursus_sendiri = kursus::findOrFail($id);
         return view('koki.kursus-content', compact("koki", "kursus_sendiri"));
     }
 

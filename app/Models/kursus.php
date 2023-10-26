@@ -28,4 +28,8 @@ class kursus extends Model
     public function jenis_kursus() {
         return $this->hasMany(jenis_kursuses::class, 'id_kursus');
     }
+    public function sesi()
+    {
+        return $this->hasMany(sessionCourses::class, "course_id");
+    }
 }
