@@ -187,7 +187,9 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::post('tambah-sesi-kursus', [KursusController::class, "tambahSesi"])->name('tambah.sesi.kursus');
         Route::put('update-sesi-kursus/{id}', [KursusController::class, "updateSesi"])->name('update.sesi.kursus');
         Route::delete('hapus-sesi-kursus/{id}', [KursusController::class, "hapusSesi"])->name('hapus.sesi.kursus');
-        Route::post('tambah-detail-sesi-kursus', );
+        Route::post('tambah-detail-sesi-kursus', [KursusController::class, "tambahDetailSesi"])->name('tambah.detail.sesi.kursus');
+        Route::put('update-detail-sesi-kursus/{id}', [KursusController::class, "updateDetailSesi"])->name('update.detail.sesi.kursus');
+        Route::delete('hapus-detail-sesi-kursus/{id}', [KursusController::class, "hapusDetailSesi"])->name('hapus.detail.sesi.kursus');
         // end route sesi kursus
         Route::get('profilage', [KokiController::class, 'profilage'])->name('koki.profilage');
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
