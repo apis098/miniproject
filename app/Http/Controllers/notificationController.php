@@ -100,6 +100,10 @@ class notificationController extends Controller
             $row->status = "sudah";
             $row->save();
             }
+            $read_notification = notifications::where('user_id',auth()->user()->id)->where('status','sudah')->get();
+            foreach($read_notification as $unread){
+                $unread->delete();
+            }
             return response()->json([
                 'success' => true,
             ]);
