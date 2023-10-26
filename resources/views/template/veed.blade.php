@@ -324,28 +324,29 @@
                                             </video>
                                         @endif
                                     @else
-                                    <video
-                                    @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                        <video
+                                            @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
                                     @else
                                     class="video-js vjs-theme-city" @endif
-                                    id="my-video" controls preload="auto" width="615" height="315"
-                                    data-setup="{}">
-                                    @if ($item_video->isPremium === 'yes')
-                                        <source
-                                            src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
-                                            type="video/mp4" />
-                                    @else
-                                        <source src="{{ asset('storage/' . $item_video->upload_video) }}"
-                                            type="video/mp4" />
-                                    @endif
-                                    <p class="vjs-no-js">
-                                        To view this video please enable JavaScript, and consider upgrading to a
-                                        web browser that
-                                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports
-                                            HTML5
-                                            video</a>
-                                    </p>
-                                </video>
+                                            id="my-video" controls preload="auto" width="615" height="315"
+                                            data-setup="{}">
+                                            @if ($item_video->isPremium === 'yes')
+                                                <source
+                                                    src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
+                                                    type="video/mp4" />
+                                            @else
+                                                <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                                    type="video/mp4" />
+                                            @endif
+                                            <p class="vjs-no-js">
+                                                To view this video please enable JavaScript, and consider upgrading to a
+                                                web browser that
+                                                <a href="https://videojs.com/html5-video-support/"
+                                                    target="_blank">supports
+                                                    HTML5
+                                                    video</a>
+                                            </p>
+                                        </video>
                                     @endif
                                 @else
                                     <video
