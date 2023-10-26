@@ -270,7 +270,7 @@
                     </div>
                     <div class="col-xl-3 col-sm-4 mb-4 my-4">
                         <div class="bg-white shadow-sm py-5 border border-secondary"
-                            style="border-radius: 20px; height:40rem;width:20rem">
+                            style="border-radius: 20px; height:40rem;width:18rem">
                             <div class="text-center">
                                 @if ($detail_course->user->foto)
                                     <img src="{{ asset('images/' . $detail_course->user->foto) }}" alt=""
@@ -283,7 +283,7 @@
 
                                 <button type="submit"
                                     class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
-                                    style="position: absolute;  right: 55px; background-color:#F7941E;" data-toggle="modal"
+                                    style="position: absolute;  right: 65px; background-color:#F7941E;" data-toggle="modal"
                                     data-target="#exampleModalCenter">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                         viewBox="0 0 20 20">
