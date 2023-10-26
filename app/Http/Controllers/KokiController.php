@@ -18,6 +18,7 @@ use App\Models\notifications;
 use App\Models\reseps;
 use App\Models\upload_video;
 use App\Models\Report;
+use App\Models\sessionCourses;
 use App\Models\TopUpCategories;
 use App\Models\User;
 use Carbon\Carbon;
@@ -250,7 +251,8 @@ class KokiController extends Controller
     {
         $koki = User::find(Auth::user()->id);
         $kursus_sendiri = kursus::findOrFail($id);
-        return view('koki.kursus-content', compact("koki", "kursus_sendiri"));
+        $sesi_kursus = sessionCourses::where("course_id", $id)->get();
+        return view('koki.kursus-content', compact("koki", "kursus_sendiri", "sesi_kursus"));
     }
 
     public function favorite(Request $request)
@@ -376,3 +378,4 @@ class KokiController extends Controller
         ]);
     }
 }
+

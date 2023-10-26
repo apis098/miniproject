@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
+use App\Models\sessionCourses;
 use App\Models\TopUpCategories;
 use App\Models\Village;
 
@@ -82,7 +83,6 @@ class KursusController extends Controller
                 ->paginate(6);
             $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
                 ->paginate(6);
-
         }
         if ($request->isMethod('post')) {
             if ($request->has('jenis_kursus')) {
@@ -93,7 +93,6 @@ class KursusController extends Controller
                 $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
                     $q->whereIn('jenis_kursus', $jenis_kursus);
                 });
-
             }
             if ($request->has('min_price') && $request->has('max_price')) {
                 if ($request->min_price != NULL && $request->max_price != NULL) {
@@ -121,7 +120,7 @@ class KursusController extends Controller
         });
         $semua_kursus = $semua_kursus->paginate(6);
         $kursus_terbaru = $kursus_terbaru->paginate(6);
-        return view('template.kursus', compact('categorytopup','district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('template.kursus', compact('categorytopup', 'district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function kursus()
@@ -137,7 +136,7 @@ class KursusController extends Controller
             $update_status->status = $status;
             $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
             $update_status->waktu_diterima = $currentTime->format('Y-m-d H:i:s');
-        } else if($status === "ditolak") {
+        } else if ($status === "ditolak") {
             kursus::find($id)->delete();
         }
         $update_status->save();
@@ -170,7 +169,7 @@ class KursusController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('kursus.index', compact('categorytopup','messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
+        return view('kursus.index', compact('categorytopup', 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
 
     /**
@@ -268,7 +267,7 @@ class KursusController extends Controller
                 ->paginate(10);
         }
         $kursus = kursus::find($id);
-        return view('kursus.kursus-edit', compact('kursus','categorytopup','messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('kursus.kursus-edit', compact('kursus', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     /**
@@ -323,29 +322,86 @@ class KursusController extends Controller
         ]);
     }
 
-    public function tambahSesi()
+    public function tambahSesi(Request $request)
     {
-
+        $rules = [
+            "judul_sesi" => "required",
+            "lama_sesi" => "required|min:0",
+            "informasi_lama_sesi" => "required",
+            "harga_sesi" => "required|min:0"
+        ];
+        $messages = [
+            "judul_sesi.required" => "Judul sesi harus diisi!",
+            "lama_sesi.required" => "Lama sesi wajib diisi!",
+            "lama_sesi.min" => "Lama sesi tidak boleh minus!",
+            "informasi_lama_sesi.required" => "Informasi lama sesi wajib diisi!",
+            "harga_sesi.required" => "Harga sesi wajib diisi!",
+            "harga_sesi.min" => "Harga sesi tidak boleh minus!"
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->first(), 422);
+            //return redirect()->back()->with('error', $validator->errors()->first());
+        }
+        if ($request->informasi_lama_sesi === "menit") {
+            $lama_sesi = $request->lama_sesi;
+        } else if($request->informasi_lama_sesi === "jam") {
+            $lama_sesi = $request->lama_sesi * 60;
+        }
+        sessionCourses::create([
+            "course_id" => $request->course_id,
+            "judul_sesi" => $request->judul_sesi,
+            "lama_sesi" => $lama_sesi,
+            "informasi_lama_sesi" => $request->informasi_lama_sesi,
+            "harga_sesi" => $request->harga_sesi
+        ]);
+        return response()->json([
+            "message" => "Sukses menambahkan sesi!"
+        ]);
+        //return redirect()->back()->with('success', 'Sukses menambahkan sesi konten!');
     }
-    public function updateSesi()
+    public function updateSesi(Request $request, string $id)
     {
+        $rules = [
+            "judul_sesi" => "required",
+            "lama_sesi" => "required|min:0",
+            "informasi_lama_sesi" => "required",
+            "harga_sesi" => "required"
+        ];
+        $messages = [
+            "judul_sesi.required" => "Judul sesi harus diisi!",
+            "lama_sesi.required" => "Lama sesi harus diisi!",
+            "lama_sesi.min" => "Lama sesi tidak boleh minus!",
+            "informasi_lama_sesi.required" => "Informasi lama sesi tidak boleh kosong!",
+            "harga_sesi" => "Harga sesi harus diisi!",
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->first(), 422);
+        }
+        $sesi_kursus = sessionCourses::findOrFail($id);
+        $sesi_kursus->judul_sesi = $request->judul_sesi;
+        $sesi_kursus->lama_sesi = $request->lama_sesi;
+        $sesi_kursus->informasi_lama_sesi = $request->informasi_lama_sesi;
+        $sesi_kursus->harga_sesi = $request->harga_sesi;
+        $sesi_kursus->save();
 
+        return response()->json([
+            "success" => true,
+            "message" => "Sukses mengupdate sesi kursus!"
+        ]);
     }
     public function hapusSesi()
     {
-
     }
     public function tambahDetailSesi()
     {
-
     }
     public function updateDetailSesi()
     {
-
     }
     public function hapusDetailSesi()
     {
-        
     }
     /**
      * Remove the specified resource from storage.

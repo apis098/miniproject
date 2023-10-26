@@ -86,13 +86,31 @@
             color: white
         }
     </style>
-
+<script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-
+    <script>
+        @if(session('error'))
+            iziToast.error({
+                title: 'Gagal',
+                message: '{{ session('error') }}',
+                position: 'topCenter'
+            });
+        @endif
+    </script>
+    <script>
+        @if(session('success'))
+            iziToast.success({
+                title: 'Sukses',
+                message: '{{ session('success') }}',
+                position: 'topCenter'
+            });
+        @endif
+    </script>
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
