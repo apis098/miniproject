@@ -30,8 +30,7 @@ class donationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,$user_recipient,$feed_id)
-    {
+    public function store(Request $request,$user_recipient,$feed_id){
         $check = Auth::check();
         if($check){
             $penerima = User::findOrFail($user_recipient);
@@ -65,6 +64,7 @@ class donationController extends Controller
                     $income->status = "sawer";
                     $income->pemasukan = $saldo_baru;
                     $income->save();
+                    
                      // mengirim notifikasi
                      $notification = new notifications();
                      $notification->notification_from = auth()->user()->id;

@@ -786,7 +786,7 @@
                                                     <div class="modal-content">
                                                         <form
                                                             action="{{ route('donation.store', ['user_recipient' => $item_video->users_id, 'feed_id' => $item_video->id]) }}"
-                                                            id="gift-form" method="POST">
+                                                            id="gift-form{{ $item_video->id }}" method="POST">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title ml-3"
@@ -892,16 +892,17 @@
                                                                 <div class="d-flex mt-4 ml-3">
                                                                     <input type="number" id="moreInput" name="moreInput"
                                                                         width="500px"
-                                                                        class="form-control border-2 rounded-3 me-3"
+                                                                        class="form-control border-2 rounded-3 me-3 moreInput{{ $item_video->id }}"
                                                                         style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
                                                                         placeholder="Masukkan jumlah donasi lainya...">
                                                                     <input type="text" id="message" name="message"
                                                                         width="500px"
-                                                                        class="form-control border-2 rounded-3 me-3"
+                                                                        class="form-control border-2 rounded-3 me-3 message{{ $item_video->id }}"
                                                                         style="margin-top: 12px; border:solid black; border-radius:100px;"
                                                                         placeholder="Tambahkan pesan untuk pembuat...">
 
-                                                                    <button type="submit" id="giftButton"
+                                                                    <button type="submit"
+                                                                        onclick="giftButton({{ $item_video->id }})"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light">
                                                                         <b class="me-3 ms-3">Kirim</b></button>
@@ -2497,47 +2498,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#giftButton').click(function(e) {
-                e.preventDefault();
-                const input_message = document.getElementById('message');
-                const more_input = document.getElementById('moreInput');
-                const giftForm = document.getElementById('gift-form');
-                const route = giftForm.getAttribute('action');
-                var formData = $('#gift-form').serialize();
-                $.ajax({
-                    type: "POST",
-                    url: route,
-                    data: formData,
-                    success: function(response) {
-                        if (response.success) {
-                            input_message.value = "";
-                            more_input.value = "";
-                            iziToast.show({
-                                backgroundColor: '#a1dfb0',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                                progressBarColor: 'dark',
-                            });
-                        } else {
-                            iziToast.show({
-                                backgroundColor: '#f2a5a8',
-                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                            });
-                        }
-                    }
-                });
-            });
-        });
-    </script>
+
     <script>
         // balas komentar balasan di feed
         function balas_replies_comments_feeds1(num) {
@@ -2611,6 +2572,85 @@
                 });
             });
         }
+        function giftButton(num) {
+            $("#gift-form" + num).off('submit');
+            $("#gift-form" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    data: data,
+                    method: "POST",
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        if (response.success) {
+                            iziToast.destroy();
+                            iziToast.show({
+                            backgroundColor: '#a1dfb0',
+                            title: '<i class="fa-regular fa-circle-question"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message: response.message,
+                            position: 'topCenter',
+                            progressBarColor: 'dark',
+                        });
+                        }else{
+                            iziToast.show({
+                            backgroundColor: '#f2a5a8',
+                            title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message: response.message,
+                            position: 'topCenter',
+                        });
+                        }
+                    },
+                });
+            });
+        }
+        // function giftButton(num) {
+        //     // Menggunakan FormData untuk mengambil data form
+        //     var formData = new FormData($("#gift-form" + num)[0]);
+        //     var form = document.getElementById('gift-form' + num);
+        //     var route = form.getAttribute('action');
+        //     $.ajax({
+        //         type: "POST",
+        //         url: route, // Sesuaikan URL sesuai kebutuhan Anda
+        //         data: formData,
+        //         processData: false, // Diperlukan ketika mengirim FormData
+        //         contentType: false, // Diperlukan ketika mengirim FormData
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 // $(".message" + num).val("");
+        //                 // $(".moreInput" + num).val("");
+        //                 iziToast.show({
+        //                     backgroundColor: '#a1dfb0',
+        //                     title: '<i class="fa-regular fa-circle-question"></i>',
+        //                     titleColor: 'dark',
+        //                     messageColor: 'dark',
+        //                     message: response.message,
+        //                     position: 'topCenter',
+        //                     progressBarColor: 'dark',
+        //                 });
+        //             } else {
+        //                 iziToast.show({
+        //                     backgroundColor: '#f2a5a8',
+        //                     title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+        //                     titleColor: 'dark',
+        //                     messageColor: 'dark',
+        //                     message: response.message,
+        //                     position: 'topCenter',
+        //                 });
+        //             }
+        //         },
+        //         error: function(error) {
+        //             // Handle error, jika diperlukan
+        //             console.error(error);
+        //         }
+        //     });
+        // }
         // komentar reply feed ajax
         function balas_komentar(num) {
             $("#formBalasKomentar" + num).off('submit');
