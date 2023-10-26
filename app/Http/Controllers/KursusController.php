@@ -323,6 +323,30 @@ class KursusController extends Controller
         ]);
     }
 
+    public function tambahSesi()
+    {
+
+    }
+    public function updateSesi()
+    {
+
+    }
+    public function hapusSesi()
+    {
+
+    }
+    public function tambahDetailSesi()
+    {
+
+    }
+    public function updateDetailSesi()
+    {
+
+    }
+    public function hapusDetailSesi()
+    {
+        
+    }
     /**
      * Remove the specified resource from storage.
      */

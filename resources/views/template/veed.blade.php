@@ -312,7 +312,7 @@
                                                 id="my-video" controls preload="auto" width="615" height="315"
                                                 data-setup="{}">
                                                 <source
-                                                    src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
+                                                    src="{{ asset('storage/' . $item_video->upload_video) }}"
                                                     type="video/mp4" />
                                                 <p class="vjs-no-js">
                                                     To view this video please enable JavaScript, and consider upgrading to a
@@ -332,7 +332,7 @@
                                             data-setup="{}">
                                             @if ($item_video->isPremium === 'yes')
                                                 <source
-                                                    src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
+                                                    src="{{ asset('storage/' . $item_video->upload_video) }}"
                                                     type="video/mp4" />
                                             @else
                                                 <source src="{{ asset('storage/' . $item_video->upload_video) }}"
@@ -357,7 +357,7 @@
                                         data-setup="{}">
                                         @if ($item_video->isPremium === 'yes')
                                             <source
-                                                src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
+                                                src="{{ asset('storage/' . $item_video->upload_video) }}"
                                                 type="video/mp4" />
                                         @else
                                             <source src="{{ asset('storage/' . $item_video->upload_video) }}"
@@ -3215,7 +3215,7 @@
             video.addEventListener("timeupdate", function() {
                 // video.currentTime ini untuk mengambil data sudah berapa lama video berputar
                 // video.duration untuk mendapatkan total waktu video.
-                let time = video.duration * 1;
+                let time = video.duration * 0.1;
                 if (video.currentTime === time) {
                     // jika sudah lebih dari 5 detik maka video di pause
                     video.pause();
