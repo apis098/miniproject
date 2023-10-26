@@ -42,7 +42,13 @@ class donationController extends Controller
                         'success' => false,
                         'message' => "Maaf saldo anda tidak mencukupi silahkan melakukan top Up terlebih dahulu",
                     ]);
-                }else{
+                }elseif($request->input('moreInput') < 0){
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Silahkan masukkan format penulisan dengan benar!",
+                    ]);
+                }
+                else{
                     $saldo_lama = $penerima->saldo_pemasukan;
                     $saldo_baru = $request->input('moreInput');
                     $penerima->saldo_pemasukan = $saldo_lama + $saldo_baru;
@@ -79,7 +85,13 @@ class donationController extends Controller
                         'success' => false,
                         'message' => "Maaf saldo anda tidak mencukupi silahkan melakukan top Up terlebih dahulu",
                     ]);
-                }else{
+                }elseif($request->input('giftInput') < 0){
+                    return response()->json([
+                        'success' => false,
+                        'message' => "Silahkan masukkan format penulisan dengan benar!",
+                    ]);
+                }
+                else{
                     $saldo_lama = $penerima->saldo_pemasukan;
                     $saldo_baru = $request->input('giftInput');
                     $penerima->saldo_pemasukan = $saldo_lama + $saldo_baru;
@@ -96,7 +108,7 @@ class donationController extends Controller
                     $income->status = "sawer";
                     $income->pemasukan = $saldo_baru;
                     $income->save();
-                    
+
                     // mengirim notifikasi
                     $notification = new notifications();
                     $notification->notification_from = auth()->user()->id;

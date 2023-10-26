@@ -398,6 +398,7 @@
                                                                             alt="profile image" style="max-width:35px">
                                                                     </a>
                                                                 @endif
+                                                               
                                                                 <p class="mt-2 text-orange">{{ $row->sender->name }}</p>
                                                                 @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                                                     <form action="{{ route('replies.notification', $row->id) }}"
@@ -456,10 +457,10 @@
                                                                         </button>
                                                                     </form>
                                                                 @elseif($row->gift_id != null)
-                                                                    <form action="{{ route('replies.notification', $row->id) }}"
-                                                                        method="POST">
-                                                                        @method('PUT')
-                                                                        @csrf
+                                                                    <form action="/koki/income-koki"
+                                                                        method="GET">
+                                                                        {{-- @method('PUT')
+                                                                        @csrf --}}
                                                                         <button class="yuhu mt-2" type="submit">
                                                                             <small class="mt-1 ms-1 text-secondary">Memberi donasi
                                                                                 kepada anda</small>
