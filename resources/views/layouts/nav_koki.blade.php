@@ -143,8 +143,7 @@
                             </a>
                         </li>
 
-                         @if (Auth::check())
-                            @if (Auth::user()->isSuperUser == 'yes')
+
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.kursus')}}"
                                 class="nav-link mx-3 {{ request()->is('koki/kursus') ? 'activet text-orange' : 'text-white' }} {{ request()->is('koki/kursus-content') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
@@ -154,8 +153,6 @@
                                 </p>
                             </a>
                         </li>
-                         @endif
-                        @endif
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{route('koki.profilage')}}"
