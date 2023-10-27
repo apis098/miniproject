@@ -253,7 +253,7 @@
                     @endif
                     @foreach ($video_pembelajaran as $urut => $item_video)
                         <div class="card mt-4 mb-5 item-video" style="max-width: 42rem;">
-                            <!-- Data -->
+                            <!-- Data -->   
                             <div class="card-header" style="background-color: white">
                                 <p id="uuid" hidden>{{ $item_video->uuid }}</p>
                                 <div class="d-flex mb-1">

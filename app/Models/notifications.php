@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class notifications extends Model
 {
     use HasFactory;
-    protected $fillable = ['gift_id','top_up_id','message','share_id','veed_id','like_comment_recipes_id','like_reply_comment_recipes_id','comment_id','reply_comment_id','reply_id_comment','like_reply_id','user_id', 'follower_id','like_id','complaint_id','veed_id_report','notification_from','alasan','reply_id','status','reply_id_report','complaint_id_report','resep_id'];
+    protected $fillable = ['gift_id','top_up_id','message','share_id','veed_id','like_comment_recipes_id','categories','like_reply_comment_recipes_id','comment_id','reply_comment_id','reply_id_comment','like_reply_id','user_id', 'follower_id','like_id','complaint_id','veed_id_report','notification_from','alasan','reply_id','status','reply_id_report','complaint_id_report','resep_id'];
 
     public function complaint()
     {

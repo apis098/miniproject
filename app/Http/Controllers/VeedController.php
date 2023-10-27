@@ -67,7 +67,7 @@ class VeedController extends Controller
         $footer = footer::first();
 
         $video_pembelajaran = upload_video::inRandomOrder()->get();
-
+        
         $reply_comment_veed = reply_comment_veed::latest()->get();
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
@@ -121,12 +121,25 @@ class VeedController extends Controller
     public function sukai_veed(string $user_id, string $veed_id)
     {
         $cek = like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();
-
+        $feed = upload_video::findOrFail($veed_id);
         if ($cek == 0) {
-            like_veed::create([
-                "users_id" => $user_id,
-                "veed_id" => $veed_id
-            ]);
+            $like = new like_veed();
+            $like->users_id = $user_id;
+            $like->veed_id = $veed_id;
+            $like->save();
+            $notification = new notifications();
+            $notification->user_id = $feed->users_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->veed_id = $veed_id;
+            $notification->categories = "like"; 
+            $notification->save();
+
+            // notifications::create([
+            //     'user_id' => $feed->users_id,
+            //     'notification_from' => auth()->user()->id,
+            //     'veed_id' => $veed_id,
+            //     'like_id' => $like->id,
+            // ]);
             $isLikeVeed = \App\Models\like_veed::query()
                 ->where('users_id', Auth::user()->id)
                 ->where('veed_id', $veed_id)

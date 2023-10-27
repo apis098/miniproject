@@ -37,8 +37,9 @@ return new class extends Migration
             $table->unsignedBigInteger('comment_id')->nullable();
             $table->unsignedBigInteger('reply_comment_id')->nullable();
             $table->string('status')->default('belum');
+            $table->string('categories')->nullable();
             $table->timestamps();
-
+            
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('notification_from')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

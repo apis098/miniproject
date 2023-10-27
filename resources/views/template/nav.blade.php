@@ -476,6 +476,30 @@
                                                                                         class="form-control">
                                                                                 </button>
                                                                             </form>
+                                                                        @elseif($row->veed_id != null && $row->categories == "like")
+                                                                            <form
+                                                                                action="{{ route('replies.notification', $row->id) }}"
+                                                                                method="POST">
+                                                                                @method('PUT')
+                                                                                @csrf
+                                                                                <button class="yuhu mt-2"
+                                                                                    type="submit">
+                                                                                    <small
+                                                                                        class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                        postingan anda</small>
+                                                                                    @if ($row->status == 'belum')
+                                                                                        <img class="ms-2 mb-2 rounded-circle"
+                                                                                            src="{{ asset('images/badge.png') }}"
+                                                                                            alt="profile image"
+                                                                                            style="max-width:10px">
+                                                                                    @endif
+                                                                                    <input hidden type="text"
+                                                                                        value="{{ $row->complaint_id }}"
+                                                                                        name="replies_id"
+                                                                                        id="replies_id"
+                                                                                        class="form-control">
+                                                                                </button>
+                                                                            </form>
                                                                         @elseif($row->top_up_id != null)
                                                                             <form
                                                                                 action="{{ route('topUp.notification', $row->id) }}"
@@ -933,7 +957,7 @@
                                                                 @endif
                                                             @endforeach
                                                             @forelse ($notification as $row)
-                                                                <!-- Konten notifikasi -->
+                                                                    
                                                             @empty
                                                                 <div class="text-center mt-5">
                                                                     <img src="{{ asset('images/nodata.png') }}"
@@ -1742,7 +1766,7 @@
                         @foreach ($categorytopup as $topup)
                             <div class="col-lg-3 my-3">
                                 <label for="inputanKecil{{ $loop->iteration }}" id="topUp{{ $loop->iteration }}"
-                                    class="card border-2 scalev" id="card" data-card-selected="false"
+                                    class="card border-2 scale" id="card" data-card-selected="false"
                                     style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                     <input type="radio" id="inputanKecil{{ $loop->iteration }}"
                                         style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
@@ -1770,7 +1794,7 @@
                         @endforeach
 
                         <div class="col-lg-3 my-3">
-                            <div id="topUpLainya" class="card border-2" id="card" data-card-selected="false"
+                            <div id="topUpLainya" class="card border-2 scale" id="card" data-card-selected="false"
                                 style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
 
                                 <div class=card-body">
