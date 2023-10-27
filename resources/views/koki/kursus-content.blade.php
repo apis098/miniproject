@@ -7,7 +7,7 @@
         }
 
         @media (max-width: 991px) {
-            .pricing .pricing-item {
+            .pricing .pricing-item { 
                 margin-bottom: 30px;
             }
         }

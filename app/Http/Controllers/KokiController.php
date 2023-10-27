@@ -349,7 +349,8 @@ class KokiController extends Controller
         $koki = User::find(Auth::user()->id);
         $kursus_sendiri = kursus::findOrFail($id);
         $sesi_kursus = sessionCourses::where("course_id", $id)->get();
-        return view('koki.kursus-content', compact("koki", "kursus_sendiri", "sesi_kursus"));
+        $userLogin = Auth::user();
+        return view('koki.kursus-content', compact("koki", "kursus_sendiri", "sesi_kursus", "userLogin"));
     }
 
     public function favorite(Request $request)
