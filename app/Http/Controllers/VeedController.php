@@ -54,8 +54,9 @@ class VeedController extends Controller
                 $admin = true;
             }
             $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
+            ->where('status','belum')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             $userLog = 2;
         }
@@ -97,8 +98,9 @@ class VeedController extends Controller
                 $admin = true;
             }
             $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
+            ->where('status','belum')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             $userLog = 2;
         }

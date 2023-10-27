@@ -76,6 +76,7 @@ class testingController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
+                ->where('status','belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
