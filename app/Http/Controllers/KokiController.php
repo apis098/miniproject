@@ -130,6 +130,25 @@ class KokiController extends Controller
 
     public function feed(Request $request)
     {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
         $id_user = Auth::user()->id;
         $feed_dibuat = upload_video::where("users_id", $id_user)->get();
         $feed_disukai = upload_video::whereHas("like_veed", function ($query) use ($id_user) {
@@ -145,7 +164,7 @@ class KokiController extends Controller
             "feed_disukai" => $feed_disukai,
             "feed_favorite" => $feed_favorite
         ];
-        return view('koki.feed', compact('data'));
+        return view('koki.feed', compact('data','userLogin','notification','favorite','unreadNotificationCount','messageCount'));
     }
 
     public function beranda(Request $request)
@@ -206,6 +225,25 @@ class KokiController extends Controller
 
     public function incomeKoki(Request $request)
     {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
         $koki = User::find(Auth::user()->id);
         $income_koki = income_chefs::where('chef_id', Auth::user()->id)->get();
         $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
@@ -214,11 +252,30 @@ class KokiController extends Controller
         $saldo_sudahDiambil = $saldo2->sum('pemasukan');
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
-        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total"));
+        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
     }
 
     public function viewsRecipe(Request $request)
     {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
         $koki = User::find(Auth::user()->id);
         $resep_dibuat = reseps::where("user_id", Auth::user()->id)->get();
         $id_user = Auth::user()->id;
@@ -230,21 +287,58 @@ class KokiController extends Controller
             $query->where("user_id_from", $id_user);
         });
         $resep_favorite = $resep_favorite->get();
-        return view('koki.views-recipe', compact("koki", "resep_dibuat", "resep_disukai", "resep_favorite"));
+        return view('koki.views-recipe', compact("koki", "resep_dibuat", "resep_disukai", "resep_favorite","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
     }
 
     public function jawaban_diskusi(Request $request)
     {
+        $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
         $koki = User::find(Auth::user()->id);
         $complaints = complaint::where('user_id', Auth::user()->id)->get();
-        return view('koki.diskusi', compact("koki", "complaints"));
+        return view('koki.diskusi', compact("koki", "complaints","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
     }
 
     public function kursus(Request $request)
-    {
+    {   $userLogin = Auth::user();
+        $notification = [];
+        $favorite = [];
+        $unreadNotificationCount = [];
+        $messageCount = [];
+        if ($userLogin) {
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        }
+        if ($userLogin) {
+            $notification = notifications::where('user_id', auth()->user()->id)
+                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
+                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        }
+        if ($userLogin) {
+            $favorite = favorite::where('user_id_from', auth()->user()->id)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
         $koki = User::find(Auth::user()->id);
         $kursus_sendiri = kursus::where('users_id', Auth::user()->id)->get();
-        return view('koki.kursus', compact("koki", "kursus_sendiri"));
+        return view('koki.kursus', compact("koki", "kursus_sendiri","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
     }
 
     public function kursusContent(string $id)
