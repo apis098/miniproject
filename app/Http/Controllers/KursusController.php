@@ -22,7 +22,7 @@ use App\Models\District;
 use App\Models\sessionCourses;
 use App\Models\TopUpCategories;
 use App\Models\Village;
-
+use App\Models\detailSessionCourses;
 class KursusController extends Controller
 {
     /**
@@ -392,20 +392,108 @@ class KursusController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Sukses mengupdate sesi kursus!"
+            "message" => "Sukses mengupdate sesi kursus!",
+            "judul_sesi_baru" => $sesi_kursus->judul_sesi,
+            "lama_sesi_baru" => $sesi_kursus->lama_sesi,
+            "informasi_lama_sesi_baru" => $sesi_kursus->informasi_lama_sesi,
+            "harga_sesi_baru" => $sesi_kursus->harga_sesi,
+            "harga_sesi_baru_format" => number_format($sesi_kursus->harga_sesi, 2, ',', '.'),
         ]);
     }
-    public function hapusSesi()
+    public function hapusSesi(string $id)
     {
+        $sesi_kursus = sessionCourses::findOrFail($id);
+        $sesi_kursus->delete();
+        return response()->json([
+            "success" => true, 
+            "message" => "Sukses menghapus sesi kursus!"
+        ]);
     }
-    public function tambahDetailSesi()
+    public function tambahDetailSesi(Request $request, string $id)
     {
+        $rules = [
+            "detail_sesi" => "required",
+            "lama_sesi" => "required|min:0",
+            "informasi_lama_sesi" => "required",
+        ];
+        $messages = [
+            "detail_sesi.required" => "Detail sesi kursus wajib diisi!",
+            "lama_sesi.required" => "Lama sesi kursus wajib diisi!",
+            "lama_sesi.min" => "Lama sesi tidak boleh minus!",
+            "informasi_lama_sesi.required" => "Informasi lama sesi wajib diisi!",
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->first(), 422);
+        }
+        detailSessionCourses::create([
+            "session_course_id" => $id, 
+            "detail_sesi" => $request->detail_sesi,
+            "lama_sesi" => $request->lama_sesi,
+            "informasi_lama_sesi" => $request->informasi_lama_sesi,
+        ]);
+        $nomer = detailSessionCourses::where("session_course_id", $id)->count();
+        if ($request->lama_sesi >= 60) {
+            $lama_sesi = $request->lama_sesi / 60;
+        } else {
+            $lama_sesi = $request->lama_sesi;
+        }
+        
+        return response()->json([
+            "success" => true,
+            "message" => "Sukses menambahkan detail kursus anda!",
+            "nomer" => $nomer,
+            "id" => $id,
+            "detail_sesi" => $request->detail_sesi,
+            "lama_sesi" => $lama_sesi,
+            "informasi_lama_sesi" => $request->informasi_lama_sesi,
+        ]);
     }
-    public function updateDetailSesi()
+    public function updateDetailSesi(Request $request, string $id)
     {
+        $rules = [
+            "detail_sesi" => "required",
+            "lama_sesi" => "required|min:0",
+            "informasi_lama_sesi" => "required",
+        ];
+        $messages = [
+            "detail_sesi.required" => "Detail sesi kursus wajib diisi!",
+            "lama_sesi.required" => "Lama sesi kursus wajib diisi!",
+            "lama_sesi.min" => "Lama sesi tidak boleh minus!",
+            "informasi_lama_sesi.required" => "Informasi lama sesi wajib diisi!",
+        ];
+        $validator = Validator::make(request()->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json($validator->errors()->first(), 422);
+        }
+        $detail_sesi = detailSessionCourses::findOrFail($id);
+        $detail_sesi->detail_sesi = $request->detail_sesi;
+        $detail_sesi->lama_sesi = $request->lama_sesi;
+        $detail_sesi->informasi_lama_sesi = $request->informasi_lama_sesi;
+        $detail_sesi->save();
+        $count = detailSessionCourses::where("session_course_id", $detail_sesi->id)->count();
+        if($request->lama_sesi >= 60) {
+            $lama_sesi = $request->lama_sesi / 60;
+        } else {
+            $lama_sesi = $request->lama_sesi;
+        }
+        return response()->json([
+            "success" => true, 
+            "message"=> "Sukses mengupdate detail sesi kursus!",
+            "nomer" => $count,
+            "detail_sesi" => $request->detail_sesi,
+            "lama_sesi" => $lama_sesi,
+            "informasi_lama_sesi" => $request->informasi_lama_sesi,
+        ]);
     }
-    public function hapusDetailSesi()
+    public function hapusDetailSesi(string $id)
     {
+        $data = detailSessionCourses::find($id);
+        $data->delete();
+        return response()->json([
+            "success" => true, 
+            "message" => "Sukses menghapus data!"
+        ]);
     }
     /**
      * Remove the specified resource from storage.

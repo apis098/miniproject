@@ -16,8 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('session_course_id');
             $table->text('detail_sesi');
             $table->integer('lama_sesi');
-            $table->enum('informasi_lama_sesi', ['jam', 'menits']);
+            $table->enum('informasi_lama_sesi', ['jam', 'menit']);
             $table->timestamps();
+
+            $table->foreign('session_course_id')->references('id')->on('session_courses')->onDelete("cascade");
         });
     }
 
