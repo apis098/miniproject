@@ -169,10 +169,18 @@
                 i.uhuy {
                     margin-left: 80px;
                 }
+                h5.mas {
+                    margin-left: 35px;
+                }
             }
+            @media (min-width: 1150px) and (max-width: 4000px) {
+                                            div.meta {
+                                                margin-top: 50px;
+                                            }
+                                        }
         </style>
             <div class="col-lg-8">
-                <div class="row mt-5">
+                <div class="row meta">
                     <div class="col-lg-4">
                         <div class="card p-3"
                             style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
@@ -226,9 +234,10 @@
                     </div>
 
                     <div class=" d-flex " style="">
+                        <div class="col-12">
                         <ul class="nav mb-3" style="" id="pills-tab" role="tablist">
                             <li class="nav-item tabs" role="presentation">
-                                <a id="button-biografi" class="nav-link ml-4 active" data-bs-toggle="tab"
+                                <a id="button-biografi" class="nav-link active" data-bs-toggle="tab"
                                     data-bs-target="#resep" type="button" role="tab" aria-controls="resep"
                                     aria-selected="false">
                                     <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Biografi
@@ -243,7 +252,7 @@
                                 <a id="button-resep-dibuat" class="nav-link ml-5" data-bs-toggle="tab"
                                     data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                                     aria-selected="false">
-                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Resep
+                                    <h5 class="text-dark mas" style="font-weight: 600; word-wrap: break-word;">Resep
                                         Dibuat</h5>
                                     <div id="border2" class="ms-1"
                                         style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
@@ -289,7 +298,7 @@
                                 </li>
                             @endif
                         </ul>
-
+                    </div>
 
                     </div>
                 </div>
@@ -366,7 +375,7 @@
                                                 padding-top: -30px;
                                             }
                                         }
-                                    @media (min-width: 1000px) and (max-width: 4000px) {
+                                    @media (min-width: 1150px) and (max-width: 4000px) {
                                             div.vid {
                                                 height: 86%;
                                             }
