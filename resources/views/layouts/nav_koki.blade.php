@@ -91,7 +91,7 @@
             color: white
         }
     </style>
-<<<<<<< Updated upstream
+
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 
@@ -117,12 +117,10 @@
             });
         @endif
     </script>
-=======
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
->>>>>>> Stashed changes
         <!-- Preloader -->
         {{-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="/dist/img/AdminLTELogo.png" alt="HummacookLogo" height="60"
