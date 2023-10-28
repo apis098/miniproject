@@ -426,7 +426,7 @@ class KursusController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->first(), 422);
         }
-        detailSessionCourses::create([
+        $detail = detailSessionCourses::create([
             "session_course_id" => $id, 
             "detail_sesi" => $request->detail_sesi,
             "lama_sesi" => $request->lama_sesi,
@@ -443,7 +443,7 @@ class KursusController extends Controller
             "success" => true,
             "message" => "Sukses menambahkan detail kursus anda!",
             "nomer" => $nomer,
-            "id" => $id,
+            "id" => $detail->id,
             "detail_sesi" => $request->detail_sesi,
             "lama_sesi" => $lama_sesi,
             "informasi_lama_sesi" => $request->informasi_lama_sesi,
@@ -484,6 +484,7 @@ class KursusController extends Controller
             "detail_sesi" => $request->detail_sesi,
             "lama_sesi" => $lama_sesi,
             "informasi_lama_sesi" => $request->informasi_lama_sesi,
+            "id" => $detail_sesi->id,
         ]);
     }
     public function hapusDetailSesi(string $id)
