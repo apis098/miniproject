@@ -51,68 +51,44 @@
 
         <div class="w-75 mb-5"
             style=" color: black; font-size:15px; font-family: Poppins; font-weight: 400; letter-spacing: 0.50px; word-wrap: break-word">
-            <p> Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et facere
-                dolore.
-                Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum enim quo quidem sint!
-                Qui
-                ratione placeat ut quibusdam soluta qui dolore dignissimos non dolores quaerat quo voluptatibus itaque.
-                Sit reprehenderit quia in velit incidunt vel suscipit dignissimos a veritatis facere vel vero excepturi.
-                Aut eligendi delectus ut inventore aliquid ea provident velit et debitis voluptas. Sit recusandae
-                voluptas nam omnis velit sit
-                exercitationem molestiae cum unde quae in placeat quisquam.</p>
+            <p>{{ $course->deskripsi_kursus }}</p>
         </div>
 
         <h3 class="fw-bold mb-4">konten kursus</h3>
+        @foreach ($course->sesi as $sesi)
         <div class="card mb-4">
-            <button class="accordion" data-price="300000">
+            <button class="accordion" data-price="{{ $sesi->harga_sesi }}">
                 <i class="fa-solid fa-chevron-down"></i>
-                <b style="margin-left: -70%;">cara memanggang</b>
-                <span>2 jam 10 menit <br> Rp.300.000</span>
+                <b style="margin-left: -70%;">{{ $sesi->judul_sesi }}</b>
+                <span>@if ($sesi->lama_sesi >= 60)
+                    {{ $sesi->lama_sesi / 60 }}
+                @else
+                    {{ $sesi->lama_sesi }}
+                @endif {{ $sesi->informasi_lama_sesi }} <br> Rp. {{ number_format($sesi->harga_sesi, 2, ',', '.') }}</span>
             </button>
             <div class="panel">
                 <table class="table table-borderless">
                     <tbody>
+                        @foreach ($sesi->detail_sesi as $index => $item_sesi)
                         <tr>
-                            <th scope="row" style="width: 5%;text-align: center;">1.1</th>
-                            <td>waduh</td>
-                            <td style="width: 20%;text-align: end;">30 menit</td>
+                            <th scope="row" style="width: 5%;text-align: center;">{{ $index+=1 }}</th>
+                            <td>{{ $item_sesi->detail_sesi }}</td>
+                            <td style="width: 20%;text-align: end;">
+                                @if ($item_sesi->lama_sesi >= 60)
+                                    {{ $item_sesi->lama_sesi / 60 }}
+                                @else
+                                    {{ $item_sesi->lama_sesi }}
+                                @endif {{ $item_sesi->informasi_lama_sesi }}
+                            </td>
                         </tr>
-                        <tr>
-                            <th scope="row" style="width: 5%;text-align: center;">1.2</th>
-                            <td>ayaiya</td>
-                            <td style="width: 20%;text-align: end;">30 menit</td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
 
         </div>
         <br>
-        <div class="card mb-3" style="border-radius:10px;">
-            <button class="accordion" data-price="300000">
-                <i class="fa-solid fa-chevron-down"></i>
-                <b>cara memanggang</b>
-                <span>2 jam 10 menit <br> Rp.300.000</span>
-            </button>
-            <div class="panel">
-                <table class="table table-borderless">
-                    <tbody>
-                        <tr>
-                            <th scope="row" style="width: 5%;text-align: center;">1.1</th>
-                            <td>waduh</td>
-                            <td style="width: 20%;text-align: end;">30 menit</td>
-                        </tr>
-                        <tr>
-                            <th scope="row" style="width: 5%;text-align: center;">1.2</th>
-                            <td>ayaiya</td>
-                            <td style="width: 20%;text-align: end;">30 menit</td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        @endforeach
         <div class="d-flex justify-content-end">
             <div class="d-flex align-items-end flex-column">
                 <span class="font-size-15 fw-bold">Total harga</span>

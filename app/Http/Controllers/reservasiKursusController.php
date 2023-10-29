@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\footer;
+use App\Models\kursus;
 use App\Models\notifications;
 use App\Models\TopUpCategories;
 use App\Models\User;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 
 class reservasiKursusController extends Controller
 {
-    public function reservasiKursus(Request $request){
+    public function reservasiKursus(Request $request, int $id){
         $idAdmin =User::where('role', 'admin')->first();
         $userLogin = Auth::user();
         // untuk user belum login
@@ -47,7 +48,8 @@ class reservasiKursusController extends Controller
                 ->paginate(10);
         }
         $footer = footer::first();
-        return view('kursus.reservasi-kursus', compact('categorytopup','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $course = kursus::find($id);
+        return view('kursus.reservasi-kursus', compact('course','categorytopup','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function invoiceKursus(Request $request){

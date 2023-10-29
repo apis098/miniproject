@@ -32,4 +32,15 @@ class kursus extends Model
     {
         return $this->hasMany(sessionCourses::class, "course_id");
     }
+    public function transaksi() {
+        return $this->hasMany(TransaksiKursus::class, "course_id");
+    }
+    public function IsBuy(int $id) {
+        return TransaksiKursus::where('user_id', $id)->where('course_id', $this->id)->where('status_transaksi', 'diterima')->exists();
+    }
+
+    public function ulasan() {
+        return $this->hasMany(UlasanKursus::class, "course_id");
+    }
+
 }

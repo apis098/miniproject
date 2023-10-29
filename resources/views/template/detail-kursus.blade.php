@@ -144,18 +144,11 @@
                             <div>
                                 <ul class="list-item">
                                     <li>
-                                        <p style="color:#000;"><span class="fa fa-check-circle available mx-1"></span>lorem
-                                            ipsum von lenong</p>
-                                        <p style="color:#000;"><span class="fa fa-check-circle available mx-1"></span>lorem
-                                            ipsum von lenong</p>
-                                        <p style="color:#000;"><span class="fa fa-check-circle available mx-1"></span>lorem
-                                            ipsum von lenong</p>
-                                        <p style="color:#000;"><span class="fa fa-check-circle available mx-1"></span>lorem
-                                            ipsum von lenong</p>
-                                        <p style="color:#000;"><span class="fa fa-check-circle available mx-1"></span>lorem
-                                            ipsum von lenong</p>
-                                        <p style="color:#000;"><span class="fa fa-check-circle available mx-1"></span>lorem
-                                            ipsum von lenong</p>
+                                        @foreach ($detail_session_course as $belajar)
+                                            <p style="color:#000;"><span
+                                                    class="fa fa-check-circle available mx-1"></span>{{ $belajar->judul_sesi }}
+                                            </p>
+                                        @endforeach
                                     </li>
                                 </ul>
                             </div>
@@ -210,7 +203,7 @@
                             .card {
                                 border: 1px solid #777;
                                 overflow: hidden;
-                                border-radius:10px;
+                                border-radius: 10px;
                             }
 
                             .accordion-collapse {
@@ -221,52 +214,42 @@
                             }
                         </style>
                         <h3 class="fw-bold mb-3">konten kursus</h3>
-                        <div class="card">
-                            <button class="accordion active"> <b>cara memanggang</b> <span>2 jam 10 menit</span>
-                            </button>
-                            <div class="panel">
-                                <table class="table table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" style="width: 5%;text-align: center;">1.1</th>
-                                            <td>waduh</td>
-                                            <td style="width: 20%;text-align: end;">30 menit</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 5%;text-align: center;">1.2</th>
-                                            <td>ayaiya</td>
-                                            <td style="width: 20%;text-align: end;">30 menit</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
+                        @foreach ($detail_session_course as $content_course)
+                            <div class="card">
+                                <button class="accordion active"> <b>{{ $content_course->judul_sesi }}</b>
+                                    @if ($content_course->lama_sesi >= 60)
+                                        <span>{{ $content_course->lama_sesi / 60 }}
+                                            {{ $content_course->informasi_lama_sesi }}</span>
+                                    @else
+                                        <span>{{ $content_course->lama_sesi }}
+                                            {{ $content_course->informasi_lama_sesi }}</span>
+                                    @endif
+                                </button>
+                                <div class="panel">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            @foreach ($content_course->detail_sesi as $nomer => $detail_session)
+                                                <tr>
+                                                    <th scope="row" style="width: 5%;text-align: center;">
+                                                        {{ $nomer += 1 }}</th>
+                                                    <td>{{ $detail_session->detail_sesi }}</td>
+                                                    <td style="width: 20%;text-align: end;">
+                                                        @if ($detail_session->lama_sesi >= 60)
+                                                            <span>{{ $detail_session->lama_sesi / 60 }}
+                                                                {{ $detail_session->informasi_lama_sesi }}</span>
+                                                        @else
+                                                            <span>{{ $detail_session->lama_sesi }}
+                                                                {{ $detail_session->informasi_lama_sesi }}</span>
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-
-                        </div>
-                        <br>
-
-                        <div class="card" style="border-radius:10px;">
-                            <button class="accordion active"> <b>memanggang bebek</b> <span>2 jam 10 menit</span>
-                            </button>
-                            <div class="panel">
-                                <table class="table table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" style="width: 5%;text-align: center;">1.1</th>
-                                            <td>waduh</td>
-                                            <td style="width: 20%;text-align: end;">30 menit</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row" style="width: 5%;text-align: center;">1.2</th>
-                                            <td>ayaiya</td>
-                                            <td style="width: 20%;text-align: end;">30 menit</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
+                            <br>
+                        @endforeach
                     </div>
                     <div class="col-xl-3 col-sm-4 mb-4 my-4">
                         <div class="bg-white shadow-sm py-5 border border-secondary"
@@ -311,20 +294,21 @@
 
                             <div class="">
                                 <div class="col">
-                                    <span class="fw-bold ">Di kursus ini:</span>
+                                    <span class="fw-bold ">Di kursus ini diajari:</span>
                                     <ul class="list-item"
                                         style="display: flex; flex-direction: column;margin-bottom:5px;margin-top:15px">
                                         <li>
-                                            <p style="color:#000;margin-bottom:10px;margin-left:-30px"><span
-                                                    class="fa fa-check-circle available"></span>lorem
-                                                ipsum von lenong</p>
-                                            <p style="color:#000;margin-bottom:10px;margin-left:-30px"><span
-                                                    class="fa fa-check-circle available"></span>lorem
-                                                ipsum von lenong</p>
+                                            @foreach ($content_course->detail_sesi as $index => $detail)
+                                                @if ($index < 3)
+                                                    <p style="color:#000;margin-bottom:10px;margin-left:-30px"><span
+                                                            class="fa fa-check-circle available"></span>{{ $detail->detail_sesi }}
+                                                    </p>
+                                                @endif
+                                            @endforeach
                                         </li>
                                     </ul>
-                                    <span class="fw-bold">Harga per sesi:</span>
-                                    <p>Rp. {{ number_format($detail_course->tarif_per_jam, 2, ',', '.') }}</p>
+                                    <span class="fw-bold">Harga rata-rata per sesi:</span>
+                                    <p>Rp. {{ number_format($rata2_harga, 2, '.', ',') }}</p>
                                 </div>
                             </div>
                             <div class="text-center">
@@ -339,7 +323,7 @@
                                         </form>
                                     @else
                                         {{-- untuk koki lain atau user lain --}}
-                                        <a href="{{ route('reservasi.kursus') }}" type="button"
+                                        <a href="{{ route('reservasi.kursus', $detail_course->id) }}" type="button"
                                             class="btn text-light float-center mt-1 mb-3 zoom-effects"
                                             style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                 class="ms-3 me-3">Reservasi kursus</b></a>
@@ -397,17 +381,10 @@
                     <h3><b>Deskripsi</b></h3>
                 </div>
 
-                <div class="w-75" style=" color: black; font-size:17px; font-family: Poppins; font-weight: 400; letter-spacing: 0.50px; word-wrap: break-word">
-                   <p> Lorem ipsum dolor sit amet. Qui ipsum laborum ut veritatis officiis ex excepturi laborum et facere
-                    dolore.
-                    Id unde fugit aut beataenumquam et reprehenderit nobis aut eius dolores ea rerum enim quo quidem sint!
-                    Qui
-                    ratione placeat ut quibusdam soluta qui dolore dignissimos non dolores quaerat quo voluptatibus itaque.
-                    Sit reprehenderit quia in velit incidunt vel suscipit dignissimos a veritatis facere vel vero excepturi.
-                    Aut eligendi delectus ut inventore aliquid ea provident velit et debitis voluptas. Sit recusandae
-                    voluptas nam omnis velit sit
-                    exercitationem molestiae cum unde quae in placeat quisquam.</p>
-            </div>
+                <div class="w-75"
+                    style=" color: black; font-size:17px; font-family: Poppins; font-weight: 400; letter-spacing: 0.50px; word-wrap: break-word">
+                    <p>{{ $detail_course->deskripsi_kursus }}</p>
+                </div>
 
                 {{-- <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
                     <div class="card-body mx-5">
@@ -436,24 +413,28 @@
                         </div>
                     </div>
                 </div> --}}
-
-                <div class="my-4 mt-4">
-                    <h3><b>Ulasan</b></h3>
-                </div>
-                <div class="col-10 mb-5">
-                    {{-- @if (Auth::check()) --}}
-                        <form method="POST" action="#">
-                            {{-- @csrf --}}
-                            <div class="input-group" style="margin-left: -15px;">
-                                <input type="text" id="reply" name="komentar" maxlength="255" style="border-radius: 10px;width: 150px;"
-                                    {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control"
-                                    placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
-                                <button type="submit"
-                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
-                                    class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
-                            </div>
-                        </form>
-                </div>
+                <br> <br>
+                @if (Auth::check())
+                    @if ($detail_course->isBuy(Auth::user()->id))
+                        <div class="my-4 mt-4">
+                            <h3><b>Ulasan</b></h3>
+                        </div>
+                        <div class="col-10 mb-5">
+                            {{-- @if (Auth::check()) --}}
+                            <form method="POST" action="#">
+                                {{-- @csrf --}}
+                                <div class="input-group" style="margin-left: -15px;">
+                                    <input type="text" id="reply" name="komentar" maxlength="255"
+                                        style="border-radius: 10px;width: 150px;" {{-- $userLog === 1 ? 'disabled' : '' --}}
+                                        class="form-control" placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
+                                    <button type="submit"
+                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
+                                        class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
+                                </div>
+                            </form>
+                        </div>
+                    @endif
+                @endif
 
                 <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
                     <div class="card-body">

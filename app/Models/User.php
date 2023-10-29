@@ -117,4 +117,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(balasRepliesCommentsFeeds::class, "parent_id");
     }
+    public function chef_transaksi_kursus() {
+        return $this->hasMany(TransaksiKursus::class, "chef_id");
+    }
+    public function user_transaksi_kursus() {
+        return $this->hasMany(TransaksiKursus::class, "user_id");
+    }
+    public function chef_ulasan_kursus() {
+        return $this->hasMany(UlasanKursus::class, "chef_id");
+    }
+    public function user_ulasan_kursus() {
+        return $this->hasMany(User::class, "user_id");
+    }
 }
