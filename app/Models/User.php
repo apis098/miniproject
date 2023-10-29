@@ -129,4 +129,7 @@ class User extends Authenticatable
     public function user_ulasan_kursus() {
         return $this->hasMany(User::class, "user_id");
     }
+    public function rating_kursus() {
+        return $this->hasMany(RatingKursus::class, "user_id");
+    }
 }

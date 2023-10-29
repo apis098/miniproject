@@ -42,5 +42,7 @@ class kursus extends Model
     public function ulasan() {
         return $this->hasMany(UlasanKursus::class, "course_id");
     }
-
+    public function rating() {
+        return $this->hasMany(RatingKursus::class, "course_id");
+    } 
 }
