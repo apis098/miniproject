@@ -91,6 +91,15 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+
+    public function userContent()
+    {
+        $koki = User::find(Auth::user()->id);
+        $userLogin = Auth::user();
+        return view('koki.user', compact("koki","userLogin"));
+    }
+
+
     public function tawaran()
     {
         $userLogin = Auth::user();

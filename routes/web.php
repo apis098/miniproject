@@ -183,6 +183,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
         Route::get('feed', [KokiController::class, 'feed'])->name('koki.feed');
         Route::get('kursus', [KokiController::class, 'kursus'])->name('koki.kursus');
+        Route::get('user', [AdminController::class, 'userContent'])->name('koki.user');
         Route::get('kursus-content/{id}', [KokiController::class, 'kursusContent'])->name('koki.content');
         // route sesi kursus
         Route::post('tambah-sesi-kursus', [KursusController::class, "tambahSesi"])->name('tambah.sesi.kursus');
