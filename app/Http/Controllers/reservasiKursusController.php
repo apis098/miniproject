@@ -11,11 +11,13 @@ use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\TransaksiKursus;
 
 class reservasiKursusController extends Controller
 {
-    public function reservasiKursus(Request $request, int $id){
-        $idAdmin =User::where('role', 'admin')->first();
+    public function reservasiKursus(Request $request, int $id)
+    {
+        $idAdmin = User::where('role', 'admin')->first();
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -35,9 +37,9 @@ class reservasiKursusController extends Controller
                 $admin = true;
             }
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
@@ -49,14 +51,35 @@ class reservasiKursusController extends Controller
         }
         $footer = footer::first();
         $course = kursus::find($id);
-        return view('kursus.reservasi-kursus', compact('course','categorytopup','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        return view('kursus.reservasi-kursus', compact('course', 'categorytopup', 'idAdmin', 'messageCount', 'admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
-    public function invoiceKursus(Request $request){
+    public function invoiceKursus(Request $request)
+    {
 
-        
+
         return view('kursus.invoice-kursus');
-
     }
-
+    public function transaksiKursus(int $id, int $user, int $amount)
+    {
+        $chef_id = kursus::find($id)->user->id;
+        $pembeli = User::find($user);
+        $saldo_pembeli = $pembeli->saldo;
+        if ($saldo_pembeli < $amount) {
+            
+            return redirect()->back()->with('error', 'Total saldo anda tidak mencukupi untuk membeli kursus!');
+        } else {
+            TransaksiKursus::create([
+                "course_id" => $id,
+                "chef_id" => $chef_id,
+                "user_id" => $user,
+                "harga" => $amount,
+                "status_transaksi" => "diterima",
+                "tanggal_status_transaksi" => now(),
+            ]);
+            $pembeli->saldo = $saldo_pembeli - $amount;
+            $pembeli->save();
+            return redirect('/')->with('success', 'Sukses membeli kursus ini!');
+        }
+    }
 }

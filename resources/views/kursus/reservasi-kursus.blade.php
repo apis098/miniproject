@@ -92,15 +92,32 @@
         <div class="d-flex justify-content-end">
             <div class="d-flex align-items-end flex-column">
                 <span class="font-size-15 fw-bold">Total harga</span>
-                <p id="totalHarga">Rp.0</p>
+                Rp.<span id="totalHarga">0</span>
             </div>
-            <button type="submit"
+        <form action="/transaksi-kursus/{{ $sesi->id }}/{{ Auth::user()->id }}/200000" method="post"></form>
+            <button type="submit" onclick="bayarKursus()"
                 style="height: 40px; background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-left: 30px;"
                 class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
         </div>
 
     </div>
     <script>
+        function bayarKursus() {
+            let totalHarga = document.getElementById("totalHarga").textContent.replace("Rp.", "");
+            $.ajax({
+                url: "/transaksi-kursus/{{ $sesi->id }}/{{ Auth::user()->id }}/"+totalHarga,
+                method: "POST",
+                headers: {
+                    "X-CSRF-Token": "{{ csrf_token() }}",
+                },
+                error: function error(xhr, error, status) {
+                    console.log(xhr.responseText);
+                }
+
+            })
+
+            console.log(totalHarga);
+        }
         window.onload = function() {
             var acc = document.getElementsByClassName("accordion");
             var totalHargaElement = document.getElementById("totalHarga");
