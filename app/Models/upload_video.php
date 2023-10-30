@@ -39,6 +39,10 @@ class upload_video extends Model
     {
         return $this->hasMany(like_veed::class, "veed_id");
     }
+    public function share_veed()
+    {
+        return $this->hasMany(Share::class,'feed_id');
+    }
     public function like_comment_veed()
     {
         return $this->hasMany(like_comment_veed::class);
