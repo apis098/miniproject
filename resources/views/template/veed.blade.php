@@ -810,14 +810,11 @@
                                                                         <div class="container row">
                                                                             <h4 class="ms-2">Pendapatan Postingan</h4>
                                                                             @php
-                                                                            $income = App\Models\income_chefs::where('status', 'sawer')
-                                                                            ->where('chef_id', auth()->user()->id)
-                                                                            ->where('feed_id',$item_video->id)
-                                                                            ->get();
+                                                                                $incomeForVideo = $income->where('feed_id', $item_video->id)->sum('total_income');
                                                                             @endphp
-                                                                            @foreach($income as $total)
-                                                                                    <small class="font-italic ms-2">Rp. {{number_format($total->pemasukan,2,',','.')}}</small>
-                                                                            @endforeach
+                                                          
+                                                                                    <small class="font-italic ms-2">Rp. {{number_format($incomeForVideo,2,',','.')}}</small>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>

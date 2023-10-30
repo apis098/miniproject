@@ -43,19 +43,16 @@ class VeedController extends Controller
         $messageCount = [];
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(5)->get();
-        // $resep = reseps::where('user_id',$top_users->id)->count();
-        // dd($resep);
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-            // $user_following = followers::where('follower_id', auth()->user()->id)->get();
         }
         if ($userLogin) {
             $video_pembelajaran = upload_video::inRandomOrder()->get();
-            // $income = income_chefs::select('feed_id', DB::raw('SUM(pemasukan) as total_income'))
-            // ->where('status', 'sawer')
-            // ->where('user_id', auth()->user()->id)
-            // ->groupBy('feed_id')
-            // ->get();
+            $income = income_chefs::select('feed_id', DB::raw('SUM(pemasukan) as total_income'))
+            ->where('status', 'sawer')
+            ->where('chef_id', auth()->user()->id)
+            ->groupBy('feed_id')
+            ->get();
            
             $id_user = Auth::user()->id;
             $id_admin = User::where("role", "admin")->first();
@@ -81,7 +78,7 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
         $count_comment = comment_veed::count();
-        return view("template.veed", compact('categorytopup',"count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact('income','categorytopup',"count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)
     {
