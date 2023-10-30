@@ -253,7 +253,7 @@
                     @endif
                     @foreach ($video_pembelajaran as $urut => $item_video)
                         <div class="card mt-4 mb-5 item-video" style="max-width: 42rem;">
-                            <!-- Data -->   
+                            <!-- Data -->
                             <div class="card-header" style="background-color: white">
                                 <p id="uuid" hidden>{{ $item_video->uuid }}</p>
                                 <div class="d-flex mb-1">
@@ -324,28 +324,29 @@
                                             </video>
                                         @endif
                                     @else
-                                    <video
-                                    @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                        <video
+                                            @if ($item_video->isPremium === 'yes') class="video-js vjs-theme-city feed"
                                     @else
                                     class="video-js vjs-theme-city" @endif
-                                    id="my-video" controls preload="auto" width="615" height="315"
-                                    data-setup="{}">
-                                    @if ($item_video->isPremium === 'yes')
-                                        <source
-                                            src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
-                                            type="video/mp4" />
-                                    @else
-                                        <source src="{{ asset('storage/' . $item_video->upload_video) }}"
-                                            type="video/mp4" />
-                                    @endif
-                                    <p class="vjs-no-js">
-                                        To view this video please enable JavaScript, and consider upgrading to a
-                                        web browser that
-                                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports
-                                            HTML5
-                                            video</a>
-                                    </p>
-                                </video>
+                                            id="my-video" controls preload="auto" width="615" height="315"
+                                            data-setup="{}">
+                                            @if ($item_video->isPremium === 'yes')
+                                                <source
+                                                    src="{{ asset('storage/video-user-prem/' . $item_video->upload_video) }}"
+                                                    type="video/mp4" />
+                                            @else
+                                                <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                                    type="video/mp4" />
+                                            @endif
+                                            <p class="vjs-no-js">
+                                                To view this video please enable JavaScript, and consider upgrading to a
+                                                web browser that
+                                                <a href="https://videojs.com/html5-video-support/"
+                                                    target="_blank">supports
+                                                    HTML5
+                                                    video</a>
+                                            </p>
+                                        </video>
                                     @endif
                                 @else
                                     <video
@@ -775,17 +776,69 @@
                                         <!-- modal Bagikan end -->
                                         <div class="d-flex" style="margin-left: 280px;">
                                             <!-- gift start -->
-                                            <a type="button" class="text-dark me-2"><i
-                                                    class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                                                    data-bs-toggle="modal" data-bs-target="#gift"></i></a>
-
+                                            @if (Auth::check() && auth()->user()->id != $item_video->users_id)
+                                                <a type="button" class="text-dark me-2"><i
+                                                        class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
+                                                        data-bs-toggle="modal" data-bs-target="#gift"></i>
+                                                </a>
+                                            @else
+                                                <a type="button" data-bs-toggle="modal" data-bs-target="#income{{$item_video->id}}"
+                                                    class="text-dark me-2">
+                                                    <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3"></i>
+                                                </a>
+                                                <div class="modal fade" id="income{{$item_video->id}}" tabindex="-1"
+                                                    role="dialog" 
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content" style="border-radius: 15px;">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                                                    style=" font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                    Pendapatan</h5>
+                                                                <button type="button" class="close"
+                                                                    data-bs-dismiss="" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="{{ route('Report.store') }}" method="POST">
+                                                                @csrf
+                                                                <div class="modal-body">
+                                                                    <div class="d-flex align-items-center ms-3">
+                                                                            <img src="{{ asset('images/income.png') }}"
+                                                                            width="150px" height="150px"
+                                                                            style="border-radius: 50%" alt="">
+                                                                        <div class="container row">
+                                                                            <h4 class="ms-2">Pendapatan Postingan</h4>
+                                                                            @php
+                                                                            $income = App\Models\income_chefs::where('status', 'sawer')
+                                                                            ->where('chef_id', auth()->user()->id)
+                                                                            ->where('feed_id',$item_video->id)
+                                                                            ->get();
+                                                                            @endphp
+                                                                            @foreach($income as $total)
+                                                                                    <small class="font-italic ms-2">Rp. {{number_format($total->pemasukan,2,',','.')}}</small>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit"
+                                                                        class="btn btn-light text-light"
+                                                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                            class="ms-2 me-2">Detail</b></button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                             <!-- modal Gift start -->
                                             <div class="modal" id="gift">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <form
                                                             action="{{ route('donation.store', ['user_recipient' => $item_video->users_id, 'feed_id' => $item_video->id]) }}"
-                                                            id="gift-form{{$item_video->id}}" method="POST">
+                                                            id="gift-form{{ $item_video->id }}" method="POST">
                                                             @csrf
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title ml-3"
@@ -891,16 +944,17 @@
                                                                 <div class="d-flex mt-4 ml-3">
                                                                     <input type="number" id="moreInput" name="moreInput"
                                                                         width="500px"
-                                                                        class="form-control border-2 rounded-3 me-3 moreInput{{$item_video->id}}"
+                                                                        class="form-control border-2 rounded-3 me-3 moreInput{{ $item_video->id }}"
                                                                         style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
                                                                         placeholder="Masukkan jumlah donasi lainya...">
                                                                     <input type="text" id="message" name="message"
                                                                         width="500px"
-                                                                        class="form-control border-2 rounded-3 me-3 message{{$item_video->id}}"
+                                                                        class="form-control border-2 rounded-3 me-3 message{{ $item_video->id }}"
                                                                         style="margin-top: 12px; border:solid black; border-radius:100px;"
                                                                         placeholder="Tambahkan pesan untuk pembuat...">
 
-                                                                    <button type="submit" onclick="giftButton({{$item_video->id}})"
+                                                                    <button type="submit"
+                                                                        onclick="giftButton({{ $item_video->id }})"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light">
                                                                         <b class="me-3 ms-3">Kirim</b></button>
@@ -2498,8 +2552,8 @@
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
     <script>
         function giftButton(num) {
-            $("#gift-form"+num).off("submit");
-            $("#gift-form"+num).submit(function(event) {
+            $("#gift-form" + num).off("submit");
+            $("#gift-form" + num).submit(function(event) {
                 event.preventDefault();
                 var message = document.getElementById("message");
                 var moreInput = document.getElementById("moreInput");
@@ -2515,8 +2569,8 @@
                         "X-CSRF-Token": "{{ csrf_token() }}",
                     },
                     success: function(response) {
-                        if (response.success) {   
-                            message.value = "" ;
+                        if (response.success) {
+                            message.value = "";
                             moreInput.value = "";
                             iziToast.show({
                                 backgroundColor: '#a1dfb0',
@@ -2528,7 +2582,7 @@
                                 progressBarColor: 'dark',
                             });
                         } else {
-                            message.value = "" ;
+                            message.value = "";
                             moreInput.value = "";
                             iziToast.show({
                                 backgroundColor: '#f2a5a8',

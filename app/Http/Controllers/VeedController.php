@@ -15,6 +15,7 @@ use App\Models\notifications;
 use App\Models\favorite;
 use App\Models\followers;
 use App\Models\footer;
+use App\Models\income_chefs;
 use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
 use App\Models\Reply;
@@ -23,6 +24,7 @@ use App\Models\reseps;
 use App\Models\TopUpCategories;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 use function Laravel\Prompts\alert;
 
@@ -48,6 +50,13 @@ class VeedController extends Controller
             // $user_following = followers::where('follower_id', auth()->user()->id)->get();
         }
         if ($userLogin) {
+            $video_pembelajaran = upload_video::inRandomOrder()->get();
+            // $income = income_chefs::select('feed_id', DB::raw('SUM(pemasukan) as total_income'))
+            // ->where('status', 'sawer')
+            // ->where('user_id', auth()->user()->id)
+            // ->groupBy('feed_id')
+            // ->get();
+           
             $id_user = Auth::user()->id;
             $id_admin = User::where("role", "admin")->first();
             if ($id_user == $id_admin->id) {
@@ -68,7 +77,6 @@ class VeedController extends Controller
         $footer = footer::first();
 
         $video_pembelajaran = upload_video::inRandomOrder()->get();
-        
         $reply_comment_veed = reply_comment_veed::latest()->get();
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
