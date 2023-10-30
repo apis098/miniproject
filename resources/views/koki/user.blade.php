@@ -158,7 +158,7 @@ tr {
     background-color: #fff;
     padding: 0px 15px;
     border-radius: 5px;
-    width: 1000px;
+    max-width: 970px;
     border-radius: 15px;
     border: 0.50px black solid;
 }
@@ -259,7 +259,9 @@ tr {
     width: 90px;
     box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
     border-radius: 15px;
+    margin-left: -66px;
 }
+
 
 @media (max-width:800px) {
     .search-1 input {
@@ -282,24 +284,24 @@ tr {
 }
 </style>
 
-    <div class="my-4">
+    <div class="my-4 mx-5">
    <p class="text-center" style="color: black; font-size: 34px; font-family: Poppins;">User Terdaftar</p>
 
    <div class="d-flex justify-content-center">
-    <div class="">
+       <div class="col-12" style="overflow-x: hidden">
 
    <form action="">
     <div class="container mt-1" style="margin-top: -35px;">
         <div class="search">
             <div class="row">
-                <div class="col-11">
+                <div class="col-12">
                     <div>
                         <div class="search-2"> <i class='bx bxs-map'></i>
                             <form action="/admin/laporan-pengguna" method="GET">
                                 <input type="text" id="search-resep" name="resep" autofocus
                                     placeholder="Cari Laporan Resep">
                                 <button type="submit"
-                                    class="zoom-effects cari2 ms-4">Cari</button>
+                                    class="zoom-effects cari2">Cari</button>
                             </form>
                         </div>
                     </div>
@@ -309,7 +311,7 @@ tr {
     </div>
 </form>
 
-<table id="table-resep" class="table-custom">
+<table id="table-resep" class="table-custom besar">
     <thead>
         <tr>
             <th scope="col">Gambar</th>
