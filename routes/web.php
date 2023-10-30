@@ -57,12 +57,14 @@ Route::get('riwayat', [LoginController::class, 'riwayat'])->name('riwayat');
 Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_template'])->name('kursus');
 Route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
 Route::get('/reservasi-kursus/{id}',[reservasiKursusController::class,'reservasiKursus'])->name('reservasi.kursus');
-Route::post('/transaksi-kursus/{id}/{user}/{amount}', [reservasiKursusController::class, 'transaksiKursus'])->name('transaksi.kursus');
+Route::post('/transaksi-kursus/{id}/{user}/{chef}', [reservasiKursusController::class, 'transaksiKursus'])->name('transaksi.kursus');
 Route::get('/invoice-kursus',[reservasiKursusController::class,'invoiceKursus'])->name('invoice.kursus');
+// ulasan dan rating kursus
+Route::post('/beri-ulasan/{id}', []);
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 
-
+ 
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
 Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');

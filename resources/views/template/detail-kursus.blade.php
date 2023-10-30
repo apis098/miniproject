@@ -291,11 +291,11 @@
 
                                 <div class="mt-3">
                                     <span class="fw-bold">Di kursus ini diajari:</span>
-                                    <ul class="list-item">
+                                    <ul class="list-item"> 
                                         @foreach ($detail_course->sesi as $index => $detail)
                                             @if ($index < 3)
                                                 <li style="color: #000; margin-bottom: 10px;"><span
-                                                        class="fa fa-check-circle available"></span>{{ $detail->detail_sesi }}</li>
+                                                        class="fa fa-check-circle available"></span>{{ $detail->judul_sesi }}</li>
                                             @endif
                                         @endforeach
                                     </ul>
@@ -461,7 +461,7 @@
                             </p>
                         </div>
                     </div>
-                </div>
+                </div> 
 
                 <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
                     <div class="card-body">
