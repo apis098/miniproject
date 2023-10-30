@@ -16,11 +16,12 @@
             word-wrap: break-word;
             padding-top: 5px
         }
+
     </style>
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card my-5 border border-dark" style="border-radius:25px;">
+                <div class="card my-5 border border-dark sus susi" style="border-radius:25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             @if ($userLogin->foto)
@@ -165,18 +166,66 @@
             </div>
             {{-- akhir modal --}}
             <style>
+                 /* untuk tampilan mobile */
             @media (min-width: 300px) and (max-width: 860px) {
                 i.uhuy {
-                    margin-left: 80px;
+                    margin-left: 75px;
                 }
                 h5.mas {
                     margin-left: 35px;
                 }
+                div.besar {
+                width: 100%;
             }
-            @media (min-width: 1150px) and (max-width: 4000px) {
+
+
+            }
+            /* untuk tampilan ipad */
+        @media (min-width: 760px) and (max-width: 1000px) {
+            div.sus {
+                width: 330%;
+            }
+            div.besar {
+                width: 50%;
+            }
+            div.high {
+                height: 82%;
+            }
+            i.uuy {
+                    margin-left: 200px;
+                }
+
+                button.rigt {
+                margin-left: 45px;
+            }
+
+
+                /* a.icons {
+                    padding-left: 50px;
+                } */
+                /*
+
+                svg.rigt {
+                    margin-right: 50px;
+                } */
+        }
+            /* untuk tampilan laptop */
+            @media (min-width: 1210px) and (max-width: 4000px) {
                                             div.meta {
                                                 margin-top: 50px;
                                             }
+                                            a.knan {
+                                                margin-right: 5px;
+                                            }
+                                            div.besar {
+                width: 100%;
+            }
+            button.rigt {
+                margin-left: 45px;
+            }
+            a.rigt {
+                margin-left: 45px;
+            }
                                         }
         </style>
             <div class="col-lg-8">
@@ -193,7 +242,7 @@
                                     <p class="ms-3">Suka</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-thumbs-up fa-2xl uhuy"></i>
+                                    <i class="fa-solid fa-thumbs-up fa-2xl uhuy uuy"></i>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +259,7 @@
                                     <p class="ms-3">Resep</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl uhuy"></i>
+                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl uhuy uuy"></i>
                                 </div>
                             </div>
                         </div>
@@ -227,14 +276,14 @@
                                     <p class="ms-3">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-user-plus fa-2xl uhuy"></i>
+                                    <i class="fa-solid fa-user-plus fa-2xl uhuy uuy"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <div class="col-12">
                     <div class=" d-flex " style="">
-                        <div class="col-12">
                         <ul class="nav mb-3" style="" id="pills-tab" role="tablist">
                             <li class="nav-item tabs" role="presentation">
                                 <a id="button-biografi" class="nav-link active" data-bs-toggle="tab"
@@ -249,7 +298,7 @@
                             </li>
 
                             <li class="nav-item tabs" role="presentation">
-                                <a id="button-resep-dibuat" class="nav-link ml-5" data-bs-toggle="tab"
+                                <a id="button-resep-dibuat" class="nav-link rigt" data-bs-toggle="tab"
                                     data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                                     aria-selected="false">
                                     <h5 class="text-dark mas" style="font-weight: 600; word-wrap: break-word;">Resep
@@ -261,10 +310,10 @@
                             </li>
 
                             <li class="nav-item tabs" role="presentation" style="">
-                                <a id="button-video-dibuat" class="nav-link mr-5" data-bs-toggle="tab"
+                                <a id="button-video-dibuat" class="nav-link mr-2 rigt" data-bs-toggle="tab"
                                     data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
                                     aria-selected="false">
-                                    <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Video
+                                    <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Video
                                         Dibuat </h5>
                                     <div id="border3" class="ms-0"
                                         style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
@@ -274,7 +323,7 @@
 
                             @if ($userLogin->isSuperUser === 'yes')
                                 <li class="nav-item tabs" role="presentation" style="">
-                                    <button id="button-kursus-dibuat" class="nav-link yuhu mt-2"
+                                    <button id="button-kursus-dibuat" class="nav-link yuhu mt-2 rigt"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
                                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
@@ -286,7 +335,7 @@
                                 </li>
                             @else
                                 <li hidden class="nav-item tabs" role="presentation" style="">
-                                    <button id="button-kursus-dibuat" class="nav-link yuhu mt-2"
+                                    <button id="button-kursus-dibuat" class="nav-link yuhu mt-2 rigt"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
                                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
@@ -316,11 +365,11 @@
                                     <p><b>Tidak ada data</b></p>
                                 </div>
                             @endif
-                            <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
+                            <div class="row mb-5" style="margin-top: -50px;">
                                 @foreach ($recipes as $r)
                                     <div class="col-lg-4 my-1">
-                                        <div class="card p-3"
-                                            style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
+                                        <div class="card p-3 besar"
+                                            style="height: 95%; border-radius: 15px; border: 0.50px black solid">
                                             <div class="row my-1">
                                                 <div class="col-4">
                                                     <img class="rounded-circle mb-1" style="max-width:55px;"
@@ -383,7 +432,7 @@
                                 </style>
                                 @foreach ($videos as $video)
                                 <div class="col-lg-4 col-md-6 my-1">
-                                    <div class="card vid"
+                                    <div class="card vid high"
                                         style="width: 100%;  border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                         <div class="row">
                                             <div class="col-12">
@@ -394,7 +443,7 @@
                                                         alt="Hollywood Sign on The Hill" />
                                                 </a>
                                                     <div class="d-flex ash mt-1 ml-3">
-                                                        <a type="button" class="mr-1 text-dark" onclick="openModel()"
+                                                        <a type="button" class="mr-1 text-dark " onclick="openModel()"
                                                             id="button-modal-komentar-feed" href="#"
                                                             data-bs-toggle="modal"data-bs-target="#exampleModal">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -404,17 +453,17 @@
                                                             </svg>
                                                         </a>  &nbsp;
                                                         <span class="my-auto">200</span>
-                                                        <a type="button" class="ms-2 hu text-dark" onclick="openModel()"
+                                                        <a type="button" class="ms-2 hu text-dark " onclick="openModel()"
                                                             id="button-modal-komentar-feed" href="#"
                                                             data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="26"
+                                                            <svg class="rigt" xmlns="http://www.w3.org/2000/svg" width="26"
                                                                 height="26" viewBox="0 0 16 16">
                                                                 <path fill="currentColor"
                                                                     d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
                                                             </svg>
-                                                        </a>
-                                                        &nbsp;   <span class="my-auto">120</span>
-                                                        <a class="ml-2 mr-1 my-auto hu text-dark" href="#"
+                                                        </a> &nbsp;
+                                                        <span class="my-auto">120</span>
+                                                        <a class="ml-2 mr-1 my-auto hu text-dark " href="#"
                                                             data-bs-toggle="modal" data-bs-target="#bagikan">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="27"
                                                                 height="25" viewBox="0 0 512 512">
@@ -451,16 +500,16 @@
                                 <div class="col-lg-6 col-md-6 my-1">
                                     <div class="card p-2"
                                         style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
-                                        <div class="row my-1">
+                                        <div class="d-flex my-1">
                                             <div class="col-2">
                                                 <img class="rounded-circle mt-1"
-                                                    style="max-width:55px; margin-left: 10px;"
+                                                    style="max-width:55px;"
                                                     src="{{ asset('img/3.jpg') }}" width="55px" height="55px"
                                                     alt="dsdaa">
                                             </div>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <div class=" col-9">
-                                                <a type="button" class="as" href="">
+                                            <div class="col-10">
+                                                <a type="button" class="text-dark knan" href="">
                                                     <strong> cara mengocok bumbu dengan baik dan benar </strong>
                                                 </a> <br>
                                                 <!-- Modal -->
