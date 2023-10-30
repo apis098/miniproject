@@ -900,7 +900,7 @@
                                                                         style="margin-top: 12px; border:solid black; border-radius:100px;"
                                                                         placeholder="Tambahkan pesan untuk pembuat...">
 
-                                                                    <button type="button" id="giftButton" onclick="giftButton({{$item_video->id}})"
+                                                                    <button type="submit" onclick="giftButton({{$item_video->id}})"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light">
                                                                         <b class="me-3 ms-3">Kirim</b></button>
@@ -2498,21 +2498,26 @@
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
     <script>
         function giftButton(num) {
-            const giftForm = document.getElementById('gift-form'+num);
-            giftForm.submit(function(event) {
+            $("#gift-form"+num).off("submit");
+            $("#gift-form"+num).submit(function(event) {
                 event.preventDefault();
-                const input_message = document.getElementByClass('message'+num);
-                const more_input = document.getElementByClass('moreInput'+num);
-                const route = giftForm.getAttribute('action');
-                var formData = giftForm.serialize();
+                var message = document.getElementById("message");
+                var moreInput = document.getElementById("moreInput");
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
                 $.ajax({
                     type: "POST",
                     url: route,
-                    data: formData,
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
                     success: function(response) {
-                        if (response.success) {
-                            input_message.value = "";
-                            more_input.value = "";
+                        if (response.success) {   
+                            message.value = "" ;
+                            moreInput.value = "";
                             iziToast.show({
                                 backgroundColor: '#a1dfb0',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
@@ -2523,6 +2528,8 @@
                                 progressBarColor: 'dark',
                             });
                         } else {
+                            message.value = "" ;
+                            moreInput.value = "";
                             iziToast.show({
                                 backgroundColor: '#f2a5a8',
                                 title: '<i class="fa-solid fa-triangle-exclamation"></i>',
