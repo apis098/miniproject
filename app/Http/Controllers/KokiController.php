@@ -31,7 +31,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Facades\Image;
 use PhpParser\Node\Stmt\TryCatch;
-
+use App\Models\TransaksiKursus;
+use App\Models\UlasanKursus;
 class KokiController extends Controller
 {
     /**
@@ -341,7 +342,11 @@ class KokiController extends Controller
         }
         $koki = User::find(Auth::user()->id);
         $kursus_sendiri = kursus::where('users_id', Auth::user()->id)->get();
-        return view('koki.kursus', compact("koki", "kursus_sendiri","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+        $id_user = Auth::user()->id;
+        $kursus_dipesan = kursus::whereHas('transaksi',  function ($query) use ($id_user) {
+            $query->where('user_id', $id_user);
+        })->get();
+        return view('koki.kursus', compact("kursus_dipesan","koki", "kursus_sendiri","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
     }
 
     public function kursusContent(string $id)

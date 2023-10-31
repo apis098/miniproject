@@ -38,7 +38,7 @@ class kursus extends Model
     public function IsBuy(int $id) {
         return TransaksiKursus::where('user_id', $id)->where('course_id', $this->id)->where('status_transaksi', 'diterima')->exists();
     }
-
+    
     public function ulasan() {
         return $this->hasMany(UlasanKursus::class, "course_id");
     }

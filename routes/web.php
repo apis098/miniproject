@@ -30,7 +30,7 @@ use App\Http\Controllers\TripayCallbackController;
 use App\Http\Controllers\IncomeChefsController;
 use App\Http\Controllers\reservasiKursusController;
 use App\Http\Controllers\testingController;
-
+use App\Http\Controllers\UlasanRatingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,8 +59,6 @@ Route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus']
 Route::get('/reservasi-kursus/{id}',[reservasiKursusController::class,'reservasiKursus'])->name('reservasi.kursus');
 Route::post('/transaksi-kursus/{id}/{user}/{chef}', [reservasiKursusController::class, 'transaksiKursus'])->name('transaksi.kursus');
 Route::get('/invoice-kursus',[reservasiKursusController::class,'invoiceKursus'])->name('invoice.kursus');
-// ulasan dan rating kursus
-Route::post('/beri-ulasan/{id}', []);
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 
@@ -249,3 +247,6 @@ Route::post('/callback/top-up',[TripayCallbackController::class,'TopUpHandle']);
 Route::get("/leafletjs", function () {
     return view('testing.leaflet');
 });
+
+// route untuk ulasan dan rating pada kursus
+Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingController::class, 'store'])->name('ulasan-rating-kursus.store');

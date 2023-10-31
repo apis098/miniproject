@@ -9,6 +9,7 @@ use App\Models\kursus;
 use App\Models\notifications;
 use App\Models\sessionCourses;
 use App\Models\TopUpCategories;
+use App\Models\UlasanKursus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,7 +55,8 @@ class detail_kursusController extends Controller
         $detail_session_course = sessionCourses::where("course_id", $id)->get();
         $rata2_harga = $detail_session_course->avg("harga_sesi");
         $count_session = sessionCourses::where('course_id', $id)->count();
-        return view('template.detail-kursus', compact("count_session","rata2_harga",'detail_session_course','categorytopup','detail_course','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $ulasan_kursus = UlasanKursus::where('course_id', $id)->get();
+        return view('template.detail-kursus', compact("ulasan_kursus","count_session","rata2_harga",'detail_session_course','categorytopup','detail_course','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
 }
