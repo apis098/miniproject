@@ -252,15 +252,20 @@
                                                             placeholder="Masukkan Nama Yang Sesuai...">
                                                     </div>
                                                 </div>
+                                                {{-- <style>
+                                                    .kiri {
+                                                        margin-left: 55px;
+                                                    }
+                                                </style> --}}
                                                 <div class="mb-3 row ml-1 ">
                                                     <label class="col-sm-1 fw-bold">Waktu </label>
                                                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                                                    <div class="col-sm-8 d-flex">
+                                                    <div class="col-sm-10 d-flex">
                                                         <input type="integer" min="0" id="tambahLamaSesi"
                                                             name="lama_sesi" class="form-control "
                                                             style="  width: 37rem; margin-left:-15px "
                                                             placeholder="Masukkan Jumlah Waktu...">
-                                                        <select name="informasi_lama_sesi" id="">
+                                                        <select class="kiri" name="informasi_lama_sesi" id="">
                                                             <option value="menit">Menit</option>
                                                             <option value="jam">Jam</option>
                                                         </select>
@@ -762,7 +767,7 @@
                                                         fill="white" />
                                                 </svg>
                                             </a>
-                                          
+
                                             <button type="button"
                                                 onclick="konfirmasi_hapus_detail_kursus(${response.nomer}, ${response.id})"
                                                 style="border: none; margin-top: -3%"

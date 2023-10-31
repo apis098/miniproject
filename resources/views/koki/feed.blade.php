@@ -270,7 +270,75 @@
     </style>
 
     <div class="d-flex justify-content-start" style="overflow-x: hidden">
-        <div class="col-12 my-4 ml-5">
+        <div class="col-12 my-4 ml-3">
+
+            <style>
+                /* untuk tampilan mobile */
+                @media (min-width: 300px) and (max-width: 860px) {
+                    a.kiri {
+                        margin-left: 90px;
+                    }
+
+                    /* h5.mas {
+                        margin-left: 35px;
+                    }
+
+                    div.besar {
+                        width: 100%;
+                    } */
+
+
+                }
+
+                /* untuk tampilan ipad */
+                @media (min-width: 760px) and (max-width: 1000px) {
+                    div.sus {
+                        width: 330%;
+                    }
+
+                    div.besar {
+                        width: 50%;
+                    }
+
+                    div.high {
+                        height: 82%;
+                    }
+
+                    i.uuy {
+                        margin-left: 200px;
+                    }
+
+                    button.rigt {
+                        margin-left: 45px;
+                    }
+
+
+                }
+
+                /* untuk tampilan laptop */
+                @media (min-width: 1210px) and (max-width: 4000px) {
+                    div.meta {
+                        margin-top: 50px;
+                    }
+
+                    a.knan {
+                        margin-right: 5px;
+                    }
+
+                    div.besar {
+                        width: 100%;
+                    }
+
+                    button.rigt {
+                        margin-left: 45px;
+                    }
+
+                    a.rigt {
+                        margin-left: 45px;
+                    }
+                }
+            </style>
+
             <ul class="nav mb-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
@@ -294,7 +362,7 @@
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <a id="a-tab" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
+                    <a id="a-tab" class="nav-link mr-5 kiri" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Feed Disimpan</h5>

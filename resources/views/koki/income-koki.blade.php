@@ -118,7 +118,7 @@
                         style="color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                         Pilih Metode</h5>
                 </div>
-                <div class="col-6 mt-4">
+                <div class="col-6 mt-3">
                     <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close">
                         <i class="fa-regular text-dark fa-circle-xmark"></i>
                     </button>

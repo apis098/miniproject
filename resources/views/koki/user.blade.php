@@ -311,7 +311,7 @@ tr {
     </div>
 </form>
 
-<table id="table-resep" class="table-custom besar">
+<table id="table-resep" class="table-custom">
     <thead>
         <tr>
             <th scope="col">Gambar</th>
