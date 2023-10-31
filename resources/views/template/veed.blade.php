@@ -1974,11 +1974,11 @@
                                                                                                                     method="post">
                                                                                                                     @csrf
                                                                                                                     <div
-                                                                                                                        class="d-flex">
-                                                                                                                        <div>
+                                                                                                                        class="d-flex me-3">
+                                                                                                                        <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
                                                                                                                             @if (Auth::user()->foto)
                                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                                                                                                                    class="border rounded-circle"
+                                                                                                                                    class="border rounded-circle mr-auto"
                                                                                                                                     alt="Avatar"
                                                                                                                                     style="height: 40px;" />
                                                                                                                             @else
@@ -2012,8 +2012,7 @@
                                                                                                                 <form>
                                                                                                                     <div
                                                                                                                         class="d-flex mb-3">
-                                                                                                                        <div class="me-3"
-                                                                                                                            style="margin-left: -40px; margin-top:-1.1%;">
+                                                                                                                        <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
                                                                                                                             <img src="{{ asset('images/default.jpg') }}"
                                                                                                                                 class="border rounded-circle"
                                                                                                                                 alt="Avatar"
@@ -2076,7 +2075,7 @@
                                                                                                                     class="d-flex">
                                                                                                                     <a
                                                                                                                         href="">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
-                                                                                                                    <p>{{ $reply_replyComment->komentar }}
+                                                                                                                    <p class="ms-2">{{ $reply_replyComment->komentar }}
                                                                                                                     </p>
                                                                                                                 </div>
                                                                                                                 <div class="d-flex flex-row "
@@ -2329,7 +2328,7 @@
                                                                                                         <div class="collapse"
                                                                                                             id="collapse3{{ $reply_replyComment->id }}">
                                                                                                             <div
-                                                                                                                class="card card-body broder-0">
+                                                                                                                class="card card-body border-0">
                                                                                                                 @if (Auth::check())
                                                                                                                     <form
                                                                                                                         style="margin-left: -10px;"
@@ -2339,7 +2338,7 @@
                                                                                                                         @csrf
                                                                                                                         <div
                                                                                                                             class="d-flex">
-                                                                                                                            <div>
+                                                                                                                            <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
                                                                                                                                 @if (Auth::user()->foto)
                                                                                                                                     <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                                         class="border rounded-circle"
@@ -2376,8 +2375,7 @@
                                                                                                                     <form>
                                                                                                                         <div
                                                                                                                             class="d-flex mb-3">
-                                                                                                                            <div class="me-3"
-                                                                                                                                style="margin-left: -40px; margin-top:-1.1%;">
+                                                                                                                            <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
                                                                                                                                 <img src="{{ asset('images/default.jpg') }}"
                                                                                                                                     class="border rounded-circle"
                                                                                                                                     alt="Avatar"
