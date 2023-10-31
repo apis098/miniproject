@@ -44,6 +44,9 @@
                                     <div class="bg-light rounded-3 px-3 py-1">
                                         <a href="" class="text-dark mb-0">
                                             <strong>{{ $row->name }}</strong>
+                                            @if($row->isSuperUser == "yes")
+                                                <i class="fa-duotone fa-circle-check"></i>
+                                            @endif
                                         </a>
                                         <a href="" class="text-muted d-block">
                                             <small>{{ $row->resep->count() }} Resep dibuat</small>
@@ -792,7 +795,7 @@
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                                         <div class="modal-content" style="border-radius: 15px;">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle"
+                                                                <h5 class="modal-title fw-bolder" id="exampleModalLongTitle"
                                                                     style=" font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                     Pendapatan</h5>
                                                                 <button type="button" class="close"
@@ -803,24 +806,25 @@
                                                                 <div class="modal-body">
                                                                     <div class="d-flex align-items-center ms-3">
                                                                             <img src="{{ asset('images/income.png') }}"
-                                                                            width="150px" height="150px"
+                                                                            width="180px" height="180px"
                                                                             style="border-radius: 50%" alt="">
                                                                         <div class="container row">
-                                                                            <h4 class="ms-2">Pendapatan Postingan</h4>
                                                                             @php
-                                                                                $incomeForVideo = $income->where('feed_id', $item_video->id)->sum('total_income');
-                                                                            @endphp
-                                                          
-                                                                                    <small class="font-italic ms-2">Rp. {{number_format($incomeForVideo,2,',','.')}}</small>
-
+                                                                            $incomeForVideo = $income->where('feed_id', $item_video->id)->sum('total_income');
+                                                                        @endphp
+                                                                            <h3 class="ms-2">Rp. {{number_format($incomeForVideo,2,',','.')}}</h3>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <a href="koki/income-koki"
-                                                                        class="btn btn-light text-light"
-                                                                        style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                            class="ms-2 me-2">Detail</b></a>
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="d-flex justify-content-end">
+                                                                            <a href="koki/income-koki"
+                                                                                class="btn btn-light mb-3 me-1 text-light"
+                                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                    class="ms-2 me-2">Detail</b></a>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                         </div>
                                                     </div>
