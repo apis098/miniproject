@@ -20,8 +20,13 @@
             outline: inherit;
         }
 
-
-
+        @media (min-width: 992px){
+        .col-lg-4 {
+            -ms-flex: 0 0 33.333333%;
+            flex: 0 0 32.333333%;
+            max-width: 33.333333%;
+        }
+        }
 
 
     </style>
@@ -41,7 +46,7 @@
     <!-- Sale & Revenue Start -->
     <div class=" container-fluid su">
         <div class="row g-2 su mx-2">
-            <div class="col-12 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
                     style="border: 1px solid #333;">
                     <div>
@@ -51,7 +56,7 @@
                     <i class="fas fa-user-circle fa-3x"></i>
                 </div>
             </div>
-            <div class="col-12 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
                     style="border: 1px solid #333;">
                     <div>
@@ -61,7 +66,7 @@
                     <i class="fas fa-book fa-3x"></i>
                 </div>
             </div>
-            <div class="col-12 col-md-4 col-lg-3">
+            <div class="col-12 col-md-4 col-lg-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
                     style="border: 1px solid #333;">
                     <div>
@@ -174,7 +179,7 @@
                 <div class="col-12 col-lg-6 mb-3"> <!-- Menentukan lebar kolom menggunakan col-12 dan col-lg-6 -->
                 <div class="mx-1">
                     <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Resep Terbaru</h5>
-                    <div class="card p-4 mt-2 mb-2"
+                    <div class="card p-4"
                         style="border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
                             @if ($komentar_resep->count() == 0)
