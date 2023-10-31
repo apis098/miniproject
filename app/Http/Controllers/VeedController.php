@@ -16,6 +16,7 @@ use App\Models\favorite;
 use App\Models\followers;
 use App\Models\footer;
 use App\Models\income_chefs;
+use App\Models\kursus;
 use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
 use App\Models\Reply;
@@ -40,6 +41,8 @@ class VeedController extends Controller
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $admin = false;
+        $recipes = reseps::latest()->paginate(5);
+        $course = kursus::latest()->paginate(5);
         $messageCount = [];
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(5)->get();
@@ -78,7 +81,7 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
         $count_comment = comment_veed::count();
-        return view("template.veed", compact('income','categorytopup',"count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
+        return view("template.veed", compact('income','course','recipes','categorytopup',"count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)
     {

@@ -800,8 +800,6 @@
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
-                                                            <form action="{{ route('Report.store') }}" method="POST">
-                                                                @csrf
                                                                 <div class="modal-body">
                                                                     <div class="d-flex align-items-center ms-3">
                                                                             <img src="{{ asset('images/income.png') }}"
@@ -819,12 +817,11 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="submit"
+                                                                    <a href="koki/income-koki"
                                                                         class="btn btn-light text-light"
                                                                         style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                            class="ms-2 me-2">Detail</b></button>
+                                                                            class="ms-2 me-2">Detail</b></a>
                                                                 </div>
-                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -2444,50 +2441,72 @@
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
             border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Diikuti
+                        Resep Terbaru
                     </div>
-                    <div class="card-body" style="height: 500px;">
-                        <div class="d-flex mb-3">
-                            <a href="">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
+                        <div class="card-body" style="height: 500px;">
+                            @foreach($recipes as $resep)
+                            <div class="d-flex mb-3">
+                                <a href="">
+                                @if($resep->user->foto)
+                                    <img src="{{asset('storage/'.$resep->user->foto)}}"
+                                        class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                                @else
+                                    <img src="{{asset('images/default.jpg')}}"
                                     class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                            </a>
-                            <div>
-                                <div class="bg-light rounded-3 px-3 py-1">
-                                    <a href="" class="text-dark mb-0">
-                                        <strong>Resep baru siap di Masak</strong>
-                                    </a>
-                                </div>
+                                @endif
+                                </a>
+                                <div>
+                                    <div class="bg-light rounded-3 px-3 py-1">
+                                        <a href="" class="text-dark mb-0">
+                                            <strong>{{$resep->user->name}}</strong>
+                                            @if($resep->user->isSuperUser == "yes")
+                                                <i class="fa-regular fa-sm text-primary fa-circle-check"></i>
+                                            @endif
+                                            <br>
+                                            <small>{{$resep->nama_resep}}</small>
+                                        </a>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            @endforeach 
+                        </div>     
                 </div>
 
                 <div class="card mt-5 mb-5" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
             border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Belum Dibaca
+                       Kursus terbaru
                     </div>
                     <div class="card-body" style="height: 500px;">
-                        <div class="d-flex mb-3">
-                            <a href="">
-                                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                    class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                            </a>
-                            <div>
-                                <div class="bg-light rounded-3 px-3 py-1">
-                                    <a href="" class="text-dark mb-0">
-                                        <strong>Bunda Rahma</strong>
-                                    </a>
-                                    <a href="" class="text-muted d-block">
-                                        <small>2 Pesan Baru</small>
-                                    </a>
-                                </div>
+                        @foreach($course as $kursus)
+                            <div class="d-flex mb-3">
+                                <a href="">
+                                    @if($kursus->user->foto)
+                                        <img src="{{asset('storage/'.$kursus->user->foto)}}"
+                                         class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                                    @else
+                                        <img src="{{asset('images/default.jpg')}}"
+                                            class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
+                                    @endif
+                                </a>
+                                <div>
+                                    <div class="bg-light rounded-3 px-3 py-1">
+                                        <a href="" class="text-dark mb-0">
+                                            <strong>{{$kursus->user->name}}</strong>
+                                            @if($kursus->user->isSuperUser == "yes")
+                                                 <i class="fa-regular text-primary fa-circle-check"></i>
+                                            @endif
+                                        </a>
+                                        <a href="" class="text-muted d-block">
+                                            <small>{{$kursus->nama_kursus}}</small>
+                                        </a>
+                                    </div>
 
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
