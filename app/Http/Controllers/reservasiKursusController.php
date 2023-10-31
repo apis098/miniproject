@@ -80,8 +80,13 @@ class reservasiKursusController extends Controller
                 "harga" => $amount,
                 "tanggal_status_transaksi" => now(),
             ]);
-            $pembeli->saldo = $saldo_pembeli - $amount;
-            $pembeli->save();
+            $pengguna = User::find($user);
+            $pengguna->saldo = $pengguna->saldo - $amount;
+            $pengguna->save();
+            
+            $koki = User::find($chef);
+            $koki->saldo_pemasukan = $koki->saldo_pemasukan + $amount;
+            $koki->save();
             return redirect()->route("detail.kursus", $id)->with('success', 'Sukses membeli kursus!');
         }
     }
