@@ -1964,6 +1964,9 @@
                                                                                                     </div>
                                                                                                     <div class="collapse"
                                                                                                         id="collapse2{{ $reply_comment->id }}">
+                                                                                                        <div id="replies_reply{{$reply_comment->id}}">
+
+                                                                                                        </div>
                                                                                                         <div
                                                                                                             class="card card-body border-0">
                                                                                                             @if (Auth::check())
@@ -2041,6 +2044,7 @@
                                                                                                         </div>
 
                                                                                                     </div>
+                                                                                                    
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
                                                                                                         <div id="balasan_komentar_ini{{ $reply_replyComment->id }}"
                                                                                                             class="rounded d-flex flex-row border-black ">
@@ -2633,15 +2637,123 @@
                     success: function success(response) {
                         $("#inputBalasRepliesCommentsFeeds1" + num).val('');
                         if (response.success) {
-                            iziToast.show({
-                                backgroundColor: '#a1dfb0',
-                                title: '<i class="fa-solid fa-check"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                                progressBarColor: 'dark',
-                            });
+                            let up = response.up;
+                            let random = Math.random();
+                            let pengirim = response.pengirim;
+                            let penerima = response.penerima;
+                            let jumlah_like = response.jumlah_like_veed;
+                            let veed_id = response.veed_id;
+                            let time = response.time;
+                            let commentId = response.commentId
+                            let foto = '';
+                            if (pengirim['foto'] != null) {
+                                foto = 'storage/' + pengirim['foto'];
+                            } else {
+                                foto = 'images/default.jpg';
+                            }
+                            let innerHtml = `
+                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${random}">
+                                                                                                        <div style="margin-left:-0.7%;"
+                                                                                                            class="mt-1 me-3">
+                                                                                                            <img width="38px"
+                                                                                                                height="38px"
+                                                                                                                class="rounded-circle"
+                                                                                                                src="${foto}"
+                                                                                                                alt="${pengirim['name']}">
+                                                                                                        </div>
+                                                                                                        <div
+                                                                                                            class="media-body border-black rounded mb">
+                                                                                                            <div
+                                                                                                                class="d-flex mt-2">
+                                                                                                                <span><strong>${pengirim['name']}</strong></span>
+
+                                                                                                                <small
+                                                                                                                    style="margin-left: 310px;">${time}</small>
+
+                                                                                                            </div>
+                                                                                                            <div
+                                                                                                                class="d-flex">
+                                                                                                                <p><a class="text-primary me-2" href="">@${penerima['name']}</a>${up['komentar']}
+                                                                                                                </p>
+                                                                                                            </div>
+                                                                                                            {{-- ini like button --}}
+                                                                                                            <div class="d-flex flex-row "
+                                                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                                                @if (Auth::user())
+                                                                                                                        <form
+                                                                                                                            action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
+                                                                                                                            id="formLikeReplyComment${up['id']}"
+                                                                                                                            method="POST">
+                                                                                                                            @csrf
+                                                                                                                            <button
+                                                                                                                                type="submit"
+                                                                                                                                class="btn"
+                                                                                                                                onclick="likeReplyComment(${up['id']})">
+                                                                                                                                <i class="fa-regular fa-thumbs-up"
+                                                                                                                                id="iconLikeReplyComment${up['id']}"></i>
+                                                                                                                            </button>
+
+                                                                                                                        </form>
+
+
+                                                                                                                @else
+                                                                                                                    <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                                                                                        onclick="harusLogin()"
+                                                                                                                        width="15px"
+                                                                                                                        height="40px"
+                                                                                                                        alt="">
+                                                                                                                    &nbsp;
+                                                                                                                    &nbsp;
+                                                                                                                @endif
+                                                                                                                <span id="countLikeReplyComment${up['id']}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                    0
+                                                                                                                </span>
+                                                                                                                <div
+                                                                                                                    class="m-2 mr-auto">
+                                                                                                                    {{-- --}}
+
+                                                                                                                            {{-- Hapus Komentar --}}
+                                                                                                                            <form
+                                                                                                                                method="POST"
+                                                                                                                                action="/hapus_balasan_komentar_feed/${up['id']}"
+                                                                                                                                id="delete-reply-comment-form${up['id']}">
+                                                                                                                                @csrf
+                                                                                                                                @method('DELETE')
+                                                                                                                                <button
+                                                                                                                                    type="submit"
+                                                                                                                                    hidden onclick="deletedReplyCommentFeed(${up['id']})"
+                                                                                                                                    id="delete-reply-comment-button${up['id']}">Delete</button>
+                                                                                                                                <button
+                                                                                                                                    type="button"
+                                                                                                                                    onclick="confirmation_delete_reply_comment(${up['id']})"
+                                                                                                                                    class="yuhu text-danger btn-sm rounded-5 float-end">
+                                                                                                                                    <i
+                                                                                                                                        class="fa-solid fa-trash"></i>
+                                                                                                                                </button>
+                                                                                                                            </form>
+
+                                                                                                                </div>
+                                                                                                                <a href="#"
+                                                                                                                    class="text-secondary my-auto me-5"
+                                                                                                                    data-toggle="collapse"
+                                                                                                                    data-target="#collapse${up['id']}"
+                                                                                                                    aria-expanded="true"
+                                                                                                                    aria-controls="collapseOne">
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                                        width="22"
+                                                                                                                        height="22"
+                                                                                                                        viewBox="0 0 24 24">
+                                                                                                                        <path
+                                                                                                                            fill="currentColor"
+                                                                                                                            d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
+                                                                                                                    </svg>
+                                                                                                                    &nbsp;
+                                                                                                                    <small class="me-4 ">Balasan</small>
+                                                                                                                </a>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>`;
+                            $("#replies_reply" + num).append(innerHtml);
                         }
                     },
                     error: function error(xhr, status, erorr) {
@@ -3277,16 +3389,6 @@
                     contentType: false,
                     success: function success(response) {
                         if (response.success) {
-                            iziToast.destroy();
-                            iziToast.show({
-                                backgroundColor: '#a1dfb0',
-                                title: '<i class="fa-solid fa-check"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                                progressBarColor: 'dark',
-                            });
                             $("#input_comment_veed" + num).val('');
                             let up = response.up;
                             let pengirim = response.pengirim;

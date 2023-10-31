@@ -358,7 +358,7 @@ class VeedController extends Controller
     public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id, string $parent_id = null)
     {
         if ($parent_id != null) {
-            balasRepliesCommentsFeeds::create([
+            $store = balasRepliesCommentsFeeds::create([
                 "pengirim_reply_comment_id" => $pengirim_id,
                 "pemilik_reply_comment_id" => $pemilik_id,
                 "reply_comment_id" => $comment_id,
@@ -366,16 +366,27 @@ class VeedController extends Controller
                 "komentar" => $request->komentar
             ]);
         } else {
-            balasRepliesCommentsFeeds::create([
+            $store = balasRepliesCommentsFeeds::create([
                 "pengirim_reply_comment_id" => $pengirim_id,
                 "pemilik_reply_comment_id" => $pemilik_id,
                 "reply_comment_id" => $comment_id,
                 "komentar" => $request->komentar
             ]);
         }
+        $dataReplies = balasRepliesCommentsFeeds::findOrFail($store->id);
+        $user_sender = User::findOrFail(auth()->user()->id);
+        $user_penerima = User::findOrFail($pemilik_id);
+        $jumlah_like_veed = like_reply_comment_veed::query();
+        $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
         return response()->json([
             "success" => true,
-            "message" => "Sukses membalas komentar balasan feed!",
+            "message" => "Anda berhasil memberi komentar!",
+            "up" => $dataReplies,
+            "pengirim" => $user_sender,
+            "penerima" => $user_penerima,
+            "jumlah_like_veed" => $jumlah_like_veed,
+            "time" => $time,
+            "commentId" => $comment_id,
         ]);
     }
     public function sukaiBalasRepliesCommentsFeeds(string $user, string $comment)
