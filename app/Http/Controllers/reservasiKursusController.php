@@ -65,6 +65,9 @@ class reservasiKursusController extends Controller
         $amount = $request->amount;
         $pembeli = User::find($user);
         $saldo_pembeli = $pembeli->saldo;
+        if ($amount < 1) {
+            return redirect()->back()->with('error', 'Anda tidak memilih sesi konten apapun!');
+        }
         if ($saldo_pembeli < $amount) {
             return redirect()->back()->with('error', 'Saldo anda tidak mencukupi!');
         } else {
@@ -74,6 +77,7 @@ class reservasiKursusController extends Controller
                 "user_id" => $user,
                 "harga" => $amount,
                 "status_transaksi" => "diterima",
+                "harga" => $amount,
                 "tanggal_status_transaksi" => now(),
             ]);
             $pembeli->saldo = $saldo_pembeli - $amount;
