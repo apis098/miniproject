@@ -64,7 +64,7 @@ Route::post('/beri-ulasan/{id}', []);
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 
- 
+
 //Search user account
 Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
 Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
@@ -180,7 +180,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('detail-transaction/{reference}',[TopUpController::class,'detailTransaction'])->name('detail.transaction');
         Route::get('payments-method-page/{price?}',[TopUpController::class,'paymentsPage'])->name('payments.page');
         Route::post('get-payment-method',[TopUpController::class,'paymentMethod'])->name('payments.method.get');
-        Route::resource('kursus', KursusController::class);
+        Route::resource('kursus', KursusController::class)->middleware('auth.superUser');
         Route::get('upload-video', [KokiController::class, 'upload_video'])->name('koki.video');
         Route::get('beranda', [KokiController::class, 'beranda'])->name('koki.beranda');
         Route::get('feed', [KokiController::class, 'feed'])->name('koki.feed');
@@ -188,12 +188,12 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('user', [AdminController::class, 'userContent'])->name('koki.user');
         Route::get('kursus-content/{id}', [KokiController::class, 'kursusContent'])->name('koki.content');
         // route sesi kursus
-        Route::post('tambah-sesi-kursus', [KursusController::class, "tambahSesi"])->name('tambah.sesi.kursus');
-        Route::post('update-sesi-kursus/{id}', [KursusController::class, "updateSesi"])->name('update.sesi.kursus');
-        Route::delete('hapus-sesi-kursus/{id}', [KursusController::class, "hapusSesi"])->name('hapus.sesi.kursus');
-        Route::post('tambah-detail-sesi-kursus/{id}', [KursusController::class, "tambahDetailSesi"])->name('tambah.detail.sesi.kursus');
-        Route::post('update-detail-sesi-kursus/{id}', [KursusController::class, "updateDetailSesi"])->name('update.detail.sesi.kursus');
-        Route::delete('hapus-detail-sesi-kursus/{id}', [KursusController::class, "hapusDetailSesi"])->name('hapus.detail.sesi.kursus');
+        Route::post('tambah-sesi-kursus', [KursusController::class, "tambahSesi"])->name('tambah.sesi.kursus')->middleware('auth.superUser');
+        Route::post('update-sesi-kursus/{id}', [KursusController::class, "updateSesi"])->name('update.sesi.kursus')->middleware('auth.superUser');
+        Route::delete('hapus-sesi-kursus/{id}', [KursusController::class, "hapusSesi"])->name('hapus.sesi.kursus')->middleware('auth.superUser');
+        Route::post('tambah-detail-sesi-kursus/{id}', [KursusController::class, "tambahDetailSesi"])->name('tambah.detail.sesi.kursus')->middleware('auth.superUser');
+        Route::post('update-detail-sesi-kursus/{id}', [KursusController::class, "updateDetailSesi"])->name('update.detail.sesi.kursus')->middleware('auth.superUser');
+        Route::delete('hapus-detail-sesi-kursus/{id}', [KursusController::class, "hapusDetailSesi"])->name('hapus.detail.sesi.kursus')->middleware('auth.superUser');
         // end route sesi kursus
         Route::get('profilage', [KokiController::class, 'profilage'])->name('koki.profilage');
         Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
