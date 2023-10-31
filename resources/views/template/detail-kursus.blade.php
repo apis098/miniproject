@@ -314,10 +314,17 @@
                                         @else
                                             {{-- untuk koki lain atau user lain --}}
                                             @if ($count_session >= 1)
+                                            @if ($detail_course->isBuy(Auth::user()->id))
+                                            <a href="" type="button"
+                                                class="btn text-light zoom-effects"
+                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                class="ms-3 me-3">Kursus sudah dibeli</b></a>
+                                            @else
                                             <a href="{{ route('reservasi.kursus', $detail_course->id) }}" type="button"
                                                 class="btn text-light zoom-effects"
                                                 style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                 class="ms-3 me-3">Reservasi kursus</b></a>
+                                            @endif
                                             @else
                                             <a href="" type="button"
                                                 class="btn text-light zoom-effects"
