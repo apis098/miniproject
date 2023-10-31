@@ -297,7 +297,7 @@
                                         </h5>
                                         <div id="border1" class="ms-1"
                                             style="width: 100%; height: 100%; border: 1px #F7941E solid;">
-                                        </div>
+                                        </div>  
                                     </a>
                                 </li>
 

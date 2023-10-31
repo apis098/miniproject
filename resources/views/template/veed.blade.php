@@ -809,10 +809,7 @@
                                                                             width="180px" height="180px"
                                                                             style="border-radius: 50%" alt="">
                                                                         <div class="container row">
-                                                                            @php
-                                                                            $incomeForVideo = $income->where('feed_id', $item_video->id)->sum('total_income');
-                                                                        @endphp
-                                                                            <h3 class="ms-2">Rp. {{number_format($incomeForVideo,2,',','.')}}</h3>
+                                                                            <h3 class="ms-2">Rp. {{number_format($item_video->incomes(),2,',','.')}}</h3>
                                                                         </div>
                                                                     </div>
                                                                 </div>
