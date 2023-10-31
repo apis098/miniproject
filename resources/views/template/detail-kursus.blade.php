@@ -291,7 +291,7 @@
 
                                 <div class="mt-3">
                                     <span class="fw-bold">Di kursus ini diajari:</span>
-                                    <ul class="list-item"> 
+                                    <ul class="list-item">
                                         @foreach ($detail_course->sesi as $index => $detail)
                                             @if ($index < 3)
                                                 <li style="color: #000; margin-bottom: 10px;"><span
@@ -313,10 +313,17 @@
                                             </form>
                                         @else
                                             {{-- untuk koki lain atau user lain --}}
+                                            @if ($count_session >= 1)
                                             <a href="{{ route('reservasi.kursus', $detail_course->id) }}" type="button"
                                                 class="btn text-light zoom-effects"
                                                 style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                 class="ms-3 me-3">Reservasi kursus</b></a>
+                                            @else
+                                            <a href="" type="button"
+                                                class="btn text-light zoom-effects"
+                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                class="ms-3 me-3">Belum ada sesi kursus</b></a>
+                                            @endif
                                             <button type="submit" class="btn text-dark"
                                                 style="border: 1px solid #000; border-radius: 15px;"><b
                                                 class="ms-3 me-3">Tambah favorit</b></button>
@@ -461,7 +468,7 @@
                             </p>
                         </div>
                     </div>
-                </div> 
+                </div>
 
                 <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
                     <div class="card-body">
