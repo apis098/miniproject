@@ -30,25 +30,25 @@
                         @foreach ($top_users as $row)
                             <div class="d-flex mb-3">
                                 @if ($row->foto)
-                                    <a href="">
+                                    <a href="/profile-orang-lain/{{$row->id}}">
                                         <img src="{{ asset('storage/' . $row->foto) }}" class="border rounded-circle me-2"
                                             alt="Avatar" style="height: 40px" />
                                     </a>
                                 @else
-                                    <a href="">
+                                    <a href="/profile-orang-lain/{{$row->id}}">
                                         <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle me-2"
                                             alt="Avatar" style="height: 40px" />
                                     </a>
                                 @endif
                                 <div>
                                     <div class="bg-light rounded-3 px-3 py-1">
-                                        <a href="" class="text-dark mb-0">
+                                        <a href="/profile-orang-lain/{{$row->id}}" class="text-dark mb-0">
                                             <strong>{{ $row->name }}</strong>
                                             @if($row->isSuperUser == "yes")
                                                 <i class="fa-duotone fa-circle-check"></i>
                                             @endif
                                         </a>
-                                        <a href="" class="text-muted d-block">
+                                        <a href="/profile-orang-lain/{{$row->id}}" class="text-muted d-block">
                                             <small>{{ $row->resep->count() }} Resep dibuat</small>
                                         </a>
                                     </div>
@@ -1965,7 +1965,7 @@
                                                                                                     <div class="collapse"
                                                                                                         id="collapse2{{ $reply_comment->id }}">
                                                                                                         <div
-                                                                                                            class="card card-body">
+                                                                                                            class="card card-body border-0">
                                                                                                             @if (Auth::check())
                                                                                                                 <form
                                                                                                                     style="margin-left: -10px;"
@@ -2329,7 +2329,7 @@
                                                                                                         <div class="collapse"
                                                                                                             id="collapse3{{ $reply_replyComment->id }}">
                                                                                                             <div
-                                                                                                                class="card card-body">
+                                                                                                                class="card card-body broder-0">
                                                                                                                 @if (Auth::check())
                                                                                                                     <form
                                                                                                                         style="margin-left: -10px;"
@@ -2458,7 +2458,7 @@
                                 </a>
                                 <div>
                                     <div class="bg-light rounded-3 px-3 py-1">
-                                        <a href="" class="text-dark mb-0">
+                                        <a href="/artikel/{{$resep->id}}/{{$resep->nama_resep}}" class="text-dark mb-0">
                                             <strong>{{$resep->user->name}}</strong>
                                             @if($resep->user->isSuperUser == "yes")
                                                 <i class="fa-regular fa-sm text-primary fa-circle-check"></i>
@@ -2483,7 +2483,7 @@
                     <div class="card-body" style="height: 500px;">
                         @foreach($course as $kursus)
                             <div class="d-flex mb-3">
-                                <a href="">
+                                <a href="/detail_kursus/{{$kursus->id}}">
                                     @if($kursus->user->foto)
                                         <img src="{{asset('storage/'.$kursus->user->foto)}}"
                                          class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
@@ -2494,13 +2494,13 @@
                                 </a>
                                 <div>
                                     <div class="bg-light rounded-3 px-3 py-1">
-                                        <a href="" class="text-dark mb-0">
+                                        <a href="/detail_kursus/{{$kursus->id}}" class="text-dark mb-0">
                                             <strong>{{$kursus->user->name}}</strong>
                                             @if($kursus->user->isSuperUser == "yes")
                                                  <i class="fa-regular text-primary fa-circle-check"></i>
                                             @endif
                                         </a>
-                                        <a href="" class="text-muted d-block">
+                                        <a href="/detail_kursus/{{$kursus->id}}" class="text-muted d-block">
                                             <small>{{$kursus->nama_kursus}}</small>
                                         </a>
                                     </div>
