@@ -62,7 +62,6 @@ class reservasiKursusController extends Controller
     }
     public function transaksiKursus(int $id, int $user, int $chef, Request $request)
     {
-        dd($request->all());
         $amount = $request->amount;
         $pembeli = User::find($user);
         $saldo_pembeli = $pembeli->saldo;
