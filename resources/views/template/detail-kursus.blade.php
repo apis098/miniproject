@@ -256,7 +256,9 @@
                                                     fill="#F4DD0A" stroke="black" />
                                             </g>
                                         </svg>
-                                        <p>{{ $detail_course->rate() }} ({{ $detail_course->total_ulasan() }} ulasan)</p>
+                                        <p>{{ $detail_course->rate() }}
+
+                                        ({{ $detail_course->total_ulasan() }} ulasan)</p>
                                     </div>
                                 </div>
 

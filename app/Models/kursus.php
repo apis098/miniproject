@@ -64,8 +64,12 @@ class kursus extends Model
     {
         $rate = UlasanKursus::where('course_id', $this->id)->sum('rating');
         $jumlah_rate = UlasanKursus::where('course_id', $this->id)->where('rating', '!=', 'null')->count();
-        $hasil = $rate / $jumlah_rate;
-        return $hasil;
+        if($rate <= 0) {
+            return 0;
+        } else {
+            $hasil = $rate / $jumlah_rate;
+            return $hasil;
+        }
     }
     public function total_waktu_sesi()
     {
