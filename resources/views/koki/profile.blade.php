@@ -158,8 +158,30 @@
             </div>
             {{-- akhir modal --}}
             <style>
+                 @media (min-width:290px) and (max-width: 340px) {
+                        /* a.gser {
+                            margin-right: 50px;
+                        } */
+                        i.kiri {
+                            margin-left: 40px;
+                        }
+
+                        div.ash {
+                                            padding-right: 75px;
+                                        }
+
+                                        a.knan {
+                                            margin-left: -12px;
+                                        }
+
+                                        /* span.hi {
+                                            padding-top: -30px;
+                                        } */
+
+
+        }
                 /* untuk tampilan mobile */
-                @media (min-width: 300px) and (max-width: 860px) {
+                @media (min-width: 350px) and (max-width: 860px) {
                     i.uhuy {
                         margin-left: 75px;
                     }
@@ -245,7 +267,7 @@
                                     <p class="ms-3">Suka</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-thumbs-up fa-2xl uhuy uuy"></i>
+                                    <i class="fa-solid fa-thumbs-up fa-2xl uhuy uuy kiri"></i>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +284,7 @@
                                     <p class="ms-3">Resep</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl uhuy uuy"></i>
+                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl uhuy uuy kiri"></i>
                                 </div>
                             </div>
                         </div>
@@ -279,7 +301,7 @@
                                     <p class="ms-3">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-user-plus fa-2xl uhuy uuy"></i>
+                                    <i class="fa-solid fa-user-plus fa-2xl uhuy uuy kiri"></i>
                                 </div>
                             </div>
                         </div>
@@ -297,7 +319,7 @@
                                         </h5>
                                         <div id="border1" class="ms-1"
                                             style="width: 100%; height: 100%; border: 1px #F7941E solid;">
-                                        </div>  
+                                        </div>
                                     </a>
                                 </li>
 
@@ -471,7 +493,7 @@
                                                             alt="Hollywood Sign on The Hill" />
                                                     </a>
                                                     <div class="d-flex ash mt-1 ml-3">
-                                                        <a type="button" class="mr-1 text-dark " onclick="openModel()"
+                                                        <a type="button" class="mr-1 text-dark knan" onclick="openModel()"
                                                             id="button-modal-komentar-feed" href="#"
                                                             data-bs-toggle="modal"data-bs-target="#exampleModal">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24"
