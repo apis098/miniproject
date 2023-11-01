@@ -67,8 +67,10 @@
                             <div class="d-flex mb-2">
                                 <div>
 
-                                    <span style="color: blue;font-size:15px">({{ $detail_course->total_rating() }} ratings)</span>
-                                    <span class="mx-3" style="font-size: 15px">{{ $detail_course->total_murid() }} siswa</span>
+                                    <span style="color: blue;font-size:15px">({{ $detail_course->total_rating() }}
+                                        ratings)</span>
+                                    <span class="mx-3" style="font-size: 15px">{{ $detail_course->total_murid() }}
+                                        siswa</span>
                                 </div>
                             </div>
                             <p class="fw-bold">Dibuat oleh {{ $detail_course->user->name }}</p>
@@ -228,16 +230,20 @@
                                 <div class="text-center">
                                     @if ($detail_course->user->foto)
                                         <img src="{{ asset('images/' . $detail_course->user->foto) }}" alt=""
-                                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" style="width: 50%; height: 50%;">
+                                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+                                            style="width: 50%; height: 50%;">
                                     @else
                                         <img src="{{ asset('images/default.jpg') }}" alt=""
-                                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm" style="width: 50%; height: 50%;">
+                                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+                                            style="width: 50%; height: 50%;">
                                     @endif
 
-                                    <button type="submit" class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
-                                        style="position: absolute; right: 65px; background-color:#F7941E;" data-toggle="modal"
-                                        data-target="#exampleModalCenter">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
+                                    <button type="submit"
+                                        class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
+                                        style="position: absolute; right: 65px; background-color:#F7941E;"
+                                        data-toggle="modal" data-target="#exampleModalCenter">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                            viewBox="0 0 20 20">
                                             <path fill="currentColor"
                                                 d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
                                         </svg>
@@ -258,7 +264,7 @@
                                         </svg>
                                         <p>{{ $detail_course->rate() }}
 
-                                        ({{ $detail_course->total_ulasan() }} ulasan)</p>
+                                            ({{ $detail_course->total_ulasan() }} ulasan)</p>
                                     </div>
                                 </div>
 
@@ -268,7 +274,8 @@
                                         @foreach ($detail_course->sesi as $index => $detail)
                                             @if ($index < 3)
                                                 <li style="color: #000; margin-bottom: 10px;"><span
-                                                        class="fa fa-check-circle available"></span>{{ $detail->judul_sesi }}</li>
+                                                        class="fa fa-check-circle available"></span>{{ $detail->judul_sesi }}
+                                                </li>
                                             @endif
                                         @endforeach
                                     </ul>
@@ -282,37 +289,40 @@
                                             <form action="{{ route('kursus.edit', $detail_course->id) }}">
                                                 <button type="submit" class="btn text-light zoom-effects"
                                                     style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                    class="ms-3 me-3">Edit Kursus</b></button>
+                                                        class="ms-3 me-3">Edit Kursus</b></button>
                                             </form>
                                         @else
                                             {{-- untuk koki lain atau user lain --}}
                                             @if ($count_session >= 1)
-                                            @if ($detail_course->isBuy(Auth::user()->id))
-                                            <a href="" type="button"
-                                                class="btn text-light zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-3 me-3">Kursus sudah dibeli</b></a>
+                                                @if ($detail_course->isBuy(Auth::user()->id))
+                                                    <a href="" type="button" class="btn text-light zoom-effects"
+                                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                            class="ms-3 me-3">Kursus sudah dibeli</b></a>
+                                                @else
+                                                    <a href="{{ route('reservasi.kursus', $detail_course->id) }}"
+                                                        type="button" class="btn text-light zoom-effects"
+                                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                            class="ms-3 me-3">@if ($detail_course->tanggal_dimulai_kursus >= Carbon\Carbon::now())
+                                                            Reservasi Kursus
+                                                            @else
+                                                            Kursus Kadaluarsa
+                                                            @endif</b></a>
+                                                            
+                                                @endif
                                             @else
-                                            <a href="{{ route('reservasi.kursus', $detail_course->id) }}" type="button"
-                                                class="btn text-light zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-3 me-3">Reservasi kursus</b></a>
-                                            @endif
-                                            @else
-                                            <a href="" type="button"
-                                                class="btn text-light zoom-effects"
-                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-3 me-3">Belum ada sesi kursus</b></a>
+                                                <a href="" type="button" class="btn text-light zoom-effects"
+                                                    style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                        class="ms-3 me-3">Belum ada sesi kursus</b></a>
                                             @endif
                                             <button type="submit" class="btn text-dark"
                                                 style="border: 1px solid #000; border-radius: 15px;"><b
-                                                class="ms-3 me-3">Tambah favorit</b></button>
+                                                    class="ms-3 me-3">Tambah favorit</b></button>
                                         @endif
                                     @else
                                         {{-- untuk yang belum login --}}
                                         <button type="button" class="btn text-light zoom-effects"
                                             style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Reservasi kursus</b></button>
+                                                class="ms-3 me-3">Reservasi kursus</b></button>
                                     @endif
                                 </div>
                             </div>
@@ -365,7 +375,8 @@
                         </div>
                         <div class="col-10 mb-5">
                             {{-- @if (Auth::check()) --}}
-                            <form method="POST" action="{{ route('ulasan-rating-kursus.store', [$detail_course->id,$detail_course->user->id,Auth::user()->id]) }}">
+                            <form method="POST"
+                                action="{{ route('ulasan-rating-kursus.store', [$detail_course->id, $detail_course->user->id, Auth::user()->id]) }}">
                                 @csrf
                                 <input type="hidden" name="rating" id="ratingKursuses">
                                 <div class="input-group" style="margin-left: -15px;">
@@ -377,47 +388,48 @@
                                         class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
-                        <div class="rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
                     @endif
                 @endif
 
                 @foreach ($ulasan_kursus as $review)
-                <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="d-flex">
-                                @if ($review->user->foto)
-                                <img src="{{ asset('storage/'.$review->user->foto) }}" alt="" width="5%"
-                                height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
-                                @else
-                                <img src="{{ asset('images/default.jpg') }}" alt="" width="5%"
-                                height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
-                                @endif
-                                <p class="text center my-1 mx-3"><b>{{ $review->user->name }}</b></p>
+                    <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="d-flex">
+                                    @if ($review->user->foto)
+                                        <img src="{{ asset('storage/' . $review->user->foto) }}" alt=""
+                                            width="5%" height="5%"
+                                            class="img-fluid rounded-circle mb-3 shadow-sm">
+                                    @else
+                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="5%"
+                                            height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
+                                    @endif
+                                    <p class="text center my-1 mx-3"><b>{{ $review->user->name }}</b></p>
 
-                                <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
-                                        <path id="Vector"
-                                            d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
-                                            fill="#F4DD0A" stroke="black" />
-                                    </g>
-                                    <span class="mx-1">{{ $review->rating }}</span>
-                                </svg>
+                                    <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19"
+                                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
+                                            <path id="Vector"
+                                                d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
+                                                fill="#F4DD0A" stroke="black" />
+                                        </g>
+                                        <span class="mx-1">{{ $review->rating }}</span>
+                                    </svg>
+                                </div>
+                                <p>
+                                    {{ $review->ulasan }}
+                                </p>
                             </div>
-                            <p>
-                               {{ $review->ulasan }}
-                            </p>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </section>

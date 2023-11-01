@@ -15,7 +15,7 @@ class kursus extends Model
         "foto_kursus",
         "deskripsi_kursus",
         "nama_lokasi",
-        "latitude",
+        "latitude", 
         "longitude",
         "tipe_kursus",
         "jumlah_siswa",

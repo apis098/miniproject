@@ -76,7 +76,6 @@
                                         </td>
                                         <td>{{ $detail_transaksiKursus->course->nama_kursus }}</td>
                                         <td>Rp. {{ number_format($detail_transaksiKursus->harga, 2, ',', '.') }}</td>
-
                                      </tr>
                                 </table>
                             </div>
