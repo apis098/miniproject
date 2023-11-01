@@ -1977,7 +1977,7 @@
                                                                                                                 <form
                                                                                                                     style="margin-left: -10px;"
                                                                                                                     id="formBalasRepliesCommentsFeeds1{{ $reply_comment->id }}"
-                                                                                                                    action="{{ route('balas.replies.comments.feeds', [Auth::user()->id, $reply_comment->user->id, $reply_comment->id]) }}"
+                                                                                                                    action="{{ route('balas.replies.comments.feeds', [$reply_comment->user->id, $reply_comment->id]) }}"
                                                                                                                     method="post">
                                                                                                                     @csrf
                                                                                                                     <div
@@ -2340,8 +2340,8 @@
                                                                                                                 @if (Auth::check())
                                                                                                                     <form
                                                                                                                         style="margin-left: -10px;"
-                                                                                                                        id="formBalasRepliesCommentsFeeds2{{ $reply_comment->id }}"
-                                                                                                                        action="{{ route('balas.replies.comments.feeds', [$reply_comment->user->id, $reply_comment->id, $reply_replyComment->id]) }}"
+                                                                                                                        id="formBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
+                                                                                                                        action="{{ route('balas.replies.comments.feeds', [$reply_replyComment->user_pengirim->id, $reply_comment->id, $reply_replyComment->id]) }}"
                                                                                                                         method="post">
                                                                                                                         @csrf
                                                                                                                         <div
@@ -2363,7 +2363,7 @@
                                                                                                                                 class="d-flex">
                                                                                                                                 <input
                                                                                                                                     type="text"
-                                                                                                                                    id="inputBalasRepliesCommentsFeeds2{{ $reply_comment->id }}"
+                                                                                                                                    id="inputBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
                                                                                                                                     name="komentar"
                                                                                                                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
                                                                                                                                     class="form-control-sm border border-dark border-5 me-3"
@@ -2371,8 +2371,8 @@
 
                                                                                                                                 <button
                                                                                                                                     type="submit"
-                                                                                                                                    id="buttonComment2Veed2{{ $reply_comment->id }}"
-                                                                                                                                    onclick="balas_replies_comments_feeds2({{ $reply_comment->id }})"
+                                                                                                                                    id="buttonComment2Veed2{{ $reply_replyComment->id }}"
+                                                                                                                                    onclick="balas_replies_comments_feeds2({{ $reply_replyComment->id }})"
                                                                                                                                     style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                                                                                     class="btn btn-sm mb-1 text-light"><b
                                                                                                                                         class="me-3 ms-3">Kirim</b></button>
@@ -2795,41 +2795,7 @@
                 });
             });
         }
-        // function balas_replies_comments_feeds2(num) {
-        //     $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
-        //     $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
-        //         event.preventDefault();
-        //         let route = $(this).attr("action");
-        //         let data = new FormData($(this)[0]);
-        //         $.ajax({
-        //             url: route,
-        //             method: "POST",
-        //             data: data,
-        //             processData: false,
-        //             contentType: false,
-        //             headers: {
-        //                 "X-CSRF-Token": "{{ csrf_token() }}",
-        //             },
-        //             success: function success(response) {
-        //                 // $("#inputBalasRepliesCommentsFeeds2" + num).val('');
-        //                 if (response.success) {
-        //                     iziToast.show({
-        //                         backgroundColor: '#a1dfb0',
-        //                         title: '<i class="fa-solid fa-check"></i>',
-        //                         titleColor: 'dark',
-        //                         messageColor: 'dark',
-        //                         message: response.message,
-        //                         position: 'topCenter',
-        //                         progressBarColor: 'dark',
-        //                     });
-        //                 }
-        //             },
-        //             error: function error(xhr, status, erorr) {
-
-        //             }
-        //         });
-        //     });
-        // }
+       
         // komentar reply feed ajax
         function balas_komentar(num) {
             $("#formBalasKomentar" + num).off('submit');
@@ -3339,6 +3305,41 @@
                             position: 'topCenter',
                             progressBarColor: 'dark',
                         });
+                    }
+                });
+            });
+        }
+        function balas_replies_comments_feeds2(num) {
+            $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
+            $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        // $("#inputBalasRepliesCommentsFeeds2" + num).val('');
+                        if (response.success) {
+                            iziToast.show({
+                                backgroundColor: '#a1dfb0',
+                                title: '<i class="fa-solid fa-check"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                                progressBarColor: 'dark',
+                            });
+                        }
+                    },
+                    error: function error(xhr, status, erorr) {
+
                     }
                 });
             });
