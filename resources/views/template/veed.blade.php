@@ -1379,7 +1379,7 @@
                                                                                             <button type="submit"
                                                                                                 class="btn"
                                                                                                 onclick="likeCommentFeed({{ $item_comment->id }})">
-                                                                                                <i class="fa-solid text-warning fa-thumbs-up"
+                                                                                                <i class="fa-solid text-orange fa-thumbs-up"
                                                                                                     id="iLikeComment{{ $item_comment->id }}"></i>
                                                                                             </button>
 
@@ -1727,7 +1727,7 @@
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
                                                                                                                                 onclick="likeReplyComment({{ $reply_comment->id }})">
-                                                                                                                                <i class="fa-solid text-warning fa-thumbs-up"
+                                                                                                                                <i class="fa-solid text-orange fa-thumbs-up"
                                                                                                                                     id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
                                                                                                                             </button>
 
@@ -2096,7 +2096,7 @@
                                                                                                                                     type="submit"
                                                                                                                                     class="btn"
                                                                                                                                     onclick="like_replies_reply({{ $reply_comment->id }})">
-                                                                                                                                    <i class="fa-solid text-warning fa-thumbs-up"
+                                                                                                                                    <i class="fa-solid text-orange fa-thumbs-up"
                                                                                                                                         id="icon_like_replies_reply{{ $reply_comment->id }}"></i>
                                                                                                                                 </button>
 
@@ -2681,16 +2681,16 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
-                                                                                                                            action="/sukai/balasan/komentar/${pengirim['id']}/${up['id']}/${jumlah_like['veed_id']}"
-                                                                                                                            id="formLikeReplyComment${up['id']}"
+                                                                                                                            action="/sukai/balasan/komentar/{{auth()->user()->id}}/${up['id']}/${jumlah_like['veed_id']}"
+                                                                                                                            id="form_like_replies_reply${up['id']}"
                                                                                                                             method="POST">
                                                                                                                             @csrf
                                                                                                                             <button
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
-                                                                                                                                onclick="likeReplyComment(${up['id']})">
+                                                                                                                                onclick="like_replies_reply(${up['id']})">
                                                                                                                                 <i class="fa-regular fa-thumbs-up"
-                                                                                                                                id="iconLikeReplyComment${up['id']}"></i>
+                                                                                                                                id="icon_like_replies_reply${up['id']}"></i>
                                                                                                                             </button>
 
                                                                                                                         </form>
@@ -2705,7 +2705,7 @@
                                                                                                                     &nbsp;
                                                                                                                     &nbsp;
                                                                                                                 @endif
-                                                                                                                <span id="countLikeReplyComment${up['id']}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -1%;">
                                                                                                                     0
                                                                                                                 </span>
                                                                                                                 <div
@@ -2778,12 +2778,12 @@
                             if (response.like) {
                                 $("#icon_like_replies_reply" + num).removeClass("fa-regular");
                                 $("#icon_like_replies_reply" + num).addClass("fa-solid");
-                                $("#icon_like_replies_reply" + num).addClass("text-warning");
+                                $("#icon_like_replies_reply" + num).addClass("text-orange");
                                 $("#count_like_replies_reply" + num).text(response.countLike);
                             } else {
                                 $("#icon_like_replies_reply" + num).removeClass("fa-solid");
                                 $("#icon_like_replies_reply" + num).addClass("fa-regular");
-                                $("#icon_like_replies_reply" + num).removeClass("text-warning");
+                                $("#icon_like_replies_reply" + num).removeClass("text-orange");
                                 $("#count_like_replies_reply" + num).text(response.countLike);
                             }
                         }
@@ -2926,7 +2926,7 @@
                                                                                                                             <button
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
-                                                                                                                                onclick="likeReplyComment(${up['id']})">
+                                                                                                                                onclick="1(${up['id']})">
                                                                                                                                 <i class="fa-regular fa-thumbs-up"
                                                                                                                                 id="iconLikeReplyComment${up['id']}"></i>
                                                                                                                             </button>
@@ -3070,12 +3070,12 @@
                             if (response.like) {
                                 $("#iconLikeReplyComment" + num).removeClass("fa-regular");
                                 $("#iconLikeReplyComment" + num).addClass("fa-solid");
-                                $("#iconLikeReplyComment" + num).addClass("text-warning");
+                                $("#iconLikeReplyComment" + num).addClass("text-orange");
                                 $("#countLikeReplyComment" + num).text(response.countLike);
                             } else {
                                 $("#iconLikeReplyComment" + num).removeClass("fa-solid");
                                 $("#iconLikeReplyComment" + num).addClass("fa-regular");
-                                $("#iconLikeReplyComment" + num).removeClass("text-warning");
+                                $("#iconLikeReplyComment" + num).removeClass("text-orange");
                                 $("#countLikeReplyComment" + num).text(response.countLike);
                             }
                         }
@@ -3110,12 +3110,12 @@
                             if (response.like) {
                                 $("#iLikeComment" + nums).removeClass("fa-regular");
                                 $("#iLikeComment" + nums).addClass("fa-solid");
-                                $("#iLikeComment" + nums).addClass("text-warning");
+                                $("#iLikeComment" + nums).addClass("text-orange");
                                 $("#countLikeComment" + nums).text(response.count);
                             } else {
                                 $("#iLikeComment" + nums).removeClass("fa-solid");
                                 $("#iLikeComment" + nums).addClass("fa-regular");
-                                $("#iLikeComment" + nums).removeClass("text-warning");
+                                $("#iLikeComment" + nums).removeClass("text-orange");
                                 $("#countLikeComment" + nums).text(response.count);
                             }
                         }
@@ -3363,13 +3363,13 @@
                         const responseData = await response.json();
                         if (responseData.liked) {
                             button.classList.remove('text-dark');
-                            button.classList.add('text-warning');
+                            button.classList.add('text-orange');
                             icon.setAttribute('class', 'fa-solid fa-thumbs-up');
                             document.getElementById("like-count-balasan" + responseData
                                     .reply_id)
                                 .textContent = responseData.likes;
                         } else {
-                            button.classList.remove('text-warning');
+                            button.classList.remove('text-orange');
                             button.classList.add('text-dark');
                             icon.setAttribute('class', 'fa-regular fa-thumbs-up');
                             document.getElementById("like-count-balasan" + responseData
