@@ -321,7 +321,7 @@ tr {
         </tr>
     </thead>
     <tbody>
-
+        @foreach ($students as $item)
             <div id="search-results">
                 <tr class="mt-5">
                     <td style="border-left:1px solid black;" class="mt">
@@ -341,6 +341,7 @@ tr {
                     </td>
                 </tr>
             </div>
+        @endforeach
     </tbody>
 </table>
 

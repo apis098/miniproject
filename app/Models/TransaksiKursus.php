@@ -24,6 +24,6 @@ class TransaksiKursus extends Model
         return $this->belongsTo(User::class, "chef_id");
     }
     public function user() {
-        return $this->belongsTo(User::class, "user_id"); 
+        return $this->belongsTo(User::class, "user_id");
     }
 }

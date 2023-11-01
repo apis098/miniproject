@@ -20,7 +20,8 @@ class kursus extends Model
         "tipe_kursus",
         "jumlah_siswa",
         "status",
-        "waktu_diterima"
+        "waktu_diterima",
+        "tanggal_dimulai_kursus"
     ];
     public function user() {
         return $this->belongsTo(User::class, "users_id");

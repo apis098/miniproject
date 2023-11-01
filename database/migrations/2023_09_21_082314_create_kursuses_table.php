@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('longitude', 11, 8);
             $table->string('tipe_kursus');
             $table->integer('jumlah_siswa');
+            $table->date('tanggal_dimulai_kursus');
             $table->enum('status', ['ditunggu', 'diterima', 'ditolak'])->default('ditunggu');
             $table->timestamp('waktu_diterima')->nullable();
             $table->timestamps();

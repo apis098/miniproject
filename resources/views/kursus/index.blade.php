@@ -174,6 +174,12 @@
                         }
                     </script>
 
+                    <div class="mb-2">
+                        <label style="font-weight: 600;" for="tanggal_dimulai_kursus" class="form-label">Tanggal Dimulai Kursus</label><br>
+                        *minimal seminggu dari tanggal saat ini
+                        <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control">
+                    </div>
+
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="buttonTambahKursus">Buat kursus
@@ -249,6 +255,12 @@
                             setTimeout(() => {
                                 window.location.href = "{{ route('koki.kursus') }}";
                             }, 1000);
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topCenter'
+                            });
                         }
                     },
                     error: function error(xhr, status, errors) {

@@ -22,6 +22,7 @@ use App\Models\District;
 use App\Models\sessionCourses;
 use App\Models\TopUpCategories;
 use App\Models\Village;
+use Carbon\Carbon;
 use App\Models\detailSessionCourses;
 class KursusController extends Controller
 {
@@ -191,6 +192,7 @@ class KursusController extends Controller
             'jumlah_siswa' => "required",
             "paket_kursus_waktu.*" => "required",
             "jenis_kursus" => "required",
+            "tanggal_dimulai_kursus" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -202,10 +204,20 @@ class KursusController extends Controller
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
             'jenis_kursus.required' => "jenis kursus harus diisi!",
+            'tanggal_dimulai_kursus.required' => 'tanggal dimulai kursus harus diisi!'
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
+        }
+        $tanggal_dimulai_kursus = Carbon::parse($request->tanggal_dimulai_kursus);
+        $tanggal_saat_ini = Carbon::now();
+        $selisih_tanggal = $tanggal_dimulai_kursus->diffInDays($tanggal_saat_ini);
+        if($selisih_tanggal <= 7) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
+            ]);
         }
         $tambah_kursus = kursus::create([
             "users_id" => Auth::user()->id,
@@ -405,7 +417,7 @@ class KursusController extends Controller
         $sesi_kursus = sessionCourses::findOrFail($id);
         $sesi_kursus->delete();
         return response()->json([
-            "success" => true, 
+            "success" => true,
             "message" => "Sukses menghapus sesi kursus!"
         ]);
     }
@@ -427,7 +439,7 @@ class KursusController extends Controller
             return response()->json($validator->errors()->first(), 422);
         }
         $detail = detailSessionCourses::create([
-            "session_course_id" => $id, 
+            "session_course_id" => $id,
             "detail_sesi" => $request->detail_sesi,
             "lama_sesi" => $request->lama_sesi,
             "informasi_lama_sesi" => $request->informasi_lama_sesi,
@@ -438,7 +450,7 @@ class KursusController extends Controller
         } else {
             $lama_sesi = $request->lama_sesi;
         }
-        
+
         return response()->json([
             "success" => true,
             "message" => "Sukses menambahkan detail kursus anda!",
@@ -478,7 +490,7 @@ class KursusController extends Controller
             $lama_sesi = $request->lama_sesi;
         }
         return response()->json([
-            "success" => true, 
+            "success" => true,
             "message"=> "Sukses mengupdate detail sesi kursus!",
             "nomer" => $count,
             "detail_sesi" => $request->detail_sesi,
@@ -492,7 +504,7 @@ class KursusController extends Controller
         $data = detailSessionCourses::find($id);
         $data->delete();
         return response()->json([
-            "success" => true, 
+            "success" => true,
             "message" => "Sukses menghapus data!"
         ]);
     }

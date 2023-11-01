@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\file;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\TransaksiKursus;
 
 class AdminController extends Controller
 {
@@ -92,11 +93,14 @@ class AdminController extends Controller
     }
 
 
-    public function userContent()
+    public function userContent(int $id)
     {
         $koki = User::find(Auth::user()->id);
+        $students = User::with('user_transaksi_kursus')->whereHas('user_transaksi_kursus',function ($query) use ($id) {
+            $query->where('course_id', $id);
+        })->get();
         $userLogin = Auth::user();
-        return view('koki.user', compact("koki","userLogin"));
+        return view('koki.user', compact("koki","userLogin","students"));
     }
 
 
