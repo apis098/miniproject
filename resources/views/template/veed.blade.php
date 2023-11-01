@@ -2681,7 +2681,7 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
-                                                                                                                            action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
+                                                                                                                            action="/sukai/balasan/komentar/${pengirim['id']}/${up['id']}/${jumlah_like['veed_id']}"
                                                                                                                             id="formLikeReplyComment${up['id']}"
                                                                                                                             method="POST">
                                                                                                                             @csrf
