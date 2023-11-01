@@ -219,6 +219,9 @@
                         margin-left: 45px;
                     }
 
+                    a.knan {
+                                            margin-left: -8px;
+                                        }
 
                     /* a.icons {
                             padding-left: 50px;

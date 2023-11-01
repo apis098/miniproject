@@ -154,18 +154,15 @@
         .fa-circle {}
 
 
+
+
         .search {
             background-color: #fff;
-            padding: 4px;
+            padding: 0px 15px;
             border-radius: 5px;
-        }
-
-        .search-tab1 {
-            width: 175%;
-        }
-
-        .search-tab2-tab3 {
-            width: 175%;
+            max-width: 1000px;
+            border-radius: 15px;
+            border: 0.50px black solid;
         }
 
         .search-1 {
@@ -177,7 +174,7 @@
             height: 45px;
             border: none;
             width: 100%;
-            padding-left: 34px;
+            padding-left: 25px;
             padding-right: 10px;
             border-right: 2px solid #eee
         }
@@ -192,56 +189,82 @@
             position: absolute;
             top: 12px;
             left: 5px;
-            font-size: 10px;
+            font-size: 24px;
             color: #eee
         }
 
         ::placeholder {
-            color: grey;
+            color: #eee;
             opacity: 1
         }
 
         .search-2 {
             position: relative;
-            width: 40%;
-            margin-left: -5%
+            width: 100%;
         }
 
         .search-2 input {
-            height: 45px;
-            border: 0.50px black solid;
-            width: 128%;
+            height: 35px;
+            border: none;
             border-radius: 15px;
-            margin-left: 60px;
-            color: #000;
-            padding-left: 18px;
-            padding-right: 100px;
-            text-align: center
+            width: 100%;
+
+
+
         }
 
         .search-2 input:focus {
+            border-color: none;
             box-shadow: none;
+            outline: none
         }
 
-
+        /* button{
+                            background-color: #F7941E;
+                            border: none;
+                            height: 45px;
+                            width: 90px;
+                            color: #ffffff;
+                            position: absolute;
+                            right: 1px;
+                            top: 0px;
+                            border-radius: 15px
+                        } */
         .search-2 i {
             position: absolute;
             top: 12px;
             left: -10px;
-            font-size: 14px;
+            font-size: 24px;
             color: #eee
         }
 
-        .search-2 button {
+        .cari {
             position: absolute;
-            margin-left: 127%;
-            top: 0px;
+            top: -2px;
             border: none;
-            height: 45px;
+            height: 38px;
             background-color: #F7941E;
             color: #fff;
-            width: 70px;
+            margin-left: -6%;
+            width: 90px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
         }
+
+        .cari2 {
+            position: absolute;
+            top: -2px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 90px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
+            margin-left: -66px;
+        }
+
+
 
         .placeholder-centered::placeholder {
             text-align: center;
@@ -270,7 +293,7 @@
     </style>
 
     <div class="d-flex justify-content-start" style="overflow-x: hidden">
-        <div class="col-12 my-4 ml-3">
+        <div class="col-12 my-4 ml-4">
 
             <style>
                 /* untuk tampilan mobile */
@@ -280,12 +303,12 @@
                     }
 
                     /* h5.mas {
-                        margin-left: 35px;
-                    }
+                                margin-left: 35px;
+                            }
 
-                    div.besar {
-                        width: 100%;
-                    } */
+                            div.besar {
+                                width: 100%;
+                            } */
 
 
                 }
@@ -339,7 +362,7 @@
                 }
             </style>
 
-            <ul class="nav mb-2" id="pills-tab" role="tablist">
+            <ul class="nav mb-2 ml-1" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
@@ -400,171 +423,203 @@
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
-                    <div class="search search-tab1 mx-4" style="border-radius: 15px;">
-                        <div class=" ">
-                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                <form action="#" method="GET">
-                                    <input class="placeholder-centered" type="text" name="" id="searchFeedDibuat"
-                                        style="text-align: left;" placeholder="Search for something ...">
-                                    <button type="submit" class="zoom-effects"
-                                        style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
-                                        </svg>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    @if ($data['feed_dibuat']->count() < 1)
-                        <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: -3em; margin-right:15%;">
-                            <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
-                        </div>
-                    @endif
-                    {{-- start tab 1 --}}
-                    <div id="tab1FeedDibuat">
-                        @foreach ($data['feed_dibuat'] as $feed_buat)
-                            <form hidden id="delete-data{{ $feed_buat->id }}" action="/hapus_feed/{{ $feed_buat->id }}"
-                                method="post">
-                                @csrf
-                                @method('DELETE')
-
-                            </form>
-
-                            <div class="d-flex mt-4" id="feed_buat{{ $feed_buat->id }}">
-                                <div class="row feed_dibuat_tab1">
-                                    <div class="col-3 mx-2">
-                                        <video src="{{ asset('storage/' . $feed_buat->upload_video) }}"
-                                            style="width: 100%; height: 100%; margin-left: -25px;"
-                                            class="rounded float-end "></video>
-
-                                    </div>
-                                    <div class="col-8">
-                                        <strong class="me-5 w-75"><a href="#" data-toggle="modal"
-                                                data-target="#view"
-                                                class="text-black">{{ $feed_buat->deskripsi_video }}</a></strong>
-                                        <p>
-                                            <a type="button" class="mr-1 text-dark" onclick="openModel()"
-                                                id="button-modal-komentar-feed" href="#"
-                                                data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 512 512">
-                                                    <path fill="currentColor"
-                                                        d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
-                                                </svg>
-                                                &nbsp; <span class="my-auto">{{ $feed_buat->countLikeFeed() }}</span>
-                                            </a>
-                                            <a type="button" class="ms-3 text-dark" onclick="openModel()"
-                                                id="button-modal-komentar-feed" href="#"
-                                                data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                                    viewBox="0 0 16 16">
-                                                    <path fill="currentColor"
-                                                        d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
-                                                </svg>
-                                                &nbsp; <span class="my-auto">{{ $feed_buat->countCommentFeed() }}</span>
-                                            </a>
-                                            <a class="ml-3 mr-1 my-auto text-dark" href="#" data-bs-toggle="modal"
-                                                data-bs-target="#bagikan">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25"
-                                                    viewBox="0 0 512 512">
-                                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="32"
-                                                        d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
-                                                </svg>
-                                                &nbsp; <span class="my-auto">{{ $feed_buat->countShareFeed() }}</span>
-                                            </a>
 
 
-                                            <button type="button" onclick="DeleteData({{ $feed_buat->id }})"
-                                                class="yuhu text-danger rounded-5 float-end mr-4">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
 
-                                            <a class="my-auto text-dark float-end mx-2 mr-2" style="margin-right: -35px;"
-                                                href="#" data-toggle="modal"
-                                                data-target="#edit{{ $feed_buat->id }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    viewBox="0 0 24 24">
-                                                    <path fill="none" stroke="currentColor" stroke-width="1.5"
-                                                        d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
-                                                </svg>
-
-                                            </a>
-
-                                        </p>
-                                        {{-- modal edit --}}
-                                        <div class="modal fade" id="edit{{ $feed_buat->id }}" tabindex="-1"
-                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content" style="border-radius: 15px">
-                                                    <div class="modal-body">
-                                                        <div class="d-flex justify-content-between">
-                                                            <h5 class="modal-title ml-2" id="exampleModalLabel"
-                                                                style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
-                                                                Edit
-                                                            </h5>
-                                                            <button type="button" class="close mr-2"
-                                                                data-dismiss="modal" aria-label="Close"
-                                                                id="closeModalEdit{{ $feed_buat->id }}">
-                                                                <i class="fa-regular text-dark fa-circle-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                        <br>
-                                                        <form id="formUpdateFeed{{ $feed_buat->id }}"
-                                                            action="{{ route('update.feed', $feed_buat->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            <div class="">
-                                                                <div class="col-sm-10">
-                                                                    <textarea class="form-control" value="" name="deskripsi_video" id="deskripsi_video{{ $feed_buat->id }}"
-                                                                        style="border-radius:10px; width:120%;">{{ $feed_buat->deskripsi_video }}</textarea>
-                                                                </div>
-                                                            </div>
-                                                            <br>
-                                                            <button type="submit"
-                                                                onclick="buttonUpdateFeed({{ $feed_buat->id }})"
-                                                                class="btn btn-sm d-flex justify-content-end text-white"
-                                                                style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <form action="">
+                            <div class="container mt-1">
+                                <div class="search">
+                                    <div class="row">
+                                    <div class="col-12">
+                                        <div class="search-2"> <i class='bx bxs-map'></i>
+                                            <form action="/admin/laporan-pengguna" method="GET">
+                                                <input type="text" id="search-resep" name="resep" autofocus
+                                                    placeholder="Cari...">
+                                                <button type="submit" class="zoom-effects cari2"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                        viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+                                                    </svg></button>
+                                            </form>
                                         </div>
-                                        {{-- end modal edit --}}
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        </form>
+
+                        @if ($data['feed_dibuat']->count() < 1)
+                            <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: -3em; margin-right:15%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
+
+                        {{-- start tab 1 --}}
+                        <div id="tab1FeedDibuat">
+                            @foreach ($data['feed_dibuat'] as $feed_buat)
+                                <form hidden id="delete-data{{ $feed_buat->id }}" action="/hapus_feed/{{ $feed_buat->id }}"
+                                    method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                </form>
+
+                                <div class="d-flex mt-4" id="feed_buat{{ $feed_buat->id }}">
+                                    <div class="row feed_dibuat_tab1">
+                                        <div class="col-3">
+                                            <video src="{{ asset('storage/' . $feed_buat->upload_video) }}"
+                                                style="width: 100%; height: 100%;"
+                                                class="rounded ml-2"></video>
+
+                                        </div>
+                                        <div class="col-9">
+                                            <strong class="me-5 w-75"><a href="#" data-toggle="modal"
+                                                    data-target="#view"
+                                                    class="text-black">{{ $feed_buat->deskripsi_video }}</a></strong>
+                                            <p>
+                                                <a type="button" class="mr-1 text-dark" onclick="openModel()"
+                                                    id="button-modal-komentar-feed" href="#"
+                                                    data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                        viewBox="0 0 512 512">
+                                                        <path fill="currentColor"
+                                                            d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                                    </svg>
+                                                    &nbsp; <span class="my-auto">{{ $feed_buat->countLikeFeed() }}</span>
+                                                </a>
+                                                <a type="button" class="ms-3 text-dark" onclick="openModel()"
+                                                    id="button-modal-komentar-feed" href="#"
+                                                    data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill="currentColor"
+                                                            d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
+                                                    </svg>
+                                                    &nbsp; <span
+                                                        class="my-auto">{{ $feed_buat->countCommentFeed() }}</span>
+                                                </a>
+                                                <a class="ml-3 mr-1 my-auto text-dark" href="#"
+                                                    data-bs-toggle="modal" data-bs-target="#bagikan">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25"
+                                                        viewBox="0 0 512 512">
+                                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="32"
+                                                            d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
+                                                    </svg>
+                                                    &nbsp; <span class="my-auto">{{ $feed_buat->countShareFeed() }}</span>
+                                                </a>
+
+
+                                                <button type="button" onclick="DeleteData({{ $feed_buat->id }})"
+                                                    class="yuhu text-danger rounded-5 float-end swipe">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+
+                                                <a class=" text-dark float-end me-2 swipe"
+                                                    style="" href="#" data-toggle="modal"
+                                                    data-target="#edit{{ $feed_buat->id }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                        viewBox="0 0 24 24">
+                                                        <path fill="none" stroke="currentColor" stroke-width="1.5"
+                                                            d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
+                                                    </svg>
+
+                                                </a>
+
+
+
+                                            </p>
+                                        <style>
+                                             @media (min-width: 1210px) and (max-width: 4000px) {
+                    button.swipe {
+                        margin-right: 58px;
+                    }
+
+                    a.swipe {
+                        margin-right: 58px;
+                    }
+
+                    div.search {
+                        max-width: 95%;
+                    }
+                }
+                                        </style>
+
+                                            {{-- modal edit --}}
+                                            <div class="modal fade" id="edit{{ $feed_buat->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content" style="border-radius: 15px">
+                                                        <div class="modal-body">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h5 class="modal-title ml-2" id="exampleModalLabel"
+                                                                    style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                                                                    Edit
+                                                                </h5>
+                                                                <button type="button" class="close mr-2"
+                                                                    data-dismiss="modal" aria-label="Close"
+                                                                    id="closeModalEdit{{ $feed_buat->id }}">
+                                                                    <i class="fa-regular text-dark fa-circle-xmark"></i>
+                                                                </button>
+                                                            </div>
+                                                            <br>
+                                                            <form id="formUpdateFeed{{ $feed_buat->id }}"
+                                                                action="{{ route('update.feed', $feed_buat->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="">
+                                                                    <div class="col-sm-10">
+                                                                        <textarea class="form-control" value="" name="deskripsi_video" id="deskripsi_video{{ $feed_buat->id }}"
+                                                                            style="border-radius:10px; width:120%;">{{ $feed_buat->deskripsi_video }}</textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <br>
+                                                                <button type="submit"
+                                                                    onclick="buttonUpdateFeed({{ $feed_buat->id }})"
+                                                                    class="btn btn-sm d-flex justify-content-end text-white"
+                                                                    style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- end modal edit --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                     </div>
                 </div>
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
-                    <div class="search {{ $data['feed_disukai']->count() < 1 ? 'search-tab1' : 'search-tab2-tab3' }} mx-4"
-                        style="border-radius: 15px;">
 
-                        <div class="search-2"> <i class='bx bxs-map'></i>
-                            <form action="#" method="GET">
-                                <input class="placeholder-centered" type="text" name="" id="cariFeedDisukai"
-                                    style="text-align: left;" placeholder="Search for something ...">
-                                <button type="submit" class="zoom-effects"
-                                    style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                        viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
-                                    </svg>
-                                </button>
-                            </form>
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px;">
+                            <div class="search">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="search-2"> <i class='bx bxs-map'></i>
+                                            <form action="/admin/laporan-pengguna" method="GET">
+                                                <input type="text" id="search-resep" name="resep" autofocus
+                                                    placeholder="Cari...">
+                                                <button type="submit" class="zoom-effects cari2"><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                        viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+                                                    </svg></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </form>
 
-                    </div>
                     @if ($data['feed_disukai']->count() < 1)
                         <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: -3em; margin-right:15%;">
@@ -636,25 +691,30 @@
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
-                    <div class="search {{ $data['feed_favorite']->count() < 1 ? 'search-tab1' : 'search-tab2-tab3' }} mx-4"
-                        style="border-radius: 15px;">
-                        <div class=" ">
-                            <div class="search-2"> <i class='bx bxs-map'></i>
-                                <form action="#" method="GET">
-                                    <input class="placeholder-centered" type="text" name="" id="cariFeedFavorite"
-                                        style="text-align: left;" placeholder="Search for something ...">
-                                    <button type="submit" class="zoom-effects"
-                                        style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                            viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
-                                        </svg>
-                                    </button>
-                                </form>
+                    <form action="">
+                        <div class="container mt-1" style="margin-top: -35px;">
+                            <div class="search">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div>
+                                            <div class="search-2"> <i class='bx bxs-map'></i>
+                                                <form action="/admin/laporan-pengguna" method="GET">
+                                                    <input type="text" id="search-resep" name="resep" autofocus
+                                                        placeholder="Cari...">
+                                                    <button type="submit" class="zoom-effects cari2"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="32"
+                                                            height="32" viewBox="0 0 24 24">
+                                                            <path fill="currentColor"
+                                                                d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+                                                        </svg></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     @if ($data['feed_favorite']->count() < 1)
                         <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: -3em; margin-right:15%;">
@@ -762,10 +822,10 @@
                                             <strong class="text-center ">Sikukuntu</strong>
                                         </a>
 
-                                            <button type="button" class="close mt-2 mr-2" data-dismiss="modal"
-                                                aria-label="Close">
-                                                <i class="fa-regular text-dark fa-circle-xmark"></i>
-                                            </button>
+                                        <button type="button" class="close mt-2 mr-2" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <i class="fa-regular text-dark fa-circle-xmark"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -815,14 +875,14 @@
                                     </div>
                                     <div class="col-2">
                                         <a type="button" class="mr-3 text-dark float-end" onclick="openModel()"
-                                        id="button-modal-komentar-feed" href="#"
-                                        data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 512 512">
-                                            <path fill="currentColor"
-                                                d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
-                                        </svg>
-                                    </a>
+                                            id="button-modal-komentar-feed" href="#"
+                                            data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="d-flex mb-3 mt-3 row">
@@ -846,14 +906,14 @@
                                     </div>
                                     <div class="col-2">
                                         <a type="button" class="mr-3 text-dark float-end" onclick="openModel()"
-                                        id="button-modal-komentar-feed" href="#"
-                                        data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 512 512">
-                                            <path fill="currentColor"
-                                                d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
-                                        </svg>
-                                    </a>
+                                            id="button-modal-komentar-feed" href="#"
+                                            data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="d-flex mb-3 mt-3 row">
@@ -877,14 +937,14 @@
                                     </div>
                                     <div class="col-2">
                                         <a type="button" class="mr-3 text-dark float-end" onclick="openModel()"
-                                        id="button-modal-komentar-feed" href="#"
-                                        data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 512 512">
-                                            <path fill="currentColor"
-                                                d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
-                                        </svg>
-                                    </a>
+                                            id="button-modal-komentar-feed" href="#"
+                                            data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 512 512">
+                                                <path fill="currentColor"
+                                                    d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                            </svg>
+                                        </a>
                                     </div>
                                 </div>
                                 <a href="#!">
@@ -1109,28 +1169,28 @@
             });
         }
     </script>
-     <script>
+    <script>
         $(document).ready(function() {
             $("#searchFeedDibuat").on("input", function() {
                 let value = $(this).val();
-                $(".feed_dibuat_tab1").filter(function(){
-                   console.log($(this).toggle($(this).text().indexOf(value) > -1));
+                $(".feed_dibuat_tab1").filter(function() {
+                    console.log($(this).toggle($(this).text().indexOf(value) > -1));
                 });
             });
         });
         $(document).ready(function() {
             $("#cariFeedDisukai").on("input", function() {
                 let value = $(this).val();
-                $(".feed_disukai_tab2").filter(function(){
-                   console.log($(this).toggle($(this).text().indexOf(value) > -1));
+                $(".feed_disukai_tab2").filter(function() {
+                    console.log($(this).toggle($(this).text().indexOf(value) > -1));
                 });
             });
         });
         $(document).ready(function() {
             $("#cariFeedFavorite").on("input", function() {
                 let value = $(this).val();
-                $(".feed_favorite_tab3").filter(function(){
-                   console.log($(this).toggle($(this).text().indexOf(value) > -1));
+                $(".feed_favorite_tab3").filter(function() {
+                    console.log($(this).toggle($(this).text().indexOf(value) > -1));
                 });
             });
         });

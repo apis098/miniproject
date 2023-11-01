@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('tipe_kursus');
             $table->integer('jumlah_siswa');
             $table->date('tanggal_dimulai_kursus');
-            $table->enum('status', ['ditunggu', 'diterima', 'ditolak'])->default('ditunggu');
+            $table->enum('status', ['ditunggu', 'diterima', 'ditolak', 'kadaluarsa'])->default('ditunggu');
             $table->timestamp('waktu_diterima')->nullable();
             $table->timestamps();
 

@@ -297,8 +297,8 @@ tr {
                 <div class="col-12">
                     <div>
                         <div class="search-2"> <i class='bx bxs-map'></i>
-                            <form action="/admin/laporan-pengguna" method="GET">
-                                <input type="text" id="search-resep" name="resep" autofocus
+                            <form action="" method="GET">
+                                <input type="text" id="search-user" name="resep" autofocus
                                     placeholder="Cari Laporan Resep">
                                 <button type="submit"
                                     class="zoom-effects cari2">Cari</button>
@@ -310,7 +310,16 @@ tr {
         </div>
     </div>
 </form>
-
+<script>
+    $(document).ready(function() {
+        $("#search-user").on("input", function(){
+            let value = $(this).val().toLowerCase();
+            $("#search-results").filter(function(){
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+            });
+        });
+    });
+</script>
 <table id="table-resep" class="table-custom">
     <thead>
         <tr>
@@ -320,18 +329,25 @@ tr {
             <th scope="col">Aksi</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($students as $item)
-            <div id="search-results">
+    <tbody id="search-results">
+        @foreach ($students as $student)
+            <div>
                 <tr class="mt-5">
                     <td style="border-left:1px solid black;" class="mt">
                         <a href="">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/8.webp"
-                                class="border rounded-circle me-2" alt="Avatar" style="height: 60px" />
+                            @if ($student->foto === null)
+                            <img src="{{ asset('images/default.jpg') }}"
+                            class="border rounded-circle me-2" alt="images/default.jpg" style="height: 60px" />
+                            @else
+                            <img src="{{ asset('storage/'.$student->foto) }}"
+                            class="border rounded-circle me-2" alt="{{ $student->foto }}" style="height: 60px" />
+                            @endif
                         </a>
                     </td>
-                    <td>Sir Gito</td>
-                    <td>27 September 2027</td>
+                    <td>{{ $student->name }}</td>
+                    @foreach ($student->user_transaksi_kursus as $item)
+                    <td>{{ $item->created_at }}</td>
+                    @endforeach
                     <td style="border-right:1px solid black;">
                         <button type="button" data-toggle="modal"
                             data-target="#"

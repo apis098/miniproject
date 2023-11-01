@@ -229,6 +229,7 @@ class KursusController extends Controller
             "longitude" => $request->longitude,
             "tipe_kursus" => $request->tipe_kursus,
             "jumlah_siswa" => $request->jumlah_siswa,
+            "tanggal_dimulai_kursus" => $request->tanggal_dimulai_kursus,
         ]);
         if ($tambah_kursus) {
             jenis_kursuses::create([
