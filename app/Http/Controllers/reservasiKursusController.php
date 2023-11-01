@@ -12,6 +12,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiKursus;
+use App\Models\income_chefs;
 
 class reservasiKursusController extends Controller
 {
@@ -83,10 +84,18 @@ class reservasiKursusController extends Controller
             $pengguna = User::find($user);
             $pengguna->saldo = $pengguna->saldo - $amount;
             $pengguna->save();
-            
+
             $koki = User::find($chef);
             $koki->saldo_pemasukan = $koki->saldo_pemasukan + $amount;
             $koki->save();
+
+            income_chefs::create([
+                "chef_id" => $chef,
+                "user_id" => $user,
+                "course_id" => $id,
+                "status" => "kursus",
+                "pemasukan" => $amount,
+            ]);
             return redirect()->route("detail.kursus", $id)->with('success', 'Sukses membeli kursus!');
         }
     }

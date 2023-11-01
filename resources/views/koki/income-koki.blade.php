@@ -311,6 +311,8 @@ class="btn">
                             <video style="width: 100px;border-radius:10%;" src="{{ asset('storage/'.$income->feed->upload_video) }}"></video>
                             @elseif($income->status === "sawer" && $income->feed_id != null)
                             <video style="width: 100px;border-radius:10%;" src="{{ asset('storage/'.$income->feed->upload_video) }}"></video>
+                            @elseif($income->status === "kursus")
+                            {{ $income->course->nama_kursus }}
                             @endif
                         </td>
                         <td>

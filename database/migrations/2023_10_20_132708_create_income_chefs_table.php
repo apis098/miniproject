@@ -17,7 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id");
             $table->unsignedBigInteger('feed_id')->nullable();
             $table->unsignedBigInteger("resep_id")->nullable();
-            $table->enum('status', ['resep', 'feed', 'sawer']);
+            $table->unsignedBigInteger("course_id")->nullable();
+            $table->enum('status', ['resep', 'feed', 'sawer', 'kursus']);
             $table->bigInteger('pemasukan');
             $table->enum('status_penarikan', ['bisa ditarik', 'sudah ditarik', 'tidak bisa ditarik'])->default('bisa ditarik');
             $table->timestamps();
@@ -26,6 +27,7 @@ return new class extends Migration
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("feed_id")->references("id")->on("upload_videos")->onDelete("cascade");
             $table->foreign("resep_id")->references("id")->on("reseps")->onDelete("cascade");
+            $table->foreign("course_id")->references("id")->on("kursuses")->onDelete("cascade");
         });
     }
 

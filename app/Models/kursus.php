@@ -23,6 +23,10 @@ class kursus extends Model
         "waktu_diterima",
         "tanggal_dimulai_kursus"
     ];
+    public function income_chef()
+    {
+        return $this->hasMany(income_chefs::class, "course_id");
+    }
     public function user() {
         return $this->belongsTo(User::class, "users_id");
     }
