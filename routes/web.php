@@ -228,7 +228,7 @@ Route::post("/sukai/balasan/komentar/{user_id}/{reply_comment_id}/{veed_id}", [V
 Route::post("/sukai/reply_balasan/komentar/{user_id}/{comment_id}", [VeedController::class, 'sukaBalasRepliesCommentsFeeds'])->name('sukai.reply_balasan.komentar');
 Route::delete("/hapus_komentar_feed/{id}", [VeedController::class, "hapus_komentar_feed"])->name('hapus.komentar.feed');
 Route::delete("/hapus_balasan_komentar_feed/{id}", [VeedController::class, "hapus_balasan_komentar_feed"])->name('hapus.balasan.komentar.feed');
-Route::post("/balas_komentar_balasan_feed/{pengirim_id}/{pemilik_id}/{comment_id}/{parent_id?}", [VeedController::class, 'balasRepliesCommentsFeeds'])->name('balas.replies.comments.feeds')->middleware("auth");
+Route::post("/balas_komentar_balasan_feed/{pemilik_id}/{comment_id}/{parent_id?}", [VeedController::class, 'balasRepliesCommentsFeeds'])->name('balas.replies.comments.feeds')->middleware("auth");
 // route lihat feed premium
 Route::get('/lihat_feed_premium/{video}', [VeedController::class, "lihat_feed_premium"])->name('lihat.feed.premium');
 //followers

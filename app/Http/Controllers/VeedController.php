@@ -356,11 +356,11 @@ class VeedController extends Controller
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
         }
     }
-    public function balasRepliesCommentsFeeds(Request $request, string $pengirim_id, string $pemilik_id, string $comment_id, string $parent_id = null)
+    public function balasRepliesCommentsFeeds(Request $request, string $pemilik_id, string $comment_id, string $parent_id = null)
     {
         if ($parent_id != null) {
             $store = balasRepliesCommentsFeeds::create([
-                "pengirim_reply_comment_id" => $pengirim_id,
+                "pengirim_reply_comment_id" => auth()->user()->id,
                 "pemilik_reply_comment_id" => $pemilik_id,
                 "reply_comment_id" => $comment_id,
                 "parent_id"=>$parent_id,
@@ -368,7 +368,7 @@ class VeedController extends Controller
             ]);
         } else {
             $store = balasRepliesCommentsFeeds::create([
-                "pengirim_reply_comment_id" => $pengirim_id,
+                "pengirim_reply_comment_id" => auth()->user()->id,
                 "pemilik_reply_comment_id" => $pemilik_id,
                 "reply_comment_id" => $comment_id,
                 "komentar" => $request->komentar

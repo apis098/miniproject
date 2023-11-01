@@ -2341,7 +2341,7 @@
                                                                                                                     <form
                                                                                                                         style="margin-left: -10px;"
                                                                                                                         id="formBalasRepliesCommentsFeeds2{{ $reply_comment->id }}"
-                                                                                                                        action="{{ route('balas.replies.comments.feeds', [Auth::user()->id, $reply_comment->user->id, $reply_comment->id, $reply_replyComment->id]) }}"
+                                                                                                                        action="{{ route('balas.replies.comments.feeds', [$reply_comment->user->id, $reply_comment->id, $reply_replyComment->id]) }}"
                                                                                                                         method="post">
                                                                                                                         @csrf
                                                                                                                         <div
@@ -2795,41 +2795,41 @@
                 });
             });
         }
-        function balas_replies_comments_feeds2(num) {
-            $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
-            $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
-                event.preventDefault();
-                let route = $(this).attr("action");
-                let data = new FormData($(this)[0]);
-                $.ajax({
-                    url: route,
-                    method: "POST",
-                    data: data,
-                    processData: false,
-                    contentType: false,
-                    headers: {
-                        "X-CSRF-Token": "{{ csrf_token() }}",
-                    },
-                    success: function success(response) {
-                        $("#inputBalasRepliesCommentsFeeds2" + num).val('');
-                        if (response.success) {
-                            iziToast.show({
-                                backgroundColor: '#a1dfb0',
-                                title: '<i class="fa-solid fa-check"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                                progressBarColor: 'dark',
-                            });
-                        }
-                    },
-                    error: function error(xhr, status, erorr) {
+        // function balas_replies_comments_feeds2(num) {
+        //     $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
+        //     $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
+        //         event.preventDefault();
+        //         let route = $(this).attr("action");
+        //         let data = new FormData($(this)[0]);
+        //         $.ajax({
+        //             url: route,
+        //             method: "POST",
+        //             data: data,
+        //             processData: false,
+        //             contentType: false,
+        //             headers: {
+        //                 "X-CSRF-Token": "{{ csrf_token() }}",
+        //             },
+        //             success: function success(response) {
+        //                 // $("#inputBalasRepliesCommentsFeeds2" + num).val('');
+        //                 if (response.success) {
+        //                     iziToast.show({
+        //                         backgroundColor: '#a1dfb0',
+        //                         title: '<i class="fa-solid fa-check"></i>',
+        //                         titleColor: 'dark',
+        //                         messageColor: 'dark',
+        //                         message: response.message,
+        //                         position: 'topCenter',
+        //                         progressBarColor: 'dark',
+        //                     });
+        //                 }
+        //             },
+        //             error: function error(xhr, status, erorr) {
 
-                    }
-                });
-            });
-        }
+        //             }
+        //         });
+        //     });
+        // }
         // komentar reply feed ajax
         function balas_komentar(num) {
             $("#formBalasKomentar" + num).off('submit');

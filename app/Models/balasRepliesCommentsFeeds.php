@@ -24,10 +24,6 @@ class balasRepliesCommentsFeeds extends Model
     {
         return $this->belongsTo(User::class, "pemilik_reply_comment_id");
     }
-    public function parent()
-    {
-        return $this->belongsTo(User::class, "parent_id");
-    }
     public function reply_comment()
     {
         return $this->belongsTo(reply_comment_veed::class, "reply_comment_id");
