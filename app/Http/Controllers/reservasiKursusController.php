@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiKursus;
 use App\Models\income_chefs;
-
+use App\Models\DetailSesiDibeli;
 class reservasiKursusController extends Controller
 {
     public function reservasiKursus(Request $request, int $id)
@@ -62,6 +62,7 @@ class reservasiKursusController extends Controller
     }
     public function transaksiKursus(int $id, int $user, int $chef, Request $request)
     {
+        dd($request->all());
         $amount = $request->amount;
         $pembeli = User::find($user);
         $saldo_pembeli = $pembeli->saldo;
@@ -71,7 +72,7 @@ class reservasiKursusController extends Controller
         if ($saldo_pembeli < $amount) {
             return redirect()->back()->with('error', 'Saldo anda tidak mencukupi!');
         } else {
-            TransaksiKursus::create([
+            $transaksiKursus = TransaksiKursus::create([
                 "course_id" => $id,
                 "chef_id" => $chef,
                 "user_id" => $user,
@@ -95,6 +96,13 @@ class reservasiKursusController extends Controller
                 "status" => "kursus",
                 "pemasukan" => $amount,
             ]);
+
+            foreach($request->sesi as $sesi) {
+                DetailSesiDibeli::create([
+                    "transaksi_kursus_id" => $transaksiKursus->id,
+                    "sesi_kursus_id" => $sesi
+                ]);
+            }
             return redirect()->route("detail.kursus", $id)->with('success', 'Sukses membeli kursus!');
         }
     }

@@ -57,7 +57,7 @@
         <h3 class="fw-bold mb-4">konten kursus</h3>
         @foreach ($course->sesi as $sesi)
             <div class="card mb-4">
-                <button class="accordion" data-price="{{ $sesi->harga_sesi }}">
+                <button class="accordion" onclick="pilihSesi({{ $sesi->id }})" data-price="{{ $sesi->harga_sesi }}">
                     <i class="fa-solid fa-chevron-down"></i>
                     <b style="margin-left: -70%;">{{ $sesi->judul_sesi }}</b>
                     <span>
@@ -109,6 +109,11 @@
 
     </div>
     <script>
+        function pilihSesi(num)
+        {
+            let inner = `<input type="hidden" name="sesi[]" value="${num}">`;
+            document.getElementById("inputList").innerHTML += inner;
+        }
         window.onload = function() {
             var acc = document.getElementsByClassName("accordion");
             var totalHargaElement = document.getElementById("totalHarga");
@@ -131,7 +136,6 @@
                     // Perbarui tampilan total harga
                     totalHargaElement.textContent = "Rp." + totalHarga;
                     document.getElementById('amount').value = totalHarga;
-                    document.getElementById('inputList').
                 });
             }
         };
