@@ -784,6 +784,10 @@
                                                         class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
                                                         data-bs-toggle="modal" data-bs-target="#gift"></i>
                                                 </a>
+                                            @elseif(!Auth::check())
+                                                <a type="button" class="text-dark me-2"><i
+                                                    class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" onclick="harusLogin()"></i>
+                                                </a>
                                             @else
                                                 <a type="button" data-bs-toggle="modal" data-bs-target="#income{{$item_video->id}}"
                                                     class="text-dark me-2">
