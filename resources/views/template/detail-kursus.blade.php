@@ -65,14 +65,10 @@
                                 {{ $detail_course->deskripsi_kursus }}
                             </p>
                             <div class="d-flex mb-2">
-                                <div class="rating">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <span style="color: blue;font-size:15px">(100 ratings)</span>
-                                    <span class="mx-3" style="font-size: 15px">200 siswa</span>
+                                <div>
+
+                                    <span style="color: blue;font-size:15px">({{ $detail_course->total_rating() }} ratings)</span>
+                                    <span class="mx-3" style="font-size: 15px">{{ $detail_course->total_murid() }} siswa</span>
                                 </div>
                             </div>
                             <p class="fw-bold">Dibuat oleh {{ $detail_course->user->name }}</p>
@@ -113,32 +109,7 @@
                                 });
                             }
                         </script>
-                        <script>
-                            const stars = document.querySelectorAll('.fas.fa-star');
-                            let rating = 0;
 
-                            stars.forEach((star, index) => {
-                                star.addEventListener('click', () => {
-                                    if (index === 0 && rating === 1) {
-                                        // Jika bintang pertama sudah dinyalakan dan diklik lagi, matikan bintang tersebut.
-                                        rating = 0;
-                                    } else {
-                                        rating = index + 1;
-                                    }
-
-                                    stars.forEach((s, i) => {
-                                        if (i <= index) {
-                                            s.classList.add('actived');
-                                        } else {
-                                            s.classList.remove('actived');
-                                        }
-                                    });
-
-                                    // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
-                                    console.log(`Anda memberi peringkat: ${rating} bintang`);
-                                });
-                            });
-                        </script>
                         <div>
                             <h3 class="fw-bold mb-3">Apa yang akan kamu pelajari</h3>
                             <div>
@@ -285,7 +256,7 @@
                                                     fill="#F4DD0A" stroke="black" />
                                             </g>
                                         </svg>
-                                        <p>0 (0 ulasan)</p>
+                                        <p>{{ $detail_course->rate() }} ({{ $detail_course->total_ulasan() }} ulasan)</p>
                                     </div>
                                 </div>
 
@@ -394,6 +365,7 @@
                             {{-- @if (Auth::check()) --}}
                             <form method="POST" action="{{ route('ulasan-rating-kursus.store', [$detail_course->id,$detail_course->user->id,Auth::user()->id]) }}">
                                 @csrf
+                                <input type="hidden" name="rating" id="ratingKursuses">
                                 <div class="input-group" style="margin-left: -15px;">
                                     <input type="text" id="reply" name="ulasan" maxlength="255"
                                         style="border-radius: 10px;width: 150px;" {{-- $userLog === 1 ? 'disabled' : '' --}}
@@ -403,6 +375,13 @@
                                         class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                         </div>
                     @endif
                 @endif
@@ -428,7 +407,7 @@
                                             d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
                                             fill="#F4DD0A" stroke="black" />
                                     </g>
-                                    <span class="mx-1">5</span>
+                                    <span class="mx-1">{{ $review->rating }}</span>
                                 </svg>
                             </div>
                             <p>
@@ -442,6 +421,33 @@
         </section>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+        <script>
+            const stars = document.querySelectorAll('.fas.fa-star');
+            let rating = 0;
+
+            stars.forEach((star, index) => {
+                star.addEventListener('click', () => {
+                    if (index === 0 && rating === 1) {
+                        // Jika bintang pertama sudah dinyalakan dan diklik lagi, matikan bintang tersebut.
+                        rating = 0;
+                    } else {
+                        rating = index + 1;
+                    }
+
+                    stars.forEach((s, i) => {
+                        if (i <= index) {
+                            s.classList.add('actived');
+                        } else {
+                            s.classList.remove('actived');
+                        }
+                    });
+                    document.getElementById("ratingKursuses").value = rating;
+                    // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
+                    console.log(`Anda memberi peringkat: ${rating} bintang`);
+
+                });
+            });
+        </script>
         <script>
             window.onload = function() {
                 var acc = document.getElementsByClassName("accordion");

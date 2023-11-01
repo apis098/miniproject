@@ -28,7 +28,7 @@ class kursus extends Model
     public function jenis_kursus() {
         return $this->hasMany(jenis_kursuses::class, 'id_kursus');
     }
-    public function sesi() 
+    public function sesi()
     {
         return $this->hasMany(sessionCourses::class, "course_id");
     }
@@ -38,11 +38,45 @@ class kursus extends Model
     public function IsBuy(int $id) {
         return TransaksiKursus::where('user_id', $id)->where('course_id', $this->id)->where('status_transaksi', 'diterima')->exists();
     }
-    
+
     public function ulasan() {
         return $this->hasMany(UlasanKursus::class, "course_id");
     }
-    public function rating() {
-        return $this->hasMany(RatingKursus::class, "course_id");
-    } 
+
+    public function jumlah_sesi()
+    {
+        return sessionCourses::where('course_id', $this->id)->count();
+    }
+    public function total_ulasan()
+    {
+        return UlasanKursus::where('course_id', $this->id)->count();
+    }
+    public function total_murid()
+    {
+        return TransaksiKursus::where('course_id', $this->id)->where('status_transaksi', 'diterima')->count();
+    }
+    public function total_rating()
+    {
+        return UlasanKursus::where('course_id', $this->id)->where('rating', '!=', 'null')->count();
+    }
+    public function rate()
+    {
+        $rate = UlasanKursus::where('course_id', $this->id)->sum('rating');
+        $jumlah_rate = UlasanKursus::where('course_id', $this->id)->where('rating', '!=', 'null')->count();
+        $hasil = $rate / $jumlah_rate;
+        return $hasil;
+    }
+    public function total_waktu_sesi()
+    {
+        $minute = sessionCourses::where('course_id', $this->id)->where('informasi_lama_sesi', 'menit')->sum('lama_sesi');
+        $hours = sessionCourses::where('course_id', $this->id)->where('informasi_lama_sesi', 'jam')->sum('lama_sesi');
+        $jam = $hours * 60;
+        $total = $minute + $jam;
+        if ($total >= 60) {
+            $hasil = number_format($total/60, 1) .  " jam";
+        } else {
+            $hasil = $total . " menit";
+        }
+        return $hasil;
+    }
 }

@@ -310,7 +310,7 @@
                                             <span>
                                                 <div id="lama_sesi{{ $sesi->id }}" class="me-2">
                                                     @if ($sesi->lama_sesi >= 60)
-                                                        {{ $sesi->lama_sesi / 60 . ' ' . $sesi->informasi_lama_sesi }}
+                                                        {{ $sesi->lama_sesi / 60 . ' jam' }}
                                                     @else
                                                         {{ $sesi->lama_sesi . ' ' . $sesi->informasi_lama_sesi }}
                                                     @endif
@@ -357,7 +357,7 @@
                                                 <div class="d-flex justify-content-end ">
                                                     <span class="me-3" id="detail_Sesi_lama_sesi{{ $angka }}">
                                                         @if ($detail_sesi->lama_sesi >= 60)
-                                                            {{ $detail_sesi->lama_sesi / 60 . ' ' . $detail_sesi->informasi_lama_sesi }}
+                                                            {{ $detail_sesi->lama_sesi / 60 . ' jam' }}
                                                         @else
                                                             {{ $detail_sesi->lama_sesi . ' ' . $detail_sesi->informasi_lama_sesi }}
                                                         @endif

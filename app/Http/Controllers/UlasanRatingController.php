@@ -45,8 +45,10 @@ class UlasanRatingController extends Controller
         "course_id" => $course,
         "chef_id" => $chef,
         "user_id" => $user,
+        "rating" => $request->rating,
         "ulasan" => $request->ulasan
       ]);
+
       return redirect()->back()->with('success', 'Sukses memberikan ulasan pada kursus ini!');
     }
 
