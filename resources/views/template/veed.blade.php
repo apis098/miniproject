@@ -2089,30 +2089,30 @@
                                                                                                                         @if ($reply_comment->likeReplyCommentVeed(auth()->user()->id))
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                                id="form_like_replies_reply{{ $reply_comment->id }}"
                                                                                                                                 method="POST">
                                                                                                                                 @csrf
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     class="btn"
-                                                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})">
+                                                                                                                                    onclick="like_replies_reply({{ $reply_comment->id }})">
                                                                                                                                     <i class="fa-solid text-warning fa-thumbs-up"
-                                                                                                                                        id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                        id="icon_like_replies_reply{{ $reply_comment->id }}"></i>
                                                                                                                                 </button>
 
                                                                                                                             </form>
                                                                                                                         @else
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                                id="form_like_replies_reply{{ $reply_comment->id }}"
                                                                                                                                 method="POST">
                                                                                                                                 @csrf
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     class="btn"
-                                                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})">
+                                                                                                                                    onclick="like_replies_reply({{ $reply_comment->id }})">
                                                                                                                                     <i class="fa-regular fa-thumbs-up"
-                                                                                                                                        id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                        id="icon_like_replies_reply{{ $reply_comment->id }}"></i>
                                                                                                                                 </button>
                                                                                                                             </form>
                                                                                                                         @endif
@@ -2126,7 +2126,7 @@
                                                                                                                         &nbsp;
                                                                                                                     @endif
                                                                                                                     <span
-                                                                                                                        id="countLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                        id="count_like_replies_reply{{ $reply_comment->id }}"
                                                                                                                         class="my-auto"
                                                                                                                         style="margin-left: -1%;">
                                                                                                                         {{ $countLike2sd }}
@@ -2762,7 +2762,35 @@
                 });
             });
         }
-
+        function like_replies_reply(num) {
+            $("#form_like_replies_reply" + num).off("submit");
+            $("#form_like_replies_reply" + num).submit(function(event) {
+                event.preventDefault();
+                let rutes = $(this).attr("action");
+                $.ajax({
+                    url: rutes,
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        if (response.success) {
+                            if (response.like) {
+                                $("#icon_like_replies_reply" + num).removeClass("fa-regular");
+                                $("#icon_like_replies_reply" + num).addClass("fa-solid");
+                                $("#icon_like_replies_reply" + num).addClass("text-warning");
+                                $("#count_like_replies_reply" + num).text(response.countLike);
+                            } else {
+                                $("#icon_like_replies_reply" + num).removeClass("fa-solid");
+                                $("#icon_like_replies_reply" + num).addClass("fa-regular");
+                                $("#icon_like_replies_reply" + num).removeClass("text-warning");
+                                $("#count_like_replies_reply" + num).text(response.countLike);
+                            }
+                        }
+                    }
+                });
+            });
+        }
         function balas_replies_comments_feeds2(num) {
             $("#formBalasRepliesCommentsFeeds2" + num).off("submit");
             $("#formBalasRepliesCommentsFeeds2" + num).submit(function(event) {
