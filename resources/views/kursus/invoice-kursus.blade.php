@@ -24,7 +24,7 @@
                         <div class="invoice-title">
                             <div class="mb-4">
                                 <h2 class="mb-1">Invoice</h2>
-                                <p class="mb-1 ">Pembuat kursus :</p>
+                                <p class="mb-1 ">Pembuat kursus : {{ $chef->name }}</p>
                             </div>
                             <div>
 
@@ -40,8 +40,8 @@
                             <div class="col-sm-6">
                                 <div class="text-sm-end">
                                     <h5 class="font-size-16 ">Profile pembuat kursus</h5>
-                                    <span class="font-size-15 fw-bold">Alexandra daddario</span>
-                                    <p class="mb-3">Alexandracantik@gmail.com</p>
+                                    <span class="font-size-15 fw-bold">{{ $chef->name }}</span>
+                                    <p class="mb-3">{{ $chef->email }}</p>
                                 </div>
                             </div>
                         </div>
@@ -49,8 +49,8 @@
                             <div class="col-sm-6">
                                 <div class="">
                                     <h5 class="font-size-16 ">pembeli kursus</h5>
-                                    <span class="font-size-15 fw-bold">Preston Miller</span>
-                                    <p class="mb-1">PrestonMiller@armyspy.com</p>
+                                    <span class="font-size-15 fw-bold">{{ $user->name }}</span>
+                                    <p class="mb-1">{{ $user->email }}</p>
                                 </div>
                             </div>
                         </div>
@@ -67,15 +67,17 @@
                                             <th style="width: 120px;">Harga</th>
                                         </tr>
                                     </thead>
-                                    @foreach ($transaksi_kursus as $detail_transaksiKursus)
                                      <tr>
                                         <td>{{ $detail_transaksiKursus->created_at }}</td>
+                                        <td>
+                                            @foreach ($detail_sesiDibeli as $sesi_dibeli)
+                                             {{ $sesi_dibeli->judul_sesi }},
+                                            @endforeach
+                                        </td>
                                         <td>{{ $detail_transaksiKursus->course->nama_kursus }}</td>
-                                        <td>cara memanggang daging</td>
-                                        <td>Rp. {{ $detail }}</td>
+                                        <td>Rp. {{ number_format($detail_transaksiKursus->harga, 2, ',', '.') }}</td>
 
                                      </tr>
-                                    @endforeach
                                 </table>
                             </div>
                         </div>
