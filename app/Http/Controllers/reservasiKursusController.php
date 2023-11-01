@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiKursus;
 use App\Models\income_chefs;
 use App\Models\DetailSesiDibeli;
+use App\Models\sessionCourses;
 class reservasiKursusController extends Controller
 {
     public function reservasiKursus(Request $request, int $id)
@@ -57,8 +58,14 @@ class reservasiKursusController extends Controller
 
     public function invoiceKursus(int $id)
     {
-        $transaksi_kursus = TransaksiKursus::where('course_id', $id)->where('user_id', Auth::user()->id)->get();
-        return view('kursus.invoice-kursus', compact('transaksi_kursus'));
+        $detail_transaksiKursus = TransaksiKursus::where('course_id', $id)->where('user_id', Auth::user()->id)->first();
+        $id2 = $detail_transaksiKursus->id;
+        $detail_sesiDibeli = sessionCourses::whereHas('DetailSesiDibeli', function ($query) use ($id2) {
+            $query->where('transaksi_kursus_id', $id2);
+        })->get();
+        $user = User::find($detail_transaksiKursus->user_id);
+        $chef = User::find($detail_transaksiKursus->chef_id);
+        return view('kursus.invoice-kursus', compact('detail_transaksiKursus', 'detail_sesiDibeli', 'user', 'chef'));
     }
     public function transaksiKursus(int $id, int $user, int $chef, Request $request)
     {
