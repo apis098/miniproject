@@ -10,7 +10,7 @@ class UlasanKursus extends Model
     use HasFactory;
     protected $table = "ulasan_kursuses";
     protected $fillable = [
-        "course_id", "user_id", "chef_id", "ulasan"
+        "course_id", "user_id", "chef_id", "ulasan", 'rating'
     ];
     public function course() {
         return $this->belongsTo(kursus::class, "course_id");
