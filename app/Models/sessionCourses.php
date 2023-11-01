@@ -24,4 +24,8 @@ class sessionCourses extends Model
     {
         return $this->hasMany(detailSessionCourses::class, "session_course_id");
     }
+    public function DetailSesiDibeli()
+    {
+        return $this->hasMany(DetailSesiDibeli::class, "sesi_kursus_id");
+    }
 }

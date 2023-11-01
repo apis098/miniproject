@@ -26,4 +26,8 @@ class TransaksiKursus extends Model
     public function user() {
         return $this->belongsTo(User::class, "user_id");
     }
+    public function DetailSesiDibeli()
+    {
+        return $this->hasMany(DetailSesiDibeli::class, "transaksi_kursus_id");
+    }
 }

@@ -58,7 +58,7 @@ Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_templa
 Route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
 Route::get('/reservasi-kursus/{id}',[reservasiKursusController::class,'reservasiKursus'])->name('reservasi.kursus');
 Route::post('/transaksi-kursus/{id}/{user}/{chef}', [reservasiKursusController::class, 'transaksiKursus'])->name('transaksi.kursus');
-Route::get('/invoice-kursus',[reservasiKursusController::class,'invoiceKursus'])->name('invoice.kursus');
+Route::get('/invoice-kursus/{id}',[reservasiKursusController::class,'invoiceKursus'])->name('invoice.kursus');
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 

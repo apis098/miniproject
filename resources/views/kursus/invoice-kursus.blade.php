@@ -24,7 +24,7 @@
                         <div class="invoice-title">
                             <div class="mb-4">
                                 <h2 class="mb-1">Invoice</h2>
-                                <p class="mb-1 ">Pembuat kursus : Alexandra daddario</p>
+                                <p class="mb-1 ">Pembuat kursus :</p>
                             </div>
                             <div>
 
@@ -67,13 +67,15 @@
                                             <th style="width: 120px;">Harga</th>
                                         </tr>
                                     </thead>
+                                    @foreach ($transaksi_kursus as $detail_transaksiKursus)
                                      <tr>
-                                        <td>20 september 2021</td>
-                                        <td>memanggang sapi</td>
+                                        <td>{{ $detail_transaksiKursus->created_at }}</td>
+                                        <td>{{ $detail_transaksiKursus->course->nama_kursus }}</td>
                                         <td>cara memanggang daging</td>
-                                        <td>Rp.20.000</td>
+                                        <td>Rp. {{ $detail }}</td>
 
                                      </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>

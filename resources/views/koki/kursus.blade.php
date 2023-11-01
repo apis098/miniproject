@@ -546,10 +546,15 @@
                                                         {{ $item->jenis_kursus }}
                                                     @endforeach
                                                 </strong> <br>
+                                                <div class="d-flex justify-content-between">
                                                 <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn text-start fst-normal"
                                                     style="font-family: poppins;border:none;">
                                                     {{ $mycourse->nama_kursus }}
                                                 </a>
+                                                <a href="/invoice-kursus/{{ $mycourse->id }}">
+                                                <i class="fa-solid fa-file-invoice"></i>
+                                                </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

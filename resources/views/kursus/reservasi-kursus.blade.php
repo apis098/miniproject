@@ -100,6 +100,7 @@
             <form action="{{ route('transaksi.kursus', [$course->id, Auth::user()->id, $course->users_id]) }}" method="post">
             @csrf
             <input type="hidden" name="amount" id="amount">
+            <div id="inputList"></div>
             <button type="submit"
                 style="height: 40px; background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-left: 30px;"
                 class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
@@ -130,6 +131,7 @@
                     // Perbarui tampilan total harga
                     totalHargaElement.textContent = "Rp." + totalHarga;
                     document.getElementById('amount').value = totalHarga;
+                    document.getElementById('inputList').
                 });
             }
         };

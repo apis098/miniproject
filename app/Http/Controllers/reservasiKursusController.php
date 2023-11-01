@@ -55,11 +55,10 @@ class reservasiKursusController extends Controller
         return view('kursus.reservasi-kursus', compact('course', 'categorytopup', 'idAdmin', 'messageCount', 'admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
-    public function invoiceKursus(Request $request)
+    public function invoiceKursus(int $id)
     {
-
-
-        return view('kursus.invoice-kursus');
+        $transaksi_kursus = TransaksiKursus::where('course_id', $id)->where('user_id', Auth::user()->id)->get();
+        return view('kursus.invoice-kursus', compact('transaksi_kursus'));
     }
     public function transaksiKursus(int $id, int $user, int $chef, Request $request)
     {
