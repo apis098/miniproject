@@ -81,7 +81,7 @@
             </div>
         </div>
 
-        <div class="row mt-3">
+        <div class="row mt-3 mb-5">
             <div class="col-lg-12">
                 <div class="mx-3" style="width: 94%;">
                     <div class="panel h-full w-full">
@@ -126,19 +126,29 @@
 
         <!-- Widgets Start -->
 
-        <div class="container-fluid pt-4 mr-5">
-            <div class="ms-1" style="display: flex;">
-                <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
-            </div>
+
             {{-- {{$komentar_feed->count() . " " . $komentar_resep->count()}} --}}
             <style>
                 .card-body {
                     overflow-y: auto;
                     max-height: 350px;
                 }
+                
+
+        @media (min-width: 992px){
+            .col-lg-6 {
+                -ms-flex: 0 0 50%;
+                flex: 0 0 48.555555%;
+                max-width: 50%;
+            }
+        }
+
             </style>
-            <div class="d-flex flex-wrap"> <!-- Gunakan flex-wrap untuk mengatur kolom -->
-                <div class="col-12 col-lg-6 mb-3"> <!-- Menentukan lebar kolom menggunakan col-12 dan col-lg-6 -->
+            <div class="d-flex flex-wrap mx-2"> <!-- Gunakan flex-wrap untuk mengatur kolom -->
+                <div class="col-12 col-lg-6 mb-3">
+                        <div class="ms-1">
+                            <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
+                        </div> <!-- Menentukan lebar kolom menggunakan col-12 dan col-lg-6 -->
                     <div class="card p-4 mt-2 mb-2"
                         style="border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
