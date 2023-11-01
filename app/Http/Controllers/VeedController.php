@@ -44,6 +44,7 @@ class VeedController extends Controller
         $recipes = reseps::latest()->paginate(5);
         $course = kursus::latest()->paginate(5);
         $messageCount = [];
+        $income =[];    
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(5)->get();
         if ($userLogin) {

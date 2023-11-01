@@ -847,7 +847,7 @@
                                                             <div class="modal-body">
                                                                 <div class="d-flex ">
                                                                     <label for="inputKecil" class="col-lg-3 my-1">
-                                                                        <div class="card border-2" id="smallGift"
+                                                                        <div class="card border-2 scale" id="smallGift"
                                                                             data-card-selected="false"
                                                                             style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
                                                                             <img src="{{ asset('img/kecil.png') }}"
@@ -870,7 +870,7 @@
                                                                     </label>
 
                                                                     <label for="mediumInput" class="col-lg-3 my-1">
-                                                                        <div class="card border-2" id="mediumGift"
+                                                                        <div class="card border-2 scale" id="mediumGift"
                                                                             data-card-selected="false"
                                                                             style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
                                                                             <img src="{{ asset('img/sedang.png') }}"
@@ -893,7 +893,7 @@
                                                                     </label>
 
                                                                     <label for="extraInput" class="col-lg-3 my-1">
-                                                                        <div class="card border-2" id="extraGift"
+                                                                        <div class="card border-2 scale" id="extraGift"
                                                                             data-card-selected="false"
                                                                             style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
                                                                             <img src="{{ asset('img/besar.png') }}"
@@ -917,7 +917,7 @@
 
                                                                     <label for="moreInput" class="col-lg-3 my-1">
                                                                         <button type="button" id="moreGift"
-                                                                            class="card border-2"
+                                                                            class="card border-2 scale"
                                                                             data-card-selected="false"
                                                                             style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
                                                                             <img src="{{ asset('img/lainnya.png') }}"

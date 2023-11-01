@@ -87,6 +87,10 @@ class upload_video extends Model
         return $this->hasMany(income_chefs::class, "feed_id");
     }
     public function incomes(){
-        return income_chefs::where('feed_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
-    }
+        if(Auth::check()){
+            return income_chefs::where('feed_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
+        }else{
+            return false;
+        }
+    }   
 }
