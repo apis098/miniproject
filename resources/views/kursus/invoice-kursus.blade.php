@@ -18,13 +18,18 @@
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+        <h2 style="background-color: #F7941E" class="mb-1">
+            <div class="container">
+            <span style="background-color: white;" class="px-4">Invoice</span>
+            </div>
+        </h2>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                        <div class="invoice-title">
+                        <div class="invoice-title mb-5">
                             <div class="mb-4">
-                                <h2 class="mb-1">Invoice</h2>
-                                <p class="mb-1 ">Pembuat kursus : {{ $chef->name }}</p>
+
+                                <h3 class="mb-1" style="font-weight: 600;">Pembuat kursus : {{ $chef->name }}</h3>
                             </div>
                             <div>
 
@@ -46,36 +51,48 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <div class="col-sm-6">
-                                <div class="">
-                                    <h5 class="font-size-16 ">pembeli kursus</h5>
+                            <div class="col-sm-12">
+                                <div class="d-flex justify-content-between">
+                                    <div class="">
+                                    <h5 class="font-size-16 ">Profile pengguna</h5>
                                     <span class="font-size-15 fw-bold">{{ $user->name }}</span>
                                     <p class="mb-1">{{ $user->email }}</p>
+                                    </div>
+                                    <div class="">
+                                    <h5 class="font-size-16">Nama kursus</h5>
+                                    <p class="mb-1">{{ $detail_transaksiKursus->course->nama_kursus }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <hr class="my-2">
+                        <div class="my-2" style="background-color: #F7941E;height:5px;width:100%;"></div>
                         <div class="py-2">
                             <div class="table-responsive">
                                 <table class="table table-borderless align-middle table-nowrap table-centered mb-0">
                                     <thead>
                                         <tr>
-                                            <th>tanggal</th>
+                                            <th>Tanggal Dibeli</th>
                                             <th>Nama sesi</th>
-                                            <th>Nama kursus</th>
-
+                                            <th>Tanggal Dimulai</th>
                                             <th style="width: 120px;">Harga</th>
                                         </tr>
                                     </thead>
+                                    @foreach ($detail_sesiDibeli as $sesi_dibeli)
+
                                      <tr>
                                         <td>{{ $detail_transaksiKursus->created_at }}</td>
                                         <td>
-                                            @foreach ($detail_sesiDibeli as $sesi_dibeli)
                                              {{ $sesi_dibeli->judul_sesi }},
-                                            @endforeach
                                         </td>
-                                        <td>{{ $detail_transaksiKursus->course->nama_kursus }}</td>
-                                        <td>Rp. {{ number_format($detail_transaksiKursus->harga, 2, ',', '.') }}</td>
+                                        <td>{{ $sesi_dibeli->tanggal . " " . $sesi_dibeli->waktu }}</td>
+                                        <td>Rp. {{ number_format($sesi_dibeli->harga_sesi, 2, ',', '.') }}</td>
+                                     </tr>
+                                     @endforeach
+                                     <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span style="font-weight: 700;">Total</span> <br> Rp. {{ number_format($detail_sesiDibeli->sum('harga_sesi'), 2, ',', '.') }}</td>
                                      </tr>
                                 </table>
                             </div>
