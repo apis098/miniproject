@@ -39,5 +39,5 @@ class balasRepliesCommentsFeeds extends Model
     public function countLikeRepliesCommentsFeeds(string $id)
     {
         return likeBalasRepliesCommentsFeeds::where("user_id", $id)->where("reply_comment_id", $this->id)->count();
-    }
+    }   
 }

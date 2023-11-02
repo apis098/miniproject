@@ -2090,7 +2090,7 @@
                                                                                                                     style="margin-top:-4%; width:112%; margin-left:-2%;">
 
                                                                                                                     @if (Auth::user())
-                                                                                                                        @if ($reply_comment->likeReplyCommentVeed(auth()->user()->id))
+                                                                                                                        @if ($reply_comment->likeRepliesReply(auth()->user()->id))
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                                                 id="form_like_replies_reply{{ $reply_comment->id }}"
@@ -2129,12 +2129,19 @@
                                                                                                                         &nbsp;
                                                                                                                         &nbsp;
                                                                                                                     @endif
+                                                                                                                    @php
+                                                                                                                    $countLike3sd = App\Models\likeBalasRepliesCommentsFeeds::query()
+                                                                                                                        ->where('reply_comment_feed_id', $reply_replyComment->id)
+                                                                                                                        ->where('feed_id', $item_video->id)
+                                                                                                                        ->count();
+                                                                                                                    @endphp
                                                                                                                     <span
                                                                                                                         id="count_like_replies_reply{{ $reply_comment->id }}"
                                                                                                                         class="my-auto"
                                                                                                                         style="margin-left: -1%;">
-                                                                                                                        {{ $countLike2sd }}
+                                                                                                                        {{ $countLike3sd }}
                                                                                                                     </span>
+                                                                                                                    
                                                                                                                     <div
                                                                                                                         class="m-2 mr-auto">
                                                                                                                         {{-- modal-modal --}}

@@ -11,7 +11,8 @@ class likeBalasRepliesCommentsFeeds extends Model
     protected $table = "like_balas_replies_comments_feeds";
     protected $fillable = [
         "user_id",
-        "reply_comment_feed_id"
+        "reply_comment_feed_id",
+        "feed_id",
     ];
     public function user()
     {
