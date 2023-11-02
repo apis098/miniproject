@@ -456,11 +456,12 @@ class KokiController extends Controller
         Storage::delete("public/" . $feed->upload_video);
         $feed->delete();
         $countFeed = upload_video::where("users_id", $id)->exists();
-        return response()->json([
-            "success" => true,
-            "message" => "Sukses menghapus data!",
-            "countFeed" => $countFeed
-        ]);
+        return redirect()->back()->with('success','Berhasil menghapus postingan');
+        // return response()->json([
+        //     "success" => true,
+        //     "message" => "Sukses menghapus data!",
+        //     "countFeed" => $countFeed
+        // ]);
     }
     public function updatePassword(Request $request)
     {
