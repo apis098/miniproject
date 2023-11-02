@@ -145,9 +145,9 @@
 
             </style>
             <div class="d-flex flex-wrap"> <!-- Gunakan flex-wrap untuk mengatur kolom -->
-                <div class="col-12 col-lg-6 mb-3">
+                <div class="col-12 col-lg-6 mb-3 mx-1">
                         <div class="ms-1">
-                            <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
+                            <h5 class="fw-bold mb-3">Komentar Feed Terbaru</h5>
                         </div> <!-- Menentukan lebar kolom menggunakan col-12 dan col-lg-6 -->
                     <div class="card p-4 mt-2 mb-2"
                         style="border-radius: 15px; border: 1px black solid">
@@ -188,7 +188,7 @@
                 </div>
                 <div class="col-12 col-lg-6 mb-3"> <!-- Menentukan lebar kolom menggunakan col-12 dan col-lg-6 -->
                 <div class="mx-1">
-                    <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Resep Terbaru</h5>
+                    <h5 class="fw-bold mb-3">Komentar Resep Terbaru</h5>
                     <div class="card p-4"
                         style="border-radius: 15px; border: 1px black solid">
                         <div class="card-body ">
