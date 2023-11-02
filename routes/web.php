@@ -250,3 +250,5 @@ Route::get("/leafletjs", function () {
 
 // route untuk ulasan dan rating pada kursus
 Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingController::class, 'store'])->name('ulasan-rating-kursus.store');
+// route favorite atau simpan kursus
+Route::post('/favorite/kursus/{chef}/{course}', [KursusController::class, 'favoriteKursus'])->name('favorite.kursus');

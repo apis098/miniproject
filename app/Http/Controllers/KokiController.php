@@ -346,7 +346,10 @@ class KokiController extends Controller
         $kursus_dipesan = kursus::whereHas('transaksi',  function ($query) use ($id_user) {
             $query->where('user_id', $id_user);
         })->get();
-        return view('koki.kursus', compact("kursus_dipesan","koki", "kursus_sendiri","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+        $kursus_disimpan = kursus::whereHas('favorite', function ($query) use ($id_user) {
+            $query->where('user_id_from', $id_user);
+        })->get();
+        return view('koki.kursus', compact("kursus_disimpan","kursus_dipesan","koki", "kursus_sendiri","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
     }
 
     public function kursusContent(string $id)

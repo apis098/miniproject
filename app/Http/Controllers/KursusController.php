@@ -534,4 +534,26 @@ class KursusController extends Controller
     {
         //
     }
+    public function favoriteKursus($chef, $course)
+    {
+        $check = favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->exists();
+        if ($check) {
+            $data = favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->first();
+            $data->delete();
+            return response()->json([
+                'favorite' => false,
+                'unfavorite' => true,
+            ]);
+        } else {
+            favorite::create([
+                'kursus_id' => $course,
+                'user_id' => $chef,
+                'user_id_from' => Auth::user()->id
+            ]);
+            return response()->json([
+                'favorite' => true,
+                'unfavorite' => false,
+            ]);
+        }
+    }
 }

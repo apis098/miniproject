@@ -284,9 +284,9 @@
                                     <span class="fw-bold">Waktu Kursus Berakhir:</span>
                                     <p>{{ $detail_course->tanggal_berakhir_kursus }}</p>
                                     <span class="fw-bold">Harga rata-rata per sesi:</span>
-                                    <p>Rp. {{ number_format($rata2_harga, 2, '.', ',') }}</p>
+                                    <p>Rp. {{ number_format($rata2_harga, 2, ',', '.') }}</p>
                                 </div>
-                                <div class="text-center mt-3">
+                                <div class="text-center mt-3 d-flex justify-content-center container mx-2">
                                     @if (Auth::user())
                                         {{-- untuk koki pemilik kursus --}}
                                         @if (Auth::user()->id == $detail_course->user->id)
@@ -303,14 +303,17 @@
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                             class="ms-3 me-3">Kursus sudah dibeli</b></a>
                                                 @else
+                                                    @if ($detail_course->tanggal_dimulai_kursus >= Carbon\Carbon::now())
                                                     <a href="{{ route('reservasi.kursus', $detail_course->id) }}"
                                                         type="button" class="btn text-light zoom-effects"
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                            class="ms-3 me-3">@if ($detail_course->tanggal_dimulai_kursus >= Carbon\Carbon::now())
-                                                            Reservasi Kursus
+                                                            class="ms-3 me-3">Reservasi Kursus</a>
                                                             @else
-                                                            Kursus Kadaluarsa
-                                                            @endif</b></a>
+                                                            <a href=""
+                                                                type="button" class="btn text-light zoom-effects"
+                                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                    class="ms-3 me-3">Kursus Kadaluarsa</a>
+                                                            @endif
 
                                                 @endif
                                             @else
@@ -318,9 +321,7 @@
                                                     style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                         class="ms-3 me-3">Belum ada sesi kursus</b></a>
                                             @endif
-                                            <button type="submit" class="btn text-dark"
-                                                style="border: 1px solid #000; border-radius: 15px;"><b
-                                                    class="ms-3 me-3">Tambah favorit</b></button>
+
                                         @endif
                                     @else
                                         {{-- untuk yang belum login --}}
@@ -328,7 +329,11 @@
                                             style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                 class="ms-3 me-3">Reservasi kursus</b></button>
                                     @endif
+                                    <button type="submit" class="btn text-dark"
+                                    style="border: 1px solid #000; border-radius: 15px;"><b
+                                        class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()" class="fa-regular fa-bookmark"></i></b></button>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -466,6 +471,7 @@
                 });
             });
         </script>
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script>
             window.onload = function() {
                 var acc = document.getElementsByClassName("accordion");
@@ -484,6 +490,29 @@
                     });
                 }
             };
+
+            function favoriteKursus()
+            {
+                $.ajax({
+                    url: "{{ route('favorite.kursus', [$detail_course->user->id, $detail_course->id]) }}",
+                    method: "POST",
+                    headers: {
+                        "X-Csrf-Token": "{{ csrf_token() }}"
+                    },
+                    success: function success(response) {
+                        if (response.favorite) {
+                            $("#bookmark").removeClass("fa-reguler");
+                            $("#bookmark").addClass("fa-solid");
+                        } else if(response.unfavorite) {
+                            $("#bookmark").removeClass("fa-solid");
+                            $("#bookmark").addClass("fa-reguler");
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            }
         </script>
 
     @endsection

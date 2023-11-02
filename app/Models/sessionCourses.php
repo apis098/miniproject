@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class sessionCourses extends Model
 {
@@ -29,5 +30,18 @@ class sessionCourses extends Model
     public function DetailSesiDibeli()
     {
         return $this->hasMany(DetailSesiDibeli::class, "sesi_kursus_id");
+    }
+    public function selisihTanggal()
+    {
+        $timenow = Carbon::now();
+        // format tanggal dan waktu
+        $tanggal = Carbon::parse($this->tanggal);
+        $waktu = Carbon::parse($this->waktu);
+        $tanggalWaktu = $tanggal->setTime($waktu->hour, $waktu->minute);
+        if ($timenow >= $tanggalWaktu) {
+            return "Kadaluarsa";
+        } else {
+        return "Belum Kadaluarsa";
+        }
     }
 }

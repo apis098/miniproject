@@ -463,7 +463,7 @@
                         </div>
                         {{-- start tab 1 --}}
                         <div class="d-flex">
-                            @foreach ($kursus_sendiri as $mycourse)
+                            @foreach ($kursus_disimpan as $mycourse)
                                 <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
                                     <div class="row">
                                         <div class="col-12">

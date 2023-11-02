@@ -54,19 +54,30 @@
             <p>{{ $course->deskripsi_kursus }}</p>
         </div>
 
-        <h3 class="fw-bold mb-4">Sesi Kursus</h3>
+        <h3 class="fw-bold">Sesi Kursus</h3>
+        <div class="mb-4">
+        <small>Nb: Tekan sesi untuk memilih sesi, jika warna sesi tidak berubah berarti sesi sudah kadaluarsa.</small>
+        </div>
         @foreach ($course->sesi as $sesi)
             <div class="card mb-4">
-                <button class="accordion" onclick="pilihSesi({{ $sesi->id }})" data-price="{{ $sesi->harga_sesi }}">
+                <button @if ($sesi->selisihTanggal() != "Kadaluarsa")
+                    class="accordion pilihSesi"
+                    onclick="pilihSesi({{ $sesi->id }})"
+                @else
+                class="accordion"
+                @endif
+                data-price="{{ $sesi->harga_sesi }}">
                     <i class="fa-solid fa-chevron-down"></i>
                     <b style="margin-left: -70%;">{{ $sesi->judul_sesi }} <br>
                     <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small></b>
                     <span>
                         @if ($sesi->lama_sesi >= 60)
-                            {{ $sesi->lama_sesi / 60 }}
+                            {{ number_format($sesi->lama_sesi / 60, 1) }}
+                            jam
                         @else
                             {{ $sesi->lama_sesi }}
-                        @endif {{ $sesi->informasi_lama_sesi }}
+                            menit
+                        @endif
                         <br> Rp. {{ number_format($sesi->harga_sesi, 2, ',', '.') }}
                     </span>
                 </button>
@@ -116,7 +127,7 @@
             document.getElementById("inputList").innerHTML += inner;
         }
         window.onload = function() {
-            var acc = document.getElementsByClassName("accordion");
+            var acc = document.getElementsByClassName("pilihSesi");
             var totalHargaElement = document.getElementById("totalHarga");
             var totalHarga = 0;
 
@@ -140,5 +151,6 @@
                 });
             }
         };
+
     </script>
 @endsection
