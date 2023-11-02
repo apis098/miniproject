@@ -1761,7 +1761,7 @@
                                                                                                                     &nbsp;
                                                                                                                 @endif
                                                                                                                 <span
-                                                                                                                    id="countLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                    id="like-count{{ $reply_comment->id }}"
                                                                                                                     class="my-auto"
                                                                                                                     style="margin-left: -1%;">
                                                                                                                     {{ $countLike2sd }}
@@ -3051,12 +3051,12 @@
                                 $("#iconLikeReplyComment" + num).removeClass("fa-regular");
                                 $("#iconLikeReplyComment" + num).addClass("fa-solid");
                                 $("#iconLikeReplyComment" + num).addClass("text-orange");
-                                $("#countLikeReplyComment" + num).text(response.countLike);
+                                $("#like-count" + num).text(response.countLike);
                             } else {
                                 $("#iconLikeReplyComment" + num).removeClass("fa-solid");
                                 $("#iconLikeReplyComment" + num).addClass("fa-regular");
                                 $("#iconLikeReplyComment" + num).removeClass("text-orange");
-                                $("#countLikeReplyComment" + num).text(response.countLike);
+                                $("#like-count" + num).text(response.countLike);
                             }
                         }
                     }

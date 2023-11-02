@@ -286,7 +286,6 @@ class VeedController extends Controller
                 "veed_id" => $veed_id
             ]);
             $countLike = like_reply_comment_veed::query()
-                ->where('users_id', $user_id)
                 ->where('veed_id', $veed_id)
                 ->where('reply_comment_veed_id', $reply_comment_id)
                 ->count();
@@ -302,7 +301,6 @@ class VeedController extends Controller
                 ->where("veed_id", $veed_id)
                 ->delete();
             $countLike = like_reply_comment_veed::query()
-                ->where('users_id', $user_id)
                 ->where('veed_id', $veed_id)
                 ->where('reply_comment_veed_id', $reply_comment_id)
                 ->count();
