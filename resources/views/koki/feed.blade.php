@@ -293,78 +293,90 @@
     </style>
 
     <div class="d-flex justify-content-start" style="overflow-x: hidden">
-        <div class="col-12 my-4 ml-4">
+        <div class="col-12 my-4 kanans">
 
             <style>
-                /* untuk tampilan mobile */
-                @media (min-width: 300px) and (max-width: 860px) {
+                 @media (min-width:290px) and (max-width: 340px) {
                     a.kiri {
                         margin-left: 90px;
                     }
-
-                    /* h5.mas {
-                                margin-left: 35px;
-                            }
-
-                            div.besar {
-                                width: 100%;
-                            } */
+                    button.atas {
+                        margin-top : -6px;
+                    }
+                    svg.kanan {
+                       /* margin-right : 100%; */
+                       /* margin-top: px; */
+                       margin-right: -100px;
+                    }
+                    button.kanan {
+                        margin-right: -40px;
+                    }
+                    video.besar {
+                        width: 450%;
+                    }
+                    div.col-9 {
+                        margin-left: 20px;
+                    }
+                    div.tek {
+                        width: 127%;
+                    }
+                    a.tabst {
+                        margin-left: -40px;
+                    }
+                 }
+                /* untuk tampilan mobile */
+                @media (min-width: 350px) and (max-width: 860px) {
+                    a.kiri {
+                        margin-left: 90px;
+                    }
+                    button.atas {
+                        margin-top : -6px;
+                    }
+                    svg.kanan {
+                       margin-left : 200%;
+                    }
+                    button.kanan {
+                        margin-right: -60px;
+                    }
+                    video.besar {
+                        width: 450%;
+                    }
+                    div.col-9 {
+                        margin-left: 20px;
+                    }
+                    div.tek {
+                        width: 127%;
+                    }
+                    button.rights {
+                        margin-left: -100px;
+                    }
 
 
                 }
 
                 /* untuk tampilan ipad */
                 @media (min-width: 760px) and (max-width: 1000px) {
-                    div.sus {
-                        width: 330%;
-                    }
-
-                    div.besar {
-                        width: 50%;
-                    }
-
-                    div.high {
-                        height: 82%;
-                    }
-
-                    i.uuy {
-                        margin-left: 200px;
-                    }
-
-                    button.rigt {
-                        margin-left: 45px;
-                    }
 
 
                 }
 
                 /* untuk tampilan laptop */
                 @media (min-width: 1210px) and (max-width: 4000px) {
-                    div.meta {
-                        margin-top: 50px;
-                    }
-
-                    a.knan {
-                        margin-right: 5px;
-                    }
-
-                    div.besar {
+                    video.besar {
                         width: 100%;
                     }
-
-                    button.rigt {
-                        margin-left: 45px;
-                    }
-
+                    div.tek {
+                                                max-width: 93%;
+                                            }
                     a.rigt {
-                        margin-left: 45px;
+                        margin-left: 40px;
                     }
                 }
             </style>
 
             <ul class="nav mb-2 ml-1" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                    <a id="click1" class="nav-link mr-5 active " id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
                         <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Feed Dibuat</h5>
@@ -374,7 +386,7 @@
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                    <a id="c" class="nav-link tabst" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Feed Disukai</h5>
@@ -385,7 +397,7 @@
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <a id="a-tab" class="nav-link mr-5 kiri" id="pills-footer-tab" data-bs-toggle="pill"
+                    <a id="a-tab" class="nav-link mr-5 kiri rigt" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Feed Disimpan</h5>
@@ -435,7 +447,7 @@
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari...">
-                                                <button type="submit" class="zoom-effects cari2"><svg
+                                                <button type="submit" class="zoom-effects cari2 atas"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -464,21 +476,21 @@
                                     method="post">
                                     @csrf
                                     @method('DELETE')
-
                                 </form>
 
                                 <div class="d-flex mt-4" id="feed_buat{{ $feed_buat->id }}">
                                     <div class="row feed_dibuat_tab1">
                                         <div class="col-3">
                                             <video src="{{ asset('storage/' . $feed_buat->upload_video) }}"
-                                                style="width: 100%; height: 100%;"
-                                                class="rounded ml-2"></video>
-
+                                                style="height: 100%;"
+                                                class="rounded ml-2 besar"></video>
                                         </div>
-                                        <div class="col-9">
-                                            <strong class="me-5 w-75"><a href="#" data-toggle="modal"
+                                        <div class="col-9 wid">
+                                            <div class="tek">
+                                            <strong class="me-5 "><a href="#" data-toggle="modal"
                                                     data-target="#view"
                                                     class="text-black">{{ $feed_buat->deskripsi_video }}</a></strong>
+                                                </div>
                                             <p>
                                                 <a type="button" class="mr-1 text-dark" onclick="openModel()"
                                                     id="button-modal-komentar-feed" href="#"
@@ -514,14 +526,14 @@
 
 
                                                 <button type="button" onclick="DeleteData({{ $feed_buat->id }})"
-                                                    class="yuhu text-danger rounded-5 float-end swipe">
+                                                    class="yuhu text-danger rounded-5 float-end swipe kanan">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
 
-                                                <a class=" text-dark float-end me-2 swipe"
+                                                <a class=" text-dark float-end me-2 swipe "
                                                     style="" href="#" data-toggle="modal"
                                                     data-target="#edit{{ $feed_buat->id }}">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                    <svg class="kanan" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                         viewBox="0 0 24 24">
                                                         <path fill="none" stroke="currentColor" stroke-width="1.5"
                                                             d="m14.36 4.079l.927-.927a3.932 3.932 0 0 1 5.561 5.561l-.927.927m-5.56-5.561s.115 1.97 1.853 3.707C17.952 9.524 19.92 9.64 19.92 9.64m-5.56-5.561l-8.522 8.52c-.577.578-.866.867-1.114 1.185a6.556 6.556 0 0 0-.749 1.211c-.173.364-.302.752-.56 1.526l-1.094 3.281m17.6-10.162L11.4 18.16c-.577.577-.866.866-1.184 1.114a6.554 6.554 0 0 1-1.211.749c-.364.173-.751.302-1.526.56l-3.281 1.094m0 0l-.802.268a1.06 1.06 0 0 1-1.342-1.342l.268-.802m1.876 1.876l-1.876-1.876" />
@@ -544,6 +556,9 @@
 
                     div.search {
                         max-width: 95%;
+                    }
+                    div.kanans {
+                        margin-left: 25px;
                     }
                 }
                                         </style>
@@ -570,17 +585,15 @@
                                                                 action="{{ route('update.feed', $feed_buat->id) }}"
                                                                 method="POST">
                                                                 @csrf
-                                                                <div class="">
-                                                                    <div class="col-sm-10">
-                                                                        <textarea class="form-control" value="" name="deskripsi_video" id="deskripsi_video{{ $feed_buat->id }}"
-                                                                            style="border-radius:10px; width:120%;">{{ $feed_buat->deskripsi_video }}</textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <br>
+                                                                <div class="col">
+                                                                        <textarea class="form-control" rows="5" value="" name="deskripsi_video" id="deskripsi_video{{ $feed_buat->id }}"
+                                                                            style="border-radius:10px;">{{ $feed_buat->deskripsi_video }}</textarea>
+
                                                                 <button type="submit"
-                                                                    onclick="buttonUpdateFeed({{ $feed_buat->id }})"
-                                                                    class="btn btn-sm d-flex justify-content-end text-white"
-                                                                    style=" margin-left: 396px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                                                                onclick="buttonUpdateFeed({{ $feed_buat->id }})"
+                                                                    class="btn btn-sm mt-3 float-end text-white rights"
+                                                                    style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -598,7 +611,7 @@
                     tabindex="0">
 
                     <form action="">
-                        <div class="container mt-1" style="margin-top: -35px;">
+                        <div class="container mt-1" >
                             <div class="search">
                                 <div class="row">
                                     <div class="col-12">
@@ -606,7 +619,7 @@
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari...">
-                                                <button type="submit" class="zoom-effects cari2"><svg
+                                                <button type="submit" class="zoom-effects cari2 atas"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -637,14 +650,16 @@
                             <div class="row feed_disukai_tab2">
                                 <div class="col-3">
                                     <video src="{{ asset('storage/' . $feed_suka->upload_video) }}"
-                                        style="width:100%;height:100%;margin-left:-25px;"
-                                        class="rounded float-end"></video>
+                                        style="height:100%;"
+                                        class="rounded ml-2 besar"></video>
 
                                 </div>
-                                <div class="col-8">
-                                    <strong class="me-5 w-75"> <a href="#" data-toggle="modal" data-target="#view"
+                                <div class="col-9">
+                                    <div class="tek">
+                                    <strong class="me-5"> <a href="#" data-toggle="modal" data-target="#view"
                                             class="text-black">{{ $feed_suka->deskripsi_video }}</a></strong>
-                                    <p>
+                                    </div>
+                                            <p>
                                         <a type="button" class="mr-1 text-dark" onclick="openModel()"
                                             id="button-modal-komentar-feed" href="#"
                                             data-bs-toggle="modal"data-bs-target="#exampleModal">
@@ -678,7 +693,7 @@
 
 
                                         <button type="button" onclick="confirmationUnlikeFeed({{ $feed_suka->id }})"
-                                            class="yuhu text-danger rounded-5 float-end">
+                                            class="yuhu text-danger rounded-5 float-end swipe kanan">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </p>
@@ -692,16 +707,15 @@
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <form action="">
-                        <div class="container mt-1" style="margin-top: -35px;">
+                        <div class="container mt-1">
                             <div class="search">
                                 <div class="row">
                                     <div class="col-12">
-                                        <div>
                                             <div class="search-2"> <i class='bx bxs-map'></i>
                                                 <form action="/admin/laporan-pengguna" method="GET">
                                                     <input type="text" id="search-resep" name="resep" autofocus
                                                         placeholder="Cari...">
-                                                    <button type="submit" class="zoom-effects cari2"><svg
+                                                    <button type="submit" class="zoom-effects cari2 atas"><svg
                                                             xmlns="http://www.w3.org/2000/svg" width="32"
                                                             height="32" viewBox="0 0 24 24">
                                                             <path fill="currentColor"
@@ -709,7 +723,6 @@
                                                         </svg></button>
                                                 </form>
                                             </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -728,15 +741,17 @@
                             action="{{ route('favorite.feed.store', $feed_favorite->id) }}" method="post"></form>
                         <div class="d-flex mt-4" id="card_feed_favorite{{ $feed_favorite->id }}">
                             <div class="row feed_favorite_tab3">
-                                <div class="col-3 mx-2">
+                                <div class="col-3">
                                     <video src="{{ asset('storage/' . $feed_favorite->upload_video) }}"
-                                        style="width: 100%; height: 100%; margin-left: -25px;"
-                                        class="rounded float-end "></video>
+                                        style=" height: 100%;"
+                                        class="rounded ml-2 besar"></video>
                                 </div>
-                                <div class="col-8">
-                                    <strong class="me-5 w-75"> <a href="#" data-toggle="modal" data-target="#view"
+                                <div class="col-9">
+                                    <div class="tek">
+                                    <strong class="me-5"> <a href="#" data-toggle="modal" data-target="#view"
                                             class="text-black">{{ $feed_favorite->deskripsi_video }}</a></strong>
-                                    <p>
+                                        </div>
+                                            <p>
                                         <a type="button" class="mr-1 text-dark" onclick="openModel()"
                                             id="button-modal-komentar-feed" href="#"
                                             data-bs-toggle="modal"data-bs-target="#exampleModal">
@@ -771,7 +786,7 @@
 
                                         <button type="button"
                                             onclick="confirmationUnfavoriteFeed({{ $feed_favorite->id }})"
-                                            class="yuhu text-danger rounded-5 float-end">
+                                            class="yuhu text-danger rounded-5 float-end swipe kanan">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </p>
