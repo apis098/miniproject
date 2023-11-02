@@ -31,7 +31,7 @@
 
     </style>
     <div style="overflow-x:hidden">
-        <div class="content-header mx-2">
+        <div class="content-header mx-4">
             <div class="d-flex justify-content-start mt-1">
                 <div class="col-sm-6 col-md-5 col-lg-4">
                     <h4>Selamat datang kembali {{ $koki->name }}</h4>
@@ -44,7 +44,7 @@
     </div>
 
     <!-- Sale & Revenue Start -->
-    <div class=" container-fluid su">
+    <div class=" container-fluid su mx-3">
         <div class="row g-2 su mx-2">
             <div class="col-12 col-md-4 col-lg-4">
                 <div class="rounded-4 d-flex align-items-center justify-content-between p-4 counter-card"
@@ -133,7 +133,7 @@
                     overflow-y: auto;
                     max-height: 350px;
                 }
-                
+
 
         @media (min-width: 992px){
             .col-lg-6 {
@@ -144,7 +144,7 @@
         }
 
             </style>
-            <div class="d-flex flex-wrap mx-2"> <!-- Gunakan flex-wrap untuk mengatur kolom -->
+            <div class="d-flex flex-wrap"> <!-- Gunakan flex-wrap untuk mengatur kolom -->
                 <div class="col-12 col-lg-6 mb-3">
                         <div class="ms-1">
                             <h5 class="fw-bold" style="margin-bottom: 1;">Komentar Feed Terbaru</h5>
