@@ -13,7 +13,7 @@ class detailSessionCourses extends Model
         "session_course_id",
         "detail_sesi",
         "lama_sesi",
-        "informasi_lama_sesi"
+        "informasi_lama_sesi",
     ];
     public function sesi_kursus()
     {

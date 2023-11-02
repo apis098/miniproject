@@ -15,13 +15,14 @@ class kursus extends Model
         "foto_kursus",
         "deskripsi_kursus",
         "nama_lokasi",
-        "latitude", 
+        "latitude",
         "longitude",
         "tipe_kursus",
         "jumlah_siswa",
         "status",
         "waktu_diterima",
-        "tanggal_dimulai_kursus"
+        "tanggal_dimulai_kursus",
+        "tanggal_berakhir_kursus"
     ];
     public function income_chef()
     {
@@ -87,5 +88,9 @@ class kursus extends Model
             $hasil = $total . " menit";
         }
         return $hasil;
+    }
+    public function favorite()
+    {
+        return $this->hasMany(favorite::class, 'kursus_id');
     }
 }

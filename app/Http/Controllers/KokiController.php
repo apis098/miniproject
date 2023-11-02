@@ -355,7 +355,9 @@ class KokiController extends Controller
         $kursus_sendiri = kursus::findOrFail($id);
         $sesi_kursus = sessionCourses::where("course_id", $id)->get();
         $userLogin = Auth::user();
-        return view('koki.kursus-content', compact("koki", "kursus_sendiri", "sesi_kursus", "userLogin"));
+        $startdate = Carbon::parse($kursus_sendiri->tanggal_dimulai_kursus);
+        $enddate = Carbon::parse($kursus_sendiri->tanggal_berakhir_kursus);
+        return view('koki.kursus-content', compact("startdate", "enddate","koki", "kursus_sendiri", "sesi_kursus", "userLogin"));
     }
 
     public function favorite(Request $request)

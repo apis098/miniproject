@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class favorite extends Model
 {
     use HasFactory;
-    protected $fillable = ['resep_id','feed_id', 'user_id', 'user_id_from',];
+    protected $fillable = ['resep_id','feed_id', 'kursus_id','user_id', 'user_id_from',];
     public function resep()
     {
         return $this->belongsTo(reseps::class, 'resep_id');
@@ -24,5 +24,9 @@ class favorite extends Model
     public function sender()
     {
         return $this->belongsTo(User::class, "user_id_from");
+    }
+    public function kursus()
+    {
+        return $this->belongsTo(kursus::class, "kursus_id");
     }
 }

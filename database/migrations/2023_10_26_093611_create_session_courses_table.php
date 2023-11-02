@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('lama_sesi');
             $table->enum('informasi_lama_sesi', ['jam', 'menit']);
             $table->bigInteger('harga_sesi');
+            $table->string('tanggal');
+            $table->time('waktu');
             $table->timestamps();
 
             $table->foreign('course_id')->references('id')->on('kursuses')->onDelete('cascade');

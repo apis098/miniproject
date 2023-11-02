@@ -180,6 +180,11 @@
                         <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control">
                     </div>
 
+                    <div class="mb-2">
+                        <label style="font-weight: 600;" for="tanggal_dimulai_kursus" class="form-label">Tanggal Berakhir Kursus</label><br>
+                        <input type="date" name="tanggal_berakhir_kursus" id="tanggal_berakhir_kursus" class="form-control">
+                    </div>
+
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="buttonTambahKursus">Buat kursus
@@ -272,8 +277,6 @@
                             message: xhr.responseText,
                             position: 'topCenter',
                             progressBarColor: 'dark',
-
-
                         });
                     }
                 });

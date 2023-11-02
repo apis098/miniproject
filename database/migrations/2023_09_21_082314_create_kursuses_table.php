@@ -23,11 +23,16 @@ return new class extends Migration
             $table->string('tipe_kursus');
             $table->integer('jumlah_siswa');
             $table->date('tanggal_dimulai_kursus');
+            $table->date('tanggal_berakhir_kursus');
             $table->enum('status', ['ditunggu', 'diterima', 'ditolak', 'kadaluarsa'])->default('ditunggu');
             $table->timestamp('waktu_diterima')->nullable();
             $table->timestamps();
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
+        });
+        Schema::table('favorites',function (Blueprint $table){
+            $table->unsignedBigInteger('kursus_id')->nullable();
+            $table->foreign("kursus_id")->references("id")->on("kursuses")->onDelete("cascade");
         });
     }
 

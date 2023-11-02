@@ -14,7 +14,9 @@ class sessionCourses extends Model
         "judul_sesi",
         "lama_sesi",
         "informasi_lama_sesi",
-        "harga_sesi"
+        "harga_sesi",
+        "tanggal",
+        "waktu"
     ];
     public function kursus()
     {

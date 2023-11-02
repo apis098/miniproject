@@ -280,7 +280,29 @@
                                                             placeholder="Masukkan Harga...">
                                                     </div>
                                                 </div>
-
+                                                <div class="mb-3 row ml-1">
+                                                    <label class="col-sm-1 col-form-label fw-bold">Tanggal dimulai: </label>
+                                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                    <div class="col-sm-10">
+                                                       <select name="tanggal" id="tanggal" class="form-control" style="width:37rem; margin-left:-15px;">
+                                                        @while ($startdate <= $enddate)
+                                                        <option value="{{ $startdate->format('d-m-Y') }}">{{ $startdate->format('d-m-Y') }}</option>
+                                                        @php
+                                                            $startdate = $startdate->addDay();
+                                                        @endphp
+                                                        @endwhile
+                                                       </select>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row ml-1">
+                                                    <label class="col-sm-1 col-form-label fw-bold">Waktu dimulai: </label>
+                                                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                    <div class="col-sm-10">
+                                                        <input type="time" id="waktu" name="waktu"
+                                                            class="form-control " style="  width: 37rem; margin-left:-15px "
+                                                            placeholder="Masukkan Waktu Sesi Dimulai...">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -304,6 +326,7 @@
                                 <div class="col-12">
                                     <div class="float-start" style="font-size: 20px; margin-top: 1%">
                                         <strong id="judul_sesi{{ $sesi->id }}">{{ $sesi->judul_sesi }}</strong>
+                                        <br> <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small>
                                     </div>
                                     <div class="float-end">
                                         <div class="d-flex justify-content-end">
@@ -737,6 +760,14 @@
                     processData: false,
                     contentType: false,
                     success: function success(response) {
+                        if (response.success === false) {
+                            iziToast.destroy();
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topCenter'
+                            });
+                        }
                         iziToast.destroy();
                         iziToast.success({
                             title: 'Sukses',

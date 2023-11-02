@@ -54,12 +54,13 @@
             <p>{{ $course->deskripsi_kursus }}</p>
         </div>
 
-        <h3 class="fw-bold mb-4">konten kursus</h3>
+        <h3 class="fw-bold mb-4">Sesi Kursus</h3>
         @foreach ($course->sesi as $sesi)
             <div class="card mb-4">
                 <button class="accordion" onclick="pilihSesi({{ $sesi->id }})" data-price="{{ $sesi->harga_sesi }}">
                     <i class="fa-solid fa-chevron-down"></i>
-                    <b style="margin-left: -70%;">{{ $sesi->judul_sesi }}</b>
+                    <b style="margin-left: -70%;">{{ $sesi->judul_sesi }} <br>
+                    <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small></b>
                     <span>
                         @if ($sesi->lama_sesi >= 60)
                             {{ $sesi->lama_sesi / 60 }}
@@ -95,7 +96,7 @@
         <div class="d-flex justify-content-end">
             <div class="d-flex align-items-end flex-column">
                 <span class="font-size-15 fw-bold">Total harga</span>
-                Rp.<span id="totalHarga">0</span>
+                <span id="totalHarga">0</span>
             </div>
             <form action="{{ route('transaksi.kursus', [$course->id, Auth::user()->id, $course->users_id]) }}" method="post">
             @csrf

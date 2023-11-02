@@ -192,7 +192,8 @@ class KursusController extends Controller
             'jumlah_siswa' => "required",
             "paket_kursus_waktu.*" => "required",
             "jenis_kursus" => "required",
-            "tanggal_dimulai_kursus" => "required"
+            "tanggal_dimulai_kursus" => "required",
+            "tanggal_berakhir_kursus" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -204,7 +205,8 @@ class KursusController extends Controller
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
             'jenis_kursus.required' => "jenis kursus harus diisi!",
-            'tanggal_dimulai_kursus.required' => 'tanggal dimulai kursus harus diisi!'
+            'tanggal_dimulai_kursus.required' => 'tanggal dimulai kursus harus diisi!',
+            'tanggal_berakhir_kursus.required' => 'tanggal berakhir kursus harus diisi!',
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
@@ -219,6 +221,14 @@ class KursusController extends Controller
                 'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
             ]);
         }
+        $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
+        $selisih_tanggal2 = $tanggal_berakhir_kursus->diffInDays($tanggal_dimulai_kursus);
+        if($selisih_tanggal2 < 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tanggal berakhir kurus tidak boleh kurang dari tanggal dimulai kursus!'
+            ]);
+        }
         $tambah_kursus = kursus::create([
             "users_id" => Auth::user()->id,
             "nama_kursus" => $request->nama_kursus,
@@ -230,6 +240,7 @@ class KursusController extends Controller
             "tipe_kursus" => $request->tipe_kursus,
             "jumlah_siswa" => $request->jumlah_siswa,
             "tanggal_dimulai_kursus" => $request->tanggal_dimulai_kursus,
+            "tanggal_berakhir_kursus" => $request->tanggal_berakhir_kursus,
         ]);
         if ($tambah_kursus) {
             jenis_kursuses::create([
@@ -345,7 +356,9 @@ class KursusController extends Controller
             "judul_sesi" => "required",
             "lama_sesi" => "required|min:0",
             "informasi_lama_sesi" => "required",
-            "harga_sesi" => "required|min:0"
+            "harga_sesi" => "required|min:0",
+            "tanggal" => "required",
+            "waktu" => "required"
         ];
         $messages = [
             "judul_sesi.required" => "Judul sesi harus diisi!",
@@ -353,7 +366,9 @@ class KursusController extends Controller
             "lama_sesi.min" => "Lama sesi tidak boleh minus!",
             "informasi_lama_sesi.required" => "Informasi lama sesi wajib diisi!",
             "harga_sesi.required" => "Harga sesi wajib diisi!",
-            "harga_sesi.min" => "Harga sesi tidak boleh minus!"
+            "harga_sesi.min" => "Harga sesi tidak boleh minus!",
+            "tanggal.required" => "Tanggal sesi dimulai harus diisi!",
+            "waktu.required" => "Waktu sesi harus diisi!"
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -370,9 +385,12 @@ class KursusController extends Controller
             "judul_sesi" => $request->judul_sesi,
             "lama_sesi" => $lama_sesi,
             "informasi_lama_sesi" => $request->informasi_lama_sesi,
-            "harga_sesi" => $request->harga_sesi
+            "harga_sesi" => $request->harga_sesi,
+            "tanggal" => $request->tanggal,
+            "waktu" => $request->waktu
         ]);
         return response()->json([
+            "success" => true,
             "message" => "Sukses menambahkan sesi!"
         ]);
         //return redirect()->back()->with('success', 'Sukses menambahkan sesi konten!');

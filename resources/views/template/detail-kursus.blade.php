@@ -186,10 +186,10 @@
                                 /* Animasi dengan efek slide */
                             }
                         </style>
-                        <h3 class="fw-bold mb-3">konten kursus</h3>
+                        <h3 class="fw-bold mb-3">Sesi Kursus</h3>
                         @foreach ($detail_session_course as $content_course)
                             <div class="card">
-                                <button class="accordion active"> <b>{{ $content_course->judul_sesi }}</b>
+                                <button class="accordion active"> <b>{{ $content_course->judul_sesi }} <br> <small>{{ $content_course->tanggal . " " . $content_course->waktu }}</small></b>
                                     @if ($content_course->lama_sesi >= 60)
                                         <span>{{ number_format($content_course->lama_sesi / 60, 1) }}
                                             jam</span>
@@ -279,6 +279,10 @@
                                             @endif
                                         @endforeach
                                     </ul>
+                                    <span class="fw-bold">Waktu Kursus Dimulai:</span>
+                                    <p>{{ $detail_course->tanggal_dimulai_kursus }}</p>
+                                    <span class="fw-bold">Waktu Kursus Berakhir:</span>
+                                    <p>{{ $detail_course->tanggal_berakhir_kursus }}</p>
                                     <span class="fw-bold">Harga rata-rata per sesi:</span>
                                     <p>Rp. {{ number_format($rata2_harga, 2, '.', ',') }}</p>
                                 </div>
@@ -307,7 +311,7 @@
                                                             @else
                                                             Kursus Kadaluarsa
                                                             @endif</b></a>
-                                                            
+
                                                 @endif
                                             @else
                                                 <a href="" type="button" class="btn text-light zoom-effects"
