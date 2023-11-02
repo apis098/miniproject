@@ -98,7 +98,7 @@
                             <input type="text" name="longitude" value="{{ $kursus->longitude }}" id="longitude" hidden>
                         </div>
                         <div>
-                          
+
 
 
                             <div>
@@ -171,7 +171,18 @@
                             }
                         }
                     </script>
-
+                    <div class="mb-3">
+                        <label for="tanggal_dimulai_kursus" class="form-label">
+                            Tanggal dimulai kursus
+                        </label>
+                        <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control" value="{{ $kursus->tanggal_dimulai_kursus }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_berakhir_kursus" class="form-label">
+                            Tanggal berakhir kursus
+                        </label>
+                        <input type="date" name="tanggal_berakhir_kursus" id="tanggal_berakhir_kursus" class="form-control" value="{{ $kursus->tanggal_berakhir_kursus }}">
+                    </div>
                     <button type="submit" class="btn btn-warning text-white mb-4"
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="buttonTambahKursus">Edit kursus

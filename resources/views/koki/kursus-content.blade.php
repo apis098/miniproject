@@ -326,14 +326,14 @@
                                 <div class="col-12">
                                     <div class="float-start" style="font-size: 20px; margin-top: 1%">
                                         <strong id="judul_sesi{{ $sesi->id }}">{{ $sesi->judul_sesi }}</strong>
-                                        <br> <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small>
+                                        <br> <small id="tanggal_waktu_sesi{{ $sesi->id }}">{{ $sesi->tanggal . " " . $sesi->waktu }}</small>
                                     </div>
                                     <div class="float-end">
                                         <div class="d-flex justify-content-end">
                                             <span>
                                                 <div id="lama_sesi{{ $sesi->id }}" class="me-2">
                                                     @if ($sesi->lama_sesi >= 60)
-                                                        {{ $sesi->lama_sesi / 60 . ' jam' }}
+                                                        {{ number_format($sesi->lama_sesi / 60, 1) . ' jam' }}
                                                     @else
                                                         {{ $sesi->lama_sesi . ' ' . $sesi->informasi_lama_sesi }}
                                                     @endif
@@ -380,7 +380,7 @@
                                                 <div class="d-flex justify-content-end ">
                                                     <span class="me-3" id="detail_Sesi_lama_sesi{{ $angka }}">
                                                         @if ($detail_sesi->lama_sesi >= 60)
-                                                            {{ $detail_sesi->lama_sesi / 60 . ' jam' }}
+                                                            {{ number_format($detail_sesi->lama_sesi/60, 1) . ' jam' }}
                                                         @else
                                                             {{ $detail_sesi->lama_sesi . ' ' . $detail_sesi->informasi_lama_sesi }}
                                                         @endif
@@ -567,7 +567,33 @@
                                                                     placeholder="Masukkan Harga...">
                                                             </div>
                                                         </div>
+                                                        <div class="mb-3 row ml-1">
+                                                            <label class="col-sm-1 col-form-label fw-bold">Tanggal dimulai </label>
+                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                            <div class="col-sm-10">
 
+                                                                <select name="tanggal" id="tanggal" class="form-control" style="width:37rem; margin-left:-15px;">
+                                                                    @while ($start_date <= $end_date)
+                                                                    <option value="{{ $start_date->format('d-m-Y') }}">{{ $start_date->format('d-m-Y') }}</option>
+                                                                    @php
+                                                                        $start_date = $start_date->addDay();
+                                                                    @endphp
+                                                                    @endwhile
+                                                                   </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 row ml-1">
+                                                            <label class="col-sm-1 col-form-label fw-bold">Waktu dimulai </label>
+                                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                                            <div class="col-sm-10">
+                                                                <input type="time"
+                                                                    id="updateWaktuSesi{{ $sesi->id }}"
+                                                                    name="waktu" class="form-control "
+                                                                    value="{{ $sesi->waktu }}"
+                                                                    style="  width: 37rem; margin-left:-15px "
+                                                                    placeholder="Masukkan Harga...">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -984,6 +1010,7 @@
                         $("#lama_sesi" + num).html(response.lama_sesi_baru + " " + response
                             .informasi_lama_sesi_baru);
                         $("#harga_sesi" + num).html("RP. " + response.harga_sesi_baru_format);
+                        $("#tanggal_waktu_sesi" + num).html(response.tanggal + " " + response.waktu);
                         console.log(response.harga_sesi_baru);
                     },
                     error: function error(xhr, error, status) {

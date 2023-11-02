@@ -313,6 +313,8 @@ class KursusController extends Controller
             'tipe_kursus' => "required",
             'jumlah_siswa' => "required",
             "jenis_kursus" => "required",
+            "tanggal_dimulai_kursus" => "required",
+            "tanggal_berakhir_kursus" => "required"
         ];
         $message = [
             'nama_kursus.required' => "nama kursus wajib diisi!",
@@ -323,10 +325,29 @@ class KursusController extends Controller
             'tipe_kursus.required' => "tipe kursus wajib diisi!",
             'jumlah_siswa.required' => "jumlah siswa harus diisi!",
             "jenis_kursus.required" => "jenis_kursus harus diisi!",
+            "tanggal_dimulai_kursus.required" => "tanggal dimulai kursus wajib diisi!",
+            "tanggal_berakhir_kursus.required" => "tanggal berakhir kursus wajib diisi!"
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
+        }
+        $tanggal_dimulai_kursus = Carbon::parse($request->tanggal_dimulai_kursus);
+        $tanggal_saat_ini = Carbon::now();
+        $selisih_tanggal = $tanggal_dimulai_kursus->diffInDays($tanggal_saat_ini);
+        if($selisih_tanggal <= 7) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
+            ]);
+        }
+        $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
+        $selisih_tanggal2 = $tanggal_berakhir_kursus->diffInDays($tanggal_dimulai_kursus);
+        if($selisih_tanggal2 < 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tanggal berakhir kurus tidak boleh kurang dari tanggal dimulai kursus!'
+            ]);
         }
         $edit_kursus = kursus::find($id);
         $edit_kursus->nama_kursus = $request->nama_kursus;
@@ -340,6 +361,8 @@ class KursusController extends Controller
         $edit_kursus->longitude = $request->longitude;
         $edit_kursus->tipe_kursus = $request->tipe_kursus;
         $edit_kursus->jumlah_siswa = $request->jumlah_siswa;
+        $edit_kursus->tanggal_dimulai_kursus = $request->tanggal_dimulai_kursus;
+        $edit_kursus->tanggal_berakhir_kursus = $request->tanggal_berakhir_kursus;
         $edit_kursus->save();
         $jenisKursus = jenis_kursuses::where('id_kursus', $edit_kursus->id)->first();
         $jenisKursus->jenis_kursus = $request->jenis_kursus;
@@ -401,14 +424,18 @@ class KursusController extends Controller
             "judul_sesi" => "required",
             "lama_sesi" => "required|min:0",
             "informasi_lama_sesi" => "required",
-            "harga_sesi" => "required"
+            "harga_sesi" => "required",
+            "tanggal" => "required",
+            "waktu" => "required"
         ];
         $messages = [
             "judul_sesi.required" => "Judul sesi harus diisi!",
             "lama_sesi.required" => "Lama sesi harus diisi!",
             "lama_sesi.min" => "Lama sesi tidak boleh minus!",
             "informasi_lama_sesi.required" => "Informasi lama sesi tidak boleh kosong!",
-            "harga_sesi" => "Harga sesi harus diisi!",
+            "harga_sesi.required" => "Harga sesi harus diisi!",
+            "tanggal.required" => "Tanggal sesi harus diisi!",
+            "waktu.required" => "Waktu sesi harus diisi!",
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
@@ -419,6 +446,8 @@ class KursusController extends Controller
         $sesi_kursus->lama_sesi = $request->lama_sesi;
         $sesi_kursus->informasi_lama_sesi = $request->informasi_lama_sesi;
         $sesi_kursus->harga_sesi = $request->harga_sesi;
+        $sesi_kursus->tanggal = $request->tanggal;
+        $sesi_kursus->waktu = $request->waktu;
         $sesi_kursus->save();
 
         return response()->json([
@@ -429,6 +458,8 @@ class KursusController extends Controller
             "informasi_lama_sesi_baru" => $sesi_kursus->informasi_lama_sesi,
             "harga_sesi_baru" => $sesi_kursus->harga_sesi,
             "harga_sesi_baru_format" => number_format($sesi_kursus->harga_sesi, 2, ',', '.'),
+            "tanggal" => $request->tanggal,
+            "waktu" => $request->waktu
         ]);
     }
     public function hapusSesi(string $id)
