@@ -15,11 +15,7 @@ class reply_comment_veed extends Model
         "veed_id",
         "komentar"
     ];
-    public function likeRepliesReply($user_id){
-        return likeBalasRepliesCommentsFeeds::where('user_id',$user_id)
-        ->where('reply_comment_feed_id',$this->id)
-        ->exists();
-    }
+    
     public function user() {
         return $this->belongsTo(User::class, "users_id");
     }
@@ -32,7 +28,7 @@ class reply_comment_veed extends Model
     public function like_reply_comment_veed() {
         return $this->hasMany(like_reply_comment_veed::class);
     }
-    public function likeReplyCommentVeed($user_id){
+    public function checkLikedOrNo($user_id){
         return like_reply_comment_veed::where('users_id',$user_id)
         ->where('reply_comment_veed_id',$this->id)
         ->exists();

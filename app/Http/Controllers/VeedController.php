@@ -19,6 +19,7 @@ use App\Models\income_chefs;
 use App\Models\kursus;
 use App\Models\like_reply_comment_veed;
 use App\Models\like_veed;
+use App\Models\likeBalasRepliesCommentsFeeds;
 use App\Models\Reply;
 use App\Models\reply_comment_veed;
 use App\Models\reseps;
@@ -270,6 +271,45 @@ class VeedController extends Controller
                 "veed_id" => $veed_id,
                 "time" => $time,
                 "commentId" => $comment_id,
+            ]);
+        }
+    }
+    public function like_replies_reply(string $user_id, string $reply_replyComment_id, $veed_id)
+    {
+        $check = likeBalasRepliesCommentsFeeds::where("user_id", $user_id)
+            ->where("reply_comment_feed_id", $reply_replyComment_id)
+            ->where("feed_id", $veed_id)
+            ->count();
+        if ($check == 0) {
+            likeBalasRepliesCommentsFeeds::create([
+                "user_id" => $user_id,
+                "reply_comment_feed_id" => $reply_replyComment_id,
+                "feed_id" => $veed_id
+            ]);
+            $countLike = likeBalasRepliesCommentsFeeds::query()
+                ->where('feed_id', $veed_id)
+                ->where('reply_comment_feed_id', $reply_replyComment_id)
+                ->count();
+            return response()->json([
+                "success" => true,
+                "message" => "Sukses memberikan like!",
+                "like" => true,
+                "countLike" => $countLike
+            ]);
+        } elseif ($check == 1) {
+            likeBalasRepliesCommentsFeeds::where("user_id", $user_id)
+                ->where("reply_comment_feed_id", $reply_replyComment_id)
+                ->where("feed_id", $veed_id)
+                ->delete();
+            $countLike = likeBalasRepliesCommentsFeeds::query()
+                ->where('feed_id', $veed_id)
+                ->where('reply_comment_feed_id', $reply_replyComment_id)
+                ->count();
+            return response()->json([
+                "success" => true,
+                "message" => "Sukses membatalkan like!",
+                "like" => false,
+                "countLike" => $countLike
             ]);
         }
     }

@@ -1721,7 +1721,7 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
 
                                                                                                                 @if (Auth::user())
-                                                                                                                    @if ($reply_comment->likeReplyCommentVeed(auth()->user()->id))
+                                                                                                                    @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
                                                                                                                             id="formLikeReplyComment{{ $reply_comment->id }}"
@@ -2090,33 +2090,33 @@
                                                                                                                     style="margin-top:-4%; width:112%; margin-left:-2%;">
 
                                                                                                                     @if (Auth::user())
-                                                                                                                        @if ($reply_comment->likeRepliesReply(auth()->user()->id))
+                                                                                                                        @if ($reply_replyComment->likeRepliesReply(auth()->user()->id))
                                                                                                                             <form
-                                                                                                                                action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                                                id="form_like_replies_reply{{ $reply_comment->id }}"
+                                                                                                                                action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/{{ $reply_replyComment->id }}/{{ $item_video->id }}"
+                                                                                                                                id="form_like_replies_reply{{ $reply_replyComment->id }}"
                                                                                                                                 method="POST">
                                                                                                                                 @csrf
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     class="btn"
-                                                                                                                                    onclick="like_replies_reply({{ $reply_comment->id }})">
+                                                                                                                                    onclick="like_replies_reply({{ $reply_replyComment->id }})">
                                                                                                                                     <i class="fa-solid text-orange fa-thumbs-up"
-                                                                                                                                        id="icon_like_replies_reply{{ $reply_comment->id }}"></i>
+                                                                                                                                        id="icon_like_replies_reply{{ $reply_replyComment->id }}"></i>
                                                                                                                                 </button>
 
                                                                                                                             </form>
                                                                                                                         @else
                                                                                                                             <form
-                                                                                                                                action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                                                id="form_like_replies_reply{{ $reply_comment->id }}"
+                                                                                                                                action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/{{ $reply_replyComment->id }}/{{ $item_video->id }}"
+                                                                                                                                id="form_like_replies_reply{{ $reply_replyComment->id }}"
                                                                                                                                 method="POST">
                                                                                                                                 @csrf
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     class="btn"
-                                                                                                                                    onclick="like_replies_reply({{ $reply_comment->id }})">
+                                                                                                                                    onclick="like_replies_reply({{ $reply_replyComment->id }})">
                                                                                                                                     <i class="fa-regular fa-thumbs-up"
-                                                                                                                                        id="icon_like_replies_reply{{ $reply_comment->id }}"></i>
+                                                                                                                                        id="icon_like_replies_reply{{ $reply_replyComment->id }}"></i>
                                                                                                                                 </button>
                                                                                                                             </form>
                                                                                                                         @endif
@@ -2136,7 +2136,7 @@
                                                                                                                         ->count();
                                                                                                                     @endphp
                                                                                                                     <span
-                                                                                                                        id="count_like_replies_reply{{ $reply_comment->id }}"
+                                                                                                                        id="count_like_replies_reply{{ $reply_replyComment->id }}"
                                                                                                                         class="my-auto"
                                                                                                                         style="margin-left: -1%;">
                                                                                                                         {{ $countLike3sd }}
