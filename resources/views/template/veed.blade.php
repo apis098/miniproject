@@ -2906,7 +2906,7 @@
                                                                                                                             <button
                                                                                                                                 type="submit"
                                                                                                                                 class="btn"
-                                                                                                                                onclick="1(${up['id']})">
+                                                                                                                                onclick="likeReplyComment(${up['id']})">
                                                                                                                                 <i class="fa-regular fa-thumbs-up"
                                                                                                                                 id="iconLikeReplyComment${up['id']}"></i>
                                                                                                                             </button>
@@ -2923,7 +2923,7 @@
                                                                                                                     &nbsp;
                                                                                                                     &nbsp;
                                                                                                                 @endif
-                                                                                                                <span id="countLikeReplyComment${up['id']}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                <span id="like-count${up['id']}" class="my-auto" style="margin-left: -1%;">
                                                                                                                     0
                                                                                                                 </span>
                                                                                                                 <div
