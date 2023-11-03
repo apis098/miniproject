@@ -395,34 +395,7 @@
                         </div>
                         {{-- start tab 1 --}}
                         <div class="d-flex">
-                            @foreach ($kursus_sendiri as $mycourse)
-                                <div class="card my-3 ml-3" style="width: 30%; border-radius:15px">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
-                                                class="card-img-top"
-                                                style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                               border-top-right-radius: 15px"
-                                                alt="...">
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="col-12">
-                                                <strong>
-                                                    @foreach ($mycourse->jenis_kursus as $item)
-                                                        {{ $item->jenis_kursus }}
-                                                    @endforeach
-                                                </strong>
-                                                <br>
-                                                <a href="{{ route('detail.kursus', $mycourse->id) }}" class="btn text-start fst-normal"
-                                                    style="font-family: poppins;border:none;">
-                                                    {{ $mycourse->nama_kursus }}
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            @endforeach
+                          
                         </div>
 
                     </div>

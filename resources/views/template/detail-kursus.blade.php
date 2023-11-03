@@ -229,7 +229,7 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     @if ($detail_course->user->foto)
-                                        <img src="{{ asset('images/' . $detail_course->user->foto) }}" alt=""
+                                        <img src="{{ asset('storage/' . $detail_course->user->foto) }}" alt=""
                                             class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
                                             style="width: 50%; height: 50%;">
                                     @else
@@ -293,31 +293,31 @@
                                             <form action="{{ route('kursus.edit', $detail_course->id) }}">
                                                 <button type="submit" class="btn text-light zoom-effects"
                                                     style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                        class="ms-3 me-3">Edit Kursus</b></button>
+                                                        class="ms-3 me-3">Edit</b></button>
                                             </form>
                                         @else
                                             {{-- untuk koki lain atau user lain --}}
                                             @if ($count_session >= 1)
                                                 @if ($detail_course->isBuy(Auth::user()->id))
-                                                    <a href="" type="button" class="btn text-light zoom-effects"
+                                                    <a href="" type="button" class="btn text-light zoom-effects mx-1"
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                            class="ms-3 me-3">Kursus sudah dibeli</b></a>
+                                                            class="ms-3 me-3">Sudah dibeli</b></a>
                                                 @else
                                                     @if ($detail_course->tanggal_dimulai_kursus >= Carbon\Carbon::now())
                                                     <a href="{{ route('reservasi.kursus', $detail_course->id) }}"
-                                                        type="button" class="btn text-light zoom-effects"
+                                                        type="button" class="btn text-light zoom-effects mx-1"
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                            class="ms-3 me-3">Reservasi Kursus</a>
+                                                            class="ms-3 me-3">Pesan</a>
                                                             @else
                                                             <a href=""
-                                                                type="button" class="btn text-light zoom-effects"
+                                                                type="button" class="btn text-light zoom-effects mx-1"
                                                                 style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                                    class="ms-3 me-3">Kursus Kadaluarsa</a>
+                                                                    class="ms-3 me-3">Kadaluarsa</a>
                                                             @endif
 
                                                 @endif
                                             @else
-                                                <a href="" type="button" class="btn text-light zoom-effects"
+                                                <a href="" type="button" class="btn text-light zoom-effects mx-1"
                                                     style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                         class="ms-3 me-3">Belum ada sesi kursus</b></a>
                                             @endif
@@ -325,13 +325,19 @@
                                         @endif
                                     @else
                                         {{-- untuk yang belum login --}}
-                                        <button type="button" class="btn text-light zoom-effects"
+                                        <button type="button" class="btn text-light zoom-effects mx-1"
                                             style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-3 me-3">Reservasi kursus</b></button>
+                                                class="ms-3 me-3">Pesan</b></button>
                                     @endif
-                                    <button type="submit" class="btn text-dark"
+                                   @if (Auth::check())
+                                    <button type="submit" class="btn text-dark mx-1"
                                     style="border: 1px solid #000; border-radius: 15px;"><b
                                         class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()" class="fa-regular fa-bookmark"></i></b></button>
+                                @else
+                                <button type="submit" class="btn text-dark mx-1"
+                                style="border: 1px solid #000; border-radius: 15px;"><b
+                                    class="ms-3 me-3"><i id="bookmark" class="fa-regular fa-bookmark"></i></b></button>
+                                   @endif
                                 </div>
 
                             </div>

@@ -78,6 +78,11 @@ class reservasiKursusController extends Controller
         if ($saldo_pembeli < $amount) {
             return redirect()->back()->with('error', 'Saldo anda tidak mencukupi!');
         } else {
+            $checkTransaksi = TransaksiKursus::where("course_id", $id)->where("user_id", $user)->count();
+            $checkCourse = kursus::find($id);
+            if($checkTransaksi > $checkCourse->jumlah_siswa) {
+                return redirect()->back()->with('error', 'Gagal membeli kursus karena kuota sudah terpenuhi!');
+            }
             $transaksiKursus = TransaksiKursus::create([
                 "course_id" => $id,
                 "chef_id" => $chef,
