@@ -2695,7 +2695,7 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
-                                                                                                                            action="/sukai/balasan/komentar/{{auth()->user()->id}}/${up['id']}/${jumlah_like['veed_id']}"
+                                                                                                                            action="/sukai/reply_balasan/komentar/{{Auth::user()->id}}/${up['id']}/4"
                                                                                                                             id="form_like_replies_reply${up['id']}"
                                                                                                                             method="POST">
                                                                                                                             @csrf
@@ -3381,7 +3381,7 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
-                                                                                                                            action="/sukai/balasan/komentar/{{auth()->user()->id}}/${up['id']}/${jumlah_like['veed_id']}"
+                                                                                                                            action="/sukai/reply_balasan/komentar/{{auth()->user()->id}}/${up['id']}/${jumlah_like['veed_id']}"
                                                                                                                             id="form_like_replies_reply${up['id']}"
                                                                                                                             method="POST">
                                                                                                                             @csrf
