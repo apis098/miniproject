@@ -489,5 +489,32 @@ class KokiController extends Controller
             "deskripsi_video_baru" => $update->deskripsi_video
         ]);
     }
+    public function filterPenghasilanKoki(Request $request)
+    {
+        $validate = Validator::make($request->all(), [
+            'jenis_penghasilan' => 'required',
+            'tanggal_awal' => 'required',
+            'tanggal_batas' => 'required',
+        ], [
+            'jenis_penghasilan.required' => 'Jenis Penghasilan tidak boleh kosong!',
+            'tanggal_awal.required' => 'Tanggal awal tidak boleh kosong!',
+            'tanggal_batas.required' => 'Tanggal batas tidak boleh kosong!',
+        ]);
+        if($validate->fails()) {
+            return redirect()->back()->with('error', $validate->errors()->first());
+        }
+        $status = null;
+        if($request->jenis_penghasilan === "sawer") {
+            $status = 'sawer';
+        } else if($request->jenis_penghasilan === "feed") {
+            $status = 'feed';
+        } else if($request->jenis_penghasilan === "resep") {
+            $status = 'resep';
+         } else if($request->jenis_penghasilan === "kursus") {
+            $status = 'kursus';
+        }
+        $income_koki = income_chefs::query()->whereBetween('created_at', [$request->tanggal_awal, $request->tanggal_batas])->where('status', $status)->get();
+        return view('koki.income-koki', compact('income_koki'));
+    }
 }
 

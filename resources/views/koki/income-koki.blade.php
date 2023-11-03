@@ -282,11 +282,34 @@ class="btn">
 
 
 
-            <div class="row mb-1">
-                <div class="col-sm-3 col-lg-4">
+            <form action="{{ route('filter.penghasilan.koki') }}" method="POST">
+                @csrf
+            <div class="d-flex justify-content-between">
+                <div class="">
                     <h3 style="font-family:poppins">Riwayat</h3>
                 </div>
+                <div class="d-flex justify-content-center">
+                <div class="mx-1">
+                    <select name="jenis_penghasilan" class="form-control" id="jenis_penghasilan">
+                        <option value="">Pilih Jenis Penghasilan</option>
+                        <option value="sawer">Sawer</option>
+                        <option value="feed">Feed Premium</option>
+                        <option value="resep">Resep Premium</option>
+                        <option value="kursus">Kursus</option>
+                    </select>
+                </div>
+                <div class="mx-1">
+                    <input type="date" class="form-control" id="tanggal_awal" name="tanggal_awal">
+                </div>
+                <div class="mx-1">
+                    <input type="date" class="form-control" id="tanggal_batas" name="tanggal_batas">
+                </div>
+                <div class="mx-1">
+                    <button type="submit" class="btn btn-primary">Filter Sekarang</button>
+                </div>
+                </div>
             </div>
+            </form>
 
             <table class="table-custom"" >
                 <thead>

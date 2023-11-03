@@ -252,3 +252,5 @@ Route::get("/leafletjs", function () {
 Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingController::class, 'store'])->name('ulasan-rating-kursus.store');
 // route favorite atau simpan kursus
 Route::post('/favorite/kursus/{chef}/{course}', [KursusController::class, 'favoriteKursus'])->name('favorite.kursus');
+// route filter penghasilan koki
+Route::post('/filter-penghasilan-koki', [KokiController::class, 'filterPenghasilanKoki'])->name('filter.penghasilan.koki');
