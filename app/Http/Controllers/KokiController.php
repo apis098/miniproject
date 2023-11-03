@@ -360,6 +360,8 @@ class KokiController extends Controller
         $userLogin = Auth::user();
         $start_date = Carbon::parse($kursus_sendiri->tanggal_dimulai_kursus);
         $end_date = Carbon::parse($kursus_sendiri->tanggal_berakhir_kursus);
+        $startdate = Carbon::parse($kursus_sendiri->tanggal_dimulai_kursus);
+        $enddate = Carbon::parse($kursus_sendiri->tanggal_berakhir_kursus);
         return view('koki.kursus-content', compact("start_date", "end_date","startdate", "enddate","koki", "kursus_sendiri", "sesi_kursus", "userLogin"));
     }
 
