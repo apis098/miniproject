@@ -359,9 +359,9 @@ tr {
             </div>
             <div class="modal fade" id="modalDetail{{ $student->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content" style="border-radius: 15px">
-                        <div class="modal-body">
+                        <div class="modal-body container">
                             <div class="d-flex justify-content-between">
                                 <h5 class="modal-title ml-2" id="exampleModalLabel"
                                     style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
@@ -372,7 +372,30 @@ tr {
                                     <i class="fa-regular text-dark fa-circle-xmark"></i>
                                 </button>
                             </div>
-
+                            <div class="d-flex justify-content-between">
+                                <p style="font-size: 21px;font-weight:700;">Pengguna</p>
+                                <p style="font-size: 21px;font-weight:700;">{{ $student->name }}</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p style="font-size: 21px;font-weight:700;">Waktu</p>
+                                <p style="font-size: 21px;font-weight:700;">
+                                @foreach ($student->user_transaksi_kursus as $item)
+                                 {{ $item->created_at }}
+                                @endforeach
+                                </p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p style="font-size: 21px;font-weight:700;">Sesi Dibeli</p>
+                                <div class="" style="text-align: right;">
+                                    @foreach ($student->user_transaksi_kursus as $item)
+                                     @foreach ($item->course->sesi as $item)
+                                     <p style="font-size: 21px;font-weight:700;">
+                                      {{ $item->judul_sesi }}
+                                     </p>
+                                     @endforeach
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
