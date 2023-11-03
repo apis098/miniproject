@@ -308,21 +308,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="kabupaten_lokasi_kursus" class="form-label">Kabupaten Lokasi
-                                                Kursus</label>
-                                            <select name="kabupaten_lokasi_kursus" id="kabupaten_lokasi_kursus"
-                                                style="border:1px solid black;"
-                                                aria-placeholder="Masukkan nama kabupaten lokasi kursus"
-                                                class="cari2 form-control">
-                                                <option value="" disabled>Masukkan nama kabupaten lokasi kursus...
-                                                </option>
-                                                <option value=""></option>
-                                                @foreach ($regency as $item_daerah)
-                                                    <option value="{{ $item_daerah }}">{{ $item_daerah }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                       
                                         <style>
                                             #pbb {
                                                 background-color: white;

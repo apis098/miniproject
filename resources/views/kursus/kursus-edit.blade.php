@@ -30,10 +30,11 @@
 
         .btn-outline-warning {}
     </style>
+
     <form id="formTambahKursus" action="{{ route('kursus.update', $kursus->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="container">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-3 mb-5">
                     <div id="div" class="card mt-5 mb-5 border border-dark" style="border-radius: 15px;">
@@ -62,6 +63,22 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    <div class="row hoverTambahSesi"
+                    style=" border-radius: 15px; height: 40px;">
+                    <button type="button" onclick="redirectTambahSesi()" class="btn btn-outline-dark mt-3" style="border: 1px solid black;font-weight:600;color:black;border-radius:15px;">
+                        <span>Tambah Sesi</span>
+                    </button>
+                </div>
+                <style>
+                    .hoverTambahSesi:hover button span{
+                        color: #EAEAEA;
+                    }
+                </style>
+                <script>
+                    function redirectTambahSesi() {
+                        window.location.href = "/koki/kursus-content/{{ $kursus->id }}";
+                    }
+                </script>
                     <div id="foto_resep_error" style="display: none;" class="alert alert-danger"></div>
                 </div>
                 <div class="col-lg-9">
@@ -187,6 +204,7 @@
                         style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                         id="buttonTambahKursus">Edit kursus
                     </button>
+
                 </div>
             </div>
         </div>

@@ -350,12 +350,32 @@ tr {
                     @endforeach
                     <td style="border-right:1px solid black;">
                         <button type="button" data-toggle="modal"
-                            data-target="#"
+                            data-target="#modalDetail{{ $student->id }}"
                             class="btn btn-light rounded-3 text-light"
                             style="background-color: #F7941E;"><b
                                 class="ms-2 me-2">Detail</b></button>
                     </td>
                 </tr>
+            </div>
+            <div class="modal fade" id="modalDetail{{ $student->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content" style="border-radius: 15px">
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="modal-title ml-2" id="exampleModalLabel"
+                                    style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                                    Detail Murid
+                                </h5>
+                                <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close"
+                                    id="closeModalEdit">
+                                    <i class="fa-regular text-dark fa-circle-xmark"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         @endforeach
     </tbody>
