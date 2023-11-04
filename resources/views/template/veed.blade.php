@@ -187,14 +187,8 @@
                             <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
                                 id="formUploadVideo">
                                 @csrf
-                                <div class="ml-auto d-flex mb-3">
-                                    <div id="loading-overlay" style="display: none;" class="spinner-border text-orange" role="status">
-                                        <span class="sr-only">Loading...</span>
-                                    </div>
-                                    <small id="text-loading" style="display: none" class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah postingan...</small>
-                                </div>
                                 @if (Auth::user()->isSuperUser === 'yes')
-                                    <div class="d-flex">
+                                    <div class="d-flex mb-2">
 
                                         <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
                                             autocomplete="off" value="no">
@@ -212,6 +206,13 @@
                                             </div>
                                             <small id="text-loading" style="display: none" class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah postingan...</small>
                                         </div>
+                                    </div>
+                                @else
+                                    <div class="ml-auto d-flex mb-3">
+                                        <div id="loading-overlay" style="display: none;" class="spinner-border text-orange" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <small id="text-loading" style="display: none" class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah postingan...</small>
                                     </div>
                                 @endif
                                 <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
