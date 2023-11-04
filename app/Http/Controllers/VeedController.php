@@ -365,6 +365,13 @@ class VeedController extends Controller
             "message" => "Sukses menghapus balasan komentar feed!"
         ]);
     }
+    public function delete_replies_reply_feed($id){
+        $replies_replyComment = balasRepliesCommentsFeeds::findOrFail($id);
+        $replies_replyComment->delete();
+        return response()->json([
+            "message" => "Sukses menghapus balasan komentar feed!"
+        ]);
+    }
     public function shareVeed(Request $request, $id)
     {
         if (Auth::check()) {

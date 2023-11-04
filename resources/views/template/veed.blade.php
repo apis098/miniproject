@@ -2092,7 +2092,7 @@
                                                                                                     </div>
                                                                                                     
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
-                                                                                                        <div id="balasan_komentar_ini{{ $reply_replyComment->id }}"
+                                                                                                        <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}"
                                                                                                             class="rounded d-flex flex-row border-black ">
                                                                                                             <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
@@ -2187,17 +2187,17 @@
                                                                                                                     <div
                                                                                                                         class="m-2 mr-auto">
                                                                                                                         {{-- modal-modal --}}
-                                                                                                                        @if (Auth::user())
-                                                                                                                            @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
+                                                                                                                        @if (Auth::check())
+                                                                                                                            @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_replyComment->user_pengirim->id)
                                                                                                                                 <a data-bs-toggle="modal"
-                                                                                                                                    data-target="#ModalLapors{{ $reply_comment->id }}"
-                                                                                                                                    href="#ModalLapors{{ $reply_comment->id }}"
+                                                                                                                                    data-target="#ModalLapors{{ $reply_replyComment->id }}"
+                                                                                                                                    href="#ModalLapors{{ $reply_replyComment->id }}"
                                                                                                                                     class="yuhu text-danger btn-sm rounded-5 "><i
                                                                                                                                         class="fa-solid fa-triangle-exclamation"></i>
                                                                                                                                 </a>
                                                                                                                                 <div class="modal fade"
                                                                                                                                     data-bs-backdrop="static"
-                                                                                                                                    id="ModalLapors{{ $reply_comment->id }}"
+                                                                                                                                    id="ModalLapors{{ $reply_replyComment->id }}"
                                                                                                                                     tabindex="-1"
                                                                                                                                     role="dialog"
                                                                                                                                     aria-labelledby="exampleModalCenterTitle"
@@ -2224,7 +2224,7 @@
                                                                                                                                                 </button>
                                                                                                                                             </div>
                                                                                                                                             <form
-                                                                                                                                                action="{{ route('report.feed', $item_video->id) }}"
+                                                                                                                                                action="{{ route('report.feed', $reply_replyComment->id) }}"
                                                                                                                                                 method="POST">
                                                                                                                                                 {{-- @csrf --}}
                                                                                                                                                 <div
@@ -2252,22 +2252,22 @@
                                                                                                                                         </div>
                                                                                                                                     </div>
                                                                                                                                 </div>
-                                                                                                                            @elseif(Auth::user()->id == $reply_comment->user->id)
+                                                                                                                            @elseif(Auth::user()->id == $reply_replyComment->user_pengirim->id)
                                                                                                                                 {{-- Hapus Komentar --}}
                                                                                                                                 <form
                                                                                                                                     method="POST"
-                                                                                                                                    action="{{ route('hapus.balasan.komentar.feed', $reply_comment->id) }}"
-                                                                                                                                    id="delete-reply-comment-form{{ $reply_comment->id }}">
+                                                                                                                                    action="{{ route('delete.replies.reply.feed', $reply_replyComment->id) }}"
+                                                                                                                                    id="form-delete-replies-reply{{ $reply_replyComment->id }}">
                                                                                                                                     @csrf
                                                                                                                                     @method('DELETE')
                                                                                                                                     <button
                                                                                                                                         type="submit"
                                                                                                                                         hidden
-                                                                                                                                        onclick="deletedReplyCommentFeed({{ $reply_comment->id }})"
-                                                                                                                                        id="delete-reply-comment-button{{ $reply_comment->id }}">Delete</button>
+                                                                                                                                        onclick="deleted_replies_reply_comment_feed({{ $reply_replyComment->id }})"
+                                                                                                                                        id="delete-replies-reply-button{{ $reply_replyComment->id }}">Delete</button>
                                                                                                                                     <button
                                                                                                                                         type="button"
-                                                                                                                                        onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
+                                                                                                                                        onclick="confirmation_delete_replies_reply({{ $reply_replyComment->id }})"
                                                                                                                                         class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                                                         <i
                                                                                                                                             class="fa-solid fa-trash"></i>
@@ -2278,7 +2278,7 @@
                                                                                                                                 <button
                                                                                                                                     type="button"
                                                                                                                                     data-bs-toggle="modal"
-                                                                                                                                    data-bs-target="#blookModal{{ $reply_comment->id }}"
+                                                                                                                                    data-bs-target="#blookModal{{ $reply_replyComment->id }}"
                                                                                                                                     class="yuhu text-danger btn-sm rounded-5 "><svg
                                                                                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                                                                                         width="20"
@@ -2292,7 +2292,7 @@
                                                                                                                                 </button>
                                                                                                                                 <div class="modal fade"
                                                                                                                                     data-bs-backdrop="static"
-                                                                                                                                    id="{{ $reply_comment->id }}"
+                                                                                                                                    id="{{ $reply_replyComment->id }}"
                                                                                                                                     tabindex="-1"
                                                                                                                                     role="dialog"
                                                                                                                                     aria-labelledby="exampleModalCenterTitle"
@@ -2313,7 +2313,7 @@
                                                                                                                                                     type="button"
                                                                                                                                                     class="close"
                                                                                                                                                     data-bs-dismiss="modal"
-                                                                                                                                                    data-bs-target="blockMod{{ $item_comment->id }}"
+                                                                                                                                                    data-bs-target="blockMod{{ $reply_replyComment->id }}"
                                                                                                                                                     aria-label="Close">
                                                                                                                                                     <span
                                                                                                                                                         aria-hidden="true">&times;</span>
@@ -3324,7 +3324,39 @@
                 }
             });
         }
-
+        function confirmation_delete_replies_reply(num) {
+            iziToast.show({
+                backgroundColor: '#eea2a6',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'dark',
+                messageColor: 'dark',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+                position: 'topCenter',
+                progressBarColor: 'dark',
+                close: false,
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                document.getElementById('delete-replies-reply-button' + num).click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
         function deletedCommentFeed(num) {
             $("#delete-comment-form" + num).submit(function(event) {
                 event.preventDefault();
@@ -3350,7 +3382,31 @@
                 });
             });
         }
-
+        function deleted_replies_reply_comment_feed(num) {
+            $("#form-delete-replies-reply" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        $("#balasan_komentar_ini2" + num).empty();
+                        iziToast.show({
+                            backgroundColor: '#a1dfb0',
+                            title: '<i class="fa-solid fa-check"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message: response.message,
+                            position: 'topCenter',
+                            progressBarColor: 'dark',
+                        });
+                    }
+                });
+            });
+        }
         function deletedReplyCommentFeed(num) {
             $("#delete-reply-comment-form" + num).submit(function(event) {
                 event.preventDefault();
