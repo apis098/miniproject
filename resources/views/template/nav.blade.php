@@ -980,9 +980,9 @@
                                                             src="{{ asset('storage/' . $userLogin->foto) }}"
                                                             alt="profile image" width="50px" height="50px">
                                                     @else
-                                                        <img loading="lazy" class="mr-3 rounded-circle"
+                                                        <img loading="lazy" class="mr-3 rounded-circle border border-light"
                                                             src="{{ asset('images/default.jpg') }}"
-                                                            alt="profile image" style="max-width:40px">
+                                                            alt="profile image" width="50px" height="50px">
                                                     @endif
                                                 </a>
                                                 @if (auth()->user()->role === 'koki')
