@@ -3368,7 +3368,7 @@
                             title: '<i class="fa-regular fa-circle-question"></i>',
                             titleColor: 'dark',
                             messageColor: 'dark',
-                            message: response.message,
+                            message: "Sukses menghapus komentar",
                             position: 'topCenter',
                             progressBarColor: 'dark',
                         });
