@@ -2912,7 +2912,7 @@
                             }
                             console.log(pengirim);
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${random}">
+                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
