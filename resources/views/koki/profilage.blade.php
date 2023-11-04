@@ -1,6 +1,6 @@
 @extends('layouts.nav_koki')
 @section('konten')
-    
+
     @push('style')
         @powerGridStyles
     @endpush
@@ -66,6 +66,7 @@
                     </div>
                     <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="col-12">
                         <div class="mb-3 row mt-5">
                             <label class="col-sm-1 col-form-label fw-bold mx-4">Nama</label>
                             <div class="col-sm-10">
@@ -84,17 +85,17 @@
                             <label class="col-sm-1 col-form-label mx-4"> <strong
                                     style="margin-left: 13px;">Biodata </strong></label>
                             <div class="col-sm-10">
-                                <textarea id="durasi" name="biodata" value="{{-- $userLogin->password --}}" class="form-control rounded-2"
+                                <textarea id="durasi" name="biodata" rows="4" value="{{-- $userLogin->password --}}" class="form-control rounded-2"
                                     style=" width: 100%;  " placeholder="Masukkan Biodata..." rows="3">
                                 {!! $userLogin->biodata !!}
                                 </textarea>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-sm d-flex float-end text-white mr-5"
+                        <button type="submit" class="btn btn-sm d-flex float-end text-white mr-5 mb-3"
                             style=" margin-left: ; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                             border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins; font-weight: 500;
-                              letter-spacing: 0.13px; word-wrap: break-word">Edit</button>
+                             border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins;">Edit</button>
+                             </div>
                     </form>
                 </div>
 
@@ -106,7 +107,7 @@
                     {{-- start tab 2 --}}
                     @csrf
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Lama :</label>
+                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Lama </label>
                         <div class="col-sm-9">
                             <input type="password" id="oldpass" name="oldPass" value="{{-- $userLogin->name --}}"
                                 class="form-control rounded-2 " style=" width: 100%; "
@@ -116,7 +117,7 @@
                         </div>
                     </div>
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Baru :</label>
+                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Baru </label>
                         <div class="col-sm-9">
                             <input type="password" id="newpass" name="password" value="{{-- $userLogin->name --}}"
                                 class="form-control rounded-2" style=" width: 100%;  "
@@ -124,17 +125,16 @@
                         </div>
                     </div>
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">Konfirmasi : </label>
+                        <label class="col-sm-2 col-form-label fw-bold mx-3">Konfirmasi  </label>
                         <div class="col-sm-9">
                             <input type="password" id="copassword" name="password_confirmation"
                                 value="{{-- $userLogin->name --}}" class="form-control rounded-2" style=" width: 100%;  "
                                 placeholder="konfirmasi password...">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-sm d-flex float-end text-white mr-5"
-                    style=" margin-left: ; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                     border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins; font-weight: 500;
-                      letter-spacing: 0.13px; word-wrap: break-word">Ganti</button>
+                    <button type="submit" class="btn btn-sm d-flex float-end text-white mr-5 mb-3"
+                    style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                     border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins;">Ganti</button>
                 </form>
             </div>
             {{-- end --}}
