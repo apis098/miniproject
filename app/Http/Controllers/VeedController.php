@@ -139,19 +139,16 @@ class VeedController extends Controller
             $like->users_id = $user_id;
             $like->veed_id = $veed_id;
             $like->save();
-            $notification = new notifications();
-            $notification->user_id = $feed->users_id;
-            $notification->notification_from = auth()->user()->id;
-            $notification->veed_id = $veed_id;
-            $notification->categories = "like"; 
-            $notification->save();
 
-            // notifications::create([
-            //     'user_id' => $feed->users_id,
-            //     'notification_from' => auth()->user()->id,
-            //     'veed_id' => $veed_id,
-            //     'like_id' => $like->id,
-            // ]);
+            if($user_id != Auth::user()->id){
+                $notification = new notifications();
+                $notification->user_id = $feed->users_id;
+                $notification->notification_from = auth()->user()->id;
+                $notification->veed_id = $veed_id;
+                $notification->categories = "like"; 
+                $notification->save();
+            }
+
             $isLikeVeed = \App\Models\like_veed::query()
                 ->where('users_id', Auth::user()->id)
                 ->where('veed_id', $veed_id)
