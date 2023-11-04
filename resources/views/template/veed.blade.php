@@ -187,6 +187,12 @@
                             <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
                                 id="formUploadVideo">
                                 @csrf
+                                <div class="ml-auto d-flex mb-3">
+                                    <div id="loading-overlay" style="display: none;" class="spinner-border text-orange" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <small id="text-loading" style="display: none" class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah postingan...</small>
+                                </div>
                                 @if (Auth::user()->isSuperUser === 'yes')
                                     <div class="d-flex">
 
@@ -305,7 +311,7 @@
                                         @endif
                                     </a>
                                     <div style="margin-top: 8px;">
-                                        <a href="" class="text-dark ">
+                                        <a href="{{route('show.profile',$item_video->user->id)}}" class="text-dark ">
                                             <strong class="text-center">{{ $item_video->user->name }}</strong>
                                         </a>
                                         <a href="" class="text-muted d-block"
