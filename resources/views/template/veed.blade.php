@@ -109,6 +109,34 @@
                     box-shadow: none;
                     border: solid rgb(123, 215, 232) 3px;
                 }
+                @keyframes fadeIn {
+                    0% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+
+                .fade-in {
+                    animation: fadeIn 0.5s ease-in-out;
+                }
+                .fade-out {
+                    animation-name: fadeOutAnimation;
+                    animation-duration: 0.5s; /* Sesuaikan durasi animasi sesuai keinginan Anda */
+                    animation-timing-function: ease-out;
+                    animation-fill-mode: forwards;
+                    }
+
+                @keyframes fadeOutAnimation {
+                    from {
+                        opacity: 1;
+                    }
+                    to {
+                        opacity: 0;
+                    }
+                }
+
             </style>
             <!-- feed start -->
             <div class="col-md-6">
@@ -171,6 +199,13 @@
                                             autocomplete="off" value="yes">
                                         <label class="btn btn-no-select" id="prem"
                                             for="danger-outlined">Premium</label>
+                                        
+                                        <div class="ml-auto d-flex">
+                                            <div id="loading-overlay" style="display: none;" class="spinner-border text-orange" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <small id="text-loading" style="display: none" class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah postingan...</small>
+                                        </div>
                                     </div>
                                 @endif
                                 <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
@@ -2989,10 +3024,23 @@
                 });
             });
         }
+        function showLoadingOverlay() {
+            $("#loading-overlay").show();
+            $("#text-loading").show();
+        }
 
+        function hideLoadingOverlay() {
+            $("#text-loading").removeClass("fade-in"); 
+            $("#text-loading").addClass("fade-out");
+            $("#loading-overlay").addClass("fade-out");
+        }
+        function testingButton(){
+            showLoadingOverlay();
+        }
         // upload video feed ajax
         $("#formUploadVideo").submit(function(e) {
             e.preventDefault();
+            showLoadingOverlay();
             let data = new FormData($(this)[0]);
             $.ajax({
                 url: "{{ route('upload.video') }}",
@@ -3001,6 +3049,7 @@
                 contentType: false,
                 data: data,
                 success: function success(response) {
+                    hideLoadingOverlay();
                     if (response.success) {
                         $("#inputVideo").val('');
                         $("#deskripsi_video").val('');
@@ -3019,6 +3068,7 @@
                     }
                 },
                 error: function error(xhr, status, errors) {
+                    hideLoadingOverlay();
                     console.log(xhr.responseText);
                     iziToast.show({
                         backgroundColor: '#f2a5a8',
