@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
+    <!-- overlay scrollbar -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- summernote -->
     <link rel="stylesheet" href="/plugins/summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -74,7 +76,26 @@
             .cascading-right {
                 margin-right: 0;
             }
+            #btnSidebar {
+        display: block; /* Atur elemen menjadi block (muncul) */
+
         }
+    }
+     /* tampilan untuk laptop */
+     @media (min-width: 1025px) and (max-width: 1366px) {
+
+        #btnSidebar {
+        display: none; /* Atur elemen menjadi block (muncul) */
+        }
+     }
+
+
+    /* tampilan untuk PC yang lebih besar */
+    @media (min-width: 1367px) {
+        #btnSidebar {
+        display: none; /* Atur elemen menjadi block (muncul) */
+        }
+    }
 
         .font-a {
             font-family: 'Dancing Script', cursive;
@@ -90,6 +111,9 @@
         .t:hover {
             color: white
         }
+
+
+
     </style>
 
 <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
@@ -97,7 +121,7 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class=" sidebar-mini layout-fixed">
 
     <script>
         @if(session('error'))
@@ -131,8 +155,8 @@
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                <li class="nav-item mx-3">
+                    <a id="btnSidebar" onclick="ManageSidebar()" class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
             </ul>
@@ -141,7 +165,7 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <a class="nav-link " data-toggle="dropdown" href="#">
                         <i class="far fa-comments"></i>
 
                     </a>
@@ -164,6 +188,9 @@
                         </div>
 
                 </li>
+
+
+                {{-- expand fullscreen --}}
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
@@ -275,7 +302,7 @@
                         </a>
                         <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
                     </div>
-                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-divider">
                     <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
                         <svg style="vertical-align: top; margin-left: -5px" xmlns="http://www.w3.org/2000/svg"
                             width="25" height="25" viewBox="0 0 36 36">
@@ -289,7 +316,7 @@
                         </svg>
                         &nbsp; Dashboard
                     </a>
-
+                    </div>
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('actionlogout') }}" style="width: 230px;" class="dropdown-item text-orange">
                         <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -327,7 +354,7 @@
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4"
+    <aside id="sidebarContent" class="main-sidebar sidebar-dark-primary elevation-4"
         style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
         <!-- Brand Logo -->
         <div class="mt-3">
@@ -414,15 +441,6 @@
                         </a>
                     </li>
 
-                    {{-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
-                            <a href="{{route('koki.favorite')}}"
-                                class="nav-link mx-3 {{ request()->is('koki/favorite') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m11 13.5l-4-4l-4 4v-12a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1Z"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
-                                Favorit
-                                </p>
-                            </a>
-                        </li> --}}
 
                     <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                         <a href="{{ route('koki.income') }}"
@@ -458,17 +476,6 @@
                             </p>
                         </a>
                     </li>
-
-                    {{--
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em"">
-                            <a href="{{ route('ReplyUser.index') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/reply-complaint') ? 'activet text-orange' : 'text-white' }}" style="width:13em">
-                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm12 12a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm6-5V8a2 2 0 0 0-2-2h-6l3 3m0-6l-3 3M3 13v3a2 2 0 0 0 2 2h6l-3-3m0 6l3-3"/></svg>
-                                <p  style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
-                                    Balasan
-                                </p>
-                            </a>
-                        </li> --}}
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -537,6 +544,9 @@
     <script src="path_to_fullcalendar.min.js"></script>
 
     <script>
+
+        let startCond = true;
+
         document.addEventListener('calendar', function() {
             var calendarEl = document.getElementById('calendar'); // ID kalender
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -545,6 +555,20 @@
             });
             calendar.render();
         });
+
+         function ManageSidebar(e){
+             let sidebar = document.getElementById('sidebarContent')
+
+             if(startCond){
+                 sidebar.style.display = ''
+                 startCond = false
+             } else{
+                 sidebar.style.display = 'block'
+                 startCond = true
+             }
+
+         }
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
