@@ -26,6 +26,9 @@ return new class extends Migration
             $table->date('tanggal_berakhir_kursus');
             $table->enum('status', ['ditunggu', 'diterima', 'ditolak', 'kadaluarsa'])->default('ditunggu');
             $table->timestamp('waktu_diterima')->nullable();
+            $table->integer('rating')->nullable();
+            $table->integer('rating_asli')->nullable();
+            $table->bigInteger('jumlah_favorite')->nullable();
             $table->timestamps();
 
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
