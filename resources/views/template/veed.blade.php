@@ -2708,7 +2708,7 @@
                                 foto = 'images/default.jpg';
                             }
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${random}">
+                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini22${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -2769,19 +2769,19 @@
                                                                                                                     {{-- --}}
 
                                                                                                                             {{-- Hapus Komentar --}}
-                                                                                                                            <form
+                                                                                                                             <form
                                                                                                                                 method="POST"
-                                                                                                                                action="/hapus_balasan_komentar_feed/${up['id']}"
-                                                                                                                                id="delete-reply-comment-form${up['id']}">
+                                                                                                                                action="/delete-replies-comment-feed/${up['id']}"
+                                                                                                                                id="form-delete-replies-reply2${up['id']}">
                                                                                                                                 @csrf
                                                                                                                                 @method('DELETE')
                                                                                                                                 <button
                                                                                                                                     type="submit"
-                                                                                                                                    hidden onclick="deletedReplyCommentFeed(${up['id']})"
-                                                                                                                                    id="delete-reply-comment-button${up['id']}">Delete</button>
+                                                                                                                                    hidden onclick="deleted_replies_reply_comment_feed2(${up['id']})"
+                                                                                                                                    id="delete-replies-reply-button2${up['id']}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
-                                                                                                                                    onclick="confirmation_delete_reply_comment(${up['id']})"
+                                                                                                                                    onclick="confirmation_delete_replies_reply2(${up['id']})"
                                                                                                                                     class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                                                     <i
                                                                                                                                         class="fa-solid fa-trash"></i>
