@@ -3324,39 +3324,7 @@
                 }
             });
         }
-        function confirmation_delete_replies_reply(num) {
-            iziToast.show({
-                backgroundColor: '#eea2a6',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
-                position: 'topCenter',
-                progressBarColor: 'dark',
-                close: false,
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-                        instance, toast) {
-                        instance.hide({
-                            transitionOut: 'fadeOutUp',
-                            onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('delete-replies-reply-button' + num).click();
-                            }
-                        }, toast, 'buttonName');
-                    }, false], // true to focus
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-                        instance, toast) {
-                        instance.hide({}, toast, 'buttonName');
-                    }]
-                ],
-                onOpening: function(instance, toast) {
-                    console.info('callback abriu!');
-                },
-                onClosing: function(instance, toast, closedBy) {
-                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-                }
-            });
-        }
+       
         function deletedCommentFeed(num) {
             $("#delete-comment-form" + num).submit(function(event) {
                 event.preventDefault();
@@ -3382,31 +3350,7 @@
                 });
             });
         }
-        function deleted_replies_reply_comment_feed(num) {
-            $("#form-delete-replies-reply" + num).submit(function(event) {
-                event.preventDefault();
-                let route = $(this).attr("action");
-                $.ajax({
-                    url: route,
-                    method: "DELETE",
-                    headers: {
-                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
-                    },
-                    success: function success(response) {
-                        $("#balasan_komentar_ini2" + num).empty();
-                        iziToast.show({
-                            backgroundColor: '#a1dfb0',
-                            title: '<i class="fa-solid fa-check"></i>',
-                            titleColor: 'dark',
-                            messageColor: 'dark',
-                            message: response.message,
-                            position: 'topCenter',
-                            progressBarColor: 'dark',
-                        });
-                    }
-                });
-            });
-        }
+        
         function deletedReplyCommentFeed(num) {
             $("#delete-reply-comment-form" + num).submit(function(event) {
                 event.preventDefault();
@@ -3465,7 +3409,7 @@
                                 foto = 'images/default.jpg';
                             }
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${random}">
+                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini22${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -3528,17 +3472,17 @@
                                                                                                                             {{-- Hapus Komentar --}}
                                                                                                                             <form
                                                                                                                                 method="POST"
-                                                                                                                                action="/hapus_balasan_komentar_feed/${up['id']}"
-                                                                                                                                id="delete-reply-comment-form${up['id']}">
+                                                                                                                                action="/delete-replies-comment-feed/${up['id']}"
+                                                                                                                                id="form-delete-replies-reply2${up['id']}">
                                                                                                                                 @csrf
                                                                                                                                 @method('DELETE')
                                                                                                                                 <button
                                                                                                                                     type="submit"
-                                                                                                                                    hidden onclick="deletedReplyCommentFeed(${up['id']})"
-                                                                                                                                    id="delete-reply-comment-button${up['id']}">Delete</button>
+                                                                                                                                    hidden onclick="deleted_replies_reply_comment_feed2(${up['id']})"
+                                                                                                                                    id="delete-replies-reply-button2${up['id']}">Delete</button>
                                                                                                                                 <button
                                                                                                                                     type="button"
-                                                                                                                                    onclick="confirmation_delete_reply_comment(${up['id']})"
+                                                                                                                                    onclick="confirmation_delete_replies_reply2(${up['id']})"
                                                                                                                                     class="yuhu text-danger btn-sm rounded-5 float-end">
                                                                                                                                     <i
                                                                                                                                         class="fa-solid fa-trash"></i>
@@ -3575,6 +3519,122 @@
                 });
             });
         }
+        function confirmation_delete_replies_reply2(num) {
+            iziToast.show({
+                backgroundColor: '#eea2a6',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'dark',
+                messageColor: 'dark',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+                position: 'topCenter',
+                progressBarColor: 'dark',
+                close: false,
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                $('#delete-replies-reply-button2'+num).click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        function deleted_replies_reply_comment_feed2(num) {
+            $("#form-delete-replies-reply2" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        $("#balasan_komentar_ini22" + num).empty();
+                        iziToast.show({
+                            backgroundColor: '#a1dfb0',
+                            title: '<i class="fa-solid fa-check"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message: response.message,
+                            position: 'topCenter',
+                            progressBarColor: 'dark',
+                        });
+                    }
+                });
+            });
+        }   
+        function confirmation_delete_replies_reply(num) {
+            iziToast.show({
+                backgroundColor: '#eea2a6',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'dark',
+                messageColor: 'dark',
+                message: 'Apakah Anda yakin ingin menghapus komentar ini?',
+                position: 'topCenter',
+                progressBarColor: 'dark',
+                close: false,
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                $('#delete-replies-reply-button'+num).click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+        }
+        function deleted_replies_reply_comment_feed(num) {
+            $("#form-delete-replies-reply" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "DELETE",
+                    headers: {
+                        "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                        $("#balasan_komentar_ini2" + num).empty();
+                        iziToast.show({
+                            backgroundColor: '#a1dfb0',
+                            title: '<i class="fa-solid fa-check"></i>',
+                            titleColor: 'dark',
+                            messageColor: 'dark',
+                            message: response.message,
+                            position: 'topCenter',
+                            progressBarColor: 'dark',
+                        });
+                    }
+                });
+            });
+        }   
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
