@@ -13,12 +13,196 @@
 
             padding-left: 10px;
         }
+
+                /* Tampilan mobile Kecil Sekali */
+                @media (min-width:290px) and (max-width: 340px) {
+                    a.kiri {
+                        margin-left: -18px;
+                    }
+
+                    input.widt {
+                        width: 85%;
+                    }
+
+                    input.besar {
+                        width: 95%;
+                    }
+
+                    textarea.besar {
+                        width: 95%;
+                    }
+
+                    button.rigt {
+                        margin-right: 18px;
+                    }
+
+                    button.kiri {
+                        margin-right: 14px;
+                    }
+
+                }
+
+                /* untuk tampilan mobile */
+                @media (min-width: 350px) and (max-width: 860px) {
+                    a.kiri {
+                        margin-left: 15px;
+                    }
+
+                    input.widt {
+                        width: 85%;
+                    }
+
+                    input.besar {
+                        width: 95%;
+                    }
+
+                    textarea.besar {
+                        width: 95%;
+                    }
+
+                    button.rigt {
+                        margin-right: 18px;
+                    }
+
+                    button.kiri {
+                        margin-right: 44px;
+                    }
+
+                }
+
+                @media (max-width: 1368px) {
+                    button.kiri {
+                        margin-right: 65px;
+                    }
+                }
+
+                @media (min-width: 320px) {
+                    button.kiri {
+                        margin-right: 45px;
+                    }
+                }
+
+                @media (min-width: 375px) {
+                    button.kiri {
+                        margin-right: 50px;
+                    }
+                }
+
+                @media (min-width: 414px) {
+                    button.kiri {
+                        margin-right: 58px;
+                    }
+                }
+
+                @media (min-width: 425px) {
+                    button.kiri {
+                        margin-right: 58px;
+                    }
+                }
+                @media (min-width: 540px) {
+                    button.kiri {
+                        margin-right: 75px;
+                    }
+                    button.rigt {
+                        margin-right: 28px;
+                    }
+                }
+
+                @media (min-width: 1024px) {
+                    button.rigt {
+                        margin-right: 0px;
+                    }
+                }
+
+                @media (min-width: 1024px) {
+
+                    div.kanan {
+                        margin-left: -28px;
+
+                    }
+
+                    input.rigt {
+                        margin-left: -15px;
+                    }
+
+                    input.widt {
+                        width: 94%;
+                    }
+
+                    input.besar {
+                        width: 100%;
+                    }
+
+                    textarea.besar {
+                        width: 100%;
+                    }
+                    button.kiri {
+                        margin-right: 50px;
+                    }
+
+                }
+
+
+                /* untuk tampilan ipad */
+                @media (min-width: 760px) and (max-width: 1000px) {
+                    input.widt {
+                        width: 90%;
+                        margin-left: 10px;
+
+                    }
+                    label.kanan{
+                        margin-left: -20px;
+                    }
+
+                    input.besar {
+                        width: 98%;
+                    }
+
+                    textarea.besar {
+                        width: 98%;
+                    }
+                    button.rigt {
+                        margin-right: 32px;
+                    }
+
+                    button.kiri {
+                        margin-right: 50px;
+                    }
+                }
+
+                /* untuk tampilan laptop */
+                @media (min-width: 1210px) and (max-width: 4000px) {
+
+                    div.kanan {
+                        margin-left: -35px;
+
+                    }
+
+                    input.rigt {
+                        margin-left: -30px;
+                    }
+
+                    input.widt {
+                        width: 98%;
+                    }
+
+                    input.besar {
+                        width: 100%;
+                    }
+
+                    textarea.besar {
+                        width: 100%;
+                    }
+                    button.kiri {
+                        margin-right: 50px;
+                    }
+                }
     </style>
 
     <div class="my-3 ml-4" style="overflow-x:hidden">
         <ul class="nav mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                <a id="click1" class="nav-link active " id="pills-home-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                     aria-selected="true">
                     <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Edit Profile</h5>
@@ -27,7 +211,7 @@
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a id="click2" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                <a id="click2" class="nav-link kiri" id="pills-profile-tab" data-bs-toggle="pill"
                     data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                     aria-selected="false">
                     <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Edit Password</h5>
@@ -66,34 +250,34 @@
                     </div>
                     <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="col-12">
+                        <div class="col-12 kanan">
                         <div class="mb-3 row mt-5">
-                            <label class="col-sm-1 col-form-label fw-bold mx-4">Nama</label>
+                            <label class="col-sm-2 col-form-label fw-bold kanan">Nama</label>
                             <div class="col-sm-10">
                                 <input type="text" id="nama" name="name" value="{{ $userLogin->name }}"
-                                    class="form-control rounded-2 " style=" width: 100%;  " placeholder="Masukkan Nama...">
+                                    class="form-control rounded-2 besar"  placeholder="Masukkan Nama...">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-sm-1 col-form-label fw-bold mx-4">Email </label>
+                            <label class="col-sm-2 col-form-label fw-bold kanan">Email </label>
                             <div class="col-sm-10">
                                 <input type="email" id="harga" name="email" value="{{ $userLogin->email }}"
-                                    class="form-control rounded-2 " style=" width: 100%;  " placeholder="Masukkan Email...">
+                                    class="form-control rounded-2 besar"  placeholder="Masukkan Email...">
                             </div>
                         </div>
                         <div class="mb-3 row">
-                            <label class="col-sm-1 col-form-label mx-4"> <strong
+                            <label class="col-sm-2 col-form-label kanan"> <strong
                                     style="margin-left: 13px;">Biodata </strong></label>
                             <div class="col-sm-10">
-                                <textarea id="durasi" name="biodata" rows="4" value="{{-- $userLogin->password --}}" class="form-control rounded-2"
-                                    style=" width: 100%;  " placeholder="Masukkan Biodata..." rows="3">
+                                <textarea id="durasi" name="biodata" rows="4" value="{{-- $userLogin->password --}}" class="form-control rounded-2 besar"
+                                     placeholder="Masukkan Biodata..." >
                                 {!! $userLogin->biodata !!}
                                 </textarea>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-sm d-flex float-end text-white mr-5 mb-3"
-                            style=" margin-left: ; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        <button type="submit" class="btn btn-sm d-flex float-end text-white mb-3 rigt"
+                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                              border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins;">Edit</button>
                              </div>
                     </form>
@@ -106,35 +290,36 @@
                 <form action="{{ route('update.password') }}" method="post">
                     {{-- start tab 2 --}}
                     @csrf
+                    <div class="col-12 mx-3">
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Lama </label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-2 col-form-label fw-bold ">Password lama</label>
+                        <div class="col-sm-10">
                             <input type="password" id="oldpass" name="oldPass" value="{{-- $userLogin->name --}}"
-                                class="form-control rounded-2 " style=" width: 100%; "
-                                placeholder="Masukkan password...">
+                                class="form-control rounded-2 rigt widt"   placeholder="Masukkan password...">
                             {{-- <a id="mybutton" onclick="change('oldpass','mybutton')"><span id="mybutton" class="left-pan"><i
                                     class="fa-solid fa-eye"></i></span></a> --}}
                         </div>
                     </div>
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">Password Baru </label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-2 col-form-label fw-bold ">Password baru </label>
+                        <div class="col-sm-10">
                             <input type="password" id="newpass" name="password" value="{{-- $userLogin->name --}}"
-                                class="form-control rounded-2" style=" width: 100%;  "
+                                class="form-control rounded-2 rigt widt"
                                 placeholder="Masukkan password baru...">
                         </div>
                     </div>
                     <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold mx-3">Konfirmasi  </label>
-                        <div class="col-sm-9">
+                        <label class="col-sm-2 col-form-label fw-bold ">Konfirmasi  </label>
+                        <div class="col-sm-10">
                             <input type="password" id="copassword" name="password_confirmation"
-                                value="{{-- $userLogin->name --}}" class="form-control rounded-2" style=" width: 100%;  "
+                                value="{{-- $userLogin->name --}}" class="form-control rounded-2 rigt widt"
                                 placeholder="konfirmasi password...">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-sm d-flex float-end text-white mr-5 mb-3"
+                    <button type="submit" class="btn btn-sm d-flex float-end text-white mb-3 kiri"
                     style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                      border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins;">Ganti</button>
+                     </div>
                 </form>
             </div>
             {{-- end --}}

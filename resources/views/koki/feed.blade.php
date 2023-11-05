@@ -296,6 +296,7 @@
         <div class="col-12 my-4 kanans">
 
             <style>
+                /* Tampilan mobile Kecil Sekali */
                 @media (min-width:290px) and (max-width: 340px) {
                     a.kiri {
                         margin-left: 90px;
