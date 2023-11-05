@@ -308,14 +308,14 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                       
+
                                         <style>
                                             #pbb {
                                                 background-color: white;
                                             }
                                         </style>
                                         <div class="mb-3">
-                                            <label for="harga" class="form-label">Rentang Tarif Per Jam</label>
+                                            <label for="harga" class="form-label">Rentang Tarif Per Sesi</label>
                                             <div class="row">
                                                 <div class="col-5">
                                                     <input type="text" name="min_price" id="minHargaInput"
@@ -333,7 +333,7 @@
                                             </div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="waktu" class="form-label">Rentang Waktu</label>
+                                            <label for="waktu" class="form-label">Rentang Lama Sesi</label>
                                             <div class="row">
                                                 <div class="col-5">
                                                     <div class="row mx-auto">
@@ -365,6 +365,28 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="mb-3">
+                                            <label for="jumlah_pelajaran">Rating</label>
+                                            <input type="hidden" id="valueRating" name="rating">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="" id="rating1" style="border: 1px solid black; border-radius: 15px;padding: 5px;">
+                                                    Rating 1
+                                                </div>
+                                                <div class="" id="rating2" style="border: 1px solid black; border-radius: 15px;padding: 5px;">
+                                                    Rating 2
+                                                </div>
+                                                <div class="" id="rating3" style="border: 1px solid black; border-radius: 15px;padding: 5px;">
+                                                    Rating 3
+                                                </div>
+                                                <div class="" id="rating4" style="border: 1px solid black; border-radius: 15px;padding: 5px;">
+                                                    Rating 4
+                                                </div>
+                                                <div class="" id="rating5" style="border: 1px solid black; border-radius: 15px;padding: 5px;">
+                                                    Rating 5
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="mb-3 d-flex flex-row-reverse">
                                             <button type="submit" class="btn btn-light"
                                                 style="background-color: #F7941E; border-radius: 15px;">
@@ -799,5 +821,54 @@
                 });
             });
         });
+
+        // untuk bagian filter rating kursus
+        let rating1 = document.getElementById("rating1");
+        let rating2 = document.getElementById("rating2");
+        let rating3 = document.getElementById("rating3");
+        let rating4 = document.getElementById("rating4");
+        let rating5 = document.getElementById("rating5");
+        let valueRating = document.getElementById("valueRating");
+        rating1.addEventListener("click", function () {
+            rating1.style.backgroundColor = "orange";
+            rating2.style.backgroundColor = "white";
+            rating3.style.backgroundColor = "white";
+            rating4.style.backgroundColor = "white";
+            rating5.style.backgroundColor = "white";
+            valueRating.value = 1;
+        });
+        rating2.addEventListener("click", function () {
+            rating1.style.backgroundColor = "white";
+            rating2.style.backgroundColor = "orange";
+            rating3.style.backgroundColor = "white";
+            rating4.style.backgroundColor = "white";
+            rating5.style.backgroundColor = "white";
+            valueRating.value = 2;
+        });
+        rating3.addEventListener("click", function () {
+            rating1.style.backgroundColor = "white";
+            rating2.style.backgroundColor = "white";
+            rating3.style.backgroundColor = "orange";
+            rating4.style.backgroundColor = "white";
+            rating5.style.backgroundColor = "white";
+            valueRating.value = 3;
+        });
+        rating4.addEventListener("click", function () {
+            rating1.style.backgroundColor = "white";
+            rating2.style.backgroundColor = "white";
+            rating3.style.backgroundColor = "white";
+            rating4.style.backgroundColor = "orange";
+            rating5.style.backgroundColor = "white";
+            valueRating.value = 4;
+        });
+        rating5.addEventListener("click", function () {
+            rating1.style.backgroundColor = "white";
+            rating2.style.backgroundColor = "white";
+            rating3.style.backgroundColor = "white";
+            rating4.style.backgroundColor = "white";
+            rating5.style.backgroundColor = "orange";
+            valueRating.value = 5;
+        });
+
     </script>
 @endsection

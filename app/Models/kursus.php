@@ -22,7 +22,10 @@ class kursus extends Model
         "status",
         "waktu_diterima",
         "tanggal_dimulai_kursus",
-        "tanggal_berakhir_kursus"
+        "tanggal_berakhir_kursus",
+        "rating",
+        "rating_asli",
+        "jumlah_favorite"
     ];
     public function income_chef()
     {

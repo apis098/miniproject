@@ -24,6 +24,7 @@ use App\Models\TopUpCategories;
 use App\Models\Village;
 use Carbon\Carbon;
 use App\Models\detailSessionCourses;
+
 class KursusController extends Controller
 {
     /**
@@ -42,9 +43,9 @@ class KursusController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -57,6 +58,32 @@ class KursusController extends Controller
 
     public function kursus_template(Request $request)
     {
+        // validasi filter
+        if ($request->min_time != NULL && $request->max_time != NULL) {
+            if ($request->min_timer === 'jam') {
+                $request->merge(["min_time" => $request->min_time * 60]);
+            }
+            if ($request->max_timer === 'jam') {
+                $request->merge(["max_time" => $request->max_time * 60]);
+            }
+        }
+        $validator  = Validator::make($request->all(), [
+            'min_price' => 'lte:max_price|required_with:max_price',
+            'max_price' => 'required_with:min_price',
+            'min_time' => 'lte:max_time|required_with:max_time',
+            'max_time' => 'required_with:min_time'
+        ], [
+            'min_price.lte' => 'Minimal harga tidak boleh melebihi maksimal harga!',
+            'min_time.lte' => 'Minimal waktu tidak boleh melebihi maksimal waktu!',
+            'min_price.required_with' => "Maksimal harga harus terisi!",
+            "max_price.required_with" => "Minimal harga harus terisi!",
+            "min_time.required_with" => "Maksimal waktu harus terisi!",
+            "max_time.required_with" => "Minimal waktu harus terisi!"
+        ]);
+        if ($validator->fails()) {
+            //return redirect()->back()->withErrors($validator);
+            return redirect()->back()->with('error', $validator->errors()->first());
+        }
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
@@ -69,9 +96,9 @@ class KursusController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -79,41 +106,62 @@ class KursusController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $semua_kursus = kursus::query()->where('status', 'diterima');
-        $kursus_terbaru = kursus::query()->where('status', 'diterima')->whereDate('waktu_diterima', today());
+        $semua_kursuss = kursus::query();
+        $kursus_terbaruu = kursus::query();
+        $kursus_favorite = kursus::query();
+        $kursus_rating = kursus::query();
+        $semua_kursuss->where('status', 'diterima');
+        $kursus_terbaruu->where('status', 'diterima')->whereDate('waktu_diterima', today());
+        $kursus_favorite = kursus::orderBy('jumlah_favorite', 'desc');
+        $kursus_rating = kursus::orderBy('rating_asli', 'desc');
         if ($request->cari_nama_kursus) {
-            $semua_kursus->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
-                ->paginate(6);
-            $kursus_terbaru->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%')
-                ->paginate(6);
+            $semua_kursuss->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
+            $kursus_terbaruu->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
         }
-        if ($request->isMethod('post')) {
-            if ($request->has('jenis_kursus')) {
-                $jenis_kursus = $request->jenis_kursus;
-                $semua_kursus->whereHas('jenis_kursus', function ($query) use ($jenis_kursus) {
-                    $query->whereIn('jenis_kursus', $jenis_kursus);
-                });
-                $kursus_terbaru->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
-                    $q->whereIn('jenis_kursus', $jenis_kursus);
-                });
-            }
-            if ($request->has('min_price') && $request->has('max_price')) {
-                if ($request->min_price != NULL && $request->max_price != NULL) {
-                    $minprice = str_replace(['.', ','], '', $request->min_price);
-                    $maxprice = str_replace(['.', ','], '', $request->max_price);
-                    $min_price = (int)$minprice;
-                    $max_price = (int)$maxprice;
-                    $semua_kursus->whereBetween('tarif_per_jam', [$min_price, $max_price]);
-                    $kursus_terbaru->whereBetween('tarif_per_jam', [$min_price, $max_price]);
-                }
-            }
+        if ($request->has('jenis_kursus')) {
+            $jenis_kursus = $request->jenis_kursus;
+            $semua_kursuss->whereHas('jenis_kursus', function ($query) use ($jenis_kursus) {
+                $query->whereIn('jenis_kursus', $jenis_kursus);
+            });
+            $kursus_terbaruu->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
+                $q->whereIn('jenis_kursus', $jenis_kursus);
+            });
+        }
+        if ($request->min_price != NULL && $request->max_price != NULL) {
+            $minprice = str_replace(['.', ','], '', $request->min_price);
+            $maxprice = str_replace(['.', ','], '', $request->max_price);
+            $min_price = (int)$minprice;
+            $max_price = (int)$maxprice;
+            $semua_kursuss->whereHas('sesi', function ($query) use ($min_price, $max_price) {
+                $query->whereBetween('harga_sesi', [$min_price, $max_price]);
+            });
+            $kursus_terbaruu->whereHas('sesi', function ($query) use ($min_price, $max_price) {
+                $query->whereBetween('lama_sesi', [$min_price, $max_price]);
+            });
+        }
+        if ($request->min_time != NULL && $request->max_time != NULL) {
+            $lama_min = $request->min_time;
+            $lama_max = $request->max_time;
+
+            //dd($lama_min . " - " . $lama_max);
+            $semua_kursuss->whereHas('sesi', function ($queery) use ($lama_min, $lama_max) {
+                $queery->whereBetween('lama_sesi', [$lama_min, $lama_max]);
+            });
+            $kursus_terbaruu->whereHas('sesi', function ($quuery) use ($lama_min, $lama_max) {
+                $quuery->whereBetween('lama_sesi', [$lama_min, $lama_max]);
+            });
+        }
+        if ($request->rating) {
+            $rate = $request->rating;
+            $semua_kursuss->where('rating', $rate);
+            $kursus_terbaruu->where('rating', $rate);
         }
         $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
         $regency = Regency::pluck('name');
         $district = District::pluck('name');
         $village = Village::pluck('name');
-        $lokasi_kursus = $semua_kursus->get()->map(function ($posisi) {
+        $lokasi_kursus = $semua_kursuss->get()->map(function ($posisi) {
             return [
                 'latitude' => $posisi->latitude,
                 'longitude' => $posisi->longitude,
@@ -121,8 +169,8 @@ class KursusController extends Controller
                 'nama_kursus' => $posisi->nama_kursus
             ];
         });
-        $semua_kursus = $semua_kursus->paginate(6);
-        $kursus_terbaru = $kursus_terbaru->paginate(6);
+        $semua_kursus = $semua_kursuss->paginate(6);
+        $kursus_terbaru = $kursus_terbaruu->paginate(6);
         return view('template.kursus', compact('categorytopup', 'district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
@@ -163,9 +211,9 @@ class KursusController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -215,7 +263,7 @@ class KursusController extends Controller
         $tanggal_dimulai_kursus = Carbon::parse($request->tanggal_dimulai_kursus);
         $tanggal_saat_ini = Carbon::now();
         $selisih_tanggal = $tanggal_dimulai_kursus->diffInDays($tanggal_saat_ini);
-        if($selisih_tanggal <= 7) {
+        if ($selisih_tanggal <= 7) {
             return response()->json([
                 'success' => false,
                 'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
@@ -223,7 +271,7 @@ class KursusController extends Controller
         }
         $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
         $selisih_tanggal2 = $tanggal_berakhir_kursus->diffInDays($tanggal_dimulai_kursus);
-        if($selisih_tanggal2 < 0) {
+        if ($selisih_tanggal2 < 0) {
             return response()->json([
                 'success' => false,
                 'message' => 'Tanggal berakhir kurus tidak boleh kurang dari tanggal dimulai kursus!'
@@ -284,9 +332,9 @@ class KursusController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -335,7 +383,7 @@ class KursusController extends Controller
         $tanggal_dimulai_kursus = Carbon::parse($request->tanggal_dimulai_kursus);
         $tanggal_saat_ini = Carbon::now();
         $selisih_tanggal = $tanggal_dimulai_kursus->diffInDays($tanggal_saat_ini);
-        if($selisih_tanggal <= 7) {
+        if ($selisih_tanggal <= 7) {
             return response()->json([
                 'success' => false,
                 'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
@@ -343,7 +391,7 @@ class KursusController extends Controller
         }
         $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
         $selisih_tanggal2 = $tanggal_berakhir_kursus->diffInDays($tanggal_dimulai_kursus);
-        if($selisih_tanggal2 < 0) {
+        if ($selisih_tanggal2 < 0) {
             return response()->json([
                 'success' => false,
                 'message' => 'Tanggal berakhir kurus tidak boleh kurang dari tanggal dimulai kursus!'
@@ -400,7 +448,7 @@ class KursusController extends Controller
         }
         if ($request->informasi_lama_sesi === "menit") {
             $lama_sesi = $request->lama_sesi;
-        } else if($request->informasi_lama_sesi === "jam") {
+        } else if ($request->informasi_lama_sesi === "jam") {
             $lama_sesi = $request->lama_sesi * 60;
         }
         sessionCourses::create([
@@ -534,14 +582,14 @@ class KursusController extends Controller
         $detail_sesi->informasi_lama_sesi = $request->informasi_lama_sesi;
         $detail_sesi->save();
         $count = detailSessionCourses::where("session_course_id", $detail_sesi->id)->count();
-        if($request->lama_sesi >= 60) {
+        if ($request->lama_sesi >= 60) {
             $lama_sesi = $request->lama_sesi / 60;
         } else {
             $lama_sesi = $request->lama_sesi;
         }
         return response()->json([
             "success" => true,
-            "message"=> "Sukses mengupdate detail sesi kursus!",
+            "message" => "Sukses mengupdate detail sesi kursus!",
             "nomer" => $count,
             "detail_sesi" => $request->detail_sesi,
             "lama_sesi" => $lama_sesi,
@@ -568,9 +616,12 @@ class KursusController extends Controller
     public function favoriteKursus($chef, $course)
     {
         $check = favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->exists();
+        $kursus = kursus::find($course);
         if ($check) {
             $data = favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->first();
             $data->delete();
+            $kursus->jumlah_favorite = $kursus->jumlah_favorite - 1;
+            $kursus->save();
             return response()->json([
                 'favorite' => false,
                 'unfavorite' => true,
@@ -581,6 +632,8 @@ class KursusController extends Controller
                 'user_id' => $chef,
                 'user_id_from' => Auth::user()->id
             ]);
+            $kursus->jumlah_favorite = $kursus->jumlah_favorite + 1;
+            $kursus->save();
             return response()->json([
                 'favorite' => true,
                 'unfavorite' => false,
