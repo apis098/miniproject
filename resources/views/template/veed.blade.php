@@ -2123,9 +2123,9 @@
                                                                                                                 </div>
                                                                                                                 <div
                                                                                                                     class="d-flex">
-                                                                                                                    <a
-                                                                                                                        href="">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
-                                                                                                                    <p class="ms-2">{{ $reply_replyComment->komentar }}
+                                                                                                                    <p>
+                                                                                                                         <a href="">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
+                                                                                                                         {{ $reply_replyComment->komentar }}
                                                                                                                     </p>
                                                                                                                 </div>
                                                                                                                 <div class="d-flex flex-row "
