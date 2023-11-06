@@ -53,6 +53,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function sender_reply_comment() {
+        $this->hasMany(balasKomentar::class, "sender_comment_id");
+    }
+    public function recipient_reply_comment() {
+        $this->hasMany(balasKomentar::class, "recipient_comment_id");
+    }
     public function resep() {
         return $this->hasMany(reseps::class);
     }
