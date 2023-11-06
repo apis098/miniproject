@@ -53,6 +53,28 @@ class komentar_resep extends Controller
         $reply->recipe_id = $comment->recipes_id;
         $reply->comment_id = $comment->id;
         $reply->komentar = $request->reply_comment;
+        if ($request->has('parent_id')) {
+            $reply->parent_id = $request->parent_id;
+        }
+        $reply->save();
+        if ($comment->users_id != auth()->user()->id){
+            $notifications = new notifications();
+            $notifications->notification_from = auth()->user()->id;
+            $notifications->user_id = $comment->users_id;
+            $notifications->reply_comment_id = 1;
+            $notifications->resep_id = $comment->recipes_id;
+            $notifications->save();
+        }
+        return redirect()->back()->with('success','Sukses membalas komentar');
+    }
+    public function reply_reply_comment(Request $request,$id){
+        $comment = comment_recipes::findOrFail($id);
+        $reply = new replyCommentRecipe();
+        $reply->users_id = auth()->user()->id;
+        $reply->recipe_id = $comment->recipes_id;
+        $reply->comment_id = $comment->id;
+        $reply->komentar = $request->reply_comment;
+            $reply->parent_id = $request->parent_id;
         $reply->save();
         if ($comment->users_id != auth()->user()->id){
             $notifications = new notifications();
