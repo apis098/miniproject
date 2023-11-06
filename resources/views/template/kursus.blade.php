@@ -482,6 +482,7 @@
                             </div>
                         @endforeach
                     </div>
+                    {{$semua_kursus->links()}}
                 </div>
                 {{-- end tab 1 --}}
 
@@ -521,14 +522,14 @@
                                                     <path fill="currentColor"
                                                         d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
                                                 </svg>
-                                                <p class="mt-1 mx-1"> 5 Kursus</p>
+                                                <p class="mt-1 mx-1">{{ $baru->jumlah_sesi() }}</p>
                                             </div>
                                             <div class="col-6 d-flex">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                     viewBox="0 0 15 15">
                                                     <path fill="none" stroke="currentColor"
                                                         d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                    <p class="mt-1 mx-1"> 120 menit</p>
+                                                    <p class="mt-1 mx-1">{{ $baru->total_waktu_sesi() }}</p>
                                                 </svg>
                                             </div>
                                         </div>
@@ -537,227 +538,118 @@
                             </div>
                         @endforeach
                     </div>
+                    {{$kursus_terbaru->links()}}
                 </div>
                 {{-- end tab 2 --}}
 
                 {{-- start tab 3 --}}
                 <div class="tab-pane courses fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
-                    <div class="row mx-1" style="margin-left: -50px">
-
+                    @if ($kursus_terfavorite->count() == 0)
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                        <p><b>Tidak ada data</b></p>
                     </div>
+                @endif
+                    <div class="row mx-1" style="margin-left: -50px">
+                        @foreach ($kursus_terfavorite as $terfavorite)
+                        <div class="card mx-3 mb-5" style="width: 30%; border-radius:15px">
+                            <img src="{{ asset('storage/' . $terfavorite->foto_kursus) }}" class="card-img-top"
+                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                               border-top-right-radius: calc(0.5rem - 1px);"
+                                alt="...">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="button"class="btn"
+                                            style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                            @foreach ($terfavorite->jenis_kursus as $item)
+                                                {{ $item->jenis_kursus }}
+                                            @endforeach
+                                        </button> <br>
+                                        <a href="{{ route('detail.kursus', $terfavorite->id) }}" class="btn"
+                                            style="font-family: poppins;font-weight:bold">{{ $terfavorite->nama_kursus }}</a>
+                                    </div>
+                                    <div class="col-12 mt-3 row">
+                                        <div class="col-6 d-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                viewBox="0 0 256 256">
+                                                <path fill="currentColor"
+                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
+                                            </svg>
+                                            <p class="mt-1 mx-1"> {{ $terfavorite->jumlah_sesi() }} Sesi</p>
+                                        </div>
+                                        <div class="col-6 d-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                viewBox="0 0 15 15">
+                                                <path fill="none" stroke="currentColor"
+                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
+                                                <p class="mt-1 mx-1">{{ $terfavorite->total_waktu_sesi() }}</p>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    {{$kursus_terfavorite->links()}}
+
                 </div>
                 {{-- end tab 3 --}}
 
                 {{-- start tab 4 --}}
                 <div class="tab-pane courses fade" id="pills-terbaik" role="tabpanel" aria-labelledby="pills-terbaik-tab"
                     tabindex="0">
-                    <div class="row mx-1" style="margin-left: -50px">
-                        <div class="card mx-3 mb-5" style="width: 30%; border-radius:15px">
-                            <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                                       border-top-right-radius: calc(0.5rem - 1px);"
-                                alt="...">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Merebus</p>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                    <div class="col-12 mt-3 row">
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
-                                            </svg>
-                                            <p class="mt-1 mx-1"> 5 Kursus</p>
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 15 15">
-                                                <path fill="none" stroke="currentColor"
-                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                <p class="mt-1 mx-1"> 120 menit</p>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
-                            <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                            border-top-right-radius: calc(0.5rem - 1px);"
-                                alt="...">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Merebus</p>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                    <div class="col-12 mt-3 row">
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
-                                            </svg>
-                                            <p class="mt-1 mx-1"> 5 Kursus</p>
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 15 15">
-                                                <path fill="none" stroke="currentColor"
-                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                <p class="mt-1 mx-1"> 120 menit</p>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
-                            <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                            border-top-right-radius: calc(0.5rem - 1px);"
-                                alt="...">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Merebus</p>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                    <div class="col-12 mt-3 row">
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
-                                            </svg>
-                                            <p class="mt-1 mx-1"> 5 Kursus</p>
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 15 15">
-                                                <path fill="none" stroke="currentColor"
-                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                <p class="mt-1 mx-1"> 120 menit</p>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
-                            <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                            border-top-right-radius: calc(0.5rem - 1px);"
-                                alt="...">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Merebus</p>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                    <div class="col-12 mt-3 row">
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
-                                            </svg>
-                                            <p class="mt-1 mx-1"> 5 Kursus</p>
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 15 15">
-                                                <path fill="none" stroke="currentColor"
-                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                <p class="mt-1 mx-1"> 120 menit</p>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
-                            <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                            border-top-right-radius: calc(0.5rem - 1px);"
-                                alt="...">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Merebus</p>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                    <div class="col-12 mt-3 row">
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
-                                            </svg>
-                                            <p class="mt-1 mx-1"> 5 Kursus</p>
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 15 15">
-                                                <path fill="none" stroke="currentColor"
-                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                <p class="mt-1 mx-1"> 120 menit</p>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card mx-3 mb-5" style="width: 30%;border-radius:10px">
-                            <img src="{{ asset('sawi.jpg') }}" class="card-img-top"
-                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                            border-top-right-radius: calc(0.5rem - 1px);"
-                                alt="...">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <p>Merebus</p>
-                                        <a href="/detail" class="btn"
-                                            style="font-family: poppins;font-weight:bold">cara merebus dengan benar</a>
-                                    </div>
-                                    <div class="col-12 mt-3 row">
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
-                                            </svg>
-                                            <p class="mt-1 mx-1"> 5 Kursus</p>
-                                        </div>
-                                        <div class="col-6 d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 15 15">
-                                                <path fill="none" stroke="currentColor"
-                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                <p class="mt-1 mx-1"> 120 menit</p>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    @if ($kursus_terbaik->count() == 0)
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                        <p><b>Tidak ada data</b></p>
                     </div>
+                @endif
+                    <div class="row mx-1" style="margin-left: -50px">
+                        @foreach ($kursus_terbaik as $terbaik)
+                        <div class="card mx-3 mb-5" style="width: 30%; border-radius:15px">
+                            <img src="{{ asset('storage/' . $terbaik->foto_kursus) }}" class="card-img-top"
+                                style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
+                               border-top-right-radius: calc(0.5rem - 1px);"
+                                alt="...">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="button"class="btn"
+                                            style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                            @foreach ($terbaik->jenis_kursus as $item)
+                                                {{ $item->jenis_kursus }}
+                                            @endforeach
+                                        </button> <br>
+                                        <a href="{{ route('detail.kursus', $terbaik->id) }}" class="btn"
+                                            style="font-family: poppins;font-weight:bold">{{ $terbaik->nama_kursus }}</a>
+                                    </div>
+                                    <div class="col-12 mt-3 row">
+                                        <div class="col-6 d-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                viewBox="0 0 256 256">
+                                                <path fill="currentColor"
+                                                    d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
+                                            </svg>
+                                            <p class="mt-1 mx-1"> {{ $terbaik->jumlah_sesi() }} Sesi</p>
+                                        </div>
+                                        <div class="col-6 d-flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                viewBox="0 0 15 15">
+                                                <path fill="none" stroke="currentColor"
+                                                    d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
+                                                <p class="mt-1 mx-1">{{ $terbaik->total_waktu_sesi() }}</p>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    {{ $kursus_terbaik->links() }}
                 </div>
                 {{-- end tab 4 --}}
             </div>

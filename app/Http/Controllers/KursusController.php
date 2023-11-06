@@ -117,6 +117,8 @@ class KursusController extends Controller
         if ($request->cari_nama_kursus) {
             $semua_kursuss->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
             $kursus_terbaruu->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
+            $kursus_favorite->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
+            $kursus_rating->where('nama_kursus', 'like', '%' . $request->cari_nama_kursus . '%');
         }
         if ($request->has('jenis_kursus')) {
             $jenis_kursus = $request->jenis_kursus;
@@ -125,6 +127,12 @@ class KursusController extends Controller
             });
             $kursus_terbaruu->whereHas('jenis_kursus', function ($q) use ($jenis_kursus) {
                 $q->whereIn('jenis_kursus', $jenis_kursus);
+            });
+            $kursus_favorite->whereHas('jenis_kursus', function ($query) use ($jenis_kursus) {
+                $query->whereIn('jenis_kursus', $jenis_kursus);
+            });
+            $kursus_rating->whereHas('jenis_kursus', function ($query) use  ($jenis_kursus) {
+                $query->whereIn('jenis_kursus', $jenis_kursus);
             });
         }
         if ($request->min_price != NULL && $request->max_price != NULL) {
@@ -136,7 +144,13 @@ class KursusController extends Controller
                 $query->whereBetween('harga_sesi', [$min_price, $max_price]);
             });
             $kursus_terbaruu->whereHas('sesi', function ($query) use ($min_price, $max_price) {
-                $query->whereBetween('lama_sesi', [$min_price, $max_price]);
+                $query->whereBetween('harga_sesi', [$min_price, $max_price]);
+            });
+            $kursus_favorite->whereHas('sesi', function ($query) use ($min_price, $max_price) {
+                $query->whereBetween('harga_sesi', [$min_price, $max_price]);
+            });
+            $kursus_rating->whereHas('sesi', function ($query) use ($min_price, $max_price) {
+                $query->whereBetween('harga_sesi', [$min_price, $max_price]);
             });
         }
         if ($request->min_time != NULL && $request->max_time != NULL) {
@@ -150,11 +164,19 @@ class KursusController extends Controller
             $kursus_terbaruu->whereHas('sesi', function ($quuery) use ($lama_min, $lama_max) {
                 $quuery->whereBetween('lama_sesi', [$lama_min, $lama_max]);
             });
+            $kursus_favorite->whereHas('sesi', function ($query) use ($lama_min, $lama_max) {
+                $query->whereBetween('lama_sesi', [$lama_min, $lama_max]);
+            });
+            $kursus_rating->whereHas('sesi', function ($query) use ($lama_min, $lama_max) {
+                $query->whereBetween('lama_sesi', [$lama_min, $lama_max]);
+            });
         }
         if ($request->rating) {
             $rate = $request->rating;
             $semua_kursuss->where('rating', $rate);
             $kursus_terbaruu->where('rating', $rate);
+            $kursus_favorite->where('rating', $rate);
+            $kursus_rating->where('rating', $rate);
         }
         $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
@@ -171,7 +193,9 @@ class KursusController extends Controller
         });
         $semua_kursus = $semua_kursuss->paginate(6);
         $kursus_terbaru = $kursus_terbaruu->paginate(6);
-        return view('template.kursus', compact('categorytopup', 'district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $kursus_terfavorite = $kursus_favorite->paginate(6);
+        $kursus_terbaik = $kursus_rating->paginate(6);
+        return view('template.kursus', compact('kursus_terfavorite', 'kursus_terbaik','categorytopup', 'district', 'village', 'regency', 'provinsi', 'jenis_kursus', 'lokasi_kursus', 'kursus_terbaru', 'semua_kursus', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function kursus()
