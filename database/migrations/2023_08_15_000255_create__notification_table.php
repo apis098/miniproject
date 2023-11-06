@@ -36,6 +36,7 @@ return new class extends Migration
             $table->unsignedBigInteger('like_reply_comment_recipes_id')->nullable();
             $table->unsignedBigInteger('comment_id')->nullable();
             $table->unsignedBigInteger('reply_comment_id')->nullable();
+            $table->string('route')->nullable();
             $table->string('status')->default('belum');
             $table->string('categories')->nullable();
             $table->timestamps();
