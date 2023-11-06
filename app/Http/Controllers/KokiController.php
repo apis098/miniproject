@@ -7,6 +7,7 @@ use App\Models\comment_recipes;
 use App\Models\comment_veed;
 use App\Models\complaint;
 use App\Models\favorite;
+use App\Models\followers;
 use App\Models\footer;
 use App\Models\income_chefs;
 use App\Models\kursus;
@@ -442,6 +443,20 @@ class KokiController extends Controller
             "isPremium" => $isPremium,
             "uuid" => Str::random(10),
         ]);
+        $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
+        if ($followerIds != null) {
+            foreach ($followerIds as $followerId) {
+                $notification = new Notifications([
+                    'notification_from' => auth()->user()->id,
+                    'veed_id' => $up->id,
+                    'follower_id' => $followerId,
+                    'user_id' => $followerId,
+                    'categories' => 'followers_shared',
+                    'message' =>'Menambahkan postingan baru',
+                ]);
+                $notification->save();
+            }
+        }
         $video_pembelajaran = upload_video::latest()->get();
         if ($up) {
             return response()->json([
