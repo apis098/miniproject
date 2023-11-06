@@ -2996,7 +2996,7 @@
                                                                                                                 <a href="#"
                                                                                                                     class="text-secondary my-auto me-5"
                                                                                                                     data-toggle="collapse"
-                                                                                                                    data-target="#collapse${up['id']}"
+                                                                                                                    data-target="#reply_collapse${up['id']}"
                                                                                                                     aria-expanded="true"
                                                                                                                     aria-controls="collapseOne">
                                                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -3008,11 +3008,67 @@
                                                                                                                             d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                     </svg>
                                                                                                                     &nbsp;
-                                                                                                                    <small class="me-4 ">Balasan</small>
+                                                                                                                    <small class="me-4 ">Balasann</small>
                                                                                                                 </a>
                                                                                                             </div>
-                                                                                                        </div>
-                                                                                                    </div>`;
+                                                                                                        </div> 
+                                                                                                    </div>
+                                                                                                    <!-- Komentar Balasan Collapse Start -->
+                                                                                                            <div class="collapse" style="margin-left:-4.2%;"
+                                                                                                                id="reply_collapse${up['id']}">
+                                                                                                                 <div class='ms-3' id="replies_reply${up['id']}">
+                                                                                                                
+                                                                                                                </div>
+                                                                                                                <div class="card-body">
+                                                                                                                    <div class="container">
+                                                                                                                        <div class="row">
+                                                                                                                            @if (Auth::check())
+                                                                                                                            <form
+                                                                                                                                    id="formBalasRepliesCommentsFeeds1${up['id']}"
+                                                                                                                                    action="/balas_komentar_balasan_feed/${up['users_id']}/${up['id']}"
+                                                                                                                                    method="post">
+                                                                                                                                    @csrf
+                                                                                                                                    <div class="d-flex">
+                                                                                                                                        <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
+                                                                                                                                            @if (Auth::user()->foto)
+                                                                                                                                                <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                                                                                                                    class="border rounded-circle"
+                                                                                                                                                    alt="Avatar"
+                                                                                                                                                    style="height: 40px;" />
+                                                                                                                                            @else
+                                                                                                                                                <img src="{{ asset('images/default.jpg') }}"
+                                                                                                                                                    class="border rounded-circle"
+                                                                                                                                                    alt="Avatar"
+                                                                                                                                                    style="height: 40px;" />
+                                                                                                                                            @endif
+                                                                                                                                        </div>
+                                                                                                                                        <div
+                                                                                                                                            class="d-flex">
+                                                                                                                                            <input
+                                                                                                                                                type="text"
+                                                                                                                                                id="inputBalasRepliesCommentsFeeds1${up['id']}"
+                                                                                                                                                name="komentar"
+                                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                                                class="form-control-sm border border-dark border-5 me-3"
+                                                                                                                                                placeholder="Masukkan komentar...">
+
+                                                                                                                                            <button
+                                                                                                                                                type="submit"
+                                                                                                                                                id="buttonComment2Veed1${up['id']}"
+                                                                                                                                                onclick="balas_replies_comments_feeds1(${up['id']})"
+                                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                                class="btn btn-sm mb-1 text-light"><b
+                                                                                                                                                    class="me-3 ms-3">Kirim</b></button>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </form>
+
+                                                                                                                            @endif
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+
+                                                                                                            </div>`;
                             $("#repliesCommentList" + num).append(innerHtml);
                         }
                     },
