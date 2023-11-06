@@ -3455,7 +3455,7 @@
                             let pengirim = response.pengirim;
                             let penerima = response.penerima;
                             let jumlah_like = response.jumlah_like_veed;
-                            let veed_id = response.veed_id;
+                            let feed_id = response.feed_id;
                             let time = response.time;
                             let commentId = response.commentId
                             let foto = '';
@@ -3494,7 +3494,7 @@
                                                                                                                 style="margin-top:-4%; width:112%; margin-left:-2%;">
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
-                                                                                                                            action="/sukai/reply_balasan/komentar/{{Auth::user()->id}}/${up['id']}/4"
+                                                                                                                            action="/sukai/reply_balasan/komentar/{{Auth::user()->id}}/${up['id']}/${feed_id}"
                                                                                                                             id="form_like_replies_reply${up['id']}"
                                                                                                                             method="POST">
                                                                                                                             @csrf
