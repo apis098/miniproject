@@ -419,6 +419,7 @@ class VeedController extends Controller
         $dataReplies = balasRepliesCommentsFeeds::findOrFail($store->id);
         $user_sender = User::findOrFail(auth()->user()->id);
         $user_penerima = User::findOrFail($pemilik_id);
+        $feed_id = $store->reply_comment->veed_id;
         $jumlah_like_veed = like_reply_comment_veed::query();
         $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
         return response()->json([
@@ -430,6 +431,7 @@ class VeedController extends Controller
             "jumlah_like_veed" => $jumlah_like_veed,
             "time" => $time,
             "commentId" => $comment_id,
+            "feed_id" => $feed_id,
         ]);
     }
     public function sukaiBalasRepliesCommentsFeeds(string $user, string $comment)
