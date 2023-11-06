@@ -203,7 +203,7 @@
                                                         data-bs-toggle="pill" data-bs-target="#pills-profile" type="button"
                                                         role="tab" aria-controls="pills-profile" aria-selected="false">
                                                         <h5 class="text-dark ms-2"
-                                                            style="font-weight: 600; word-wrap: break-word;">Baru</h5>
+                                                            style="font-weight: 600; word-wrap: break-word;">Terbaru</h5>
                                                         <div id="b" class="ms-0"
                                                             style="width:120%; height: 100%; border: 1px #F7941E solid;"
                                                             hidden>
@@ -217,7 +217,7 @@
                                                         data-bs-target="#pills-contact" type="button" role="tab"
                                                         aria-controls="pills-contact" aria-selected="false">
                                                         <h5 class="text-dark ms-2"
-                                                            style="font-weight: 600; word-wrap: break-word;">Murah</h5>
+                                                            style="font-weight: 600; word-wrap: break-word;">Terfavorite</h5>
                                                         <div id="pp" class="ms-1"
                                                             style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                                         </div>
