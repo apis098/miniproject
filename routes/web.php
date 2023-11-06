@@ -255,3 +255,5 @@ Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingControl
 Route::post('/favorite/kursus/{chef}/{course}', [KursusController::class, 'favoriteKursus'])->name('favorite.kursus');
 // route filter penghasilan koki
 Route::post('/filter-penghasilan-koki', [KokiController::class, 'filterPenghasilanKoki'])->name('filter.penghasilan.koki');
+// route reply reply comment di resep dan diskusi
+Route::post('/reply-reply-comment', [KokiController::class, 'replyReplyComment'])->name('reply.reply.comment');

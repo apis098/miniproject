@@ -16,9 +16,7 @@ class replyCommentRecipe extends Model
         "likes",
         "komentar"
     ];
-    public function reply_comment() {
-        return $this->hasMany(balasKomentar::class, "comment_recipe_id");
-    }
+   
     public function user() {
         return $this->belongsTo(User::class, "users_id");
     }

@@ -20,9 +20,7 @@ class reseps extends Model
         'pengeluaran_memasak',
         'isPremium'
     ];
-    public function reply_reply_comment() {
-        return $this->hasMany(balasKomentar::class, "recipe_id");
-    }
+
     public function User()
     {
         return $this->belongsTo(User::class, 'user_id');

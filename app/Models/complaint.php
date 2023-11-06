@@ -15,9 +15,7 @@ class complaint extends Model
         'description',
         'status',
     ];
-    public function reply_reply_comment() {
-        return $this->hasMany(balasKomentar::class, "complaint_id");
-    }
+
     // Relasi ke model User (jika menggunakan model User bawaan Laravel)
     public function user()
     {

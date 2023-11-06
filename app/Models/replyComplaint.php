@@ -10,9 +10,6 @@ class replyComplaint extends Model
     use HasFactory;
     protected $fillable = ['reply_id', 'user_id', 'reply','likes','user_id_sender'];
 
-    public function reply_comment() {
-        return $this->hasMany(balasKomentar::class, "comment_complaint_id");
-    }
     public function comment()
     {
         return $this->belongsTo(Reply::class);
