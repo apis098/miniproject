@@ -1480,7 +1480,7 @@
                                                                                                                 id="reportModal"
                                                                                                                 style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                                                                 Laporkan
-                                                                                                                Komentar
+                                                                                                                Komentar {{$item_comment->user_pengirim->name}}
                                                                                                             </h5>
                                                                                                             <button
                                                                                                                 type="button"
@@ -1497,13 +1497,21 @@
                                                                                                             @csrf
                                                                                                             <div
                                                                                                                 class="modal-body d-flex align-items-center">
-
-                                                                                                                <img class="me-2"
-                                                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                                                    width="106px"
-                                                                                                                    height="104px"
-                                                                                                                    style="border-radius: 50%"
-                                                                                                                    alt="">
+                                                                                                                @if($item_comment->user_pengirim->foto)
+                                                                                                                    <img class="me-2"
+                                                                                                                        src="{{ asset('storage/'.$item_comment->user_pengirim->foto) }}"
+                                                                                                                        width="106px"
+                                                                                                                        height="104px"
+                                                                                                                        style="border-radius: 50%"
+                                                                                                                        alt="">
+                                                                                                                @else
+                                                                                                                    <img class="me-2"
+                                                                                                                        src="{{ asset('images/default.jpg') }}"
+                                                                                                                        width="106px"
+                                                                                                                        height="104px"
+                                                                                                                        style="border-radius: 50%"
+                                                                                                                        alt="">
+                                                                                                                @endif
                                                                                                                 <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
                                                                                                                     placeholder="Alasan..."></textarea>
                                                                                                                 {{-- @endif --}}
@@ -1835,7 +1843,7 @@
                                                                                                                                                 id="reportModal"
                                                                                                                                                 style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                                                                                                 Laporkan
-                                                                                                                                                Komentar
+                                                                                                                                                Komentar {{$reply_comment->user->name}}
                                                                                                                                             </h5>
                                                                                                                                             <button
                                                                                                                                                 type="button"
@@ -1853,12 +1861,21 @@
                                                                                                                                             <div
                                                                                                                                                 class="modal-body d-flex align-items-center">
 
-                                                                                                                                                <img class="me-2"
-                                                                                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                                                                                    width="106px"
-                                                                                                                                                    height="104px"
-                                                                                                                                                    style="border-radius: 50%"
-                                                                                                                                                    alt="">
+                                                                                                                                                @if($reply_comment->user->foto)
+                                                                                                                                                    <img class="me-2"
+                                                                                                                                                        src="{{ asset('storage/'.$reply_comment->user->foto) }}"
+                                                                                                                                                        width="106px"
+                                                                                                                                                        height="104px"
+                                                                                                                                                        style="border-radius: 50%"
+                                                                                                                                                        alt="">
+                                                                                                                                                @else
+                                                                                                                                                    <img class="me-2"
+                                                                                                                                                        src="{{ asset('images/default.jpg') }}"
+                                                                                                                                                        width="106px"
+                                                                                                                                                        height="104px"
+                                                                                                                                                        style="border-radius: 50%"
+                                                                                                                                                        alt="">
+                                                                                                                                                @endif
                                                                                                                                                 <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
                                                                                                                                                     placeholder="Alasan..."></textarea>
                                                                                                                                                 {{-- @endif --}}
@@ -2211,7 +2228,7 @@
                                                                                                                                                     id="reportModal"
                                                                                                                                                     style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                                                                                                     Laporkan
-                                                                                                                                                    Komentar
+                                                                                                                                                    Komentar {{$reply_replyComment->user_pengirim->name}}
                                                                                                                                                 </h5>
                                                                                                                                                 <button
                                                                                                                                                     type="button"
@@ -2228,12 +2245,21 @@
                                                                                                                                                 <div
                                                                                                                                                     class="modal-body d-flex align-items-center">
 
+                                                                                                                                                @if($reply_replyComment->user_pengirim->foto)
+                                                                                                                                                    <img class="me-2"
+                                                                                                                                                        src="{{ asset('storage/'.$reply_replyComment->user_pengirim->foto) }}"
+                                                                                                                                                        width="106px"
+                                                                                                                                                        height="104px"
+                                                                                                                                                        style="border-radius: 50%"
+                                                                                                                                                        alt="">
+                                                                                                                                                @else
                                                                                                                                                     <img class="me-2"
                                                                                                                                                         src="{{ asset('images/default.jpg') }}"
                                                                                                                                                         width="106px"
                                                                                                                                                         height="104px"
                                                                                                                                                         style="border-radius: 50%"
                                                                                                                                                         alt="">
+                                                                                                                                                @endif
                                                                                                                                                     <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
                                                                                                                                                         placeholder="Alasan..."></textarea>
                                                                                                                                                     {{-- @endif --}}
