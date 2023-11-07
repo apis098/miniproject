@@ -285,7 +285,20 @@ class VeedController extends Controller
             "veed_id" => $veed_id,
             "komentar" => $request->komentarBalasan
         ]);
-        
+        $comment = comment_veed::findOrFail($comment_id);
+        if($comment->pengirim_id != Auth::user()->id){
+            $notification = new notifications();
+            $notification->user_id = $comment->pengirim_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->veed_id = $veed_id;
+            $notification->categories = "reply_comment";
+            $notification->message = "Membalas komentar anda";
+            $notification->save();
+                            
+            $let_route = notifications::findOrFail($notification->id);
+            $let_route->route = "/status-baca/shared-feed/" . $notification->id;
+            $let_route->save();
+        }
         $item_comment = reply_comment_veed::where('comment_id', $comment_id)->first();
         $dataReplies = reply_comment_veed::findOrFail($store_comment->id);
         $jumlah_like_veed = like_reply_comment_veed::query();
