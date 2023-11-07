@@ -323,9 +323,17 @@
                                                 class="ms-3 me-3">Pesan</b></button>
                                     @endif
                                    @if (Auth::check())
-                                    <button type="submit" class="btn text-dark mx-1"
-                                    style="border: 1px solid #000; border-radius: 15px;"><b
-                                        class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()" class="fa-regular fa-bookmark"></i></b></button>
+                                   {{Auth::user()->isFavoriteCourse($detail_course->id)}}
+                                   @if (Auth::user()->isFavoriteCourse($detail_course->id))
+                                   <button type="submit" class="btn text-dark mx-1"
+                                   style="border: 1px solid #000; border-radius: 15px;"><b
+                                       class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()" class="fa-regular fa-solid fa-bookmark"></i></b></button>
+                                   @else
+                                   <button type="submit" class="btn text-dark mx-1"
+                                   style="border: 1px solid #000; border-radius: 15px;"><b
+                                       class="ms-3 me-3"><i id="bookmark" onclick="favoriteKursus()" class="fa-regular fa-bookmark"></i></b></button>
+                                   @endif
+
                                 @else
                                 <button type="submit" class="btn text-dark mx-1"
                                 style="border: 1px solid #000; border-radius: 15px;"><b

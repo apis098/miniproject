@@ -53,6 +53,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function isFavoriteCourse($course) {
+        return favorite::where('kursus_id', $course)->where('user_id', $this->id)->exists();
+    }
     public function resep() {
         return $this->hasMany(reseps::class);
     }
