@@ -1492,9 +1492,9 @@
                                                                                                             </button>
                                                                                                         </div>
                                                                                                         <form
-                                                                                                            action="{{ route('report.comment.feed', $item_comment->id) }}"
+                                                                                                            action="{{ route('report.comment.feed', ['comment_id' => $item_comment->id, 'reply_comment_id' => 0, 'reply_replies_comment_id' => 0]) }}"
                                                                                                             method="POST">
-                                                                                                            {{-- @csrf --}}
+                                                                                                            @csrf
                                                                                                             <div
                                                                                                                 class="modal-body d-flex align-items-center">
 
@@ -1835,7 +1835,7 @@
                                                                                                                                                 id="reportModal"
                                                                                                                                                 style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                                                                                                 Laporkan
-                                                                                                                                                Postingan!
+                                                                                                                                                Komentar
                                                                                                                                             </h5>
                                                                                                                                             <button
                                                                                                                                                 type="button"
@@ -1847,9 +1847,9 @@
                                                                                                                                             </button>
                                                                                                                                         </div>
                                                                                                                                         <form
-                                                                                                                                            action="{{ route('report.feed', $item_video->id) }}"
+                                                                                                                                            action="{{ route('report.comment.feed', ['comment_id' => 0, 'reply_comment_id' => $reply_comment->id, 'reply_replies_comment_id' => 0]) }}"
                                                                                                                                             method="POST">
-                                                                                                                                            {{-- @csrf --}}
+                                                                                                                                            @csrf
                                                                                                                                             <div
                                                                                                                                                 class="modal-body d-flex align-items-center">
 
@@ -2211,7 +2211,7 @@
                                                                                                                                                     id="reportModal"
                                                                                                                                                     style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                                                                                                     Laporkan
-                                                                                                                                                    Postingan!
+                                                                                                                                                    Komentar
                                                                                                                                                 </h5>
                                                                                                                                                 <button
                                                                                                                                                     type="button"
@@ -2222,10 +2222,9 @@
                                                                                                                                                         aria-hidden="true">&times;</span>
                                                                                                                                                 </button>
                                                                                                                                             </div>
-                                                                                                                                            <form
-                                                                                                                                                action="{{ route('report.feed', $reply_replyComment->id) }}"
+                                                                                                                                            <form action="{{ route('report.comment.feed', ['comment_id' => 0, 'reply_comment_id' => 0, 'reply_replies_comment_id' => $reply_replyComment->id]) }}"
                                                                                                                                                 method="POST">
-                                                                                                                                                {{-- @csrf --}}
+                                                                                                                                                @csrf
                                                                                                                                                 <div
                                                                                                                                                     class="modal-body d-flex align-items-center">
 

@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\kursus;
 use App\Models\comment_veed;
+use App\Models\reply_comment_veed;
+use App\Models\balasRepliesCommentsFeeds;
 use Str;
 class ReportController extends Controller
 {
@@ -235,15 +237,42 @@ class ReportController extends Controller
         return view('report.index', ['results' => $results]);
     }
 
-    public function store_comment_feed(Request $request,$comment_id = null,$reply_comment_feed_id = null ,$reply_replies_comment_feed_id = null){
-        if($comment_id != null){
+    public function store_comment_feed(Request $request,$comment_id,$reply_comment_feed_id,$reply_replies_comment_feed_id){
+        if($comment_id != 0){
             $comment = comment_veed::findOrFail($comment_id);
             if(Auth::check()){
-                $comment->comment_feed_id = $comment->id;
-                $comment->user_id = $comment->pengirim_id;
-                $comment->user_id_sender = auth()->user()->id;
-                $comment->description = $request->description;
-                $comment->save();
+                $report = new Report();
+                $report->comment_feed_id = $comment_id;
+                $report->user_id = $comment->pengirim_id;
+                $report->user_id_sender = auth()->user()->id;
+                $report->description = $request->description;
+                $report->save();
+            }else{
+                return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            }
+            return redirect()->back()->with('success','Laporan anda telah terkirim');
+        }elseif($reply_comment_feed_id != 0){
+            $reply = reply_comment_veed::findOrFail($reply_comment_feed_id);
+            if(Auth::check()){
+                $report = new Report();
+                $report->reply_comment_feed_id = $reply->id;
+                $report->user_id = $reply->users_id;
+                $report->user_id_sender = auth()->user()->id;
+                $report->description = $request->description;
+                $report->save();
+            }else{
+                return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            }
+            return redirect()->back()->with('success','Laporan anda telah terkirim');
+        }elseif($reply_replies_comment_feed_id != 0){
+            $replies_reply = balasRepliesCommentsFeeds::findOrFail($reply_replies_comment_feed_id);
+            if(Auth::check()){
+                $report = new Report();
+                $report->replies_reply_comment_feed_id = $replies_reply->id;
+                $report->user_id = $replies_reply->pengirim_reply_comment_id;
+                $report->user_id_sender = auth()->user()->id;
+                $report->description = $request->description;
+                $report->save();
             }else{
                 return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
             }

@@ -19,7 +19,6 @@ class Report extends Model
     'profile_id',
     'comment_id',
     'reply_comment_id',
-    'reply_comment_id',
     'comment_feed_id',
     'reply_comment_feed_id',
     'replies_reply_comment_feed_id',
