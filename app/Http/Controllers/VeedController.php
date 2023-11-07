@@ -140,15 +140,20 @@ class VeedController extends Controller
             $like->veed_id = $veed_id;
             $like->save();
 
-            if($user_id != Auth::user()->id){
+            if($feed->users_id != Auth::user()->id){
                 $notification = new notifications();
                 $notification->user_id = $feed->users_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->veed_id = $veed_id;
-                $notification->categories = "like"; 
+                $notification->categories = "like_veed";
+                $notification->message = "Menyukai postingan anda";
                 $notification->save();
+                                
+                $let_route = notifications::findOrFail($notification->id);
+                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->save();
             }
-
+            
             $isLikeVeed = \App\Models\like_veed::query()
                 ->where('users_id', Auth::user()->id)
                 ->where('veed_id', $veed_id)

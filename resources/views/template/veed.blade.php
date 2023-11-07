@@ -3093,8 +3093,6 @@
         }
 
         function hideLoadingOverlay() {
-            // $("#text-loading").removeClass("fade-in"); 
-            // $("#text-loading").addClass("fade-out");
             $("#loading-overlay").hide();
             $("#text-loading").hide();
         }
