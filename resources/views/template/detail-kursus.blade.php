@@ -254,14 +254,7 @@
                                         </a>
                                     </h5>
                                     <div class="d-flex justify-content-center mt-2 ">
-                                        <svg width="23" height="19" viewBox="0 0 23 19" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
-                                                <path id="Vector"
-                                                    d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
-                                                    fill="#F4DD0A" stroke="black" />
-                                            </g>
-                                        </svg>
+                                        <i class="fas fa-star actived"></i>
                                         <p>{{ $detail_course->rate() }}
 
                                             ({{ $detail_course->total_ulasan() }} ulasan)</p>
@@ -417,11 +410,11 @@
                                             </div>
                                             <div class="modal-body">
                                             <div class="rating text-center">
-                                                <i class="fas fa-xl fa-star"></i>
-                                                <i class="fas fa-xl fa-star"></i>
-                                                <i class="fas fa-xl fa-star"></i>
-                                                <i class="fas fa-xl fa-star"></i>
-                                                <i class="fas fa-xl fa-star"></i>
+                                                <i class="fas fa-xl kejora fa-star"></i>
+                                                <i class="fas fa-xl kejora fa-star"></i>
+                                                <i class="fas fa-xl kejora fa-star"></i>
+                                                <i class="fas fa-xl kejora fa-star"></i>
+                                                <i class="fas fa-xl kejora fa-star"></i>
                                             </div>
                                             </div>
                                             <div class="modal-footer">
@@ -452,6 +445,9 @@
                                     @endif
                                     <p class="text center my-1 mx-3"><b>{{ $review->user->name }}</b></p>
                                     <div class="d-flex ml-auto">
+                                    @if (Auth::check())
+                                    @if(Auth::user()->id === $review->user->id)
+
                                         {{-- untuk edit ulasan&rating --}}
                                         <svg data-toggle="modal" data-target="#modalEditUlasan{{$review->id}}" width="23" height="23" viewBox="0 0 28 27" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -483,32 +479,32 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="rating" class="form-label">Rating</label>
-                                                        <input type="hidden" name="rating" id="editReview">
+                                                        <input type="hidden" value="{{$review->rating}}" name="rating" id="editReview{{$review->id}}">
                                                         <div class="rating text-center">
                                                             @if ($review->rating >= 1)
-                                                                <i class="fas fa-xl fa-star actived"></i>
+                                                                <i class="fas fa-xl fa-star kejora actived" onclick="editReview({{$review->id}}, 1)"></i>
                                                             @else
-                                                            <i class="fas fa-xl fa-star"></i>
+                                                            <i class="fas fa-xl kejora fa-star" onclick="editReview({{$review->id}}, 1)" ></i>
                                                             @endif
                                                             @if ($review->rating >= 2)
-                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            <i class="fas fa-xl fa-star kejora actived"onclick="editReview({{$review->id}}, 2)" ></i>
                                                             @else
-                                                            <i class="fas fa-xl fa-star"></i>
+                                                            <i class="fas fa-xl kejora fa-star"onclick="editReview({{$review->id}}, 2)"></i>
                                                             @endif
                                                             @if($review->rating >= 3)
-                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            <i class="fas fa-xl kejora fa-star actived" onclick="editReview({{$review->id}}, 3)"></i>
                                                             @else
-                                                            <i class="fas fa-xl fa-star"></i>
+                                                            <i class="fas fa-xl kejora fa-star"onclick="editReview({{$review->id}}, 3)" ></i>
                                                             @endif
                                                             @if($review->rating >=4)
-                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            <i class="fas fa-xl kejora fa-star actived"onclick="editReview({{$review->id}}, 4)" ></i>
                                                             @else
-                                                            <i class="fas fa-xl fa-star"></i>
+                                                            <i class="fas fa-xl kejora fa-star" onclick="editReview({{$review->id}}, 4)"></i>
                                                             @endif
                                                             @if($review->rating >=5)
-                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            <i class="fas fa-xl kejora fa-star actived" onclick="editReview({{$review->id}}, 5)"></i>
                                                             @else
-                                                            <i class="fas fa-xl fa-star"></i>
+                                                            <i class="fas fa-xl kejora fa-star"onclick="editReview({{$review->id}}, 5)"></i>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -531,6 +527,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" onclick="konfirmasi_hapus_ulasanrating({{$review->id}})">
                                         <path fill="#B70404" d="M9.525 13.765a.5.5 0 0 0 .71.71c.59-.59 1.175-1.18 1.765-1.76l1.765 1.76a.5.5 0 0 0 .71-.71c-.59-.58-1.18-1.175-1.76-1.765c.41-.42.82-.825 1.23-1.235c.18-.18.35-.36.53-.53a.5.5 0 0 0-.71-.71L12 11.293l-1.765-1.768a.5.5 0 0 0-.71.71L11.293 12Z"/>
                                         <path fill="#B70404" d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z"/></svg>
+                                    @endif
+                                    @endif
                                     <svg class="" width="23" height="19" viewBox="0 0 23 19"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
@@ -554,7 +552,10 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
         <script>
-            const stars = document.querySelectorAll('.fas.fa-star');
+            function editReview(num, value) {
+                document.getElementById("editReview"+num).value = value;
+            }
+            const stars = document.querySelectorAll('.kejora');
             let rating = 0;
 
             stars.forEach((star, index) => {
@@ -574,13 +575,12 @@
                         }
                     });
                     document.getElementById("ratingKursuses").value = rating;
-                    document.getElementById("editReview").value = '';
-                    document.getElementById("editReview").value = rating - 5;
                     // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
                     console.log(`Anda memberi peringkat: ${rating} bintang`);
 
                 });
             });
+
         </script>
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script>
