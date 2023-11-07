@@ -53,9 +53,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function parentReplyCommentRecipe() {
-        return $this->hasMany(replyCommentRecipe::class, "parent_id");
-    }
     public function resep() {
         return $this->hasMany(reseps::class);
     }

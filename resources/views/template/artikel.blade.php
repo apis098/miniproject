@@ -632,7 +632,7 @@
                 <div class="collapse" id="collapse{{ $row->id }}">
                     <div class="card card-body mx-3">
                         @if (Auth::check())
-                            <form action="{{ route('balasan.komentar.resep', $row->id) }}" method="POST">
+                            <form action="{{ route('balasan.komentar.resep', [$row->id, $row->user_penerima->id]) }}" method="POST">
                                 @csrf
                                 <div class="input-group mb-3">
                                     <input type="text" id="reply_comment" name="reply_comment" width="500px"
@@ -678,7 +678,7 @@
                                     <div class="">
                                         <small class="font-weight">
                                             @if ($item->parent_id != null)
-                                            <a href="">{{ "@".$item->toReply->name }}</a>
+                                            <a href="">{{ "@".$item->recipient->name }}</a>
                                             @endif
                                             {{ $item->komentar }}</small>
                                     </div>
@@ -800,7 +800,7 @@
                             <div class="collapse" id="collapses{{ $item->id }}">
                             <br>
                             @if (Auth::check())
-                                <form action="{{ route('balasan.balasan.komentar.resep', $row->id) }}" method="post">
+                                <form action="{{ route('balasan.balasan.komentar.resep', [$row->id, $item->user->id]) }}" method="post">
                                     <input type="hidden" name="parent_id" value="{{$item->user->id}}">
                                     @csrf
                                     <div class="input-group mb-3">

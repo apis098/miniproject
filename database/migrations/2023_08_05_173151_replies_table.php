@@ -29,6 +29,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_id_sender');
             $table->text('reply');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->integer('likes')->default(0);
             $table->timestamps();
 

@@ -10,6 +10,7 @@ class replyCommentRecipe extends Model
     use HasFactory;
     protected $table = "reply_comment_recipes";
     protected $fillable = [
+        "recipient_id",
         "users_id",
         "recipe_id",
         "comment_id",
@@ -21,6 +22,9 @@ class replyCommentRecipe extends Model
     public function user() {
         return $this->belongsTo(User::class, "users_id");
     }
+    public function recipient() {
+        return $this->belongsTo(User::class, "recipient_id");
+    }
     public function recipe() {
         return $this->belongsTo(recipe::class, "recipe_id");
     }
@@ -30,8 +34,4 @@ class replyCommentRecipe extends Model
     public function like() {
         return $this->hasMany(LikeReplyCommentRecipes::class, "comment_id");
     }
-    public function toReply() {
-        return $this->belongsTo(User::class, "parent_id");
-    }
-
 }

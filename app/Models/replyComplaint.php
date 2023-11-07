@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class replyComplaint extends Model
 {
     use HasFactory;
-    protected $fillable = ['reply_id', 'user_id', 'reply','likes','user_id_sender'];
+    protected $fillable = ['reply_id', 'user_id', 'reply','likes','user_id_sender', 'parent_id'];
 
     public function comment()
     {

@@ -109,6 +109,7 @@ Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/replies-store/{id}', [ReplyController::class, 'replyComment'])->name('ReplyComment.store');
+Route::post('/reply-replies-store/{id}', [ReplyController::class, 'replyReplyComment'])->name('ReplyReplyComment.store');
 Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
 Route::post('/comments/reply/{id}/like', [likeController::class, 'likeBalasan'])->name('Replies.like.balasan');
 Route::post('/resep/{id}/like', [likeController::class, 'likeResep'])->name('Resep.like');
@@ -212,8 +213,8 @@ Route::post("/update-feed/{id}", [KokiController::class, "updateFeed"])->name("u
 
 // like dan favorite pada artikel resep
 Route::post('/komentar-resep/{pengirim}/{penerima}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
-Route::post('/balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
-Route::post('/balasan-balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_reply_comment'])->name('balasan.balasan.komentar.resep')->middleware("auth");
+Route::post('/balasan-komentar-resep/{id}/{user}', [komentar_resep::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
+Route::post('/balasan-balasan-komentar-resep/{id}/{user}', [komentar_resep::class, 'reply_reply_comment'])->name('balasan.balasan.komentar.resep')->middleware("auth");
 Route::post('/koki/sukai/{id}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::class, 'like_reply_comment_recipe'])->name('like.reply.comment.recipe')->middleware("auth");
 Route::post('/koki/sukai/balasan/{id}', [LikeCommentController::class, 'like_reply_comment'])->name('likeReply.comment.recipe')->middleware('auth');

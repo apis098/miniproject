@@ -46,10 +46,11 @@ class komentar_resep extends Controller
         }
         return redirect()->back()->with('success','Sukses menambahkan komentar');
     }
-    public function reply_comment(Request $request,$id){
+    public function reply_comment(Request $request,$id,$user){
         $comment = comment_recipes::findOrFail($id);
         $reply = new replyCommentRecipe();
         $reply->users_id = auth()->user()->id;
+        $reply->recipient_id = $user;
         $reply->recipe_id = $comment->recipes_id;
         $reply->comment_id = $comment->id;
         $reply->komentar = $request->reply_comment;
@@ -67,10 +68,11 @@ class komentar_resep extends Controller
         }
         return redirect()->back()->with('success','Sukses membalas komentar');
     }
-    public function reply_reply_comment(Request $request,$id){
+    public function reply_reply_comment(Request $request,$id,$user){
         $comment = comment_recipes::findOrFail($id);
         $reply = new replyCommentRecipe();
         $reply->users_id = auth()->user()->id;
+        $reply->recipient_id = $user;
         $reply->recipe_id = $comment->recipes_id;
         $reply->comment_id = $comment->id;
         $reply->komentar = $request->reply_comment;
