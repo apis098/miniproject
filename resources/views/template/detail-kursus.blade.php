@@ -398,18 +398,41 @@
                                     <input type="text" id="reply" name="ulasan" maxlength="255"
                                         style="border-radius: 10px;width: 150px;" {{-- $userLog === 1 ? 'disabled' : '' --}}
                                         class="form-control" placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
-                                    <button type="submit"
+                                    <button type="button" data-toggle="modal" data-target="#modalBeriRating"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
                                         class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
+                                <div class="modal fade" id="modalBeriRating" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="reportModal"
+                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                    Beri Rating</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <div class="rating text-center">
+                                                <i class="fas fa-xl fa-star"></i>
+                                                <i class="fas fa-xl fa-star"></i>
+                                                <i class="fas fa-xl fa-star"></i>
+                                                <i class="fas fa-xl fa-star"></i>
+                                                <i class="fas fa-xl fa-star"></i>
+                                            </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                        <button type="submit"
+                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
+                                        class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
                         </div>
                     @endif
                 @endif
@@ -428,8 +451,87 @@
                                             height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
                                     @endif
                                     <p class="text center my-1 mx-3"><b>{{ $review->user->name }}</b></p>
-
-                                    <svg class="ml-auto" width="23" height="19" viewBox="0 0 23 19"
+                                    <div class="d-flex ml-auto">
+                                        {{-- untuk edit ulasan&rating --}}
+                                        <svg data-toggle="modal" data-target="#modalEditUlasan{{$review->id}}" width="23" height="23" viewBox="0 0 28 27" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M27 12.5C27 19.4036 20.9558 25 13.5 25C6.04416 25 0 19.4036 0 12.5C0 5.59644 6.04416 0 13.5 0C20.9558 0 27 5.59644 27 12.5Z"
+                                            fill="#F7941E" />
+                                        <path
+                                            d="M6.6652 19.2847L6.66785 19.2872C6.73814 19.3549 6.82173 19.4087 6.91382 19.4454C7.00591 19.4822 7.10468 19.5011 7.20445 19.5012C7.2884 19.5011 7.37177 19.4879 7.45124 19.462L11.7778 18.0581L20.0803 10.1166C20.5878 9.63111 20.873 8.97261 20.8729 8.28601C20.8729 7.5994 20.5877 6.94093 20.0801 6.45544C19.5725 5.96996 18.8841 5.69724 18.1663 5.69727C17.4485 5.6973 16.7601 5.97008 16.2525 6.4556L7.95005 14.3971L6.48249 18.5354C6.43626 18.6641 6.42888 18.8027 6.4612 18.9352C6.49351 19.0677 6.56422 19.1888 6.6652 19.2847ZM16.942 7.11502C17.2671 6.80638 17.7069 6.63355 18.165 6.63439C18.6231 6.63524 19.0621 6.80967 19.386 7.11951C19.71 7.42935 19.8923 7.84934 19.8932 8.28751C19.8941 8.72568 19.7134 9.14632 19.3907 9.45733L18.2989 10.5016L15.8501 8.15933L16.942 7.11502ZM8.80041 14.9026L15.1607 8.81875L17.6095 11.1611L11.2492 17.2448L7.54325 18.4473L8.80041 14.9026Z"
+                                            fill="white" />
+                                    </svg>
+                                    <div class="modal fade" id="modalEditUlasan{{$review->id}}" tabindex="-1"
+                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h2>Edit Ulasan&Rating</h2>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('update.ulasan', $review->id)}}" method="post">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <div class="mb-3">
+                                                        <label for="ulasan" class="form-label">Ulasan</label>
+                                                        <input type="text" name="ulasan" id="ulasan" class="form-control" value="{{ $review->ulasan }}">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="rating" class="form-label">Rating</label>
+                                                        <input type="hidden" name="rating" id="editReview">
+                                                        <div class="rating text-center">
+                                                            @if ($review->rating >= 1)
+                                                                <i class="fas fa-xl fa-star actived"></i>
+                                                            @else
+                                                            <i class="fas fa-xl fa-star"></i>
+                                                            @endif
+                                                            @if ($review->rating >= 2)
+                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            @else
+                                                            <i class="fas fa-xl fa-star"></i>
+                                                            @endif
+                                                            @if($review->rating >= 3)
+                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            @else
+                                                            <i class="fas fa-xl fa-star"></i>
+                                                            @endif
+                                                            @if($review->rating >=4)
+                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            @else
+                                                            <i class="fas fa-xl fa-star"></i>
+                                                            @endif
+                                                            @if($review->rating >=5)
+                                                            <i class="fas fa-xl fa-star actived"></i>
+                                                            @else
+                                                            <i class="fas fa-xl fa-star"></i>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                        <button type="submit"
+                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
+                                        class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
+                                            </div>
+                                        </form>
+                                            </div>
+                                        </div>
+                                    </div></div>
+                                    {{-- untuk hapus ulasan&rating --}}
+                                    <form action="{{ route('delete.ulasan', $review->id) }}" hidden method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" id="hapusUlasan{{$review->id}}" type="submit">Hapus</button>
+                                    </form>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" onclick="konfirmasi_hapus_ulasanrating({{$review->id}})">
+                                        <path fill="#B70404" d="M9.525 13.765a.5.5 0 0 0 .71.71c.59-.59 1.175-1.18 1.765-1.76l1.765 1.76a.5.5 0 0 0 .71-.71c-.59-.58-1.18-1.175-1.76-1.765c.41-.42.82-.825 1.23-1.235c.18-.18.35-.36.53-.53a.5.5 0 0 0-.71-.71L12 11.293l-1.765-1.768a.5.5 0 0 0-.71.71L11.293 12Z"/>
+                                        <path fill="#B70404" d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z"/></svg>
+                                    <svg class="" width="23" height="19" viewBox="0 0 23 19"
                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
                                             <path id="Vector"
@@ -438,6 +540,7 @@
                                         </g>
                                         <span class="mx-1">{{ $review->rating }}</span>
                                     </svg>
+                                    </div>
                                 </div>
                                 <p>
                                     {{ $review->ulasan }}
@@ -471,6 +574,8 @@
                         }
                     });
                     document.getElementById("ratingKursuses").value = rating;
+                    document.getElementById("editReview").value = '';
+                    document.getElementById("editReview").value = rating - 5;
                     // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
                     console.log(`Anda memberi peringkat: ${rating} bintang`);
 
@@ -518,6 +623,42 @@
                         console.log(xhr.responseText);
                     }
                 });
+            }
+            function konfirmasi_hapus_ulasanrating(num)
+            {
+            iziToast.destroy();
+            iziToast.show({
+                backgroundColor: '#eea2a6',
+                title: '<i class="fa-regular fa-circle-question"></i>',
+                titleColor: 'dark',
+                messageColor: 'dark',
+                message: 'Apakah Anda yakin ingin menghapus ulasan dan rating anda pada kursus ini?',
+                position: 'topCenter',
+                progressBarColor: 'dark',
+                close: false,
+                buttons: [
+                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
+                        instance, toast) {
+                        instance.hide({
+                            transitionOut: 'fadeOutUp',
+                            onClosing: function(instance, toast, closedBy) {
+                                $("#hapusUlasan"+num).click();
+                            }
+                        }, toast, 'buttonName');
+                    }, false], // true to focus
+                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
+                        instance, toast) {
+                        instance.hide({}, toast, 'buttonName');
+                    }]
+                ],
+                onOpening: function(instance, toast) {
+                    console.info('callback abriu!');
+                },
+                onClosing: function(instance, toast, closedBy) {
+                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+                }
+            });
+
             }
         </script>
 

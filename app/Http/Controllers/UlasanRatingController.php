@@ -81,7 +81,11 @@ class UlasanRatingController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $review = UlasanKursus::find($id);
+        $review->ulasan = $request->ulasan;
+        $review->rating = $request->rating;
+        $review->save();
+        return redirect()->back()->with('success', 'Berhasil mengedit ulasan dan rating!');
     }
 
     /**
@@ -89,6 +93,8 @@ class UlasanRatingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $review = UlasanKursus::find($id);
+        $review->delete();
+        return redirect()->back()->with('success', 'Data sukses terhapus!');
     }
 }
