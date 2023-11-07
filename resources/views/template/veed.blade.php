@@ -3818,6 +3818,7 @@
                             let commentId = response.commentId
                             let foto = '';
                             let pengirimId = response.pengirim.id;
+                            $("#jumlah_komentar_feed" + num).html(response.comment_count);
                             if (pengirim['foto'] != null) {
                                 foto = 'storage/' + pengirim['foto'];
                             } else {

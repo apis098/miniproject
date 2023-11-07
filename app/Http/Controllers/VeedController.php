@@ -205,6 +205,8 @@ class VeedController extends Controller
             $let_route->save();
         }
         $comment_veed = comment_veed::find($new->id);
+        $data_veed = upload_video::findOrFail($new->veed_id);
+        $comment_count = $data_veed->countCommentFeed();
         $pengirim_veed = User::find($pengirim_id);
         $commentId = $comment_veed->id;
         $jumlah_like_veed = like_comment_veed::query()
@@ -222,6 +224,7 @@ class VeedController extends Controller
             "time" => $time,
             "commentId" => $commentId,
             "active" => true,
+            "comment_count" => $comment_count,
         ]);
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
