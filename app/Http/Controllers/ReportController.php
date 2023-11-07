@@ -69,7 +69,15 @@ class ReportController extends Controller
                 $statusResep = $data->whereNotNull('resep_id')->count();
                 $statusVeed = $data->whereNotNull('feed_id')->count();
                 $statusComplaint = $data->whereNotNull('complaint_id')->count();
-                $statusKomentar = $data->whereNotNull('reply_id')->count();
+
+                $reply_status_count = $data->whereNotNull('reply_id')->count();
+                $reply_comment_status_count = $data->whereNotNull('reply_comment_id')->count();
+                $reply_complaint_status = $data->whereNotNull('reply_id_complaint')->count();
+                $comment_recipes_status = $data->whereNotNull('comment_id')->count();
+                $comment_feeds_status = $data->whereNotNull('comment_feed_id')->count();
+                $reply_comment_feed_status =$data->whereNotNull('reply_comment_feed_id')->count();
+                $replies_reply_comment_feed_status = $data->whereNotNull('replies_reply_comment_feed_id')->count();
+                $statusKomentar = $reply_status_count + $reply_comment_status_count + $reply_complaint_status + $comment_recipes_status + $comment_feeds_status + $reply_comment_feed_status + $replies_reply_comment_feed_status;
                 $userLog = 2;
         }
         if ($userLogin) {
