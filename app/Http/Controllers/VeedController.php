@@ -146,7 +146,7 @@ class VeedController extends Controller
                 $notification->notification_from = auth()->user()->id;
                 $notification->veed_id = $veed_id;
                 $notification->categories = "like_veed";
-                $notification->message = "Menyukai postingan anda";
+                $notification->message = "postingan anda";
                 $notification->save();
                                 
                 $let_route = notifications::findOrFail($notification->id);
