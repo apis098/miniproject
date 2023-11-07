@@ -73,9 +73,15 @@ class KokiController extends Controller
     {
         $user = Auth::user();
 
-        $this->validate($request, [
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        $validasi = Validator::make($request->all(), ["profile_picture" => "image|mimes:png,jpg,jpeg,gif|max:10000"], [
+            "profile_picture.image" => "Foto profile tidak berupa gambar!",
+            "profile_picture.mimes" => "Foto profile tidak berekstensi png atau jpg atau jpge atau gif!",
+            "profile_picture.max" => "Foto profile maksimal 10MB!",
         ]);
+
+        if ($validasi->fails()) {
+            return redirect()->back()->with('error', $validasi->errors()->first());
+        }
 
         if ($request->hasFile('profile_picture')) {
             // Delete old profile picture if exists
@@ -560,7 +566,7 @@ class KokiController extends Controller
     }
     public function replyReplyComment(Request $request) {
         dd($request->all());
-      
+
     }
 }
 
