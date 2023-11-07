@@ -118,7 +118,7 @@
             <div class="sidebar">
                 <!-- Sidebar Menu -->
                 <nav class="mt-1">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" style="overflow-y: auto; overflow-x: hidden"
                         data-accordion="false">
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('admin.index') }}"
