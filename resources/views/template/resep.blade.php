@@ -191,12 +191,39 @@
                     display: none;
                 }
             }
+
+            @media (min-width: 350px) and (max-width: 860px) {
+                div.kanan {
+                 margin-left: -12px;
+                }
+
+                h1.kanan {
+                 margin-left: 20px;
+                }
+
+                   /* div.search {
+                    width: 1000px;
+                   } */
+                }
+
+                  /* untuk tampilan ipad */
+                  @media (min-width: 760px) and (max-width: 1000px) {
+
+                }
+
+                /* untuk tampilan laptop */
+                @media (min-width: 1210px) and (max-width: 4000px) {
+
+                   div.kiri {
+                    margin-left: 55px;
+                   }
+                }
         </style>
 
-        <div class="container py-5 mx-5">
-            <div class="row text-center text-white">
+        <div class="container py-5 kanan kiri">
+            <div class="row text-center text-white ">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class="mb-5"
+                    <h1 class="mb-5 kanan"
                         style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
                         Cari resep masakan <br/>
                     </h1>
@@ -546,27 +573,35 @@
                                     <div class="col-6">
                                         <img class="mb-1" width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
-                                        {{ $item->likes }} suka
+                                            <span>
+                                        {{ $item->likes }} Suka
+                                    </span>
                                     </div>
                                     <div class="col-6 mx-auto">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                            <span>
                                         @if ($item->lama_memasak >= 60)
-                                            {{ number_format($item->lama_memasak / 60, 1) }} jam
+                                            {{ number_format($item->lama_memasak / 60, 1) }} Jam
                                         @else
-                                            {{ $item->lama_memasak }} menit
+                                            {{ $item->lama_memasak }} Menit
                                         @endif
+                                    </span>
                                     </div>
                                     <div class="col-6 my-3">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
                                             alt="">
+                                            <span>
                                         {{ $item->comment_recipes->count() }} Komen
+                                    </span>
                                     </div>
                                     <div class="col-6 my-3 mx-auto">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
+                                            <span>
                                         {{ $item->favorite_count }} Favorit
+                                            </span>
                                     </div>
                                 </div>
                             </div>
