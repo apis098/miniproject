@@ -18,13 +18,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\kursus;
+use App\Models\comment_veed;
 use Str;
 class ReportController extends Controller
 {
 
     public function index(Request $request){
-
-
         $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
         if ($request->has('resep')) {
             $searchQuery = $request->resep;
@@ -35,13 +34,19 @@ class ReportController extends Controller
         $data = Report::all();
         $reportVeed = Report::whereNotNull("feed_id")->paginate(6, ["*"], "report-veed-page");
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
-        $reportReply = Report::whereNotNull("reply_id")->orWhereNotNull('reply_comment_id')->paginate(6, ['*'], "report-reply-page");
-        $reportReplyComment = Report::whereNotNull("reply_id_complaint")->orWhereNotNull('comment_id')->paginate(6, ['*'], "report-reply-page");
+        $reportReply = Report::whereNotNull("reply_id")
+                        ->orWhereNotNull('reply_comment_id')
+                        ->orWhereNotNull('reply_id_complaint')
+                        ->orWhereNotNull('comment_id')
+                        ->paginate(6, ['*'], "report-reply-page");
+        $reportCommentFeed = Report::whereNotNull('comment_feed_id')
+                        ->orWhereNotNull('reply_comment_feed_id')
+                        ->orWhereNotNull('replies_reply_comment_feed_id')
+                        ->paginate(6, ['*'], 'report-reply-page');
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
         $reportCourse = Report::whereNotNull("course_id")->paginate(6, ['*'], "report-course-page");
-        $allComments = $reportReply->concat($reportReplyComment);
+        $allComments = $reportReply->concat($reportCommentFeed);
         $dataComment = Report::whereNotNull("reply_id")
-
             ->orWhereNotNull("reply_comment_id")
             ->orWhereNotNull("feed_id")
             ->paginate(6, ['*'], "report-profile-page");
@@ -74,7 +79,7 @@ class ReportController extends Controller
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.index',compact('reportCourse','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
-
+    
     public function keluhan(Request $request){
 
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
@@ -223,17 +228,30 @@ class ReportController extends Controller
     }
 
     public function search(Request $request)
-{
-    $query = $request->input('query');
-    $results = Report::where('description', 'LIKE', "%$query%")->get();
+    {
+        $query = $request->input('query');
+        $results = Report::where('description', 'LIKE', "%$query%")->get();
 
-    return view('report.index', ['results' => $results]);
-}
+        return view('report.index', ['results' => $results]);
+    }
 
+    public function store_comment_feed(Request $request,$comment_id = null,$reply_comment_feed_id = null ,$reply_replies_comment_feed_id = null){
+        if($comment_id != null){
+            $comment = comment_veed::findOrFail($comment_id);
+            if(Auth::check()){
+                $comment->comment_feed_id = $comment->id;
+                $comment->user_id = $comment->pengirim_id;
+                $comment->user_id_sender = auth()->user()->id;
+                $comment->description = $request->description;
+                $comment->save();
+            }else{
+                return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            }
+            return redirect()->back()->with('success','Laporan anda telah terkirim');
+        }
+    }
 
-
-
-    public function storeResep(Request $request,$id){
+    public function storecomment(Request $request,$id){
         $resep = reseps::findOrFail($id);
         $report = new Report();
         if(Auth::check()){

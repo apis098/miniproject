@@ -27,10 +27,6 @@ return new class extends Migration
             $table->unsignedBigInteger('feed_id')->nullable();
             $table->foreign("feed_id")->references("id")->on("upload_videos")->onDelete("cascade");
         }); 
-        Schema::table('reports',function (Blueprint $table){
-            $table->unsignedBigInteger('feed_id')->nullable();
-            $table->foreign("feed_id")->references("id")->on("upload_videos")->onDelete("cascade");
-        }); 
     }
 
     /**

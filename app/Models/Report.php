@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['course_id',
+    protected $fillable = [
+    'course_id',
     'feed_id',
     'complaint_id',
     'user_id',
@@ -17,14 +18,27 @@ class Report extends Model
     'description',
     'profile_id',
     'comment_id',
-    'reply_comment_id'];
-
+    'reply_comment_id',
+    'reply_comment_id',
+    'comment_feed_id',
+    'reply_comment_feed_id',
+    'replies_reply_comment_feed_id',
+];  
     public function course() {
         return $this->belongsTo(kursus::class, 'course_id');
     }
     public function complaint()
     {
         return $this->belongsTo(complaint::class);
+    }
+    public function comment_feed(){
+        return $this->belongsTo(comment_veed::class,'comment_feed_id');
+    }
+    public function reply_comment_feed(){
+        return $this->belongsTo(reply_comment_veed::class,'reply_comment_feed_id');
+    }
+    public function replies_reply_comment_feed(){
+        return $this->belongsTo(balasRepliesCommentsFeeds::class,'replies_reply_comment_feed_id');
     }
     public function user()
     {

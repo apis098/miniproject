@@ -1095,8 +1095,7 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="reportModal"
                                                                             style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                            Laporkan
-                                                                            komentar</h5>
+                                                                            Laporkan Postingan</h5>
                                                                         <button type="button" class="close"
                                                                             data-bs-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
@@ -1481,7 +1480,7 @@
                                                                                                                 id="reportModal"
                                                                                                                 style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                                                                 Laporkan
-                                                                                                                Postingan!
+                                                                                                                Komentar
                                                                                                             </h5>
                                                                                                             <button
                                                                                                                 type="button"
@@ -1493,7 +1492,7 @@
                                                                                                             </button>
                                                                                                         </div>
                                                                                                         <form
-                                                                                                            action="{{ route('report.feed', $item_video->id) }}"
+                                                                                                            action="{{ route('report.comment.feed', $item_comment->id) }}"
                                                                                                             method="POST">
                                                                                                             {{-- @csrf --}}
                                                                                                             <div
