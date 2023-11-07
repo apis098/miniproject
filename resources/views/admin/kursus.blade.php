@@ -382,7 +382,7 @@
 
                                                     </div>
                                                 </div>
-                                                {{-- end modal --}}
+                                                {{-- end modal --}} 
                                             </td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">

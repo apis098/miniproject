@@ -218,16 +218,16 @@
         }
 
         /* button{
-                            background-color: #F7941E;
-                            border: none;
-                            height: 45px;
-                            width: 90px;
-                            color: #ffffff;
-                            position: absolute;
-                            right: 1px;
-                            top: 0px;
-                            border-radius: 15px
-                        } */
+                                    background-color: #F7941E;
+                                    border: none;
+                                    height: 45px;
+                                    width: 90px;
+                                    color: #ffffff;
+                                    position: absolute;
+                                    right: 1px;
+                                    top: 0px;
+                                    border-radius: 15px
+                                } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -374,6 +374,24 @@
                                 @endif
                             </h5>
                             <div id="border5" class="ms-2"
+                                style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                        </a>
+                    </li>
+                    <li class="nav-item tabs" role="presentation">
+                        <a href="#" class="nav-link mr-5 yuhu mt-2" id="button-kursus" data-bs-toggle="tab"
+                            data-bs-target="#kursus" type="button" role="tab" aria-controls="kursus"
+                            aria-selected="false">
+                            <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                                Kursus
+                                @if ($statusVeed > 0)
+                                    <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
+                                        height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                @endif
+                            </h5>
+                            <div id="border6" class="ms-2"
                                 style="width: 85%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                         </a>
                     </li>
@@ -689,6 +707,141 @@
                                                     class="ms-2 me-2">Detail</b></button>
                                         </td>
                                     </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        @if ($reportProfile->count() == 0)
+                            <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                style="margin-top: 5em; margin-left:-5%;">
+                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                <p><b>Tidak ada data</b></p>
+                            </div>
+                        @endif
+                        {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
+                    </div>
+                    <div class="tab-pane fade" id="kursus" role="tabpanel" aria-labelledby="pills-contact-tab"
+                        tabindex="0">
+                        <form action="">
+                            <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                                <div class="search">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                                    <form action="/admin/special-days" method="GET">
+                                                        <input type="text" id="search-profile" name="d"
+                                                            placeholder="Cari Laporan Resep">
+                                                        <button type="submit" class="zoom-effects cari">Cari</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <table id="table-profile" class="table-custom">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Pelapor</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Subjek</th>
+                                    <th scope="col">Melanggar</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($reportCourse as $row)
+                                    <tr class="mt-5">
+                                        <td style="border-left:1px solid black;" class="mt">
+                                            {{ $row->userSender->name }}
+                                        </td>
+                                        <td>{{ $row->user->name }}</td>
+                                        <td>{{ $row->description }}</td>
+                                        <td>{{ $row->user->jumlah_pelanggaran }} Kali</td>
+                                        <td style="border-right:1px solid black;">
+                                            <button type="button" data-toggle="modal"
+                                                data-target="#modalCourse{{ $row->id }}"
+                                                class="btn btn-light btn-sm rounded-3 text-light"
+                                                style="background-color: #F7941E;"><b
+                                                    class="ms-2 me-2">Detail</b></button>
+                                        </td>
+                                    </tr>
+                                    {{-- modal kursus --}}
+                                    <div class="modal fade bd-example-modal-xl rounded-5"
+                                        id="modalCourse{{ $row->id }}" tabindex="-1" role="dialog"
+                                        aria-labelledby="myExtraLargeModalLabel" aria-hidden="true"
+                                        style="text-align: left;">
+                                        <div class="modal-dialog modal-xl">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <section>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <i class="fa-regular text-dark fa-circle-xmark"></i>
+                                                        </button>
+                                                        <div class="container">
+                                                            <div class="row">
+                                                                <div class="col lg-6 my-3">
+                                                                    <button type="button"class="btn"
+                                                                        style=" background: #F7941E;color:white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.36px; word-wrap: break-word">
+                                                                        @foreach ($row->course->jenis_kursus as $jenis_kursus)
+                                                                            {{ $jenis_kursus->jenis_kursus }}
+                                                                        @endforeach
+                                                                    </button>
+                                                                    <br>
+                                                                    <br>
+                                                                    <p
+                                                                        style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
+                                                                        <b> {{ $row->course->nama_kursus }} </b>
+                                                                    </p>
+                                                                    <div class="my-3 mt-5">
+                                                                        <h3 class="mb-3"
+                                                                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                            <b>Tentang kursus</b>
+                                                                        </h3>
+
+                                                                        <p>{{ $row->course->deskripsi_kursus }}</p>
+
+                                                                    </div>
+                                                                    <div class=" mt-3">
+                                                                        <h3
+                                                                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                            <b>Lokasi kursus</b>
+                                                                        </h3>
+                                                                        <button type="button" class="btn mt-3"
+                                                                            style=" border-radius: 12px; border: 1px black solid">
+                                                                            <i class="fas fa-regular fa-location-dot"></i>
+                                                                            {{ $row->course->nama_lokasi }}
+                                                                        </button>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="col-xl-3 col-sm-4 mb-4 my-5">
+                                                                    <div class="bg-white shadow-sm py-5 border border-secondary text-center"
+                                                                        style="border-radius: 20px; height:16rem;">
+                                                                        <img src="{{ asset('storage/' . $row->course->foto_kursus) }}"
+                                                                            alt="" width="70%" height="70%"
+                                                                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                                                                        <h5 class="mb-0">
+                                                                            <a href="#"
+                                                                                style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                                {{ $row->course->user->name }}
+                                                                            </a>
+                                                                        </h5>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </section>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    {{-- end modal --}}
                                 @endforeach
                             </tbody>
                         </table>
@@ -1372,10 +1525,12 @@
                                                         class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
                                                         <div class="d-flex flex-row align-items-center feed-text px-2"><img
                                                                 class="rounded-circle"
-                                                                src="{{ $row->user->foto ? asset('storage/' . $row->user->foto) : asset('images/default.jpg') }}" width="45">
+                                                                src="{{ $row->user->foto ? asset('storage/' . $row->user->foto) : asset('images/default.jpg') }}"
+                                                                width="45">
                                                             <div class="d-flex flex-column flex-wrap ml-2"><span
-                                                                    class="font-weight-bold">{{$row->user->name}}</span><span
-                                                                    class="text-black-50 time">{{ \Carbon\Carbon::parse($row->feed->created_at)->locale('id_ID')->diffForHumans() }}</span></div>
+                                                                    class="font-weight-bold">{{ $row->user->name }}</span><span
+                                                                    class="text-black-50 time">{{ \Carbon\Carbon::parse($row->feed->created_at)->locale('id_ID')->diffForHumans() }}</span>
+                                                            </div>
                                                         </div>
                                                         <div class="feed-icon px-2"><i
                                                                 class="fa fa-ellipsis-v text-black-50"></i></div>
@@ -1400,11 +1555,15 @@
                                                     </style>
                                                     <div class="video-container">
                                                         <video class="video" controls>
-                                                            <source src="{{asset('storage/'.$row->feed->upload_video)}}" type="video/mp4">
+                                                            <source
+                                                                src="{{ asset('storage/' . $row->feed->upload_video) }}"
+                                                                type="video/mp4">
                                                         </video>
                                                     </div>
                                                 </div>
-                                                <div class="p-2 px-3" style="margin-top: -7%;"><span>{{$row->feed->deskripsi_video}}</span></div>
+                                                <div class="p-2 px-3" style="margin-top: -7%;">
+                                                    <span>{{ $row->feed->deskripsi_video }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1499,7 +1658,7 @@
                 messageColor: 'white',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -1533,7 +1692,7 @@
                 messageColor: 'white',
                 message: 'Anda yakin ingin memblookir pengguna tersebut?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
@@ -1561,7 +1720,7 @@
                 messageColor: 'white',
                 message: 'Anda yakin ingin mengahpus laporan?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
@@ -1633,6 +1792,8 @@
         const profile = document.getElementById("button-profile");
         const border4 = document.getElementById("border4");
         const border5 = document.getElementById("border5");
+        const border6 = document.getElementById("border6");
+        const kursus = document.getElementById("button-kursus");
         const feed = document.getElementById("button-feed");
         resep.addEventListener('click', function() {
             border1.style.display = "block";
@@ -1640,6 +1801,17 @@
             border3.style.display = "none";
             border4.style.display = "none";
             border5.style.display = "none";
+            border6.style.display = "none";
+
+        });
+        kursus.addEventListener('click', function() {
+            border6.style.display = "block";
+            border2.style.display = "none";
+            border3.style.display = "none";
+            border4.style.display = "none";
+            border5.style.display = "none";
+            border1.style.display = "none";
+
         });
         keluhan.addEventListener("click", function() {
             border2.removeAttribute('hidden');
@@ -1648,6 +1820,8 @@
             border3.style.display = "none";
             border4.style.display = "none";
             border5.style.display = "none";
+            border6.style.display = "none";
+
         });
 
         komentar.addEventListener("click", function() {
@@ -1657,6 +1831,8 @@
             border2.style.display = "none";
             border4.style.display = "none";
             border5.style.display = "none";
+            border6.style.display = "none";
+
         });
         profile.addEventListener("click", function() {
             border4.style.display = "block";
@@ -1664,6 +1840,8 @@
             border2.style.display = "none";
             border3.style.display = "none";
             border5.style.display = "none";
+            border6.style.display = "none";
+
         });
         feed.addEventListener("click", function() {
             border5.style.display = "block";
@@ -1671,6 +1849,8 @@
             border2.style.display = "none";
             border3.style.display = "none";
             border4.style.display = "none";
+            border6.style.display = "none";
+
         });
     </script>
     <script>

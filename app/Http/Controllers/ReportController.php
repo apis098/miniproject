@@ -38,6 +38,7 @@ class ReportController extends Controller
         $reportReply = Report::whereNotNull("reply_id")->orWhereNotNull('reply_comment_id')->paginate(6, ['*'], "report-reply-page");
         $reportReplyComment = Report::whereNotNull("reply_id_complaint")->orWhereNotNull('comment_id')->paginate(6, ['*'], "report-reply-page");
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
+        $reportCourse = Report::whereNotNull("course_id")->paginate(6, ['*'], "report-course-page");
         $allComments = $reportReply->concat($reportReplyComment);
         $dataComment = Report::whereNotNull("reply_id")
 
@@ -71,7 +72,7 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
+        return view('report.index',compact('reportCourse','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
 
     public function keluhan(Request $request){
