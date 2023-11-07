@@ -315,6 +315,20 @@ class VeedController extends Controller
                 "reply_comment_feed_id" => $reply_replyComment_id,
                 "feed_id" => $veed_id
             ]);
+            $data_replies = balasRepliesCommentsFeeds::findOrFail($reply_replyComment_id);
+            if($data_replies->pengirim_reply_comment_id != Auth::user()->id){
+                $notification = new notifications();
+                $notification->user_id = $data_replies->pengirim_reply_comment_id;
+                $notification->notification_from = auth()->user()->id;
+                $notification->veed_id = $veed_id;
+                $notification->categories = "like_veed";
+                $notification->message = "Menyukai komentar anda";
+                $notification->save();
+                                
+                $let_route = notifications::findOrFail($notification->id);
+                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->save();
+            }
             $countLike = likeBalasRepliesCommentsFeeds::query()
                 ->where('feed_id', $veed_id)
                 ->where('reply_comment_feed_id', $reply_replyComment_id)
@@ -354,6 +368,20 @@ class VeedController extends Controller
                 "reply_comment_veed_id" => $reply_comment_id,
                 "veed_id" => $veed_id
             ]);
+            $data_replies = reply_comment_veed::findOrFail($reply_comment_id);
+            if($data_replies->users_id != Auth::user()->id){
+                $notification = new notifications();
+                $notification->user_id = $data_replies->users_id;
+                $notification->notification_from = auth()->user()->id;
+                $notification->veed_id = $veed_id;
+                $notification->categories = "like_veed";
+                $notification->message = "Menyukai komentar anda";
+                $notification->save();
+                                
+                $let_route = notifications::findOrFail($notification->id);
+                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->save();
+            }
             $countLike = like_reply_comment_veed::query()
                 ->where('veed_id', $veed_id)
                 ->where('reply_comment_veed_id', $reply_comment_id)
