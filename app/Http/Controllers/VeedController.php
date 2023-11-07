@@ -237,6 +237,20 @@ class VeedController extends Controller
                 "comment_veed_id" => $komentar_veed_id,
                 "veed_id" => $veed_id
             ]);
+            $comment = comment_veed::findOrFail($komentar_veed_id);
+            if($comment->pengirim_id != Auth::user()->id){
+                $notification = new notifications();
+                $notification->user_id = $comment->pengirim_id;
+                $notification->notification_from = auth()->user()->id;
+                $notification->veed_id = $veed_id;
+                $notification->categories = "like_veed";
+                $notification->message = "Menyukai komentar anda";
+                $notification->save();
+                                
+                $let_route = notifications::findOrFail($notification->id);
+                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->save();
+            }
             // mendapatkan jumlah like tiap komentar
             $countLike = \App\Models\like_comment_veed::query()
                 ->where('comment_veed_id', $komentar_veed_id)
