@@ -150,7 +150,7 @@ class VeedController extends Controller
                 $notification->save();
                                 
                 $let_route = notifications::findOrFail($notification->id);
-                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
             
@@ -248,7 +248,7 @@ class VeedController extends Controller
                 $notification->save();
                                 
                 $let_route = notifications::findOrFail($notification->id);
-                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
             // mendapatkan jumlah like tiap komentar
@@ -327,7 +327,7 @@ class VeedController extends Controller
                 $notification->save();
                                 
                 $let_route = notifications::findOrFail($notification->id);
-                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
             $countLike = likeBalasRepliesCommentsFeeds::query()
@@ -380,7 +380,7 @@ class VeedController extends Controller
                 $notification->save();
                                 
                 $let_route = notifications::findOrFail($notification->id);
-                $let_route->route = "/status-baca/shared-feed/24";
+                $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
             $countLike = like_reply_comment_veed::query()
@@ -482,12 +482,13 @@ class VeedController extends Controller
             $notification = new notifications();
             $notification->user_id = $data_reply->users_id;
             $notification->notification_from = auth()->user()->id;
+            $notification->veed_id = $data_reply->veed_id;
             $notification->categories = "reply_comment";
             $notification->message = "Membalas komentar anda";
             $notification->save();
                             
             $let_route = notifications::findOrFail($notification->id);
-            $let_route->route = "/status-baca/shared-feed/24";
+            $let_route->route = "/status-baca/shared-feed/" . $notification->id;
             $let_route->save();
         }
         $dataReplies = balasRepliesCommentsFeeds::findOrFail($store->id);
