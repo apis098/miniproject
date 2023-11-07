@@ -2946,6 +2946,7 @@
                             let time = response.time;
                             let commentId = response.commentId
                             let foto = '';
+                            $("#jumlah_komentar_feed" + veed_id).html(response.comment_count);
                             if (pengirim['foto'] != null) {
                                 foto = 'storage/' + pengirim['foto'];
                             } else {

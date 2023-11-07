@@ -304,6 +304,8 @@ class VeedController extends Controller
         }
         $item_comment = reply_comment_veed::where('comment_id', $comment_id)->first();
         $dataReplies = reply_comment_veed::findOrFail($store_comment->id);
+        $feed = upload_video::findOrFail($store_comment->veed_id);
+        $comment_count = $feed->countCommentFeed();
         $jumlah_like_veed = like_reply_comment_veed::query();
         $user_sender = User::findOrFail(auth()->user()->id);
         $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
@@ -317,6 +319,7 @@ class VeedController extends Controller
                 "veed_id" => $veed_id,
                 "time" => $time,
                 "commentId" => $comment_id,
+                "comment_count" => $comment_count,
             ]);
         }
     }
