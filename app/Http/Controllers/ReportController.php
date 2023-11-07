@@ -490,6 +490,39 @@ class ReportController extends Controller
                 return redirect()->back()->with('error', 'Tidak ada foto profile yang perlu dihapus ');
             }
         }
+        if($report->comment_feed_id != null) {
+            $report->comment_feed->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->categories = "block_comment";
+            $notification->message = "Komentar kamu telah di blokir";
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            return redirect()->back()->with('success', 'Komentar berhasil diblokir');
+        }
+        if($report->reply_comment_feed_id != null) {
+            $report->reply_comment_feed->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->categories = "block_comment";
+            $notification->message = "Komentar kamu telah di blokir";
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            return redirect()->back()->with('success', 'Komentar berhasil diblokir');
+        }
+        if($report->replies_reply_comment_feed_id != null) {
+            $report->replies_reply_comment_feed->delete();
+            $notification = new notifications();
+            $notification->user_id = $report->user_id;
+            $notification->notification_from = auth()->user()->id;
+            $notification->categories = "block_comment";
+            $notification->message = "Komentar kamu telah di blokir";
+            $notification->alasan = $request->alasan;
+            $notification->save();
+            return redirect()->back()->with('success', 'Komentar berhasil diblokir');
+        }
         if($report->user->jumlah_pelanggaran > 3){
             $report->user->status = "nonaktif";
             $report->user->save();
