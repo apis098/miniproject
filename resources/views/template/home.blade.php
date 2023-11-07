@@ -155,7 +155,7 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="d-flex ms-4 mb-3">
+    <div class="d-flex mb-3">
     @foreach ($feed_premium_favorite as $num => $feed)
             <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
                 <div class="" style="border-radius: 15px 15px 0 0;">
@@ -382,8 +382,8 @@
 {{-- start koki terpopuler --}}
 <section class="container mt-5 mb-5">
     <div class=" input-group">
-        <div class=" mx-2">
-            <h3 class="fw-bold ml-3">Koki terpopuler</h3>
+        <div class=" mx-3">
+            <h3 class="fw-bold">Koki terpopuler</h3>
         </div>
     </div>
     @if ($top_users->count() == 0)
@@ -392,10 +392,10 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row text-center">
+    <div class="row text-center mx-1">
         @foreach ($top_users as $iu)
             <div class="col-xl-3 col-sm-4 mb-4 my-4">
-                <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
+                <div class="bg-white shadow-sm py-4 px-4 border border-secondary    "
                     style="border-radius: 20px; height:25rem;">
                     @if ($iu->foto)
                         <img src="{{ asset('storage/' . $iu->foto) }}" alt="" width="50%" height="50%"
@@ -501,6 +501,15 @@
              .marginku{
                 margin-left: 0rem;
              }
+             .container-fluid {
+            padding: 10% 2%;
+        }
+
+        .btn-custom {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    
         }
 
 
@@ -522,17 +531,20 @@
 
         /* tampilan untuk PC yang lebih besar */
         @media (min-width: 1367px) {
-
+             .marginku{
+                margin-left: 8rem;
+            }
         }
 
 </style>
 
 <div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 15px">
-    <div class=" input-group" style="margin-left:4.5%">
-        <h3 class="fw-bold ml-3" style="color:white;font-family:poppins">Kategori makanan</h3>
+   <div class="mx-2">
+    <div class=" input-group mx-5">
+        <h3 class="fw-bold mx-5" style="color:white;font-family:poppins">Kategori makanan</h3>
     </div>
-    <div style="margin-left:5.5%">
-        <p style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi
+    <div class="mx-5">
+        <p class="mx-5" style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi
             anda.</p>
     </div>
     @if ($categories_foods->count() == 0)
@@ -541,8 +553,8 @@
             <p style="color:white"><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row">
-        <div class="marginku">
+    <div class="row ml-5">
+        <div class="mx-5">
             @foreach ($categories_foods as $cf)
                 <button class="btn-custom btn-lg col-lg-2 mb-3"
                     style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
@@ -553,13 +565,14 @@
             @endforeach
         </div>
     </div>
+  </div>
 </div>
 
 {{-- start resep terbaru --}}
 <section class="container mt-5 mb-5">
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3 mb-5 mx-3">Resep resep Terbaru</h3>
+            <h3 class="fw-bold ml-3 mb-5">Resep resep Terbaru</h3>
         </div>
     </div>
     @if ($recipes->count() == 0)
@@ -568,7 +581,7 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row">
+    <div class="row mx-1">
         @foreach ($recipes as $num => $item)
             <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                 <div class="card" style="border-radius: 15px; border: 0.50px black solid">
@@ -639,7 +652,7 @@
     @foreach ($feed_populer as $num => $feed)
     <div class="d-flex mb-3">
         <div class="col-12">
-        <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
+        <div class="card my-3 ml-0" style="width: 30%; border-radius:15px;">
             <div class="" style="border-radius: 15px 15px 0 0;">
                 @if (Auth::check())
                     @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))

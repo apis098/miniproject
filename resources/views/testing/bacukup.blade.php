@@ -1,4 +1,4 @@
-                 <div class="col-sm-6 col-md-4 col-lg-3">
+                 {{-- <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="d-flex justify-content-between">
                     <div class=" mt-4">
                             @if (Auth::check() && $notification != null)
@@ -356,4 +356,46 @@
                                 <span class="badge badge-danger rounded-pill mb-4 me-2"
                                     style="margin-left: -25px; margin-top: -5px">{{ $unreadNotificationCount }}</span>
                             @endif
-                </div> 
+                </div> --}}
+
+
+
+{{-- <script>
+        $(document).ready(function() {
+            $('#notification-button').click(function(e) {
+                e.preventDefault();
+                // const input_message = document.getElementById('message');
+                // const more_input = document.getElementById('moreInput');
+                const giftForm = document.getElementById('notification-form');
+                const route = giftForm.getAttribute('action');
+                var formData = $('#notification-form').serialize();
+                $.ajax({
+                    type: "POST",
+                    url: route,
+                    data: formData,
+                    success: function(response) {
+                        if (response.success) {
+                            iziToast.show({
+                                backgroundColor: '#a1dfb0',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                                progressBarColor: 'dark',
+                            });
+                        } else {
+                            iziToast.show({
+                                backgroundColor: '#f2a5a8',
+                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script> --}}
