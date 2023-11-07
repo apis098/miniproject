@@ -2714,7 +2714,7 @@
                                                                                                             <img width="38px"
                                                                                                                 height="38px"
                                                                                                                 class="rounded-circle"
-                                                                                                                src="${foto}"
+                                                                                                                src="{{asset('${foto}')}}"
                                                                                                                 alt="${pengirim['name']}">
                                                                                                         </div>
                                                                                                         <div
@@ -2918,7 +2918,7 @@
                                                                                                             <img width="38px"
                                                                                                                 height="38px"
                                                                                                                 class="rounded-circle"
-                                                                                                                src="${foto}"
+                                                                                                                src="{{asset('${foto}')}}"
                                                                                                                 alt="${pengirim['name']}">
                                                                                                         </div>
                                                                                                         <div
@@ -3470,7 +3470,7 @@
                                                                                                             <img width="38px"
                                                                                                                 height="38px"
                                                                                                                 class="rounded-circle"
-                                                                                                                src="${foto}"
+                                                                                                                src="{{asset('${foto}')}}"
                                                                                                                 alt="${pengirim['name']}">
                                                                                                         </div>
                                                                                                         <div
@@ -3791,7 +3791,7 @@
 
                                                                                 <img width="38px" height="38px"
                                                                                     class="rounded-circle"
-                                                                                    src="${foto}"
+                                                                                    src="{{asset('${foto}')}}"
                                                                                     alt="">
 
                                                                             <p class="ms-2 mt-2">
