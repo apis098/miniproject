@@ -43,6 +43,7 @@ return new class extends Migration
         Schema::create('reply_comment_recipes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("users_id");
+            $table->unsignedBigInteger("recipient_id");
             $table->integer('likes')->default(0);
             $table->unsignedBigInteger("recipe_id");
             $table->unsignedBigInteger("comment_id");
@@ -52,7 +53,6 @@ return new class extends Migration
             $table->foreign("users_id")->references("id")->on("users")->onDelete("cascade");
             $table->foreign("recipe_id")->references("id")->on("reseps")->onDelete("cascade");
             $table->foreign("comment_id")->references("id")->on("comment_recipes")->onDelete("cascade");
-            $table->foreign("parent_id")->references("id")->on("users")->onDelete("cascade");
             $table->timestamps();
         });
     }

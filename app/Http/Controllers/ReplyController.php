@@ -30,7 +30,7 @@ class ReplyController extends Controller
         }else{
             return view('replies.index_koki', compact('data', 'title'));
         }
-        
+
     }
     public function show($id)
     {
@@ -87,8 +87,8 @@ class ReplyController extends Controller
                 'user_id' => $complaint->user->id,
                 'reply_id' => $reply->id,
             ]);
-            $complaint->notifications()->save($notifications);  
-        }    
+            $complaint->notifications()->save($notifications);
+        }
             return redirect()->back()->with('success', 'Balasan berhasil dikirim.');
         } else {
             return redirect()->back()->with('error', 'Silahkan login terlebih dahulu.');
@@ -119,13 +119,42 @@ class ReplyController extends Controller
         }else{
             return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
         }
-       
+
     }
+    public function replyReplyComment(Request $request,$id){
+        $request->validate([
+            'reply_comment' => 'required|string',
+        ]);
+        $user = Auth::check();
+        if($user){
+            $comment = Reply::findOrFail($id);
+            $reply = new replyComplaint();
+            $reply->reply_id = $comment->id;
+            $reply->complaint_id = $comment->complaint_id;
+            $reply->user_id = $comment->user_id;
+            $reply->user_id_sender = auth()->user()->id;
+            $reply->reply = $request->reply_comment;
+            $reply->parent_id = $request->parent_id;
+            $reply->save();
+            if($comment->user_id != auth()->user()->id){
+                $notifications = new notifications();
+                $notifications->notification_from = auth()->user()->id;
+                $notifications->user_id = $comment->user_id;
+                $notifications->reply_id_comment = $comment->id;
+                $notifications->save();
+            }
+            return redirect()->back()->with('success','Berhasil membalas komentar');
+        }else{
+            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+        }
+
+    }
+
     public function destroy(Request $request,$id)
     {
         $data = Reply::findOrFail($id);
         $data->delete();
-        
+
         if(auth()->user()->role =="admin"){
             $notification = new notifications();
             $notification->user_id = $data->user_id;

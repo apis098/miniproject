@@ -423,7 +423,7 @@ class KokiController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            "deskripsi_video" => "required|max:400",
+            "deskripsi_video" => "required|max:225",
             "upload_video" => "required|mimes:mp4|max:50000"
         ];
         $messages = [
@@ -563,10 +563,6 @@ class KokiController extends Controller
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
         return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
-    }
-    public function replyReplyComment(Request $request) {
-        dd($request->all());
-
     }
 }
 

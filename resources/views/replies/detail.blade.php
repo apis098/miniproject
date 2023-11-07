@@ -326,7 +326,13 @@
                                                 </div>
                                             @endif
                                             <div class="">
-                                                <small class="font-weight">{{ $item->reply }}</small>
+                                                <small class="font-weight">
+                                                    @if ($item->parent_id != null)
+                                                    <a href="">
+                                                    {{ "@".$item->user->name }}
+                                                    </a>
+                                                    @endif
+                                                    {{ $item->reply }}</small>
                                             </div>
                                         </span>
                                     </div>
@@ -394,14 +400,17 @@
 
                                         <div class="d-flex justify-content-end input-group">
                                             <a href="#" class="text-secondary " data-toggle="collapse"
-                                                data-target="#collapseform{{ $item->id }}" aria-expanded="true"
+                                                data-target="#collapses{{ $item->id }}" aria-expanded="true"
                                                 aria-controls="collapseOne">
                                                 <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
                                             </a>
                                         </div>
                                     </div>
-                                    <form action="{{ route('reply.reply.comment', ['complaint_id' => $data->id, 'reply_id' => $item->id,'recipient_id' => $item->user->id]) }}" method="POST">
-
+                                    <div class="collapse" id="collapses{{ $item->id }}">
+                                        <br>
+                                    <form action="{{ route('ReplyReplyComment.store', $row->id) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="parent_id" value="{{ $item->id }}">
                                         <div class="input-group mb-3">
                                             @csrf
                                             <input type="text" id="reply_comment" name="reply_comment" width="500px"
@@ -413,6 +422,7 @@
                                                     class="me-3 ms-3">Kirim</b></button>
                                         </div>
                                     </form>
+                                    </div>
                                 @endforeach
                                 {{-- end like --}}
                             </div>
