@@ -1133,6 +1133,12 @@
                                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
                             @elseif(!empty($row->reply_complaint->reply))
                                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_complaint->reply }}</textarea>
+                            @elseif(!empty($row->comment_feed->komentar))
+                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->comment_feed->komentar }}</textarea>
+                            @elseif(!empty($row->reply_comment_feed->komentar))
+                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_comment_feed->komentar }}</textarea>
+                            @elseif(!empty($row->replies_reply_comment_feed->komentar))
+                                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies_reply_comment_feed->komentar }}</textarea>
                             @endif
 
                         </div>
