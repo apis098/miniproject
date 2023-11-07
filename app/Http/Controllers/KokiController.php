@@ -34,6 +34,7 @@ use Intervention\Image\Facades\Image;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Models\TransaksiKursus;
 use App\Models\UlasanKursus;
+use App\Models\balasKomentar;
 class KokiController extends Controller
 {
     /**
@@ -556,6 +557,10 @@ class KokiController extends Controller
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
         return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+    }
+    public function replyReplyComment(Request $request) {
+        dd($request->all());
+      
     }
 }
 

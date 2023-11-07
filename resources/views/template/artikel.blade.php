@@ -447,7 +447,8 @@
                         </b></h5>
                     <div class="col-10">
                         @if (Auth::check())
-                            <form method="POST" action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->user_id }}/{{ $show_resep->id }}">
+                            <form method="POST"
+                                action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->user_id }}/{{ $show_resep->id }}">
                                 @csrf
                                 <div class="input-group">
                                     <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
@@ -675,7 +676,11 @@
                                     @endif
                                     <br>
                                     <div class="">
-                                        <small class="font-weight">{{ $item->komentar }}</small>
+                                        <small class="font-weight">
+                                            @if ($item->parent_id != null)
+                                            <a href="">{{ "@".$item->toReply->name }}</a>
+                                            @endif
+                                            {{ $item->komentar }}</small>
                                     </div>
                                 </span>
                             </div>
@@ -784,6 +789,43 @@
                                         </button>
                                     @endif
                                 </div>
+
+                                <div class="d-flex justify-content-end input-group">
+                                    <a href="#" class="text-secondary " data-toggle="collapse"
+                                        data-target="#collapses{{ $item->id }}" aria-expanded="true" aria-controls="collapseOne">
+                                        <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapses{{ $item->id }}">
+                            <br>
+                            @if (Auth::check())
+                                <form action="{{ route('balasan.balasan.komentar.resep', $row->id) }}" method="post">
+                                    <input type="hidden" name="parent_id" value="{{$item->user->id}}">
+                                    @csrf
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="reply_comment" name="reply_comment" width="500px"
+                                            class="form-control form-control-sm rounded-3 me-5"
+                                            placeholder="Balas komentar dari {{ $item->user->name }}....">
+
+                                        <button type="submit"
+                                            style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                            class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                    </div>
+                                </form>
+                            @else
+                                <form>
+                                    <div class="input-group mb-3">
+                                        <input type="text" id="reply_comment" name="reply_comment" width="500px"
+                                            class="form-control form-control-sm rounded-3 me-5"
+                                            placeholder="Balas komentar dari {{ $item->user->name }}....">
+
+                                        <button type="button" onclick="harusLogin()"
+                                            style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                    </div>
+                                </form>
+                            @endif
                             </div>
                         @endforeach
                         {{-- end like --}}
@@ -862,7 +904,7 @@
                 messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'dark',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -897,7 +939,7 @@
                 messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'dark',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
@@ -983,7 +1025,7 @@
                 messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'dark',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(

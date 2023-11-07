@@ -213,6 +213,7 @@ Route::post("/update-feed/{id}", [KokiController::class, "updateFeed"])->name("u
 // like dan favorite pada artikel resep
 Route::post('/komentar-resep/{pengirim}/{penerima}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
 Route::post('/balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
+Route::post('/balasan-balasan-komentar-resep/{id}', [komentar_resep::class, 'reply_reply_comment'])->name('balasan.balasan.komentar.resep')->middleware("auth");
 Route::post('/koki/sukai/{id}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::class, 'like_reply_comment_recipe'])->name('like.reply.comment.recipe')->middleware("auth");
 Route::post('/koki/sukai/balasan/{id}', [LikeCommentController::class, 'like_reply_comment'])->name('likeReply.comment.recipe')->middleware('auth');
@@ -255,3 +256,5 @@ Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingControl
 Route::post('/favorite/kursus/{chef}/{course}', [KursusController::class, 'favoriteKursus'])->name('favorite.kursus');
 // route filter penghasilan koki
 Route::post('/filter-penghasilan-koki', [KokiController::class, 'filterPenghasilanKoki'])->name('filter.penghasilan.koki');
+// route reply reply comment di resep dan diskusi
+Route::post('/reply-reply-comment', [KokiController::class, 'replyReplyComment'])->name('reply.reply.comment');

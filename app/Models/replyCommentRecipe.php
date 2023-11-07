@@ -14,8 +14,10 @@ class replyCommentRecipe extends Model
         "recipe_id",
         "comment_id",
         "likes",
-        "komentar"
+        "komentar",
+        "parent_id"
     ];
+
     public function user() {
         return $this->belongsTo(User::class, "users_id");
     }
@@ -27,6 +29,9 @@ class replyCommentRecipe extends Model
     }
     public function like() {
         return $this->hasMany(LikeReplyCommentRecipes::class, "comment_id");
+    }
+    public function toReply() {
+        return $this->belongsTo(User::class, "parent_id");
     }
 
 }

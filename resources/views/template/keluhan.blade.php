@@ -49,16 +49,6 @@
         <div class="row">
             <div class="col-md-6 ms-3">
                 <div class="form_container">
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
                     <form action="{{ route('ComplaintUser.store') }}" method="POST">
                         @csrf
                         <div class="heading_container">

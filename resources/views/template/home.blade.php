@@ -494,7 +494,37 @@
         font-family: Poppins;
         font-weight: 500;
         word-wrap: break-word;
-    }
+
+      }
+
+        @media (min-width: 389px) and (max-width:896px) {
+             .marginku{
+                margin-left: 0rem;
+             }
+        }
+
+
+        /* tampilan untuk iPad */
+        @media (min-width: 897px) and (max-width: 1024px) {
+
+        }
+
+
+
+        /* tampilan untuk laptop */
+        @media (min-width: 1025px) and (max-width: 1366px) {
+            .marginku{
+                margin-left: 8rem;
+            }
+
+        }
+
+
+        /* tampilan untuk PC yang lebih besar */
+        @media (min-width: 1367px) {
+
+        }
+
 </style>
 
 <div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 15px">
@@ -512,7 +542,7 @@
         </div>
     @endif
     <div class="row">
-        <div style="margin-left: 8rem;">
+        <div class="marginku">
             @foreach ($categories_foods as $cf)
                 <button class="btn-custom btn-lg col-lg-2 mb-3"
                     style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">

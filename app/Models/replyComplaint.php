@@ -33,5 +33,5 @@ class replyComplaint extends Model
     public function tag_comment() {
         return $this->hasMany(tagReplyComments::class);
     }
-    
+
 }

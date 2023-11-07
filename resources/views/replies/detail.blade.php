@@ -137,16 +137,7 @@
                         </div>
 
                     </div>
-                    @if (session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    @if (session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -293,6 +284,7 @@
                                     <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
                                 </a>
                             </div>
+
                         </div>
                         {{-- collapse --}}
                         <div class="collapse" id="collapse{{ $row->id }}">
@@ -399,7 +391,28 @@
 
                 @endif --}}
                                         </div>
+
+                                        <div class="d-flex justify-content-end input-group">
+                                            <a href="#" class="text-secondary " data-toggle="collapse"
+                                                data-target="#collapseform{{ $item->id }}" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                            </a>
+                                        </div>
                                     </div>
+                                    <form action="{{ route('reply.reply.comment', ['complaint_id' => $data->id, 'reply_id' => $item->id,'recipient_id' => $item->user->id]) }}" method="POST">
+
+                                        <div class="input-group mb-3">
+                                            @csrf
+                                            <input type="text" id="reply_comment" name="reply_comment" width="500px"
+                                                class="form-control form-control-sm rounded-3 me-5"
+                                                placeholder="Balas komentar dari {{ $item->user->name }}....">
+
+                                            <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                class="btn btn-sm text-light ms-3"><b
+                                                    class="me-3 ms-3">Kirim</b></button>
+                                        </div>
+                                    </form>
                                 @endforeach
                                 {{-- end like --}}
                             </div>
