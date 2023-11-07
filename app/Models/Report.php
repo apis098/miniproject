@@ -8,8 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Report extends Model
 {
     use HasFactory;
-    protected $fillable = ['feed_id','complaint_id', 'user_id','reply_id','user_id_sender','description','profile_id','comment_id','reply_comment_id'];
+    protected $fillable = ['course_id',
+    'feed_id',
+    'complaint_id',
+    'user_id',
+    'reply_id',
+    'user_id_sender',
+    'description',
+    'profile_id',
+    'comment_id',
+    'reply_comment_id'];
 
+    public function course() {
+        return $this->belongsTo(kursus::class, 'course_id');
+    }
     public function complaint()
     {
         return $this->belongsTo(complaint::class);

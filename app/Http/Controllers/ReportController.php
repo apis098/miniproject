@@ -17,6 +17,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\kursus;
 use Str;
 class ReportController extends Controller
 {
@@ -39,7 +40,7 @@ class ReportController extends Controller
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
         $allComments = $reportReply->concat($reportReplyComment);
         $dataComment = Report::whereNotNull("reply_id")
-        
+
             ->orWhereNotNull("reply_comment_id")
             ->orWhereNotNull("feed_id")
             ->paginate(6, ['*'], "report-profile-page");
@@ -118,7 +119,7 @@ class ReportController extends Controller
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.keluhan',compact('categorytopup','allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
-    }   
+    }
     public function komentar(Request $request){
 
         $reportReply = Report::whereNotNull("reply_id")->paginate(6, ['*'], "report-reply-page");
@@ -330,7 +331,7 @@ class ReportController extends Controller
         }else{
             return redirect()->route('login')->with('info','Silahkan login terlebih dahulu sebelum melaporkan pelanggaran');
         }
-    }   
+    }
     public function store(Request $request){
         if(Auth::check()) { // Memeriksa apakah pengguna telah login
             $userId = Auth::user()->id;
@@ -354,8 +355,8 @@ class ReportController extends Controller
             return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
         }
     }
-    
-  
+
+
     public function randomName($id){
         $report = Report::findOrFail($id);
         $report->user->delete();
@@ -491,5 +492,16 @@ class ReportController extends Controller
         $report = Report::findOrFail($id);
         $report->delete();
         return redirect()->back()->with('success', 'Laporan telah dihapus');
+    }
+    public function storeCourse(Request $request,$id) {
+        $kursus = kursus::find($id);
+        $user_id = $kursus->user->id;
+        Report::create([
+            "course_id" => $id,
+            'user_id' => $user_id,
+            'user_id_sender' => Auth::user()->id,
+            'description' => $request->laporkan
+        ]);
+        return redirect()->back()->with('success', 'Sukses melaporkan kursus!');
     }
 }

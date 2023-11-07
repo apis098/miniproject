@@ -81,14 +81,12 @@ class kursus extends Model
     }
     public function total_waktu_sesi()
     {
-        $minute = sessionCourses::where('course_id', $this->id)->where('informasi_lama_sesi', 'menit')->sum('lama_sesi');
-        $hours = sessionCourses::where('course_id', $this->id)->where('informasi_lama_sesi', 'jam')->sum('lama_sesi');
-        $jam = $hours * 60;
-        $total = $minute + $jam;
-        if ($total >= 60) {
-            $hasil = number_format($total/60, 1) .  " jam";
+        $time = sessionCourses::where('course_id', $this->id)->sum('lama_sesi');
+
+        if ($time >= 60) {
+            $hasil = number_format($time/60, 1) .  " jam";
         } else {
-            $hasil = $total . " menit";
+            $hasil = $time . " menit";
         }
         return $hasil;
     }
@@ -96,4 +94,8 @@ class kursus extends Model
     {
         return $this->hasMany(favorite::class, 'kursus_id');
     }
+    public function report() {
+        return $this->hasMany(Report::class, 'course_id');
+    }
 }
+

@@ -36,17 +36,21 @@ class UlasanRatingController extends Controller
       ];
       $message = [
         'ulasan.required' => 'Ulasan wajib diisi!',
-        'ulasan.max' => 'Ulasan maksimal berisi 225 karakter!'
+        'ulasan.max' => 'Ulasan maksimal berisi 225 karakter!',
       ];
       $validator  = Validator::make($request->all(), $rules, $message);
       if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
+        return redirect()->back()->with('error', $validator->errors()->first());
+      }
+      $rating = null;
+      if ($request->rating != null) {
+        $rating = $request->rating;
       }
       UlasanKursus::create([
         "course_id" => $course,
         "chef_id" => $chef,
         "user_id" => $user,
-        "rating" => $request->rating,
+        "rating" => $rating,
         "ulasan" => $request->ulasan
       ]);
       $rate = UlasanKursus::where('course_id', $course)->sum('rating');

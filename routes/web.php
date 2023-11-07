@@ -126,6 +126,7 @@ Route::post('/laporan-feed/{id}',[ReportController::class,'storeVeed'])->name('r
 Route::post('/laporan-komentar/{id}',[ReportController::class,'storeReply'])->name('report.reply');
 Route::post('/laporan-komentar-balasan/{id}',[ReportController::class,'storeReplyComment'])->name('report.reply.comment');
 Route::post('/laporan-keluhan/{id}',[ReportController::class,'storeComplaint'])->name('report.complaint');
+Route::post('/laporan-kursus/{id}',[ReportController::class,'storeCourse'])->name('report.course');
 
 Route::prefix('share-content')->group(function (){
     Route::post('feed/{id}',[VeedController::class,'shareVeed'])->name('share.feed');

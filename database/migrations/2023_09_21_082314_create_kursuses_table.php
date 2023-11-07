@@ -37,6 +37,10 @@ return new class extends Migration
             $table->unsignedBigInteger('kursus_id')->nullable();
             $table->foreign("kursus_id")->references("id")->on("kursuses")->onDelete("cascade");
         });
+        Schema::table('reports',function (Blueprint $table){
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->foreign('course_id')->references('id')->on('kursuses')->onDelete('cascade');
+        });
     }
 
     /**

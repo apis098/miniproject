@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('chef_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('rating');
+            $table->integer('rating')->nullable();
             $table->text('ulasan');
             $table->timestamps();
 
