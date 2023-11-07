@@ -37,7 +37,10 @@ class comment_veed extends Model
     public function count_replies(){
         $replyCount = reply_comment_veed::where('comment_id',$this->id)->count();
         $data_replies_reply = reply_comment_veed::where('comment_id',$this->id)->first();
-        $replies_reply_count = $data_replies_reply->balasRepliesCommentsFeeds->count();
+        $replies_reply_count = 0 ;
+        if($data_replies_reply != null && $data_replies_reply->balasRepliesCommentsFeeds->count() > 0){
+            $replies_reply_count = $data_replies_reply->balasRepliesCommentsFeeds->count();
+        }
         return $replyCount + $replies_reply_count;
     }
     public function likeCommentVeed($user_id)

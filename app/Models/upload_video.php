@@ -64,8 +64,11 @@ class upload_video extends Model
     {
         $comment = comment_veed::where("veed_id", $this->id)->count();
         $reply = reply_comment_veed::where('veed_id',$this->id)->count();
-        $data_reply =reply_comment_veed::where('veed_id',$this->id)->first();
-        $count_replies_reply = $data_reply->balasRepliesCommentsFeeds->count();
+        $data_reply = reply_comment_veed::where('veed_id',$this->id)->first();
+        $count_replies_reply = 0 ;
+        if($data_reply != null && $data_reply->balasRepliesCommentsFeeds->count() > 0){
+            $count_replies_reply = $data_reply->balasRepliesCommentsFeeds->count();
+        }
         return $comment + $reply + $count_replies_reply;
     }
     public function countShareFeed()
