@@ -94,6 +94,7 @@ class komentar_resep extends Controller
     }
     public function delete_reply_comment(string $id) {
         replyCommentRecipe::where('id', $id)->delete();
+        
         return redirect()->back()->with('success', 'Sukses menghapus komentar!');
     }
 }

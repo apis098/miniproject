@@ -552,7 +552,7 @@
                                 </button>
                             @endif
                         </form>
-                        @if (Auth::check() && auth()->user()->id != $row->users_id && auth()->user()->role != 'admin')
+                        @if (Auth::check() && auth()->user()->id != $row->users_id && auth()->user()->role != 'admin'  && $row->pengirim_id != auth()->user()->id)
                             <button type="button" data-toggle="modal" data-target="#Modald{{ $row->id }}"
                                 class="yuhu text-danger btn-sm rounded-5 "><i
                                     class="fa-solid fa-triangle-exclamation me-2"></i>
@@ -607,7 +607,7 @@
                                         fill="currentColor" fill-rule="nonzero" />
                                 </svg>
                             </button>
-                        @elseif(Auth::check() && auth()->user()->id == $row->users_id)
+                        @elseif(Auth::check() && auth()->user()->id == $row->pengirim_id)
                             <form method="POST" action="{{ route('delete.comment', $row->id) }}"
                                 id="delete-comment-form{{ $row->id }}">
                                 @csrf
@@ -699,7 +699,7 @@
                                     <form action="{{ route('likeReply.comment.recipe', $item->id) }}" method="POST"
                                         id="like_reply_comment_form{{$item->id}}">
                                         @csrf
-                                        @if (
+                                        @if (   
                                             $userLogin &&
                                                 $item->like()->where('users_id', $userLogin->id)->exists())
                                             <button type="submit" class="yuhu me-2 btn-sm rounded-5"
@@ -775,11 +775,11 @@
                                             </svg>
                                         </button>
                                     @elseif(Auth::check() && auth()->user()->id == $item->users_id)
-                                        <form method="POST" action="{{ route('delete.reply.comment', $row->id) }}"
-                                            id="delete-reply-comment-form{{ $row->id }}">
+                                        <form method="POST" action="{{ route('delete.reply.comment', $item->id) }}"
+                                            id="delete-reply-comment-form{{ $item->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button" onclick="confirmationReply({{ $row->id }})"
+                                            <button type="button" onclick="confirmationReply({{ $item->id }})"
                                                 class="yuhu text-danger btn-sm rounded-5 ">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
@@ -900,14 +900,14 @@
     <script>
         function confirmationReply(num) {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#eea2a6',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'dark',
                 messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
-                close: false,
                 progressBarColor: 'dark',
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -961,14 +961,14 @@
         }
         function confirmation(num) {
             iziToast.show({
-                backgroundColor: 'red',
+                backgroundColor: '#eea2a6',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'dark',
                 messageColor: 'dark',
                 message: 'Apakah Anda yakin ingin menghapus komentar ini?',
                 position: 'topCenter',
-                close: false,
                 progressBarColor: 'dark',
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
