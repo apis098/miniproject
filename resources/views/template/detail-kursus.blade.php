@@ -189,7 +189,7 @@
                         <h3 class="fw-bold mb-3">Sesi Kursus</h3>
                         @foreach ($detail_session_course as $content_course)
                             <div class="card">
-                                <button class="accordion active"> <b>{{ $content_course->judul_sesi }} <br> <small>{{ $content_course->tanggal . " " . $content_course->waktu }}</small></b>
+                                <button class="accordion active"> <b>{{ $content_course->judul_sesi }} <br> <small>{{ date('d F Y', strtotime($content_course->tanggal)) . " " . $content_course->waktu }}</small></b>
                                     @if ($content_course->lama_sesi >= 60)
                                         <span>{{ number_format($content_course->lama_sesi / 60, 1) }}
                                             jam</span>
