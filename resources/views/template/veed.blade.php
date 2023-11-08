@@ -2743,6 +2743,7 @@
                             let commentId = response.commentId
                             let feed_id = response.feed_id;
                             let foto = '';
+                            $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
                             if (pengirim['foto'] != null) {
                                 foto = 'storage/' + pengirim['foto'];
                             } else {
@@ -3500,6 +3501,7 @@
                             let time = response.time;
                             let commentId = response.commentId
                             let foto = '';
+                            $("#jumlah_komentar_feed" + feed_id).html(response.comment_count);
                             if (pengirim['foto'] != null) {
                                 foto = 'storage/' + pengirim['foto'];
                             } else {

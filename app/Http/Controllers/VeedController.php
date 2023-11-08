@@ -510,6 +510,8 @@ class VeedController extends Controller
             $let_route->route = "/status-baca/shared-feed/" . $notification->id;
             $let_route->save();
         }
+        $feed = upload_video::findOrFail($data_reply->veed_id);
+        $comment_count = $feed->countCommentFeed();
         $dataReplies = balasRepliesCommentsFeeds::findOrFail($store->id);
         $user_sender = User::findOrFail(auth()->user()->id);
         $user_penerima = User::findOrFail($pemilik_id);
@@ -526,6 +528,7 @@ class VeedController extends Controller
             "time" => $time,
             "commentId" => $comment_id,
             "feed_id" => $feed_id,
+            "comment_count" => $comment_count,
         ]);
     }
     public function sukaiBalasRepliesCommentsFeeds(string $user, string $comment)

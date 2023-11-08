@@ -423,7 +423,7 @@ class KokiController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            "deskripsi_video" => "required|max:225",
+            "deskripsi_video" => "required|max:555",
             "upload_video" => "required|mimes:mp4|max:50000"
         ];
         $messages = [
