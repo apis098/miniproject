@@ -26,7 +26,7 @@ class replyCommentRecipe extends Model
         return $this->belongsTo(User::class, "recipient_id");
     }
     public function recipe() {
-        return $this->belongsTo(recipe::class, "recipe_id");
+        return $this->belongsTo(reseps::class, "recipe_id");
     }
     public function comment() {
         return $this->belongsTo(comment_recipes::class, "comment_id");

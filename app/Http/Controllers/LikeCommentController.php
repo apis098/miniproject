@@ -74,7 +74,7 @@ class LikeCommentController extends Controller
     public function like_reply_comment($id){
         $comment = replyCommentRecipe::findOrFail($id);
         $user = Auth::user();
-        if($user && !LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->exists()){
+        if($user && !LikeReplyCommentRecipes::where('comment_id',$comment->id)->where('users_id', auth()->user()->id)->exists()){
             LikeReplyCommentRecipes::create([
                 'users_id' => auth()->user()->id,
                 'recipe_id' => $comment->recipe_id,
@@ -95,7 +95,7 @@ class LikeCommentController extends Controller
                 'reply_id' => $comment->id,
                 'like_count' => $comment->likes,
             ]);
-        }elseif($user && LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->exists()){
+        }elseif($user && LikeReplyCommentRecipes::where('comment_id',$comment->id)->where('users_id', auth()->user()->id)->exists()){
             $data = LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->where('recipe_id', $comment->recipe_id)->where('comment_id', $comment->id)->delete();
             if($data){
                 $comment->decrement('likes');
