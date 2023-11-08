@@ -96,9 +96,9 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row container mt-4">
+    <div class="row mt-4">
         @foreach ($resep_premium_favorite as $num => $resep)
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
@@ -155,9 +155,10 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="d-flex mb-3">
-    @foreach ($feed_premium_favorite as $num => $feed)
-            <div class="card my-3 ml-3" style="width: 30%; border-radius:15px;">
+    <div class="row">
+        @foreach ($feed_premium_favorite as $num => $feed)
+        <div class="col-md-4 mb-3">
+            <div class="card" style="border-radius: 15px;">
                 <div class="" style="border-radius: 15px 15px 0 0;">
                     @if (Auth::check())
                         @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
@@ -175,8 +176,7 @@
                         @else
                             <video style="border-radius: 15px 15px 0 0;"
                                 @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
-            @else
-            class="video-js vjs-theme-city" @endif
+                                @else class="video-js vjs-theme-city" @endif
                                 id="my-video" controls preload="auto" width="100%" height="100%"
                                 data-setup="{}">
                                 <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
@@ -191,15 +191,13 @@
                     @else
                         <video style="border-radius: 15px 15px 0 0"
                             @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
-        @else
-        class="video-js vjs-theme-city" @endif
+                            @else class="video-js vjs-theme-city" @endif
                             id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
                             <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
                             <p class="vjs-no-js">
                                 To view this video please enable JavaScript, and consider upgrading to a
                                 web browser that
-                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports
-                                    HTML5
+                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
                                     video</a>
                             </p>
                         </video>
@@ -241,9 +239,11 @@
                     </div>
                 </div>
             </div>
-    @endforeach
+        </div>
+        @endforeach
     </div>
 </section>
+
 <br><br>
 <!-- offer section -->
 
@@ -260,9 +260,9 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row container mt-4">
+    <div class="row mt-4">
         @foreach ($real_reseps as $num => $item)
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
@@ -322,9 +322,9 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row container mt-4">
+    <div class="row  mt-4">
         @foreach ($favorite_resep as $num => $item)
-            <div class="col-lg-4 mb-3">
+            <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
@@ -381,8 +381,8 @@
 
 {{-- start koki terpopuler --}}
 <section class="container mt-5 mb-5">
-    <div class=" input-group">
-        <div class=" mx-3">
+    <div class="input-group">
+        <div class="mx-3">
             <h3 class="fw-bold">Koki terpopuler</h3>
         </div>
     </div>
@@ -394,87 +394,87 @@
     @endif
     <div class="row text-center mx-1">
         @foreach ($top_users as $iu)
-            <div class="col-xl-3 col-sm-4 mb-4 my-4">
-                <div class="bg-white shadow-sm py-4 px-4 border border-secondary    "
-                    style="border-radius: 20px; height:25rem;">
-                    @if ($iu->foto)
-                        <img src="{{ asset('storage/' . $iu->foto) }}" alt="" width="50%" height="50%"
-                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                    @else
-                        <img src="{{ asset('images/default.jpg') }}" alt="" width="50%" height="50%"
-                            class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                    @endif
-                    <h5 class="mb-0">
-                        @if (Auth::check())
-                            @if (Auth::user()->id == $iu->id)
-                                <a href="/koki/index" style="color: black">
-                                    {{ $iu->name }}
-                                </a>
-                            @else
-                                <a href="/profile-orang-lain/{{ $iu->id }}" style="color: black">
-                                    {{ $iu->name }}
-                                </a>
-                            @endif
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="bg-white shadow-sm py-4 px-4 border border-secondary" style="border-radius: 20px; height:25rem;">
+                @if ($iu->foto)
+                    <img src="{{ asset('storage/' . $iu->foto) }}" alt="" width="50%" height="50%"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                @else
+                    <img src="{{ asset('images/default.jpg') }}" alt="" width="50%" height="50%"
+                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+                @endif
+                <h5 class="mb-0">
+                    @if (Auth::check())
+                        @if (Auth::user()->id == $iu->id)
+                            <a href="/koki/index" style="color: black">
+                                {{ $iu->name }}
+                            </a>
                         @else
                             <a href="/profile-orang-lain/{{ $iu->id }}" style="color: black">
                                 {{ $iu->name }}
                             </a>
                         @endif
-                    </h5>
-                    <span class="small text-muted">{{ $iu->email }}</span>
-                    <div class="d-flex justify-content-center mt-3 me-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
-                            <path fill="currentColor"
-                                d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
-                        </svg>
-                        <p class="mt-2 ms-1">
-                            {{ $iu->resep->count() }} Resep</p>
-                    </div>
-                    <div class="d-flex justify-content-center mt-1 me-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
-                            <path fill="currentColor"
-                                d="M13 14.062V22H4a8 8 0 0 1 9-7.938ZM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6Zm5.793 6.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414l2.12 2.121Z" />
-                        </svg>
-                        <p class="mt-2 ms-1">
-                            {{ $iu->followers }} pengikut</p>
-                    </div>
-                    <div class="justify-content-center">
-                        @if (Auth::check())
-                            <form id="followForm" action="{{ route('Followers.store', $iu->id) }}" method="POST">
-                                @csrf
-                                @if (Auth::check() &&
-                                        $iu->followers()->where('follower_id', auth()->user()->id)->count() > 0)
-                                    <button type="submit" id="follow-button"
-                                        class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 text-status me-3">Batal ikuti</b></button>
-                                @elseif(Auth::check() &&
-                                        $userLogin->followers()->where('follower_id', $iu->id)->exists())
-                                    <button type="submit" id="follow-button"
-                                        class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 text-status me-3">Ikuti balik</b></button>
-                                @else
-                                    <button type="submit" id="follow-button"
-                                        class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
-                                        style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
-                                            class="ms-3 text-status me-3">Ikuti</b></button>
-                                @endif
-
-                            </form>
-                        @else
-                            <button type="button" onclick="harusLogin()"
-                                class="btn text-light float-center mt-3 mb-3 zoom-effects"
-                                style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
-                                    class="ms-3 me-3">Ikuti</b></button>
-                        @endif
-                    </div>
+                    @else
+                        <a href="/profile-orang-lain/{{ $iu->id }}" style="color: black">
+                            {{ $iu->name }}
+                        </a>
+                    @endif
+                </h5>
+                <span class="small text-muted">{{ $iu->email }}</span>
+                <div class="d-flex justify-content-center mt-3 me-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
+                        <path fill="currentColor"
+                            d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
+                    </svg>
+                    <p class="mt-2 ms-1">
+                        {{ $iu->resep->count() }} Resep
+                    </p>
                 </div>
-                </a>
+                <div class="d-flex justify-content-center mt-1 me-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24">
+                        <path fill="currentColor"
+                            d="M13 14.062V22H4a8 8 0 0 1 9-7.938ZM12 13c-3.315 0-6-2.685-6-6s2.685-6 6-6s6 2.685 6 6s-2.685 6-6 6Zm5.793 6.914l3.535-3.535l1.415 1.414l-4.95 4.95l-3.536-3.536l1.415-1.414l2.12 2.121Z" />
+                    </svg>
+                    <p class="mt-2 ms-1">
+                        {{ $iu->followers }} pengikut
+                    </p>
+                </div>
+                <div class="justify-content-center">
+                    @if (Auth::check())
+                        <form id="followForm" action="{{ route('Followers.store', $iu->id) }}" method="POST">
+                            @csrf
+                            @if (Auth::check() &&
+                                    $iu->followers()->where('follower_id', auth()->user()->id)->count() > 0)
+                                <button type="submit" id="follow-button"
+                                    class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-3 text-status me-3">Batal ikuti</b></button>
+                            @elseif(Auth::check() &&
+                                    $userLogin->followers()->where('follower_id', $iu->id)->exists())
+                                <button type="submit" id="follow-button"
+                                    class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-3 text-status me-3">Ikuti balik</b></button>
+                            @else
+                                <button type="submit" id="follow-button"
+                                    class="btn follow-btn text-light float-center mt-3 mb-3 zoom-effects"
+                                    style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                                        class="ms-3 text-status me-3">Ikuti</b></button>
+                            @endif
+                        </form>
+                    @else
+                        <button type="button" onclick="harusLogin()"
+                            class="btn text-light float-center mt-3 mb-3 zoom-effects"
+                            style="background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                                class="ms-3 me-3">Ikuti</b></button>
+                    @endif
+                </div>
             </div>
+        </div>
         @endforeach
     </div>
 </section>
+
 {{-- end koki terpopuler --}}
 
 <style>
@@ -655,7 +655,7 @@
 {{-- start feed populer  --}}
 <section class="container mt-5 mb-5">
     <div class=" input-group">
-        <h3 class="fw-bold ml-3 mb-5 mx-3">Feed Populer Minggu Ini</h3>
+        <h3 class="fw-bold ml-3 mb-3 mx-3">Feed Populer Minggu ini</h3>
     </div>
     @if ($feed_populer->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
@@ -663,16 +663,43 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-
-    @foreach ($feed_populer as $num => $feed)
-    <div class="d-flex mb-3">
-        <div class="col-12">
-        <div class="card my-3 ml-0" style="width: 30%; border-radius:15px;">
-            <div class="" style="border-radius: 15px 15px 0 0;">
-                @if (Auth::check())
-                    @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
-                        <video class="video-js vjs-theme-city" style="border-radius: 15px 15px 0 0;"
-                            onclick="userAccessFeedPrem({{ $feed->user->id }}, {{ $feed->id }})"
+    <div class="row">
+        @foreach ($feed_populer as $num => $feed)
+        <div class="col-md-4 mb-3">
+            <div class="card" style="border-radius: 15px;">
+                <div class="" style="border-radius: 15px 15px 0 0;">
+                    @if (Auth::check())
+                        @if ($feed->AuthenticateFeedPremium(Auth::user()->id, $feed->id))
+                            <video class="video-js vjs-theme-city" style="border-radius: 15px 15px 0 0;"
+                                onclick="userAccessFeedPrem({{ $feed->user->id }}, {{ $feed->id }})"
+                                id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
+                                <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                        @else
+                            <video style="border-radius: 15px 15px 0 0;"
+                                @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                                @else class="video-js vjs-theme-city" @endif
+                                id="my-video" controls preload="auto" width="100%" height="100%"
+                                data-setup="{}">
+                                <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                        @endif
+                    @else
+                        <video style="border-radius: 15px 15px 0 0"
+                            @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
+                            @else class="video-js vjs-theme-city" @endif
                             id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
                             <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
                             <p class="vjs-no-js">
@@ -682,78 +709,47 @@
                                     video</a>
                             </p>
                         </video>
-                    @else
-                        <video style="border-radius: 15px 15px 0 0;"
-                            @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
-        @else
-        class="video-js vjs-theme-city" @endif
-                            id="my-video" controls preload="auto" width="100%" height="100%"
-                            data-setup="{}">
-                            <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
-                            <p class="vjs-no-js">
-                                To view this video please enable JavaScript, and consider upgrading to a
-                                web browser that
-                                <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5
-                                    video</a>
-                            </p>
-                        </video>
                     @endif
-                @else
-                    <video style="border-radius: 15px 15px 0 0"
-                        @if ($feed->isPremium === 'yes') class="video-js vjs-theme-city feed"
-    @else
-    class="video-js vjs-theme-city" @endif
-                        id="my-video" controls preload="auto" width="100%" height="100%" data-setup="{}">
-                        <source src="{{ asset('storage/' . $feed->upload_video) }}" type="video/mp4" />
-                        <p class="vjs-no-js">
-                            To view this video please enable JavaScript, and consider upgrading to a
-                            web browser that
-                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports
-                                HTML5
-                                video</a>
-                        </p>
-                    </video>
-                @endif
-                <!-- Ikon "Top 1" di belakang -->
-                <div class="card-body"
-                    style="border-bottom: 1px solid #000 ;border-left:1px solid #000; border-right:1px solid #000; border-radius: 0 0 15px 15px;">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="d-flex justify-content-start">
-                                @if ($feed->User->foto)
-                                    <img src="{{ asset('storage/' . $feed->User->foto) }}" width="30px"
-                                        height="30px" style="border-radius: 50%;" alt="">
-                                @else
-                                    <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
-                                        height="30px" style="border-radius: 50%">
-                                @endif
-                                &nbsp;
-                                <div class="text-center">
-                                    <span>{{ $feed->user->name }}</span>
+                    <!-- Ikon "Top 1" di belakang -->
+                    <div class="card-body"
+                        style="border-bottom: 1px solid #000 ;border-left:1px solid #000; border-right:1px solid #000; border-radius: 0 0 15px 15px;">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="d-flex justify-content-start">
+                                    @if ($feed->User->foto)
+                                        <img src="{{ asset('storage/' . $feed->User->foto) }}" width="30px"
+                                            height="30px" style="border-radius: 50%;" alt="">
+                                    @else
+                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                            height="30px" style="border-radius: 50%">
+                                    @endif
+                                    &nbsp;
+                                    <div class="text-center">
+                                        <span>{{ $feed->user->name }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex justify-content-end">
-                                <svg width="23" height="20" viewBox="0 0 29 26" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <g id="&#240;&#159;&#166;&#134; icon &#34;trophy&#34;">
-                                        <path id="Vector"
-                                            d="M23.0625 3.6444V4.1444H23.5625H28.5V7.28879C28.5 10.0346 26.2872 12.2554 23.5625 12.2554C23.0478 12.2554 22.5492 12.1744 22.0815 12.027L21.731 11.9166L21.521 12.2181C20.2832 13.9951 18.3989 15.2804 16.2127 15.7258L15.8125 15.8073V16.2157V21.8646V22.3646H16.3125H18.125C19.6805 22.3646 20.9728 23.5077 21.2108 25.009H7.78921C8.02718 23.5077 9.31951 22.3646 10.875 22.3646H12.6875H13.1875V21.8646V16.2157V15.8073L12.7873 15.7258C10.6009 15.2803 8.71496 13.9949 7.47921 12.2184L7.26852 11.9155L6.91697 12.0275C6.45122 12.1759 5.95504 12.2554 5.4375 12.2554C2.71284 12.2554 0.5 10.0346 0.5 7.28879V4.1444H5.4375H5.9375V3.6444V0.5H23.0625V3.6444ZM5.4375 11.0924H5.9375V11.0565C5.9987 11.0483 6.0592 11.0388 6.11886 11.028L6.71123 10.9213L6.49765 10.3585C6.13637 9.4066 5.9375 8.37151 5.9375 7.28879V5.46659V4.96659H5.4375H2.15144H1.65144V5.46659V7.28879C1.65144 9.38479 3.34834 11.0924 5.4375 11.0924ZM22.5022 10.3606L22.2891 10.9232L22.8811 11.0298C23.0991 11.0691 23.3264 11.0924 23.5625 11.0924C25.6538 11.0924 27.3486 9.38261 27.3486 7.28879V5.46842V4.96842H26.8486H23.5625H23.0625V5.46842V7.29061C23.0625 8.37319 22.8637 9.40655 22.5022 10.3606Z"
-                                            stroke="black" />
-                                    </g>
-                                </svg>
-                                &nbsp;
-                                Top {{ $num += 1 }}
+                            <div class="col-6">
+                                <div class="d-flex justify-content-end">
+                                    <svg width="23" height="20" viewBox="0 0 29 26" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="&#240;&#159;&#166;&#134; icon &#34;trophy&#34;">
+                                            <path id="Vector"
+                                                d="M23.0625 3.6444V4.1444H23.5625H28.5V7.28879C28.5 10.0346 26.2872 12.2554 23.5625 12.2554C23.0478 12.2554 22.5492 12.1744 22.0815 12.027L21.731 11.9166L21.521 12.2181C20.2832 13.9951 18.3989 15.2804 16.2127 15.7258L15.8125 15.8073V16.2157V21.8646V22.3646H16.3125H18.125C19.6805 22.3646 20.9728 23.5077 21.2108 25.009H7.78921C8.02718 23.5077 9.31951 22.3646 10.875 22.3646H12.6875H13.1875V21.8646V16.2157V15.8073L12.7873 15.7258C10.6009 15.2803 8.71496 13.9949 7.47921 12.2184L7.26852 11.9155L6.91697 12.0275C6.45122 12.1759 5.95504 12.2554 5.4375 12.2554C2.71284 12.2554 0.5 10.0346 0.5 7.28879V4.1444H5.4375H5.9375V3.6444V0.5H23.0625V3.6444ZM5.4375 11.0924H5.9375V11.0565C5.9987 11.0483 6.0592 11.0388 6.11886 11.028L6.71123 10.9213L6.49765 10.3585C6.13637 9.4066 5.9375 8.37151 5.9375 7.28879V5.46659V4.96659H5.4375H2.15144H1.65144V5.46659V7.28879C1.65144 9.38479 3.34834 11.0924 5.4375 11.0924ZM22.5022 10.3606L22.2891 10.9232L22.8811 11.0298C23.0991 11.0691 23.3264 11.0924 23.5625 11.0924C25.6538 11.0924 27.3486 9.38261 27.3486 7.28879V5.46842V4.96842H26.8486H23.5625H23.0625V5.46842V7.29061C23.0625 8.37319 22.8637 9.40655 22.5022 10.3606Z"
+                                                stroke="black" />
+                                        </g>
+                                    </svg>
+                                    &nbsp;
+                                    Top {{ $num += 1 }}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
-</div>
-    @endforeach
 </section>
 
 
