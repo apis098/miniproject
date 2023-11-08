@@ -497,9 +497,11 @@
 
       }
 
-        @media (min-width: 389px) and (max-width:896px) {
+
+        @media (min-width: 368px) and (max-width:896px) {
              .marginku{
-                margin-left: 0rem;
+                margin-left: 2rem;
+                margin-right: 2rem;
              }
              .container-fluid {
             padding: 10% 2%;
@@ -509,12 +511,25 @@
             width: 100%;
             margin-bottom: 10px;
         }
-    
+
         }
 
 
         /* tampilan untuk iPad */
         @media (min-width: 897px) and (max-width: 1024px) {
+
+             .marginku{
+                margin-left: 3rem;
+                margin-right: 3rem;
+             }
+            .container-fluid {
+            padding: 10% 2%;
+        }
+
+        .btn-custom {
+            width: 100%;
+            margin-bottom: 10px;
+        }
 
         }
 
@@ -523,7 +538,7 @@
         /* tampilan untuk laptop */
         @media (min-width: 1025px) and (max-width: 1366px) {
             .marginku{
-                margin-left: 8rem;
+                margin-left: 6rem;
             }
 
         }
@@ -532,41 +547,41 @@
         /* tampilan untuk PC yang lebih besar */
         @media (min-width: 1367px) {
              .marginku{
-                margin-left: 8rem;
+                margin-left: 6rem;
             }
         }
 
 </style>
+<div class="container-fluid" style="background: #F7941E; border-radius: 15px">
+    <div class="marginku py-5">
+        <div class="input-group">
+            <h3 class="fw-bold" style="color: white; font-family: poppins">Kategori makanan</h3>
+        </div>
+        <div class="">
+            <p style="color: white; font-family: poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi anda.</p>
+        </div>
 
-<div class="container-fluid py-5 mb-5" style="width: 100%; height: 100%; background: #F7941E; border-radius: 15px">
-   <div class="mx-2">
-    <div class=" input-group mx-5">
-        <h3 class="fw-bold mx-5" style="color:white;font-family:poppins">Kategori makanan</h3>
-    </div>
-    <div class="mx-5">
-        <p class="mx-5" style="color:white;font-family:poppins">Berikut beberapa kategori makanan kami yang mungkin menarik bagi
-            anda.</p>
-    </div>
-    @if ($categories_foods->count() == 0)
+        @if ($categories_foods->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p style="color:white"><b>Tidak ada data</b></p>
+            <p style="color: white"><b>Tidak ada data</b></p>
         </div>
-    @endif
-    <div class="row ml-5">
-        <div class="mx-5">
-            @foreach ($categories_foods as $cf)
-                <button class="btn-custom btn-lg col-lg-2 mb-3"
-                    style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;color:#F7941E;">
-                    <a href="/resep?jenis_makanan[]={{ $cf->nama_makanan }}" class="text-dark">
-                        {{ $cf->nama_makanan }}
-                    </a>
-                </button>
-            @endforeach
+        @endif
+        <div class="row">
+                @foreach ($categories_foods as $cf)
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-3"> <!-- Each button takes up 1/3 of the container width on larger screens -->
+                    <button class="btn-custom btn-lg w-100"
+                        style="background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; color: #F7941E;">
+                        <a href="/resep?jenis_makanan[]={{ $cf->nama_makanan }}" class="text-dark">
+                            {{ $cf->nama_makanan }}
+                        </a>
+                    </button>
+                </div>
+                @endforeach
         </div>
     </div>
-  </div>
 </div>
+
 
 {{-- start resep terbaru --}}
 <section class="container mt-5 mb-5">
@@ -649,6 +664,7 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
+
     @foreach ($feed_populer as $num => $feed)
     <div class="d-flex mb-3">
         <div class="col-12">
