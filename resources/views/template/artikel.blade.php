@@ -445,7 +445,7 @@
             <div class="col-md-12">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
                     <h5 class="" style="margin-left: 18px;"><b>Komentar
-                            ({{ $show_resep->comment_recipes->count() }})
+                            ({{ $show_resep->comment_count() }})
                         </b></h5>
                     <div class="col-10">
                         @if (Auth::check())
@@ -626,7 +626,11 @@
                     <div class="d-flex justify-content-end input-group">
                         <a href="#" class="text-secondary " data-toggle="collapse"
                             data-target="#collapse{{ $row->id }}" aria-expanded="true" aria-controls="collapseOne">
-                            <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                            @if($row->replies_count() > 0)
+                                <small>Tampilkan {{$row->replies_count()}} balasan <i class="fa-solid fa-chevron-down"></i></small>
+                            @else
+                                <small>Balas <i class="fa-solid fa-chevron-down"></i></small>
+                            @endif
                         </a>
                     </div>
                 </div>
@@ -795,7 +799,7 @@
                                 <div class="d-flex justify-content-end input-group">
                                     <a href="#" class="text-secondary " data-toggle="collapse"
                                         data-target="#collapses{{ $item->id }}" aria-expanded="true" aria-controls="collapseOne">
-                                        <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                        <small>Balas <i class="fa-solid fa-chevron-down"></i></small>
                                     </a>
                                 </div>
                             </div>

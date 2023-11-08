@@ -68,6 +68,17 @@ class reseps extends Model
     {
         return $this->hasMany(comment_recipes::class,'recipes_id');
     }
+    public function comment_count()
+    {
+        $comment_count = comment_recipes::where('recipes_id',$this->id)->count();
+        $data_comment = comment_recipes::where('recipes_id',$this->id)->first();
+        $reply_comment_count = 0 ;
+        if($data_comment != null && $data_comment->reply_comment_recipe->count() > 0)
+        {
+            $reply_comment_count = $data_comment->reply_comment_recipe->count();
+        }
+        return $comment_count + $reply_comment_count;
+    }
     public function like_comment_recipe() {
         return $this->hasMany(like_comment_recipes::class);
     }

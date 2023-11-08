@@ -29,4 +29,7 @@ class comment_recipes extends Model
     public function reply_comment_recipe() {
         return $this->hasMany(replyCommentRecipe::class,'comment_id');
     }
+    public function replies_count(){
+        return replyCommentRecipe::where('comment_id',$this->id)->where('recipe_id',$this->recipes_id)->count();
+    }
 }
