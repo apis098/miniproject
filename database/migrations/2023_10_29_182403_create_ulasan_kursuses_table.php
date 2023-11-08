@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('ulasan_kursuses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('chef_id');
+            $table->unsignedBigInteger('chef_id')->nullable();
+            $table->unsignedBigInteger('chef_teacher_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->integer('rating')->nullable();
             $table->text('ulasan');

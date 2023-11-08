@@ -479,7 +479,7 @@
                 @endif
 
                 @foreach ($ulasan_kursus as $review)
-                    <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                    <div class="card mb-2" style="width: 77%;margin-top:-15px;border-radius:15px;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="d-flex">
@@ -575,6 +575,9 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" onclick="konfirmasi_hapus_ulasanrating({{$review->id}})">
                                         <path fill="#B70404" d="M9.525 13.765a.5.5 0 0 0 .71.71c.59-.59 1.175-1.18 1.765-1.76l1.765 1.76a.5.5 0 0 0 .71-.71c-.59-.58-1.18-1.175-1.76-1.765c.41-.42.82-.825 1.23-1.235c.18-.18.35-.36.53-.53a.5.5 0 0 0-.71-.71L12 11.293l-1.765-1.768a.5.5 0 0 0-.71.71L11.293 12Z"/>
                                         <path fill="#B70404" d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z"/></svg>
+                                    @elseif(Auth::user()->id == $detail_course->user->id)
+                                    <div class="" id="buttonBalas{{$review->id}}" onclick="formBalasUlasan({{$review->id}})"><p style="border: 1px solid black;padding:2px;border-radius:10px;">
+                                        Balas</p></div>
                                     @endif
                                     @endif
                                     <svg class="" width="23" height="19" viewBox="0 0 23 19"
@@ -593,13 +596,16 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
+            </div>
+            <div id="formBalasUlasan{{$review->id}}"></div>
+
                 @endforeach
             </div>
         </section>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
         <script>
+           
             function editReview(num, value) {
                 document.getElementById("editReview"+num).value = value;
             }
