@@ -67,7 +67,7 @@
                 class="accordion"
                 @endif
                 data-price="{{ $sesi->harga_sesi }}">
-                    <i class="fa-solid fa-chevron-down"></i>
+                <i class="fa-regular fa-square" id="square{{$sesi->id}}"></i>
                     <b style="margin-left: -70%;">{{ $sesi->judul_sesi }} <br>
                     <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small></b>
                     <span>
@@ -125,6 +125,14 @@
         {
             let inner = `<input type="hidden" name="sesi[]" value="${num}">`;
             document.getElementById("inputList").innerHTML += inner;
+            let square = document.getElementById("square"+num);
+            if (square.classList.contains('fa-square')) {
+                square.classList.remove('fa-square');
+                square.classList.add('fa-square-check');
+            } else {
+                square.classList.remove('fa-square-check');
+                square.classList.add('fa-square');
+            }
         }
         window.onload = function() {
             var acc = document.getElementsByClassName("pilihSesi");

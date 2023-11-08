@@ -313,9 +313,9 @@
                                         @endforeach
                                     </ul>
                                     <span class="fw-bold">Waktu Kursus Dimulai:</span>
-                                    <p>{{ $detail_course->tanggal_dimulai_kursus }}</p>
+                                    <p>{{ date('d F Y', strtotime($detail_course->tanggal_dimulai_kursus)) }}</p>
                                     <span class="fw-bold">Waktu Kursus Berakhir:</span>
-                                    <p>{{ $detail_course->tanggal_berakhir_kursus }}</p>
+                                    <p>{{ date('d F Y', strtotime($detail_course->tanggal_berakhir_kursus)) }}</p>
                                     <span class="fw-bold">Harga rata-rata per sesi:</span>
                                     <p>Rp. {{ number_format($rata2_harga, 2, ',', '.') }}</p>
                                 </div>

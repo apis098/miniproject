@@ -451,7 +451,7 @@ class KursusController extends Controller
             "judul_sesi" => "required",
             "lama_sesi" => "required|min:0",
             "informasi_lama_sesi" => "required",
-            "harga_sesi" => "required|min:0",
+            "harga_sesi" => "required|min:0|numeric",
             "tanggal" => "required",
             "waktu" => "required"
         ];

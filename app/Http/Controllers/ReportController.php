@@ -89,7 +89,7 @@ class ReportController extends Controller
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.index',compact('reportCourse','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
-    
+
     public function keluhan(Request $request){
 
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
@@ -288,7 +288,7 @@ class ReportController extends Controller
         }
     }
 
-    public function storecomment(Request $request,$id){
+    public function storeResep(Request $request,$id){
         $resep = reseps::findOrFail($id);
         $report = new Report();
         if(Auth::check()){
