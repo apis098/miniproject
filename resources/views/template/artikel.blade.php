@@ -13,7 +13,9 @@
             border: none;
             letter-spacing: 0.20px;
         }
-
+        .text-orange{
+            color : #F7941E;
+        }
         .btn-hapus {
             width: 100%;
             height: 100%;
@@ -539,7 +541,7 @@
                             @if (
                                 $userLogin &&
                                     $row->like()->where('users_id', auth()->user()->id)->exists())
-                                <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
+                                <button type="submit" class="yuhu me-2 text-orange btn-sm rounded-5"
                                     id="like-button-comment">
                                     <i class="fa-solid fa-thumbs-up"></i>
                                 </button>
@@ -688,26 +690,26 @@
                             <div class="action d-flex mt-2 align-items-center">
 
                                 <div class="reply px-7 me-2">
-                                    <small id="like-count-reply-comment{{ $item->id }}">
+                                    <small id="like_reply_comment_count{{ $item->id }}">
                                         {{ $item->likes }}</small>
                                 </div>
 
                                 <div class="icons align-items-center input-group">
 
                                     <form action="{{ route('likeReply.comment.recipe', $item->id) }}" method="POST"
-                                        id="like-reply-comment-form">
+                                        id="like_reply_comment_form{{$item->id}}">
                                         @csrf
                                         @if (
                                             $userLogin &&
                                                 $item->like()->where('users_id', $userLogin->id)->exists())
-                                            <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
-                                                id="like-reply-comment-button">
-                                                <i class="fa-solid fa-thumbs-up"></i>
+                                            <button type="submit" class="yuhu me-2 btn-sm rounded-5"
+                                                id="like_reply_comment_button{{$item->id}}" onclick="like_reply_comment({{$item->id}})">
+                                                <i id="like_reply_comment_icon{{$item->id}}" class="fa-solid text-orange fa-thumbs-up"></i>
                                             </button>
                                         @else
-                                            <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                                id="like-reply-comment-button">
-                                                <i class="fa-regular fa-thumbs-up"></i>
+                                            <button type="submit" class="yuhu me-2 btn-sm rounded-5"
+                                                id= "like_reply_comment_button{{$item->id}}" onclick="like_reply_comment({{$item->id}})">
+                                                <i id="like_reply_comment_icon{{$item->id}}" class="fa-regular   fa-thumbs-up"></i>
                                             </button>
                                         @endif
                                     </form>
@@ -855,45 +857,45 @@
                 }, 2000);
             }
         });
-        document.addEventListener("DOMContentLoaded", function() {
-            const likeForms = document.querySelectorAll("#like-reply-comment-form");
+        // document.addEventListener("DOMContentLoaded", function() {
 
-            likeForms.forEach(form => {
-                form.addEventListener("submit", async function(event) {
-                    event.preventDefault();
+        //     const likeForms = document.querySelectorAll("#like-reply-comment-form");
+        //     likeForms.forEach(form => {
+        //         form.addEventListener("submit", async function(event) {
+        //             event.preventDefault();
 
-                    const button = form.querySelector("#like-reply-comment-button");
-                    const icon = button.querySelector("i");
-                    const svg = button.querySelector("svg");
+        //             const button = form.querySelector("#like-reply-comment-button");
+        //             const icon = button.querySelector("i");
+        //             const svg = button.querySelector("svg");
 
-                    const response = await fetch(form.action, {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-Token": "{{ csrf_token() }}",
-                        },
-                    });
+        //             const response = await fetch(form.action, {
+        //                 method: "POST",
+        //                 headers: {
+        //                     "X-CSRF-Token": "{{ csrf_token() }}",
+        //                 },
+        //             });
 
-                    if (response.ok) {
-                        const responseData = await response.json();
-                        if (responseData.liked) {
-                            button.classList.remove('text-dark');
-                            button.classList.add('text-warning');
-                            icon.setAttribute('class', 'fa-solid fa-thumbs-up');
-                            document.getElementById("like-count-reply-comment" + responseData
-                                    .reply_id)
-                                .textContent = responseData.likes;
-                        } else {
-                            button.classList.remove('text-warning');
-                            button.classList.add('text-dark');
-                            icon.setAttribute('class', 'fa-regular fa-thumbs-up');
-                            document.getElementById("like-count-reply-comment" + responseData
-                                    .reply_id)
-                                .textContent = responseData.likes;
-                        }
-                    }
-                });
-            });
-        });
+        //             if (response.ok) {
+        //                 const responseData = await response.json();
+        //                 if (responseData.liked) {
+        //                     button.classList.remove('text-dark');
+        //                     button.classList.add('text-orange');
+        //                     icon.setAttribute('class', 'fa-solid fa-thumbs-up');
+        //                     document.getElementById("like-count-reply-comment" + responseData
+        //                             .reply_id)
+        //                         .textContent = responseData.likes;
+        //                 } else {
+        //                     button.classList.remove('text-orange');
+        //                     button.classList.add('text-dark');
+        //                     icon.setAttribute('class', 'fa-regular fa-thumbs-up');
+        //                     document.getElementById("like-count-reply-comment" + responseData
+        //                             .reply_id)
+        //                         .textContent = responseData.likes;
+        //                 }
+        //             }
+        //         });
+        //     });
+        // });
     </script>
     <script>
         function confirmationReply(num) {
@@ -930,7 +932,33 @@
                 }
             });
         }
-
+        function like_reply_comment(num) {
+            $("#like_reply_comment_form" + num).off("submit");
+            $("#like_reply_comment_form" + num).submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function success(response) {
+                            if (response.liked) {
+                                $("#like_reply_comment_icon" + num).removeClass("fa-regular");
+                                $("#like_reply_comment_icon" + num).addClass("fa-solid");
+                                $("#like_reply_comment_icon" + num).addClass("text-orange");
+                                $("#like_reply_comment_count" + num).text(response.like_count);
+                            } else {
+                                $("#like_reply_comment_icon" + num).removeClass("fa-solid");
+                                $("#like_reply_comment_icon" + num).addClass("fa-regular");
+                                $("#like_reply_comment_icon" + num).removeClass("text-orange");
+                                $("#like_reply_comment_count" + num).text(response.like_count);
+                            }
+                    }
+                });
+            });
+        }
         function confirmation(num) {
             iziToast.show({
                 backgroundColor: 'red',
@@ -986,13 +1014,13 @@
                         const responseData = await response.json();
                         if (responseData.liked) {
                             button.classList.remove('text-dark');
-                            button.classList.add('text-warning');
+                            button.classList.add('text-orange');
                             icon.setAttribute('class', 'fa-solid fa-thumbs-up');
                             document.getElementById("like-count-comment" + responseData
                                     .reply_id)
                                 .textContent = responseData.likes;
                         } else {
-                            button.classList.remove('text-warning');
+                            button.classList.remove('text-orange');
                             button.classList.add('text-dark');
                             icon.setAttribute('class', 'fa-regular fa-thumbs-up');
                             document.getElementById("like-count-comment" + responseData

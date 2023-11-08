@@ -93,6 +93,7 @@ class LikeCommentController extends Controller
                 'liked' => true,
                 'likes' => $comment->likes,
                 'reply_id' => $comment->id,
+                'like_count' => $comment->likes,
             ]);
         }elseif($user && LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->exists()){
             $data = LikeReplyCommentRecipes::where('users_id', auth()->user()->id)->where('recipe_id', $comment->recipe_id)->where('comment_id', $comment->id)->delete();
@@ -102,6 +103,7 @@ class LikeCommentController extends Controller
                     'liked' => false,
                     'likes' => $comment->likes,
                     'reply_id' => $comment->id,
+                    'like_count' => $comment->likes,
                 ]);
             }
         }else{
