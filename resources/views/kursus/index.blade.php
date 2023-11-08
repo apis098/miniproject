@@ -115,6 +115,7 @@
                                     <input type="text" name="jumlah_siswa" class="form-control col-10"
                                         id="tipe_kursus90" placeholder="Masukkan jumlah siswa dalam grup..."
                                         value="{{ old('jumlah_siswa') }}">
+                                    <input type="hidden" name="jumlah_siswa" id="tipe_kursus91" disabled>
                                     <select name="tipe_kursus" id="informasi_tipe_kursus90" class="form-control col-2">
                                         <option value="grup" {{ old('tipe_kursus') == 'grup' ? 'selected' : '' }}>grup
                                         </option>
@@ -126,13 +127,18 @@
                                 <script>
                                     let informasi_tipe_kursus = document.getElementById("informasi_tipe_kursus90");
                                     let tipe_kursus = document.getElementById("tipe_kursus90");
+                                    let sendiri = document.getElementById("tipe_kursus91");
                                     informasi_tipe_kursus.addEventListener("click", function() {
                                         if (informasi_tipe_kursus.value === "perorangan") {
                                             tipe_kursus.disabled = true;
                                             tipe_kursus.value = '1';
+                                            sendiri.disabled = false;
+                                            sendiri.value = '1';
                                         } else {
                                             tipe_kursus.disabled = false;
                                             tipe_kursus.value = '';
+                                            sendiri.disabled = true;
+                                            sendiri.value = '';
                                         }
                                     });
                                 </script>

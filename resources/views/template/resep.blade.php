@@ -43,7 +43,7 @@
                 background-color: #fff;
                 padding: 4px;
                 border-radius: 5px;
-                width: 85%;
+
             }
 
             .search-1 {
@@ -159,7 +159,6 @@
 
             .btn-fil {
                 width: 15%;
-                height: 35%;
                 position: absolute;
                 background: white;
                 border-radius: 15px;
@@ -192,6 +191,51 @@
                 }
             }
 
+
+
+
+            @media (min-width:290px) and (max-width: 450px) {
+                img.besar {
+                    max-width: 160px;
+                    height: 160px;
+                   }
+
+                   span.tesk {
+                    /* white-space: pre-line; */
+                    display: flex;
+                    flex-direction: column;
+                   }
+
+                   svg.kanan {
+                    margin-left: -7px;
+                   }
+
+                   div.search {
+                    width: 85%;
+                   }
+
+                   div.kanan {
+                 margin-left: -12px;
+                }
+
+                h1.kanan {
+                 margin-left: 20px;
+                }
+
+                }
+
+
+
+                @media (min-width: 375px) {
+                svg.kanan {
+                    margin-left: -2px;
+                   }
+                }
+
+
+
+
+
             @media (min-width: 350px) and (max-width: 860px) {
                 div.kanan {
                  margin-left: -12px;
@@ -201,13 +245,90 @@
                  margin-left: 20px;
                 }
 
-                   /* div.search {
-                    width: 1000px;
-                   } */
+                img.besar {
+                    max-width: 222px;
+                    height: 200px;
+                   }
+
+                button.high {
+                    padding: 0px 2px;
+                    height: 26%;
                 }
+
+                }
+
+                @media (min-width: 411px) {
+                    button.besar {
+                    height: 36%;
+                }
+
+                div.kanan {
+                 /* margin-right: 32px; */
+                }
+
+                }
+
+
+                @media (min-width: 425px) {
+                    button.high {
+                    height: 36%;
+                }
+                span.tesks {
+                    display: flex;
+                    flex-direction: column;
+                   }
+                }
+
+
 
                   /* untuk tampilan ipad */
                   @media (min-width: 760px) and (max-width: 1000px) {
+                    div.kiri {
+                    margin-left: 75px;
+                   }
+
+                    div.search {
+                    width: 92%;
+                   }
+
+                   div.lep {
+                   margin-left: 60px;
+                   }
+
+                   div.card {
+                    width: 100%;
+                   }
+
+                   span.tesk {
+                    display: flex;
+                    flex-direction: column;
+                   }
+
+                }
+
+
+                @media (min-width: 1024px) {
+                    div.search {
+                    width: 85%;
+                   }
+
+                   div.kiri {
+                    margin-right: 55px;
+                   }
+
+                   button.high {
+                    width: 9%;
+                }
+
+                img.besar {
+                    max-width: 230px;
+                    height: 230px;
+                   }
+
+                   span.tesk {
+                    display: flex;
+                    flex-direction: column;
+                   }
 
                 }
 
@@ -217,6 +338,19 @@
                    div.kiri {
                     margin-left: 55px;
                    }
+
+                   img.besar {
+                    max-width: 260px;
+                    height: 260px;
+                   }
+                   button.high {
+                    height: 35%;
+                    width: 15%;
+                   }
+                   div.search {
+                    width: 85%;
+                   }
+
                 }
         </style>
 
@@ -249,9 +383,9 @@
                         </div>
                     </form>
                     <!-- Button Modal -->
-                    <div class="mt-3">
-                        <button class="btn btn-fil" data-bs-toggle="modal" data-bs-target="#filter">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                    <div class="mt-3 lep">
+                        <button class="btn btn-fil high besar" data-bs-toggle="modal" data-bs-target="#filter">
+                            <svg class="kanan" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
                                 <path fill="currentColor"
                                     d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />
                             </svg>
@@ -490,11 +624,11 @@
     <div class="mx-5 my-5">
         <div class="row">
             @foreach ($recipes as $num => $item)
-                <div class="col-lg-4 mb-2 col-sm-12 col-md-6">
+                <div class="col-lg-4 mb-5 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">
-                            <img width="260px" class="rounded-circle" height="260px"
-                                style="border: 0.50px black solid; max-width:260px;"
+                            <img width="260px" class="rounded-circle besar"
+                                style="border: 0.50px black solid; "
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                             @if ($item->isPremium === 'yes')
                                 <button id="buttonPremium" type="button"
@@ -571,37 +705,44 @@
                                 </div>
                                 <div class="col-12 row  mb-3 mx-1 ">
                                     <div class="col-6">
+                                        <span class="text-nowrap">
                                         <img class="mb-1" width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
-                                            <span>
-                                        {{ $item->likes }} Suka
+
+                                        {{ $item->likes }} </span>
+                                        <span class="text-nowrap tesks"> Suka
                                     </span>
                                     </div>
                                     <div class="col-6 mx-auto">
+                                        <span class="text-nowrap">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
-                                            <span>
+
                                         @if ($item->lama_memasak >= 60)
-                                            {{ number_format($item->lama_memasak / 60, 1) }} Jam
+                                            {{ number_format($item->lama_memasak / 60, 1) }} <span class="tesk"> Jam </span>
                                         @else
-                                            {{ $item->lama_memasak }} Menit
+                                            {{ $item->lama_memasak }}  <span class="tesk"> Menit </span>
                                         @endif
                                     </span>
                                     </div>
                                     <div class="col-6 my-3">
+                                        <span class="text-nowrap">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
                                             alt="">
-                                            <span>
-                                        {{ $item->comment_recipes->count() }} Komen
+
+                                        {{ $item->comment_recipes->count() }} </span>  <span class="tesk"> Komen
                                     </span>
                                     </div>
                                     <div class="col-6 my-3 mx-auto">
+
+                                        <span class="text-nowrap">
                                         <img width="20px" height="20px"
                                             src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
-                                            <span>
-                                        {{ $item->favorite_count }} Favorit
+                                        {{ $item->favorite_count }}
+                                        <span class="tesk"> Favorit
                                             </span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
