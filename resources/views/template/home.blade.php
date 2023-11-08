@@ -498,7 +498,7 @@
       }
 
 
-        @media (min-width: 368px) and (max-width:896px) {
+        @media (min-width: 319px) and (max-width:896px) {
              .marginku{
                 margin-left: 2rem;
                 margin-right: 2rem;
@@ -516,11 +516,10 @@
 
 
         /* tampilan untuk iPad */
-        @media (min-width: 897px) and (max-width: 1024px) {
+        @media (min-width: 768px) and (max-width: 1024px) {
 
              .marginku{
                 margin-left: 3rem;
-                margin-right: 3rem;
              }
             .container-fluid {
             padding: 10% 2%;
@@ -536,18 +535,18 @@
 
 
         /* tampilan untuk laptop */
-        @media (min-width: 1025px) and (max-width: 1366px) {
+        @media (min-width: 1025px) and (max-width: 1440px) {
             .marginku{
-                margin-left: 6rem;
+                margin-left: 4rem;
             }
 
         }
 
 
         /* tampilan untuk PC yang lebih besar */
-        @media (min-width: 1367px) {
+        @media (min-width: 1441px) {
              .marginku{
-                margin-left: 6rem;
+                margin-left: 12rem;
             }
         }
 
