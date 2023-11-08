@@ -428,7 +428,7 @@ class KokiController extends Controller
         ];
         $messages = [
             "deskripsi_video.required" => "Deskripsi video harus diisi!",
-            "deskripsi_video.max" => "Deskripsi video tidak boleh lebih dari 225 karakter!",
+            "deskripsi_video.max" => "Deskripsi video tidak boleh lebih dari 2  25 karakter!",
             "upload_video.required" => "Video harus diupload!",
             "upload_video.mimes" => "Video harus berekstensikan mp4!",
             "upload_video.max" => "Video tidak boleh melebihi 50MB!"
@@ -453,7 +453,7 @@ class KokiController extends Controller
         $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
         if ($followerIds != null) {
             foreach ($followerIds as $followerId) {
-                $notification = new Notifications([
+                $notification = new notifications([
                     'notification_from' => auth()->user()->id,
                     'veed_id' => $up->id,
                     'follower_id' => $followerId,
@@ -462,6 +462,10 @@ class KokiController extends Controller
                     'message' =>'Menambahkan postingan baru',
                 ]);
                 $notification->save();
+                
+                $let_route = notifications::findOrFail($notification->id);
+                $let_route->route = "/status-baca/shared-feed/" . $notification->id;
+                $let_route->save();
             }
         }
         $video_pembelajaran = upload_video::latest()->get();
