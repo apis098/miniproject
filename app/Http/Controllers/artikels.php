@@ -69,6 +69,7 @@ class artikels extends Controller
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
         $categorytopup  =  TopUpCategories::all();
-        return view('template.artikel', compact('categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
+        return view('template.artikel', compact('allUser','categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
