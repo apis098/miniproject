@@ -138,18 +138,25 @@
                                     @endif
                                 </form>
                                 <form action="#">
-                                    <button type="button"  data-toggle="modal" data-target="#gift"
-                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                    style="border-color: #F7941E;"><svg style="color:#F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"><path stroke-linecap="round" d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z"/><path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10"/></g></svg>
-                                </button><br>
+                                @if($gift_check>0)
+                                    <button type="button" id="gift_icon_btn{{$show_resep->id}}" data-toggle="modal" data-target="#gift"
+                                        class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                        style="background-color: #F7941E;"><svg id="gift_icon{{$show_resep->id}}" style="color:#ffffff;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"><path stroke-linecap="round" d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z"/><path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10"/></g></svg>
+                                    </button><br>
+                                @else
+                                    <button type="button" id="gift_icon_btn{{$show_resep->id}}" data-toggle="modal" data-target="#gift"
+                                        class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                        style="border-color: #F7941E;"><svg id="gift_icon{{$show_resep->id}}" style="color:#F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"><path stroke-linecap="round" d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z"/><path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10"/></g></svg>
+                                    </button><br>
+                                @endif
                                 <div class="d-flex justify-content-center">
-                                    <small class="me-3"">121</small>
+                                    <small id="gift-count{{$show_resep->id}}" class="me-3"">{{$gift_count}}</small>
                                 </div>
                                 </form>
                                 <form action="#">
                                     <button type="button" data-toggle="modal" data-target="#shareModal{{$show_resep->id}}"
                                     class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                    style="border-color: #F7941E;"><svg style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
+                                    style="border-color: #F7941E;"><svg  style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
                                 </button><br>
                                 <div class="d-flex justify-content-center">
                                     <small class="me-3"">100</small>
@@ -1416,7 +1423,59 @@
                 progressBarColor: 'dark',
             });
         }
-
+        function giftButton(num) {
+            $("#gift-form" + num).off("submit");
+            $("#gift-form" + num).submit(function(event) {
+                event.preventDefault();
+                var message = document.getElementById("message");
+                var moreInput = document.getElementById("moreInput");
+                var gift_btn = document.getElementById('gift_icon_btn'+num);
+                var gift_icon = document.getElementById('gift_icon'+num);
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    type: "POST",
+                    url: route,
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            message.value = "";
+                            moreInput.value = "";
+                            if(response.check_count = 1){
+                                gift_btn.style.backgroundColor = "#F7941E" ;
+                                gift_icon.style.color = "#ffffff";
+                            }
+                            $('#gift-count'+num).html(response.gift_count);
+                            iziToast.show({
+                                backgroundColor: '#a1dfb0',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                                progressBarColor: 'dark',
+                            });
+                        } else {
+                            message.value = "";
+                            moreInput.value = "";
+                            iziToast.show({
+                                backgroundColor: '#f2a5a8',
+                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    }
+                });
+            });
+        }
         function DeleteData() {
             iziToast.show({
                 backgroundColor: 'red',

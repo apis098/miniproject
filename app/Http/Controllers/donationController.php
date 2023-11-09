@@ -59,6 +59,8 @@ class donationController extends Controller
                     $saldo_lama_pengirim = $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
+                    $gift_count = 0;
+                    $check_count = 0;
                     if($feed_id){
                         $income = new income_chefs();
                         $income->chef_id  = $user_recipient;
@@ -67,6 +69,8 @@ class donationController extends Controller
                         $income->status = "Gift";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
+                        $gift_count = income_chefs::where('feed_id',$feed_id)->count();
+                        $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
                     }
                     if($resep_id){
                         $income = new income_chefs();
@@ -76,6 +80,8 @@ class donationController extends Controller
                         $income->status = "Gift";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
+                        $gift_count = income_chefs::where('resep_id',$resep_id)->count();
+                        $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
                     }
                     
                      // mengirim notifikasi
@@ -90,6 +96,8 @@ class donationController extends Controller
                      return response()->json([
                         'success' => true,
                         'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
+                        'gift_count'=> $gift_count,
+                        'check_count' => $check_count,
                     ]);
                 }
             }else{
@@ -114,6 +122,9 @@ class donationController extends Controller
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
 
+                    $gift_count = 0;
+                    $check_count = 0;
+
                     if($feed_id != 0){
                         $income = new income_chefs();
                         $income->chef_id  = $user_recipient;
@@ -122,6 +133,8 @@ class donationController extends Controller
                         $income->status = "sawer";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
+                        $gift_count = income_chefs::where('feed_id',$feed_id)->count();
+                        $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
                     }elseif($resep_id != 0){
                         $income = new income_chefs();
                         $income->chef_id  = $user_recipient;
@@ -130,6 +143,8 @@ class donationController extends Controller
                         $income->status = "sawer";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
+                        $gift_count = income_chefs::where('resep_id',$resep_id)->count();
+                        $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
                     }
                     // mengirim notifikasi
                     $notification = new notifications();
@@ -143,6 +158,8 @@ class donationController extends Controller
                     return response()->json([
                         'success' => true,
                         'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
+                        'gift_count' => $gift_count,
+                        'check_count'=> $check_count,
                     ]);
                 }
             }
