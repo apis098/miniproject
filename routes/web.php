@@ -197,7 +197,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::delete('hapus-detail-sesi-kursus/{id}', [KursusController::class, "hapusDetailSesi"])->name('hapus.detail.sesi.kursus')->middleware('auth.superUser');
         // end route sesi kursus
         Route::get('profilage', [KokiController::class, 'profilage'])->name('koki.profilage');
-        Route::get('income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
+        Route::match(['post', 'get'],'income-koki',[KokiController::class,'incomeKoki'])->name('koki.income');
         Route::get('views-recipe',[KokiController::class,'viewsRecipe'])->name('koki.recipe');
         Route::get('diskusi',[KokiController::class,'jawaban_diskusi'])->name('koki.diskusi');
         Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
@@ -255,11 +255,10 @@ Route::get("/leafletjs", function () {
 
 // route untuk ulasan dan rating pada kursus
 Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingController::class, 'store'])->name('ulasan-rating-kursus.store');
+Route::post('/balas-ulasan/{course}/{user}/{parent}', [UlasanRatingController::class, "storeBalasan"])->name("balas.ulasan");
 Route::delete('/hapus-ulasan/{id}', [UlasanRatingController::class, "destroy"])->name("delete.ulasan");
 Route::put('/update-ulasan/{id}', [UlasanRatingController::class, "update"])->name("update.ulasan");
 // route favorite atau simpan kursus
 Route::post('/favorite/kursus/{chef}/{course}', [KursusController::class, 'favoriteKursus'])->name('favorite.kursus');
-// route filter penghasilan koki
-Route::post('/filter-penghasilan-koki', [KokiController::class, 'filterPenghasilanKoki'])->name('filter.penghasilan.koki');
 // route reply reply comment di resep dan diskusi
 Route::post('/reply-reply-comment', [KokiController::class, 'replyReplyComment'])->name('reply.reply.comment');
