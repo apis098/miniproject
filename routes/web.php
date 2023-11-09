@@ -204,7 +204,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::resource('topup',TopUpController::class);
         Route::post('payment-method',[TopUpController::class,'paymentMethod'])->name('koki.payment.list');
         // Route::resource('donation',donationController::class);
-        Route::post('donation/{user_recipient}/{feed_id}',[donationController::class,'store'])->name('donation.store');
+        Route::post('donation',[donationController::class,'store'])->name('donation.store');
     });
 });
 

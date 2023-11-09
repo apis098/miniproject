@@ -310,7 +310,7 @@
                                                         style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                         Bagikan Kepada</h5>
                                                     <button type="button" class="close mr-2"
-                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                        data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -401,7 +401,7 @@
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <form
-                                                action="{{ route('donation.store', ['user_recipient' => $show_resep->user_id, 'feed_id' => $show_resep->id]) }}"
+                                                action="{{ route('donation.store', ['user_recipient' => $show_resep->user_id ,'resep_id' => $show_resep->id,'feed_id'=>'0']) }}"
                                                 id="gift-form{{ $show_resep->id }}" method="POST">
                                                 @csrf
                                                 <div class="modal-header">

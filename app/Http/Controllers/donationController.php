@@ -30,7 +30,10 @@ class donationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,$user_recipient,$feed_id){
+    public function store(Request $request){
+        $user_recipient = $request->user_recipient;
+        $resep_id = $request->resep_id;
+        $feed_id = $request->feed_id;
         $check = Auth::check();
         if($check){
             $penerima = User::findOrFail($user_recipient);
@@ -56,14 +59,24 @@ class donationController extends Controller
                     $saldo_lama_pengirim = $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
-
-                    $income = new income_chefs();
-                    $income->chef_id  = $user_recipient;
-                    $income->user_id = auth()->user()->id;
-                    $income->feed_id = $feed_id;
-                    $income->status = "sawer";
-                    $income->pemasukan = $saldo_baru;
-                    $income->save();
+                    if($feed_id){
+                        $income = new income_chefs();
+                        $income->chef_id  = $user_recipient;
+                        $income->user_id = auth()->user()->id;
+                        $income->feed_id = $feed_id;
+                        $income->status = "Gift";
+                        $income->pemasukan = $saldo_baru;
+                        $income->save();
+                    }
+                    if($resep_id){
+                        $income = new income_chefs();
+                        $income->chef_id  = $user_recipient;
+                        $income->user_id = auth()->user()->id;
+                        $income->resep_id = $resep_id;
+                        $income->status = "Gift";
+                        $income->pemasukan = $saldo_baru;
+                        $income->save();
+                    }
                     
                      // mengirim notifikasi
                      $notification = new notifications();
@@ -101,14 +114,23 @@ class donationController extends Controller
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
 
-                    $income = new income_chefs();
-                    $income->chef_id  = $user_recipient;
-                    $income->user_id = auth()->user()->id;
-                    $income->feed_id = $feed_id;
-                    $income->status = "sawer";
-                    $income->pemasukan = $saldo_baru;
-                    $income->save();
-
+                    if($feed_id != 0){
+                        $income = new income_chefs();
+                        $income->chef_id  = $user_recipient;
+                        $income->user_id = auth()->user()->id;
+                        $income->feed_id = $feed_id;
+                        $income->status = "sawer";
+                        $income->pemasukan = $saldo_baru;
+                        $income->save();
+                    }elseif($resep_id != 0){
+                        $income = new income_chefs();
+                        $income->chef_id  = $user_recipient;
+                        $income->user_id = auth()->user()->id;
+                        $income->resep_id = $resep_id;
+                        $income->status = "sawer";
+                        $income->pemasukan = $saldo_baru;
+                        $income->save();
+                    }
                     // mengirim notifikasi
                     $notification = new notifications();
                     $notification->notification_from = auth()->user()->id;

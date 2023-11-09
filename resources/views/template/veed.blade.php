@@ -878,7 +878,7 @@
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <form
-                                                            action="{{ route('donation.store', ['user_recipient' => $item_video->users_id, 'feed_id' => $item_video->id]) }}"
+                                                            action="{{ route('donation.store', ['user_recipient' => $item_video->users_id, 'feed_id' => $item_video->id,'resep_id'=>'0']) }}"
                                                             id="gift-form{{ $item_video->id }}" method="POST">
                                                             @csrf
                                                             <div class="modal-header">
