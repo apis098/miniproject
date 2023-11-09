@@ -89,36 +89,22 @@
                                         $userLogin &&
                                             !$show_resep->likes()->where('user_id', auth()->user()->id)->exists())
                                         <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 like-button"
                                             style="border-color: #F7941E;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" style="color: #F7941E" width="21"
-                                                height="21" viewBox="0 0 16 16">
-                                                <g fill="none">
-                                                    <path
-                                                        d="M9.582 1.052c-.75-.209-1.337.35-1.546.872c-.24.6-.452 1.02-.705 1.523c-.157.312-.33.654-.534 1.09c-.474 1.01-.948 1.657-1.292 2.045a4.064 4.064 0 0 1-.405.403c-.047.039-.081.065-.102.08l-.016.012L3.11 8.182a2 2 0 0 0-.856 2.425l.52 1.385a2 2 0 0 0 1.273 1.204l5.356 1.682a2.5 2.5 0 0 0 3.148-1.68l1.364-4.646a2 2 0 0 0-1.919-2.564h-1.385c.066-.227.134-.479.195-.74c.131-.561.243-1.203.233-1.738c-.01-.497-.06-1.018-.264-1.462c-.22-.475-.603-.832-1.193-.996z"
-                                                        fill="currentColor" />
-                                                </g>
-                                            </svg>
+                                            <svg style="color: #F7941E" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 256 256"><path fill="currentColor" d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12ZM32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9Z"/></svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 like-count"
+                                            <small class="me-3 like-count"
                                                 id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
                                         </div>
                                     @else
                                         <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 like-button"
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 like-button"
                                             style="background-color: #F7941E;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" style="color: #ffffff" width="21"
-                                                height="21" viewBox="0 0 16 16">
-                                                <g fill="none">
-                                                    <path
-                                                        d="M9.582 1.052c-.75-.209-1.337.35-1.546.872c-.24.6-.452 1.02-.705 1.523c-.157.312-.33.654-.534 1.09c-.474 1.01-.948 1.657-1.292 2.045a4.064 4.064 0 0 1-.405.403c-.047.039-.081.065-.102.08l-.016.012L3.11 8.182a2 2 0 0 0-.856 2.425l.52 1.385a2 2 0 0 0 1.273 1.204l5.356 1.682a2.5 2.5 0 0 0 3.148-1.68l1.364-4.646a2 2 0 0 0-1.919-2.564h-1.385c.066-.227.134-.479.195-.74c.131-.561.243-1.203.233-1.738c-.01-.497-.06-1.018-.264-1.462c-.22-.475-.603-.832-1.193-.996z"
-                                                        fill="currentColor" />
-                                                </g>
-                                            </svg>
+                                            <svg style="color: #ffffff" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 256 256"><path fill="currentColor" d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12ZM32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9Z"/></svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 like-count"
+                                            <small class="me-3 like-count"
                                                 id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
                                         </div>
                                     @endif
@@ -131,35 +117,418 @@
                                         $userLogin &&
                                             !$show_resep->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                         <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
-                                            style="border-color: #F7941E;"><svg style="color: #F7941E"
-                                                xmlns="http://www.w3.org/2000/svg" width="22" height="21"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
-                                            </svg>
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 favorite-button"
+                                            style="border-color: #F7941E;">
+                                            <svg style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Zm2-3.05l5-2.15l5 2.15V5H7v12.95ZM7 5h10H7Z"/></svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 fav-count"
+                                            <small class="me-3 fav-count"
                                                 id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
                                         </div>
                                     @else
                                         <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-2 favorite-button"
-                                            style="background-color: #F7941E;"><svg style="color: #ffffff"
-                                                xmlns="http://www.w3.org/2000/svg" width="22" height="21"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Z" />
-                                            </svg>
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 favorite-button"
+                                            style="background-color: #F7941E;">
+                                            <svg style="color: #ffffff" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Zm2-3.05l5-2.15l5 2.15V5H7v12.95ZM7 5h10H7Z"/></svg>
                                         </button><br>
                                         <div class="d-flex justify-content-center">
-                                            <small class="me-1 fav-count"
+                                            <small class="me-3 fav-count"
                                                 id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
                                         </div>
                                     @endif
                                 </form>
-                                
+                                <form action="#">
+                                    <button type="button"  data-toggle="modal" data-target="#gift"
+                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                    style="border-color: #F7941E;"><svg style="color:#F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"><path stroke-linecap="round" d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z"/><path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10"/></g></svg>
+                                </button><br>
+                                <div class="d-flex justify-content-center">
+                                    <small class="me-3"">121</small>
+                                </div>
+                                </form>
+                                <form action="#">
+                                    <button type="button" data-toggle="modal" data-target="#shareModal{{$show_resep->id}}"
+                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                    style="border-color: #F7941E;"><svg style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
+                                </button><br>
+                                <div class="d-flex justify-content-center">
+                                    <small class="me-3"">100</small>
+                                </div>
+                                </form>
+                                {{-- share modal --}}
+                                <style>
+                                    /* Gaya khusus untuk checkbox */
+                                    .select-checkbox {
+                                        display: none;
+                                        /* Sembunyikan checkbox asli */
+                                    }
+
+                                    /* Gaya label checkbox */
+                                    .select-checkbox+label {
+                                        display: inline-block;
+                                        width: 25px;
+                                        /* Sesuaikan lebar sesuai keinginan Anda */
+                                        height: 25px;
+                                        /* Sesuaikan tinggi sesuai keinginan Anda */
+                                        border: 1px solid #000;
+                                        /* Atur garis tepi */
+                                        border-radius: 50%;
+                                        /* Membuat checkbox bundar */
+                                        cursor: pointer;
+                                        /* Ganti kursor saat diarahkan ke checkbox */
+                                        vertical-align: middle;
+                                        /* Atur pemosisian vertikal */
+                                    }
+
+                                    /* Gaya label checkbox yang dicentang */
+                                    .select-checkbox:checked+label {
+                                        background-color: #F7941E;
+                                        /* Warna latar belakang saat dicentang */
+                                        border: none;
+                                    }
+                                </style>
+                                <style>
+                                    .search {
+                                        background-color: #fff;
+                                        padding: 4px;
+                                        border-radius: 5px;
+                                        width: 200%;
+                                    }
+
+                                    .search-1 {
+                                        position: relative;
+                                        width: 100%
+                                    }
+
+                                    .search-1 input {
+                                        height: 45px;
+                                        border: none;
+                                        width: 100%;
+                                        padding-left: 34px;
+                                        padding-right: 10px;
+                                        border-right: 2px solid #eee
+                                    }
+
+                                    .search-1 input:focus {
+                                        border-color: none;
+                                        box-shadow: none;
+                                        outline: none
+                                    }
+
+                                    .search-1 i {
+                                        position: absolute;
+                                        top: 12px;
+                                        left: 5px;
+                                        font-size: 10px;
+                                        color: #eee
+                                    }
+
+                                    ::placeholder {
+                                        color: grey;
+                                        opacity: 1
+                                    }
+
+                                    .search-2 {
+                                        position: relative;
+                                        width: 40%;
+                                        margin-left: -5%
+                                    }
+
+                                    .search-2 input {
+                                        height: 45px;
+                                        border: 0.50px black solid;
+                                        width: 280%;
+                                        border-radius: 15px;
+                                        color: #000;
+                                        padding-left: 18px;
+                                        padding-right: 100px;
+                                        text-align: center
+                                    }
+
+                                    .search-2 input:focus {
+                                        box-shadow: none;
+                                    }
+
+
+                                    .search-2 i {
+                                        position: absolute;
+                                        top: 12px;
+                                        left: -10px;
+                                        font-size: 14px;
+                                        color: #eee
+                                    }
+
+                                    .search-2 button {
+                                        position: absolute;
+                                        right: 0px;
+                                        top: 0px;
+                                        border: none;
+                                        height: 45px;
+                                        background-color: #F7941E;
+                                        color: #fff;
+                                        width: 60px;
+                                    }
+
+
+                                    @media (max-width: 767px) {
+                                        .search-1 input {
+
+                                            border-bottom: 1px solid #0000
+                                        }
+
+                                        .search-2 i {
+                                            left: 4px
+                                        }
+
+                                        .search-2 input {
+                                            padding-left: 34px
+                                        }
+
+                                        .search-2 button {
+                                            height: 30px;
+                                            top: 4px
+                                        }
+
+                                        .d-flex {
+                                            flex-wrap: nowrap;
+                                        }
+
+                                        .col-1 {
+                                            white-space: nowrap;
+                                        }
+
+                                    }
+                                </style>
+                                {{-- modal bagikan --}}
+                                <div class="modal" id="shareModal{{ $show_resep->id }}">
+                                    <form action="{{ route('share.feed', $show_resep->id) }}" method="POST">
+                                        @csrf
+                                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title ml-3"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                        Bagikan Kepada</h5>
+                                                    <button type="button" class="close mr-2"
+                                                        data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body mb-4">
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="col-2 mt-2 me-1"
+                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                            Kepada
+                                                        </div>
+
+                                                        <div class="search" style="border-radius: 15px;">
+                                                            <div class="col-lg-11 mt-2">
+                                                                <div class="search-2"> <i class='bx bxs-map'></i>
+
+                                                                    <input id="search" type="text"
+                                                                        name="" style="text-align: left;"
+                                                                        placeholder="Cari...">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <h3 class="mt-4 ml-3"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                        Disarankan</h3>
+                                                    @foreach ($allUser as $user)
+                                                        <div class="element-pencarian">
+                                                            <div class="d-flex mt-4">
+                                                                <div
+                                                                    class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                    <a class="foto" href="">
+                                                                        @if ($user->foto)
+                                                                            <img src="{{ asset('storage/' . $user->foto) }}"
+                                                                                class="border rounded-circle me-2"
+                                                                                alt="Avatar"
+                                                                                style="height: 55px" />
+                                                                        @else
+                                                                            <img src="{{ asset('images/default.jpg') }}"
+                                                                                class="border rounded-circle me-2"
+                                                                                alt="Avatar"
+                                                                                style="height: 55px" />
+                                                                        @endif
+                                                                    </a>
+                                                                </div>
+                                                                <div
+                                                                    class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
+                                                                    <div class="nama rounded-3 px-3 py-1">
+                                                                        <a href="" class="text-dark mb-0">
+                                                                            <strong
+                                                                                class="input-name">{{ $user->name }}</strong>
+                                                                        </a>
+                                                                        <a href=""
+                                                                            class="text-muted d-block">
+                                                                            <small>{{ $user->email }}</small>
+                                                                        </a>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div
+                                                                    class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
+                                                                    <input type="checkbox" class="select-checkbox"
+                                                                        name="user_id[]"
+                                                                        id="checkbox-{{ $show_resep->id }}-{{ $user->id }}"
+                                                                        value="{{ $user->id }}">
+                                                                    <label
+                                                                        for="checkbox-{{ $show_resep->id }}-{{ $user->id }}"></label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button class="btn btn-light fw-bolder text-light col-lg-11"
+                                                        type="submit"
+                                                        style="border-radius: 10px; background-color:#F7941E;">
+                                                        <p class="mt-1 mb-1">Bagikan</p>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                {{-- end share modal --}}
+                                {{-- gift modal --}}
+                                <div class="modal" id="gift">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <form
+                                                action="{{ route('donation.store', ['user_recipient' => $show_resep->user_id, 'feed_id' => $show_resep->id]) }}"
+                                                id="gift-form{{ $show_resep->id }}" method="POST">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title ml-3"
+                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                        Beri Donasi</h5>
+                                                    <button type="button" class="close mr-2"
+                                                        data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="d-flex ">
+                                                        <label for="inputKecil" class="col-lg-3 my-1">
+                                                            <div class="card border-2 scale" id="smallGift"
+                                                                data-card-selected="false"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/kecil.png') }}"
+                                                                    class="card-img-top" alt="">
+                                                                <div class=card-body">
+                                                                    <input hidden type="radio"
+                                                                        value="5000" name="giftInput"
+                                                                        id="inputKecil">
+                                                                    <div class="text-center">
+                                                                        <a href="#"
+                                                                            class="card-title text-center"
+                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                            Kecil</a>
+                                                                    </div>
+                                                                    <p class="text-center"
+                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                        Rp. 5.000,00</p>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+
+                                                        <label for="mediumInput" class="col-lg-3 my-1">
+                                                            <div class="card border-2 scale" id="mediumGift"
+                                                                data-card-selected="false"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/sedang.png') }}"
+                                                                    class="card-img-top" alt="">
+                                                                <div class=card-body">
+                                                                    <input hidden type="radio"
+                                                                        value="10000" name="giftInput"
+                                                                        id="mediumInput">
+                                                                    <div class="text-center">
+                                                                        <a href="#"
+                                                                            class="card-title text-center"
+                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                            Sedang</a>
+                                                                    </div>
+                                                                    <p class="text-center"
+                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                        Rp. 10.000,00</p>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+
+                                                        <label for="extraInput" class="col-lg-3 my-1">
+                                                            <div class="card border-2 scale" id="extraGift"
+                                                                data-card-selected="false"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/besar.png') }}"
+                                                                    class="card-img-top" alt="">
+                                                                <div class=card-body">
+                                                                    <input hidden type="radio"
+                                                                        value="20000" name="giftInput"
+                                                                        id="extraInput">
+                                                                    <div class="text-center">
+                                                                        <a href="#"
+                                                                            class="card-title text-center"
+                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                            Besar</a>
+                                                                    </div>
+                                                                    <p class="text-center"
+                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                        Rp. 20.000,00</p>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+
+                                                        <label for="moreInput" class="col-lg-3 my-1">
+                                                            <button type="button" id="moreGift"
+                                                                class="card border-2 scale"
+                                                                data-card-selected="false"
+                                                                style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                <img src="{{ asset('img/lainnya.png') }}"
+                                                                    class="card-img-top" alt="">
+                                                                <div class=card-body">
+
+                                                                    <div class="mx-4 mt-2">
+                                                                        <a href="#" class="card-title "
+                                                                            style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                    </div>
+                                                                    <p id="displayNumber" class="text-center"
+                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                        Masukkan Nilai</p>
+                                                                </div>
+                                                            </button>
+                                                        </label>
+
+                                                    </div>
+                                                    <div class="d-flex mt-4 ml-3">
+                                                        <input type="number" id="moreInput" name="moreInput"
+                                                            width="500px"
+                                                            class="form-control border-2 rounded-3 me-3 moreInput{{ $show_resep->id }}"
+                                                            style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
+                                                            placeholder="Masukkan jumlah donasi lainya...">
+                                                        <input type="text" id="message" name="message"
+                                                            width="500px"
+                                                            class="form-control border-2 rounded-3 me-3 message{{ $show_resep->id }}"
+                                                            style="margin-top: 12px; border:solid black; border-radius:100px;"
+                                                            placeholder="Tambahkan pesan untuk pembuat...">
+
+                                                        <button type="submit"
+                                                            onclick="giftButton({{ $show_resep->id }})"
+                                                            style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                            class="btn  btn-sm text-light">
+                                                            <b class="me-3 ms-3">Kirim</b></button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- end gift modal --}}
                                 {{-- end favorite --}}
                                 {{-- modal --}}
                                 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
@@ -1211,5 +1580,73 @@
             border4.style.display = "none";
             border409.style.display = "block";
         });
+    </script>
+     <script>
+        const smallGift = document.getElementById('smallGift');
+        const mediumGift = document.getElementById('mediumGift');
+        const extraGift = document.getElementById('extraGift');
+        const moreGift = document.getElementById('moreGift');
+        const moreInput = document.getElementById('moreInput');
+        const displayNumber = document.getElementById("displayNumber");
+        const message = document.getElementById("message");
+        // const anotherText = document.getElementById("anotherText");
+        smallGift.addEventListener('click', function() {
+            smallGift.style.borderColor = "#F7941E";
+            message.style.borderColor = "#F7941E";
+            mediumGift.style.borderColor = "black";
+            extraGift.style.borderColor = "black";
+            moreGift.style.borderColor = "black";
+            inputanLainya.style.display = "none";
+            moreInput.value = "";
+            displayNumber.textContent = "Masukkan nilai";
+        });
+        mediumGift.addEventListener("click", function() {
+            mediumGift.style.borderColor = "#F7941E";
+            message.style.borderColor = "#F7941E";
+            smallGift.style.borderColor = "black";
+            extraGift.style.borderColor = "black";
+            moreGift.style.borderColor = "black";
+            moreInput.style.display = "none";
+            moreInput.value = "";
+            displayNumber.textContent = "Masukkan nilai";
+        });
+        extraGift.addEventListener("click", function() {
+            extraGift.style.borderColor = "#F7941E";
+            message.style.borderColor = "#F7941E";
+            smallGift.style.borderColor = "black";
+            mediumGift.style.borderColor = "black";
+            moreGift.style.borderColor = "black";
+            moreInput.style.display = "none";
+            moreInput.val = "";
+            displayNumber.textContent = "Masukkan nilai";
+        });
+        moreGift.addEventListener('click', function() {
+            moreGift.style.borderColor = "#F7941E";
+            message.style.borderColor = "#F7941E";
+            smallGift.style.borderColor = "black";
+            mediumGift.style.borderColor = "black";
+            extraGift.style.borderColor = "black";
+            moreInput.style.display = "block";
+            moreInput.style.borderColor = "#F7941E";
+        });
+        moreInput.addEventListener("input", function() {
+            const inputValue = moreInput.value;
+            const formattedValue = formatNumber(inputValue);
+            displayNumber.textContent = formattedValue;
+            if (inputValue.trim() === "") {
+                displayNumber.textContent = "Masukkan nilai";
+            } else {
+                displayNumber.textContent = "Rp. " + formattedValue + ",00";
+            }
+
+        });
+
+        function formatNumber(number) {
+            // Hapus semua titik yang ada
+            const cleanValue = number.replace(/\./g, '');
+
+            // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+            return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
     </script>
 @endsection
