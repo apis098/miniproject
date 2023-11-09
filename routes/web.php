@@ -255,6 +255,7 @@ Route::get("/leafletjs", function () {
 
 // route untuk ulasan dan rating pada kursus
 Route::post('/ulasan-rating-kursus/{course}/{chef}/{user}', [UlasanRatingController::class, 'store'])->name('ulasan-rating-kursus.store');
+Route::post('/balas-ulasan/{course}/{user}/{parent}', [UlasanRatingController::class, "storeBalasan"])->name("balas.ulasan");
 Route::delete('/hapus-ulasan/{id}', [UlasanRatingController::class, "destroy"])->name("delete.ulasan");
 Route::put('/update-ulasan/{id}', [UlasanRatingController::class, "update"])->name("update.ulasan");
 // route favorite atau simpan kursus

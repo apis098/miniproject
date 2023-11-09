@@ -55,7 +55,7 @@ class detail_kursusController extends Controller
         $detail_session_course = sessionCourses::where("course_id", $id)->get();
         $rata2_harga = $detail_session_course->avg("harga_sesi");
         $count_session = sessionCourses::where('course_id', $id)->count();
-        $ulasan_kursus = UlasanKursus::where('course_id', $id)->get();
+        $ulasan_kursus = UlasanKursus::where('course_id', $id)->where('parent_id', null)->get();
         return view('template.detail-kursus', compact("ulasan_kursus","count_session","rata2_harga",'detail_session_course','categorytopup','detail_course','idAdmin','messageCount','admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 

@@ -8,6 +8,9 @@
         <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
         <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
         <style>
+            .hide {
+                display: none;
+            }
             h1,
             h2,
             h3 {
@@ -479,7 +482,7 @@
                 @endif
 
                 @foreach ($ulasan_kursus as $review)
-                    <div class="card mb-2" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                    <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="d-flex">
@@ -576,7 +579,7 @@
                                         <path fill="#B70404" d="M9.525 13.765a.5.5 0 0 0 .71.71c.59-.59 1.175-1.18 1.765-1.76l1.765 1.76a.5.5 0 0 0 .71-.71c-.59-.58-1.18-1.175-1.76-1.765c.41-.42.82-.825 1.23-1.235c.18-.18.35-.36.53-.53a.5.5 0 0 0-.71-.71L12 11.293l-1.765-1.768a.5.5 0 0 0-.71.71L11.293 12Z"/>
                                         <path fill="#B70404" d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z"/></svg>
                                     @elseif(Auth::user()->id == $detail_course->user->id)
-                                    <div class="" id="buttonBalas{{$review->id}}" onclick="formBalasUlasan({{$review->id}})"><p style="border: 1px solid black;padding:2px;border-radius:10px;">
+                                    <div class="" id="buttonBukaFormBalas{{$review->id}}" onclick="formBalasUlasan({{$review->id}})"><p style="border: 1px solid black;padding:2px;border-radius:10px;">
                                         Balas</p></div>
                                     @endif
                                     @endif
@@ -597,7 +600,43 @@
                             </div>
                         </div>
             </div>
-            <div id="formBalasUlasan{{$review->id}}"></div>
+            @if (Auth::check())
+                @if (Auth::user()->id == $detail_course->user->id)
+                <div id="formBalasUlasan{{$review->id}}" class="mb-5 mt-3 ml-5 hide" style="width: 66%;margin-top:-15px;border-radius:15px;">
+                    <form action="{{ route('balas.ulasan', [$detail_course->id, $review->user->id, $review->id]) }}" method="post">
+                        @csrf
+                        <div class="input-group" style="margin-left: -15px;">
+                            <input type="text" id="reply" name="ulasan" maxlength="255"
+                                style="border-radius: 10px;width: 150px;" {{-- $userLog === 1 ? 'disabled' : '' --}}
+                                class="form-control" placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
+                            <button type="submit"
+                                style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
+                                class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
+                        </div>
+                    </form>
+                </div>
+                @endif
+            @endif
+            @foreach ($review->balasanChef($detail_course->id, $detail_course->user->id) as $balasanChef)
+
+             <div class="card mb-5" style="width: 66%;margin-top:-15px;border-radius:15px;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="d-flex">
+                            @if ($balasanChef->chef_teacher->foto)
+                            <img src="{{ asset('storage/'.$balasanChef->chef_teacher->foto) }}" alt="" width="5%"
+                            height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
+                            @else
+                            <img src="{{ asset('images/default.jpg') }}" alt="" width="5%"
+                            height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
+                            @endif
+                            <p class="text center my-1 mx-3"><b>{{ $balasanChef->chef_teacher->name }}</b></p>
+                        </div>
+                        <p>{{ $balasanChef->ulasan }}</p>
+                    </div>
+                </div>
+             </div>
+            @endforeach
 
                 @endforeach
             </div>
@@ -605,9 +644,14 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
         <script>
-           
-            function editReview(num, value) {
-                document.getElementById("editReview"+num).value = value;
+
+            function formBalasUlasan(num) {
+                let formBalasUlasan = document.getElementById("formBalasUlasan"+num);
+                if(formBalasUlasan.classList.contains("hide")) {
+                    formBalasUlasan.classList.remove("hide");
+                } else {
+                    formBalasUlasan.classList.add("hide");
+                }
             }
             const stars = document.querySelectorAll('.kejora');
             let rating = 0;

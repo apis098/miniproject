@@ -6,6 +6,8 @@ use App\Models\kursus;
 use App\Models\UlasanKursus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+
 
 class UlasanRatingController extends Controller
 {
@@ -62,6 +64,26 @@ class UlasanRatingController extends Controller
       $edit_rating->rating_asli = $result;
       $edit_rating->save();
       return redirect()->back()->with('success', 'Sukses memberikan ulasan pada kursus ini!');
+    }
+
+    public function storeBalasan(Request $request, int $course, int $user, int $parent) {
+        $validasi = Validator::make($request->all(), [
+            "ulasan" => "required|max:225"
+        ], [
+            "ulasan.required" => "Balasan tidak boleh kosong!",
+            "ulasan.max" => "Balasan maksimal 225 karakter!",
+        ]);
+        if ($validasi->errors()->first()) {
+            return redirect()->back()->with("error", $validasi->errors()->first());
+        }
+        UlasanKursus::create([
+            "course_id" => $course,
+            "user_id" => $user,
+            "chef_teacher_id" => Auth::user()->id,
+            "parent_id" => $parent,
+            "ulasan" => $request->ulasan,
+        ]);
+        return redirect()->back()->with('success', 'Sukses membalas ulasan!');
     }
 
     /**
