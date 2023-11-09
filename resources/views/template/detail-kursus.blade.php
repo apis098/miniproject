@@ -338,8 +338,12 @@
                                                     <a href="" type="button" class="btn text-light zoom-effects mx-1"
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                             class="ms-3 me-3">Sudah dibeli</b></a>
+                                                            @elseif($detail_course->total_murid() > $detail_course->jumlah_siswa)
+                                                            <a href="" type="button" class="btn text-light zoom-effects mx-1"
+                                                            style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                class="ms-3 me-3">Sudah Penuh</b></a>
                                                 @else
-                                                    @if ($detail_course->tanggal_dimulai_kursus >= Carbon\Carbon::now())
+                                                    @if ($detail_course->tanggal_diakhiri_kursus >= Carbon\Carbon::now())
                                                     <a href="{{ route('reservasi.kursus', $detail_course->id) }}"
                                                         type="button" class="btn text-light zoom-effects mx-1"
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
@@ -359,11 +363,16 @@
                                             @endif
 
                                         @endif
-                                    @else
-                                        {{-- untuk yang belum login --}}
-                                        <button type="button" class="btn text-light zoom-effects mx-1"
-                                            style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                class="ms-3 me-3">Pesan</b></button>
+
+                                                @elseif($detail_course->total_murid() > $detail_course->jumlah_siswa)
+                                                <a href="" type="button" class="btn text-light zoom-effects mx-1"
+                                                style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                    class="ms-3 me-3">Sudah Penuh</b></a>
+                                                    @else
+                                                    {{-- untuk yang belum login --}}
+                                                    <button type="button" class="btn text-light zoom-effects mx-1"
+                                                        style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                            class="ms-3 me-3">Pesan</b></button>
                                     @endif
                                    @if (Auth::check())
                                    {{Auth::user()->isFavoriteCourse($detail_course->id)}}
