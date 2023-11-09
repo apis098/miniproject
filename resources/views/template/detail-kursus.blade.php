@@ -296,6 +296,7 @@
                                             {{ $detail_course->user->name }}
                                         </a>
                                     </h5>
+
                                     <div class="d-flex justify-content-center mt-2 ">
                                         <i class="fas fa-star actived"></i>
                                         <p>{{ $detail_course->rate() }}
@@ -343,7 +344,7 @@
                                                             style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                                 class="ms-3 me-3">Sudah Penuh</b></a>
                                                 @else
-                                                    @if ($detail_course->tanggal_diakhiri_kursus >= Carbon\Carbon::now())
+                                                    @if ($detail_course->tanggal_dimulai_kursus >= Carbon\Carbon::now())
                                                     <a href="{{ route('reservasi.kursus', $detail_course->id) }}"
                                                         type="button" class="btn text-light zoom-effects mx-1"
                                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
@@ -539,32 +540,32 @@
                                                     </div>
                                                     <div class="mb-3">
                                                         <label for="rating" class="form-label">Rating</label>
-                                                        <input type="hidden" value="{{$review->rating}}" name="rating" id="editReview{{$review->id}}">
+                                                        <input type="hidden" value="{{$review->rating}}" name="rating" id="editReviews{{$review->id}}">
                                                         <div class="rating text-center">
                                                             @if ($review->rating >= 1)
-                                                                <i class="fas fa-xl fa-star kejora actived" onclick="editReview({{$review->id}}, 1)"></i>
+                                                                <i class="fas fa-xl bintang fa-star actived" onclick="editReview({{$review->id}}, 1)"></i>
                                                             @else
-                                                            <i class="fas fa-xl kejora fa-star" onclick="editReview({{$review->id}}, 1)" ></i>
+                                                            <i class="fas fa-xl bintang fa-star" onclick="editReview({{$review->id}}, 1)" ></i>
                                                             @endif
                                                             @if ($review->rating >= 2)
-                                                            <i class="fas fa-xl fa-star kejora actived"onclick="editReview({{$review->id}}, 2)" ></i>
+                                                            <i class="fas fa-xl bintang fa-star actived"onclick="editReview({{$review->id}}, 2)" ></i>
                                                             @else
-                                                            <i class="fas fa-xl kejora fa-star"onclick="editReview({{$review->id}}, 2)"></i>
+                                                            <i class="fas fa-xl bintang fa-star"onclick="editReview({{$review->id}}, 2)"></i>
                                                             @endif
                                                             @if($review->rating >= 3)
-                                                            <i class="fas fa-xl kejora fa-star actived" onclick="editReview({{$review->id}}, 3)"></i>
+                                                            <i class="fas fa-xl bintang fa-star actived" onclick="editReview({{$review->id}}, 3)"></i>
                                                             @else
-                                                            <i class="fas fa-xl kejora fa-star"onclick="editReview({{$review->id}}, 3)" ></i>
+                                                            <i class="fas fa-xl bintang fa-star"onclick="editReview({{$review->id}}, 3)" ></i>
                                                             @endif
                                                             @if($review->rating >=4)
-                                                            <i class="fas fa-xl kejora fa-star actived"onclick="editReview({{$review->id}}, 4)" ></i>
+                                                            <i class="fas fa-xl bintang fa-star actived"onclick="editReview({{$review->id}}, 4)" ></i>
                                                             @else
-                                                            <i class="fas fa-xl kejora fa-star" onclick="editReview({{$review->id}}, 4)"></i>
+                                                            <i class="fas fa-xl bintang fa-star" onclick="editReview({{$review->id}}, 4)"></i>
                                                             @endif
                                                             @if($review->rating >=5)
-                                                            <i class="fas fa-xl kejora fa-star actived" onclick="editReview({{$review->id}}, 5)"></i>
+                                                            <i class="fas fa-xl bintang fa-star actived" onclick="editReview({{$review->id}}, 5)"></i>
                                                             @else
-                                                            <i class="fas fa-xl kejora fa-star"onclick="editReview({{$review->id}}, 5)"></i>
+                                                            <i class="fas fa-xl bintang fa-star"onclick="editReview({{$review->id}}, 5)"></i>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -592,15 +593,16 @@
                                         Balas</p></div>
                                     @endif
                                     @endif
-                                    <svg class="" width="23" height="19" viewBox="0 0 23 19"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="&#240;&#159;&#166;&#134; icon &#34;star full&#34;">
-                                            <path id="Vector"
-                                                d="M11.6663 15.3L11.458 15.2045L11.2497 15.3L5.05581 18.1388L6.2202 12.2223L6.27683 11.9346L6.05336 11.7447L1.18822 7.61106L7.98022 6.7506L8.22897 6.71908L8.35249 6.50088L11.458 1.01495L14.5636 6.50088L14.6871 6.71908L14.9358 6.7506L21.7278 7.61106L16.8627 11.7447L16.6392 11.9346L16.6958 12.2223L17.8602 18.1388L11.6663 15.3Z"
-                                                fill="#F4DD0A" stroke="black" />
-                                        </g>
+                                   @for ($i = 1; $i <= $review->rating; $i++)
+                                  <i class="fas fa-star actived"></i>
+                                   @endfor
+                                   @if ($review->rating < 5)
+                                    @for ($i = 1; $i <= 5-$review->rating; $i++)
+                                    <i class="fas fa-star"></i>
+                                    @endfor
+                                   @endif
                                         <span class="mx-1">{{ $review->rating }}</span>
-                                    </svg>
+
                                     </div>
                                 </div>
                                 <p>
@@ -653,7 +655,32 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
         <script>
+            function editReview(num, id) {
+                const bintang = document.querySelectorAll('.bintang');
+                let rating = 0;
+                bintang.forEach((bin, index) => {
+                bin.addEventListener('click', () => {
+                    if (index === 0 && rating === 1) {
+                        // Jika bintang pertama sudah dinyalakan dan diklik lagi, matikan bintang tersebut.
+                        rating = 0;
+                    } else {
+                        rating = index + 1;
+                    }
 
+                    bintang.forEach((s, i) => {
+                        if (i <= index) {
+                            s.classList.add('actived');
+                        } else {
+                            s.classList.remove('actived');
+                        }
+                    });
+                    document.getElementById("editReviews"+num).value = rating;
+                    // Di sini Anda bisa mengirim nilai rating ke server atau melakukan tindakan lain sesuai dengan peringkat yang diberikan.
+                    console.log(`Anda memberi peringkat: ${rating} bintang`);
+
+                });
+            });
+            }
             function formBalasUlasan(num) {
                 let formBalasUlasan = document.getElementById("formBalasUlasan"+num);
                 if(formBalasUlasan.classList.contains("hide")) {
@@ -663,6 +690,7 @@
                 }
             }
             const stars = document.querySelectorAll('.kejora');
+            const bintang = document.querySelectorAll('.bintang');
             let rating = 0;
 
             stars.forEach((star, index) => {
