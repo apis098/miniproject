@@ -32,7 +32,7 @@
         }
     </style>
     <section class="container">
-        <div class="row mt-5">
+        <div class="row mt-4 d-flex align-item-center">
             <div class="col-lg-2 mt-3">
                 @if ($userLog == 2)
                     @if ($show_resep->User->id != Auth::user()->id)
@@ -56,23 +56,21 @@
                     </h3>
                     <span>Oleh {{ $show_resep->User->name }}</span>
                 </div>
-                <div class="ms-4 mt-2">
-                    @if ($show_resep->kategori_resep)
-                        @foreach ($show_resep->kategori_resep()->get() as $nk)
-                            <button type="button" class="btn-edit p-2 mx-1 mt-2">{{ $nk->nama_makanan }}</button>
-                        @endforeach
-                    @endif
-                    <div class="mt-2">
-                        @if ($show_resep->hari_resep)
-                            @foreach ($show_resep->hari_resep()->get() as $hr)
-                                <button type="button" class="btn-edit mx-1 p-2">{{ $hr->nama }}</button>
-                            @endforeach
-                        @endif
-                    </div>
-                </div>
             </div>
-            <div class="mt-4 ml-3">
-                <div class="col-lg-6 mt-5 ml-5">
+            <div class="ms-3 mt-2">
+                @if ($show_resep->kategori_resep)
+                    @foreach ($show_resep->kategori_resep()->get() as $nk)
+                        <button type="button" class="btn-edit p-2 mx-1 mt-2">#{{ $nk->nama_makanan }}</button>
+                    @endforeach
+                @endif
+                @if ($show_resep->hari_resep)
+                    @foreach ($show_resep->hari_resep()->get() as $hr)
+                        <button type="button" class="btn-edit mx-1 mt-2 p-2">#{{ $hr->nama }}</button>
+                    @endforeach
+                @endif
+            </div>
+            <div class=" ml-3">
+                <div class="col-lg-6 mt-3 ml-5">
                     <div style="position: absolute; right: -475px; top: -200px;" class="d-flex">
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
@@ -161,6 +159,7 @@
                                         </div>
                                     @endif
                                 </form>
+                                
                                 {{-- end favorite --}}
                                 {{-- modal --}}
                                 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
@@ -210,7 +209,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mx-auto mb-5" style="margin-top: -20px;">
+        <div class="row mx-auto mb-5 mt-2" style="margin-top: -20px;">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
                 <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid;box-shadow:none;">
