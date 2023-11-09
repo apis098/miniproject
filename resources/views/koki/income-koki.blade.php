@@ -282,7 +282,7 @@ class="btn">
 
 
 
-            <form action="{{ route('filter.penghasilan.koki') }}" method="POST">
+            <form action="{{ route('koki.income') }}" method="POST">
                 @csrf
             <div class="d-flex justify-content-between">
                 <div class="">

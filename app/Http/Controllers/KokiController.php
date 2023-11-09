@@ -257,7 +257,34 @@ class KokiController extends Controller
                 ->paginate(10);
         }
         $koki = User::find(Auth::user()->id);
+        if($request->isMethod('POST')) {
+        $validate = Validator::make($request->all(), [
+            'jenis_penghasilan' => 'required',
+            'tanggal_awal' => 'required|date',
+            'tanggal_batas' => 'required|date|after_or_equal:tanggal_awal',
+        ], [
+            'jenis_penghasilan.required' => 'Jenis Penghasilan tidak boleh kosong!',
+            'tanggal_awal.required' => 'Tanggal awal tidak boleh kosong!',
+            'tanggal_batas.required' => 'Tanggal batas tidak boleh kosong!',
+            'tanggal_batas.after_or_equal' => 'Tanggal batas tidak boleh lebih kurang dari tanggal awal!'
+        ]);
+        if($validate->fails()) {
+            return redirect()->back()->with('error', $validate->errors()->first());
+        }
+        $status = null;
+        if($request->jenis_penghasilan === "sawer") {
+            $status = 'sawer';
+        } else if($request->jenis_penghasilan === "feed") {
+            $status = 'feed';
+        } else if($request->jenis_penghasilan === "resep") {
+            $status = 'resep';
+         } else if($request->jenis_penghasilan === "kursus") {
+            $status = 'kursus';
+        }
+        $income_koki = income_chefs::query()->whereBetween('created_at', [$request->tanggal_awal, $request->tanggal_batas])->where('status', $status)->get();
+    } else {
         $income_koki = income_chefs::where('chef_id', Auth::user()->id)->get();
+    }
         $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
         $saldo_belumDiambil = $saldo1->sum('pemasukan');
         $saldo2 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'sudah ditarik');
@@ -462,7 +489,7 @@ class KokiController extends Controller
                     'message' =>'Menambahkan postingan baru',
                 ]);
                 $notification->save();
-                
+
                 $let_route = notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
@@ -515,58 +542,6 @@ class KokiController extends Controller
             "deskripsi_video_baru" => $update->deskripsi_video
         ]);
     }
-    public function filterPenghasilanKoki(Request $request)
-    {
-        $validate = Validator::make($request->all(), [
-            'jenis_penghasilan' => 'required',
-            'tanggal_awal' => 'required',
-            'tanggal_batas' => 'required',
-        ], [
-            'jenis_penghasilan.required' => 'Jenis Penghasilan tidak boleh kosong!',
-            'tanggal_awal.required' => 'Tanggal awal tidak boleh kosong!',
-            'tanggal_batas.required' => 'Tanggal batas tidak boleh kosong!',
-        ]);
-        if($validate->fails()) {
-            return redirect()->back()->with('error', $validate->errors()->first());
-        }
-        $status = null;
-        if($request->jenis_penghasilan === "sawer") {
-            $status = 'sawer';
-        } else if($request->jenis_penghasilan === "feed") {
-            $status = 'feed';
-        } else if($request->jenis_penghasilan === "resep") {
-            $status = 'resep';
-         } else if($request->jenis_penghasilan === "kursus") {
-            $status = 'kursus';
-        }
-        $income_koki = income_chefs::query()->whereBetween('created_at', [$request->tanggal_awal, $request->tanggal_batas])->where('status', $status)->get();
- $userLogin = Auth::user();
-        $notification = [];
-        $favorite = [];
-        $unreadNotificationCount = [];
-        $messageCount = [];
-        if ($userLogin) {
-            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-        }
-        if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
-        }
-        if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
-        }
-        $koki = User::find(Auth::user()->id);
-        $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
-        $saldo_belumDiambil = $saldo1->sum('pemasukan');
-        $saldo2 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'sudah ditarik');
-        $saldo_sudahDiambil = $saldo2->sum('pemasukan');
-        $saldo = income_chefs::where('chef_id', Auth::user()->id);
-        $saldo_total = $saldo->sum('pemasukan');
-        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
-    }
+
 }
 
