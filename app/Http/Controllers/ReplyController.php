@@ -14,6 +14,7 @@ use App\Models\TopUpCategories;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Notification;
 
 class ReplyController extends Controller
@@ -21,13 +22,13 @@ class ReplyController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $user= Auth::user();
+        $user = Auth::user();
         $userRole = $user->role;
         $data = Reply::where('user_id', $userId)->get();
         $title = "Balasan anda terhadap pengguna lain";
-        if($userRole == 'admin'){
+        if ($userRole == 'admin') {
             return view('replies.index', compact('data', 'title'));
-        }else{
+        } else {
             return view('replies.index_koki', compact('data', 'title'));
         }
 
@@ -41,8 +42,8 @@ class ReplyController extends Controller
         $notification = [];
         $footer = footer::first();
         $favorite = [];
-        $unreadNotificationCount=[];
-        $categorytopup  =  TopUpCategories::all();
+        $unreadNotificationCount = [];
+        $categorytopup = TopUpCategories::all();
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
@@ -53,24 +54,31 @@ class ReplyController extends Controller
         // }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
             $favorite = favorite::where('user_id_from', auth()->user()->id)
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
         }
         $title = "Data balasan keluhan ";
-        return view('replies.detail', compact('categorytopup','messageCount','data','footer', 'title', 'replies','repliesCount','userLogin','notification','unreadNotificationCount','favorite'));
+        return view('replies.detail', compact('categorytopup', 'messageCount', 'data', 'footer', 'title', 'replies', 'repliesCount', 'userLogin', 'notification', 'unreadNotificationCount', 'favorite'));
     }
     public function reply(Request $request, $id)
     {
-        $request->validate([
+
+        $validasi = Validator::make($request->all(), [
             'reply' => 'required|string',
+        ], [
+            'reply.required' => 'Komentar harus diisi!',
+            'reply.string' => 'Komentar harus berupa string!'
         ]);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
 
         $complaint = complaint::findOrFail($id);
         $user = Auth::user();
@@ -80,26 +88,42 @@ class ReplyController extends Controller
                 'reply' => $request->reply,
             ]);
             $complaint->replies()->save($reply);
-            if($complaint->user_id != auth()->user()->id){
-            $notifications = new notifications([
-                'notification_from' => auth()->user()->id,
-                'complaint_id' => $complaint->id,
-                'user_id' => $complaint->user->id,
-                'reply_id' => $reply->id,
+            if ($complaint->user_id != auth()->user()->id) {
+                $notifications = new notifications([
+                    'notification_from' => auth()->user()->id,
+                    'complaint_id' => $complaint->id,
+                    'user_id' => $complaint->user->id,
+                    'reply_id' => $reply->id,
+                ]);
+                $complaint->notifications()->save($notifications);
+            }
+            if (Auth::user()->foto != null) {
+                $foto = 'storage/' . Auth::user()->foto;
+            } else {
+                $foto = 'images/default.jpg';
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Sukses memberi komentar!',
+                'name' => Auth::user()->name,
+                'foto' => $foto,
+                'reply' => $request->reply,
+                'id' => $reply->id,
             ]);
-            $complaint->notifications()->save($notifications);
-        }
-            return redirect()->back()->with('success', 'Balasan berhasil dikirim.');
         } else {
-            return redirect()->back()->with('error', 'Silahkan login terlebih dahulu.');
+            return response()->json([
+                'success'=> false,
+                "message" => "Silahkan login terlebih dahulu."
+            ]);
         }
     }
-    public function replyComment(Request $request,$id){
+    public function replyComment(Request $request, $id)
+    {
         $request->validate([
             'reply_comment' => 'required|string',
         ]);
         $user = Auth::check();
-        if($user){
+        if ($user) {
             $comment = Reply::findOrFail($id);
             $reply = new replyComplaint();
             $reply->reply_id = $comment->id;
@@ -108,25 +132,26 @@ class ReplyController extends Controller
             $reply->user_id_sender = auth()->user()->id;
             $reply->reply = $request->reply_comment;
             $reply->save();
-            if($comment->user_id != auth()->user()->id){
+            if ($comment->user_id != auth()->user()->id) {
                 $notifications = new notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->user_id;
                 $notifications->reply_id_comment = $comment->id;
                 $notifications->save();
             }
-            return redirect()->back()->with('success','Berhasil membalas komentar');
-        }else{
-            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            return redirect()->back()->with('success', 'Berhasil membalas komentar');
+        } else {
+            return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
         }
 
     }
-    public function replyReplyComment(Request $request,$id){
+    public function replyReplyComment(Request $request, $id)
+    {
         $request->validate([
             'reply_comment' => 'required|string',
         ]);
         $user = Auth::check();
-        if($user){
+        if ($user) {
             $comment = Reply::findOrFail($id);
             $reply = new replyComplaint();
             $reply->reply_id = $comment->id;
@@ -136,49 +161,56 @@ class ReplyController extends Controller
             $reply->reply = $request->reply_comment;
             $reply->parent_id = $request->parent_id;
             $reply->save();
-            if($comment->user_id != auth()->user()->id){
+            if ($comment->user_id != auth()->user()->id) {
                 $notifications = new notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->user_id;
                 $notifications->reply_id_comment = $comment->id;
                 $notifications->save();
             }
-            return redirect()->back()->with('success','Berhasil membalas komentar');
-        }else{
-            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            return redirect()->back()->with('success', 'Berhasil membalas komentar');
+        } else {
+            return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
         }
 
     }
 
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
         $data = Reply::findOrFail($id);
         $data->delete();
 
-        if(auth()->user()->role =="admin"){
+        if (auth()->user()->role == "admin") {
             $notification = new notifications();
             $notification->user_id = $data->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
-            return redirect()->back()->with('info','Komentar berhasil diblokir');
+            return response()->json([
+                'success' => true,
+                'message' => 'Komentar berhasil diblokir'
+            ]);
         }
-        return redirect()->back()->with('info', 'Komentar berhasil dihapus');
+        return response()->json([
+            'success' => true,
+            'message' => 'Komentar berhasil dihapus'
+        ]);
     }
-    public function destroyComment(Request $request,$id){
+    public function destroyComment(Request $request, $id)
+    {
         $data = replyComplaint::findOrFail($id);
         $data->delete();
 
-        if(auth()->user()->role == "admin"){
+        if (auth()->user()->role == "admin") {
             $notification = new notifications();
             $notification->user_id = $data->user_id_sender;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
-            return redirect()->back()->with('info','Komentar berhasil diblokir');
+            return redirect()->back()->with('info', 'Komentar berhasil diblokir');
         }
-        return redirect()->back()->with('info','komentar telah dihapus');
+        return redirect()->back()->with('info', 'komentar telah dihapus');
     }
 }

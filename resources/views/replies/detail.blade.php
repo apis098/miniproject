@@ -120,13 +120,15 @@
                     <div class="headings d-flex justify-content-between align-items-center mb-3">
                         <h5 class="" style="margin-left: 12px;"><b>Komentar ({{ $repliesCount }})</b></h5>
                         <div class="col-10">
-                            <form method="POST" action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
+                            <form method="POST" id="formReplyComplaintStore"
+                                action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
                                 @csrf
                                 <div class="input-group">
                                     <input type="text" id="reply" name="reply" width="500px"
                                         class="form-control rounded-3 me-5" placeholder="Tambah komentar...">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
-                                    <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    <button type="submit"
+                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                         class="btn  btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
 
@@ -176,10 +178,9 @@
                     </div>
                 </div>
 
-
-
+                <div id="new-replies"></div>
                 @foreach ($replies as $row)
-                    <div class="card p-3">
+                    <div class="card p-3" id="replies{{ $row->id }}">
                         <div class="d-flex justify-content-between">
                             <div class="user d-flex flex-row">
                                 @if ($row->user->foto)
@@ -271,7 +272,8 @@
                                         id="formDelete{{ $row->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" onclick="confirmation({{ $row->id }})"
+                                        <button type="button" id="buttonDelete{{ $row->id }}"
+                                            onclick="confirmation({{ $row->id }})"
                                             class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
                                         </button>
                                     </form>
@@ -296,9 +298,9 @@
                                             class="form-control form-control-sm rounded-3 me-5"
                                             placeholder="Balas komentar dari {{ $row->user->name }}....">
 
-                                        <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                            class="btn btn-sm text-light ms-3"><b
-                                                class="me-3 ms-3">Kirim</b></button>
+                                        <button type="submit"
+                                            style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                            class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                     </div>
                                 </form>
                                 @foreach ($row->replies as $item)
@@ -328,11 +330,12 @@
                                             <div class="">
                                                 <small class="font-weight">
                                                     @if ($item->parent_id != null)
-                                                    <a href="">
-                                                    {{ "@".$item->user->name }}
-                                                    </a>
+                                                        <a href="">
+                                                            {{ '@' . $item->user->name }}
+                                                        </a>
                                                     @endif
-                                                    {{ $item->reply }}</small>
+                                                    {{ $item->reply }}
+                                                </small>
                                             </div>
                                         </span>
                                     </div>
@@ -393,9 +396,6 @@
                                                     </button>
                                                 </form>
                                             @endif
-                                                            {{-- @else
-
-                @endif --}}
                                         </div>
 
                                         <div class="d-flex justify-content-end input-group">
@@ -408,20 +408,21 @@
                                     </div>
                                     <div class="collapse" id="collapses{{ $item->id }}">
                                         <br>
-                                    <form action="{{ route('ReplyReplyComment.store', $row->id) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="parent_id" value="{{ $item->id }}">
-                                        <div class="input-group mb-3">
+                                        <form action="{{ route('ReplyReplyComment.store', $row->id) }}" method="POST">
                                             @csrf
-                                            <input type="text" id="reply_comment" name="reply_comment" width="500px"
-                                                class="form-control form-control-sm rounded-3 me-5"
-                                                placeholder="Balas komentar dari {{ $item->user->name }}....">
+                                            <input type="hidden" name="parent_id" value="{{ $item->id }}">
+                                            <div class="input-group mb-3">
+                                                @csrf
+                                                <input type="text" id="reply_comment" name="reply_comment"
+                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                    placeholder="Balas komentar dari {{ $item->user->name }}....">
 
-                                            <button type="submit" style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                class="btn btn-sm text-light ms-3"><b
-                                                    class="me-3 ms-3">Kirim</b></button>
-                                        </div>
-                                    </form>
+                                                <button type="submit"
+                                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                    class="btn btn-sm text-light ms-3"><b
+                                                        class="me-3 ms-3">Kirim</b></button>
+                                            </div>
+                                        </form>
                                     </div>
                                 @endforeach
                                 {{-- end like --}}
@@ -614,6 +615,110 @@
     </section>
     </div>
     <script>
+        $(document).ready(function() {
+            $("#formReplyComplaintStore").off("submit");
+            $("#formReplyComplaintStore").submit(function(event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if (response.success) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                            let inner =
+                                `
+                            <div class="card p-3" id="replies${response.id}">
+                        <div class="d-flex justify-content-between">
+                            <div class="user d-flex flex-row">
+                                    <img src="{{ asset('${response.foto}') }}" width="30" height="30"
+                                        class="user-img rounded-circle mr-2">
+                                   
+                                    <div class="d-flex">
+                                        <span>
+                                            <div class="font-weight-semibold ms-1 me-2">
+                                                <small class="font-weight-bolder me-2">${response.name}</small>
+                                                    <div class="text-black" style="font-size: 13px">
+                                                        <small>1 detik yang lalu</small>
+                                                    </div>
+                                            </div>
+                                            <div>
+                                                <small>${response.reply}</small>
+                                            </div>
+
+                                        </span>
+                                    </div>
+
+                            </div>
+
+                        </div>
+                        <div class="action d-flex mt-2 align-items-center">
+
+                            <div class="reply px-7 me-2">
+                                <small id="like-count-${response.id}">0</small>
+                            </div>
+
+                            <div class="icons align-items-center input-group">
+
+                                <form action="/comments/${response.id}/like" method="POST" class="like-form">
+                                    @csrf
+                                  
+                                        <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                            <i class="fa-regular fa-thumbs-up"></i>
+                                        </button>
+
+                                </form>
+
+                                    <form action="/reply-destroy/${response.id}" method="POST"
+                                        id="formDelete${response.id}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" onclick="confirmation(${response.id})"
+                                            class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+
+                            </div>
+                            <div class="d-flex justify-content-end input-group">
+                                <a href="#" class="text-secondary " data-toggle="collapse"
+                                    data-target="#collapse${response.id}" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                </a>
+                            </div>
+
+                        </div>
+                        </div>
+                            `;
+                            $("#new-replies").append(inner);
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        });
         document.addEventListener("DOMContentLoaded", function() {
             const readMoreButtons = document.querySelectorAll(".read-more-button");
 
@@ -734,20 +839,40 @@
         });
 
         function confirmation(num) {
-            iziToast.show({
+            console.log(num);
+            iziToast.show({ 
                 backgroundColor: 'red',
                 title: '<i class="fa-regular fa-circle-question"></i>',
                 titleColor: 'white',
                 messageColor: 'white',
                 message: 'Anda yakin ingin mengahpus komentar?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
                             // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('formDelete' + num).submit();
+                            $("#formDelete" + num).submit(function (e) {
+                                e.preventDefault();
+                                $.ajax({
+                                    url: $(this).attr('action'),
+                                    method: 'DELETE',
+                                    headers: {
+                                        "X-Csrf-Token": "{{ csrf_token() }}"
+                                    },
+                                    success: function success(response) {
+                                        if(response.success) {
+                                            iziToast.error({
+                                                'title': 'Success',
+                                                'message': response.message,
+                                                'position': 'topCenter'
+                                            });
+                                        $("#replies"+num).empty();
+                                        }
+                                    }
+                                });
+                            });
                         }
                     ],
                     ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
@@ -759,6 +884,7 @@
                     ],
                 ],
             });
+
         }
 
         function confirmationReply(num) {
@@ -769,7 +895,7 @@
                 messageColor: 'white',
                 message: 'Anda yakin ingin mengahpus komentar?',
                 position: 'topCenter',
-                close:false,
+                close: false,
                 progressBarColor: 'white',
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
