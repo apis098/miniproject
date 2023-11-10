@@ -1000,6 +1000,27 @@
                                                                                     value="{{ $row->follower_id }}"
                                                                                     class="form-control">
                                                                             </form>
+                                                                        @elseif($row->categories == "others")
+                                                                            <form
+                                                                                action="{{ $row->route }}"
+                                                                                method="GET">
+                                                                                <button class="yuhu mt-2"
+                                                                                    type="submit">
+                                                                                    <small
+                                                                                        class=" ms-2 text-secondary">{{$row->message}}</small>
+                                                                                    @if ($row->status == 'belum')
+                                                                                        <img class="ms-2 rounded-circle"
+                                                                                            src="{{ asset('images/badge.png') }}"
+                                                                                            alt="profile image"
+                                                                                            style="max-width:10px">
+                                                                                    @endif
+                                                                                </button>
+                                                                                <input type="text" hidden
+                                                                                    name="follower_id"
+                                                                                    id="follower_id"
+                                                                                    value="{{ $row->follower_id }}"
+                                                                                    class="form-control">
+                                                                            </form>
                                                                         @else
                                                                             <form action="{{ $row->route }}" method="POST">
                                                                                 @method('PUT')

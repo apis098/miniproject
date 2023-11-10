@@ -446,6 +446,7 @@ class ResepsController extends Controller
     }
     public function shareRecipe(Request $request){
         if(Auth::check()){
+            $resep = reseps::findOrFail($request->recipe_id);
             $user_id = $request->input('user_id', []);
             foreach ($user_id as $share_to) {
                 $share = new Share();
@@ -453,6 +454,15 @@ class ResepsController extends Controller
                 $share->sender_id = auth()->user()->id;
                 $share->resep_id = $request->recipe_id;
                 $share->save();
+
+                $notification = new notifications();
+                $notification->user_id = $share_to;
+                $notification->notification_from = auth()->user()->id;
+                $notification->resep_id = $request->recipe_id;
+                $notification->categories = "others";
+                $notification->message = "Membagikan resep kepada anda";
+                $notification->route = "/artikel/".$resep->id."/".$resep->nama_resep;
+                $notification->save();
             }
             return redirect()->back()->with('success','Resep berhasil dibagikan.');
         }else{
