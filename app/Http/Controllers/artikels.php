@@ -77,7 +77,7 @@ class artikels extends Controller
         $comment_count = $comment->count();
         $categorytopup  =  TopUpCategories::all();
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
-      
+
         return view('template.artikel', compact('share_check','gift_check','gift_count','allUser','categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

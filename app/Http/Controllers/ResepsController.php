@@ -464,9 +464,12 @@ class ResepsController extends Controller
                 $notification->route = "/artikel/".$resep->id."/".$resep->nama_resep;
                 $notification->save();
             }
+            $check = Share::where('sender_id',auth()->user()->id)->where('resep_id',$resep->id)->count();
             return response()->json([
                 "success"=> true,
                 "message"=>"Berhasil membagikan resep!",
+                'isShared' => $check,
+                'shared_count' => $resep->share_count(),
             ]);
         }else{
             return response()->json([

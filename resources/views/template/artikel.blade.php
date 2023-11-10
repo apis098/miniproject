@@ -210,7 +210,7 @@
                                     @endif
                                 <br>
                                 <div class="d-flex justify-content-center">
-                                    <small class="me-3"">{{$show_resep->share_count()}}</small>
+                                    <small id="shared_count{{$show_resep->id}}" class="me-3"">{{$show_resep->share_count()}}</small>
                                 </div>
                                 </form>
                                 {{-- share modal --}}
@@ -1479,7 +1479,8 @@
             $('#share_form'+num).submit(function(e){
                 e.preventDefault();
                 var share_button_icon = document.getElementById('share_button_icon');
-                var share_icon =document.getElementById('share_icon');
+                var share_icon = document.getElementById('share_icon');
+                var shared_count = document.getElementById('shared_count'+num);
                 let route = $('#share_form'+num).attr('action');
                 let data = new FormData($('#share_form'+num)[0]);
                 $.ajax({
@@ -1493,6 +1494,11 @@
                     },
                     success: function(response){
                         if(response.success){
+                            if(response.isShared == 1){
+                                share_button_icon.style.backgroundColor = "#F7941E" ;
+                                share_icon.style.color = "#ffffff";
+                            }
+                            shared_count.textContent = response.shared_count;
                             iziToast.show({
                                 backgroundColor: '#a1dfb0',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
