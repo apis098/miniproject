@@ -119,9 +119,17 @@ class ReplyController extends Controller
     }
     public function replyComment(Request $request, $id)
     {
-        $request->validate([
+        $validasi = Validator::make($request->all(), [
             'reply_comment' => 'required|string',
+        ], [
+            'reply_comment.required' => 'Komentar harus diisi!',
+            'reply_comment.string' => 'Komentar harus berupa string!'
         ]);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+
+
         $user = Auth::check();
         if ($user) {
             $comment = Reply::findOrFail($id);
@@ -139,17 +147,46 @@ class ReplyController extends Controller
                 $notifications->reply_id_comment = $comment->id;
                 $notifications->save();
             }
-            return redirect()->back()->with('success', 'Berhasil membalas komentar');
+            if(Auth::user()->foto) {
+                $foto = 'storage/'.Auth::user()->foto;
+            } else {
+                $foto = 'images/default.jpg';
+            }
+            if($reply->parent_id != null) {
+                $at = $reply->user->name;
+            } else {
+                $at = '';
+            }
+            return response()->json([
+                'success'=>true,
+                'message'=>'Berhasil membalas komentar.',
+                'name' => Auth::user()->name,
+                'foto' => $foto,
+                'reply' => $request->reply_comment,
+                'id' => $reply->id,
+                'at' => $at,
+                'id2' => $id
+            ]);
         } else {
-            return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
+            return response()->json([
+                'success'=> false,
+                "message" => "Silahkan login terlebih dahulu."
+            ]);
         }
 
     }
     public function replyReplyComment(Request $request, $id)
     {
-        $request->validate([
+        $validasi = Validator::make($request->all(), [
             'reply_comment' => 'required|string',
+        ], [
+            'reply_comment.required' => 'Komentar harus diisi!',
+            'reply_comment.string' => 'Komentar harus berupa string!'
         ]);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+
         $user = Auth::check();
         if ($user) {
             $comment = Reply::findOrFail($id);
@@ -168,9 +205,31 @@ class ReplyController extends Controller
                 $notifications->reply_id_comment = $comment->id;
                 $notifications->save();
             }
-            return redirect()->back()->with('success', 'Berhasil membalas komentar');
+            if(Auth::user()->foto) {
+                $foto = 'storage/'.Auth::user()->foto;
+            } else {
+                $foto = 'images/default.jpg';
+            }
+            if($reply->parent_id != null) {
+                $at = $reply->user->name;
+            } else {
+                $at = '';
+            }
+            return response()->json([
+                'success'=>true,
+                'message'=>'Berhasil membalas komentar.',
+                'name' => Auth::user()->name,
+                'foto' => $foto,
+                'reply' => $request->reply_comment,
+                'id' => $reply->id,
+                'at' => $at,
+                'id2' => $id
+            ]);
         } else {
-            return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
+            return response()->json([
+                'success'=> false,
+                "message" => "Silahkan login terlebih dahulu."
+            ]);
         }
 
     }
