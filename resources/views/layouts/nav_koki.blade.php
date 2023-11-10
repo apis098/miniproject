@@ -82,7 +82,7 @@
         }
     }
      /* tampilan untuk laptop */
-     @media (min-width: 1025px) and (max-width: 1366px) {
+     @media (min-width: 1024px) and (max-width: 1366px) {
 
         #btnSidebar {
         display: none; /* Atur elemen menjadi block (muncul) */
