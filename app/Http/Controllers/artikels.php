@@ -25,8 +25,8 @@ class artikels extends Controller
 {
     public function artikel_resep(string $id, string $judul)
     {
-
         // check isPremium
+        $show_resep = reseps::find($id);
         $r = reseps::find($id);
         $isPremium = $r->isPremium;
         if ($isPremium == "yes") {
@@ -73,7 +73,6 @@ class artikels extends Controller
                 ->paginate(10);
         }
         $footer = footer::first();
-        $show_resep = reseps::find($id);
         $comment = $show_resep->comment_recipes->sortByDesc('likes');
         $comment_count = $comment->count();
         $categorytopup  =  TopUpCategories::all();
