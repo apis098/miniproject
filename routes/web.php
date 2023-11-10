@@ -131,6 +131,7 @@ Route::post('/laporan-kursus/{id}',[ReportController::class,'storeCourse'])->nam
 
 Route::prefix('share-content')->group(function (){
     Route::post('feed/{id}',[VeedController::class,'shareVeed'])->name('share.feed');
+    Route::post('share-recipe',[ResepsController::class,'shareRecipe'])->name('share.recipe');
     Route::get('detail/feed/{id}',[VeedController::class,'detailVeed'])->name('detail.feed');
 });
 

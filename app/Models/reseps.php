@@ -105,4 +105,8 @@ class reseps extends Model
         }
         
     }
+    public function share_count()
+    {
+        return Share::where('resep_id',$this->id)->count();
+    }
 }

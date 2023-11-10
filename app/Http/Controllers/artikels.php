@@ -17,6 +17,7 @@ use App\Models\footer;
 use App\Models\income_chefs;
 use App\Models\like_comment_recipes;
 use App\Models\ResepPremiums;
+use App\Models\Share;
 use App\Models\TopUpCategories;
 use App\Models\User;
 
@@ -73,6 +74,7 @@ class artikels extends Controller
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
         $gift_check = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
         $gift_count = income_chefs::where('resep_id',$show_resep->id)->count();
-        return view('template.artikel', compact('gift_check','gift_count','allUser','categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $share_check = Share::where('sender_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
+        return view('template.artikel', compact('share_check','gift_check','gift_count','allUser','categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

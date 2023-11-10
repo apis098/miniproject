@@ -9,6 +9,7 @@ use App\Models\followers;
 use App\Models\footer;
 use App\Models\langkah_reseps;
 use App\Models\reseps;
+use App\Models\Share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\notifications;
@@ -442,5 +443,20 @@ class ResepsController extends Controller
         }
         reseps::where("id", $id)->delete();
         return redirect('koki/index')->with('success', 'Sukses! anda berhasil menghapus data resep.');
+    }
+    public function shareRecipe(Request $request){
+        if(Auth::check()){
+            $user_id = $request->input('user_id', []);
+            foreach ($user_id as $share_to) {
+                $share = new Share();
+                $share->user_id = $share_to;
+                $share->sender_id = auth()->user()->id;
+                $share->resep_id = $request->recipe_id;
+                $share->save();
+            }
+            return redirect()->back()->with('success','Resep berhasil dibagikan.');
+        }else{
+            return redirect()->back()->with('error','Silahkan login terlebih dahulu');
+        }
     }
 }
