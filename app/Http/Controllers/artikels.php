@@ -44,6 +44,9 @@ class artikels extends Controller
         $unreadNotificationCount = [];
         $admin = false;
         $messageCount = [];
+        $gift_check = 0;
+        $gift_count = 0;
+        $share_check = 0;
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
@@ -60,6 +63,9 @@ class artikels extends Controller
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
+            $gift_check = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
+            $gift_count = income_chefs::where('resep_id',$show_resep->id)->count();
+            $share_check = Share::where('sender_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
         }
         if ($userLogin) {
             $favorite = favorite::where('user_id_from', auth()->user()->id)
@@ -72,9 +78,7 @@ class artikels extends Controller
         $comment_count = $comment->count();
         $categorytopup  =  TopUpCategories::all();
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
-        $gift_check = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
-        $gift_count = income_chefs::where('resep_id',$show_resep->id)->count();
-        $share_check = Share::where('sender_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
+      
         return view('template.artikel', compact('share_check','gift_check','gift_count','allUser','categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

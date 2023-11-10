@@ -199,13 +199,13 @@
                                 <form action="#">
                                     @if($share_check > 0)
                                         <button type="button" data-toggle="modal" data-target="#shareModal{{$show_resep->id}}"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                            style="background-color: #F7941E;"><svg  style="color: #ffffff;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3" id="share_button_icon"
+                                            style="background-color: #F7941E;"><svg id="share_icon" style="color: #ffffff;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
                                         </button>
                                     @else
                                         <button type="button" data-toggle="modal" data-target="#shareModal{{$show_resep->id}}"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                            style="border-color: #F7941E;"><svg  style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
+                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3" id="share_button_icon"
+                                            style="border-color: #F7941E;"><svg id="share_icon"  style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z"/></svg>
                                         </button>
                                     @endif
                                 <br>
@@ -359,7 +359,7 @@
                                 </style>
                                 {{-- modal bagikan --}}
                                 <div class="modal" id="shareModal{{ $show_resep->id }}">
-                                    <form action="{{ route('share.recipe', ['recipe_id' => $show_resep->id]) }}" method="POST">
+                                    <form id="share_form{{$show_resep->id}}" action="{{ route('share.recipe', ['recipe_id' => $show_resep->id]) }}" method="POST">
                                         @csrf
                                         <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                             <div class="modal-content">
@@ -443,7 +443,7 @@
 
                                                 </div>
                                                 <div class="modal-footer d-flex justify-content-center">
-                                                    <button class="btn btn-light fw-bolder text-light col-lg-11"
+                                                    <button onclick="shareButton({{$show_resep->id}})" class="btn btn-light fw-bolder text-light col-lg-11"
                                                         type="submit"
                                                         style="border-radius: 10px; background-color:#F7941E;">
                                                         <p class="mt-1 mb-1">Bagikan</p>
@@ -1472,6 +1472,48 @@
                 message: 'Silahkan Login Terlebih Dahulu!',
                 position: 'topCenter',
                 progressBarColor: 'dark',
+            });
+        }
+        function shareButton(num){
+            $('#share_form'+num).off('submit');
+            $('#share_form'+num).submit(function(e){
+                e.preventDefault();
+                var share_button_icon = document.getElementById('share_button_icon');
+                var share_icon =document.getElementById('share_icon');
+                let route = $('#share_form'+num).attr('action');
+                let data = new FormData($('#share_form'+num)[0]);
+                $.ajax({
+                    type: "POST",
+                    url: route,
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-Token": "{{csrf_token()}}",
+                    },
+                    success: function(response){
+                        if(response.success){
+                            iziToast.show({
+                                backgroundColor: '#a1dfb0',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                                progressBarColor: 'dark',
+                            });
+                        }else{
+                            iziToast.show({
+                                backgroundColor: '#f2a5a8',
+                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    }
+                });
             });
         }
         function giftButton(num) {

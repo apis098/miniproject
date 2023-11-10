@@ -464,9 +464,15 @@ class ResepsController extends Controller
                 $notification->route = "/artikel/".$resep->id."/".$resep->nama_resep;
                 $notification->save();
             }
-            return redirect()->back()->with('success','Resep berhasil dibagikan.');
+            return response()->json([
+                "success"=> true,
+                "message"=>"Berhasil membagikan resep!",
+            ]);
         }else{
-            return redirect()->back()->with('error','Silahkan login terlebih dahulu');
+            return response()->json([
+                "success"=> false,
+                "message"=>"Silahkan login terlebih dahulu",
+            ]);
         }
     }
 }
