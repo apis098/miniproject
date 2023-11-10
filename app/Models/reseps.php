@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class reseps extends Model
 {
@@ -94,5 +95,14 @@ class reseps extends Model
     public function income_chefs()
     {
         return $this->hasMany(income_chefs::class, "resep_id");
+    }
+    public function incomes()
+    {
+        if(Auth::check()){
+            return income_chefs::where('resep_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
+        }else{
+            return false;
+        }
+        
     }
 }
