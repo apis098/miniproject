@@ -61,7 +61,7 @@
                                         style=" font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                         Pendapatan</h5>
                                     <button type="button" class="close"
-                                        data-bs-dismiss="" aria-label="Close">
+                                        data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
