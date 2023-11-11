@@ -675,11 +675,11 @@
 
                             <div class="icons align-items-center input-group">
 
-                                <form action="/comments/${response.id}/like" method="POST" class="like-form">
+                                <form action="/comments/${response.id}/like" method="POST" id="likeForm${response.id}" class="like-form">
                                     @csrf
 
-                                        <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
-                                            <i class="fa-regular fa-thumbs-up"></i>
+                                        <button type="submit" onclick="likeButton(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                            <i class="fa-regular fa-thumbs-up" id="iconLike${response.id}"></i>
                                         </button>
 
                                 </form>
@@ -717,6 +717,8 @@
                                             class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                     </div>
                                 </form>
+
+                                <div id="new-replies2${response.id}"></div>
                                 </div>
                             </div>
                         </div>
@@ -742,6 +744,43 @@
                 });
             });
         });
+
+        function likeButton(num) {
+            $("#likeForm"+num).off("submit");
+            $("#likeForm"+num).submit(function(e){
+                e.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    headers: {
+                        "X-Csrf-Token": "{{ csrf_token() }}"
+                    },
+                    success: function success(response) {
+                        if(response.liked) {
+                            $("#iconLike"+num).removeClass("fa-regular");
+                            $("#iconLike"+num).addClass("fa-solid");
+                            $("#iconLike"+num).removeClass("text-dark");
+                            $("#iconLike"+num).addClass("text-warning");
+                            $("#like-count-"+num).text('1');
+                        } else {
+                            $("#iconLike"+num).removeClass("fa-solid");
+                            $("#iconLike"+num).addClass("fa-regular");
+                            $("#iconLike"+num).removeClass("text-warning");
+                            $("#iconLike"+num).addClass("text-dark");
+                            $("#like-count-"+num).text('0');
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.error({
+                            "title": "Error",
+                            "message": xhr.responseText,
+                            "position": "topCenter"
+                        });
+                    }
+                });
+            });
+        }
         document.addEventListener("DOMContentLoaded", function() {
             const readMoreButtons = document.querySelectorAll(".read-more-button");
 
@@ -986,12 +1025,12 @@
                                         <div class="icons align-items-center input-group">
 
                                             <form action="/comments/reply/${response.id}/like" method="POST"
-                                                id="like-form">
+                                                id="like-form${response.id}">
                                                 @csrf
 
-                                                    <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
+                                                    <button type="submit" onclick="like_button_balasan(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5"
                                                         id="like-button">
-                                                        <i class="fa-regular fa-thumbs-up"></i>
+                                                        <i id="iconLikeBalasan${response.id}" class="fa-regular fa-thumbs-up"></i>
                                                     </button>
 
                                             </form>
@@ -1048,6 +1087,39 @@
                             'message': xhr.responseText,
                             'position': 'topCenter'
                         });
+                    }
+                });
+            });
+        }
+
+        function like_button_balasan(num) {
+            $("#like-form"+num).off('submit');
+            $("#like-form"+num).submit(function(e){
+                e.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    headers: {
+                        "X-Csrf-Token": "{{ csrf_token() }}"
+                    },
+                    success: function success(response) {
+                        if(response.liked) {
+                            $("#iconLikeBalasan"+num).removeClass('fa-regular');
+                            $("#iconLikeBalasan"+num).addClass('fa-solid');
+                            $("#iconLikeBalasan"+num).removeClass('text-dark');
+                            $("#iconLikeBalasan"+num).addClass('text-warning');
+                            $("#like-count-balasan"+num).text('1');
+                        } else {
+                            $("#iconLikeBalasan"+num).addClass('fa-regular');
+                            $("#iconLikeBalasan"+num).removeClass('fa-solid');
+                            $("#iconLikeBalasan"+num).addClass('text-dark');
+                            $("#iconLikeBalasan"+num).removeClass('text-warning');
+                            $("#like-count-balasan"+num).text('0');
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+
                     }
                 });
             });
@@ -1118,19 +1190,19 @@
                                     <div class="action d-flex mt-2 align-items-center">
 
                                         <div class="reply px-7 me-2">
-                                            <small id="like-count-balasan${response.id}">
+                                            <small id="like-count-balasan-balasan${response.id}">
                                                 0</small>
                                         </div>
 
                                         <div class="icons align-items-center input-group">
 
                                             <form action="/comments/reply/${response.id}/like" method="POST"
-                                                id="like-form">
+                                                id="like-balasan-form${response.id}">
                                                 @csrf
 
-                                                    <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
+                                                    <button type="submit" onclick="like_button_balasan_balasan(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5"
                                                         id="like-button">
-                                                        <i class="fa-regular fa-thumbs-up"></i>
+                                                        <i class="fa-regular fa-thumbs-up" id="iconLikeBalasanBalasan${response.id}"></i>
                                                     </button>
 
                                             </form>
@@ -1187,6 +1259,43 @@
                             'title': 'Error',
                             'message': xhr.responseText,
                             'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+
+        function like_button_balasan_balasan(num) {
+            $("#like-balasan-form"+num).off('submit');
+            $("#like-balasan-form"+num).submit(function(e){
+                e.preventDefault();
+                let route = $(this).attr("action");
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    headers: {
+                        "X-Csrf-Token": "{{ csrf_token() }}"
+                    },
+                    success: function success(response) {
+                        if(response.liked) {
+                            $("#iconLikeBalasanBalasan"+num).removeClass('fa-regular');
+                            $("#iconLikeBalasanBalasan"+num).addClass('fa-solid');
+                            $("#iconLikeBalasanBalasan"+num).removeClass('text-dark');
+                            $("#iconLikeBalasanBalasan"+num).addClass('text-warning');
+                            $("#like-count-balasan-balasan"+num).text('1');
+                        } else {
+                            $("#iconLikeBalasanBalasan"+num).addClass('fa-regular');
+                            $("#iconLikeBalasanBalasan"+num).removeClass('fa-solid');
+                            $("#iconLikeBalasanBalasan"+num).addClass('text-dark');
+                            $("#iconLikeBalasanBalasan"+num).removeClass('text-warning');
+                            $("#like-count-balasan-balasan"+num).text('0');
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter',
                         });
                     }
                 });

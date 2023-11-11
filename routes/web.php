@@ -101,7 +101,7 @@ Route::post('update/password', [KokiController::class, 'updatePassword'])->name(
 Route::get('delete/profile', [KokiController::class, 'deleteProfilePicture'])->name('delete.profile');
 
 
- 
+
 //Keluhan user
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 Route::get('/keluhan/by-id', [complaintController::class, 'index'])->name('ComplaintUser.index');
