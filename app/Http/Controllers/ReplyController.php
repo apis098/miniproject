@@ -268,8 +268,14 @@ class ReplyController extends Controller
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
-            return redirect()->back()->with('info', 'Komentar berhasil diblokir');
+            return response()->json([
+                "success" => true,
+                "message" => "Komentar berhasil diblokir."
+            ]);
         }
-        return redirect()->back()->with('info', 'komentar telah dihapus');
+        return response()->json([
+            "success" => true,
+            "message" => "Komentar telah dihapus.",
+        ]);
     }
 }

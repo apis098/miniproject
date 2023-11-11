@@ -307,6 +307,7 @@
                                 </form>
                                 <div id="new-replies2{{$row->id}}"></div>
                                 @foreach ($row->replies as $item)
+                                <div id="cardReplyComment{{$item->id}}">
                                     <div class="user d-flex flex-row mb-2">
                                         @if ($item->userSender->foto)
                                             <img src="{{ asset('storage/' . $item->userSenderfoto) }}" width="30"
@@ -428,6 +429,7 @@
                                             </div>
                                         </form>
                                     </div>
+                                </div>
                                 @endforeach
                                 {{-- end like --}}
                             </div>
@@ -943,7 +945,8 @@
                         $("#reply_comment"+num).val('');
                         let inner =
                         `
-                        <div class="user d-flex flex-row mb-2">
+                        <div id="cardReplyComment${response.id}">
+                        <div class="user d-flex flex-row mb-2" >
 
                                             <img src="{{ asset('${response.foto}') }}" width="30"
                                                 height="30" class="user-img rounded-circle mr-2">
@@ -965,7 +968,7 @@
                                                 <small class="font-weight">
                                                     <br>
                                                         <a href="">
-                                                           @${response.at}
+                                                           ${response.at}
                                                         </a>
                                                     ${response.reply}
                                                 </small>
@@ -994,7 +997,7 @@
                                             </form>
                                             {{-- @if (auth()->check()) --}}
 
-                                                <form action="{{ route('replyComment.destroy', $item->id) }}"
+                                                <form action="/reply-comment-destroy/${response.id}"
                                                     method="POST" id="replyDelete${response.id}">
                                                     @csrf
                                                     @method('DELETE')
@@ -1018,7 +1021,7 @@
                                     </div>
                                     <div class="collapse" id="collapses${response.id}">
                                         <br>
-                                        <form action="/reply-replies-store/${response.id}" method="POST" id="formBalasBalasKomentar${response.id}">
+                                        <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
                                             @csrf
                                             <input type="hidden" name="parent_id" value="${response.id}">
                                             <div class="input-group mb-3">
@@ -1034,7 +1037,7 @@
                                             </div>
                                         </form>
                                     </div>
-                        `;
+                         </div>`;
                         $("#reply_comment2"+num).val('');
                         $("#new-replies2"+num).append(inner);
                     },
@@ -1081,7 +1084,8 @@
                         $("#reply_comment"+num).val('');
                         let inner =
                         `
-                        <div class="user d-flex flex-row mb-2">
+                        <div id="cardReplyComment${response.id}">
+                        <div class="user d-flex flex-row mb-2" >
 
                                             <img src="{{ asset('${response.foto}') }}" width="30"
                                                 height="30" class="user-img rounded-circle mr-2">
@@ -1132,7 +1136,7 @@
                                             </form>
                                             {{-- @if (auth()->check()) --}}
 
-                                                <form action="{{ route('replyComment.destroy', $item->id) }}"
+                                                <form action="/reply-comment-destroy/${response.id}"
                                                     method="POST" id="replyDelete${response.id}">
                                                     @csrf
                                                     @method('DELETE')
@@ -1156,7 +1160,7 @@
                                     </div>
                                     <div class="collapse" id="collapses${response.id}">
                                         <br>
-                                        <form action="/reply-replies-store/${response.id}" method="POST" id="formBalasBalasKomentar${response.id}">
+                                        <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
                                             @csrf
                                             <input type="hidden" name="parent_id" value="${response.id}">
                                             <div class="input-group mb-3">
@@ -1172,7 +1176,8 @@
                                             </div>
                                         </form>
                                     </div>
-                        `;
+
+                        </div>            `;
                         $("#reply_comment2"+num).val('');
                         $("#new-replies2"+num2).append(inner);
                     },
@@ -1189,6 +1194,7 @@
         }
 
         function destroyReplyComment(num) {
+            $("#replyDelete"+num).off('submit');
             $("#replyDelete"+num).submit(function(e){
                 e.preventDefault();
                 let route = $(this).attr('action');
@@ -1207,6 +1213,7 @@
                                 'position': 'topCenter'
                             });
                         }
+                        $("#cardReplyComment"+num).empty();
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
