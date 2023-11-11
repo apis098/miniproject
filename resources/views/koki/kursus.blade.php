@@ -149,12 +149,12 @@
             height: 38px;
             background-color: #F7941E;
             color: #fff;
-            width: 90px;
+            width: 60px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
 
-        @media (max-width:800px) {
+        @media (min-width:320) (max-width:768px) {
             .search-1 input {
                 border-right: none;
                 border-bottom: 1px solid #eee
@@ -165,12 +165,16 @@
             }
 
             .search-2 input {
-                padding-left: 34px
+                padding-left: 1px
             }
 
             .search-2 button {
                 height: 37px;
-                top: 5px
+                left: 57%;
+                width: 20px;
+            }
+            .cari2{
+                right: 16px;
             }
         }
     </style>
@@ -220,37 +224,6 @@
                 </li>
             </ul>
 
-            {{-- <div class="container my-3">
-                <div class="row mr-5">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="search mx-2" style="border-radius: 15px; border: 0.50px black solid;">
-                            <div class="col-lg-12">
-                                <div class="search-2"><i class='bx bxs-map'></i>
-                                    <form action="#" method="GET">
-                                        <input type="text" name="profil" placeholder="Search For Something">
-                                        <button type="submit" class="zoom-effects"
-                                            style="border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-right: -17px">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32ZM40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72Z" />
-                                            </svg>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <button
-                            style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn">
-                            <span style="font-weight: 600">
-                                <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div> --}}
-
             <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
@@ -276,7 +249,7 @@
                                 </div>
                             </div>
                             <button
-                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                style="border-radius: 15px; width: 30%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                 class="btn ml-4">
                                 <span style="font-weight: 600">
                                     <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
@@ -395,7 +368,7 @@
                         </div>
                         {{-- start tab 1 --}}
                         <div class="d-flex">
-                          
+
                         </div>
 
                     </div>
@@ -425,11 +398,10 @@
                                     </div>
                                 </div>
                                 <button
-                                    style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    style="border-radius: 15px; width: 30%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn ml-4">
                                     <span style="font-weight: 600">
-                                        <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
-                                            Kursus</a>
+                                        <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
                                     </span>
                                 </button>
                             </div>
