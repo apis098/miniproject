@@ -325,9 +325,15 @@ class ReportController extends Controller
             $report->reply_id_complaint = $reply->id;
             $report->description = $request->description;
             $report->save();
-            return redirect()->back()->with('success','Laporan anda telah terkirim');
+            return response()->json([
+                'success'=> true,
+                'message'=> 'Laporan anda telah terkirim'
+            ]);
         }else{
-            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            return response()->json([
+                'success'=> false,
+                'message'=> 'Silakan login terlebih dahulu'
+            ]);
         }
     }
     public function storeReply(Request $request ,$id){
@@ -339,10 +345,16 @@ class ReportController extends Controller
         $report->user_id_sender = auth()->user()->id;
         $report->description = $request->description;
         $report->save();
-        return redirect()->back()->with('success','Laporan anda telah terkirim');
+        return response()->json([
+            'success' => true,
+            'message' => 'Laporan anda telah terkirim.'
+        ]);
     } else {
         // Pengguna belum login, tampilkan pesan
-        return redirect()->back()->with('error', 'Harus login terlebih dahulu untuk melaporkan pelanggaran.');
+        return response()->json([
+            'success' => false,
+            'message'=>'Harus login terlebih dahulu untuk melaporkan pelanggaran.'
+        ]);
     }
     }
     public function storeComplaint(Request $request, $id){

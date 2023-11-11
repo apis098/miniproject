@@ -296,8 +296,8 @@
                                     id="formBalasKomentar{{ $row->id }}" method="POST">
                                     <div class="input-group mb-3">
                                         @csrf
-                                        <input type="text" id="reply_comment{{$row->id}}" name="reply_comment" width="500px"
-                                            class="form-control form-control-sm rounded-3 me-5"
+                                        <input type="text" id="reply_comment{{ $row->id }}" name="reply_comment"
+                                            width="500px" class="form-control form-control-sm rounded-3 me-5"
                                             placeholder="Balas komentar dari {{ $row->user->name }}....">
 
                                         <button type="submit" onclick="clickBalasKomentar({{ $row->id }})"
@@ -305,131 +305,137 @@
                                             class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
                                     </div>
                                 </form>
-                                <div id="new-replies2{{$row->id}}"></div>
+                                <div id="new-replies2{{ $row->id }}"></div>
                                 @foreach ($row->replies as $item)
-                                <div id="cardReplyComment{{$item->id}}">
-                                    <div class="user d-flex flex-row mb-2">
-                                        @if ($item->userSender->foto)
-                                            <img src="{{ asset('storage/' . $item->userSenderfoto) }}" width="30"
-                                                height="30" class="user-img rounded-circle mr-2">
-                                        @else
-                                            <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
-                                                class="user-img rounded-circle mr-2">
-                                        @endif
-                                        <span>
-                                            <small
-                                                class="font-weight-semibold ms-1 me-2"><b>{{ $item->userSender->name }}</b>
-                                                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-                                                    width="15" height="15" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                </svg>
-                                            </small>
-                                            @if ($item->count() > 0)
-                                                <div class="text-black" style="font-size: 13px">
-                                                    <small
-                                                        class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                                                </div>
+                                    <div id="cardReplyComment{{ $item->id }}">
+                                        <div class="user d-flex flex-row mb-2">
+                                            @if ($item->userSender->foto)
+                                                <img src="{{ asset('storage/' . $item->userSenderfoto) }}" width="30"
+                                                    height="30" class="user-img rounded-circle mr-2">
+                                            @else
+                                                <img src="{{ asset('images/default.jpg') }}" width="30"
+                                                    height="30" class="user-img rounded-circle mr-2">
                                             @endif
-                                            <div class="">
-                                                <small class="font-weight">
-                                                    @if ($item->parent_id != null)
-                                                        <a href="">
-                                                            {{ '@' . $item->user->name }}
-                                                        </a>
-                                                    @endif
-                                                    {{ $item->reply }}
+                                            <span>
+                                                <small
+                                                    class="font-weight-semibold ms-1 me-2"><b>{{ $item->userSender->name }}</b>
+                                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
+                                                        width="15" height="15" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                                    </svg>
                                                 </small>
-                                            </div>
-                                        </span>
-                                    </div>
-                                    {{-- llike --}}
-                                    <div class="action d-flex mt-2 align-items-center">
-
-                                        <div class="reply px-7 me-2">
-                                            <small id="like-count-balasan{{ $item->id }}">
-                                                {{ $item->likes }}</small>
+                                                @if ($item->count() > 0)
+                                                    <div class="text-black" style="font-size: 13px">
+                                                        <small
+                                                            class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                                    </div>
+                                                @endif
+                                                <div class="">
+                                                    <small class="font-weight">
+                                                        @if ($item->parent_id != null)
+                                                            <a href="">
+                                                                {{ '@' . $item->user->name }}
+                                                            </a>
+                                                        @endif
+                                                        {{ $item->reply }}
+                                                    </small>
+                                                </div>
+                                            </span>
                                         </div>
+                                        {{-- llike --}}
+                                        <div class="action d-flex mt-2 align-items-center">
 
-                                        <div class="icons align-items-center input-group">
+                                            <div class="reply px-7 me-2">
+                                                <small id="like-count-balasan{{ $item->id }}">
+                                                    {{ $item->likes }}</small>
+                                            </div>
 
-                                            <form action="{{ route('Replies.like.balasan', $item->id) }}" method="POST"
-                                                id="like-form">
-                                                @csrf
-                                                @if (
-                                                    $userLogin &&
-                                                        $item->likes_reply()->where('user_id', $userLogin->id)->exists())
-                                                    <button type="submit" class="yuhu me-2 text-warning btn-sm rounded-5"
-                                                        id="like-button">
-                                                        <i class="fa-solid fa-thumbs-up"></i>
+                                            <div class="icons align-items-center input-group">
+
+                                                <form action="{{ route('Replies.like.balasan', $item->id) }}"
+                                                    method="POST" id="like-form">
+                                                    @csrf
+                                                    @if (
+                                                        $userLogin &&
+                                                            $item->likes_reply()->where('user_id', $userLogin->id)->exists())
+                                                        <button type="submit"
+                                                            class="yuhu me-2 text-warning btn-sm rounded-5"
+                                                            id="like-button">
+                                                            <i class="fa-solid fa-thumbs-up"></i>
+                                                        </button>
+                                                    @else
+                                                        <button type="submit"
+                                                            class="yuhu me-2 text-dark btn-sm rounded-5" id="like-button">
+                                                            <i class="fa-regular fa-thumbs-up"></i>
+                                                        </button>
+                                                    @endif
+                                                </form>
+                                                {{-- @if (auth()->check()) --}}
+                                                @if ($userLogin->id != $item->user_id_sender && $userLogin->role != 'admin')
+                                                    <button type="button" data-toggle="modal"
+                                                        data-target="#modalBalasan{{ $item->id }}"
+                                                        class="yuhu text-danger btn-sm rounded-5 "><i
+                                                            class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                    </button>
+                                                @elseif(auth()->user()->role == 'admin')
+                                                    <button type="button" data-toggle="modal"
+                                                        data-target="#blockModalReply{{ $item->id }}"
+                                                        class="yuhu text-danger btn-sm rounded-5 "><svg
+                                                            xmlns="http://www.w3.org/2000/svg" width="20"
+                                                            height="20" viewBox="0 0 24 24">
+                                                            <path
+                                                                d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                                fill="currentColor" fill-rule="nonzero" />
+                                                        </svg>
                                                     </button>
                                                 @else
-                                                    <button type="submit" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                                        id="like-button">
-                                                        <i class="fa-regular fa-thumbs-up"></i>
-                                                    </button>
+                                                    <form action="{{ route('replyComment.destroy', $item->id) }}"
+                                                        method="POST" id="replyDelete{{ $item->id }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            onclick="destroyReplyComment({{ $item->id }})"
+                                                            id="buttonReplyDelete{{ $item->id }}" hidden></button>
+                                                        <button type="button"
+                                                            onclick="confirmationReply({{ $item->id }})"
+                                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 @endif
-                                            </form>
-                                            {{-- @if (auth()->check()) --}}
-                                            @if ($userLogin->id != $item->user_id_sender && $userLogin->role != 'admin')
-                                                <button type="button" data-toggle="modal"
-                                                    data-target="#modalBalasan{{ $item->id }}"
-                                                    class="yuhu text-danger btn-sm rounded-5 "><i
-                                                        class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                </button>
-                                            @elseif(auth()->user()->role == 'admin')
-                                                <button type="button" data-toggle="modal"
-                                                    data-target="#blockModalReply{{ $item->id }}"
-                                                    class="yuhu text-danger btn-sm rounded-5 "><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                        viewBox="0 0 24 24">
-                                                        <path
-                                                            d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                            fill="currentColor" fill-rule="nonzero" />
-                                                    </svg>
-                                                </button>
-                                            @else
-                                                <form action="{{ route('replyComment.destroy', $item->id) }}"
-                                                    method="POST" id="replyDelete{{ $item->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" onclick="destroyReplyComment({{$item->id}})" id="buttonReplyDelete{{$item->id}}" hidden></button>
-                                                    <button type="button"
-                                                        onclick="confirmationReply({{ $item->id }})"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            @endif
-                                        </div>
-
-                                        <div class="d-flex justify-content-end input-group">
-                                            <a href="#" class="text-secondary " data-toggle="collapse"
-                                                data-target="#collapses{{ $item->id }}" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse" id="collapses{{ $item->id }}">
-                                        <br>
-                                        <form action="{{ route('ReplyReplyComment.store', $row->id) }}" method="POST" id="formBalasBalasKomentar{{$item->id}}">
-                                            @csrf
-                                            <input type="hidden" name="parent_id" value="{{ $item->id }}">
-                                            <div class="input-group mb-3">
-                                                @csrf
-                                                <input type="text" id="reply_comment2{{$item->id}}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
-                                                    placeholder="Balas komentar dari {{ $item->user->name }}....">
-
-                                                <button type="submit" onclick="clickBalasBalasKomentar({{$item->id}}, {{$row->id}})"
-                                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn btn-sm text-light ms-3"><b
-                                                        class="me-3 ms-3">Kirim</b></button>
                                             </div>
-                                        </form>
+
+                                            <div class="d-flex justify-content-end input-group">
+                                                <a href="#" class="text-secondary " data-toggle="collapse"
+                                                    data-target="#collapses{{ $item->id }}" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="collapses{{ $item->id }}">
+                                            <br>
+                                            <form action="{{ route('ReplyReplyComment.store', $row->id) }}"
+                                                method="POST" id="formBalasBalasKomentar{{ $item->id }}">
+                                                @csrf
+                                                <input type="hidden" name="parent_id" value="{{ $item->id }}">
+                                                <div class="input-group mb-3">
+                                                    @csrf
+                                                    <input type="text" id="reply_comment2{{ $item->id }}"
+                                                        name="reply_comment" width="500px"
+                                                        class="form-control form-control-sm rounded-3 me-5"
+                                                        placeholder="Balas komentar dari {{ $item->user->name }}....">
+
+                                                    <button type="submit"
+                                                        onclick="clickBalasBalasKomentar({{ $item->id }}, {{ $row->id }})"
+                                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn btn-sm text-light ms-3"><b
+                                                            class="me-3 ms-3">Kirim</b></button>
+                                                </div>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
                                 @endforeach
                                 {{-- end like --}}
                             </div>
@@ -453,7 +459,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('report.reply', $row->id) }}" method="POST">
+                            <form action="{{ route('report.reply', $row->id) }}" id="FormReportReply{{ $row->id }}"
+                                method="POST">
                                 @csrf
                                 <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
                                     <!-- Tambahkan kelas "align-items-center" -->
@@ -468,12 +475,13 @@
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                             style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                             alt="">
-                                        <textarea class="form-control rounded-5" style="margin-left: 1em; border-radius: 15px;" name="description"
+                                        <textarea class="form-control rounded-5" id="InputReportReply{{$row->id}}" style="margin-left: 1em; border-radius: 15px;" name="description"
                                             rows="5" placeholder="Alasan..."></textarea>
                                     @endif
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit" class="btn text-light"
+                                        onclick="ButtonReportReply({{ $row->id }})"
                                         style="border-radius: 15px; background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                             class="ms-2 me-2">Laporkan</b></button>
                                 </div>
@@ -488,7 +496,8 @@
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('ReplyDestroy.destroy', $row->id) }}" method="POST">
+                                <form action="{{ route('ReplyDestroy.destroy', $row->id) }}"
+                                    id="FormReplyDestroy${{ $row->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <div class="modal-header">
@@ -510,11 +519,12 @@
                                             <div class="widget-49-meeting-info">
 
                                             </div>
-                                            <textarea class="form-control" style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                            <textarea class="form-control" id="InputReplyDestroy{{$row->id}}" style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-light text-light"
+                                            onclick="ButtonReplyDestroy({{ $row->id }})"
                                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
                                                 class="ms-2 me-2">Kirim</b>
                                         </button>
@@ -532,7 +542,8 @@
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('replyComment.destroy', $item->id) }}" method="POST">
+                                <form action="{{ route('replyComment.destroy', $item->id) }}"
+                                    id="FormReplyCommentDestroy{{ $item->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <div class="modal-header">
@@ -554,11 +565,13 @@
                                             <div class="widget-49-meeting-info">
 
                                             </div>
-                                            <textarea class="form-control" style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
+                                            <textarea class="form-control" id="InputReplyCommentDestroy{{$item->id}}"
+                                             style="border-radius: 15px" name="alasan" rows="5" placeholder="Alasan"></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-light text-light"
+                                            onclick="ButtonReplyCommentDestroy({{ $item->id }})"
                                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
                                                 class="ms-2 me-2">Kirim</b>
                                         </button>
@@ -583,7 +596,8 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form action="{{ route('report.reply.comment', $item->id) }}" method="POST">
+                                <form action="{{ route('report.reply.comment', $item->id) }}" method="POST"
+                                    id="FormReportReplyComment{{ $item->id }}">
                                     @csrf
                                     <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
                                         <!-- Tambahkan kelas "align-items-center" -->
@@ -598,12 +612,13 @@
                                             <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                                 style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
                                                 alt="">
-                                            <textarea class="form-control rounded-5" style="margin-left: 1em; border-radius: 15px;" name="description"
+                                            <textarea class="form-control rounded-5" id="InputReportReplyComment{{$item->id}}" style="margin-left: 1em; border-radius: 15px;" name="description"
                                                 rows="5" placeholder="Alasan..."></textarea>
                                         @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-light text-light"
+                                            onclick="ButtonReportReplyComment({{ $item->id }})"
                                             style="border-radius: 15px; background-color:#F7941E;"><b
                                                 class="ms-2 me-2">Laporkan</b></button>
                                     </div>
@@ -621,6 +636,145 @@
     </section>
     </div>
     <script>
+        function ButtonReportReplyComment(num) {
+            $("#FormReportReplyComment"+num).off('submit');
+            $("#FormReportReplyComment" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        iziToast.destroy();
+                        iziToast.success({
+                            'title': 'Success',
+                            'message': response.message,
+                            'position': 'topCenter'
+                        });
+                        $("#InputReportReplyComment"+num).val('');
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+
+        function ButtonReplyCommentDestroy(num) {
+            $("#FormReplyCommentDestroy"+num).off('submit');
+            $("#FormReplyCommentDestroy" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        iziToast.destroy();
+                        iziToast.success({
+                            'title': 'Success',
+                            'message': response.message,
+                            'position': 'topCenter'
+                        });
+                        $("#InputReplyCommentDestroy"+num).val('');
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+
+        function ButtonReplyDestroy(num) {
+            $("#FormReplyDestroy"+num).off("submit");
+            $("#FormReplyDestroy" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        iziToast.destroy();
+                        iziToast.success({
+                            'title': 'Success',
+                            'message': response.message,
+                            'position': 'topCenter'
+                        });
+                        $("#InputReplyDestroy"+num).val('');
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+
+        function ButtonReportReply(num) {
+            $("#FormReportReply"+num).off("submit");
+            $("#FormReportReply" + num).submit(function(e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if (response.success) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                            $("#InputReportReply"+num).val('');
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                        }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
         $(document).ready(function() {
             $("#formReplyComplaintStore").off("submit");
             $("#formReplyComplaintStore").submit(function(event) {
@@ -746,8 +900,8 @@
         });
 
         function likeButton(num) {
-            $("#likeForm"+num).off("submit");
-            $("#likeForm"+num).submit(function(e){
+            $("#likeForm" + num).off("submit");
+            $("#likeForm" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 $.ajax({
@@ -757,18 +911,18 @@
                         "X-Csrf-Token": "{{ csrf_token() }}"
                     },
                     success: function success(response) {
-                        if(response.liked) {
-                            $("#iconLike"+num).removeClass("fa-regular");
-                            $("#iconLike"+num).addClass("fa-solid");
-                            $("#iconLike"+num).removeClass("text-dark");
-                            $("#iconLike"+num).addClass("text-warning");
-                            $("#like-count-"+num).text('1');
+                        if (response.liked) {
+                            $("#iconLike" + num).removeClass("fa-regular");
+                            $("#iconLike" + num).addClass("fa-solid");
+                            $("#iconLike" + num).removeClass("text-dark");
+                            $("#iconLike" + num).addClass("text-warning");
+                            $("#like-count-" + num).text('1');
                         } else {
-                            $("#iconLike"+num).removeClass("fa-solid");
-                            $("#iconLike"+num).addClass("fa-regular");
-                            $("#iconLike"+num).removeClass("text-warning");
-                            $("#iconLike"+num).addClass("text-dark");
-                            $("#like-count-"+num).text('0');
+                            $("#iconLike" + num).removeClass("fa-solid");
+                            $("#iconLike" + num).addClass("fa-regular");
+                            $("#iconLike" + num).removeClass("text-warning");
+                            $("#iconLike" + num).addClass("text-dark");
+                            $("#like-count-" + num).text('0');
                         }
                     },
                     error: function error(xhr, error, status) {
@@ -981,9 +1135,9 @@
                                 'position': 'topCenter'
                             });
                         }
-                        $("#reply_comment"+num).val('');
+                        $("#reply_comment" + num).val('');
                         let inner =
-                        `
+                            `
                         <div id="cardReplyComment${response.id}">
                         <div class="user d-flex flex-row mb-2" >
 
@@ -1077,8 +1231,8 @@
                                         </form>
                                     </div>
                          </div>`;
-                        $("#reply_comment2"+num).val('');
-                        $("#new-replies2"+num).append(inner);
+                        $("#reply_comment2" + num).val('');
+                        $("#new-replies2" + num).append(inner);
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
@@ -1093,8 +1247,8 @@
         }
 
         function like_button_balasan(num) {
-            $("#like-form"+num).off('submit');
-            $("#like-form"+num).submit(function(e){
+            $("#like-form" + num).off('submit');
+            $("#like-form" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 $.ajax({
@@ -1104,18 +1258,18 @@
                         "X-Csrf-Token": "{{ csrf_token() }}"
                     },
                     success: function success(response) {
-                        if(response.liked) {
-                            $("#iconLikeBalasan"+num).removeClass('fa-regular');
-                            $("#iconLikeBalasan"+num).addClass('fa-solid');
-                            $("#iconLikeBalasan"+num).removeClass('text-dark');
-                            $("#iconLikeBalasan"+num).addClass('text-warning');
-                            $("#like-count-balasan"+num).text('1');
+                        if (response.liked) {
+                            $("#iconLikeBalasan" + num).removeClass('fa-regular');
+                            $("#iconLikeBalasan" + num).addClass('fa-solid');
+                            $("#iconLikeBalasan" + num).removeClass('text-dark');
+                            $("#iconLikeBalasan" + num).addClass('text-warning');
+                            $("#like-count-balasan" + num).text('1');
                         } else {
-                            $("#iconLikeBalasan"+num).addClass('fa-regular');
-                            $("#iconLikeBalasan"+num).removeClass('fa-solid');
-                            $("#iconLikeBalasan"+num).addClass('text-dark');
-                            $("#iconLikeBalasan"+num).removeClass('text-warning');
-                            $("#like-count-balasan"+num).text('0');
+                            $("#iconLikeBalasan" + num).addClass('fa-regular');
+                            $("#iconLikeBalasan" + num).removeClass('fa-solid');
+                            $("#iconLikeBalasan" + num).addClass('text-dark');
+                            $("#iconLikeBalasan" + num).removeClass('text-warning');
+                            $("#like-count-balasan" + num).text('0');
                         }
                     },
                     error: function error(xhr, error, status) {
@@ -1153,9 +1307,9 @@
                                 'position': 'topCenter'
                             });
                         }
-                        $("#reply_comment"+num).val('');
+                        $("#reply_comment" + num).val('');
                         let inner =
-                        `
+                            `
                         <div id="cardReplyComment${response.id}">
                         <div class="user d-flex flex-row mb-2" >
 
@@ -1250,8 +1404,8 @@
                                     </div>
 
                         </div>            `;
-                        $("#reply_comment2"+num).val('');
-                        $("#new-replies2"+num2).append(inner);
+                        $("#reply_comment2" + num).val('');
+                        $("#new-replies2" + num2).append(inner);
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
@@ -1266,8 +1420,8 @@
         }
 
         function like_button_balasan_balasan(num) {
-            $("#like-balasan-form"+num).off('submit');
-            $("#like-balasan-form"+num).submit(function(e){
+            $("#like-balasan-form" + num).off('submit');
+            $("#like-balasan-form" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 $.ajax({
@@ -1277,18 +1431,18 @@
                         "X-Csrf-Token": "{{ csrf_token() }}"
                     },
                     success: function success(response) {
-                        if(response.liked) {
-                            $("#iconLikeBalasanBalasan"+num).removeClass('fa-regular');
-                            $("#iconLikeBalasanBalasan"+num).addClass('fa-solid');
-                            $("#iconLikeBalasanBalasan"+num).removeClass('text-dark');
-                            $("#iconLikeBalasanBalasan"+num).addClass('text-warning');
-                            $("#like-count-balasan-balasan"+num).text('1');
+                        if (response.liked) {
+                            $("#iconLikeBalasanBalasan" + num).removeClass('fa-regular');
+                            $("#iconLikeBalasanBalasan" + num).addClass('fa-solid');
+                            $("#iconLikeBalasanBalasan" + num).removeClass('text-dark');
+                            $("#iconLikeBalasanBalasan" + num).addClass('text-warning');
+                            $("#like-count-balasan-balasan" + num).text('1');
                         } else {
-                            $("#iconLikeBalasanBalasan"+num).addClass('fa-regular');
-                            $("#iconLikeBalasanBalasan"+num).removeClass('fa-solid');
-                            $("#iconLikeBalasanBalasan"+num).addClass('text-dark');
-                            $("#iconLikeBalasanBalasan"+num).removeClass('text-warning');
-                            $("#like-count-balasan-balasan"+num).text('0');
+                            $("#iconLikeBalasanBalasan" + num).addClass('fa-regular');
+                            $("#iconLikeBalasanBalasan" + num).removeClass('fa-solid');
+                            $("#iconLikeBalasanBalasan" + num).addClass('text-dark');
+                            $("#iconLikeBalasanBalasan" + num).removeClass('text-warning');
+                            $("#like-count-balasan-balasan" + num).text('0');
                         }
                     },
                     error: function error(xhr, error, status) {
@@ -1303,8 +1457,8 @@
         }
 
         function destroyReplyComment(num) {
-            $("#replyDelete"+num).off('submit');
-            $("#replyDelete"+num).submit(function(e){
+            $("#replyDelete" + num).off('submit');
+            $("#replyDelete" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr('action');
                 $.ajax({
@@ -1315,14 +1469,14 @@
                     },
                     success: function success(response) {
                         iziToast.destroy();
-                        if(response.success) {
+                        if (response.success) {
                             iziToast.success({
                                 'title': 'Success',
                                 'message': response.message,
                                 'position': 'topCenter'
                             });
                         }
-                        $("#cardReplyComment"+num).empty();
+                        $("#cardReplyComment" + num).empty();
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
