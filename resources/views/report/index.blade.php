@@ -309,7 +309,7 @@
                             data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                             aria-selected="false">
                             <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
-                                Keluhan
+                                Diskusi
                                 @if ($statusComplaint > 0)
                                     <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                         height="12" viewBox="0 0 24 24">
