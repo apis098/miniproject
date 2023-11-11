@@ -191,8 +191,12 @@
                 }
             }
 
-
-
+                  /* @media (min-width: 320px) {
+                  img.widt {
+                     max-width: 100%;
+                    height: 100%;
+                  }
+                } */
 
             @media (min-width:290px) and (max-width: 450px) {
                 img.besar {
@@ -226,6 +230,8 @@
 
 
 
+
+
                 @media (min-width: 375px) {
                 svg.kanan {
                     margin-left: -2px;
@@ -253,6 +259,17 @@
                 button.high {
                     padding: 0px 2px;
                     height: 26%;
+                }
+
+                }
+
+                @media (min-width: 390px) {
+                    button.besar {
+                    height: 36%;
+                }
+
+                div.kanan {
+                 /* margin-right: 32px; */
                 }
 
                 }
@@ -306,6 +323,12 @@
 
                 }
 
+                 @media (max-width: 1104px) {
+                       img.besar {
+                    max-width: 230px;
+                    height: 230px;
+                   }
+                 }
 
                 @media (min-width: 1024px) {
                     div.search {
@@ -627,7 +650,7 @@
                 <div class="col-lg-4 mb-5 col-sm-12 col-md-6">
                     <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                         <div class="card-header my-3 mx-auto" style="background-color: white">
-                            <img width="260px" class="rounded-circle besar"
+                            <img width="260px" class="rounded-circle besar widt"
                                 style="border: 0.50px black solid; "
                                 src="{{ asset('storage/' . $item->foto_resep) }}" />
                             @if ($item->isPremium === 'yes')
@@ -710,7 +733,7 @@
                                             src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
 
                                         {{ $item->likes }} </span>
-                                        <span class="text-nowrap tesks"> Suka
+                                        <span class="text-nowrap tesk"> Suka
                                     </span>
                                     </div>
                                     <div class="col-6 mx-auto">
