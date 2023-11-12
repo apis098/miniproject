@@ -72,9 +72,15 @@ class AdminController extends Controller
 
     public function verifed(Request $request)
     {
-        $verified = User::where('followers', '10000')->where('isSuperUser', 'no')->paginate(6);
+        // Ambil semua pengguna yang memiliki isSuperUser 'no'
+        $users = User::where('isSuperUser', 'no');
+
+        // Ambil pengguna yang memiliki jumlah followers lebih dari 10,000
+        $verified = $users->where('followers', '>', 10000)->paginate(6);
+
         return view('admin.verifed', compact('verified'));
     }
+
 
     public function action_verifed(string $id, string $status)
     {
@@ -86,7 +92,7 @@ class AdminController extends Controller
         } else if ($status === "ditolak") {
             $status = "menolak";
             $user = User::find($id);
-            $user->isSuperUser = "ditolak";
+            $user->isSuperUser = "no";
             $user->save();
         }
         return redirect()->back();
