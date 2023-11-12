@@ -111,6 +111,10 @@ class followersController extends Controller
                 'user_id' => $userfollowing->id,
                 'follower_id' => auth()->user()->id,
             ]);
+            if($userfollowing->isSuperUser == "no" && $userfollowing->followers > 10000){
+                $userfollowing->isSuperUser = "yes";
+                $userfollowing->save();
+            }
             $userfollowing->increment('followers');
             $userfollowing->followers()->save($follow);
             $notifications = new notifications([
