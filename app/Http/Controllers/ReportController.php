@@ -22,6 +22,7 @@ use App\Models\comment_veed;
 use App\Models\reply_comment_veed;
 use App\Models\balasRepliesCommentsFeeds;
 use Str;
+use Illuminate\Support\Facades\Validator;
 class ReportController extends Controller
 {
 
@@ -289,6 +290,15 @@ class ReportController extends Controller
     }
 
     public function storeResep(Request $request,$id){
+        $validasi = Validator::make($request->all(), [
+            'description' => 'required|max:225',
+        ], [
+            'description.required' => 'Alasan melaporkan wajib diisi!',
+            'description.max' => 'Alasan melaporkan maksimal berisi 225 karakter',
+        ]);
+        if($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
         $resep = reseps::findOrFail($id);
         $report = new Report();
         if(Auth::check()){
@@ -298,9 +308,15 @@ class ReportController extends Controller
             $report->description = $request->description;
             $report->save();
         }else{
-            return redirect()->route('login')->with('error','Silahkan login terlebih dahulu');
+            return response()->json([
+                'success' => false,
+                'message' => 'Silakan login terlebih dahulu.'
+            ]);
         }
-        return redirect()->back()->with('success','Laporan anda telah terkirim');
+        return response()->json([
+            'success' => true,
+            'message' => 'Laporan anda telah terkirim'
+        ]);
     }
     public function storeVeed(Request $request,$id){
         $feed = upload_video::findOrFail($id);

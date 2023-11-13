@@ -73,7 +73,8 @@
                                             <img src="{{ asset('images/income.png') }}" width="180px" height="180px"
                                                 style="border-radius: 50%" alt="">
                                             <div class="container row">
-                                                <h3 class="ms-2">Rp. {{ number_format($show_resep->incomes(), 2, ',', '.') }}
+                                                <h3 class="ms-2">Rp.
+                                                    {{ number_format($show_resep->incomes(), 2, ',', '.') }}
                                                 </h3>
                                             </div>
                                         </div>
@@ -81,7 +82,7 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="d-flex justify-content-end">
-                                                <a href="koki/income-koki" class="btn btn-light mb-3 me-1 text-light"
+                                                <a href="/koki/income-koki" class="btn btn-light mb-3 me-1 text-light"
                                                     style="border-radius: 15px; background-color:#F7941E;"><b
                                                         class="ms-2 me-2">Detail</b></a>
                                             </div>
@@ -649,7 +650,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('report.resep', $show_resep->id) }}" method="POST">
+                                            <form id="FormReportResep" action="{{ route('report.resep', $show_resep->id) }}" method="POST">
                                                 @csrf
                                                 <div class="modal-body d-flex align-items-center">
                                                     <!-- Tambahkan kelas "align-items-center" -->
@@ -658,17 +659,16 @@
                                                             src="{{ asset('storage/' . $show_resep->foto_resep) }}"
                                                             width="106px" height="104px" style="border-radius: 50%"
                                                             alt="">
-                                                        <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
                                                     @else
                                                         <img class="me-2" src="{{ asset('images/default.jpg') }}"
                                                             width="106px" height="104px" style="border-radius: 50%"
                                                             alt="">
-                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                            placeholder="Alasan..."></textarea>
                                                     @endif
+                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                            placeholder="Alasan..." id="AlasanReportResep"></textarea>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-light text-light"
+                                                    <button type="submit" class="btn btn-light text-light" onclick="ButtonReportResep()"
                                                         style="border-radius: 15px; background-color:#F7941E;"><b
                                                             class="ms-2 me-2">Laporkan</b></button>
                                                 </div>
@@ -1126,7 +1126,8 @@
                                     method="POST" id="FormBalasanKomentarResep{{ $row->id }}">
                                     @csrf
                                     <div class="input-group mb-3">
-                                        <input type="text" id="reply_comment{{$row->id}}" name="reply_comment" width="500px"
+                                        <input type="text" id="reply_comment{{ $row->id }}"
+                                            name="reply_comment" width="500px"
                                             class="form-control form-control-sm rounded-3 me-5"
                                             placeholder="Balas komentar dari {{ $row->user_pengirim->name }}....">
 
@@ -1138,7 +1139,8 @@
                             @else
                                 <form>
                                     <div class="input-group mb-3">
-                                        <input type="text" id="reply_comment" name="reply_comment{{$row->id}}" width="500px"
+                                        <input type="text" id="reply_comment"
+                                            name="reply_comment{{ $row->id }}" width="500px"
                                             class="form-control form-control-sm rounded-3 me-5"
                                             placeholder="Balas komentar dari {{ $row->user_pengirim->name }}....">
 
@@ -1148,193 +1150,200 @@
                                     </div>
                                 </form>
                             @endif
-                            <div id="new-komentar-balasan{{$row->id}}"></div>
+                            <div id="new-komentar-balasan{{ $row->id }}"></div>
                             @foreach ($row->reply_comment_recipe as $item)
-                            <div id="CardBalasanKomentarResep{{$item->id}}">
-                                <div class="user d-flex flex-row mb-2">
-                                    @if ($item->user->foto)
-                                        <img src="{{ asset('storage/' . $item->user->foto) }}" width="30"
-                                            height="30" class="user-img rounded-circle mr-2">
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
-                                            class="user-img rounded-circle mr-2">
-                                    @endif
-                                    <span>
-                                        <small
-                                            class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b></small>
-                                        @if ($item->count() > 0)
-                                            <div class="text-black" style="font-size: 13px">
-                                                <small
-                                                    class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
-                                            </div>
+                                <div id="CardBalasanKomentarResep{{ $item->id }}">
+                                    <div class="user d-flex flex-row mb-2">
+                                        @if ($item->user->foto)
+                                            <img src="{{ asset('storage/' . $item->user->foto) }}" width="30"
+                                                height="30" class="user-img rounded-circle mr-2">
+                                        @else
+                                            <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
+                                                class="user-img rounded-circle mr-2">
                                         @endif
-                                        <br>
-                                        <div class="">
-                                            <small class="font-weight">
-                                                @if ($item->parent_id != null)
-                                                    <a href="">{{ '@' . $item->recipient->name }}</a>
-                                                @endif
-                                                {{ $item->komentar }}
-                                            </small>
-                                        </div>
-                                    </span>
-                                </div>
-                                {{-- llike --}}
-                                <div class="action d-flex mt-2 align-items-center">
-
-                                    <div class="reply px-7 me-2">
-                                        <small id="like_reply_comment_count{{ $item->id }}">
-                                            {{ $item->likes }}</small>
-                                    </div>
-
-                                    <div class="icons align-items-center input-group">
-
-                                        <form action="{{ route('likeReply.comment.recipe', $item->id) }}" method="POST"
-                                            id="like_reply_comment_form{{ $item->id }}">
-                                            @csrf
-                                            @if (
-                                                $userLogin &&
-                                                    $item->like()->where('users_id', $userLogin->id)->exists())
-                                                <button type="submit" class="yuhu me-2 btn-sm rounded-5"
-                                                    id="like_reply_comment_button{{ $item->id }}"
-                                                    onclick="like_reply_comment({{ $item->id }})">
-                                                    <i id="like_reply_comment_icon{{ $item->id }}"
-                                                        class="fa-solid text-orange fa-thumbs-up"></i>
-                                                </button>
-                                            @else
-                                                <button type="submit" class="yuhu me-2 btn-sm rounded-5"
-                                                    id= "like_reply_comment_button{{ $item->id }}"
-                                                    onclick="like_reply_comment({{ $item->id }})">
-                                                    <i id="like_reply_comment_icon{{ $item->id }}"
-                                                        class="fa-regular   fa-thumbs-up"></i>
-                                                </button>
+                                        <span>
+                                            <small
+                                                class="font-weight-semibold ms-1 me-2"><b>{{ $item->user->name }}</b></small>
+                                            @if ($item->count() > 0)
+                                                <div class="text-black" style="font-size: 13px">
+                                                    <small
+                                                        class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
+                                                </div>
                                             @endif
-                                        </form>
-                                        @if (Auth::check() && $userLogin->id != $item->users_id && $userLogin->role != 'admin')
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#modalRpl{{ $item->id }}"
-                                                class="yuhu text-danger btn-sm rounded-5 "><i
-                                                    class="fa-solid fa-triangle-exclamation me-2"></i>
-                                            </button>
-                                            {{-- modal --}}
-                                            <div class="modal fade" id="modalRpl{{ $item->id }}" tabindex="-1"
-                                                role="dialog" aria-labelledby="exampleModalCenterTitle"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="reportModal"
-                                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                Laporkan komentar</h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                                            <br>
+                                            <div class="">
+                                                <small class="font-weight">
+                                                    @if ($item->parent_id != null)
+                                                        <a href="">{{ '@' . $item->recipient->name }}</a>
+                                                    @endif
+                                                    {{ $item->komentar }}
+                                                </small>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    {{-- llike --}}
+                                    <div class="action d-flex mt-2 align-items-center">
+
+                                        <div class="reply px-7 me-2">
+                                            <small id="like_reply_comment_count{{ $item->id }}">
+                                                {{ $item->likes }}</small>
+                                        </div>
+
+                                        <div class="icons align-items-center input-group">
+
+                                            <form action="{{ route('likeReply.comment.recipe', $item->id) }}"
+                                                method="POST" id="like_reply_comment_form{{ $item->id }}">
+                                                @csrf
+                                                @if (
+                                                    $userLogin &&
+                                                        $item->like()->where('users_id', $userLogin->id)->exists())
+                                                    <button type="submit" class="yuhu me-2 btn-sm rounded-5"
+                                                        id="like_reply_comment_button{{ $item->id }}"
+                                                        onclick="like_reply_comment({{ $item->id }})">
+                                                        <i id="like_reply_comment_icon{{ $item->id }}"
+                                                            class="fa-solid text-orange fa-thumbs-up"></i>
+                                                    </button>
+                                                @else
+                                                    <button type="submit" class="yuhu me-2 btn-sm rounded-5"
+                                                        id= "like_reply_comment_button{{ $item->id }}"
+                                                        onclick="like_reply_comment({{ $item->id }})">
+                                                        <i id="like_reply_comment_icon{{ $item->id }}"
+                                                            class="fa-regular   fa-thumbs-up"></i>
+                                                    </button>
+                                                @endif
+                                            </form>
+                                            @if (Auth::check() && $userLogin->id != $item->users_id && $userLogin->role != 'admin')
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#modalRpl{{ $item->id }}"
+                                                    class="yuhu text-danger btn-sm rounded-5 "><i
+                                                        class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                </button>
+                                                {{-- modal --}}
+                                                <div class="modal fade" id="modalRpl{{ $item->id }}" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="reportModal"
+                                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                    Laporkan komentar</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form
+                                                                action="{{ route('Report.reply.comment.recipes', $item->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <div class="modal-body d-flex align-items-center">
+                                                                    <!-- Tambahkan kelas "align-items-center" -->
+                                                                    @if ($item->user->foto)
+                                                                        <img class="me-2"
+                                                                            src="{{ asset('storage/' . $item->user->foto) }}"
+                                                                            width="106px" height="104px"
+                                                                            style="border-radius: 50%" alt="">
+                                                                        <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
+                                                                    @else
+                                                                        <img class="me-2"
+                                                                            src="{{ asset('images/default.jpg') }}"
+                                                                            width="106px" height="104px"
+                                                                            style="border-radius: 50%" alt="">
+                                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                            placeholder="Alasan..."></textarea>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="submit"
+                                                                        class="btn btn-light text-light"
+                                                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                            class="ms-2 me-2">Laporkan</b></button>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        <form
-                                                            action="{{ route('Report.reply.comment.recipes', $item->id) }}"
-                                                            method="POST">
-                                                            @csrf
-                                                            <div class="modal-body d-flex align-items-center">
-                                                                <!-- Tambahkan kelas "align-items-center" -->
-                                                                @if ($item->user->foto)
-                                                                    <img class="me-2"
-                                                                        src="{{ asset('storage/' . $item->user->foto) }}"
-                                                                        width="106px" height="104px"
-                                                                        style="border-radius: 50%" alt="">
-                                                                    <textarea class="form-control" style="border-radius: 15px" name="description" rows="5" placeholder="Alasan"></textarea>
-                                                                @else
-                                                                    <img class="me-2"
-                                                                        src="{{ asset('images/default.jpg') }}"
-                                                                        width="106px" height="104px"
-                                                                        style="border-radius: 50%" alt="">
-                                                                    <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                        placeholder="Alasan..."></textarea>
-                                                                @endif
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-light text-light"
-                                                                    style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                        class="ms-2 me-2">Laporkan</b></button>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            {{-- end Modal --}}
-                                        @elseif(Auth::check() && auth()->user()->role == 'admin')
-                                            <button type="button" data-toggle="modal"
-                                                data-target="#blockModalReply{{ $item->id }}"
-                                                class="yuhu text-danger btn-sm rounded-5 "><svg
-                                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                        fill="currentColor" fill-rule="nonzero" />
-                                                </svg>
-                                            </button>
-                                        @elseif(Auth::check() && auth()->user()->id == $item->users_id)
-                                            <form method="POST" action="{{ route('delete.reply.comment', $item->id) }}"
-                                                id="delete-reply-comment-form{{ $item->id }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" id="buttonreplycomment{{$item->id}}" onclick="ClickDeleteReplyComment({{$item->id}})" hidden></button>
-                                                <button type="button" onclick="confirmationReply({{ $item->id }})"
-                                                    class="yuhu text-danger btn-sm rounded-5 ">
-                                                    <i class="fa-solid fa-trash"></i>
+                                                {{-- end Modal --}}
+                                            @elseif(Auth::check() && auth()->user()->role == 'admin')
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#blockModalReply{{ $item->id }}"
+                                                    class="yuhu text-danger btn-sm rounded-5 "><svg
+                                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                            fill="currentColor" fill-rule="nonzero" />
+                                                    </svg>
                                                 </button>
+                                            @elseif(Auth::check() && auth()->user()->id == $item->users_id)
+                                                <form method="POST"
+                                                    action="{{ route('delete.reply.comment', $item->id) }}"
+                                                    id="delete-reply-comment-form{{ $item->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" id="buttonreplycomment{{ $item->id }}"
+                                                        onclick="ClickDeleteReplyComment({{ $item->id }})"
+                                                        hidden></button>
+                                                    <button type="button"
+                                                        onclick="confirmationReply({{ $item->id }})"
+                                                        class="yuhu text-danger btn-sm rounded-5 ">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @elseif(empty(auth()->user()->id))
+                                                <button type="button" onclick="harusLogin()"
+                                                    class="yuhu text-danger btn-sm rounded-5 "><i
+                                                        class="fa-solid fa-triangle-exclamation me-2"></i>
+                                                </button>
+                                            @endif
+                                        </div>
+
+                                        <div class="d-flex justify-content-end input-group">
+                                            <a href="#" class="text-secondary " data-toggle="collapse"
+                                                data-target="#collapses{{ $item->id }}" aria-expanded="true"
+                                                aria-controls="collapseOne">
+                                                <small>Balas <i class="fa-solid fa-chevron-down"></i></small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="collapse" id="collapses{{ $item->id }}">
+                                        <br>
+                                        @if (Auth::check())
+                                            <form
+                                                action="{{ route('balasan.balasan.komentar.resep', [$row->id, $item->user->id]) }}"
+                                                method="post" id="FormBalasanBalasanKomentarResep{{ $item->id }}">
+                                                <input type="hidden" name="parent_id" value="{{ $item->user->id }}">
+                                                @csrf
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="reply_reply_comment{{ $item->id }}"
+                                                        name="reply_comment" width="500px"
+                                                        class="form-control form-control-sm rounded-3 me-5"
+                                                        placeholder="Balas komentar dari {{ $item->user->name }}....">
+
+                                                    <button type="submit"
+                                                        onclick="ButtonBalasanBalasanKomentarResep({{ $item->id }})"
+                                                        style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
+                                                        class="btn btn-sm text-light ms-3"><b
+                                                            class="me-3 ms-3">Kirim</b></button>
+                                                </div>
                                             </form>
-                                        @elseif(empty(auth()->user()->id))
-                                            <button type="button" onclick="harusLogin()"
-                                                class="yuhu text-danger btn-sm rounded-5 "><i
-                                                    class="fa-solid fa-triangle-exclamation me-2"></i>
-                                            </button>
+                                        @else
+                                            <form>
+                                                <div class="input-group mb-3">
+                                                    <input type="text" id="reply_comment" name="reply_comment"
+                                                        width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                        placeholder="Balas komentar dari {{ $item->user->name }}....">
+
+                                                    <button type="button" onclick="harusLogin()"
+                                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn btn-sm text-light ms-3"><b
+                                                            class="me-3 ms-3">Kirim</b></button>
+                                                </div>
+                                            </form>
                                         @endif
                                     </div>
-
-                                    <div class="d-flex justify-content-end input-group">
-                                        <a href="#" class="text-secondary " data-toggle="collapse"
-                                            data-target="#collapses{{ $item->id }}" aria-expanded="true"
-                                            aria-controls="collapseOne">
-                                            <small>Balas <i class="fa-solid fa-chevron-down"></i></small>
-                                        </a>
-                                    </div>
                                 </div>
-                                <div class="collapse" id="collapses{{ $item->id }}">
-                                    <br>
-                                    @if (Auth::check())
-                                        <form
-                                            action="{{ route('balasan.balasan.komentar.resep', [$row->id, $item->user->id]) }}"
-                                            method="post" id="FormBalasanBalasanKomentarResep{{$item->id}}">
-                                            <input type="hidden" name="parent_id" value="{{ $item->user->id }}">
-                                            @csrf
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="reply_reply_comment{{$item->id}}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
-                                                    placeholder="Balas komentar dari {{ $item->user->name }}....">
-
-                                                <button type="submit" onclick="ButtonBalasanBalasanKomentarResep({{$item->id}})"
-                                                    style="background-color: #F7941E;border-radius:10px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                                    class="btn btn-sm text-light ms-3"><b
-                                                        class="me-3 ms-3">Kirim</b></button>
-                                            </div>
-                                        </form>
-                                    @else
-                                        <form>
-                                            <div class="input-group mb-3">
-                                                <input type="text" id="reply_comment" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
-                                                    placeholder="Balas komentar dari {{ $item->user->name }}....">
-
-                                                <button type="button" onclick="harusLogin()"
-                                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn btn-sm text-light ms-3"><b
-                                                        class="me-3 ms-3">Kirim</b></button>
-                                            </div>
-                                        </form>
-                                    @endif
-                                </div>
-                            </div>
                             @endforeach
                             {{-- end like --}}
                         </div>
@@ -1345,6 +1354,48 @@
         @endforeach
     </section>
     <script>
+        // function report resep
+        function ButtonReportResep()
+        {
+            $("#FormReportResep").off("submit");
+            $("#FormReportResep").submit(function (e) {
+                e.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    data: data,
+                    method: "POST",
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        if(response.success) {
+                        iziToast.success({
+                            'title': 'Success',
+                            'message': response.message,
+                            'position': 'topCenter'
+                        });
+                        } else {
+                            iziToast.error({
+                                'title': 'Error',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
+                        }
+                        $("#AlasanReportResep").val('');
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
         // function untuk tambah komentar resep
         function ButtonTambahKomentarResep(num) {
             $("#FormTambahKomentarResep" + num).off("submit");
@@ -1574,8 +1625,8 @@
                                 </div>
                             </div>
                         `;
-                        $("#new-komentar-balasan"+num).append(inner);
-                        $("#reply_comment"+num).val('');
+                        $("#new-komentar-balasan" + num).append(inner);
+                        $("#reply_comment" + num).val('');
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
@@ -1587,7 +1638,7 @@
                     }
                 });
             });
-        }  // function membalas balasan komentar resep
+        } // function membalas balasan komentar resep
         function ButtonBalasanBalasanKomentarResep(num) {
             $("#FormBalasanBalasanKomentarResep" + num).off("submit");
             $("#FormBalasanBalasanKomentarResep" + num).submit(function(e) {
@@ -1695,8 +1746,8 @@
                                 </div>
                             </div>
                         `;
-                        $("#new-komentar-balasan"+response.id2).append(inner);
-                        $("#reply_reply_comment"+num).val('');
+                        $("#new-komentar-balasan" + response.id2).append(inner);
+                        $("#reply_reply_comment" + num).val('');
                     },
                     error: function error(xhr, error, status) {
                         iziToast.destroy();
@@ -1804,8 +1855,9 @@
                 }
             });
         }
+
         function ClickDeleteReplyComment(num) {
-            $("#delete-reply-comment-form"+num).submit(function(e){
+            $("#delete-reply-comment-form" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 $.ajax({
@@ -1821,7 +1873,7 @@
                             'message': response.message,
                             'position': 'topCenter'
                         });
-                        $("#CardBalasanKomentarResep"+num).empty();
+                        $("#CardBalasanKomentarResep" + num).empty();
                     },
                     error: function error(xhr, status, error) {
                         iziToast.destroy();
