@@ -290,7 +290,7 @@ class KursusController extends Controller
         if ($selisih_tanggal <= 7) {
             return response()->json([
                 'success' => false,
-                'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
+                'message' => 'Tanggal yang diinputkan minimal 9 hari dari tanggal sekarang!',
             ]);
         }
         $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
@@ -410,7 +410,7 @@ class KursusController extends Controller
         if ($selisih_tanggal <= 7) {
             return response()->json([
                 'success' => false,
-                'message' => 'Tanggal yang diinputkan minimal 7 hari dari tanggal sekarang!',
+                'message' => 'Tanggal yang diinputkan minimal 9 hari dari tanggal sekarang!',
             ]);
         }
         $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
