@@ -32,6 +32,16 @@
             margin-left: 10px;
             border: 0.50px black solid
         }
+
+          /* untuk tampilan laptop */
+          @media (min-width: 1210px) and (max-width: 4000px) {
+
+div.pl {
+    margin-left: 600px;
+    top: -200px;
+}
+
+}
     </style>
     <section class="container">
         <div class="row mt-4 d-flex align-item-center">
@@ -96,28 +106,14 @@
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                     width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
             </div>
-            <div class="col-lg-8 mt-4 ms-3">
-                <div class="col-lg-4 mt-5 ml-3">
+            <div class="col-lg-9 mt-4 ms-3">
+                <div class="col-12 mt-5 ml-3">
                     <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                     </h3>
-                    <span>Oleh {{ $show_resep->User->name }}</span>
-                </div>
-            </div>
-            <div class="ms-3 mt-2">
-                @if ($show_resep->kategori_resep)
-                    @foreach ($show_resep->kategori_resep()->get() as $nk)
-                        <button type="button" class="btn-edit p-2 mx-1 mt-2">#{{ $nk->nama_makanan }}</button>
-                    @endforeach
-                @endif
-                @if ($show_resep->hari_resep)
-                    @foreach ($show_resep->hari_resep()->get() as $hr)
-                        <button type="button" class="btn-edit mx-1 mt-2 p-2">#{{ $hr->nama }}</button>
-                    @endforeach
-                @endif
-            </div>
-            <div class=" ml-3">
-                <div class="col-lg-6 mt-3 ml-5">
-                    <div style="position: absolute; right: -475px; top: -200px;" class="d-flex">
+                    <div class="d-flex">
+                    <span class="text-nowrap">Oleh {{ $show_resep->User->name }}</span>
+                    <div class="pl">
+                    <div style="" class="d-flex">
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
                                 <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
@@ -680,6 +676,25 @@
                             @endif
                         @endif
                     </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            <div class="ms-3 mt-2">
+                @if ($show_resep->kategori_resep)
+                    @foreach ($show_resep->kategori_resep()->get() as $nk)
+                        <button type="button" class="btn-edit p-2 mx-1 mt-2">#{{ $nk->nama_makanan }}</button>
+                    @endforeach
+                @endif
+                @if ($show_resep->hari_resep)
+                    @foreach ($show_resep->hari_resep()->get() as $hr)
+                        <button type="button" class="btn-edit mx-1 mt-2 p-2">#{{ $hr->nama }}</button>
+                    @endforeach
+                @endif
+            </div>
+            <div class=" ml-3">
+                <div class="col-lg-6 mt-3 ml-5">
+
                 </div>
             </div>
         </div>
