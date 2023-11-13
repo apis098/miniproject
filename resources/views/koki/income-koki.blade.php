@@ -305,7 +305,11 @@ class="btn">
                     <input type="date" class="form-control" id="tanggal_batas" name="tanggal_batas">
                 </div>
                 <div class="mx-1">
-                    <button type="submit" class="btn btn-primary">Filter Sekarang</button>
+                    <button type="submit" style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                    class="btn">
+                    <span style="color: rgb(255, 255, 255);">
+                    Filter Sekarang</span>
+                </button>
                 </div>
                 </div>
             </div>
