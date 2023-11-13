@@ -13,6 +13,15 @@ class komentar_resep extends Controller
 {
     public function toComment(Request $request, string $pengirim, string $penerima, string $recipe, string $comment = null)
     {
+        $validasi = Validator::make($request->all(), [
+            'komentar' => 'required|max:225'
+        ], [
+            'komentar.required' => 'Komentar wajib diisi!',
+            'komentar.max' => 'Komentar maksimal berisi 225 karakter!'
+        ]);
+        if($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
         $c = null;
         $komentar = $request->komentar;
         $resepData  = reseps::findOrFail($recipe);
@@ -42,11 +51,33 @@ class komentar_resep extends Controller
 
         }
         if ($c) {
-            return redirect()->back()->with('success', 'Sukses memberikan komentar!');
+            if(auth()->user()->foto) {
+                $foto = 'storage/'.auth()->user()->foto;
+            } else {
+                $foto = 'images/default.jpg';
+            }
+            return response()->json([
+                'success' => true,
+                'message' => 'Sukses memberikan komentar!',
+                'name' => auth()->user()->name,
+                'foto' => $foto,
+                'komentar' => $komentar,
+                'id' => $c->id,
+                'user' => $pengirim,
+                'pengirim' => $c->user_pengirim->name,
+            ]);
         }
-        return redirect()->back()->with('success','Sukses menambahkan komentar');
     }
     public function reply_comment(Request $request,$id,$user){
+        $validasi = Validator::make($request->all(), [
+            'reply_comment' => 'required|max:225',
+        ], [
+            'reply_comment.required' => 'Komentar balasan harus diisi!',
+            'reply_comment.max' => 'Komentar balasan maksimal berisi 225 karakter!'
+        ]);
+        if($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        };
         $comment = comment_recipes::findOrFail($id);
         $reply = new replyCommentRecipe();
         $reply->users_id = auth()->user()->id;
@@ -66,7 +97,22 @@ class komentar_resep extends Controller
             $notifications->resep_id = $comment->recipes_id;
             $notifications->save();
         }
-        return redirect()->back()->with('success','Sukses membalas komentar');
+        if(auth()->user()->foto) {
+            $foto = 'storage/'.auth()->user()->foto;
+        } else {
+            $foto = 'images/default.jpg';
+        }
+        return response()->json([
+            'message' => 'Sukses membalas komentar.',
+            'name' => auth()->user()->name,
+            'foto' => $foto,
+            'komentar' => $request->reply_comment,
+            'id' => $reply->id,
+            'user_id' => $reply->user->id,
+            'user_name' => $reply->user->name,
+            'user' => $user,
+            'id2' => $id
+        ]);
     }
     public function reply_reply_comment(Request $request,$id,$user){
         $comment = comment_recipes::findOrFail($id);
@@ -86,15 +132,34 @@ class komentar_resep extends Controller
             $notifications->resep_id = $comment->recipes_id;
             $notifications->save();
         }
-        return redirect()->back()->with('success','Sukses membalas komentar');
+        if(auth()->user()->foto) {
+            $foto = 'storage/'.auth()->user()->foto;
+        } else {
+            $foto = 'images/default.jpg';
+        }
+        return response()->json([
+            'message' => 'Sukses membalas komentar.',
+            'name' => auth()->user()->name,
+            'foto' => $foto,
+            'komentar' => $request->reply_comment,
+            'id' => $reply->id,
+            'user_id' => $reply->user->id,
+            'user_name' => $reply->user->name,
+            'user' => $comment->user_penerima->id,
+            'id2' => $id,
+            'recipient' => $reply->recipient->name,
+        ]);
     }
     public function delete_comment(string $id) {
         comment_recipes::where('id', $id)->delete();
-        return redirect()->back()->with('success', 'Sukses menghapus komentar!');
+        return response()->json([
+            'message' => 'Sukses menghapus komentar!'
+        ]);
     }
     public function delete_reply_comment(string $id) {
         replyCommentRecipe::where('id', $id)->delete();
-        
-        return redirect()->back()->with('success', 'Sukses menghapus komentar!');
+        return response()->json([
+            'message' => 'Sukses menghapus komentar!'
+        ]);
     }
 }

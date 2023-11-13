@@ -43,7 +43,7 @@ return new class extends Migration
         Schema::create('reply_comment_recipes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("users_id");
-            $table->unsignedBigInteger("recipient_id");
+            $table->unsignedBigInteger("recipient_id")->nullable();
             $table->integer('likes')->default(0);
             $table->unsignedBigInteger("recipe_id");
             $table->unsignedBigInteger("comment_id");
