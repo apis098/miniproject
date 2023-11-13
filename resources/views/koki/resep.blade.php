@@ -1,6 +1,7 @@
 @extends('template.nav')
 @section('content')
     <style>
+
         .custom-input-file {
             border: 1px solid black;
         }
@@ -15,7 +16,7 @@
     <form id="form-add-recipe" action="/koki/resep" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container" style="border-color: #EAEAEA;">
-            <div class="row" style="border-color: white">
+            <div class="row mx-auto" style="border-color: white">
                 <div class="col-lg-4 col-md-6 col-sm-12 mb-3" style="border-color: white;max-width:280px;">
                     <div id="div" class="mt-5 mb-5 border border-dark" style="border-radius: 15px;">
                         <div class="mb-4 text-center" style="border-color: white;border:none;">
@@ -182,12 +183,12 @@
                         <div id="pengeluaran_memasak_error" style="display: none;" class="alert alert-danger"></div>
                     </div>
                     <br>
-                    <div class="mb-4 mx-1" style="margin-bottom: 20px">
+                    <div class="mb-4 mx-auto" style="margin-bottom: 20px">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="row">
                                     <label for="formFile" class="form-label"><b>Langkah-langkah</b></label>
-                                    <div id="div2" class="card my-4 col-lg-4 col-md-12 mx-3 border border-dark"
+                                    <div id="div2" class="card my-4 col-lg-4 border border-dark"
                                         style="border-radius: 15px;">
                                         <div class="card-body text-center">
                                             <img id="gambar" src="{{ asset('images/default.jpg') }}"
@@ -200,11 +201,11 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="col-lg-7 col-md-12 my-auto">
+                                    <div class="col-lg-7 my-auto mx-1">
 
                                         {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
-                                        <div class="row ms-3 my-2"
+                                        <div class="row mb-2"
                                             style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                             <button type="button" id="inputanfile" onclick="inputfilee()"
                                                 class="col-4"
@@ -230,12 +231,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 mx-2">
                                 <input type="text" class="form-control mb-2 mx-1" name="judul_langkah[]"
                                     placeholder="Masukkan judul langkah..." required>
                                 <textarea class="mx-1 form-control" maxlength="255" class="form-control" name="langkah_resep[]"
                                     placeholder="Masukkan langkah langkah" id="floatingTextarea">{{ old('langkah_resep.0') }}</textarea>
-                            </div>
+
                         </div>
                         @error('langkah_resep.*')
                             <div class="alert alert-danger">
@@ -515,7 +515,7 @@
 
                                 {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
-                                <div class="row ms-3"
+                                <div class="row mb-2"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid;height:40px">
                                     <button type="button" onclick="inputfile(${num2})" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
