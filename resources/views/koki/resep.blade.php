@@ -15,13 +15,16 @@
     </style>
     <form id="form-add-recipe" action="/koki/resep" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="container" style="border-color: #EAEAEA;">
-            <div class="row mx-auto" style="border-color: white">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-3" style="border-color: white;max-width:280px;">
-                    <div id="div" class="mt-5 mb-5 border border-dark" style="border-radius: 15px;">
-                        <div class="mb-4 text-center" style="border-color: white;border:none;">
-                            <img src="" style="display:none;" alt=""
-                                id="uploadedPhoto" class="">
+        <div class="container">
+            <div class="row mx-auto">
+                <div class="col-lg-4 col-md-6 col-sm-12 mb-3" style="max-width:280px;">
+                    <div id="div" class="card my-4"
+                    style="border-radius: 15px;border: 1px solid black;" >
+                        <div class="mb-4 text-center" style="width: 100%;">
+
+                                <img src="{{ asset('images/default.jpg') }}"
+                                style="width: 100%; height: 100%;display:none; margin-left:-15px;" alt=""
+                                id="uploadedPhoto" class="mx-1">
                             <svg id="svgPhoto" xmlns="http://www.w3.org/2000/svg" class="m-5 p-1" width="100"
                                 height="100" viewBox="0 0 24 24">
                                 <path fill="currentColor"
@@ -30,7 +33,7 @@
                         </div>
                     </div>
                     <div class="row"
-                        style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                        style="border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="kliks()" class="col-4"
                             style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 39px;">
                             <p
@@ -192,7 +195,7 @@
                                         style="border-radius: 15px;">
                                         <div class="card-body text-center">
                                             <img id="gambar" src="{{ asset('images/default.jpg') }}"
-                                                style="max-width: 250px; display:none; margin-left:-15px;" alt=""
+                                                style="max-width: 100%; max-height: 100%;display:none; margin-left:-15px;" alt=""
                                                 id="uploadedImage" class="">
                                             <svg id="svg2" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5"
                                                 width="100" height="100" viewBox="0 0 24 24">
@@ -201,7 +204,7 @@
                                             </svg>
                                         </div>
                                     </div>
-                                    <div class="col-lg-7 my-auto mx-1">
+                                    <div class="col-lg-7 my-auto mx-2">
 
                                         {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
@@ -447,7 +450,8 @@
                         document.getElementById('uploadedPhoto').setAttribute("src", event.target.result);
                         document.getElementById('uploadedPhoto').style.display = "block";
                         document.getElementById('svgPhoto').style.display = "none";
-                        document.getElementById('div').classList.remove("border-dark");
+                        document.getElementById('div').classList.remove("card");
+                        document.getElementById('div').style.border = "none";
                         document.getElementById('uploadedPhoto').style.borderRadius = "5%";
                         document.getElementById('uploadedPhoto').style.maxWidth = "250px";
                     };
@@ -502,7 +506,7 @@
                                 style="border-radius: 15px;">
                                 <div class="card-body text-center">
                                     <img id="gambar3${num2}" src="{{ asset('images/default.jpg') }}"
-                                        style="max-width: 250px; display:none; margin-left:-15px;" alt=""
+                                        style="max-width: 100%; max-height: 100%; display:none; margin-left:-15px;" alt=""
                                         id="uploadedImage" class="">
                                     <svg id="svg3${num2}" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5"
                                         width="100" height="100" viewBox="0 0 24 24">
@@ -511,7 +515,7 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="col-lg-7 my-auto mx-1">
+                            <div class="col-lg-7 my-auto mx-2">
 
                                 {{-- <input name="foto_langkah_resep[]" class="form-control form-control-sm my-auto mx-1"  type="file"
                                     class="formFile"> --}}
