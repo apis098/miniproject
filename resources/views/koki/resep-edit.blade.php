@@ -203,7 +203,7 @@
                             @endif
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
                             <div class="mb-4 mx-1" style="margin-bottom: 20px">
-                                <div class="row">
+                                <div class="row me-2">
                                     <label for="formFile" class="form-label"><b>Langkah-langkah
                                             {{ $int += 1 }}</b></label>
                                     <div class="card my-4 col-lg-4 mx-3">
@@ -213,7 +213,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row ms-3"
+                                        <div class="row ms-3 mb-2"
                                             style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
 
                                             <button type="button" onclick="input_file_langkah({{ $int }})"
@@ -241,8 +241,8 @@
                                         class="form-control mb-3 mx-3" value="{{ $item_langkah->judul_langkah }}">
                                     <textarea name="langkah_resep[]" class="form-control mx-3" style="white-space:normal;" cols="15"
                                         rows="5" placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
-                            {{ trim($item_langkah->deskripsi_langkah) }}
-                        </textarea>
+                                    {{ trim($item_langkah->deskripsi_langkah) }}
+                                    </textarea>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
                                             {{ $message }}
@@ -529,14 +529,14 @@
             const input2 = document.createElement("div");
             input2.classList.add("mb-4");
             input2.innerHTML = `
-            <div id="close2_${num2}">
+            <div id="close2_${num2}" class="mx-3">
                 <button type="button" class="btn btn-danger my-2 fa-solid fa-x" onclick="close2(${num2})"></button>
                             <input type="hidden" name="id_langkah_resep[]" value="{{ $item_langkah->id }}">
                             <div class="mb-4">
                                 <div class="row">
                                     <label for="formFile" class="form-label"><b>Langkah-langkah
                                             </b></label>
-                                    <div class="card my-5 col-lg-4">
+                                    <div class="card mt-3 mb-4 col-lg-4">
                                         <div class="card-body text-center div3">
                                             <img src=" class="" id="IMAGE${num2}" style="display: none;">
                                             <svg id="svg${num2}" xmlns="http://www.w3.org/2000/svg" class="mt-5 mb-5" width="100"
@@ -546,8 +546,9 @@
                             </svg>
                                         </div>
                                     </div>
+                                    
                                     <div class="col-lg-7 my-auto mx-1">
-                                        <div class="row"
+                                        <div class="row ms-3 mb-2"
                                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                                             <button type="button" onclick="input_file_langkah(${num2})"
                                                 class="col-4"
