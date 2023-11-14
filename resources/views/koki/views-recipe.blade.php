@@ -268,9 +268,9 @@
                         @endif
                         <div class="row" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3" style="border-radius:15px">
+                                <div class="card col-lg-3 border border-black col-md-4 col-sm-12 my-3 ml-3" style="border-radius:15px; border: 1px solid black;">
                                     <div class="row mx-auto">
-                                        <div class="col-12 card-header">
+                                        <div class="col-12 card-header mx-auto text-center">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}"
                                                 class="card-img-top"
                                                 style="max-width:200px; max-height: 200px; border-radius:15px;"
@@ -389,7 +389,7 @@
                             @foreach ($resep_disukai as $num => $suka)
                             <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai" style="border-radius:15px">
                                 <div class="row mx-auto">
-                                    <div class="col-12 card-header">
+                                    <div class="col-12 card-header mx-auto text-center">
                                         <img src="{{ asset('storage/' . $suka->foto_resep) }}"
                                             class="card-img-top"
                                             style="max-width:200px; max-height: 200px; border-radius:15px;"
@@ -510,7 +510,7 @@
                             @foreach ($resep_favorite as $num => $favorite)
                             <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3 resepFavorite" style="border-radius:15px">
                                 <div class="row mx-auto">
-                                    <div class="col-12 card-header">
+                                    <div class="col-12 card-header mx-auto text-center">
                                         <img src="{{ asset('storage/' . $favorite->foto_resep) }}"
                                             class="card-img-top"
                                             style="max-width:200px; max-height: 200px; border-radius:15px;"

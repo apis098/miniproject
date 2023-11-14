@@ -24,8 +24,7 @@
                                 alt="{{ $edit_resep->foto_resep }}" class="" id="changePhotoResep">
                         </div>
                     </div>
-                    <div class="row"
-                        style="border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                    <div class="row mx-auto" style="border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                             <div
@@ -107,10 +106,12 @@
 
                     <div id="new-input1"></div>
                     <br>
-                    <button type="button" id="button-new-input1" class="btn text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
-                        Tambahkan Bahan & Takaran
-                    </button>
+                    <div>
+                        <button type="button" id="button-new-input1" class="btn btn-outline-dark"
+                            style="float: right;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                            Tambahkan Bahan & Takaran
+                        </button>
+                    </div>
                     <br>
                     @foreach ($edit_resep->alat as $nsoi => $item)
                         <div id="remove_alat{{ $item->id }}">
@@ -128,10 +129,12 @@
                     @endforeach
                     <div id="new-input-alat"></div>
                     <br>
-                    <button type="button" id="button-new-alat" class="btn text-white"
-                        style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
-                        Tambahkan Alat - Alat
-                    </button>
+                    <div>
+                        <button type="button" id="button-new-alat" class="btn btn-outline-dark"
+                            style="float: right;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
+                            Tambahkan Alat - Alat
+                        </button>
+                    </div>
                     <script>
                         numsq = 0;
                         document.getElementById("button-new-alat").addEventListener("click", function() {
@@ -165,10 +168,11 @@
                         @enderror
                     </div>
                     <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
-                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control col-10"
+                        <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama
+                                Memasak</b></label>
+                        <input type="text" name="lama_memasak" class="form-control col-8"
                             id="exampleFormControlInput1" value="{{ $edit_resep->lama_memasak }}">
-                        <select name="lama_memasak2" id="" class="form-control col-2">
+                        <select name="lama_memasak2" id="" class="form-control col-4">
                             <option value="menit" {{ $edit_resep->lama_memasak2 == 'menit' ? 'selected' : '' }}>menit
                             </option>
                             <option value="jam" {{ $edit_resep->lama_memasak2 == 'jam' ? 'selected' : '' }}>jam
@@ -222,7 +226,8 @@
                                                     style="display: none;" type="file"
                                                     id="inputan_foto_langkah{{ $int }}">
                                             </button>
-                                            <div class="col-8 my-auto text-truncate" id="foto_langkah_info{{ $int }}"
+                                            <div class="col-8 my-auto text-truncate"
+                                                id="foto_langkah_info{{ $int }}"
                                                 style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                 Tidak ada file terpilih</div>
                                         </div>
@@ -234,8 +239,8 @@
                                     </div>
                                     <input type="text" name="judul_langkah[]" id=""
                                         class="form-control mb-3 mx-3" value="{{ $item_langkah->judul_langkah }}">
-                                    <textarea name="langkah_resep[]" class="form-control mx-3" style="white-space:normal;" cols="15" rows="5"
-                                        placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
+                                    <textarea name="langkah_resep[]" class="form-control mx-3" style="white-space:normal;" cols="15"
+                                        rows="5" placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
                             {{ trim($item_langkah->deskripsi_langkah) }}
                         </textarea>
                                     @error('langkah_resep.*')
@@ -251,9 +256,11 @@
 
                     </div>
                     <br>
-                    <button type="button" id="button-new-input2" class="btn text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
-                        Langkah - Langkah</button>
+                    <div>
+                        <button type="button" id="button-new-input2" class="btn btn-outline-dark"
+                            style="float: right;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
+                            Langkah - Langkah</button>
+                    </div>
                     <br>
                     <br>
                     <div class="mt-2 mx-2">
@@ -372,22 +379,24 @@
                     <br>
                     <br>
                     @if (Auth::user()->isSuperUser === 'yes')
-                    <div class="mt-2 mx-2">
-                        <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
-                            <b> Resep anda gratis / premium? </b>
-                        </label> <br>
-                        <input type="radio" class="btn-check" name="premium" id="success-outlined"
-                            autocomplete="off" value="no" {{ $edit_resep->isPremium == "no" ? "checked" : "" }}>
-                        <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
+                        <div class="mt-2 mx-2">
+                            <label for="jenis_makanan" class="form-label" style="font-weight: 600;">
+                                <b> Resep anda gratis / premium? </b>
+                            </label> <br>
+                            <input type="radio" class="btn-check" name="premium" id="success-outlined"
+                                autocomplete="off" value="no" {{ $edit_resep->isPremium == 'no' ? 'checked' : '' }}>
+                            <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
 
-                        <input type="radio" class="btn-check" name="premium" id="danger-outlined"
-                            autocomplete="off" value="yes" {{ $edit_resep->isPremium == "yes" ? "checked" : "" }}>
-                        <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
+                            <input type="radio" class="btn-check" name="premium" id="danger-outlined"
+                                autocomplete="off" value="yes" {{ $edit_resep->isPremium == 'yes' ? 'checked' : '' }}>
+                            <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
+                        </div>
+                    @endif
+                    <div>
+                        <button type="submit" class="btn text-white mb-4" id="button-edit-recipe"
+                            style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
+                            Resep</button>
                     </div>
-                @endif
-                    <button type="submit" class="btn text-white mb-4" id="button-edit-recipe"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
-                        Resep {{ $edit_resep->nama_resep }}</button>
                 </div>
             </div>
         </div>
@@ -399,6 +408,7 @@
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             color: #EAEAEA;
         }
+
         .btn-no-select {
             background: #EAEAEA;
             border-radius: 15px;
@@ -409,13 +419,13 @@
     <script>
         const free_button = document.getElementById("free");
         const prem_button = document.getElementById("prem");
-        free_button.addEventListener("click", function () {
+        free_button.addEventListener("click", function() {
             free_button.classList.remove("btn-no-select");
             free_button.classList.add("btn-select");
             prem_button.classList.remove("btn-select");
             prem_button.classList.add("btn-no-select");
         });
-        prem_button.addEventListener("click", function () {
+        prem_button.addEventListener("click", function() {
             prem_button.classList.remove("btn-no-select");
             prem_button.classList.add("btn-select");
             free_button.classList.remove("btn-select");
@@ -425,7 +435,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script>
-         $("document").ready(function() {
+        $("document").ready(function() {
             $("#button-edit-recipe").click(function(event) {
                 event.preventDefault();
                 const data = $("#form-edit-recipe").serialize();
@@ -439,7 +449,8 @@
                     data: formData,
                     success: function success(response) {
                         if (response.redirect) {
-                            window.location.href = response.redirect + "?message=Sukses mengupdate resep!";
+                            window.location.href = response.redirect +
+                                "?message=Sukses mengupdate resep!";
                         }
                         /*
                         iziToast.show({

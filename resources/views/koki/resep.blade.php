@@ -106,8 +106,8 @@
                     </div>
                     <div id="new-input1"></div>
                     <br>
-                    <button type="button" id="button-new-input1" class="btn text-white"
-                        style="float: right;background: #F7941E; border-radius:15px ;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                    <button type="button" id="button-new-input1" class="btn btn-outline-dark"
+                        style="float: right; border-radius:15px ;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                         Tambahkan Bahan & Takaran
                     </button>
                     <br>
@@ -120,8 +120,8 @@
                     </div>
                     <div id="new-input-alat"></div>
                     <br>
-                    <button type="button" id="button-new-alat" class="btn text-white"
-                        style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
+                    <button type="button" id="button-new-alat" class="btn btn-outline-dark"
+                        style="float: right;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
                         Tambahkan Alat - Alat
                     </button>
                     <script>
@@ -160,10 +160,10 @@
                     <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama
                                 Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control col-lg-10 col-md-9 col-sm-8"
+                        <input type="text" name="lama_memasak" class="form-control col-lg-10 col-md-9 col-sm-6"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
-                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-lg-2 col-md-3 col-sm-4">
+                        <select name="lama_memasak2" id="lama_memasak2" class="form-control col-lg-2 col-md-3 col-sm-6">
                             <option value="menit" {{ old('lama_memasak2') == 'menit' ? 'selected' : '' }}>menit</option>
                             <option value="jam" {{ old('lama_memasak2') == 'jam' ? 'selected' : '' }}>jam</option>
                         </select>
@@ -251,8 +251,8 @@
 
                     </div>
                     <br>
-                    <button type="button" id="button-new-input2" class="btn text-white"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
+                    <button type="button" id="button-new-input2" class="btn btn-outline-dark"
+                        style="float: right; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
                         Langkah - Langkah</button>
                     <br>
                     <br>
