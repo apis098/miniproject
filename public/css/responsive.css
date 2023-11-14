@@ -115,5 +115,16 @@ padding-left: 0;
   .video-js{
       width: 100%;
   } 
-  
+  /* .form-comment{
+    width: 110%;
+  } */
 }
+/* .form-comment{
+  display: flex;
+  width: 110%;
+  margin-bottom: 3%;
+  margin-left: -5.5%;
+}
+.comment-input{
+  margin-top: -0.5%;
+} */
