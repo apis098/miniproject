@@ -33,13 +33,46 @@
             border: 0.50px black solid
         }
 
+         /* untuk tampilan mobile */
+         @media (min-width: 350px) and (max-width: 860px) {
+                   div.rigt {
+                    margin-left: 40px;
+                   }
+
+                   button.knn {
+margin-left: 140px;
+}
+
+    input.wid{
+        width: 100%;
+    }
+
+    span.komn {
+                    display: flex;
+                    flex-direction: column;
+                   }
+
+                }
+
           /* untuk tampilan laptop */
           @media (min-width: 1210px) and (max-width: 4000px) {
 
 div.pl {
     margin-left: 600px;
-    top: -200px;
+   margin-top: -30px;
 }
+
+div.right {
+margin-left: 50px;
+}
+
+button.knn {
+    right: -2px;
+}
+
+input.wid{
+        width: 500px;
+    }
 
 }
     </style>
@@ -48,8 +81,8 @@ div.pl {
             <div class="col-lg-2 mt-3">
                 @if ($userLog == 2)
                     @if ($show_resep->User->id != Auth::user()->id)
-                        <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
-                            class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
+                        <button type="submit" style="position: absolute;  background-color:#F7941E; "
+                            class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2 knn" data-toggle="modal"
                             data-target="#reportModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -58,8 +91,8 @@ div.pl {
                             </svg>
                         </button>
                     @else
-                        <button type="submit" style="position: absolute;  right: -2px; background-color:#F7941E; "
-                            class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2" data-toggle="modal"
+                        <button type="submit" style="position: absolute;  background-color:#F7941E; "
+                            class="btn btn-orange btn-sm text-light mt-2 me-2 rounded-circle p-2 knn" data-toggle="modal"
                             data-target="#incomeModal{{ $show_resep->id }}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512">
                                 <path fill="currentColor"
@@ -116,6 +149,7 @@ div.pl {
                     <div style="" class="d-flex">
                         @if ($userLog === 2)
                             @if ($show_resep->User->id === Auth::user()->id)
+                            <div class="d-flex right rigt">
                                 <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
                                     <button type="submit" class="btn btn-edit ">Edit</button>
                                 </form>
@@ -124,6 +158,7 @@ div.pl {
                                     @method('DELETE')
                                     <button type="button" onclick="DeleteData()" class="btn btn-hapus">Hapus</button>
                                 </form>
+                            </div>
                             @else
                                 <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST" class="like-form">
                                     @csrf
@@ -932,7 +967,7 @@ div.pl {
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="" style="margin-left: 18px;"><b>Komentar
+                    <h5 class="text-nowrap" style="margin-left: 18px;"><b>Komentar
                             ({{ $show_resep->comment_count() }})
                         </b></h5>
                     <div class="col-10">
@@ -940,10 +975,10 @@ div.pl {
                             <form method="POST" id="FormTambahKomentarResep{{ Auth::user()->id }}"
                                 action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->user_id }}/{{ $show_resep->id }}">
                                 @csrf
-                                <div class="input-group">
+                                <div class="input-group ">
                                     <input type="text" id="comment_recipe{{ Auth::user()->id }}" name="komentar"
-                                        width="500px" maxlength="255" {{ $userLog === 1 ? 'disabled' : '' }}
-                                        class="form-control rounded-3 me-5"
+                                        maxlength="255" {{ $userLog === 1 ? 'disabled' : '' }}
+                                        class="form-control rounded-3 kri wid"
                                         placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                                     <button type="submit" onclick="ButtonTambahKomentarResep({{ Auth::user()->id }})"
@@ -956,8 +991,8 @@ div.pl {
                     <form action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="input-group">
-                            <input type="text" id="reply" name="komentar" width="500px" maxlength="255"
-                                class="form-control rounded-3 me-5"
+                            <input type="text" id="reply" name="komentar" maxlength="255"
+                                class="form-control rounded-3 kri wid"
                                 placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                             {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                             <button type="button" onclick="harusLogin()"

@@ -108,11 +108,11 @@
                     }
                 }
 
-                @media (min-width: 1024px) {
+                /* @media (min-width: 1024px) {
                     button.rigt {
                         margin-right: 0px;
                     }
-                }
+                } */
 
                 @media (min-width: 1024px) {
 
