@@ -262,6 +262,7 @@
                 cursor: pointer;
                 outline: inherit;
             }
+
         </style>
     </head>
 
@@ -276,7 +277,7 @@
                 <div class="d-flex">
                     <header class="header_section">
                         <div class="container ms-4">
-                            <div class="col-lg-12 col-xl-6 col-md-12 col-sm-6">
+                            <div class="col-lg-11 col-xl-6 col-md-12 col-sm-6">
                                 <nav class="navbar navbar-expand-xl custom_nav-container">
                                     <div style="margin-left: -80px;">
                                         @if (Auth::check())
@@ -308,8 +309,8 @@
                                         <span class=""> </span>
                                     </button>
 
-                                    <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
-                                        <ul class="navbar-nav mt-2 text-center justify-content-center ">
+                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                        <ul class="navbar-nav mt-2 text-center justify-content-center col-lg-4 col-xl-6 ml-auto">
                                             <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
                                                 style="font-size: 15px;">
                                                 <a class="nav-link" id="navbar"
@@ -342,9 +343,9 @@
                                   </li> --}}
 
                                         @if ($messageCount == 0)
-                                            <div class="user_option text-center d-flex nav-item" style="margin-left: 35px;">
+                                            <div class="user_option gahah text-center d-flex nav-item">
                                             @else
-                                                <div class="user_option text-center d-flex nav-item" style="margin-left: 25px;">
+                                                <div class="user_option gahah text-center d-flex nav-item">
                                         @endif
                                         @if (Auth::check() && $notification != null)
                                             {{-- dropdown notifikasi --}}
@@ -1222,7 +1223,8 @@
                                                 <div class="dropdown-divider"></div>
                                             </div>
                                     </div>
-                                </ul>
+                                </div>
+                                        </ul>
                                     @endif
                                 @else
                                     <div class="mx-5">
