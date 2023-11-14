@@ -310,32 +310,32 @@
                                     </button>
 
                                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav mt-2 text-center justify-content-center col-lg-4 col-xl-6 ml-auto">
+                                        <ul class="navbar-nav mt-2 my-2 text-center justify-content-center col-lg-4 col-xl-6 ml-auto">
                                             <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
                                                 style="font-size: 15px;">
-                                                <a class="nav-link" id="navbar"
+                                                <a class="nav-link mt-2" id="navbar"
                                                     href="{{ route('home') }}"><b>Beranda</b></a>
                                             </li>
                                             <li class="nav-item {{ request()->is('resep') ? 'active' : '' }}"
                                                 style="font-size: 15px">
-                                                <a class="nav-link" id="navbar"
+                                                <a class="nav-link mt-2" id="navbar"
                                                     href="{{ route('resep.home') }}"><b>Resep</b></a>
                                             </li>
                                             <li class="nav-item {{ request()->is('kursus') ? 'active' : '' }}"
                                                 style="font-size: 15px">
-                                                <a class="nav-link" id="navbar" href="{{ route('kursus') }}"><b>
+                                                <a class="nav-link mt-2" id="navbar" href="{{ route('kursus') }}"><b>
                                                         Kursus
                                                     </b></a>
                                             </li>
                                             <li class="nav-item {{ request()->is('veed') ? 'active' : '' }}"
                                                 style="font-size: 15px">
-                                                <a class="nav-link" id="navbar"
+                                                <a class="nav-link mt-2" id="navbar"
                                                     href="{{ url('veed') }}"><b>Feed</b></a>
                                             </li>
 
                                             <li class="nav-item {{ request()->is('keluhan') ? 'active' : '' }} me-2"
                                                 style="font-size: 15px">
-                                                <a class="nav-link" id="navbar"
+                                                <a class="nav-link mt-2" id="navbar"
                                                     href="{{ route('keluhan') }}"><b>Diskusi</b></a>
                                             </li>
                                             {{-- <li class="nav-item">
@@ -397,8 +397,8 @@
                                             <div class="modal fade" id="exampleModalScrollable" tabindex="-1"
                                                 role="dialog" aria-labelledby="exampleModalScrollableTitle"
                                                 aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-scrollable" role="document"
-                                                    style="margin-left: 55%; margin-top:5%; max-width:420px; max-height:450px;">
+                                                <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document"
+                                                    >
                                                     <div class="modal-content" style="border-radius: 20px;">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title text-orange fw-bolder"
