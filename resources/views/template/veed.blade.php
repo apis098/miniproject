@@ -16,11 +16,31 @@
             }
         </script>
     @endif
+  
     <section class="text-align-center mt-5" id="all">
-
+        <style>
+        @media screen and (max-width: 768px) {
+            .hidden-content {
+                display: none;
+            }
+            .cari-veed,
+            .responsive-upload{
+                width: 90%;
+                left:5%;
+            }    
+            .item-video{
+                width: 90%;
+                left: 5%;
+            } 
+            .video-js{
+                width: 100%;
+            } 
+            
+        }
+        </style>
         <!-- rekomendasi chef start -->
         <div class="row justify-content-center">
-            <div class="col-md-3 " style="">
+            <div class="col-md-3 hidden-content" style="">
                 <div class="card" style="width: 15rem; margin-left:50px;  border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px; border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -139,8 +159,8 @@
 
             </style>
             <!-- feed start -->
-            <div class="col-md-6">
-                <div class="card border border-0 posisi">
+            <div id="feed-start" class="col full-screen">
+                <div class="card border border-0  posisi cari-veed">
                     <div class="card-body form">
                         <i class="fa fa-search"></i>
                         <input type="text" class="form-control form-input search-video" placeholder="Cari...">
@@ -152,7 +172,7 @@
                         <input type="text" class="form-control form-input search-uuid" value="{{ request()->uuid }}"
                             placeholder="Cari...">
                     </div>
-                </div>
+                </div> 
                 <script>
                     $(document).ready(function() {
                         $('.search-video').on('input', function() {
@@ -180,7 +200,7 @@
                         });
                     });
                 </script>
-                <div class="card">
+                <div class="card responsive-upload">
                     <div class="card-body">
 
                         @if (Auth::check())
@@ -288,7 +308,7 @@
                     });
                 </script>
                 <!-- foreach video pembelajaran start -->
-                <div id="video_pembelajaran">
+                <div id="video_pembelajaran" class="veed-content">
                     @if ($video_pembelajaran->count() == 0)
                         <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: 7em">
@@ -297,7 +317,7 @@
                         </div>
                     @endif
                     @foreach ($video_pembelajaran as $urut => $item_video)
-                        <div class="card mt-4 mb-5 item-video" style="max-width: 42rem;">
+                        <div class="card mt-4 mb-5 item-video" >
                             <!-- Data -->
                             <div class="card-header" style="background-color: white">
                                 <p id="uuid" hidden>{{ $item_video->uuid }}</p>
@@ -423,7 +443,7 @@
                             </div>
                             <!-- Media -->
                             <!-- Interactions -->
-                            <div class="card-body">
+                            <div class="card-body media-comment text-center">
                                 <!-- Reactions -->
                                 <div class="d-flex justify-content-between mb-2">
 
@@ -2536,11 +2556,11 @@
             <!-- feed end -->
 
             <!-- diikuti start -->
-            <div class="col-md-3">
+            <div class="col-md-3 hidden-content">
                 <div class="card" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
-            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                        border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                         Resep Terbaru
                     </div>
                         <div class="card-body" style="height: 500px;">
@@ -2576,7 +2596,7 @@
                 <div class="card mt-5 mb-5" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
-            border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                        Kursus terbaru
                     </div>
                     <div class="card-body" style="height: 500px;">
@@ -4006,4 +4026,5 @@
             });
         }
     </script>
+
 @endsection
