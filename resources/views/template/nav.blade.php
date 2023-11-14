@@ -161,6 +161,7 @@
                 display: block;
             }
 
+
             .dropdown-content {
                 display: none;
                 position: absolute;
@@ -275,8 +276,8 @@
                 <div class="d-flex">
                     <header class="header_section">
                         <div class="container ms-4">
-                            <div class="col-6">
-                                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                            <div class="col-lg-12 col-xl-6 col-md-12 col-sm-6">
+                                <nav class="navbar navbar-expand-xl custom_nav-container">
                                     <div style="margin-left: -80px;">
                                         @if (Auth::check())
                                             @if (Auth::user()->role == 'Admin')
@@ -301,15 +302,14 @@
                                         @endif
                                     </div>
 
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                         aria-expanded="false" aria-label="Toggle navigation">
                                         <span class=""> </span>
                                     </button>
 
-                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul class="navbar-nav mt-2 me-2 justify-content-center "
-                                            style="margin-left: -2%">
+                                    <div class="collapse navbar-collapse mr-auto" id="navbarSupportedContent">
+                                        <ul class="navbar-nav mt-2 text-center justify-content-center ">
                                             <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
                                                 style="font-size: 15px;">
                                                 <a class="nav-link" id="navbar"
@@ -340,11 +340,11 @@
                                             {{-- <li class="nav-item">
                                     <a class="nav-link" href="{{route('login')}}">Login</a>
                                   </li> --}}
-                                        </ul>
+
                                         @if ($messageCount == 0)
-                                            <div class="user_option" style="margin-left: 100px;">
+                                            <div class="user_option text-center d-flex nav-item" style="margin-left: 35px;">
                                             @else
-                                                <div class="user_option" style="margin-left: 65px;">
+                                                <div class="user_option text-center d-flex nav-item" style="margin-left: 25px;">
                                         @endif
                                         @if (Auth::check() && $notification != null)
                                             {{-- dropdown notifikasi --}}
@@ -1222,6 +1222,7 @@
                                                 <div class="dropdown-divider"></div>
                                             </div>
                                     </div>
+                                </ul>
                                     @endif
                                 @else
                                     <div class="mx-5">
