@@ -17,14 +17,14 @@
         <div class="container">
             <div id="hapus"></div>
             <div class="row">
-                <div class="col-lg-3 mb-5 mx-2">
+                <div class="col-lg-3 mb-5">
                     <div class="card my-5">
                         <div class="card-body text-center">
                             <img src="{{ asset('storage/' . $edit_resep->foto_resep) }}" width="100%"
                                 alt="{{ $edit_resep->foto_resep }}" class="" id="changePhotoResep">
                         </div>
                     </div>
-                    <div class="row" style="border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
+                    <div class="row mx-auto" style="border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px;">
                             <div
@@ -107,8 +107,8 @@
                     <div id="new-input1"></div>
                     <br>
                     <div>
-                        <button type="button" id="button-new-input1" class="btn text-white"
-                            style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+                        <button type="button" id="button-new-input1" class="btn btn-outline-dark"
+                            style="float: right;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
                             Tambahkan Bahan & Takaran
                         </button>
                     </div>
@@ -130,8 +130,8 @@
                     <div id="new-input-alat"></div>
                     <br>
                     <div>
-                        <button type="button" id="button-new-alat" class="btn text-white"
-                            style="float: right;background:#F7941E;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
+                        <button type="button" id="button-new-alat" class="btn btn-outline-dark"
+                            style="float: right;border-radius:15px;box-shadow:0px 4px 4px rgb(0, 0, 0, 0.25)">
                             Tambahkan Alat - Alat
                         </button>
                     </div>
@@ -257,8 +257,8 @@
                     </div>
                     <br>
                     <div>
-                        <button type="button" id="button-new-input2" class="btn text-white"
-                            style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
+                        <button type="button" id="button-new-input2" class="btn btn-outline-dark"
+                            style="float: right;border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Tambahkan
                             Langkah - Langkah</button>
                     </div>
                     <br>
@@ -395,7 +395,7 @@
                     <div>
                         <button type="submit" class="btn text-white mb-4" id="button-edit-recipe"
                             style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Edit
-                            Resep {{ $edit_resep->nama_resep }}</button>
+                            Resep</button>
                     </div>
                 </div>
             </div>
