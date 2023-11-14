@@ -17,7 +17,7 @@
         @csrf
         <div class="container">
             <div class="row mx-auto">
-                <div class="col-lg-4 col-md-6 col-sm-12 mb-3" style="max-width:280px;">
+                <div class="col-lg-4 mt-4 col-md-6 col-sm-12 mb-3" style="max-width:280px;">
                     <div id="div" class="card my-4"
                     style="border-radius: 15px;border: 1px solid black;" >
                         <div class="mb-4 text-center" style="width: 100%;">
@@ -412,7 +412,6 @@
                     processData: false,
                     data: formData,
                     success: function success(response) {
-                        $("#button-add-recipe").prop('disabled', false);
 
                         window.location.href =
                             "{{ route('koki.recipe') }}?message-success=Sukses menambahkan resep!";

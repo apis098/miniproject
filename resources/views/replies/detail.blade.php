@@ -371,8 +371,8 @@
                                                         </button>
                                                     @endif
                                                 </form>
-                                                {{-- @if (auth()->check()) --}}
-                                                @if ($userLogin->id != $item->user_id_sender && $userLogin->role != 'admin')
+                                                @if (auth()->check())
+                                                @if (auth()->user()->id != $item->user_id_sender && $userLogin->role != 'admin')
                                                     <button type="button" data-toggle="modal"
                                                         data-target="#modalBalasan{{ $item->id }}"
                                                         class="yuhu text-danger btn-sm rounded-5 "><i
@@ -403,6 +403,7 @@
                                                                 class="fa-solid fa-trash"></i>
                                                         </button>
                                                     </form>
+                                                @endif
                                                 @endif
                                             </div>
 

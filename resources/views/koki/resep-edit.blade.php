@@ -17,7 +17,7 @@
         <div class="container">
             <div id="hapus"></div>
             <div class="row">
-                <div class="col-lg-3 mb-5">
+                <div class="col-lg-3 mt-2 mb-5">
                     <div class="card my-5">
                         <div class="card-body text-center">
                             <img src="{{ asset('storage/' . $edit_resep->foto_resep) }}" width="100%"
@@ -546,7 +546,7 @@
                             </svg>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-lg-7 my-auto mx-1">
                                         <div class="row ms-3 mb-2"
                                         style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">

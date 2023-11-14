@@ -53,11 +53,11 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="row"
+                    <div class="row mx-1"
                         style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 39px;">
-                            <p
+                            <p class="my-auto text-truncate"
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                 Pilih File</p>
                             <input name="foto_kursus" class="form-control my-auto mx-1" style="display: none;"
@@ -182,7 +182,7 @@
 
                     <div class="mb-2">
                         <label style="font-weight: 600;" for="tanggal_dimulai_kursus" class="form-label">Tanggal Dimulai Kursus</label><br>
-                        *minimal 9 dari tanggal saat ini
+                        <span>*tanggal dimulai kursus minimal 9 dari tanggal saat ini</span>
                         <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control">
                     </div>
 

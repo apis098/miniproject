@@ -44,11 +44,11 @@
                                 id="uploadedImage" class="">
                         </div>
                     </div>
-                    <div class="row"
+                    <div class="row mx-1"
                         style=" border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40px;">
                         <button type="button" onclick="klik()" class="col-4"
                             style="border: 0.50px rgb(255, 148, 47) solid;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; padding: 9px 12px; right: 2px; width: 100px;height: 39px;">
-                            <p
+                            <p class="my-auto text-truncate"
                                 style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                 Pilih File</p>
                             <input name="foto_kursus" class="form-control my-auto mx-1" style="display: none;"
@@ -63,7 +63,7 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <div class="row hoverTambahSesi"
+                    <div class="row mx-1 hoverTambahSesi"
                     style=" border-radius: 15px; height: 40px;">
                     <button type="button" onclick="redirectTambahSesi()" class="btn btn-outline-dark mt-3" style="border: 1px solid black;font-weight:600;color:black;border-radius:15px;">
                         <span>Tambah Sesi</span>
@@ -192,6 +192,7 @@
                         <label for="tanggal_dimulai_kursus" class="form-label">
                             Tanggal dimulai kursus
                         </label>
+                        <span>*tanggal dimulai kursus minimal 9 dari tanggal saat ini</span>
                         <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control" value="{{ $kursus->tanggal_dimulai_kursus }}">
                     </div>
                     <div class="mb-3">
