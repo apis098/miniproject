@@ -127,10 +127,10 @@
             border-radius: 15px;
         }
 
-            img {
-        max-width: 100%;
-        height: auto;
-    }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
 
         .btn-tambah {
@@ -162,11 +162,11 @@
 
             }
 
-            .btn-tambah{
-               width: 20%
+            .btn-tambah {
+                width: 20%
             }
 
-            .card{
+            .card {
                 width: 100%
             }
         }
@@ -193,7 +193,7 @@
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h5>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h5>
                         <div id="border1" class="ms-1" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -247,9 +247,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/koki/resep" type="button" class="btn btn-tambah">
-                                Buat Resep
-                            </a>
+                            <button
+                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-sm ml-4">
+                                <span style="font-weight: 600">
+                                    <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
+                                        Buat Resep
+                                    </a>
+                                </span>
+                            </button>
                         </div>
                     </div>
                     {{-- start tab 1 --}}
@@ -262,25 +268,27 @@
                         @endif
                         <div class="row" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class="col-lg-3 col-md-5 col-sm-6 mb-4 resepDibuat">
-                                    <div class="card-body" style="border-radius: 15px; border: 0.50px black solid">
-                                        <div class=" my-3 mx-auto" style="background-color: white">
+                                <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3" style="border-radius:15px">
+                                    <div class="row mx-auto">
+                                        <div class="col-12 card-header">
+                                            <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}"
+                                                class="card-img-top"
+                                                style="max-width:200px; max-height: 200px; border-radius:15px;"
+                                                alt="...">
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <h5>
+                                                    <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
+                                                        href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
+                                                        {{ $my_recipe->nama_resep }}
+                                                    </a>
+                                                </h5>
+                                                <br>
 
-                                            <img class="rounded-4 mb-2" style=" width: 100%;max-wdth:100%"
-                                                src="{{ asset('storage/' . $my_recipe->foto_resep) }}" />
-
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <h5>
-                                                        <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                            href="/artikel/{{ $my_recipe->id }}/{{ $my_recipe->nama_resep }}">
-                                                            {{ $my_recipe->nama_resep }}
-                                                        </a>
-                                                    </h5>
-                                                </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-5 col-sm-6 mb-3">
+                                                <div class="col-4 mb-3">
                                                     <svg width="23" height="29" viewBox="0 0 28 28"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
@@ -291,7 +299,7 @@
                                                     </svg>
                                                     {{ $my_recipe->likes()->count() }}
                                                 </div>
-                                                <div class="col-lg-6 col-md-5 col-sm-6 mb-3">
+                                                <div class="col-4 mb-3">
                                                     <svg width="20" height="21" viewBox="0 0 30 31"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g
@@ -313,7 +321,7 @@
                                                     <span
                                                         class="text-center">{{ $my_recipe->comment_recipes()->count() }}</span>
                                                 </div>
-                                                <div class=" col-lg-6 col-md-5 col-sm-6 mb-3">
+                                                <div class=" col-4 mb-3">
                                                     <svg width="21" height="25" viewBox="0 0 24 33"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g id="&#240;&#159;&#166;&#134; icon &#34;bookmark save&#34;">
@@ -326,7 +334,6 @@
                                                     <span class="text-center">{{ $my_recipe->favorite()->count() }}</span>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -358,9 +365,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/koki/resep" type="button" class="btn btn-tambah">
-                                Buat Resep
-                            </a>
+                            <button
+                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-sm ml-4">
+                                <span style="font-weight: 600">
+                                    <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
+                                        Buat Resep
+                                    </a>
+                                </span>
+                            </button>
                         </div>
                     </div>
 
@@ -374,49 +387,75 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_disukai as $num => $suka)
-                                <div class="col-lg-3 col-md-5 col-sm-6 mb-4 resepDisukai">
-                                    <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                                        <div class="card-body" style="background-color: white">
-                                            <img class="rounded-circle mb-2"
-                                                style="border: 0.50px black solid; width: 100%;"
-                                                src="{{ asset('storage/' . $suka->foto_resep) }}" />
-
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
+                            <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai" style="border-radius:15px">
+                                <div class="row mx-auto">
+                                    <div class="col-12 card-header">
+                                        <img src="{{ asset('storage/' . $suka->foto_resep) }}"
+                                            class="card-img-top"
+                                            style="max-width:200px; max-height: 200px; border-radius:15px;"
+                                            alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-12">
                                             <h5>
-                                                <a style="color: black; font-size: 24px; margin-left:-1px"
+                                                <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
                                                     href="/artikel/{{ $suka->id }}/{{ $suka->nama_resep }}">
                                                     {{ $suka->nama_resep }}
                                                 </a>
                                             </h5>
+                                            <br>
+
                                         </div>
-                                    </div>
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <svg width="20" height="20" viewBox="0 0 28 28"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <!-- Icon code here -->
-                                                    </svg>
-                                                    {{ $suka->likes()->count() }}
-                                                </div>
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <svg width="20" height="21" viewBox="0 0 30 31"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <!-- Icon code here -->
-                                                    </svg>
-                                                    {{ $suka->comment_recipes()->count() }}
-                                                </div>
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <svg width="14" height="23" viewBox="0 0 24 33"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <!-- Icon code here -->
-                                                    </svg>
-                                                    {{ $suka->favorite()->count() }}
-                                                </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 mb-3">
+                                                <svg width="23" height="29" viewBox="0 0 28 28"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
+                                                        <path id="Vector"
+                                                            d="M1.77327 12.9898V25.1137C1.77327 25.592 2.17023 25.9797 2.65991 25.9797H6.20645C6.69613 25.9797 7.09309 25.592 7.09309 25.1137V12.9898C7.09309 12.5116 6.69613 12.1239 6.20645 12.1239H2.65991C2.17023 12.1239 1.77327 12.5116 1.77327 12.9898ZM7.97973 11.0534L9.54368 7.99834C10.2644 6.59046 10.6396 5.03802 10.6396 3.46396V3.03096C10.6396 1.35701 12.029 0 13.7429 0C15.4567 0 16.8917 1.26842 17.0622 2.93405L17.6485 8.6599H23.5668C26.0152 8.6599 28 10.5985 28 12.9898C28 13.1337 27.9927 13.2775 27.978 13.4207L26.914 23.8126C26.6874 26.0261 24.7804 27.7117 22.5029 27.7117H11.5263C10.3336 27.7117 9.251 27.2517 8.45418 26.5035C7.98253 27.2297 7.15212 27.7117 6.20645 27.7117H2.65991C1.19088 27.7117 0 26.5485 0 25.1137V12.9898C0 11.555 1.19088 10.3919 2.65991 10.3919H6.20645C6.88771 10.3919 7.50914 10.642 7.97973 11.0534ZM8.86636 13.1943V23.3817C8.86636 24.8165 10.0572 25.9797 11.5263 25.9797H22.5029C23.8694 25.9797 25.0136 24.9683 25.1496 23.6402L26.2135 13.2484C26.2223 13.1625 26.2267 13.0762 26.2267 12.9898C26.2267 11.555 25.0358 10.3919 23.5668 10.3919H16.8461C16.3906 10.3919 16.0092 10.0548 15.9638 9.61206L15.2978 3.10639C15.2179 2.32615 14.5457 1.73198 13.7429 1.73198C13.0083 1.73198 12.4129 2.31356 12.4129 3.03096V3.46396C12.4129 5.3069 11.9736 7.12453 11.1297 8.77291L8.86636 13.1943Z"
+                                                            fill="black" />
+                                                    </g>
+                                                </svg>
+                                                {{ $suka->likes()->count() }}
+                                            </div>
+                                            <div class="col-lg-4 mb-3">
+                                                <svg width="20" height="21" viewBox="0 0 30 31"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g
+                                                        id="&#240;&#159;&#166;&#134; icon &#34;comment square chat message&#34;">
+                                                        <g id="Group">
+                                                            <path id="Vector" d="M7.22266 7.22168H22.7782"
+                                                                stroke="black" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path id="Vector_2" d="M7.22266 13.4443H13.4449"
+                                                                stroke="black" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path id="Vector_3"
+                                                                d="M1 4.11111V28.6778C1 29.3707 1.83778 29.7177 2.32774 29.2277L8.32217 23.2334C8.61388 22.9417 9.00956 22.7778 9.42211 22.7778H25.8889C27.6072 22.7778 29 21.3849 29 19.6667V4.11111C29 2.39289 27.6072 1 25.8889 1H4.11111C2.39289 1 1 2.39289 1 4.11111Z"
+                                                                stroke="black" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <span
+                                                    class="text-center">{{ $suka->comment_recipes()->count() }}</span>
+                                            </div>
+                                            <div class=" col-lg-4 mb-3">
+                                                <svg width="21" height="25" viewBox="0 0 24 33"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="&#240;&#159;&#166;&#134; icon &#34;bookmark save&#34;">
+                                                        <path id="Vector"
+                                                            d="M1 32V2.55C1 1.69397 1.69397 1 2.55 1H21.15C22.0061 1 22.7 1.69397 22.7 2.55V32L11.85 22.5278L1 32Z"
+                                                            stroke="black" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </g>
+                                                </svg>
+                                                <span class="text-center">{{ $suka->favorite()->count() }}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
 
@@ -447,9 +486,15 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/koki/resep" type="button" class="btn btn-tambah">
-                                Buat Resep
-                            </a>
+                            <button
+                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-sm ml-4">
+                                <span style="font-weight: 600">
+                                    <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
+                                        Buat Resep
+                                    </a>
+                                </span>
+                            </button>
                         </div>
                     </div>
 
@@ -463,74 +508,75 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_favorite as $num => $favorite)
-                                <div class="col-lg-3 col-md-5 col-sm-12 mb-4 resepFavorite">
-                                    <div class="card-body" style="border-radius: 15px; border: 0.50px black solid">
-                                        <div class=" my-3 mx-auto" style="background-color: white">
+                            <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3 resepFavorite" style="border-radius:15px">
+                                <div class="row mx-auto">
+                                    <div class="col-12 card-header">
+                                        <img src="{{ asset('storage/' . $favorite->foto_resep) }}"
+                                            class="card-img-top"
+                                            style="max-width:200px; max-height: 200px; border-radius:15px;"
+                                            alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-12">
+                                            <h5>
+                                                <a style="color: black; font-size: 24px; margin-left:-1px;text-align:left;"
+                                                    href="/artikel/{{ $favorite->id }}/{{ $favorite->nama_resep }}">
+                                                    {{ $favorite->nama_resep }}
+                                                </a>
+                                            </h5>
+                                            <br>
 
-                                            <img class="rounded-circle mb-2"
-                                                style="border: 0.50px black solid; width: 100%;"
-                                                src="{{ asset('storage/' . $favorite->foto_resep) }}" />
-
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <h5>
-                                                        <a style="color: black; font-size: 24px; margin-left:-1px"
-                                                            href="/artikel/{{ $favorite->id }}/{{ $favorite->nama_resep }}">
-                                                            {{ $favorite->nama_resep }}
-                                                        </a>
-                                                    </h5>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4 mb-3">
+                                                <svg width="23" height="29" viewBox="0 0 28 28"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
+                                                        <path id="Vector"
+                                                            d="M1.77327 12.9898V25.1137C1.77327 25.592 2.17023 25.9797 2.65991 25.9797H6.20645C6.69613 25.9797 7.09309 25.592 7.09309 25.1137V12.9898C7.09309 12.5116 6.69613 12.1239 6.20645 12.1239H2.65991C2.17023 12.1239 1.77327 12.5116 1.77327 12.9898ZM7.97973 11.0534L9.54368 7.99834C10.2644 6.59046 10.6396 5.03802 10.6396 3.46396V3.03096C10.6396 1.35701 12.029 0 13.7429 0C15.4567 0 16.8917 1.26842 17.0622 2.93405L17.6485 8.6599H23.5668C26.0152 8.6599 28 10.5985 28 12.9898C28 13.1337 27.9927 13.2775 27.978 13.4207L26.914 23.8126C26.6874 26.0261 24.7804 27.7117 22.5029 27.7117H11.5263C10.3336 27.7117 9.251 27.2517 8.45418 26.5035C7.98253 27.2297 7.15212 27.7117 6.20645 27.7117H2.65991C1.19088 27.7117 0 26.5485 0 25.1137V12.9898C0 11.555 1.19088 10.3919 2.65991 10.3919H6.20645C6.88771 10.3919 7.50914 10.642 7.97973 11.0534ZM8.86636 13.1943V23.3817C8.86636 24.8165 10.0572 25.9797 11.5263 25.9797H22.5029C23.8694 25.9797 25.0136 24.9683 25.1496 23.6402L26.2135 13.2484C26.2223 13.1625 26.2267 13.0762 26.2267 12.9898C26.2267 11.555 25.0358 10.3919 23.5668 10.3919H16.8461C16.3906 10.3919 16.0092 10.0548 15.9638 9.61206L15.2978 3.10639C15.2179 2.32615 14.5457 1.73198 13.7429 1.73198C13.0083 1.73198 12.4129 2.31356 12.4129 3.03096V3.46396C12.4129 5.3069 11.9736 7.12453 11.1297 8.77291L8.86636 13.1943Z"
+                                                            fill="black" />
+                                                    </g>
+                                                </svg>
+                                                {{ $favorite->likes()->count() }}
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <svg width="20" height="20" viewBox="0 0 28 28"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
-                                                            <path id="Vector"
-                                                                d="M1.77327 12.9898V25.1137C1.77327 25.592 2.17023 25.9797 2.65991 25.9797H6.20645C6.69613 25.9797 7.09309 25.592 7.09309 25.1137V12.9898C7.09309 12.5116 6.69613 12.1239 6.20645 12.1239H2.65991C2.17023 12.1239 1.77327 12.5116 1.77327 12.9898ZM7.97973 11.0534L9.54368 7.99834C10.2644 6.59046 10.6396 5.03802 10.6396 3.46396V3.03096C10.6396 1.35701 12.029 0 13.7429 0C15.4567 0 16.8917 1.26842 17.0622 2.93405L17.6485 8.6599H23.5668C26.0152 8.6599 28 10.5985 28 12.9898C28 13.1337 27.9927 13.2775 27.978 13.4207L26.914 23.8126C26.6874 26.0261 24.7804 27.7117 22.5029 27.7117H11.5263C10.3336 27.7117 9.251 27.2517 8.45418 26.5035C7.98253 27.2297 7.15212 27.7117 6.20645 27.7117H2.65991C1.19088 27.7117 0 26.5485 0 25.1137V12.9898C0 11.555 1.19088 10.3919 2.65991 10.3919H6.20645C6.88771 10.3919 7.50914 10.642 7.97973 11.0534ZM8.86636 13.1943V23.3817C8.86636 24.8165 10.0572 25.9797 11.5263 25.9797H22.5029C23.8694 25.9797 25.0136 24.9683 25.1496 23.6402L26.2135 13.2484C26.2223 13.1625 26.2267 13.0762 26.2267 12.9898C26.2267 11.555 25.0358 10.3919 23.5668 10.3919H16.8461C16.3906 10.3919 16.0092 10.0548 15.9638 9.61206L15.2978 3.10639C15.2179 2.32615 14.5457 1.73198 13.7429 1.73198C13.0083 1.73198 12.4129 2.31356 12.4129 3.03096V3.46396C12.4129 5.3069 11.9736 7.12453 11.1297 8.77291L8.86636 13.1943Z"
-                                                                fill="black" />
+                                            <div class="col-lg-4 mb-3">
+                                                <svg width="20" height="21" viewBox="0 0 30 31"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g
+                                                        id="&#240;&#159;&#166;&#134; icon &#34;comment square chat message&#34;">
+                                                        <g id="Group">
+                                                            <path id="Vector" d="M7.22266 7.22168H22.7782"
+                                                                stroke="black" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path id="Vector_2" d="M7.22266 13.4443H13.4449"
+                                                                stroke="black" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
+                                                            <path id="Vector_3"
+                                                                d="M1 4.11111V28.6778C1 29.3707 1.83778 29.7177 2.32774 29.2277L8.32217 23.2334C8.61388 22.9417 9.00956 22.7778 9.42211 22.7778H25.8889C27.6072 22.7778 29 21.3849 29 19.6667V4.11111C29 2.39289 27.6072 1 25.8889 1H4.11111C2.39289 1 1 2.39289 1 4.11111Z"
+                                                                stroke="black" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round" />
                                                         </g>
-                                                    </svg>
-                                                    {{ $favorite->likes()->count() }}
-                                                </div>
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <svg width="20" height="21" viewBox="0 0 30 31"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g
-                                                            id="&#240;&#159;&#166;&#134; icon &#34;comment square chat message&#34;">
-                                                            <g id="Group">
-                                                                <path id="Vector" d="M7.22266 7.22168H22.7782"
-                                                                    stroke="black" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path id="Vector_2" d="M7.22266 13.4443H13.4449"
-                                                                    stroke="black" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                                <path id="Vector_3"
-                                                                    d="M1 4.11111V28.6778C1 29.3707 1.83778 29.7177 2.32774 29.2277L8.32217 23.2334C8.61388 22.9417 9.00956 22.7778 9.42211 22.7778H25.8889C27.6072 22.7778 29 21.3849 29 19.6667V4.11111C29 2.39289 27.6072 1 25.8889 1H4.11111C2.39289 1 1 2.39289 1 4.11111Z"
-                                                                    stroke="black" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round" />
-                                                            </g>
-                                                        </g>
-                                                    </svg>
-                                                    {{ $favorite->comment_recipes()->count() }}
-                                                </div>
-                                                <div class="col-lg-3 col-md-5 col-sm-6 mb-3">
-                                                    <svg width="14" height="23" viewBox="0 0 24 33"
-                                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g id="&#240;&#159;&#166;&#134; icon &#34;bookmark save&#34;">
-                                                            <path id="Vector"
-                                                                d="M1 32V2.55C1 1.69397 1.69397 1 2.55 1H21.15C22.0061 1 22.7 1.69397 22.7 2.55V32L11.85 22.5278L1 32Z"
-                                                                stroke="black" stroke-width="2" stroke-linecap="round"
-                                                                stroke-linejoin="round" />
-                                                        </g>
-                                                    </svg>
-                                                    {{ $favorite->favorite()->count() }}
-                                                </div>
+                                                    </g>
+                                                </svg>
+                                                <span
+                                                    class="text-center">{{ $favorite->comment_recipes()->count() }}</span>
                                             </div>
-
+                                            <div class=" col-lg-4 mb-3">
+                                                <svg width="21" height="25" viewBox="0 0 24 33"
+                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <g id="&#240;&#159;&#166;&#134; icon &#34;bookmark save&#34;">
+                                                        <path id="Vector"
+                                                            d="M1 32V2.55C1 1.69397 1.69397 1 2.55 1H21.15C22.0061 1 22.7 1.69397 22.7 2.55V32L11.85 22.5278L1 32Z"
+                                                            stroke="black" stroke-width="2" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </g>
+                                                </svg>
+                                                <span class="text-center">{{ $favorite->favorite()->count() }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                         {{-- {{ $recipes->links('vendor.pagination.default') }} --}}
