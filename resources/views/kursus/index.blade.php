@@ -182,7 +182,7 @@
 
                     <div class="mb-2">
                         <label style="font-weight: 600;" for="tanggal_dimulai_kursus" class="form-label">Tanggal Dimulai Kursus</label><br>
-                        *minimal 9 dari tanggal saat ini
+                        <span>*tanggal dimulai kursus minimal 9 dari tanggal saat ini</span>
                         <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control">
                     </div>
 

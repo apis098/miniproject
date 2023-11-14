@@ -412,7 +412,6 @@
                     processData: false,
                     data: formData,
                     success: function success(response) {
-                        $("#button-add-recipe").prop('disabled', false);
 
                         window.location.href =
                             "{{ route('koki.recipe') }}?message-success=Sukses menambahkan resep!";

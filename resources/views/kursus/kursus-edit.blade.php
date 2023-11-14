@@ -192,6 +192,7 @@
                         <label for="tanggal_dimulai_kursus" class="form-label">
                             Tanggal dimulai kursus
                         </label>
+                        <span>*tanggal dimulai kursus minimal 9 dari tanggal saat ini</span>
                         <input type="date" name="tanggal_dimulai_kursus" id="tanggal_dimulai_kursus" class="form-control" value="{{ $kursus->tanggal_dimulai_kursus }}">
                     </div>
                     <div class="mb-3">
