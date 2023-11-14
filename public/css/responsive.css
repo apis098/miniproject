@@ -94,23 +94,26 @@ padding-left: 0;
     float: left;
     width: 50%;
   }
-  
-  @media screen and (max-width: 820px) {
+  @media screen and (max-width: 412px) {
     .hidden-content {
-        display: none;
-    }
-    .cari-veed,
-    .responsive-upload{
-        width: 90%;
-        left:5%;
-    }    
-    .item-video{
-        width: 90%;
-        left: 5%;
-    } 
-    .video-js{
-        width: 100%;
-    } 
-    
+      display: none;
+  }
+  }
 }
+@media screen and (max-width: 1000px) {
+  .hidden-content {
+      display: none;
+  }
+  .cari-veed, .responsive-upload{
+      width: 90%;
+      left:5%;
+  }    
+  .item-video{
+      width: 90%;
+      left: 5%;
+  } 
+  .video-js{
+      width: 100%;
+  } 
+  
 }
