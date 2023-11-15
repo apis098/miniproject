@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\kategori_makanan;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KategoriMakananController extends Controller
@@ -17,7 +18,8 @@ class KategoriMakananController extends Controller
         } else {
             $kategori_makanans = kategori_makanan::paginate(5);
         }
-        return view('admin.kategorimakanan', compact('kategori_makanans'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.kategorimakanan', compact('kategori_makanans','verifed_count'));
     }
 
 

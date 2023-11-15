@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\special_days;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class special_days_controller extends Controller
@@ -15,7 +16,8 @@ class special_days_controller extends Controller
         } else {
             $special_days = special_days::paginate(5);
         }
-        return view('admin.specialdays', compact('special_days'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.specialdays', compact('special_days','verifed_count'));
     }
 
     public function store(Request $request)

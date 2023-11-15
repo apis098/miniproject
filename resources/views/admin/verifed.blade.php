@@ -307,26 +307,28 @@
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
                                                 {{ $data_verified->followers }}</td>
                                             <td style="border-right:1px solid black;">
-                                                <form id="action_accept_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="button" onclick="confirmation_accept({{ $num }})" class="btn btn-sm rounded-3 text-light me-2"
-                                                        style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
-                                                            class="ms-2 me-2"
-                                                            style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
-                                                    </button>
-                                                </form>
-                                                <form id="action_menolak_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="button" onclick="confirmation_menolak({{ $num }})" class="btn btn-sm rounded-3 text-light"
-                                                        style=" border-radius: 15px; border: 1px black solid"><b
-                                                            class="ms-2 me-2"
-                                                            style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
-                                                    </button>
-                                                </form>
+                                                <div class="d-flex">
+                                                    <form id="action_accept_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="button" onclick="confirmation_accept({{ $num }})" class="btn btn-sm rounded-3 text-light me-2"
+                                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
+                                                                class="ms-2 me-2"
+                                                                style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
+                                                        </button>
+                                                    </form>
+                                                    <form id="action_menolak_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="button" onclick="confirmation_menolak({{ $num }})" class="btn btn-sm rounded-3 text-light"
+                                                            style=" border-radius: 15px; border: 1px black solid"><b
+                                                                class="ms-2 me-2"
+                                                                style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach

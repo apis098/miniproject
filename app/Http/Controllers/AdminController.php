@@ -31,6 +31,7 @@ class AdminController extends Controller
         $reports = Report::orderBy("created_at", "desc")->get();
         $reseps = reseps::orderBy("created_at", "desc")->get();
         $datetime = User::pluck("created_at");
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         $year = 2018;
         $yearsu = date('Y') - $year;
         $years = [];
@@ -66,7 +67,7 @@ class AdminController extends Controller
         $data_chartjs = [];
         return view('admin.index', [
             'admin' => $admin,
-        ], compact("jumlah_user", "jumlah_resep", "jumlah_report", "monthPrem", "monthSuper","month", "years", "reports", "reseps"));
+        ], compact("jumlah_user","verifed_count", "jumlah_resep", "jumlah_report", "monthPrem", "monthSuper","month", "years", "reports", "reseps"));
     }
 
 
@@ -77,8 +78,8 @@ class AdminController extends Controller
 
         // Ambil pengguna yang memiliki jumlah followers lebih dari 10,000
         $verified = $users->where('followers', '>', 10000)->paginate(6);
-
-        return view('admin.verifed', compact('verified'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.verifed', compact('verified','verifed_count'));
     }
 
 
@@ -136,7 +137,8 @@ class AdminController extends Controller
         }
         $penawaran_premium = premiums::all();
         $categoryTopUp = TopUpCategories::all();
-        return view('admin.tawaran', compact('categoryTopUp', 'penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.tawaran', compact('verifed_count','categoryTopUp', 'penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function updateProfile(Request $request)

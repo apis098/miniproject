@@ -88,7 +88,8 @@ class ReportController extends Controller
         }
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
-        return view('report.index',compact('reportCourse','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('report.index',compact('reportCourse','verifed_count','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
 
     public function keluhan(Request $request){
@@ -597,7 +598,8 @@ class ReportController extends Controller
     }
     public function blocked_index(){
         $user = User::where('status','nonaktif')->get();
-        return view('admin.unblock',compact('user'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.unblock',compact('user','verifed_count'));
     }
     public function unblock_store($id){
         $user = User::findOrFail($id);

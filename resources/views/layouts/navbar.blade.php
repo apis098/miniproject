@@ -157,8 +157,25 @@
                                         height="12" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                             d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                        </svg>
                                     @endif
-                                </svg>
+                         
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('admin.verifed') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/verifed') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m21.1 12.5l1.4 1.41l-6.53 6.59L12.5 17l1.4-1.41l2.07 2.08l5.13-5.17M10 17l3 3H3v-2c0-2.21 3.58-4 8-4l1.89.11L10 17m1-13a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4Z"/></svg>
+                                <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                                    Verifed
+                                    @if($verifed_count > 0 )
+                                        <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                        </svg>
+                                    @endif
                                 </p>
                             </a>
                         </li>
@@ -240,6 +257,7 @@
                                 </p>
                             </a>
                         </li>
+                   
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('blocked.user.status') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/blocked-user') ? 'activet text-orange' : 'text-white' }}"

@@ -24,6 +24,7 @@ use App\Models\TopUpCategories;
 use App\Models\Village;
 use Carbon\Carbon;
 use App\Models\detailSessionCourses;
+use App\Models\User;
 
 class KursusController extends Controller
 {
@@ -201,7 +202,8 @@ class KursusController extends Controller
     public function kursus()
     {
         $all_course = kursus::where("status", "ditunggu")->get();
-        return view('admin.kursus', compact("all_course"));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.kursus', compact("all_course",'verifed_count'));
     }
 
     public function eksekusi_kursus(string $status, string $id)

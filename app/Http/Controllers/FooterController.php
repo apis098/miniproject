@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\footer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class FooterController extends Controller
@@ -13,7 +14,8 @@ class FooterController extends Controller
     public function index()
     {
         $footer=footer::all();
-        return view('admin.footer',compact('footer'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        return view('admin.footer',compact('footer','verifed_count'));
     }
 
     /**
