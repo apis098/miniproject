@@ -103,10 +103,14 @@ class reseps extends Model
         }else{
             return false;
         }
-        
+
     }
     public function share_count()
     {
         return Share::where('resep_id',$this->id)->count();
+    }
+    public function share_resep()
+    {
+        return $this->hasMany(Share::class, "resep_id");
     }
 }

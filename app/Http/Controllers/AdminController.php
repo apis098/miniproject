@@ -89,6 +89,7 @@ class AdminController extends Controller
             $status = "menerima";
             $user = User::find($id);
             $user->isSuperUser = "yes";
+            $user->level_koki = 0;
             $user->save();
         } else if ($status === "ditolak") {
             $status = "menolak";

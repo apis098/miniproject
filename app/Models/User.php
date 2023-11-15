@@ -22,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'followers',
-        'password',
+        'password', 
         'biodata',
         'role',
         'saldo',
@@ -31,7 +31,8 @@ class User extends Authenticatable
         'isSuperUser',
         'status_langganan',
         'awal_langganan',
-        'akhir_langganan'
+        'akhir_langganan',
+        'level_koki',
     ];
 
     /**

@@ -394,7 +394,7 @@
                                 </p>
                             </video>
                                 @endif
-                                {{$item_video->authenticatePrem()}}
+
                                 {{--
                                 @if (Auth::check())
                                     @if ($item_video->isPremium === 'yes')

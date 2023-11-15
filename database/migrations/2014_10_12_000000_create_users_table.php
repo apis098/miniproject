@@ -31,6 +31,7 @@ return new class extends Migration
             $table->enum("status_langganan", ["sedang berlangganan", "belum berlangganan"])->default("belum berlangganan");
             $table->timestamp("awal_langganan")->nullable();
             $table->timestamp("akhir_langganan")->nullable();
+            $table->integer("level_koki")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

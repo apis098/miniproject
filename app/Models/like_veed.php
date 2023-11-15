@@ -9,7 +9,7 @@ class like_veed extends Model
 {
     use HasFactory;
     protected $table = "like_veeds";
-    protected $fillable = [
+    protected $fillable = [ 
         "users_id",
         "veed_id"
     ];

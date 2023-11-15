@@ -121,4 +121,8 @@ class upload_video extends Model
             return false;
         }
     }
+    public function like_count()
+    {
+        return like_veed::where("veed_id", $this->id)->count();
+    }
 }
