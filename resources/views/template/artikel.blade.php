@@ -36,23 +36,41 @@
          /* untuk tampilan mobile */
          @media (min-width: 350px) and (max-width: 860px) {
                    div.rigt {
-                    margin-left: 40px;
+                    margin-left: -100px;
+                    margin-top: 40px;
                    }
 
                    button.knn {
 margin-left: 140px;
 }
 
-    input.wid{
-        width: 100%;
+    h5.widt{
+       margin-top: -75px;
     }
 
-    span.komn {
-                    display: flex;
-                    flex-direction: column;
-                   }
+  div.wid {
+    margin-left: -3000px;
+  }
 
-                }
+  input.bsar {
+  max-width: 900px;
+  margin-left: -60px;
+  }
+
+  img.besar {
+    width: 83px;
+    height: 83px;
+  }
+
+  div.knan {
+    margin-left: -16px;
+  }
+
+  h5.knn {
+    margin-left: -50px;
+  }
+
+    }
 
           /* untuk tampilan laptop */
           @media (min-width: 1210px) and (max-width: 4000px) {
@@ -74,6 +92,14 @@ input.wid{
         width: 500px;
     }
 
+    input.bsar {
+  max-width: 900px;
+  }
+
+  img.besar {
+    width: 160px;
+    height: 160px;
+  }
 }
     </style>
     <section class="container">
@@ -736,7 +762,7 @@ input.wid{
         <div class="row mx-auto mb-5 mt-2" style="margin-top: -20px;">
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp: break-word;">Durasi</h4>
-                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid;box-shadow:none;">
+                <div class="card p-4 mb-2" style="border-radius: 15px; border: 0.50px black solid;box-shadow:none;">
                     <div class="row my-1">
                         <div class="col-7 mt-1">
                             <span class=""
@@ -759,7 +785,7 @@ input.wid{
             </div>
             <div class="col-lg-4">
                 <h4 style="font-weight: 600; word-warp:break-word;">Pengeluaran</h4>
-                <div class="card p-4" style="border-radius: 15px; border: 0.50px black solid;box-shadow: none;">
+                <div class="card p-4 mb-2" style="border-radius: 15px; border: 0.50px black solid;box-shadow: none;">
                     <div class="row my-1">
                         <div class="col-7 mt-1">
                             <span class=""
@@ -834,7 +860,7 @@ input.wid{
                     <a id="click3" class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
+                        <h5 class="knn" style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
                         <div id="border3" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
                             class="mx-auto"></div>
                     </a>
@@ -869,11 +895,12 @@ input.wid{
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     @foreach ($show_resep->langkah as $num => $item_langkah)
-                        <div class="card-body d-flex flex-row">
-                            <div class="d-flex flex-column" style="position: relative;">
-                                <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3"
+                    <div class="">
+                    <div class="col-12 card-body d-flex flex-row">
+                            <div class=" d-flex flex-column knan" style="position: relative;">
+                                <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3 besar"
                                     alt="{{ $item_langkah->foto_langkah }}"
-                                    style="border-radius: 10px; border: 1px solid black;" width="160px" height="160px">
+                                    style="border-radius: 10px; border: 1px solid black;" >
                                 <button type="button"
                                     style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
                                     class="btn btn-light btn-sm text-light rounded-circle p-2 ml-2">
@@ -885,6 +912,7 @@ input.wid{
                                 {{ $item_langkah->deskripsi_langkah }}
                             </div>
                         </div>
+                    </div>
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="pills-footer" role="tabpanel" aria-labelledby="pills-footer-tab"
@@ -966,19 +994,19 @@ input.wid{
     <section class="container mb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
-                <div class="headings d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="text-nowrap" style="margin-left: 18px;"><b>Komentar
+                <div class="headings d-flex justify-content-between align-items-center mb-3 ">
+                    <h5 class="text-nowrap widt" style="margin-left: 18px;"><b>Komentar
                             ({{ $show_resep->comment_count() }})
                         </b></h5>
-                    <div class="col-10">
+                    <div class="col-10 wid">
                         @if (Auth::check())
                             <form method="POST" id="FormTambahKomentarResep{{ Auth::user()->id }}"
                                 action="/komentar-resep/{{ Auth::user()->id }}/{{ $show_resep->user_id }}/{{ $show_resep->id }}">
                                 @csrf
                                 <div class="input-group ">
                                     <input type="text" id="comment_recipe{{ Auth::user()->id }}" name="komentar"
-                                        maxlength="255" {{ $userLog === 1 ? 'disabled' : '' }}
-                                        class="form-control rounded-3 kri wid"
+                                    maxlength="255" {{ $userLog === 1 ? 'disabled' : '' }}
+                                        class="form-control rounded-3 kri bsar"
                                         placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                                     <button type="submit" onclick="ButtonTambahKomentarResep({{ Auth::user()->id }})"
