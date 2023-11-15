@@ -295,9 +295,6 @@
                     flex-direction: column;
                    }
                 }
-
-
-
                   /* untuk tampilan ipad */
                   @media (min-width: 760px) and (max-width: 1000px) {
                     div.kiri {
@@ -336,7 +333,7 @@
                    }
 
                    div.kiri {
-                    margin-right: 55px;
+                    margin-right: 65px;
                    }
 
                    button.high {
@@ -368,16 +365,17 @@
                    }
                    button.high {
                     height: 35%;
-                    width: 20%;
+                    width: 15%;
                    }
                    div.search {
                     width: 85%;
                    }
 
                 }
+             
         </style>
 
-        <div class="container py-5 kanan kiri">
+        <div class="container py-5 kanan kiri" style="margin-left:-1%;">
             <div class="row text-center text-white ">
                 <div class="col-lg-8 mx-auto">
                     <h1 class="mb-5 kanan"

@@ -100,10 +100,13 @@ padding-left: 0;
   }
   }
 }
-@media screen and (max-width: 1920px) {
+@media (min-width:1000px) and (max-width: 1920px) {
   .video-js{
     width: 100%;
   } 
+  .video-js .vjs-big-play-button{
+    margin-left: 42%;
+  }
 }
 @media screen and (max-width: 1000px) {
   .hidden-content {
@@ -120,9 +123,13 @@ padding-left: 0;
   .video-js{
       width: 100%;
   } 
-  /* .form-comment{
-    width: 110%;
-  } */
+  .video-js .vjs-big-play-button{
+    margin-left: 40%;
+  }
+}
+.video-js .vjs-big-play-button{
+  justify-content: center; /* Pusat horizontal */
+  align-items: center; /* Pusat vertikal */
 }
 /* .form-comment{
   display: flex;

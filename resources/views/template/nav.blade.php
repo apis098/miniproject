@@ -1089,8 +1089,8 @@
                                                 @endif
                                                 {{-- dropdown profile & logout --}}
                                                 <div class="input-group dropdown">
-                                                    <a type="" data-bs-toggle="modal"
-                                                        data-bs-target="#modalProfileLogout" class="me-4"
+                                                    <a type="" data-toggle="dropdown"
+                                                        class="me-4"
                                                         href="#">
                                                         @if ($userLogin->foto)
                                                             <img loading="lazy" class="mr-3 rounded-circle"
@@ -1104,139 +1104,102 @@
                                                         @endif
                                                     </a>
                                                     @if (auth()->user()->role === 'koki')
-                                                        <div class="modal fade" id="modalProfileLogout"
-                                                            tabindex="-1" aria-hidden="true">
-                                                            <div class="modal-dialog modal-sm">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                    <div class="input-group d-flex justify-content-between">
-                                                                        <div class="d-flex">
-                                                                        <a href="#">
-                                                                            @if ($userLogin->foto)
-                                                                                <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                                                    src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                                                    alt="profile image"
-                                                                                    width="50px" height="50px">
-                                                                            @else
-                                                                                <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                    alt="profile image"
-                                                                                    style="max-width:40px">
-                                                                            @endif
-                                                                        </a>
-                                                                        <p class="mt-2 text-orange">
-                                                                            <b>{{ auth()->user()->name }}</b>
-                                                                        </p>
-                                                                    </div>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                                                                    </div>
-
-                                                                </div>
-                                                                    <div class="modal-body text-center">
-                                                                        <div class="mx-auto">
-                                                                        <a href="/koki/index"
-                                                                            class="text-orange"
-                                                                            style="width: 230px">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24">
-                                                                                <path fill="currentColor"
-                                                                                    d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
-                                                                            </svg>
-                                                                            Profil
-                                                                        </a>
-                                                                        </div>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="/koki/beranda"
-                                                                            class="text-orange"
-                                                                            style="width: 230px">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24">
-                                                                                <path fill="currentColor"
-                                                                                    fill-rule="evenodd"
-                                                                                    d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z"
-                                                                                    clip-rule="evenodd" />
-                                                                            </svg>
-                                                                            Dashboard
-                                                                        </a>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="#" data-toggle="modal"
-                                                                            data-target="#favoriteModal"
-                                                                            style="width: 230px;"
-                                                                            class="text-orange">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="21" class="me-1"
-                                                                                height="21" viewBox="0 0 24 24">
-                                                                                <path fill="currentColor"
-                                                                                    d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
-                                                                            </svg>
-                                                                            Favorite
-                                                                        </a>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="{{ route('penawaran.premium') }}"
-                                                                            style="width: 230px;"
-                                                                            class="text-orange">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24">
-                                                                                <path fill="currentColor"
-                                                                                    d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
-                                                                            </svg>
-                                                                            Upgrade
-                                                                        </a>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="#" style="width: 230px;"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#topup"
-                                                                            class="text-orange">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 256 256">
-                                                                                <path fill="currentColor"
-                                                                                    d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z" />
-                                                                            </svg>
-                                                                            Top up
-                                                                        </a>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="{{ route('riwayat') }}"
-                                                                            style="width: 230px;"
-                                                                            class="text-orange">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24">
-                                                                                <path fill="currentColor"
-                                                                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z" />
-                                                                            </svg>
-                                                                            Riwayat Top up
-                                                                        </a>
-                                                                        <div class="dropdown-divider"></div>
-                                                                        <a href="{{ route('actionlogout') }}"
-                                                                            style="width: 230px;"
-                                                                            class="text-orange">
-                                                                            <svg class="me-2"
-                                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                                width="20" height="20"
-                                                                                viewBox="0 0 24 24">
-                                                                                <path fill="currentColor"
-                                                                                    d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                                                                <path fill="currentColor"
-                                                                                    d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
-                                                                            </svg>
-                                                                            Keluar
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                                        style="width: 255px; border-radius:13px;">
+                                                        <div class="input-group">
+                                                            <a href="#">
+                                                                @if ($userLogin->foto)
+                                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                                        src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                                        alt="profile image" width="50px"
+                                                                        height="50px">
+                                                                @else
+                                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                                        src="{{ asset('images/default.jpg') }}"
+                                                                        alt="profile image" style="max-width:40px">
+                                                                @endif
+                                                            </a>
+                                                            <p class="mt-2 text-orange">
+                                                                <b>{{ auth()->user()->name }}</b></p>
                                                         </div>
-                                                </div>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="/koki/index" class="dropdown-item text-orange"
+                                                            style="width: 230px">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="20" height="20" viewBox="0 0 24 24">
+                                                                <path fill="currentColor"
+                                                                    d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                                            </svg>
+                                                            Profil
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="/koki/beranda" class="dropdown-item text-orange"
+                                                            style="width: 230px">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="20" height="20" viewBox="0 0 24 24">
+                                                                <path fill="currentColor" fill-rule="evenodd"
+                                                                    d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                            Dashboard
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" data-toggle="modal"
+                                                            data-target="#favoriteModal" style="width: 230px;"
+                                                            class="dropdown-item text-orange">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="21" class="me-1" height="21"
+                                                                viewBox="0 0 24 24">
+                                                                <path fill="currentColor"
+                                                                    d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
+                                                            </svg>
+                                                            Favorite
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="{{ route('penawaran.premium') }}"
+                                                            style="width: 230px;" class="dropdown-item text-orange">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="20" height="20" viewBox="0 0 24 24">
+                                                                <path fill="currentColor"
+                                                                    d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                                            </svg>
+                                                            Upgrade
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="#" style="width: 230px;"
+                                                            data-bs-toggle="modal" data-bs-target="#topup"
+                                                            class="dropdown-item text-orange">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="20" height="20" viewBox="0 0 256 256">
+                                                                <path fill="currentColor"
+                                                                    d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z" />
+                                                            </svg>
+                                                            Top up
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="{{ route('riwayat') }}" style="width: 230px;"
+                                                            class="dropdown-item text-orange">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="20" height="20" viewBox="0 0 24 24">
+                                                                <path fill="currentColor"
+                                                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z" />
+                                                            </svg>
+                                                            Riwayat Top up
+                                                        </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                                            class="dropdown-item text-orange">
+                                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
+                                                                width="20" height="20" viewBox="0 0 24 24">
+                                                                <path fill="currentColor"
+                                                                    d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                                <path fill="currentColor"
+                                                                    d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                                            </svg>
+                                                            Keluar
+                                                        </a>
+                                                    </div>
+                                            </div>
                                             @elseif (auth()->user()->role === 'admin')
                                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
                                                     style="width: 255px; border-radius:13px;">
