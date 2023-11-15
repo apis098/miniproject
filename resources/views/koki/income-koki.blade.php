@@ -364,6 +364,8 @@ class="btn">
             <p><b>Tidak ada data</b></p>
         </div>
             @endif
+            {{ $income_koki->links("pagination::default") }}
+
     </div>
 
 @endsection

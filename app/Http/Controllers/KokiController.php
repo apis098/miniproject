@@ -35,6 +35,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\TransaksiKursus;
 use App\Models\UlasanKursus;
 use App\Models\balasKomentar;
+
 class KokiController extends Controller
 {
     /**
@@ -57,9 +58,9 @@ class KokiController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -124,9 +125,9 @@ class KokiController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -175,7 +176,7 @@ class KokiController extends Controller
             "feed_disukai" => $feed_disukai,
             "feed_favorite" => $feed_favorite
         ];
-        return view('koki.feed', compact('data','userLogin','notification','favorite','unreadNotificationCount','messageCount'));
+        return view('koki.feed', compact('data', 'userLogin', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
     }
 
     public function beranda(Request $request)
@@ -196,9 +197,9 @@ class KokiController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -257,38 +258,46 @@ class KokiController extends Controller
                 ->paginate(10);
         }
         $koki = User::find(Auth::user()->id);
-        if($request->isMethod('POST')) {
-        $validate = Validator::make($request->all(), [
-            'tanggal_awal' => 'date',
-            'tanggal_batas' => 'date|after_or_equal:tanggal_awal',
-        ], [
-            
-            'tanggal_batas.after_or_equal' => 'Tanggal batas tidak boleh lebih kurang dari tanggal awal!'
-        ]);
-        if($validate->fails()) {
-            return redirect()->back()->with('error', $validate->errors()->first());
+        if ($request->isMethod('POST')) {
+            $validate = Validator::make($request->all(), [
+                'jenis_penghasilan' => 'nullable',
+                'tanggal_awal' => 'nullable',
+                'tanggal_batas' => 'nullable|after_or_equal:tanggal_awal',
+            ], [
+
+                'tanggal_batas.after_or_equal' => 'Tanggal batas tidak boleh lebih kurang dari tanggal awal!'
+            ]);
+            if ($validate->fails()) {
+                return redirect()->back()->with('error', $validate->errors()->first());
+            }
+            $income_koki = income_chefs::query()->where("chef_id", Auth::user()->id);
+            $status = null;
+            if ($request->jenis_penghasilan != null) {
+                if ($request->jenis_penghasilan === "sawer") {
+                    $status = 'sawer';
+                } else if ($request->jenis_penghasilan === "feed") {
+                    $status = 'feed';
+                } else if ($request->jenis_penghasilan === "resep") {
+                    $status = 'resep';
+                } else if ($request->jenis_penghasilan === "kursus") {
+                    $status = 'kursus';
+                }
+                $income_koki->where('status', $status);
+            }
+            if ($request->tanggal_awal != null && $request->tanggal_batas != null) {
+                $income_koki->whereBetween('created_at', [$request->tanggal_awal, $request->tanggal_batas]);
+            }
+            $income_koki = $income_koki->paginate(8);
+        } elseif($request->isMethod('GET')) {
+            $income_koki = income_chefs::where('chef_id', Auth::user()->id)->paginate(8);
         }
-        $status = null;
-        if($request->jenis_penghasilan === "sawer") {
-            $status = 'sawer';
-        } else if($request->jenis_penghasilan === "feed") {
-            $status = 'feed';
-        } else if($request->jenis_penghasilan === "resep") {
-            $status = 'resep';
-         } else if($request->jenis_penghasilan === "kursus") {
-            $status = 'kursus';
-        }
-        $income_koki = income_chefs::query()->whereBetween('created_at', [$request->tanggal_awal, $request->tanggal_batas])->where('status', $status)->get();
-    } else {
-        $income_koki = income_chefs::where('chef_id', Auth::user()->id)->get();
-    }
         $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
         $saldo_belumDiambil = $saldo1->sum('pemasukan');
         $saldo2 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'sudah ditarik');
         $saldo_sudahDiambil = $saldo2->sum('pemasukan');
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
-        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function viewsRecipe(Request $request)
@@ -323,7 +332,7 @@ class KokiController extends Controller
             $query->where("user_id_from", $id_user);
         });
         $resep_favorite = $resep_favorite->get();
-        return view('koki.views-recipe', compact("koki", "resep_dibuat", "resep_disukai", "resep_favorite","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+        return view('koki.views-recipe', compact("koki", "resep_dibuat", "resep_disukai", "resep_favorite", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function jawaban_diskusi(Request $request)
@@ -349,11 +358,12 @@ class KokiController extends Controller
         }
         $koki = User::find(Auth::user()->id);
         $complaints = complaint::where('user_id', Auth::user()->id)->get();
-        return view('koki.diskusi', compact("koki", "complaints","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+        return view('koki.diskusi', compact("koki", "complaints", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function kursus(Request $request)
-    {   $userLogin = Auth::user();
+    {
+        $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
@@ -381,7 +391,7 @@ class KokiController extends Controller
         $kursus_disimpan = kursus::whereHas('favorite', function ($query) use ($id_user) {
             $query->where('user_id_from', $id_user);
         })->get();
-        return view('koki.kursus', compact("kursus_disimpan","kursus_dipesan","koki", "kursus_sendiri","userLogin","notification","favorite","unreadNotificationCount","messageCount"));
+        return view('koki.kursus', compact("kursus_disimpan", "kursus_dipesan", "koki", "kursus_sendiri", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function kursusContent(string $id)
@@ -394,7 +404,7 @@ class KokiController extends Controller
         $end_date = Carbon::parse($kursus_sendiri->tanggal_berakhir_kursus);
         $startdate = Carbon::parse($kursus_sendiri->tanggal_dimulai_kursus);
         $enddate = Carbon::parse($kursus_sendiri->tanggal_berakhir_kursus);
-        return view('koki.kursus-content', compact("start_date", "end_date","startdate", "enddate","koki", "kursus_sendiri", "sesi_kursus", "userLogin"));
+        return view('koki.kursus-content', compact("start_date", "end_date", "startdate", "enddate", "koki", "kursus_sendiri", "sesi_kursus", "userLogin"));
     }
 
     public function favorite(Request $request)
@@ -432,9 +442,9 @@ class KokiController extends Controller
         $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -483,7 +493,7 @@ class KokiController extends Controller
                     'follower_id' => $followerId,
                     'user_id' => $followerId,
                     'categories' => 'followers_shared',
-                    'message' =>'Menambahkan postingan baru',
+                    'message' => 'Menambahkan postingan baru',
                 ]);
                 $notification->save();
 
@@ -508,7 +518,7 @@ class KokiController extends Controller
         Storage::delete("public/" . $feed->upload_video);
         $feed->delete();
         $countFeed = upload_video::where("users_id", $id)->exists();
-        return redirect()->back()->with('success','Berhasil menghapus postingan');
+        return redirect()->back()->with('success', 'Berhasil menghapus postingan');
         // return response()->json([
         //     "success" => true,
         //     "message" => "Sukses menghapus data!",
@@ -539,6 +549,4 @@ class KokiController extends Controller
             "deskripsi_video_baru" => $update->deskripsi_video
         ]);
     }
-
 }
-
