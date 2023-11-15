@@ -394,7 +394,7 @@
                                 </p>
                             </video>
                                 @endif
-
+                                {{$item_video->authenticatePrem()}}
                                 {{--
                                 @if (Auth::check())
                                     @if ($item_video->isPremium === 'yes')
@@ -3848,8 +3848,9 @@
             video.addEventListener("timeupdate", function() {
                 // video.currentTime ini untuk mengambil data sudah berapa lama video berputar
                 // video.duration untuk mendapatkan total waktu video.
-                let time = video.duration * 1;
-                if (video.currentTime === time) {
+                let time = video.duration * 0.1;
+                console.log(time);
+                if (video.currentTime >= time) {
                     // jika sudah lebih dari 5 detik maka video di pause
                     video.pause();
                     // membuka modal penawaran premium
@@ -3857,6 +3858,7 @@
                 }
             });
         });
+
     </script>
     <script>
         // komentar feed ajax
