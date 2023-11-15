@@ -415,7 +415,7 @@
                                                 <div class="modal fade" id="exampleModalScrollable" tabindex="-1"
                                                     role="dialog" aria-labelledby="exampleModalScrollableTitle"
                                                     aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg modal-dialog-scrollable"
+                                                    <div class="modal-dialog modal-dialog-scrollable"  style="margin-left: 58%; margin-top:5%; max-width:420px; max-height:450px;"
                                                         role="document">
                                                         <div class="modal-content" style="border-radius: 20px;">
                                                             <div class="modal-header">
