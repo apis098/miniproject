@@ -27,7 +27,7 @@ class IncomeRecipePremium
     {
            // pemasukan per klik dihitung dari  total saldo admin dibagi jumlah konten premium
            $kokis = User::find($event->chef);
-           if ($kokis->level_koki === 0) {
+           if ($kokis->level_koki === 0 || $kokis->level_koki === null) {
                $pemasukan = 5;
            } else {
                $level_koki = $kokis->level_koki / 10;

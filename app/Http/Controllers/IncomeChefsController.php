@@ -14,7 +14,7 @@ class IncomeChefsController extends Controller
     public function pemasukan_koki($chef, $user, $content, $status)
     {
         $kokis = User::find($chef);
-        if ($kokis->level_koki === 0) {
+        if ($kokis->level_koki === 0 || $kokis->level_koki === null) {
             $pemasukan = 5;
         } else {
             $level_koki = $kokis->level_koki / 10;

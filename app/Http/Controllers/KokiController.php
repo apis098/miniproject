@@ -259,13 +259,10 @@ class KokiController extends Controller
         $koki = User::find(Auth::user()->id);
         if($request->isMethod('POST')) {
         $validate = Validator::make($request->all(), [
-            'jenis_penghasilan' => 'required',
-            'tanggal_awal' => 'required|date',
-            'tanggal_batas' => 'required|date|after_or_equal:tanggal_awal',
+            'tanggal_awal' => 'date',
+            'tanggal_batas' => 'date|after_or_equal:tanggal_awal',
         ], [
-            'jenis_penghasilan.required' => 'Jenis Penghasilan tidak boleh kosong!',
-            'tanggal_awal.required' => 'Tanggal awal tidak boleh kosong!',
-            'tanggal_batas.required' => 'Tanggal batas tidak boleh kosong!',
+            
             'tanggal_batas.after_or_equal' => 'Tanggal batas tidak boleh lebih kurang dari tanggal awal!'
         ]);
         if($validate->fails()) {
