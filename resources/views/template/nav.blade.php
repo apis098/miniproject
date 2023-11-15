@@ -104,13 +104,13 @@
 
             @media (min-width: 1200px) {
                 .ns {
-                    margin-left: 200px;
+                    margin-left: 180px;
                 }
                 .gahah {
-                    margin-left: 130px;
+                    margin-left: 110px;
                 }
                 .brand {
-                    margin-left: -180px;
+                    margin-left: -160px;
                 }
             }
             @media (max-width: 1199px) {
