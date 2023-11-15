@@ -19,6 +19,27 @@ class upload_video extends Model
         'uuid',
         'favorite_count',
     ];
+    public function authenticatePrem()
+    {
+        $feed = upload_video::find($this->id);
+        if($feed->isPremium === "yes") {
+            if(Auth::check()) {
+                if(Auth::user()->id === $feed->user->id) {
+                    return 1;
+                } elseif (Auth::user()->status_langganan === "sedang berlangganan") {
+                    return 2;
+                } elseif (Auth::user()->role === "admin") {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            } else {
+                return 0;
+            }
+        } else {
+            return 200;
+        }
+    }
     public function user()
     {
         return $this->belongsTo(User::class, "users_id");
@@ -99,5 +120,5 @@ class upload_video extends Model
         }else{
             return false;
         }
-    }   
+    }
 }

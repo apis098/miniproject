@@ -199,7 +199,7 @@
                                             autocomplete="off" value="yes">
                                         <label class="btn btn-no-select" id="prem"
                                             for="danger-outlined">Premium</label>
-                                        
+
                                         <div class="ml-auto d-flex">
                                             <div id="loading-overlay" style="display: none;" class="spinner-border text-orange" role="status">
                                                 <span class="sr-only">Loading...</span>
@@ -332,6 +332,70 @@
                             </style>
                             <!-- Media -->
                             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
+                                @if ($item_video->authenticatePrem() === 200)
+                                <!-- untuk feed tidak premium -->
+                                <video class="video-js vjs-theme-city"
+                                id="my-video" controls preload="auto" width="615" height="315"
+                                data-setup="{}">
+                                <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                    type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/"
+                                        target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                                @elseif ($item_video->authenticatePrem() === 1)
+                                <!-- untuk feed premium tapi dilihat pembuat feed dan admin -->
+                                <video class="video-js vjs-theme-city"
+                                id="my-video" controls preload="auto" width="615" height="315"
+                                data-setup="{}">
+                                <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                    type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/"
+                                        target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                                @elseif($item_video->authenticatePrem() === 2)
+                                <!-- untuk feed premium dilihat user berlangganan -->
+                                <video class="video-js vjs-theme-city"
+                                onclick="userAccessFeedPrem({{ $item_video->user->id }}, {{ $item_video->id }})"
+                                id="my-video" controls preload="auto" width="615" height="315"
+                                data-setup="{}">
+                                <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                    type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/"
+                                        target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                                @elseif ($item_video->authenticatePrem() === 0)
+                                <!-- untuk feed premium dilihat user belum berlangganan atau yang belum login -->
+                                <video class="video-js vjs-theme-city feed"
+                                id="my-video" controls preload="auto" width="615" height="315"
+                                data-setup="{}">
+                                <source src="{{ asset('storage/' . $item_video->upload_video) }}"
+                                    type="video/mp4" />
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a
+                                    web browser that
+                                    <a href="https://videojs.com/html5-video-support/"
+                                        target="_blank">supports HTML5
+                                        video</a>
+                                </p>
+                            </video>
+                                @endif
+
+                                {{--
                                 @if (Auth::check())
                                     @if ($item_video->isPremium === 'yes')
                                         @if ($item_video->AuthenticateFeedPremium(Auth::user()->id, $item_video->id))
@@ -417,6 +481,7 @@
                                         </p>
                                     </video>
                                 @endif
+                                --}}
                                 <a href="#!">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
                                 </a>
@@ -815,7 +880,7 @@
                                                     });
                                                 });
                                             });
-                                        </script>  
+                                        </script>
                                     </span>
                                      <!-- modal Bagikan end -->
                                     <span class="d-flex me-2">
@@ -835,7 +900,7 @@
                                                 <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3"></i>
                                             </a>
                                             <div class="modal fade" id="income{{$item_video->id}}" tabindex="-1"
-                                                role="dialog" 
+                                                role="dialog"
                                                 aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content" style="border-radius: 15px;">
@@ -2120,7 +2185,7 @@
                                                                                                         </div>
 
                                                                                                     </div>
-                                                                                                    
+
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
                                                                                                         <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}"
                                                                                                             class="rounded d-flex flex-row border-black ">
@@ -2213,7 +2278,7 @@
                                                                                                                         style="margin-left: -1%;">
                                                                                                                         {{ $countLike3sd }}
                                                                                                                     </span>
-                                                                                                                    
+
                                                                                                                     <div
                                                                                                                         class="m-2 mr-auto">
                                                                                                                         {{-- modal-modal --}}
@@ -2566,8 +2631,8 @@
 
                                 </div>
                             </div>
-                            @endforeach 
-                        </div>     
+                            @endforeach
+                        </div>
                 </div>
 
                 <div class="card mt-5 mb-5 hidden-content" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
@@ -2610,7 +2675,7 @@
 
         </div>
         <!-- diikuti end -->
-        
+
     </section>
 
     <button hidden id="buttonPremiums" type="button"
@@ -2887,7 +2952,7 @@
                 });
             });
         }
-       
+
         // komentar reply feed ajax
         function balas_komentar(num) {
             $("#formBalasKomentar" + num).off('submit');
@@ -3052,13 +3117,13 @@
                                                                                                                     <small class="me-4 ">Balas</small>
                                                                                                                 </a>
                                                                                                             </div>
-                                                                                                        </div> 
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                     <!-- Komentar Balasan Collapse Start -->
                                                                                                             <div class="collapse" style="margin-left:-4.2%;"
                                                                                                                 id="reply_collapse${up['id']}">
                                                                                                                  <div class='ms-3' id="replies_reply${up['id']}">
-                                                                                                                
+
                                                                                                                 </div>
                                                                                                                 <div class="card-body">
                                                                                                                     <div class="container">
@@ -3420,7 +3485,7 @@
                 }
             });
         }
-       
+
         function deletedCommentFeed(num) {
             $("#delete-comment-form" + num).submit(function(event) {
                 event.preventDefault();
@@ -3446,7 +3511,7 @@
                 });
             });
         }
-        
+
         function deletedReplyCommentFeed(num) {
             $("#delete-reply-comment-form" + num).submit(function(event) {
                 event.preventDefault();
@@ -3673,7 +3738,7 @@
                     }
                 });
             });
-        }   
+        }
         function confirmation_delete_replies_reply(num) {
             iziToast.show({
                 backgroundColor: '#eea2a6',
@@ -3731,7 +3796,7 @@
                     }
                 });
             });
-        }   
+        }
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
