@@ -102,6 +102,18 @@
             @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
             @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+            @media (min-width: 1200px) {
+                .ns {
+                    margin-left: 130px;
+                }
+                .gahah {
+                    margin-left: 80px;
+                }
+                .brand {
+                    margin-left: 100px;
+                }
+            }
+
             .scale {
                 box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
                 transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
@@ -281,7 +293,7 @@
                         <div class="container ms-4">
                             <div class="col-lg-11 col-xl-6 col-md-12 col-sm-6">
                                 <nav class="navbar navbar-expand-xl custom_nav-container">
-                                    <div style="margin-left: -80px;">
+                                    <div style="margin-left: -80px;" class="brand">
                                         @if (Auth::check())
                                             @if (Auth::user()->role == 'Admin')
                                                 <a class="navbar-brand ms-3" href="{{ url('admin/index') }}">
@@ -312,9 +324,8 @@
                                     </button>
 
                                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                        <ul
-                                            class="navbar-nav mt-2 my-2 text-center justify-content-center col-lg-4 col-xl-6 ml-auto">
-                                            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"
+                                        <ul class="navbar-nav mt-2 mr-auto my-2 text-center d-flex justify-content-center justify-content-center col-lg-4  ml-auto">
+                                            <li class="nav-item gahah {{ request()->is('/') ? 'active' : '' }}"
                                                 style="font-size: 15px;">
                                                 <a class="nav-link mt-2" id="navbar"
                                                     href="{{ route('home') }}"><b>Beranda</b></a>
@@ -342,14 +353,10 @@
                                                 <a class="nav-link mt-2" id="navbar"
                                                     href="{{ route('keluhan') }}"><b>Diskusi</b></a>
                                             </li>
-                                            {{-- <li class="nav-item">
-                                    <a class="nav-link" href="{{route('login')}}">Login</a>
-                                  </li> --}}
-
                                             @if ($messageCount == 0)
-                                                <div class="user_option gahah text-center d-flex nav-item">
+                                                <div class="user_option ns text-center d-flex nav-item">
                                                 @else
-                                                    <div class="user_option gahah text-center d-flex nav-item">
+                                                    <div class="user_option ns text-center d-flex nav-item">
                                             @endif
                                             @if (Auth::check() && $notification != null)
                                                 {{-- dropdown notifikasi --}}
