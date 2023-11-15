@@ -141,6 +141,12 @@
             text-align: center;
         }
 
+        .imgku{
+            width:100%;
+            border-top-left-radius: calc(0.5rem - 1px);
+            border-top-right-radius: calc(0.5rem - 1px);
+        }
+
 
         @media(min-width:320px) and (max-width:768px) {
             .search-1 input {
@@ -457,13 +463,11 @@
                             <p><b>Tidak ada data</b></p>
                         </div>
                     @endif
-                    <div class="row mx-1" style="margin-left: -50px">
+                    <div class="row">
                         @foreach ($semua_kursus as $semua)
-                            <div class="card mx-3 mb-5" style="width: 30%; border-radius:15px">
-                                <img src="{{ asset('storage/' . $semua->foto_kursus) }}" class="card-img-top"
-                                    style="margin-left:-13px; width:107.5%; border-top-left-radius: calc(0.5rem - 1px);
-                                   border-top-right-radius: calc(0.5rem - 1px);"
-                                    alt="...">
+                        <div class=" col-lg-4 col-md-4 col-sm-5 mb-4">
+                            <div class="card " style="border-radius:15px">
+                                <img src="{{ asset('storage/' . $semua->foto_kursus) }}" class="imgku" alt="...">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-12">
@@ -497,6 +501,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
                     {{ $semua_kursus->links() }}

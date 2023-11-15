@@ -368,7 +368,7 @@
                    }
                    button.high {
                     height: 35%;
-                    width: 15%;
+                    width: 20%;
                    }
                    div.search {
                     width: 85%;
