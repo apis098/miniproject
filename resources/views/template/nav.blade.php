@@ -104,15 +104,22 @@
 
             @media (min-width: 1200px) {
                 .ns {
-                    margin-left: 130px;
+                    margin-left: 200px;
                 }
                 .gahah {
-                    margin-left: 80px;
+                    margin-left: 130px;
                 }
                 .brand {
-                    margin-left: 100px;
+                    margin-left: -180px;
                 }
             }
+            @media (max-width: 1199px) {
+                .brand {
+                    margin-left: -120px;
+                }
+            }
+
+
 
             .scale {
                 box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
@@ -293,7 +300,7 @@
                         <div class="container ms-4">
                             <div class="col-lg-11 col-xl-6 col-md-12 col-sm-6">
                                 <nav class="navbar navbar-expand-xl custom_nav-container">
-                                    <div style="margin-left: -80px;" class="brand">
+                                    <div class="brand">
                                         @if (Auth::check())
                                             @if (Auth::user()->role == 'Admin')
                                                 <a class="navbar-brand ms-3" href="{{ url('admin/index') }}">
