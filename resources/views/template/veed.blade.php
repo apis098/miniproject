@@ -1059,7 +1059,7 @@
                                                                     placeholder="Tambahkan pesan untuk pembuat...">
 
                                                                 <button type="submit"
-                                                                    onclick="giftButton({{ $item_video->id }})"
+                                                                    onclick="giftButton({{ $item_video->id }})" id="gift-btn{{$item_video->id}}"
                                                                     style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                     class="btn  btn-sm text-light">
                                                                     <b class="me-3 ms-3">Kirim</b></button>
@@ -2769,16 +2769,20 @@
                             }).then((result) => {
                          
                             if (result.dismiss === Swal.DismissReason.timer) {
-                                iziToast.show({
-                                    backgroundColor: '#a1dfb0',
-                                    title: '<i class="fa-regular fa-circle-question"></i>',
-                                    titleColor: 'dark',
-                                    messageColor: 'dark',
-                                    message: response.message,
-                                    position: 'topCenter',
-                                    progressBarColor: 'dark',
-                                });
-                                 }
+                                document.getElementById('gift-btn' + num).disabled = true;
+                                setTimeout(function () {
+                                    document.getElementById('gift-btn' + num).disabled = false;
+                                }, 60000);                                                  
+                                    iziToast.show({
+                                        backgroundColor: '#a1dfb0',
+                                        title: '<i class="fa-regular fa-circle-question"></i>',
+                                        titleColor: 'dark',
+                                        messageColor: 'dark',
+                                        message: response.message,
+                                        position: 'topCenter',
+                                        progressBarColor: 'dark',
+                                    });
+                                }
                             });
                            
                         } else {
