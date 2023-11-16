@@ -22,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'followers',
-        'password', 
+        'password',
         'biodata',
         'role',
         'saldo',
@@ -54,6 +54,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function penarikan() {
+        return $this->hasMany(penarikans::class, "chef_id");
+    }
+    public function data_pribadi_chefs()
+    {
+        return $this->hasMany(dataPribadiKoki::class, "chef_id");
+    }
     public function chefTeacher() {
         return $this->hasMany(UlasanKursus::class, 'chef_teacher_id');
     }

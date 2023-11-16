@@ -6,7 +6,11 @@ use App\Models\income_chefs;
 use App\Models\reseps;
 use App\Models\upload_video;
 use App\Models\User;
+use App\Models\penarikans;
+use App\Models\dataPribadiKoki;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class IncomeChefsController extends Controller
 {
@@ -63,6 +67,59 @@ class IncomeChefsController extends Controller
             "success" => "true"
         ]);
     }
-    // pemasukan per klik koki untuk resep
+    // ajukan penarikan
+    public function ajukan_penarikan(Request $request) {
+        $validasi = Validator::make($request->all(), [
+            "nilai" => "required"
+        ], [
+            "nilai.required" => "Jumlah yang ditarik harus diisi!",
+        ]);
+        if($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+        // validasi saldo koki
+        $saldo_koki = Auth::user()->saldo_pemasukan;
+        if($saldo_koki <= $request->nilai) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
+            ]);
+        }
+        $penarikan = penarikans::where("chef_id", Auth::user()->id)->first();
+        if($penarikan->status === "diproses") {
+            return response()->json([
+                'success' => false,
+                'message' => 'Pengajuan anda sebelumnya belum selesai di proses oleh admin!'
+            ]);
+        }
+        if($request->nilai < 0) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tidak boleh menginputkan nilai minus!'
+            ]);
+        }
+        if($request->nilai <= 49000) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Minimal tarik tunai 50.000!'
+            ]);
+        }
+        if($request->nilai % 50000 != 0) {
+            return response()->json([
+                "success" => false,
+                "message" => "Harus berkelipatan RP50.000,00!"
+            ]);
+        }
+        $data = dataPribadiKoki::where("chef_id", Auth::user()->id)->first();
+        penarikans::create([
+            "chef_id" => Auth::user()->id,
+            "data_id" => $data->id,
+            "nilai" => $request->nilai
+        ]);
+        return response()->json([
+            "success" => "true",
+            "message" => "Berhasil mengajukan penarikan, harap tunggu konfirmasi admin!"
+        ]);
+    }
 
 }

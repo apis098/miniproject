@@ -35,6 +35,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\TransaksiKursus;
 use App\Models\UlasanKursus;
 use App\Models\balasKomentar;
+use App\Models\dataPribadiKoki;
 
 class KokiController extends Controller
 {
@@ -288,7 +289,7 @@ class KokiController extends Controller
                 $income_koki->whereBetween('created_at', [$request->tanggal_awal, $request->tanggal_batas]);
             }
             $income_koki = $income_koki->paginate(8);
-        } elseif($request->isMethod('GET')) {
+        } elseif ($request->isMethod('GET')) {
             $income_koki = income_chefs::where('chef_id', Auth::user()->id)->paginate(8);
         }
         $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
@@ -297,7 +298,9 @@ class KokiController extends Controller
         $saldo_sudahDiambil = $saldo2->sum('pemasukan');
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
-        return view('koki.income-koki', compact("koki", "income_koki", "saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
+        // cek apakah koki sudah daftar data pribadi
+        $check = dataPribadiKoki::where('chef_id', Auth::user()->koki)->exists();
+        return view('koki.income-koki', compact("koki", "income_koki", "check","saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function viewsRecipe(Request $request)
@@ -548,5 +551,59 @@ class KokiController extends Controller
             "message" => "Sukses mengupdate feed!",
             "deskripsi_video_baru" => $update->deskripsi_video
         ]);
+    }
+    public function data_pribadi_chef(Request $request)
+    {
+        $rules = [
+            'name' => 'required',
+            'email' => 'required|email',
+            'number_handphone' => 'required',
+            'alamat' => 'required',
+            'foto_ktp' => 'required|image',
+            'foto_diri_ktp' => 'required|image',
+            'pilihan_bank' => 'required',
+            'nomer_rekening' => 'required',
+        ];
+        $message = [
+            'name.required' => 'Nama harus diisi!',
+            'email.required' => 'Email harus diisi!',
+            'email.email' => 'Format e-mail salah!',
+            'number_handphone.required' => 'Nomer handphone harus diisi!',
+            'alamat.required' => "Alamat harus diisi!",
+            'foto_ktp.required' => 'Foto ktp harus diisi!',
+            'foto_ktp.image' => 'Foto ktp tidak berupa gambar!',
+            'foto_diri_ktp.image' => 'Foto diri bersama ktp tidak berupa gambar!',
+            'foto_diri_ktp.required' => 'Foto diri bersama ktp harus diisi!',
+            'pilihan_bank.required' => 'Pilihan bank harus diisi!',
+            'nomer_rekening.required' => 'Nomer rekening harus diisi!'
+        ];
+        $validasi = Validator::make($request->all(), $rules, $message);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+        // cek apakah user sudah daftar atau belum
+        $chef = dataPribadiKoki::where('chef_id', Auth::user()->id)->exists();
+        if ($chef) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Anda tidak bisa mendaftar lagi!'
+            ]);
+        } else {
+            dataPribadiKoki::create([
+                "chef_id" => Auth::user()->id,
+                "name" => $request->name,
+                "email" => $request->email,
+                "number_handphone" => $request->number_handphone,
+                "alamat" => $request->alamat,
+                "foto_ktp" => $request->file('foto_ktp')->store('foto_ktp', 'public'),
+                "foto_diri_ktp" => $request->file('foto_diri_ktp')->store('foto_diri_ktp', 'public'),
+                "pilihan_bank" => $request->pilihan_bank,
+                "nomer_rekening" => $request->nomer_rekening
+            ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'Mohon menunggu konfirmasi dari admin!'
+            ]);
+        }
     }
 }

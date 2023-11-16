@@ -42,7 +42,7 @@ use App\Http\Controllers\UlasanRatingController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- 
+
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
 Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep')->middleware('auth.premium');
@@ -177,6 +177,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::post('/pemasukan-koki/{chef_id}/{user_id}/{content_id}/{status}', [IncomeChefsController::class, 'pemasukan_koki'])->name('pemasukan.koki');
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
     Route::prefix('/koki')->group(function () {
+        Route::post('kirim-data-pribadi', [KokiController::class,'data_pribadi_chef'])->name('kirim.dataPribadiChef');
+        Route::post('ajukan-penarikan', [IncomeChefsController::class, 'ajukan_penarikan'])->name('ajukan.penarikan');
         Route::resource('resep', ResepsController::class);
         Route::post('transaction',[TopUpController::class,'transaction'])->name('topup.transaction');
         Route::get('detail-transaction/{reference}',[TopUpController::class,'detailTransaction'])->name('detail.transaction');
