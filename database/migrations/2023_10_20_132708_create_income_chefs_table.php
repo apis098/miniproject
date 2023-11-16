@@ -29,6 +29,10 @@ return new class extends Migration
             $table->foreign("resep_id")->references("id")->on("reseps")->onDelete("cascade");
             $table->foreign("course_id")->references("id")->on("kursuses")->onDelete("cascade");
         });
+        Schema::table('notifications', function (Blueprint $table){
+            $table->unsignedBigInteger('gift_id')->nullable();
+            $table->foreign('gift_id')->references('id')->on('income_chefs')->onDelete('cascade');
+        });
     }
 
     /**

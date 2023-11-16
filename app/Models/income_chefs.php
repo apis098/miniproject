@@ -23,6 +23,19 @@ class income_chefs extends Model
     {
         return $this->belongsTo(User::class, 'chef_id');
     }
+    public function notifications(){
+        return $this->hasMany(notifications::class,'gift_id');  
+    }
+    // public function message_gift(){
+    //     $notification = notifications::where('user_id', auth()->user()->id)
+    //         ->where('route','/koki/income-koki')
+    //         ->where('categories','gift')
+    //         ->where('notification_from',$this->user_id)
+    //         ->where('message',"!=",null)
+    //         ->get();
+    //         return $notification->message;
+     
+    // }
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

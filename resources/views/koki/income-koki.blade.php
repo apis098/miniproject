@@ -418,7 +418,13 @@
                             @endif
                         </td>
                         <td>
-                            {{ $income->created_at }}
+                            @foreach($income->notifications as $row)
+                                @if($row->message != null)
+                                    {{ $row->message }}
+                                @else
+                                    --
+                                @endif
+                            @endforeach
                         </td>
                         <td>
                             RP {{ number_format($income->pemasukan, 2, ',', '.') }}

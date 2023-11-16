@@ -61,38 +61,48 @@ class donationController extends Controller
                     $user_sender->save();
                     $gift_count = 0;
                     $check_count = 0;
-                    if($feed_id){
+                    if($feed_id != 0){
                         $income = new income_chefs();
                         $income->chef_id  = $user_recipient;
                         $income->user_id = auth()->user()->id;
                         $income->feed_id = $feed_id;
-                        $income->status = "Gift";
+                        $income->status = "sawer";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
+                          // mengirim notifikasi
+                        $notification = new notifications();
+                        $notification->notification_from = auth()->user()->id;
+                        $notification->user_id = $user_recipient;
+                        $notification->categories = "gift";
+                        // $notification->message = "Memberikan " . $request->input('moreInput') . "untuk anda";
+                        $notification->gift_id = $income->id;
+                        $notification->route = "/koki/income-koki";
+                        $notification->save();
+                        
                         $gift_count = income_chefs::where('feed_id',$feed_id)->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
-                    }
-                    if($resep_id){
+                    }elseif($resep_id != 0){
                         $income = new income_chefs();
                         $income->chef_id  = $user_recipient;
                         $income->user_id = auth()->user()->id;
                         $income->resep_id = $resep_id;
-                        $income->status = "Gift";
+                        $income->status = "sawer";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
+                          // mengirim notifikasi
+                        $notification = new notifications();
+                        $notification->notification_from = auth()->user()->id;
+                        $notification->user_id = $user_recipient;
+                        $notification->categories = "gift";
+                        // $notification->message = "Memberikan " . $request->input('moreInput') . "untuk anda";
+                        $notification->gift_id = $income->id;
+                        $notification->route = "/koki/income-koki";
+                        $notification->save();
+
                         $gift_count = income_chefs::where('resep_id',$resep_id)->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
                     }
                     
-                     // mengirim notifikasi
-                     $notification = new notifications();
-                     $notification->notification_from = auth()->user()->id;
-                     $notification->user_id = $user_recipient;
-                     $notification->gift_id = 1;
-                     if($request->input('message')!=null){
-                        $notification->message = $request->input('message');
-                     }
-                     $notification->save();
                      return response()->json([
                         'success' => true,
                         'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
@@ -135,6 +145,14 @@ class donationController extends Controller
                         $income->save();
                         $gift_count = income_chefs::where('feed_id',$feed_id)->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
+
+                        $notification = new notifications();
+                        $notification->notification_from = auth()->user()->id;
+                        $notification->user_id = $user_recipient;
+                        $notification->categories = "gift";
+                        $notification->gift_id = $income->id;
+                        $notification->route = "/koki/income-koki";
+                        $notification->save();
                     }elseif($resep_id != 0){
                         $income = new income_chefs();
                         $income->chef_id  = $user_recipient;
@@ -145,16 +163,16 @@ class donationController extends Controller
                         $income->save();
                         $gift_count = income_chefs::where('resep_id',$resep_id)->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
+
+                        $notification = new notifications();
+                        $notification->notification_from = auth()->user()->id;
+                        $notification->user_id = $user_recipient;
+                        $notification->categories = "gift";
+                        $notification->gift_id = $income->id;
+                        $notification->route = "/koki/income-koki";
+                        $notification->save();
                     }
-                    // mengirim notifikasi
-                    $notification = new notifications();
-                    $notification->notification_from = auth()->user()->id;
-                    $notification->user_id = $user_recipient;
-                    $notification->gift_id = 1;
-                    if($request->input('message')!=null){
-                       $notification->message = $request->input('message');
-                    }
-                    $notification->save();
+              
                     return response()->json([
                         'success' => true,
                         'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
