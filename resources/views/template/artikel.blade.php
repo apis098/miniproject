@@ -33,6 +33,23 @@
             border: 0.50px black solid
         }
 
+
+         @media (max-width: 884px) {
+        div.rigt {
+                    margin-left: 400px;
+                    margin-top: -30px;
+                   }
+                   img.besar {
+    width: 150px;
+    height: 150px;
+  }
+
+  h5.knn {
+    margin-left: 130px;
+    margin-top: -48px;
+  }
+
+    }
           /* Tampilan mobile Kecil Sekali */
           @media (min-width:290px) and (max-width: 340px) {
 
@@ -74,6 +91,7 @@ margin-left: 140px;
    div.knan {
     margin-left: -16px;
   }
+
 
                 }
 
@@ -124,7 +142,7 @@ margin-left: 140px;
        /* untuk tampilan ipad */
        @media (min-width: 760px) and (max-width: 1000px) {
         li.knan {
-            margin-left: 40px;
+            margin-left: 280px;
         }
         input.bsar {
   max-width: 400px;
@@ -140,7 +158,31 @@ margin-left: 140px;
     margin-top: -5px;
   }
 
+  div.kiri {
+   margin-left: 100px;
+  }
+
+
     }
+
+
+
+    @media (min-width: 1024px) {
+        div.rigt {
+                    margin-left: 470px;
+                    margin-top: -30px;
+                   }
+
+                   button.knn {
+margin-left: 140px;
+}
+
+img.besar {
+    width: 150px;
+    height: 150px;
+  }
+
+}
 
 
           /* untuk tampilan laptop */
@@ -933,7 +975,7 @@ input.wid{
                         aria-selected="false">
                         <h5 class="knn rigth" style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
                         <div id="border3" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
-                            class="mx-auto"></div>
+                            class="kiri"></div>
                     </a>
                 </li>
             </ul>
