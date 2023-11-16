@@ -2729,6 +2729,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.0/sweetalert2.min.js" integrity="sha512-rO18JLH5mM83ToEn/5KhZ8BpHJ4uUKrGLybcp6wK0yuRfqQCSGVbEq1yIn/9coUjRU88TA6UJDLPK9sO6DN0Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function giftButton(num) {
             $("#gift-form" + num).off("submit");
@@ -2751,15 +2752,35 @@
                         if (response.success) {
                             message.value = "";
                             moreInput.value = "";
-                            iziToast.show({
-                                backgroundColor: '#a1dfb0',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                                progressBarColor: 'dark',
+                            let timerInterval;
+                            Swal.fire({
+                            timer: 2000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                Swal.showLoading();
+                                const timer = Swal.getPopup().querySelector("b");
+                                timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                                }, 100);
+                            },
+                            willClose: () => {
+                                clearInterval(timerInterval);
+                            }
+                            }).then((result) => {
+                         
+                            if (result.dismiss === Swal.DismissReason.timer) {
+                                iziToast.show({
+                                    backgroundColor: '#a1dfb0',
+                                    title: '<i class="fa-regular fa-circle-question"></i>',
+                                    titleColor: 'dark',
+                                    messageColor: 'dark',
+                                    message: response.message,
+                                    position: 'topCenter',
+                                    progressBarColor: 'dark',
+                                });
+                                 }
                             });
+                           
                         } else {
                             message.value = "";
                             moreInput.value = "";
