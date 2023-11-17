@@ -36,7 +36,7 @@ use App\Models\TransaksiKursus;
 use App\Models\UlasanKursus;
 use App\Models\balasKomentar;
 use App\Models\dataPribadiKoki;
-
+use App\Models\penarikans;
 class KokiController extends Controller
 {
     /**
@@ -250,7 +250,7 @@ class KokiController extends Controller
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
                 ->where('status','belum')
-                ->orderBy('created_at', 'desc') 
+                ->orderBy('created_at', 'desc')
                 ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
@@ -293,17 +293,17 @@ class KokiController extends Controller
         } elseif ($request->isMethod('GET')) {
             $income_koki = income_chefs::where('chef_id', Auth::user()->id)->paginate(8);
         }
-        $saldo1 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'bisa ditarik');
-        $saldo_belumDiambil = $saldo1->sum('pemasukan');
-        $saldo2 = income_chefs::where('chef_id', Auth::user()->id)->where('status_penarikan', 'sudah ditarik');
-        $saldo_sudahDiambil = $saldo2->sum('pemasukan');
+
+        $saldo2 = penarikans::where('chef_id', Auth::user()->id)->where('status', 'diterima');
+        $saldo_sudahDiambil = $saldo2->sum('nilai');
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
+
         // cek apakah koki sudah daftar data pribadi
         $check = dataPribadiKoki::where('chef_id', Auth::user()->id)->where('status', 'diterima')->exists();
         $check2 = dataPribadiKoki::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
         // dd($notification);
-        return view('koki.income-koki', compact("koki", "check2","income_koki", "check","saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
+        return view('koki.income-koki', compact("koki", "check2","income_koki", "check", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function viewsRecipe(Request $request)

@@ -139,6 +139,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
         Route::get('data-koki', [AdminController::class, 'data_koki'])->name('admin.datakoki');
         Route::post('data-koki/{id}', [AdminController::class, 'proses_data_koki'])->name('proses.data.koki');
+        Route::get('ajuan-penarikan', [AdminController::class, 'ajuan_penarikan'])->name('admin.ajuanpenarikan');
+        Route::post('ajuan-penarikan/{id}', [AdminController::class, 'proses_ajuan_penarikan'])->name('proses.ajuan.penarikan');
         Route::put('/topup/categories/{id}', [TopUpController::class, 'update'])->name('update.categories');
         Route::get('complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
         Route::get('reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');

@@ -20,6 +20,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\TransaksiKursus;
+use App\Models\penarikans;
 
 class AdminController extends Controller
 {
@@ -95,6 +96,23 @@ class AdminController extends Controller
         $data->status = "diterima";
         $data->save();
         return redirect()->back()->with('success', 'Sukses menyetujui data koki!');
+    }
+
+    public function ajuan_penarikan() {
+        $data = penarikans::where("status", "diproses")->get();
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+
+        return view('admin.ajuanpenarikan', compact('data', 'verifed_count'));
+    }
+
+    public function proses_ajuan_penarikan(int $id) {
+        $data = penarikans::find($id);
+        $data->status = "diterima";
+        $data->save();
+        $chef = User::find($data->chef_id);
+        $chef->saldo_pemasukan = $chef->saldo_pemasukan - $data->nilai;
+        $chef->save();
+        return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');
     }
 
     public function action_verifed(string $id, string $status)
