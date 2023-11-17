@@ -401,20 +401,19 @@
         <table class="table-custom"">
             <thead>
                 <tr>
-                    <th scope="col">Jenis Konten</th>
                     <th scope="col">Konten</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Pendapatan</th>
-                    <th scope="col">Status</th>
+                    <th scope="col">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($income_koki as $income)
                     <tr class="mt-5">
-                        <td style="border-left:1px solid black;" class="">
+                        {{-- <td style="border-left:1px solid black;" class="">
                             {{ $income->status }}
-                        </td>
-                        <td>
+                        </td> --}}
+                        <td style="border-left: 1px solid black;"   >
                             @if ($income->status === 'resep')
                                 {{ $income->resep->nama_resep }}
                             @elseif ($income->status === 'feed')
@@ -428,19 +427,24 @@
                             @endif
                         </td>
                         <td>
-                            @foreach($income->notifications as $row)
+                            {{-- @foreach($income->notifications as $row)
                                 @if($row->message != null)
                                     {{ $row->message }}
                                 @else
                                     --
                                 @endif
-                            @endforeach
+                            @endforeach --}}
+                            {{$income->created_at->format('d F Y')}}
                         </td>
                         <td>
                             RP {{ number_format($income->pemasukan, 2, ',', '.') }}
                         </td>
                         <td style="border-right:1px solid black;">
-                            {{ $income->status_penarikan }}
+                            <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);" class="btn">
+                                <span style="font-weight: 600">
+                                    <a href="#" data-toggle="modal" data-target="#detail{{$income->id}}" style="color: rgb(255, 255, 255);">Detail</a>
+                                </span>
+                            </button>
                         </td>
                     </tr>
                 @endforeach

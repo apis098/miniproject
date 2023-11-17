@@ -74,7 +74,9 @@ class donationController extends Controller
                         $notification->notification_from = auth()->user()->id;
                         $notification->user_id = $user_recipient;
                         $notification->categories = "gift";
-                        // $notification->message = "Memberikan " . $request->input('moreInput') . "untuk anda";
+                        if($request->input('message') != null){
+                            $notification->message = $request->input('message');
+                        }
                         $notification->gift_id = $income->id;
                         $notification->route = "/koki/income-koki";
                         $notification->save();
@@ -94,7 +96,9 @@ class donationController extends Controller
                         $notification->notification_from = auth()->user()->id;
                         $notification->user_id = $user_recipient;
                         $notification->categories = "gift";
-                        // $notification->message = "Memberikan " . $request->input('moreInput') . "untuk anda";
+                        if($request->input('message') != null){
+                            $notification->message = $request->input('message');
+                        }
                         $notification->gift_id = $income->id;
                         $notification->route = "/koki/income-koki";
                         $notification->save();
@@ -152,6 +156,9 @@ class donationController extends Controller
                         $notification->categories = "gift";
                         $notification->gift_id = $income->id;
                         $notification->route = "/koki/income-koki";
+                        if($request->input('message') != null){
+                            $notification->message = $request->input('message');
+                        }
                         $notification->save();
                     }elseif($resep_id != 0){
                         $income = new income_chefs();
@@ -170,6 +177,9 @@ class donationController extends Controller
                         $notification->categories = "gift";
                         $notification->gift_id = $income->id;
                         $notification->route = "/koki/income-koki";
+                        if($request->input('message') != null){
+                            $notification->message = $request->input('message');
+                        }
                         $notification->save();
                     }
               
