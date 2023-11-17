@@ -33,7 +33,7 @@ class AdminController extends Controller
         $reports = Report::orderBy("created_at", "desc")->get();
         $reseps = reseps::orderBy("created_at", "desc")->get();
         $datetime = User::pluck("created_at");
-        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         $year = 2018;
         $yearsu = date('Y') - $year;
         $years = [];
@@ -69,7 +69,7 @@ class AdminController extends Controller
         $data_chartjs = [];
         return view('admin.index', [
             'admin' => $admin,
-        ], compact("jumlah_user","verifed_count", "jumlah_resep", "jumlah_report", "monthPrem", "monthSuper","month", "years", "reports", "reseps"));
+        ], compact("jumlah_user", "verifed_count", "jumlah_resep", "jumlah_report", "monthPrem", "monthSuper", "month", "years", "reports", "reseps"));
     }
 
 
@@ -80,32 +80,40 @@ class AdminController extends Controller
 
         // Ambil pengguna yang memiliki jumlah followers lebih dari 10,000
         $verified = $users->where('followers', '>', 10000)->paginate(6);
-        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
-        return view('admin.verifed', compact('verified','verifed_count'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
+        return view('admin.verifed', compact('verified', 'verifed_count'));
     }
 
-    public function data_koki() {
+    public function data_koki()
+    {
         $data = dataPribadiKoki::where("status", "diproses")->get();
-        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
 
         return view('admin.datakoki', compact('data', 'verifed_count'));
     }
 
-    public function proses_data_koki($id) {
+    public function proses_data_koki(Request $request, $id)
+    {
         $data = dataPribadiKoki::find($id);
-        $data->status = "diterima";
+        if ($request->status === "diterima") {
+            $data->status = "diterima";
+        } elseif ($request->status === "ditolak") {
+            $data->status = "ditolak";
+        }
         $data->save();
-        return redirect()->back()->with('success', 'Sukses menyetujui data koki!');
+        return redirect()->back();
     }
 
-    public function ajuan_penarikan() {
+    public function ajuan_penarikan()
+    {
         $data = penarikans::where("status", "diproses")->get();
-        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
 
         return view('admin.ajuanpenarikan', compact('data', 'verifed_count'));
     }
 
-    public function proses_ajuan_penarikan(int $id) {
+    public function proses_ajuan_penarikan(int $id)
+    {
         $data = penarikans::find($id);
         $data->status = "diterima";
         $data->save();
@@ -136,11 +144,11 @@ class AdminController extends Controller
     public function userContent(int $id)
     {
         $koki = User::find(Auth::user()->id);
-        $students = User::with('user_transaksi_kursus')->whereHas('user_transaksi_kursus',function ($query) use ($id) {
+        $students = User::with('user_transaksi_kursus')->whereHas('user_transaksi_kursus', function ($query) use ($id) {
             $query->where('course_id', $id);
         })->get();
         $userLogin = Auth::user();
-        return view('koki.user', compact("koki","userLogin","students"));
+        return view('koki.user', compact("koki", "userLogin", "students"));
     }
 
 
@@ -158,9 +166,9 @@ class AdminController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-            ->where('status','belum')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+                ->where('status', 'belum')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -170,8 +178,8 @@ class AdminController extends Controller
         }
         $penawaran_premium = premiums::all();
         $categoryTopUp = TopUpCategories::all();
-        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
-        return view('admin.tawaran', compact('verifed_count','categoryTopUp', 'penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
+        return view('admin.tawaran', compact('verifed_count', 'categoryTopUp', 'penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
     public function updateProfile(Request $request)
