@@ -249,8 +249,9 @@ class KokiController extends Controller
         }
         if ($userLogin) {
             $notification = notifications::where('user_id', auth()->user()->id)
-                ->orderBy('created_at', 'desc') // Urutkan notifikasi berdasarkan created_at terbaru
-                ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
+                ->where('status','belum')
+                ->orderBy('created_at', 'desc') 
+                ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -301,6 +302,7 @@ class KokiController extends Controller
         // cek apakah koki sudah daftar data pribadi
         $check = dataPribadiKoki::where('chef_id', Auth::user()->id)->where('status', 'diterima')->exists();
         $check2 = dataPribadiKoki::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
+        // dd($notification);
         return view('koki.income-koki', compact("koki", "check2","income_koki", "check","saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
