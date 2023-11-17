@@ -112,7 +112,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="d-flex">
-                    @if (!$check)
+                    @if ($check)
                         <div class="col-6">
                             <h5 class="modal-title ml-3 mt-3"
                                 style="color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
@@ -540,7 +540,7 @@
                 }
             });
         });
-        function Peringatan1() {    
+        function Peringatan1() {
             iziToast.destroy();
             iziToast.error({
                 'title': 'Peringatan',
