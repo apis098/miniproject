@@ -33,8 +33,74 @@
             border: 0.50px black solid
         }
 
+
+         @media (max-width: 884px) {
+        div.rigt {
+                    margin-left: 400px;
+                    margin-top: -30px;
+                   }
+                   img.besar {
+    width: 150px;
+    height: 150px;
+  }
+
+  h5.knn {
+    margin-left: 130px;
+    margin-top: -48px;
+  }
+
+    }
+          /* Tampilan mobile Kecil Sekali */
+          @media (min-width:290px) and (max-width: 340px) {
+
+            button.knn {
+margin-left: 140px;
+}
+
+            h5.widt{
+       margin-top: -75px;
+    }
+
+    h5.rigth{
+        margin-left: 70px;
+        margin-top: -48px;
+    }
+    h5.rigt {
+        margin-left: -50px;
+    }
+
+    div.rigt {
+                    margin-left: -100px;
+                    margin-top: 40px;
+                   }
+
+                   div.wid {
+    margin-left: -3000px;
+  }
+
+  input.bsar {
+  max-width: 900px;
+  margin-left: -60px;
+  }
+
+  img.besar {
+    width: 83px;
+    height: 83px;
+  }
+
+   div.knan {
+    margin-left: -16px;
+  }
+
+
+                }
+
          /* untuk tampilan mobile */
          @media (min-width: 350px) and (max-width: 860px) {
+            h5.widt{
+       margin-top: -75px;
+    }
+
                    div.rigt {
                     margin-left: -100px;
                     margin-top: 40px;
@@ -67,10 +133,57 @@ margin-left: 140px;
   }
 
   h5.knn {
-    margin-left: -50px;
+    margin-left: 130px;
+    margin-top: -48px;
   }
 
     }
+
+       /* untuk tampilan ipad */
+       @media (min-width: 760px) and (max-width: 1000px) {
+        li.knan {
+            margin-left: 280px;
+        }
+        input.bsar {
+  max-width: 400px;
+  margin-left: 40px;
+  margin-top: -10px;
+  }
+
+  button.bsar {
+    margin-top: -10px;
+  }
+
+  h5.widt {
+    margin-top: -5px;
+  }
+
+  div.kiri {
+   margin-left: 100px;
+  }
+
+
+    }
+
+
+
+    @media (min-width: 1024px) {
+        div.rigt {
+                    margin-left: 470px;
+                    margin-top: -30px;
+                   }
+
+                   button.knn {
+margin-left: 140px;
+}
+
+img.besar {
+    width: 150px;
+    height: 150px;
+  }
+
+}
+
 
           /* untuk tampilan laptop */
           @media (min-width: 1210px) and (max-width: 4000px) {
@@ -788,7 +901,7 @@ input.wid{
                 <div class="card p-4 mb-2" style="border-radius: 15px; border: 0.50px black solid;box-shadow: none;">
                     <div class="row my-1">
                         <div class="col-7 mt-1">
-                            <span class=""
+                            <span class="text-nowrap"
                                 style="color: black; font-size: 21px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                 RP {{ number_format($show_resep->pengeluaran_memasak, 2, ',', '.') }}
                             </span> <br>
@@ -842,7 +955,7 @@ input.wid{
                     <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 style="font-weight: 600; word-warp: break-word;">Bahan</h5>
+                        <h5 class="rigt" style="font-weight: 600; word-warp: break-word;">Bahan</h5>
                         <div id="b" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
                         </div>
                     </a>
@@ -851,18 +964,18 @@ input.wid{
                     <a id="click4" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-footer" type="button" role="tab" aria-controls="pills-footer"
                         aria-selected="false">
-                        <h5 style="font-weight: 600; word-wrap:break-word;">Alat</h5>
+                        <h5 class="" style="font-weight: 600; word-wrap:break-word;">Alat</h5>
                         <div id="border4" style="width: 90%; height:100%;border:1px #F7941E solid; display:none;"
                             class="mx-auto"></div>
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <li class="nav-item knan" role="presentation">
                     <a id="click3" class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="knn" style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
+                        <h5 class="knn rigth" style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
                         <div id="border3" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
-                            class="mx-auto"></div>
+                            class="kiri"></div>
                     </a>
                 </li>
             </ul>
@@ -1011,7 +1124,7 @@ input.wid{
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                                     <button type="submit" onclick="ButtonTambahKomentarResep({{ Auth::user()->id }})"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)"
-                                        class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                        class="btn btn-sm text-light ms-3 bsar"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                             </form>
                     </div>
