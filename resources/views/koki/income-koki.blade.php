@@ -112,7 +112,7 @@
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="d-flex">
-                    @if (!$check)
+                    @if ($check)
                         <div class="col-6">
                             <h5 class="modal-title ml-3 mt-3"
                                 style="color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
@@ -292,7 +292,7 @@
     <div class="container pt-4 px-5">
         @if ($check2)
         <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-        class="btn">
+        class="btn" onclick="Peringatan1()">
         <span style="font-weight: 600">
             <a href="#" style="color: rgb(255, 255, 255);">Tarik
                 Tunai</a>
@@ -540,5 +540,13 @@
                 }
             });
         });
+        function Peringatan1() {
+            iziToast.destroy();
+            iziToast.error({
+                'title': 'Peringatan',
+                'message': 'Data anda sedang diproses!',
+                'position': 'topCenter'
+            });
+        }
     </script>
 @endsection

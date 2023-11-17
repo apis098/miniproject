@@ -73,6 +73,10 @@
             font-weight: bolder;
         }
 
+        input:disabled {
+            background-color: white;
+        }
+
         .table-custom th {
             padding: 10px;
             width: 245px;
@@ -319,47 +323,110 @@
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                        Detail Data Pribadi</h1>
+                                                                    <h2 class="fs-5" id="exampleModalLabel">
+                                                                        Detail</h2>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body" style="text-align: left;">
-                                                                    <div class="mb-3">
-                                                                        Nama : {{ $data_verified->name }}
+                                                                    <div class="row text-center">
+                                                                        <div class="col-6">
+                                                                            <img width="150px" height="100px"
+                                                                                style="border-radius: 10px;"
+                                                                                src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
+                                                                                alt="">
+                                                                            <br>
+                                                                            Foto KTP
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <img width="150px" height="100px"
+                                                                                style="border-radius: 10px;"
+                                                                                src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
+                                                                                alt="">
+                                                                            <br>
+                                                                            Foto Diri Dengan KTP
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        E-mail : {{ $data_verified->email }}
+                                                                    <div class="row mb-3 mt-3">
+                                                                        <div class="col-4">
+                                                                            Nama
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control"
+                                                                                style="border-radius: 10px;">
+                                                                                {{ $data_verified->name }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Nomer Handphone :
-                                                                        {{ $data_verified->number_handphone }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            E-mail
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control"
+                                                                                style="border-radius: 10px;">
+                                                                                {{ $data_verified->email }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Alamat : {{ $data_verified->alamat }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Telefon
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control"
+                                                                                style="border-radius: 10px;">
+                                                                                {{ $data_verified->number_handphone }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Foto KTP <br>
-                                                                        <img width="100px" style="border-radius: 10px;"
-                                                                            src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
-                                                                            alt="">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Alamat
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control"
+                                                                                style="border-radius: 10px;">
+                                                                                {{ $data_verified->alamat }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Foto Diri Dengan KTP <br>
-                                                                        <img width="100px" style="border-radius: 10px;"
-                                                                            src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
-                                                                            alt="">
+
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Pilihan Bank
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control"
+                                                                                style="border-radius: 10px;">
+                                                                                {{ $data_verified->pilihan_bank }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Pilihan Bank : {{ $data_verified->pilihan_bank }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Nomer rekening
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control"
+                                                                                style="border-radius: 10px;">
+                                                                                {{ $data_verified->nomer_rekening }}
+                                                                            </div>
+                                                                        </div>
+
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Nomer Rekening :
-                                                                        {{ $data_verified->nomer_rekening }}
+                                                                    <div class="collapse"
+                                                                        id="collapseTolak{{ $data_verified->id }}">
+                                                                        <form method="post" action="{{ route('proses.data.koki', ['id' => $data_verified->id, 'status' => 'ditolak']) }}">
+                                                                            @csrf
+                                                                            <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control"
+                                                                                placeholder="Alasan..."></textarea>
+                                                                            <button type="submit" id="tolakdata{{$data_verified->id}}" hidden></button>
+                                                                        </form>
                                                                     </div>
-                                                                    <div class="mb-3 d-flex justify-content-start">
+                                                                    <div class="mb-3 d-flex justify-content-end">
                                                                         <form
-                                                                            action="{{ route('proses.data.koki', $data_verified->id) }}"
+                                                                            action="{{ route('proses.data.koki', ['id'=>$data_verified->id, 'status'=>'diterima']) }}"
                                                                             method="post">
                                                                             @csrf
                                                                             <button type="submit"
@@ -369,12 +436,28 @@
                                                                                     style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
                                                                             </button>
                                                                         </form>
-                                                                        <button type="button"
+                                                                        <button type="button" id="buttonTolak{{$data_verified->id}}" data-toggle="collapse" onclick="tolakData({{$data_verified->id}})"
+                                                                            data-target="#collapseTolak{{ $data_verified->id }}"
                                                                             class="btn btn-sm rounded-3 text-light me-2"
                                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                                                 class="ms-2 me-2"
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
                                                                         </button>
+                                                                        <button type="button" id="submitTolak{{$data_verified->id}}" onclick="tolakdata({{$data_verified->id}})"
+                                                                            class="btn btn-sm rounded-3 text-light me-2"
+                                                                            style="display:none;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
+                                                                                class="ms-2 me-2"
+                                                                                style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Selesai</b>
+                                                                        </button>
+                                                                        <script>
+                                                                            function tolakData(num) {
+                                                                                document.getElementById('buttonTolak'+num).style.display = "none";
+                                                                                document.getElementById('submitTolak'+num).style.display = "block";
+                                                                            }
+                                                                            function tolakdata(num) {
+                                                                                document.getElementById('tolakdata'+num).click();
+                                                                            }
+                                                                        </script>
                                                                     </div>
                                                                 </div>
                                                             </div>
