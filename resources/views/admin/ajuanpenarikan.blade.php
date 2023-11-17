@@ -320,30 +320,70 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                        Detail Data Pribadi</h1>
+                                                                        Detail</h1>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body" style="text-align: left;">
-                                                                    <div class="mb-3">
-                                                                        Nama : {{ $data_verified->data->name }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            Nama
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                                {{ $data_verified->data->name }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        E-mail : {{ $data_verified->data->email }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            E-mail
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                                {{ $data_verified->data->email }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Nomer Handphone :
-                                                                        {{ $data_verified->data->number_handphone }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            Telefon
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                                {{ $data_verified->data->number_handphone }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Pilihan Bank : {{ $data_verified->data->pilihan_bank }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            Pilihan bank
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                                {{ $data_verified->data->pilihan_bank }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Nomer Rekening :
-                                                                        {{ $data_verified->data->nomer_rekening }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            Nomer rekening
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                                {{ $data_verified->data->nomer_rekening }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Jumlah : {{ $data_verified->nilai }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-3">
+                                                                            Jumlah
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                                {{ number_format($data_verified->nilai, '0', ',', '.') }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="mb-3 d-flex justify-content-end">
                                                                         <form
