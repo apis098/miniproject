@@ -68,6 +68,15 @@
         }
     </style>
     <style>
+         .scale {
+                box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+                transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+            }
+
+            .scale:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
+            }
         .cascading-right {
             margin-right: -50px;
         }
@@ -927,7 +936,7 @@
                                 Upgrade
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" style="width: 230px;" class="dropdown-item text-orange">
+                            <a href="#" style="width: 230px;" data-bs-toggle="modal" data-bs-target="#topup" class="dropdown-item text-orange">
                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     viewBox="0 0 256 256">
                                     <path fill="currentColor"
@@ -1155,6 +1164,141 @@
         </div>
         <!-- /.sidebar -->
     </aside>
+    <div class="modal" id="topup">
+        <div class="modal-dialog">
+            <div class="modal-content text-center">
+                <div class="d-flex">
+                    <div class="col-11">
+                        <h5 class="modal-title ml-1 mt-3"
+                            style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                            Top Up</h5>
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="close mr-1 mt-3" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form action="{{ route('payments.method.get') }}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        @foreach ($categorytopup as $topup)
+                            <div class="col-lg-4 my-3 ms-2">
+                                <label for="inputanKecil{{ $loop->iteration }}" id="topUp{{ $loop->iteration }}"
+                                    class="card border-2 scale" data-card-selected="false"
+                                    style="width: 435px; height: 85px; border-radius: 15px; border: 1.5px black solid; overflow: hidden;">
+                                    <input type="radio" id="inputanKecil{{ $loop->iteration }}"
+                                        style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
+                                    <div class="d-flex flex-row">
+                                            <a href="" class="text-start pl-2 pt-2" style="color: black; font-size: 20px; font-family: Poppins;">
+                                                {{ $topup->name }} <br>
+                                                <small>
+                                                    Rp. {{ number_format($topup->price, 2, ',', '.') }}
+                                                </small>
+                                            </a>
+                                                
+                                            <img src="{{ asset('images/' . $topup->foto) }}" class="ml-auto" width="100px" height="92px;" alt="">
+                                    </div>
+                                </label>
+                            </div>
+                        @endforeach
+
+                        <div class="col-lg-3 my-3 ms-2">
+                            <div id="topUpLainya" class="card border-2 scale" id="card"
+                                data-card-selected="false"
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;"> 
+                                <div class="d-flex flex-row">
+                                    <a href="" class="text-start pl-2 pt-2" style="color: black; font-size:10px; font-family:Poppins;">
+                                        <p id="anotherText"
+                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                            Lainya <br>
+                                            <small id="displayInput"
+                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                Masukkan nilai....
+                                            </small>
+                                        </p>
+                                    </a>
+                                    <img src="{{ asset('img/2.png') }}" class="ml-auto" width="100px" height="92px;" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
+                            <input type="number" id="inputan" name="inputanLainya" class="form-control border-2"
+                                style="border-radius: 10px; border:solid #F7941E;"
+                                placeholder="Masukkan nominal lainya...">
+                        </div>
+                    </div>
+                    <script>
+                        const topUpKecil = document.getElementById('topUp1');
+                        const topUpSedang = document.getElementById('topUp2');
+                        const topUpBesar = document.getElementById('topUp3');
+                        const topUpLainya = document.getElementById('topUpLainya');
+                        const inputanLainya = document.getElementById('inputanLainya');
+                        const inputElement = document.getElementById("inputan");
+                        const displayElement = document.getElementById("displayInput");
+                        const anotherText = document.getElementById("anotherText");
+                        topUpKecil.addEventListener('click', function() {
+                            topUpKecil.style.borderColor = "#F7941E";
+                            topUpBesar.style.borderColor = "black";
+                            topUpSedang.style.borderColor = "black";
+                            topUpLainya.style.borderColor = "black";
+                            inputanLainya.style.display = "none";
+                        });
+                        topUpSedang.addEventListener("click", function() {
+                            topUpSedang.style.borderColor = "#F7941E";
+                            topUpKecil.style.borderColor = "black";
+                            topUpBesar.style.borderColor = "black";
+                            topUpLainya.style.borderColor = "black";
+                            inputanLainya.style.display = "none";
+                        });
+                        topUpBesar.addEventListener("click", function() {
+                            topUpBesar.style.borderColor = "#F7941E";
+                            topUpKecil.style.borderColor = "black";
+                            topUpSedang.style.borderColor = "black";
+                            topUpLainya.style.borderColor = "black";
+                            inputanLainya.style.display = "none";
+                        });
+                        topUpLainya.addEventListener('click', function() {
+                            topUpLainya.style.borderColor = "#F7941E";
+                            topUpKecil.style.borderColor = "black";
+                            topUpSedang.style.borderColor = "black";
+                            topUpBesar.style.borderColor = "black";
+                            inputanLainya.style.display = "block";
+                        });
+                        inputElement.addEventListener("input", function() {
+                            const inputValue = inputElement.value;
+                            // Format nilai dengan titik sebagai pemisah ribuan
+                            const formattedValue = formatNumber(inputValue);
+                            // Tampilkan nilai yang diformat pada elemen p
+                            displayElement.textContent = formattedValue;
+                            if (inputValue.trim() === "") {
+                                displayElement.textContent = "Masukkan nilai...";
+                                anotherText.textContent = "Lainya";
+                            } else {
+                                anotherText.textContent = "Jumlah lainya:"
+                                displayElement.textContent = "Rp. " + formattedValue + ",00";
+                            }
+
+                        });
+
+                        function formatNumber(number) {
+                            // Hapus semua titik yang ada
+                            const cleanValue = number.replace(/\./g, '');
+
+                            // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                            return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                        }
+                    </script>
+                    <button type="submit" id="buttonCommentVeed"
+                        style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                        class="btn btn-sm text-light mb-3 mx-4">
+                        <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Main content -->
     <div class="content-wrapper" style="background-color: white">
         @yield('konten')
