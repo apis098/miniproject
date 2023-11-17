@@ -73,6 +73,10 @@
             font-weight: bolder;
         }
 
+        input:disabled {
+            background-color: white;
+        }
+
         .table-custom th {
             padding: 10px;
             width: 245px;
@@ -319,43 +323,88 @@
                                                         <div class="modal-dialog">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                                        Detail Data Pribadi</h1>
+                                                                    <h2 class="fs-5" id="exampleModalLabel">
+                                                                        Detail</h2>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body" style="text-align: left;">
-                                                                    <div class="mb-3">
-                                                                        Nama : {{ $data_verified->name }}
+                                                                    <div class="row text-center">
+                                                                        <div class="col-6">
+                                                                            <img width="150px" height="100px" style="border-radius: 10px;"
+                                                                                src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
+                                                                                alt="">
+                                                                                <br>
+                                                                                Foto KTP
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                            <img width="150px" height="100px" style="border-radius: 10px;"
+                                                                                src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
+                                                                                alt="">
+                                                                                <br>
+                                                                                Foto Diri Dengan KTP
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        E-mail : {{ $data_verified->email }}
+                                                                    <div class="row mb-3 mt-3">
+                                                                        <div class="col-4">
+                                                                            Nama
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control" style="border-radius: 10px;">
+                                                                                {{ $data_verified->name }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Nomer Handphone :
-                                                                        {{ $data_verified->number_handphone }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            E-mail
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control" style="border-radius: 10px;">
+                                                                                {{ $data_verified->email }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Alamat : {{ $data_verified->alamat }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Telefon
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control" style="border-radius: 10px;">
+                                                                                {{ $data_verified->number_handphone }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Foto KTP <br>
-                                                                        <img width="100px" style="border-radius: 10px;"
-                                                                            src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
-                                                                            alt="">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Alamat
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control" style="border-radius: 10px;">
+                                                                                {{ $data_verified->alamat }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Foto Diri Dengan KTP <br>
-                                                                        <img width="100px" style="border-radius: 10px;"
-                                                                            src="{{ asset('storage/' . $data_verified->foto_ktp) }}"
-                                                                            alt="">
+
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Pilihan Bank
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control" style="border-radius: 10px;">
+                                                                                {{ $data_verified->pilihan_bank }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        Pilihan Bank : {{ $data_verified->pilihan_bank }}
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        Nomer Rekening :
-                                                                        {{ $data_verified->nomer_rekening }}
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-4">
+                                                                            Nomer rekening
+                                                                        </div>
+                                                                        <div class="col-8">
+                                                                            <div class="form-control" style="border-radius: 10px;">
+                                                                                {{ $data_verified->nomer_rekening }}
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="mb-3 d-flex justify-content-start">
                                                                         <form
