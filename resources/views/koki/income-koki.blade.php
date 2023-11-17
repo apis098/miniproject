@@ -324,7 +324,7 @@
                     <span class="d-flex justify-content-end "
                         style="color: black;
                          font-size: 40px; font-weight: 275;">RP
-                        {{ number_format($saldo_belumDiambil, 2, ',', '.') }}</span>
+                        {{ number_format(Auth::user()->saldo_pemasukan, 2, ',', '.') }}</span>
                 </div>
             </div>
 
