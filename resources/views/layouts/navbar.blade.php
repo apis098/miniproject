@@ -118,7 +118,7 @@
             <div class="sidebar">
                 <!-- Sidebar Menu -->
                 <nav class="mt-1">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" 
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         {{-- style="overflow-y: auto; overflow-x: hidden" --}}
                         data-accordion="false">
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
@@ -151,7 +151,7 @@
                                         d="M20.565 3.18a.809.809 0 0 0-.81-.02l-1.13.56c-1.63.87-3.82.83-6.5-.13a9.141 9.141 0 0 0-7.3.52l-.76.41v-.96a.5.5 0 0 0-1 0v16.88a.5.5 0 0 0 1 0V15.9a.836.836 0 0 0 .2-.08l1.03-.55a8.163 8.163 0 0 1 6.5-.46c2.95 1.06 5.41 1.08 7.3.07l1.44-.72a.759.759 0 0 0 .4-.66V3.82a.751.751 0 0 0-.37-.64Zm-.63 10.16l-1.31.66c-1.63.87-3.82.83-6.5-.13a9.141 9.141 0 0 0-7.3.52l-.76.4V5.65L5.3 4.99a8.122 8.122 0 0 1 6.5-.46c2.95 1.06 5.41 1.08 7.29.08l.85-.43Z" />
                                 </svg>
                                 <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500;">
-                                    Laporan    
+                                    Laporan
                                     @if(\App\Models\Report::all()->isNotEmpty())
                                         <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                         height="12" viewBox="0 0 24 24">
@@ -159,7 +159,7 @@
                                             d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
                                         </svg>
                                     @endif
-                         
+
                                 </p>
                             </a>
                         </li>
@@ -257,7 +257,7 @@
                                 </p>
                             </a>
                         </li>
-                   
+
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('blocked.user.status') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/blocked-user') ? 'activet text-orange' : 'text-white' }}"
@@ -270,6 +270,21 @@
                                 <p
                                     style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
                                     Diblokir
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('admin.datakoki') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/data-koki') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                </svg>
+                                <p
+                                    style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                                    Data Koki
                                 </p>
                             </a>
                         </li>

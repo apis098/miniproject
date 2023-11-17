@@ -214,7 +214,7 @@
 
                             </div>
                             -->
-                    @if (!$check)
+                    @if ($check)
                         <form action="{{ route('ajukan.penarikan') }}" id="FormAjukanPenarikan" method="post">
                             @csrf
                             <div class="mb-3 d-flex">
@@ -290,13 +290,23 @@
     </div>
 
     <div class="container pt-4 px-5">
+        @if ($check2)
         <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-            class="btn">
-            <span style="font-weight: 600">
-                <a href="#" data-toggle="modal" data-target="#tarik" style="color: rgb(255, 255, 255);">Tarik
-                    Tunai</a>
-            </span>
-        </button>
+        class="btn">
+        <span style="font-weight: 600">
+            <a href="#" style="color: rgb(255, 255, 255);">Tarik
+                Tunai</a>
+        </span>
+    </button>
+        @else
+        <button style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+        class="btn">
+        <span style="font-weight: 600">
+            <a href="#" data-toggle="modal" data-target="#tarik" style="color: rgb(255, 255, 255);">Tarik
+                Tunai</a>
+        </span>
+    </button>
+        @endif
 
         <div class="row">
             <div class="col-sm-3 col-lg-6 mb-2 mt-3">

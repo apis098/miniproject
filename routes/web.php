@@ -137,6 +137,8 @@ Route::prefix('share-content')->group(function (){
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
+        Route::get('data-koki', [AdminController::class, 'data_koki'])->name('admin.datakoki');
+        Route::post('data-koki/{id}', [AdminController::class, 'proses_data_koki'])->name('proses.data.koki');
         Route::put('/topup/categories/{id}', [TopUpController::class, 'update'])->name('update.categories');
         Route::get('complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
         Route::get('reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');

@@ -299,8 +299,9 @@ class KokiController extends Controller
         $saldo = income_chefs::where('chef_id', Auth::user()->id);
         $saldo_total = $saldo->sum('pemasukan');
         // cek apakah koki sudah daftar data pribadi
-        $check = dataPribadiKoki::where('chef_id', Auth::user()->koki)->exists();
-        return view('koki.income-koki', compact("koki", "income_koki", "check","saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
+        $check = dataPribadiKoki::where('chef_id', Auth::user()->id)->where('status', 'diterima')->exists();
+        $check2 = dataPribadiKoki::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
+        return view('koki.income-koki', compact("koki", "check2","income_koki", "check","saldo_belumDiambil", "saldo_sudahDiambil", "saldo_total", "userLogin", "notification", "favorite", "unreadNotificationCount", "messageCount"));
     }
 
     public function viewsRecipe(Request $request)
@@ -598,7 +599,8 @@ class KokiController extends Controller
                 "foto_ktp" => $request->file('foto_ktp')->store('foto_ktp', 'public'),
                 "foto_diri_ktp" => $request->file('foto_diri_ktp')->store('foto_diri_ktp', 'public'),
                 "pilihan_bank" => $request->pilihan_bank,
-                "nomer_rekening" => $request->nomer_rekening
+                "nomer_rekening" => $request->nomer_rekening,
+                'status' => "diproses"
             ]);
             return response()->json([
                 'success' => true,

@@ -18,7 +18,8 @@ class dataPribadiKoki extends Model
         "foto_ktp",
         "foto_diri_ktp",
         "pilihan_bank",
-        "nomer_rekening"
+        "nomer_rekening",
+        'status'
     ];
     public function chef() {
         return $this->belongsTo(User::class, "chef_id");

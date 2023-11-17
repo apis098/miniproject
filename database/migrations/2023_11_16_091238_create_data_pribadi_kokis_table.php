@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string("foto_diri_ktp");
             $table->string("pilihan_bank");
             $table->string("nomer_rekening");
+            $table->enum('status', ['diproses', 'diterima', 'ditolak']);
             $table->timestamps();
 
             $table->foreign("chef_id")->references("id")->on("users")->onDelete("cascade");

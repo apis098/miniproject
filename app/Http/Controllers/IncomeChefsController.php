@@ -86,12 +86,14 @@ class IncomeChefsController extends Controller
             ]);
         }
         $penarikan = penarikans::where("chef_id", Auth::user()->id)->first();
+        $exists = penarikans::where('chef_id', Auth::user()->id)->exists();
+        if($exists) {
         if($penarikan->status === "diproses") {
             return response()->json([
                 'success' => false,
                 'message' => 'Pengajuan anda sebelumnya belum selesai di proses oleh admin!'
             ]);
-        }
+        } }
         if($request->nilai < 0) {
             return response()->json([
                 'success' => false,

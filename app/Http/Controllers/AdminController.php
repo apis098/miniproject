@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
+use App\Models\dataPribadiKoki;
 use App\Models\detail_premiums;
 use App\Models\favorite;
 use App\Models\footer;
@@ -82,6 +83,19 @@ class AdminController extends Controller
         return view('admin.verifed', compact('verified','verifed_count'));
     }
 
+    public function data_koki() {
+        $data = dataPribadiKoki::where("status", "diproses")->get();
+        $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
+
+        return view('admin.datakoki', compact('data', 'verifed_count'));
+    }
+
+    public function proses_data_koki($id) {
+        $data = dataPribadiKoki::find($id);
+        $data->status = "diterima";
+        $data->save();
+        return redirect()->back()->with('success', 'Sukses menyetujui data koki!');
+    }
 
     public function action_verifed(string $id, string $status)
     {
