@@ -165,35 +165,50 @@
             <ul class="navbar-nav">
                 <li class="nav-item mx-3">
                     <a id="btnSidebar" onclick="ManageSidebar()" class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                            class="fas fa-xl fa-bars"></i></a>
                 </li>
             </ul>
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto p-2">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link " data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-
+                        <i class="far fa-solid fa-xl fa-comment-dots"></i>
+                        @if($messageCount > 0)
+                            <span class="badge badge-danger text-light navbar-badge fw-bolder">{{$messageCount}}</span>
+                        @endif
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                        <a href="#" class="dropdown-item dropdown-footer">Kotak pesan</a>
                     </div>
                 </li>
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-danger text-light navbar-badge">1</span>
-                    </a>
+                    <form action="{{ route('all.notifications') }}"
+                    id="notification-form" method="POST">
+                    @csrf
+                    @method('PATCH')
+                        <button type="button" id="notification-button" class="nav-link yuhu" >
+                            <i class="far fa-solid fa-xl fa-bell"></i>
+                            @if($unreadNotificationCount > 0)
+                                <span id="badge" class="badge badge-danger text-light navbar-badge fw-bolder"> {{$unreadNotificationCount}}</span>
+                            @endif
+                        </button>
+                    </form>
+                    <button hidden type="button" id="notification-button-real" class="nav-link yuhu" data-toggle="dropdown">
+                        <i class="far fa-solid fa-xl fa-bell"></i>
+                        @if($unreadNotificationCount > 0)
+                            <span id="badge" class="badge badge-danger text-light navbar-badge fw-bolder"> {{$unreadNotificationCount}}</span>
+                        @endif
+                    </button>
                     <div class="dropdown-menu dropdown-menu-xl dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">
                             {{$unreadNotificationCount}} Notifikasi
                         </span>
-                        
+
                         <div class="dropdown-divider"></div>
 
                         <div class="row pl-4 pr-4 pb-3">
@@ -851,7 +866,7 @@
                 {{-- expand fullscreen --}}
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
+                        <i class="fas fa-xl fa-expand-arrows-alt"></i>
                     </a>
                 </li>
                 {{-- dropdown profile & logout --}}
@@ -1226,7 +1241,27 @@
              }
 
          }
-
+         $(document).ready(function() {
+            $("#notification-button").click(function() {
+                $('#notification-button-real').click();
+                const badge = document.getElementById('badge');
+                $.ajax({
+                    type: "PATCH",
+                    url: "{{ route('all.notifications') }}",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            badge.style.display = "none";
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        badge.style.display = "block";
+                    }
+                });
+            });
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
