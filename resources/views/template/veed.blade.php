@@ -901,7 +901,7 @@
                                         @if (Auth::check() && auth()->user()->id != $item_video->users_id)
                                             <a type="button" class="text-dark me-2"><i
                                                     class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                                                    data-bs-toggle="modal" data-bs-target="#gift{{$item_video->id}}"></i>
+                                                    data-toggle="modal" data-target="#giftModal{{$item_video->id}}"></i>
                                             </a>
                                         @elseif(!Auth::check())
                                             <a type="button" class="text-dark me-2"><i
@@ -951,7 +951,7 @@
                                             </div>
                                         @endif
                                         <!-- modal Gift start -->
-                                        <div class="modal" id="gift{{$item_video->id}}">
+                                        <div class="modal" id="giftModal{{$item_video->id}}">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <form
@@ -963,7 +963,7 @@
                                                                 style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                                                 Beri Donasi</h5>
                                                             <button type="button" class="close mr-2"
-                                                                data-bs-dismiss="modal" aria-label="Close">
+                                                                data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
@@ -1068,7 +1068,7 @@
                                                                     placeholder="Tambahkan pesan untuk pembuat...">
 
                                                                 <button type="submit"
-                                                                    onclick="giftButton({{ $item_video->id }})" id="gift-btn{{$item_video->id}}"
+                                                                    onclick="gift_submit_button({{ $item_video->id }})" id="gift-btn{{$item_video->id}}"
                                                                     style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                     class="btn  btn-sm text-light">
                                                                     <b class="me-3 ms-3">Kirim</b></button>
@@ -2747,16 +2747,17 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
     <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.0/sweetalert2.min.js" integrity="sha512-rO18JLH5mM83ToEn/5KhZ8BpHJ4uUKrGLybcp6wK0yuRfqQCSGVbEq1yIn/9coUjRU88TA6UJDLPK9sO6DN0Iw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        function giftButton(num) {
+        function gift_submit_button(num) {
             $("#gift-form" + num).off("submit");
             $("#gift-form" + num).submit(function(event) {
                 event.preventDefault();
-                var message = document.getElementById("message");
-                var moreInput = document.getElementById("moreInput");
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
+                var message = document.getElementById("message"+num);
+                var moreInput = document.getElementById("moreInput"+num);
                 $.ajax({
                     type: "POST",
                     url: route,
