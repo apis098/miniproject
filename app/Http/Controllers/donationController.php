@@ -31,7 +31,6 @@ class donationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request){
-        dd($request->input('giftInput'));
         $user_recipient = $request->user_recipient;
         $resep_id = $request->resep_id;
         $feed_id = $request->feed_id;

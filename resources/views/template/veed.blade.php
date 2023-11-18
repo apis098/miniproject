@@ -969,7 +969,7 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <div class="d-flex ">
-                                                                <label for="inputKecil" class="col-lg-3 my-1">
+                                                                <label for="inputKecil{{$item_video->id}}" class="col-lg-3 my-1">
                                                                     <div class="card border-2 border-black scale" onclick="small_gift_click({{$item_video->id}})" id="smallGift{{$item_video->id}}"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/kecil.png') }}"
@@ -977,7 +977,7 @@
                                                                         <div class=card-body">
                                                                             <input hidden type="radio"
                                                                                 value="5000" name="giftInput"
-                                                                                id="inputKecil">
+                                                                                id="inputKecil{{$item_video->id}}">
                                                                             <div class="text-center">
                                                                                 <p
                                                                                     class="card-title text-center"
@@ -991,7 +991,7 @@
                                                                     </div>
                                                                 </label>
 
-                                                                <label for="mediumInput" class="col-lg-3 my-1">
+                                                                <label for="mediumInput{{$item_video->id}}" class="col-lg-3 my-1">
                                                                     <div class="card border-2 scale border-black" onclick="medium_gift_click({{$item_video->id}})" id="mediumGift{{$item_video->id}}"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/sedang.png') }}"
@@ -999,7 +999,7 @@
                                                                         <div class=card-body">
                                                                             <input hidden type="radio"
                                                                                 value="10000" name="giftInput"
-                                                                                id="mediumInput">
+                                                                                id="mediumInput{{$item_video->id}}">
                                                                             <div class="text-center">
                                                                                 <p
                                                                                     class="card-title text-center"
@@ -1013,7 +1013,7 @@
                                                                     </div>
                                                                 </label>
 
-                                                                <label for="extraInput" class="col-lg-3 my-1">
+                                                                <label for="extraInput{{$item_video->id}}" class="col-lg-3 my-1">
                                                                     <div class="card border-2 scale border-black" onclick="extra_gift_click({{$item_video->id}})" id="extraGift{{$item_video->id}}"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/besar.png') }}"
@@ -1021,7 +1021,7 @@
                                                                         <div class=card-body">
                                                                             <input hidden type="radio"
                                                                                 value="20000" name="giftInput"
-                                                                                id="extraInput">
+                                                                                id="extraInput{{$item_video->id}}">
                                                                             <div class="text-center">
                                                                                 <p
                                                                                     class="card-title text-center"
@@ -1092,6 +1092,7 @@
                                                 $('#moreGift' + num).addClass('border-black');
                                                 $('#message' + num).css('border-color','#F7941E');
                                                 $('#moreInput' + num).css('display','none');
+                                                $('#moreInput' + num).val('');
                                             }
                                             function medium_gift_click(num){
                                                 $('#mediumGift' + num).removeClass('border-black');
@@ -1104,6 +1105,7 @@
                                                 $('#moreGift' + num).addClass('border-black');
                                                 $('#message' + num).css('border-color','#F7941E');
                                                 $('#moreInput' + num).css('display','none');
+                                                $('#moreInput' + num).val('');
                                             }
                                             function extra_gift_click(num){
                                                 $('#extraGift' + num).removeClass('border-black');
@@ -1116,6 +1118,7 @@
                                                 $('#moreGift' + num).addClass('border-black');
                                                 $('#message' + num).css('border-color','#F7941E');
                                                 $('#moreInput' + num).css('display','none');
+                                                $('#moreInput' + num).val('');
                                             }
                                             function more_gift_click(num){
                                                 $('#moreGift' + num).removeClass('border-black');
@@ -1129,6 +1132,7 @@
                                                 $('#message' + num).css('border-color','#F7941E');
                                                 $('#moreInput' + num).css('display','block');
                                                 $('#moreInput' + num).css('border-color','#F7941E');
+                                                $('input[name="giftInput"]').prop('checked', false);
                                                 const moreInput = document.getElementById('moreInput'+num);
                                                 const displayNumber = document.getElementById("displayNumber"+num);
                                                 moreInput.addEventListener("input", function() {
