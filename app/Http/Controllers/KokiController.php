@@ -69,7 +69,8 @@ class KokiController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        return view('koki.profile', compact('categorytopup', 'messageCount', 'recipes', 'videos', 'notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
+        $kursus = kursus::where('users_id', Auth::user()->id)->where('status', 'diterima')->take(6)->get();
+        return view('koki.profile', compact('categorytopup','kursus','messageCount', 'recipes', 'videos', 'notification', 'footer', 'resep_sendiri', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function updateProfile(Request $request)
     {
