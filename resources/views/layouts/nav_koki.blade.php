@@ -1213,10 +1213,10 @@
                                         <p id="anotherText"
                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                             Lainya <br>
-                                            <small id="displayInput"
-                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                Masukkan nilai....
-                                            </small>
+                                            
+                                        </p>
+                                        <p id="displayInput" style="color: black; font-size:15px; margin-top:-10%; font-family: Poppins; font-weight: 400; word-wrap: break-word;">
+                                            Masukkan nilai....
                                         </p>
                                     </a>
                                     <img src="{{ asset('img/2.png') }}" class="ml-auto" width="100px" height="92px;" alt="">
