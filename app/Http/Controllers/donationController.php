@@ -31,6 +31,7 @@ class donationController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request){
+        dd($request->input('giftInput'));
         $user_recipient = $request->user_recipient;
         $resep_id = $request->resep_id;
         $feed_id = $request->feed_id;
@@ -55,7 +56,7 @@ class donationController extends Controller
                     $saldo_baru = $request->input('moreInput');
                     $penerima->saldo_pemasukan = $saldo_lama + $saldo_baru;
                     $penerima->save();
-                    
+
                     $saldo_lama_pengirim = $user_sender->saldo;
                     $user_sender->saldo = $saldo_lama_pengirim - $saldo_baru;
                     $user_sender->save();
@@ -80,7 +81,7 @@ class donationController extends Controller
                         $notification->gift_id = $income->id;
                         $notification->route = "/koki/income-koki";
                         $notification->save();
-                        
+
                         $gift_count = income_chefs::where('feed_id',$feed_id)->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
                     }elseif($resep_id != 0){
@@ -106,7 +107,7 @@ class donationController extends Controller
                         $gift_count = income_chefs::where('resep_id',$resep_id)->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
                     }
-                    
+
                      return response()->json([
                         'success' => true,
                         'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,
@@ -182,7 +183,7 @@ class donationController extends Controller
                         }
                         $notification->save();
                     }
-              
+
                     return response()->json([
                         'success' => true,
                         'message' => "Terimakasih😊,anda telah memberikan donasi kepada ".$penerima->name,

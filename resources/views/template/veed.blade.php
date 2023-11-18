@@ -79,14 +79,14 @@
                 .border-orange{
                     width: 150px;
                     height: 225px;
-                    border-radius:15px; 
+                    border-radius:15px;
                     border: #F7941E solid;
                     overflow: hidden;
                 }
                 .border-black{
                     width: 150px;
                     height: 225px;
-                    border-radius:15px; 
+                    border-radius:15px;
                     border: black solid;
                     overflow: hidden;
                 }
@@ -2752,22 +2752,20 @@
     <script>
         function gift_submit_button(num) {
             $("#gift-form" + num).off("submit");
-            $("#gift-form" + num).submit(function(event) {
-                event.preventDefault();
+            $("#gift-form" + num).submit(function(e) {
+                e.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
                 var message = document.getElementById("message"+num);
                 var moreInput = document.getElementById("moreInput"+num);
                 $.ajax({
-                    type: "POST",
                     url: route,
+                    type: "POST",
                     data: data,
                     processData: false,
                     contentType: false,
-                    headers: {
-                        "X-CSRF-Token": "{{ csrf_token() }}",
-                    },
-                    success: function(response) {
+
+                    success: function success (response) {
                         if (response.success) {
                             message.value = "";
                             moreInput.value = "";
@@ -2786,12 +2784,12 @@
                                 clearInterval(timerInterval);
                             }
                             }).then((result) => {
-                         
+
                             if (result.dismiss === Swal.DismissReason.timer) {
                                 document.getElementById('gift-btn' + num).disabled = true;
                                 setTimeout(function () {
                                     document.getElementById('gift-btn' + num).disabled = false;
-                                }, 60000);                                                  
+                                }, 60000);
                                     iziToast.show({
                                         backgroundColor: '#a1dfb0',
                                         title: '<i class="fa-regular fa-circle-question"></i>',
@@ -2803,7 +2801,7 @@
                                     });
                                 }
                             });
-                           
+
                         } else {
                             message.value = "";
                             moreInput.value = "";
@@ -2816,6 +2814,13 @@
                                 position: 'topCenter',
                             });
                         }
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
                     }
                 });
             });
