@@ -385,9 +385,16 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="collapse" id="collapseTolak{{$data_verified->id}}">
+                                                                        <form action="{{route('proses.ajuan.penarikan', ['id'=>$data_verified->id, 'status'=>'ditolak'])}}" method="post">
+                                                                        @csrf
+                                                                        <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control" placeholder="Alasan..."></textarea>
+                                                                        <button type="submit" id="buttontolak{{$data_verified->id}}" hidden></button>
+                                                                        </form>
+                                                                    </div>
                                                                     <div class="mb-3 d-flex justify-content-end">
                                                                         <form
-                                                                            action="{{ route('proses.ajuan.penarikan', $data_verified->id) }}"
+                                                                            action="{{ route('proses.ajuan.penarikan', ['id'=>$data_verified->id, 'status'=>'diterima']) }}"
                                                                             method="post">
                                                                             @csrf
                                                                             <button type="submit"
@@ -397,12 +404,27 @@
                                                                                     style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
                                                                             </button>
                                                                         </form>
-                                                                        <button type="button"
-                                                                            class="btn btn-sm rounded-3 text-light me-2"
+                                                                        <button type="button" data-toggle="collapse" data-target="#collapseTolak{{$data_verified->id}}"
+                                                                            class="btn btn-sm rounded-3 text-light me-2"  id="buttonTolak{{$data_verified->id}}" onclick="hiddenButtonTolak({{$data_verified->id}})"
                                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                                                 class="ms-2 me-2"
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
                                                                         </button>
+                                                                        <button type="button"
+                                                                            class="btn btn-sm rounded-3 text-light me-2"  id="buttonSelesai{{$data_verified->id}}" onclick="clickButtonTolak({{$data_verified->id}})"
+                                                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; display: none;"><b
+                                                                                class="ms-2 me-2"
+                                                                                style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Selesai</b>
+                                                                        </button>
+                                                                        <script>
+                                                                            function hiddenButtonTolak(num) {
+                                                                                document.getElementById("buttonTolak"+num).style.display = "none";
+                                                                                document.getElementById("buttonSelesai"+num).style.display = "block";
+                                                                            }
+                                                                            function clickButtonTolak(num) {
+                                                                                document.getElementById("buttontolak"+num).click();
+                                                                            }
+                                                                        </script>
                                                                     </div>
                                                                 </div>
                                                             </div>

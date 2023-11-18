@@ -112,14 +112,18 @@ class AdminController extends Controller
         return view('admin.ajuanpenarikan', compact('data', 'verifed_count'));
     }
 
-    public function proses_ajuan_penarikan(int $id)
+    public function proses_ajuan_penarikan(Request $request,int $id)
     {
         $data = penarikans::find($id);
-        $data->status = "diterima";
+        if ($request->status === "diterima") {
+            $data->status = "diterima";
+            $chef = User::find($data->chef_id);
+            $chef->saldo_pemasukan = $chef->saldo_pemasukan - $data->nilai;
+            $chef->save();
+        } elseif($request->status === "ditolak") {
+            $data->status = "gagal";
+        }
         $data->save();
-        $chef = User::find($data->chef_id);
-        $chef->saldo_pemasukan = $chef->saldo_pemasukan - $data->nilai;
-        $chef->save();
         return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');
     }
 
