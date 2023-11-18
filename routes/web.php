@@ -180,7 +180,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('/tambah-kursus');
     Route::post('/pemasukan-koki/{chef_id}/{user_id}/{content_id}/{status}', [IncomeChefsController::class, 'pemasukan_koki'])->name('pemasukan.koki');
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
-    Route::prefix('/koki')->group(function () {
+    Route::prefix('/koki')->group(function () { 
         Route::post('kirim-data-pribadi', [KokiController::class,'data_pribadi_chef'])->name('kirim.dataPribadiChef');
         Route::post('ajukan-penarikan', [IncomeChefsController::class, 'ajukan_penarikan'])->name('ajukan.penarikan');
         Route::resource('resep', ResepsController::class);
