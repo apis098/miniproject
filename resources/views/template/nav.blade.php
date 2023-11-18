@@ -144,7 +144,7 @@
                 color: #F7941E;
                 background: white;
             }
-
+         
             .video-fav {}
 
             .nav-link:hover {}

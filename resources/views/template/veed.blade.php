@@ -76,7 +76,20 @@
                     color: #9ca3af;
 
                 }
-
+                .border-orange{
+                    width: 150px;
+                    height: 225px;
+                    border-radius:15px; 
+                    border: #F7941E solid;
+                    overflow: hidden;
+                }
+                .border-black{
+                    width: 150px;
+                    height: 225px;
+                    border-radius:15px; 
+                    border: black solid;
+                    overflow: hidden;
+                }
                 .form span {
 
                     position: absolute;
@@ -888,7 +901,7 @@
                                         @if (Auth::check() && auth()->user()->id != $item_video->users_id)
                                             <a type="button" class="text-dark me-2"><i
                                                     class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                                                    data-bs-toggle="modal" data-bs-target="#gift"></i>
+                                                    data-bs-toggle="modal" data-bs-target="#gift{{$item_video->id}}"></i>
                                             </a>
                                         @elseif(!Auth::check())
                                             <a type="button" class="text-dark me-2"><i
@@ -938,7 +951,7 @@
                                             </div>
                                         @endif
                                         <!-- modal Gift start -->
-                                        <div class="modal" id="gift">
+                                        <div class="modal" id="gift{{$item_video->id}}">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <form
@@ -957,9 +970,8 @@
                                                         <div class="modal-body">
                                                             <div class="d-flex ">
                                                                 <label for="inputKecil" class="col-lg-3 my-1">
-                                                                    <div class="card border-2 scale" id="smallGift"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                    <div class="card border-2 border-black scale" onclick="small_gift_click({{$item_video->id}})" id="smallGift{{$item_video->id}}"
+                                                                        data-card-selected="false">
                                                                         <img src="{{ asset('img/kecil.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -980,9 +992,8 @@
                                                                 </label>
 
                                                                 <label for="mediumInput" class="col-lg-3 my-1">
-                                                                    <div class="card border-2 scale" id="mediumGift"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                    <div class="card border-2 scale border-black" onclick="medium_gift_click({{$item_video->id}})" id="mediumGift{{$item_video->id}}"
+                                                                        data-card-selected="false">
                                                                         <img src="{{ asset('img/sedang.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -1003,9 +1014,8 @@
                                                                 </label>
 
                                                                 <label for="extraInput" class="col-lg-3 my-1">
-                                                                    <div class="card border-2 scale" id="extraGift"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                    <div class="card border-2 scale border-black" onclick="extra_gift_click({{$item_video->id}})" id="extraGift{{$item_video->id}}"
+                                                                        data-card-selected="false">
                                                                         <img src="{{ asset('img/besar.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -1026,10 +1036,9 @@
                                                                 </label>
 
                                                                 <label for="moreInput" class="col-lg-3 my-1">
-                                                                    <button type="button" id="moreGift"
-                                                                        class="card border-2 scale"
-                                                                        data-card-selected="false"
-                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                    <button type="button" onclick="more_gift_click({{$item_video->id}})" id="moreGift{{$item_video->id}}"
+                                                                        class="card border-2 border-black scale"
+                                                                        data-card-selected="false">
                                                                         <img src="{{ asset('img/lainnya.png') }}"
                                                                             class="card-img-top" alt="">
                                                                         <div class=card-body">
@@ -1038,7 +1047,7 @@
                                                                                 <a href="#" class="card-title "
                                                                                     style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
                                                                             </div>
-                                                                            <p id="displayNumber" class="text-center"
+                                                                            <p id="displayNumber{{$item_video->id}}" class="text-center"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Masukkan Nilai</p>
                                                                         </div>
@@ -1047,12 +1056,12 @@
 
                                                             </div>
                                                             <div class="d-flex mt-4 ml-3">
-                                                                <input type="number" id="moreInput" name="moreInput"
+                                                                <input type="number" id="moreInput{{$item_video->id}}" name="moreInput"
                                                                     width="500px"
                                                                     class="form-control border-2 rounded-3 me-3 moreInput{{ $item_video->id }}"
                                                                     style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
                                                                     placeholder="Masukkan jumlah donasi lainya...">
-                                                                <input type="text" id="message" name="message"
+                                                                <input type="text" id="message{{$item_video->id}}" name="message"
                                                                     width="500px"
                                                                     class="form-control border-2 rounded-3 me-3 message{{ $item_video->id }}"
                                                                     style="margin-top: 12px; border:solid black; border-radius:100px;"
@@ -1072,6 +1081,75 @@
                                         <!-- modal gift end -->
                                         <!-- gift end -->
                                         <script>
+                                            function small_gift_click(num){
+                                                $('#smallGift' + num).removeClass('border-black');
+                                                $('#smallGift' + num).addClass('border-orange');
+                                                $('#mediumGift' + num).removeClass('border-orange');
+                                                $('#mediumGift' + num).addClass('border-black');
+                                                $('#extraGift' + num).removeClass('border-orange');
+                                                $('#extraGift' + num).addClass('border-black');
+                                                $('#moreGift' + num).removeClass('border-orange');
+                                                $('#moreGift' + num).addClass('border-black');
+                                                $('#message' + num).css('border-color','#F7941E');
+                                                $('#moreInput' + num).css('display','none');
+                                            }
+                                            function medium_gift_click(num){
+                                                $('#mediumGift' + num).removeClass('border-black');
+                                                $('#mediumGift' + num).addClass('border-orange');
+                                                $('#smallGift' + num).removeClass('border-orange');
+                                                $('#smallGift' + num).addClass('border-black');
+                                                $('#extraGift' + num).removeClass('border-orange');
+                                                $('#extraGift' + num).addClass('border-black');
+                                                $('#moreGift' + num).removeClass('border-orange');
+                                                $('#moreGift' + num).addClass('border-black');
+                                                $('#message' + num).css('border-color','#F7941E');
+                                                $('#moreInput' + num).css('display','none');
+                                            }
+                                            function extra_gift_click(num){
+                                                $('#extraGift' + num).removeClass('border-black');
+                                                $('#extraGift' + num).addClass('border-orange');
+                                                $('#mediumGift' + num).removeClass('border-orange');
+                                                $('#mediumGift' + num).addClass('border-black');
+                                                $('#smallGift' + num).removeClass('border-orange');
+                                                $('#smallGift' + num).addClass('border-black');
+                                                $('#moreGift' + num).removeClass('border-orange');
+                                                $('#moreGift' + num).addClass('border-black');
+                                                $('#message' + num).css('border-color','#F7941E');
+                                                $('#moreInput' + num).css('display','none');
+                                            }
+                                            function more_gift_click(num){
+                                                $('#moreGift' + num).removeClass('border-black');
+                                                $('#moreGift' + num).addClass('border-orange');
+                                                $('#extraGift' + num).removeClass('border-orange');
+                                                $('#extraGift' + num).addClass('border-black');
+                                                $('#mediumGift' + num).removeClass('border-orange');
+                                                $('#mediumGift' + num).addClass('border-black');
+                                                $('#smallGift' + num).removeClass('border-orange');
+                                                $('#smallGift' + num).addClass('border-black');
+                                                $('#message' + num).css('border-color','#F7941E');
+                                                $('#moreInput' + num).css('display','block');
+                                                $('#moreInput' + num).css('border-color','#F7941E');
+                                                const moreInput = document.getElementById('moreInput'+num);
+                                                const displayNumber = document.getElementById("displayNumber"+num);
+                                                moreInput.addEventListener("input", function() {
+                                                    const inputValue = moreInput.value;
+                                                    const formattedValue = formatNumber(inputValue);
+                                                    displayNumber.textContent = formattedValue;
+                                                    if (inputValue.trim() === "") {
+                                                        displayNumber.textContent = "Masukkan nilai";
+                                                    } else {
+                                                        displayNumber.textContent = "Rp. " + formattedValue + ",00";
+                                                    }
+
+                                                });
+                                                function formatNumber(number) {
+                                                    // Hapus semua titik yang ada
+                                                    const cleanValue = number.replace(/\./g, '');
+
+                                                    // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                                                    return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                                                }
+                                            }
                                             const smallGift = document.getElementById('smallGift');
                                             const mediumGift = document.getElementById('mediumGift');
                                             const extraGift = document.getElementById('extraGift');
