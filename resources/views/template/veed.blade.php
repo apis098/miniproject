@@ -979,10 +979,10 @@
                                                                                 value="5000" name="giftInput"
                                                                                 id="inputKecil">
                                                                             <div class="text-center">
-                                                                                <a href="#"
+                                                                                <p
                                                                                     class="card-title text-center"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Kecil</a>
+                                                                                    Kecil</p>
                                                                             </div>
                                                                             <p class="text-center"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
@@ -1001,10 +1001,10 @@
                                                                                 value="10000" name="giftInput"
                                                                                 id="mediumInput">
                                                                             <div class="text-center">
-                                                                                <a href="#"
+                                                                                <p
                                                                                     class="card-title text-center"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Sedang</a>
+                                                                                    Sedang</p>
                                                                             </div>
                                                                             <p class="text-center"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
@@ -1023,10 +1023,10 @@
                                                                                 value="20000" name="giftInput"
                                                                                 id="extraInput">
                                                                             <div class="text-center">
-                                                                                <a href="#"
+                                                                                <p
                                                                                     class="card-title text-center"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                    Besar</a>
+                                                                                    Besar</p>
                                                                             </div>
                                                                             <p class="text-center"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
@@ -1044,8 +1044,8 @@
                                                                         <div class=card-body">
 
                                                                             <div class="mx-4 mt-2">
-                                                                                <a href="#" class="card-title "
-                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                                <p class="card-title "
+                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</p>
                                                                             </div>
                                                                             <p id="displayNumber{{$item_video->id}}" class="text-center"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
@@ -1149,72 +1149,6 @@
                                                     // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
                                                     return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                                                 }
-                                            }
-                                            const smallGift = document.getElementById('smallGift');
-                                            const mediumGift = document.getElementById('mediumGift');
-                                            const extraGift = document.getElementById('extraGift');
-                                            const moreGift = document.getElementById('moreGift');
-                                            const moreInput = document.getElementById('moreInput');
-                                            const displayNumber = document.getElementById("displayNumber");
-                                            const message = document.getElementById("message");
-                                            // const anotherText = document.getElementById("anotherText");
-                                            smallGift.addEventListener('click', function() {
-                                                smallGift.style.borderColor = "#F7941E";
-                                                message.style.borderColor = "#F7941E";
-                                                mediumGift.style.borderColor = "black";
-                                                extraGift.style.borderColor = "black";
-                                                moreGift.style.borderColor = "black";
-                                                inputanLainya.style.display = "none";
-                                                moreInput.value = "";
-                                                displayNumber.textContent = "Masukkan nilai";
-                                            });
-                                            mediumGift.addEventListener("click", function() {
-                                                mediumGift.style.borderColor = "#F7941E";
-                                                message.style.borderColor = "#F7941E";
-                                                smallGift.style.borderColor = "black";
-                                                extraGift.style.borderColor = "black";
-                                                moreGift.style.borderColor = "black";
-                                                moreInput.style.display = "none";
-                                                moreInput.value = "";
-                                                displayNumber.textContent = "Masukkan nilai";
-                                            });
-                                            extraGift.addEventListener("click", function() {
-                                                extraGift.style.borderColor = "#F7941E";
-                                                message.style.borderColor = "#F7941E";
-                                                smallGift.style.borderColor = "black";
-                                                mediumGift.style.borderColor = "black";
-                                                moreGift.style.borderColor = "black";
-                                                moreInput.style.display = "none";
-                                                moreInput.val = "";
-                                                displayNumber.textContent = "Masukkan nilai";
-                                            });
-                                            moreGift.addEventListener('click', function() {
-                                                moreGift.style.borderColor = "#F7941E";
-                                                message.style.borderColor = "#F7941E";
-                                                smallGift.style.borderColor = "black";
-                                                mediumGift.style.borderColor = "black";
-                                                extraGift.style.borderColor = "black";
-                                                moreInput.style.display = "block";
-                                                moreInput.style.borderColor = "#F7941E";
-                                            });
-                                            moreInput.addEventListener("input", function() {
-                                                const inputValue = moreInput.value;
-                                                const formattedValue = formatNumber(inputValue);
-                                                displayNumber.textContent = formattedValue;
-                                                if (inputValue.trim() === "") {
-                                                    displayNumber.textContent = "Masukkan nilai";
-                                                } else {
-                                                    displayNumber.textContent = "Rp. " + formattedValue + ",00";
-                                                }
-
-                                            });
-
-                                            function formatNumber(number) {
-                                                // Hapus semua titik yang ada
-                                                const cleanValue = number.replace(/\./g, '');
-
-                                                // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
-                                                return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                                             }
                                         </script>
                                         <!-- Laporkan, blokir -->
