@@ -454,7 +454,7 @@
         </table>
         @if ($income_koki->count() <= 0)
             <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
-                style="margin-top: -3em; margin-right:15%;">
+                style="margin-top: -3em;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                 <p><b>Tidak ada data</b></p>
             </div>

@@ -862,9 +862,9 @@
                             @endforeach
                             @forelse ($notification as $row)
                             @empty
-                                <div class="text-center mt-5">
+                                <div class="text-center">
                                     <img src="{{ asset('images/nodata.png') }}"
-                                        class="col-sm-6 mt-4" alt="...">
+                                        class="col-sm-6 mt-4 mb-2" alt="...">
                                 </div>
                             @endforelse 
                         </div>
