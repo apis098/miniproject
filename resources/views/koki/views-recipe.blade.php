@@ -122,7 +122,7 @@
             height: 38px;
             background-color: #F7941E;
             color: #fff;
-            width: 90px;
+            width: 60px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
@@ -187,7 +187,7 @@
 
 
     <div class="">
-        <div class="my-4 ml-3">
+        <div class="my-4 ml-5">
             <ul class="nav mb-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"

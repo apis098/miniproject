@@ -178,7 +178,7 @@
             }
         }
     </style>
- 
+
     <div class="">
         <div class="my-4 ml-5">
             <ul class="nav mb-2" id="pills-tab" role="tablist">
@@ -249,8 +249,8 @@
                                 </div>
                             </div>
                             <button
-                                style="border-radius: 15px; width: 30%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn ml-4">
+                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                class="btn btn-sm ml-4">
                                 <span style="font-weight: 600">
                                     <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat
                                         Kursus</a>
@@ -398,7 +398,7 @@
                                     </div>
                                 </div>
                                 <button
-                                    style="border-radius: 15px; width: 30%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn ml-4">
                                     <span style="font-weight: 600">
                                         <a href="{{ route('kursus.create') }}" style="color: rgb(255, 255, 255);">Buat Kursus</a>
