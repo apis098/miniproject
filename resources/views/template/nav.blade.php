@@ -1440,7 +1440,7 @@
                     @csrf
                     <div class="modal-body">
                         @foreach ($categorytopup as $topup)
-                            <div class="col-lg-3 my-3">
+                        <div class="col-lg-3 my-3">
                                 <label for="inputanKecil{{ $loop->iteration }}" id="topUp{{ $loop->iteration }}"
                                     class="card border-2 scale" id="card" data-card-selected="false"
                                     style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">

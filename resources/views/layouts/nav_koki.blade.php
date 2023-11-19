@@ -182,17 +182,12 @@
             <ul class="navbar-nav ml-auto p-2">
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link " data-toggle="dropdown" href="#">
+                    <a class="nav-link " href="/roomchat">
                         <i class="far fa-solid fa-xl fa-comment-dots"></i>
                         @if($messageCount > 0)
-                            <span class="badge badge-danger text-light navbar-badge fw-bolder">{{$messageCount}}</span>
+                            <span style="margin-top: -10%;" class="badge badge-pill badge-danger text-light navbar-badge fw-bolder">{{$messageCount}}</span>
                         @endif
                     </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">Kotak pesan</a>
-                    </div>
                 </li>
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
@@ -203,7 +198,7 @@
                         <button type="button" id="notification-button" class="nav-link yuhu" >
                             <i class="far fa-solid fa-xl fa-bell"></i>
                             @if($unreadNotificationCount > 0)
-                                <span id="badge" class="badge badge-danger text-light navbar-badge fw-bolder"> {{$unreadNotificationCount}}</span>
+                                <span id="badge" style="margin-top: -10%;" class="badge badge-danger badge-pill text-light navbar-badge fw-bolder"> {{$unreadNotificationCount}}</span>
                             @endif
                         </button>
                     </form>
