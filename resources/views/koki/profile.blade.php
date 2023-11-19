@@ -119,9 +119,8 @@
                                     <input type="file" id="fileInputA" name="profile_picture" style="display:none">
 
                                     @if ($userLogin->foto)
-                                        <img src="{{ asset('storage/' . $userLogin->foto) }}" width="106px"
-                                            height="104px" style="border-radius: 50%; margin-right:-28%;"
-                                            id="profile-image">
+                                        <img src="{{ asset('storage/' . $userLogin->foto) }}" width="106px" height="104px"
+                                            style="border-radius: 50%; margin-right:-28%;" id="profile-image">
                                     @else
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                             style="border-radius: 50%; margin-right:-28%;" id="profile-image">
@@ -158,28 +157,30 @@
             </div>
             {{-- akhir modal --}}
             <style>
-                 @media (min-width:290px) and (max-width: 340px) {
-                        /* a.gser {
-                            margin-right: 50px;
-                        } */
-                        i.kiri {
-                            margin-left: 40px;
-                        }
+                @media (min-width:290px) and (max-width: 340px) {
 
-                        div.ash {
-                                            padding-right: 75px;
-                                        }
+                    /* a.gser {
+                                    margin-right: 50px;
+                                } */
+                    i.kiri {
+                        margin-left: 40px;
+                    }
 
-                                        a.knan {
-                                            margin-left: -12px;
-                                        }
+                    div.ash {
+                        padding-right: 95px;
+                    }
 
-                                        /* span.hi {
-                                            padding-top: -30px;
-                                        } */
+                    a.knan {
+                        margin-left: -12px;
+                    }
+
+                    /* span.hi {
+                                                    padding-top: -30px;
+                                                } */
 
 
-        }
+                }
+
                 /* untuk tampilan mobile */
                 @media (min-width: 350px) and (max-width: 860px) {
                     i.uhuy {
@@ -220,17 +221,17 @@
                     }
 
                     a.knan {
-                                            margin-left: -8px;
-                                        }
+                        margin-left: -8px;
+                    }
 
                     /* a.icons {
-                            padding-left: 50px;
-                        } */
+                                    padding-left: 50px;
+                                } */
                     /*
 
-                        svg.rigt {
-                            margin-right: 50px;
-                        } */
+                                svg.rigt {
+                                    margin-right: 50px;
+                                } */
                 }
 
                 /* untuk tampilan laptop */
@@ -437,8 +438,6 @@
                             <div class="row mb-5" style="margin-top: -50px; ">
                                 {{-- @foreach ($recipes as $r) --}}
                                 <style>
-
-
                                     @media (min-width: 1150px) and (max-width: 4000px) {
                                         div.vid {
                                             height: 86%;
@@ -485,54 +484,57 @@
                                 </style>
                                 @foreach ($videos as $video)
                                     <div class="col-lg-4 col-md-6 my-1">
-                                        <div class="card vid high"
-                                            style="width: 100%;  border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                            <div class="row">
-                                                <div class="col-12">
-                                                    <a href="/veed/{{ $video->uuid }}">
-                                                        <video height="65%" width="100%" class="rounded" src="{{ asset('storage/'.$video->upload_video) }}"></video>
-                                                        {{--
+                                        <div class="card"
+                                            style="width: 100%;  border-radius: 15px; border: 0.50px black solid;">
+                                            <a href="/veed/{{ $video->uuid }}">
+                                                <video width="100%" height="55%" style="border-radius: 15px 15px 0px 0px;"
+                                                    src="{{ asset('storage/' . $video->upload_video) }}"></video>
+                                                {{--
                                                         <img src="{{ asset('storage/'.$video->upload_video) }}"
                                                             class="img-fluid shadow-1-strong rounded"
                                                             style="margin-top: 0px; height: 65%; width: 100%"
                                                             alt="Hollywood Sign on The Hill" /> --}}
+                                            </a>
+                                            <div class="d-flex justify-content-between ash my-2 mx-2">
+                                                <div>
+                                                    <a type="button" class="text-dark hu my-auto" onclick="openModel()"
+                                                        id="button-modal-komentar-feed" href="#"
+                                                        data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 512 512">
+                                                            <path fill="currentColor"
+                                                                d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
+                                                        </svg>
+                                                    </a> &nbsp;
+                                                    <span class="my-auto">{{ $video->countLikeFeed() }}</span>
+                                                </div>
+                                                <div>
+                                                    <a type="button" class="hu text-dark my-auto" onclick="openModel()"
+                                                        id="button-modal-komentar-feed" href="#"
+                                                        data-bs-toggle="modal"data-bs-target="#exampleModal">
+                                                        <svg class="rigt" xmlns="http://www.w3.org/2000/svg"
+                                                            width="26" height="26" viewBox="0 0 16 16">
+                                                            <path fill="currentColor"
+                                                                d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
+                                                        </svg>
+                                                    </a> &nbsp;
+                                                    <span class="my-auto">{{ $video->countCommentFeed() }}</span>
+                                                </div>
+                                                <div>
+                                                    <a type="button" class="my-auto hu text-dark " href="#"
+                                                        data-bs-toggle="modal" data-bs-target="#bagikan">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="27"
+                                                            height="25" viewBox="0 0 512 512">
+                                                            <path fill="none" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="32"
+                                                                d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
+                                                        </svg>
                                                     </a>
-                                                    <div class="d-flex ash mt-1 ml-3">
-                                                        <a type="button" class="mr-1 text-dark knan" onclick="openModel()"
-                                                            id="button-modal-komentar-feed" href="#"
-                                                            data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 512 512">
-                                                                <path fill="currentColor"
-                                                                    d="M323.8 34.8c-38.2-10.9-78.1 11.2-89 49.4l-5.7 20c-3.7 13-10.4 25-19.5 35l-51.3 56.4c-8.9 9.8-8.2 25 1.6 33.9s25 8.2 33.9-1.6l51.3-56.4c14.1-15.5 24.4-34 30.1-54.1l5.7-20c3.6-12.7 16.9-20.1 29.7-16.5s20.1 16.9 16.5 29.7l-5.7 20c-5.7 19.9-14.7 38.7-26.6 55.5c-5.2 7.3-5.8 16.9-1.7 24.9s12.3 13 21.3 13H448c8.8 0 16 7.2 16 16c0 6.8-4.3 12.7-10.4 15c-7.4 2.8-13 9-14.9 16.7s.1 15.8 5.3 21.7c2.5 2.8 4 6.5 4 10.6c0 7.8-5.6 14.3-13 15.7c-8.2 1.6-15.1 7.3-18 15.1s-1.6 16.7 3.6 23.3c2.1 2.7 3.4 6.1 3.4 9.9c0 6.7-4.2 12.6-10.2 14.9c-11.5 4.5-17.7 16.9-14.4 28.8c.4 1.3.6 2.8.6 4.3c0 8.8-7.2 16-16 16h-97.5c-12.6 0-25-3.7-35.5-10.7l-61.7-41.1c-11-7.4-25.9-4.4-33.3 6.7s-4.4 25.9 6.7 33.3l61.7 41.1c18.4 12.3 40 18.8 62.1 18.8H384c34.7 0 62.9-27.6 64-62c14.6-11.7 24-29.7 24-50c0-4.5-.5-8.8-1.3-13c15.4-11.7 25.3-30.2 25.3-51c0-6.5-1-12.8-2.8-18.7c11.6-11.7 18.8-27.7 18.8-45.4c0-35.3-28.6-64-64-64h-92.3c4.7-10.4 8.7-21.2 11.8-32.2l5.7-20c10.9-38.2-11.2-78.1-49.4-89zM32 192c-17.7 0-32 14.3-32 32v224c0 17.7 14.3 32 32 32h64c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32H32z" />
-                                                            </svg>
-                                                        </a> &nbsp;
-                                                        <span class="my-auto">{{$video->countLikeFeed()}}</span>
-                                                        <a type="button" class="ms-2 hu text-dark "
-                                                            onclick="openModel()" id="button-modal-komentar-feed"
-                                                            href="#"
-                                                            data-bs-toggle="modal"data-bs-target="#exampleModal">
-                                                            <svg class="rigt" xmlns="http://www.w3.org/2000/svg"
-                                                                width="26" height="26" viewBox="0 0 16 16">
-                                                                <path fill="currentColor"
-                                                                    d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
-                                                            </svg>
-                                                        </a> &nbsp;
-                                                        <span class="my-auto">{{$video->countCommentFeed()}}</span>
-                                                        <a class="ml-2 mr-1 my-auto hu text-dark " href="#"
-                                                            data-bs-toggle="modal" data-bs-target="#bagikan">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="27"
-                                                                height="25" viewBox="0 0 512 512">
-                                                                <path fill="none" stroke="currentColor"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    stroke-width="32"
-                                                                    d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
-                                                            </svg>
-                                                        </a>
-                                                        <span class="my-auto">{{$video->countShareFeed()}}</span>
-                                                    </div>
+                                                    <span class="my-auto">{{ $video->countShareFeed() }}</span>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 @endforeach
@@ -546,36 +548,38 @@
                         <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                             tabindex="0">
                             @if ($kursus->count() == 0)
-                            <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
-                                <img src="{{asset('images/data.png')}}" style="width: 15em">
-                                <p><b>Tidak ada data</b></p>
-                            </div>
-                        @endif
+                                <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                                    style="margin-top: -3em">
+                                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                                    <p><b>Tidak ada data</b></p>
+                                </div>
+                            @endif
                             <div class="row mb-5" style="margin-top: -50px; ">
                                 @foreach ($kursus as $course)
-                                <div class="col-lg-6 col-md-6 my-1">
-                                    <div class="card p-2"
-                                        style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
-                                        <div class="d-flex my-1">
-                                            <div class="col-2">
-                                                <img class="rounded-circle mt-1" style="max-width:55px;"
-                                                    src="{{ asset('storage/'.$course->foto_kursus) }}" width="55px" height="55px"
-                                                    alt="dsdaa">
-                                            </div>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <div class="col-10">
-                                                <a type="button" class="text-dark knan" href="/detail_kursus/{{$course->id}}">
-                                                    <strong>{{ $course->nama_kursus }}</strong>
-                                                </a> <br>
-                                                <!-- Modal -->
+                                    <div class="col-lg-6 col-md-6 my-1">
+                                        <div class="card p-2"
+                                            style="width: 100%; height: 95%; border-radius: 15px; border: 0.50px black solid">
+                                            <div class="d-flex my-1">
+                                                <div class="col-2">
+                                                    <img class="rounded-circle mt-1" style="max-width:55px;"
+                                                        src="{{ asset('storage/' . $course->foto_kursus) }}"
+                                                        width="55px" height="55px" alt="dsdaa">
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <div class="col-10">
+                                                    <a type="button" class="text-dark knan"
+                                                        href="/detail_kursus/{{ $course->id }}">
+                                                        <strong>{{ $course->nama_kursus }}</strong>
+                                                    </a> <br>
+                                                    <!-- Modal -->
 
-                                                <span class="ai">
-                                                    Oleh {{ $course->user->name }}
-                                                </span>
+                                                    <span class="ai">
+                                                        Oleh {{ $course->user->name }}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endforeach
                             </div>
                         </div>
