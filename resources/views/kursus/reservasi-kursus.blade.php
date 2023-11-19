@@ -22,9 +22,9 @@
             color: white
         }
 
-        .accordion b {
+        /* .accordion b {
             margin-left: -70%;
-        }
+        } */
 
         .accordion i {
             margin-left: 1%;
@@ -41,6 +41,48 @@
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
             /* Animasi dengan efek slide */
+        }
+
+                   /* tampilan untuk hp kecil */
+                 @media (min-width:350px) and (max-width:768px){
+
+                .accordion b {
+                    margin-left: -19%;
+            }
+        }
+             /* tampilan untuk hp besar */
+             @media (min-width:420px) and (max-width:768px){
+
+                .accordion b {
+                    margin-left: -27%;
+            }
+        }
+
+        /* untuk tampilan tablet */
+        @media (min-width:767px) and (max-width:1023px){
+
+            .accordion b {
+                margin-left: -59%;
+            }
+        }
+
+
+        /* untuk tampilan laptop */
+        @media (min-width:1024px) and (max-width:1199px){
+
+            .accordion b {
+                margin-left: -70%;
+            }
+        }
+
+
+
+        /* untuk tampilan laptop besar */
+        @media  (min-width:1220px) and (max-width:1440px){
+
+            .accordion b {
+                margin-left: -72%;
+            }
         }
     </style>
 
@@ -68,7 +110,7 @@
                 @endif
                 data-price="{{ $sesi->harga_sesi }}">
                 <i class="fa-regular fa-square" id="square{{$sesi->id}}"></i>
-                    <b style="margin-left: -70%;">{{ $sesi->judul_sesi }} <br>
+                    <b>{{ $sesi->judul_sesi }} <br>
                     <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small></b>
                     <span>
                         @if ($sesi->lama_sesi >= 60)
