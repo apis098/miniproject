@@ -141,6 +141,7 @@
                                 </p>
                             </a>
                         </li>
+                        @if (Auth::user()->isSuperUser === "admin_laporan")
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('Report.index') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/laporan-pengguna') ? 'activet text-orange' : 'text-white' }} {{ request()->is('admin/keluhan') ? 'activet text-orange' : 'text-white' }} {{ request()->is('admin/komentar') ? 'activet text-orange' : 'text-white' }} {{ request()->is('admin/profil') ? 'activet text-orange' : 'text-white' }}"
@@ -163,22 +164,10 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
-                            <a href="{{ route('admin.verifed') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/verifed') ? 'activet text-orange' : 'text-white' }}"
-                                style="width: 12em">
-                                <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m21.1 12.5l1.4 1.41l-6.53 6.59L12.5 17l1.4-1.41l2.07 2.08l5.13-5.17M10 17l3 3H3v-2c0-2.21 3.58-4 8-4l1.89.11L10 17m1-13a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4Z"/></svg>
-                                <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
-                                    Verifed
-                                    @if($verifed_count > 0 )
-                                        <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"height="12" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
-                                        </svg>
-                                    @endif
-                                </p>
-                            </a>
-                        </li>
+                        @endif
+                        @if (Auth::user()->isSuperUser === "admin_informasi_web")
+
+
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('special-days.index') }}"
                                 class="nav-link  mx-4 {{ request()->is('admin/special-days') ? 'activet text-orange' : 'text-white' }}"
@@ -227,21 +216,11 @@
                         </li>
 
 
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
-                            <a href="{{ route('admin.kursus') }}"
-                                class="nav-link mx-4 {{ request()->is('admin/kursus') ? 'activet text-orange' : 'text-white' }}"
-                                style="width: 12em">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                    viewBox="0 0 20 20">
-                                    <path fill="currentColor"
-                                        d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z" />
-                                </svg>
-                                <p
-                                    style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
-                                    Kursus
-                                </p>
-                            </a>
-                        </li>
+
+                        @endif
+                        @if (Auth::user()->isSuperUser === "admin_keuangan")
+
+
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('admin.tawaran') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/tawaran') ? 'activet text-orange' : 'text-white' }}"
@@ -257,6 +236,9 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
+
+                        @if (Auth::user()->isSuperUser === "admin_laporan")
 
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('blocked.user.status') }}"
@@ -270,6 +252,39 @@
                                 <p
                                     style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
                                     Diblokir
+                                </p>
+                            </a>
+                        </li>
+                        @endif
+                        @if (Auth::user()->isSuperUser === "admin_approval")
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('admin.verifed') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/verifed') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg class="mb-1" xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 24 24"><path fill="currentColor" d="m21.1 12.5l1.4 1.41l-6.53 6.59L12.5 17l1.4-1.41l2.07 2.08l5.13-5.17M10 17l3 3H3v-2c0-2.21 3.58-4 8-4l1.89.11L10 17m1-13a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4Z"/></svg>
+                                <p style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                                    Verifed
+                                    @if($verifed_count > 0 )
+                                        <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                        </svg>
+                                    @endif
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('admin.kursus') }}"
+                                class="nav-link mx-4 {{ request()->is('admin/kursus') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z" />
+                                </svg>
+                                <p
+                                    style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                                    Kursus
                                 </p>
                             </a>
                         </li>
@@ -288,6 +303,9 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
+                        @if (Auth::user()->isSuperUser === "admin_keuangan")
+
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('admin.ajuanpenarikan') }}"
                                 class="nav-link mx-4 {{ request()->is('admin/ajuan-penarikan') ? 'activet text-orange' : 'text-white' }}"
@@ -303,6 +321,7 @@
                                 </p>
                             </a>
                         </li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

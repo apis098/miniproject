@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('biodata',900)->default('Hi!,Saya menggunakan hummacook untuk meyalurkan hobi saya😊');
             $table->string('role');
             $table->string('status')->default('aktif');
-            $table->enum("isSuperUser", ["yes", "no", "ditolak"])->default("no");
+            $table->enum("isSuperUser", ["yes", "no", "ditolak", "admin_laporan", "admin_informasi_web", "admin_keuangan", "admin_approval"])->default("no");
             $table->enum("status_langganan", ["sedang berlangganan", "belum berlangganan"])->default("belum berlangganan");
             $table->timestamp("awal_langganan")->nullable();
             $table->timestamp("akhir_langganan")->nullable();
