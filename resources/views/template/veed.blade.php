@@ -1485,12 +1485,11 @@
                                                                             </div>
                                                                         </div>
                                                                         <div
-                                                                            class=" media-body ms-1 col-10 border-black rounded">
+                                                                            class=" ">
                                                                             <div class="d-flex">
                                                                                 <p>{{ $item_comment->komentar }}</p>
                                                                             </div>
-                                                                            <div class="d-flex flex-row "
-                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                            <div class="d-flex flex-row " >
                                                                                 @php
                                                                                     // mendapatkan jumlah like tiap komentar
                                                                                     $countLike = \App\Models\like_comment_veed::query()
@@ -1842,7 +1841,7 @@
                                                                                                     @endphp
 
                                                                                                     <div id="balasan_komentar_ini{{ $reply_comment->id }}"
-                                                                                                        class="rounded d-flex flex-row border-black ">
+                                                                                                        class="">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -1852,7 +1851,7 @@
                                                                                                                 alt="{{ $reply_comment->user->name }}">
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="media-body border-black rounded mb">
+                                                                                                            class="">
                                                                                                             <div
                                                                                                                 class="d-flex mt-2">
                                                                                                                 <span><strong>{{ $reply_comment->user->name }}</strong></span>
@@ -1868,7 +1867,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex flex-row "
-                                                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                                               >
 
                                                                                                                 @if (Auth::user())
                                                                                                                     @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
@@ -2210,7 +2209,7 @@
 
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
                                                                                                         <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}"
-                                                                                                            class="rounded d-flex flex-row border-black ">
+                                                                                                            class="">
                                                                                                             <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
                                                                                                                 @if ($reply_replyComment->user_pengirim->foto)
@@ -2229,7 +2228,7 @@
 
                                                                                                             </div>
                                                                                                             <div
-                                                                                                                class="media-body border-black rounded mb">
+                                                                                                                class="">
                                                                                                                 <div
                                                                                                                     class="d-flex mt-2">
                                                                                                                     <span><strong>{{ $reply_replyComment->user_pengirim->name }}</strong></span>
@@ -2246,7 +2245,7 @@
                                                                                                                     </p>
                                                                                                                 </div>
                                                                                                                 <div class="d-flex flex-row "
-                                                                                                                    style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                                                   >
 
                                                                                                                     @if (Auth::user())
                                                                                                                         @if ($reply_replyComment->likeRepliesReply(auth()->user()->id))
@@ -2866,7 +2865,7 @@
                                 foto = 'images/default.jpg';
                             }
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini22${up['id']}">
+                            <div class="" id="balasan_komentar_ini22${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -2876,7 +2875,7 @@
                                                                                                                 alt="${pengirim['name']}">
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="media-body border-black rounded mb">
+                                                                                                            class="">
                                                                                                             <div
                                                                                                                 class="d-flex mt-2">
                                                                                                                 <span><strong>${pengirim['name']}</strong></span>
@@ -2892,7 +2891,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex flex-row "
-                                                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                                                >
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
                                                                                                                             action="/sukai/reply_balasan/komentar/{{Auth::user()->id}}/${up['id']}/${feed_id}"
@@ -3071,7 +3070,7 @@
                             }
                             console.log(pengirim);
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini${up['id']}">
+                            <div class="" id="balasan_komentar_ini${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -3081,7 +3080,7 @@
                                                                                                                 alt="${pengirim['name']}">
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="media-body border-black rounded mb">
+                                                                                                            class="">
                                                                                                             <div
                                                                                                                 class="d-flex mt-2">
                                                                                                                 <span><strong>${pengirim['name']}</strong></span>
@@ -3097,7 +3096,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex flex-row "
-                                                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                                               >
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
                                                                                                                             action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
@@ -3624,7 +3623,7 @@
                                 foto = 'images/default.jpg';
                             }
                             let innerHtml = `
-                            <div class="rounded d-flex flex-row border-black " id="balasan_komentar_ini22${up['id']}">
+                            <div class="" id="balasan_komentar_ini22${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -3634,7 +3633,7 @@
                                                                                                                 alt="${pengirim['name']}">
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="media-body border-black rounded mb">
+                                                                                                            class="">
                                                                                                             <div
                                                                                                                 class="d-flex mt-2">
                                                                                                                 <span><strong>${pengirim['name']}</strong></span>
@@ -3650,7 +3649,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex flex-row "
-                                                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                                                >
                                                                                                                 @if (Auth::user())
                                                                                                                         <form
                                                                                                                             action="/sukai/reply_balasan/komentar/{{Auth::user()->id}}/${up['id']}/${feed_id}"
@@ -3968,12 +3967,12 @@
                                                                             </div>
                                                                         </div>
                                                                         <div
-                                                                            class=" media-body ms-1 col-10 border-black rounded">
+                                                                            class="">
                                                                             <div class="d-flex">
                                                                                 <p>${up['komentar']}</p>
                                                                             </div>
                                                                             <div class="d-flex flex-row "
-                                                                                style="margin-top:-4%; width:112%; margin-left:-2%;">
+                                                                                style="">
                                                                                 @if (Auth::user())
 
                                                                                         <form
