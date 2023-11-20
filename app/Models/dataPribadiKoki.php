@@ -21,6 +21,9 @@ class dataPribadiKoki extends Model
         "nomer_rekening",
         'status'
     ];
+    public function notification() {
+        return $this->hasMany(notifications::class, 'data_koki_id');
+    }
     public function chef() {
         return $this->belongsTo(User::class, "chef_id");
     }

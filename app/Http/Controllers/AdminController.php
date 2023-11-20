@@ -100,10 +100,27 @@ class AdminController extends Controller
         $data = dataPribadiKoki::find($id);
         if ($request->status === "diterima") {
             $data->status = "diterima";
+            // create notification
+            notifications::create([
+                'user_id' => $data->chef_id,
+                'notification_from' => Auth::user()->id,
+                'message' => "Data anda telah diterima oleh Admin Approval.",
+                'categories' => 'penarikan',
+                'route' => '/koki/income-koki'
+            ]);
         } elseif ($request->status === "ditolak") {
             $data->status = "ditolak";
+            // create notification
+            notifications::create([
+                'user_id' => $data->chef_id,
+                'notification_from' => Auth::user()->id,
+                'message' => $request->alasan,
+                'categories' => 'penarikan',
+                'route' => '/koki/income-koki'
+            ]);
         }
         $data->save();
+
         return redirect()->back();
     }
 
@@ -127,8 +144,22 @@ class AdminController extends Controller
             $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
             $admin->saldo = $admin->saldo + 2000;
             $admin->save();
+            notifications::create([
+                'user_id' => $data->chef_id,
+                'notification_from' => Auth::user()->id,
+                'message' => 'Selamat, saldo anda sebesar'. $data->nilai .' sudah berhasil ditarik tunai.',
+                'categories' => 'penarikan',
+                'route' => '/koki/income-koki'
+            ]);
         } elseif ($request->status === "ditolak") {
             $data->status = "gagal";
+            notifications::create([
+                'user_id' => $data->chef_id,
+                'notification_from' => Auth::user()->id,
+                'message' => $request->alasan,
+                'categories' => 'ajuan_penarikan',
+                'route' => '/koki/income-koki'
+            ]);
         }
         $data->save();
         return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');

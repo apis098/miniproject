@@ -144,7 +144,7 @@
                 color: #F7941E;
                 background: white;
             }
-         
+
             .video-fav {}
 
             .nav-link:hover {}
@@ -400,6 +400,7 @@
                                                 <form action="{{ route('all.notifications') }}"
                                                     id="notification-form" method="POST">
                                                     @csrf
+
                                                     @method('PATCH')
                                                     <button type="button" id="notification-button"
                                                         data-toggle="modal" data-target="#exampleModalScrollable"

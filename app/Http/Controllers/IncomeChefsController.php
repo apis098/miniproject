@@ -84,7 +84,7 @@ class IncomeChefsController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
-            ]);
+            ]);   
         }
         $penarikan = penarikans::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
 

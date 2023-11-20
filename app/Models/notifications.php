@@ -9,6 +9,8 @@ class notifications extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'data_koki_id',
+        'penarikan_id',
         'gift_id',
         'top_up_id',
         'message',
@@ -36,6 +38,13 @@ class notifications extends Model
         'resep_id'
     ];
 
+    public function data_koki() {
+        return $this->belongsTo(dataPribadiKoki::class, 'data_koki_id');
+    }
+    public function penarikan()
+    {
+        return $this->belongsTo(penarikans::class, "penarikan_id");
+    }
     public function complaint()
     {
         return $this->belongsTo(complaint::class);
