@@ -88,7 +88,7 @@ class TripayCallbackController extends Controller
             $premium = premiums::find($premiums);
             $saldo = $premium->harga_paket * 0.8;
             $saldo_pemasukan = $premium->harga_paket * 0.2;
-            $admin = User::where('role', 'admin')->first();
+            $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
             $total_saldo = $admin->saldo + $saldo;
             $total_saldo_pemasukan = $admin->saldo_pemasukan + $saldo_pemasukan;
             $admin->saldo = $total_saldo;
@@ -116,7 +116,7 @@ class TripayCallbackController extends Controller
 
             $user->save();
 
-            $admin = User::where('role','admin')->first();
+            $admin = User::where('role','admin')->where('isSuperUser', 'admin_keuangan')->first();
             $notification = new notifications();
             $notification->user_id = $user->id;
             $notification->notification_from = $admin->id;
@@ -146,7 +146,7 @@ class TripayCallbackController extends Controller
         }
 
         $data = json_decode($json);
-        
+
         if (JSON_ERROR_NONE !== json_last_error()) {
             return Response::json([
                 'success' => false,

@@ -27,7 +27,7 @@ class AdminController extends Controller
     public function index(Request $request)
     {
         $admin = User::find(Auth::user()->id);
-        $jumlah_user = User::all()->count();
+        $jumlah_user = User::where('role', 'koki')->count();
         $jumlah_resep = reseps::all()->count();
         $jumlah_report = Report::all()->count();
         $reports = Report::orderBy("created_at", "desc")->get();
@@ -45,15 +45,18 @@ class AdminController extends Controller
             $tahun = $request->tahun;
             for ($i = 1; $i <= 12; $i++) {
                 $month[] = DB::table("users")
+                    ->where('role', 'koki')
                     ->whereMonth('created_at', $i)
                     ->whereYear("created_at", $tahun)
                     ->count();
                 $monthPrem[] = DB::table("users")
+                    ->where('role', 'koki')
                     ->whereMonth('created_at', $i)
                     ->whereYear('created_at', $tahun)
                     ->where('status_langganan', 'sedang berlangganan')
                     ->count();
                 $monthSuper[] = DB::table("users")
+                    ->where('role', 'koki')
                     ->whereMonth('created_at', $i)
                     ->whereYear('created_at', $tahun)
                     ->where('isSuperUser', 'yes')
@@ -61,9 +64,9 @@ class AdminController extends Controller
             }
         } else {
             for ($i = 1; $i <= 12; $i++) {
-                $month[] = DB::table("users")->whereMonth('created_at', $i)->count();
-                $monthPrem[] = DB::table("users")->whereMonth('created_at', $i)->where('status_langganan', 'sedang berlangganan')->count();
-                $monthSuper[] = DB::table("users")->whereMonth('created_at', $i)->where('isSuperUser', 'yes')->count();
+                $month[] = DB::table("users")->where('role', 'koki')->whereMonth('created_at', $i)->count();
+                $monthPrem[] = DB::table("users")->where('role', 'koki')->whereMonth('created_at', $i)->where('status_langganan', 'sedang berlangganan')->count();
+                $monthSuper[] = DB::table("users")->where('role', 'koki')->whereMonth('created_at', $i)->where('isSuperUser', 'yes')->count();
             }
         }
         $data_chartjs = [];
@@ -118,8 +121,12 @@ class AdminController extends Controller
         if ($request->status === "diterima") {
             $data->status = "diterima";
             $chef = User::find($data->chef_id);
-            $chef->saldo_pemasukan = $chef->saldo_pemasukan - $data->nilai;
+            $chef->saldo_pemasukan = $chef->saldo_pemasukan - ($data->nilai+2000);
             $chef->save();
+
+            $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
+            $admin->saldo = $admin->saldo + 2000;
+            $admin->save();
         } elseif($request->status === "ditolak") {
             $data->status = "gagal";
         }
