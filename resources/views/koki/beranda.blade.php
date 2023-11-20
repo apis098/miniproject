@@ -106,6 +106,10 @@
                         label: 'Todal Saldo',
                         data: @json($total_saldo),
                         backgroundColor: 'orange',
+                    }, {
+                        label: 'Saldo Sudah Diambil',
+                        data: @json($saldo_sudahDiambil),
+                        backgroundColor: 'green',
                     }]
                 },
                 options: {

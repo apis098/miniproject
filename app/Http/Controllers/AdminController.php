@@ -115,19 +115,19 @@ class AdminController extends Controller
         return view('admin.ajuanpenarikan', compact('data', 'verifed_count'));
     }
 
-    public function proses_ajuan_penarikan(Request $request,int $id)
+    public function proses_ajuan_penarikan(Request $request, int $id)
     {
         $data = penarikans::find($id);
         if ($request->status === "diterima") {
             $data->status = "diterima";
             $chef = User::find($data->chef_id);
-            $chef->saldo_pemasukan = $chef->saldo_pemasukan - ($data->nilai+2000);
+            $chef->saldo_pemasukan = $chef->saldo_pemasukan - ($data->nilai + 2000);
             $chef->save();
 
             $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
             $admin->saldo = $admin->saldo + 2000;
             $admin->save();
-        } elseif($request->status === "ditolak") {
+        } elseif ($request->status === "ditolak") {
             $data->status = "gagal";
         }
         $data->save();
@@ -159,7 +159,18 @@ class AdminController extends Controller
             $query->where('course_id', $id);
         })->get();
         $userLogin = Auth::user();
-        return view('koki.user', compact("koki", "userLogin", "students"));
+        // message count
+        $messageCount = [];
+        $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
+        // unreadNotification count and notification
+        $notification = notifications::where('user_id', auth()->user()->id)
+            ->where('status', 'belum')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        // category top-up
+        $categorytopup = TopUpCategories::all();
+        return view('koki.user', compact("koki", "userLogin", "students", "messageCount", "notification", "unreadNotificationCount", "categorytopup"));
     }
 
 
@@ -169,7 +180,7 @@ class AdminController extends Controller
         $notification = [];
         $favorite = [];
         $footer = footer::first();
-        $categorytopup  =  TopUpCategories::all();
+        $categorytopup = TopUpCategories::all();
         $unreadNotificationCount = [];
         $messageCount = [];
         if ($userLogin) {
