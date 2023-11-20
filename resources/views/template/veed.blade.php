@@ -2129,10 +2129,9 @@
 
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="card card-body border-0">
+                                                                                                            class="d-flex">
                                                                                                             @if (Auth::check())
                                                                                                                 <form
-                                                                                                                    style="margin-left: -10px;"
                                                                                                                     id="formBalasRepliesCommentsFeeds1{{ $reply_comment->id }}"
                                                                                                                     action="{{ route('balas.replies.comments.feeds', [$reply_comment->user->id, $reply_comment->id]) }}"
                                                                                                                     method="post">
