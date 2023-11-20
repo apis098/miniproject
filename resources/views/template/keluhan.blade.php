@@ -84,6 +84,19 @@
     }
     }
 
+     /* untuk tampilan ipad */
+     @media (min-width: 760px) and (max-width: 1000px) {
+        div.widt {
+            margin-top: 80px;
+        }
+     }
+
+     @media (min-width: 1024px) {
+        div.widt {
+            margin-top: 30px;
+        }
+     }
+
           /* untuk tampilan laptop */
           @media (min-width: 1210px) and (max-width: 4000px) {
             input.bsar {
@@ -133,7 +146,7 @@
                 </div>
             </div>
             <div class="col ms-5">
-                <div class="image-container kanan">
+                <div class="image-container kanan widt">
                     <img src="{{ asset('images/home.png') }}" alt="Gambar Contoh"
                         style="width: 110%; margin-top: -20%;">
                 </div>
