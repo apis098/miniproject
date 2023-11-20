@@ -1475,7 +1475,7 @@
                                                                                     src="{{ asset('images/default.jpg') }}"
                                                                                     alt="{{ $item_comment->user_pengirim->name }}">
                                                                             @endif
-                                                                            <p class="ms-2 mt-2">
+                                                                            <p class="ms-2 mt-2 fw-bolder  ">
                                                                                 {{ $item_comment->user_pengirim->name }}
                                                                             </p>
                                                                             <div class="d-flex flex-row-reverse ml-auto mt-2">
@@ -1532,12 +1532,12 @@
                                                                                         alt="">
                                                                                     &nbsp; &nbsp;
                                                                                 @endif
-                                                                                <span class="my-auto"
+                                                                                <span class="mt-2" style="margin-left: -7px;"
                                                                                     id="countLikeComment{{ $item_comment->id }}">
                                                                                     {{ $countLike }}
                                                                                 </span>
                                                                                 </div>
-                                                                                <div class="m-2 mr-auto">
+                                                                                <div class="ms-2 mt-2 mr-auto">
                                                                                     {{-- --}}
                                                                                     @if (Auth::user())
                                                                                         @if (Auth::user()->role != 'admin' && Auth::user()->id !== $item_comment->user_pengirim->id)
@@ -1764,7 +1764,7 @@
                                                                                                     @csrf
                                                                                                     <div class="d-flex">
                                                                                                         <div
-                                                                                                            class="me-3"style="margin-left: -5px; margin-top:-1.1%;">
+                                                                                                            class="me-3"style=" margin-top:-1.1%;">
                                                                                                             @if (Auth::user()->foto)
                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                     class="border rounded-circle"
@@ -1802,7 +1802,7 @@
                                                                                                     <div
                                                                                                         class="d-flex mb-3">
                                                                                                         <div class="me-3"
-                                                                                                            style="margin-left: -40px; margin-top:-1.1%;">
+                                                                                                            style="margin-top:-1.1%;">
                                                                                                             <img src="{{ asset('images/default.jpg') }}"
                                                                                                                 class="border rounded-circle"
                                                                                                                 alt="Avatar"
@@ -1867,7 +1867,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex ">
-                                                                                                                <div class="d-flex col-lg-8" style="margin-top:-3%;" >
+                                                                                                                <div class="d-flex col-lg-8 ms-4" style="margin-top:-3%;" >
                                                                                                                     @if (Auth::user())
                                                                                                                         @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
                                                                                                                             <form
@@ -1908,10 +1908,10 @@
                                                                                                                         &nbsp;
                                                                                                                         &nbsp;
                                                                                                                     @endif
-                                                                                                                    <span class="mt-2" id="like-count{{ $reply_comment->id }}">
+                                                                                                                    <span class="mt-2" style="margin-left: -2%;" id="like-count{{ $reply_comment->id }}">
                                                                                                                         {{ $countLike2sd }}
                                                                                                                     </span>
-                                                                                                                    <div class="m-2 mr-auto">
+                                                                                                                    <div class="ms-2 mt-2 mr-auto">
                                                                                                                         {{-- --}}
                                                                                                                         @if (Auth::user())
                                                                                                                             @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
@@ -2097,7 +2097,7 @@
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 
-                                                                                                                <div style="margin-top:-2.2%;">
+                                                                                                                <div style="margin-top:-2.2%; margin-left:-2.5%;">
                                                                                                                     <a href="#"
                                                                                                                     class="text-secondary my-auto me-5"
                                                                                                                     data-toggle="collapse"
@@ -2139,7 +2139,7 @@
                                                                                                                     @csrf
                                                                                                                     <div
                                                                                                                         class="d-flex me-3">
-                                                                                                                        <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
+                                                                                                                        <div style=" margin-top:-1%;" class="me-3">
                                                                                                                             @if (Auth::user()->foto)
                                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                                     class="border rounded-circle mr-auto"
@@ -2176,7 +2176,7 @@
                                                                                                                 <form>
                                                                                                                     <div
                                                                                                                         class="d-flex mb-3">
-                                                                                                                        <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
+                                                                                                                        <div style=" margin-top:-1%;" class="me-3">
                                                                                                                             <img src="{{ asset('images/default.jpg') }}"
                                                                                                                                 class="border rounded-circle"
                                                                                                                                 alt="Avatar"
