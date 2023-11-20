@@ -1715,7 +1715,8 @@
                                                                                     @endif
                                                                                     {{-- --}}
                                                                                 </div>
-                                                                                @if($item_comment->count_replies() > 0)
+                                                                                <div style="margin-right:-2%;" class="d-flex justify-content-end mt-2">
+                                                                                    @if($item_comment->count_replies() > 0)
                                                                                     <a href="#"
                                                                                         class="text-secondary"
                                                                                         data-toggle="collapse"
@@ -1746,6 +1747,7 @@
                                                                                         &nbsp; <small>Balas</small>
                                                                                      </a>
                                                                                 @endif
+                                                                                </div>
                                                                             </div>
                                                                             <!-- Komentar Balasan Collapse Start -->
                                                                             <div class="collapse"
@@ -1841,265 +1843,262 @@
                                                                                                             ->count();
                                                                                                     @endphp
 
-                                                                                                    <div id="balasan_komentar_ini{{ $reply_comment->id }}"
-                                                                                                        class="">
-                                                                                                        <div style="margin-left:-0.7%;"
+                                                                                                    <div id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
+                                                                                                        {{-- <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
-                                                                                                            <img width="38px"
+                                                                                                           
+                                                                                                        </div> --}}
+                                                                                                        <div class="">
+                                                                                                            <div class="d-flex mt-2 align-items-center">
+                                                                                                                <img width="38px"
                                                                                                                 height="38px"
-                                                                                                                class="rounded-circle"
+                                                                                                                class="rounded-circle me-2"
                                                                                                                 src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                                 alt="{{ $reply_comment->user->name }}">
-                                                                                                        </div>
-                                                                                                        <div
-                                                                                                            class="">
-                                                                                                            <div
-                                                                                                                class="d-flex mt-2">
                                                                                                                 <span><strong>{{ $reply_comment->user->name }}</strong></span>
 
                                                                                                                 <small
                                                                                                                     style="margin-left: 310px;">{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
 
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="d-flex">
+                                                                                                            <div style="margin-top:-1.2%;" class="d-flex ms-5">
                                                                                                                 <p>{{ $reply_comment->komentar }}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
-                                                                                                            <div class="d-flex flex-row ">
-                                                                                                                @if (Auth::user())
-                                                                                                                    @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
-                                                                                                                        <form
-                                                                                                                            action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                                            id="formLikeReplyComment{{ $reply_comment->id }}"
-                                                                                                                            method="POST">
-                                                                                                                            @csrf
-                                                                                                                            <button
-                                                                                                                                type="submit"
-                                                                                                                                class="btn"
-                                                                                                                                onclick="likeReplyComment({{ $reply_comment->id }})">
-                                                                                                                                <i class="fa-solid text-orange fa-thumbs-up"
-                                                                                                                                    id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
-                                                                                                                            </button>
-
-                                                                                                                        </form>
-                                                                                                                    @else
-                                                                                                                        <form
-                                                                                                                            action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
-                                                                                                                            id="formLikeReplyComment{{ $reply_comment->id }}"
-                                                                                                                            method="POST">
-                                                                                                                            @csrf
-                                                                                                                            <button
-                                                                                                                                type="submit"
-                                                                                                                                class="btn"
-                                                                                                                                onclick="likeReplyComment({{ $reply_comment->id }})">
-                                                                                                                                <i class="fa-regular fa-thumbs-up"
-                                                                                                                                    id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
-                                                                                                                            </button>
-                                                                                                                        </form>
-                                                                                                                    @endif
-                                                                                                                @else
-                                                                                                                    <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
-                                                                                                                        onclick="harusLogin()"
-                                                                                                                        width="15px"
-                                                                                                                        height="40px"
-                                                                                                                        alt="">
-                                                                                                                    &nbsp;
-                                                                                                                    &nbsp;
-                                                                                                                @endif
-                                                                                                                <span
-                                                                                                                    id="like-count{{ $reply_comment->id }}"
-                                                                                                                    class="my-auto"
-                                                                                                                    style="margin-left: -1%;">
-                                                                                                                    {{ $countLike2sd }}
-                                                                                                                </span>
-                                                                                                                <div
-                                                                                                                    class="m-2 mr-auto">
-                                                                                                                    {{-- --}}
+                                                                                                            <div class="d-flex ">
+                                                                                                                <div class="d-flex col-lg-8" style="margin-top:-3%;" >
                                                                                                                     @if (Auth::user())
-                                                                                                                        @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
-                                                                                                                            <a data-bs-toggle="modal"
-                                                                                                                                data-target="#ModalLapors{{ $reply_comment->id }}"
-                                                                                                                                href="#ModalLapors{{ $reply_comment->id }}"
-                                                                                                                                class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                                                                                    class="fa-solid fa-triangle-exclamation"></i>
-                                                                                                                            </a>
-                                                                                                                            <div class="modal fade"
-                                                                                                                                data-bs-backdrop="static"
-                                                                                                                                id="ModalLapors{{ $reply_comment->id }}"
-                                                                                                                                tabindex="-1"
-                                                                                                                                role="dialog"
-                                                                                                                                aria-labelledby="exampleModalCenterTitle"
-                                                                                                                                aria-hidden="true">
-                                                                                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                                                                                    role="document">
-                                                                                                                                    <div
-                                                                                                                                        class="modal-content">
-                                                                                                                                        <div
-                                                                                                                                            class="modal-header">
-                                                                                                                                            <h5 class="modal-title"
-                                                                                                                                                id="reportModal"
-                                                                                                                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                                                                                                Laporkan
-                                                                                                                                                Komentar {{$reply_comment->user->name}}
-                                                                                                                                            </h5>
-                                                                                                                                            <button
-                                                                                                                                                type="button"
-                                                                                                                                                class="close"
-                                                                                                                                                data-bs-dismiss="modal"
-                                                                                                                                                aria-label="Close">
-                                                                                                                                                <span
-                                                                                                                                                    aria-hidden="true">&times;</span>
-                                                                                                                                            </button>
-                                                                                                                                        </div>
-                                                                                                                                        <form
-                                                                                                                                            action="{{ route('report.comment.feed', ['comment_id' => 0, 'reply_comment_id' => $reply_comment->id, 'reply_replies_comment_id' => 0]) }}"
-                                                                                                                                            method="POST">
-                                                                                                                                            @csrf
-                                                                                                                                            <div
-                                                                                                                                                class="modal-body d-flex align-items-center">
+                                                                                                                        @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
+                                                                                                                            <form
+                                                                                                                                action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
+                                                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                                method="POST">
+                                                                                                                                @csrf
+                                                                                                                                <button
+                                                                                                                                    type="submit"
+                                                                                                                                    class="btn"
+                                                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})">
+                                                                                                                                    <i class="fa-solid text-orange fa-thumbs-up"
+                                                                                                                                        id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                </button>
 
-                                                                                                                                                @if($reply_comment->user->foto)
-                                                                                                                                                    <img class="me-2"
-                                                                                                                                                        src="{{ asset('storage/'.$reply_comment->user->foto) }}"
-                                                                                                                                                        width="106px"
-                                                                                                                                                        height="104px"
-                                                                                                                                                        style="border-radius: 50%"
-                                                                                                                                                        alt="">
-                                                                                                                                                @else
+                                                                                                                            </form>
+                                                                                                                        @else
+                                                                                                                            <form
+                                                                                                                                action="/sukai/balasan/komentar/{{ Auth::user()->id }}/{{ $reply_comment->id }}/{{ $item_video->id }}"
+                                                                                                                                id="formLikeReplyComment{{ $reply_comment->id }}"
+                                                                                                                                method="POST">
+                                                                                                                                @csrf
+                                                                                                                                <button
+                                                                                                                                    type="submit"
+                                                                                                                                    class="btn"
+                                                                                                                                    onclick="likeReplyComment({{ $reply_comment->id }})">
+                                                                                                                                    <i class="fa-regular fa-thumbs-up"
+                                                                                                                                        id="iconLikeReplyComment{{ $reply_comment->id }}"></i>
+                                                                                                                                </button>
+                                                                                                                            </form>
+                                                                                                                        @endif
+                                                                                                                    @else
+                                                                                                                        <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                                                                                            onclick="harusLogin()"
+                                                                                                                            width="15px"
+                                                                                                                            height="40px"
+                                                                                                                            alt="">
+                                                                                                                        &nbsp;
+                                                                                                                        &nbsp;
+                                                                                                                    @endif
+                                                                                                                    <span class="mt-2" id="like-count{{ $reply_comment->id }}">
+                                                                                                                        {{ $countLike2sd }}
+                                                                                                                    </span>
+                                                                                                                    <div class="m-2 mr-auto">
+                                                                                                                        {{-- --}}
+                                                                                                                        @if (Auth::user())
+                                                                                                                            @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_comment->user->id)
+                                                                                                                                <a data-bs-toggle="modal"
+                                                                                                                                    data-target="#ModalLapors{{ $reply_comment->id }}"
+                                                                                                                                    href="#ModalLapors{{ $reply_comment->id }}"
+                                                                                                                                    class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                                                                                        class="fa-solid fa-triangle-exclamation"></i>
+                                                                                                                                </a>
+                                                                                                                                <div class="modal fade"
+                                                                                                                                    data-bs-backdrop="static"
+                                                                                                                                    id="ModalLapors{{ $reply_comment->id }}"
+                                                                                                                                    tabindex="-1"
+                                                                                                                                    role="dialog"
+                                                                                                                                    aria-labelledby="exampleModalCenterTitle"
+                                                                                                                                    aria-hidden="true">
+                                                                                                                                    <div class="modal-dialog modal-dialog-centered"
+                                                                                                                                        role="document">
+                                                                                                                                        <div
+                                                                                                                                            class="modal-content">
+                                                                                                                                            <div
+                                                                                                                                                class="modal-header">
+                                                                                                                                                <h5 class="modal-title"
+                                                                                                                                                    id="reportModal"
+                                                                                                                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                                                                                                    Laporkan
+                                                                                                                                                    Komentar {{$reply_comment->user->name}}
+                                                                                                                                                </h5>
+                                                                                                                                                <button
+                                                                                                                                                    type="button"
+                                                                                                                                                    class="close"
+                                                                                                                                                    data-bs-dismiss="modal"
+                                                                                                                                                    aria-label="Close">
+                                                                                                                                                    <span
+                                                                                                                                                        aria-hidden="true">&times;</span>
+                                                                                                                                                </button>
+                                                                                                                                            </div>
+                                                                                                                                            <form
+                                                                                                                                                action="{{ route('report.comment.feed', ['comment_id' => 0, 'reply_comment_id' => $reply_comment->id, 'reply_replies_comment_id' => 0]) }}"
+                                                                                                                                                method="POST">
+                                                                                                                                                @csrf
+                                                                                                                                                <div
+                                                                                                                                                    class="modal-body d-flex align-items-center">
+
+                                                                                                                                                    @if($reply_comment->user->foto)
+                                                                                                                                                        <img class="me-2"
+                                                                                                                                                            src="{{ asset('storage/'.$reply_comment->user->foto) }}"
+                                                                                                                                                            width="106px"
+                                                                                                                                                            height="104px"
+                                                                                                                                                            style="border-radius: 50%"
+                                                                                                                                                            alt="">
+                                                                                                                                                    @else
+                                                                                                                                                        <img class="me-2"
+                                                                                                                                                            src="{{ asset('images/default.jpg') }}"
+                                                                                                                                                            width="106px"
+                                                                                                                                                            height="104px"
+                                                                                                                                                            style="border-radius: 50%"
+                                                                                                                                                            alt="">
+                                                                                                                                                    @endif
+                                                                                                                                                    <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                                                                                                        placeholder="Alasan..."></textarea>
+                                                                                                                                                    {{-- @endif --}}
+                                                                                                                                                </div>
+                                                                                                                                                <div
+                                                                                                                                                    class="modal-footer">
+                                                                                                                                                    <button
+                                                                                                                                                        type="submit"
+                                                                                                                                                        class="btn btn-light text-light"
+                                                                                                                                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                                                                                            class="ms-2 me-2">Laporkan</b></button>
+                                                                                                                                                </div>
+                                                                                                                                            </form>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            @elseif(Auth::user()->id == $reply_comment->user->id)
+                                                                                                                                {{-- Hapus Komentar --}}
+                                                                                                                                <form
+                                                                                                                                    method="POST"
+                                                                                                                                    action="{{ route('hapus.balasan.komentar.feed', $reply_comment->id) }}"
+                                                                                                                                    id="delete-reply-comment-form{{ $reply_comment->id }}">
+                                                                                                                                    @csrf
+                                                                                                                                    @method('DELETE')
+                                                                                                                                    <button
+                                                                                                                                        type="submit"
+                                                                                                                                        hidden
+                                                                                                                                        onclick="deletedReplyCommentFeed({{ $reply_comment->id }})"
+                                                                                                                                        id="delete-reply-comment-button{{ $reply_comment->id }}">Delete</button>
+                                                                                                                                    <button
+                                                                                                                                        type="button"
+                                                                                                                                        onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
+                                                                                                                                        class="yuhu text-danger btn-sm rounded-5 float-end">
+                                                                                                                                        <i
+                                                                                                                                            class="fa-solid fa-trash"></i>
+                                                                                                                                    </button>
+                                                                                                                                </form>
+                                                                                                                            @elseif(Auth::user()->role == 'admin')
+                                                                                                                                {{-- Blokir Komentar --}}
+                                                                                                                                <button
+                                                                                                                                    type="button"
+                                                                                                                                    data-bs-toggle="modal"
+                                                                                                                                    data-bs-target="#blookModal{{ $reply_comment->id }}"
+                                                                                                                                    class="yuhu text-danger btn-sm rounded-5 "><svg
+                                                                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                                                                        width="20"
+                                                                                                                                        height="20"
+                                                                                                                                        viewBox="0 0 24 24">
+                                                                                                                                        <path
+                                                                                                                                            d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
+                                                                                                                                            fill="currentColor"
+                                                                                                                                            fill-rule="nonzero" />
+                                                                                                                                    </svg>
+                                                                                                                                </button>
+                                                                                                                                <div class="modal fade"
+                                                                                                                                    data-bs-backdrop="static"
+                                                                                                                                    id="{{ $reply_comment->id }}"
+                                                                                                                                    tabindex="-1"
+                                                                                                                                    role="dialog"
+                                                                                                                                    aria-labelledby="exampleModalCenterTitle"
+                                                                                                                                    aria-hidden="true">
+                                                                                                                                    <div class="modal-dialog modal-dialog-centered"
+                                                                                                                                        role="document">
+                                                                                                                                        <div
+                                                                                                                                            class="modal-content">
+                                                                                                                                            <div
+                                                                                                                                                class="modal-header">
+                                                                                                                                                <h5 class="modal-title"
+                                                                                                                                                    id="reportModal"
+                                                                                                                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                                                                                                    Blokir
+                                                                                                                                                    komentar
+                                                                                                                                                </h5>
+                                                                                                                                                <button
+                                                                                                                                                    type="button"
+                                                                                                                                                    class="close"
+                                                                                                                                                    data-bs-dismiss="modal"
+                                                                                                                                                    data-bs-target="blockMod{{ $item_comment->id }}"
+                                                                                                                                                    aria-label="Close">
+                                                                                                                                                    <span
+                                                                                                                                                        aria-hidden="true">&times;</span>
+                                                                                                                                                </button>
+                                                                                                                                            </div>
+                                                                                                                                            <form
+                                                                                                                                                action="{{-- route('Report.comment.recipes',$row->id) --}}"
+                                                                                                                                                method="POST">
+                                                                                                                                                {{-- @csrf --}}
+                                                                                                                                                <div
+                                                                                                                                                    class="modal-body d-flex align-items-center">
+
                                                                                                                                                     <img class="me-2"
                                                                                                                                                         src="{{ asset('images/default.jpg') }}"
                                                                                                                                                         width="106px"
                                                                                                                                                         height="104px"
                                                                                                                                                         style="border-radius: 50%"
                                                                                                                                                         alt="">
-                                                                                                                                                @endif
-                                                                                                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                                                                                                    placeholder="Alasan..."></textarea>
-                                                                                                                                                {{-- @endif --}}
-                                                                                                                                            </div>
-                                                                                                                                            <div
-                                                                                                                                                class="modal-footer">
-                                                                                                                                                <button
-                                                                                                                                                    type="submit"
-                                                                                                                                                    class="btn btn-light text-light"
-                                                                                                                                                    style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                                                                                        class="ms-2 me-2">Laporkan</b></button>
-                                                                                                                                            </div>
-                                                                                                                                        </form>
+                                                                                                                                                    <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                                                                                                        placeholder="Alasan..."></textarea>
+                                                                                                                                                    {{-- @endif --}}
+                                                                                                                                                </div>
+                                                                                                                                                <div
+                                                                                                                                                    class="modal-footer">
+                                                                                                                                                    <button
+                                                                                                                                                        type="submit"
+                                                                                                                                                        class="btn btn-light text-light"
+                                                                                                                                                        style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                                                                                            class="ms-2 me-2">Blokir</b></button>
+                                                                                                                                                </div>
+                                                                                                                                            </form>
+                                                                                                                                        </div>
                                                                                                                                     </div>
                                                                                                                                 </div>
-                                                                                                                            </div>
-                                                                                                                        @elseif(Auth::user()->id == $reply_comment->user->id)
-                                                                                                                            {{-- Hapus Komentar --}}
-                                                                                                                            <form
-                                                                                                                                method="POST"
-                                                                                                                                action="{{ route('hapus.balasan.komentar.feed', $reply_comment->id) }}"
-                                                                                                                                id="delete-reply-comment-form{{ $reply_comment->id }}">
-                                                                                                                                @csrf
-                                                                                                                                @method('DELETE')
-                                                                                                                                <button
-                                                                                                                                    type="submit"
-                                                                                                                                    hidden
-                                                                                                                                    onclick="deletedReplyCommentFeed({{ $reply_comment->id }})"
-                                                                                                                                    id="delete-reply-comment-button{{ $reply_comment->id }}">Delete</button>
-                                                                                                                                <button
-                                                                                                                                    type="button"
-                                                                                                                                    onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
-                                                                                                                                    class="yuhu text-danger btn-sm rounded-5 float-end">
-                                                                                                                                    <i
-                                                                                                                                        class="fa-solid fa-trash"></i>
-                                                                                                                                </button>
-                                                                                                                            </form>
-                                                                                                                        @elseif(Auth::user()->role == 'admin')
-                                                                                                                            {{-- Blokir Komentar --}}
+                                                                                                                            @endif
+                                                                                                                        @else
+                                                                                                                            {{-- Untuk user belum login --}}
                                                                                                                             <button
                                                                                                                                 type="button"
-                                                                                                                                data-bs-toggle="modal"
-                                                                                                                                data-bs-target="#blookModal{{ $reply_comment->id }}"
-                                                                                                                                class="yuhu text-danger btn-sm rounded-5 "><svg
-                                                                                                                                    xmlns="http://www.w3.org/2000/svg"
-                                                                                                                                    width="20"
-                                                                                                                                    height="20"
-                                                                                                                                    viewBox="0 0 24 24">
-                                                                                                                                    <path
-                                                                                                                                        d="M12.022 3a6.47 6.47 0 0 0-.709 1.5H5.25A1.75 1.75 0 0 0 3.5 6.25v8.5c0 .966.784 1.75 1.75 1.75h2.249v3.75l5.015-3.75h6.236a1.75 1.75 0 0 0 1.75-1.75l.001-2.483a6.518 6.518 0 0 0 1.5-1.077L22 14.75A3.25 3.25 0 0 1 18.75 18h-5.738L8 21.75a1.25 1.25 0 0 1-1.999-1V18h-.75A3.25 3.25 0 0 1 2 14.75v-8.5A3.25 3.25 0 0 1 5.25 3h6.772zM17.5 1a5.5 5.5 0 1 1 0 11a5.5 5.5 0 0 1 0-11zm-2.784 2.589l-.07.057l-.057.07a.5.5 0 0 0 0 .568l.057.07L16.793 6.5l-2.147 2.146l-.057.07a.5.5 0 0 0 0 .568l.057.07l.07.057a.5.5 0 0 0 .568 0l.07-.057L17.5 7.207l2.146 2.147l.07.057a.5.5 0 0 0 .568 0l.07-.057l.057-.07a.5.5 0 0 0 0-.568l-.057-.07L18.207 6.5l2.147-2.146l.057-.07a.5.5 0 0 0 0-.568l-.057-.07l-.07-.057a.5.5 0 0 0-.568 0l-.07.057L17.5 5.793l-2.146-2.147l-.07-.057a.5.5 0 0 0-.492-.044l-.076.044z"
-                                                                                                                                        fill="currentColor"
-                                                                                                                                        fill-rule="nonzero" />
-                                                                                                                                </svg>
+                                                                                                                                onclick="harusLogin()"
+                                                                                                                                class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                                                                                    class="fa-solid fa-triangle-exclamation me-2"></i>
                                                                                                                             </button>
-                                                                                                                            <div class="modal fade"
-                                                                                                                                data-bs-backdrop="static"
-                                                                                                                                id="{{ $reply_comment->id }}"
-                                                                                                                                tabindex="-1"
-                                                                                                                                role="dialog"
-                                                                                                                                aria-labelledby="exampleModalCenterTitle"
-                                                                                                                                aria-hidden="true">
-                                                                                                                                <div class="modal-dialog modal-dialog-centered"
-                                                                                                                                    role="document">
-                                                                                                                                    <div
-                                                                                                                                        class="modal-content">
-                                                                                                                                        <div
-                                                                                                                                            class="modal-header">
-                                                                                                                                            <h5 class="modal-title"
-                                                                                                                                                id="reportModal"
-                                                                                                                                                style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                                                                                                Blokir
-                                                                                                                                                komentar
-                                                                                                                                            </h5>
-                                                                                                                                            <button
-                                                                                                                                                type="button"
-                                                                                                                                                class="close"
-                                                                                                                                                data-bs-dismiss="modal"
-                                                                                                                                                data-bs-target="blockMod{{ $item_comment->id }}"
-                                                                                                                                                aria-label="Close">
-                                                                                                                                                <span
-                                                                                                                                                    aria-hidden="true">&times;</span>
-                                                                                                                                            </button>
-                                                                                                                                        </div>
-                                                                                                                                        <form
-                                                                                                                                            action="{{-- route('Report.comment.recipes',$row->id) --}}"
-                                                                                                                                            method="POST">
-                                                                                                                                            {{-- @csrf --}}
-                                                                                                                                            <div
-                                                                                                                                                class="modal-body d-flex align-items-center">
-
-                                                                                                                                                <img class="me-2"
-                                                                                                                                                    src="{{ asset('images/default.jpg') }}"
-                                                                                                                                                    width="106px"
-                                                                                                                                                    height="104px"
-                                                                                                                                                    style="border-radius: 50%"
-                                                                                                                                                    alt="">
-                                                                                                                                                <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                                                                                                    placeholder="Alasan..."></textarea>
-                                                                                                                                                {{-- @endif --}}
-                                                                                                                                            </div>
-                                                                                                                                            <div
-                                                                                                                                                class="modal-footer">
-                                                                                                                                                <button
-                                                                                                                                                    type="submit"
-                                                                                                                                                    class="btn btn-light text-light"
-                                                                                                                                                    style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                                                                                                        class="ms-2 me-2">Blokir</b></button>
-                                                                                                                                            </div>
-                                                                                                                                        </form>
-                                                                                                                                    </div>
-                                                                                                                                </div>
-                                                                                                                            </div>
                                                                                                                         @endif
-                                                                                                                    @else
-                                                                                                                        {{-- Untuk user belum login --}}
-                                                                                                                        <button
-                                                                                                                            type="button"
-                                                                                                                            onclick="harusLogin()"
-                                                                                                                            class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                                                                                class="fa-solid fa-triangle-exclamation me-2"></i>
-                                                                                                                        </button>
-                                                                                                                    @endif
-                                                                                                                    {{-- --}}
+                                                                                                                        {{-- --}}
+                                                                                                                    </div>
                                                                                                                 </div>
-                                                                                                                <a href="#"
+                                                                                                                
+                                                                                                                <div style="margin-top:-2%;">
+                                                                                                                    <a href="#"
                                                                                                                     class="text-secondary my-auto me-5"
                                                                                                                     data-toggle="collapse"
                                                                                                                     data-target="#collapse2{{ $reply_comment->id }}"
@@ -2115,8 +2114,9 @@
                                                                                                                     </svg>
                                                                                                                     &nbsp;
                                                                                                                     <small
-                                                                                                                        class="me-4 ">Balasan</small>
+                                                                                                                        class="me-4 ">Balas</small>
                                                                                                                 </a>
+                                                                                                                </div>
                                                                                                             </div>
 
 
