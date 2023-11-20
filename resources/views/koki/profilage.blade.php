@@ -1,6 +1,5 @@
 @extends('layouts.nav_koki')
 @section('konten')
-
     @push('style')
         @powerGridStyles
     @endpush
@@ -14,189 +13,195 @@
             padding-left: 10px;
         }
 
-                /* Tampilan mobile Kecil Sekali */
-                @media (min-width:290px) and (max-width: 340px) {
-                    a.kiri {
-                        margin-left: -18px;
-                    }
+        /* Tampilan mobile Kecil Sekali */
+        @media (min-width:290px) and (max-width: 340px) {
+            a.kiri {
+                margin-left: -18px;
+            }
 
-                    input.widt {
-                        width: 85%;
-                    }
+            input.widt {
+                width: 85%;
+            }
 
-                    input.besar {
-                        width: 95%;
-                    }
+            input.besar {
+                width: 95%;
+            }
 
-                    textarea.besar {
-                        width: 95%;
-                    }
+            textarea.besar {
+                width: 95%;
+            }
 
-                    button.rigt {
-                        margin-right: 18px;
-                    }
+            button.rigt {
+                margin-right: 18px;
+            }
 
-                    button.kiri {
-                        margin-right: 14px;
-                    }
+            button.kiri {
+                margin-right: 14px;
+            }
 
-                }
+        }
 
-                /* untuk tampilan mobile */
-                @media (min-width: 350px) and (max-width: 860px) {
-                    a.kiri {
-                        margin-left: 15px;
-                    }
+        /* untuk tampilan mobile */
+        @media (min-width: 350px) and (max-width: 860px) {
+            a.kiri {
+                margin-left: 15px;
+            }
 
-                    input.widt {
-                        width: 85%;
-                    }
+            input.widt {
+                width: 85%;
+            }
 
-                    input.besar {
-                        width: 95%;
-                    }
+            input.besar {
+                width: 95%;
+            }
 
-                    textarea.besar {
-                        width: 95%;
-                    }
+            textarea.besar {
+                width: 95%;
+            }
 
-                    button.rigt {
-                        margin-right: 18px;
-                    }
+            button.rigt {
+                margin-right: 18px;
+            }
 
-                    button.kiri {
-                        margin-right: 44px;
-                    }
+            button.kiri {
+                margin-right: 44px;
+            }
 
-                }
+        }
 
-                @media (max-width: 1368px) {
-                    button.kiri {
-                        margin-right: 65px;
-                    }
-                }
+        @media (max-width: 1368px) {
+            button.kiri {
+                margin-right: 65px;
+            }
+        }
 
-                @media (min-width: 320px) {
-                    button.kiri {
-                        margin-right: 45px;
-                    }
-                }
+        @media (min-width: 320px) {
+            button.kiri {
+                margin-right: 45px;
+            }
+        }
 
-                @media (min-width: 375px) {
-                    button.kiri {
-                        margin-right: 50px;
-                    }
-                }
+        @media (min-width: 375px) {
+            button.kiri {
+                margin-right: 50px;
+            }
+        }
 
-                @media (min-width: 414px) {
-                    button.kiri {
-                        margin-right: 58px;
-                    }
-                }
+        @media (min-width: 414px) {
+            button.kiri {
+                margin-right: 58px;
+            }
+        }
 
-                @media (min-width: 425px) {
-                    button.kiri {
-                        margin-right: 58px;
-                    }
-                }
-                @media (min-width: 540px) {
-                    button.kiri {
-                        margin-right: 75px;
-                    }
-                    button.rigt {
-                        margin-right: 28px;
-                    }
-                }
+        @media (min-width: 425px) {
+            button.kiri {
+                margin-right: 58px;
+            }
+        }
 
-                /* @media (min-width: 1024px) {
-                    button.rigt {
-                        margin-right: 0px;
-                    }
-                } */
+        @media (min-width: 540px) {
+            button.kiri {
+                margin-right: 75px;
+            }
 
-                @media (min-width: 1024px) {
+            button.rigt {
+                margin-right: 28px;
+            }
+        }
 
-                    div.kanan {
-                        margin-left: -28px;
+        /* @media (min-width: 1024px) {
+                            button.rigt {
+                                margin-right: 0px;
+                            }
+                        } */
 
-                    }
+        @media (min-width: 1024px) {
 
-                    input.rigt {
-                        margin-left: -15px;
-                    }
+            div.kanan {
+                margin-left: -28px;
 
-                    input.widt {
-                        width: 94%;
-                    }
+            }
 
-                    input.besar {
-                        width: 100%;
-                    }
+            input.rigt {
+                margin-left: -15px;
+            }
 
-                    textarea.besar {
-                        width: 100%;
-                    }
-                    button.kiri {
-                        margin-right: 50px;
-                    }
+            input.widt {
+                width: 94%;
+            }
 
-                }
+            input.besar {
+                width: 100%;
+            }
+
+            textarea.besar {
+                width: 100%;
+            }
+
+            button.kiri {
+                margin-right: 50px;
+            }
+
+        }
 
 
-                /* untuk tampilan ipad */
-                @media (min-width: 760px) and (max-width: 1000px) {
-                    input.widt {
-                        width: 90%;
-                        margin-left: 10px;
+        /* untuk tampilan ipad */
+        @media (min-width: 760px) and (max-width: 1000px) {
+            input.widt {
+                width: 90%;
+                margin-left: 10px;
 
-                    }
-                    label.kanan{
-                        margin-left: -20px;
-                    }
+            }
 
-                    input.besar {
-                        width: 98%;
-                    }
+            label.kanan {
+                margin-left: -20px;
+            }
 
-                    textarea.besar {
-                        width: 98%;
-                    }
-                    button.rigt {
-                        margin-right: 32px;
-                    }
+            input.besar {
+                width: 98%;
+            }
 
-                    button.kiri {
-                        margin-right: 50px;
-                    }
-                }
+            textarea.besar {
+                width: 98%;
+            }
 
-                /* untuk tampilan laptop */
-                @media (min-width: 1210px) and (max-width: 4000px) {
+            button.rigt {
+                margin-right: 32px;
+            }
 
-                    div.kanan {
-                        margin-left: -35px;
+            button.kiri {
+                margin-right: 50px;
+            }
+        }
 
-                    }
+        /* untuk tampilan laptop */
+        @media (min-width: 1210px) and (max-width: 4000px) {
 
-                    input.rigt {
-                        margin-left: -30px;
-                    }
+            div.kanan {
+                margin-left: -35px;
 
-                    input.widt {
-                        width: 98%;
-                    }
+            }
 
-                    input.besar {
-                        width: 100%;
-                    }
+            input.rigt {
+                margin-left: -30px;
+            }
 
-                    textarea.besar {
-                        width: 100%;
-                    }
-                    button.kiri {
-                        margin-right: 50px;
-                    }
-                }
+            input.widt {
+                width: 98%;
+            }
+
+            input.besar {
+                width: 100%;
+            }
+
+            textarea.besar {
+                width: 100%;
+            }
+
+            button.kiri {
+                margin-right: 50px;
+            }
+        }
     </style>
 
     <div class="my-3 ml-4" style="overflow-x:hidden">
@@ -227,13 +232,14 @@
                 <div class="text-center mt-4">
                     <div style="position: relative; display: inline-block;">
                         @if ($userLogin->foto)
-                            <img src="{{ asset('storage/' . $userLogin->foto) }}" width="200px" height="200px"
-                                style="border-radius: 50%" alt="">
+                            <img src="{{ asset('storage/' . $userLogin->foto) }}" id="fotoProfile" width="200px"
+                                height="200px" style="border-radius: 50%" alt="">
                         @else
-                            <img src="{{ asset('images/default.jpg') }}" width="200px" height="200px"
+                            <img src="{{ asset('images/default.jpg') }}" id="fotoProfile" width="200px" height="200px"
                                 style="border-radius: 50%" alt="">
                         @endif
-                        <button type="submit"
+
+                        <button type="button" onclick="bukaInputanFile()"
                             style="position: absolute;  right: 5px; top: 70%; background-color:#F7941E; border: none"
                             class="btn btn-warning btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
                             data-bs-target="#mymodal">
@@ -247,39 +253,41 @@
                                 <path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSEdit0)" />
                             </svg>
                         </button>
+
                     </div>
                     <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="file" name="profile_picture" id="inputanFile" hidden>
                         <div class="col-12 kanan">
-                        <div class="mb-3 row mt-5">
-                            <label class="col-sm-2 col-form-label fw-bold kanan">Nama</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="nama" name="name" value="{{ $userLogin->name }}"
-                                    class="form-control rounded-2 besar"  placeholder="Masukkan Nama...">
+                            <div class="mb-3 row mt-5">
+                                <label class="col-sm-2 col-form-label fw-bold kanan">Nama</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="nama" name="name" value="{{ $userLogin->name }}"
+                                        class="form-control rounded-2 besar" placeholder="Masukkan Nama...">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label fw-bold kanan">Email </label>
-                            <div class="col-sm-10">
-                                <input type="email" id="harga" name="email" value="{{ $userLogin->email }}"
-                                    class="form-control rounded-2 besar"  placeholder="Masukkan Email...">
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label fw-bold kanan">Email </label>
+                                <div class="col-sm-10">
+                                    <input type="email" id="harga" name="email" value="{{ $userLogin->email }}"
+                                        class="form-control rounded-2 besar" placeholder="Masukkan Email...">
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-sm-2 col-form-label kanan"> <strong
-                                    style="margin-left: 13px;">Biodata </strong></label>
-                            <div class="col-sm-10">
-                                <textarea id="durasi" name="biodata" rows="4" value="{{-- $userLogin->password --}}" class="form-control rounded-2 besar"
-                                     placeholder="Masukkan Biodata..." >
+                            <div class="mb-3 row">
+                                <label class="col-sm-2 col-form-label kanan"> <strong style="margin-left: 13px;">Biodata
+                                    </strong></label>
+                                <div class="col-sm-10">
+                                    <textarea id="durasi" name="biodata" rows="4" value="{{-- $userLogin->password --}}"
+                                        class="form-control rounded-2 besar" placeholder="Masukkan Biodata...">
                                 {!! $userLogin->biodata !!}
                                 </textarea>
+                                </div>
                             </div>
-                        </div>
 
-                        <button type="submit" class="btn btn-sm d-flex float-end text-white mb-3 rigt"
-                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            <button type="submit" class="btn btn-sm d-flex float-end text-white mb-3 rigt"
+                                style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                              border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins;">Edit</button>
-                             </div>
+                        </div>
                     </form>
                 </div>
 
@@ -291,35 +299,34 @@
                     {{-- start tab 2 --}}
                     @csrf
                     <div class="col-12 mx-3">
-                    <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold ">Password lama</label>
-                        <div class="col-sm-10">
-                            <input type="password" id="oldpass" name="oldPass" value="{{-- $userLogin->name --}}"
-                                class="form-control rounded-2 rigt widt"   placeholder="Masukkan password...">
-                            {{-- <a id="mybutton" onclick="change('oldpass','mybutton')"><span id="mybutton" class="left-pan"><i
+                        <div class="mb-3 row mt-2">
+                            <label class="col-sm-2 col-form-label fw-bold ">Password lama</label>
+                            <div class="col-sm-10">
+                                <input type="password" id="oldpass" name="oldPass" value="{{-- $userLogin->name --}}"
+                                    class="form-control rounded-2 rigt widt" placeholder="Masukkan password...">
+                                {{-- <a id="mybutton" onclick="change('oldpass','mybutton')"><span id="mybutton" class="left-pan"><i
                                     class="fa-solid fa-eye"></i></span></a> --}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold ">Password baru </label>
-                        <div class="col-sm-10">
-                            <input type="password" id="newpass" name="password" value="{{-- $userLogin->name --}}"
-                                class="form-control rounded-2 rigt widt"
-                                placeholder="Masukkan password baru...">
+                        <div class="mb-3 row mt-2">
+                            <label class="col-sm-2 col-form-label fw-bold ">Password baru </label>
+                            <div class="col-sm-10">
+                                <input type="password" id="newpass" name="password" value="{{-- $userLogin->name --}}"
+                                    class="form-control rounded-2 rigt widt" placeholder="Masukkan password baru...">
+                            </div>
                         </div>
-                    </div>
-                    <div class="mb-3 row mt-2">
-                        <label class="col-sm-2 col-form-label fw-bold ">Konfirmasi  </label>
-                        <div class="col-sm-10">
-                            <input type="password" id="copassword" name="password_confirmation"
-                                value="{{-- $userLogin->name --}}" class="form-control rounded-2 rigt widt"
-                                placeholder="konfirmasi password...">
+                        <div class="mb-3 row mt-2">
+                            <label class="col-sm-2 col-form-label fw-bold ">Konfirmasi </label>
+                            <div class="col-sm-10">
+                                <input type="password" id="copassword" name="password_confirmation"
+                                    value="{{-- $userLogin->name --}}" class="form-control rounded-2 rigt widt"
+                                    placeholder="konfirmasi password...">
+                            </div>
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-sm d-flex float-end text-white mb-3 kiri"
-                    style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        <button type="submit" class="btn btn-sm d-flex float-end text-white mb-3 kiri"
+                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                      border-radius: 10px; padding: 5px 25px; font-size: 15px; font-family: Poppins;">Ganti</button>
-                     </div>
+                    </div>
                 </form>
             </div>
             {{-- end --}}
@@ -374,6 +381,20 @@
                 input.type = "password";
                 button.innerHTML = '<span class="left-pan"><i class="fa-solid fa-eye"></i></span>';
             }
+        }
+
+        function bukaInputanFile() {
+            document.getElementById("inputanFile").click();
+            document.getElementById("inputanFile").addEventListener("change", function(event) {
+                var input = event.target;
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById("fotoProfile").setAttribute("src", e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            });
         }
     </script>
 @endsection

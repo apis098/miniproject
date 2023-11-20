@@ -112,7 +112,7 @@ class KokiController extends Controller
         }
         $user->save();
 
-        return redirect()->back()->with('success', 'Sukses mengupdate foto profil');
+        return redirect()->back()->with('success', 'Sukses mengupdate profil anda.');
     }
 
     public function profilage(Request $request)
