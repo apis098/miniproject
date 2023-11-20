@@ -19,6 +19,11 @@ return new class extends Migration
             $table->enum("status", ['diproses', 'diterima', 'gagal']);
             $table->timestamps();
         });
+
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->unsignedBigInteger("penarikan_id")->nullable();
+            $table->foreign('penarikan_id')->references('id')->on('penarikans')->onDelete('cascade');
+        });
     }
 
     /**

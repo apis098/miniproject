@@ -27,6 +27,11 @@ return new class extends Migration
 
             $table->foreign("chef_id")->references("id")->on("users")->onDelete("cascade");
         });
+
+        Schema::table('notifications', function (Blueprint $table) {
+            $table->unsignedBigInteger('data_koki_id')->nullable();
+            $table->foreign('data_koki_id')->references('id')->on('data_pribadi_chefs')->onDelete('cascade');
+        });
     }
 
     /**

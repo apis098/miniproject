@@ -41,6 +41,75 @@
     }
 }
 
+ /* Tampilan mobile Kecil Sekali */
+ @media (min-width:290px) and (max-width: 340px) {
+    div.kanan {
+        margin-left: -40px;
+        margin-top: 30px;
+    }
+
+    input.bsar {
+     margin-left: -18px;
+    }
+
+    textarea.bsar {
+     margin-left: -18px;
+    }
+ }
+
+ /* untuk tampilan mobile */
+ @media (min-width: 350px) and (max-width: 860px) {
+    div.kanan {
+        margin-left: -40px;
+        margin-top: 30px;
+    }
+
+    input.bsar {
+     margin-left: -18px;
+    }
+
+    textarea.bsar {
+     margin-left: -18px;
+    }
+
+    }
+
+    @media (max-width: 884px) {
+        input.bsar {
+     margin-left: -18px;
+    }
+
+    textarea.bsar {
+     margin-left: -18px;
+    }
+    }
+
+     /* untuk tampilan ipad */
+     @media (min-width: 760px) and (max-width: 1000px) {
+        div.widt {
+            margin-top: 80px;
+        }
+     }
+
+     @media (min-width: 1024px) {
+        div.widt {
+            margin-top: 30px;
+        }
+     }
+
+          /* untuk tampilan laptop */
+          @media (min-width: 1210px) and (max-width: 4000px) {
+            input.bsar {
+     margin-left: -18px;
+    }
+
+    textarea.bsar {
+     margin-left: -18px;
+    }
+}
+
+
+
 </style>
 
 <!-- book section -->
@@ -59,12 +128,12 @@
 
                             <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
                         </div>
-                        <div>
-                            <input type="text" class="form-control" id="subject" name="subject"
+                        <div class="col-12">
+                            <input type="text" class="form-control bsar" id="subject" name="subject"
                                 placeholder="Keluhan" />
                         </div>
-                        <div>
-                            <textarea class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
+                        <div class="col-12">
+                            <textarea class="form-control bsar" id="description" name="description" placeholder="Deskripsi"></textarea>
                         </div>
                         <div>
                             <button
@@ -77,7 +146,7 @@
                 </div>
             </div>
             <div class="col ms-5">
-                <div class="image-container">
+                <div class="image-container kanan widt">
                     <img src="{{ asset('images/home.png') }}" alt="Gambar Contoh"
                         style="width: 110%; margin-top: -20%;">
                 </div>

@@ -20,4 +20,8 @@ class penarikans extends Model
     public function data() {
         return $this->belongsTo(dataPribadiKoki::class, "data_id");
     }
+    public function notification()
+    {
+        return $this->hasMany(notificarions::class, "penarikan_id");
+    }
 }
