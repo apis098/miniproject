@@ -1478,8 +1478,7 @@
                                                                             <p class="ms-2 mt-2">
                                                                                 {{ $item_comment->user_pengirim->name }}
                                                                             </p>
-                                                                            <div
-                                                                                class="d-flex flex-row-reverse ml-auto mt-2">
+                                                                            <div class="d-flex flex-row-reverse ml-auto mt-2">
                                                                                 <small>
                                                                                     {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                             </div>
@@ -1855,11 +1854,12 @@
                                                                                                                 class="rounded-circle me-2"
                                                                                                                 src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                                 alt="{{ $reply_comment->user->name }}">
+
                                                                                                                 <span><strong>{{ $reply_comment->user->name }}</strong></span>
 
-                                                                                                                <small
-                                                                                                                    style="margin-left: 310px;">{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
-
+                                                                                                                <div class="mt-1" style="margin-left: 50%;">
+                                                                                                                    <small>{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                             <div style="margin-top:-1.2%;" class="d-flex ms-5">
                                                                                                                 <p>{{ $reply_comment->komentar }}
@@ -2097,7 +2097,7 @@
                                                                                                                     </div>
                                                                                                                 </div>
                                                                                                                 
-                                                                                                                <div style="margin-top:-2%;">
+                                                                                                                <div style="margin-top:-2.2%;">
                                                                                                                     <a href="#"
                                                                                                                     class="text-secondary my-auto me-5"
                                                                                                                     data-toggle="collapse"
