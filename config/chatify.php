@@ -6,7 +6,7 @@ return [
     | Messenger display name
     |-------------------------------------
     */
-    'name' => env('CHATIFY_NAME', 'Hummacook Messenger'),
+    'name' => env('CHATIFY_NAME', 'Kotak pesan'),
 
     /*
     |-------------------------------------
