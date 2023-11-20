@@ -415,8 +415,9 @@
                                                                         </div>
 
                                                                     </div>
-                                                                    <div class="collapse"
+                                                                    <div class="collapse mb-3"
                                                                         id="collapseTolak{{ $data_verified->id }}">
+                                                                        <button type="button" class="btn btn-danger mb-2" onclick="batal({{$data_verified->id}})" id="buttonBatal{{$data_verified->id}}">Batal</button>
                                                                         <form method="post" action="{{ route('proses.data.koki', ['id' => $data_verified->id, 'status' => 'ditolak']) }}">
                                                                             @csrf
                                                                             <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control"
@@ -444,18 +445,26 @@
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
                                                                         </button>
                                                                         <button type="button" id="submitTolak{{$data_verified->id}}" onclick="tolakdata({{$data_verified->id}})"
-                                                                            class="btn btn-sm rounded-3 text-light me-2"
-                                                                            style="display:none;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
+                                                                            class="btn btn-sm rounded-3 text-light me-2" hidden
+                                                                            style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                                                 class="ms-2 me-2"
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Selesai</b>
                                                                         </button>
                                                                         <script>
                                                                             function tolakData(num) {
-                                                                                document.getElementById('buttonTolak'+num).style.display = "none";
-                                                                                document.getElementById('submitTolak'+num).style.display = "block";
+                                                                                $('#buttonTolak'+num).attr('hidden', true);
+                                                                                $('#submitTolak'+num).attr('hidden', false);
+                                                                                // document.getElementById('buttonTolak'+num).style.display = "none";
+                                                                                // document.getElementById('submitTolak'+num).style.display = "block";
+
                                                                             }
                                                                             function tolakdata(num) {
                                                                                 document.getElementById('tolakdata'+num).click();
+                                                                            }
+                                                                            function batal(num) {
+                                                                                document.getElementById('buttonTolak'+num).click();
+                                                                                $('#buttonTolak'+num).attr('hidden', false);
+                                                                                $('#submitTolak'+num).attr('hidden', true);
                                                                             }
                                                                         </script>
                                                                     </div>

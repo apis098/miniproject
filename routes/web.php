@@ -137,40 +137,40 @@ Route::prefix('share-content')->group(function (){
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::prefix('/admin')->group(function () {
-        Route::get('data-koki', [AdminController::class, 'data_koki'])->name('admin.datakoki');
+        Route::get('data-koki', [AdminController::class, 'data_koki'])->name('admin.datakoki')->middleware('roleAdmin:admin_approval');
         Route::post('data-koki/{id}', [AdminController::class, 'proses_data_koki'])->name('proses.data.koki');
-        Route::get('ajuan-penarikan', [AdminController::class, 'ajuan_penarikan'])->name('admin.ajuanpenarikan');
+        Route::get('ajuan-penarikan', [AdminController::class, 'ajuan_penarikan'])->name('admin.ajuanpenarikan')->middleware('roleAdmin:admin_keuangan');
         Route::post('ajuan-penarikan/{id}', [AdminController::class, 'proses_ajuan_penarikan'])->name('proses.ajuan.penarikan');
         Route::put('/topup/categories/{id}', [TopUpController::class, 'update'])->name('update.categories');
         Route::get('complaint/all', [complaintController::class, 'index_all'])->name('Complaint.all');
         Route::get('reply-complaint', [ReplyController::class, 'index'])->name('ReplyUser.index');
         Route::get('dashboard', [AdminController::class, 'index'])->name('admin.index');
-        Route::get('verifed', [AdminController::class, 'verifed'])->name('admin.verifed');
+        Route::get('verifed', [AdminController::class, 'verifed'])->name('admin.verifed')->middleware('roleAdmin:admin_approval');
         Route::patch('verifed/{id}/{status}', [AdminController::class, 'action_verifed'])->name('action.verified');
-        Route::get('tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran');
-        Route::get('kursus', [KursusController::class, 'kursus'])->name('admin.kursus');
+        Route::get('tawaran', [AdminController::class, 'tawaran'])->name('admin.tawaran')->middleware('roleAdmin:admin_keuangan');
+        Route::get('kursus', [KursusController::class, 'kursus'])->name('admin.kursus')->middleware('roleAdmin:admin_approval');
         // tambah penawaran
         Route::post('upload_penawaran', [AdminController::class, 'upload_tawaran'])->name('upload.tawaran');
         // verifikasi kursus
         Route::patch('verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
         //report
-        Route::get('laporan-pengguna', [ReportController::class, 'index'])->name('Report.index');
+        Route::get('laporan-pengguna', [ReportController::class, 'index'])->name('Report.index')->middleware('roleAdmin:admin_laporan');
         Route::get('keluhan', [ReportController::class, 'keluhan'])->name('Report.keluhan');
         Route::get('komentar', [ReportController::class, 'komentar'])->name('Report.komentar');
         Route::get('profil', [ReportController::class, 'profil'])->name('Report.profil');
         Route::put('content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
         Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
-        Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status');
+        Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status')->middleware('roleAdmin:admin_laporan');
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
         Route::delete('report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
         Route::post('topup-categories',[TopUpController::class,'categories'])->name('categories.topup.store');
          // special_days
-         Route::resource('special-days', special_days_controller::class);
+         Route::resource('special-days', special_days_controller::class)->middleware('roleAdmin:admin_informasi_web');
         //  kategori makanan
-         Route::resource('kategori-makanan',KategoriMakananController::class);
+         Route::resource('kategori-makanan',KategoriMakananController::class)->middleware('roleAdmin:admin_informasi_web');
         // footer
-        Route::resource('footer',FooterController::class);
+        Route::resource('footer',FooterController::class)->middleware('roleAdmin:admin_informasi_web');
     });
 });
 
@@ -180,7 +180,7 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
     Route::get('/tambah-kursus');
     Route::post('/pemasukan-koki/{chef_id}/{user_id}/{content_id}/{status}', [IncomeChefsController::class, 'pemasukan_koki'])->name('pemasukan.koki');
     Route::get('koki/index', [KokiController::class, 'index'])->name('koki.index');
-    Route::prefix('/koki')->group(function () { 
+    Route::prefix('/koki')->group(function () {
         Route::post('kirim-data-pribadi', [KokiController::class,'data_pribadi_chef'])->name('kirim.dataPribadiChef');
         Route::post('ajukan-penarikan', [IncomeChefsController::class, 'ajukan_penarikan'])->name('ajukan.penarikan');
         Route::resource('resep', ResepsController::class);
