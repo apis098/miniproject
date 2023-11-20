@@ -386,6 +386,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="collapse" id="collapseTolak{{$data_verified->id}}">
+                                                                        <button type="button" class="btn btn-danger" onclick="buttonbatal({{$data_verified->id}})">Batal</button>
                                                                         <form action="{{route('proses.ajuan.penarikan', ['id'=>$data_verified->id, 'status'=>'ditolak'])}}" method="post">
                                                                         @csrf
                                                                         <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control" placeholder="Alasan..."></textarea>
@@ -423,6 +424,11 @@
                                                                             }
                                                                             function clickButtonTolak(num) {
                                                                                 document.getElementById("buttontolak"+num).click();
+                                                                            }
+                                                                            function buttonbatal(num) {
+                                                                                document.getElementById("buttonTolak"+num).click();
+                                                                                document.getElementById("buttonTolak"+num).style.display = "block";
+                                                                                document.getElementById("buttonSelesai"+num).style.display = "none";
                                                                             }
                                                                         </script>
                                                                     </div>

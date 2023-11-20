@@ -79,7 +79,7 @@ class IncomeChefsController extends Controller
             return response()->json($validasi->errors()->first(), 422);
         }
         // validasi saldo koki
-        $saldo_koki = Auth::user()->saldo_pemasukan;
+        $saldo_koki = Auth::user()->saldo_pemasukan + 2000;
         if ($saldo_koki < $request->nilai) {
             return response()->json([
                 'success' => false,
