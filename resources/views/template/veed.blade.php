@@ -2208,41 +2208,45 @@
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
                                                                                                         <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}"
                                                                                                             class="">
-                                                                                                            <div style="margin-left:-0.7%;"
+                                                                                                            {{-- <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
-                                                                                                                @if ($reply_replyComment->user_pengirim->foto)
-                                                                                                                    <img width="38px"
-                                                                                                                        height="38px"
-                                                                                                                        class="rounded-circle"
-                                                                                                                        src="{{ asset('storage/' . $reply_replyComment->user_pengirim->foto) }}"
-                                                                                                                        alt="{{ $reply_replyComment->user_pengirim->name }}">
-                                                                                                                @else
-                                                                                                                    <img width="38px"
-                                                                                                                        height="38px"
-                                                                                                                        class="rounded-circle"
-                                                                                                                        src="{{ asset('images/default.jpg') }}"
-                                                                                                                        alt="{{ $reply_replyComment->user_pengirim->name }}">
-                                                                                                                @endif
+                                                                                                               
 
-                                                                                                            </div>
+                                                                                                            </div> --}}
                                                                                                             <div
                                                                                                                 class="">
                                                                                                                 <div
-                                                                                                                    class="d-flex mt-2">
-                                                                                                                    <span><strong>{{ $reply_replyComment->user_pengirim->name }}</strong></span>
+                                                                                                                    class="d-flex mt-2 align-items-center">
+                                                                                                                    @if ($reply_replyComment->user_pengirim->foto)
+                                                                                                                    <img width="38px"
+                                                                                                                        height="38px"
+                                                                                                                        class="rounded-circle me-2"
+                                                                                                                        src="{{ asset('storage/' . $reply_replyComment->user_pengirim->foto) }}"
+                                                                                                                        alt="{{ $reply_replyComment->user_pengirim->name }}">
+                                                                                                                    @else
+                                                                                                                        <img width="38px"
+                                                                                                                            height="38px"
+                                                                                                                            class="rounded-circle me-2"
+                                                                                                                            src="{{ asset('images/default.jpg') }}"
+                                                                                                                            alt="{{ $reply_replyComment->user_pengirim->name }}">
+                                                                                                                    @endif
+                                                                                                                    <span>
+                                                                                                                        <strong>{{ $reply_replyComment->user_pengirim->name }}</strong>
+                                                                                                                    </span>
 
                                                                                                                     <small
-                                                                                                                        style="margin-left: 310px;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                                                                                                        style="margin-left: 50%;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
+                                                                                                                    </small>
 
                                                                                                                 </div>
-                                                                                                                <div
-                                                                                                                    class="d-flex">
-                                                                                                                    <p>
+                                                                                                                <div class="d-flex" style="margin-top: -1.2%;">
+                                                                                                                    <p class="ms-5">
                                                                                                                          <a href="">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
                                                                                                                          {{ $reply_replyComment->komentar }}
                                                                                                                     </p>
                                                                                                                 </div>
-                                                                                                                <div class="d-flex flex-row ">
+                                                                                                                <div class="d-flex ms-3" style="margin-top: -3%;">
+                                                                                                                    <div class="d-flex ms-4">
                                                                                                                     @if (Auth::user())
                                                                                                                         @if ($reply_replyComment->likeRepliesReply(auth()->user()->id))
                                                                                                                             <form
@@ -2291,13 +2295,12 @@
                                                                                                                     @endphp
                                                                                                                     <span
                                                                                                                         id="count_like_replies_reply{{ $reply_replyComment->id }}"
-                                                                                                                        class="my-auto"
-                                                                                                                        style="margin-left: -1%;">
+                                                                                                                        class="mt-2"
+                                                                                                                        style="margin-left: -10%;">
                                                                                                                         {{ $countLike3sd }}
                                                                                                                     </span>
 
-                                                                                                                    <div
-                                                                                                                        class="m-2 mr-auto">
+                                                                                                                    <div class="ms-2 mt-2 mr-auto">
                                                                                                                         {{-- modal-modal --}}
                                                                                                                         @if (Auth::check())
                                                                                                                             @if (Auth::user()->role != 'admin' && Auth::user()->id !== $reply_replyComment->user_pengirim->id)
@@ -2480,26 +2483,28 @@
                                                                                                                         @endif
                                                                                                                         {{-- --}}
                                                                                                                     </div>
-                                                                                                                    <a href="#"
-                                                                                                                        class="text-secondary my-auto me-5"
-                                                                                                                        data-toggle="collapse"
-                                                                                                                        data-target="#collapse3{{ $reply_replyComment->id }}"
-                                                                                                                        aria-expanded="true"
-                                                                                                                        aria-controls="collapseOne">
-                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                                            width="22"
-                                                                                                                            height="22"
-                                                                                                                            viewBox="0 0 24 24">
-                                                                                                                            <path
-                                                                                                                                fill="currentColor"
-                                                                                                                                d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
-                                                                                                                        </svg>
-                                                                                                                        &nbsp;
-                                                                                                                        <small
-                                                                                                                            class="me-4 ">Balasan</small>
-                                                                                                                    </a>
                                                                                                                 </div>
-
+                                                                                                                <div style="margin-left: 52.5%;" class="mt-2">
+                                                                                                                    <a href="#"
+                                                                                                                    class="text-secondary my-auto"
+                                                                                                                    data-toggle="collapse"
+                                                                                                                    data-target="#collapse3{{ $reply_replyComment->id }}"
+                                                                                                                    aria-expanded="true"
+                                                                                                                    aria-controls="collapseOne">
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                                        width="22"
+                                                                                                                        height="22"
+                                                                                                                        viewBox="0 0 24 24">
+                                                                                                                        <path
+                                                                                                                            fill="currentColor"
+                                                                                                                            d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
+                                                                                                                    </svg>
+                                                                                                                    &nbsp;
+                                                                                                                    <small
+                                                                                                                        class="me-4 ">Balas</small>
+                                                                                                                </a>
+                                                                                                                </div>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div class="collapse"
