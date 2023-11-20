@@ -1484,20 +1484,20 @@
                                                                                     {{ \Carbon\Carbon::parse($item_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                             </div>
                                                                         </div>
-                                                                        <div
-                                                                            class=" ">
-                                                                            <div class="d-flex">
+                                                                        <div style="margin-top: -2%;">
+                                                                            <div class="d-flex ms-5 pt-0">
                                                                                 <p>{{ $item_comment->komentar }}</p>
                                                                             </div>
-                                                                            <div class="d-flex flex-row " >
+                                                                            <div class="d-flex col-lg-11" style="margin-top:-3%;" >
                                                                                 @php
-                                                                                    // mendapatkan jumlah like tiap komentar
+                                                                                     // mendapatkan jumlah like tiap komentar
                                                                                     $countLike = \App\Models\like_comment_veed::query()
                                                                                         ->where('comment_veed_id', $item_comment->id)
                                                                                         ->where('veed_id', $item_video->id)
                                                                                         ->count();
                                                                                 @endphp
-                                                                                @if (Auth::user())
+                                                                                <div class="d-flex ms-4">
+                                                                                    @if (Auth::user())
                                                                                     @if ($item_comment->likeCommentVeed(Auth::user()->id))
                                                                                         <form
                                                                                             action="{{ route('like.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
@@ -1537,6 +1537,7 @@
                                                                                     id="countLikeComment{{ $item_comment->id }}">
                                                                                     {{ $countLike }}
                                                                                 </span>
+                                                                                </div>
                                                                                 <div class="m-2 mr-auto">
                                                                                     {{-- --}}
                                                                                     @if (Auth::user())
@@ -1716,7 +1717,7 @@
                                                                                 </div>
                                                                                 @if($item_comment->count_replies() > 0)
                                                                                     <a href="#"
-                                                                                        class="text-secondary my-auto ml-2"
+                                                                                        class="text-secondary"
                                                                                         data-toggle="collapse"
                                                                                         data-target="#collapse{{ $item_comment->id }}"
                                                                                         aria-expanded="true"
@@ -1866,9 +1867,7 @@
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
-                                                                                                            <div class="d-flex flex-row "
-                                                                                                               >
-
+                                                                                                            <div class="d-flex flex-row ">
                                                                                                                 @if (Auth::user())
                                                                                                                     @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
                                                                                                                         <form
@@ -2244,9 +2243,7 @@
                                                                                                                          {{ $reply_replyComment->komentar }}
                                                                                                                     </p>
                                                                                                                 </div>
-                                                                                                                <div class="d-flex flex-row "
-                                                                                                                   >
-
+                                                                                                                <div class="d-flex flex-row ">
                                                                                                                     @if (Auth::user())
                                                                                                                         @if ($reply_replyComment->likeRepliesReply(auth()->user()->id))
                                                                                                                             <form
