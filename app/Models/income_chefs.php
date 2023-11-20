@@ -19,12 +19,19 @@ class income_chefs extends Model
         "pemasukan",
         "status_penarikan"
     ];
+    public function messageGift() {
+        $notify =  notifications::where('user_id', $this->chef_id)
+        ->where('notification_from', $this->user_id)
+        ->where('created_at', $this->created_at)
+        ->first();
+        return $notify->message;
+    }
     public function chef()
     {
         return $this->belongsTo(User::class, 'chef_id');
     }
     public function notifications(){
-        return $this->hasMany(notifications::class,'gift_id');  
+        return $this->hasMany(notifications::class,'gift_id');
     }
     // public function message_gift(){
     //     $notification = notifications::where('user_id', auth()->user()->id)
@@ -34,7 +41,7 @@ class income_chefs extends Model
     //         ->where('message',"!=",null)
     //         ->get();
     //         return $notification->message;
-     
+
     // }
     public function user()
     {

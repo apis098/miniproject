@@ -109,7 +109,7 @@
                     }, {
                         label: 'Saldo Sudah Diambil',
                         data: @json($saldo_sudahDiambil),
-                        backgroundColor: 'green',
+                        backgroundColor: 'grey',
                     }]
                 },
                 options: {
