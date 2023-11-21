@@ -2349,7 +2349,7 @@
                                                                                                                         <span
                                                                                                                             id="count_like_replies_reply{{ $reply_replyComment->id }}"
                                                                                                                             class="mt-2"
-                                                                                                                            style="margin-left: -10%;">
+                                                                                                                            style="margin-left: -13%;">
                                                                                                                             {{ $countLike3sd }}
                                                                                                                         </span>
 
@@ -2540,7 +2540,7 @@
                                                                                                                             {{-- --}}
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                    <div style="margin-left: 52.5%;"
+                                                                                                                    <div style="margin-left: 52%;"
                                                                                                                         class="mt-2">
                                                                                                                         <a href="#"
                                                                                                                             class="text-secondary my-auto"
