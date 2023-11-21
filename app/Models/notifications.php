@@ -38,7 +38,9 @@ class notifications extends Model
         'complaint_id_report',
         'resep_id'
     ];
-
+    public function kursus() {
+        return $this->belongsTo(kursus::class, 'kursus_id');
+    }
     public function verifed() {
         return $this->belongsTo(User::class, 'verifed_id');
     }
