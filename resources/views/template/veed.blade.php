@@ -2243,8 +2243,7 @@
                                                                                                     </div>
 
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
-                                                                                                        <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}"
-                                                                                                            class="">
+                                                                                                        <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}" class="">
                                                                                                             {{-- <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
                                                                                                                
@@ -2252,8 +2251,7 @@
                                                                                                             </div> --}}
                                                                                                             <div
                                                                                                                 class="">
-                                                                                                                <div
-                                                                                                                    class="d-flex mt-2 align-items-center">
+                                                                                                                <div class="d-flex mt-2 align-items-center">
                                                                                                                     @if ($reply_replyComment->user_pengirim->foto)
                                                                                                                         <img width="38px"
                                                                                                                             height="38px"
@@ -2920,104 +2918,109 @@
                                 foto = 'images/default.jpg';
                             }
                             let innerHtml = `
-                            <div class="" id="balasan_komentar_ini22${up['id']}">
-                                                                                                        <div style="margin-left:-0.7%;"
-                                                                                                            class="mt-1 me-3">
-                                                                                                            <img width="38px"
-                                                                                                                height="38px"
-                                                                                                                class="rounded-circle"
-                                                                                                                src="{{ asset('${foto}') }}"
-                                                                                                                alt="${pengirim['name']}">
-                                                                                                        </div>
+                            <div class="" id="balasan_komentar_ini2${up['id']}">
                                                                                                         <div
                                                                                                             class="">
-                                                                                                            <div
-                                                                                                                class="d-flex mt-2">
-                                                                                                                <span><strong>${pengirim['name']}</strong></span>
+                                                                                                            <div class="d-flex mt-2 align-items-center">
 
-                                                                                                                <small
-                                                                                                                    style="margin-left: 310px;">${time}</small>
+                                                                                                                <img width="38px"
+                                                                                                                height="38px"
+                                                                                                                class="rounded-circle me-2"
+                                                                                                                src="{{ asset('${foto}') }}"
+                                                                                                                alt="${pengirim['name']}">
+
+                                                                                                                <span>
+                                                                                                                    <strong>${pengirim['name']}</strong>
+                                                                                                                </span>
+
+                                                                                                                <small style="margin-left: 50%;">
+                                                                                                                    ${time}
+                                                                                                                </small>
 
                                                                                                             </div>
-                                                                                                            <div
-                                                                                                                class="d-flex">
-                                                                                                                <p><a class="text-primary me-2" href="">@${penerima['name']}</a>${up['komentar']}
+                                                                                                            <div class="d-flex" style="margin-top: -1.2%;">
+                                                                                                                <p class="ms-5"><a class="text-primary " href="">@${penerima['name']}</a> ${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
-                                                                                                            <div class="d-flex flex-row "
-                                                                                                                >
-                                                                                                                @if (Auth::user())
-                                                                                                                        <form
-                                                                                                                            action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
-                                                                                                                            id="form_like_replies_reply${up['id']}"
-                                                                                                                            method="POST">
-                                                                                                                            @csrf
-                                                                                                                            <button
-                                                                                                                                type="submit"
-                                                                                                                                class="btn"
-                                                                                                                                onclick="like_replies_reply(${up['id']})">
-                                                                                                                                <i class="fa-regular fa-thumbs-up"
-                                                                                                                                id="icon_like_replies_reply${up['id']}"></i>
-                                                                                                                            </button>
+                                                                                                             <div class="d-flex ms-3"
+                                                                                                                    style="margin-top: -3%;">
+                                                                                                                    <div class="d-flex ms-4">
+                                                                                                                        @if (Auth::user())
+                                                                                                                                <form
+                                                                                                                                    action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
+                                                                                                                                    id="form_like_replies_reply${up['id']}"
+                                                                                                                                    method="POST">
+                                                                                                                                    @csrf
+                                                                                                                                    <button
+                                                                                                                                        type="submit"
+                                                                                                                                        class="btn"
+                                                                                                                                        onclick="like_replies_reply(${up['id']})">
+                                                                                                                                        <i class="fa-regular fa-thumbs-up"
+                                                                                                                                        id="icon_like_replies_reply${up['id']}"></i>
+                                                                                                                                    </button>
 
-                                                                                                                        </form>
+                                                                                                                                </form>
 
 
-                                                                                                                @else
-                                                                                                                    <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
-                                                                                                                        onclick="harusLogin()"
-                                                                                                                        width="15px"
-                                                                                                                        height="40px"
-                                                                                                                        alt="">
-                                                                                                                    &nbsp;
-                                                                                                                    &nbsp;
-                                                                                                                @endif
-                                                                                                                <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -1%;">
-                                                                                                                    0
-                                                                                                                </span>
-                                                                                                                <div
-                                                                                                                    class="m-2 mr-auto">
-                                                                                                                    {{-- --}}
+                                                                                                                        @else
+                                                                                                                            <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                                                                                                onclick="harusLogin()"
+                                                                                                                                width="15px"
+                                                                                                                                height="40px"
+                                                                                                                                alt="">
+                                                                                                                            &nbsp;
+                                                                                                                            &nbsp;
+                                                                                                                        @endif
+                                                                                                                        <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                            0
+                                                                                                                        </span>
+                                                                                                                    
+                                                                                                                        <div class="m-2 mr-auto">
+                                                                                                                            {{-- --}}
 
-                                                                                                                            {{-- Hapus Komentar --}}
-                                                                                                                             <form
-                                                                                                                                method="POST"
-                                                                                                                                action="/delete-replies-comment-feed/${up['id']}"
-                                                                                                                                id="form-delete-replies-reply2${up['id']}">
-                                                                                                                                @csrf
-                                                                                                                                @method('DELETE')
-                                                                                                                                <button
-                                                                                                                                    type="submit"
-                                                                                                                                    hidden onclick="deleted_replies_reply_comment_feed2(${up['id']})"
-                                                                                                                                    id="delete-replies-reply-button2${up['id']}">Delete</button>
-                                                                                                                                <button
-                                                                                                                                    type="button"
-                                                                                                                                    onclick="confirmation_delete_replies_reply2(${up['id']})"
-                                                                                                                                    class="yuhu text-danger btn-sm rounded-5 float-end">
-                                                                                                                                    <i
-                                                                                                                                        class="fa-solid fa-trash"></i>
-                                                                                                                                </button>
-                                                                                                                            </form>
+                                                                                                                                    {{-- Hapus Komentar --}}
+                                                                                                                                    <form
+                                                                                                                                        method="POST"
+                                                                                                                                        action="/delete-replies-comment-feed/${up['id']}"
+                                                                                                                                        id="form-delete-replies-reply2${up['id']}">
+                                                                                                                                        @csrf
+                                                                                                                                        @method('DELETE')
+                                                                                                                                        <button
+                                                                                                                                            type="submit"
+                                                                                                                                            hidden onclick="deleted_replies_reply_comment_feed2(${up['id']})"
+                                                                                                                                            id="delete-replies-reply-button2${up['id']}">Delete</button>
+                                                                                                                                        <button
+                                                                                                                                            type="button"
+                                                                                                                                            onclick="confirmation_delete_replies_reply2(${up['id']})"
+                                                                                                                                            class="yuhu text-danger btn-sm rounded-5 float-end">
+                                                                                                                                            <i
+                                                                                                                                                class="fa-solid fa-trash"></i>
+                                                                                                                                        </button>
+                                                                                                                                    </form>
 
+                                                                                                                        </div>
+                                                                                                                    </div>
+
+                                                                                                                <div style="margin-left: 52%;" class="mt-2">
+                                                                                                                    <a href="#"
+                                                                                                                        class="text-secondary my-auto me-5"
+                                                                                                                        data-toggle="collapse"
+                                                                                                                        data-target="#collapse${up['id']}"
+                                                                                                                        aria-expanded="true"
+                                                                                                                        aria-controls="collapseOne">
+                                                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                                                            width="22"
+                                                                                                                            height="22"
+                                                                                                                            viewBox="0 0 24 24">
+                                                                                                                            <path
+                                                                                                                                fill="currentColor"
+                                                                                                                                d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
+                                                                                                                        </svg>
+                                                                                                                        &nbsp;
+                                                                                                                        <small class="me-4 ">Balas</small>
+                                                                                                                    </a>
                                                                                                                 </div>
-                                                                                                                <a href="#"
-                                                                                                                    class="text-secondary my-auto me-5"
-                                                                                                                    data-toggle="collapse"
-                                                                                                                    data-target="#collapse${up['id']}"
-                                                                                                                    aria-expanded="true"
-                                                                                                                    aria-controls="collapseOne">
-                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                                                        width="22"
-                                                                                                                        height="22"
-                                                                                                                        viewBox="0 0 24 24">
-                                                                                                                        <path
-                                                                                                                            fill="currentColor"
-                                                                                                                            d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
-                                                                                                                    </svg>
-                                                                                                                    &nbsp;
-                                                                                                                    <small class="me-4 ">Balas</small>
-                                                                                                                </a>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>`;
@@ -3684,7 +3687,7 @@
                                 foto = 'images/default.jpg';
                             }
                             let innerHtml = `
-                            <div class="" id="balasan_komentar_ini22${up['id']}">
+                            <div class="" id="balasan_komentar_ini2${up['id']}">
                                                                                                         <div style="margin-left:-0.7%;"
                                                                                                             class="mt-1 me-3">
                                                                                                             <img width="38px"
@@ -3840,7 +3843,7 @@
                         "X-CSRF-TOKEN": "{{ csrf_token() }}",
                     },
                     success: function success(response) {
-                        $("#balasan_komentar_ini22" + num).empty();
+                        $("#balasan_komentar_ini2" + num).empty();
                         iziToast.show({
                             backgroundColor: '#a1dfb0',
                             title: '<i class="fa-solid fa-check"></i>',
