@@ -139,14 +139,15 @@ a:focus {
      object-position: right top;
 }
 
-.header_section {
+/* .header_section {
   padding: 15px 0;
+  width: 900px;
 }
 
 .header_section .container-fluid {
   padding-right: 25px;
   padding-left: 25px;
-}
+} */
 
 .navbar-brand {
   font-family: 'Dancing Script', cursive;
@@ -162,11 +163,11 @@ a:focus {
   padding: 0;
 }
 
-.custom_nav-container .navbar-nav {
+/* .custom_nav-container .navbar-nav {
   padding-left: 18%;
-}
+} */
 
-.custom_nav-container .navbar-nav .nav-item .nav-link {
+.custom_nav-container .nav-item .nav-link {
     padding: 5px 20px;
     color: #ffffff;
     text-align: center;

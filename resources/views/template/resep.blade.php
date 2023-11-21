@@ -375,9 +375,9 @@
              
         </style>
 
-        <div class="container py-5 kanan kiri" style="margin-left:-1%;">
-            <div class="row text-center text-white ">
-                <div class="col-lg-8 mx-auto">
+        <div class="container py-5 kanan kiri" >
+            <div class="row text-center text-white me-5">
+                <div class="col-lg-8 mx-auto ms-e">
                     <h1 class="mb-5 kanan"
                         style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
                         Cari resep masakan <br/>

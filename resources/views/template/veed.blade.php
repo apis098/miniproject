@@ -2666,8 +2666,8 @@
             <!-- feed end -->
 
             <!-- diikuti start -->
-            <div class="col-md-3 hidden-content">
-                <div class="card" style="width: 15rem; margin-left: 25px;  border-radius: 10px">
+            <div class="col-md-3 hidden-content ">
+                <div class="card" style="width: 15rem;   border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
                         border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -2704,8 +2704,8 @@
                     </div>
                 </div>
 
-                <div class="card mt-5 mb-5 hidden-content"
-                    style="width: 15rem; margin-left: 25px;  border-radius: 10px">
+                <div class="card mt-5 mb-5"
+                    style="width: 15rem; border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
                     border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
