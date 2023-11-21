@@ -41,7 +41,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password', 
+        'password',
         'remember_token',
     ];
 
@@ -54,6 +54,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function notification_verifed() {
+        return $this->hasMany(notifications::class, 'verifed_id');
+    }
     public function penarikan() {
         return $this->hasMany(penarikans::class, "chef_id");
     }
@@ -64,7 +67,7 @@ class User extends Authenticatable
     public function chefTeacher() {
         return $this->hasMany(UlasanKursus::class, 'chef_teacher_id');
     }
-    public function isFavoriteCourse($course) { 
+    public function isFavoriteCourse($course) {
         return favorite::where('kursus_id', $course)->where('user_id_from', $this->id)->exists();
     }
     public function resep() {

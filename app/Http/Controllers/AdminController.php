@@ -78,11 +78,8 @@ class AdminController extends Controller
 
     public function verifed(Request $request)
     {
-        // Ambil semua pengguna yang memiliki isSuperUser 'no'
-        $users = User::where('isSuperUser', 'no');
-
         // Ambil pengguna yang memiliki jumlah followers lebih dari 10,000
-        $verified = $users->where('followers', '>', 10000)->paginate(6);
+        $verified = User::where('followers', '>', 10000)->where('isSuperUser', 'no')->paginate(6);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         return view('admin.verifed', compact('verified', 'verifed_count'));
     }
@@ -114,7 +111,8 @@ class AdminController extends Controller
             notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => $request->alasan,
+                'message' => 'Data anda tidak diterima oleh Admin Approval.',
+                'alasan' => $request->alasan,
                 'categories' => 'penarikan',
                 'route' => '/koki/income-koki'
             ]);
@@ -156,7 +154,8 @@ class AdminController extends Controller
             notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => $request->alasan,
+                'message' => 'Penarikan gagal.',
+                'alasan' => $request->alasan,
                 'categories' => 'ajuan_penarikan',
                 'route' => '/koki/income-koki'
             ]);
@@ -165,7 +164,7 @@ class AdminController extends Controller
         return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');
     }
 
-    public function action_verifed(string $id, string $status)
+    public function action_verifed(Request $request, string $id, string $status)
     {
         if ($status === "diterima") {
             $status = "menerima";
@@ -173,11 +172,28 @@ class AdminController extends Controller
             $user->isSuperUser = "yes";
             $user->level_koki = 0;
             $user->save();
+            // create notification
+            notifications::create([
+                'user_id' => $id,
+                'notification_from' => Auth::user()->id,
+                'message' => 'Selamat anda telah menjadi koki terverifikasi.',
+                'categories' => 'verifed',
+                'route' => '/koki/index'
+            ]);
         } else if ($status === "ditolak") {
             $status = "menolak";
             $user = User::find($id);
-            $user->isSuperUser = "no";
+            $user->isSuperUser = "ditolak";
             $user->save();
+            // create notification
+            notifications::create([
+                'user_id' => $id,
+                'notification_from' => Auth::user()->id,
+                'message' => 'Mohon maaf anda belum terverifikasi menjadi koki terverifikasi.',
+                'alasan' => $request->alasan,
+                'categories' => 'verifed',
+                'route' => '/koki/index'
+            ]);
         }
         return redirect()->back();
     }

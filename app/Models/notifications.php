@@ -10,6 +10,7 @@ class notifications extends Model
     use HasFactory;
     protected $fillable = [
         'data_koki_id',
+        'verifed_id',
         'penarikan_id',
         'gift_id',
         'top_up_id',
@@ -38,6 +39,9 @@ class notifications extends Model
         'resep_id'
     ];
 
+    public function verifed() {
+        return $this->belongsTo(User::class, 'verifed_id');
+    }
     public function data_koki() {
         return $this->belongsTo(dataPribadiKoki::class, 'data_koki_id');
     }

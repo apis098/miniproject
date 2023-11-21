@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('notification_from')->nullable();
+            $table->unsignedBigInteger('verifed_id')->nullable();
             $table->unsignedBigInteger('follower_id')->nullable();
             $table->unsignedBigInteger('reply_id_report')->nullable();
             $table->integer('complaint_id_report')->nullable();
@@ -24,13 +25,13 @@ return new class extends Migration
             $table->string('alasan')->nullable();
             $table->string('message')->nullable();
             $table->integer('top_up_id')->nullable();
-            $table->unsignedBigInteger('like_id')->nullable(); 
-            $table->unsignedBigInteger('like_reply_id')->nullable(); 
+            $table->unsignedBigInteger('like_id')->nullable();
+            $table->unsignedBigInteger('like_reply_id')->nullable();
             $table->unsignedBigInteger('reply_id_comment')->nullable();
-            $table->unsignedBigInteger('reply_id')->nullable(); 
-            $table->unsignedBigInteger('complaint_id')->nullable(); 
-            $table->unsignedBigInteger('profile_id')->nullable(); 
-            $table->unsignedBigInteger('resep_id')->nullable(); 
+            $table->unsignedBigInteger('reply_id')->nullable();
+            $table->unsignedBigInteger('complaint_id')->nullable();
+            $table->unsignedBigInteger('profile_id')->nullable();
+            $table->unsignedBigInteger('resep_id')->nullable();
             $table->unsignedBigInteger('like_comment_recipes_id')->nullable();
             $table->unsignedBigInteger('like_reply_comment_recipes_id')->nullable();
             $table->unsignedBigInteger('comment_id')->nullable();
@@ -39,7 +40,7 @@ return new class extends Migration
             $table->string('status')->default('belum');
             $table->string('categories')->nullable();
             $table->timestamps();
-            
+
             $table->foreign('reply_id')->references('id')->on('replies')->onDelete('cascade');
             $table->foreign('notification_from')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
@@ -48,6 +49,7 @@ return new class extends Migration
             $table->foreign('complaint_id')->references('id')->on('complaints')->onDelete('cascade');
             $table->foreign('profile_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('resep_id')->references('id')->on('reseps')->onDelete('cascade');
+            $table->foreign('verifed_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

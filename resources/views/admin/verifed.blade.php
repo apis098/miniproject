@@ -302,32 +302,71 @@
                                             </td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
-                                                {{ $data_verified->like }}</td>
+                                                {{ number_format($data_verified->like, 0, ',', '.') }}</td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
-                                                {{ $data_verified->followers }}</td>
+                                                {{ number_format($data_verified->followers, 0, ',', '.') }}</td>
                                             <td style="border-right:1px solid black;">
                                                 <div class="d-flex">
-                                                    <form id="action_accept_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
+                                                    <form id="action_accept_verified{{ $num }}"
+                                                        action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('PATCH')
-                                                        <button type="button" onclick="confirmation_accept({{ $num }})" class="btn btn-sm rounded-3 text-light me-2"
+                                                        <button type="button"
+                                                            onclick="confirmation_accept({{ $num }})"
+                                                            class="btn btn-sm rounded-3 text-light me-2"
                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                                 class="ms-2 me-2"
                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
                                                         </button>
                                                     </form>
-                                                    <form id="action_menolak_verified{{ $num }}" action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <button type="button" onclick="confirmation_menolak({{ $num }})" class="btn btn-sm rounded-3 text-light"
-                                                            style=" border-radius: 15px; border: 1px black solid"><b
-                                                                class="ms-2 me-2"
-                                                                style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
-                                                        </button>
-                                                    </form>
+                                                    <button data-toggle="modal" data-target="#modalTolak{{ $num }}"
+                                                        type="button" class="btn btn-sm rounded-3 text-light"
+                                                        style="border-radius: 15px; border: 1px solid black;">
+                                                        <b class="ms-2 me-2"
+                                                            style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
+                                                            Tolak
+                                                        </b>
+                                                    </button>
+                                                    <div class="modal" tabindex="-1" id="modalTolak{{ $num }}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content modal-lg">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Kirim alasan</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body" style="text-align: right;">
+                                                                    <form id="action_menolak_verified{{ $num }}"
+                                                                        action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('PATCH')
+                                                                        <div class="row mb-3">
+                                                                            <div class="col-5">
+                                                                                <img class="my-auto"
+                                                                                    src="{{ asset('images/alasan.png') }}"
+                                                                                    width="100%" height="100%"
+                                                                                    alt="">
+                                                                            </div>
+                                                                            <div class="col-7">
+                                                                                <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                                                                    cols="5" rows="5"></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <button type="submit"
+                                                                            style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                            class="btn  btn-sm text-light">
+                                                                            <b class="me-3 ms-3">Kirim</b></button>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -455,7 +494,7 @@
                 message: 'Apakah Anda yakin ingin menghapus data ini?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
                         instance, toast) {
@@ -489,7 +528,7 @@
                 message: 'Anda yakin ingin memblookir pengguna tersebut?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
@@ -517,7 +556,7 @@
                 message: 'Apakah anda yakin ingin menerima user ini menjadi koki terverifikasi?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
@@ -535,6 +574,7 @@
                 ],
             });
         }
+
         function confirmation_menolak(num) {
             iziToast.show({
                 backgroundColor: '#f2a5a8',
@@ -544,7 +584,7 @@
                 message: 'Apakah anda yakin ingin menolak user ini menjadi koki terverifikasi?',
                 position: 'topCenter',
                 progressBarColor: 'dark',
-                close:false,
+                close: false,
                 buttons: [
                     ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
                         function(instance, toast) {
