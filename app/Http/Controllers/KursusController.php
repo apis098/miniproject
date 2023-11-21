@@ -219,6 +219,7 @@ class KursusController extends Controller
                 'notification_from' => Auth::user()->id,
                 'message' => 'Selamat kursus anda diterima!',
                 'categories' => 'kursus',
+                'kursus_id' => $id
             ]);
             $update = notifications::findOrFail($notifikasi->id);
             $update->route = '/status-baca/kursus/'.$notifikasi->id;
@@ -231,6 +232,7 @@ class KursusController extends Controller
                 'notification_from' => Auth::user()->id,
                 'message' => 'Kursus anda tidak diterima!',
                 'categories' => 'kursus',
+                'kursus_id' => $id
             ]);
             $update = notifications::findOrFail($notifikasi->id);
             $update->route = '/status-baca/kursus/'.$notifikasi->id;

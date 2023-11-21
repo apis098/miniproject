@@ -833,6 +833,69 @@
                                                     value="{{ $row->follower_id }}"
                                                     class="form-control">
                                             </form>
+                                            @elseif($row->categories == "kursus" && $row->alasan != null)
+                                            <form action="{{ $row->route }}"
+                                                method="POST">
+                                                @method('PUT')
+                                                @csrf
+                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                    <small
+                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                    @if ($row->status == 'belum')
+                                                        <img class="ms-2 rounded-circle"
+                                                            src="{{ asset('images/badge.png') }}"
+                                                            alt="profile image"
+                                                            style="max-width:10px">
+                                                    @endif
+                                                </button>
+                                                {{-- <input type="text" hidden
+                                                name="follower_id"
+                                                id="follower_id"
+                                                value="{{ $row->follower_id }}"
+                                                class="form-control"> --}}
+                                            </form>
+                                            @elseif($row->categories == "penarikan" && $row->alasan != null)
+                                            <form action="{{ $row->route }}"
+                                                method="POST">
+                                                @method('PUT')
+                                                @csrf
+                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                    <small
+                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                    @if ($row->status == 'belum')
+                                                        <img class="ms-2 rounded-circle"
+                                                            src="{{ asset('images/badge.png') }}"
+                                                            alt="profile image"
+                                                            style="max-width:10px">
+                                                    @endif
+                                                </button>
+                                                {{-- <input type="text" hidden
+                                                name="follower_id"
+                                                id="follower_id"
+                                                value="{{ $row->follower_id }}"
+                                                class="form-control"> --}}
+                                            </form>
+                                            @elseif($row->categories == "data-koki" && $row->alasan != null)
+                                            <form action="{{ $row->route }}"
+                                                method="POST">
+                                                @method('PUT')
+                                                @csrf
+                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                    <small
+                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                    @if ($row->status == 'belum')
+                                                        <img class="ms-2 rounded-circle"
+                                                            src="{{ asset('images/badge.png') }}"
+                                                            alt="profile image"
+                                                            style="max-width:10px">
+                                                    @endif
+                                                </button>
+                                                {{-- <input type="text" hidden
+                                                name="follower_id"
+                                                id="follower_id"
+                                                value="{{ $row->follower_id }}"
+                                                class="form-control"> --}}
+                                            </form>
                                         @else
                                             <form action="{{ $row->route }}"
                                                 method="POST">
@@ -861,7 +924,7 @@
                                     <img src="{{ asset('images/nodata.png') }}"
                                         class="col-sm-6 mt-4 mb-2" alt="...">
                                 </div>
-                            @endforelse 
+                            @endforelse
                         </div>
                     </div>
                 </li>
@@ -1192,7 +1255,7 @@
                                                     Rp. {{ number_format($topup->price, 2, ',', '.') }}
                                                 </small>
                                             </a>
-                                                
+
                                             <img src="{{ asset('images/' . $topup->foto) }}" class="ml-auto" width="100px" height="92px;" alt="">
                                     </div>
                                 </label>
@@ -1202,13 +1265,13 @@
                         <div class="col-lg-3 my-3 ms-2">
                             <div id="topUpLainya" class="card border-2 scale" id="card"
                                 data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;"> 
+                                style="width: 435px; height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;">
                                 <div class="d-flex flex-row">
                                     <a href="" class="text-start pl-2 pt-2" style="color: black; font-size:10px; font-family:Poppins;">
                                         <p id="anotherText"
                                             style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                             Lainya <br>
-                                            
+
                                         </p>
                                         <p id="displayInput" style="color: black; font-size:15px; margin-top:-10%; font-family: Poppins; font-weight: 400; word-wrap: break-word;">
                                             Masukkan nilai....
