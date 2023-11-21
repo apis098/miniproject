@@ -4029,7 +4029,7 @@
                                                                                     src="{{ asset('${foto}') }}"
                                                                                     alt="">
 
-                                                                            <p class="ms-2 mt-2">
+                                                                            <p class="ms-2 mt-2 fw-bolder">
                                                                                 ${pengirim['name']}
                                                                             </p>
                                                                             <div
@@ -4039,41 +4039,41 @@
                                                                                     </small>
                                                                             </div>
                                                                         </div>
-                                                                        <div
-                                                                            class="">
-                                                                            <div class="d-flex">
+                                                                        <div style="margin-top:-2%;" class="">
+                                                                            <div class="d-flex ms-5">
                                                                                 <p>${up['komentar']}</p>
                                                                             </div>
-                                                                            <div class="d-flex flex-row "
-                                                                                style="">
-                                                                                @if (Auth::user())
+                                                                            <div class="d-flex col-lg-11"
+                                                                                style="margin-top:-3%;">
+                                                                                <div class="d-flex ms-4">   
+                                                                                    @if (Auth::user())
+                                                                                            <form
+                                                                                            action="/like/${pengirim['id']}/${up['id']}/${veed_id}"
 
-                                                                                        <form
-                                                                                        action="/like/${pengirim['id']}/${up['id']}/${veed_id}"
+                                                                                                id="formLikeCommentFeed${up['id']}"
+                                                                                                method="POST">
+                                                                                                @csrf
+                                                                                                <button type="submit"
+                                                                                                    class="btn"
+                                                                                                    onclick="likeCommentFeed(${up['id']})">
+                                                                                                    <i class="fa-regular fa-thumbs-up"
+                                                                                                        id="iLikeComment${up['id']}"></i>
+                                                                                                </button>
+                                                                                            </form>
+                                                                                    @else
+                                                                                        <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
+                                                                                            onclick="harusLogin()"
+                                                                                            width="15px" height="40px"
+                                                                                            alt="">
+                                                                                        &nbsp; &nbsp;
+                                                                                    @endif
+                                                                                    <span class="my-auto" style="margin-left:-13%;"
+                                                                                        id="countLikeComment${up['id']}">
+                                                                                        <p class="my-auto" id="jumlah_like${up['id']}">0</p>
 
-                                                                                            id="formLikeCommentFeed${up['id']}"
-                                                                                            method="POST">
-                                                                                            @csrf
-                                                                                            <button type="submit"
-                                                                                                class="btn"
-                                                                                                onclick="likeCommentFeed(${up['id']})">
-                                                                                                <i class="fa-regular fa-thumbs-up"
-                                                                                                    id="iLikeComment${up['id']}"></i>
-                                                                                            </button>
-                                                                                        </form>
-                                                                                @else
-                                                                                    <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
-                                                                                        onclick="harusLogin()"
-                                                                                        width="15px" height="40px"
-                                                                                        alt="">
-                                                                                    &nbsp; &nbsp;
-                                                                                @endif
-                                                                                <span class="my-auto"
-                                                                                    id="countLikeComment${up['id']}">
-                                                                                    <p class="my-auto" id="jumlah_like${up['id']}">0</p>
-
-                                                                                </span>
-                                                                                <div class="m-2 mr-auto">
+                                                                                    </span>
+                                                                                </div>
+                                                                                <div class="ms-2 mt-2 mr-auto">
                                                                                     {{-- --}}
                                                                                     {{-- Hapus Komentar --}}
                                                                                             <form method="POST"
