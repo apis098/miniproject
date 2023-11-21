@@ -82,7 +82,7 @@ class AdminController extends Controller
         $verified = User::where('followers', '>', 10000)->where('isSuperUser', 'no')->paginate(6);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         return view('admin.verifed', compact('verified', 'verifed_count'));
-    }
+    } 
 
     public function data_koki()
     {
@@ -98,24 +98,29 @@ class AdminController extends Controller
         if ($request->status === "diterima") {
             $data->status = "diterima";
             // create notification
-            notifications::create([
+            $notify = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => "Data anda telah diterima oleh Admin Approval.",
-                'categories' => 'penarikan',
-                'route' => '/koki/income-koki'
+                'categories' => 'data-koki',
             ]);
+            $up = notifications::find($notify->id);
+            $up->route = '/status-baca/data-koki/'.$notify->id;
+            $up->save();
+
         } elseif ($request->status === "ditolak") {
             $data->status = "ditolak";
             // create notification
-            notifications::create([
+            $notif = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Data anda tidak diterima oleh Admin Approval.',
                 'alasan' => $request->alasan,
-                'categories' => 'penarikan',
-                'route' => '/koki/income-koki'
+                'categories' => 'data-koki',
             ]);
+            $update = notifications::find($notif->id);
+            $update->route = '/status-baca/data-koki/'.$notif->id;
+            $update->save();
         }
         $data->save();
 
@@ -142,23 +147,27 @@ class AdminController extends Controller
             $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
             $admin->saldo = $admin->saldo + 2000;
             $admin->save();
-            notifications::create([
+            $n = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Selamat, saldo anda sebesar'. $data->nilai .' sudah berhasil ditarik tunai.',
                 'categories' => 'penarikan',
-                'route' => '/koki/income-koki'
             ]);
-        } elseif ($request->status === "ditolak") {
+            $update = notifications::find($n->id);
+            $update->route = '/status-baca/penarikan/'.$n->id;
+            $update->save();
+            } elseif ($request->status === "ditolak") {
             $data->status = "gagal";
-            notifications::create([
+            $notif = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Penarikan gagal.',
                 'alasan' => $request->alasan,
                 'categories' => 'ajuan_penarikan',
-                'route' => '/koki/income-koki'
             ]);
+            $up = notifications::find($notif->id);
+            $up->route = '/status-baca/penarikan/'.$notif->id;
+            $up->save();
         }
         $data->save();
         return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');
@@ -173,27 +182,31 @@ class AdminController extends Controller
             $user->level_koki = 0;
             $user->save();
             // create notification
-            notifications::create([
+            $notif = notifications::create([
                 'user_id' => $id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Selamat anda telah menjadi koki terverifikasi.',
                 'categories' => 'verifed',
-                'route' => '/koki/index'
             ]);
+            $up = notifications::find($notif->id);
+            $up->route = '/status-baca/verifed/'.$notif->id;
+            $up->save();
         } else if ($status === "ditolak") {
             $status = "menolak";
             $user = User::find($id);
             $user->isSuperUser = "ditolak";
             $user->save();
             // create notification
-            notifications::create([
+            $notify = notifications::create([
                 'user_id' => $id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Mohon maaf anda belum terverifikasi menjadi koki terverifikasi.',
                 'alasan' => $request->alasan,
                 'categories' => 'verifed',
-                'route' => '/koki/index'
             ]);
+            $update = notifications::find($notify->id);
+            $update->route = "/status-baca/verifed/".$notify->id;
+            $update->save();
         }
         return redirect()->back();
     }

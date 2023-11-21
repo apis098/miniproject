@@ -7,6 +7,25 @@ use Illuminate\Http\Request;
 
 class notificationController extends Controller
 {
+    public function verifed($id)
+    {
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        return redirect('/koki/index');
+    }
+    public function dataKoki($id) {
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        return redirect('/koki/income-koki');
+    }
+    public function penarikan($id) {
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        return redirect('/koki/income-koki');
+    }
     public function followNotification(Request $request,$id){
 
         $notification = notifications::findOrFail($id);
@@ -77,21 +96,21 @@ class notificationController extends Controller
     public function shareVeed($id){
         $notification = notifications::findOrFail($id);
         $notification->status = 'sudah';
-        $notification->save();  
+        $notification->save();
         $uuid = $notification->veed->uuid;
         return redirect()->route('veed.index',$uuid);
     }
     public function  donation($id){
         $notification = notifications::findOrFail($id);
         $notification->status = 'sudah';
-        $notification->save();  
+        $notification->save();
         $uuid = $notification->veed->uuid;
         return redirect()->route('veed.index',$uuid);
     }
     public function top_up($id){
         $notification = notifications::findOrFail($id);
         $notification->status = 'sudah';
-        $notification->save();  
+        $notification->save();
         return redirect('/koki/beranda');
     }
         public function update_all_status(){

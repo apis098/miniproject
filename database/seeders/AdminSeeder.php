@@ -16,7 +16,7 @@ class AdminSeeder extends Seeder
     {
         User::create(
             [
-                'name' => 'Admin Laporan',
+                'name' => 'Admin',
                 'email' => 'admin_laporan@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
@@ -26,7 +26,7 @@ class AdminSeeder extends Seeder
 
         User::create(
             [
-                'name' => 'Admin Info Web',
+                'name' => 'Admin',
                 'email' => 'admin_informasi_web@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
@@ -36,7 +36,7 @@ class AdminSeeder extends Seeder
 
         User::create(
             [
-                'name' => 'Admin Keuangan',
+                'name' => 'Admin',
                 'email' => 'admin_keuangan@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
@@ -46,7 +46,7 @@ class AdminSeeder extends Seeder
 
         User::create(
             [
-                'name' => 'Admin Approval',
+                'name' => 'Admin',
                 'email' => 'admin_approval@gmail.com',
                 'password' => Hash::make('admin123'),
                 'role' => 'admin',
