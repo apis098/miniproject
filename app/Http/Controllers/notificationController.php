@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class notificationController extends Controller
 {
+    public function kursus($id)
+    {
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        return redirect('/koki/kursus');
+    }
     public function verifed($id)
     {
         $notification = notifications::findOrFail($id);

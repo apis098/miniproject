@@ -27,6 +27,9 @@ class kursus extends Model
         "rating_asli",
         "jumlah_favorite"
     ];
+    public function notification_admin() {
+        return $this->hasMany(notifications::class, 'kursus_id');
+    }
     public function income_chef()
     {
         return $this->hasMany(income_chefs::class, "course_id");

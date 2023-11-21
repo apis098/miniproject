@@ -213,8 +213,28 @@ class KursusController extends Controller
             $update_status->status = $status;
             $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
             $update_status->waktu_diterima = $currentTime->format('Y-m-d H:i:s');
+            // create notification
+            $notifikasi = notifications::create([
+                'user_id' => $update_status->user->id,
+                'notification_from' => Auth::user()->id,
+                'message' => 'Selamat kursus anda diterima!',
+                'categories' => 'kursus',
+            ]);
+            $update = notifications::findOrFail($notifikasi->id);
+            $update->route = '/status-baca/kursus/'.$notifikasi->id;
+            $update->save();
         } else if ($status === "ditolak") {
             kursus::find($id)->delete();
+             // create notification
+             $notifikasi = notifications::create([
+                'user_id' => $update_status->user->id,
+                'notification_from' => Auth::user()->id,
+                'message' => 'Kursus anda tidak diterima!',
+                'categories' => 'kursus',
+            ]);
+            $update = notifications::findOrFail($notifikasi->id);
+            $update->route = '/status-baca/kursus/'.$notifikasi->id;
+            $update->save();
         }
         $update_status->save();
         return redirect()->back()->with('success', 'sukses mengeksekusi kursus!');

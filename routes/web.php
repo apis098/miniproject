@@ -81,6 +81,7 @@ Route::put('/status-baca/top-up/{id}', [notificationController::class, 'top_up']
 Route::put('/status-baca/verifed/{id}', [notificationController::class, 'verifed'])->name('notification.verifed');
 Route::put('/status-baca/data-koki/{id}', [notificationController::class, 'dataKoki'])->name('notification.dataKoki');
 Route::put('/status-baca/penarikan/{id}', [notificationController::class, 'penarikan'])->name('notification.penarikan');
+Route::put('/status-baca/kursus/{id}', [notificationController::class, 'kursus'])->name('notification.kursus');
 Route::patch('/status-baca/semua', [notificationController::class, 'update_all_status'])->name('all.notifications');
 
 // artikel
