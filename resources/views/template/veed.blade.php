@@ -2571,17 +2571,16 @@
 
                                                                                                             </div>
                                                                                                             <div
-                                                                                                                class="card card-body border-0">
+                                                                                                            class="d-flex mt-2">
                                                                                                                 @if (Auth::check())
                                                                                                                     <form
-                                                                                                                        style="margin-left: -10px;"
                                                                                                                         id="formBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
                                                                                                                         action="{{ route('balas.replies.comments.feeds', [$reply_replyComment->user_pengirim->id, $reply_comment->id, $reply_replyComment->id]) }}"
                                                                                                                         method="post">
                                                                                                                         @csrf
                                                                                                                         <div
                                                                                                                             class="d-flex">
-                                                                                                                            <div style="margin-left:-2.8%; margin-top:-1%;"
+                                                                                                                            <div style="margin-top: -1%;"
                                                                                                                                 class="me-3">
                                                                                                                                 @if (Auth::user()->foto)
                                                                                                                                     <img src="{{ asset('storage/' . Auth::user()->foto) }}"
@@ -2619,7 +2618,7 @@
                                                                                                                     <form>
                                                                                                                         <div
                                                                                                                             class="d-flex mb-3">
-                                                                                                                            <div style="margin-left:-2.8%; margin-top:-1%;"
+                                                                                                                            <div style="margin-top:-1%;"
                                                                                                                                 class="me-3">
                                                                                                                                 <img src="{{ asset('images/default.jpg') }}"
                                                                                                                                     class="border rounded-circle"
