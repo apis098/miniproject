@@ -78,6 +78,9 @@ Route::put('/status-baca/blokir-komentar/{id}', [notificationController::class, 
 Route::put('/status-baca/blokir-feed/{id}', [notificationController::class, 'blockedFeed'])->name('blockedFeed.notification');
 Route::put('/status-baca/blokir-keluhan/{id}', [notificationController::class, 'blockedComplaint'])->name('blockedComplaint.notification');
 Route::put('/status-baca/top-up/{id}', [notificationController::class, 'top_up'])->name('topUp.notification');
+Route::put('/status-baca/verifed/{id}', [notificationController::class, 'verifed'])->name('notification.verifed');
+Route::put('/status-baca/data-koki/{id}', [notificationController::class, 'dataKoki'])->name('notification.dataKoki');
+Route::put('/status-baca/penarikan/{id}', [notificationController::class, 'penarikan'])->name('notification.penarikan');
 Route::patch('/status-baca/semua', [notificationController::class, 'update_all_status'])->name('all.notifications');
 
 // artikel
