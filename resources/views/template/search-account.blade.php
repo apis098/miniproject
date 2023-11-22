@@ -280,9 +280,6 @@
                         if (responseData.followed) {
                             // Reset button color and SVG here
                             button.textContent = "Batal ikuti";
-                            // document.getElementById("like-count-" + responseData.resep_id)
-                            //     .textContent = responseData.likes;
-                            // Modify SVG appearance if needed
                         } else {
                             // Update button color and SVG here
                             if(responseData.hisFollowing){

@@ -69,23 +69,23 @@
                             <span
                                 style="width: 100%; height: 100%; color: rgba(0, 0, 0, 0.50); font-size: 16px; font-family: Poppins; font-weight: 400; word-wrap: break-word">{{ $user->email }}</span>
                         </p>
-                        <form action="{{ route('Followers.store', $user->id) }}" method="POST">
+                        <form action="{{ route('Followers.store', $user->id) }}" id="followForm" method="POST">
                             @csrf
                             <div class="me-1">
                                 @if (Auth::check() &&
                                         $user->followers()->where('follower_id', auth()->user()->id)->count() > 0)
                                     <button type="submit" class="btn  text-light float-center mb-4 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Diikuti</b></button>
+                                            class="ms-3 me-3 text-status">Diikuti</b></button>
                                 @elseif(Auth::check() &&
                                         $userLogin->followers()->where('follower_id', $user->id)->exists())
                                     <button type="submit" class="btn  text-light float-center mb-4 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Ikuti balik</b></button>
+                                            class="ms-3 me-3 text-status">Ikuti balik</b></button>
                                 @else
                                     <button type="submit" class="btn text-light float-center mb-4 zoom-effects"
                                         style="background-color: #F7941E; border-radius: 15px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-3 me-3">Ikuti</b></button>
+                                            class="ms-3 me-3 text-status">Ikuti</b></button>
                                 @endif
                                 <a class="btn btn-outline-dark mb-4 zoom-effects" style="border-radius: 10px;"
                                     href="/roomchat/{{ $user->id }}"><i class="fa-regular fa-comment-dots"></i></a>
@@ -483,4 +483,39 @@
 
     <!-- Include Bootstrap JS (make sure the path is correct) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const followForm = document.querySelectorAll("#followForm");
+
+            followForm.forEach(form => {
+                form.addEventListener("submit", async function(event) {
+                    event.preventDefault();
+
+                    const button = form.querySelector(".text-status");
+
+                    const response = await fetch(form.action, {
+                        method: "POST",
+                        headers: {
+                            "X-CSRF-Token": "{{ csrf_token() }}",
+                        },
+                    });
+
+                    if (response.ok) {
+                        const responseData = await response.json();
+                        if (responseData.followed) {
+                            // Reset button color and SVG here
+                            button.textContent = "Batal ikuti";
+                        } else {
+                            // Update button color and SVG here
+                            if(responseData.hisFollowing){
+                                button.textContent = "Ikuti balik";
+                            }else{
+                                button.textContent = "Ikuti";
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
