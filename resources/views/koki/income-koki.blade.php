@@ -133,87 +133,87 @@
                 </div>
                 <div class="modal-body">
                     <!--
-                                    <div class="row">
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-4 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-1" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/bri.png') }}" alt="" width="30%" height="50%">
-                                                    <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        BRIVA</p>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-4 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-1" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/bri.png') }}" alt="" width="30%" height="50%">
+                                                        <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            BRIVA</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-4 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-1" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/alfamart.png') }}" alt="" width="50%" height="50%">
-                                                    <p class="my-1" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        Alfamart</p>
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-4 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-1" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/alfamart.png') }}" alt="" width="50%" height="50%">
+                                                        <p class="my-1" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            Alfamart</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-3 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-1" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/indomaret.png') }}" alt="" width="50%" height="50%">
-                                                    <p class="" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        Indomaret</p>
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-3 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-1" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/indomaret.png') }}" alt="" width="50%" height="50%">
+                                                        <p class="" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            Indomaret</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-4 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-2" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/alfamidi.png') }}" alt="" width="60%" height="100%">
-                                                    <p class="my-1" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        Alfamidi</p>
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-4 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-2" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/alfamidi.png') }}" alt="" width="60%" height="100%">
+                                                        <p class="my-1" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            Alfamidi</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-4 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-1" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/spay.png') }}" alt="" width="50%">
-                                                    <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        Shopeepay</p>
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-4 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-1" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/spay.png') }}" alt="" width="50%">
+                                                        <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            Shopeepay</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-4 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-2" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/qris.png') }}" alt="" width="50%">
-                                                    <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        QRIS</p>
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-4 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-2" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/qris.png') }}" alt="" width="50%">
+                                                        <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            QRIS</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-sm-3 col-lg-3 mb-3">
-                                            <div class="rounded-4 text-center  p-4 counter-card"
-                                                style="border: 1px solid #333;">
-                                                <div class="ms-2" style="margin-top: -3%">
-                                                    <img src="{{ asset('images/ovo.png') }}" alt="" width="50%">
-                                                    <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                        OVO</p>
+                                            <div class="col-sm-3 col-lg-3 mb-3">
+                                                <div class="rounded-4 text-center  p-4 counter-card"
+                                                    style="border: 1px solid #333;">
+                                                    <div class="ms-2" style="margin-top: -3%">
+                                                        <img src="{{ asset('images/ovo.png') }}" alt="" width="50%">
+                                                        <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
+                                                            OVO</p>
+                                                    </div>
                                                 </div>
                                             </div>
+
+
                                         </div>
-
-
-                                    </div>
-                                    -->
+                                        -->
                     @if ($check)
                         <form action="{{ route('ajukan.penarikan') }}" id="FormAjukanPenarikan" method="post">
                             @csrf
@@ -316,7 +316,7 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-sm-3 col-lg-4">
+            <div class="col-sm-3 col-md-6 mb-3 col-lg-4">
                 <div class="rounded-4  p-3 counter-card" style="border: 1px solid #333;">
                     <div class="ms-1" style="margin-top: -3%">
                         <h6 class="mb-0" style="font-size: 20px; font-weight: bold;">Belum diambil</h6>
@@ -329,7 +329,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3 col-lg-4">
+            <div class="col-sm-3 col-md-6 mb-3 col-lg-4">
                 <div class="rounded-4  p-3 counter-card" style="border: 1px solid #333;">
                     <div class="ms-1" style="margin-top: -3%">
                         <h6 class="mb-0" style="font-size: 20px; font-weight: bold;">Sudah diambil</h6>
@@ -342,7 +342,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-3 col-lg-4">
+            <div class="col-sm-3 col-md-12 mb-3 col-lg-4">
                 <div class="rounded-4  p-3 counter-card" style="border: 1px solid #333;">
                     <div class="ms-1" style="margin-top: -3%">
                         <h6 class="mb-0" style="font-size: 20px; font-weight: bold;">Jumlah pendapatan</h6>
@@ -364,11 +364,40 @@
             </div> --}}
 
 
-
+        <style>
+            @media (min-width: 1200px) {
+                .text-riwayat1 {
+                    display:none;
+                    visibility: hidden;
+                }
+            }
+            @media (max-width: 1024px) and (min-width: 578px) {
+                .text-riwayat2 {
+                    display: none;
+                    visibility: hidden;
+                }
+                
+            }
+            @media (max-width:500px) {
+            .text-riwayat1 {
+                    display:none;
+                    visibility: hidden;
+                }
+            }
+            @media (max-width: 768px) {
+                .btn-filter {
+                    font-size: 10px;
+                }
+            }
+            
+        </style>
         <form action="{{ route('koki.income') }}" method="POST">
             @csrf
+            <div class="text-center text-riwayat1">
+                <h3 style="font-family: Poppins">Riwayat</h3>
+            </div>
             <div class="d-flex justify-content-between">
-                <div class="">
+                <div class="text-riwayat2">
                     <h3 style="font-family:poppins">Riwayat</h3>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -390,8 +419,8 @@
                     <div class="mx-1">
                         <button type="submit"
                             style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn">
-                            <span style="color: rgb(255, 255, 255);">
+                            class="btn my-auto">
+                            <span class="btn-filter" style="color: rgb(255, 255, 255);">
                                 Filter Sekarang</span>
                         </button>
                     </div>
@@ -460,31 +489,33 @@
                                         <div class="modal-body" style="text-align: left;">
                                             <div class="mb-3">
                                                 <span style="font-weight: 400;" class="mb-2">Pengirim</span>
-                                                <div style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
+                                                <div
+                                                    style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
                                                     {{ $income->user->name }}
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <span style="font-weight: 400;" class="mb-2">Pendapatan</span>
-                                                <div style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
+                                                <div
+                                                    style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
                                                     {{ $income->pemasukan }}
                                                 </div>
                                             </div>
                                             <div class="mb-3">
                                                 <span style="font-weight: 400;" class="mb-2">Jenis Konten</span>
-                                                <div style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
+                                                <div
+                                                    style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
                                                     {{ $income->status }}
                                                 </div>
                                             </div>
-                                            @if ($income->status === "sawer")
-
-
-                                            <div class="mb-3">
-                                                <span style="font-weight: 400;" class="mb-2">Pesan</span>
-                                                <div style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
-                                                    {{ $income->messageGift() }}
+                                            @if ($income->status === 'sawer')
+                                                <div class="mb-3">
+                                                    <span style="font-weight: 400;" class="mb-2">Pesan</span>
+                                                    <div
+                                                        style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
+                                                        {{ $income->messageGift() }}
+                                                    </div>
                                                 </div>
-                                            </div>
                                             @endif
                                         </div>
                                     </div>
