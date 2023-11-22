@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <style>
+
         ::placeholder {
             text-align: center;
         }
@@ -105,7 +106,7 @@
             background-color: #F7941E;
             color: #fff;
             margin-left: -6%;
-            width: 90px;
+            width: 90%;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
@@ -317,7 +318,7 @@
                                     <form action="{{ route('kursus') }}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="kursus" class="form-label">Jenis kursus</label>
+                                            <label for="kursus" class="form-label">Jenis kursus</label> <br>
                                             <select style="border: 1px solid black" name="jenis_kursus[]"
                                                 aria-placeholder="Masukkan jenis kursus" multiple="multiple"
                                                 id="kursus" class="cari form-control">
@@ -333,13 +334,13 @@
                                                 background-color: white;
                                             }
                                         </style>
-                                        <div class="mb-3">
+                                        <div class="mb-3 mx-2">
                                             <label for="harga" class="form-label">Rentang Tarif Per Sesi</label>
                                             <div class="row">
                                                 <div class="col-5">
                                                     <input type="text" name="min_price" id="minHargaInput"
                                                         placeholder="Minimal" class="form-control "
-                                                        style="border-radius: 10px;font-size: 13px;border: 1px solid black;">
+                                                        style="border-radius: 5px;font-size: 13px;border: 1px solid black;">
                                                 </div>
                                                 <div class="col-2 my-auto">
                                                     <div class="garis"></div>
@@ -347,20 +348,20 @@
                                                 <div class="col-5">
                                                     <input type="text" name="max_price" class="form-control"
                                                         id="maxHargaInput" placeholder="Maksimal"
-                                                        style="border-radius:10px; font-size:13px;border:1px solid black;">
+                                                        style="border-radius:5px; font-size:13px;border:1px solid black;">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 mx-2">
                                             <label for="waktu" class="form-label">Rentang Lama Sesi</label>
                                             <div class="row">
                                                 <div class="col-5">
-                                                    <div class="row mx-auto">
+                                                    <div class="d-flex justify-content-center mx-auto">
                                                         <input type="text" name="min_time"
-                                                            class="col-6 form-control mr-1" placeholder="Minimal"
-                                                            style="border-radius: 10px; font-size:13px;border: 1px solid black;">
-                                                        <select name="min_timer" id="" class="col-5"
-                                                            style="background-color: white;border-radius: 15px; border: 1px solid; font-size: 13px;">
+                                                            class="form-control mr-1" placeholder="Minimal"
+                                                            style="border-radius: 5px; font-size:13px;border: 1px solid black;">
+                                                        <select name="min_timer" id="" class=""
+                                                            style="background-color: white;border-radius: 5px; border: 1px solid; font-size: 13px;">
                                                             <option value="menit">menit</option>
                                                             <option value="jam">jam</option>
                                                         </select>
@@ -370,12 +371,12 @@
                                                     <div class="garis"></div>
                                                 </div>
                                                 <div class="col-5">
-                                                    <div class="row mx-auto">
+                                                    <div class="d-flex justify-content-center mx-auto">
                                                         <input type="text" name="max_time"
-                                                            class="col-6 form-control mr-1" placeholder="Maksimal"
-                                                            style="border-radius: 10px;font-size:13px;border: 1px solid black;">
-                                                        <select name="max_timer" class="col-5"
-                                                            style="background-color: white;;border-radius: 10px; border: 1px solid;font-size:13px;"
+                                                            class="form-control mr-1" placeholder="Maksimal"
+                                                            style="border-radius: 5px;font-size:13px;border: 1px solid black;">
+                                                        <select name="max_timer" class=""
+                                                            style="background-color: white;;border-radius: 5px; border: 1px solid;font-size:13px;"
                                                             id="">
                                                             <option value="menit">menit</option>
                                                             <option value="jam">jam</option>
@@ -384,29 +385,33 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mb-3">
+                                        <div class="mb-3 mx-2">
                                             <label for="jumlah_pelajaran">Rating</label>
                                             <input type="hidden" id="valueRating" name="rating">
                                             <div class="d-flex justify-content-between">
-                                                <div class="" id="rating1"
-                                                    style="border: 1px solid black; border-radius: 15px;padding: 5px;">
-                                                    Rating 1
+                                                <div class="rate" id="rating1"
+                                                    style="border: 1px solid black; border-radius: 5px;padding: 5px;">
+                                                    <a href="#" id="rate1" style="color: black;">Rating 1</a>
                                                 </div>
-                                                <div class="" id="rating2"
-                                                    style="border: 1px solid black; border-radius: 15px;padding: 5px;">
-                                                    Rating 2
+                                                <div class="rate" id="rating2"
+                                                    style="border: 1px solid black; border-radius: 5px;padding: 5px;">
+                                                    <a href="#" id="rate2" style="color: black;">Rating 2</a>
+
                                                 </div>
-                                                <div class="" id="rating3"
-                                                    style="border: 1px solid black; border-radius: 15px;padding: 5px;">
-                                                    Rating 3
+                                                <div class="rate" id="rating3"
+                                                    style="border: 1px solid black; border-radius: 5px;padding: 5px;">
+                                                    <a href="#" id="rate3" style="color: black;">Rating 3</a>
+
                                                 </div>
-                                                <div class="" id="rating4"
-                                                    style="border: 1px solid black; border-radius: 15px;padding: 5px;">
-                                                    Rating 4
+                                                <div class="rate" id="rating4"
+                                                    style="border: 1px solid black; border-radius: 5px;padding: 5px;">
+                                                    <a href="#" id="rate4" style="color: black;">Rating 4</a>
+
                                                 </div>
-                                                <div class="" id="rating5"
-                                                    style="border: 1px solid black; border-radius: 15px;padding: 5px;">
-                                                    Rating 5
+                                                <div class="rate" id="rating5"
+                                                    style="border: 1px solid black; border-radius: 5px;padding: 5px;">
+                                                    <a href="#" id="rate5" style="color: black;">Rating 5</a>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -426,6 +431,48 @@
             </div>
         <div id="leaflet" style="height: 180px"></div>
         <script>
+            //
+            let rate1 = document.getElementById("rate1");
+            let rate2 = document.getElementById("rate2");
+            let rate3 = document.getElementById("rate3");
+            let rate4 = document.getElementById("rate4");
+            let rate5 = document.getElementById("rate5");
+            rate1.addEventListener('click', function () {
+                rate1.style.color = "white";
+                rate2.style.color = "black";
+                rate3.style.color = "black";
+                rate4.style.color = "black";
+                rate5.style.color = "black";
+            });
+            rate2.addEventListener('click', function () {
+                rate2.style.color = "white";
+                rate1.style.color = "black";
+                rate3.style.color = "black";
+                rate4.style.color = "black";
+                rate5.style.color = "black";
+            });
+            rate3.addEventListener('click', function () {
+                rate3.style.color = "white";
+                rate2.style.color = "black";
+                rate1.style.color = "black";
+                rate4.style.color = "black";
+                rate5.style.color = "black";
+            });
+            rate4.addEventListener('click', function () {
+                rate4.style.color = "white";
+                rate2.style.color = "black";
+                rate3.style.color = "black";
+                rate1.style.color = "black";
+                rate5.style.color = "black";
+            });
+            rate5.addEventListener('click', function () {
+                rate5.style.color = "white";
+                rate2.style.color = "black";
+                rate3.style.color = "black";
+                rate4.style.color = "black";
+                rate1.style.color = "black";
+            });
+            //
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(posisi) {
                     let lat = posisi.coords.latitude;

@@ -1214,41 +1214,41 @@
         </div>
         <!-- /.content-wrapper -->
 
-                {{-- Modal alasan --}}
- @foreach ($notification as $row)
- <div class="modal" id="modalAlasan{{ $row->id }}" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-     <div class="modal-dialog modal-dialog-centered" role="document">
-         <div class="modal-content">
-             <form action="{{ route('blockedComplaint.notification', $row->id) }}" method="POST">
-                 @csrf
-                 @method('PUT')
-                 <div class="modal-header">
-                     <h5 class="modal-title" id="exampleModalCenterTitle"
-                         style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                         Alasan diblokir</h5>
-                     <button type="submit" class="close">
-                         <span aria-hidden="true">&times;</span>
-                     </button>
-                 </div>
-                 <div class="modal-body">
-                     <div class="d-flex align-items-center">
+        {{-- Modal alasan --}}
+        @foreach ($notification as $row)
+            <div class="modal" id="modalAlasan{{ $row->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <form action="{{ $row->route }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle"
+                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                    Alasan diblokir</h5>
+                                <button type="submit" class="close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex align-items-center">
 
-                         <img src="{{ asset('images/peringatan.png') }}" width="145px" height="140px"
-                             style="border-radius: 50%; " alt="">
-                         <textarea readonly class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description"
-                             rows="5" placeholder="Alasan">{{ $row->alasan }}</textarea>
-                     </div>
-                 </div>
-                 <div class="modal-footer">
-                     <button type="submit" class="btn btn-light text-light"
-                         style="border-radius: 15px; background-color:#F7941E;"><b
-                             class="ms-2 me-2">Oke</b></button>
-             </form>
-         </div>
-     </div>
- </div>
-@endforeach
+                                    <img src="{{ asset('images/peringatan.png') }}" width="145px" height="140px"
+                                        style="border-radius: 50%; " alt="">
+                                    <textarea readonly class="form-control" style="margin-left: 1em; border-radius: 15px;" name="description"
+                                        rows="5" placeholder="Alasan">{{ $row->alasan }}</textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-light text-light"
+                                    style="border-radius: 15px; background-color:#F7941E;"><b
+                                        class="ms-2 me-2">Oke</b></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endforeach
 
         <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
 

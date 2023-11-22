@@ -223,7 +223,7 @@
 }
 .select2-container--default .select2-selection--multiple {
     background-color: white;
-    border-radius: 15px;
+    border-radius: 2px;
     cursor: text;
 }
 .select2-container--default
