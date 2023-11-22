@@ -206,7 +206,7 @@ class KursusController extends Controller
         return view('admin.kursus', compact("all_course",'verifed_count'));
     }
 
-    public function eksekusi_kursus(string $status, string $id)
+    public function eksekusi_kursus(Request $request,string $status, string $id)
     {
         $update_status = kursus::find($id);
         if ($status === 'diterima') {
@@ -231,6 +231,7 @@ class KursusController extends Controller
                 'user_id' => $update_status->user->id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Kursus anda tidak diterima!',
+                'alasan' => $request->alasan,
                 'categories' => 'kursus',
                 'kursus_id' => $id
             ]);

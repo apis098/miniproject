@@ -326,7 +326,7 @@
                                                                                 <button type="button"class="btn"
                                                                                     style=" background: #F7941E;color:white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;  color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.36px; word-wrap: break-word">
                                                                                     @foreach ($item->jenis_kursus as $jenis_kursus)
-                                                                                    {{ $jenis_kursus->jenis_kursus }}
+                                                                                        {{ $jenis_kursus->jenis_kursus }}
                                                                                     @endforeach
                                                                                 </button>
                                                                                 <br>
@@ -382,12 +382,12 @@
 
                                                     </div>
                                                 </div>
-                                                {{-- end modal --}} 
+                                                {{-- end modal --}}
                                             </td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
-                                                <a href="#" class="text-black"  data-toggle="modal"
-                                                data-target="#modalKursus{{ $item->id }}">{{ Str::limit($item->nama_kursus, 30, '...') }}</a>
+                                                <a href="#" class="text-black" data-toggle="modal"
+                                                    data-target="#modalKursus{{ $item->id }}">{{ Str::limit($item->nama_kursus, 30, '...') }}</a>
                                             </td>
                                             <td
                                                 style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
@@ -395,29 +395,68 @@
                                             </td>
                                             <td style="border-right:1px solid black;" class="">
                                                 <div class="d-flex">
-                                                <form id="form_terima_eksekusi_kursus{{ $item->id }}"
-                                                    action="{{ route('eksekusi.kursus', ['diterima', $item->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="button" class="btn btn-sm rounded-3 text-light me-2"
-                                                        onclick="confirmation_accept_course({{ $item->id }})"
-                                                        style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
-                                                            class="ms-2 me-2"
-                                                            style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b></button>
-                                                </form>
-                                                <form id="form_tolak_eksekusi_kursus{{ $item->id }}"
-                                                    action="{{ route('eksekusi.kursus', ['ditolak', $item->id]) }}"
-                                                    method="post">
-                                                    @csrf
-                                                    @method('PATCH')
-                                                    <button type="button" class="btn btn-sm rounded-3 text-light mx-auto"
-                                                        onclick="confirmation_tolak_course({{ $item->id }})"
+                                                    <form id="form_terima_eksekusi_kursus{{ $item->id }}"
+                                                        action="{{ route('eksekusi.kursus', ['diterima', $item->id]) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="button" class="btn btn-sm rounded-3 text-light me-2"
+                                                            onclick="confirmation_accept_course({{ $item->id }})"
+                                                            style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
+                                                                class="ms-2 me-2"
+                                                                style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b></button>
+                                                    </form>
+                                                    <button data-toggle="modal"
+                                                        data-target="#modalAlasan{{ $item->id }}" type="button"
+                                                        class="btn btn-sm rounded-3 text-light mx-auto"
                                                         style=" border-radius: 15px; border: 1px black solid"><b
                                                             class="ms-2 me-2"
-                                                            style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b></a>
-                                                </form>
-                                            </div>
+                                                            style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
+                                                            Tolak
+                                                        </b></button>
+                                                    <div class="modal" tabindex="-1" id="modalAlasan{{$item->id}}">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title">Detail</h5>
+                                                                    <button type="button" class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form h
+                                                                        id="form_tolak_eksekusi_kursus{{ $item->id }}"
+                                                                        action="{{ route('eksekusi.kursus', ['ditolak', $item->id]) }}"
+                                                                        method="post">
+                                                                        @csrf
+                                                                        @method('PATCH')
+                                                                        <div class="row">
+                                                                            <div class="col-4">
+                                                                                <img src="{{asset('images/alasan.png')}}" width="100%" height="100%" alt="">
+                                                                            </div>
+                                                                            <div class="col-8">
+                                                                                <textarea name="alasan" id="alasan" class="form-control" placeholder="alasan..." cols="5" rows="5"></textarea>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <button type="submit"
+                                                                            class="btn btn-sm rounded-3 text-light mx-auto"
+                                                                            style=" border-radius: 15px; border: 1px black solid"><b
+                                                                                class="ms-2 me-2"
+                                                                                style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b></a>
+                                                                    </form>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary">Save
+                                                                        changes</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     </div>
