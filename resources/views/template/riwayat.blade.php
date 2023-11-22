@@ -110,6 +110,10 @@
             .text-riwayat {
                 font-size: 24px;
             }
+            .main {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
         }
         @media (max-width: 768px) {
             .text-riwayat {
@@ -133,7 +137,7 @@
             }
         }
     </style>
-    <div class="container-fluid pt-4 px-2">
+    <div class="container pt-4 px-2 main">
 
         <div class="my-4">
             <ul class="nav mb-2 d-flex justify-content-center" id="pills-tab" role="tablist">

@@ -351,48 +351,48 @@
                         <ul class="nav nav-stacked mx-auto text-sm ulTabletMobile overflow-x-auto" id="pills-tab"
                             role="tablist">
                             <li class="nav-item mx-auto me-5" role="presentation">
-                                <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                                <a id="click1s" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-home" type="button" role="tab"
                                     aria-controls="pills-home" aria-selected="true">
                                     <h6 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                                         Semua</h6>
-                                    <div id="border1" class="ms-1"
+                                    <div id="border1s" class="ms-1"
                                         style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                                     </div>
                                 </a>
                             </li>
 
                             <li class="nav-item mx-auto" role="presentation">
-                                <a id="c" class="nav-link " id="pills-profile-tab" data-bs-toggle="pill"
+                                <a id="cs" class="nav-link " id="pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-profile" type="button" role="tab"
                                     aria-controls="pills-profile" aria-selected="false">
                                     <h6 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                                         Baru</h6>
-                                    <div id="b" class="ms-0"
+                                    <div id="bs" class="ms-0"
                                         style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
                                     </div>
                                 </a>
                             </li>
 
                             <li class="nav-item mx-auto" role="presentation">
-                                <button id="a-tab" class="nav-link yuhu mt-2" id="pills-footer-tab"
+                                <button id="a-tabs" class="nav-link yuhu mt-2" id="pills-footer-tab"
                                     data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">
                                     <h6 class="text-dark ms-1" style="font-weight: 600; word-wrap: break-word;">
                                         Favorite</h6>
-                                    <div id="pp" class="ms-1"
+                                    <div id="pps" class="ms-1"
                                         style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                     </div>
                                 </button>
                             </li>
 
                             <li class="nav-item mx-auto" role="presentation" hidden>
-                                <button id="a-tab2" class="nav-link yuhu mt-2" id="pills-footer-tab"
+                                <button id="a-tab2s" class="nav-link yuhu mt-2" id="pills-footer-tab"
                                     data-bs-toggle="pill" data-bs-target="#pills-terbaik" type="button" role="tab"
                                     aria-controls="pills-terbaik" aria-selected="false">
                                     <h6 class="text-dark ms-1" style="font-weight: 600; word-wrap: break-word;">
                                         Terbaik</h6>
-                                    <div id="pp2" class="ms-2"
+                                    <div id="pp2s" class="ms-2"
                                         style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                     </div>
                                 </button>
@@ -817,6 +817,52 @@
             border2.style.display = "none";
             border1.style.display = "none";
             o.style.display = "none";
+
+        });
+
+        //
+        const click1s = document.getElementById("click1s");
+        const click2s = document.getElementById("cs");
+        const border1s = document.getElementById("border1s");
+        const border2s = document.getElementById("bs");
+        const os = document.getElementById("pps");
+        const a_tabs = document.getElementById("a-tabs");
+        const abs = document.getElementById("pp2s");
+        const a_tab2s = document.getElementById("a-tab2s");
+
+        a_tabs.addEventListener('click', function(event) {
+            event.preventDefault();
+            os.style.display = "block";
+            border1s.style.display = "none";
+            border2s.style.display = "none";
+            abs.style.display = "none";
+        });
+
+
+        click1s.addEventListener('click', function(event) {
+            event.preventDefault();
+            border1s.style.display = "block";
+            border2s.style.display = "none";
+            os.style.display = "none";
+            abs.style.display = "none";
+        });
+
+        click2s.addEventListener("click", function(event) {
+            event.preventDefault();
+            border2s.removeAttribute('hidden');
+            border2s.style.display = "block";
+            border1s.style.display = "none";
+            os.style.display = "none";
+            abs.style.display = "none";
+        });
+
+        a_tab2s.addEventListener('click', function(event) {
+            event.preventDefault();
+            abs.removeAttribute('hidden');
+            abs.style.display = "block";
+            border2s.style.display = "none";
+            border1s.style.display = "none";
+            os.style.display = "none";
 
         });
 
