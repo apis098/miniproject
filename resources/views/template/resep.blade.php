@@ -190,7 +190,9 @@
                     display: none;
                 }
             }
-
+            @media (min-width:800px) and (max-width:1300px){
+                    
+            } 
                   /* @media (min-width: 320px) {
                   img.widt {
                      max-width: 100%;
@@ -377,10 +379,10 @@
 
         <div class="container py-5 kanan kiri" >
             <div class="row text-center text-white me-5">
-                <div class="col-lg-8 mx-auto ms-e">
+                <div style="left: 13%;" class="col-lg-9 row  ">
                     <h1 class="mb-5 kanan"
-                        style="text-align: center; color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word">
-                        Cari resep masakan <br/>
+                        style=" color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word; margin-left:-2.5%;">
+                        Cari Resep Masakan <br/>
                     </h1>
                     <form action="">
                         <div class="container">

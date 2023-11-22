@@ -1829,8 +1829,8 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            button.classList.add('me-4');
                             badge.style.display = "none";
+                            button.classList.add('me-4');
                         }
                     },
                     error: function(xhr, status, error) {
