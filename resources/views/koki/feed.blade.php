@@ -246,7 +246,7 @@
             background-color: #F7941E;
             color: #fff;
             margin-left: -6%;
-            width: 90px;
+            width: 60px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
@@ -258,10 +258,10 @@
             height: 38px;
             background-color: #F7941E;
             color: #fff;
-            width: 90px;
+            width: 60px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
-            margin-left: -66px;
+            margin-left: -40px;
         }
 
 
@@ -293,7 +293,7 @@
     </style>
 
     <div class="d-flex justify-content-start" style="overflow-x: hidden">
-        <div class="col-12 my-4 kanans">
+        <div class="col-12 my-4 ml-5 kanans">
 
             <style>
                 /* Tampilan mobile Kecil Sekali */
