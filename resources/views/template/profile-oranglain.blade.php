@@ -26,6 +26,70 @@
             margin-right: 20px;
             /* Tambahkan margin di sebelah kanan gambar untuk menciptakan jarak */
         }
+
+
+
+ /* Tampilan mobile Kecil Sekali */
+ @media (min-width:290px) and (max-width: 340px) {
+    i.kiri {
+        margin-left: 40px;
+    }
+    li.kiri {
+        margin-right: -80px;
+    }
+    li.knan {
+        margin-left: -60px;
+    }
+    li.li {
+        margin-left: -30px;
+    }
+
+    li.rigt {
+        margin-left: 10px;
+    }
+
+    div.wid {
+ width: 100%;
+  height: 95%;
+ }
+ div.widt {
+    margin-left: 80px;
+    margin-top: -65px;
+ }
+    }
+
+ /* untuk tampilan mobile */
+ @media (min-width: 350px) and (max-width: 860px) {
+    i.kiri {
+        margin-left: 60px;
+    }
+    li.kiri {
+        margin-right: -80px;
+    }
+    li.knan {
+        margin-left: -40px;
+    }
+    
+    li.rigt {
+        margin-left: 10px;
+    }
+
+    div.wid {
+ width: 100%;
+  height: 95%;
+ }
+ div.widt {
+    margin-left: 80px;
+    margin-top: -65px;
+ }
+ }
+
+ @media (min-width: 1210px) and (max-width: 4000px) {
+ div.wid {
+ width: 360px;
+  height: 95%;
+ }
+}
     </style>
     <div class="container-fluid">
         <div class="row">
@@ -150,7 +214,7 @@
                                     <p class="ms-3">Suka</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-thumbs-up fa-2xl"></i>
+                                    <i class="fa-solid fa-thumbs-up fa-2xl kiri"></i>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +231,7 @@
                                     <p class="ms-3">Resep</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl"></i>
+                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl kiri"></i>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +248,7 @@
                                     <p class="ms-3">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-user-plus fa-2xl"></i>
+                                    <i class="fa-solid fa-user-plus fa-2xl kiri"></i>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +256,7 @@
 
                     <div class=" d-flex " style="margin-right: -10%;">
                         <ul class="nav mb-3" style="margin-left: -17px;" id="pills-tab" role="tablist">
-                            <li class="nav-item tabs" role="presentation">
+                            <li class="nav-item tabs rigt" role="presentation">
                                 <a id="button-biografi" class="nav-link mr-4 active" data-bs-toggle="tab"
                                     data-bs-target="#resep" type="button" role="tab" aria-controls="resep"
                                     aria-selected="false">
@@ -204,7 +268,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item tabs" role="presentation">
+                            <li class="nav-item tabs knan li" role="presentation">
                                 <a id="button-resep-dibuat" class="nav-link mr-4" data-bs-toggle="tab"
                                     data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                                     aria-selected="false">
@@ -229,7 +293,7 @@
                             </li>
 
                             @if ($userLogin->isSuperUser === 'yes')
-                                <li class="nav-item tabs" role="presentation" style="margin-left: 0px;">
+                                <li class="nav-item tabs kiri knan " role="presentation">
                                     <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
@@ -241,7 +305,7 @@
                                     </button>
                                 </li>
                             @else
-                                <li hidden class="nav-item tabs" role="presentation" style="margin-left: 0px;">
+                                <li hidden class="nav-item tabs kiri knan" role="presentation">
                                     <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
@@ -384,9 +448,9 @@
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
                                 {{-- @foreach ($recipes as $r) --}}
                                 <div class="col-lg-4 my-1">
-                                    <div class="card p-3"
-                                        style="width: 360px; height: 95%; border-radius: 15px; border: 0.50px black solid">
-                                        <div class="row my-1">
+                                    <div class="card p-3 wid"
+                                        style="border-radius: 15px; border: 0.50px black solid">
+                                        <div class="row my-1 ">
                                             <div class="col-2">
                                                 <img class="rounded-circle mt-1"
                                                     style="max-width:55px; margin-left: 10px;"
@@ -394,7 +458,7 @@
                                                     alt="dsdaa">
                                             </div>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <div class=" col-9">
+                                            <div class=" col-9 widt">
                                                 <a type="button" class="as" href="">
                                                     <strong> cara mengocok bumbu dengan baik dan benar </strong>
                                                 </a> <br>
