@@ -105,40 +105,67 @@
         tr {
             padding: 30px;
         }
-    </style>
-    <div class="container pt-4 px-5">
 
-        <div class="my-4 justify-content-center">
+        @media (min-width: 992px) {
+            .text-riwayat {
+                font-size: 24px;
+            }
+        }
+        @media (max-width: 768px) {
+            .text-riwayat {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 552px) {
+            .text-riwayat {
+                font-size: 10px;
+            }
+            .table-custom {
+                margin-left: -10px;
+            }
+        }
+        @media (max-width: 320px) {
+            .text-riwayat {
+                font-size: 7px;
+            }
+            .table-custom {
+                margin-left: -16px;
+            }
+        }
+    </style>
+    <div class="container-fluid pt-4 px-2">
+
+        <div class="my-4">
             <ul class="nav mb-2 d-flex justify-content-center" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                    <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark ms-2"
-                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            Riwayat Top Up</h5>
+                        <h6 class="text-dark ms-2 text-riwayat"
+                            style=" color: black;font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Riwayat Top Up</h6>
                         <div id="border1" class="ms-1" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a id="a-tab" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
+                    <a id="a-tab" class="nav-link" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark"
-                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            Riwayat Transaksi</h5>
+                        <h6 class="text-dark text-riwayat"
+                            style=" color: black;font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Riwayat Transaksi</h6>
                         <div id="pp" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                         </div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                    <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="text-dark"
-                            style=" color: black; font-size: 24px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                            Riwayat Penarikan</h5>
+                        <h6 class="text-dark text-riwayat"
+                            style=" color: black;font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Riwayat Penarikan</h6>
                         <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
@@ -210,13 +237,13 @@
                             @foreach ($history_penarikan as $tarik)
                             <tr class="mt-5">
                                 <td style="border-left:1px solid black;" class="">
-                                    Rp. {{ number_format($tarik->pemasukan, 2, '.', ',') }}
+                                    Rp. {{ number_format($tarik->nilai, 2, '.', ',') }}
                                 </td>
-                                <td>20 November 2023</td>
+                                <td>{{ $tarik->created_at }}</td>
                                 <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
                                         id="buttonUploadVideo"
                                         style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                        <span style="font-weight: 600; color: white;">Menunggu</span>
+                                        <span style="font-weight: 600; color: white;">{{  $tarik->status }}</span>
                                     </button></td>
                             </tr>
                             @endforeach

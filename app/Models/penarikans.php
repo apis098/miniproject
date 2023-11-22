@@ -12,7 +12,8 @@ class penarikans extends Model
     protected $fillable = [
         "chef_id",
         "data_id",
-        "nilai"
+        "nilai" ,
+        'status'
     ];
     public function chef() {
         return $this->belongsTo(User::class, "chef_id");

@@ -27,6 +27,7 @@ use App\Models\upload_video;
 use App\Models\User;
 use App\Models\Village;
 use Carbon\Carbon;
+use App\Models\penarikans;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -145,7 +146,7 @@ class LoginController extends Controller
             $notification = notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
-            ->paginate(10); 
+            ->paginate(10);
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
@@ -210,7 +211,7 @@ class LoginController extends Controller
         }
         $history_top_up = transactionTopUp::where('user_id',auth()->user()->id)->latest()->get();
         $history_transaksi = history_premiums::where('users_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        $history_penarikan = income_chefs::where('chef_id', Auth::user()->id)->where("status_penarikan", "sudah ditarik")->latest()->get();
+        $history_penarikan = penarikans::where('chef_id', Auth::user()->id)->where("status", "diterima")->latest()->get();
         return view('template.riwayat', compact('history_penarikan','history_transaksi','history_top_up','messageCount','categorytopup', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
