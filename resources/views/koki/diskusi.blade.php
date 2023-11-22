@@ -206,7 +206,7 @@
         }
     </style>
 
-    <div class=" d-flex justify-content-start">
+    <div class=" d-flex justify-content-center">
         <div class="my-5 ml-4">
             <!--
         <ul class="nav mb-3" id="pills-tab" role="tablist">
@@ -233,6 +233,7 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     {{-- start tab 1 --}}
+                    
                     <table class="table-custom ">
                         <thead>
                             <tr>
@@ -243,8 +244,9 @@
                             </tr>
                         </thead>
                         <tbody>
+
                             @foreach ($complaints as $complaint)
-                                <tr class="mt-5">
+                            <tr class="mt-5">
                                     <td style="border-left:1px solid black;" class="mt">{{ $complaint->subject }}</td>
                                     <td>{{ $complaint->description }}
                                     </td>
@@ -263,38 +265,6 @@
 
                 </div>
                 {{-- end --}}
-                <!--
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
-                    tabindex="0">
-                    {{-- start tab 2 --}}
-                    <table class="table-custom2">
-                        <thead>
-                            <tr>
-                                <th scope="col">Resep</th>
-                                <th scope="col">User</th>
-                                <th scope="col">Komen</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <tr class="">
-                                    <td style="border-left:1px solid black;" class="mt">
-                                        <div class="card rounded-3" style="width: 10rem; margin-left:10%; margin-top:15px">
-                                            <img src="{{ asset('images/dark-food.jpg') }}" class="card-img-center rounded-3" alt="...">
-                                          </div>
-                                    </td>
-                                    <td>agglnxz</td>
-                                    <td>keasinan sygg</td>
-                                    <td style="border-right:1px solid black;">
-                                        <a href="#" type="button" class="btn btn-light btn-sm rounded-3 text-light" style="background-color: #F7941E;">
-                                            <b class="ms-2 me-2">Detail</b>
-                                        </a>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                </div>
-                {{-- end --}}-->
             </div>
 
         </div>
