@@ -105,11 +105,31 @@
         tr {
             padding: 30px;
         }
+
+        .border-orange {
+            width: 160px;
+            height: 225px;
+            border-radius: 15px;
+            border: #F7941E solid;
+            overflow: hidden;
+        }
+
+        .border-black {
+            width: 165px;
+            height: 220px;
+            border-radius: 15px;
+            border: black solid;
+            overflow: hidden;
+        }
+
+        .text-orange {
+            color: #F7941E;
+        }
     </style>
 
     {{-- Modal Tarik Tunai --}}
     <div class="modal" id="tarik">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog {{ $check ? 'modal-lg' : 'modal-md' }}">
             <div class="modal-content">
                 <div class="d-flex">
                     @if ($check)
@@ -132,98 +152,99 @@
                     </div>
                 </div>
                 <div class="modal-body">
-                    <!--
-                                            <div class="row">
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-4 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-1" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/bri.png') }}" alt="" width="30%" height="50%">
-                                                            <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                BRIVA</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-4 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-1" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/alfamart.png') }}" alt="" width="50%" height="50%">
-                                                            <p class="my-1" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                Alfamart</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-3 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-1" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/indomaret.png') }}" alt="" width="50%" height="50%">
-                                                            <p class="" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                Indomaret</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-4 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-2" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/alfamidi.png') }}" alt="" width="60%" height="100%">
-                                                            <p class="my-1" style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                Alfamidi</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-4 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-1" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/spay.png') }}" alt="" width="50%">
-                                                            <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                Shopeepay</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-4 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-2" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/qris.png') }}" alt="" width="50%">
-                                                            <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                QRIS</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-3 col-lg-3 mb-3">
-                                                    <div class="rounded-4 text-center  p-4 counter-card"
-                                                        style="border: 1px solid #333;">
-                                                        <div class="ms-2" style="margin-top: -3%">
-                                                            <img src="{{ asset('images/ovo.png') }}" alt="" width="50%">
-                                                            <p class="my-1 " style="font-size: 14px; font-weight: bold;">Bayar dengan akun virtual
-                                                                OVO</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                            </div>
-                                            -->
                     @if ($check)
                         <form action="{{ route('ajukan.penarikan') }}" id="FormAjukanPenarikan" method="post">
                             @csrf
-                            <div class="mb-3 d-flex">
-                                <input type="number" name="nilai" style="border-radius: 5px;"
-                                    placeholder="Masukkan jumlah" class="form-control mr-2">
+                            <div class="d-flex justify-content-center">
+                                <label class="card border-black rounded-4  p-2 me-4 scale" id="small_option"
+                                    onclick="small_option()">
+                                    <input hidden id="50k" type="radio" value="50000" name="select_input">
+                                    <img src="{{ asset('img/2.png') }}" class="card-img-top" alt="">
+                                    <div class="card-body text-center">
+                                        <h6 class="fw-bolder mt-1">Rp. 50.000,00</h6>
+                                    </div>
+                                </label>
+                                <label class="card border-black rounded-4 p-2 me-4 scale"   id="medium_option"
+                                    onclick="medium_option()">
+                                    <input hidden id="100k" type="radio" value="100000" name="select_input">
+                                    <img src="{{ asset('img/4.png') }}" class="card-img-top ms-2 " alt="">
+                                    <div class="card-body text-center">
+                                        <h6 class="fw-bolder mt-1">Rp. 100.000,00</h6>
+                                    </div>
+                                </label>
+                                <label class="card border-black rounded-4 p-2 me-4 scale" id="large_option"
+                                    onclick="large_option()">
+                                    <input hidden id="150k" type="radio" value="150000" name="select_input">
+                                    <img src="{{ asset('img/5.png') }}" class="card-img-top" alt="">
+                                    <div class="card-body text-center">
+                                        <h6 class="fw-bolder mt-1">Rp. 150.000,00</h6>
+                                    </div>
+                                </label>
+                                <label class="card border-black rounded-4 p-2 scale" id="more_option" onclick="more_option()">
+                                    <input hidden id="0k" type="radio" value="null" name="select_input">
+                                    <img src="{{ asset('img/money.png') }}" class="card-img-top" alt="">
+                                    <div class="card-body text-center">
+                                        <h6 class="fw-bolder mt-1">Lainya</h6>
+                                    </div>
+                                </label>
+                            </div>
+                            <script>
+                                function small_option() {
+                                    $('#small_option').removeClass('border-black');
+                                    $('#small_option').addClass('border-orange');
+                                    $('#medium_option').removeClass('border-orange');
+                                    $('#medium_option').addClass('border-black');
+                                    $('#large_option' ).removeClass('border-orange');
+                                    $('#large_option').addClass('border-black');
+                                    $('#more_option').removeClass('border-orange');
+                                    $('#more_option').addClass('border-black');
+                                    $('#nilai' ).css('display', 'none');
+                                    $('#nilai').val('');
+                                }
+                                function medium_option() {
+                                    $('#small_option').removeClass('border-orange');
+                                    $('#small_option').addClass('border-black');
+                                    $('#medium_option').removeClass('border-black');
+                                    $('#medium_option').addClass('border-orange');
+                                    $('#large_option' ).removeClass('border-orange');
+                                    $('#large_option').addClass('border-black');
+                                    $('#more_option').removeClass('border-orange');
+                                    $('#more_option').addClass('border-black');
+                                    $('#nilai').css('display', 'none');
+                                    $('#nilai').val('');
+                                }
+                                function large_option() {
+                                    $('#small_option').removeClass('border-orange');
+                                    $('#small_option').addClass('border-black');
+                                    $('#medium_option').removeClass('border-orange');
+                                    $('#medium_option').addClass('border-black');
+                                    $('#large_option' ).removeClass('border-black');
+                                    $('#large_option').addClass('border-orange');
+                                    $('#more_option').removeClass('border-orange');
+                                    $('#more_option').addClass('border-black');
+                                    $('#nilai').css('display', 'none');
+                                    $('#nilai').val('');
+                                }
+                                function more_option() {
+                                    $('#small_option').removeClass('border-orange');
+                                    $('#small_option').addClass('border-black');
+                                    $('#medium_option').removeClass('border-orange');
+                                    $('#medium_option').addClass('border-black');
+                                    $('#large_option' ).removeClass('border-orange');
+                                    $('#large_option').addClass('border-black');
+                                    $('#more_option').removeClass('border-black');
+                                    $('#more_option').addClass('border-orange');
+                                    $('#nilai' ).css('display', 'block');
+                                    $('#nilai').val('');
+                                }
+                            </script>
+                            <div class="mb-3 d-flex justify-content-center  ms-2 col-lg-12">
+                                <input type="number" name="nilai" placeholder="Masukkan jumlah" id="nilai"
+                                    class="form-control border border-dark border-5 rounded-4 mr-2    " style="display: none;">
                                 <button type="submit"
                                     style="color: white; border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn">
-                                    Tarik
+                                    <b class="ms-2 me-2">Tarik</b>
                                 </button>
                             </div>
                         </form>

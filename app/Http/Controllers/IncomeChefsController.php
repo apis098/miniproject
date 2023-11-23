@@ -70,6 +70,7 @@ class IncomeChefsController extends Controller
     // ajukan penarikan
     public function ajukan_penarikan(Request $request)
     {
+        /*
         $validasi = Validator::make($request->all(), [
             "nilai" => "required"
         ], [
@@ -77,9 +78,29 @@ class IncomeChefsController extends Controller
         ]);
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
-        }
+        }*/
+
         // validasi saldo koki
         $saldo_koki = Auth::user()->saldo_pemasukan + 2000;
+        $nilai = 0;
+        if($request->select_input != null) {
+            $nilai = $request->select_input;
+            if ($request->select_input <= 49000) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Minimal tarik tunai 50.000!'
+                ]);
+            }
+        } elseif($request->nilai != null) {
+            $nilai = $request->nilai;
+            if ($request->nilai <= 49000) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Minimal tarik tunai 50.000!'
+                ]);
+            }
+        }
+        
         if ($saldo_koki < $request->nilai) {
             return response()->json([
                 'success' => false,
@@ -101,12 +122,7 @@ class IncomeChefsController extends Controller
                 'message' => 'Tidak boleh menginputkan nilai minus!'
             ]);
         }
-        if ($request->nilai <= 49000) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Minimal tarik tunai 50.000!'
-            ]);
-        }
+
         if ($request->nilai % 50000 != 0) {
             return response()->json([
                 "success" => false,
@@ -117,7 +133,7 @@ class IncomeChefsController extends Controller
         penarikans::create([
             "chef_id" => Auth::user()->id,
             "data_id" => $data->id,
-            "nilai" => $request->nilai
+            "nilai" => $nilai
         ]);
         return response()->json([
             "success" => "true",

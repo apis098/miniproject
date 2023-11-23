@@ -1874,9 +1874,12 @@
                                                                                                             ->count();
                                                                                                     @endphp
 
-                                                                                                    <div id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
-                                                                                                        <div class="">
-                                                                                                            <div class="d-flex mt-2 align-items-center">
+                                                                                                    <div
+                                                                                                        id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
+                                                                                                        <div
+                                                                                                            class="">
+                                                                                                            <div
+                                                                                                                class="d-flex mt-2 align-items-center">
                                                                                                                 <img width="38px"
                                                                                                                     height="38px"
                                                                                                                     class="rounded-circle me-2"
@@ -1940,7 +1943,10 @@
                                                                                                                         &nbsp;
                                                                                                                         &nbsp;
                                                                                                                     @endif
-                                                                                                                    <span class="mt-2" style="margin-left: -2%;" id="like-count{{ $reply_comment->id }}">
+                                                                                                                    <span
+                                                                                                                        class="mt-2"
+                                                                                                                        style="margin-left: -2%;"
+                                                                                                                        id="like-count{{ $reply_comment->id }}">
                                                                                                                         {{ $countLike2sd }}
                                                                                                                     </span>
                                                                                                                     <div
@@ -2131,7 +2137,8 @@
                                                                                                                     </div>
                                                                                                                 </div>
 
-                                                                                                                <div style="margin-top:-2.2%; margin-left:-2.5%;">
+                                                                                                                <div
+                                                                                                                    style="margin-top:-2.2%; margin-left:-2.5%;">
                                                                                                                     <a href="#"
                                                                                                                         class="text-secondary my-auto me-5"
                                                                                                                         data-toggle="collapse"
@@ -2243,7 +2250,8 @@
                                                                                                     </div>
 
                                                                                                     @foreach ($reply_comment->balasRepliesCommentsFeeds as $nomers => $reply_replyComment)
-                                                                                                        <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}" class="">
+                                                                                                        <div id="balasan_komentar_ini2{{ $reply_replyComment->id }}"
+                                                                                                            class="">
                                                                                                             {{-- <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
                                                                                                                
@@ -2251,7 +2259,8 @@
                                                                                                             </div> --}}
                                                                                                             <div
                                                                                                                 class="">
-                                                                                                                <div class="d-flex mt-2 align-items-center">
+                                                                                                                <div
+                                                                                                                    class="d-flex mt-2 align-items-center">
                                                                                                                     @if ($reply_replyComment->user_pengirim->foto)
                                                                                                                         <img width="38px"
                                                                                                                             height="38px"
@@ -2558,7 +2567,7 @@
 
                                                                                                             </div>
                                                                                                             <div
-                                                                                                            class="d-flex mt-2">
+                                                                                                                class="d-flex mt-2">
                                                                                                                 @if (Auth::check())
                                                                                                                     <form
                                                                                                                         id="formBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
@@ -2704,8 +2713,7 @@
                     </div>
                 </div>
 
-                <div class="card mt-5 mb-5"
-                    style="width: 15rem; border-radius: 10px">
+                <div class="card mt-5 mb-5" style="width: 15rem; border-radius: 10px">
                     <div class="card-header text-white text-center"
                         style="background-color: #F7941E;   border-top-right-radius: 10px;
                     border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
@@ -2832,7 +2840,7 @@
                                     const timer = Swal.getPopup().querySelector("b");
                                     timerInterval = setInterval(() => {
                                         timer.textContent =
-                                        `${Swal.getTimerLeft()}`;
+                                            `${Swal.getTimerLeft()}`;
                                     }, 100);
                                 },
                                 willClose: () => {
