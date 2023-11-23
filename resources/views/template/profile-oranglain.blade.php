@@ -69,7 +69,7 @@
     li.knan {
         margin-left: -40px;
     }
-    
+
     li.rigt {
         margin-left: 10px;
     }
@@ -84,17 +84,45 @@
  }
  }
 
+
+     /* untuk tampilan ipad */
+     @media (min-width: 760px) and (max-width: 1000px) {
+        div.widt{
+            width: 255%;
+        }
+        i.knn {
+        margin-left: 200px;
+    }
+
+    li.li {
+        margin-left: 15px;
+    }
+/*
+    div.knns {
+        margin-right: -80px;
+    } */
+
+     }
+
+
  @media (min-width: 1210px) and (max-width: 4000px) {
  div.wid {
  width: 360px;
   height: 95%;
  }
+ div.widt{
+            width: 85%;
+            margin-left: 58px;
+        }
+        div.rig {
+            margin-left: -28px;
+        }
 }
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid rig">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card my-5 border border-dark" style="border-radius: 25px;">
+                <div class="card my-5 border border-dark widt   " style="border-radius: 25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             @if ($user->foto)
@@ -204,9 +232,9 @@
                 <div class="row mt-5">
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            style="width: 100%; height: 80%; border-radius: 18px; border: 0.50px black solid">
                             <div class="row my-1">
-                                <div class="col-7 ">
+                                <div class="col-7  knns">
                                     <span class="ms-3"
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $user->like }}
@@ -214,16 +242,16 @@
                                     <p class="ms-3">Suka</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-thumbs-up fa-2xl kiri"></i>
+                                    <i class="fa-solid fa-thumbs-up fa-2xl kiri knn"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            style="width: 100%; height: 80%; border-radius: 18px; border: 0.50px black solid">
                             <div class="row my-1">
-                                <div class="col-7">
+                                <div class="col-7 knns">
                                     <span class="ms-3"
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $user->resep->count() }}
@@ -231,16 +259,16 @@
                                     <p class="ms-3">Resep</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl kiri"></i>
+                                    <i class="fa-solid fa-book fa-flip-horizontal fa-2xl kiri knn"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="card p-3"
-                            style="width: 100%; height: 80%; border-radius: 30px; border: 0.50px black solid">
+                            style="width: 100%; height: 80%; border-radius: 18px; border: 0.50px black solid">
                             <div class="row my-1">
-                                <div class="col-7">
+                                <div class="col-7 knns">
                                     <span class="ms-3"
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $user->followers }}
@@ -248,7 +276,7 @@
                                     <p class="ms-3">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
-                                    <i class="fa-solid fa-user-plus fa-2xl kiri"></i>
+                                    <i class="fa-solid fa-user-plus fa-2xl kiri knn"></i>
                                 </div>
                             </div>
                         </div>
@@ -293,7 +321,7 @@
                             </li>
 
                             @if ($userLogin->isSuperUser === 'yes')
-                                <li class="nav-item tabs kiri knan " role="presentation">
+                                <li class="nav-item tabs kiri knan li" role="presentation">
                                     <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
@@ -305,7 +333,7 @@
                                     </button>
                                 </li>
                             @else
-                                <li hidden class="nav-item tabs kiri knan" role="presentation">
+                                <li hidden class="nav-item tabs kiri knan li" role="presentation">
                                     <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
