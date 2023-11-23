@@ -355,10 +355,8 @@
                                                                             Nama
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <div class="form-control"
-                                                                                style="border-radius: 10px;">
-                                                                                {{ $data_verified->name }}
-                                                                            </div>
+
+                                                                            <input type="text" value="{{$data_verified->name}}" class="form-control" disabled>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -366,10 +364,9 @@
                                                                             E-mail
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <div class="form-control"
-                                                                                style="border-radius: 10px;">
-                                                                                {{ $data_verified->email }}
-                                                                            </div>
+
+                                                                            <input type="text" class="form-control" value="{{$data_verified->email}}" disabled>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -377,10 +374,8 @@
                                                                             Telefon
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <div class="form-control"
-                                                                                style="border-radius: 10px;">
-                                                                                {{ $data_verified->number_handphone }}
-                                                                            </div>
+                                                                            <input type="text" class="form-control" value="{{$data_verified->number_handphone}}" disabled>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -388,22 +383,19 @@
                                                                             Alamat
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <div class="form-control"
-                                                                                style="border-radius: 10px;">
-                                                                                {{ $data_verified->alamat }}
-                                                                            </div>
+
+                                                                            <textarea name="" class="form-control" disabled id="" cols="30" rows="10">
+                                                                                {{$data_verified->alamat}}
+                                                                            </textarea>
                                                                         </div>
                                                                     </div>
-
                                                                     <div class="row mb-3">
                                                                         <div class="col-4">
                                                                             Pilihan Bank
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <div class="form-control"
-                                                                                style="border-radius: 10px;">
-                                                                                {{ $data_verified->pilihan_bank }}
-                                                                            </div>
+                                                                            <input type="text" class="form-control" value="{{$data_verified->pilihan_bank}}" disabled>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">
@@ -411,10 +403,8 @@
                                                                             Nomer rekening
                                                                         </div>
                                                                         <div class="col-8">
-                                                                            <div class="form-control"
-                                                                                style="border-radius: 10px;">
-                                                                                {{ $data_verified->nomer_rekening }}
-                                                                            </div>
+                                                                            <input type="text" class="form-control" value="{{$data_verified->nomer_rekening}}" disabled>
+
                                                                         </div>
 
                                                                     </div>
