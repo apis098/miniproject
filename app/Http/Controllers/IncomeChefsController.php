@@ -70,35 +70,22 @@ class IncomeChefsController extends Controller
     // ajukan penarikan
     public function ajukan_penarikan(Request $request)
     {
-
         // validasi saldo koki
         $saldo_koki = Auth::user()->saldo_pemasukan + 2000;
         $nilai = 0;
-        if ($request->select_input != null) {
+        if($request->nilai == null) {
             $nilai = $request->select_input;
-            if ($request->select_input <= 49000) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Minimal tarik tunai 50.000!'
-                ]);
-            }
-        } elseif ($request->nilai != null) {
+        } elseif($request->select_input == "null") {
             $nilai = $request->nilai;
-            if ($request->nilai <= 49000) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Minimal tarik tunai 50.000!'
-                ]);
-            }
         }
-        if ($request->nilai != null) {
+        if ($request->select_input == "null") {
             if ($saldo_koki < $request->nilai) {
                 return response()->json([
                     'success' => false,
                     'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
                 ]);
             }
-        } elseif ($request->select_input != null) {
+        } elseif ($request->nilai == null) {
             if ($saldo_koki < $request->select_input) {
                 return response()->json([
                     'success' => false,
@@ -115,18 +102,36 @@ class IncomeChefsController extends Controller
             ]);
         }
 
-        if ($request->nilai < 0) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Tidak boleh menginputkan nilai minus!'
-            ]);
+        if ($request->select_input == "null") {
+            if ($request->nilai < 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tidak boleh menginputkan nilai minus!'
+                ]);
+            }
+        } elseif ($request->nilai == null) {
+            if ($request->select_input < 0) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Tidak boleh menginputkan nilai minus!'
+                ]);
+            }
         }
 
-        if ($request->nilai % 50000 != 0) {
-            return response()->json([
-                "success" => false,
-                "message" => "Harus berkelipatan RP50.000,00!"
-            ]);
+        if ($request->select_input == "null") {
+            if ($request->nilai % 50000 != 0) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Harus berkelipatan RP50.000,00!"
+                ]);
+            }
+        } elseif ($request->nilai == null) {
+            if ($request->select_input % 50000 != 0) {
+                return response()->json([
+                    "success" => false,
+                    "message" => "Harus berkelipatan RP50.000,00!"
+                ]);
+            }
         }
         $data = dataPribadiKoki::where("chef_id", Auth::user()->id)->first();
         penarikans::create([

@@ -503,11 +503,11 @@
         <form action="{{ route('koki.income') }}" method="POST" class="form2">
             @csrf
             <div class="text-center text-riwayat1">
-                <h3 style="font-family: Poppins">Riwayat2</h3>
+                <h3 style="font-family: Poppins">Riwayat</h3>
             </div>
             <div class="d-flex justify-content-between">
                 <div class="text-riwayat2">
-                    <h3 style="font-family:poppins">Riwayat2</h3>
+                    <h3 style="font-family:poppins">Riwayat</h3>
                 </div>
 
                 <button type="button" data-toggle="modal" data-target="#modalFormFilter"
