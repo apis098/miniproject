@@ -70,10 +70,11 @@ class IncomeChefsController extends Controller
     // ajukan penarikan
     public function ajukan_penarikan(Request $request)
     {
+
         // validasi saldo koki
         $saldo_koki = Auth::user()->saldo_pemasukan + 2000;
         $nilai = 0;
-        if($request->select_input != null) {
+        if ($request->select_input != null) {
             $nilai = $request->select_input;
             if ($request->select_input <= 49000) {
                 return response()->json([
@@ -81,7 +82,7 @@ class IncomeChefsController extends Controller
                     'message' => 'Minimal tarik tunai 50.000!'
                 ]);
             }
-        } elseif($request->nilai != null) {
+        } elseif ($request->nilai != null) {
             $nilai = $request->nilai;
             if ($request->nilai <= 49000) {
                 return response()->json([
@@ -90,12 +91,20 @@ class IncomeChefsController extends Controller
                 ]);
             }
         }
-        
-        if ($saldo_koki < $request->nilai) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
-            ]);   
+        if ($request->nilai != null) {
+            if ($saldo_koki < $request->nilai) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
+                ]);
+            }
+        } elseif ($request->select_input != null) {
+            if ($saldo_koki < $request->select_input) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Saldo anda tidak cukup untuk tarik tunai!'
+                ]);
+            }
         }
         $penarikan = penarikans::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
 

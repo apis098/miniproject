@@ -420,39 +420,32 @@
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title">Detail</h5>
                                                                     <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
+                                                                        data-dismiss="modal"
                                                                         aria-label="Close"></button>
                                                                 </div>
-                                                                <div class="modal-body">
-                                                                    <form h
+                                                                <div class="modal-body" style="text-align: right;">
+                                                                    <form
                                                                         id="form_tolak_eksekusi_kursus{{ $item->id }}"
                                                                         action="{{ route('eksekusi.kursus', ['ditolak', $item->id]) }}"
                                                                         method="post">
                                                                         @csrf
                                                                         @method('PATCH')
                                                                         <div class="row">
-                                                                            <div class="col-4">
+                                                                            <div class="col-5">
                                                                                 <img src="{{asset('images/alasan.png')}}" width="100%" height="100%" alt="">
                                                                             </div>
-                                                                            <div class="col-8">
+                                                                            <div class="col-7">
                                                                                 <textarea name="alasan" id="alasan" class="form-control" placeholder="alasan..." cols="5" rows="5"></textarea>
                                                                             </div>
                                                                         </div>
-
-                                                                        <button type="submit"
-                                                                            class="btn btn-sm rounded-3 text-light mx-auto"
-                                                                            style=" border-radius: 15px; border: 1px black solid"><b
-                                                                                class="ms-2 me-2"
-                                                                                style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b></a>
-                                                                    </form>
+                                                                        <button type="button" class="btn btn-sm rounded-3 text-light me-2 mt-3"
+                                                                        style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px;"><b
+                                                                            class="ms-2 me-2"
+                                                                            style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b></button>
+                                                                </form>
 
                                                                 </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="button" class="btn btn-primary">Save
-                                                                        changes</button>
-                                                                </div>
+
                                                             </div>
                                                         </div>
                                                     </div>
