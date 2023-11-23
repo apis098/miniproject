@@ -284,8 +284,15 @@
                                             d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z" />
                                     </svg>
                                     <p
-                                        style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
+                                        style="margin-left: 15px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
                                         Kursus
+                                        @if (\App\Models\kursus::where('status', 'ditunggu')->count() > 0)
+                                        <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg"
+                                        width="12"height="12" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
+                                    </svg>
+                                        @endif
                                     </p>
                                 </a>
                             </li>
