@@ -200,6 +200,25 @@
                 margin-left: 50px;
             }
         }
+        @media (max-width: 578px) {
+            .nav-item {
+                width: 130px;
+                text-align: center;
+            }
+        }
+        @media (max-width: 375px) {
+            .nav-item {
+                width: 120px;
+                text-align: center;
+            }
+        }
+        @media (max-width: 320px) {
+          .nav-item {
+            width: 100px;
+            font-size: 12px;
+            text-align: center;
+          }
+        }
     </style>
 
 
@@ -210,7 +229,7 @@
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h5>
+                        <h6 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h6>
                         <div id="border1" class="ms-1" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -220,7 +239,7 @@
                     <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep Disukai</h5>
+                        <h6 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Disukai</h6>
                         <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
                             hidden></div>
                     </a>
@@ -230,7 +249,7 @@
                     <a id="a-tab" class="nav-link" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep Disimpan</h5>
+                        <h6 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Disimpan</h6>
                         <div id="pp" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -276,7 +295,7 @@
                         </div>
                     </div>
                     {{-- start tab 1 --}}
-                    <div class=" my-4 mx-2">
+                    <div class="my-4">
                         @if ($resep_dibuat->count() < 1)
                             <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center">
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
@@ -285,7 +304,7 @@
                         @endif
                         <div class="row" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class="card col-lg-4 border border-black col-md-4 col-sm-12 my-3 ml-3" style="border-radius:15px; border: 1px solid black;">
+                                <div class="card col-lg-4 col-xl-3 border border-black col-md-4 col-sm-12 my-3" style="border-radius:15px; border: 1px solid black;">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}"
@@ -404,7 +423,7 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_disukai as $num => $suka)
-                            <div class="card col-lg-4 col-md-4 col-sm-12 my-3 ml-3 resepDisukai" style="border-radius:15px">
+                            <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai" style="border-radius:15px">
                                 <div class="row mx-auto">
                                     <div class="col-12 card-header mx-auto text-center">
                                         <img src="{{ asset('storage/' . $suka->foto_resep) }}"
@@ -525,7 +544,7 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_favorite as $num => $favorite)
-                            <div class="card col-lg-4 col-md-4 col-sm-12 my-3 ml-3 resepFavorite" style="border-radius:15px">
+                            <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepFavorite" style="border-radius:15px">
                                 <div class="row mx-auto">
                                     <div class="col-12 card-header mx-auto text-center">
                                         <img src="{{ asset('storage/' . $favorite->foto_resep) }}"

@@ -150,7 +150,7 @@ class AdminController extends Controller
             $n = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => 'Saldo anda '. $data->nilai .' sudah berhasil ditarik tunai.',
+                'message' => $data->nilai .' sudah berhasil ditarik tunai.',
                 'categories' => 'penarikan',
             ]);
             $update = notifications::find($n->id);
