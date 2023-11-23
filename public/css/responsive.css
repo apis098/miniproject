@@ -131,6 +131,11 @@ padding-left: 0;
   justify-content: center; /* Pusat horizontal */
   align-items: center; /* Pusat vertikal */
 }
+@media screen and (max-width:768px){
+  .navbar-brand{
+    display: none ;
+  }
+}
 /* .form-comment{
   display: flex;
   width: 110%;
