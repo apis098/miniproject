@@ -111,18 +111,18 @@
   height: 95%;
  }
  div.widt{
-            width: 85%;
-            margin-left: 58px;
+            width: 100%;
+            /* margin-left: 58px; */
         }
         div.rig {
             margin-left: -28px;
         }
 }
     </style>
-    <div class="container-fluid rig">
+     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card my-5 border border-dark widt   " style="border-radius: 25px;">
+                <div class="card my-5 border border-dark widt " style="border-radius: 25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             @if ($user->foto)
@@ -518,6 +518,7 @@
                     </div>
 
                 </div>
+
                 <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
                 <!-- jQuery CDN -->
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -568,6 +569,7 @@
                 </div>
                 @endif --}}
 
+            </div>
         </div>
     </div>
     <!-- Include jQuery -->

@@ -205,7 +205,7 @@
             border-bottom: #F7941E 2px solid;
         }
     </style>
-
+    <div style="overflow-x:hidden ">
     <div class=" d-flex justify-content-center">
         <div class="my-5 ml-4">
             <!--
@@ -233,7 +233,7 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     {{-- start tab 1 --}}
-                    
+
                     <table class="table-custom ">
                         <thead>
                             <tr>
@@ -261,7 +261,13 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    @if ($complaints->count() == 0)
+                    <div class="d-flex flex-column h-100 justify-content-center align-items-center"
+                        style="margin-top: 5em; margin-left:-5%;">
+                        <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                        <p><b>Tidak ada data</b></p>
+                    </div>
+                @endif
 
                 </div>
                 {{-- end --}}
@@ -272,6 +278,7 @@
     <div class="d-flex justify-content-center" style="margin-top: -2%;">
         {{-- {!! $holidays->links('modern-pagination') !!} --}}
     </div>
+   </div>
 
     <!-- jQuery CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
