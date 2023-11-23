@@ -70,16 +70,6 @@ class IncomeChefsController extends Controller
     // ajukan penarikan
     public function ajukan_penarikan(Request $request)
     {
-        /*
-        $validasi = Validator::make($request->all(), [
-            "nilai" => "required"
-        ], [
-            "nilai.required" => "Jumlah yang ditarik harus diisi!",
-        ]);
-        if ($validasi->fails()) {
-            return response()->json($validasi->errors()->first(), 422);
-        }*/
-
         // validasi saldo koki
         $saldo_koki = Auth::user()->saldo_pemasukan + 2000;
         $nilai = 0;
