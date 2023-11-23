@@ -214,11 +214,22 @@
 
         }
 
+        @media(min-width:769px) {
+            .ulTabletMobile {
+                visibility: hidden;
+                display: none;
+            }
+            .ulLaptop {
+                margin-left: 30px;
+            }
+        }
+
         @media (max-width: 768px) {
             .ulLaptop {
                 visibility: hidden;
                 display: none;
             }
+
 
             .word {
                 visibility: hidden;
@@ -311,7 +322,7 @@
                                     data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">
                                     <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                                        Terfavorite</h5>
+                                        Favorite</h5>
                                     <div id="pp" class="ms-1"
                                         style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                     </div>

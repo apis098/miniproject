@@ -52,6 +52,7 @@
 
         .table-custom {
             text-align: center;
+            width: 100%;
         }
 
         .table-custom {
@@ -162,7 +163,9 @@
             background-color: #fff;
             padding: 4px;
             border-radius: 5px;
-            width: 210%;
+            width: 205%;
+            margin-left: 20px;
+            margin-right; 30x;
         }
 
         .search-1 {
@@ -261,13 +264,13 @@
         }
     </style>
     <div style="overflow-x:hidden;">
-        <div class="d-flex justify-content-start">
-            <div class="my-5 mx-auto">
-                <div class="tab-content mb-5" id="pills-tabContent">
+        <div class="mx-5">
+            <div class="my-5">
+                <div class="tab-content mb-3 mr-5" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                         tabindex="0">
                         <div class="search" style="border-radius: 15px;">
-                            <div class="col-lg-12 mt-2">
+                            <div class="mt-2">
                                 <div class="search-2"> <i class='bx bxs-map'></i>
                                     <form action="#" method="GET">
                                         <input type="text" name="" style="text-align: left;" placeholder="Cari..."

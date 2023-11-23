@@ -169,28 +169,45 @@
             .card {
                 width: 100%
             }
+
+            .main {
+                margin-left: 20px;
+            }
+
         }
 
 
         /* tampilan untuk iPad */
-        @media (min-width: 897px) and (max-width: 1024px) {}
+        @media (min-width: 897px) and (max-width: 1024px) {
+            .main {
+                margin-left: 30px;
+            }
+        }
 
 
 
         /* tampilan untuk laptop */
-        @media (min-width: 1025px) and (max-width: 1366px) {}
+        @media (min-width: 1025px) and (max-width: 1366px) {
+            .main {
+                margin-left: 50px;
+            }
+        }
 
 
         /* tampilan untuk PC yang lebih besar */
-        @media (min-width: 1367px) {}
+        @media (min-width: 1367px) {
+            .main {
+                margin-left: 50px;
+            }
+        }
     </style>
 
 
     <div class="">
-        <div class="my-4 ml-5">
-            <ul class="nav mb-2" id="pills-tab" role="tablist">
+        <div class="my-4 main">
+            <ul class="nav mb-2 d-flex justify-content-start" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                    <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h5>
@@ -200,7 +217,7 @@
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                    <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep Disukai</h5>
@@ -268,7 +285,7 @@
                         @endif
                         <div class="row" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class="card col-lg-3 border border-black col-md-4 col-sm-12 my-3 ml-3" style="border-radius:15px; border: 1px solid black;">
+                                <div class="card col-lg-4 border border-black col-md-4 col-sm-12 my-3 ml-3" style="border-radius:15px; border: 1px solid black;">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}"
@@ -387,7 +404,7 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_disukai as $num => $suka)
-                            <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai" style="border-radius:15px">
+                            <div class="card col-lg-4 col-md-4 col-sm-12 my-3 ml-3 resepDisukai" style="border-radius:15px">
                                 <div class="row mx-auto">
                                     <div class="col-12 card-header mx-auto text-center">
                                         <img src="{{ asset('storage/' . $suka->foto_resep) }}"
@@ -508,7 +525,7 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_favorite as $num => $favorite)
-                            <div class="card col-lg-3 col-md-4 col-sm-12 my-3 ml-3 resepFavorite" style="border-radius:15px">
+                            <div class="card col-lg-4 col-md-4 col-sm-12 my-3 ml-3 resepFavorite" style="border-radius:15px">
                                 <div class="row mx-auto">
                                     <div class="col-12 card-header mx-auto text-center">
                                         <img src="{{ asset('storage/' . $favorite->foto_resep) }}"
