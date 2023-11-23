@@ -55,7 +55,10 @@
             /* Warna teks saat dihover */
         }
 
-
+        .form-control:focus{
+            border:#F7941E solid;
+            box-shadow: none;
+        }
         .asy {
 
             background-image: url("/dist/img/ttpe.jpg");

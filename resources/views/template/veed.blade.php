@@ -123,7 +123,7 @@
                 .form-input:focus {
 
                     box-shadow: none;
-                    border: solid rgb(123, 215, 232) 3px;
+                   border: #F7941E solid;
                 }
 
                 @keyframes fadeIn {
@@ -711,7 +711,8 @@
                                             .search-1 input:focus {
                                                 border-color: none;
                                                 box-shadow: none;
-                                                outline: none
+                                                outline: none;
+                                                border: #F7941E solid;
                                             }
 
                                             .search-1 i {
@@ -746,6 +747,7 @@
 
                                             .search-2 input:focus {
                                                 box-shadow: none;
+                                                border: #F7941E solid;
                                             }
 
 

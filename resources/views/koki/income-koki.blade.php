@@ -107,8 +107,8 @@
         }
 
         .border-orange {
-            width: 160px;
-            height: 225px;
+            width: 165px;
+            height: 220px;
             border-radius: 15px;
             border: #F7941E solid;
             overflow: hidden;
@@ -121,7 +121,12 @@
             border: black solid;
             overflow: hidden;
         }
-
+        .b-b{
+            border: black solid;
+        }
+        .b-o{
+            border:#F7941E solid;
+        }
         .text-orange {
             color: #F7941E;
         }
@@ -161,7 +166,7 @@
                                     <input hidden id="50k" type="radio" value="50000" name="select_input">
                                     <img src="{{ asset('img/2.png') }}" class="card-img-top" alt="">
                                     <div class="card-body text-center">
-                                        <h6 class="fw-bolder mt-1">Rp. 50.000,00</h6>
+                                        <h6 class="fw-bolder mt-1"  id="text-small">Rp. 50.000,00</h6>
                                     </div>
                                 </label>
                                 <label class="card border-black rounded-4 p-2 me-4 scale"   id="medium_option"
@@ -169,7 +174,7 @@
                                     <input hidden id="100k" type="radio" value="100000" name="select_input">
                                     <img src="{{ asset('img/4.png') }}" class="card-img-top ms-2 " alt="">
                                     <div class="card-body text-center">
-                                        <h6 class="fw-bolder mt-1">Rp. 100.000,00</h6>
+                                        <h6 class="fw-bolder mt-1" id="text-medium">Rp. 100.000,00</h6>
                                     </div>
                                 </label>
                                 <label class="card border-black rounded-4 p-2 me-4 scale" id="large_option"
@@ -177,14 +182,14 @@
                                     <input hidden id="150k" type="radio" value="150000" name="select_input">
                                     <img src="{{ asset('img/5.png') }}" class="card-img-top" alt="">
                                     <div class="card-body text-center">
-                                        <h6 class="fw-bolder mt-1">Rp. 150.000,00</h6>
+                                        <h6 class="fw-bolder mt-1" id="text-large">Rp. 150.000,00</h6>
                                     </div>
                                 </label>
                                 <label class="card border-black rounded-4 p-2 scale" id="more_option" onclick="more_option()">
                                     <input hidden id="0k" type="radio" value="null" name="select_input">
                                     <img src="{{ asset('img/money.png') }}" class="card-img-top" alt="">
                                     <div class="card-body text-center">
-                                        <h6 class="fw-bolder mt-1">Lainya</h6>
+                                        <h6 class="fw-bolder mt-1"  id="more-text">Lainya</h6>
                                     </div>
                                 </label>
                             </div>
@@ -198,8 +203,14 @@
                                     $('#large_option').addClass('border-black');
                                     $('#more_option').removeClass('border-orange');
                                     $('#more_option').addClass('border-black');
+                                    $('#text-small').addClass('text-orange');
+                                    $("#text-medium").removeClass('text-orange');
+                                    $("#text-large").removeClass('text-orange');
+                                    $("#more-text").removeClass('text-orange');
                                     $('#nilai' ).css('display', 'none');
                                     $('#nilai').val('');
+                                    $('#nilai').removeClass('b-o');
+                                    $('#nilai').addClass('b-b');
                                 }
                                 function medium_option() {
                                     $('#small_option').removeClass('border-orange');
@@ -210,8 +221,14 @@
                                     $('#large_option').addClass('border-black');
                                     $('#more_option').removeClass('border-orange');
                                     $('#more_option').addClass('border-black');
+                                    $('#text-small').removeClass('text-orange');
+                                    $("#text-medium").addClass('text-orange');
+                                    $("#text-large").removeClass('text-orange');
+                                    $("#more-text").removeClass('text-orange');
                                     $('#nilai').css('display', 'none');
                                     $('#nilai').val('');
+                                    $('#nilai').removeClass('b-o');
+                                    $('#nilai').addClass('b-b');
                                 }
                                 function large_option() {
                                     $('#small_option').removeClass('border-orange');
@@ -222,8 +239,14 @@
                                     $('#large_option').addClass('border-orange');
                                     $('#more_option').removeClass('border-orange');
                                     $('#more_option').addClass('border-black');
+                                    $('#text-small').removeClass('text-orange');
+                                    $("#text-medium").removeClass('text-orange');
+                                    $("#text-large").addClass('text-orange');
+                                    $("#more-text").removeClass('text-orange');
                                     $('#nilai').css('display', 'none');
                                     $('#nilai').val('');
+                                    $('#nilai').removeClass('b-o');
+                                    $('#nilai').addClass('b-b');
                                 }
                                 function more_option() {
                                     $('#small_option').removeClass('border-orange');
@@ -234,13 +257,19 @@
                                     $('#large_option').addClass('border-black');
                                     $('#more_option').removeClass('border-black');
                                     $('#more_option').addClass('border-orange');
+                                    $('#text-small').removeClass('text-orange');
+                                    $("#text-medium").removeClass('text-orange');
+                                    $("#text-large").removeClass('text-orange');
+                                    $("#more-text").addClass('text-orange');
                                     $('#nilai' ).css('display', 'block');
                                     $('#nilai').val('');
+                                    $('#nilai').removeClass('b-b');
+                                    $('#nilai').addClass('b-o');
                                 }
                             </script>
                             <div class="mb-3 d-flex justify-content-center  ms-2 col-lg-12">
                                 <input type="number" name="nilai" placeholder="Masukkan jumlah" id="nilai"
-                                    class="form-control border border-dark border-5 rounded-4 mr-2    " style="display: none;">
+                                    class="form-control  rounded-4 mr-2  b-b" style="display: none;">
                                 <button type="submit"
                                     style="color: white; border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn">

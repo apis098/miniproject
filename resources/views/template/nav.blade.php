@@ -280,7 +280,10 @@
                 color: #F7941E;
 
             }
-
+            .form-control:focus{
+            border:#F7941E solid;
+            box-shadow: none;
+        }
 
 
             .slider_section .detail-box a {
