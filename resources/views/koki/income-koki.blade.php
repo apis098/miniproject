@@ -267,9 +267,9 @@
                                     $('#nilai').addClass('b-o');
                                 }
                             </script>
-                            <div class="mb-3 d-flex justify-content-center  ms-2 col-lg-12">
+                            <div class="mb-3 d-flex justify-content-center  col-lg-12">
                                 <input type="number" name="nilai" placeholder="Masukkan jumlah" id="nilai"
-                                    class="form-control  rounded-4 mr-2  b-b" style="display: none;">
+                                    class="form-control  rounded-4 mr-2  b-b" style="display: none; width:86%;">
                                 <button type="submit"
                                     style="color: white; border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn">
