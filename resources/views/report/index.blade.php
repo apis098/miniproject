@@ -383,7 +383,7 @@
                             aria-selected="false">
                             <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
                                 Kursus
-                                @if ($statusVeed > 0)
+                                @if ($statusCourse > 0)
                                     <svg class="text-danger ms-1" xmlns="http://www.w3.org/2000/svg" width="12"
                                         height="12" viewBox="0 0 24 24">
                                         <path fill="currentColor"

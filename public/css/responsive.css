@@ -131,7 +131,7 @@ padding-left: 0;
   justify-content: center; /* Pusat horizontal */
   align-items: center; /* Pusat vertikal */
 }
-@media screen and (max-width:768px){
+@media screen and (max-width:820px){
   .navbar-brand{
     display: none ;
   }

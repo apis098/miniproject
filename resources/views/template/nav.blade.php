@@ -75,6 +75,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
         </script>
+        
         <title> HummaCook </title>
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
@@ -341,51 +342,55 @@
                                 </a>
                             @endif
                         </a>
+                          
+                    <button class="navbar-toggler nav-link" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5"/></svg>
+                      </button>
                     </div>
                     <!-- Left elements -->
+                         <!-- Center elements -->
+                      <div id="navbarNav">
+                            <ul class="navbar-nav flex-row d-none d-md-flex mr-auto ">
 
-                    <!-- Center elements -->
-                    <ul class="navbar-nav flex-row d-none d-md-flex ">
+                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
+                                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" id="navbar"
+                                        href="{{ route('home') }}"><b>Beranda</b></a>
+                                </li>
 
-                        <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
-                            <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" id="navbar"
-                                href="{{ route('home') }}"><b>Beranda</b></a>
-                        </li>
+                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1  {{ request()->is('resep') ? 'active' : '' }}">
+                                    <a class="nav-link {{ request()->is('resep') ? 'active' : '' }}" id="navbar"
+                                        href="{{ route('resep.home') }}">
+                                        <b>Resep</b>
+                                    </a>
+                                </li>
 
-                        <li class="nav-item me-3 me-lg-1 pl-1 pr-1  {{ request()->is('resep') ? 'active' : '' }}">
-                            <a class="nav-link {{ request()->is('resep') ? 'active' : '' }}" id="navbar"
-                                href="{{ route('resep.home') }}">
-                                <b>Resep</b>
-                            </a>
-                        </li>
+                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                    <a class="nav-link {{ request()->is('kursus') ? 'active' : '' }}" id="navbar"
+                                        href="{{ route('kursus') }}">
+                                        <b>Kursus</b>
+                                    </a>
+                                </li>
 
-                        <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
-                            <a class="nav-link {{ request()->is('kursus') ? 'active' : '' }}" id="navbar"
-                                href="{{ route('kursus') }}">
-                                <b>Kursus</b>
-                            </a>
-                        </li>
+                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                    <a class="nav-link {{ request()->is('veed') ? 'active' : '' }}" id="navbar"
+                                        href="{{ url('veed') }}">
+                                        <b>Feed</b>
+                                    </a>
+                                </li>
 
-                        <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
-                            <a class="nav-link {{ request()->is('veed') ? 'active' : '' }}" id="navbar"
-                                href="{{ url('veed') }}">
-                                <b>Feed</b>
-                            </a>
-                        </li>
-
-                        <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
-                            <a class="nav-link {{ request()->is('keluhan') ? 'active' : '' }}" id="navbar"
-                                href="{{ route('keluhan') }}">
-                                <b>Diskusi</b>
-                            </a>
-                        </li>
-                    </ul>
+                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                    <a class="nav-link {{ request()->is('keluhan') ? 'active' : '' }}" id="navbar"
+                                        href="{{ route('keluhan') }}">
+                                        <b>Diskusi</b>
+                                    </a>
+                                </li>
+                            </ul>
+                      </div>
                     <!-- Center elements -->
 
                     <!-- Right elements -->
                     @if(Auth::check())
                         <ul class="navbar-nav   flex-row">
-
                             <li class="nav-item ">
                                 <a class="nav-link yuhu text-light mt-1 {{ $messageCount == 0 ? 'me-3' : '' }} "
                                     href="/roomchat" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
@@ -1141,6 +1146,43 @@
                                             Keluar
                                         </a>
                                     </div>
+                                @elseif(auth()->user()->role == 'admin')
+                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                style="width: 255px; border-radius:13px;">
+                                <div class="input-group">
+                                    <a href="#">
+                                        @if ($userLogin->foto)
+                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                alt="profile image" width="50px" height="50px">
+                                        @else
+                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                                style="max-width:40px">
+                                        @endif
+                                    </a>
+                                    <p class="mt-2 text-orange">
+                                        <b>{{ auth()->user()->name }}</b>
+                                    </p>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m7.879 5l1.06-1.06l1.421-1.422a3.5 3.5 0 0 0-3.653 4.674l.326.897l-.675.674l-3.797 3.798a.621.621 0 1 0 .878.878l3.798-3.797l.674-.675l.897.325a3.5 3.5 0 0 0 4.674-3.653L12.06 7.062L11 8.12L9.94 7.06l-1-1L7.878 5Zm6.173-1.93A4.987 4.987 0 0 1 15 6a5 5 0 0 1-6.703 4.703L4.5 14.5a2.121 2.121 0 0 1-3-3l3.797-3.797A5 5 0 0 1 13 2l-1.076 1.076l-.863.863L10 5l1 1l1.06-1.06l.864-.864L14 3l.052.07Z" clip-rule="evenodd"/></svg>
+                                    Dashboard
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                    class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                        <path fill="currentColor"
+                                            d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                    </svg>
+                                    Keluar
+                                </a>
+                            </div>
                                 @endif
                             </li>
                         </ul>

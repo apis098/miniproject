@@ -69,6 +69,7 @@ class ReportController extends Controller
                 $statusProfile = $data->whereNotNull('profile_id')->count();
                 $statusResep = $data->whereNotNull('resep_id')->count();
                 $statusVeed = $data->whereNotNull('feed_id')->count();
+                $statusCourse =$data->whereNotNull('course_id')->count();
                 $statusComplaint = $data->whereNotNull('complaint_id')->count();
 
                 $reply_status_count = $data->whereNotNull('reply_id')->count();
@@ -89,7 +90,7 @@ class ReportController extends Controller
         $show_resep = reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
-        return view('report.index',compact('reportCourse','verifed_count','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
+        return view('report.index',compact('statusCourse','reportCourse','verifed_count','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
     }
 
     public function keluhan(Request $request){

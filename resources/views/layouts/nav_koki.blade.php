@@ -136,6 +136,10 @@
             cursor: pointer;
             outline: inherit;
         }
+        .dropdown-item:active,
+        .dropdown-item:focus{
+            background: white;
+        }
     </style>
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
