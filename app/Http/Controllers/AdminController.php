@@ -82,7 +82,7 @@ class AdminController extends Controller
         $verified = User::where('followers', '>', 10000)->where('isSuperUser', 'no')->paginate(6);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         return view('admin.verifed', compact('verified', 'verifed_count'));
-    } 
+    }
 
     public function data_koki()
     {
@@ -101,7 +101,7 @@ class AdminController extends Controller
             $notify = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => "Data anda telah diterima oleh Admin Approval.",
+                'message' => "Data anda diterima oleh Admin.",
                 'categories' => 'data-koki',
             ]);
             $up = notifications::find($notify->id);
@@ -114,7 +114,7 @@ class AdminController extends Controller
             $notif = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => 'Data anda tidak diterima oleh Admin Approval.',
+                'message' => 'Data anda tidak diterima oleh Admin.',
                 'alasan' => $request->alasan,
                 'categories' => 'data-koki',
             ]);
@@ -150,7 +150,7 @@ class AdminController extends Controller
             $n = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => 'Selamat, saldo anda sebesar'. $data->nilai .' sudah berhasil ditarik tunai.',
+                'message' => 'Saldo anda '. $data->nilai .' sudah berhasil ditarik tunai.',
                 'categories' => 'penarikan',
             ]);
             $update = notifications::find($n->id);
