@@ -343,7 +343,7 @@
                         </ul>
                         <!-- Button Modal -->
                         <div class="">
-                            <button class="btn btn-filter " data-bs-toggle="modal" data-bs-target="#filter">
+                            <button class="btn btn-filter " data-toggle="modal" data-target="#formfilter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -413,12 +413,12 @@
                 </div>
 
                 <!-- Modal -->
-                <div class="modal" id="filter" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal" id="formfilter" aria-labelledby="modalLabel" aria-hidden="true">
                     <div class="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" style="font-weight: 700;">Filter Lanjutan</h5>
-                                <button type="button" style="border: none;background:none" data-bs-dismiss="modal"
+                                <button type="button" style="border: none;background:none" data-dismiss="modal"
                                     aria-label="Close">
                                     <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">

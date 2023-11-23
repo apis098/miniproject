@@ -75,7 +75,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
             integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
         </script>
-        
+
         <title> HummaCook </title>
         <!-- bootstrap core css -->
         <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.css') }}" />
@@ -345,7 +345,7 @@
                                 </a>
                             @endif
                         </a>
-                          
+
                     <button class="navbar-toggler nav-link" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5"/></svg>
                       </button>
@@ -1195,7 +1195,7 @@
                                 <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects"
                                     style="border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
                                         class="me-2 ms-2">Masuk</b></a>
-                    
+
                             </div>
                         </ul>
                     @endif
@@ -1800,60 +1800,14 @@
     <script src="{{ asset('plugins/select2/js/select2.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#filter').on('shown.bs.modal', function() {
+            $('#formfilter').on('shown.bs.modal', function() {
                 $('.cari').select2({
                     closeOnSelect: false,
                     placeholder: {
-                        id: '-1',
                         text: 'Masukkan Nama Bahan'
                     },
 
-                    dropdownParent: $('#filter')
 
-                });
-                $('.cari1').select2({
-                    closeOnSelect: false,
-                    placeholder: {
-                        id: '-1',
-                        text: 'Masukkan Nama Provinsi'
-                    },
-                    dropdownParent: $('#filter')
-
-                });
-                $('.cari2').select2({
-                    closeOnSelect: false,
-                    placeholder: {
-                        id: '-1',
-                        text: 'Masukkan Nama Kabupaten'
-                    },
-                    dropdownParent: $('#filter')
-
-                });
-                $('.cari3').select2({
-                    closeOnSelect: false,
-                    placeholder: {
-                        id: '-1',
-                        text: 'Masukkan Nama Kota'
-                    },
-                    dropdownParent: $('#filter')
-
-                });
-                $('.cari4').select2({
-                    closeOnSelect: false,
-                    placeholder: {
-                        id: '-1',
-                        text: 'Masukkan Nama Desa'
-                    },
-                    dropdownParent: $('#filter')
-
-                });
-                $('.cari23').select2({
-                    closeOnSelect: false,
-                    placeholder: {
-                        id: '-1', // the value of the option
-                        text: 'Masukkan Nama Alat Alat'
-                    },
-                    dropdownParent: $('#filter')
                 });
             });
 
