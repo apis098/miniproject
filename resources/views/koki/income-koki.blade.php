@@ -572,15 +572,11 @@
                         {{-- <td style="border-left:1px solid black;" class="">
                             {{ $income->status }}
                         </td> --}}
-                        <td style="border-left: 1px solid black;">
-                            @if ($income->status === 'resep')
-                                {{ $income->resep->nama_resep }}
-                            @elseif ($income->status === 'feed')
-                                <video style="width: 100px;border-radius:10%;"
-                                    src="{{ asset('storage/' . $income->feed->upload_video) }}"></video>
-                            @elseif($income->status === 'sawer' && $income->feed_id != null)
-                                <video style="width: 100px;border-radius:10%;"
-                                    src="{{ asset('storage/' . $income->feed->upload_video) }}"></video>
+                        <td class="ms-3" style="border-left: 1px solid black;">
+                            @if($income->status === 'sawer' && $income->feed_id != null)
+                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40). '....' : $income->feed->deskripsi_video }}
+                            @elseif($income->status === 'sawer' && $income->resep_id != null )
+                                {{$income->resep->nama_resep}}
                             @elseif($income->status === 'kursus')
                                 {{ $income->course->nama_kursus }}
                             @endif
