@@ -511,27 +511,27 @@
                                     <div class="mb-3 mx-2">
                                         <label for="jumlah_pelajaran">Rating</label>
                                         <input type="hidden" id="valueRating" name="rating">
-                                        <div class="d-flex justify-content-between">
-                                            <div class="rate" id="rating1"
+                                        <div class="row d-flex justify-content-center">
+                                            <div class="rate col-lg-3 col-md-4 col-sm-6 m-1" id="rating1"
                                                 style="border: 1px solid black; border-radius: 5px;padding: 5px;">
                                                 <a href="#" id="rate1" style="color: black;">Rating 1</a>
                                             </div>
-                                            <div class="rate" id="rating2"
+                                            <div class="rate col-lg-3 col-md-4 col-sm-6 m-1" id="rating2"
                                                 style="border: 1px solid black; border-radius: 5px;padding: 5px;">
                                                 <a href="#" id="rate2" style="color: black;">Rating 2</a>
 
                                             </div>
-                                            <div class="rate" id="rating3"
+                                            <div class="rate col-lg-3 col-md-4 col-sm-6 m-1" id="rating3"
                                                 style="border: 1px solid black; border-radius: 5px;padding: 5px;">
                                                 <a href="#" id="rate3" style="color: black;">Rating 3</a>
 
                                             </div>
-                                            <div class="rate" id="rating4"
+                                            <div class="rate col-lg-3 col-md-4 col-sm-6 m-1" id="rating4"
                                                 style="border: 1px solid black; border-radius: 5px;padding: 5px;">
                                                 <a href="#" id="rate4" style="color: black;">Rating 4</a>
 
                                             </div>
-                                            <div class="rate" id="rating5"
+                                            <div class="rate col-lg-3 col-md-4 col-sm-6 m-1" id="rating5"
                                                 style="border: 1px solid black; border-radius: 5px;padding: 5px;">
                                                 <a href="#" id="rate5" style="color: black;">Rating 5</a>
 
