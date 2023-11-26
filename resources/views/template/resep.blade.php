@@ -287,7 +287,17 @@
 
           }
 
-
+          @media(max-width: 475px) {
+            .foto_kursus {
+                width: 260px;
+            }
+          }
+          @media(max-width: 320px) {
+            .foto_kursus {
+                width: 180px;
+                height: 100px;
+            }
+          }
           @media (min-width: 425px) {
               button.high {
                   height: 36%;
@@ -380,7 +390,7 @@
           }
       </style>
 
-      <div class="container py-5 kanan kiri">
+      <div class="container-fluid py-5">
           <div class="row text-center text-white me-5">
               <div style="left: 13%;" class="col-lg-9 row  ">
                   <h1 class="mb-5 kanan"
@@ -649,13 +659,13 @@
           <p><b>Tidak ada data</b></p>
       </div>
   @endif
-  <div class="mx-5 my-5">
-      <div class="row">
+  <div class="my-5 ms-5 me-5">
+      <div class="row d-flex justify-content-center">
           @foreach ($recipes as $num => $item)
-              <div class="col-lg-4 mb-5 col-sm-12 col-md-6">
+              <div class="col-xl-4 col-lg-6 mb-5 col-sm-12 col-md-6">
                   <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                       <div class="card-header my-3 mx-auto" style="background-color: white">
-                          <img width="260px" class="rounded-circle besar widt" style="border: 0.50px black solid; "
+                          <img class="rounded-circle besar widt foto_kursus" style="border: 0.50px black solid;"
                               src="{{ asset('storage/' . $item->foto_resep) }}" />
                           @if ($item->isPremium === 'yes')
                               <button id="buttonPremium" type="button"

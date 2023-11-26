@@ -1333,18 +1333,16 @@
                                 <p style="color: #1d1919"><b>Tidak ada data</b></p>
                             </div>
                         @endforelse
-                        <div class="modal-footer">
-                            <div class="me-4">
-                                <input name="select-all" style="margin-left: -25%;" type="checkbox"
+                        <div class="modal-footer d-flex justify-content-between">
+                            <div class="ms-3">
+                                <input name="select-all" type="checkbox"
                                     class="form-check-input" id="select-all">
-                                <div class="me-5">
-                                    <label for="select-all" class="text-dark me-5">Pilih semua</label>
-                                </div>
+                                    <label for="select-all" class="text-dark">Pilih semua</label>
                             </div>
-                            <button onclick="deleteSelected()" class="btn  btn-sm text-light ms-5"
+                            <button onclick="deleteSelected()" class="btn  btn-sm text-light me-3"
                                 style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                    class="ms-2 me-2">Hapus
-                                    dari favorit</b></button>
+                                    class="">Hapus dari
+                                    favorit</b></button>
                         </div>
                         </form>
                     </div>

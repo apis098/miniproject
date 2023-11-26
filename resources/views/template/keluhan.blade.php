@@ -2,7 +2,7 @@
 @section('content')
 
 
-<!-- offer section -->
+<!-- offer section --> 
 
 
 

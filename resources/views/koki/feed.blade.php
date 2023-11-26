@@ -269,6 +269,9 @@
         .placeholder-centered::placeholder {
             text-align: center;
         }
+        .search {
+            width: auto;
+        }
 
 
         @media (max-width:800px) {
@@ -312,9 +315,9 @@
             }
         }
     </style>
-
-    <div class="d-flex justify-content-start container" style="overflow-x: hidden">
-        <div class="my-auto mx-auto">
+ 
+    <div class="d-flex justify-content-start " style="width:auto;">
+        <div class="my-auto" style="width: 100%;">
 
             <style>
                 /* Tampilan mobile Kecil Sekali */
@@ -410,7 +413,7 @@
                 }
             </style>
 
-            <ul class="nav mb-2 mx-5 d-flex justify-content-start" id="pills-tab" role="tablist">
+            <ul class="nav mb-2 mx-5 mt-3 d-flex justify-content-start" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link  active " id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
@@ -472,7 +475,7 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <form action="">
-                        <div class="container mt-1">
+                        <div class="mt-1">
                             <div class="search">
                                 <div class="row">
                                     <div class="col-12">

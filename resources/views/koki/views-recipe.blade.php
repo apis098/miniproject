@@ -202,10 +202,11 @@
         }
 
         @media(min-width:992px) {
-            .nav-item a h6{
+            .nav-item a h6 {
                 font-size: 20px;
             }
         }
+
         @media (max-width: 578px) {
             .nav-item {
                 width: 130px;
@@ -228,10 +229,10 @@
             }
         }
     </style>
+ 
 
-
-    <div class="">
-        <div class="my-4 main">
+    <div class="mr-5">
+        <div class="my-4 mr-2 main">
             <ul class="nav mb-2 d-flex justify-content-start" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
@@ -312,7 +313,7 @@
                         @endif
                         <div class="row" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class="card col-lg-4 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
+                                <div class="card col-lg-4 ml-3 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
                                     style="border-radius:15px; border: 1px solid black;">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">

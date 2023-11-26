@@ -266,7 +266,7 @@
         }
     </style>
 
-    <div class="container-fluid py-5">
+    <div class="container py-5">
         <div class="text-center">
             <div class="mx-1">
                 <h1 class="mb-5"
