@@ -5,6 +5,12 @@
         @powerGridStyles
     @endpush
     <style>
+        @media(max-width: 578px) {
+            html {
+                width: fit-content;
+            }
+        }
+
         .table-rounded thead th:first-child {
             border-top-left-radius: 10px;
         }
@@ -220,16 +226,16 @@
         }
 
         /* button{
-                                            background-color: #F7941E;
-                                            border: none;
-                                            height: 45px;
-                                            width: 90px;
-                                            color: #ffffff;
-                                            position: absolute;
-                                            right: 1px;
-                                            top: 0px;
-                                            border-radius: 15px
-                                        } */
+                                                background-color: #F7941E;
+                                                border: none;
+                                                height: 45px;
+                                                width: 90px;
+                                                color: #ffffff;
+                                                position: absolute;
+                                                right: 1px;
+                                                top: 0px;
+                                                border-radius: 15px
+                                            } */
         .search-2 i {
             position: absolute;
             top: 12px;
@@ -269,6 +275,7 @@
         .placeholder-centered::placeholder {
             text-align: center;
         }
+
         .search {
             width: auto;
         }
@@ -315,8 +322,8 @@
             }
         }
     </style>
- 
-    <div class="d-flex justify-content-start " style="width:auto;">
+
+    <div class="">
         <div class="my-auto" style="width: 100%;">
 
             <style>

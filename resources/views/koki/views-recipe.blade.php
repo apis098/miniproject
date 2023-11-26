@@ -1,6 +1,11 @@
 @extends('layouts.nav_koki')
 @section('konten')
     <style>
+        @media(max-width: 578px) {
+            html {
+                width: fit-content;
+            }
+        }
         /* Gaya untuk tombol "Cari" */
         .zoom-effects {
             margin-left: 10px;
@@ -231,7 +236,7 @@
     </style>
  
 
-    <div class="mr-5">
+    <div>
         <div class="my-4 mr-2 main">
             <ul class="nav mb-2 d-flex justify-content-start" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
