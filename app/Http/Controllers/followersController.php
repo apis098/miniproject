@@ -6,6 +6,7 @@ use App\Models\ChMessage;
 use App\Models\favorite;
 use App\Models\followers;
 use App\Models\footer;
+use App\Models\kursus;
 use App\Models\notifications;
 use App\Models\reseps;
 use App\Models\TopUpCategories;
@@ -100,7 +101,8 @@ class followersController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        return view('template.profile-oranglain',compact('categorytopup','upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
+        $courses = kursus::where('users_id', $id)->take(6)->get();
+        return view('template.profile-oranglain',compact('courses','categorytopup','upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)
     {

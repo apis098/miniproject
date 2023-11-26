@@ -467,39 +467,40 @@
                         {{-- start tab 3 --}}
                         <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                             tabindex="0">
-                            {{-- @if ($kursus->count() == 0)
+                            @if ($courses->count() == 0)
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: -3em">
                                 <img src="{{asset('images/data.png')}}" style="width: 15em">
                                 <p><b>Tidak ada data</b></p>
                             </div>
-                        @endif --}}
+                        @endif 
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
-                                {{-- @foreach ($recipes as $r) --}}
+                                @foreach ($courses as $course)
                                 <div class="col-lg-4 my-1">
                                     <div class="card p-3 wid"
                                         style="border-radius: 15px; border: 0.50px black solid">
-                                        <div class="row my-1 ">
+                                        <div class="row my-1 ">                                                
                                             <div class="col-2">
                                                 <img class="rounded-circle mt-1"
                                                     style="max-width:55px; margin-left: 10px;"
-                                                    src="{{ asset('img/3.jpg') }}" width="55px" height="55px"
+                                                    src="{{ asset('storage/'.$course->foto_kursus) }}" width="55px" height="55px"
                                                     alt="dsdaa">
                                             </div>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div class=" col-9 widt">
-                                                <a type="button" class="as" href="">
-                                                    <strong> cara mengocok bumbu dengan baik dan benar </strong>
+                                                <a type="button" class="as" href=""> 
+                                                    <strong> {{ $course->nama_kursus }} </strong>
                                                 </a> <br>
                                                 <!-- Modal -->
 
                                                 <span class="ai">
-                                                    Oleh drs moh hatta.gmail.com
+                                                    Oleh {{ $course->user->name }}
                                                 </span>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                {{-- @endforeach --}}
+                                @endforeach
                             </div>
                             {{-- {{$recipes->links('vendor.pagination.default')}} --}}
                         </div>
