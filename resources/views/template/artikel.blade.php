@@ -34,186 +34,190 @@
         }
 
 
-         @media (max-width: 884px) {
-        div.rigt {
-                    margin-left: 400px;
-                    margin-top: -30px;
-                   }
-                   img.besar {
-    width: 150px;
-    height: 150px;
-  }
+        @media (max-width: 884px) {
+            div.rigt {
+                margin-left: 400px;
+                margin-top: -30px;
+            }
 
-  h5.knn {
-    margin-left: 130px;
-    margin-top: -48px;
-  }
+            img.besar {
+                width: 150px;
+                height: 150px;
+            }
 
-    }
-          /* Tampilan mobile Kecil Sekali */
-          @media (min-width:290px) and (max-width: 340px) {
+            h5.knn {
+                margin-left: 130px;
+                margin-top: -48px;
+            }
+
+        }
+
+        /* Tampilan mobile Kecil Sekali */
+        @media (min-width:290px) and (max-width: 340px) {
 
             button.knn {
-margin-left: 140px;
-}
+                margin-left: 140px;
+            }
 
-            h5.widt{
-       margin-top: -75px;
-    }
+            h5.widt {
+                margin-top: -75px;
+            }
 
-    h5.rigth{
-        margin-left: 70px;
-        margin-top: -48px;
-    }
-    h5.rigt {
-        margin-left: -50px;
-    }
+            h5.rigth {
+                margin-left: 70px;
+                margin-top: -48px;
+            }
 
-    div.rigt {
-                    margin-left: -100px;
-                    margin-top: 40px;
-                   }
+            h5.rigt {
+                margin-left: -50px;
+            }
 
-                   div.wid {
-    margin-left: -3000px;
-  }
+            div.rigt {
+                margin-left: -100px;
+                margin-top: 40px;
+            }
 
-  input.bsar {
-  max-width: 900px;
-  margin-left: -60px;
-  }
+            div.wid {
+                margin-left: -3000px;
+            }
 
-  img.besar {
-    width: 83px;
-    height: 83px;
-  }
+            input.bsar {
+                max-width: 900px;
+                margin-left: -60px;
+            }
 
-   div.knan {
-    margin-left: -16px;
-  }
+            img.besar {
+                width: 83px;
+                height: 83px;
+            }
+
+            div.knan {
+                margin-left: -16px;
+            }
 
 
-                }
-
-         /* untuk tampilan mobile */
-         @media (min-width: 350px) and (max-width: 860px) {
-            h5.widt{
-       margin-top: -75px;
-    }
-
-                   div.rigt {
-                    margin-left: -100px;
-                    margin-top: 40px;
-                   }
-
-                   button.knn {
-margin-left: 140px;
-}
-
-    h5.widt{
-       margin-top: -75px;
-    }
-
-  div.wid {
-    margin-left: -3000px;
-  }
-
-  input.bsar {
-  max-width: 900px;
-  margin-left: -60px;
-  }
-
-  img.besar {
-    width: 83px;
-    height: 83px;
-  }
-
-  div.knan {
-    margin-left: -16px;
-  }
-
-  h5.knn {
-    margin-left: 130px;
-    margin-top: -48px;
-  }
-
-    }
-
-       /* untuk tampilan ipad */
-       @media (min-width: 760px) and (max-width: 1000px) {
-        li.knan {
-            margin-left: 280px;
         }
-        input.bsar {
-  max-width: 400px;
-  margin-left: 40px;
-  margin-top: -10px;
-  }
 
-  button.bsar {
-    margin-top: -10px;
-  }
+        /* untuk tampilan mobile */
+        @media (min-width: 350px) and (max-width: 860px) {
+            h5.widt {
+                margin-top: -75px;
+            }
 
-  h5.widt {
-    margin-top: -5px;
-  }
+            div.rigt {
+                margin-left: -100px;
+                margin-top: 40px;
+            }
 
-  div.kiri {
-   margin-left: 100px;
-  }
+            button.knn {
+                margin-left: 140px;
+            }
+
+            h5.widt {
+                margin-top: -75px;
+            }
+
+            div.wid {
+                margin-left: -3000px;
+            }
+
+            input.bsar {
+                max-width: 900px;
+                margin-left: -60px;
+            }
+
+            img.besar {
+                width: 83px;
+                height: 83px;
+            }
+
+            div.knan {
+                margin-left: -16px;
+            }
+
+            h5.knn {
+                margin-left: 130px;
+                margin-top: -48px;
+            }
+
+        }
+
+        /* untuk tampilan ipad */
+        @media (min-width: 760px) and (max-width: 1000px) {
+            li.knan {
+                margin-left: 280px;
+            }
+
+            input.bsar {
+                max-width: 400px;
+                margin-left: 40px;
+                margin-top: -10px;
+            }
+
+            button.bsar {
+                margin-top: -10px;
+            }
+
+            h5.widt {
+                margin-top: -5px;
+            }
+
+            div.kiri {
+                margin-left: 100px;
+            }
 
 
-    }
+        }
 
 
 
-    @media (min-width: 1024px) {
-        div.rigt {
-                    margin-left: 470px;
-                    margin-top: -30px;
-                   }
+        @media (min-width: 1024px) {
+            div.rigt {
+                margin-left: 470px;
+                margin-top: -30px;
+            }
 
-                   button.knn {
-margin-left: 140px;
-}
+            button.knn {
+                margin-left: 140px;
+            }
 
-img.besar {
-    width: 150px;
-    height: 150px;
-  }
+            img.besar {
+                width: 150px;
+                height: 150px;
+            }
 
-}
+        }
 
 
-          /* untuk tampilan laptop */
-          @media (min-width: 1210px) and (max-width: 4000px) {
+        /* untuk tampilan laptop */
+        @media (min-width: 1210px) and (max-width: 4000px) {
 
-div.pl {
-    margin-left: 600px;
-   margin-top: -30px;
-}
+            div.pl {
+                margin-left: 600px;
+                margin-top: -30px;
+            }
 
-div.right {
-margin-left: 50px;
-}
+            div.right {
+                margin-left: 50px;
+            }
 
-button.knn {
-    right: -2px;
-}
+            button.knn {
+                right: -2px;
+            }
 
-input.wid{
-        width: 500px;
-    }
+            input.wid {
+                width: 500px;
+            }
 
-    input.bsar {
-  max-width: 900px;
-  }
+            input.bsar {
+                max-width: 900px;
+            }
 
-  img.besar {
-    width: 160px;
-    height: 160px;
-  }
-}
+            img.besar {
+                width: 160px;
+                height: 160px;
+            }
+        }
     </style>
     <section class="container">
         <div class="row mt-4 d-flex align-item-center">
@@ -283,575 +287,595 @@ input.wid{
                     <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                     </h3>
                     <div class="d-flex">
-                    <span class="text-nowrap">Oleh {{ $show_resep->User->name }}</span>
-                    <div class="pl">
-                    <div style="" class="d-flex">
-                        @if ($userLog === 2)
-                            @if ($show_resep->User->id === Auth::user()->id)
-                            <div class="d-flex right rigt">
-                                <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
-                                    <button type="submit" class="btn btn-edit ">Edit</button>
-                                </form>
-                                <form action="/koki/resep/{{ $show_resep->id }}" method="post" id="delete-form">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="button" onclick="DeleteData()" class="btn btn-hapus">Hapus</button>
-                                </form>
-                            </div>
-                            @else
-                                <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST" class="like-form">
-                                    @csrf
-                                    @if (
-                                        $userLogin &&
-                                            !$show_resep->likes()->where('user_id', auth()->user()->id)->exists())
-                                        <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 like-button"
-                                            style="border-color: #F7941E;">
-                                            <svg style="color: #F7941E" xmlns="http://www.w3.org/2000/svg" width="21"
-                                                height="21" viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12ZM32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9Z" />
-                                            </svg>
-                                        </button><br>
-                                        <div class="d-flex justify-content-center">
-                                            <small class="me-3 like-count"
-                                                id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
-                                        </div>
-                                    @else
-                                        <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 like-button"
-                                            style="background-color: #F7941E;">
-                                            <svg style="color: #ffffff" xmlns="http://www.w3.org/2000/svg" width="21"
-                                                height="21" viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12ZM32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9Z" />
-                                            </svg>
-                                        </button><br>
-                                        <div class="d-flex justify-content-center">
-                                            <small class="me-3 like-count"
-                                                id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
-                                        </div>
-                                    @endif
-                                </form>
-                                {{-- favorite --}}
-                                <form action="{{ route('favorite.store', $show_resep->id) }}"
-                                    method="POST"class="favorite-form">
-                                    @csrf
-                                    @if (
-                                        $userLogin &&
-                                            !$show_resep->favorite()->where('user_id_from', auth()->user()->id)->exists())
-                                        <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 favorite-button"
-                                            style="border-color: #F7941E;">
-                                            <svg style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg"
-                                                width="22" height="21" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Zm2-3.05l5-2.15l5 2.15V5H7v12.95ZM7 5h10H7Z" />
-                                            </svg>
-                                        </button><br>
-                                        <div class="d-flex justify-content-center">
-                                            <small class="me-3 fav-count"
-                                                id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
-                                        </div>
-                                    @else
-                                        <button type="submit"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 favorite-button"
-                                            style="background-color: #F7941E;">
-                                            <svg style="color: #ffffff" xmlns="http://www.w3.org/2000/svg" width="22"
-                                                height="21" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Zm2-3.05l5-2.15l5 2.15V5H7v12.95ZM7 5h10H7Z" />
-                                            </svg>
-                                        </button><br>
-                                        <div class="d-flex justify-content-center">
-                                            <small class="me-3 fav-count"
-                                                id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
-                                        </div>
-                                    @endif
-                                </form>
-                                <form action="#">
-                                    @if ($gift_check > 0)
-                                        <button type="button" id="gift_icon_btn{{ $show_resep->id }}"
-                                            data-toggle="modal" data-target="#gift"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                            style="background-color: #F7941E;"><svg id="gift_icon{{ $show_resep->id }}"
-                                                style="color:#ffffff;" xmlns="http://www.w3.org/2000/svg" width="22"
-                                                height="21" viewBox="0 0 24 24">
-                                                <g fill="none" stroke="currentColor" stroke-linejoin="round"
-                                                    stroke-width="2">
-                                                    <path stroke-linecap="round"
-                                                        d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                                                    <path
-                                                        d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z" />
-                                                    <path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10" />
-                                                </g>
-                                            </svg>
-                                        </button><br>
-                                    @else
-                                        <button type="button" id="gift_icon_btn{{ $show_resep->id }}"
-                                            data-toggle="modal" data-target="#gift"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                            style="border-color: #F7941E;"><svg id="gift_icon{{ $show_resep->id }}"
-                                                style="color:#F7941E;" xmlns="http://www.w3.org/2000/svg" width="22"
-                                                height="21" viewBox="0 0 24 24">
-                                                <g fill="none" stroke="currentColor" stroke-linejoin="round"
-                                                    stroke-width="2">
-                                                    <path stroke-linecap="round"
-                                                        d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-                                                    <path
-                                                        d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z" />
-                                                    <path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10" />
-                                                </g>
-                                            </svg>
-                                        </button><br>
-                                    @endif
-                                    <div class="d-flex justify-content-center">
-                                        <small id="gift-count{{ $show_resep->id }}"
-                                            class="me-3"">{{ $gift_count }}</small>
-                                    </div>
-                                </form>
-                                <form action="#">
-                                    @if ($share_check > 0)
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#shareModal{{ $show_resep->id }}"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                            id="share_button_icon" style="background-color: #F7941E;"><svg
-                                                id="share_icon" style="color: #ffffff;"
-                                                xmlns="http://www.w3.org/2000/svg" width="22" height="21"
-                                                viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z" />
-                                            </svg>
-                                        </button>
-                                    @else
-                                        <button type="button" data-toggle="modal"
-                                            data-target="#shareModal{{ $show_resep->id }}"
-                                            class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
-                                            id="share_button_icon" style="border-color: #F7941E;"><svg id="share_icon"
-                                                style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg" width="22"
-                                                height="21" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z" />
-                                            </svg>
-                                        </button>
-                                    @endif
-                                    <br>
-                                    <div class="d-flex justify-content-center">
-                                        <small id="shared_count{{ $show_resep->id }}"
-                                            class="me-3"">{{ $show_resep->share_count() }}</small>
-                                    </div>
-                                </form>
-                                {{-- share modal --}}
-                                <style>
-                                    /* Gaya khusus untuk checkbox */
-                                    .select-checkbox {
-                                        display: none;
-                                        /* Sembunyikan checkbox asli */
-                                    }
-
-                                    /* Gaya label checkbox */
-                                    .select-checkbox+label {
-                                        display: inline-block;
-                                        width: 25px;
-                                        /* Sesuaikan lebar sesuai keinginan Anda */
-                                        height: 25px;
-                                        /* Sesuaikan tinggi sesuai keinginan Anda */
-                                        border: 1px solid #000;
-                                        /* Atur garis tepi */
-                                        border-radius: 50%;
-                                        /* Membuat checkbox bundar */
-                                        cursor: pointer;
-                                        /* Ganti kursor saat diarahkan ke checkbox */
-                                        vertical-align: middle;
-                                        /* Atur pemosisian vertikal */
-                                    }
-
-                                    /* Gaya label checkbox yang dicentang */
-                                    .select-checkbox:checked+label {
-                                        background-color: #F7941E;
-                                        /* Warna latar belakang saat dicentang */
-                                        border: none;
-                                    }
-                                </style>
-                                <style>
-                                    .search {
-                                        background-color: #fff;
-                                        padding: 4px;
-                                        border-radius: 5px;
-                                        width: 200%;
-                                    }
-
-                                    .search-1 {
-                                        position: relative;
-                                        width: 100%
-                                    }
-
-                                    .search-1 input {
-                                        height: 45px;
-                                        border: none;
-                                        width: 100%;
-                                        padding-left: 34px;
-                                        padding-right: 10px;
-                                        border-right: 2px solid #eee
-                                    }
-
-                                    .search-1 input:focus {
-                                        border-color: none;
-                                        box-shadow: none;
-                                        outline: none
-                                    }
-
-                                    .search-1 i {
-                                        position: absolute;
-                                        top: 12px;
-                                        left: 5px;
-                                        font-size: 10px;
-                                        color: #eee
-                                    }
-
-                                    ::placeholder {
-                                        color: grey;
-                                        opacity: 1
-                                    }
-
-                                    .search-2 {
-                                        position: relative;
-                                        width: 40%;
-                                        margin-left: -5%
-                                    }
-
-                                    .search-2 input {
-                                        height: 45px;
-                                        border: 0.50px black solid;
-                                        width: 280%;
-                                        border-radius: 15px;
-                                        color: #000;
-                                        padding-left: 18px;
-                                        padding-right: 100px;
-                                        text-align: center
-                                    }
-
-                                    .search-2 input:focus {
-                                        box-shadow: none;
-                                    }
-
-
-                                    .search-2 i {
-                                        position: absolute;
-                                        top: 12px;
-                                        left: -10px;
-                                        font-size: 14px;
-                                        color: #eee
-                                    }
-
-                                    .search-2 button {
-                                        position: absolute;
-                                        right: 0px;
-                                        top: 0px;
-                                        border: none;
-                                        height: 45px;
-                                        background-color: #F7941E;
-                                        color: #fff;
-                                        width: 60px;
-                                    }
-
-
-                                    @media (max-width: 767px) {
-                                        .search-1 input {
-
-                                            border-bottom: 1px solid #0000
-                                        }
-
-                                        .search-2 i {
-                                            left: 4px
-                                        }
-
-                                        .search-2 input {
-                                            padding-left: 34px
-                                        }
-
-                                        .search-2 button {
-                                            height: 30px;
-                                            top: 4px
-                                        }
-
-                                        .d-flex {
-                                            flex-wrap: nowrap;
-                                        }
-
-                                        .col-1 {
-                                            white-space: nowrap;
-                                        }
-
-                                    }
-                                </style>
-                                {{-- modal bagikan --}}
-                                <div class="modal" id="shareModal{{ $show_resep->id }}">
-                                    <form id="share_form{{ $show_resep->id }}"
-                                        action="{{ route('share.recipe', ['recipe_id' => $show_resep->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title ml-3"
-                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                        Bagikan Kepada</h5>
-                                                    <button type="button" class="close mr-2" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body mb-4">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="col-2 mt-2 me-1"
-                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                                            Kepada
-                                                        </div>
-
-                                                        <div class="search" style="border-radius: 15px;">
-                                                            <div class="col-lg-11 mt-2">
-                                                                <div class="search-2"> <i class='bx bxs-map'></i>
-
-                                                                    <input id="search" type="text" name=""
-                                                                        style="text-align: left;" placeholder="Cari...">
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 class="mt-4 ml-3"
-                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                                                        Disarankan</h3>
-                                                    @foreach ($allUser as $user)
-                                                        <div class="element-pencarian">
-                                                            <div class="d-flex mt-4">
-                                                                <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
-                                                                    <a class="foto" href="">
-                                                                        @if ($user->foto)
-                                                                            <img src="{{ asset('storage/' . $user->foto) }}"
-                                                                                class="border rounded-circle me-2"
-                                                                                alt="Avatar" style="height: 55px" />
-                                                                        @else
-                                                                            <img src="{{ asset('images/default.jpg') }}"
-                                                                                class="border rounded-circle me-2"
-                                                                                alt="Avatar" style="height: 55px" />
-                                                                        @endif
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
-                                                                    <div class="nama rounded-3 px-3 py-1">
-                                                                        <a href="" class="text-dark mb-0">
-                                                                            <strong
-                                                                                class="input-name">{{ $user->name }}</strong>
-                                                                        </a>
-                                                                        <a href="" class="text-muted d-block">
-                                                                            <small>{{ $user->email }}</small>
-                                                                        </a>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div
-                                                                    class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
-                                                                    <input type="checkbox" class="select-checkbox"
-                                                                        name="user_id[]"
-                                                                        id="checkbox-{{ $show_resep->id }}-{{ $user->id }}"
-                                                                        value="{{ $user->id }}">
-                                                                    <label
-                                                                        for="checkbox-{{ $show_resep->id }}-{{ $user->id }}"></label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-
-                                                </div>
-                                                <div class="modal-footer d-flex justify-content-center">
-                                                    <button onclick="shareButton({{ $show_resep->id }})"
-                                                        class="btn btn-light fw-bolder text-light col-lg-11"
-                                                        type="submit"
-                                                        style="border-radius: 10px; background-color:#F7941E;">
-                                                        <p class="mt-1 mb-1">Bagikan</p>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                {{-- end share modal --}}
-                                {{-- gift modal --}}
-                                <div class="modal" id="gift">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <form
-                                                action="{{ route('donation.store', ['user_recipient' => $show_resep->user_id, 'resep_id' => $show_resep->id, 'feed_id' => '0']) }}"
-                                                id="gift-form{{ $show_resep->id }}" method="POST">
+                        <span class="text-nowrap">Oleh {{ $show_resep->User->name }}</span>
+                        <div class="pl">
+                            <div style="" class="d-flex">
+                                @if ($userLog === 2)
+                                    @if ($show_resep->User->id === Auth::user()->id)
+                                        <div class="d-flex right rigt">
+                                            <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
+                                                <button type="submit" class="btn btn-edit ">Edit</button>
+                                            </form>
+                                            <form action="/koki/resep/{{ $show_resep->id }}" method="post"
+                                                id="delete-form">
                                                 @csrf
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title ml-3"
-                                                        style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                        Beri Donasi</h5>
-                                                    <button type="button" class="close mr-2" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="d-flex ">
-                                                        <label for="inputKecil" class="col-lg-3 my-1">
-                                                            <div class="card border-2 scale" id="smallGift"
-                                                                data-card-selected="false"
-                                                                style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
-                                                                <img src="{{ asset('img/kecil.png') }}"
-                                                                    class="card-img-top" alt="">
-                                                                <div class=card-body">
-                                                                    <input hidden type="radio" value="5000"
-                                                                        name="giftInput" id="inputKecil">
-                                                                    <div class="text-center">
-                                                                        <a href="#" class="card-title text-center"
-                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Kecil</a>
-                                                                    </div>
-                                                                    <p class="text-center"
-                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                        Rp. 5.000,00</p>
-                                                                </div>
-                                                            </div>
-                                                        </label>
-
-                                                        <label for="mediumInput" class="col-lg-3 my-1">
-                                                            <div class="card border-2 scale" id="mediumGift"
-                                                                data-card-selected="false"
-                                                                style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
-                                                                <img src="{{ asset('img/sedang.png') }}"
-                                                                    class="card-img-top" alt="">
-                                                                <div class=card-body">
-                                                                    <input hidden type="radio" value="10000"
-                                                                        name="giftInput" id="mediumInput">
-                                                                    <div class="text-center">
-                                                                        <a href="#" class="card-title text-center"
-                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Sedang</a>
-                                                                    </div>
-                                                                    <p class="text-center"
-                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                        Rp. 10.000,00</p>
-                                                                </div>
-                                                            </div>
-                                                        </label>
-
-                                                        <label for="extraInput" class="col-lg-3 my-1">
-                                                            <div class="card border-2 scale" id="extraGift"
-                                                                data-card-selected="false"
-                                                                style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
-                                                                <img src="{{ asset('img/besar.png') }}"
-                                                                    class="card-img-top" alt="">
-                                                                <div class=card-body">
-                                                                    <input hidden type="radio" value="20000"
-                                                                        name="giftInput" id="extraInput">
-                                                                    <div class="text-center">
-                                                                        <a href="#" class="card-title text-center"
-                                                                            style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                            Besar</a>
-                                                                    </div>
-                                                                    <p class="text-center"
-                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                        Rp. 20.000,00</p>
-                                                                </div>
-                                                            </div>
-                                                        </label>
-
-                                                        <label for="moreInput" class="col-lg-3 my-1">
-                                                            <button type="button" id="moreGift"
-                                                                class="card border-2 scale" data-card-selected="false"
-                                                                style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                                                <img src="{{ asset('img/lainnya.png') }}"
-                                                                    class="card-img-top" alt="">
-                                                                <div class=card-body">
-
-                                                                    <div class="mx-4 mt-2">
-                                                                        <a href="#" class="card-title "
-                                                                            style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
-                                                                    </div>
-                                                                    <p id="displayNumber" class="text-center"
-                                                                        style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                        Masukkan Nilai</p>
-                                                                </div>
-                                                            </button>
-                                                        </label>
-
-                                                    </div>
-                                                    <div class="d-flex mt-4 ml-3">
-                                                        <input type="number" id="moreInput" name="moreInput"
-                                                            width="500px"
-                                                            class="form-control border-2 rounded-3 me-3 moreInput{{ $show_resep->id }}"
-                                                            style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
-                                                            placeholder="Masukkan jumlah donasi lainya...">
-                                                        <input type="text" id="message" name="message"
-                                                            width="500px"
-                                                            class="form-control border-2 rounded-3 me-3 message{{ $show_resep->id }}"
-                                                            style="margin-top: 12px; border:solid black; border-radius:100px;"
-                                                            placeholder="Tambahkan pesan untuk pembuat...">
-
-                                                        <button type="submit"
-                                                            onclick="giftButton({{ $show_resep->id }})"
-                                                            style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                            class="btn  btn-sm text-light">
-                                                            <b class="me-3 ms-3">Kirim</b></button>
-                                                    </div>
-                                                </div>
+                                                @method('DELETE')
+                                                <button type="button" onclick="DeleteData()"
+                                                    class="btn btn-hapus">Hapus</button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
-                                {{-- end gift modal --}}
-                                {{-- end favorite --}}
-                                {{-- modal --}}
-                                <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="reportModal"
-                                                    style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                    Laporkan resep</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
+                                    @else
+                                        <form action="{{ route('Resep.like', $show_resep->id) }}" method="POST"
+                                            class="like-form">
+                                            @csrf
+                                            @if (
+                                                $userLogin &&
+                                                    !$show_resep->likes()->where('user_id', auth()->user()->id)->exists())
+                                                <button type="submit"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 like-button"
+                                                    style="border-color: #F7941E;">
+                                                    <svg style="color: #F7941E" xmlns="http://www.w3.org/2000/svg"
+                                                        width="21" height="21" viewBox="0 0 256 256">
+                                                        <path fill="currentColor"
+                                                            d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12ZM32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9Z" />
+                                                    </svg>
+                                                </button><br>
+                                                <div class="d-flex justify-content-center">
+                                                    <small class="me-3 like-count"
+                                                        id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
+                                                </div>
+                                            @else
+                                                <button type="submit"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 like-button"
+                                                    style="background-color: #F7941E;">
+                                                    <svg style="color: #ffffff" xmlns="http://www.w3.org/2000/svg"
+                                                        width="21" height="21" viewBox="0 0 256 256">
+                                                        <path fill="currentColor"
+                                                            d="M234 80.12A24 24 0 0 0 216 72h-56V56a40 40 0 0 0-40-40a8 8 0 0 0-7.16 4.42L75.06 96H32a16 16 0 0 0-16 16v88a16 16 0 0 0 16 16h172a24 24 0 0 0 23.82-21l12-96A24 24 0 0 0 234 80.12ZM32 112h40v88H32Zm191.94-15l-12 96a8 8 0 0 1-7.94 7H88v-94.11l36.71-73.43A24 24 0 0 1 144 56v24a8 8 0 0 0 8 8h64a8 8 0 0 1 7.94 9Z" />
+                                                    </svg>
+                                                </button><br>
+                                                <div class="d-flex justify-content-center">
+                                                    <small class="me-3 like-count"
+                                                        id="like-count-{{ $show_resep->id }}">{{ $show_resep->likes }}</small>
+                                                </div>
+                                            @endif
+                                        </form>
+                                        {{-- favorite --}}
+                                        <form action="{{ route('favorite.store', $show_resep->id) }}"
+                                            method="POST"class="favorite-form">
+                                            @csrf
+                                            @if (
+                                                $userLogin &&
+                                                    !$show_resep->favorite()->where('user_id_from', auth()->user()->id)->exists())
+                                                <button type="submit"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 favorite-button"
+                                                    style="border-color: #F7941E;">
+                                                    <svg style="color: #F7941E;" xmlns="http://www.w3.org/2000/svg"
+                                                        width="22" height="21" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Zm2-3.05l5-2.15l5 2.15V5H7v12.95ZM7 5h10H7Z" />
+                                                    </svg>
+                                                </button><br>
+                                                <div class="d-flex justify-content-center">
+                                                    <small class="me-3 fav-count"
+                                                        id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
+                                                </div>
+                                            @else
+                                                <button type="submit"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3 favorite-button"
+                                                    style="background-color: #F7941E;">
+                                                    <svg style="color: #ffffff" xmlns="http://www.w3.org/2000/svg"
+                                                        width="22" height="21" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M5 21V5q0-.825.588-1.413T7 3h10q.825 0 1.413.588T19 5v16l-7-3l-7 3Zm2-3.05l5-2.15l5 2.15V5H7v12.95ZM7 5h10H7Z" />
+                                                    </svg>
+                                                </button><br>
+                                                <div class="d-flex justify-content-center">
+                                                    <small class="me-3 fav-count"
+                                                        id="fav-count-{{ $show_resep->id }}">{{ $show_resep->favorite_count }}</small>
+                                                </div>
+                                            @endif
+                                        </form>
+                                        <form action="#">
+                                            @if ($gift_check > 0)
+                                                <button type="button" id="gift_icon_btn{{ $show_resep->id }}"
+                                                    data-toggle="modal" data-target="#gift"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                                    style="background-color: #F7941E;"><svg
+                                                        id="gift_icon{{ $show_resep->id }}" style="color:#ffffff;"
+                                                        xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                        viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor" stroke-linejoin="round"
+                                                            stroke-width="2">
+                                                            <path stroke-linecap="round"
+                                                                d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                                                            <path
+                                                                d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z" />
+                                                            <path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10" />
+                                                        </g>
+                                                    </svg>
+                                                </button><br>
+                                            @else
+                                                <button type="button" id="gift_icon_btn{{ $show_resep->id }}"
+                                                    data-toggle="modal" data-target="#gift"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                                    style="border-color: #F7941E;"><svg
+                                                        id="gift_icon{{ $show_resep->id }}" style="color:#F7941E;"
+                                                        xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                        viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor" stroke-linejoin="round"
+                                                            stroke-width="2">
+                                                            <path stroke-linecap="round"
+                                                                d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                                                            <path
+                                                                d="M6 4.5A2.5 2.5 0 0 1 8.5 2A3.5 3.5 0 0 1 12 5.5V7H8.5A2.5 2.5 0 0 1 6 4.5Zm12 0A2.5 2.5 0 0 0 15.5 2A3.5 3.5 0 0 0 12 5.5V7h3.5A2.5 2.5 0 0 0 18 4.5Z" />
+                                                            <path stroke-linecap="round" d="M3 7h18v4H3V7Zm9 4v10" />
+                                                        </g>
+                                                    </svg>
+                                                </button><br>
+                                            @endif
+                                            <div class="d-flex justify-content-center">
+                                                <small id="gift-count{{ $show_resep->id }}"
+                                                    class="me-3"">{{ $gift_count }}</small>
+                                            </div>
+                                        </form>
+                                        <form action="#">
+                                            @if ($share_check > 0)
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#shareModal{{ $show_resep->id }}"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                                    id="share_button_icon" style="background-color: #F7941E;"><svg
+                                                        id="share_icon" style="color: #ffffff;"
+                                                        xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                        viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z" />
+                                                    </svg>
                                                 </button>
+                                            @else
+                                                <button type="button" data-toggle="modal"
+                                                    data-target="#shareModal{{ $show_resep->id }}"
+                                                    class="btn btn-light btn-sm text-light rounded-circle p-2 mr-3"
+                                                    id="share_button_icon" style="border-color: #F7941E;"><svg
+                                                        id="share_icon" style="color: #F7941E;"
+                                                        xmlns="http://www.w3.org/2000/svg" width="22" height="21"
+                                                        viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M20.56 3.34a1 1 0 0 0-1-.08l-17 8a1 1 0 0 0-.57.92a1 1 0 0 0 .6.9L8 15.45v6.72L13.84 18l4.76 2.08a.93.93 0 0 0 .4.09a1 1 0 0 0 .52-.15a1 1 0 0 0 .48-.79l1-15a1 1 0 0 0-.44-.89ZM18.1 17.68l-5.27-2.31L16 9.17l-7.65 4.25l-2.93-1.29l13.47-6.34Z" />
+                                                    </svg>
+                                                </button>
+                                            @endif
+                                            <br>
+                                            <div class="d-flex justify-content-center">
+                                                <small id="shared_count{{ $show_resep->id }}"
+                                                    class="me-3"">{{ $show_resep->share_count() }}</small>
                                             </div>
-                                            <form id="FormReportResep" action="{{ route('report.resep', $show_resep->id) }}" method="POST">
+                                        </form>
+                                        {{-- share modal --}}
+                                        <style>
+                                            /* Gaya khusus untuk checkbox */
+                                            .select-checkbox {
+                                                display: none;
+                                                /* Sembunyikan checkbox asli */
+                                            }
+
+                                            /* Gaya label checkbox */
+                                            .select-checkbox+label {
+                                                display: inline-block;
+                                                width: 25px;
+                                                /* Sesuaikan lebar sesuai keinginan Anda */
+                                                height: 25px;
+                                                /* Sesuaikan tinggi sesuai keinginan Anda */
+                                                border: 1px solid #000;
+                                                /* Atur garis tepi */
+                                                border-radius: 50%;
+                                                /* Membuat checkbox bundar */
+                                                cursor: pointer;
+                                                /* Ganti kursor saat diarahkan ke checkbox */
+                                                vertical-align: middle;
+                                                /* Atur pemosisian vertikal */
+                                            }
+
+                                            /* Gaya label checkbox yang dicentang */
+                                            .select-checkbox:checked+label {
+                                                background-color: #F7941E;
+                                                /* Warna latar belakang saat dicentang */
+                                                border: none;
+                                            }
+                                        </style>
+                                        <style>
+                                            .search {
+                                                background-color: #fff;
+                                                padding: 4px;
+                                                border-radius: 5px;
+                                                width: 200%;
+                                            }
+
+                                            .search-1 {
+                                                position: relative;
+                                                width: 100%
+                                            }
+
+                                            .search-1 input {
+                                                height: 45px;
+                                                border: none;
+                                                width: 100%;
+                                                padding-left: 34px;
+                                                padding-right: 10px;
+                                                border-right: 2px solid #eee
+                                            }
+
+                                            .search-1 input:focus {
+                                                border-color: none;
+                                                box-shadow: none;
+                                                outline: none
+                                            }
+
+                                            .search-1 i {
+                                                position: absolute;
+                                                top: 12px;
+                                                left: 5px;
+                                                font-size: 10px;
+                                                color: #eee
+                                            }
+
+                                            ::placeholder {
+                                                color: grey;
+                                                opacity: 1
+                                            }
+
+                                            .search-2 {
+                                                position: relative;
+                                                width: 40%;
+                                                margin-left: -5%
+                                            }
+
+                                            .search-2 input {
+                                                height: 45px;
+                                                border: 0.50px black solid;
+                                                width: 280%;
+                                                border-radius: 15px;
+                                                color: #000;
+                                                padding-left: 18px;
+                                                padding-right: 100px;
+                                                text-align: center
+                                            }
+
+                                            .search-2 input:focus {
+                                                box-shadow: none;
+                                            }
+
+
+                                            .search-2 i {
+                                                position: absolute;
+                                                top: 12px;
+                                                left: -10px;
+                                                font-size: 14px;
+                                                color: #eee
+                                            }
+
+                                            .search-2 button {
+                                                position: absolute;
+                                                right: 0px;
+                                                top: 0px;
+                                                border: none;
+                                                height: 45px;
+                                                background-color: #F7941E;
+                                                color: #fff;
+                                                width: 60px;
+                                            }
+
+
+                                            @media (max-width: 767px) {
+                                                .search-1 input {
+
+                                                    border-bottom: 1px solid #0000
+                                                }
+
+                                                .search-2 i {
+                                                    left: 4px
+                                                }
+
+                                                .search-2 input {
+                                                    padding-left: 34px
+                                                }
+
+                                                .search-2 button {
+                                                    height: 30px;
+                                                    top: 4px
+                                                }
+
+                                                .d-flex {
+                                                    flex-wrap: nowrap;
+                                                }
+
+                                                .col-1 {
+                                                    white-space: nowrap;
+                                                }
+
+                                            }
+                                        </style>
+                                        {{-- modal bagikan --}}
+                                        <div class="modal" id="shareModal{{ $show_resep->id }}">
+                                            <form id="share_form{{ $show_resep->id }}"
+                                                action="{{ route('share.recipe', ['recipe_id' => $show_resep->id]) }}"
+                                                method="POST">
                                                 @csrf
-                                                <div class="modal-body d-flex align-items-center">
-                                                    <!-- Tambahkan kelas "align-items-center" -->
-                                                    @if ($show_resep->foto_resep)
-                                                        <img class="me-2"
-                                                            src="{{ asset('storage/' . $show_resep->foto_resep) }}"
-                                                            width="106px" height="104px" style="border-radius: 50%"
-                                                            alt="">
-                                                    @else
-                                                        <img class="me-2" src="{{ asset('images/default.jpg') }}"
-                                                            width="106px" height="104px" style="border-radius: 50%"
-                                                            alt="">
-                                                    @endif
-                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                            placeholder="Alasan..." id="AlasanReportResep"></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-light text-light" onclick="ButtonReportResep()"
-                                                        style="border-radius: 15px; background-color:#F7941E;"><b
-                                                            class="ms-2 me-2">Laporkan</b></button>
+                                                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title ml-3"
+                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                Bagikan Kepada</h5>
+                                                            <button type="button" class="close mr-2"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body mb-4">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="col-2 mt-2 me-1"
+                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                    Kepada
+                                                                </div>
+
+                                                                <div class="search" style="border-radius: 15px;">
+                                                                    <div class="col-lg-11 mt-2">
+                                                                        <div class="search-2"> <i class='bx bxs-map'></i>
+
+                                                                            <input id="search" type="text"
+                                                                                name="" style="text-align: left;"
+                                                                                placeholder="Cari...">
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <h3 class="mt-4 ml-3"
+                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                                                                Disarankan</h3>
+                                                            @foreach ($allUser as $user)
+                                                                <div class="element-pencarian">
+                                                                    <div class="d-flex mt-4">
+                                                                        <div
+                                                                            class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                            <a class="foto" href="">
+                                                                                @if ($user->foto)
+                                                                                    <img src="{{ asset('storage/' . $user->foto) }}"
+                                                                                        class="border rounded-circle me-2"
+                                                                                        alt="Avatar"
+                                                                                        style="height: 55px" />
+                                                                                @else
+                                                                                    <img src="{{ asset('images/default.jpg') }}"
+                                                                                        class="border rounded-circle me-2"
+                                                                                        alt="Avatar"
+                                                                                        style="height: 55px" />
+                                                                                @endif
+                                                                            </a>
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
+                                                                            <div class="nama rounded-3 px-3 py-1">
+                                                                                <a href="" class="text-dark mb-0">
+                                                                                    <strong
+                                                                                        class="input-name">{{ $user->name }}</strong>
+                                                                                </a>
+                                                                                <a href=""
+                                                                                    class="text-muted d-block">
+                                                                                    <small>{{ $user->email }}</small>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div
+                                                                            class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
+                                                                            <input type="checkbox" class="select-checkbox"
+                                                                                name="user_id[]"
+                                                                                id="checkbox-{{ $show_resep->id }}-{{ $user->id }}"
+                                                                                value="{{ $user->id }}">
+                                                                            <label
+                                                                                for="checkbox-{{ $show_resep->id }}-{{ $user->id }}"></label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+
+                                                        </div>
+                                                        <div class="modal-footer d-flex justify-content-center">
+                                                            <button onclick="shareButton({{ $show_resep->id }})"
+                                                                class="btn btn-light fw-bolder text-light col-lg-11"
+                                                                type="submit"
+                                                                style="border-radius: 10px; background-color:#F7941E;">
+                                                                <p class="mt-1 mb-1">Bagikan</p>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
-                                {{-- end Modal --}}
-                            @endif
-                        @endif
+                                        {{-- end share modal --}}
+                                        {{-- gift modal --}}
+                                        <div class="modal" id="gift">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <form
+                                                        action="{{ route('donation.store', ['user_recipient' => $show_resep->user_id, 'resep_id' => $show_resep->id, 'feed_id' => '0']) }}"
+                                                        id="gift-form{{ $show_resep->id }}" method="POST">
+                                                        @csrf
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title ml-3"
+                                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                Beri Donasi</h5>
+                                                            <button type="button" class="close mr-2"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="d-flex ">
+                                                                <label for="inputKecil" class="col-lg-3 my-1">
+                                                                    <div class="card border-2 scale" id="smallGift"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/kecil.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <input hidden type="radio" value="5000"
+                                                                                name="giftInput" id="inputKecil">
+                                                                            <div class="text-center">
+                                                                                <a href="#"
+                                                                                    class="card-title text-center"
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Kecil</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Rp. 5.000,00</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </label>
+
+                                                                <label for="mediumInput" class="col-lg-3 my-1">
+                                                                    <div class="card border-2 scale" id="mediumGift"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/sedang.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <input hidden type="radio" value="10000"
+                                                                                name="giftInput" id="mediumInput">
+                                                                            <div class="text-center">
+                                                                                <a href="#"
+                                                                                    class="card-title text-center"
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Sedang</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Rp. 10.000,00</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </label>
+
+                                                                <label for="extraInput" class="col-lg-3 my-1">
+                                                                    <div class="card border-2 scale" id="extraGift"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/besar.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+                                                                            <input hidden type="radio" value="20000"
+                                                                                name="giftInput" id="extraInput">
+                                                                            <div class="text-center">
+                                                                                <a href="#"
+                                                                                    class="card-title text-center"
+                                                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Besar</a>
+                                                                            </div>
+                                                                            <p class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Rp. 20.000,00</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </label>
+
+                                                                <label for="moreInput" class="col-lg-3 my-1">
+                                                                    <button type="button" id="moreGift"
+                                                                        class="card border-2 scale"
+                                                                        data-card-selected="false"
+                                                                        style="width: 150px; height: 225px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
+                                                                        <img src="{{ asset('img/lainnya.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class=card-body">
+
+                                                                            <div class="mx-4 mt-2">
+                                                                                <a href="#" class="card-title "
+                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">Lainnya</a>
+                                                                            </div>
+                                                                            <p id="displayNumber" class="text-center"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Masukkan Nilai</p>
+                                                                        </div>
+                                                                    </button>
+                                                                </label>
+
+                                                            </div>
+                                                            <div class="d-flex mt-4 ml-3">
+                                                                <input type="number" id="moreInput" name="moreInput"
+                                                                    width="500px"
+                                                                    class="form-control border-2 rounded-3 me-3 moreInput{{ $show_resep->id }}"
+                                                                    style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
+                                                                    placeholder="Masukkan jumlah donasi lainya...">
+                                                                <input type="text" id="message" name="message"
+                                                                    width="500px"
+                                                                    class="form-control border-2 rounded-3 me-3 message{{ $show_resep->id }}"
+                                                                    style="margin-top: 12px; border:solid black; border-radius:100px;"
+                                                                    placeholder="Tambahkan pesan untuk pembuat...">
+
+                                                                <button type="submit"
+                                                                    onclick="giftButton({{ $show_resep->id }})"
+                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                    class="btn  btn-sm text-light">
+                                                                    <b class="me-3 ms-3">Kirim</b></button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end gift modal --}}
+                                        {{-- end favorite --}}
+                                        {{-- modal --}}
+                                        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="reportModal"
+                                                            style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                            Laporkan resep</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form id="FormReportResep"
+                                                        action="{{ route('report.resep', $show_resep->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <div class="modal-body d-flex align-items-center">
+                                                            <!-- Tambahkan kelas "align-items-center" -->
+                                                            @if ($show_resep->foto_resep)
+                                                                <img class="me-2"
+                                                                    src="{{ asset('storage/' . $show_resep->foto_resep) }}"
+                                                                    width="106px" height="104px"
+                                                                    style="border-radius: 50%" alt="">
+                                                            @else
+                                                                <img class="me-2"
+                                                                    src="{{ asset('images/default.jpg') }}"
+                                                                    width="106px" height="104px"
+                                                                    style="border-radius: 50%" alt="">
+                                                            @endif
+                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                placeholder="Alasan..." id="AlasanReportResep"></textarea>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-light text-light"
+                                                                onclick="ButtonReportResep()"
+                                                                style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                    class="ms-2 me-2">Laporkan</b></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end Modal --}}
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
                 </div>
             </div>
             <div class="ms-3 mt-2">
@@ -940,28 +964,35 @@ input.wid{
             </div>
         </div>
         <style>
+            @media(max-width:578px) {
+              .nav-item a h5 {
+                font-size: 12px;
+                text-align: center;
+              }
+            }
+
         </style>
         <div class="my-5">
-            <ul class="nav mb-3" id="pills-tab" role="tablist">
+            <ul class="nav" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                    <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
                         <h5 style="font-weight: 600; word-warp: break-word;">Deskripsi</h5>
                         <div id="border1" style="width: 100%; height: 100%; border: 1px #F7941E solid;"></div>
                     </a>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                <li class="nav-item itemnav" role="presentation">
+                    <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h5 class="rigt" style="font-weight: 600; word-warp: break-word;">Bahan</h5>
+                        <h5 style="font-weight: 600; word-warp: break-word;">Bahan</h5>
                         <div id="b" style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
                         </div>
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a id="click4" class="nav-link mr-5" id="pills-footer-tab" data-bs-toggle="pill"
+                    <a id="click4" class="nav-link" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-footer" type="button" role="tab" aria-controls="pills-footer"
                         aria-selected="false">
                         <h5 class="" style="font-weight: 600; word-wrap:break-word;">Alat</h5>
@@ -969,11 +1000,11 @@ input.wid{
                             class="mx-auto"></div>
                     </a>
                 </li>
-                <li class="nav-item knan" role="presentation">
-                    <a id="click3" class="nav-link mr-5" id="pills-contact-tab" data-bs-toggle="pill"
+                <li class="nav-item" role="presentation">
+                    <a id="click3" class="nav-link" id="pills-contact-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="knn rigth" style="font-weight: 600; word-warp:break-word;">Langkah - Langkah</h5>
+                        <h5 style="font-weight: 600; word-warp:break-word;">Tutorial</h5>
                         <div id="border3" style="width: 90%; height: 100%; border: 1px #F7941E solid; display: none;"
                             class="kiri"></div>
                     </a>
@@ -1008,31 +1039,31 @@ input.wid{
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     @foreach ($show_resep->langkah as $num => $item_langkah)
-                    <div class="">
-                    <div class="col-12 card-body d-flex flex-row">
-                            <div class=" d-flex flex-column knan" style="position: relative;">
-                                <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3 besar"
-                                    alt="{{ $item_langkah->foto_langkah }}"
-                                    style="border-radius: 10px; border: 1px solid black;" >
-                                <button type="button"
-                                    style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
-                                    class="btn btn-light btn-sm text-light rounded-circle p-2 ml-2">
-                                    <span class="p-2 fw-bolder">{{ $num += 1 }}</span>
-                                </button>
-                            </div>
-                            <div class="my-auto mx-4">
-                                <p style="font-weight: 900;font-size:18px;">{{ $item_langkah->judul_langkah }}</p>
-                                {{ $item_langkah->deskripsi_langkah }}
+                        <div class="">
+                            <div class="col-12 card-body d-flex flex-row">
+                                <div class=" d-flex flex-column knan" style="position: relative;">
+                                    <img src="{{ asset('storage/' . $item_langkah->foto_langkah) }}" class="mt-3 besar"
+                                        alt="{{ $item_langkah->foto_langkah }}"
+                                        style="border-radius: 10px; border: 1px solid black;">
+                                    <button type="button"
+                                        style="background-color:#F7941E; width: 45px; height: 45px; position: absolute; top: 0; left: -30px;"
+                                        class="btn btn-light btn-sm text-light rounded-circle p-2 ml-2">
+                                        <span class="p-2 fw-bolder">{{ $num += 1 }}</span>
+                                    </button>
+                                </div>
+                                <div class="my-auto mx-4">
+                                    <p style="font-weight: 900;font-size:18px;">{{ $item_langkah->judul_langkah }}</p>
+                                    {{ $item_langkah->deskripsi_langkah }}
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
                 <div class="tab-pane fade" id="pills-footer" role="tabpanel" aria-labelledby="pills-footer-tab"
                     tabindex="0">
                     <div class="row mt-5">
                         @foreach ($show_resep->alat as $num => $item_langkah)
-                            <div class="col-lg-4">
+                            <div class="col-lg-4 mb-3">
                                 <div class="card p-3"
                                     style="width: 100%; height: 100%; border-radius: 15px; border: 0.50px black solid;box-shadow: none">
                                     <div class="row my-1">
@@ -1118,7 +1149,7 @@ input.wid{
                                 @csrf
                                 <div class="input-group ">
                                     <input type="text" id="comment_recipe{{ Auth::user()->id }}" name="komentar"
-                                    maxlength="255" {{ $userLog === 1 ? 'disabled' : '' }}
+                                        maxlength="255" {{ $userLog === 1 ? 'disabled' : '' }}
                                         class="form-control rounded-3 kri bsar"
                                         placeholder="{{ $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' }}">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
@@ -1546,10 +1577,9 @@ input.wid{
     </section>
     <script>
         // function report resep
-        function ButtonReportResep()
-        {
+        function ButtonReportResep() {
             $("#FormReportResep").off("submit");
-            $("#FormReportResep").submit(function (e) {
+            $("#FormReportResep").submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
@@ -1561,12 +1591,12 @@ input.wid{
                     contentType: false,
                     success: function success(response) {
                         iziToast.destroy();
-                        if(response.success) {
-                        iziToast.success({
-                            'title': 'Success',
-                            'message': response.message,
-                            'position': 'topCenter'
-                        });
+                        if (response.success) {
+                            iziToast.success({
+                                'title': 'Success',
+                                'message': response.message,
+                                'position': 'topCenter'
+                            });
                         } else {
                             iziToast.error({
                                 'title': 'Error',
