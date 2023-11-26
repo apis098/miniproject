@@ -118,6 +118,13 @@ a:focus {
      object-fit: cover;
 }
 
+.sub_page {
+  width:fit-content;
+}
+html {
+  width: fit-content;
+}
+
 .sub_page .hero_area {
   min-height: auto;
 }
