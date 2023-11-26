@@ -74,6 +74,7 @@
         .scale {
             box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
             transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+            width: 100%;
         }
 
         .scale:hover {
@@ -84,8 +85,13 @@
         .cascading-right {
             margin-right: -50px;
         }
-
+        @media (min-width: 992px) {
+            .cardTopup {
+                width: 435px;
+            }
+        }
         @media (max-width: 991.98px) {
+           
             .cascading-right {
                 margin-right: 0;
             }
@@ -1091,11 +1097,11 @@
                         @csrf
                         <div class="modal-body">
                             @foreach ($categorytopup as $topup)
-                                <div class="col-lg-4 my-3 ms-2">
+                                <div class="col-lg-4 my-3">
                                     <label for="inputanKecil{{ $loop->iteration }}"
-                                        id="topUp{{ $loop->iteration }}" class="card border-2 scale"
+                                        id="topUp{{ $loop->iteration }}" class="card border-2 scale cardTopup"
                                         data-card-selected="false"
-                                        style="width: 435px; height: 85px; border-radius: 15px; border: 1.5px black solid; overflow: hidden;">
+                                        style="height: 85px; border-radius: 15px; border: 1.5px black solid; overflow: hidden;">
                                         <input type="radio" id="inputanKecil{{ $loop->iteration }}"
                                             style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
                                         <div class="d-flex flex-row">
@@ -1114,10 +1120,10 @@
                                 </div>
                             @endforeach
 
-                            <div class="col-lg-3 my-3 ms-2">
-                                <div id="topUpLainya" class="card border-2 scale" id="card"
+                            <div class="col-lg-3 my-3">
+                                <div id="topUpLainya" class="card border-2 scale cardTopup" id="card"
                                     data-card-selected="false"
-                                    style="width: 435px; height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;">
+                                    style="height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;">
                                     <div class="d-flex flex-row">
                                         <a href="" class="text-start pl-2 pt-2"
                                             style="color: black; font-size:10px; font-family:Poppins;">
