@@ -34,18 +34,17 @@
     i.kiri {
         margin-left: 40px;
     }
-    li.kiri {
+    /* li.kiri {
         margin-right: -80px;
-    }
-    li.knan {
-        margin-left: -60px;
-    }
-    li.li {
-        margin-left: -30px;
-    }
+    } */
 
-    li.rigt {
-        margin-left: 10px;
+    /* li.li {
+        padding-right: -190px;
+    } */
+
+    li.knanst {
+        padding-right: -150px;
+        /* margin-top: -48px; */
     }
 
     div.wid {
@@ -56,6 +55,20 @@
     margin-left: 80px;
     margin-top: -65px;
  }
+
+ div.ara {
+    margin-left: -0px;
+ }
+
+   li.try {
+    padding-left: 185px;
+    margin-top: -48px;
+   }
+
+   li.trys {
+    margin-right: 0px;
+    /* margin-top: -48px; */
+   }
     }
 
  /* untuk tampilan mobile */
@@ -82,20 +95,28 @@
     margin-left: 80px;
     margin-top: -65px;
  }
+
+
+ div.ara {
+    margin-left: -0px;
  }
+
+ }
+
+
 
 
      /* untuk tampilan ipad */
      @media (min-width: 760px) and (max-width: 1000px) {
         div.widt{
-            width: 255%;
+            width: 325%;
         }
         i.knn {
         margin-left: 200px;
     }
 
     li.li {
-        margin-left: 15px;
+        margin-left: -5px;
     }
 /*
     div.knns {
@@ -104,6 +125,26 @@
 
      }
 
+     @media (max-width: 884px) {
+    li.li {
+        margin-left: -20px;
+    }
+    }
+
+    @media (min-width: 1024px) {
+        li.try {
+    padding-left: 495px;
+    margin-top: -50px;
+   }
+
+   li.shu {
+    margin-left: -30px;
+   }
+
+   /* li.shuh {
+    margin-left: -40px;
+   } */
+    }
 
  @media (min-width: 1210px) and (max-width: 4000px) {
  div.wid {
@@ -122,7 +163,7 @@
      <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <div class="card my-5 border border-dark widt " style="border-radius: 25px;">
+                <div class="card my-5 border border-dark widt ara" style="border-radius: 25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">
                             @if ($user->foto)
@@ -273,7 +314,7 @@
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $user->followers }}
                                     </span> <br>
-                                    <p class="ms-3">Pengikut</p>
+                                    <p class="ms-3 text-nowrap">Pengikut</p>
                                 </div>
                                 <div class="col-5 my-3">
                                     <i class="fa-solid fa-user-plus fa-2xl kiri knn"></i>
@@ -296,7 +337,8 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item tabs knan li" role="presentation">
+
+        <li class="nav-item tabs knan li knanst shu" role="presentation">
                                 <a id="button-resep-dibuat" class="nav-link mr-4" data-bs-toggle="tab"
                                     data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                                     aria-selected="false">
@@ -308,7 +350,7 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item tabs" role="presentation" style="margin-left: 10px;">
+                            <li class="nav-item tabs shuh" role="presentation" style="margin-left: 10px;">
                                 <a id="button-video-dibuat" class="nav-link mr-5" data-bs-toggle="tab"
                                     data-bs-target="#komentar" type="button" role="tab" aria-controls="komentar"
                                     aria-selected="false">
@@ -321,11 +363,11 @@
                             </li>
 
                             @if ($userLogin->isSuperUser === 'yes')
-                                <li class="nav-item tabs kiri knan li" role="presentation">
+                                <li class="nav-item tabs kiri knan li try trys" role="presentation">
                                     <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
-                                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus
+                                        <h5 class="text-dark ms-2 text-nowrap" style="font-weight: 600; word-wrap: break-word;">Kursus
                                             Dibuat</h5>
                                         <div id="border4" class="ms-1"
                                             style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
@@ -333,11 +375,11 @@
                                     </button>
                                 </li>
                             @else
-                                <li hidden class="nav-item tabs kiri knan li" role="presentation">
+                                <li hidden class="nav-item tabs kiri knan li try trys" role="presentation">
                                     <button id="button-kursus-dibuat" class="nav-link mr-5 yuhu mt-2"
                                         data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                         aria-controls="profile" aria-selected="false">
-                                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Kursus
+                                        <h5 class="text-dark ms-2 text-nowrap" style="font-weight: 600; word-wrap: break-word;">Kursus
                                             Dibuat</h5>
                                         <div id="border4" class="ms-1"
                                             style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
@@ -472,13 +514,13 @@
                                 <img src="{{asset('images/data.png')}}" style="width: 15em">
                                 <p><b>Tidak ada data</b></p>
                             </div>
-                        @endif 
+                        @endif
                             <div class="row mb-5" style="margin-top: -50px; margin-left: -25px;">
                                 @foreach ($courses as $course)
                                 <div class="col-lg-4 my-1">
                                     <div class="card p-3 wid"
                                         style="border-radius: 15px; border: 0.50px black solid">
-                                        <div class="row my-1 ">                                                
+                                        <div class="row my-1 ">
                                             <div class="col-2">
                                                 <img class="rounded-circle mt-1"
                                                     style="max-width:55px; margin-left: 10px;"
@@ -487,7 +529,7 @@
                                             </div>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <div class=" col-9 widt">
-                                                <a type="button" class="as" href=""> 
+                                                <a type="button" class="as" href="">
                                                     <strong> {{ $course->nama_kursus }} </strong>
                                                 </a> <br>
                                                 <!-- Modal -->
