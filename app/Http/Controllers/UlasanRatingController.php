@@ -7,7 +7,7 @@ use App\Models\UlasanKursus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\notifications;
 
 class UlasanRatingController extends Controller
 {
@@ -48,7 +48,7 @@ class UlasanRatingController extends Controller
       if ($request->rating != null) {
         $rating = $request->rating;
       }
-      UlasanKursus::create([
+      $ulasan = UlasanKursus::create([
         "course_id" => $course,
         "chef_id" => $chef,
         "user_id" => $user,
@@ -63,6 +63,17 @@ class UlasanRatingController extends Controller
       $edit_rating->rating = $hasil;
       $edit_rating->rating_asli = $result;
       $edit_rating->save();
+      // create notification
+      $create_notification = notifications::create([
+        'ulasan_id' => $ulasan->id,
+        'user_id' => $ulasan->chef->id,
+        'notification_from' => Auth::user()->id,
+        'message' => 'Kursus anda telah diulas oleh murid anda!',
+        'categories' => 'ulasan kursus',
+      ]);
+      $update = notifications::find($create_notification->id);
+      $update->route = '/status-baca/ulasan/'.$create_notification->id;
+      $update->save();
       return redirect()->back()->with('success', 'Sukses memberikan ulasan pada kursus ini!');
     }
 

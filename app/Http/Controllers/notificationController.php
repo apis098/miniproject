@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class notificationController extends Controller
 {
+    public function ulasan($id) {
+        $notification = notifications::findOrFail($id);
+        $notification->status = "sudah";
+        $notification->save();
+        $ulasan = UlasanKursus::findOrFail($notification->ulasan_id);
+        return redirect('/detail_kursus/'.$ulasan->course_id);
+    }
     public function kursus($id)
     {
         $notification = notifications::findOrFail($id);
