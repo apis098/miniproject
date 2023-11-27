@@ -87,13 +87,23 @@ class UlasanRatingController extends Controller
         if ($validasi->errors()->first()) {
             return redirect()->back()->with("error", $validasi->errors()->first());
         }
-        UlasanKursus::create([
+        $ulasan = UlasanKursus::create([
             "course_id" => $course,
             "user_id" => $user,
             "chef_teacher_id" => Auth::user()->id,
             "parent_id" => $parent,
             "ulasan" => $request->ulasan,
         ]);
+        // create notification
+        $notifikasi = notifications::create([
+          'user_id' => $user,
+          'notification_from' => Auth::user()->id,
+          'ulasan_id' => $ulasan->id,
+          'message' => 'Ulasan anda telah dibalas oleh koki.',
+        ]);
+        $update = notifications::findOrFail($notifikasi->id);
+        $update->route = '/status-baca/ulasan/'.$notifikasi->id;
+        $update->save();
         return redirect()->back()->with('success', 'Sukses membalas ulasan!');
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\notifications;
 use Illuminate\Http\Request;
+use App\Models\UlasanKursus;
 
 class notificationController extends Controller
 {
