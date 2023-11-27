@@ -249,14 +249,12 @@
                     tabindex="0">
                     <div class="mt-1 mx-auto" style="margin-top: -35px; margin-left: -5px; ">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border: 1px solid black;border-radius: 15px;height:50px">
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="" method="GET">
                                                 <input type="text" id="search-resep-sendiri" name="resep" autofocus
                                                     placeholder="Cari Kursusmu">
-                                                <button type="submit" class=" zoom-effects cari2"><svg
+                                                <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
@@ -264,9 +262,6 @@
                                                     </svg></button>
                                             </form>
                                         </div>
-
-                                    </div>
-                                </div>
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -373,14 +368,13 @@
                     {{-- start tab 2 --}}
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border: 1px solid black;border-radius:15px;height:50px">
+
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari Kursusmu">
-                                                <button type="submit" class=" zoom-effects cari2"><svg
+                                                <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
@@ -388,9 +382,6 @@
                                                     </svg></button>
                                             </form>
                                         </div>
-
-                                    </div>
-                                </div>
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -414,14 +405,12 @@
                     {{-- start tab 3 --}}
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border: 1px solid black;border-radius:15px;height:50px;">
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari Kursusmu">
-                                                <button type="submit" class=" zoom-effects cari2"><svg
+                                                <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
@@ -429,9 +418,6 @@
                                                     </svg></button>
                                             </form>
                                         </div>
-
-                                    </div>
-                                </div>
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -528,14 +514,13 @@
                     {{-- start tab 3 --}}
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border-radius:15px; border:1px solid black;height:50px;">
+
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari Kursusmu">
-                                                <button type="submit" class=" zoom-effects cari2"><svg
+                                                <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
@@ -544,8 +529,6 @@
                                             </form>
                                         </div>
 
-                                    </div>
-                                </div>
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
