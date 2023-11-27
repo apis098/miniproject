@@ -4,36 +4,330 @@
     @push('style')
         @powerGridStyles
     @endpush
-    <style>
-        @media(max-width: 578px) {
-            html {
-                width: fit-content;
+    <!--<style>
+            @media(max-width: 578px) {
+                html {
+                    width: fit-content;
+                }
             }
-        }
 
-        .table-rounded thead th:first-child {
-            border-top-left-radius: 10px;
-        }
+            .table-rounded thead th:first-child {
+                border-top-left-radius: 10px;
+            }
 
-        .table-rounded thead th:last-child {
-            border-top-right-radius: 10px;
-        }
+            .table-rounded thead th:last-child {
+                border-top-right-radius: 10px;
+            }
 
-        .table-rounded tbody tr:last-child td:first-child {
-            border-bottom-left-radius: 10px;
-        }
+            .table-rounded tbody tr:last-child td:first-child {
+                border-bottom-left-radius: 10px;
+            }
 
-        .table-rounded tbody tr:last-child td:last-child {
-            border-bottom-right-radius: 10px;
-        }
+            .table-rounded tbody tr:last-child td:last-child {
+                border-bottom-right-radius: 10px;
+            }
 
-        .btn-group-vertical {
-            display: flex;
-            flex-direction: column;
-        }
+            .btn-group-vertical {
+                display: flex;
+                flex-direction: column;
+            }
 
-        .zoom-effects:hover {
-            transform: scale(0.97);
+            .zoom-effects:hover {
+                transform: scale(0.97);
+            }
+
+            .intro-1 {
+                font-size: 20px
+            }
+
+            .close {
+                color: #fff
+            }
+
+            .close:hover {
+                color: #fff
+            }
+
+            .intro-2 {
+                font-size: 13px
+            }
+
+            .ah {
+                background-color: #fff;
+            }
+
+            .table-custom {
+                text-align: center;
+            }
+
+            .table-custom {
+                text-align: center;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+            }
+
+            .table-custom td {
+                padding-top: 30px;
+                padding-bottom: 30px;
+                width: 195px;
+                border-top: 1px solid black;
+                border-bottom: 1px solid black;
+                border-left: none;
+                border-right: none;
+                top: 10px;
+                overflow: hidden;
+                font-weight: bolder;
+            }
+
+            .table-custom th {
+                padding: 10px;
+                width: 245px;
+                background-color: #F7941E;
+                margin-bottom: 50px;
+                color: #fff;
+            }
+
+            .table-custom thead {
+                margin-bottom: 50px;
+            }
+
+            .table-custom td:first-child {
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+
+            .table-custom td:last-child {
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            .table-custom th:first-child {
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+
+            .table-custom th:last-child {
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+
+            tr {
+                padding: 30px;
+            }
+
+            .yuhu {
+                background: none;
+                color: inherit;
+                border: none;
+                padding: 0;
+                font: inherit;
+                cursor: pointer;
+                outline: inherit;
+            }
+
+            .btn-edit {
+                background: #F7941E;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 10px;
+                color: white;
+                font-size: 18px;
+                font-family: 'poppins';
+                font-weight: 500;
+                word-wrap: break-word;
+                border: none;
+                letter-spacing: 0.20px;
+            }
+
+            .btn-hapus {
+                width: 100%;
+                height: 100%;
+                background-color: white;
+                font-size: 17px;
+                font-family: 'Poppins';
+                font-weight: 500;
+                letter-spacing: 0.20px;
+                word-wrap: break-word;
+                color: black;
+                border-radius: 10px;
+                margin-left: 10px;
+                border: 0.50px black solid
+            }
+
+            .garis {
+                border-bottom: #F7941E 2px solid;
+            }
+
+            .fa-circle {}
+
+
+
+
+            .search {
+                background-color: #fff;
+                padding: 0px 15px;
+                border-radius: 5px;
+                max-width: 1000px;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
+
+            .search-1 {
+                position: relative;
+                width: 100%
+            }
+
+            .search-1 input {
+                height: 45px;
+                border: none;
+                width: 100%;
+                padding-left: 25px;
+                padding-right: 10px;
+                border-right: 2px solid #eee
+            }
+
+            .search-1 input:focus {
+                border-color: none;
+                box-shadow: none;
+                outline: none
+            }
+
+            .search-1 i {
+                position: absolute;
+                top: 12px;
+                left: 5px;
+                font-size: 24px;
+                color: #eee
+            }
+
+            ::placeholder {
+                color: #eee;
+                opacity: 1
+            }
+
+            .search-2 {
+                position: relative;
+                width: 100%;
+            }
+
+            .search-2 input {
+                height: 35px;
+                border: none;
+                border-radius: 15px;
+                width: 100%;
+
+
+
+            }
+
+            .search-2 input:focus {
+                border-color: none;
+                box-shadow: none;
+                outline: none
+            }
+
+            /* button{
+                                                    background-color: #F7941E;
+                                                    border: none;
+                                                    height: 45px;
+                                                    width: 90px;
+                                                    color: #ffffff;
+                                                    position: absolute;
+                                                    right: 1px;
+                                                    top: 0px;
+                                                    border-radius: 15px
+                                                } */
+            .search-2 i {
+                position: absolute;
+                top: 12px;
+                left: -10px;
+                font-size: 24px;
+                color: #eee
+            }
+
+            .cari {
+                position: absolute;
+                top: -2px;
+                border: none;
+                height: 38px;
+                background-color: #F7941E;
+                color: #fff;
+                margin-left: -6%;
+                width: 60px;
+                box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+                border-radius: 15px;
+            }
+
+            .cari2 {
+                position: absolute;
+                top: -2px;
+                border: none;
+                height: 38px;
+                background-color: #F7941E;
+                color: #fff;
+                width: 60px;
+                box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+                border-radius: 15px;
+                margin-left: -40px;
+            }
+
+
+
+            .placeholder-centered::placeholder {
+                text-align: center;
+            }
+
+            .search {
+                width: auto;
+            }
+
+
+            @media (max-width:800px) {
+                .search-1 input {
+                    border-right: none;
+                    border-bottom: 1px solid #eee
+                }
+
+                .search-2 i {
+                    left: 4px
+                }
+
+                .search-2 input {
+                    padding-left: 34px
+                }
+
+                .search-2 button {
+                    height: 37px;
+                    top: 5px
+                }
+
+                .samping {
+                    margin-right: 50px;
+                }
+            }
+
+            @media (max-width:375px) {
+                .samping {
+                    margin-right: auto;
+                }
+            }
+
+            @media(max-width:475px) {
+                .nav-item {
+                    width: 100px;
+                    text-align: center;
+                }
+
+                .nav-item a h5 {
+                    font-size: 14px;
+                }
+            }
+        </style>-->
+    <style>
+        /* Gaya untuk tombol "Cari" */
+        .zoom-effects {
+            margin-left: 10px;
+            /* Tambahkan jarak antara input dan tombol */
+            /* Selain itu, Anda dapat menambahkan properti lain sesuai keinginan Anda */
         }
 
         .intro-1 {
@@ -56,117 +350,17 @@
             background-color: #fff;
         }
 
-        .table-custom {
-            text-align: center;
-        }
-
-        .table-custom {
-            text-align: center;
-            border-collapse: separate;
-            border-spacing: 0px 15px;
-        }
-
-        .table-custom td {
-            padding-top: 30px;
-            padding-bottom: 30px;
-            width: 195px;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            border-left: none;
-            border-right: none;
-            top: 10px;
-            overflow: hidden;
-            font-weight: bolder;
-        }
-
-        .table-custom th {
-            padding: 10px;
-            width: 245px;
-            background-color: #F7941E;
-            margin-bottom: 50px;
-            color: #fff;
-        }
-
-        .table-custom thead {
-            margin-bottom: 50px;
-        }
-
-        .table-custom td:first-child {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-
-        .table-custom td:last-child {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        .table-custom th:first-child {
-            border-top-left-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-
-        .table-custom th:last-child {
-            border-top-right-radius: 15px;
-            border-bottom-right-radius: 15px;
-        }
-
-        tr {
-            padding: 30px;
-        }
-
-        .yuhu {
-            background: none;
-            color: inherit;
-            border: none;
-            padding: 0;
-            font: inherit;
-            cursor: pointer;
-            outline: inherit;
-        }
-
-        .btn-edit {
-            background: #F7941E;
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 10px;
-            color: white;
-            font-size: 18px;
-            font-family: 'poppins';
-            font-weight: 500;
-            word-wrap: break-word;
-            border: none;
-            letter-spacing: 0.20px;
-        }
-
-        .btn-hapus {
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            font-size: 17px;
-            font-family: 'Poppins';
-            font-weight: 500;
-            letter-spacing: 0.20px;
-            word-wrap: break-word;
-            color: black;
-            border-radius: 10px;
-            margin-left: 10px;
-            border: 0.50px black solid
-        }
-
         .garis {
             border-bottom: #F7941E 2px solid;
         }
-
-        .fa-circle {}
-
-
 
 
         .search {
             background-color: #fff;
             padding: 0px 15px;
             border-radius: 5px;
-            max-width: 1000px;
+            width: 76%;
+            height: 10%;
             border-radius: 15px;
             border: 0.50px black solid;
         }
@@ -252,7 +446,7 @@
             background-color: #F7941E;
             color: #fff;
             margin-left: -6%;
-            width: 60px;
+            width: 90px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
@@ -260,6 +454,7 @@
         .cari2 {
             position: absolute;
             top: -2px;
+            right: -20px;
             border: none;
             height: 38px;
             background-color: #F7941E;
@@ -267,21 +462,9 @@
             width: 60px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
-            margin-left: -40px;
         }
 
-
-
-        .placeholder-centered::placeholder {
-            text-align: center;
-        }
-
-        .search {
-            width: auto;
-        }
-
-
-        @media (max-width:800px) {
+        @media (min-width:320) (max-width:768px) {
             .search-1 input {
                 border-right: none;
                 border-bottom: 1px solid #eee
@@ -292,133 +475,141 @@
             }
 
             .search-2 input {
-                padding-left: 34px
+                padding-left: 1px
             }
 
             .search-2 button {
                 height: 37px;
-                top: 5px
+                left: 57%;
+                width: 20px;
             }
 
-            .samping {
-                margin-right: 50px;
-            }
-        }
-
-        @media (max-width:375px) {
-            .samping {
-                margin-right: auto;
+            .cari2 {
+                right: 16px;
             }
         }
 
-        @media(max-width:475px) {
+        @media(max-width: 578px) {
             .nav-item {
-                width: 100px;
+                width: 50%;
                 text-align: center;
             }
+        }
 
+        @media(max-width: 375px) {
+            .btn-search {
+                font-size: 10px;
+            }
+        }
+
+        @media(max-width: 320px) {
             .nav-item a h5 {
-                font-size: 14px;
+                font-size: 16px;
+            }
+
+            .btn-search {
+                font-size: 8px;
             }
         }
     </style>
 
-    <div class="">
-        <div class="my-auto" style="width: 100%;">
 
-            <style>
-                /* Tampilan mobile Kecil Sekali */
-                @media (min-width:290px) and (max-width: 340px) {
-                    a.kiri {
-                        margin-left: 90px;
+    <div>
+        <div class="my-4 mr-2 main">
+            <!--
+                <style>
+                    /* Tampilan mobile Kecil Sekali */
+                    @media (min-width:290px) and (max-width: 340px) {
+                        a.kiri {
+                            margin-left: 90px;
+                        }
+
+                        button.atas {
+                            margin-top: -6px;
+                        }
+
+                        svg.kanan {
+                            /* margin-right : 100%; */
+                            /* margin-top: px; */
+                            margin-right: -100px;
+                        }
+
+                        button.kanan {
+                            margin-right: -40px;
+                        }
+
+                        video.besar {
+                            width: 450%;
+                        }
+
+                        div.col-9 {
+                            margin-left: 20px;
+                        }
+
+                        div.tek {
+                            width: 127%;
+                        }
+
+                        a.tabst {
+                            margin-left: -40px;
+                        }
                     }
 
-                    button.atas {
-                        margin-top: -6px;
+                    /* untuk tampilan mobile */
+                    @media (min-width: 350px) and (max-width: 860px) {
+                        a.kiri {
+                            margin-left: 90px;
+                        }
+
+                        button.atas {
+                            margin-top: -6px;
+                        }
+
+                        svg.kanan {
+                            margin-left: 200%;
+                        }
+
+                        button.kanan {
+                            margin-right: -60px;
+                        }
+
+                        video.besar {
+                            width: 450%;
+                        }
+
+                        div.col-9 {
+                            margin-left: 20px;
+                        }
+
+                        div.tek {
+                            width: 127%;
+                        }
+
+                        button.rights {
+                            margin-left: -100px;
+                        }
+
+
                     }
 
-                    svg.kanan {
-                        /* margin-right : 100%; */
-                        /* margin-top: px; */
-                        margin-right: -100px;
+                    /* untuk tampilan ipad */
+                    @media (min-width: 760px) and (max-width: 1000px) {}
+
+                    /* untuk tampilan laptop */
+                    @media (min-width: 1210px) and (max-width: 4000px) {
+                        video.besar {
+                            width: 100%;
+                        }
+
+                        div.tek {
+                            max-width: 93%;
+                        }
+
+                        a.rigt {
+                            margin-left: 40px;
+                        }
                     }
-
-                    button.kanan {
-                        margin-right: -40px;
-                    }
-
-                    video.besar {
-                        width: 450%;
-                    }
-
-                    div.col-9 {
-                        margin-left: 20px;
-                    }
-
-                    div.tek {
-                        width: 127%;
-                    }
-
-                    a.tabst {
-                        margin-left: -40px;
-                    }
-                }
-
-                /* untuk tampilan mobile */
-                @media (min-width: 350px) and (max-width: 860px) {
-                    a.kiri {
-                        margin-left: 90px;
-                    }
-
-                    button.atas {
-                        margin-top: -6px;
-                    }
-
-                    svg.kanan {
-                        margin-left: 200%;
-                    }
-
-                    button.kanan {
-                        margin-right: -60px;
-                    }
-
-                    video.besar {
-                        width: 450%;
-                    }
-
-                    div.col-9 {
-                        margin-left: 20px;
-                    }
-
-                    div.tek {
-                        width: 127%;
-                    }
-
-                    button.rights {
-                        margin-left: -100px;
-                    }
-
-
-                }
-
-                /* untuk tampilan ipad */
-                @media (min-width: 760px) and (max-width: 1000px) {}
-
-                /* untuk tampilan laptop */
-                @media (min-width: 1210px) and (max-width: 4000px) {
-                    video.besar {
-                        width: 100%;
-                    }
-
-                    div.tek {
-                        max-width: 93%;
-                    }
-
-                    a.rigt {
-                        margin-left: 40px;
-                    }
-                }
-            </style>
+                </style> -->
 
             <ul class="nav mb-2 mx-5 mt-3 d-flex justify-content-start" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -479,27 +670,25 @@
 
 
             <div class="tab-content mb-5 mx-5" id="pills-tabContent">
-                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
+                <div class="tab-pane fade show active ml-3 mr-4" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <form action="">
                         <div class="mt-1">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="/admin/laporan-pengguna" method="GET">
-                                                <input type="text" id="search-resep" name="resep" autofocus
-                                                    placeholder="Cari...">
-                                                <button type="submit" class="zoom-effects cari2 atas"><svg
-                                                        xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                                        viewBox="0 0 24 24">
-                                                        <path fill="currentColor"
-                                                            d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
-                                                    </svg></button>
-                                            </form>
-                                        </div>
-                                    </div>
+                            <div class="search-1" style="border: 1px solid black;border-radius:15px;height:50px;">
+
+                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                    <form action="/admin/laporan-pengguna" method="GET">
+                                        <input type="text" id="search-resep" name="resep" autofocus
+                                            placeholder="Cari...">
+                                        <button type="submit" class="zoom-effects cari2 atas" style="height: 53px;"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z" />
+                                            </svg></button>
+                                    </form>
                                 </div>
+
                             </div>
                         </div>
                     </form>
@@ -678,19 +867,18 @@
                     </div>
                 </div>
                 {{-- end --}}
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
+                <div class="tab-pane fade ml-3 mr-4" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
 
                     <form action="">
-                        <div class="container mt-1">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                        <div class="mt-1">
+                            <div class="search-1" style="border: 1px solid black;border-radius:15px;height:50px;">
+
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari...">
-                                                <button type="submit" class="zoom-effects cari2 atas"><svg
+                                                <button type="submit" class="zoom-effects cari2 atas" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -698,8 +886,7 @@
                                                     </svg></button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -777,18 +964,17 @@
 
                 </div>
                 {{-- end --}}
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
+                <div class="tab-pane fade ml-3 mr-4" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <form action="">
-                        <div class="container mt-1">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                        <div class="mt-1">
+                            <div class="search-1" style="border: 1px solid black; border-radius:15px;height:50px;">
+
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
                                                     placeholder="Cari...">
-                                                <button type="submit" class="zoom-effects cari2 atas"><svg
+                                                <button type="submit" class="zoom-effects cari2 atas" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 24 24">
                                                         <path fill="currentColor"
@@ -796,8 +982,7 @@
                                                     </svg></button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </form>

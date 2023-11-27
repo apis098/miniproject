@@ -1,5 +1,6 @@
 @extends('layouts.nav_koki')
 @section('konten')
+<!--
     <style>
         @media(max-width: 578px) {
             html {
@@ -233,17 +234,214 @@
                 text-align: center;
             }
         }
+    </style> -->
+    <style>
+        /* Gaya untuk tombol "Cari" */
+        .zoom-effects {
+            margin-left: 10px;
+            /* Tambahkan jarak antara input dan tombol */
+            /* Selain itu, Anda dapat menambahkan properti lain sesuai keinginan Anda */
+        }
+
+        .intro-1 {
+            font-size: 20px
+        }
+
+        .close {
+            color: #fff
+        }
+
+        .close:hover {
+            color: #fff
+        }
+
+        .intro-2 {
+            font-size: 13px
+        }
+
+        .ah {
+            background-color: #fff;
+        }
+
+        .garis {
+            border-bottom: #F7941E 2px solid;
+        }
+
+
+        .search {
+            background-color: #fff;
+            padding: 0px 15px;
+            border-radius: 5px;
+            width: 76%;
+            height: 10%;
+            border-radius: 15px;
+            border: 0.50px black solid;
+        }
+
+        .search-1 {
+            position: relative;
+            width: 100%
+        }
+
+        .search-1 input {
+            height: 45px;
+            border: none;
+            width: 100%;
+            padding-left: 25px;
+            padding-right: 10px;
+            border-right: 2px solid #eee
+        }
+
+        .search-1 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        .search-1 i {
+            position: absolute;
+            top: 12px;
+            left: 5px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        ::placeholder {
+            color: #eee;
+            opacity: 1
+        }
+
+        .search-2 {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-2 input {
+            height: 35px;
+            border: none;
+            border-radius: 15px;
+            width: 100%;
+
+
+
+        }
+
+        .search-2 input:focus {
+            border-color: none;
+            box-shadow: none;
+            outline: none
+        }
+
+        /* button{
+                                            background-color: #F7941E;
+                                            border: none;
+                                            height: 45px;
+                                            width: 90px;
+                                            color: #ffffff;
+                                            position: absolute;
+                                            right: 1px;
+                                            top: 0px;
+                                            border-radius: 15px
+                                        } */
+        .search-2 i {
+            position: absolute;
+            top: 12px;
+            left: -10px;
+            font-size: 24px;
+            color: #eee
+        }
+
+        .cari {
+            position: absolute;
+            top: -2px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            margin-left: -6%;
+            width: 90px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
+        }
+
+        .cari2 {
+            position: absolute;
+            top: -2px;
+            right: -20px;
+            border: none;
+            height: 38px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 60px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
+        }
+
+        @media (min-width:320) (max-width:768px) {
+            .search-1 input {
+                border-right: none;
+                border-bottom: 1px solid #eee
+            }
+
+            .search-2 i {
+                left: 4px
+            }
+
+            .search-2 input {
+                padding-left: 1px
+            }
+
+            .search-2 button {
+                height: 37px;
+                left: 57%;
+                width: 20px;
+            }
+
+            .cari2 {
+                right: 16px;
+            }
+        }
+        @media(min-width: 600px) {
+            br {
+                display: none;
+            }
+        }
+        @media(max-width: 578px) {
+            .nav-item {
+                width: 33%;
+                text-align: center;
+                justify-content:center;
+            }
+            br {
+                display: block;
+            }
+        }
+        @media(max-width: 375px) {
+            .btn-search {
+                font-size: 10px;
+            }
+        }
+        @media(max-width: 320px) {
+            .nav-item a h5 {
+                font-size: 16px;
+            }
+            .btn-search {
+                font-size: 8px;
+            }
+        }
+
     </style>
- 
+
+
 
     <div>
-        <div class="my-4 mr-2 main">
-            <ul class="nav mb-2 d-flex justify-content-start" id="pills-tab" role="tablist">
+        <div class="my-4 mr-5 main">
+            <ul class="nav mb-2 mx-md-5 mx-sm-3 mt-3 d-flex justify-content-start"  id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h6 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Dibuat</h6>
+                        <h5 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep <br> Dibuat</h6>
                         <div id="border1" class="ms-1" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -253,7 +451,7 @@
                     <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h6 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Disukai</h6>
+                        <h5 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep <br> Disukai</h6>
                         <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
                             hidden></div>
                     </a>
@@ -263,7 +461,7 @@
                     <a id="a-tab" class="nav-link" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h6 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Disimpan</h6>
+                        <h5 class="text-dark text-li" style="font-weight: 600; word-wrap: break-word;">Resep Disimpan</h6>
                         <div id="pp" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                         </div>
                     </a>
@@ -272,19 +470,18 @@
 
 
 
-            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+            <div class="tab-content mb-5 mx-5" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
-                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px; ">
+                    <div class="container mt-1">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border:1px solid black;height:50px;border-radius:15px;">
+
                                         <div class="search-2"><i class='bx bxs-map'></i>
                                             <form action="#" method="GET">
                                                 <input type="text" id="nama_resep_dibuat"
                                                     placeholder="Search For Something">
-                                                <button type="button" class="zoom-effects cari2"
+                                                <button type="button" class="zoom-effects cari2" style="height: 53px;"
                                                     onclick="cariResepDibuat()">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
@@ -294,8 +491,7 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -396,14 +592,13 @@
                     tabindex="0">
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border: 1px solid black; border-radius:15px; height:50px;">
+
                                         <div class="search-2"><i class='bx bxs-map'></i>
                                             <form action="#" method="GET">
                                                 <input type="text" id="nama_resep_disukai" name="profil"
                                                     placeholder="Search For Something">
-                                                <button type="submit" class="zoom-effects cari2">
+                                                <button type="submit" class="zoom-effects cari2" style="height: 53px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
@@ -412,8 +607,7 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -517,14 +711,13 @@
                     tabindex="0">
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
                         <div class="d-flex">
-                            <div class="search">
-                                <div class="row">
-                                    <div class="col-12">
+                            <div class="search-1" style="border: 1px solid black; border-radius: 15px; height:50px;">
+
                                         <div class="search-2"><i class='bx bxs-map'></i>
                                             <form action="#" method="GET">
                                                 <input type="text" id="nama_resep_favorite" name="profil"
                                                     placeholder="Search For Something">
-                                                <button type="submit" class="zoom-effects cari2">
+                                                <button type="submit" class="zoom-effects cari2" style="height: 53px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
@@ -533,8 +726,7 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </div>
-                                </div>
+
                             </div>
                             <button
                                 style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
