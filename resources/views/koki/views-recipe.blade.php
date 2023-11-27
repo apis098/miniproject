@@ -435,7 +435,7 @@
 
 
     <div>
-        <div class="my-4 mr-5 main">
+        <div class="my-4 mr-4 ml-1 main">
             <ul class="nav mb-2 mx-md-5 mx-sm-3 mt-3 d-flex justify-content-start"  id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"

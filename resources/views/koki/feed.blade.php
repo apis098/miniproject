@@ -712,13 +712,14 @@
                                 @method('DELETE')
                             </form>
 
-                            <div class="d-flex mt-4" id="feed_buat{{ $feed_buat->id }}">
+                            <div class="mt-4" id="feed_buat{{ $feed_buat->id }}">
                                 <div class="row feed_dibuat_tab1">
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                         <video src="{{ asset('storage/' . $feed_buat->upload_video) }}"
-                                            style="height: 100%;width:100%;" class="rounded"></video>
+                                            style="width:100%;" class="rounded-4"></video>
                                     </div>
                                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                                        <div style="width: auto;">
                                         <div class="">
                                             <strong><a href="#" data-toggle="modal" data-target="#view"
                                                     class="text-black">{{ $feed_buat->deskripsi_video }}</a></strong>
@@ -774,6 +775,7 @@
 
                                                 </a>
                                             </div>
+                                        </div>
                                         </div>
                                         <style>
                                             @media (min-width: 1024px) {
@@ -918,11 +920,11 @@
                                 action="{{ route('sukai.veed', [Auth::user()->id, $feed_suka->id]) }}" method="post">
 
                             </form>
-                            <div class="d-flex mt-4" id="card_like_feed{{ $feed_suka->id }}">
+                            <div class="mt-4" id="card_like_feed{{ $feed_suka->id }}">
                                 <div class="row">
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                         <video src="{{ asset('storage/' . $feed_suka->upload_video) }}"
-                                            style="height:100%;width: 100%;" class="rounded"></video>
+                                            style="width: 100%;" class="rounded-4"></video>
 
                                     </div>
                                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
@@ -1021,11 +1023,11 @@
                         <div class="feed-favorite">
                             <form id="formUnfavoriteFeed{{ $feed_favorite->id }}"
                                 action="{{ route('favorite.feed.store', $feed_favorite->id) }}" method="post"></form>
-                            <div class="d-flex mt-4" id="card_feed_favorite{{ $feed_favorite->id }}">
+                            <div class="mt-4" id="card_feed_favorite{{ $feed_favorite->id }}">
                                 <div class="row">
                                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
                                         <video src="{{ asset('storage/' . $feed_favorite->upload_video) }}"
-                                            style=" height: 100%;width:100%;" class="rounded"></video>
+                                            style="width:100%;" class="rounded-4"></video>
                                     </div>
                                     <div class="col-xl-9 col-xl-9 col-md-12 col-sm-12">
                                         <div class="tek">
