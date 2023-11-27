@@ -161,7 +161,8 @@
             border-radius: 5px;
             width: 205%;
             margin-left: 20px;
-            margin-right; 30x;
+            margin-right;
+            30x;
         }
 
         .search-1 {
@@ -333,7 +334,8 @@
                                                                             Nama
                                                                         </div>
                                                                         <div class="col-9">
-                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                            <div style="border-radius: 10px;"
+                                                                                class="form-control">
                                                                                 {{ $data_verified->data->name }}
                                                                             </div>
                                                                         </div>
@@ -343,7 +345,8 @@
                                                                             E-mail
                                                                         </div>
                                                                         <div class="col-9">
-                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                            <div style="border-radius: 10px;"
+                                                                                class="form-control">
                                                                                 {{ $data_verified->data->email }}
                                                                             </div>
                                                                         </div>
@@ -353,7 +356,8 @@
                                                                             Telefon
                                                                         </div>
                                                                         <div class="col-9">
-                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                            <div style="border-radius: 10px;"
+                                                                                class="form-control">
                                                                                 {{ $data_verified->data->number_handphone }}
                                                                             </div>
                                                                         </div>
@@ -363,7 +367,8 @@
                                                                             Pilihan bank
                                                                         </div>
                                                                         <div class="col-9">
-                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                            <div style="border-radius: 10px;"
+                                                                                class="form-control">
                                                                                 {{ $data_verified->data->pilihan_bank }}
                                                                             </div>
                                                                         </div>
@@ -373,7 +378,8 @@
                                                                             Nomer rekening
                                                                         </div>
                                                                         <div class="col-9">
-                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                            <div style="border-radius: 10px;"
+                                                                                class="form-control">
                                                                                 {{ $data_verified->data->nomer_rekening }}
                                                                             </div>
                                                                         </div>
@@ -383,59 +389,126 @@
                                                                             Jumlah
                                                                         </div>
                                                                         <div class="col-9">
-                                                                            <div style="border-radius: 10px;" class="form-control">
+                                                                            <div style="border-radius: 10px;"
+                                                                                class="form-control">
                                                                                 {{ number_format($data_verified->nilai, '0', ',', '.') }}
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="collapse" id="collapseTolak{{$data_verified->id}}">
-                                                                        <button type="button" class="btn btn-danger" onclick="buttonbatal({{$data_verified->id}})">Batal</button>
-                                                                        <form action="{{route('proses.ajuan.penarikan', ['id'=>$data_verified->id, 'status'=>'ditolak'])}}" method="post">
-                                                                        @csrf
-                                                                        <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control" placeholder="Alasan..."></textarea>
-                                                                        <button type="submit" id="buttontolak{{$data_verified->id}}" hidden></button>
+                                                                    <div class="collapse"
+                                                                        id="collapseTolak{{ $data_verified->id }}">
+                                                                        <button type="button" class="btn btn-danger"
+                                                                            onclick="buttonbatal({{ $data_verified->id }})">Batal</button>
+                                                                        <form
+                                                                            action="{{ route('proses.ajuan.penarikan', ['id' => $data_verified->id, 'status' => 'ditolak']) }}"
+                                                                            method="post">
+                                                                            @csrf
+                                                                            <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control"
+                                                                                placeholder="Alasan..."></textarea>
+                                                                            <button type="submit"
+                                                                                id="buttontolak{{ $data_verified->id }}"
+                                                                                hidden></button>
                                                                         </form>
                                                                     </div>
                                                                     <div class="mb-3 d-flex justify-content-end">
-                                                                        <form
-                                                                            action="{{ route('proses.ajuan.penarikan', ['id'=>$data_verified->id, 'status'=>'diterima']) }}"
-                                                                            method="post">
-                                                                            @csrf
-                                                                            <button type="submit"
-                                                                                class="btn btn-sm rounded-3 text-light me-2"
-                                                                                style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
-                                                                                    class="ms-2 me-2"
-                                                                                    style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
-                                                                            </button>
-                                                                        </form>
-                                                                        <button type="button" data-toggle="collapse" data-target="#collapseTolak{{$data_verified->id}}"
-                                                                            class="btn btn-sm rounded-3 text-light me-2"  id="buttonTolak{{$data_verified->id}}" onclick="hiddenButtonTolak({{$data_verified->id}})"
+
+                                                                        <button type="button" data-bs-dismiss="modal"
+                                                                            data-bs-target="#YakinTerimaAjuan{{ $data_verified->id }}"
+                                                                            data-bs-toggle="modal"
+                                                                            class="btn btn-sm rounded-3 text-light me-2"
+                                                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
+                                                                                class="ms-2 me-2"
+                                                                                style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
+                                                                        </button>
+                                                                        <button type="button" data-toggle="collapse"
+                                                                            data-target="#collapseTolak{{ $data_verified->id }}"
+                                                                            class="btn btn-sm rounded-3 text-light me-2"
+                                                                            id="buttonTolak{{ $data_verified->id }}"
+                                                                            onclick="hiddenButtonTolak({{ $data_verified->id }})"
                                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                                                 class="ms-2 me-2"
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
                                                                         </button>
                                                                         <button type="button"
-                                                                            class="btn btn-sm rounded-3 text-light me-2"  id="buttonSelesai{{$data_verified->id}}" onclick="clickButtonTolak({{$data_verified->id}})"
+                                                                            class="btn btn-sm rounded-3 text-light me-2"
+                                                                            id="buttonSelesai{{ $data_verified->id }}"
+                                                                            onclick="clickButtonTolak({{ $data_verified->id }})"
                                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; display: none;"><b
                                                                                 class="ms-2 me-2"
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Selesai</b>
                                                                         </button>
                                                                         <script>
                                                                             function hiddenButtonTolak(num) {
-                                                                                document.getElementById("buttonTolak"+num).style.display = "none";
-                                                                                document.getElementById("buttonSelesai"+num).style.display = "block";
+                                                                                document.getElementById("buttonTolak" + num).style.display = "none";
+                                                                                document.getElementById("buttonSelesai" + num).style.display = "block";
                                                                             }
+
                                                                             function clickButtonTolak(num) {
-                                                                                document.getElementById("buttontolak"+num).click();
+                                                                                document.getElementById("buttontolak" + num).click();
                                                                             }
+
                                                                             function buttonbatal(num) {
-                                                                                document.getElementById("buttonTolak"+num).click();
-                                                                                document.getElementById("buttonTolak"+num).style.display = "block";
-                                                                                document.getElementById("buttonSelesai"+num).style.display = "none";
+                                                                                document.getElementById("buttonTolak" + num).click();
+                                                                                document.getElementById("buttonTolak" + num).style.display = "block";
+                                                                                document.getElementById("buttonSelesai" + num).style.display = "none";
                                                                             }
                                                                         </script>
                                                                     </div>
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal fade" id="YakinTerimaAjuan{{ $data_verified->id }}"
+                                                        tabindex="-1" role="dialog"
+                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <form
+                                                                    action="{{ route('proses.ajuan.penarikan', ['id' => $data_verified->id, 'status' => 'diterima']) }}"
+                                                                    method="post">
+                                                                    @csrf
+
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="reportModal"
+                                                                            style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                                            Peringatan</h5>
+                                                                        <button type="button" class="close text-black"
+                                                                            data-bs-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div
+                                                                        class="modal-body row d-flex align-items-center col-12">
+                                                                        <!-- Tambahkan kelas "align-items-center" -->
+                                                                        <div class="col-2 mt-2">
+                                                                            <img class="mr-3"
+                                                                                src="{{ asset('image 94.png') }}"
+                                                                                width="100px" height="100px"
+                                                                                style="border-radius: 50%" alt="">
+                                                                        </div>
+                                                                        <div class="col-10">
+                                                                            <div class="widget-49-meeting-info">
+
+                                                                            </div>
+                                                                            <p class="ml-4">
+                                                                                Apakah anda yakin telah mentransfer uang dengan benar ke koki?
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit"
+                                                                            class="btn btn-light text-light rounded-3"
+                                                                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                                class="ms-2 me-2">Ya</b>
+                                                                        </button>
+                                                                        <button type="button" data-bs-dismiss="modal"
+                                                                            class="btn btn-light text-light rounded-3"
+                                                                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                                class="ms-2 me-2">Tidak</b>
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>

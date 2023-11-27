@@ -140,6 +140,7 @@ class AdminController extends Controller
         $data = penarikans::find($id);
         if ($request->status === "diterima") {
             $data->status = "diterima";
+            $data->save();
             $chef = User::find($data->chef_id);
             $chef->saldo_pemasukan = $chef->saldo_pemasukan - ($data->nilai + 2000);
             $chef->save();
@@ -157,7 +158,7 @@ class AdminController extends Controller
             $update->route = '/status-baca/penarikan/'.$n->id;
             $update->save();
             } elseif ($request->status === "ditolak") {
-            $data->status = "gagal";
+            $data->delete();
             $notif = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
@@ -169,7 +170,6 @@ class AdminController extends Controller
             $up->route = '/status-baca/penarikan/'.$notif->id;
             $up->save();
         }
-        $data->save();
         return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');
     }
 
