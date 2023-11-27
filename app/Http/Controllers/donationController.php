@@ -114,7 +114,14 @@ class donationController extends Controller
                         'check_count' => $check_count,
                     ]);
                 }
-            }else{
+            }
+            elseif($request->input('moreInput') == null && $request->input('giftInput') == null){
+                return response()->json([
+                    'success' => false,
+                    'message' => "Pilih salah satu kategori untuk melanjutkan transaksi.",
+                ]);
+            }
+            else{
                 if($user_sender->saldo < $request->input('giftInput')){
                     return response()->json([
                         'success' => false,

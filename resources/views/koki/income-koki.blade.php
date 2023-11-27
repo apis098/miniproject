@@ -415,13 +415,6 @@
 
         </div>
 
-        {{-- <div class="row mb-1">
-                <div class="col-sm-3 col-lg-4">
-                    <h3 style="font-family:poppins ">Penarikan</h3>
-                </div>
-            </div> --}}
-
-
         <style>
             @media (min-width: 1200px) {
                 .text-riwayat1 {
@@ -584,22 +577,15 @@
                             {{ $income->status }}
                         </td> --}}
                         <td class="ms-3" style="border-left: 1px solid black;">
-                            @if ($income->status === 'sawer' && $income->feed_id != null)
-                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40) . '....' : $income->feed->deskripsi_video }}
-                            @elseif($income->status === 'sawer' && $income->resep_id != null)
+                            @if ($income->status === 'sawer' && $income->feed_id != null || $income->feed_id != null)
+                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40) . '....' : $incomle->feed->deskripsi_video }}
+                            @elseif($income->status === 'sawer' && $income->resep_id != null ||$income->resep != null)
                                 {{ $income->resep->nama_resep }}
                             @elseif($income->status === 'kursus')
                                 {{ $income->course->nama_kursus }}
                             @endif
                         </td>
                         <td>
-                            {{-- @foreach ($income->notifications as $row)
-                                @if ($row->message != null)
-                                    {{ $row->message }}
-                                @else
-                                    --
-                                @endif
-                            @endforeach --}}
                             {{ $income->created_at->format('d F Y') }}
                         </td>
                         <td>
