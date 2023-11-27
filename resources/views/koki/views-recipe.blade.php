@@ -479,7 +479,7 @@
 
                                         <div class="search-2"><i class='bx bxs-map'></i>
                                             <form action="#" method="GET">
-                                                <input type="text" id="nama_resep_dibuat"
+                                                <input type="text" id="nama_resep_dibuat" class="search-resep-sendiri"
                                                     placeholder="Search For Something">
                                                 <button type="button" class="zoom-effects cari2" style="height: 53px;"
                                                     onclick="cariResepDibuat()">
@@ -514,7 +514,7 @@
                         @endif
                         <div class="row" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class="card col-lg-4 ml-3 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
+                                <div class="resep-sendiri card col-lg-4 ml-3 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
                                     style="border-radius:15px; border: 1px solid black;">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">
@@ -587,6 +587,16 @@
                         </div>
                     </div>
                 </div>
+                <script>
+                    $(document).ready(function() {
+                        $('.search-resep-sendiri').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.resep-sendiri').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
@@ -596,7 +606,7 @@
 
                                         <div class="search-2"><i class='bx bxs-map'></i>
                                             <form action="#" method="GET">
-                                                <input type="text" id="nama_resep_disukai" name="profil"
+                                                <input type="text" id="nama_resep_disukai" name="profil" class="search-resep-disukai"
                                                     placeholder="Search For Something">
                                                 <button type="submit" class="zoom-effects cari2" style="height: 53px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -631,7 +641,7 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_disukai as $num => $suka)
-                                <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai"
+                                <div class="resep-disukai card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepDisukai"
                                     style="border-radius:15px">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">
@@ -707,6 +717,16 @@
                     </div>
                 </div>
                 {{-- end --}}
+                <script>
+                    $(document).ready(function() {
+                        $('.search-resep-disukai').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.resep-disukai').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
                     <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
@@ -715,7 +735,7 @@
 
                                         <div class="search-2"><i class='bx bxs-map'></i>
                                             <form action="#" method="GET">
-                                                <input type="text" id="nama_resep_favorite" name="profil"
+                                                <input type="text" id="nama_resep_favorite" name="profil" class="search-resep-favorite"
                                                     placeholder="Search For Something">
                                                 <button type="submit" class="zoom-effects cari2" style="height: 53px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -750,7 +770,7 @@
                         @endif
                         <div class="row">
                             @foreach ($resep_favorite as $num => $favorite)
-                                <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resepFavorite"
+                                <div class="card col-lg-4 col-xl-3 col-md-4 col-sm-12 my-3 ml-3 resep-favorite"
                                     style="border-radius:15px">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">
@@ -826,6 +846,16 @@
                     </div>
                 </div>
                 {{-- end --}}
+                <script>
+                    $(document).ready(function() {
+                        $('.search-resep-favorite').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.resep-favorite').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
                 <script>
                     const click1 = document.getElementById("click1");
                     const click2 = document.getElementById("c");

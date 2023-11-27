@@ -678,7 +678,7 @@
 
                                 <div class="search-2"> <i class='bx bxs-map'></i>
                                     <form action="/admin/laporan-pengguna" method="GET">
-                                        <input type="text" id="search-resep" name="resep" autofocus
+                                        <input type="text" class="search-feed-sendiri" id="search-resep" name="resep" autofocus
                                             placeholder="Cari...">
                                         <button type="submit" class="zoom-effects cari2 atas" style="height: 53px;"><svg
                                                 xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -693,6 +693,7 @@
                         </div>
                     </form>
 
+
                     @if ($data['feed_dibuat']->count() < 1)
                         <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: -3em; margin-right:15%;">
@@ -704,6 +705,7 @@
                     {{-- start tab 1 --}}
                     <div id="feed_dibuat_tab1">
                         @foreach ($data['feed_dibuat'] as $feed_buat)
+                        <div class="feed-sendiri">
                             <form hidden id="delete-data{{ $feed_buat->id }}" action="/hapus_feed/{{ $feed_buat->id }}"
                                 method="post">
                                 @csrf
@@ -863,9 +865,20 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                     </div>
                 </div>
+                <script>
+                    $(document).ready(function() {
+                        $('.search-feed-sendiri').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.feed-sendiri').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
                 {{-- end --}}
                 <div class="tab-pane fade ml-3 mr-4" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
@@ -877,7 +890,7 @@
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
-                                                    placeholder="Cari...">
+                                                    placeholder="Cari..." class="search-feed-disukai">
                                                 <button type="submit" class="zoom-effects cari2 atas" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 24 24">
@@ -900,7 +913,7 @@
                     @endif
                     {{-- start tab 2 --}}
                     @foreach ($data['feed_disukai'] as $feed_suka)
-                        <div class="feed_disukai_tab2">
+                        <div class="feed-disukai">
                             <form id="formUnlikeFeed{{ $feed_suka->id }}"
                                 action="{{ route('sukai.veed', [Auth::user()->id, $feed_suka->id]) }}" method="post">
 
@@ -963,6 +976,16 @@
                     @endforeach
 
                 </div>
+                <script>
+                    $(document).ready(function() {
+                        $('.search-feed-disukai').on('input', function() {
+                            var value = $(this).val().toLowerCase();
+                            $('.feed-disukai').filter(function() {
+                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                            });
+                        });
+                    });
+                </script>
                 {{-- end --}}
                 <div class="tab-pane fade ml-3 mr-4" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
@@ -973,7 +996,7 @@
                                         <div class="search-2"> <i class='bx bxs-map'></i>
                                             <form action="/admin/laporan-pengguna" method="GET">
                                                 <input type="text" id="search-resep" name="resep" autofocus
-                                                    placeholder="Cari...">
+                                                    placeholder="Cari..." class="search-feed-favorite">
                                                 <button type="submit" class="zoom-effects cari2 atas" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                                         viewBox="0 0 24 24">
@@ -995,7 +1018,7 @@
                     @endif
                     @foreach ($data['feed_favorite'] as $feed_favorite)
                         {{-- start tab 3 --}}
-                        <div class="feed_favorite_tab3">
+                        <div class="feed-favorite">
                             <form id="formUnfavoriteFeed{{ $feed_favorite->id }}"
                                 action="{{ route('favorite.feed.store', $feed_favorite->id) }}" method="post"></form>
                             <div class="d-flex mt-4" id="card_feed_favorite{{ $feed_favorite->id }}">
@@ -1058,6 +1081,16 @@
                 </div>
             </div>
             {{-- end --}}
+            <script>
+                $(document).ready(function() {
+                    $('.search-feed-favorite').on('input', function() {
+                        var value = $(this).val().toLowerCase();
+                        $('.feed-favorite').filter(function() {
+                            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                        });
+                    });
+                });
+            </script>
         </div>
     </div>
     {{-- Modal untuk Feed --}}
