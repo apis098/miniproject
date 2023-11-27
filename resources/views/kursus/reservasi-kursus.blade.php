@@ -23,8 +23,8 @@
         }
 
         /* .accordion b {
-            margin-left: -70%;
-        } */
+                margin-left: -70%;
+            } */
 
         .accordion i {
             margin-left: 1%;
@@ -43,23 +43,24 @@
             /* Animasi dengan efek slide */
         }
 
-                   /* tampilan untuk hp kecil */
-                 @media (min-width:350px) and (max-width:768px){
+        /* tampilan untuk hp kecil */
+        @media (min-width:350px) and (max-width:768px) {
 
-                .accordion b {
-                    margin-left: -19%;
+            .accordion b {
+                margin-left: -19%;
             }
         }
-             /* tampilan untuk hp besar */
-             @media (min-width:420px) and (max-width:768px){
 
-                .accordion b {
-                    margin-left: -27%;
+        /* tampilan untuk hp besar */
+        @media (min-width:420px) and (max-width:768px) {
+
+            .accordion b {
+                margin-left: -27%;
             }
         }
 
         /* untuk tampilan tablet */
-        @media (min-width:767px) and (max-width:1023px){
+        @media (min-width:767px) and (max-width:1023px) {
 
             .accordion b {
                 margin-left: -59%;
@@ -68,7 +69,7 @@
 
 
         /* untuk tampilan laptop */
-        @media (min-width:1024px) and (max-width:1199px){
+        @media (min-width:1024px) and (max-width:1199px) {
 
             .accordion b {
                 margin-left: -70%;
@@ -78,7 +79,7 @@
 
 
         /* untuk tampilan laptop besar */
-        @media  (min-width:1220px) and (max-width:1440px){
+        @media (min-width:1220px) and (max-width:1440px) {
 
             .accordion b {
                 margin-left: -72%;
@@ -98,20 +99,19 @@
 
         <h3 class="fw-bold">Sesi Kursus</h3>
         <div class="mb-4">
-        <small>Nb: Tekan sesi untuk memilih sesi, jika warna sesi tidak berubah berarti sesi sudah kadaluarsa.</small>
+            <small>Nb: Tekan sesi untuk memilih sesi, jika warna sesi tidak berubah berarti sesi sudah kadaluarsa.</small>
         </div>
         @foreach ($course->sesi as $sesi)
             <div class="card mb-4">
-                <button @if ($sesi->selisihTanggal() != "Kadaluarsa")
-                    class="accordion pilihSesi"
+                <button
+                    @if ($sesi->selisihTanggal() != 'Kadaluarsa') class="accordion pilihSesi"
                     onclick="pilihSesi({{ $sesi->id }})"
                 @else
-                class="accordion"
-                @endif
-                data-price="{{ $sesi->harga_sesi }}">
-                <i class="fa-regular fa-square" id="square{{$sesi->id}}"></i>
+                class="accordion" @endif
+                    data-price="{{ $sesi->harga_sesi }}">
+                    <i class="fa-regular fa-square" id="square{{ $sesi->id }}"></i>
                     <b>{{ $sesi->judul_sesi }} <br>
-                    <small>{{ $sesi->tanggal . " " . $sesi->waktu }}</small></b>
+                        <small>{{ $sesi->tanggal . ' ' . $sesi->waktu }}</small></b>
                     <span>
                         @if ($sesi->lama_sesi >= 60)
                             {{ number_format($sesi->lama_sesi / 60, 1) }}
@@ -151,23 +151,76 @@
                 <span class="font-size-15 fw-bold">Total harga</span>
                 <span id="totalHarga">0</span>
             </div>
-            <form action="{{ route('transaksi.kursus', [$course->id, Auth::user()->id, $course->users_id]) }}" method="post">
-            @csrf
-            <input type="hidden" name="amount" id="amount">
-            <div id="inputList"></div>
-            <button type="submit"
-                style="height: 40px; background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-left: 30px;"
-                class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
+            <form action="{{ route('transaksi.kursus', [$course->id, Auth::user()->id, $course->users_id]) }}"
+                method="post">
+                @csrf
+                <input type="hidden" name="amount" id="amount">
+                <div id="inputList"></div>
+                <button type="submit" id="bayar" hidden></button>
+                <button type="button" data-toggle="modal" data-target="#modalBayar"
+                    style="height: 40px; background-color: #F7941E; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-left: 30px;"
+                    class="btn btn-sm text-light"><b class="me-3 ms-3">Bayar</b></button>
             </form>
         </div>
 
     </div>
+    <div class="modal fade" id="modalBayar"
+        tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="reportModal"
+                            style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                            Peringatan</h5>
+                        <button type="button" class="close text-black"
+                            data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div
+                        class="modal-body row d-flex align-items-center col-12">
+                        <!-- Tambahkan kelas "align-items-center" -->
+                        <div class="col-2 mt-2">
+                            <img class="mr-3"
+                                src="{{ asset('image 94.png') }}"
+                                width="100px" height="100px"
+                                style="border-radius: 50%" alt="">
+                        </div>
+                        <div class="col-10">
+                            <div class="widget-49-meeting-info">
+
+                            </div>
+                            <p class="ml-4">
+                                Apakah anda yakin ingin membeli sesi-sesi kursus itu, harap cek kembali karena saldo tidak bisa dikembalikan?
+                            </p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" onclick="buttonBayar()"
+                            class="btn btn-light text-light rounded-3"
+                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Ya</b>
+                        </button>
+                        <button type="button" data-dismiss="modal"
+                        class="btn btn-light text-light rounded-3"
+                        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                            class="ms-2 me-2">Tidak</b>
+                    </button>
+                    </div>
+
+                </div>
+        </div>
+    </div>
     <script>
-        function pilihSesi(num)
-        {
+        function buttonBayar() {
+            document.getElementById("bayar").click();
+        }
+        function pilihSesi(num) {
             let inner = `<input type="hidden" name="sesi[]" value="${num}">`;
             document.getElementById("inputList").innerHTML += inner;
-            let square = document.getElementById("square"+num);
+            let square = document.getElementById("square" + num);
             if (square.classList.contains('fa-square')) {
                 square.classList.remove('fa-square');
                 square.classList.add('fa-square-check');
@@ -201,6 +254,5 @@
                 });
             }
         };
-
     </script>
 @endsection
