@@ -578,7 +578,7 @@
                         </td> --}}
                         <td class="ms-3" style="border-left: 1px solid black;">
                             @if ($income->status === 'sawer' && $income->feed_id != null || $income->feed_id != null)
-                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40) . '....' : $incomle->feed->deskripsi_video }}
+                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40) . '....' : $income->feed->deskripsi_video }}
                             @elseif($income->status === 'sawer' && $income->resep_id != null ||$income->resep != null)
                                 {{ $income->resep->nama_resep }}
                             @elseif($income->status === 'kursus')
@@ -606,7 +606,7 @@
                                         <div class="modal-header">
                                             <h5 class="modal-title">Detail</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
+                                                aria-label="Close" data-dismiss="modal"></button>
                                         </div>
                                         <div class="modal-body" style="text-align: left;">
                                             <div class="mb-3">
@@ -620,7 +620,7 @@
                                                 <span style="font-weight: 400;" class="mb-2">Pendapatan</span>
                                                 <div
                                                     style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
-                                                    {{ $income->pemasukan }}
+                                                   RP {{ number_format($income->pemasukan, 2, ',', '.') }}
                                                 </div>
                                             </div>
                                             <div class="mb-3">
@@ -635,7 +635,11 @@
                                                     <span style="font-weight: 400;" class="mb-2">Pesan</span>
                                                     <div
                                                         style="border-radius: 5px; border: 1px solid black;padding: 5px;font-weight:400;">
+                                                        @if ($income->messageGift() == null)
+                                                         -
+                                                        @else
                                                         {{ $income->messageGift() }}
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endif
