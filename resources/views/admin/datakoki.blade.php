@@ -428,7 +428,7 @@
                                                                             action="{{ route('proses.data.koki', ['id' => $data_verified->id, 'status' => 'ditolak']) }}">
                                                                             @csrf
                                                                             <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control"
-                                                                                placeholder="Alasan..."></textarea>
+                                                                                placeholder="Alasan..." required></textarea>
                                                                             <button type="submit"
                                                                                 id="tolakdata{{ $data_verified->id }}"
                                                                                 hidden></button>
@@ -454,7 +454,7 @@
                                                                                 class="ms-2 me-2"
                                                                                 style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Tolak</b>
                                                                         </button>
-                                                                        <button type="button" data-target="#YakinTolakData{{$data_verified->id}}" data-dismiss="modal" data-toggle="modal"
+                                                                        <button type="button"
                                                                             id="submitTolak{{ $data_verified->id }}"
                                                                              onclick="tolakdata({{ $data_verified->id }})"
                                                                             class="btn btn-sm rounded-3 text-light me-2"
@@ -487,59 +487,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                     <div class="modal fade" id="YakinTerimaData{{ $data_verified->id }}"
-                                                        tabindex="-1" role="dialog"
-                                                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                            <div class="modal-content">
-                                                                <form
-                                                                    action="{{ route('proses.data.koki', ['id' => $data_verified->id, 'status' => 'diterima']) }}"
-                                                                    method="post">
-                                                                    @csrf
 
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="reportModal"
-                                                                            style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                                                            Peringatan</h5>
-                                                                        <button type="button" class="close text-black"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div
-                                                                        class="modal-body row d-flex align-items-center col-12">
-                                                                        <!-- Tambahkan kelas "align-items-center" -->
-                                                                        <div class="col-2 mt-2">
-                                                                            <img class="mr-3"
-                                                                                src="{{ asset('image 94.png') }}"
-                                                                                width="100px" height="100px"
-                                                                                style="border-radius: 50%" alt="">
-                                                                        </div>
-                                                                        <div class="col-10">
-                                                                            <div class="widget-49-meeting-info">
-
-                                                                            </div>
-                                                                            <p class="ml-4">
-                                                                                Apakah anda yakin telah memeriksa data koki dengan benar?
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="submit"
-                                                                            class="btn btn-light text-light rounded-3"
-                                                                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                                                class="ms-2 me-2">Ya</b>
-                                                                        </button>
-                                                                        <button type="button" data-dismiss="modal"
-                                                                        class="btn btn-light text-light rounded-3"
-                                                                        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                                            class="ms-2 me-2">Tidak</b>
-                                                                    </button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
                                                     <div class="modal fade" id="YakinTerimaData{{ $data_verified->id }}"
                                                         tabindex="-1" role="dialog"
                                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

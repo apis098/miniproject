@@ -97,6 +97,7 @@ class AdminController extends Controller
         $data = dataPribadiKoki::find($id);
         if ($request->status === "diterima") {
             $data->status = "diterima";
+            $data->save();
             // create notification
             $notify = notifications::create([
                 'user_id' => $data->chef_id,
@@ -109,7 +110,7 @@ class AdminController extends Controller
             $up->save();
 
         } elseif ($request->status === "ditolak") {
-            $data->status = "ditolak";
+            $data->delete();
             // create notification
             $notif = notifications::create([
                 'user_id' => $data->chef_id,
@@ -122,7 +123,6 @@ class AdminController extends Controller
             $update->route = '/status-baca/data-koki/'.$notif->id;
             $update->save();
         }
-        $data->save();
 
         return redirect()->back();
     }
