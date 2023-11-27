@@ -9,6 +9,7 @@ class notifications extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'ulasan_id',
         'data_koki_id',
         'verifed_id',
         'penarikan_id',
@@ -38,6 +39,9 @@ class notifications extends Model
         'complaint_id_report',
         'resep_id'
     ];
+    public function ulasan() {
+        return $this->belongsTo(UlasanKursus::class, 'ulasan_id');
+    }
     public function kursus() {
         return $this->belongsTo(kursus::class, 'kursus_id');
     }
