@@ -121,12 +121,15 @@
             border: black solid;
             overflow: hidden;
         }
-        .b-b{
+
+        .b-b {
             border: black solid;
         }
-        .b-o{
-            border:#F7941E solid;
+
+        .b-o {
+            border: #F7941E solid;
         }
+
         .text-orange {
             color: #F7941E;
         }
@@ -166,10 +169,10 @@
                                     <input hidden id="50k" type="radio" value="50000" name="select_input">
                                     <img src="{{ asset('img/2.png') }}" class="card-img-top" alt="">
                                     <div class="card-body text-center">
-                                        <h6 class="fw-bolder mt-1"  id="text-small">Rp. 50.000,00</h6>
+                                        <h6 class="fw-bolder mt-1" id="text-small">Rp. 50.000,00</h6>
                                     </div>
                                 </label>
-                                <label class="card border-black rounded-4 p-2 me-4 scale"   id="medium_option"
+                                <label class="card border-black rounded-4 p-2 me-4 scale" id="medium_option"
                                     onclick="medium_option()">
                                     <input hidden id="100k" type="radio" value="100000" name="select_input">
                                     <img src="{{ asset('img/4.png') }}" class="card-img-top ms-2 " alt="">
@@ -185,11 +188,12 @@
                                         <h6 class="fw-bolder mt-1" id="text-large">Rp. 150.000,00</h6>
                                     </div>
                                 </label>
-                                <label class="card border-black rounded-4 p-2 scale" id="more_option" onclick="more_option()">
+                                <label class="card border-black rounded-4 p-2 scale" id="more_option"
+                                    onclick="more_option()">
                                     <input hidden id="0k" type="radio" value="null" name="select_input">
                                     <img src="{{ asset('img/money.png') }}" class="card-img-top" alt="">
                                     <div class="card-body text-center">
-                                        <h6 class="fw-bolder mt-1"  id="more-text">Lainya</h6>
+                                        <h6 class="fw-bolder mt-1" id="more-text">Lainya</h6>
                                     </div>
                                 </label>
                             </div>
@@ -199,7 +203,7 @@
                                     $('#small_option').addClass('border-orange');
                                     $('#medium_option').removeClass('border-orange');
                                     $('#medium_option').addClass('border-black');
-                                    $('#large_option' ).removeClass('border-orange');
+                                    $('#large_option').removeClass('border-orange');
                                     $('#large_option').addClass('border-black');
                                     $('#more_option').removeClass('border-orange');
                                     $('#more_option').addClass('border-black');
@@ -207,17 +211,18 @@
                                     $("#text-medium").removeClass('text-orange');
                                     $("#text-large").removeClass('text-orange');
                                     $("#more-text").removeClass('text-orange');
-                                    $('#nilai' ).css('display', 'none');
+                                    $('#nilai').css('display', 'none');
                                     $('#nilai').val('');
                                     $('#nilai').removeClass('b-o');
                                     $('#nilai').addClass('b-b');
                                 }
+
                                 function medium_option() {
                                     $('#small_option').removeClass('border-orange');
                                     $('#small_option').addClass('border-black');
                                     $('#medium_option').removeClass('border-black');
                                     $('#medium_option').addClass('border-orange');
-                                    $('#large_option' ).removeClass('border-orange');
+                                    $('#large_option').removeClass('border-orange');
                                     $('#large_option').addClass('border-black');
                                     $('#more_option').removeClass('border-orange');
                                     $('#more_option').addClass('border-black');
@@ -230,12 +235,13 @@
                                     $('#nilai').removeClass('b-o');
                                     $('#nilai').addClass('b-b');
                                 }
+
                                 function large_option() {
                                     $('#small_option').removeClass('border-orange');
                                     $('#small_option').addClass('border-black');
                                     $('#medium_option').removeClass('border-orange');
                                     $('#medium_option').addClass('border-black');
-                                    $('#large_option' ).removeClass('border-black');
+                                    $('#large_option').removeClass('border-black');
                                     $('#large_option').addClass('border-orange');
                                     $('#more_option').removeClass('border-orange');
                                     $('#more_option').addClass('border-black');
@@ -248,12 +254,13 @@
                                     $('#nilai').removeClass('b-o');
                                     $('#nilai').addClass('b-b');
                                 }
+
                                 function more_option() {
                                     $('#small_option').removeClass('border-orange');
                                     $('#small_option').addClass('border-black');
                                     $('#medium_option').removeClass('border-orange');
                                     $('#medium_option').addClass('border-black');
-                                    $('#large_option' ).removeClass('border-orange');
+                                    $('#large_option').removeClass('border-orange');
                                     $('#large_option').addClass('border-black');
                                     $('#more_option').removeClass('border-black');
                                     $('#more_option').addClass('border-orange');
@@ -261,15 +268,19 @@
                                     $("#text-medium").removeClass('text-orange');
                                     $("#text-large").removeClass('text-orange');
                                     $("#more-text").addClass('text-orange');
-                                    $('#nilai' ).css('display', 'block');
+                                    $('#nilai').css('display', 'block');
                                     $('#nilai').val('');
                                     $('#nilai').removeClass('b-b');
                                     $('#nilai').addClass('b-o');
                                 }
                             </script>
                             <div class="mb-3 d-flex justify-content-center  col-lg-12">
-                                <input type="number" name="nilai" placeholder="Masukkan jumlah" id="nilai"
-                                    class="form-control  rounded-4 mr-2  b-b" style="display: none; width:86%;">
+                                <input type="text" name="display_nilai" placeholder="Masukkan jumlah" id="nilai"
+                                    oninput="formatNumber()" class="form-control  rounded-4 mr-2  b-b"
+                                    style="display: none; width:86%;">
+                                <input type="text" hidden name="nilai" placeholder="Masukkan jumlah" id="real_number"
+                                    oninput="formatNumber()" class="form-control  rounded-4 mr-2  b-b"
+                                    style=" width:86%;">
                                 <button type="submit"
                                     style="color: white; border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                     class="btn">
@@ -573,10 +584,10 @@
                             {{ $income->status }}
                         </td> --}}
                         <td class="ms-3" style="border-left: 1px solid black;">
-                            @if($income->status === 'sawer' && $income->feed_id != null)
-                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40). '....' : $income->feed->deskripsi_video }}
-                            @elseif($income->status === 'sawer' && $income->resep_id != null )
-                                {{$income->resep->nama_resep}}
+                            @if ($income->status === 'sawer' && $income->feed_id != null)
+                                {{ strlen($income->feed->deskripsi_video) > 40 ? substr($income->feed->deskripsi_video, 0, 40) . '....' : $income->feed->deskripsi_video }}
+                            @elseif($income->status === 'sawer' && $income->resep_id != null)
+                                {{ $income->resep->nama_resep }}
                             @elseif($income->status === 'kursus')
                                 {{ $income->course->nama_kursus }}
                             @endif
@@ -749,6 +760,20 @@
                 'message': 'Data anda sedang diproses!',
                 'position': 'topCenter'
             });
+        }
+
+        function formatNumber() {
+            var inputan = document.getElementById('nilai');
+            var input_value = inputan.value;
+            var number_format = input_value.replace(/\D/g, '');
+            var formated_value =new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                maximumFractionDigits: 0
+            }).format(number_format);
+            inputan.value = formated_value;
+
+            document.getElementById("real_number").value = number_format;
         }
     </script>
 @endsection

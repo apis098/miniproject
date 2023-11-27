@@ -55,10 +55,11 @@
             /* Warna teks saat dihover */
         }
 
-        .form-control:focus{
-            border:#F7941E solid;
+        .form-control:focus {
+            border: #F7941E solid;
             box-shadow: none;
         }
+
         .asy {
 
             background-image: url("/dist/img/ttpe.jpg");
@@ -85,13 +86,15 @@
         .cascading-right {
             margin-right: -50px;
         }
+
         @media (min-width: 992px) {
             .cardTopup {
-                width: 435px;
+                width: 450px;
             }
         }
+
         @media (max-width: 991.98px) {
-           
+
             .cascading-right {
                 margin-right: 0;
             }
@@ -145,8 +148,9 @@
             cursor: pointer;
             outline: inherit;
         }
+
         .dropdown-item:active,
-        .dropdown-item:focus{
+        .dropdown-item:focus {
             background: white;
         }
     </style>
@@ -814,7 +818,7 @@
                                     <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
                                 </div>
                                 <div class="dropdown-divider"></div>
-                                <a href="/koki/index" class="dropdown-item text-orange" style="width: 230px">
+                                <a href="/koki/index" class="dropdown-item text-orange itemdropdown" style="width: 230px">
                                     <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
                                         height="20" viewBox="0 0 24 24">
                                         <path fill="currentColor"
