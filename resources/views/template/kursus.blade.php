@@ -322,7 +322,7 @@
                                     data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">
                                     <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-                                        Favorite</h5>
+                                        Favorit</h5>
                                     <div id="pp" class="ms-1"
                                         style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                     </div>
@@ -390,7 +390,7 @@
                                     data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab"
                                     aria-controls="pills-contact" aria-selected="false">
                                     <h6 class="text-dark ms-1" style="font-weight: 600; word-wrap: break-word;">
-                                        Favorite</h6>
+                                        Favorit</h6>
                                     <div id="pps" class="ms-1"
                                         style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                     </div>
