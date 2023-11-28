@@ -3981,6 +3981,7 @@
                 if (video.currentTime >= time) {
                     // jika sudah lebih dari 5 detik maka video di pause
                     video.pause();
+                    video.currentTime = 0;
                     // membuka modal penawaran premium
                     $("#buttonPremiums").click();
                 }
