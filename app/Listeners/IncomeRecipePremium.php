@@ -67,9 +67,10 @@ class IncomeRecipePremium
                 $total_followers = $koki->followers;
                 $total_user = User::count();
                 $total = $total_like_feed + $total_like_resep + $total_share_feed + $total_share_resep + $total_view + $total_favorite_feed + $total_favorite_resep + $total_followers;
-                $level = strval($total / $total_user);
+                $level = $total / $total_user;
                 if(is_float($level)) {
-                    $hasil = $level[2];
+                    $dec = strval($level);
+                    $hasil = $dec[2];
                 } else {
                     $hasil = $level;
                 }

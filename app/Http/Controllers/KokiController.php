@@ -217,7 +217,7 @@ class KokiController extends Controller
         $saldo_sudahDiambil = [];
         $saldo_belumDiambil = [];
         $total_saldo = [];
-       
+
         $year = 2023;
         for ($i = 1; $i <= 12; $i++) {
             $saldo_sudahDiambil[] = DB::table('penarikans')
@@ -579,25 +579,31 @@ class KokiController extends Controller
         $rules = [
             'name' => 'required',
             'email' => 'required|email',
-            'number_handphone' => 'required',
+            'number_handphone' => 'required|numeric|min_digits:10|max_digits:14',
             'alamat' => 'required',
             'foto_ktp' => 'required|image',
             'foto_diri_ktp' => 'required|image',
             'pilihan_bank' => 'required',
-            'nomer_rekening' => 'required',
+            'nomer_rekening' => 'required|numeric|min_digits:10|max_digits:16',
         ];
         $message = [
             'name.required' => 'Nama harus diisi!',
             'email.required' => 'Email harus diisi!',
             'email.email' => 'Format e-mail salah!',
             'number_handphone.required' => 'Nomer handphone harus diisi!',
+            'number_handphone.numeric' => 'Nomer handphone harus berupa nomer!',
+            'number_handphone.min_digits' => 'Nomer handphone minimal berisi 10 karakter angka!',
+            'number_handphone.max_digits' => 'Nomer handphone maksimal berisi 14 karakter angka!',
             'alamat.required' => "Alamat harus diisi!",
             'foto_ktp.required' => 'Foto ktp harus diisi!',
             'foto_ktp.image' => 'Foto ktp tidak berupa gambar!',
             'foto_diri_ktp.image' => 'Foto diri bersama ktp tidak berupa gambar!',
             'foto_diri_ktp.required' => 'Foto diri bersama ktp harus diisi!',
             'pilihan_bank.required' => 'Pilihan bank harus diisi!',
-            'nomer_rekening.required' => 'Nomer rekening harus diisi!'
+            'nomer_rekening.required' => 'Nomer rekening harus diisi!',
+            'nomer_rekening.numeric' => 'Nomer rekening harus berupa nomer!',
+            'nomer_rekening.min_digits' => 'Nomer rekening minimal berisi 10 karakter angka!',
+            'nomer_rekening.max_digits' => 'Nomer rekening maksimal berisi 14 karakter angka!',
         ];
         $validasi = Validator::make($request->all(), $rules, $message);
         if ($validasi->fails()) {

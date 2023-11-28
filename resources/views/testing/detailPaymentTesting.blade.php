@@ -18,8 +18,15 @@
                 <h5><i class="text-orange fa-solid fa-lg fa-file-invoice-dollar"></i> <b>Detail Transaksi</b> |</h5>
                 <span class="ps-2">Langganan</span>
               </div>
+              <div class="d-flex">
+                <div class="">
               <h4 class="text-orange fw-bolder">Rp. {{number_format($detail->amount,2,',','.')}}</h4>
-              <h4>#{{$detail->reference}}</h4>
+              <h5>#{{$detail->reference}}</h5>
+                </div>
+              @if ($detail->payment_name == "QRIS")
+              <img class="ml-5" src="{{$detail->qr_url}}" width="100px" height="100px" alt="">
+              @endif
+              </div>
                 <div class="">
                       @if($detail_transaksi->status == "paid")
                       <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
@@ -55,6 +62,7 @@
                 <i class="text-orange fa-solid fa-circle-info"></i> Silahkan lakukan pembayaran sebelum tenggat pembayaran,jika anda belum melakukan pembayaran pada tenggat yang ditentukan maka transaksi akan dianggap hangus.
               </small>
               <hr />
+
             </div>
 
             <div class="col-md-5 col-xl-4 offset-xl-1">

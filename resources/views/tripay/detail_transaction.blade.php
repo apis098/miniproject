@@ -18,8 +18,15 @@
                 <h5><i class="text-orange fa-solid fa-lg fa-file-invoice-dollar"></i> <b>Detail Transaksi</b> |</h5>
                 <span class="ps-2">TopUp</span>
               </div>
+              <div class="d-flex">
+                <div class="">
               <h4 class="text-orange fw-bolder">Rp. {{number_format($detail_transaction->amount,2,',','.')}}</h4>
               <h4>#{{$detail_transaction->reference}}</h4>
+                </div>
+              @if ($detail_transaction->payment_name == "QRIS")
+              <img class="ml-5" src="{{$detail_transaction->qr_url}}" width="100px" height="100px" alt="">
+              @endif
+              </div>
                 <div class="">
                       @if($data_transaction->status == "PAID")
                       <div class="col-lg-4 badge text-center badge-light" style="background-color: rgb(241, 130, 19)">
@@ -56,10 +63,10 @@
               </small>
               <hr />
             </div>
-  
+
             <div class="col-md-5 col-xl-4 offset-xl-1">
               <div class="py-1 d-flex justify-content-end">
-               
+
               </div>
               <div class="rounded d-flex flex-column p-3" style="background-color: #f8f9fa;">
                 <div class="p-2 me-3">
