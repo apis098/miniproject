@@ -1844,12 +1844,22 @@
                     placeholder: {
                         text: 'Masukkan Nama Bahan'
                     },
-
-
                 });
             });
-
-
+            $('#filter').on('shown.bs.modal', function() {
+                $('.cari-bahan').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        text: 'Masukkan Nama Bahan'
+                    },
+                });
+                $('.cari-alat').select2({
+                    closeOnSelect: false,
+                    placeholder: {
+                        text: 'Masukkan Nama Alat'
+                    },
+                });
+            });
         });
     </script>
     <script>

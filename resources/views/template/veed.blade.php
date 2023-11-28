@@ -16,6 +16,7 @@
             }
         </script>
     @endif
+    <div id="video_pembelajaran">
     <section class="text-align-center mt-5" id="all">
 
         <!-- rekomendasi chef start -->
@@ -314,7 +315,6 @@
                     });
                 </script>
                 <!-- foreach video pembelajaran start -->
-                <div id="video_pembelajaran">
                     @if ($video_pembelajaran->count() == 0)
                         <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: 7em">
@@ -2256,7 +2256,7 @@
                                                                                                             class="">
                                                                                                             {{-- <div style="margin-left:-0.7%;"
                                                                                                                 class="mt-1 me-3">
-                                                                                                               
+
 
                                                                                                             </div> --}}
                                                                                                             <div
@@ -2670,7 +2670,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
                 <!-- foreach video pembelajaran end -->
             </div>
 
@@ -2805,6 +2804,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
@@ -2985,7 +2985,7 @@
                                                                                                                         <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -1%;">
                                                                                                                             0
                                                                                                                         </span>
-                                                                                                                    
+
                                                                                                                         <div class="m-2 mr-auto">
                                                                                                                             {{-- --}}
 
@@ -3344,11 +3344,7 @@
                 success: function success(response) {
                     hideLoadingOverlay();
                     if (response.success) {
-                        $("#inputVideo").val('');
-                        $("#deskripsi_video").val('');
-                        $("body").load('/veed');
-                        document.getElementById("aVideo").textContent = "Tambahkan Video";
-                        document.getElementById("video_pembelajaran").html(response.update);
+                       location.reload();
                         iziToast.show({
                             backgroundColor: '#a1dfb0',
                             title: '<i class="fa-solid fa-check"></i>',
@@ -4051,7 +4047,7 @@
                                                                             </div>
                                                                             <div class="d-flex col-lg-11"
                                                                                 style="margin-top:-3%;">
-                                                                                <div class="d-flex ms-4">   
+                                                                                <div class="d-flex ms-4">
                                                                                     @if (Auth::user())
                                                                                             <form
                                                                                             action="/like/${pengirim['id']}/${up['id']}/${veed_id}"
