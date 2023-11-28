@@ -414,7 +414,7 @@
 
                                                                         <button type="button" data-bs-dismiss="modal"
                                                                             data-bs-target="#YakinTerimaAjuan{{ $data_verified->id }}"
-                                                                            data-bs-toggle="modal"
+                                                                            data-bs-toggle="modal" id="buttonTerima{{$data_verified->id}}"
                                                                             class="btn btn-sm rounded-3 text-light me-2"
                                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
                                                                                 class="ms-2 me-2"
@@ -440,6 +440,7 @@
                                                                         <script>
                                                                             function hiddenButtonTolak(num) {
                                                                                 document.getElementById("buttonTolak" + num).style.display = "none";
+                                                                                document.getElementById("buttonTerima" + num).style.display = "none";
                                                                                 document.getElementById("buttonSelesai" + num).style.display = "block";
                                                                             }
 
@@ -450,6 +451,7 @@
                                                                             function buttonbatal(num) {
                                                                                 document.getElementById("buttonTolak" + num).click();
                                                                                 document.getElementById("buttonTolak" + num).style.display = "block";
+                                                                                document.getElementById("buttonTerima" +num).style.display = "block";
                                                                                 document.getElementById("buttonSelesai" + num).style.display = "none";
                                                                             }
                                                                         </script>

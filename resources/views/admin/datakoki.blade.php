@@ -437,7 +437,7 @@
                                                                     <div class="mb-3 d-flex justify-content-end">
 
                                                                         <button type="button" data-dismiss="modal"
-                                                                            data-toggle="modal"
+                                                                            data-toggle="modal" id="buttonTerima{{$data_verified->id}}"
                                                                             data-target="#YakinTerimaData{{ $data_verified->id }}"
                                                                             class="btn btn-sm rounded-3 text-light me-2"
                                                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
@@ -466,6 +466,7 @@
                                                                         <script>
                                                                             function tolakData(num) {
                                                                                 $('#buttonTolak' + num).attr('hidden', true);
+                                                                                $("#buttonTerima" + num).attr("hidden", true);
                                                                                 $('#submitTolak' + num).attr('hidden', false);
                                                                                 // document.getElementById('buttonTolak'+num).style.display = "none";
                                                                                 // document.getElementById('submitTolak'+num).style.display = "block";
@@ -479,6 +480,7 @@
                                                                             function batal(num) {
                                                                                 document.getElementById('buttonTolak' + num).click();
                                                                                 $('#buttonTolak' + num).attr('hidden', false);
+                                                                                $("#buttonTerima" + num).attr("hidden", false);
                                                                                 $('#submitTolak' + num).attr('hidden', true);
                                                                             }
                                                                         </script>
