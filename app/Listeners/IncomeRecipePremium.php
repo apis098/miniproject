@@ -49,7 +49,7 @@ class IncomeRecipePremium
                        "pemasukan" => $pemasukan
                    ]);
                    // mengurangi saldo di admin
-                   $admin = User::where('role', 'admin')->first();
+                   $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
                    $admin->saldo = $admin->saldo - $pemasukan;
                    $admin->save();
                    // menambahkan saldo pemasukan di koki
