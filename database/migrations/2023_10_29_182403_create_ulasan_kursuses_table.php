@@ -28,7 +28,7 @@ return new class extends Migration
         });
 
         Schema::table('notifications', function (Blueprint $table) {
-            $table->unsignedBigInteger('ulasan_id');
+            $table->unsignedBigInteger('ulasan_id')->nullable();
             $table->foreign('ulasan_id')->references('id')->on('ulasan_kursuses')->onDelete('cascade');
         });
     }

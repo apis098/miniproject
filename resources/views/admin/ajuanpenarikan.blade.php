@@ -397,13 +397,13 @@
                                                                     </div>
                                                                     <div class="collapse"
                                                                         id="collapseTolak{{ $data_verified->id }}">
-                                                                        <button type="button" class="btn btn-danger"
+                                                                        <button type="button" class="btn btn-danger mb-3"
                                                                             onclick="buttonbatal({{ $data_verified->id }})">Batal</button>
                                                                         <form
                                                                             action="{{ route('proses.ajuan.penarikan', ['id' => $data_verified->id, 'status' => 'ditolak']) }}"
                                                                             method="post">
                                                                             @csrf
-                                                                            <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control"
+                                                                            <textarea name="alasan" id="alasan" cols="15" rows="5" class="form-control mb-3"
                                                                                 placeholder="Alasan..."></textarea>
                                                                             <button type="submit"
                                                                                 id="buttontolak{{ $data_verified->id }}"

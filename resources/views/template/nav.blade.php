@@ -1007,6 +1007,46 @@
                                                                         id="follower_id" value="{{ $row->follower_id }}"
                                                                         class="form-control">
                                                                 </form>
+                                                            @elseif($row->categories === "data-koki" && $row->alasan != null)
+                                                            <form action="{{ $row->route }}" method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                                    <small
+                                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                {{-- <input type="text" hidden
+                                                    name="follower_id"
+                                                    id="follower_id"
+                                                    value="{{ $row->follower_id }}"
+                                                    class="form-control"> --}}
+                                                            </form>
+                                                            @elseif($row->categories == "ajuan_penarikan" && $row->alasan != null)
+                                                            <form action="{{ $row->route }}" method="POST">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
+                                                                    <small
+                                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                    @if ($row->status == 'belum')
+                                                                        <img class="ms-2 rounded-circle"
+                                                                            src="{{ asset('images/badge.png') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:10px">
+                                                                    @endif
+                                                                </button>
+                                                                {{-- <input type="text" hidden
+                                                    name="follower_id"
+                                                    id="follower_id"
+                                                    value="{{ $row->follower_id }}"
+                                                    class="form-control"> --}}
+                                                            </form>
                                                             @else
                                                                 <form action="{{ $row->route }}" method="POST">
                                                                     @method('PUT')
@@ -1611,7 +1651,7 @@
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="{{ route('blockedComplaint.notification', $row->id) }}" method="POST">
+                    <form action="{{$row->route}}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-header">
