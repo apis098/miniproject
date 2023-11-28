@@ -456,7 +456,7 @@ class VeedController extends Controller
     {
         if (Auth::check()) {
             $userIds = $request->input('user_id', []); // Mendapatkan array user_id yang dicentang
-
+            $feed = upload_video::findOrFail($id);
             foreach ($userIds as $userId) {
                 // insert data share
                 $data = new Share();
@@ -473,9 +473,17 @@ class VeedController extends Controller
                 $notification->save();
             }
 
-            return redirect()->back()->with('success', 'Konten yang anda bagikan telah terkirim!');
+            return response()->json([
+                "success"=> true,
+                "message"=>"Berhasil membagikan resep!",
+                // 'isShared' => $check,
+                'shared_count' => $feed->share_count(),
+            ]);
         } else {
-            return redirect()->back()->with('error', 'Silahkan login terlebih dahulu');
+            return response()->json([
+                "success"=> false,
+                "message"=>"Silahkan login terlebih dahulu",
+            ]);
         }
     }
  

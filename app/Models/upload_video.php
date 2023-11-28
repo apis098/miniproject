@@ -48,6 +48,9 @@ class upload_video extends Model
     {
         return $this->hasMany(comment_veed::class, "veed_id");
     }
+    public function share_count(){
+        return Share::where('feed_id',$this->id)->count();
+    }
     public function reply_comment_veed()
     {
         return $this->hasMany(reply_comment_veed::class);

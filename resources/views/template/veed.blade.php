@@ -650,7 +650,7 @@
                                                     stroke-linejoin="round" stroke-width="32"
                                                     d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
                                             </svg>
-                                            <span class="my-auto">{{ $item_video->share_veed->count() }}</span>
+                                            <span id="shared_count{{$item_video->id}}" class="my-auto">{{ $item_video->share_veed->count() }}</span>
                                         </a>
 
                                         <!-- modal Bagikan start -->
@@ -802,7 +802,7 @@
                                         </style>
                                         {{-- modal bagikan --}}
                                         <div class="modal" id="bagikan{{ $item_video->id }}">
-                                            <form action="{{ route('share.feed', $item_video->id) }}" method="POST">
+                                            <form id="share_form{{$item_video->id}}"  action="{{ route('share.feed', $item_video->id) }}" method="POST">
                                                 @csrf
                                                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                     <div class="modal-content">
@@ -887,7 +887,7 @@
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-center">
                                                             <button class="btn btn-light fw-bolder text-light col-lg-11"
-                                                                type="submit"
+                                                                type="submit" onclick="shareButton({{$item_video->id}})"
                                                                 style="border-radius: 10px; background-color:#F7941E;">
                                                                 <p class="mt-1 mb-1">Bagikan</p>
                                                             </button>
@@ -3442,7 +3442,50 @@
                 });
             });
         }
-
+        function shareButton(num) {
+            $('#share_form' + num).off('submit');
+            $('#share_form' + num).submit(function(e) {
+                e.preventDefault();
+                // var share_button_icon = document.getElementById('share_button_icon');
+                // var share_icon = document.getElementById('share_icon');
+                var shared_count = document.getElementById('shared_count' + num);
+                let route = $('#share_form' + num).attr('action');
+                let data = new FormData($('#share_form' + num)[0]);
+                $.ajax({
+                    type: "POST",
+                    url: route,
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-CSRF-Token": "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            shared_count.textContent = response.shared_count;
+                            iziToast.show({
+                                backgroundColor: '#a1dfb0',
+                                title: '<i class="fa-regular fa-circle-question"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                                progressBarColor: 'dark',
+                            });
+                        } else {
+                            iziToast.show({
+                                backgroundColor: '#f2a5a8',
+                                title: '<i class="fa-solid fa-triangle-exclamation"></i>',
+                                titleColor: 'dark',
+                                messageColor: 'dark',
+                                message: response.message,
+                                position: 'topCenter',
+                            });
+                        }
+                    }
+                });
+            });
+        }
         // like feed ajax
         function likeFeed(num) {
             // sebelumnya ngebug duplikasi aksi, dengan ini akan menonaktifkan aksi yang sebelumnya.
