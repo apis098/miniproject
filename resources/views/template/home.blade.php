@@ -83,7 +83,7 @@
     <!-- end slider section -->
 @endsection
 
-<section class="container mt-5 mb-5">
+<section class="m-5">
 
     <div class=" input-group">
         <div class="">
@@ -102,8 +102,8 @@
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
-                            <img src="{{ asset('storage/'.$resep->foto_resep) }}" class="rounded-circle" width="100%" Favorit
-                                height="100%" alt="">
+                            <img src="{{ asset('storage/'.$resep->foto_resep) }}" class="rounded-circle" width="100px" Favorit
+                                height="100px" alt="">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $resep->nama_resep }}</span> <br>
@@ -145,7 +145,7 @@
     </div>
 </section>
 
-<section class="container mt-5 mb-5">
+<section class="m-5">
     <div class=" input-group">
         <h3 class="fw-bold ml-3 mb-3 mx-3">Feed Premium Terfavorit</h3>
     </div>
@@ -247,7 +247,7 @@
 <br><br>
 <!-- offer section -->
 
-<section class="container mt-5 mb-5">
+<section class="m-5">
 
     <div class=" input-group">
         <div class="">
@@ -267,7 +267,7 @@
                     <div class="row">
                         <div class="col-5">
                             <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle"
-                                width="100%" Favorit height="100%" alt="">
+                                width="100px" Favorit height="100px" alt="">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -309,7 +309,7 @@
     </div>
 </section>
 
-<section class="container mt-5 mb-5">
+<section class="m-5">
 
     <div class=" input-group">
         <div class="">
@@ -329,7 +329,7 @@
                     <div class="row">
                         <div class="col-5">
                             <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle"
-                                width="100%" height="100%" alt="">
+                                width="100px" height="100px" alt="">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -380,7 +380,7 @@
 
 
 {{-- start koki terpopuler --}}
-<section class="container mt-5 mb-5">
+<section class="m-5">
     <div class="input-group">
         <div class="mx-3">
             <h3 class="fw-bold">Koki terpopuler</h3>
@@ -583,7 +583,7 @@
 
 
 {{-- start resep terbaru --}}
-<section class="container mt-5 mb-5">
+<section class="m-5">
     <div class=" input-group">
         <div class="">
             <h3 class="fw-bold ml-3 mb-5">Resep resep Terbaru</h3>
@@ -653,7 +653,7 @@
 
 
 {{-- start feed populer  --}}
-<section class="container mt-5 mb-5">
+<section class="m-5">
     <div class=" input-group">
         <h3 class="fw-bold ml-3 mb-3 mx-3">Feed Populer Minggu ini</h3>
     </div>
@@ -1157,8 +1157,7 @@
     }
 </style>
 <!-- about section -->
-<section class="py-5">
-    <div class="container">
+<section class="m-5">
         <div class="row">
             <div class="col-md-6 my-5">
                 <div class="detail-box mx-3">
@@ -1192,7 +1191,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- end about section -->
 <script>

@@ -195,7 +195,7 @@ class TripayCallbackController extends Controller
             $user->saldo = $saldo_lama + $saldo_baru;
             $user->save();
 
-            $admin = User::where('role','admin')->first();
+            $admin = User::where('role','admin')->where('isSuperUser', 'admin_keuangan')->first();
             $notification = new notifications();
             $notification->user_id = $user->id;
             $notification->notification_from = $admin->id;
