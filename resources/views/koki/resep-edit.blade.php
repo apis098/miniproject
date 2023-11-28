@@ -384,12 +384,12 @@
                                 <b> Resep anda gratis / premium? </b>
                             </label> <br>
                             <input type="radio" class="btn-check" name="premium" id="success-outlined"
-                                autocomplete="off" value="no" {{ $edit_resep->isPremium == 'no' ? 'checked' : '' }}>
-                            <label class="btn btn-select mr-3" id="free" for="success-outlined">Gratis</label>
+                                autocomplete="off" value="no" {{ $edit_resep->isPremium == 'no' ? "checked" : '' }}>
+                            <label class="btn {{ $edit_resep->isPremium == 'no' ? "btn-select" : 'btn-no-select' }}  mr-3" id="free" for="success-outlined">Gratis</label>
 
                             <input type="radio" class="btn-check" name="premium" id="danger-outlined"
-                                autocomplete="off" value="yes" {{ $edit_resep->isPremium == 'yes' ? 'checked' : '' }}>
-                            <label class="btn btn-no-select" id="prem" for="danger-outlined">Premium</label>
+                                autocomplete="off" value="yes" {{ $edit_resep->isPremium == 'yes' ? "checked" : '' }}>
+                            <label class="btn {{ $edit_resep->isPremium == 'yes' ? "btn-select" : 'btn-no-select' }}" id="prem" for="danger-outlined">Premium</label>
                         </div>
                     @endif
                     <div>
