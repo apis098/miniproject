@@ -63,8 +63,8 @@ class artikels extends Controller
             $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
-            $gift_check = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
-            $gift_count = income_chefs::where('resep_id',$show_resep->id)->count();
+            $gift_check = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$show_resep->id)->whereNot('status','sawer')->count();
+            $gift_count = income_chefs::where('resep_id',$show_resep->id)->where('status','sawer')->count();
             $share_check = Share::where('sender_id',auth()->user()->id)->where('resep_id',$show_resep->id)->count();
         }
         if ($userLogin) {

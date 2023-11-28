@@ -416,7 +416,7 @@
                                             @endif
                                             <div class="d-flex justify-content-center">
                                                 <small id="gift-count{{ $show_resep->id }}"
-                                                    class="me-3"">{{ $gift_count }}</small>
+                                                    class="me-3">{{ $gift_count }}</small>
                                             </div>
                                         </form>
                                         <form action="#">
@@ -815,6 +815,7 @@
 
                                                                 <button type="submit"
                                                                     onclick="giftButton({{ $show_resep->id }})"
+                                                                    id="gift-btn{{ $show_resep->id }}"
                                                                     style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                     class="btn  btn-sm text-light">
                                                                     <b class="me-3 ms-3">Kirim</b></button>
@@ -965,12 +966,11 @@
         </div>
         <style>
             @media(max-width:578px) {
-              .nav-item a h5 {
-                font-size: 12px;
-                text-align: center;
-              }
+                .nav-item a h5 {
+                    font-size: 12px;
+                    text-align: center;
+                }
             }
-
         </style>
         <div class="my-5">
             <ul class="nav" id="pills-tab" role="tablist">
@@ -1575,6 +1575,9 @@
             </div>
         @endforeach
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.10.0/sweetalert2.min.js"
+        integrity="sha512-rO18JLH5mM83ToEn/5KhZ8BpHJ4uUKrGLybcp6wK0yuRfqQCSGVbEq1yIn/9coUjRU88TA6UJDLPK9sO6DN0Iw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         // function report resep
         function ButtonReportResep() {
@@ -2329,20 +2332,46 @@
                         if (response.success) {
                             message.value = "";
                             moreInput.value = "";
-                            if (response.check_count = 1) {
-                                gift_btn.style.backgroundColor = "#F7941E";
-                                gift_icon.style.color = "#ffffff";
-                            }
-                            $('#gift-count' + num).html(response.gift_count);
-                            iziToast.show({
-                                backgroundColor: '#a1dfb0',
-                                title: '<i class="fa-regular fa-circle-question"></i>',
-                                titleColor: 'dark',
-                                messageColor: 'dark',
-                                message: response.message,
-                                position: 'topCenter',
-                                progressBarColor: 'dark',
+                            let timerInterval;
+                            Swal.fire({
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading();
+                                    const timer = Swal.getPopup().querySelector("b");
+                                    timerInterval = setInterval(() => {
+                                        timer.textContent =
+                                            `${Swal.getTimerLeft()}`;
+                                    }, 100);
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval);
+                                }
+                            }).then((result) => {
+
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    document.getElementById('gift-btn' + num).disabled = true;
+                                    setTimeout(function() {
+                                        document.getElementById('gift-btn' + num)
+                                            .disabled = false;
+                                    }, 60000);
+                                    if (response.check_count = 1) {
+                                        gift_btn.style.backgroundColor = "#F7941E";
+                                        gift_icon.style.color = "#ffffff";
+                                    }
+                                    $('#gift-count' + num).html(response.gift_count);
+                                    iziToast.show({
+                                        backgroundColor: '#a1dfb0',
+                                        title: '<i class="fa-regular fa-circle-question"></i>',
+                                        titleColor: 'dark',
+                                        messageColor: 'dark',
+                                        message: response.message,
+                                        position: 'topCenter',
+                                        progressBarColor: 'dark',
+                                    });
+                                }
                             });
+
                         } else {
                             message.value = "";
                             moreInput.value = "";

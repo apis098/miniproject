@@ -81,7 +81,7 @@ class donationController extends Controller
                         $notification->route = "/koki/income-koki";
                         $notification->save();
 
-                        $gift_count = income_chefs::where('feed_id',$feed_id)->count();
+                        $gift_count = income_chefs::where('feed_id',$feed_id)->where('status','sawer')->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
                     }elseif($resep_id != 0){
                         $income = new income_chefs();
@@ -103,7 +103,7 @@ class donationController extends Controller
                         $notification->route = "/koki/income-koki";
                         $notification->save();
 
-                        $gift_count = income_chefs::where('resep_id',$resep_id)->count();
+                        $gift_count = income_chefs::where('resep_id',$resep_id)->where('status','sawer')->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
                     }
 
@@ -154,7 +154,7 @@ class donationController extends Controller
                         $income->status = "sawer";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
-                        $gift_count = income_chefs::where('feed_id',$feed_id)->count();
+                        $gift_count = income_chefs::where('feed_id',$feed_id)->where('status','sawer')->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('feed_id',$feed_id)->count();
 
                         $notification = new notifications();
@@ -175,7 +175,7 @@ class donationController extends Controller
                         $income->status = "sawer";
                         $income->pemasukan = $saldo_baru;
                         $income->save();
-                        $gift_count = income_chefs::where('resep_id',$resep_id)->count();
+                        $gift_count = income_chefs::where('resep_id',$resep_id)->where('status','sawer')->count();
                         $check_count = income_chefs::where('user_id',auth()->user()->id)->where('resep_id',$resep_id)->count();
 
                         $notification = new notifications();
