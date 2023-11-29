@@ -479,7 +479,7 @@
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="mx-1">
-                        <select name="jenis_penghasilan" class="form-control" id="jenis_penghasilan">
+                        <select name="jenis_penghasilan" class="form-select" id="jenis_penghasilan">
                             <option value="">Pilih Jenis Penghasilan</option>
                             <option value="sawer">Sawer</option>
                             <option value="feed">Feed Premium</option>
