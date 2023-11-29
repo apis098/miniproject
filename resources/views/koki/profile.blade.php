@@ -17,7 +17,7 @@
             padding-top: 5px
         }
     </style>
-    <div class="container">
+    <div class="ms-5 me-5">
         <div class="row">
             <div class="col-sm-4">
                 <div class="card my-5 border border-dark sus susi" style="border-radius:25px;">
@@ -256,21 +256,59 @@
                         margin-left: 45px;
                     }
                 }
+
+                @media (min-width:992px) and (max-width:1200px) {
+                    .card2 {
+                        margin-top: 50px;
+                    }
+                }
+                @media (max-width:578px) {
+                    ul .nav-item {
+                        width: 24%;
+                        text-align: center;
+                    }
+                    ul .nav-item a h5 {
+                        font-size: 12px;
+                    }
+                    ul .nav-item button h5 {
+                        font-size: 12px;
+                    }
+                }
+                @media(max-width: 390px) {
+                    ul .nav-item {
+                        width: 50%;
+                        text-align: center;
+                    }
+                    ul .nav-item a h5 {
+                        font-size: 12px;
+                    }
+                    ul .nav-item button h5 {
+                        font-size: 12px;
+                    }
+                    .nav-item button {
+                        margin-left: 30px;
+                    }
+                }
+                @media(max-width: 330px) {
+                    .nav-item button {
+                        margin-left:18px;
+                    }
+                }
             </style>
-            <div class="col-lg-8">
+            <div class="col-lg-8 card2">
                 <div class="row meta">
                     <div class="col-lg-4">
                         <div class="card p-3"
                             style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-7 ">
+                            <div class="d-flex justify-content-between my-1">
+                                <div class="">
                                     <span class="ms-3"
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $userLogin->like }}
                                     </span> <br>
                                     <p class="ms-3">Suka</p>
                                 </div>
-                                <div class="col-5 my-3">
+                                <div class="mt-3">
                                     <i class="fa-solid fa-thumbs-up fa-2xl uhuy uuy kiri"></i>
                                 </div>
                             </div>
@@ -279,15 +317,15 @@
                     <div class="col-lg-4">
                         <div class="card p-3"
                             style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-7">
+                            <div class="d-flex justify-content-between my-1">
+                                <div class="">
                                     <span class="ms-3"
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $resep_sendiri->count() }}
                                     </span> <br>
                                     <p class="ms-3">Resep</p>
                                 </div>
-                                <div class="col-5 my-3">
+                                <div class="mt-3">
                                     <i class="fa-solid fa-book fa-flip-horizontal fa-2xl uhuy uuy kiri"></i>
                                 </div>
                             </div>
@@ -296,15 +334,15 @@
                     <div class="col-lg-4">
                         <div class="card p-3"
                             style="width: 100%; height: 80%; border-radius: 15px; border: 0.50px black solid">
-                            <div class="row my-1">
-                                <div class="col-7">
+                            <div class="d-flex justify-content-between my-1">
+                                <div class="">
                                     <span class="ms-3"
                                         style="color: black; font-size: 28px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                         {{ $userLogin->followers }}
                                     </span> <br>
                                     <p class="ms-3">Pengikut</p>
                                 </div>
-                                <div class="col-5 my-3">
+                                <div class="mt-3">
                                     <i class="fa-solid fa-user-plus fa-2xl uhuy uuy kiri"></i>
                                 </div>
                             </div>
@@ -318,34 +356,34 @@
                                     <a id="button-biografi" class="nav-link active" data-bs-toggle="tab"
                                         data-bs-target="#resep" type="button" role="tab" aria-controls="resep"
                                         aria-selected="false">
-                                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
+                                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                                             Biografi
                                         </h5>
-                                        <div id="border1" class="ms-1"
+                                        <div id="border1" class=""
                                             style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                                         </div>
                                     </a>
                                 </li>
 
                                 <li class="nav-item tabs" role="presentation">
-                                    <a id="button-resep-dibuat" class="nav-link rigt" data-bs-toggle="tab"
+                                    <a id="button-resep-dibuat" class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#keluhan" type="button" role="tab" aria-controls="keluhan"
                                         aria-selected="false">
-                                        <h5 class="text-dark mas" style="font-weight: 600; word-wrap: break-word;">Resep
+                                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Resep
                                             Dibuat</h5>
-                                        <div id="border2" class="ms-1"
+                                        <div id="border2" class=""
                                             style="width: 100%; height: 100%; border: 1px #F7941E solid;" hidden>
                                         </div>
                                     </a>
                                 </li>
 
                                 <li class="nav-item tabs" role="presentation" style="">
-                                    <a id="button-video-dibuat" class="nav-link mr-2 rigt" data-bs-toggle="tab"
+                                    <a id="button-video-dibuat" class="nav-link" data-bs-toggle="tab"
                                         data-bs-target="#komentar" type="button" role="tab"
                                         aria-controls="komentar" aria-selected="false">
                                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Video
                                             Dibuat </h5>
-                                        <div id="border3" class="ms-0"
+                                        <div id="border3" class=""
                                             style="width:120%; height: 100%; border: 1px #F7941E solid;" hidden>
                                         </div>
                                     </a>
@@ -353,24 +391,24 @@
 
                                 @if ($userLogin->isSuperUser === 'yes')
                                     <li class="nav-item tabs" role="presentation" style="">
-                                        <button id="button-kursus-dibuat" class="nav-link yuhu mt-2 rigt"
+                                        <button id="button-kursus-dibuat" class="nav-link yuhu mt-2"
                                             data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                             aria-controls="profile" aria-selected="false">
                                             <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
                                                 Dibuat</h5>
-                                            <div id="border4" class="ms-1"
+                                            <div id="border4" class=""
                                                 style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                             </div>
                                         </button>
                                     </li>
                                 @else
                                     <li hidden class="nav-item tabs" role="presentation" style="">
-                                        <button id="button-kursus-dibuat" class="nav-link yuhu mt-2 rigt"
+                                        <button id="button-kursus-dibuat" class="nav-link yuhu mt-2"
                                             data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab"
                                             aria-controls="profile" aria-selected="false">
                                             <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kursus
                                                 Dibuat</h5>
-                                            <div id="border4" class="ms-1"
+                                            <div id="border4" class=""
                                                 style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                                             </div>
                                         </button>

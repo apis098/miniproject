@@ -473,7 +473,7 @@
             <div class="tab-content mb-5 mx-5" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
-                    <div class="container mt-1">
+                    <div class=" mt-1">
                         <div class="d-flex">
                             <div class="search-1" style="border:1px solid black;height:50px;border-radius:15px;">
 

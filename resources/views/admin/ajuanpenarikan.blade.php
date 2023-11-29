@@ -504,7 +504,7 @@
                                                                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                                                 class="ms-2 me-2">Ya</b>
                                                                         </button>
-                                                                        <button type="button" data-bs-dismiss="modal"
+                                                                        <button type="button" data-dismiss="modal"
                                                                             class="btn btn-light text-light rounded-3"
                                                                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                                                                                 class="ms-2 me-2">Tidak</b>
