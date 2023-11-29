@@ -683,7 +683,7 @@
 
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-center">
-                                                            <button onclick="shareButton({{ $show_resep->id }})"
+                                                            <button onclick="shareButton({{ $show_resep->id }})" id="shr-btn{{$show_resep->id}}"
                                                                 class="btn btn-light fw-bolder text-light col-lg-11"
                                                                 type="submit"
                                                                 style="border-radius: 10px; background-color:#F7941E;">
@@ -2284,6 +2284,11 @@
                                 share_button_icon.style.backgroundColor = "#F7941E";
                                 share_icon.style.color = "#ffffff";
                             }
+                            document.getElementById('shr-btn' + num).disabled = true;
+                            setTimeout(function() {
+                                document.getElementById('shr-btn' + num)
+                                    .disabled = false;
+                            }, 60000);
                             shared_count.textContent = response.shared_count;
                             iziToast.show({
                                 backgroundColor: '#a1dfb0',

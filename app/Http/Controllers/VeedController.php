@@ -476,8 +476,7 @@ class VeedController extends Controller
     
                 return response()->json([
                     "success"=> true,
-                    "message"=>"Berhasil membagikan resep!",
-                    // 'isShared' => $check,
+                    "message"=>"Berhasil membagikan Postingan!",
                     'shared_count' => $feed->share_count(),
                 ]);
             }else{

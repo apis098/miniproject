@@ -17,211 +17,222 @@
         </script>
     @endif
     <div id="video_pembelajaran">
-    <section class="text-align-center mt-5" id="all">
+        <section class="text-align-center mt-5" id="all">
 
-        <!-- rekomendasi chef start -->
-        <div class="row justify-content-center">
-            <div class="col-md-3 hidden-content" style="">
-                <div class="card" style="width: 15rem; margin-left:50px;  border-radius: 10px">
-                    <div class="card-header text-white text-center"
-                        style="background-color: #F7941E;   border-top-right-radius: 10px; border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Rekomendasi Chef
-                    </div>
-                    <div class="card-body" style="height: 400px;">
-                        @foreach ($top_users as $row)
-                            <div class="d-flex mb-3">
-                                @if ($row->foto)
-                                    <a href="/profile-orang-lain/{{ $row->id }}">
-                                        <img src="{{ asset('storage/' . $row->foto) }}" class="border rounded-circle me-2"
-                                            alt="Avatar" style="height: 40px" />
-                                    </a>
-                                @else
-                                    <a href="/profile-orang-lain/{{ $row->id }}">
-                                        <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle me-2"
-                                            alt="Avatar" style="height: 40px" />
-                                    </a>
-                                @endif
-                                <div>
-                                    <div class="bg-light rounded-3 px-3 py-1">
-                                        <a href="/profile-orang-lain/{{ $row->id }}" class="text-dark mb-0">
-                                            <strong>{{ $row->name }}</strong>
-                                            @if ($row->isSuperUser == 'yes')
-                                                <i class="fa-duotone fa-circle-check"></i>
-                                            @endif
+            <!-- rekomendasi chef start -->
+            <div class="row justify-content-center">
+                <div class="col-md-3 hidden-content" style="">
+                    <div class="card" style="width: 15rem; margin-left:50px;  border-radius: 10px">
+                        <div class="card-header text-white text-center"
+                            style="background-color: #F7941E;   border-top-right-radius: 10px; border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
+                            Rekomendasi Chef
+                        </div>
+                        <div class="card-body" style="height: 400px;">
+                            @foreach ($top_users as $row)
+                                <div class="d-flex mb-3">
+                                    @if ($row->foto)
+                                        <a href="/profile-orang-lain/{{ $row->id }}">
+                                            <img src="{{ asset('storage/' . $row->foto) }}"
+                                                class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
                                         </a>
-                                        <a href="/profile-orang-lain/{{ $row->id }}" class="text-muted d-block">
-                                            <small>{{ $row->resep->count() }} Resep dibuat</small>
+                                    @else
+                                        <a href="/profile-orang-lain/{{ $row->id }}">
+                                            <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle me-2"
+                                                alt="Avatar" style="height: 40px" />
                                         </a>
+                                    @endif
+                                    <div>
+                                        <div class="bg-light rounded-3 px-3 py-1">
+                                            <a href="/profile-orang-lain/{{ $row->id }}" class="text-dark mb-0">
+                                                <strong>{{ $row->name }}</strong>
+                                                @if ($row->isSuperUser == 'yes')
+                                                    <i class="fa-duotone fa-circle-check"></i>
+                                                @endif
+                                            </a>
+                                            <a href="/profile-orang-lain/{{ $row->id }}" class="text-muted d-block">
+                                                <small>{{ $row->resep->count() }} Resep dibuat</small>
+                                            </a>
+                                        </div>
+
                                     </div>
-
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- rekomendasi chef end -->
-            <style>
-                .posisi {
-                    margin-top: -3%;
-                }
-
-                .form {
-                    position: relative;
-                }
-
-                .form .fa-search {
-                    position: absolute;
-                    top: 40px;
-                    left: 20px;
-                    color: #9ca3af;
-
-                }
-
-                .border-orange {
-                    width: 150px;
-                    height: 225px;
-                    border-radius: 15px;
-                    border: #F7941E solid;
-                    overflow: hidden;
-                }
-
-                .border-black {
-                    width: 150px;
-                    height: 225px;
-                    border-radius: 15px;
-                    border: black solid;
-                    overflow: hidden;
-                }
-
-                .form span {
-
-                    position: absolute;
-                    right: 17px;
-                    top: 13px;
-                    padding: 2px;
-                    border-left: 1px solid #d1d5db;
-
-                }
-
-                .left-pan {
-                    padding-left: 7px;
-                    margin-top: 20px;
-                }
-
-                .left-pan i {
-                    padding-left: 10px;
-                }
-
-                .form-input {
-                    margin-left: -3.5%;
-                    width: 107%;
-                    height: 55px;
-                    text-indent: 33px;
-                    border-radius: 10px;
-                }
-
-                .form-input:focus {
-
-                    box-shadow: none;
-                   border: #F7941E solid;
-                }
-
-                @keyframes fadeIn {
-                    0% {
-                        opacity: 0;
+                <!-- rekomendasi chef end -->
+                <style>
+                    .posisi {
+                        margin-top: -3%;
                     }
 
-                    100% {
-                        opacity: 1;
-                    }
-                }
-
-                .fade-in {
-                    animation: fadeIn 0.5s ease-in-out;
-                }
-
-                .fade-out {
-                    animation-name: fadeOutAnimation;
-                    animation-duration: 0.5s;
-                    /* Sesuaikan durasi animasi sesuai keinginan Anda */
-                    animation-timing-function: ease-out;
-                    animation-fill-mode: forwards;
-                }
-
-                @keyframes fadeOutAnimation {
-                    from {
-                        opacity: 1;
+                    .form {
+                        position: relative;
                     }
 
-                    to {
-                        opacity: 0;
+                    .form .fa-search {
+                        position: absolute;
+                        top: 40px;
+                        left: 20px;
+                        color: #9ca3af;
+
                     }
-                }
-            </style>
-            <!-- feed start -->
-            <div class="col-md-12 col-lg-6">
-                <div class="card border border-0 posisi cari-veed">
-                    <div class="card-body form">
-                        <i class="fa fa-search"></i>
-                        <input type="text" class="form-control form-input search-video" placeholder="Cari...">
+
+                    .border-orange {
+                        width: 150px;
+                        height: 225px;
+                        border-radius: 15px;
+                        border: #F7941E solid;
+                        overflow: hidden;
+                    }
+
+                    .border-black {
+                        width: 150px;
+                        height: 225px;
+                        border-radius: 15px;
+                        border: black solid;
+                        overflow: hidden;
+                    }
+
+                    .form span {
+
+                        position: absolute;
+                        right: 17px;
+                        top: 13px;
+                        padding: 2px;
+                        border-left: 1px solid #d1d5db;
+
+                    }
+
+                    .left-pan {
+                        padding-left: 7px;
+                        margin-top: 20px;
+                    }
+
+                    .left-pan i {
+                        padding-left: 10px;
+                    }
+
+                    .form-input {
+                        margin-left: -3.5%;
+                        width: 107%;
+                        height: 55px;
+                        text-indent: 33px;
+                        border-radius: 10px;
+                    }
+
+                    .form-input:focus {
+
+                        box-shadow: none;
+                        border: #F7941E solid;
+                    }
+
+                    @keyframes fadeIn {
+                        0% {
+                            opacity: 0;
+                        }
+
+                        100% {
+                            opacity: 1;
+                        }
+                    }
+
+                    .fade-in {
+                        animation: fadeIn 0.5s ease-in-out;
+                    }
+
+                    .fade-out {
+                        animation-name: fadeOutAnimation;
+                        animation-duration: 0.5s;
+                        /* Sesuaikan durasi animasi sesuai keinginan Anda */
+                        animation-timing-function: ease-out;
+                        animation-fill-mode: forwards;
+                    }
+
+                    @keyframes fadeOutAnimation {
+                        from {
+                            opacity: 1;
+                        }
+
+                        to {
+                            opacity: 0;
+                        }
+                    }
+                </style>
+                <!-- feed start -->
+                <div class="col-md-12 col-lg-6">
+                    <div class="card border border-0 posisi cari-veed">
+                        <div class="card-body form">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control form-input search-video" placeholder="Cari...">
+                        </div>
                     </div>
-                </div>
-                <div class="card border border-0 posisi" hidden>
-                    <div class="card-body form">
-                        <i class="fa fa-search"></i>
-                        <input type="text" class="form-control form-input search-uuid" value="{{ request()->uuid }}"
-                            placeholder="Cari...">
+                    <div class="card border border-0 posisi" hidden>
+                        <div class="card-body form">
+                            <i class="fa fa-search"></i>
+                            <input type="text" class="form-control form-input search-uuid" value="{{ request()->uuid }}"
+                                placeholder="Cari...">
+                        </div>
                     </div>
-                </div>
-                <script>
-                    $(document).ready(function() {
-                        $('.search-video').on('input', function() {
-                            var value = $(this).val().toLowerCase();
-                            $('.item-video').filter(function() {
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    <script>
+                        $(document).ready(function() {
+                            $('.search-video').on('input', function() {
+                                var value = $(this).val().toLowerCase();
+                                $('.item-video').filter(function() {
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
                             });
                         });
-                    });
-                    $(document).ready(function() {
-                        // Ambil nilai awal dari input
-                        var initialValue = $('.search-uuid').val().toLowerCase();
+                        $(document).ready(function() {
+                            // Ambil nilai awal dari input
+                            var initialValue = $('.search-uuid').val().toLowerCase();
 
-                        // Fungsi pencarian
-                        $('.search-uuid').on('input', function() {
-                            var value = $(this).val().toLowerCase();
+                            // Fungsi pencarian
+                            $('.search-uuid').on('input', function() {
+                                var value = $(this).val().toLowerCase();
+                                $('.item-video').filter(function() {
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+                            });
+
+                            // Jalankan fungsi pencarian dengan nilai awal
                             $('.item-video').filter(function() {
-                                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                $(this).toggle($(this).text().toLowerCase().indexOf(initialValue) > -1)
                             });
                         });
+                    </script>
+                    <div class="card responsive-upload">
+                        <div class="card-body">
 
-                        // Jalankan fungsi pencarian dengan nilai awal
-                        $('.item-video').filter(function() {
-                            $(this).toggle($(this).text().toLowerCase().indexOf(initialValue) > -1)
-                        });
-                    });
-                </script>
-                <div class="card responsive-upload">
-                    <div class="card-body">
+                            @if (Auth::check())
+                                <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
+                                    id="formUploadVideo">
+                                    @csrf
+                                    @if (Auth::user()->isSuperUser === 'yes')
+                                        <div class="d-flex mb-2">
 
-                        @if (Auth::check())
-                            <form action="{{ route('upload.video') }}" method="post" enctype="multipart/form-data"
-                                id="formUploadVideo">
-                                @csrf
-                                @if (Auth::user()->isSuperUser === 'yes')
-                                    <div class="d-flex mb-2">
+                                            <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
+                                                autocomplete="off" value="no">
+                                            <label class="btn btn-select mr-3" id="free"
+                                                for="success-outlined">Gratis</label>
 
-                                        <input type="radio" class="btn-check" name="isPremium" id="success-outlined"
-                                            autocomplete="off" value="no">
-                                        <label class="btn btn-select mr-3" id="free"
-                                            for="success-outlined">Gratis</label>
+                                            <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
+                                                autocomplete="off" value="yes">
+                                            <label class="btn btn-no-select" id="prem"
+                                                for="danger-outlined">Premium</label>
 
-                                        <input type="radio" class="btn-check" name="isPremium" id="danger-outlined"
-                                            autocomplete="off" value="yes">
-                                        <label class="btn btn-no-select" id="prem"
-                                            for="danger-outlined">Premium</label>
-
-                                        <div class="ml-auto d-flex">
+                                            <div class="ml-auto d-flex">
+                                                <div id="loading-overlay" style="display: none;"
+                                                    class="spinner-border text-orange" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                                <small id="text-loading" style="display: none"
+                                                    class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah
+                                                    postingan...</small>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="ml-auto d-flex mb-3">
                                             <div id="loading-overlay" style="display: none;"
                                                 class="spinner-border text-orange" role="status">
                                                 <span class="sr-only">Loading...</span>
@@ -230,91 +241,82 @@
                                                 class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah
                                                 postingan...</small>
                                         </div>
-                                    </div>
-                                @else
-                                    <div class="ml-auto d-flex mb-3">
-                                        <div id="loading-overlay" style="display: none;" class="spinner-border text-orange"
-                                            role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                        <small id="text-loading" style="display: none"
-                                            class="ms-1 mt-2 text-orange fw-bolder font-italic fade-in shake-text">Mengunggah
-                                            postingan...</small>
-                                    </div>
-                                @endif
-                                <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
-                                    rows="5" required>{{ old('deskripsi_video') }}</textarea>
-                                <br>
-                                <input type="file" name="upload_video" id="inputVideo" hidden>
-                                <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
-                                    style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
-                                    <div style="font-weight: 600; color: black;"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="25" height="25" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
-                                        </svg> Tambahkan Video</div>
-                                </a>
-                                <button type="submit" class="btn " id="buttonUploadVideo"
-                                    style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                    <span style="font-weight: 600; color: white;">Upload</span>
-                                </button>
+                                    @endif
+                                    <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
+                                        rows="5" required>{{ old('deskripsi_video') }}</textarea>
+                                    <br>
+                                    <input type="file" name="upload_video" id="inputVideo" hidden>
+                                    <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
+                                        style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
+                                        <div style="font-weight: 600; color: black;"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
+                                            </svg> Tambahkan Video</div>
+                                    </a>
+                                    <button type="submit" class="btn " id="buttonUploadVideo"
+                                        style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                        <span style="font-weight: 600; color: white;">Upload</span>
+                                    </button>
 
-                            </form>
-                        @else
-                            <form>
-                                @csrf
-                                <textarea name="" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="floatingTextarea"
-                                    rows="5" required>{{ old('deskripsi_video') }}</textarea>
-                                <br>
-                                <a href="#" class="btn btn-light" onclick="harusLogin()"
-                                    style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
-                                    <span style="font-weight: 600; color: black;"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="25" height="25" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
-                                        </svg> Tambahkan Video</span>
-                                </a>
+                                </form>
+                            @else
+                                <form>
+                                    @csrf
+                                    <textarea name="" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="floatingTextarea"
+                                        rows="5" required>{{ old('deskripsi_video') }}</textarea>
+                                    <br>
+                                    <a href="#" class="btn btn-light" onclick="harusLogin()"
+                                        style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
+                                        <span style="font-weight: 600; color: black;"><svg
+                                                xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
+                                            </svg> Tambahkan Video</span>
+                                    </a>
 
-                                <button type="button" href="#" class="btn " onclick="harusLogin()"
-                                    style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
-                                    <span style="font-weight: 600; color: white;">Upload</span>
-                                </button>
-                            </form>
-                        @endif
+                                    <button type="button" href="#" class="btn " onclick="harusLogin()"
+                                        style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                        <span style="font-weight: 600; color: white;">Upload</span>
+                                    </button>
+                                </form>
+                            @endif
+                        </div>
                     </div>
-                </div>
-                <style>
-                    .btn-select {
-                        background: #F7941E;
-                        border-radius: 15px;
-                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                        color: #EAEAEA;
-                    }
+                    <style>
+                        .btn-select {
+                            background: #F7941E;
+                            border-radius: 15px;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            color: #EAEAEA;
+                        }
 
-                    .btn-no-select {
-                        background: #EAEAEA;
-                        border-radius: 15px;
-                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                        color: black;
-                    }
-                </style>
-                <script>
-                    const free_button = document.getElementById("free");
-                    const prem_button = document.getElementById("prem");
-                    free_button.addEventListener("click", function() {
-                        free_button.classList.remove("btn-no-select");
-                        free_button.classList.add("btn-select");
-                        prem_button.classList.remove("btn-select");
-                        prem_button.classList.add("btn-no-select");
-                    });
-                    prem_button.addEventListener("click", function() {
-                        prem_button.classList.remove("btn-no-select");
-                        prem_button.classList.add("btn-select");
-                        free_button.classList.remove("btn-select");
-                        free_button.classList.add("btn-no-select");
-                    });
-                </script>
-                <!-- foreach video pembelajaran start -->
+                        .btn-no-select {
+                            background: #EAEAEA;
+                            border-radius: 15px;
+                            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                            color: black;
+                        }
+                    </style>
+                    <script>
+                        const free_button = document.getElementById("free");
+                        const prem_button = document.getElementById("prem");
+                        free_button.addEventListener("click", function() {
+                            free_button.classList.remove("btn-no-select");
+                            free_button.classList.add("btn-select");
+                            prem_button.classList.remove("btn-select");
+                            prem_button.classList.add("btn-no-select");
+                        });
+                        prem_button.addEventListener("click", function() {
+                            prem_button.classList.remove("btn-no-select");
+                            prem_button.classList.add("btn-select");
+                            free_button.classList.remove("btn-select");
+                            free_button.classList.add("btn-no-select");
+                        });
+                    </script>
+                    <!-- foreach video pembelajaran start -->
                     @if ($video_pembelajaran->count() == 0)
                         <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: 7em">
@@ -650,7 +652,8 @@
                                                     stroke-linejoin="round" stroke-width="32"
                                                     d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
                                             </svg>
-                                            <span id="shared_count{{$item_video->id}}" class="my-auto">{{ $item_video->share_veed->count() }}</span>
+                                            <span id="shared_count{{ $item_video->id }}"
+                                                class="my-auto">{{ $item_video->share_veed->count() }}</span>
                                         </a>
 
                                         <!-- modal Bagikan start -->
@@ -802,7 +805,8 @@
                                         </style>
                                         {{-- modal bagikan --}}
                                         <div class="modal" id="bagikan{{ $item_video->id }}">
-                                            <form id="share_form{{$item_video->id}}"  action="{{ route('share.feed', $item_video->id) }}" method="POST">
+                                            <form id="share_form{{ $item_video->id }}"
+                                                action="{{ route('share.feed', $item_video->id) }}" method="POST">
                                                 @csrf
                                                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
                                                     <div class="modal-content">
@@ -887,7 +891,9 @@
                                                         </div>
                                                         <div class="modal-footer d-flex justify-content-center">
                                                             <button class="btn btn-light fw-bolder text-light col-lg-11"
-                                                                type="submit" onclick="shareButton({{$item_video->id}})"
+                                                                type="submit"
+                                                                onclick="shareButton({{ $item_video->id }})"
+                                                                id="shr-btn{{ $item_video->id }}"
                                                                 style="border-radius: 10px; background-color:#F7941E;">
                                                                 <p class="mt-1 mb-1">Bagikan</p>
                                                             </button>
@@ -2670,141 +2676,145 @@
                             </div>
                         </div>
                     @endforeach
-                <!-- foreach video pembelajaran end -->
-            </div>
+                    <!-- foreach video pembelajaran end -->
+                </div>
 
-            <!-- feed end -->
+                <!-- feed end -->
 
-            <!-- diikuti start -->
-            <div class="col-md-3 hidden-content ">
-                <div class="card" style="width: 15rem;   border-radius: 10px">
-                    <div class="card-header text-white text-center"
-                        style="background-color: #F7941E;   border-top-right-radius: 10px;
+                <!-- diikuti start -->
+                <div class="col-md-3 hidden-content ">
+                    <div class="card" style="width: 15rem;   border-radius: 10px">
+                        <div class="card-header text-white text-center"
+                            style="background-color: #F7941E;   border-top-right-radius: 10px;
                         border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Resep Terbaru
-                    </div>
-                    <div class="card-body" style="height: 500px;">
-                        @foreach ($recipes as $resep)
-                            <div class="d-flex mb-3">
-                                <a href="">
-                                    @if ($resep->user->foto)
-                                        <img src="{{ asset('storage/' . $resep->user->foto) }}"
-                                            class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}"
-                                            class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                    @endif
-                                </a>
-                                <div>
-                                    <div class="bg-light rounded-3 px-3 py-1">
-                                        <a href="/artikel/{{ $resep->id }}/{{ $resep->nama_resep }}"
-                                            class="text-dark mb-0">
-                                            <strong>{{ $resep->user->name }}</strong>
-                                            @if ($resep->user->isSuperUser == 'yes')
-                                                <i class="fa-regular fa-sm text-primary fa-circle-check"></i>
-                                            @endif
-                                            <br>
-                                            <small>{{ $resep->nama_resep }}</small>
-                                        </a>
+                            Resep Terbaru
+                        </div>
+                        <div class="card-body" style="height: 500px;">
+                            @foreach ($recipes as $resep)
+                                <div class="d-flex mb-3">
+                                    <a href="">
+                                        @if ($resep->user->foto)
+                                            <img src="{{ asset('storage/' . $resep->user->foto) }}"
+                                                class="border rounded-circle me-2" alt="Avatar"
+                                                style="height: 40px" />
+                                        @else
+                                            <img src="{{ asset('images/default.jpg') }}"
+                                                class="border rounded-circle me-2" alt="Avatar"
+                                                style="height: 40px" />
+                                        @endif
+                                    </a>
+                                    <div>
+                                        <div class="bg-light rounded-3 px-3 py-1">
+                                            <a href="/artikel/{{ $resep->id }}/{{ $resep->nama_resep }}"
+                                                class="text-dark mb-0">
+                                                <strong>{{ $resep->user->name }}</strong>
+                                                @if ($resep->user->isSuperUser == 'yes')
+                                                    <i class="fa-regular fa-sm text-primary fa-circle-check"></i>
+                                                @endif
+                                                <br>
+                                                <small>{{ $resep->nama_resep }}</small>
+                                            </a>
+                                        </div>
+
                                     </div>
-
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        </div>
                     </div>
-                </div>
 
-                <div class="card mt-5 mb-5" style="width: 15rem; border-radius: 10px">
-                    <div class="card-header text-white text-center"
-                        style="background-color: #F7941E;   border-top-right-radius: 10px;
+                    <div class="card mt-5 mb-5" style="width: 15rem; border-radius: 10px">
+                        <div class="card-header text-white text-center"
+                            style="background-color: #F7941E;   border-top-right-radius: 10px;
                     border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
-                        Kursus terbaru
-                    </div>
-                    <div class="card-body" style="height: 500px;">
-                        @foreach ($course as $kursus)
-                            <div class="d-flex mb-3">
-                                <a href="/detail_kursus/{{ $kursus->id }}">
-                                    @if ($kursus->user->foto)
-                                        <img src="{{ asset('storage/' . $kursus->user->foto) }}"
-                                            class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}"
-                                            class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
-                                    @endif
-                                </a>
-                                <div>
-                                    <div class="bg-light rounded-3 px-3 py-1">
-                                        <a href="/detail_kursus/{{ $kursus->id }}" class="text-dark mb-0">
-                                            <strong>{{ $kursus->user->name }}</strong>
-                                            @if ($kursus->user->isSuperUser == 'yes')
-                                                <i class="fa-regular text-primary fa-circle-check"></i>
-                                            @endif
-                                        </a>
-                                        <a href="/detail_kursus/{{ $kursus->id }}" class="text-muted d-block">
-                                            <small>{{ $kursus->nama_kursus }}</small>
-                                        </a>
-                                    </div>
+                            Kursus terbaru
+                        </div>
+                        <div class="card-body" style="height: 500px;">
+                            @foreach ($course as $kursus)
+                                <div class="d-flex mb-3">
+                                    <a href="/detail_kursus/{{ $kursus->id }}">
+                                        @if ($kursus->user->foto)
+                                            <img src="{{ asset('storage/' . $kursus->user->foto) }}"
+                                                class="border rounded-circle me-2" alt="Avatar"
+                                                style="height: 40px" />
+                                        @else
+                                            <img src="{{ asset('images/default.jpg') }}"
+                                                class="border rounded-circle me-2" alt="Avatar"
+                                                style="height: 40px" />
+                                        @endif
+                                    </a>
+                                    <div>
+                                        <div class="bg-light rounded-3 px-3 py-1">
+                                            <a href="/detail_kursus/{{ $kursus->id }}" class="text-dark mb-0">
+                                                <strong>{{ $kursus->user->name }}</strong>
+                                                @if ($kursus->user->isSuperUser == 'yes')
+                                                    <i class="fa-regular text-primary fa-circle-check"></i>
+                                                @endif
+                                            </a>
+                                            <a href="/detail_kursus/{{ $kursus->id }}" class="text-muted d-block">
+                                                <small>{{ $kursus->nama_kursus }}</small>
+                                            </a>
+                                        </div>
 
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- diikuti end -->
+
+        </section>
+
+        <button hidden id="buttonPremiums" type="button"
+            style="position: absolute;  right: 70%; background-color:#F7941E; "
+            class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal" data-bs-target="#staticBackdrops">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20">
+                <g fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
+                        clip-rule="evenodd" />
+                    <path
+                        d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
+                    <path fill-rule="evenodd" d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
+                        clip-rule="evenodd" />
+                </g>
+            </svg>
+        </button>
+        <!-- Modal untuk penawaran premium -->
+        <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false"
+            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="border-radius: 15px">
+                    <div class="modal-body" style="border-radius: 15px;">
+                        <button type="button" style="margin-left: 96%;" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        </button>
+
+                        <div class="row">
+                            <div class="text-center">
+                                <img src="{{ asset('images/crown-prem.png') }}"
+                                    style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
+
+                            </div>
+                            <div class="text-black text-center">
+                                <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke premium</h2>
+
+                                <span class="intro-2">
+                                    Upgrade ke premium sekarang juga untuk membuka akses ke resep resep premium kami.</span>
+
+                                <div class="mt-4 mb-5">
+                                    <a href="{{ route('penawaran.premium') }}" class="btn"
+                                        style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
+                                        lebih lanjut</a>
                                 </div>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- diikuti end -->
-
-    </section>
-
-    <button hidden id="buttonPremiums" type="button"
-        style="position: absolute;  right: 70%; background-color:#F7941E; "
-        class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal" data-bs-target="#staticBackdrops">
-        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 20 20">
-            <g fill="currentColor">
-                <path fill-rule="evenodd"
-                    d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
-                    clip-rule="evenodd" />
-                <path
-                    d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
-                <path fill-rule="evenodd" d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
-                    clip-rule="evenodd" />
-            </g>
-        </svg>
-    </button>
-    <!-- Modal untuk penawaran premium -->
-    <div class="modal fade" id="staticBackdrops" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" style="border-radius: 15px">
-                <div class="modal-body" style="border-radius: 15px;">
-                    <button type="button" style="margin-left: 96%;" class="btn-close" data-bs-dismiss="modal"
-                        aria-label="Close">
-                    </button>
-
-                    <div class="row">
-                        <div class="text-center">
-                            <img src="{{ asset('images/crown-prem.png') }}"
-                                style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
-
-                        </div>
-                        <div class="text-black text-center">
-                            <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke premium</h2>
-
-                            <span class="intro-2">
-                                Upgrade ke premium sekarang juga untuk membuka akses ke resep resep premium kami.</span>
-
-                            <div class="mt-4 mb-5">
-                                <a href="{{ route('penawaran.premium') }}" class="btn"
-                                    style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
-                                    lebih lanjut</a>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
         crossorigin="anonymous"></script>
@@ -3344,7 +3354,7 @@
                 success: function success(response) {
                     hideLoadingOverlay();
                     if (response.success) {
-                       location.reload();
+                        location.reload();
                         iziToast.show({
                             backgroundColor: '#a1dfb0',
                             title: '<i class="fa-solid fa-check"></i>',
@@ -3442,6 +3452,7 @@
                 });
             });
         }
+
         function shareButton(num) {
             $('#share_form' + num).off('submit');
             $('#share_form' + num).submit(function(e) {
@@ -3463,6 +3474,11 @@
                     success: function(response) {
                         if (response.success) {
                             shared_count.textContent = response.shared_count;
+                            document.getElementById('shr-btn' + num).disabled = true;
+                            setTimeout(function() {
+                                document.getElementById('shr-btn' + num)
+                                    .disabled = false;
+                            }, 60000);
                             iziToast.show({
                                 backgroundColor: '#a1dfb0',
                                 title: '<i class="fa-regular fa-circle-question"></i>',
