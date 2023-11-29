@@ -456,29 +456,36 @@ class VeedController extends Controller
     {
         if (Auth::check()) {
             $userIds = $request->input('user_id', []); // Mendapatkan array user_id yang dicentang
-            $feed = upload_video::findOrFail($id);
-            foreach ($userIds as $userId) {
-                // insert data share
-                $data = new Share();
-                $data->user_id = $userId;
-                $data->sender_id = auth()->user()->id;
-                $data->feed_id = $id;
-                $data->save();
-                // insert data notifikasi
-                $notification = new notifications();
-                $notification->user_id = $userId;
-                $notification->notification_from = auth()->user()->id;
-                $notification->veed_id = $id;
-                $notification->share_id = $data->id;
-                $notification->save();
+            if($userIds != null){
+                $feed = upload_video::findOrFail($id);
+                foreach ($userIds as $userId) {
+                    // insert data share
+                    $data = new Share();
+                    $data->user_id = $userId;
+                    $data->sender_id = auth()->user()->id;
+                    $data->feed_id = $id;
+                    $data->save();
+                    // insert data notifikasi
+                    $notification = new notifications();
+                    $notification->user_id = $userId;
+                    $notification->notification_from = auth()->user()->id;
+                    $notification->veed_id = $id;
+                    $notification->share_id = $data->id;
+                    $notification->save();
+                }
+    
+                return response()->json([
+                    "success"=> true,
+                    "message"=>"Berhasil membagikan resep!",
+                    // 'isShared' => $check,
+                    'shared_count' => $feed->share_count(),
+                ]);
+            }else{
+                return response()->json([
+                    "success"=> false,
+                    "message"=>"Pilih salah satu pengguna untuk melanjutkan",
+                ]);
             }
-
-            return response()->json([
-                "success"=> true,
-                "message"=>"Berhasil membagikan resep!",
-                // 'isShared' => $check,
-                'shared_count' => $feed->share_count(),
-            ]);
         } else {
             return response()->json([
                 "success"=> false,
