@@ -160,7 +160,7 @@
                     <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama
                                 Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control col-lg-10 col-md-9 col-sm-6"
+                        <input type="number" name="lama_memasak" class="form-control col-lg-10 col-md-9 col-sm-6"
                             id="exampleFormControlInput1" placeholder="Masukkan waktu memasak"
                             value="{{ old('lama_memasak') }}" required>
                         <select name="lama_memasak2" id="lama_memasak2" class="form-control col-lg-2 col-md-3 col-sm-6">
@@ -176,7 +176,7 @@
                     </div>
                     <div class="mt-2" style="margin-bottom: 20px">
                         <label for="PengeluaranMemasak" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="text" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
+                        <input type="number" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
                             placeholder="Masukkan jumlah pengeluaran" value="{{ old('pengeluaran_memasak') }}" required>
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">

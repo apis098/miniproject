@@ -170,7 +170,7 @@
                     <div class="mt-2 row mx-auto" style="margin-bottom: 20px">
                         <label for="exampleFormControlInput1" class="form-label" style="margin-left: -10px;"><b>Lama
                                 Memasak</b></label>
-                        <input type="text" name="lama_memasak" class="form-control col-8"
+                        <input type="number" name="lama_memasak" class="form-control col-8"
                             id="exampleFormControlInput1" value="{{ $edit_resep->lama_memasak }}">
                         <select name="lama_memasak2" id="" class="form-control col-4">
                             <option value="menit" {{ $edit_resep->lama_memasak2 == 'menit' ? 'selected' : '' }}>menit
@@ -186,7 +186,7 @@
                     </div>
                     <div class="mt-2" style="margin-bottom: 20px">
                         <label for="" class="form-label"><b>Pengeluaran Memasak</b></label>
-                        <input type="text" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
+                        <input type="number" name="pengeluaran_memasak" class="form-control" id="PengeluaranMemasak"
                             placeholder="Masukkan jumlah pengeluaran" value="{{ $edit_resep->pengeluaran_memasak }}">
                         @error('pengeluaran_memasak')
                             <div class="alert alert-danger">

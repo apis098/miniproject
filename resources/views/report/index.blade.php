@@ -283,9 +283,9 @@
     </style>
 
     <div class="" style="overflow-x:hidden">
-        <div class=" d-flex justify-content-center ms-3">
+        <div class=" d-flex justify-content-start">
             <div class="my-5">
-                <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
+                <ul class="nav mb-3 ml-3" id="pills-tab" role="tablist">
                     <li class="nav-item tabs" role="presentation">
                         <a href="#" class="nav-link mr-5 active" id="button-resep" data-bs-toggle="tab"
                             data-bs-target="#resep" type="button" role="tab" aria-controls="profile"
@@ -396,9 +396,6 @@
                         </a>
                     </li>
                 </ul>
-
-
-
                 <div class="tab-content mb-5 mx-3" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="resep" role="tabpanel"
                         aria-labelledby="pills-home-tab" tabindex="0">
@@ -855,7 +852,6 @@
                         {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

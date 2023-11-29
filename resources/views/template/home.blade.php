@@ -1,6 +1,53 @@
 @extends('template.nav')
 @section('content')
 @section('content-header')
+    <style>
+        @media (min-width: 1210px) and (max-width: 4000px) {
+            img.besar {
+                max-width: 260px;
+                height: 260px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            img.besar {
+                max-width: 230px;
+                height: 230px;
+            }
+        }
+
+        @media (max-width: 1104px) {
+            img.besar {
+                max-width: 230px;
+                height: 230px;
+            }
+        }
+
+        @media (min-width: 350px) and (max-width: 860px) {
+            img.besar {
+                max-width: 222px;
+                height: 200px;
+            }
+        }
+        @media(max-width:768px)
+        @media (min-width:290px) and (max-width: 450px) {
+            img.besar {
+                max-width: 160px;
+                height: 160px;
+            }
+        }
+        @media(max-width: 475px) {
+            .foto_kursus {
+                width: 260px;
+            }
+          }
+          @media(max-width: 320px) {
+            .foto_kursus {
+                width: 180px;
+                height: 100px;
+            }
+          }
+    </style>
     @if (Auth::check())
         <script>
             function userAccessFeedPrem(num, num2) {
@@ -102,10 +149,10 @@
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
-                            <img src="{{ asset('storage/' . $resep->foto_resep) }}" class="rounded-circle" width="100px"
-                                Favorit height="100px" alt="">
-                                <button id="buttonPremium" type="button"
-                                style="position: absolute;  right: 75%; background-color:#F7941E; "
+                            <img src="{{ asset('storage/' . $resep->foto_resep) }}" class="img-fluid"
+                                style="width:100%;height:110px;border-radius:15px;">
+                            <button id="buttonPremium" type="button"
+                                style="position: absolute;  right: 80%; top:-10%; background-color:#F7941E; "
                                 class="btn btn-sm text-light rounded-circle p-1" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop{{ $num }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -288,8 +335,8 @@
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
-                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle"
-                                width="100px" Favorit height="100px" alt="">
+                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="img-fluid"
+                             alt="" style="width: 100%; height: 110px;border-radius:15px;">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -350,8 +397,8 @@
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
                         <div class="col-5">
-                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle"
-                                width="100px" height="100px" alt="">
+                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="img-fluid"
+                                style="width: 100%;height:110px;border-radius:15px;" alt="">
                         </div>
                         <div class="col-7">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -625,9 +672,10 @@
         @foreach ($recipes as $num => $item)
             <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                 <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header my-3 mx-auto" style="background-color: white">
-                        <img width="220px" class="rounded-circle" height="260px"
-                            style="border: 0.50px black solid; max-width:260px;"
+                    <div class="mx-4">
+                    <div class="card-header my-3" style="background-color: white">
+
+                        <img class="img-fluid" style="border: 0.50px black solid;width:100%;height:250px;border-radius:15px;"
                             src="{{ asset('storage/' . $item->foto_resep) }}" />
                     </div>
                     <div class="card-body">
@@ -670,6 +718,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
