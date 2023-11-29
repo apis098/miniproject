@@ -576,7 +576,7 @@
     }
 </style>
 <div class="container-fluid" style="background: #F7941E; border-radius: 15px">
-    <div class="marginku py-5">
+    <div class="mx-5 py-5">
         <div class="input-group">
             <h3 class="fw-bold" style="color: white; font-family: poppins">Kategori makanan</h3>
         </div>

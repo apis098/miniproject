@@ -421,9 +421,9 @@
                                                                     </div>
                                                                     <div class="collapse mb-3"
                                                                         id="collapseTolak{{ $data_verified->id }}">
-                                                                        <button type="button" class="btn btn-danger mb-2"
-                                                                            onclick="batal({{ $data_verified->id }})"
-                                                                            id="buttonBatal{{ $data_verified->id }}">Batal</button>
+                                                                        <svg type="button" onclick="batal({{ $data_verified->id }})" id="buttonBatal{{ $data_verified->id }}" class="float-end mb-2"
+                                                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M168.49 104.49L145 128l23.52 23.51a12 12 0 0 1-17 17L128 145l-23.51 23.52a12 12 0 0 1-17-17L111 128l-23.49-23.51a12 12 0 0 1 17-17L128 111l23.51-23.52a12 12 0 0 1 17 17ZM236 128A108 108 0 1 1 128 20a108.12 108.12 0 0 1 108 108Zm-24 0a84 84 0 1 0-84 84a84.09 84.09 0 0 0 84-84Z"/>
+                                                                        </svg>
                                                                         <form method="post"
                                                                             action="{{ route('proses.data.koki', ['id' => $data_verified->id, 'status' => 'ditolak']) }}">
                                                                             @csrf
