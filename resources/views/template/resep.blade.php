@@ -100,16 +100,16 @@
           }
 
           /* button{
-                                                                                                                                            background-color: #F7941E;
-                                                                                                                                            border: none;
-                                                                                                                                            height: 45px;
-                                                                                                                                            width: 90px;
-                                                                                                                                            color: #ffffff;
-                                                                                                                                            position: absolute;
-                                                                                                                                            right: 1px;
-                                                                                                                                            top: 0px;
-                                                                                                                                            border-radius: 15px
-                                                                                                                                        } */
+                                                                                                                                                background-color: #F7941E;
+                                                                                                                                                border: none;
+                                                                                                                                                height: 45px;
+                                                                                                                                                width: 90px;
+                                                                                                                                                color: #ffffff;
+                                                                                                                                                position: absolute;
+                                                                                                                                                right: 1px;
+                                                                                                                                                top: 0px;
+                                                                                                                                                border-radius: 15px
+                                                                                                                                            } */
           .search-2 i {
               position: absolute;
               top: 12px;
@@ -194,11 +194,11 @@
           @media (min-width:800px) and (max-width:1300px) {}
 
           /* @media (min-width: 320px) {
-                      img.widt {
-                         max-width: 100%;
-                        height: 100%;
-                      }
-                    } */
+                          img.widt {
+                             max-width: 100%;
+                            height: 100%;
+                          }
+                        } */
 
           @media (min-width:290px) and (max-width: 450px) {
               img.besar {
@@ -288,16 +288,18 @@
           }
 
           @media(max-width: 475px) {
-            .foto_kursus {
-                width: 260px;
-            }
+              .foto_kursus {
+                  width: 260px;
+              }
           }
+
           @media(max-width: 320px) {
-            .foto_kursus {
-                width: 180px;
-                height: 100px;
-            }
+              .foto_kursus {
+                  width: 180px;
+                  height: 100px;
+              }
           }
+
           @media (min-width: 425px) {
               button.high {
                   height: 36%;
@@ -664,125 +666,134 @@
           @foreach ($recipes as $num => $item)
               <div class="col-xl-4 col-lg-6 mb-5 col-sm-12 col-md-6">
                   <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                      <div class="card-header my-3 mx-auto" style="background-color: white">
-                          <img class="rounded-circle besar widt foto_kursus" style="border: 0.50px black solid;"
-                              src="{{ asset('storage/' . $item->foto_resep) }}" />
-                          @if ($item->isPremium === 'yes')
-                              <button id="buttonPremium" type="button"
-                                  style="position: absolute;  right: 70%; background-color:#F7941E; "
-                                  class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
-                                  data-bs-target="#staticBackdrop{{ $num }}">
-                                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                      viewBox="0 0 20 20">
-                                      <g fill="currentColor">
-                                          <path fill-rule="evenodd"
-                                              d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
-                                              clip-rule="evenodd" />
-                                          <path
-                                              d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
-                                          <path fill-rule="evenodd"
-                                              d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
-                                              clip-rule="evenodd" />
-                                      </g>
-                                  </svg>
-                              </button>
-                          @endif
+                      <div class="mx-1 card-body">
+                          <div class=" my-3" style="background-color: white">
+                              <div class="d-flex justify-content-center">
+                                  <img class="img-fluid"
+                                      style="border: 0.50px black solid;width:300px;height:250px;border-radius:15px;"
+                                      src="{{ asset('storage/' . $item->foto_resep) }}" />
+                              </div>
+                              @if ($item->isPremium === 'yes')
+                                  <button id="buttonPremium" type="button"
+                                      style="position: absolute;  right: 76%;top:3%; background-color:#F7941E; "
+                                      class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
+                                      data-bs-target="#staticBackdrop{{ $num }}">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                          viewBox="0 0 20 20">
+                                          <g fill="currentColor">
+                                              <path fill-rule="evenodd"
+                                                  d="m14.896 13.818l1.515-5.766l-2.214 1.41a2 2 0 0 1-2.74-.578L10 6.695l-1.458 2.19a2 2 0 0 1-2.74.577L3.59 8.052l1.515 5.766h9.792Zm-10.77-6.61c-.767-.489-1.736.218-1.505 1.098l1.516 5.766a1 1 0 0 0 .967.746h9.792a1 1 0 0 0 .967-.746l1.516-5.766c.23-.88-.738-1.586-1.505-1.098l-2.214 1.41a1 1 0 0 1-1.37-.288l-1.458-2.19a1 1 0 0 0-1.664 0L7.71 8.33a1 1 0 0 1-1.37.289l-2.214-1.41Z"
+                                                  clip-rule="evenodd" />
+                                              <path
+                                                  d="M10.944 3.945a.945.945 0 1 1-1.89.002a.945.945 0 0 1 1.89-.002ZM18.5 5.836a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Zm-15.111 0a.945.945 0 1 1-1.89.001a.945.945 0 0 1 1.89 0Z" />
+                                              <path fill-rule="evenodd"
+                                                  d="M5.25 16a.5.5 0 0 1 .5-.5h8.737a.5.5 0 1 1 0 1H5.75a.5.5 0 0 1-.5-.5Z"
+                                                  clip-rule="evenodd" />
+                                          </g>
+                                      </svg>
+                                  </button>
+                              @endif
 
-                          <!-- Modal -->
-                          <div class="modal fade" id="staticBackdrop{{ $num }}" data-bs-backdrop="static"
-                              data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                              aria-hidden="true">
-                              <div class="modal-dialog">
-                                  <div class="modal-content" style="border-radius: 15px">
-                                      <div class="modal-body" style="border-radius: 15px;">
-                                          <button type="button" style="margin-left: 96%;" class="btn-close"
-                                              data-bs-dismiss="modal" aria-label="Close">
-                                          </button>
+                              <!-- Modal -->
+                              <div class="modal fade" id="staticBackdrop{{ $num }}"
+                                  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                      <div class="modal-content" style="border-radius: 15px">
+                                          <div class="modal-body" style="border-radius: 15px;">
+                                              <button type="button" style="margin-left: 96%;" class="btn-close"
+                                                  data-bs-dismiss="modal" aria-label="Close">
+                                              </button>
 
-                                          <div class="row">
-                                              <div class="text-center">
-                                                  <img src="{{ asset('images/crown-prem.png') }}"
-                                                      style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
+                                              <div class="row">
+                                                  <div class="text-center">
+                                                      <img src="{{ asset('images/crown-prem.png') }}"
+                                                          style="height: 100%; width: 100%; {{-- position: absolute; left: -15%; top: -11%;  --}}">
 
-                                              </div>
-                                              <div class="text-black text-center">
-                                                  <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade ke
-                                                      premium</h2>
+                                                  </div>
+                                                  <div class="text-black text-center">
+                                                      <h2 class="mb-3 text-bold" style="font-family:poppins">Upgrade
+                                                          ke
+                                                          premium</h2>
 
-                                                  <span class="intro-2">
-                                                      Upgrade ke premium sekarang juga untuk membuka akses ke resep
-                                                      resep
-                                                      premium kami.</span>
+                                                      <span class="intro-2">
+                                                          Upgrade ke premium sekarang juga untuk membuka akses ke resep
+                                                          resep
+                                                          premium kami.</span>
 
-                                                  <div class="mt-4 mb-5">
-                                                      <a href="{{ route('penawaran.premium') }}" class="btn"
-                                                          style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
-                                                          lebih lanjut</a>
+                                                      <div class="mt-4 mb-5">
+                                                          <a href="{{ route('penawaran.premium') }}" class="btn"
+                                                              style="font-family:poppins;border-radius:15px;background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color:#ffffff;">Lihat
+                                                              lebih lanjut</a>
+                                                      </div>
                                                   </div>
                                               </div>
                                           </div>
                                       </div>
                                   </div>
                               </div>
+                              <!--  End Modal-->
+
                           </div>
-                          <!--  End Modal-->
-
-                      </div>
-                      <div class="card-body mx-4">
-                          <div class="row">
-                              <div class="col-12 mx-3 mb-3">
-                                  <!-- untuk koki lain -->
-                                  <h5>
-                                      <a style="color: black; font-size: 24px; margin-left:-1px"
-                                          href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
-                                          {{ $item->nama_resep }}</a>
-                                  </h5>
-                                  <span>Oleh {{ $item->User->name }}</span> <br>
-                                  <p class="mt-2 my-2">RP.
-                                      {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
-                                  </p>
-                              </div>
-                              <div class="col-12 row  mb-3 mx-1 ">
-                                  <div class="col-6">
-                                      <span class="text-nowrap">
-                                          <img class="mb-1" width="20px" height="20px"
-                                              src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
-
-                                          {{ $item->likes }} </span>
-                                      <span class="text-nowrap tesk"> Suka
-                                      </span>
+                          <div class="mx-5">
+                              <div class="row">
+                                  <div class="col-12 mx-3 mb-3">
+                                      <!-- untuk koki lain -->
+                                      <h5>
+                                          <a style="color: black; font-size: 24px; margin-left:-1px"
+                                              href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
+                                              {{ $item->nama_resep }}</a>
+                                      </h5>
+                                      <span>Oleh {{ $item->User->name }}</span> <br>
+                                      <p class="mt-2 my-2">RP.
+                                          {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
+                                      </p>
                                   </div>
-                                  <div class="col-6 mx-auto">
-                                      <span class="text-nowrap">
-                                          <img width="20px" height="20px"
-                                              src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+                                  <div class="col-12 row  mb-3 mx-1 ">
+                                      <div class="col-6">
+                                          <span class="text-nowrap">
+                                              <img class="mb-1" width="20px" height="20px"
+                                                  src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
 
-                                          @if ($item->lama_memasak >= 60)
-                                              {{ number_format($item->lama_memasak / 60, 1) }} <span class="tesk">
-                                                  Jam </span>
-                                          @else
-                                              {{ $item->lama_memasak }} <span class="tesk"> Menit </span>
-                                          @endif
-                                      </span>
-                                  </div>
-                                  <div class="col-6 my-3">
-                                      <span class="text-nowrap">
-                                          <img width="20px" height="20px"
-                                              src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
-                                              alt="">
-
-                                          {{ $item->comment_recipes->count() }} </span> <span class="tesk"> Komen
-                                      </span>
-                                  </div>
-                                  <div class="col-6 my-3 mx-auto">
-
-                                      <span class="text-nowrap">
-                                          <img width="20px" height="20px"
-                                              src="{{ asset('images/🦆 icon _bookmark save_.svg') }}" alt="">
-                                          {{ $item->favorite_count }}
-                                          <span class="tesk"> Favorit
+                                              {{ $item->likes }} </span>
+                                          <span class="text-nowrap tesk"> Suka
                                           </span>
-                                      </span>
+                                      </div>
+                                      <div class="col-6 mx-auto">
+                                          <span class="text-nowrap">
+                                              <img width="20px" height="20px"
+                                                  src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
+
+                                              @if ($item->lama_memasak >= 60)
+                                                  {{ number_format($item->lama_memasak / 60, 1) }} <span
+                                                      class="tesk">
+                                                      Jam </span>
+                                              @else
+                                                  {{ $item->lama_memasak }} <span class="tesk"> Menit </span>
+                                              @endif
+                                          </span>
+                                      </div>
+                                      <div class="col-6 my-3">
+                                          <span class="text-nowrap">
+                                              <img width="20px" height="20px"
+                                                  src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
+                                                  alt="">
+
+                                              {{ $item->comment_recipes->count() }} </span> <span class="tesk">
+                                              Komen
+                                          </span>
+                                      </div>
+                                      <div class="col-6 my-3 mx-auto">
+
+                                          <span class="text-nowrap">
+                                              <img width="20px" height="20px"
+                                                  src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
+                                                  alt="">
+                                              {{ $item->favorite_count }}
+                                              <span class="tesk"> Favorit
+                                              </span>
+                                          </span>
+                                      </div>
                                   </div>
                               </div>
                           </div>

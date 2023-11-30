@@ -1,6 +1,53 @@
 @extends('template.nav')
 @section('content')
 @section('content-header')
+    <style>
+        @media (min-width: 1210px) and (max-width: 4000px) {
+            img.besar {
+                max-width: 260px;
+                height: 260px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            img.besar {
+                max-width: 230px;
+                height: 230px;
+            }
+        }
+
+        @media (max-width: 1104px) {
+            img.besar {
+                max-width: 230px;
+                height: 230px;
+            }
+        }
+
+        @media (min-width: 350px) and (max-width: 860px) {
+            img.besar {
+                max-width: 222px;
+                height: 200px;
+            }
+        }
+        @media(max-width:768px)
+        @media (min-width:290px) and (max-width: 450px) {
+            img.besar {
+                max-width: 160px;
+                height: 160px;
+            }
+        }
+        @media(max-width: 475px) {
+            .foto_kursus {
+                width: 260px;
+            }
+          }
+          @media(max-width: 320px) {
+            .foto_kursus {
+                width: 180px;
+                height: 100px;
+            }
+          }
+    </style>
     @if (Auth::check())
         <script>
             function userAccessFeedPrem(num, num2) {
@@ -97,15 +144,41 @@
         </div>
     @endif
     <div class="row mt-4">
+        <style>
+            @media(min-width:992px) {
+                .img-resep-favorite-premium {
+                    height: 100px;
+                    width: 85%;
+                }
+            }
+            @media(max-width: 990px) {
+                .img-resep-favorite-premium {
+                    height: 130px;
+                    width: 85%;
+                }
+            }
+            @media(max-width:578px) {
+                .img-resep-favorite-premium {
+                    height: 250px;
+                    width: 100%;
+                }
+            }
+            @media(max-width:330px) {
+                .img-resep-favorite-premium {
+                    height: 150px;
+                    width: 100%;
+                }
+            }
+        </style>
         @foreach ($resep_premium_favorite as $num => $resep)
-            <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
+            <div class="col-lg-6 col-xl-4 col-md-12 col-sm-12 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
-                        <div class="col-5">
-                            <img src="{{ asset('storage/' . $resep->foto_resep) }}" class="rounded-circle" width="100px"
-                                Favorit height="100px" alt="">
-                                <button id="buttonPremium" type="button"
-                                style="position: absolute;  right: 75%; background-color:#F7941E; "
+                        <div class="col-md-5 col-sm-12">
+                            <img src="{{ asset('storage/' . $resep->foto_resep) }}"
+                                style="border-radius:15px;" class="img-resep-favorite-premium">
+                            <button id="buttonPremium" type="button"
+                                style="position: absolute;  right: 80%; top:-10%; background-color:#F7941E; "
                                 class="btn btn-sm text-light rounded-circle p-1" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop{{ $num }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
@@ -123,7 +196,7 @@
                                 </svg>
                             </button>
                         </div>
-                        <div class="col-7">
+                        <div class="col-md-7 col-sm-12">
                             <span style="font-weight: 600;" class="my-1">{{ $resep->nama_resep }}</span> <br>
                             <div class="d-flex flex-row my-2">
                                 <div class="">
@@ -139,13 +212,13 @@
                                     <span>{{ $resep->User->name }}</span>
                                 </div>
                             </div>
-                            <div class="row my-1">
-                                <div class="col-6 my-2">
+                            <div class="my-1 d-flex justify-content-between">
+                                <div class="my-2">
                                     <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style="" width="15px"
                                         alt="">
                                     Top {{ $num += 1 }}
                                 </div>
-                                <div class="col-6">
+                                <div class="">
                                     <form action="" method="get">
                                         <a href="/artikel/{{ $resep->id }}/{{ $resep->nama_resep }}"
                                             class="btn btn-light"
@@ -284,14 +357,14 @@
     @endif
     <div class="row mt-4">
         @foreach ($real_reseps as $num => $item)
-            <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
+            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
-                        <div class="col-5">
-                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle"
-                                width="100px" Favorit height="100px" alt="">
+                        <div class="col-md-5 col-sm-12">
+                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="img-resep-favorite-premium"
+                             alt="" style="border-radius:15px;">
                         </div>
-                        <div class="col-7">
+                        <div class="col-md-7 col-sm-12">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
                             <div class="d-flex flex-row my-2">
                                 <div class="">
@@ -307,13 +380,13 @@
                                     <span>{{ $item->User->name }}</span>
                                 </div>
                             </div>
-                            <div class="row my-1">
-                                <div class="col-6 my-2">
+                            <div class="d-flex justify-content-between my-1">
+                                <div class="my-2">
                                     <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style=""
                                         width="15px" alt="">
                                     Top {{ $num + 1 }}
                                 </div>
-                                <div class="col-6">
+                                <div class="">
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
                                         method="get">
                                         <button type="submit" class="btn btn-light"
@@ -346,14 +419,14 @@
     @endif
     <div class="row  mt-4">
         @foreach ($favorite_resep as $num => $item)
-            <div class="col-lg-4 col-md-6 col-sm-6 mb-3">
+            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-3">
                 <div class="p-3" style="border-radius: 12px; border: 1px solid grey;">
                     <div class="row">
-                        <div class="col-5">
-                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="rounded-circle"
-                                width="100px" height="100px" alt="">
+                        <div class="col-md-5 col-sm-12">
+                            <img src="{{ asset('storage/' . $item->foto_resep) }}" class="img-resep-favorite-premium"
+                                style="border-radius:15px;" alt="">
                         </div>
-                        <div class="col-7">
+                        <div class="col-md-7 col-sm-12">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
                             <div class="d-flex flex-row my-2">
                                 <div class="">
@@ -369,13 +442,13 @@
                                     <span>{{ $item->User->name }}</span>
                                 </div>
                             </div>
-                            <div class="row my-1">
-                                <div class="col-6 my-2">
+                            <div class="d-flex justify-content-between my-1">
+                                <div class="my-2">
                                     <img src="{{ asset('images/🦆 icon _trophy_.svg') }}" style=""
                                         width="15px" alt="">
                                     Top {{ $num + 1 }}
                                 </div>
-                                <div class="col-6">
+                                <div class="">
                                     <form action="/artikel/{{ $item->id }}/{{ $item->nama_resep }}"
                                         method="get">
                                         <button type="submit" class="btn btn-light"
@@ -625,9 +698,10 @@
         @foreach ($recipes as $num => $item)
             <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                 <div class="card" style="border-radius: 15px; border: 0.50px black solid">
-                    <div class="card-header my-3 mx-auto" style="background-color: white">
-                        <img width="220px" class="rounded-circle" height="260px"
-                            style="border: 0.50px black solid; max-width:260px;"
+                    <div class="mx-4">
+                    <div class="card-header my-3" style="background-color: white">
+
+                        <img class="img-fluid" style="border: 0.50px black solid;width:100%;height:250px;border-radius:15px;"
                             src="{{ asset('storage/' . $item->foto_resep) }}" />
                     </div>
                     <div class="card-body">
@@ -670,6 +744,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
