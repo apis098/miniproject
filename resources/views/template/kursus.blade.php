@@ -161,23 +161,25 @@
             }
 
             .search-2 button {
-                height: 30px;
-                top: 4px
+                height: 39px;
+                top: 1px;
             }
-
-            .cari2 {
-                right: -5px;
-            }
-
-
-
             .btn-filter {
                 height: fit-content;
                 bottom: 1%;
             }
 
         }
+        @media(min-width:769px) and (max-width: 853px) {
+            .ulLaptop {
+               margin-left: auto;
+               margin-right: auto;
+               width: 100%;
+               display: flex;
+               justify-content: center;
+            }
 
+        }
         @media (min-width:768px) and (max-width:1024px) {
             .btn-filter {
                 height: fit-content;
@@ -189,8 +191,8 @@
 
         @media (min-width: 992px) {
             .ulLaptop {
-                display: relative;
-
+                display: flex;
+                justify-content: center;
             }
 
             .ulTabletMobile {
