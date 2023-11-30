@@ -300,8 +300,8 @@
                                 <a href="{{ route('admin.datakoki') }}"
                                     class="nav-link mx-4 {{ request()->is('admin/data-koki') ? 'activet text-orange' : 'text-white' }}"
                                     style="width: 12em">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-auto" width="32"
-                                        height="32" viewBox="0 0 24 24">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-auto" width="29"
+                                        height="29" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                             d="M9.715 12c1.151 0 2-.849 2-2s-.849-2-2-2s-2 .849-2 2s.848 2 2 2z" />
                                         <path fill="currentColor"
@@ -313,7 +313,7 @@
                                         style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; margin-bottom: -50px;">
                                         Data Koki
                                         @if (\App\Models\dataPribadiKoki::where('status', 'diproses')->count() > 0)
-                                            <svg class="text-danger " xmlns="http://www.w3.org/2000/svg"
+                                            <svg class="text-danger" xmlns="http://www.w3.org/2000/svg"
                                                 width="12" height="12" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
@@ -330,7 +330,7 @@
                                     class="nav-link mx-4 {{ request()->is('admin/ajuan-penarikan') ? 'activet text-orange' : 'text-white' }}"
                                     style="width: 12em">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                        viewBox="0 0 32 32">
+                                        viewBox="0 0 34 34">
                                         <path fill="currentColor"
                                             d="M17 4v1.19a3.076 3.076 0 0 0-1.674 1.464a2.925 2.925 0 0 0-.264 1.946a3.061 3.061 0 0 0 1.268 1.883c.48.325 1.055.517 1.67.517c.142 0 .276.027.396.076a.961.961 0 0 1 .528.528c.049.12.076.254.076.396a.976.976 0 0 1-.604.924c-.12.049-.254.076-.396.076c-.142 0-.276-.027-.396-.076a.961.961 0 0 1-.528-.528A1.044 1.044 0 0 1 17 12h-2a2.944 2.944 0 0 0 .857 2.076a3.062 3.062 0 0 0 1.143.735V16h2v-1.19c1.16-.42 2-1.52 2-2.81c0-1.435-1.041-2.655-2.4-2.938A2.94 2.94 0 0 0 18 9c-.142 0-.276-.027-.396-.076a.96.96 0 0 1-.528-.528A1.044 1.044 0 0 1 17 8c0-.143.027-.276.076-.396a.961.961 0 0 1 .211-.317A.996.996 0 0 1 18 7c.57 0 1 .43 1 1h2a2.944 2.944 0 0 0-.148-.924A3.046 3.046 0 0 0 19 5.19V4h-2zm-6.484 14a6.428 6.428 0 0 0-1.817.266l-.02.007l-5.671 2.176l1.984 5.57l4.93-1.89l7.137 3.93l12.324-5.106l-.766-1.844l-11.437 4.735l-7.102-3.91l-3.89 1.488l-.641-1.805l3.797-1.457c.009-.004.476-.16 1.172-.16c.703 0 1.522.156 2.222.79l.014.007l.004.004c1.03.895 1.808 1.52 2.89 1.86c1.082.34 2.31.378 4.36.37l-.01-2c-2.012.008-3.063-.063-3.75-.281c-.688-.211-1.176-.59-2.168-1.45l-.012-.007c-1.157-1.039-2.531-1.297-3.55-1.293z" />
                                     </svg>
@@ -339,7 +339,7 @@
                                         Penarikan
                                         @if (\App\Models\penarikans::where('status', 'diproses')->count() > 0)
                                             <svg class="text-danger" xmlns="http://www.w3.org/2000/svg"
-                                                width="12" height="12" viewBox="0 0 24 24">
+                                                width="10" height="12" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
                                                     d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2z" />
                                             </svg>
