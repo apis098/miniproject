@@ -27,16 +27,63 @@
             font-family: 'Poppins';
         }
 
+        @media(min-width: 1200px) {
+            .search {
+                background-color: #fff;
+                padding: 0px 4px;
+                border-radius: 5px;
+                width: 50%;
+                height: 10%;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
+        }
 
+        @media(min-width: 1300px) {
+            .search {
+                background-color: #fff;
+                padding: 0px 4px;
+                border-radius: 5px;
+                width: 54%;
+                height: 10%;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
+        }
 
-        .search {
-            background-color: #fff;
-            padding: 0px 4px;
-            border-radius: 5px;
-            width: 30%;
-            height: 10%;
-            border-radius: 15px;
-            border: 0.50px black solid;
+        @media(min-width: 1400px) {
+            .search {
+                background-color: #fff;
+                padding: 0px 4px;
+                border-radius: 5px;
+                width:58%;
+                height: 10%;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
+        }
+        @media(max-width:768px) {
+
+            .search {
+                background-color: #fff;
+                padding: 0px 4px;
+                border-radius: 5px;
+                width: 100%;
+                height: 10%;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
+        }
+        @media(max-width: 1199px) and (min-width:767px) {
+            .search {
+                background-color: #fff;
+                padding: 0px 4px;
+                border-radius: 5px;
+                width: 40%;
+                height: 10%;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
         }
 
         .search-1 {
@@ -110,19 +157,36 @@
             border-radius: 15px;
         }
 
-        .cari2 {
+
+        @media(min-width:729px) {
+            .cari2 {
             position: absolute;
             top: -3px;
             right: -20px;
             border: none;
-            height: 40px;
+            height: 48px;
             background-color: #F7941E;
             color: #fff;
             width: 60px;
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
-
+        }
+        @media(max-width:728px) {
+            .cari2 {
+            position: absolute;
+            top: 0px;
+            bottom: 0px;
+            right: -20px;
+            border: none;
+            height: 48px;
+            background-color: #F7941E;
+            color: #fff;
+            width: 60px;
+            box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
+            border-radius: 15px;
+        }
+        }
 
 
         .btn-filter {
@@ -214,6 +278,8 @@
                 display: none;
             }
 
+
+
         }
 
         @media(min-width:769px) {
@@ -226,6 +292,22 @@
             }
         }
 
+        @media(min-width:769px) and (max-width:990px) {
+            .ulLaptop {
+                display: flex;
+                justify-content:space-around;
+            }
+
+            .search {
+                background-color: #fff;
+                padding: 0px 4px;
+                border-radius: 5px;
+                width: 30%;
+                height: 10%;
+                border-radius: 15px;
+                border: 0.50px black solid;
+            }
+        }
         @media (max-width: 768px) {
             .ulLaptop {
                 visibility: hidden;
@@ -239,6 +321,8 @@
             }
 
             .cari2 {
+                top: 0px;
+                bottom: 0px;
                 right: -5px;
             }
 
@@ -248,7 +332,6 @@
             }
 
             .cari2 {
-                margin-top: -2px;
                 margin-left: -5px;
                 border: none;
                 height: 100%;
@@ -278,7 +361,7 @@
                 <div>
                     <div class="d-flex justify-content-between">
                         <div class="search">
-                            <div class="search-2"> <i class='bx bxs-map'></i>
+                            <div class="search-2" style="height: 43px;"> <i class='bx bxs-map'></i>
                                 <form action="{{ route('kursus') }}" method="GET">
                                     <input type="text" id="cari_nama_kursus" name="cari_nama_kursus"
                                         style="text-align: left;" placeholder="Cari nama kursus ..."
