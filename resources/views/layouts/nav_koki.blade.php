@@ -169,7 +169,7 @@
                 message: '{{ session('error') }}',
                 position: 'topCenter'
             });
-        @endif
+            @endif
     </script>
     <script>
         @if (session('success'))

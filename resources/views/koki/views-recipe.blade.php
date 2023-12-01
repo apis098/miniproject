@@ -525,14 +525,14 @@
                                 <p><b>Tidak ada data</b></p>
                             </div>
                         @endif
-                        <div class="row my-4 gap-1  " id="resepDibuat">
+                        <div class="d-flex justify-content-evenly my-4  gap-1 " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class=" card col-lg-4 mx-auto  col-xl-3  border-black col-md-4 col-12 "
+                                <div class=" card col-lg-4  col-xl-3  border-black col-md-4 col-12 "
                                     style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
                                     <div class="mx-auto">
-                                        <div class="col-12 card-header mx-auto  text-center" style="border: none; max-height:200px; padding:10px 0px;">
+                                        <div class="col-12 card-header mx-auto  text-center" style="border: none; max-height:120px; padding:10px 0px;">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="card-img-top"
-                                                style="max-width:auto; max-height: 200px; border-radius:15px; object-fit: cover"
+                                                style="min-width:auto; max-height: 120px; border-radius:15px; object-fit: cover"
                                                 alt="...">
                                         </div>
                                         <div class="mx-auto col-12">
@@ -663,6 +663,7 @@
                                 </div> --}}
                             @endforeach
                         </div>
+
                 </div>
                 <script>
                     $(document).ready(function() {

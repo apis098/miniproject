@@ -105,12 +105,12 @@
             }
 
             div.rigt {
-                margin-left: -100px;
+                margin-left: -209px;
                 margin-top: 40px;
             }
 
             button.knn {
-                margin-left: 140px;
+                margin-right: 0px;
             }
 
             h5.widt {
@@ -218,10 +218,32 @@
                 height: 160px;
             }
         }
+        @media(min-width:750px){
+            .judul{
+                display:flex;
+                justify-content: space-between;
+            }
+        }
+        @media(min-width:0px) and (max-width:393px){
+            .kategori{
+                margin-left: 7px;
+            }
+            div.rigt {
+                margin-left: 0px;
+                margin-top: 0px;
+            }
+        }
+        @media(min-width:393px) and (max-width:749px){
+            div.rigt {
+                margin-left: 0px;
+                margin-top: 40px;
+            }
+        }
+
     </style>
     <section class="container">
-        <div class="row mt-4 d-flex align-item-center">
-            <div class="col-lg-2 mt-3">
+        <div class="row mt-4  align-item-center">
+            <div class="col-md-3 col-lg-2 mt-3" style="width: 197px">
                 @if ($userLog == 2)
                     @if ($show_resep->User->id != Auth::user()->id)
                         <button type="submit" style="position: absolute;  background-color:#F7941E; "
@@ -282,17 +304,17 @@
                 <img src="{{ asset('storage/' . $show_resep->foto_resep) }}" alt="{{ $show_resep->foto_resep }}"
                     width="197px" height="187px" style="border-radius: 50%; border:none;" class="p-2">
             </div>
-            <div class="col-lg-9 mt-4 ms-3">
-                <div class="col-12 mt-5 ml-3">
+            <div class="col-lg-9 col-md-9 col-6 ">
+                <div class="col-12 mt-2 ml-md-3 ml-xl-3 ml-lg-5 p-2">
                     <h3 class="fw-bolder" style="font-weight: 600; word-warp: break-word;">{{ $show_resep->nama_resep }}
                     </h3>
-                    <div class="d-flex">
+                    <div class="judul">
                         <span class="text-nowrap">Oleh {{ $show_resep->User->name }}</span>
-                        <div class="pl">
-                            <div style="" class="d-flex">
+                        <div class="pl mt-3 mt-md-0">
+                            <div style="" class="d-flex ">
                                 @if ($userLog === 2)
                                     @if ($show_resep->User->id === Auth::user()->id)
-                                        <div class="d-flex right rigt">
+                                        <div class="d-flex right rigt ml-md-4">
                                             <form action="/koki/resep/{{ $show_resep->id }}/edit" method="get">
                                                 <button type="submit" class="btn btn-edit ">Edit</button>
                                             </form>
@@ -879,7 +901,7 @@
                     </div>
                 </div>
             </div>
-            <div class="ms-3 mt-2">
+            <div class="kategori mt-2">
                 @if ($show_resep->kategori_resep)
                     @foreach ($show_resep->kategori_resep()->get() as $nk)
                         <button type="button" class="btn-edit p-2 mx-1 mt-2">#{{ $nk->nama_makanan }}</button>

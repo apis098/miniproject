@@ -390,6 +390,21 @@
               }
 
           }
+          .judul-resep {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+            @supports (-webkit-line-clamp: 1) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            }
+        }
       </style>
 
       <div class="container-fluid py-5">
@@ -436,13 +451,7 @@
       </div>
       <!-- End -->
   @endsection
-  <div class="ms-5 mt-5 input-group">
-      <div class="ms-1">
-          <h3 class="fw-bold">Hasil Pencarian</h3>
-      </div>
-      <div class="ms-auto me-5">
-      </div>
-  </div>
+
   @if ($errors->any())
       <div class="alert alert-danger">
           <ul>
@@ -662,9 +671,14 @@
       </div>
   @endif
   <div class="my-5 ms-5 me-5">
+    <div class=" mt-5 mb-3 input-group">
+        <div class="ms-1">
+            <h3 class="fw-bold">Hasil Pencarian</h3>
+        </div>
+    </div>
       <div class="row d-flex justify-content-center">
           @foreach ($recipes as $num => $item)
-              <div class="col-xl-4 col-lg-6 mb-5 col-sm-12 col-md-6">
+              <div class="col-xl-3 col-lg-4 mb-5 col-sm-12 col-md-6">
                   <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                       <div class="mx-1 card-body">
                           <div class=" my-3" style="background-color: white">
@@ -735,12 +749,12 @@
                               <!--  End Modal-->
 
                           </div>
-                          <div class="mx-5">
+                          <div class="p-0">
                               <div class="row">
-                                  <div class="col-12 mx-3 mb-3">
+                                  <div class="col-12 mb-3">
                                       <!-- untuk koki lain -->
                                       <h5>
-                                          <a style="color: black; font-size: 24px; margin-left:-1px"
+                                          <a style="color: black; font-weight: bold; font-size: 30px; margin-left:-1px" class="judul-resep"
                                               href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                               {{ $item->nama_resep }}</a>
                                       </h5>
@@ -749,18 +763,18 @@
                                           {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
                                       </p>
                                   </div>
-                                  <div class="col-12 row  mb-3 mx-1 ">
-                                      <div class="col-6">
+                                  <div class="col-12 row d-flex justify-content-between  mb-3  ">
+                                      <div class="col-6 d-flex">
                                           <span class="text-nowrap">
                                               <img class="mb-1" width="20px" height="20px"
                                                   src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
 
                                               {{ $item->likes }} </span>
-                                          <span class="text-nowrap tesk"> Suka
+                                          <span class="text-nowrap tesk ml-2    "> Suka
                                           </span>
                                       </div>
-                                      <div class="col-6 mx-auto">
-                                          <span class="text-nowrap">
+                                      <div class="col-6 ">
+                                          <span class="text-nowrap d-flex justify-content-between">
                                               <img width="20px" height="20px"
                                                   src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
 
@@ -773,7 +787,7 @@
                                               @endif
                                           </span>
                                       </div>
-                                      <div class="col-6 my-3">
+                                      <div class="col-6 my-3 d-flex justify-content-between">
                                           <span class="text-nowrap">
                                               <img width="20px" height="20px"
                                                   src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
@@ -783,9 +797,9 @@
                                               Komen
                                           </span>
                                       </div>
-                                      <div class="col-6 my-3 mx-auto">
+                                      <div class="col-6 my-3">
 
-                                          <span class="text-nowrap">
+                                          <span class="text-nowrap  d-flex justify-content-between">
                                               <img width="20px" height="20px"
                                                   src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
                                                   alt="">

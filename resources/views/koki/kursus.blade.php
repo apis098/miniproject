@@ -197,10 +197,25 @@
                 font-size: 8px;
             }
         }
+        .judul-kursus {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+            @supports (-webkit-line-clamp: 2) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            }
+        }
     </style>
 
     <div class="">
-        <div class="my-4 mx-5">
+        <div class="my-4 mx-3 mx-md-5">
             <ul class="nav mb-2" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
@@ -250,9 +265,9 @@
                     <div class="mt-1 mx-auto" style="margin-top: -35px; margin-left: -5px; ">
                         <div class="d-flex">
                             <div class="search-1" style="border: 1px solid black;border-radius: 15px;height:50px">
-                                        <div class="search-2"> <i class='bx bxs-map'></i>
-                                            <form action="" method="GET">
-                                                <input type="text" id="search-resep-sendiri" name="resep" autofocus
+                                        <div class="search-2" style="height: 100%"> <i class='bx bxs-map'></i>
+                                            <form action="" method="GET" style="height: 100%">
+                                                <input type="text" id="search-resep-sendiri" name="resep" autofocus style="height: 100%"
                                                     placeholder="Cari Kursusmu">
                                                 <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                                                         xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -276,51 +291,44 @@
                     {{-- start tab 1 --}}
                     <div class="row" id="myCourse">
                         @foreach ($kursus_sendiri as $mycourse)
-                            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                                 <div class="my-3 myCourse" style="border-radius:15px">
                                     <div class="card">
-                                        <div class="card-header">
+                                        <div class=" " style="max-height:120px; min-height:120px;">
                                             <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}"
                                                 class="card-img-top"
-                                                style="max-width:100%; width:100%; border-top-left-radius:15px;
+                                                style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; border-top-left-radius:15px;
                                                border-top-right-radius: 15px"
                                                 alt="...">
                                         </div>
-                                        <div class="card-body">
-                                            <div class="mx-1">
-                                                <strong>
-                                                    @foreach ($mycourse->jenis_kursus as $item)
-                                                        {{ $item->jenis_kursus }}
-                                                    @endforeach
-                                                </strong>
-                                                @if ($mycourse->status === 'ditunggu')
-                                                    <div class="float-end">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="32"
-                                                            height="32" viewBox="0 0 24 24">
-                                                            <path fill="currentColor"
-                                                                d="M12 22q-1.875 0-3.513-.713t-2.85-1.924q-1.212-1.213-1.924-2.85T3 13q0-1.875.713-3.513t1.924-2.85q1.213-1.212 2.85-1.924T12 4q1.875 0 3.513.713t2.85 1.925q1.212 1.212 1.925 2.85T21 13q0 1.875-.713 3.513t-1.924 2.85q-1.213 1.212-2.85 1.925T12 22Zm2.8-4.8l1.4-1.4l-3.2-3.2V8h-2v5.4l3.8 3.8ZM5.6 2.35L7 3.75L2.75 8l-1.4-1.4L5.6 2.35Zm12.8 0l4.25 4.25l-1.4 1.4L17 3.75l1.4-1.4Z" />
-                                                        </svg>
-                                                    </div>
-                                                @elseif ($mycourse->status === 'diterima')
-                                                    <div class="float-end">
-                                                        <div class="float-end">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="32"
-                                                                height="32" viewBox="0 0 24 24">
-                                                                <path fill="currentColor"
-                                                                    d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z" />
-                                                            </svg>
+                                        <div class="card-body" style="padding: 0.7rem 0.7rem 0 0.7rem;  min-height:125px; max-height:125px">
+                                            <div class="mx-1 ">
+                                                <span class="d-flex justify-content-between">
+                                                    <span>
+                                                        @foreach ($mycourse->jenis_kursus as $item)
+                                                            {{ $item->jenis_kursus }}
+                                                        @endforeach
+                                                    </span>
+                                                    @if ($mycourse->status === 'ditunggu')
+                                                        <div class="d-flex gap-1 px-1 " style="border:1px solid gray; align-items: center; border-radius:15px; color: white; background-color:gray; opacity: 50%;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><defs><mask id="ipSAlarmClock0"><g fill="none" stroke-linejoin="round" stroke-width="4"><path fill="#fff" stroke="#fff" d="M24 44.333c10.125 0 18.333-8.208 18.333-18.333c0-10.125-8.208-18.333-18.333-18.333C13.875 7.667 5.667 15.875 5.667 26c0 10.125 8.208 18.333 18.333 18.333Z"/><path stroke="#000" stroke-linecap="round" d="m23.76 15.354l-.002 11.008l7.773 7.773"/><path stroke="#fff" stroke-linecap="round" d="m4 9l7-5m33 5l-7-5"/></g></mask></defs><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSAlarmClock0)"/></svg>
+                                                            <span class="fw-bold" style="font-size: 12px">Menunggu</span>
                                                         </div>
-                                                    </div>
-                                                @endif
-                                                <br>
+                                                        @elseif ($mycourse->status === 'diterima')
+                                                        <div class="d-flex gap-1 px-1 " style="border:1px solid #21BE8D; align-items: center; border-radius:15px; color: white; background-color:#21BE8D; opacity: 100%;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 48 48"><mask id="ipSCheckCorrect0"><g fill="none"><g stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" clip-path="url(#ipSCheckCorrect1)"><path d="M42 20v19a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3h21"/><path d="m16 20l10 8L41 7"/></g><defs><clipPath id="ipSCheckCorrect1"><path fill="#000" d="M0 0h48v48H0z"/></clipPath></defs></g></mask><path fill="currentColor" d="M0 0h48v48H0z" mask="url(#ipSCheckCorrect0)"/></svg>
+                                                            <span class="fw-bold" style="font-size: 12px">Diterima</span>
+                                                        </div>
+                                                    @endif
+                                                </span>
                                                 @if ($mycourse->status === 'diterima')
                                                     <a href="{{ route('detail.kursus', $mycourse->id) }}"
-                                                        class="btn text-break mt-1 text-start fst-normal"
-                                                        style="font-family: poppins;border:none;">
+                                                        class="btn judul-kursus text-break pt-0 pb-0 pl-0 text-start fw-bold"
+                                                        style="font-family: poppins;border:none; min-height:53px; max-height:53px">
                                                         {{ $mycourse->nama_kursus }}
                                                     </a>
                                                 @else
-                                                    <a href="#" class="btn text-break mt-1 text-start fst-normal"
+                                                    <a href="#" class="btn judul-kursus text-break pl-0  text-start fw-bold"
                                                         style="font-family: poppins;border:none;">
                                                         {{ $mycourse->nama_kursus }}
                                                     </a>
@@ -328,8 +336,8 @@
                                                 <div class="d-flex justify-content-between" style="float: right;">
                                                     @if ($mycourse->status === 'diterima')
                                                         <a href="{{ route('koki.user', $mycourse->id) }}"
-                                                            class="btn mt-2 mr-2"
-                                                            style="background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:40px;">
+                                                            class="btn  mr-2"
+                                                            style="display: flex; background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:30px; align-items: center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20"
                                                                 height="25" viewBox="0 0 24 24">
                                                                 <path fill="currentColor"
@@ -337,9 +345,10 @@
                                                             </svg>
                                                         </a>
                                                         <a href="{{ route('koki.content', $mycourse->id) }}"
-                                                            class="btn mt-2"
-                                                            style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:40px;">
-                                                            + Konten
+                                                            class="btn "
+                                                            style="display: flex; background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; height:30px; align-items: center">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2v-6Z"/></svg>
+                                                            <span>Konten</span>
                                                         </a>
                                                     @endif
                                                 </div>
