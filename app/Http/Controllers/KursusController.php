@@ -310,12 +310,30 @@ class KursusController extends Controller
             return response()->json($validasi->errors()->first(), 422);
         }
         $tanggal_dimulai_kursus = Carbon::parse($request->tanggal_dimulai_kursus);
+        $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
         $tanggal_saat_ini = Carbon::now();
+        // gt untuk menilai apakah tanggal dimulai kursus lebih besar dari tanggal saat ini jika tidak maka nilai yang kurang akan minus
+        if($tanggal_dimulai_kursus->gt($tanggal_saat_ini)) {
         $selisih_tanggal = $tanggal_dimulai_kursus->diffInDays($tanggal_saat_ini);
+        } else {
+            $selisih_tanggal =  -$tanggal_dimulai_kursus->diffInDays($tanggal_saat_ini);
+        }
+        if($tanggal_berakhir_kursus->gt($tanggal_dimulai_kursus)) {
+        $selisih_tanggal2 = $tanggal_berakhir_kursus->diffInDays($tanggal_dimulai_kursus);
+        } else {
+            $selisih_tanggal2 = -$tanggal_berakhir_kursus->diffInDays($tanggal_dimulai_kursus);
+
+        }
         if ($selisih_tanggal <= 7) {
             return response()->json([
                 'success' => false,
                 'message' => 'Tanggal yang diinputkan minimal 9 hari dari tanggal sekarang!',
+            ]);
+        }
+        if ($selisih_tanggal2 < 1) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Tanggal berakhir kursus tidak boleh kurang dari tanggal dimulai kursus!',
             ]);
         }
         $tanggal_berakhir_kursus = Carbon::parse($request->tanggal_berakhir_kursus);
