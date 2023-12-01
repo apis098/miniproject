@@ -100,11 +100,11 @@
           /* untuk tampilan laptop */
           @media (min-width: 1210px) and (max-width: 4000px) {
             input.bsar {
-     margin-left: -18px;
+     margin-left: -8px;
     }
 
     textarea.bsar {
-     margin-left: -18px;
+     margin-left: -8px;
     }
 }
 
@@ -135,11 +135,11 @@
                             <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
                         </div>
                         <div class="">
-                            <input type="text" class="form-control bsar" id="subject" name="subject"
+                            <input type="text" class="form-control" id="subject" name="subject"
                                 placeholder="Keluhan" />
                         </div>
                         <div class="">
-                            <textarea style="height:180px;" class="form-control bsar" id="description" name="description" placeholder="Deskripsi"></textarea>
+                            <textarea style="height:180px;" class="form-control" id="description" name="description" placeholder="Deskripsi"></textarea>
                         </div>
                         <div>
                             <button
