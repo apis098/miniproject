@@ -503,8 +503,8 @@ class KursusController extends Controller
             "lama_sesi" => "required|min:0",
             "informasi_lama_sesi" => "required",
             "harga_sesi" => "required|min:0|numeric",
-            "tanggal" => "required",
-            "waktu" => "required"
+            "tanggal" => "required|date",
+            "waktu" => "required|numeric"
         ];
         $messages = [
             "judul_sesi.required" => "Judul sesi harus diisi!",
@@ -514,6 +514,8 @@ class KursusController extends Controller
             "harga_sesi.required" => "Harga sesi wajib diisi!",
             "harga_sesi.min" => "Harga sesi tidak boleh minus!",
             "tanggal.required" => "Tanggal sesi dimulai harus diisi!",
+            "tanggal.date" => "Tanggal sesi tidak valid!",
+            "waktu.numeric" => "Waktu sesi harus berupa angka!",
             "waktu.required" => "Waktu sesi harus diisi!"
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
