@@ -69,6 +69,7 @@ class AdminSeeder extends Seeder
                 'email' => 'dummy@gmail.com',
                 'password' => Hash::make('dummy123'),
                 'role' => 'koki',
+                'isSuperUser' => 'yes',
             ],
         );
         User::create(
@@ -77,6 +78,7 @@ class AdminSeeder extends Seeder
                 'email' => 'user@gmail.com',
                 'password' => Hash::make('user123'),
                 'role' => 'koki',
+                'isSuperUser' => 'yes',
             ],
         );
         User::create(

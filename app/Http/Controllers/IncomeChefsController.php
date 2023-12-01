@@ -48,6 +48,17 @@ class IncomeChefsController extends Controller
                 $koki->saldo_pemasukan = $koki->saldo_pemasukan + $pemasukan;
                 // memperbarui level koki
                 // menghitung total like, share, view, favorite, dan followers
+                // menghitung total popularitas seluruhnya
+                $total_like_feed_semua = upload_video::whereHas("like_veed")->count();
+                $total_like_resep_semua = reseps::whereHas("likes")->count();
+                $total_share_feed_semua = upload_video::whereHas("share_veed")->count();
+                $total_share_resep_semua = reseps::whereHas("share_resep")->count();
+                $total_view_semua = income_chefs::count();
+                $total_favorite_feed_semua = upload_video::whereHas("favorite")->count();
+                $total_favorite_resep_semua = reseps::whereHas("favorite")->count();
+                $total_followers_semua = User::sum('followers');
+                $total_popularitas = $total_like_feed_semua + $total_like_resep_semua + $total_share_feed_semua + $total_share_resep_semua + $total_view_semua + $total_favorite_feed_semua + $total_favorite_resep_semua + $total_followers_semua;
+                // menghitung total popularitas chef
                 $total_like_feed = upload_video::where("users_id", $chef)->whereHas("like_veed")->count();
                 $total_like_resep = reseps::where("user_id", $chef)->whereHas("likes")->count();
                 $total_share_feed = upload_video::where("users_id", $chef)->whereHas("share_veed")->count();
@@ -56,15 +67,16 @@ class IncomeChefsController extends Controller
                 $total_favorite_feed = upload_video::where("users_id", $chef)->whereHas("favorite")->count();
                 $total_favorite_resep = reseps::where("user_id")->whereHas("favorite")->count();
                 $total_followers = $koki->followers;
-                $total_user = User::count();
-                $total = $total_like_feed + $total_like_resep + $total_share_feed + $total_share_resep + $total_view + $total_favorite_feed + $total_favorite_resep + $total_followers;
-                $level = $total / $total_user;
-                if(is_float($level)) {
-                    $dec = strval($level);
-                    $hasil = $dec[2];
-                } else {
+                $total_popularitas_chef = $total_like_feed + $total_like_resep + $total_share_feed + $total_share_resep + $total_view + $total_favorite_feed + $total_favorite_resep + $total_followers;
+                $level = $total_popularitas_chef / $total_popularitas;
+                if($level == 0) {
                     $hasil = $level;
+                } elseif($level == 1) {
+                    $hasil = 10;
+                } else {
+                    $hasil = intval($level * 10) % 10;
                 }
+
                 $koki->level_koki = $hasil;
                 $koki->save();
             }
