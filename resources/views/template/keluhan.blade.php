@@ -2,7 +2,7 @@
 @section('content')
 
 
-<!-- offer section --> 
+<!-- offer section -->
 
 
 
@@ -108,19 +108,25 @@
     }
 }
 
+@media(max-width:1200px) {
+    .gambar_contoh {
+        display: none;
+    }
+}
+
 
 
 </style>
 
 <!-- book section -->
 <section class="book_section layout_padding">
-    <div class="container">
+    <div class="mx-5">
         <div class="row">
-            <div class="col-md-6 ms-3">
+            <div class="col-xl-6 col-lg-12">
                 <div class="form_container">
                     <form action="{{ route('ComplaintUser.store') }}" method="POST">
                         @csrf
-                        <div class="heading_container">
+                        <div class="bsar">
                             <h1
                                 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; color: #333;">
                                 Apa keluhanmu saat memasak?
@@ -128,12 +134,12 @@
 
                             <p class="text-secondary">kami akan berusaha mencarikan solusi.</p>
                         </div>
-                        <div class="col-12">
+                        <div class="">
                             <input type="text" class="form-control bsar" id="subject" name="subject"
                                 placeholder="Keluhan" />
                         </div>
-                        <div class="col-12">
-                            <textarea class="form-control bsar" id="description" name="description" placeholder="Deskripsi"></textarea>
+                        <div class="">
+                            <textarea style="height:180px;" class="form-control bsar" id="description" name="description" placeholder="Deskripsi"></textarea>
                         </div>
                         <div>
                             <button
@@ -145,10 +151,10 @@
                     </form>
                 </div>
             </div>
-            <div class="col ms-5">
-                <div class="image-container kanan widt">
-                    <img src="{{ asset('images/home.png') }}" alt="Gambar Contoh"
-                        style="width: 110%; margin-top: -20%;">
+            <div class="col-xl-6 col-lg-12">
+                <div class="image-container">
+                    <img src="{{ asset('images/home.png') }}" alt="Gambar Contoh" class="gambar_contoh"
+                        style="margin-top: -15%;width:100%;height:auto;" width="auto" height="auto">
                 </div>
             </div>
 
@@ -166,7 +172,7 @@
         </div>
     </div>
 </div> --}}
-<div class="container mb-5">
+<div class="mx-5 mb-5">
     <div class="row mb-5">
         <h3 class="fw-bold">Keluhan Pengguna</h3>
         @if ($complaints->count() == 0)
