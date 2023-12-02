@@ -311,19 +311,15 @@
               }
           }
 
-          /* untuk tampilan ipad */
+          /* untuk tampilan ipad
           @media (min-width: 760px) and (max-width: 1000px) {
-              div.kiri {
-                  margin-left: 75px;
-              }
+
 
               div.search {
                   width: 92%;
               }
 
-              div.lep {
-                  margin-left: 60px;
-              }
+
 
               div.card {
                   width: 100%;
@@ -334,7 +330,7 @@
                   flex-direction: column;
               }
 
-          }
+          } */
 
           @media (max-width: 1104px) {
               img.besar {
