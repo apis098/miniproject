@@ -106,21 +106,7 @@
             padding: 30px;
         }
 
-        .border-orange {
-            width: 165px;
-            height: 220px;
-            border-radius: 15px;
-            border: #F7941E solid;
-            overflow: hidden;
-        }
-
-        .border-black {
-            width: 165px;
-            height: 220px;
-            border-radius: 15px;
-            border: black solid;
-            overflow: hidden;
-        }
+       
 
         .b-b {
             border: black solid;

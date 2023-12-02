@@ -280,10 +280,11 @@
                 color: #F7941E;
 
             }
-            .form-control:focus{
-            border:#F7941E solid;
-            box-shadow: none;
-        }
+
+            .form-control:focus {
+                border: #F7941E solid;
+                box-shadow: none;
+            }
 
 
             .slider_section .detail-box a {
@@ -309,7 +310,7 @@
         </style>
     </head>
 
-<body class="sub_page">
+<body class="sub_page ">
     <div class="hero_area">
         <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
 
@@ -317,6 +318,59 @@
         <!-- header section strats -->
         <header class="header_section p-3">
             <!-- Navbar-->
+            <div class="site-mobile-menu site-navbar-target">
+
+                <div class="site-mobile-menu-header pt-2 pb-1">
+                    <div class="d-flex justify-content-center">
+                        <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
+                    </div>
+                    <div class="container mt-5">
+                        <div class="row align-items-center">
+                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 ">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6v18H5Zm8 0v-9h8v7q0 .825-.587 1.413T19 21h-6Zm0-11V3h6q.825 0 1.413.588T21 5v5h-8Z"/></svg>
+                                        <b>Beranda</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div> 
+                             </a>
+                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2"/></svg>
+                                        <b>Resep</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div> 
+                             </a>
+                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="10.6" cy="3.5" rx="2.4" ry="3"/><path d="M10.6 6.5v7M3.5.5v13M6 .5V3a2.5 2.5 0 0 1-2.5 2.5h0A2.5 2.5 0 0 1 1 3V.5"/></g></svg>
+                                        <b>Kursus</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div> 
+                             </a>
+                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="22" height="22" viewBox="0 0 14 14"><path fill="currentColor" fill-rule="evenodd" d="M8.09.084a.75.75 0 1 0-.232 1.482A5.502 5.502 0 0 1 7 12.5a5.502 5.502 0 0 1-5.116-3.475a.75.75 0 1 0-1.394.552A7.002 7.002 0 0 0 14 7A7.002 7.002 0 0 0 8.09.084ZM6.164.661a.75.75 0 0 1-.54.914a5.453 5.453 0 0 0-.735.246a.75.75 0 1 1-.576-1.385c.302-.126.615-.231.938-.314a.75.75 0 0 1 .913.54ZM3.185 1.894a.75.75 0 0 1-.016 1.06a5.61 5.61 0 0 0-.95 1.225a.75.75 0 1 1-1.302-.744a7.025 7.025 0 0 1 1.208-1.557a.75.75 0 0 1 1.06.016ZM.916 5.28a.75.75 0 0 1 .638.847a5.554 5.554 0 0 0-.054.775a.75.75 0 0 1-1.5 0c0-.333.023-.662.069-.984a.75.75 0 0 1 .847-.638ZM4.5 8.882V5.118a1 1 0 0 1 1.447-.894l3.764 1.882a1 1 0 0 1 0 1.788L5.947 9.776A1 1 0 0 1 4.5 8.882Z" clip-rule="evenodd"/></svg>
+                                        <b>Feed</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div> 
+                             </a>
+                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2"  width="23" height="23" viewBox="0 0 48 48"><path fill="currentColor" d="M24 12.042A6.042 6.042 0 0 0 17.958 6h-5.916a6.042 6.042 0 1 0 0 12.083H13.2V21S24 19.542 24 12.042ZM18.5 28c0 2.21-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4Zm-4 6C11.663 34 6 35.43 6 38.267V42h17v-3.733C23 35.429 17.337 34 14.5 34Zm19-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4Zm0 2c-2.837 0-8.5 1.43-8.5 4.267V42h17v-3.733C42 35.429 36.337 34 33.5 34ZM32.042 7A6.042 6.042 0 0 0 26 13.042c0 7.5 9.6 8.958 9.6 8.958v-2.917h.358a6.042 6.042 0 1 0 0-12.083h-3.916Z"/></svg>
+                                        <b>Diskusi</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div> 
+                             </a>
+                             <a href="" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <b>Masuk/daftar</b>
+                                </div> 
+                             </a>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="site-mobile-menu-body"></div> --}}
+            </div> <!-- .site-mobile-menu -->
             <nav class="navbar navbar-expand-lg  bg-body-tertiary custom_nav text-light me-2">
                 <div class="container-fluid justify-content-between">
                     <!-- Left elements -->
@@ -346,57 +400,62 @@
                             @endif
                         </a>
 
-                    <button class="navbar-toggler nav-link" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5"/></svg>
-                      </button>
+                        <button class="navbar-toggler js-menu-toggle nav-link" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
+                                viewBox="0 0 14 14">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
+                            </svg>
+                        </button>
                     </div>
                     <!-- Left elements -->
-                         <!-- Center elements -->
-                      <div id="navbarNav">
-                            <ul class="navbar-nav flex-row d-none d-md-flex mr-auto ">
+                    <!-- Center elements -->
+                    <div id="navbarNav">
+                        <ul class="navbar-nav flex-row js-clone-nav d-none d-md-flex mr-auto ">
 
-                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
-                                    <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" id="navbar"
-                                        href="{{ route('home') }}"><b>Beranda</b></a>
-                                </li>
+                            <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
+                                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" id="navbar"
+                                    href="{{ route('home') }}"><b>Beranda</b></a>
+                            </li>
 
-                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1  {{ request()->is('resep') ? 'active' : '' }}">
-                                    <a class="nav-link {{ request()->is('resep') ? 'active' : '' }}" id="navbar"
-                                        href="{{ route('resep.home') }}">
-                                        <b>Resep</b>
-                                    </a>
-                                </li>
+                            <li class="nav-item me-3 me-lg-1 pl-1 pr-1  {{ request()->is('resep') ? 'active' : '' }}">
+                                <a class="nav-link {{ request()->is('resep') ? 'active' : '' }}" id="navbar"
+                                    href="{{ route('resep.home') }}">
+                                    <b>Resep</b>
+                                </a>
+                            </li>
 
-                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
-                                    <a class="nav-link {{ request()->is('kursus') ? 'active' : '' }}" id="navbar"
-                                        href="{{ route('kursus') }}">
-                                        <b>Kursus</b>
-                                    </a>
-                                </li>
+                            <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                <a class="nav-link {{ request()->is('kursus') ? 'active' : '' }}" id="navbar"
+                                    href="{{ route('kursus') }}">
+                                    <b>Kursus</b>
+                                </a>
+                            </li>
 
-                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
-                                    <a class="nav-link {{ request()->is('veed') ? 'active' : '' }}" id="navbar"
-                                        href="{{ url('veed') }}">
-                                        <b>Feed</b>
-                                    </a>
-                                </li>
+                            <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                <a class="nav-link {{ request()->is('veed') ? 'active' : '' }}" id="navbar"
+                                    href="{{ url('veed') }}">
+                                    <b>Feed</b>
+                                </a>
+                            </li>
 
-                                <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
-                                    <a class="nav-link {{ request()->is('keluhan') ? 'active' : '' }}" id="navbar"
-                                        href="{{ route('keluhan') }}">
-                                        <b>Diskusi</b>
-                                    </a>
-                                </li>
-                            </ul>
-                      </div>
+                            <li class="nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                <a class="nav-link {{ request()->is('keluhan') ? 'active' : '' }}" id="navbar"
+                                    href="{{ route('keluhan') }}">
+                                    <b>Diskusi</b>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <!-- Center elements -->
 
                     <!-- Right elements -->
-                    @if(Auth::check())
+                    @if (Auth::check())
                         <ul class="navbar-nav   flex-row">
                             <li class="nav-item ">
                                 <a class="nav-link yuhu text-light mt-1 {{ $messageCount == 0 ? 'me-3' : '' }} "
-                                    href="/roomchat" id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                                    href="/roomchat" id="navbarDropdownMenuLink" role="button"
+                                    aria-expanded="false">
                                     <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 1.5px;" width="27"
                                         height="27" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -427,7 +486,8 @@
 
                             </li>
                             <li class="nav-item dropdown ">
-                                <form action="{{ route('all.notifications') }}" id="notification-form" method="POST">
+                                <form action="{{ route('all.notifications') }}" id="notification-form"
+                                    method="POST">
                                     @csrf
                                     @method('PATCH')
                                     <button type="button" id="notification-button"
@@ -495,7 +555,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Membalas
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Membalas
                                                                             keluhan anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -516,7 +577,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menyukai
                                                                             komentar anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -537,7 +599,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menyukai
                                                                             postingan anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -552,7 +615,8 @@
                                                                     </button>
                                                                 </form>
                                                             @elseif($row->top_up_id != null)
-                                                                <form action="{{ route('topUp.notification', $row->id) }}"
+                                                                <form
+                                                                    action="{{ route('topUp.notification', $row->id) }}"
                                                                     method="POST">
                                                                     @method('PUT')
                                                                     @csrf
@@ -598,7 +662,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Membalas
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Membalas
                                                                             komentar anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -619,7 +684,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menyukai
                                                                             komentar anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -640,7 +706,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Membagikan
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Membagikan
                                                                             video kepada anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -657,7 +724,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menyukai
                                                                             komentar anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -678,7 +746,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Membalas
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Membalas
                                                                             komentar anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -721,7 +790,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menyukai
                                                                             komentar anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -742,7 +812,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menyukai
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menyukai
                                                                             resep anda</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -763,7 +834,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Memiliki
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Memiliki
                                                                             kesulitan memasak</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -784,7 +856,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menambahkan
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menambahkan
                                                                             resep baru</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -805,7 +878,8 @@
                                                                     @method('PUT')
                                                                     @csrf
                                                                     <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Menambahkan
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Menambahkan
                                                                             postingan baru</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -850,7 +924,8 @@
                                                                     <button class="yuhu mt-2" type="button"
                                                                         data-toggle="modal"
                                                                         data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small class="mt-1 ms-1 text-secondary">Komentar
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Komentar
                                                                             kamu telah diblokir</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -873,7 +948,8 @@
                                                                     <button class="yuhu mt-2" type="button"
                                                                         data-toggle="modal"
                                                                         data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small class="mt-1 ms-1 text-secondary">Komentar
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Komentar
                                                                             kamu telah diblokir</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -896,7 +972,8 @@
                                                                     <button class="yuhu mt-2" type="button"
                                                                         data-toggle="modal"
                                                                         data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small class="mt-1 ms-1 text-secondary">Postingan
+                                                                        <small
+                                                                            class="mt-1 ms-1 text-secondary">Postingan
                                                                             kamu telah diblokir</small>
                                                                         @if ($row->status == 'belum')
                                                                             <img class="ms-2 mb-2 rounded-circle"
@@ -923,7 +1000,8 @@
                                                                         @endif
                                                                     </button>
                                                                     <input type="text" hidden name="follower_id"
-                                                                        id="follower_id" value="{{ $row->follower_id }}"
+                                                                        id="follower_id"
+                                                                        value="{{ $row->follower_id }}"
                                                                         class="form-control">
                                                                 </form>
                                                             @elseif($row->complaint_id_report != null)
@@ -945,7 +1023,8 @@
                                                                         @endif
                                                                     </button>
                                                                     <input type="text" hidden name="follower_id"
-                                                                        id="follower_id" value="{{ $row->follower_id }}"
+                                                                        id="follower_id"
+                                                                        value="{{ $row->follower_id }}"
                                                                         class="form-control">
                                                                 </form>
                                                             @elseif($row->resep_id_report != null)
@@ -967,7 +1046,8 @@
                                                                         @endif
                                                                     </button>
                                                                     <input type="text" hidden name="follower_id"
-                                                                        id="follower_id" value="{{ $row->follower_id }}"
+                                                                        id="follower_id"
+                                                                        value="{{ $row->follower_id }}"
                                                                         class="form-control">
                                                                 </form>
                                                             @elseif($row->random_name != null)
@@ -988,7 +1068,8 @@
                                                                         @endif
                                                                     </button>
                                                                     <input type="text" hidden name="follower_id"
-                                                                        id="follower_id" value="{{ $row->follower_id }}"
+                                                                        id="follower_id"
+                                                                        value="{{ $row->follower_id }}"
                                                                         class="form-control">
                                                                 </form>
                                                             @elseif($row->categories == 'others')
@@ -1004,49 +1085,54 @@
                                                                         @endif
                                                                     </button>
                                                                     <input type="text" hidden name="follower_id"
-                                                                        id="follower_id" value="{{ $row->follower_id }}"
+                                                                        id="follower_id"
+                                                                        value="{{ $row->follower_id }}"
                                                                         class="form-control">
                                                                 </form>
-                                                            @elseif($row->categories === "data-koki" && $row->alasan != null)
-                                                            <form action="{{ $row->route }}" method="POST">
-                                                                @method('PUT')
-                                                                @csrf
-                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
-                                                                    <small
-                                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
-                                                                    @if ($row->status == 'belum')
-                                                                        <img class="ms-2 rounded-circle"
-                                                                            src="{{ asset('images/badge.png') }}"
-                                                                            alt="profile image"
-                                                                            style="max-width:10px">
-                                                                    @endif
-                                                                </button>
-                                                                {{-- <input type="text" hidden
+                                                            @elseif($row->categories === 'data-koki' && $row->alasan != null)
+                                                                <form action="{{ $row->route }}" method="POST">
+                                                                    @method('PUT')
+                                                                    @csrf
+                                                                    <button class="yuhu mt-2" type="button"
+                                                                        data-toggle="modal"
+                                                                        data-target="#modalAlasan{{ $row->id }}">
+                                                                        <small
+                                                                            class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                        @if ($row->status == 'belum')
+                                                                            <img class="ms-2 rounded-circle"
+                                                                                src="{{ asset('images/badge.png') }}"
+                                                                                alt="profile image"
+                                                                                style="max-width:10px">
+                                                                        @endif
+                                                                    </button>
+                                                                    {{-- <input type="text" hidden
                                                     name="follower_id"
                                                     id="follower_id"
                                                     value="{{ $row->follower_id }}"
                                                     class="form-control"> --}}
-                                                            </form>
-                                                            @elseif($row->categories == "ajuan_penarikan" && $row->alasan != null)
-                                                            <form action="{{ $row->route }}" method="POST">
-                                                                @method('PUT')
-                                                                @csrf
-                                                                <button class="yuhu mt-2" type="button" data-toggle="modal" data-target="#modalAlasan{{$row->id}}">
-                                                                    <small
-                                                                        class=" ms-2 text-secondary">{{ $row->message }}</small>
-                                                                    @if ($row->status == 'belum')
-                                                                        <img class="ms-2 rounded-circle"
-                                                                            src="{{ asset('images/badge.png') }}"
-                                                                            alt="profile image"
-                                                                            style="max-width:10px">
-                                                                    @endif
-                                                                </button>
-                                                                {{-- <input type="text" hidden
+                                                                </form>
+                                                            @elseif($row->categories == 'ajuan_penarikan' && $row->alasan != null)
+                                                                <form action="{{ $row->route }}" method="POST">
+                                                                    @method('PUT')
+                                                                    @csrf
+                                                                    <button class="yuhu mt-2" type="button"
+                                                                        data-toggle="modal"
+                                                                        data-target="#modalAlasan{{ $row->id }}">
+                                                                        <small
+                                                                            class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                        @if ($row->status == 'belum')
+                                                                            <img class="ms-2 rounded-circle"
+                                                                                src="{{ asset('images/badge.png') }}"
+                                                                                alt="profile image"
+                                                                                style="max-width:10px">
+                                                                        @endif
+                                                                    </button>
+                                                                    {{-- <input type="text" hidden
                                                     name="follower_id"
                                                     id="follower_id"
                                                     value="{{ $row->follower_id }}"
                                                     class="form-control"> --}}
-                                                            </form>
+                                                                </form>
                                                             @else
                                                                 <form action="{{ $row->route }}" method="POST">
                                                                     @method('PUT')
@@ -1094,8 +1180,8 @@
                                             width="45px" height="45px">
                                     @else
                                         <img loading="lazy" class="mr-3 rounded-circle border border-light"
-                                            src="{{ asset('images/default.jpg') }}" alt="profile image" width="45px"
-                                            height="45px">
+                                            src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                            width="45px" height="45px">
                                     @endif
                                 </a>
                                 @if (auth()->user()->role === 'koki')
@@ -1127,7 +1213,8 @@
                                             Profil
                                         </a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="/koki/beranda" class="dropdown-item text-orange" style="width: 230px">
+                                        <a href="/koki/beranda" class="dropdown-item text-orange"
+                                            style="width: 230px">
                                             <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
                                                 height="20" viewBox="0 0 24 24">
                                                 <path fill="currentColor" fill-rule="evenodd"
@@ -1190,42 +1277,48 @@
                                         </a>
                                     </div>
                                 @elseif(auth()->user()->role == 'admin')
-                                <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
-                                style="width: 255px; border-radius:13px;">
-                                <div class="input-group">
-                                    <a href="#">
-                                        @if ($userLogin->foto)
-                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                alt="profile image" width="50px" height="50px">
-                                        @else
-                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                src="{{ asset('images/default.jpg') }}" alt="profile image"
-                                                style="max-width:40px">
-                                        @endif
-                                    </a>
-                                    <p class="mt-2 text-orange">
-                                        <b>{{ auth()->user()->name }}</b>
-                                    </p>
-                                </div>
-                                <div class="dropdown-divider"></div>
-                                <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
-                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m7.879 5l1.06-1.06l1.421-1.422a3.5 3.5 0 0 0-3.653 4.674l.326.897l-.675.674l-3.797 3.798a.621.621 0 1 0 .878.878l3.798-3.797l.674-.675l.897.325a3.5 3.5 0 0 0 4.674-3.653L12.06 7.062L11 8.12L9.94 7.06l-1-1L7.878 5Zm6.173-1.93A4.987 4.987 0 0 1 15 6a5 5 0 0 1-6.703 4.703L4.5 14.5a2.121 2.121 0 0 1-3-3l3.797-3.797A5 5 0 0 1 13 2l-1.076 1.076l-.863.863L10 5l1 1l1.06-1.06l.864-.864L14 3l.052.07Z" clip-rule="evenodd"/></svg>
-                                    Dashboard
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="{{ route('actionlogout') }}" style="width: 230px;"
-                                    class="dropdown-item text-orange">
-                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                        height="20" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                        <path fill="currentColor"
-                                            d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
-                                    </svg>
-                                    Keluar
-                                </a>
-                            </div>
+                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                        style="width: 255px; border-radius:13px;">
+                                        <div class="input-group">
+                                            <a href="#">
+                                                @if ($userLogin->foto)
+                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                        src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                        alt="profile image" width="50px" height="50px">
+                                                @else
+                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                        src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                                        style="max-width:40px">
+                                                @endif
+                                            </a>
+                                            <p class="mt-2 text-orange">
+                                                <b>{{ auth()->user()->name }}</b>
+                                            </p>
+                                        </div>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="/admin/dashboard" class="dropdown-item text-orange"
+                                            style="width: 230px">
+                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                height="20" viewBox="0 0 16 16">
+                                                <path fill="currentColor" fill-rule="evenodd"
+                                                    d="m7.879 5l1.06-1.06l1.421-1.422a3.5 3.5 0 0 0-3.653 4.674l.326.897l-.675.674l-3.797 3.798a.621.621 0 1 0 .878.878l3.798-3.797l.674-.675l.897.325a3.5 3.5 0 0 0 4.674-3.653L12.06 7.062L11 8.12L9.94 7.06l-1-1L7.878 5Zm6.173-1.93A4.987 4.987 0 0 1 15 6a5 5 0 0 1-6.703 4.703L4.5 14.5a2.121 2.121 0 0 1-3-3l3.797-3.797A5 5 0 0 1 13 2l-1.076 1.076l-.863.863L10 5l1 1l1.06-1.06l.864-.864L14 3l.052.07Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Dashboard
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                            class="dropdown-item text-orange">
+                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                height="20" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                <path fill="currentColor"
+                                                    d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                            </svg>
+                                            Keluar
+                                        </a>
+                                    </div>
                                 @endif
                             </li>
                         </ul>
@@ -1375,9 +1468,8 @@
                         @endforelse
                         <div class="modal-footer d-flex justify-content-between">
                             <div class="ms-3">
-                                <input name="select-all" type="checkbox"
-                                    class="form-check-input" id="select-all">
-                                    <label for="select-all" class="text-dark">Pilih semua</label>
+                                <input name="select-all" type="checkbox" class="form-check-input" id="select-all">
+                                <label for="select-all" class="text-dark">Pilih semua</label>
                             </div>
                             <button onclick="deleteSelected()" class="btn  btn-sm text-light me-3"
                                 style="border-radius: 15px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
@@ -1597,7 +1689,8 @@
 
                         <div class="col-lg-4 mb-3">
                             <div class="card" style="width: 18rem;border-radius:15px">
-                                <img src="{{ asset('images/reguler.png') }}" class="card-img-top" alt="">
+                                <img src="{{ asset('images/reguler.png') }}" class="card-img-top"
+                                    alt="">
                                 <div class=card-body">
                                     <h5 class="card-title text-center" style="margin-top: 27%;">reguler</h5>
                                     <p class="text-center">1 bulan</p>
@@ -1651,7 +1744,7 @@
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                    <form action="{{$row->route}}" method="POST">
+                    <form action="{{ $row->route }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="modal-header">
@@ -1710,6 +1803,97 @@
                 position: 'topCenter'
             });
         @endif
+    </script>
+    <script>
+        $(function() {
+
+            var siteSticky = function() {
+                $(".js-sticky-header").sticky({
+                    topSpacing: 0
+                });
+            };
+            siteSticky();
+
+            var siteMenuClone = function() {
+
+                $('.js-clone-nav').each(function() {
+                    var $this = $(this);
+                    $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
+                });
+
+
+                setTimeout(function() {
+
+                    var counter = 0;
+                    $('.site-mobile-menu .has-children').each(function() {
+                        var $this = $(this);
+
+                        $this.prepend('<span class="arrow-collapse collapsed">');
+
+                        $this.find('.arrow-collapse').attr({
+                            'data-toggle': 'collapse',
+                            'data-target': '#collapseItem' + counter,
+                        });
+
+                        $this.find('> ul').attr({
+                            'class': 'collapse',
+                            'id': 'collapseItem' + counter,
+                        });
+
+                        counter++;
+
+                    });
+
+                }, 1000);
+
+                $('body').on('click', '.arrow-collapse', function(e) {
+                    var $this = $(this);
+                    if ($this.closest('li').find('.collapse').hasClass('show')) {
+                        $this.removeClass('active');
+                    } else {
+                        $this.addClass('active');
+                    }
+                    e.preventDefault();
+
+                });
+
+                $(window).resize(function() {
+                    var $this = $(this),
+                        w = $this.width();
+
+                    if (w > 768) {
+                        if ($('body').hasClass('offcanvas-menu')) {
+                            $('body').removeClass('offcanvas-menu');
+                        }
+                    }
+                })
+
+                $('body').on('click', '.js-menu-toggle', function(e) {
+                    var $this = $(this);
+                    e.preventDefault();
+
+                    if ($('body').hasClass('offcanvas-menu')) {
+                        $('body').removeClass('offcanvas-menu');
+                        $this.removeClass('active');
+                    } else {
+                        $('body').addClass('offcanvas-menu');
+                        $this.addClass('active');
+                    }
+                })
+
+                // click outisde offcanvas
+                $(document).mouseup(function(e) {
+                    var container = $(".site-mobile-menu");
+                    if (!container.is(e.target) && container.has(e.target).length === 0) {
+                        if ($('body').hasClass('offcanvas-menu')) {
+                            $('body').removeClass('offcanvas-menu');
+                        }
+                    }
+                });
+            };
+            siteMenuClone();
+
+        });
     </script>
     <script>
         $(document).ready(function() {
