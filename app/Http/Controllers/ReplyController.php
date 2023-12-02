@@ -145,6 +145,7 @@ class ReplyController extends Controller
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->user_id;
                 $notifications->reply_id_comment = $comment->id;
+                $notifications->complaint_id = $comment->complaint_id;
                 $notifications->save();
             }
             if(Auth::user()->foto) {
@@ -203,6 +204,7 @@ class ReplyController extends Controller
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->user_id;
                 $notifications->reply_id_comment = $comment->id;
+                $notifications->complaint_id = $comment->complaint_id;
                 $notifications->save();
             }
             if(Auth::user()->foto) {
