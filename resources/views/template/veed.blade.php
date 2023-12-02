@@ -3368,7 +3368,7 @@
                                                                                                                                                 type="text"
                                                                                                                                                 id="inputBalasRepliesCommentsFeeds1${up['id']}"
                                                                                                                                                 name="komentar"
-                                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                                 placeholder="Masukkan komentar...">
 
@@ -4287,7 +4287,7 @@
                                                                                                                 type="text"
                                                                                                                 id="inputKomentarBalasan${up['id']}"
                                                                                                                 name="komentarBalasan"
-                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                 placeholder="Masukkan komentar...">
                                                                                                         </div>
