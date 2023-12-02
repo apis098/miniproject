@@ -158,6 +158,37 @@
                             opacity: 0;
                         }
                     }
+                    @media (min-width: 425px) {
+                        .col-lg-1.col-md-1.col-sm-1.pr-0 {
+                            padding-right: unset !important; /* Unset the padding-right */
+                        }
+                    }
+
+                        @media (max-width: 767px) {
+                            .d-flex {
+                                display: block; /* Ganti dengan properti display yang sesuai */
+                            }
+                        }
+
+                        @media (min-width: 768px) {
+                            .historyJam {
+                                float: right; /* Ganti dengan properti display yang sesuai */
+                            }
+                        }
+
+                        @media (max-width: 767px) {
+                            .removePaddingLeft {
+                                padding-left: 0; /* Ganti dengan properti display yang sesuai */
+                            }
+                        }
+
+                        @media screen and (max-width: 767px) {
+                        .pr-5 {
+                            padding-right: 6% !important;
+                        }
+                        }
+
+
                 </style>
                 <!-- feed start -->
                 <div class="col-md-12 col-lg-6">
@@ -246,6 +277,8 @@
                                         rows="5" required>{{ old('deskripsi_video') }}</textarea>
                                     <br>
                                     <input type="file" name="upload_video" id="inputVideo" hidden>
+                                    <div class="row">
+                                    <div class="col-lg-10 col-md-10 col-sm-12">
                                     <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
                                         style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
                                         <div style="font-weight: 600; color: black;"><svg
@@ -255,10 +288,14 @@
                                                     d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
                                             </svg> Tambahkan Video</div>
                                     </a>
-                                    <button type="submit" class="btn " id="buttonUploadVideo"
-                                        style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <button type="submit" class="btn mt-2" id="buttonUploadVideo"
+                                        style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                         <span style="font-weight: 600; color: white;">Upload</span>
                                     </button>
+                                    </div>
+                                    </div>
 
                                 </form>
                             @else
@@ -267,6 +304,8 @@
                                     <textarea name="" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="floatingTextarea"
                                         rows="5" required>{{ old('deskripsi_video') }}</textarea>
                                     <br>
+                                    <div class="row">
+                                    <div class="col-lg-10 col-md-10 col-sm-12">
                                     <a href="#" class="btn btn-light" onclick="harusLogin()"
                                         style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
                                         <span style="font-weight: 600; color: black;"><svg
@@ -276,11 +315,15 @@
                                                     d="M12 18q2.075 0 3.538-1.462Q17 15.075 17 13q0-2.075-1.462-3.538Q14.075 8 12 8Q9.925 8 8.463 9.462Q7 10.925 7 13q0 2.075 1.463 3.538Q9.925 18 12 18Zm0-2q-1.25 0-2.125-.875T9 13q0-1.25.875-2.125T12 10q1.25 0 2.125.875T15 13q0 1.25-.875 2.125T12 16Zm6-6q.425 0 .712-.288Q19 9.425 19 9t-.288-.713Q18.425 8 18 8t-.712.287Q17 8.575 17 9t.288.712Q17.575 10 18 10ZM4 21q-.825 0-1.412-.587Q2 19.825 2 19V7q0-.825.588-1.412Q3.175 5 4 5h3.15L8.7 3.325q.15-.15.337-.238Q9.225 3 9.425 3h5.15q.2 0 .388.087q.187.088.337.238L16.85 5H20q.825 0 1.413.588Q22 6.175 22 7v12q0 .825-.587 1.413Q20.825 21 20 21Zm16-2V7h-4.05l-1.825-2h-4.25L8.05 7H4v12Zm-8-6Z" />
                                             </svg> Tambahkan Video</span>
                                     </a>
+                                    </div>
 
-                                    <button type="button" href="#" class="btn " onclick="harusLogin()"
-                                        style="float:right; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
+                                    <div class="col-lg-2 col-md-2 col-sm-12">
+                                    <button type="button" href="#" class="btn mt-2" onclick="harusLogin()"
+                                        style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                         <span style="font-weight: 600; color: white;">Upload</span>
                                     </button>
+                                    </div>
+                                    </div>
                                 </form>
                             @endif
                         </div>
@@ -318,8 +361,8 @@
                     </script>
                     <!-- foreach video pembelajaran start -->
                     @if ($video_pembelajaran->count() == 0)
-                        <div class="d-flex flex-column h-100 justify-content-center align-items-center"
-                            style="margin-top: 7em">
+                        <div class="d-flex flex-column justify-content-center align-items-center"
+                            style="margin-top: 20%; margin-bottom: 20%;">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
                             <p><b>Tidak ada data</b></p>
                         </div>
@@ -327,10 +370,10 @@
                     @foreach ($video_pembelajaran as $urut => $item_video)
                         <div class="card mt-4 mb-5 item-video">
                             <!-- Data -->
-                            <div class="card-header" style="background-color: white">
+                            <div class="col-12 card-header" style="background-color: white">
                                 <p id="uuid" hidden>{{ $item_video->uuid }}</p>
-                                <div class="d-flex mb-1">
-                                    <a href="">
+                                <div class="row mb-1 item" style="padding-left: 2%; padding-right: 2%;" data-id="{{ $item_video->id }}">
+                                    <a href="" class="col-lg-1 col-md-1 col-2 pr-2 pl-1">
                                         @if ($item_video->user->foto)
                                             <img src="{{ asset('storage/' . $item_video->user->foto) }}"
                                                 class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
@@ -339,16 +382,16 @@
                                                 class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
                                         @endif
                                     </a>
-                                    <div style="margin-top: 8px;">
-                                        <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark ">
-                                            <strong class="text-center">{{ $item_video->user->name }}</strong>
+                                    <!-- <div style="margin-top: 8px;"> -->
+                                        <a href="{{ route('show.profile', $item_video->user->id) }}" class="col-lg-8 col-md-8 col-10 text-dark my-auto pl-0" >
+                                            <strong class="text-center text-truncate">{{ $item_video->user->name }}</strong>
                                         </a>
-                                        <a href="" class="text-muted d-block"
-                                            style="float: right; margin-left: 390px">
-                                            <small>
+                                        <a href="" class="col-lg-3 col-md-3 col-sm-12 text-muted d-block my-auto removePaddingLeft"
+                                             >
+                                            <small style="float: right;" class="historyJam">
                                                 {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                         </a>
-                                    </div>
+                                    <!-- </div> -->
                                 </div>
 
                             </div>
@@ -513,19 +556,20 @@
                             </div>
                             <!-- Media -->
                             <!-- Interactions -->
-                            <div class="card-body">
+                            <div class="card-body col-12">
                                 <!-- Reactions -->
                                 <div class="d-flex justify-content-between mb-2">
-
+                                    <div class="col-6 pl-0">
                                     <span class="d-flex flex-row" style="color: black;">
+                                    
                                         <!-- like feed start -->
                                         @if (Auth::check())
-                                            <div id="feed{{ $urut }}">
+                                            <!-- <span id="feed{{ $urut }}" class=""> -->
 
                                                 @if ($item_video->checkLikeFeed(Auth::user()->id))
                                                     <form id="formLikeVeed{{ $urut }}"
-                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button class=" me-1"
+                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
+                                                        <button class=""
                                                             style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i class="text-orange fa-solid fa-lg fa-thumbs-up"
@@ -534,17 +578,18 @@
                                                     </form>
                                                 @else
                                                     <form id="formLikeVeed{{ $urut }}"
-                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}">
-                                                        <button class="text-dark me-1"
+                                                        action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
+                                                        <button class="text-dark"
                                                             style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i id="likeB{{ $urut }}"
                                                                 class="fa-regular fa-lg fa-thumbs-up"></i>
                                                         </button>
+                                                        <span class="my-auto ml-auto"
+                                                    id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                                     </form>
                                                 @endif
-
-                                            </div>
+                                            <!-- </span> -->
                                         @else
                                             <form>
                                                 <button style="border: none; background-color:white;" id="buttonLikeVeed"
@@ -553,11 +598,12 @@
                                                 </button>
                                             </form>
                                         @endif
-                                        <span class="my-auto"
-                                            id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
+                                        <!-- <span class="my-auto"
+                                            id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span> -->
+
                                         <!-- like feed end -->
                                         <!-- komentar feed start -->
-                                        <button type="button" class="ms-3 yuhu text-dark" {{-- onclick="openModel({{ $urut }})" --}}
+                                        <button type="button" class=" ml-2 mr-2 yuhu text-dark" {{-- onclick="openModel({{ $urut }})" --}}
                                             {{-- id="button-modal-komentar-feed{{ $urut }}" --}} data-toggle="collapse" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
                                             data-target="#commentCollapse{{ $urut }}">
@@ -589,7 +635,8 @@
                                                                 action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id, $item_video->id]) }}"
                                                                 method="post">
                                                                 @csrf
-                                                                <div class="d-flex mb-3">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-lg-1 col-md-1 col-2 pl-0">
                                                                     @if (Auth::user()->foto)
                                                                         <img src="{{ asset('storage' . Auth::user()->foto) }}"
                                                                             class="border rounded-circle me-5"
@@ -601,36 +648,46 @@
                                                                             alt="Avatar"
                                                                             style="height: 60px; margin-left: 20px;" />
                                                                     @endif
+                                                                    </div>
+                                                                    <div class="col-lg-9 col-md-9 col-10">
                                                                     <input type="text"
                                                                         id="input_comment_feed{{ $urut }}"
-                                                                        name="commentVeed" width="500px"
+                                                                        name="commentVeed" width="100%"
                                                                         class="form-control rounded-3 me-3"
                                                                         style="margin-top: 12px"
                                                                         placeholder="Masukkan komentar...">
-
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-2 col-12">
                                                                     <button type="submit"
                                                                         id="buttonCommentVeed{{ $urut }}"
                                                                         onclick="komentar_feed({{ $urut }})"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                                         class="btn  btn-sm text-light"><b
                                                                             class="me-3 ms-3">Kirim</b></button>
+                                                                    </div>
 
                                                                 </div>
                                                             </form>
                                                         @else
                                                             <form>
-                                                                <div class="d-flex mb-3">
+                                                                <div class="row mb-3">
+                                                                    <div class="col-lg-1 col-md-1 col-2 pl-0">
                                                                     <img src="{{ asset('images/default.jpg') }}"
                                                                         class="border rounded-circle me-5" alt="Avatar"
                                                                         style="height: 60px; margin-left: 20px;" />
+                                                                    </div>
+                                                                    <div class="col-lg-9 col-md-9 col-10">
                                                                     <input type="text" id="comment-veed1"
-                                                                        name="commentVeed" width="500px"
+                                                                        name="commentVeed" width="100%"
                                                                         class="form-control rounded-3 me-3"
                                                                         style="margin-top: 12px"
                                                                         placeholder="Masukkan komentar...">
+                                                                    </div>
+                                                                    <div class="col-lg-2 col-md-2 col-12">
                                                                     <button type="button" onclick="harusLogin()"
                                                                         id="buttonCommentVeed" class="btn text-white"
                                                                         style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
+                                                                    </div>
                                                                 </div>
                                                             </form>
                                                         @endif
@@ -644,7 +701,7 @@
                                         <!-- komentar feed end -->
 
                                         <!-- Bagikan feed start -->
-                                        <a class="ml-3 mr-1 my-auto text-dark" href="#" data-bs-toggle="modal"
+                                        <a class="ml-1 mr-1 my-auto text-dark text-center" href="#" data-bs-toggle="modal"
                                             data-bs-target="#bagikan{{ $item_video->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25"
                                                 viewBox="0 0 512 512">
@@ -912,9 +969,12 @@
                                                 });
                                             });
                                         </script>
+                                    
                                     </span>
+                                    </div>
+                                    <div class="col-6" >
                                     <!-- modal Bagikan end -->
-                                    <span class="d-flex me-2">
+                                    <span class="d-flex" style="float: right;">
                                         <!-- gift start -->
                                         @if (Auth::check() && auth()->user()->id != $item_video->users_id)
                                             <a type="button" class="text-dark me-2"><i
@@ -1378,6 +1438,7 @@
                                             }
                                         </script>
                                     </span>
+                                    </div>
 
                                 </div>
                                 {{-- modal lainnya --}}
@@ -1417,23 +1478,23 @@
                                 <div class="d-flex mb-3">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="d-flex flex-row">
-                                                <p>{{ $item_video->deskripsi_video }}</p>
-                                            </div>
+                                            <!-- <div class="d-flex flex-row"> -->
+                                                <p style="max-width: 100%;" class="p-0">{{ $item_video->deskripsi_video }}</p>
+                                            <!-- </div> -->
                                             <div class="collapse" style="margin-top: -2%;"
                                                 id="commentCollapse{{ $urut }}">
-                                                <div class="card-body">
+                                                <div class="col-12">
                                                     <!-- form komentar feed start -->
-                                                    <div class="container">
+                                                    <div class="">
                                                         <div class="row">
                                                             @if (Auth::user())
                                                                 <form id="formCommentFeed{{ $item_video->id }}"
                                                                     action="{{ route('komentar.veed', [Auth::user()->id, $item_video->user->id, $item_video->id]) }}"
-                                                                    method="post">
+                                                                    method="post" class="mt-2">
                                                                     @csrf
-                                                                    <div class="d-flex mb-3">
-                                                                        <div class="me-3"
-                                                                            style="margin-left: -40px; margin-top:-1.1%;">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-lg-1 col-md-1 col-2 pl-0"
+                                                                            style="">
                                                                             @if (Auth::user()->foto)
                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                     class="border rounded-circle"
@@ -1446,55 +1507,58 @@
                                                                                     style="height: 40px;" />
                                                                             @endif
                                                                         </div>
-                                                                        <div class="d-flex">
+                                                                        <div class="col-lg-9 col-md-9 col-10">
                                                                             <input type="text"
                                                                                 id="input_comment_veed{{ $item_video->id }}"
                                                                                 name="commentVeed"
-                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
-                                                                                class="form-control-sm border border-dark border-5 me-3"
+                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px; height: 30px;"
+                                                                                class="form-control-sm border border-dark border-5 col-12"
                                                                                 placeholder="Masukkan komentar...">
-
+                                                                        </div>
+                                                                        <div class="col-lg-2 col-md-2 col-12">
                                                                             <button type="submit"
                                                                                 id="buttonCommentVeed{{ $urut }}"
                                                                                 onclick="komentar_feed({{ $item_video->id }})"
-                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                         </div>
                                                                     </div>
                                                                 </form>
                                                             @else
-                                                                <form>
-                                                                    <div class="d-flex mb-3">
-                                                                        <div class="me-3"
-                                                                            style="margin-left: -40px; margin-top:-1.1%;">
+                                                                <form class="mt-2">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-lg-1 col-md-1 col-2 pl-0"
+                                                                            style="">
                                                                             <img src="{{ asset('images/default.jpg') }}"
                                                                                 class="border rounded-circle"
                                                                                 alt="Avatar" style="height: 40px;" />
                                                                         </div>
-                                                                        <div class="d-flex">
+                                                                        <div class="col-lg-9 col-md-9 col-10">
                                                                             <input type="text" id="input_comment_feed"
                                                                                 name="commentVeed"
-                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
+                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                 placeholder="Masukkan komentar...">
+                                                                        </div>
+                                                                        <div class="col-lg-2 col-md-2 col-12">
                                                                             <button type="button" id="buttonCommentVeed"
                                                                                 onclick="harusLogin()"
-                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                         </div>
                                                                     </div>
                                                                 </form>
                                                             @endif
-                                                            <div id="new_komentar_feed{{ $item_video->id }}"></div>
+                                                            <div id="new_komentar_feed{{ $item_video->id }}" class="pl-0"></div>
                                                             <!-- 00000 list komentar feed start 00000 -->
-                                                            <div id="komen_feed{{ $item_video->id }}">
+                                                            <div id="komen_feed{{ $item_video->id }}" class="pl-0">
                                                                 @foreach ($item_video->comment_veed->sortByDesc('created_at') as $nomer => $item_comment)
-                                                                    <div class="media row mb-2 d-flex"
+                                                                    <div class="media row mb-2"
                                                                         id="komen_veed_ini{{ $item_comment->id }}"
-                                                                        style="width: 131%; margin-left:-11%;">
-                                                                        <div class="d-flex col-11">
+                                                                        style="">
+                                                                        <div class="d-flex col-12">
                                                                             @if ($item_comment->user_pengirim->foto)
                                                                                 <img width="38px" height="38px"
                                                                                     class="rounded-circle"
@@ -1517,7 +1581,7 @@
                                                                         </div>
                                                                         <div style="margin-top: -2%;">
                                                                             <div class="d-flex ms-5 pt-0">
-                                                                                <p>{{ $item_comment->komentar }}</p>
+                                                                                <p class="text-truncate">{{ $item_comment->komentar }}</p>
                                                                             </div>
                                                                             <div class="d-flex col-lg-11"
                                                                                 style="margin-top:-3%;">
@@ -1790,10 +1854,10 @@
                                                                             </div>
                                                                             <!-- Komentar Balasan Collapse Start -->
                                                                             <div class="collapse"
-                                                                                style="margin-right: -20%;"
+                                                                                style="margin-right: -7%;"
                                                                                 id="collapse{{ $item_comment->id }}">
 
-                                                                                <div class="card-body">
+                                                                                <div class="card-body pr-5">
                                                                                     <div class="container">
                                                                                         <div class="row">
                                                                                             @if (Auth::check())
@@ -1802,9 +1866,9 @@
                                                                                                     action="{{ route('balas.komentar.veed', [Auth::user()->id, $item_comment->id, $item_video->id]) }}"
                                                                                                     method="post">
                                                                                                     @csrf
-                                                                                                    <div class="d-flex">
+                                                                                                    <div class="row">
                                                                                                         <div
-                                                                                                            class="me-3"style=" margin-top:-1.1%;">
+                                                                                                            class="col-lg-1 col-md-1 col-2 pl-0"style=" margin-top:-1.1%;">
                                                                                                             @if (Auth::user()->foto)
                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                     class="border rounded-circle"
@@ -1818,20 +1882,22 @@
                                                                                                             @endif
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="d-flex">
+                                                                                                            class="col-lg-9 col-md-9 col-10">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 id="inputKomentarBalasan{{ $item_comment->id }}"
                                                                                                                 name="komentarBalasan"
-                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                 placeholder="Masukkan komentar...">
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
 
                                                                                                             <button
                                                                                                                 type="submit"
                                                                                                                 id="buttonCommentVeed{{ $urut }}"
                                                                                                                 onclick="replies_comment({{ $item_comment->id }})"
-                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right"
                                                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                         </div>
@@ -1840,28 +1906,30 @@
                                                                                             @else
                                                                                                 <form>
                                                                                                     <div
-                                                                                                        class="d-flex mb-3">
-                                                                                                        <div class="me-3"
-                                                                                                            style="margin-top:-1.1%;">
+                                                                                                        class="row mb-3">
+                                                                                                        <div class="col-lg-1 col-md-1 col-2 pl-0"
+                                                                                                            style="">
                                                                                                             <img src="{{ asset('images/default.jpg') }}"
                                                                                                                 class="border rounded-circle"
                                                                                                                 alt="Avatar"
                                                                                                                 style="height: 40px;" />
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="d-flex">
+                                                                                                            class="col-lg-9 col-md-9 col-10">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 id="inputKomentarBalasan{{ $item_comment->id }}"
                                                                                                                 name="commentVeed"
-                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
+                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                 placeholder="Masukkan komentar...">
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-2 col-md-2 col-12">
                                                                                                             <button
                                                                                                                 type="button"
                                                                                                                 id="buttonCommentVeed"
                                                                                                                 onclick="harusLogin()"
-                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right"
                                                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                         </div>
@@ -1869,7 +1937,7 @@
                                                                                                 </form>
                                                                                             @endif
                                                                                             <div
-                                                                                                id="reply_comments{{ $item_comment->id }}">
+                                                                                                id="reply_comments{{ $item_comment->id }}" class="mt-4">
                                                                                                 <div
                                                                                                     id="repliesCommentList{{ $item_comment->id }}">
 
@@ -1885,31 +1953,31 @@
                                                                                                     <div
                                                                                                         id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
                                                                                                         <div
-                                                                                                            class="">
+                                                                                                            class="mb-4 row">
                                                                                                             <div
-                                                                                                                class="d-flex mt-2 align-items-center">
+                                                                                                                class="d-flex col-12 pl-0 pr-0">
                                                                                                                 <img width="38px"
                                                                                                                     height="38px"
                                                                                                                     class="rounded-circle me-2"
                                                                                                                     src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                                     alt="{{ $reply_comment->user->name }}">
 
-                                                                                                                <span><strong>{{ $reply_comment->user->name }}</strong></span>
+                                                                                                                <span><p class="fw-bolder mt-2 mb-2 text-truncate">{{ $reply_comment->user->name }}</p></span>
 
-                                                                                                                <div class="mt-1"
+                                                                                                                <div class="d-flex flex-row-reverse ml-auto mt-2"
                                                                                                                     style="margin-left: 50%;">
                                                                                                                     <small>{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                                                                                 </div>
                                                                                                             </div>
                                                                                                             <div style="margin-top:-1.2%;"
-                                                                                                                class="d-flex ms-5">
+                                                                                                                class="d-flex ms-5 pl-0">
                                                                                                                 <p>{{ $reply_comment->komentar }}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div
                                                                                                                 class="d-flex ">
-                                                                                                                <div class="d-flex col-lg-8 ms-4"
+                                                                                                                <div class="d-flex col-2 ms-4 pl-0"
                                                                                                                     style="margin-top:-3%;">
                                                                                                                     @if (Auth::user())
                                                                                                                         @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
@@ -1953,7 +2021,7 @@
                                                                                                                     @endif
                                                                                                                     <span
                                                                                                                         class="mt-2"
-                                                                                                                        style="margin-left: -2%;"
+                                                                                                                        style="margin-left: -7%;"
                                                                                                                         id="like-count{{ $reply_comment->id }}">
                                                                                                                         {{ $countLike2sd }}
                                                                                                                     </span>
@@ -2146,13 +2214,14 @@
                                                                                                                 </div>
 
                                                                                                                 <div
-                                                                                                                    style="margin-top:-2.2%; margin-left:-2.5%;">
+                                                                                                                    style="margin-top:-2.2%; margin-left:-2.5%;" class="col-9 pr-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary my-auto me-5"
+                                                                                                                        class="text-secondary"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse2{{ $reply_comment->id }}"
                                                                                                                         aria-expanded="true"
-                                                                                                                        aria-controls="collapseOne">
+                                                                                                                        aria-controls="collapseOne" style="float: right;">
+                                                                                                                        
                                                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                             width="22"
                                                                                                                             height="22"
@@ -2163,7 +2232,7 @@
                                                                                                                         </svg>
                                                                                                                         &nbsp;
                                                                                                                         <small
-                                                                                                                            class="me-4 ">Balas</small>
+                                                                                                                            class="me-1 ">Balas</small>
                                                                                                                     </a>
                                                                                                                 </div>
                                                                                                             </div>
@@ -2179,17 +2248,17 @@
 
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="d-flex">
+                                                                                                            class="">
                                                                                                             @if (Auth::check())
                                                                                                                 <form
                                                                                                                     id="formBalasRepliesCommentsFeeds1{{ $reply_comment->id }}"
                                                                                                                     action="{{ route('balas.replies.comments.feeds', [$reply_comment->user->id, $reply_comment->id]) }}"
-                                                                                                                    method="post">
+                                                                                                                    method="post" class="mt-4 mb-4">
                                                                                                                     @csrf
                                                                                                                     <div
-                                                                                                                        class="d-flex me-3">
+                                                                                                                        class="row">
                                                                                                                         <div style=" margin-top:-1%;"
-                                                                                                                            class="me-3">
+                                                                                                                            class="col-lg-1 col-md-1 col-2 pl-0">
                                                                                                                             @if (Auth::user()->foto)
                                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                                     class="border rounded-circle mr-auto"
@@ -2203,14 +2272,16 @@
                                                                                                                             @endif
                                                                                                                         </div>
                                                                                                                         <div
-                                                                                                                            class="d-flex">
+                                                                                                                            class="col-lg-9 col-md-9 col-10">
                                                                                                                             <input
                                                                                                                                 type="text"
                                                                                                                                 id="inputBalasRepliesCommentsFeeds1{{ $reply_comment->id }}"
                                                                                                                                 name="komentar"
-                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                 placeholder="Masukkan komentar...">
+                                                                                                                        </div>
+                                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
 
                                                                                                                             <button
                                                                                                                                 type="submit"
@@ -2225,28 +2296,31 @@
                                                                                                             @else
                                                                                                                 <form>
                                                                                                                     <div
-                                                                                                                        class="d-flex mb-3">
-                                                                                                                        <div style=" margin-top:-1%;"
-                                                                                                                            class="me-3">
+                                                                                                                        class="row mb-3">
+                                                                                                                        <div style=""
+                                                                                                                            class="col-lg-1 col-md-1 col-2 pl-0">
                                                                                                                             <img src="{{ asset('images/default.jpg') }}"
                                                                                                                                 class="border rounded-circle"
                                                                                                                                 alt="Avatar"
                                                                                                                                 style="height: 40px;" />
                                                                                                                         </div>
                                                                                                                         <div
-                                                                                                                            class="d-flex">
+                                                                                                                            class="col-lg-9 col-md-9 col-10">
                                                                                                                             <input
                                                                                                                                 type="text"
                                                                                                                                 id="inputKomentarBalasan{{ $reply_comment->id }}"
                                                                                                                                 name="commentVeed"
-                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
+                                                                                                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                 placeholder="Masukkan komentar...">
+                                                                                                                        </div>
+                                                                                                                        <div class="col-lg-2 col-md-2 col-12">
+
                                                                                                                             <button
                                                                                                                                 type="button"
                                                                                                                                 id="buttonCommentVeed"
                                                                                                                                 onclick="harusLogin()"
-                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                                         </div>
@@ -2266,9 +2340,9 @@
 
                                                                                                             </div> --}}
                                                                                                             <div
-                                                                                                                class="">
+                                                                                                                class="mb-4 row">
                                                                                                                 <div
-                                                                                                                    class="d-flex mt-2 align-items-center">
+                                                                                                                    class="d-flex col-12 pl-0 pr-0">
                                                                                                                     @if ($reply_replyComment->user_pengirim->foto)
                                                                                                                         <img width="38px"
                                                                                                                             height="38px"
@@ -2283,15 +2357,15 @@
                                                                                                                             alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                                                                                     @endif
                                                                                                                     <span>
-                                                                                                                        <strong>{{ $reply_replyComment->user_pengirim->name }}</strong>
+                                                                                                                        <p class="fw-bolder mt-2 mb-2 text-truncate">{{ $reply_replyComment->user_pengirim->name }}</p>
                                                                                                                     </span>
 
-                                                                                                                    <small
+                                                                                                                    <small class="d-flex flex-row-reverse ml-auto mt-2"
                                                                                                                         style="margin-left: 50%;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
                                                                                                                     </small>
 
                                                                                                                 </div>
-                                                                                                                <div class="d-flex"
+                                                                                                                <div class="d-flex pl-0"
                                                                                                                     style="margin-top: -1.2%;">
                                                                                                                     <p
                                                                                                                         class="ms-5">
@@ -2303,7 +2377,7 @@
                                                                                                                 <div class="d-flex ms-3"
                                                                                                                     style="margin-top: -3%;">
                                                                                                                     <div
-                                                                                                                        class="d-flex ms-4">
+                                                                                                                        class="d-flex col-2 ms-2 pl-0">
                                                                                                                         @if (Auth::user())
                                                                                                                             @if ($reply_replyComment->likeRepliesReply(auth()->user()->id))
                                                                                                                                 <form
@@ -2353,7 +2427,7 @@
                                                                                                                         <span
                                                                                                                             id="count_like_replies_reply{{ $reply_replyComment->id }}"
                                                                                                                             class="mt-2"
-                                                                                                                            style="margin-left: -13%;">
+                                                                                                                            style="margin-left: -7%;">
                                                                                                                             {{ $countLike3sd }}
                                                                                                                         </span>
 
@@ -2544,14 +2618,14 @@
                                                                                                                             {{-- --}}
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                    <div style="margin-left: 52%;"
-                                                                                                                        class="mt-2">
+                                                                                                                    <div class="col-9 pr-0">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary my-auto"
+                                                                                                                            class="text-secondary"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse3{{ $reply_replyComment->id }}"
                                                                                                                             aria-expanded="true"
-                                                                                                                            aria-controls="collapseOne">
+                                                                                                                            aria-controls="collapseOne" 
+                                                                                                                            style="float: right;">
                                                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                                 width="22"
                                                                                                                                 height="22"
@@ -2561,8 +2635,7 @@
                                                                                                                                     d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                             </svg>
                                                                                                                             &nbsp;
-                                                                                                                            <small
-                                                                                                                                class="me-4 ">Balas</small>
+                                                                                                                            <small class="me-3 ">Balas</small>
                                                                                                                         </a>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -2575,7 +2648,7 @@
 
                                                                                                             </div>
                                                                                                             <div
-                                                                                                                class="d-flex mt-2">
+                                                                                                                class="row mt-4 mb-4">
                                                                                                                 @if (Auth::check())
                                                                                                                     <form
                                                                                                                         id="formBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
@@ -2583,9 +2656,9 @@
                                                                                                                         method="post">
                                                                                                                         @csrf
                                                                                                                         <div
-                                                                                                                            class="d-flex">
+                                                                                                                            class="row">
                                                                                                                             <div style="margin-top: -1%;"
-                                                                                                                                class="me-3">
+                                                                                                                                class="col-lg-1 col-md-1 col-2 pl-1">
                                                                                                                                 @if (Auth::user()->foto)
                                                                                                                                     <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                                         class="border rounded-circle"
@@ -2599,20 +2672,22 @@
                                                                                                                                 @endif
                                                                                                                             </div>
                                                                                                                             <div
-                                                                                                                                class="d-flex">
+                                                                                                                                class="col-lg-9 col-md-9 col-10">
                                                                                                                                 <input
                                                                                                                                     type="text"
                                                                                                                                     id="inputBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
                                                                                                                                     name="komentar"
-                                                                                                                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
+                                                                                                                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                                     class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                     placeholder="Masukkan komentar...">
+                                                                                                                            </div>
+                                                                                                                            <div class="col-lg-2 col-md-2 col-12 pl-0">
 
                                                                                                                                 <button
                                                                                                                                     type="submit"
                                                                                                                                     id="buttonComment2Veed2{{ $reply_replyComment->id }}"
                                                                                                                                     onclick="balas_replies_comments_feeds2({{ $reply_replyComment->id }})"
-                                                                                                                                    style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                    style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                                                                                     class="btn btn-sm mb-1 text-light"><b
                                                                                                                                         class="me-3 ms-3">Kirim</b></button>
                                                                                                                             </div>
@@ -2621,28 +2696,31 @@
                                                                                                                 @else
                                                                                                                     <form>
                                                                                                                         <div
-                                                                                                                            class="d-flex mb-3">
-                                                                                                                            <div style="margin-top:-1%;"
-                                                                                                                                class="me-3">
+                                                                                                                            class="row mb-3">
+                                                                                                                            <div style=""
+                                                                                                                                class="col-lg-1 col-md-1 col-2 pl-0">
                                                                                                                                 <img src="{{ asset('images/default.jpg') }}"
                                                                                                                                     class="border rounded-circle"
                                                                                                                                     alt="Avatar"
                                                                                                                                     style="height: 40px;" />
                                                                                                                             </div>
                                                                                                                             <div
-                                                                                                                                class="d-flex">
+                                                                                                                                class="col-lg-9 col-md-9 col-10">
                                                                                                                                 <input
                                                                                                                                     type="text"
                                                                                                                                     id="inputKomentarBalasan{{ $reply_comment->id }}"
                                                                                                                                     name="commentVeed"
-                                                                                                                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 400px; border-radius:30px;"
+                                                                                                                                    style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                                     class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                     placeholder="Masukkan komentar...">
+                                                                                                                            </div>
+                                                                                                                            <div class="col-lg-2 col-md-2 col-12">
+
                                                                                                                                 <button
                                                                                                                                     type="button"
                                                                                                                                     id="buttonCommentVeed"
                                                                                                                                     onclick="harusLogin()"
-                                                                                                                                    style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                    style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                                                                                     class="btn btn-sm mb-1 text-light"><b
                                                                                                                                         class="me-3 ms-3">Kirim</b></button>
                                                                                                                             </div>
@@ -2691,7 +2769,7 @@
                         </div>
                         <div class="card-body" style="height: 500px;">
                             @foreach ($recipes as $resep)
-                                <div class="d-flex mb-3">
+                                <div class="row mb-3">
                                     <a href="">
                                         @if ($resep->user->foto)
                                             <img src="{{ asset('storage/' . $resep->user->foto) }}"
@@ -2940,8 +3018,8 @@
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini2${up['id']}">
                                                                                                         <div
-                                                                                                            class="">
-                                                                                                            <div class="d-flex mt-2 align-items-center">
+                                                                                                            class="mb-4 row">
+                                                                                                            <div class="d-flex col-12 pl-0 pr-0">
 
                                                                                                                 <img width="38px"
                                                                                                                 height="38px"
@@ -2950,22 +3028,22 @@
                                                                                                                 alt="${pengirim['name']}">
 
                                                                                                                 <span>
-                                                                                                                    <strong>${pengirim['name']}</strong>
+                                                                                                                    <p class="fw-bolder mt-2 mb-2 text-truncate">${pengirim['name']}</p>
                                                                                                                 </span>
 
-                                                                                                                <small style="margin-left: 50%;">
+                                                                                                                <small class="d-flex flex-row-reverse ml-auto mt-2" style="margin-left: 50%;">
                                                                                                                     ${time}
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex" style="margin-top: -1.2%;">
+                                                                                                            <div class="d-flex pl-0" style="margin-top: -1.2%;">
                                                                                                                 <p class="ms-5"><a class="text-primary " href="">@${penerima['name']}</a> ${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                              <div class="d-flex ms-3"
                                                                                                                     style="margin-top: -3%;">
-                                                                                                                    <div class="d-flex ms-4">
+                                                                                                                    <div class="d-flex col-2 ms-4 pl-0">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -2992,7 +3070,7 @@
                                                                                                                             &nbsp;
                                                                                                                             &nbsp;
                                                                                                                         @endif
-                                                                                                                        <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -1%;">
+                                                                                                                        <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -7%;">
                                                                                                                             0
                                                                                                                         </span>
 
@@ -3022,13 +3100,15 @@
                                                                                                                         </div>
                                                                                                                     </div>
 
-                                                                                                                <div style="margin-left: 52%;" class="mt-2">
+                                                                                                                <div style="" class="col-9 pl-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary my-auto me-5"
+                                                                                                                        class="text-secondary"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse${up['id']}"
                                                                                                                         aria-expanded="true"
-                                                                                                                        aria-controls="collapseOne">
+                                                                                                                        aria-controls="collapseOne"
+                                                                                                                        style="float: right;">
+                                                                                                                        
                                                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                             width="22"
                                                                                                                             height="22"
@@ -3038,7 +3118,7 @@
                                                                                                                                 d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                         </svg>
                                                                                                                         &nbsp;
-                                                                                                                        <small class="me-4 ">Balas</small>
+                                                                                                                        <small class="me-3 ">Balas</small>
                                                                                                                     </a>
                                                                                                                 </div>
                                                                                                             </div>
@@ -3150,8 +3230,8 @@
                             console.log(pengirim);
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini${up['id']}">
-                                                                                                        <div class="">
-                                                                                                            <div class="d-flex mt-2 align-items-center">
+                                                                                                        <div class="mb-4 row">
+                                                                                                            <div class="d-flex col-12 pl-0 pr-0">
                                                                                                                 <img width="38px"
                                                                                                                 height="38px"
                                                                                                                 class="rounded-circle me-2"
@@ -3159,22 +3239,22 @@
                                                                                                                 alt="${pengirim['name']}">
 
                                                                                                                 <span>
-                                                                                                                    <strong>${pengirim['name']}</strong>
+                                                                                                                    <p class=" fw-bolder mt-2 mb-2">${pengirim['name']}</p>
                                                                                                                 </span>
 
-                                                                                                                <div class="mt-1" style="margin-left: 50%;">
+                                                                                                                <div class="d-flex flex-row-reverse ml-auto mt-2" style="margin-left: 50%;">
                                                                                                                     <small>
                                                                                                                         ${time}
                                                                                                                     </small>
                                                                                                                 </div>
                                                                                                             </div>
-                                                                                                            <div style="margin-top:-1.2%;" class="d-flex ms-5">
+                                                                                                            <div style="margin-top:-1.2%;" class="d-flex ms-5 pl-0">
                                                                                                                 <p>${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex">
-                                                                                                                <div class="d-flex col-lg-8 ms-4" style="margin-top:-3%;">
+                                                                                                                <div class="d-flex col-2 ms-4 pl-0" style="margin-top:-3%;">
                                                                                                                     @if (Auth::user())
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
@@ -3201,7 +3281,7 @@
                                                                                                                         &nbsp;
                                                                                                                         &nbsp;
                                                                                                                     @endif
-                                                                                                                    <span id="like-count${up['id']}" class="mt-2" style="margin-left: -2%;">
+                                                                                                                    <span id="like-count${up['id']}" class="mt-2" style="margin-left: -7%;">
                                                                                                                         0
                                                                                                                     </span>
                                                                                                                     <div
@@ -3230,13 +3310,14 @@
 
                                                                                                                     </div>
                                                                                                                 </div>
-                                                                                                                <div style="margin-top:-2.2%; margin-left:-2.5%;">
+                                                                                                                <div style="margin-top:-2.2%; margin-left:-2.5%;" class="col-9 pr-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary my-auto me-5"
+                                                                                                                        class="text-secondary"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#reply_collapse${up['id']}"
                                                                                                                         aria-expanded="true"
-                                                                                                                        aria-controls="collapseOne">
+                                                                                                                        aria-controls="collapseOne"
+                                                                                                                        style="float: right;">
                                                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                             width="22"
                                                                                                                             height="22"
@@ -3246,7 +3327,7 @@
                                                                                                                                 d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                         </svg>
                                                                                                                         &nbsp;
-                                                                                                                        <small class="me-4 ">Balas</small>
+                                                                                                                        <small class="me-2 ">Balas</small>
                                                                                                                     </a>
                                                                                                                 </div>
                                                                                                                 </div>
@@ -3754,8 +3835,8 @@
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini2${up['id']}">
                                                                                                         <div
-                                                                                                            class="">
-                                                                                                            <div class="d-flex mt-2 align-items-center">
+                                                                                                            class="mb-4 row">
+                                                                                                            <div class="d-flex col-12 pl-0 pr-0">
 
                                                                                                                 <img width="38px"
                                                                                                                 height="38px"
@@ -3763,20 +3844,20 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span><strong>${pengirim['name']}</strong></span>
+                                                                                                                <span><p class="fw-bolder mt-2 mb-2 text-truncate">${pengirim['name']}</p></span>
 
                                                                                                                 <small
-                                                                                                                    style="margin-left: 50%;">${time}
+                                                                                                                class="d-flex flex-row-reverse ml-auto mt-2" style="margin-left: 50%;">${time}
                                                                                                                 </small>
 
                                                                                                             </div>
-                                                                                                            <div class="d-flex ms-5" style="margin-top:-1.2%;">
+                                                                                                            <div class="d-flex ms-5 pl-0" style="margin-top:-1.2%;">
                                                                                                                 <p><a class="text-primary me-2" href="">@${penerima['name']}</a>${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
-                                                                                                            <div class="d-flex ms-3" style="margin-top: -3%;">
-                                                                                                                <div class="d-flex ms-4">
+                                                                                                            <div class="d-flex" style="margin-top: -3%;">
+                                                                                                                <div class="d-flex col-2 ms-4 pl-0">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -3803,11 +3884,11 @@
                                                                                                                             &nbsp;
                                                                                                                             &nbsp;
                                                                                                                         @endif
-                                                                                                                        <span id="count_like_replies_reply${up['id']}" class="my-auto"  style="margin-left: -13%;">
+                                                                                                                        <span id="count_like_replies_reply${up['id']}" class="my-auto"  style="margin-left: -7%;">
                                                                                                                             0
                                                                                                                         </span>
                                                                                                                         <div
-                                                                                                                            class="ms-2 mt-1 mr-auto">
+                                                                                                                            class="ms-2 mt-2 mr-auto">
                                                                                                                             {{-- --}}
 
                                                                                                                                     {{-- Hapus Komentar --}}
@@ -3832,14 +3913,15 @@
 
                                                                                                                         </div>
                                                                                                                 </div>
-                                                                                                                <div style="margin-left: 52%;"
-                                                                                                                        class="mt-2">
+                                                                                                                <div 
+                                                                                                                        class="col-9 pr-0">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary my-auto me-5"
+                                                                                                                            class="text-secondary "
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse${up['id']}"
                                                                                                                             aria-expanded="true"
-                                                                                                                            aria-controls="collapseOne">
+                                                                                                                            aria-controls="collapseOne"
+                                                                                                                            style="float: right;">
                                                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                                 width="22"
                                                                                                                                 height="22"
@@ -3849,7 +3931,7 @@
                                                                                                                                     d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                             </svg>
                                                                                                                             &nbsp;
-                                                                                                                            <small class="me-4 ">Balas</small>
+                                                                                                                            <small class="me-2 ">Balas</small>
                                                                                                                         </a>
                                                                                                                 </div>
                                                                                                             </div>
@@ -4082,9 +4164,9 @@
                             console.log(pengirim);
                             if (response.active) {
                                 let innerHtml = `
-                            <div class="media row mb-2 d-flex" id="komen_veed_ini${up['id']}"
-                                                                        style="width: 131%; margin-left:-11%;">
-                                                                        <div class="d-flex col-11">
+                            <div class="media row mb-2" id="komen_veed_ini${up['id']}"
+                                                                        style="">
+                                                                        <div class="d-flex col-12">
 
                                                                                 <img width="38px" height="38px"
                                                                                     class="rounded-circle"
@@ -4156,7 +4238,7 @@
                                                                                     {{-- --}}
                                                                                 </div>
                                                                                 <a href="#"
-                                                                                    class="text-secondary my-auto ml-2"
+                                                                                    class="text-secondary "
                                                                                     data-toggle="collapse"
                                                                                     data-target="#collapse${up['id']}"
                                                                                     aria-expanded="true"
@@ -4172,10 +4254,10 @@
                                                                             </div>
                                                                             <!-- Komentar Balasan Collapse Start -->
                                                                             <div class="collapse"
-                                                                                style="margin-right: -20%;"
+                                                                                style="margin-right: -7%;"
                                                                                 id="collapse${up['id']}">
 
-                                                                                <div class="card-body">
+                                                                                <div class="card-body pr-5">
                                                                                     <div class="container">
                                                                                         <div class="row">
                                                                                             @if (Auth::check())
@@ -4184,9 +4266,9 @@
                                                                                                     action="/balas/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
                                                                                                     method="post">
                                                                                                     @csrf
-                                                                                                    <div class="d-flex">
+                                                                                                    <div class="row">
                                                                                                         <div
-                                                                                                            class="me-3"style="margin-left: -5px; margin-top:-1.1%;">
+                                                                                                            class="col-lg-1 col-md-1 col-2 pl-1" style="margin-left: -5px; margin-top:-1.1%;">
                                                                                                             @if (Auth::user()->foto)
                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                     class="border rounded-circle"
@@ -4200,7 +4282,7 @@
                                                                                                             @endif
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="d-flex">
+                                                                                                            class="col-lg-9 col-md-9 col-10">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 id="inputKomentarBalasan${up['id']}"
@@ -4208,12 +4290,14 @@
                                                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 365px; border-radius:30px;"
                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                 placeholder="Masukkan komentar...">
+                                                                                                        </div>
+                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
 
                                                                                                             <button
                                                                                                                 type="submit"
                                                                                                                 id="buttonCommentVeed${up['id']}"
                                                                                                                 onclick="replies_comment(${up['id']})"
-                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right"
                                                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                         </div>
@@ -4258,4 +4342,100 @@
             });
         }
     </script>
+    <script>
+       // Mendapatkan semua elemen dengan class "item"
+    var elements = document.querySelectorAll('.item');
+
+    // Loop melalui setiap elemen
+    elements.forEach(function(element) {
+        // Mendapatkan ID dari atribut data-id
+        var itemId = element.getAttribute('data-id');
+
+        // Mendapatkan lebar layar saat ini
+        var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+        // Cek lebar layar dan hapus class jika sesuai
+        if (screenWidth <= 768) {
+            element.classList.remove('pr-0');
+        } else {
+            element.classList.add('pr-0');
+        }
+    });
+
+    // Menambahkan event listener untuk mendeteksi perubahan ukuran layar
+    window.addEventListener('resize', function() {
+        elements.forEach(function(element) {
+            // Mendapatkan lebar layar saat ini
+            var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+            // Cek lebar layar dan hapus class jika sesuai
+            if (screenWidth <= 768) {
+                element.classList.remove('pr-0');
+            } else { 
+                element.classList.add('pr-0');
+            }
+        });
+    });
+</script>
+
+<!-- <script>
+//    // Fungsi untuk mengatur kelas pada lebar layar tertentu
+// function handleClassesOnResize() {
+//     var element1 = document.querySelector('.col-lg-1.col-md-1.col-sm-1.pr-0');
+//     var element2 = document.querySelector('.col-lg-8.col-md-8.col-sm-11.text-dark.my-auto.pl-0');
+
+//     if (window.innerWidth >= 425) {
+//         element1.classList.remove('pr-0');
+//         element2.classList.remove('pl-0');
+//     } else {
+//         element1.classList.add('pr-0');
+//         element2.classList.add('pl-0');
+//     }
+// }
+
+// removeClassOnResize();
+
+// // Menjalankan fungsi ketika ukuran layar berubah
+// window.addEventListener('resize', handleClassesOnResize);
+
+// Mengambil elemen dengan kelas tertentu
+var element = document.querySelector('.col-lg-1.col-md-1.col-sm-1.pr-0');
+
+// Fungsi untuk menghapus kelas pada lebar layar 425px atau lebih besar
+function removeClassOnResize() {
+  if (window.innerWidth >= 425) {
+    element.classList.remove('pr-0');
+  } else {
+    element.classList.add('pr-0');
+  }
+}
+
+// Menjalankan fungsi ketika halaman dimuat
+removeClassOnResize();
+
+// Menjalankan fungsi ketika ukuran layar berubah
+window.addEventListener('resize', removeClassOnResize);
+
+
+</script>
+<script>
+    // Mengambil elemen dengan kelas tertentu
+var element = document.querySelector('.col-lg-8 col-md-8 col-sm-11 text-dark my-auto pl-3');
+
+// Fungsi untuk menghapus kelas pada lebar layar 425px atau lebih besar
+function removeClassOnResize() {
+  if (window.innerWidth >= 425) {
+    element.classList.remove('pl-0');
+  } else {
+    element.classList.add('pl-0');
+  }
+}
+
+// Menjalankan fungsi ketika halaman dimuat
+removeClassOnResize();
+
+// Menjalankan fungsi ketika ukuran layar berubah
+window.addEventListener('resize', removeClassOnResize);
+</script> -->
+
 @endsection
