@@ -30,7 +30,7 @@ class TopUpController extends Controller
         $method = $request->method;
 
         $transaction = $tripay->requestTransaction($method, $price);
-        // insert in database 
+        // insert in database
 
         transactionTopUp::create([
             'user_id' => auth()->user()->id,
@@ -173,6 +173,14 @@ class TopUpController extends Controller
             $categories->save();
             return redirect()->back()->with('success', 'berhasil menambahkan kategori');
         }
+    }
+    public function hapus_categories($id) {
+        $topupcategories = TopUpCategories::find($id);
+        $topupcategories->delete();
+        return response()->json([
+            'success'=>true,
+            'message'=>'Berhasil menghapus kategori top up.',
+        ]);
     }
     public function store(Request $request)
     {

@@ -156,6 +156,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('kursus', [KursusController::class, 'kursus'])->name('admin.kursus')->middleware('roleAdmin:admin_approval');
         // tambah penawaran
         Route::post('upload_penawaran', [AdminController::class, 'upload_tawaran'])->name('upload.tawaran');
+        // edit penawaran
+        Route::post('update_penawaran/{id}', [AdminController::class, 'update_tawaran'])->name('update.tawaran');
+        // hapus penawaran
+        Route::delete('delete_penawaran/{id}', [AdminController::class, 'hapus_tawaran'])->name('hapus.tawaran');
         // verifikasi kursus
         Route::patch('verifikasi_kursus/{status}/{id}', [KursusController::class, "eksekusi_kursus"])->name("eksekusi.kursus");
         //report
@@ -170,6 +174,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
         Route::delete('report-destroy/{id}', [ReportController::class, 'destroy'])->name('Report.destroy');
         Route::post('topup-categories',[TopUpController::class,'categories'])->name('categories.topup.store');
+        Route::delete('delete-topup-categories/{id}', [TopUpController::class, 'hapus_categories'])->name('hapus.categories.topup');
          // special_days
          Route::resource('special-days', special_days_controller::class)->middleware('roleAdmin:admin_informasi_web');
         //  kategori makanan

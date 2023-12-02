@@ -106,9 +106,8 @@ class AdminController extends Controller
                 'categories' => 'data-koki',
             ]);
             $up = notifications::find($notify->id);
-            $up->route = '/status-baca/data-koki/'.$notify->id;
+            $up->route = '/status-baca/data-koki/' . $notify->id;
             $up->save();
-
         } elseif ($request->status === "ditolak") {
             $data->delete();
             // create notification
@@ -120,7 +119,7 @@ class AdminController extends Controller
                 'categories' => 'data-koki',
             ]);
             $update = notifications::find($notif->id);
-            $update->route = '/status-baca/data-koki/'.$notif->id;
+            $update->route = '/status-baca/data-koki/' . $notif->id;
             $update->save();
         }
 
@@ -151,13 +150,13 @@ class AdminController extends Controller
             $n = notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
-                'message' => $data->nilai .' sudah berhasil ditarik tunai.',
+                'message' => $data->nilai . ' sudah berhasil ditarik tunai.',
                 'categories' => 'penarikan',
             ]);
             $update = notifications::find($n->id);
-            $update->route = '/status-baca/penarikan/'.$n->id;
+            $update->route = '/status-baca/penarikan/' . $n->id;
             $update->save();
-            } elseif ($request->status === "ditolak") {
+        } elseif ($request->status === "ditolak") {
             $data->delete();
             $notif = notifications::create([
                 'user_id' => $data->chef_id,
@@ -167,7 +166,7 @@ class AdminController extends Controller
                 'categories' => 'ajuan_penarikan',
             ]);
             $up = notifications::find($notif->id);
-            $up->route = '/status-baca/penarikan/'.$notif->id;
+            $up->route = '/status-baca/penarikan/' . $notif->id;
             $up->save();
         }
         return redirect()->back()->with('success', 'Sukses menyetujui penarikan!');
@@ -189,7 +188,7 @@ class AdminController extends Controller
                 'categories' => 'verifed',
             ]);
             $up = notifications::find($notif->id);
-            $up->route = '/status-baca/verifed/'.$notif->id;
+            $up->route = '/status-baca/verifed/' . $notif->id;
             $up->save();
         } else if ($status === "ditolak") {
             $status = "menolak";
@@ -205,7 +204,7 @@ class AdminController extends Controller
                 'categories' => 'verifed',
             ]);
             $update = notifications::find($notify->id);
-            $update->route = "/status-baca/verifed/".$notify->id;
+            $update->route = "/status-baca/verifed/" . $notify->id;
             $update->save();
         }
         return redirect()->back();
@@ -347,5 +346,51 @@ class AdminController extends Controller
                 "message" => "sukses menambahkan penawaran produk!"
             ]);
         }
+    }
+    public function update_tawaran(Request $request, $id)
+    {
+        $rules = [
+            "nama_paket" => "required",
+            "harga_paket" => "required",
+            "durasi_paket" => "required",
+            "detail_paket.*" => "required"
+        ];
+        $message = [
+            "nama_paket.required" => "nama paket harus terisi!",
+            "harga_paket.required" => "harga paket harus terisi!",
+            "durasi_paket.required" => "durasi paket harus terisi!",
+            "detail_paket.*.required" => "detail paket harus diisi!"
+        ];
+        $validasi = Validator::make($request->all(), $rules, $message);
+        if ($validasi->fails()) {
+            return response()->json($validasi->errors()->first(), 422);
+        }
+
+        $premium = premiums::find($id);
+        $premium->nama_paket = $request->nama_paket;
+        $premium->harga_paket = $request->harga_paket;
+        $premium->durasi_paket = $request->durasi_paket;
+        $premium->save();
+
+
+        foreach ($request->detail_paket as $num => $d) {
+            $detail_premium = detail_premiums::find($request->id_detail_paket[$num]);
+            $detail_premium->detail = $d;
+            $detail_premium->save();
+        }
+
+
+        return response()->json([
+            "success" => true,
+            "message" => "sukses mengupdate penawaran produk!"
+        ]);
+    }
+    public function hapus_tawaran($id) {
+        $premium = premiums::find($id);
+        $premium->delete();
+        return response()->json([
+            'success'=>true,
+            'message'=>'Berhasil menghapus data penawaran premium.',
+        ]);
     }
 }
