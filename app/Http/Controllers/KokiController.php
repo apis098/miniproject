@@ -483,13 +483,13 @@ class KokiController extends Controller
     {
         $rules = [
             "deskripsi_video" => "required|max:555",
-            "upload_video" => "required|mimes:mp4|max:50000"
+            "upload_video" => "required|mimes:mp4,webm,avi,mkv|max:50000"
         ];
         $messages = [
             "deskripsi_video.required" => "Deskripsi video harus diisi!",
             "deskripsi_video.max" => "Deskripsi video tidak boleh lebih dari 2  25 karakter!",
             "upload_video.required" => "Video harus diupload!",
-            "upload_video.mimes" => "Video harus berekstensikan mp4!",
+            "upload_video.mimes" => "Video harus berekstensikan mp4/webm/avi/mkv!",
             "upload_video.max" => "Video tidak boleh melebihi 50MB!"
         ];
         $validasi = Validator::make($request->all(), $rules, $messages);
@@ -581,8 +581,8 @@ class KokiController extends Controller
             'email' => 'required|email',
             'number_handphone' => 'required|numeric|min_digits:10|max_digits:14',
             'alamat' => 'required',
-            'foto_ktp' => 'required|image',
-            'foto_diri_ktp' => 'required|image',
+            'foto_ktp' => 'required|image|mimes:png,jpg,jpeg,gif',
+            'foto_diri_ktp' => 'required|image|mimes:png,jpg,jpeg,gif',
             'pilihan_bank' => 'required',
             'nomer_rekening' => 'required|numeric|min_digits:10|max_digits:16',
         ];
@@ -597,6 +597,8 @@ class KokiController extends Controller
             'alamat.required' => "Alamat harus diisi!",
             'foto_ktp.required' => 'Foto ktp harus diisi!',
             'foto_ktp.image' => 'Foto ktp tidak berupa gambar!',
+            'foto_ktp.mimes' => 'Foto ktp harus berekstensi png/jpg/jpeg/gif!',
+            'foto_diri_ktp.mimes' => 'Foto diri bersama ktp harus berekstensi png/jpg/jpeg/gif!',
             'foto_diri_ktp.image' => 'Foto diri bersama ktp tidak berupa gambar!',
             'foto_diri_ktp.required' => 'Foto diri bersama ktp harus diisi!',
             'pilihan_bank.required' => 'Pilihan bank harus diisi!',

@@ -85,7 +85,7 @@ class ResepsController extends Controller
         //dd($request->all());
         $rules = [
             "nama_resep" => "required",
-            "foto_resep" => "required|image|mimes:jpg,jpeg,png|max:50000",
+            "foto_resep" => "required|image|mimes:jpg,jpeg,png,gif|max:50000",
             "deskripsi_resep" => "required",
             "hari_khusus" => "nullable",
             "porsi_orang" => "required|integer|min:0",
@@ -100,7 +100,7 @@ class ResepsController extends Controller
             "nama_resep.required" => "Nama resep wajib diisi!",
             "foto_resep.required" => "Foto resep wajib diisi!",
             "foto_resep.image" => "Foto resep harus berupa gambar!",
-            "foto_resep.mimes" => "Foto resep harus berekstensi jpg, jpeg, atau png!",
+            "foto_resep.mimes" => "Foto resep harus berekstensi jpg, jpeg,gif atau png!",
             "foto_resep.max" => "Foto resep yang diterima maksimal berukuran 50MB!",
             "deskripsi_resep.required" => "Deskripsi resep wajib diisi!",
             "porsi_orang.required" => "Porsi orang wajib diisi!",
@@ -252,7 +252,7 @@ class ResepsController extends Controller
     {
         $rules = [
             "nama_resep" => "required",
-            "foto_resep" => "nullable|image|mimes:jpg,jpeg,png|max:50000",
+            "foto_resep" => "nullable|image|mimes:jpg,jpeg,png,gif|max:50000",
             "deskripsi_resep" => "required",
             'nama_alat.*' => 'required',
             "hari_khusus" => "nullable",
@@ -273,7 +273,7 @@ class ResepsController extends Controller
         $messages = [
             "nama_resep.required" => "Nama resep wajib diisi!",
             "foto_resep.image" => "Foto resep harus berupa gambar!",
-            "foto_resep.mimes" => "Foto resep harus berekstensi jpg, jpeg, atau png!",
+            "foto_resep.mimes" => "Foto resep harus berekstensi jpg, jpeg,gif atau png!",
             "foto_resep.max" => "Foto resep yang diterima maksimal berukuran 50MB!",
             "deskripsi_resep.required" => "Deskripsi resep wajib diisi!",
             'nama_alat.*.required' => 'Nama alat wajib diisi',
@@ -455,7 +455,7 @@ class ResepsController extends Controller
                     $share->sender_id = auth()->user()->id;
                     $share->resep_id = $request->recipe_id;
                     $share->save();
-    
+
                     $notification = new notifications();
                     $notification->user_id = $share_to;
                     $notification->notification_from = auth()->user()->id;
