@@ -669,7 +669,7 @@
                                                                     <button type="submit"
                                                                         id="buttonCommentVeed{{ $urut }}"
                                                                         onclick="komentar_feed({{ $urut }})"
-                                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                         class="btn  btn-sm text-light"><b
                                                                             class="me-3 ms-3">Kirim</b></button>
                                                                     </div>
@@ -694,7 +694,7 @@
                                                                     <div class="col-lg-2 col-md-2 col-12">
                                                                     <button type="button" onclick="harusLogin()"
                                                                         id="buttonCommentVeed" class="btn text-white"
-                                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">Kirim</button>
+                                                                        style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;">Kirim</button>
                                                                     </div>
                                                                 </div>
                                                             </form>
@@ -1168,7 +1168,7 @@
                                                                 <button type="submit"
                                                                     onclick="gift_submit_button({{ $item_video->id }})"
                                                                     id="gift-btn{{ $item_video->id }}"
-                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                     class="btn  btn-sm text-light">
                                                                     <b class="me-3 ms-3">Kirim</b></button>
                                                             </div>
@@ -1473,7 +1473,7 @@
                                                         placeholder="Masukkan Jumlah...">
 
                                                     <button type="submit" class="btn text-light rounded-3"
-                                                        style="margin-top: 12px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                        style="margin-top: 12px; background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"><b
                                                             class="ms-2 me-2">Kirim</b>
                                                     </button>
 
@@ -1634,8 +1634,7 @@
                                                                                         <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                             onclick="harusLogin()"
                                                                                             width="15px" height="40px"
-                                                                                            alt="">
-                                                                                        &nbsp; &nbsp;
+                                                                                            alt="" class="me-3">
                                                                                     @endif
                                                                                     <span class="mt-2"
                                                                                         style="margin-left: -7px;"
@@ -2023,9 +2022,7 @@
                                                                                                                             onclick="harusLogin()"
                                                                                                                             width="15px"
                                                                                                                             height="40px"
-                                                                                                                            alt="">
-                                                                                                                        &nbsp;
-                                                                                                                        &nbsp;
+                                                                                                                            alt="" class="me-3">
                                                                                                                     @endif
                                                                                                                     <span
                                                                                                                         class="mt-2"
@@ -2422,9 +2419,7 @@
                                                                                                                                 onclick="harusLogin()"
                                                                                                                                 width="15px"
                                                                                                                                 height="40px"
-                                                                                                                                alt="">
-                                                                                                                            &nbsp;
-                                                                                                                            &nbsp;
+                                                                                                                                alt="" class="me-3">
                                                                                                                         @endif
                                                                                                                         @php
                                                                                                                             $countLike3sd = App\Models\likeBalasRepliesCommentsFeeds::query()
@@ -3074,9 +3069,7 @@
                                                                                                                                 onclick="harusLogin()"
                                                                                                                                 width="15px"
                                                                                                                                 height="40px"
-                                                                                                                                alt="">
-                                                                                                                            &nbsp;
-                                                                                                                            &nbsp;
+                                                                                                                                alt="" class="me-3">
                                                                                                                         @endif
                                                                                                                         <span id="count_like_replies_reply${up['id']}" class="my-auto" style="margin-left: -7%;">
                                                                                                                             0
@@ -3285,9 +3278,7 @@
                                                                                                                             onclick="harusLogin()"
                                                                                                                             width="15px"
                                                                                                                             height="40px"
-                                                                                                                            alt="">
-                                                                                                                        &nbsp;
-                                                                                                                        &nbsp;
+                                                                                                                            alt="" class="me-3">
                                                                                                                     @endif
                                                                                                                     <span id="like-count${up['id']}" class="mt-2" style="margin-left: -7%;">
                                                                                                                         0
@@ -3890,9 +3881,7 @@
                                                                                                                                 onclick="harusLogin()"
                                                                                                                                 width="15px"
                                                                                                                                 height="40px"
-                                                                                                                                alt="">
-                                                                                                                            &nbsp;
-                                                                                                                            &nbsp;
+                                                                                                                                alt="" class="me-3">
                                                                                                                         @endif
                                                                                                                         <span id="count_like_replies_reply${up['id']}" class="my-auto"  style="margin-left: -7%;">
                                                                                                                             0
@@ -4218,8 +4207,7 @@
                                                                                         <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                                             onclick="harusLogin()"
                                                                                             width="15px" height="40px"
-                                                                                            alt="">
-                                                                                        &nbsp; &nbsp;
+                                                                                            alt="" class="me-3">
                                                                                     @endif
                                                                                     <span class="my-auto" style="margin-left:-13%;"
                                                                                         id="countLikeComment${up['id']}">
