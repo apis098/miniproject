@@ -8,6 +8,7 @@ use App\Models\upload_video;
 use App\Models\User;
 use App\Models\penarikans;
 use App\Models\dataPribadiKoki;
+use App\Models\Share;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -51,23 +52,21 @@ class IncomeChefsController extends Controller
                 // menghitung total popularitas seluruhnya
                 $total_like_feed_semua = upload_video::whereHas("like_veed")->count();
                 $total_like_resep_semua = reseps::whereHas("likes")->count();
-                $total_share_feed_semua = upload_video::whereHas("share_veed")->count();
-                $total_share_resep_semua = reseps::whereHas("share_resep")->count();
+                $total_share_semua = Share::count();
                 $total_view_semua = income_chefs::count();
                 $total_favorite_feed_semua = upload_video::whereHas("favorite")->count();
                 $total_favorite_resep_semua = reseps::whereHas("favorite")->count();
                 $total_followers_semua = User::sum('followers');
-                $total_popularitas = $total_like_feed_semua + $total_like_resep_semua + $total_share_feed_semua + $total_share_resep_semua + $total_view_semua + $total_favorite_feed_semua + $total_favorite_resep_semua + $total_followers_semua;
+                $total_popularitas = $total_like_feed_semua + $total_like_resep_semua + $total_share_semua + $total_view_semua + $total_favorite_feed_semua + $total_favorite_resep_semua + $total_followers_semua;
                 // menghitung total popularitas chef
                 $total_like_feed = upload_video::where("users_id", $chef)->whereHas("like_veed")->count();
                 $total_like_resep = reseps::where("user_id", $chef)->whereHas("likes")->count();
-                $total_share_feed = upload_video::where("users_id", $chef)->whereHas("share_veed")->count();
-                $total_share_resep = reseps::where("user_id", $chef)->whereHas("share_resep")->count();
+                $total_share = Share::where('user_id', $chef)->count();
                 $total_view = income_chefs::where("chef_id", $chef)->count();
                 $total_favorite_feed = upload_video::where("users_id", $chef)->whereHas("favorite")->count();
                 $total_favorite_resep = reseps::where("user_id")->whereHas("favorite")->count();
                 $total_followers = $koki->followers;
-                $total_popularitas_chef = $total_like_feed + $total_like_resep + $total_share_feed + $total_share_resep + $total_view + $total_favorite_feed + $total_favorite_resep + $total_followers;
+                $total_popularitas_chef = $total_like_feed + $total_like_resep + $total_share + $total_view + $total_favorite_feed + $total_favorite_resep + $total_followers;
                 $level = $total_popularitas_chef / $total_popularitas;
                 if($level == 0) {
                     $hasil = $level;
