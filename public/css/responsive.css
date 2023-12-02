@@ -127,6 +127,12 @@ padding-left: 0;
     margin-left: 40%;
   }
 }
+
+@media screen and (max-width: 375px) {
+  .video-js .vjs-big-play-button{
+    margin-left: 31%;
+  }
+}
 .video-js .vjs-big-play-button{
   justify-content: center; /* Pusat horizontal */
   align-items: center; /* Pusat vertikal */
@@ -136,6 +142,8 @@ padding-left: 0;
     display: none ;
   }
 }
+
+
 /* .form-comment{
   display: flex;
   width: 110%;

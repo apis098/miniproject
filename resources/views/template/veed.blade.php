@@ -22,7 +22,7 @@
             <!-- rekomendasi chef start -->
             <div class="row justify-content-center">
                 <div class="col-md-3 hidden-content" style="">
-                    <div class="card" style="width: 15rem; margin-left:50px;  border-radius: 10px">
+                    <div class="card float-right" style="width: 15rem; margin-left:50px;  border-radius: 10px">
                         <div class="card-header text-white text-center"
                             style="background-color: #F7941E;   border-top-right-radius: 10px; border-top-left-radius: 10px;  font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                             Rekomendasi Chef
@@ -59,9 +59,16 @@
                             @endforeach
                         </div>
                     </div>
+
+                    
                 </div>
                 <!-- rekomendasi chef end -->
                 <style>
+                    .video-js .vjs-big-play-button{
+                        justify-content: center; /* Pusat horizontal */
+                        align-items: center; /* Pusat vertikal */
+                        }
+                        
                     .posisi {
                         margin-top: -3%;
                     }
@@ -72,7 +79,7 @@
 
                     .form .fa-search {
                         position: absolute;
-                        top: 40px;
+                        top: 20px;
                         left: 20px;
                         color: #9ca3af;
 
@@ -114,8 +121,8 @@
                     }
 
                     .form-input {
-                        margin-left: -3.5%;
-                        width: 107%;
+                        /* margin-left: -3.5%; */
+                        width: 100%;
                         height: 55px;
                         text-indent: 33px;
                         border-radius: 10px;
@@ -192,14 +199,15 @@
                 </style>
                 <!-- feed start -->
                 <div class="col-md-12 col-lg-6">
-                    <div class="card border border-0 posisi cari-veed">
-                        <div class="card-body form">
+                    <div class="card responsive-upload border-0 mb-3">
+                        <div class="form">
                             <i class="fa fa-search"></i>
                             <input type="text" class="form-control form-input search-video" placeholder="Cari...">
                         </div>
                     </div>
-                    <div class="card border border-0 posisi" hidden>
-                        <div class="card-body form">
+
+                    <div class="card responsive-upload border-0 mb-3" hidden>
+                        <div class="form">
                             <i class="fa fa-search"></i>
                             <input type="text" class="form-control form-input search-uuid" value="{{ request()->uuid }}"
                                 placeholder="Cari...">
@@ -1385,20 +1393,20 @@
                                             @if (Auth::check() &&
                                                     $item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
-                                                    onclick="toggleFavorite({{ $item_video->id }})" class="ms-3 yuhu">
+                                                    onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu">
                                                     <i
                                                         class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
                                                 </button>
                                             @elseif(Auth::check() &&
                                                     !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
-                                                    onclick="toggleFavorite({{ $item_video->id }})" class="ms-3 yuhu ">
+                                                    onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu ">
                                                     <i
                                                         class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
                                                 </button>
                                             @else
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
-                                                    onclick="harusLogin()" class="ms-3 yuhu ">
+                                                    onclick="harusLogin()" class="ms-1 yuhu ">
                                                     <i
                                                         class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
                                                 </button>
@@ -2216,7 +2224,7 @@
                                                                                                                 <div
                                                                                                                     style="margin-top:-2.2%; margin-left:-2.5%;" class="col-9 pr-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary"
+                                                                                                                        class="text-secondary mt-1"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse2{{ $reply_comment->id }}"
                                                                                                                         aria-expanded="true"
@@ -2287,7 +2295,7 @@
                                                                                                                                 type="submit"
                                                                                                                                 id="buttonComment2Veed1{{ $reply_comment->id }}"
                                                                                                                                 onclick="balas_replies_comments_feeds1({{ $reply_comment->id }})"
-                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right"
                                                                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                                         </div>
@@ -2620,7 +2628,7 @@
                                                                                                                     </div>
                                                                                                                     <div class="col-9 pr-0">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary"
+                                                                                                                            class="text-secondary mt-1"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse3{{ $reply_replyComment->id }}"
                                                                                                                             aria-expanded="true"
@@ -3102,7 +3110,7 @@
 
                                                                                                                 <div style="" class="col-9 pl-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary"
+                                                                                                                        class="text-secondary mt-1"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse${up['id']}"
                                                                                                                         aria-expanded="true"
@@ -3312,7 +3320,7 @@
                                                                                                                 </div>
                                                                                                                 <div style="margin-top:-2.2%; margin-left:-2.5%;" class="col-9 pr-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary"
+                                                                                                                        class="text-secondary mt-1"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#reply_collapse${up['id']}"
                                                                                                                         aria-expanded="true"
@@ -3348,8 +3356,8 @@
                                                                                                                                     action="/balas_komentar_balasan_feed/${up['users_id']}/${up['id']}"
                                                                                                                                     method="post">
                                                                                                                                     @csrf
-                                                                                                                                    <div class="d-flex">
-                                                                                                                                        <div style="margin-left:-2.8%; margin-top:-1%;" class="me-3">
+                                                                                                                                    <div class="row mb-3">
+                                                                                                                                        <div class="col-lg-1 col-md-1 col-2 pl-1">
                                                                                                                                             @if (Auth::user()->foto)
                                                                                                                                                 <img src="{{ asset('storage/' . Auth::user()->foto) }}"
                                                                                                                                                     class="border rounded-circle"
@@ -3363,7 +3371,7 @@
                                                                                                                                             @endif
                                                                                                                                         </div>
                                                                                                                                         <div
-                                                                                                                                            class="d-flex">
+                                                                                                                                            class="col-lg-9 col-md-9 col-10">
                                                                                                                                             <input
                                                                                                                                                 type="text"
                                                                                                                                                 id="inputBalasRepliesCommentsFeeds1${up['id']}"
@@ -3371,12 +3379,14 @@
                                                                                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                                 placeholder="Masukkan komentar...">
+                                                                                                                                        </div
+                                                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
 
                                                                                                                                             <button
                                                                                                                                                 type="submit"
                                                                                                                                                 id="buttonComment2Veed1${up['id']}"
                                                                                                                                                 onclick="balas_replies_comments_feeds1(${up['id']})"
-                                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                                                                                                style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
                                                                                                                                                 class="btn btn-sm mb-1 text-light"><b
                                                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                                                         </div>
@@ -3916,7 +3926,7 @@
                                                                                                                 <div 
                                                                                                                         class="col-9 pr-0">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary "
+                                                                                                                            class="text-secondary mt-1"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse${up['id']}"
                                                                                                                             aria-expanded="true"
@@ -4238,7 +4248,7 @@
                                                                                     {{-- --}}
                                                                                 </div>
                                                                                 <a href="#"
-                                                                                    class="text-secondary "
+                                                                                    class="text-secondary mt-1"
                                                                                     data-toggle="collapse"
                                                                                     data-target="#collapse${up['id']}"
                                                                                     aria-expanded="true"
