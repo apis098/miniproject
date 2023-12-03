@@ -9,30 +9,6 @@
 
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-    .post-author a,
-    .post-date a,
-    .post-favourite a,
-    .post-comments a,
-    .post-share a {
-        font-size: 12px;
-    }
-    .navbar-toggler {
-        background-color: #fc6c3f;
-        width: 100%;
-        color: #fff;
-        margin-bottom: 30px;
-    }
-    .footer_area .navbar-toggler {
-        margin-bottom: 0;
-    }
-    .navbar.navbar-expand-lg .navbar-nav .nav-link {
-        padding: 7.5px 30px;
-    }
-
-
-}
-
 @media (min-width: 320px) and (max-width: 767px) {
     .post-author a,
     .post-date a,
@@ -72,9 +48,7 @@
     .footer_area .navbar-toggler {
         margin-bottom: 0;
     }
-    .navbar.navbar-expand-lg .navbar-nav .nav-link {
-        padding: 7.5px 30px;
-    }
+  
     .pagination-area .page-status {
         margin-top: 30px;
     }
@@ -130,4 +104,5 @@
     .single_comment_area ol li.single_comment_area {
         margin-left: 130px;
     }
+    
 }

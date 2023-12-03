@@ -310,16 +310,21 @@
         </style>
     </head>
 
-<body class="sub_page ">
+<body id="offcanvas_id" class="sub_page">
     <div class="hero_area">
         <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
 
         </div>
         <!-- header section strats -->
-        <header class="header_section p-3">
+        <header class="header_section">
             <!-- Navbar-->
+            {{-- site modal menu --}}
             <div class="site-mobile-menu site-navbar-target">
-
+                <div class="d-flex mx-3">
+                    <button onclick="offcanvas_hide()" class="yuhu ml-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M15 15L9 9m6 0l-6 6"/><circle cx="12" cy="12" r="10"/></g></svg>
+                    </button>
+                </div>
                 <div class="site-mobile-menu-header pt-2 pb-1">
                     <div class="d-flex justify-content-center">
                         <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
@@ -328,89 +333,108 @@
                         <div class="row align-items-center">
                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 ">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6v18H5Zm8 0v-9h8v7q0 .825-.587 1.413T19 21h-6Zm0-11V3h6q.825 0 1.413.588T21 5v5h-8Z"/></svg>
-                                        <b>Beranda</b>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6v18H5Zm8 0v-9h8v7q0 .825-.587 1.413T19 21h-6Zm0-11V3h6q.825 0 1.413.588T21 5v5h-8Z" />
+                                    </svg>
+                                    <b>Beranda</b>
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div> 
-                             </a>
-                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2"/></svg>
-                                        <b>Resep</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div> 
-                             </a>
-                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div class="d-flex justify-content-start align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="10.6" cy="3.5" rx="2.4" ry="3"/><path d="M10.6 6.5v7M3.5.5v13M6 .5V3a2.5 2.5 0 0 1-2.5 2.5h0A2.5 2.5 0 0 1 1 3V.5"/></g></svg>
-                                        <b>Kursus</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div> 
-                             </a>
+                                </div>
+                            </a>
                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="22" height="22" viewBox="0 0 14 14"><path fill="currentColor" fill-rule="evenodd" d="M8.09.084a.75.75 0 1 0-.232 1.482A5.502 5.502 0 0 1 7 12.5a5.502 5.502 0 0 1-5.116-3.475a.75.75 0 1 0-1.394.552A7.002 7.002 0 0 0 14 7A7.002 7.002 0 0 0 8.09.084ZM6.164.661a.75.75 0 0 1-.54.914a5.453 5.453 0 0 0-.735.246a.75.75 0 1 1-.576-1.385c.302-.126.615-.231.938-.314a.75.75 0 0 1 .913.54ZM3.185 1.894a.75.75 0 0 1-.016 1.06a5.61 5.61 0 0 0-.95 1.225a.75.75 0 1 1-1.302-.744a7.025 7.025 0 0 1 1.208-1.557a.75.75 0 0 1 1.06.016ZM.916 5.28a.75.75 0 0 1 .638.847a5.554 5.554 0 0 0-.054.775a.75.75 0 0 1-1.5 0c0-.333.023-.662.069-.984a.75.75 0 0 1 .847-.638ZM4.5 8.882V5.118a1 1 0 0 1 1.447-.894l3.764 1.882a1 1 0 0 1 0 1.788L5.947 9.776A1 1 0 0 1 4.5 8.882Z" clip-rule="evenodd"/></svg>
-                                        <b>Feed</b>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                        height="23" viewBox="0 0 14 14">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2" />
+                                    </svg>
+                                    <b>Resep</b>
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div> 
-                             </a>
-                             <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                </div>
+                            </a>
+                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
                                 <div class="d-flex justify-content-start align-items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2"  width="23" height="23" viewBox="0 0 48 48"><path fill="currentColor" d="M24 12.042A6.042 6.042 0 0 0 17.958 6h-5.916a6.042 6.042 0 1 0 0 12.083H13.2V21S24 19.542 24 12.042ZM18.5 28c0 2.21-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4Zm-4 6C11.663 34 6 35.43 6 38.267V42h17v-3.733C23 35.429 17.337 34 14.5 34Zm19-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4Zm0 2c-2.837 0-8.5 1.43-8.5 4.267V42h17v-3.733C42 35.429 36.337 34 33.5 34ZM32.042 7A6.042 6.042 0 0 0 26 13.042c0 7.5 9.6 8.958 9.6 8.958v-2.917h.358a6.042 6.042 0 1 0 0-12.083h-3.916Z"/></svg>
-                                        <b>Diskusi</b>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                        height="23" viewBox="0 0 14 14">
+                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <ellipse cx="10.6" cy="3.5" rx="2.4" ry="3" />
+                                            <path
+                                                d="M10.6 6.5v7M3.5.5v13M6 .5V3a2.5 2.5 0 0 1-2.5 2.5h0A2.5 2.5 0 0 1 1 3V.5" />
+                                        </g>
+                                    </svg>
+                                    <b>Kursus</b>
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div> 
-                             </a>
-                             <a href="" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
+                                </div>
+                            </a>
+                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="22"
+                                        height="22" viewBox="0 0 14 14">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                            d="M8.09.084a.75.75 0 1 0-.232 1.482A5.502 5.502 0 0 1 7 12.5a5.502 5.502 0 0 1-5.116-3.475a.75.75 0 1 0-1.394.552A7.002 7.002 0 0 0 14 7A7.002 7.002 0 0 0 8.09.084ZM6.164.661a.75.75 0 0 1-.54.914a5.453 5.453 0 0 0-.735.246a.75.75 0 1 1-.576-1.385c.302-.126.615-.231.938-.314a.75.75 0 0 1 .913.54ZM3.185 1.894a.75.75 0 0 1-.016 1.06a5.61 5.61 0 0 0-.95 1.225a.75.75 0 1 1-1.302-.744a7.025 7.025 0 0 1 1.208-1.557a.75.75 0 0 1 1.06.016ZM.916 5.28a.75.75 0 0 1 .638.847a5.554 5.554 0 0 0-.054.775a.75.75 0 0 1-1.5 0c0-.333.023-.662.069-.984a.75.75 0 0 1 .847-.638ZM4.5 8.882V5.118a1 1 0 0 1 1.447-.894l3.764 1.882a1 1 0 0 1 0 1.788L5.947 9.776A1 1 0 0 1 4.5 8.882Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    <b>Feed</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div>
+                            </a>
+                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                        height="23" viewBox="0 0 48 48">
+                                        <path fill="currentColor"
+                                            d="M24 12.042A6.042 6.042 0 0 0 17.958 6h-5.916a6.042 6.042 0 1 0 0 12.083H13.2V21S24 19.542 24 12.042ZM18.5 28c0 2.21-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4Zm-4 6C11.663 34 6 35.43 6 38.267V42h17v-3.733C23 35.429 17.337 34 14.5 34Zm19-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4Zm0 2c-2.837 0-8.5 1.43-8.5 4.267V42h17v-3.733C42 35.429 36.337 34 33.5 34ZM32.042 7A6.042 6.042 0 0 0 26 13.042c0 7.5 9.6 8.958 9.6 8.958v-2.917h.358a6.042 6.042 0 1 0 0-12.083h-3.916Z" />
+                                    </svg>
+                                    <b>Diskusi</b>
+                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                </div>
+                            </a>
+                            <a href="" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <b>Masuk/daftar</b>
-                                </div> 
-                             </a>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
                 {{-- <div class="site-mobile-menu-body"></div> --}}
-            </div> <!-- .site-mobile-menu -->
-            <nav class="navbar navbar-expand-lg  bg-body-tertiary custom_nav text-light me-2">
-                <div class="container-fluid justify-content-between">
+            </div>
+            <!-- .site-mobile-menu -->
+            <nav class="navbar navbar-expand-lg  bg-body-tertiary custom_nav text-light">
+                <div class="container p-3">
                     <!-- Left elements -->
                     <div class="d-flex">
                         <!-- Brand -->
-                        <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="#">
+                        <a class=" me-2 mb-1 d-flex align-items-center" href="#">
                             @if (Auth::check())
                                 @if (Auth::user()->role == 'Admin')
                                     <a class="navbar-brand" href="{{ url('admin/index') }}">
-                                        <span class="t">
+                                        <span class="text-start">
                                             HummaCook
                                         </span>
                                     </a>
                                 @else
-                                    <a class="navbar-brand" href="#">
-                                        <span class="t">
+                                    <a class="navbar-brand " href="#">
+                                        <span class="text-start">
                                             HummaCook
                                         </span>
                                     </a>
                                 @endif
                             @else
                                 <a class="navbar-brand" href="#">
-                                    <span class="t">
+                                    <span class="text-start">
                                         HummaCook
                                     </span>
                                 </a>
                             @endif
                         </a>
-
-                        <button class="navbar-toggler js-menu-toggle nav-link" type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20"
-                                viewBox="0 0 14 14">
-                                <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                    stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
-                            </svg>
-                        </button>
                     </div>
                     <!-- Left elements -->
                     <!-- Center elements -->
-                    <div id="navbarNav">
+                    <div class="center_nav">
                         <ul class="navbar-nav flex-row js-clone-nav d-none d-md-flex mr-auto ">
 
                             <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
@@ -448,890 +472,908 @@
                         </ul>
                     </div>
                     <!-- Center elements -->
-
+                    <button onclick="offcanvas_show()" class="navbar-toggler js-menu-toggle nav-link" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
+                        </svg>
+                    </button>
                     <!-- Right elements -->
-                    @if (Auth::check())
-                        <ul class="navbar-nav   flex-row">
-                            <li class="nav-item ">
-                                <a class="nav-link yuhu text-light mt-1 {{ $messageCount == 0 ? 'me-3' : '' }} "
-                                    href="/roomchat" id="navbarDropdownMenuLink" role="button"
-                                    aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 1.5px;" width="27"
-                                        height="27" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M12 2C6.5 2 2 6.5 2 12c0 2.3.8 4.5 2.3 6.3l-2 2c-.4.4-.4 1 0 1.4c.2.2.4.3.7.3h9c5.5 0 10-4.5 10-10S17.5 2 12 2zM8 13c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1zm4 0c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1zm4 0c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1z" />
-                                    </svg>
-                                    @if ($messageCount > 0)
-                                        <span class="badge badge-danger fw-bolder badge-pill pl-1 pr-1"
-                                            style="
+                    <div class="right_nav">
+                        @if (Auth::check())
+                            <ul class="navbar-nav">
+                                <li class="nav-item align-items-center mt-1">
+                                    <a class="nav-link yuhu text-light {{ $messageCount == 0 ? 'me-2' : '' }} "
+                                        href="/roomchat" id="navbarDropdownMenuLink" role="button"
+                                        aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" style="margin-top: 2.5px;margin-right:2.5px;"
+                                            width="27" height="27" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12 2C6.5 2 2 6.5 2 12c0 2.3.8 4.5 2.3 6.3l-2 2c-.4.4-.4 1 0 1.4c.2.2.4.3.7.3h9c5.5 0 10-4.5 10-10S17.5 2 12 2zM8 13c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1zm4 0c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1zm4 0c-.6 0-1-.4-1-1s.4-1 1-1s1 .4 1 1s-.4 1-1 1z" />
+                                        </svg>
+                                        @if ($messageCount > 0)
+                                            <span class="badge badge-danger fw-bolder badge-pill pl-1 pr-1"
+                                                style="
                                             position: relative;
                                             top: -7px;
                                             left: -12px;
                                             padding: 2px 2px;
                                             color: white; ">{{ $messageCount }}</span>
-                                    @endif
-                                </a>
+                                        @endif
+                                    </a>
 
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link yuhu mt-1 me-2" type="button" href="/search-account"
-                                    id="navbarDropdownMenuLink" role="button" aria-expanded="false">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                        viewBox="0 0 24 24">
-                                        <circle cx="10" cy="8" r="4" fill="currentColor" />
-                                        <path fill="currentColor"
-                                            d="M10.35 14.01C7.62 13.91 2 15.27 2 18v1c0 .55.45 1 1 1h8.54c-2.47-2.76-1.23-5.89-1.19-5.99zm9.08 4.01c.47-.8.7-1.77.48-2.82c-.34-1.64-1.72-2.95-3.38-3.16c-2.63-.34-4.85 1.87-4.5 4.5c.22 1.66 1.52 3.04 3.16 3.38c1.05.22 2.02-.01 2.82-.48l1.86 1.86a.996.996 0 1 0 1.41-1.41l-1.85-1.87zM16 18c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z" />
-                                    </svg>
-                                </a>
-
-                            </li>
-                            <li class="nav-item dropdown ">
-                                <form action="{{ route('all.notifications') }}" id="notification-form"
-                                    method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="button" id="notification-button"
-                                        class="nav-link yuhu  mt-2 text-light   ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link yuhu mt-1 me-2" type="button" href="/search-account"
+                                        id="navbarDropdownMenuLink" role="button" aria-expanded="false">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                             viewBox="0 0 24 24">
+                                            <circle cx="10" cy="8" r="4" fill="currentColor" />
                                             <path fill="currentColor"
-                                                d="M21 19v1H3v-1l2-2v-6c0-3.1 2.03-5.83 5-6.71V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.29c2.97.88 5 3.61 5 6.71v6l2 2m-7 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2" />
+                                                d="M10.35 14.01C7.62 13.91 2 15.27 2 18v1c0 .55.45 1 1 1h8.54c-2.47-2.76-1.23-5.89-1.19-5.99zm9.08 4.01c.47-.8.7-1.77.48-2.82c-.34-1.64-1.72-2.95-3.38-3.16c-2.63-.34-4.85 1.87-4.5 4.5c.22 1.66 1.52 3.04 3.16 3.38c1.05.22 2.02-.01 2.82-.48l1.86 1.86a.996.996 0 1 0 1.41-1.41l-1.85-1.87zM16 18c-1.1 0-2-.9-2-2s.9-2 2-2s2 .9 2 2s-.9 2-2 2z" />
                                         </svg>
-                                        @if ($unreadNotificationCount > 0)
-                                            <span id="notification-count"
-                                                class="badge badge-danger fw-bolder badge-pill pl-1 pr-1 me-2"
-                                                style="
+                                    </a>
+
+                                </li>
+                                <li class="nav-item dropdown ">
+                                    <form action="{{ route('all.notifications') }}" id="notification-form"
+                                        method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="button" id="notification-button"
+                                            class="nav-link yuhu  mt-2 text-light   ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"
+                                                viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M21 19v1H3v-1l2-2v-6c0-3.1 2.03-5.83 5-6.71V4a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.29c2.97.88 5 3.61 5 6.71v6l2 2m-7 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2" />
+                                            </svg>
+                                            @if ($unreadNotificationCount > 0)
+                                                <span id="notification-count"
+                                                    class="badge badge-danger fw-bolder badge-pill pl-1 pr-1 me-2"
+                                                    style="
                                                 position: relative;
                                                 top: -8px;
                                                 left: -15px;
                                                 padding: 2px 2px;
                                                 color: white; ">1</span>
-                                        @endif
+                                            @endif
+                                        </button>
+                                    </form>
+                                    <button hidden type="button" id="notification-button-real"
+                                        class="nav-link text-light mt-2 yuhu" data-toggle="modal"
+                                        data-target="#exampleModalScrollable">
+                                        <i class="far fa-solid fa-xl fa-bell"></i>
                                     </button>
-                                </form>
-                                <button hidden type="button" id="notification-button-real"
-                                    class="nav-link text-light mt-2 yuhu" data-toggle="modal"
-                                    data-target="#exampleModalScrollable">
-                                    <i class="far fa-solid fa-xl fa-bell"></i>
-                                </button>
 
-                                <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
-                                    aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable"
-                                        style="margin-left: 58%; margin-top:5%; max-width:420px; max-height:450px;"
-                                        role="document">
-                                        <div class="modal-content" style="border-radius: 20px;">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title text-orange fw-bolder"
-                                                    id="exampleModalScrollableTitle">Notifikasi</h5>
-                                                <button type="button" class="close text-dark" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                @foreach ($notification as $row)
-                                                    @if ($row->sender->id != auth()->user()->id && $row->status == 'belum')
-                                                        <div class="input-group">
-                                                            @if ($row->sender->foto)
-                                                                <a href="#">
-                                                                    <img class="ms-2 me-2 mt-1 rounded-circle"
-                                                                        src="{{ asset('storage/' . $row->sender->foto) }}"
-                                                                        alt="profile image" style="max-width:35px">
-                                                                </a>
-                                                            @else
-                                                                <a href="#">
-                                                                    <img class="ms-2 me-2 mt-1 rounded-circle"
-                                                                        src="{{ asset('images/default.jpg') }}"
-                                                                        alt="profile image" style="max-width:35px">
-                                                                </a>
-                                                            @endif
-                                                            <p class="mt-2 text-orange">
-                                                                {{ $row->sender->name }}</p>
-                                                            @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
-                                                                <form
-                                                                    action="{{ route('replies.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Membalas
-                                                                            keluhan anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->reply_id != null && $row->like_id != null)
-                                                                <form
-                                                                    action="{{ route('replies.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menyukai
-                                                                            komentar anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->veed_id != null && $row->categories == 'like')
-                                                                <form
-                                                                    action="{{ route('replies.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menyukai
-                                                                            postingan anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->top_up_id != null)
-                                                                <form
-                                                                    action="{{ route('topUp.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">{{ $row->message }}</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->gift_id != null)
-                                                                <form action="/koki/income-koki" method="GET">
-                                                                    {{-- @method('PUT')
+                                    <div class="modal fade" id="exampleModalScrollable" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalScrollableTitle"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable"
+                                            style="margin-left: 58%; margin-top:5%; max-width:420px; max-height:450px;"
+                                            role="document">
+                                            <div class="modal-content" style="border-radius: 20px;">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-orange fw-bolder"
+                                                        id="exampleModalScrollableTitle">Notifikasi</h5>
+                                                    <button type="button" class="close text-dark"
+                                                        data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @foreach ($notification as $row)
+                                                        @if ($row->sender->id != auth()->user()->id && $row->status == 'belum')
+                                                            <div class="input-group">
+                                                                @if ($row->sender->foto)
+                                                                    <a href="#">
+                                                                        <img class="ms-2 me-2 mt-1 rounded-circle"
+                                                                            src="{{ asset('storage/' . $row->sender->foto) }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:35px">
+                                                                    </a>
+                                                                @else
+                                                                    <a href="#">
+                                                                        <img class="ms-2 me-2 mt-1 rounded-circle"
+                                                                            src="{{ asset('images/default.jpg') }}"
+                                                                            alt="profile image"
+                                                                            style="max-width:35px">
+                                                                    </a>
+                                                                @endif
+                                                                <p class="mt-2 text-orange">
+                                                                    {{ $row->sender->name }}</p>
+                                                                @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
+                                                                    <form
+                                                                        action="{{ route('replies.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Membalas
+                                                                                keluhan anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->reply_id != null && $row->like_id != null)
+                                                                    <form
+                                                                        action="{{ route('replies.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->veed_id != null && $row->categories == 'like')
+                                                                    <form
+                                                                        action="{{ route('replies.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                postingan anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->top_up_id != null)
+                                                                    <form
+                                                                        action="{{ route('topUp.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">{{ $row->message }}</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->gift_id != null)
+                                                                    <form action="/koki/income-koki" method="GET">
+                                                                        {{-- @method('PUT')
                                             @csrf --}}
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Memberi
-                                                                            donasi
-                                                                            kepada anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Memberi
+                                                                                donasi
+                                                                                kepada anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->reply_id_comment != null)
+                                                                    <form
+                                                                        action="{{ route('replies.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Membalas
+                                                                                komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->like_comment_recipes_id != null && $row->resep_id != null)
+                                                                    <form
+                                                                        action="{{ route('resep.read.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->veed_id != null && $row->share_id != null)
+                                                                    <form
+                                                                        action="{{ route('share.veed.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Membagikan
+                                                                                video kepada anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->like_reply_comment_recipes_id != null && $row->resep_id != null)
+                                                                    <form
+                                                                        action="{{ route('resep.read.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->reply_comment_id != null && $row->resep_id != null)
+                                                                    <form
+                                                                        action="{{ route('resep.read.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Membalas
+                                                                                komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->comment_id != null && $row->resep_id != null)
+                                                                    <form
+                                                                        action="{{ route('resep.read.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Mengomentari
+                                                                                resep anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->like_reply_id != null && $row->complaint_id != null)
+                                                                    <form
+                                                                        action="{{ route('replies.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                komentar anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->like_id != null && $row->resep_id != null)
+                                                                    <form
+                                                                        action="{{ route('resep.like.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menyukai
+                                                                                resep anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->follower_id == auth()->user()->id && $row->complaint_id != null)
+                                                                    <form
+                                                                        action="{{ route('replies.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Memiliki
+                                                                                kesulitan memasak</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->follower_id == auth()->user()->id && $row->resep_id != null)
+                                                                    <form
+                                                                        action="{{ route('resep.read.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menambahkan
+                                                                                resep baru</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->follower_id != null && $row->veed_Id != null && $row->categories == 'followers_shared')
+                                                                    <form
+                                                                        action="/status-baca/shared-feed/{{ $row->id }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Menambahkan
+                                                                                postingan baru</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->profile_id != null)
+                                                                    <form
+                                                                        action="{{ route('profile.blocked.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Foto
+                                                                                profil
+                                                                                kamu telah diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->reply_id_report != null)
+                                                                    <form
+                                                                        action="{{ route('blockedComent.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Komentar
+                                                                                kamu telah diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->categories == 'block_comment' && $row->alasan != null)
+                                                                    <form
+                                                                        action="{{ route('blockedComent.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Komentar
+                                                                                kamu telah diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                            <input hidden type="text"
+                                                                                value="{{ $row->complaint_id }}"
+                                                                                name="replies_id" id="replies_id"
+                                                                                class="form-control">
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->veed_id_report != null)
+                                                                    <form
+                                                                        action="{{ route('blockedFeed.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small
+                                                                                class="mt-1 ms-1 text-secondary">Postingan
+                                                                                kamu telah diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 mb-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                    </form>
+                                                                @elseif($row->follower_id != null && $row->complaint_id == null && $row->resep_id == null && $row->veed_id == null)
+                                                                    <form
+                                                                        action="{{ route('follow.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class=" ms-1 text-secondary">Mengikuti
+                                                                                anda</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        <input type="text" hidden
+                                                                            name="follower_id" id="follower_id"
+                                                                            value="{{ $row->follower_id }}"
                                                                             class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->reply_id_comment != null)
-                                                                <form
-                                                                    action="{{ route('replies.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Membalas
-                                                                            komentar anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
+                                                                    </form>
+                                                                @elseif($row->complaint_id_report != null)
+                                                                    <form
+                                                                        action="{{ route('blockedComplaint.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small class=" ms-1 text-secondary">Keluhan
+                                                                                anda telah diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        <input type="text" hidden
+                                                                            name="follower_id" id="follower_id"
+                                                                            value="{{ $row->follower_id }}"
                                                                             class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->like_comment_recipes_id != null && $row->resep_id != null)
-                                                                <form
-                                                                    action="{{ route('resep.read.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menyukai
-                                                                            komentar anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
+                                                                    </form>
+                                                                @elseif($row->resep_id_report != null)
+                                                                    <form
+                                                                        action="{{ route('blockedRecipes.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small class=" ms-1 text-secondary">Resep
+                                                                                anda telah diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        <input type="text" hidden
+                                                                            name="follower_id" id="follower_id"
+                                                                            value="{{ $row->follower_id }}"
                                                                             class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->veed_id != null && $row->share_id != null)
-                                                                <form
-                                                                    action="{{ route('share.veed.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Membagikan
-                                                                            video kepada anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->like_reply_comment_recipes_id != null && $row->resep_id != null)
-                                                                <form
-                                                                    action="{{ route('resep.read.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menyukai
-                                                                            komentar anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
+                                                                    </form>
+                                                                @elseif($row->random_name != null)
+                                                                    <form
+                                                                        action="{{ route('profile.blocked.notification', $row->id) }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class=" ms-2 text-secondary">Username
+                                                                                kamu
+                                                                                diblokir</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        <input type="text" hidden
+                                                                            name="follower_id" id="follower_id"
+                                                                            value="{{ $row->follower_id }}"
                                                                             class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->reply_comment_id != null && $row->resep_id != null)
-                                                                <form
-                                                                    action="{{ route('resep.read.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Membalas
-                                                                            komentar anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
+                                                                    </form>
+                                                                @elseif($row->categories == 'others')
+                                                                    <form action="{{ $row->route }}"
+                                                                        method="GET">
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        <input type="text" hidden
+                                                                            name="follower_id" id="follower_id"
+                                                                            value="{{ $row->follower_id }}"
                                                                             class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->comment_id != null && $row->resep_id != null)
-                                                                <form
-                                                                    action="{{ route('resep.read.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Mengomentari
-                                                                            resep anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->like_reply_id != null && $row->complaint_id != null)
-                                                                <form
-                                                                    action="{{ route('replies.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menyukai
-                                                                            komentar anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->like_id != null && $row->resep_id != null)
-                                                                <form
-                                                                    action="{{ route('resep.like.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menyukai
-                                                                            resep anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->follower_id == auth()->user()->id && $row->complaint_id != null)
-                                                                <form
-                                                                    action="{{ route('replies.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Memiliki
-                                                                            kesulitan memasak</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->follower_id == auth()->user()->id && $row->resep_id != null)
-                                                                <form
-                                                                    action="{{ route('resep.read.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menambahkan
-                                                                            resep baru</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->follower_id != null && $row->veed_Id != null && $row->categories == 'followers_shared')
-                                                                <form
-                                                                    action="/status-baca/shared-feed/{{ $row->id }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Menambahkan
-                                                                            postingan baru</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->profile_id != null)
-                                                                <form
-                                                                    action="{{ route('profile.blocked.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small class="mt-1 ms-1 text-secondary">Foto
-                                                                            profil
-                                                                            kamu telah diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->reply_id_report != null)
-                                                                <form
-                                                                    action="{{ route('blockedComent.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Komentar
-                                                                            kamu telah diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->categories == 'block_comment' && $row->alasan != null)
-                                                                <form
-                                                                    action="{{ route('blockedComent.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Komentar
-                                                                            kamu telah diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                        <input hidden type="text"
-                                                                            value="{{ $row->complaint_id }}"
-                                                                            name="replies_id" id="replies_id"
-                                                                            class="form-control">
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->veed_id_report != null)
-                                                                <form
-                                                                    action="{{ route('blockedFeed.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small
-                                                                            class="mt-1 ms-1 text-secondary">Postingan
-                                                                            kamu telah diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 mb-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                </form>
-                                                            @elseif($row->follower_id != null && $row->complaint_id == null && $row->resep_id == null && $row->veed_id == null)
-                                                                <form
-                                                                    action="{{ route('follow.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small class=" ms-1 text-secondary">Mengikuti
-                                                                            anda</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    <input type="text" hidden name="follower_id"
-                                                                        id="follower_id"
-                                                                        value="{{ $row->follower_id }}"
-                                                                        class="form-control">
-                                                                </form>
-                                                            @elseif($row->complaint_id_report != null)
-                                                                <form
-                                                                    action="{{ route('blockedComplaint.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small class=" ms-1 text-secondary">Keluhan
-                                                                            anda telah diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    <input type="text" hidden name="follower_id"
-                                                                        id="follower_id"
-                                                                        value="{{ $row->follower_id }}"
-                                                                        class="form-control">
-                                                                </form>
-                                                            @elseif($row->resep_id_report != null)
-                                                                <form
-                                                                    action="{{ route('blockedRecipes.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small class=" ms-1 text-secondary">Resep
-                                                                            anda telah diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    <input type="text" hidden name="follower_id"
-                                                                        id="follower_id"
-                                                                        value="{{ $row->follower_id }}"
-                                                                        class="form-control">
-                                                                </form>
-                                                            @elseif($row->random_name != null)
-                                                                <form
-                                                                    action="{{ route('profile.blocked.notification', $row->id) }}"
-                                                                    method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small class=" ms-2 text-secondary">Username
-                                                                            kamu
-                                                                            diblokir</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    <input type="text" hidden name="follower_id"
-                                                                        id="follower_id"
-                                                                        value="{{ $row->follower_id }}"
-                                                                        class="form-control">
-                                                                </form>
-                                                            @elseif($row->categories == 'others')
-                                                                <form action="{{ $row->route }}" method="GET">
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class=" ms-2 text-secondary">{{ $row->message }}</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    <input type="text" hidden name="follower_id"
-                                                                        id="follower_id"
-                                                                        value="{{ $row->follower_id }}"
-                                                                        class="form-control">
-                                                                </form>
-                                                            @elseif($row->categories === 'data-koki' && $row->alasan != null)
-                                                                <form action="{{ $row->route }}" method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small
-                                                                            class=" ms-2 text-secondary">{{ $row->message }}</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    {{-- <input type="text" hidden
+                                                                    </form>
+                                                                @elseif($row->categories === 'data-koki' && $row->alasan != null)
+                                                                    <form action="{{ $row->route }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small
+                                                                                class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        {{-- <input type="text" hidden
                                                     name="follower_id"
                                                     id="follower_id"
                                                     value="{{ $row->follower_id }}"
                                                     class="form-control"> --}}
-                                                                </form>
-                                                            @elseif($row->categories == 'ajuan_penarikan' && $row->alasan != null)
-                                                                <form action="{{ $row->route }}" method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="button"
-                                                                        data-toggle="modal"
-                                                                        data-target="#modalAlasan{{ $row->id }}">
-                                                                        <small
-                                                                            class=" ms-2 text-secondary">{{ $row->message }}</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    {{-- <input type="text" hidden
+                                                                    </form>
+                                                                @elseif($row->categories == 'ajuan_penarikan' && $row->alasan != null)
+                                                                    <form action="{{ $row->route }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="button"
+                                                                            data-toggle="modal"
+                                                                            data-target="#modalAlasan{{ $row->id }}">
+                                                                            <small
+                                                                                class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        {{-- <input type="text" hidden
                                                     name="follower_id"
                                                     id="follower_id"
                                                     value="{{ $row->follower_id }}"
                                                     class="form-control"> --}}
-                                                                </form>
-                                                            @else
-                                                                <form action="{{ $row->route }}" method="POST">
-                                                                    @method('PUT')
-                                                                    @csrf
-                                                                    <button class="yuhu mt-2" type="submit">
-                                                                        <small
-                                                                            class=" ms-2 text-secondary">{{ $row->message }}</small>
-                                                                        @if ($row->status == 'belum')
-                                                                            <img class="ms-2 rounded-circle"
-                                                                                src="{{ asset('images/badge.png') }}"
-                                                                                alt="profile image"
-                                                                                style="max-width:10px">
-                                                                        @endif
-                                                                    </button>
-                                                                    {{-- <input type="text" hidden
+                                                                    </form>
+                                                                @else
+                                                                    <form action="{{ $row->route }}"
+                                                                        method="POST">
+                                                                        @method('PUT')
+                                                                        @csrf
+                                                                        <button class="yuhu mt-2" type="submit">
+                                                                            <small
+                                                                                class=" ms-2 text-secondary">{{ $row->message }}</small>
+                                                                            @if ($row->status == 'belum')
+                                                                                <img class="ms-2 rounded-circle"
+                                                                                    src="{{ asset('images/badge.png') }}"
+                                                                                    alt="profile image"
+                                                                                    style="max-width:10px">
+                                                                            @endif
+                                                                        </button>
+                                                                        {{-- <input type="text" hidden
                                                         name="follower_id"
                                                         id="follower_id"
                                                         value="{{ $row->follower_id }}"
                                                         class="form-control"> --}}
-                                                                </form>
-                                                            @endif
+                                                                    </form>
+                                                                @endif
+                                                            </div>
+                                                            <div class="dropdown-divider"></div>
+                                                        @endif
+                                                    @endforeach
+                                                    @forelse ($notification as $row)
+                                                    @empty
+                                                        <div class="text-center mt-5">
+                                                            <img src="{{ asset('images/nodata.png') }}"
+                                                                class="col-sm-6 mt-4" alt="...">
                                                         </div>
-                                                        <div class="dropdown-divider"></div>
-                                                    @endif
-                                                @endforeach
-                                                @forelse ($notification as $row)
-                                                @empty
-                                                    <div class="text-center mt-5">
-                                                        <img src="{{ asset('images/nodata.png') }}"
-                                                            class="col-sm-6 mt-4" alt="...">
-                                                    </div>
-                                                @endforelse
+                                                    @endforelse
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
 
-                            <li
-                                class="nav-item dropdown me-3   {{ $unreadNotificationCount == 0 ? 'ms-4' : '' }} me-lg-1">
-                                <a type="" data-toggle="dropdown" class="me-4" href="#">
-                                    @if ($userLogin->foto)
-                                        <img loading="lazy" class="mr-3 rounded-circle"
-                                            src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
-                                            width="45px" height="45px">
-                                    @else
-                                        <img loading="lazy" class="mr-3 rounded-circle border border-light"
-                                            src="{{ asset('images/default.jpg') }}" alt="profile image"
-                                            width="45px" height="45px">
+                                <li class="nav-item dropdown   {{ $unreadNotificationCount == 0 ? 'ms-4' : '' }} me-lg-1">
+                                    <a type="" data-toggle="dropdown" class="me-1" href="#">
+                                        @if ($userLogin->foto)
+                                            <img loading="lazy" class=" rounded-circle"
+                                                src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
+                                                width="45px" height="45px">
+                                        @else
+                                            <img loading="lazy" class=" rounded-circle border border-light"
+                                                src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                                width="45px" height="45px">
+                                        @endif
+                                    </a>
+                                    @if (auth()->user()->role === 'koki')
+                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3  ms-auto"
+                                            style="width: 255px; border-radius:13px;">
+                                            <div class="input-group">
+                                                <a href="#">
+                                                    @if ($userLogin->foto)
+                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                            src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                            alt="profile image" width="50px" height="50px">
+                                                    @else
+                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                            src="{{ asset('images/default.jpg') }}"
+                                                            alt="profile image" style="max-width:40px">
+                                                    @endif
+                                                </a>
+                                                <p class="mt-2 text-orange">
+                                                    <b>{{ auth()->user()->name }}</b>
+                                                </p>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/koki/index" class="dropdown-item text-orange"
+                                                style="width: 230px">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                                </svg>
+                                                Profil
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/koki/beranda" class="dropdown-item text-orange"
+                                                style="width: 230px">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                        d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                Dashboard
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" data-toggle="modal" data-target="#favoriteModal"
+                                                style="width: 230px;" class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="21"
+                                                    class="me-1" height="21" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
+                                                </svg>
+                                                Favorite
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('penawaran.premium') }}" style="width: 230px;"
+                                                class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                                </svg>
+                                                Upgrade
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="#" style="width: 230px;" data-bs-toggle="modal"
+                                                data-bs-target="#topup" class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 256 256">
+                                                    <path fill="currentColor"
+                                                        d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z" />
+                                                </svg>
+                                                Top up
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('riwayat') }}" style="width: 230px;"
+                                                class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z" />
+                                                </svg>
+                                                Riwayat Top up
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                                class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                    <path fill="currentColor"
+                                                        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                                </svg>
+                                                Keluar
+                                            </a>
+                                        </div>
+                                    @elseif(auth()->user()->role == 'admin')
+                                        <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                            style="width: 255px; border-radius:13px;">
+                                            <div class="input-group">
+                                                <a href="#">
+                                                    @if ($userLogin->foto)
+                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                            src="{{ asset('storage/' . $userLogin->foto) }}"
+                                                            alt="profile image" width="50px" height="50px">
+                                                    @else
+                                                        <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                            src="{{ asset('images/default.jpg') }}"
+                                                            alt="profile image" style="max-width:40px">
+                                                    @endif
+                                                </a>
+                                                <p class="mt-2 text-orange">
+                                                    <b>{{ auth()->user()->name }}</b>
+                                                </p>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="/admin/dashboard" class="dropdown-item text-orange"
+                                                style="width: 230px">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 16 16">
+                                                    <path fill="currentColor" fill-rule="evenodd"
+                                                        d="m7.879 5l1.06-1.06l1.421-1.422a3.5 3.5 0 0 0-3.653 4.674l.326.897l-.675.674l-3.797 3.798a.621.621 0 1 0 .878.878l3.798-3.797l.674-.675l.897.325a3.5 3.5 0 0 0 4.674-3.653L12.06 7.062L11 8.12L9.94 7.06l-1-1L7.878 5Zm6.173-1.93A4.987 4.987 0 0 1 15 6a5 5 0 0 1-6.703 4.703L4.5 14.5a2.121 2.121 0 0 1-3-3l3.797-3.797A5 5 0 0 1 13 2l-1.076 1.076l-.863.863L10 5l1 1l1.06-1.06l.864-.864L14 3l.052.07Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                                Dashboard
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                                class="dropdown-item text-orange">
+                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                                    height="20" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                                    <path fill="currentColor"
+                                                        d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                                </svg>
+                                                Keluar
+                                            </a>
+                                        </div>
                                     @endif
-                                </a>
-                                @if (auth()->user()->role === 'koki')
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
-                                        style="width: 255px; border-radius:13px;">
-                                        <div class="input-group">
-                                            <a href="#">
-                                                @if ($userLogin->foto)
-                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                        src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                        alt="profile image" width="50px" height="50px">
-                                                @else
-                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                        src="{{ asset('images/default.jpg') }}" alt="profile image"
-                                                        style="max-width:40px">
-                                                @endif
-                                            </a>
-                                            <p class="mt-2 text-orange">
-                                                <b>{{ auth()->user()->name }}</b>
-                                            </p>
-                                        </div>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="/koki/index" class="dropdown-item text-orange" style="width: 230px">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
-                                            </svg>
-                                            Profil
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="/koki/beranda" class="dropdown-item text-orange"
-                                            style="width: 230px">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 24 24">
-                                                <path fill="currentColor" fill-rule="evenodd"
-                                                    d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                            Dashboard
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" data-toggle="modal" data-target="#favoriteModal"
-                                            style="width: 230px;" class="dropdown-item text-orange">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="21"
-                                                class="me-1" height="21" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
-                                            </svg>
-                                            Favorite
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{{ route('penawaran.premium') }}" style="width: 230px;"
-                                            class="dropdown-item text-orange">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
-                                            </svg>
-                                            Upgrade
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" style="width: 230px;" data-bs-toggle="modal"
-                                            data-bs-target="#topup" class="dropdown-item text-orange">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 256 256">
-                                                <path fill="currentColor"
-                                                    d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z" />
-                                            </svg>
-                                            Top up
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{{ route('riwayat') }}" style="width: 230px;"
-                                            class="dropdown-item text-orange">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z" />
-                                            </svg>
-                                            Riwayat Top up
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{{ route('actionlogout') }}" style="width: 230px;"
-                                            class="dropdown-item text-orange">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                                <path fill="currentColor"
-                                                    d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
-                                            </svg>
-                                            Keluar
-                                        </a>
-                                    </div>
-                                @elseif(auth()->user()->role == 'admin')
-                                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
-                                        style="width: 255px; border-radius:13px;">
-                                        <div class="input-group">
-                                            <a href="#">
-                                                @if ($userLogin->foto)
-                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                        src="{{ asset('storage/' . $userLogin->foto) }}"
-                                                        alt="profile image" width="50px" height="50px">
-                                                @else
-                                                    <img class="mr-3 ms-2 mb-1 rounded-circle"
-                                                        src="{{ asset('images/default.jpg') }}" alt="profile image"
-                                                        style="max-width:40px">
-                                                @endif
-                                            </a>
-                                            <p class="mt-2 text-orange">
-                                                <b>{{ auth()->user()->name }}</b>
-                                            </p>
-                                        </div>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="/admin/dashboard" class="dropdown-item text-orange"
-                                            style="width: 230px">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 16 16">
-                                                <path fill="currentColor" fill-rule="evenodd"
-                                                    d="m7.879 5l1.06-1.06l1.421-1.422a3.5 3.5 0 0 0-3.653 4.674l.326.897l-.675.674l-3.797 3.798a.621.621 0 1 0 .878.878l3.798-3.797l.674-.675l.897.325a3.5 3.5 0 0 0 4.674-3.653L12.06 7.062L11 8.12L9.94 7.06l-1-1L7.878 5Zm6.173-1.93A4.987 4.987 0 0 1 15 6a5 5 0 0 1-6.703 4.703L4.5 14.5a2.121 2.121 0 0 1-3-3l3.797-3.797A5 5 0 0 1 13 2l-1.076 1.076l-.863.863L10 5l1 1l1.06-1.06l.864-.864L14 3l.052.07Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                            Dashboard
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{{ route('actionlogout') }}" style="width: 230px;"
-                                            class="dropdown-item text-orange">
-                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
-                                                height="20" viewBox="0 0 24 24">
-                                                <path fill="currentColor"
-                                                    d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
-                                                <path fill="currentColor"
-                                                    d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
-                                            </svg>
-                                            Keluar
-                                        </a>
-                                    </div>
-                                @endif
-                            </li>
-                        </ul>
-                    @else
-                        <ul class="navbar-nav flex-row">
-                            <div class="mx-5">
-                                <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects"
-                                    style="border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
-                                        class="me-2 ms-2">Masuk</b></a>
+                                </li>
+                            </ul>
+                        @else
+                            <ul class="navbar-nav flex-row">
+                                <div class="mx-5">
+                                    <a href="{{ route('login') }}" class="btn rounded-5 text-white zoom-effects"
+                                        style="border-radius: 15px; border: 0.50px white solid; font-family: Poppins;"><b
+                                            class="me-2 ms-2">Masuk</b></a>
 
-                            </div>
-                        </ul>
-                    @endif
+                                </div>
+                            </ul>
+                        @endif
+                    </div>
                     <!-- Right elements -->
                 </div>
             </nav>
@@ -1561,8 +1603,8 @@
                         </div>
 
                         <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
-                            <input type="number" id="inputan" name="inputanLainya" class="form-control border-2"
-                                style="border-radius: 10px; border:solid #F7941E;"
+                            <input type="number" id="inputan" name="inputanLainya"
+                                class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;"
                                 placeholder="Masukkan nominal lainya...">
                         </div>
                     </div>
@@ -1638,8 +1680,8 @@
     <!-- modal gift end -->
 
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1805,97 +1847,12 @@
         @endif
     </script>
     <script>
-        $(function() {
-
-            var siteSticky = function() {
-                $(".js-sticky-header").sticky({
-                    topSpacing: 0
-                });
-            };
-            siteSticky();
-
-            var siteMenuClone = function() {
-
-                $('.js-clone-nav').each(function() {
-                    var $this = $(this);
-                    $this.clone().attr('class', 'site-nav-wrap').appendTo('.site-mobile-menu-body');
-                });
-
-
-                setTimeout(function() {
-
-                    var counter = 0;
-                    $('.site-mobile-menu .has-children').each(function() {
-                        var $this = $(this);
-
-                        $this.prepend('<span class="arrow-collapse collapsed">');
-
-                        $this.find('.arrow-collapse').attr({
-                            'data-toggle': 'collapse',
-                            'data-target': '#collapseItem' + counter,
-                        });
-
-                        $this.find('> ul').attr({
-                            'class': 'collapse',
-                            'id': 'collapseItem' + counter,
-                        });
-
-                        counter++;
-
-                    });
-
-                }, 1000);
-
-                $('body').on('click', '.arrow-collapse', function(e) {
-                    var $this = $(this);
-                    if ($this.closest('li').find('.collapse').hasClass('show')) {
-                        $this.removeClass('active');
-                    } else {
-                        $this.addClass('active');
-                    }
-                    e.preventDefault();
-
-                });
-
-                $(window).resize(function() {
-                    var $this = $(this),
-                        w = $this.width();
-
-                    if (w > 768) {
-                        if ($('body').hasClass('offcanvas-menu')) {
-                            $('body').removeClass('offcanvas-menu');
-                        }
-                    }
-                })
-
-                $('body').on('click', '.js-menu-toggle', function(e) {
-                    var $this = $(this);
-                    e.preventDefault();
-
-                    if ($('body').hasClass('offcanvas-menu')) {
-                        $('body').removeClass('offcanvas-menu');
-                        $this.removeClass('active');
-                    } else {
-                        $('body').addClass('offcanvas-menu');
-                        $this.addClass('active');
-                    }
-                })
-
-                // click outisde offcanvas
-                $(document).mouseup(function(e) {
-                    var container = $(".site-mobile-menu");
-                    if (!container.is(e.target) && container.has(e.target).length === 0) {
-                        if ($('body').hasClass('offcanvas-menu')) {
-                            $('body').removeClass('offcanvas-menu');
-                        }
-                    }
-                });
-            };
-            siteMenuClone();
-
-        });
-    </script>
-    <script>
+        function offcanvas_show(){
+            $('#offcanvas_id').addClass('offcanvas-menu');
+        }
+        function offcanvas_hide(){
+            $('#offcanvas_id').removeClass('offcanvas-menu');
+        }
         $(document).ready(function() {
             $("#buttonaddrecipe").click(function(event) {
                 event.preventDefault();

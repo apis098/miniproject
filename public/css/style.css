@@ -1035,6 +1035,7 @@ a:focus {
   -o-transition: 0.2s all cubic-bezier(0.66, 0.2, 0.48, 0.9);
   transition: 0.2s all cubic-bezier(0.66, 0.2, 0.48, 0.9);
   border-top-left-radius: 30px;
+  margin-top:-0,7%;
  }
   .offcanvas-menu .site-mobile-menu {
     -webkit-transform: translateX(0%);
@@ -1042,7 +1043,6 @@ a:focus {
     transform: translateX(0%); 
     overflow: hidden;
     height: 103%;
-    margin-top:-2.5%;
   }
   .site-mobile-menu .site-mobile-menu-header {
     width: 100%;

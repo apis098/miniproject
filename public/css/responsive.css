@@ -137,12 +137,14 @@ padding-left: 0;
   justify-content: center; /* Pusat horizontal */
   align-items: center; /* Pusat vertikal */
 }
-@media screen and (max-width:820px){
-  .navbar-brand{
+@media screen and (max-width:992px){
+  .center_nav{
     display: none ;
   }
+  .right_nav{
+    display: none;
+  }
 }
-
 
 /* .form-comment{
   display: flex;
