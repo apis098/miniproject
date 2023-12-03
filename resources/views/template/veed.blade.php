@@ -1960,7 +1960,7 @@
                                                                                                     <div
                                                                                                         id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
                                                                                                         <div
-                                                                                                            class="mb-4 mt-4 row trisqi1">
+                                                                                                            class="mb-4 mt-4 row">
                                                                                                             <div
                                                                                                                 class="d-flex col-12 pl-0 pr-0">
                                                                                                                 <img width="38px"
@@ -2345,7 +2345,7 @@
 
                                                                                                             </div> --}}
                                                                                                             <div
-                                                                                                                class="mb-4 mt-4 row trisqi2">
+                                                                                                                class="mb-4 mt-4 row">
                                                                                                                 <div
                                                                                                                     class="d-flex col-12 pl-0 pr-0">
                                                                                                                     @if ($reply_replyComment->user_pengirim->foto)
@@ -3231,7 +3231,7 @@
                             console.log(pengirim);
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini${up['id']}">
-                                                                                                        <div class="mb-4 mt-4 row trisqi3">
+                                                                                                        <div class="mb-4 mt-4 row">
                                                                                                             <div class="d-flex col-12 pl-0 pr-0">
                                                                                                                 <img width="38px"
                                                                                                                 height="38px"
@@ -3377,7 +3377,7 @@
                                                                                                                                                 id="buttonComment2Veed1${up['id']}"
                                                                                                                                                 onclick="balas_replies_comments_feeds1(${up['id']})"
                                                                                                                                                 style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
-                                                                                                                                                class="btn btn-sm mb-1 text-light trisqi mt-1"><b
+                                                                                                                                                class="btn btn-sm mb-1 text-light mt-1"><b
                                                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                                                         </div>
                                                                                                                                     </div>
