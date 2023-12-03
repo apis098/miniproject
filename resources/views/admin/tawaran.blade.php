@@ -180,79 +180,89 @@
         margin-left: 0;
       }
     }
+
+    @media(max-width:475px) {
+      ul li {
+        text-align: center;
+      }
+    }
   </style>
-  <div style="overflow-x: hidden">
-    <div class="d-flex mt-3 ms-5  justify-content-start">
-      <ul class="nav mb-3 mr-5" id="pills-tab" role="tablist">
+  <div>
+    <div class="d-flex mt-3 justify-content-start">
+      <ul class="nav mb-3" id="pills-tab" role="tablist">
         <li class="nav-item tabs" role="presentation">
-          <a href="#" class="nav-link mr-5 active" id="button-berlangganan" data-bs-toggle="tab"
+          <a href="#" class="nav-link active" id="button-berlangganan" data-bs-toggle="tab"
             data-bs-target="#berlangganan" type="button" role="tab" aria-controls="profile" aria-selected="false">
-            <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">
-              Berlangganan
+            <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
+              Langganan
             </h5>
             <div id="border1" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid;">
             </div>
           </a>
         </li>
         <li class="nav-item tabs" role="presentation">
-          <a href="#" class="nav-link mr-5" id="button-topUp" data-bs-toggle="tab" data-bs-target="#topUp"
-            type="button" role="tab" aria-controls="keluhan" aria-selected="false">
+          <a href="#" class="nav-link" id="button-topUp" data-bs-toggle="tab" data-bs-target="#topUp" type="button"
+            role="tab" aria-controls="keluhan" aria-selected="false">
             <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
               Top up Saldo
             </h5>
-            <div id="border2" class="ms-3" style="width: 70%; height: 80%; border: 1px #F7941E solid; display:none;">
+            <div id="border2" class="ms-3" style="width: 80%; height: 100%; border: 1px #F7941E solid; display:none;">
             </div>
           </a>
         </li>
       </ul>
     </div>
-    <div class="tab-content" id="pills-tabContent">
+    <div class="tab-content ms-3 me-3" id="pills-tabContent">
       <div class="tab-pane fade show active" id="berlangganan" role="tabpanel" aria-labelledby="pills-home-tab"
         tabindex="0">
-        <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
-          @csrf
-          <div class=" d-flex justify-content-start ms-3" style="overflow-x:hidden;">
-            <div class=" ml-5">
+        <div>
+          <div>
+            <form action="{{ route('upload.tawaran') }}" method="post" id="form-upload-tawaran">
+              @csrf
+
               <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Nama</label>
+                <label class="col-sm-2 col-form-label fw-bold">Nama</label>
                 <div class="col-sm-10">
                   <input type="text" id="nama" name="nama_paket" class="form-control "
-                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Nama Paket...">
+                    placeholder="Masukkan Nama Paket...">
                 </div>
               </div>
               <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Harga </label>
+                <label class="col-sm-2 col-form-label fw-bold">Harga </label>
                 <div class="col-sm-10">
                   <input type="text" id="harga" name="harga_paket" class="form-control "
-                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Harga Paket...">
+                    placeholder="Masukkan Harga Paket...">
                 </div>
               </div>
               <div class="mb-3 row">
-                <label class="col-sm-1 col-form-label fw-bold">Durasi </label>
+                <label class="col-sm-2 col-form-label fw-bold">Durasi </label>
                 <div class="col-sm-10">
                   <input type="text" id="durasi" name="durasi_paket" class="form-control "
-                    style="  width: 50rem; margin-left:-15px " placeholder="Masukkan Durasi Aktif Paket...">
+                    placeholder="Masukkan Durasi Aktif Paket...">
                 </div>
               </div>
-              <div class="d-flex">
-                <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
-                <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                  style="width: 45rem;" placeholder="Masukkan Detail Paket...">
+              <div class="mb-3 row">
+                <label class="col-form-label col-sm-2 fw-bold ">Detail </label>
+                <div class="col-sm-10">
+                  <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control"
+                    placeholder="Masukkan Detail Paket...">
+                </div>
               </div>
               <div id="details"></div>
-              <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 mb-3 float-start"
-                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b class="ms-2 me-2">Tambah
+              <div class="d-flex justify-content-between">
+              <button type="button" id="button-add-detail" class="btn text-light rounded-3 mt-4 mb-3"
+                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b>Tambah
                   Detail</b>
               </button> <br>
-              <button type="button" class="btn text-light rounded-3 float-end" onclick="buttonuploadtawaran()"
-                style=" background-color:#F7941E; margin-right:-1%; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                  class="ms-2 me-2">Tambah
+              <button type="button" class="btn text-light rounded-3 mt-4 mb-3" onclick="buttonuploadtawaran()"
+                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                  >Tambah
                   Paket</b>
               </button>
-            </div>
+              </div>
+            </form>
           </div>
-        </form>
-
+        </div>
         <style>
           .pricing .pricing-item {
             border: 1px solid #0a0a0a;
@@ -466,8 +476,7 @@
           }
         </style>
 
-        <section class="section pricing mx-5 mb-3">
-          <div class="container">
+        <section class="section pricing ms-1 me-3 mt-5 mb-3">
             <div class="row">
               @if ($penawaran_premium->count() == 0)
                 <div class="d-flex flex-column justify-content-center align-items-center">
@@ -476,7 +485,7 @@
                 </div>
               @endif
               @foreach ($penawaran_premium as $item_prem)
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 col-sm-12">
                   <div class="pricing-item animated-card">
                     <div class="pricing-heading">
                       <button type="button " style=" right: 5%; top: -5%; position: absolute;  border: none;"
@@ -610,23 +619,22 @@
                 {{-- end modal edit --}}
               @endforeach
             </div>
-          </div>
         </section>
 
       </div>
       <div class="tab-pane fade show" id="topUp" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
 
-        <div class="container">
+        <div class="">
           <div class="row ">
-            <div class="d-flex justify-content-start ms-5">
-              <h5 class="fw-bolder ms-1">
+            <div class="d-flex justify-content-start">
+              <h5 class="fw-bolder">
                 Penawaran kategori topup
               </h5>
             </div>
           </div>
           <div class="row">
-            <div class="d-flex justify-content-center">
-              <table id="table-resep" class="table-custom" style="width: 90%;">
+            <div class="d-flex justify-content-start">
+              <table id="table-resep" class="table-custom" style="width: 100%;">
                 <thead>
                   <tr>
                     <th scope="col">Nama</th>
@@ -650,7 +658,8 @@
                               style="background-color: #F7941E;"><b class="ms-2 me-2 mb-2 mt-2">
                                 <i class="fa-solid fa-pencil"></i></b>
                             </button>
-                            <button type="button" onclick="buttonhapus({{ $topup->id }})" class="btn btn-outline-dark btn-sm rounded-3">
+                            <button type="button" onclick="buttonhapus({{ $topup->id }})"
+                              class="btn btn-outline-dark btn-sm rounded-3">
                               <b class="ms-2 me-2 mb-2 mt-2">
                                 <i class="fa-solid fa-trash"></i></b>
                             </button>
@@ -676,20 +685,20 @@
                               @method('PUT')
                               @csrf
                               <div class="">
-                                <div class="col-sm-10">
+                                <div class="">
                                   <label for="name">
                                     Nama kategori
                                   </label>
                                   <input type="text" id="name" class="form-control mb-3" name="name"
-                                    value="{{ $topup->name }}" style="border-radius:10px; width:120%;">
+                                    value="{{ $topup->name }}" style="border-radius:10px;">
                                   <label for="price">
                                     Harga
                                   </label>
                                   <input type="text" id="price" class="form-control" name="price"
-                                    value="{{ $topup->price }}" style="border-radius:10px; width:120%;">
+                                    value="{{ $topup->price }}" style="border-radius:10px;">
                                   <br>
-                                  <button type="submit" class="btn btn-sm text-white d-flex justify-content-xxl-end"
-                                    style="  margin-left: 350px; background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
+                                  <button type="submit" class="btn btn-sm text-white float-end"
+                                    style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
                                     Simpan
                                   </button>
                                 </div>
@@ -703,9 +712,9 @@
                 </tbody>
               </table>
             </div>
-            <div class="row mx-1">
+            <div class="">
               <button type="button" data-bs-toggle="modal" data-bs-target="#modalTambah"
-                class="btn rounded-3 text-dark mx-5" style="border: 1px solid #000; width:90%"><b class="">
+                class="btn rounded-3 text-dark" style="border: 1px solid #000; width:100%"><b class="">
                   Tambah
               </button>
             </div>
@@ -731,24 +740,20 @@
 
                 <form action="{{ route('categories.topup.store') }}" method="post">
                   @csrf
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class=" d-flex mb-3 ">
-                        <div class="col-sm-1 fw-bolder">Nama</div>
-                        <div class="col-sm-11">
+                  <div class="">
+                    <div class="row mb-3">
+                        <label class="col-sm-2 fw-bolder col-form-label">Nama</label>
+                        <div class="col-sm-10">
                           <input type="text" id="nama_topup" name="name" class="form-control"
                             style="border-radius: 10px" placeholder="Masukkan Nama Kategori...">
                         </div>
-                      </div>
                     </div>
-                    <div class="col-md-12">
-                      <div class=" d-flex mb-3">
-                        <label class="col-sm-1 fw-bolder">Harga</label>
-                        <div class="col-sm-11">
+                    <div class="row mb-3">
+                        <label class="col-sm-2 fw-bolder col-form-label">Harga</label>
+                        <div class="col-sm-10">
                           <input type="text" id="harga_topup" name="price" class="form-control"
                             style="border-radius: 10px" placeholder="Masukkan Harga default...">
                         </div>
-                      </div>
                     </div>
                   </div>
                   <button type="submit" class="btn text-light rounded-3 float-end"
@@ -767,7 +772,7 @@
 
   <script>
     function buttonhapus(num) {
-        iziToast.question({
+      iziToast.question({
         timeout: 20000,
         close: false,
         overlay: true,
@@ -825,6 +830,7 @@
         }
       });
     }
+
     function confirmationToDeletePenawaran(num) {
       iziToast.question({
         timeout: 20000,
@@ -934,16 +940,19 @@
       num++;
       let div = document.createElement('div');
       div.innerHTML = `
-            <div class="d-flex my-2" id="detail${num}">
-            <label class="col-form-label fw-bold ">Detail </label> &nbsp; &nbsp; &nbsp;
-                <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control me-2"
-                    style="width: 45rem;" placeholder="Masukkan Detail Paket...">
-
-            <button type="button" onclick="hapus_details(${num})" class="btn btn-sm text-light rounded-3"
+            <div class="row mb-3" id="detail${num}">
+                <label class="col-form-label col-sm-2 fw-bold ">Detail </label>
+                <div class="col-sm-10">
+                  <input type="text" id="comment-veed1" name="detail_paket[]" class="form-control"
+                    placeholder="Masukkan Detail Paket...">
+                </div>
+                <div class="col-sm-12">
+              <button type="button" onclick="hapus_details(${num})" class="btn btn-sm text-light my-2 rounded-3 float-end"
                 style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                     class="ms-2 me-2">Hapus</b>
             </button>
             </div>
+        </div>
             `;
       document.getElementById("details").appendChild(div);
     });
