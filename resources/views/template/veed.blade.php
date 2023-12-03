@@ -577,7 +577,7 @@
                                                 @if ($item_video->checkLikeFeed(Auth::user()->id))
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
-                                                        <button class=""
+                                                        <button class="pr-0"
                                                             style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i class="text-orange fa-solid fa-lg fa-thumbs-up"
@@ -589,7 +589,7 @@
                                                 @else
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
-                                                        <button class="text-dark"
+                                                        <button class="text-dark pr-0"
                                                             style="border: none; background-color:white;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i id="likeB{{ $urut }}"
@@ -601,11 +601,13 @@
                                                 @endif
                                             <!-- </span> -->
                                         @else
-                                            <form>
+                                            <form class="text-center mr-1">
                                                 <button style="border: none; background-color:white;" id="buttonLikeVeed"
-                                                    type="button" onclick="harusLogin()">
+                                                    type="button" onclick="harusLogin()" class="pr-0">
                                                     <i class="fa-regular fa-lg fa-thumbs-up"></i>
                                                 </button>
+                                                <span class="my-auto ml-auto"
+                                                    id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                             </form>
                                         @endif
                                         <!-- <span class="my-auto"
