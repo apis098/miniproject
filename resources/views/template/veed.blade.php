@@ -583,6 +583,8 @@
                                                             <i class="text-orange fa-solid fa-lg fa-thumbs-up"
                                                                 id="likeB{{ $urut }}"></i>
                                                         </button>
+                                                        <span class="my-auto ml-auto"
+                                                    id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                                     </form>
                                                 @else
                                                     <form id="formLikeVeed{{ $urut }}"
@@ -2772,7 +2774,7 @@
                         </div>
                         <div class="card-body" style="height: 500px;">
                             @foreach ($recipes as $resep)
-                                <div class="row mb-3">
+                                <div class="d-flex mb-3">
                                     <a href="">
                                         @if ($resep->user->foto)
                                             <img src="{{ asset('storage/' . $resep->user->foto) }}"
