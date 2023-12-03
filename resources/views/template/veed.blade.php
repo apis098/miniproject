@@ -1960,7 +1960,7 @@
                                                                                                     <div
                                                                                                         id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
                                                                                                         <div
-                                                                                                            class="mb-4 row">
+                                                                                                            class="mb-4 mt-4 row">
                                                                                                             <div
                                                                                                                 class="d-flex col-12 pl-0 pr-0">
                                                                                                                 <img width="38px"
@@ -2345,7 +2345,7 @@
 
                                                                                                             </div> --}}
                                                                                                             <div
-                                                                                                                class="mb-4 row">
+                                                                                                                class="mb-4 mt-4 row">
                                                                                                                 <div
                                                                                                                     class="d-flex col-12 pl-0 pr-0">
                                                                                                                     @if ($reply_replyComment->user_pengirim->foto)
@@ -2623,7 +2623,7 @@
                                                                                                                     </div>
                                                                                                                     <div class="col-9 pr-0">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary mt-1"
+                                                                                                                            class="text-secondary mt-2"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse3{{ $reply_replyComment->id }}"
                                                                                                                             aria-expanded="true"
@@ -2638,7 +2638,7 @@
                                                                                                                                     d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                             </svg>
                                                                                                                             &nbsp;
-                                                                                                                            <small class="me-3 ">Balas</small>
+                                                                                                                            <small class="me-2 ">Balas</small>
                                                                                                                         </a>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -3044,7 +3044,7 @@
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
-                                                                                                             <div class="d-flex ms-3"
+                                                                                                             <div class="d-flex"
                                                                                                                     style="margin-top: -3%;">
                                                                                                                     <div class="d-flex col-2 ms-4 pl-0">
                                                                                                                         @if (Auth::user())
@@ -3101,9 +3101,9 @@
                                                                                                                         </div>
                                                                                                                     </div>
 
-                                                                                                                <div style="" class="col-9 pl-0">
+                                                                                                                <div style="" class="col-9 pr-0">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary mt-1"
+                                                                                                                        class="text-secondary mt-2"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse${up['id']}"
                                                                                                                         aria-expanded="true"
@@ -3119,7 +3119,7 @@
                                                                                                                                 d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                         </svg>
                                                                                                                         &nbsp;
-                                                                                                                        <small class="me-3 ">Balas</small>
+                                                                                                                        <small class="me-2 ">Balas</small>
                                                                                                                     </a>
                                                                                                                 </div>
                                                                                                             </div>
@@ -3231,7 +3231,7 @@
                             console.log(pengirim);
                             let innerHtml = `
                             <div class="" id="balasan_komentar_ini${up['id']}">
-                                                                                                        <div class="mb-4 row">
+                                                                                                        <div class="mb-4 mt-4 row">
                                                                                                             <div class="d-flex col-12 pl-0 pr-0">
                                                                                                                 <img width="38px"
                                                                                                                 height="38px"
@@ -3333,13 +3333,13 @@
                                                                                                         </div>
                                                                                                     </div>
                                                                                                     <!-- Komentar Balasan Collapse Start -->
-                                                                                                            <div class="collapse" style="margin-left:-4.2%;"
+                                                                                                            <div class="collapse" style=""
                                                                                                                 id="reply_collapse${up['id']}">
                                                                                                                  <div class='ms-3' id="replies_reply${up['id']}">
 
                                                                                                                 </div>
-                                                                                                                <div class="card-body">
-                                                                                                                    <div class="container">
+                                                                                                                <div class="">
+                                                                                                                    <div class="">
                                                                                                                         <div class="row">
                                                                                                                             @if (Auth::check())
                                                                                                                             <form
@@ -3368,17 +3368,16 @@
                                                                                                                                                 id="inputBalasRepliesCommentsFeeds1${up['id']}"
                                                                                                                                                 name="komentar"
                                                                                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
-                                                                                                                                                class="form-control-sm border border-dark border-5 me-3"
+                                                                                                                                                class="form-control-sm border border-dark border-5 me-3 mt-1"
                                                                                                                                                 placeholder="Masukkan komentar...">
-                                                                                                                                        </div
+                                                                                                                                        </div>
                                                                                                                                         <div class="col-lg-2 col-md-2 col-12 pl-0">
-
                                                                                                                                             <button
                                                                                                                                                 type="submit"
                                                                                                                                                 id="buttonComment2Veed1${up['id']}"
                                                                                                                                                 onclick="balas_replies_comments_feeds1(${up['id']})"
                                                                                                                                                 style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
-                                                                                                                                                class="btn btn-sm mb-1 text-light"><b
+                                                                                                                                                class="btn btn-sm mb-1 text-light mt-1"><b
                                                                                                                                                     class="me-3 ms-3">Kirim</b></button>
                                                                                                                                         </div>
                                                                                                                                     </div>
@@ -3915,7 +3914,7 @@
                                                                                                                 <div 
                                                                                                                         class="col-9 pr-0">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary mt-1"
+                                                                                                                            class="text-secondary mt-2"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse${up['id']}"
                                                                                                                             aria-expanded="true"
