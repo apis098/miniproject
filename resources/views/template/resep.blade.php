@@ -669,6 +669,11 @@
           </div>
       </div>
   </div>
+  <div class=" mt-5  mx-5 input-group">
+    <div class="ms-1">
+        <h3 class="fw-bold">Hasil Pencarian</h3>
+    </div>
+</div>
   @if ($recipes->count() == 0)
       <div class="d-flex flex-column justify-content-center align-items-center">
           <img src="{{ asset('images/data.png') }}" style="width: 15em">
@@ -676,11 +681,7 @@
       </div>
   @endif
   <div class="my-5 mx-5">
-    <div class=" mt-5 mb-3 input-group">
-        <div class="ms-1">
-            <h3 class="fw-bold">Hasil Pencarian</h3>
-        </div>
-    </div>
+
       <div class="row d-flex justify-content-center">
           @foreach ($recipes as $num => $item)
               <div class="col-xl-3 col-lg-4 mb-5 col-sm-8 col-12 col-md-6">
