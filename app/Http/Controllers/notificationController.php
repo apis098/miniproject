@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use App\Models\notifications;
 use Illuminate\Http\Request;
 use App\Models\UlasanKursus;
@@ -131,15 +132,14 @@ class notificationController extends Controller
         public function update_all_status(){
             $notification = notifications::where('user_id',auth()->user()->id)->where('status','belum')->get();
             foreach ($notification as $row){
-            $row->status = "sudah";
-            $row->save();
+                $row->status = "sudah";
+                $row->save();
             }
-            // $read_notification = notifications::where('user_id',auth()->user()->id)->where('status','sudah')->get();
-            // foreach($read_notification as $unread){
-            //     $unread->delete();
-            // }
+            $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
             return response()->json([
                 'success' => true,
+                'message_count' => $messageCount,
+                'notification_ount' => 0,
             ]);
         }
 }
