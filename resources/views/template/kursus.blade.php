@@ -186,6 +186,7 @@
             box-shadow: 0px 4px 4px rgba(74, 50, 50, 0.25);
             border-radius: 15px;
         }
+        
         }
 
 
@@ -198,7 +199,7 @@
             font-size: 22px;
             font-family: Poppins;
             letter-spacing: 0.48px;
-            margin-right: 40%;
+            margin-right: 0%;
             bottom: 15%;
             text-align: center;
         }
@@ -348,6 +349,24 @@
             .btn-filter {
                 height: 40px;
             }
+        }
+        .text-kursus {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            color: black;
+
+            @supports (-webkit-line-clamp: 2) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            }
+        }
+         :hover.text-kursus{
+            color: #F7941E;
         }
     </style>
 
@@ -653,10 +672,10 @@
                     @endif
                     <div class="row">
                         @foreach ($semua_kursus as $semua)
-                            <div class=" col-lg-4 col-md-4 col-sm-5 mb-4">
+                            <div class=" col-lg-4 col-md-6 col-sm-6 col-12 mb-4">
                                 <div class="card " style="border-radius:15px">
                                     <img src="{{ asset('storage/' . $semua->foto_kursus) }}" class="imgku"
-                                        alt="...">
+                                        alt="..." style="max-height: 200px; object-fit: cover">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-12">
@@ -666,24 +685,26 @@
                                                         {{ $item->jenis_kursus }}
                                                     @endforeach
                                                 </button> <br>
-                                                <a href="{{ route('detail.kursus', $semua->id) }}" class="btn"
-                                                    style="font-family: poppins;font-weight:bold">{{ $semua->nama_kursus }}</a>
+                                                <a href="{{ route('detail.kursus', $semua->id) }}" class="text-kursus "
+                                                    style="font-family: poppins;font-weight:bold">
+                                                   {{ $semua->nama_kursus }}
+                                                </a>
                                             </div>
-                                            <div class="col-12 mt-3 row">
-                                                <div class="col-6 d-flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                            <div class="col-12 mt-3 d-flex justify-content-between mx-1">
+                                                <div class=" d-flex pr-0 text-center" style="width: 50%">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                                         viewBox="0 0 256 256">
                                                         <path fill="currentColor"
                                                             d="M208 28H72a28 28 0 0 0-28 28v168a4 4 0 0 0 4 4h144a4 4 0 0 0 0-8H52v-4a20 20 0 0 1 20-20h136a4 4 0 0 0 4-4V32a4 4 0 0 0-4-4Zm-4 160H72a27.94 27.94 0 0 0-20 8.42V56a20 20 0 0 1 20-20h132Z" />
                                                     </svg>
-                                                    <p class="mt-1 mx-1"> {{ $semua->jumlah_sesi() }} Sesi</p>
+                                                    <p class="mt-1 ml-1" style="font-size:13px;"> {{ $semua->jumlah_sesi() }} Sesi</p>
                                                 </div>
-                                                <div class="col-6 d-flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                                <div class="d-flex pl-0 justify-content-end mr-2" style="width: 50%">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                                         viewBox="0 0 15 15">
                                                         <path fill="none" stroke="currentColor"
                                                             d="M7.5 5v3.5H10m-4-8h3m-1.5 2a6 6 0 1 0 0 12a6 6 0 0 0 0-12Z" />
-                                                        <p class="mt-1 mx-1">{{ $semua->total_waktu_sesi() }}</p>
+                                                        <p class="mt-1 ml-1" style="font-size: 13px">{{ $semua->total_waktu_sesi() }}</p>
                                                     </svg>
                                                 </div>
                                             </div>

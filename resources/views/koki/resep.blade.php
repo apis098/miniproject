@@ -386,10 +386,9 @@
                             free_button.classList.add("btn-no-select");
                         });
                     </script>
-                    <button type="submit" class="btn btn-warning text-white mb-4"
-                        style="float: right;background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        id="button-add-recipe">Tambah
-                        Resep</button>
+                    <button type="submit" class="btn mt-3 btn-warning text-white mb-4 float-start float-sm-end float-md-end"
+                        style="background: #F7941E; border-radius: 15px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                        id="button-add-recipe">Tambah Resep</button>
                 </div>
             </div>
         </div>
