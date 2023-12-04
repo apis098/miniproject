@@ -42,13 +42,6 @@
                                         </a>
                                     @endif
                                     <div>
-                                         <!-- <div class="pl-0 pr-0 d-flex justify-content-between">
-                                                <strong class="ellipsis">{{ explode(' ', $item_video->user->name)[0] }}</strong>
-                                                @if ($resep->user->isSuperUser == 'yes')
-                                                    <i class="fa-regular fa-sm text-primary fa-circle-check my-auto"></i>
-                                                @endif
-                                                </div> -->
-
                                         <div class="bg-light rounded-3 px-3 py-1">
                                             <a href="/profile-orang-lain/{{ $row->id }}" class="text-dark mb-0">
                                             <div class="pl-0 pr-0 d-flex justify-content-between">
