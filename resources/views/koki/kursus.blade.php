@@ -110,16 +110,16 @@
     }
 
     /* button{
-                                                    background-color: #F7941E;
-                                                    border: none;
-                                                    height: 45px;
-                                                    width: 90px;
-                                                    color: #ffffff;
-                                                    position: absolute;
-                                                    right: 1px;
-                                                    top: 0px;
-                                                    border-radius: 15px
-                                                } */
+                                                        background-color: #F7941E;
+                                                        border: none;
+                                                        height: 45px;
+                                                        width: 90px;
+                                                        color: #ffffff;
+                                                        position: absolute;
+                                                        right: 1px;
+                                                        top: 0px;
+                                                        border-radius: 15px
+                                                    } */
     .search-2 i {
       position: absolute;
       top: 12px;
@@ -219,34 +219,50 @@
     }
 
     @media(max-width: 578px) {
-        .ul_kursus li a h5{
-            text-align: center;
-        }
-        .nav-item {
-            width: 30%;
-        }
-        .ul_kursus {
-            display: flex;
-            justify-content:center;
-        }
-        .searchkursus {
-            margin-left: 20px;
-            margin-right: 20px;
-        }
+      .ul_kursus li a h5 {
+        text-align: center;
+      }
+
+      .nav-item {
+        width: 30%;
+      }
+
+      .ul_kursus {
+        display: flex;
+        justify-content: center;
+      }
+
+      .searchkursus {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+
+      .daftarkursus {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
     }
+
     @media(min-width: 579px) {
-        .ul_kursus {
-            margin-left: 50px;
-            margin-right: 50px;
-        }
-        .tab-content {
-            margin-left: 50px;
-            margin-right: 50px;
-        }
-        .searchkursus {
-            margin-left: 50px;
-            margin-right: 50px;
-        }
+      .ul_kursus {
+        margin-left: 50px;
+        margin-right: 50px;
+      }
+
+      .tab-content {
+        margin-left: 50px;
+        margin-right: 50px;
+      }
+
+      .searchkursus {
+        margin-left: 50px;
+        margin-right: 50px;
+      }
+
+      .daftarkursus {
+        margin-left: 50px;
+        margin-right: 50px;
+      }
     }
   </style>
 
@@ -325,7 +341,7 @@
               <p><b>Tidak ada data</b></p>
             </div>
           @endif
-          <div class="row" id="myCourse">
+          <div class="row daftarkursus" id="myCourse">
             @foreach ($kursus_sendiri as $mycourse)
               <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my-3 myCourse" style="border-radius:15px">
@@ -616,70 +632,31 @@
             </div>
           @endif
           {{-- start tab 1 --}}
-          <div class="row">
+          <div class="row daftarkursus">
             @foreach ($kursus_disimpan as $mycourse)
-              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my-3 myCourse" style="border-radius:15px">
                   <div class="card">
-                    <div class="card-header">
+                    <div class=" " style="max-height:120px; min-height:120px;">
                       <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
-                        style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                           border-top-right-radius: 15px"
+                        style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
                         alt="...">
                     </div>
-                    <div class="card-body">
-                      <div class="mx-1">
-                        <strong>
-                          @foreach ($mycourse->jenis_kursus as $item)
-                            {{ $item->jenis_kursus }}
-                          @endforeach
-                        </strong>
-                        @if ($mycourse->status === 'ditunggu')
-                          <div class="float-end">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                              <path fill="currentColor"
-                                d="M12 22q-1.875 0-3.513-.713t-2.85-1.924q-1.212-1.213-1.924-2.85T3 13q0-1.875.713-3.513t1.924-2.85q1.213-1.212 2.85-1.924T12 4q1.875 0 3.513.713t2.85 1.925q1.212 1.212 1.925 2.85T21 13q0 1.875-.713 3.513t-1.924 2.85q-1.213 1.212-2.85 1.925T12 22Zm2.8-4.8l1.4-1.4l-3.2-3.2V8h-2v5.4l3.8 3.8ZM5.6 2.35L7 3.75L2.75 8l-1.4-1.4L5.6 2.35Zm12.8 0l4.25 4.25l-1.4 1.4L17 3.75l1.4-1.4Z" />
-                            </svg>
-                          </div>
-                        @elseif ($mycourse->status === 'diterima')
-                          <div class="float-end">
-                            <div class="float-end">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                  d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z" />
-                              </svg>
-                            </div>
-                          </div>
-                        @endif
-                        <br>
-                        @if ($mycourse->status === 'diterima')
-                          <a href="{{ route('detail.kursus', $mycourse->id) }}"
-                            class="btn text-break mt-1 text-start fst-normal" style="font-family: poppins;border:none;">
-                            {{ $mycourse->nama_kursus }}
-                          </a>
-                        @else
-                          <a href="#" class="btn text-break mt-1 text-start fst-normal"
-                            style="font-family: poppins;border:none;">
-                            {{ $mycourse->nama_kursus }}
-                          </a>
-                        @endif
-                        <div class="d-flex justify-content-between" style="float: right;">
-                          @if ($mycourse->status === 'diterima')
-                            <a href="{{ route('koki.user', $mycourse->id) }}" class="btn mt-2 mr-2"
-                              style="background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:40px;">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25"
-                                viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                  d="M11 12q-1.65 0-2.825-1.175T7 8q0-1.65 1.175-2.825T11 4q1.65 0 2.825 1.175T15 8q0 1.65-1.175 2.825T11 12Zm10.4 10.8l-2.5-2.5q-.525.3-1.125.5T16.5 21q-1.875 0-3.187-1.313T12 16.5q0-1.875 1.313-3.188T16.5 12q1.875 0 3.188 1.313T21 16.5q0 .675-.2 1.275t-.5 1.125l2.5 2.5q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275ZM16.5 19q1.05 0 1.775-.725T19 16.5q0-1.05-.725-1.775T16.5 14q-1.05 0-1.775.725T14 16.5q0 1.05.725 1.775T16.5 19ZM5 20q-.825 0-1.413-.588T3 18v-.775q0-.85.425-1.575t1.175-1.1q1.275-.65 2.875-1.1t3.55-.45q-.5.775-.763 1.663T10 16.5q0 .925.263 1.813T11.024 20H5Z" />
-                              </svg>
-                            </a>
-                            <a href="{{ route('koki.content', $mycourse->id) }}" class="btn mt-2"
-                              style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:40px;">
-                              + Konten
-                            </a>
-                          @endif
-                        </div>
+                    <div class="card-body" style="padding: 0.7rem 0.7rem 0 0.7rem;  min-height:125px; max-height:125px">
+                      <div class="mx-1 ">
+                        <span class="d-flex justify-content-between">
+                          <span>
+                            @foreach ($mycourse->jenis_kursus as $item)
+                              {{ $item->jenis_kursus }}
+                            @endforeach
+                          </span>
+                        </span>
+                        <a href="{{ route('detail.kursus', $mycourse->id) }}"
+                          class="btn judul-kursus text-break pt-0 pb-0 pl-0 text-start fw-bold"
+                          style="font-family: poppins;border:none; min-height:53px; max-height:53px">
+                          {{ $mycourse->nama_kursus }}
+                        </a>
                       </div>
                     </div>
 
@@ -725,70 +702,31 @@
               <p><b>Tidak ada data</b></p>
             </div>
           @endif
-          <div class="row">
+          <div class="row daftarkursus">
             @foreach ($kursus_dipesan as $mycourse)
-              <div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+              <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my-3 myCourse" style="border-radius:15px">
                   <div class="card">
-                    <div class="card-header">
+                    <div class=" " style="max-height:120px; min-height:120px;">
                       <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
-                        style="max-width:100%; width:100%; border-top-left-radius:15px;
-                                           border-top-right-radius: 15px"
+                        style="max-width:100%; object-fit: cover; max-height:120px; min-height:120px;  width:100%; border-top-left-radius:15px;
+                                               border-top-right-radius: 15px"
                         alt="...">
                     </div>
-                    <div class="card-body">
-                      <div class="mx-1">
-                        <strong>
-                          @foreach ($mycourse->jenis_kursus as $item)
-                            {{ $item->jenis_kursus }}
-                          @endforeach
-                        </strong>
-                        @if ($mycourse->status === 'ditunggu')
-                          <div class="float-end">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-                              <path fill="currentColor"
-                                d="M12 22q-1.875 0-3.513-.713t-2.85-1.924q-1.212-1.213-1.924-2.85T3 13q0-1.875.713-3.513t1.924-2.85q1.213-1.212 2.85-1.924T12 4q1.875 0 3.513.713t2.85 1.925q1.212 1.212 1.925 2.85T21 13q0 1.875-.713 3.513t-1.924 2.85q-1.213 1.212-2.85 1.925T12 22Zm2.8-4.8l1.4-1.4l-3.2-3.2V8h-2v5.4l3.8 3.8ZM5.6 2.35L7 3.75L2.75 8l-1.4-1.4L5.6 2.35Zm12.8 0l4.25 4.25l-1.4 1.4L17 3.75l1.4-1.4Z" />
-                            </svg>
-                          </div>
-                        @elseif ($mycourse->status === 'diterima')
-                          <div class="float-end">
-                            <div class="float-end">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                  d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z" />
-                              </svg>
-                            </div>
-                          </div>
-                        @endif
-                        <br>
-                        @if ($mycourse->status === 'diterima')
-                          <a href="{{ route('detail.kursus', $mycourse->id) }}"
-                            class="btn text-break mt-1 text-start fst-normal" style="font-family: poppins;border:none;">
-                            {{ $mycourse->nama_kursus }}
-                          </a>
-                        @else
-                          <a href="#" class="btn text-break mt-1 text-start fst-normal"
-                            style="font-family: poppins;border:none;">
-                            {{ $mycourse->nama_kursus }}
-                          </a>
-                        @endif
-                        <div class="d-flex justify-content-between" style="float: right;">
-                          @if ($mycourse->status === 'diterima')
-                            <a href="{{ route('koki.user', $mycourse->id) }}" class="btn mt-2 mr-2"
-                              style="background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:40px;">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25"
-                                viewBox="0 0 24 24">
-                                <path fill="currentColor"
-                                  d="M11 12q-1.65 0-2.825-1.175T7 8q0-1.65 1.175-2.825T11 4q1.65 0 2.825 1.175T15 8q0 1.65-1.175 2.825T11 12Zm10.4 10.8l-2.5-2.5q-.525.3-1.125.5T16.5 21q-1.875 0-3.187-1.313T12 16.5q0-1.875 1.313-3.188T16.5 12q1.875 0 3.188 1.313T21 16.5q0 .675-.2 1.275t-.5 1.125l2.5 2.5q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275ZM16.5 19q1.05 0 1.775-.725T19 16.5q0-1.05-.725-1.775T16.5 14q-1.05 0-1.775.725T14 16.5q0 1.05.725 1.775T16.5 19ZM5 20q-.825 0-1.413-.588T3 18v-.775q0-.85.425-1.575t1.175-1.1q1.275-.65 2.875-1.1t3.55-.45q-.5.775-.763 1.663T10 16.5q0 .925.263 1.813T11.024 20H5Z" />
-                              </svg>
-                            </a>
-                            <a href="{{ route('koki.content', $mycourse->id) }}" class="btn mt-2"
-                              style=" background: #F7941E;color:white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px;height:40px;">
-                              + Konten
-                            </a>
-                          @endif
-                        </div>
+                    <div class="card-body" style="padding: 0.7rem 0.7rem 0 0.7rem;  min-height:125px; max-height:125px">
+                      <div class="mx-1 ">
+                        <span class="d-flex justify-content-between">
+                          <span>
+                            @foreach ($mycourse->jenis_kursus as $item)
+                              {{ $item->jenis_kursus }}
+                            @endforeach
+                          </span>
+                        </span>
+                        <a href="{{ route('detail.kursus', $mycourse->id) }}"
+                          class="btn judul-kursus text-break pt-0 pb-0 pl-0 text-start fw-bold"
+                          style="font-family: poppins;border:none; min-height:53px; max-height:53px">
+                          {{ $mycourse->nama_kursus }}
+                        </a>
                       </div>
                     </div>
 
