@@ -126,8 +126,14 @@
                         <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
                     </div>
                 </div>
-                <div class="site-mobile-menu-body">
-                    <div class="container mt-3 ">
+                @if($unreadNotificationCount + $messageCount > 0)
+                    <button id="scrollToBottomButton" class="scroll-button iconButton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
+                        <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>  
+                    </button>
+                @endif
+                <div class="site-mobile-menu-body"id="scrollTarget" >
+                    <div class="container mt-3 " id="scrollTarget2">
                         <div class="row align-items-center">
                             <a href="{{ route('home') }}"
                                 class="{{ request()->is('/') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 ">
@@ -2508,6 +2514,45 @@
                 });
             });
         });
+        document.getElementById('scrollToBottomButton').addEventListener('click', function() {
+        var targetElement = document.getElementById('scrollTarget2');
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end'  // Opsional: Menggulirkan ke bagian bawah elemen target
+            });
+        }
+        });
+        // script.js
+    document.addEventListener('DOMContentLoaded', function() {
+    var scrollTarget = document.getElementById('scrollTarget');
+    var scrollToBottomButton = document.getElementById('scrollToBottomButton');
+
+    if (scrollTarget && scrollToBottomButton) {
+        // Mengatur fungsi untuk memantau perubahan posisi scroll pada elemen target
+        scrollTarget.addEventListener('scroll', function() {
+        // Mendapatkan tinggi elemen scroll target
+        var scrollTargetHeight = scrollTarget.scrollHeight - 50;
+
+        // Mendapatkan posisi scroll saat ini di dalam elemen target
+        var scrollPosition = scrollTarget.scrollTop;
+
+        // Mendapatkan tinggi jendela browser
+        var windowHeight = scrollTarget.clientHeight;
+
+        // Jika posisi scroll mencapai atau melampaui posisi bawah elemen scroll target
+        if (scrollPosition >= scrollTargetHeight - windowHeight) {
+            // Menyembunyikan tombol
+            scrollToBottomButton.style.opacity = '0';
+        } else {
+            // Menampilkan kembali tombol
+            scrollToBottomButton.style.opacity = '1';
+        }
+        });
+    }
+    });
+
     </script>
 </body>
 

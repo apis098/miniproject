@@ -1472,6 +1472,22 @@ a:focus {
       padding-top: 4px;
       padding-right: 6.5px;
     }
+    .iconButton{
+      position: relative;
+      margin-left: 45%;
+    }
+    .iconButton span{
+      position: absolute;
+      top:-4px;
+      right: -4px;
+      display: block;
+      color: #ffffff;
+      border-radius: 20px;
+      font-size:x-small;
+      padding-bottom: 4px;
+      padding-top: 4px;
+      padding-right: 6.5px;
+    }
     .badge-mobile{
       display: block;
       color: #ffffff;
@@ -1480,3 +1496,30 @@ a:focus {
       padding-bottom: 3px;
       padding-top: 4px;
     }
+    .scroll-button {
+      background-color: #ffffff;
+      color: #F7941E;
+      padding: 5px;
+      border: solid #F7941E;
+      border-radius: 50%;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5), 0 0 6px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+    /* @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      25% {
+        transform: translateX(-1px);
+      }
+      50% {
+        transform: translateX(1px);
+      }
+      75% {
+        transform: translateX(-1px);
+      }
+    }
+    
+    .scroll-button svg {
+      animation: shake 0.03s ease-in-out infinite;
+    } */
