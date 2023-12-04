@@ -331,8 +331,8 @@
                     </div>
                     <div class="container mt-5">
                         <div class="row align-items-center">
-                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 ">
-                                <div class="d-flex justify-content-start align-items-center">
+                            <a href="{{route('home')}}" class="{{ request()->is('/') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 ">
+                                <div class="d-flex justify-content-start align-items-center {{request()->is('/') ? 'text-orange' : ''}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -342,8 +342,8 @@
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
                                 </div>
                             </a>
-                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div class="d-flex justify-content-start align-items-center">
+                            <a href="{{route('resep.home')}}" class="{{ request()->is('resep') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center {{request()->is('resep') ? 'text-orange' : ''}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
                                         height="23" viewBox="0 0 14 14">
                                         <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -354,8 +354,8 @@
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
                                 </div>
                             </a>
-                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div class="d-flex justify-content-start align-items-center">
+                            <a href="{{route('kursus')}}" class="{{request()->is('kursus') ? 'orange-outline'  : 'black-outline' }} rounded-5 text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center {{request()->is('kursus') ? 'text-orange' : ''}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
                                         height="23" viewBox="0 0 14 14">
                                         <g fill="none" stroke="currentColor" stroke-linecap="round"
@@ -369,8 +369,8 @@
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
                                 </div>
                             </a>
-                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div class="d-flex justify-content-start align-items-center">
+                            <a href="{{url('veed')}}" class="{{ request()->is('veed') ? 'orange-outline' : 'black-outline' }} rounded-5 text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center {{request()->is('veed') ? 'text-orange' : ''}}" >
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="22"
                                         height="22" viewBox="0 0 14 14">
                                         <path fill="currentColor" fill-rule="evenodd"
@@ -381,8 +381,8 @@
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
                                 </div>
                             </a>
-                            <a href="" class="card border border-dark rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div class="d-flex justify-content-start align-items-center">
+                            <a href="{{route('keluhan')}}" class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <div class="d-flex justify-content-start align-items-center {{request()->is('keluhan') ? 'text-orange' : ''}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
                                         height="23" viewBox="0 0 48 48">
                                         <path fill="currentColor"
@@ -392,7 +392,7 @@
                                     <i class="fa-solid ms-auto fa-arrow-right"></i>
                                 </div>
                             </a>
-                            <a href="" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
+                            <a href="/login" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <b>Masuk/daftar</b>
                                 </div>

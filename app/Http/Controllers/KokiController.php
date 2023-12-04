@@ -482,12 +482,12 @@ class KokiController extends Controller
     public function upload(Request $request)
     {
         $rules = [
-            "deskripsi_video" => "required|max:555",
+            "deskripsi_video" => "required|max:225",
             "upload_video" => "required|mimes:mp4,webm,avi,mkv|max:50000"
         ];
         $messages = [
             "deskripsi_video.required" => "Deskripsi video harus diisi!",
-            "deskripsi_video.max" => "Deskripsi video tidak boleh lebih dari 2  25 karakter!",
+            "deskripsi_video.max" => "Deskripsi video tidak boleh lebih dari 225 karakter!",
             "upload_video.required" => "Video harus diupload!",
             "upload_video.mimes" => "Video harus berekstensikan mp4/webm/avi/mkv!",
             "upload_video.max" => "Video tidak boleh melebihi 50MB!"
