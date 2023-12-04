@@ -61,6 +61,13 @@
             }
         </script>
     @endif
+    <style>
+        @media(max-width:988px) {
+            .gambarHome {
+                display: none;
+            }
+        }
+    </style>
     <!-- slider section -->
     <section class="slider_section" style="padding:1%">
         <div id="customCarousel1" class="carousel slide" data-ride="carousel">
@@ -118,7 +125,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div style="text-align: right; margin-top:-16%;">
-                                    <img src="{{ asset('images/group 161.png') }}" alt="Gambar Contoh"
+                                    <img src="{{ asset('images/group 161.png') }}" alt="Gambar Contoh" class="gambarHome"
                                         style="width: 100%; height:100%">
                                 </div>
                             </div>
