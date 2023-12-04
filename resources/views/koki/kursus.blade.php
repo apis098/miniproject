@@ -606,7 +606,7 @@
               <div class="search-1" style="border: 1px solid black;border-radius:15px;height:50px;">
                 <div class="search-2"> <i class='bx bxs-map'></i>
                   <form action="/admin/laporan-pengguna" method="GET">
-                    <input type="text" id="search-resep" name="resep" autofocus placeholder="Cari Kursusmu">
+                    <input type="text" id="search-resep-favorit" name="resep" autofocus placeholder="Cari Kursusmu">
                     <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                         xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
                         <path fill="currentColor"
@@ -635,7 +635,7 @@
           <div class="row daftarkursus">
             @foreach ($kursus_disimpan as $mycourse)
               <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="my-3 myCourse" style="border-radius:15px">
+                <div class="my-3 favoritCourse" style="border-radius:15px">
                   <div class="card">
                     <div class=" " style="max-height:120px; min-height:120px;">
                       <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
@@ -666,6 +666,16 @@
             @endforeach
           </div>
         </div>
+        <script>
+            $(document).ready(function() {
+              $('#search-resep-favorit').on("input", function() {
+                let value = $(this).val().toLowerCase();
+                $(".favoritCourse").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+              });
+            });
+          </script>
 
         <div class="tab-pane fade" id="pills-kita" role="tabpanel" aria-labelledby="pills-kita-tab" tabindex="0">
           {{-- start tab 3 --}}
@@ -675,7 +685,7 @@
 
                 <div class="search-2"> <i class='bx bxs-map'></i>
                   <form action="/admin/laporan-pengguna" method="GET">
-                    <input type="text" id="search-resep" name="resep" autofocus placeholder="Cari Kursusmu">
+                    <input type="text" id="search-resep-dipesan" name="resep" autofocus placeholder="Cari Kursusmu">
                     <button type="submit" class=" zoom-effects cari2" style="height: 53px;"><svg
                         xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
                         <path fill="currentColor"
@@ -705,7 +715,7 @@
           <div class="row daftarkursus">
             @foreach ($kursus_dipesan as $mycourse)
               <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3">
-                <div class="my-3 myCourse" style="border-radius:15px">
+                <div class="my-3 kursusdipesan" style="border-radius:15px">
                   <div class="card">
                     <div class=" " style="max-height:120px; min-height:120px;">
                       <img src="{{ asset('storage/' . $mycourse->foto_kursus) }}" class="card-img-top"
@@ -736,7 +746,16 @@
             @endforeach
           </div>
         </div>
-
+        <script>
+            $(document).ready(function() {
+              $('#search-resep-dipesan').on("input", function() {
+                let value = $(this).val().toLowerCase();
+                $(".kursusdipesan").filter(function() {
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+              });
+            });
+          </script>
       </div>
       {{-- end --}}
     </div>
