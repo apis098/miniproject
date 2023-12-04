@@ -43,15 +43,15 @@
             /* Animasi dengan efek slide */
         }
 
-        /* tampilan untuk hp kecil */
+        /* tampilan untuk hp kecil
         @media (min-width:350px) and (max-width:768px) {
 
             .accordion b {
-                margin-left: -19%;
+                margin-left: auto;
             }
         }
 
-        /* tampilan untuk hp besar */
+        /* tampilan untuk hp besar
         @media (min-width:420px) and (max-width:768px) {
 
             .accordion b {
@@ -59,7 +59,7 @@
             }
         }
 
-        /* untuk tampilan tablet */
+        /* untuk tampilan tablet
         @media (min-width:767px) and (max-width:1023px) {
 
             .accordion b {
@@ -68,7 +68,7 @@
         }
 
 
-        /* untuk tampilan laptop */
+        /* untuk tampilan laptop
         @media (min-width:1024px) and (max-width:1199px) {
 
             .accordion b {
@@ -78,13 +78,13 @@
 
 
 
-        /* untuk tampilan laptop besar */
+        /* untuk tampilan laptop besar
         @media (min-width:1220px) and (max-width:1440px) {
 
             .accordion b {
                 margin-left: -72%;
             }
-        }
+        }*/
     </style>
 
     <div class="container mb-5">
@@ -110,7 +110,7 @@
                 class="accordion" @endif
                     data-price="{{ $sesi->harga_sesi }}">
                     <i class="fa-regular fa-square" id="square{{ $sesi->id }}"></i>
-                    <b>{{ $sesi->judul_sesi }} <br>
+                    <b class="mr-auto ml-1">{{ $sesi->judul_sesi }} <br>
                         <small>{{ $sesi->tanggal . ' ' . $sesi->waktu }}</small></b>
                     <span>
                         @if ($sesi->lama_sesi >= 60)
@@ -120,24 +120,36 @@
                             {{ $sesi->lama_sesi }}
                             menit
                         @endif
-                        <br> Rp. {{ number_format($sesi->harga_sesi, 2, ',', '.') }}
+                        <br> {{ "RP" . number_format($sesi->harga_sesi, 2, ',', '.') }}
                     </span>
                 </button>
                 <div class="panel">
                     <table class="table table-borderless">
                         <tbody>
                             @foreach ($sesi->detail_sesi as $index => $item_sesi)
-                                <tr>
-                                    <th scope="row" style="width: 5%;text-align: center;">{{ $index += 1 }}</th>
+                            {{--
+                                <tr hidden>
+                                    <th scope="row" style="text-align: center;">{{ $index += 1 }}</th>
                                     <td>{{ $item_sesi->detail_sesi }}</td>
-                                    <td style="width: 20%;text-align: end;">
+                                    <td style="text-align: end;">
+                                        <p>
                                         @if ($item_sesi->lama_sesi >= 60)
                                             {{ $item_sesi->lama_sesi / 60 }}
                                         @else
                                             {{ $item_sesi->lama_sesi }}
                                         @endif {{ $item_sesi->informasi_lama_sesi }}
+                                        </p>
                                     </td>
-                                </tr>
+                                </tr>--}}
+                                <div class="d-flex justify-content-between mx-3">
+                                    <div class="">
+                                        {{$index+=1}}. {{$item_sesi->detail_sesi}}
+                                    </div>
+                                    <div class="">
+                                        {{$item_sesi->lama_sesi}}
+                                        {{ $item_sesi->informasi_lama_sesi }}
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
@@ -180,15 +192,15 @@
                         </button>
                     </div>
                     <div
-                        class="modal-body row d-flex align-items-center col-12">
+                        class="modal-body d-flex justify-content- align-items-center col-12">
                         <!-- Tambahkan kelas "align-items-center" -->
-                        <div class="col-2 mt-2">
+                        <div class="mt-2">
                             <img class="mr-3"
                                 src="{{ asset('image 94.png') }}"
                                 width="100px" height="100px"
                                 style="border-radius: 50%" alt="">
                         </div>
-                        <div class="col-10">
+                        <div class="">
                             <div class="widget-49-meeting-info">
 
                             </div>
