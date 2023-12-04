@@ -951,7 +951,7 @@
 
         <!-- Main Sidebar Container -->
         <aside id="sidebarContent" class="main-sidebar sidebar-dark-primary elevation-4"
-            style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
+            style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px; height: 100%;">
             <!-- Brand Logo -->
             <div class="mt-3">
                 <a class=" t" href="{{ route('home') }}" style="font-size: 40px;">Hummacook</a>

@@ -669,7 +669,7 @@
           </div>
       </div>
   </div>
-  <div class=" mt-5  mx-5 input-group">
+  <div class=" mt-5  px-5 input-group">
     <div class="ms-1">
         <h3 class="fw-bold">Hasil Pencarian</h3>
     </div>

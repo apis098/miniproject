@@ -73,30 +73,40 @@
             word-wrap: break-word;
             padding-top: 5px
         }
+        .gambar-koki{
+            display: none;
+        }
+        @media(min-width:767px){
+            .gambar-koki{
+                display: block;
+            }
+        }
     </style>
-    <section class="py-5" style="margin-top: -6%;">
-        <div class="container px-5 px-lg-5 my-5">
+    <section class="py-1 py-md-3 py-lg-4" style="margin-top: -6%;">
+        <div class="container px-3 px-lg-5 my-5">
             <div class="row gx-4 md-8 gx-lg-5 align-items-center">
-                <div class="col-md-4"><img class="card-img-top mb-5 mb-md-0 " src="{{ asset('images/complaint.png') }}"
+                <div class="col-md-4 gambar-koki"><img class="card-img-top mb-2 mb-md-0 " src="{{ asset('images/complaint.png') }}"
                         alt="..." /></div>
                 <div class="col-md-8">
                     <h3 class=" fw-bolder mb-3" style="font-family: poppins; margin-top:55px;"><b>{{ $data->subject }}</b>
                     </h3>
-                    <div class="input-group">
-                        @if ($data->user->foto)
-                            <img src="{{ asset('storage/' . $data->user->foto) }}" width="52px" height="52px"
-                                style="border-radius: 50%" alt="">
-                        @else
-                            <img src="{{ asset('images/default.jpg') }}" width="52px" height="52px"
-                                style="border-radius: 50%" alt="">
-                        @endif
-                        <div>
-                            <p class="ms-3 fw-bolder">{{ $data->user->name }}<br><small
-                                    class=""><i>{{ $data->user->email }}</i></small></p>
+                    <div class="w-full d-flex justify-content-between ">
+                        <div class="d-flex">
+                            @if ($data->user->foto)
+                                <img src="{{ asset('storage/' . $data->user->foto) }}" width="52px" height="52px"
+                                    style="border-radius: 50%" alt="">
+                            @else
+                                <img src="{{ asset('images/default.jpg') }}" width="52px" height="52px"
+                                    style="border-radius: 50%" alt="">
+                            @endif
+                            <div>
+                                <p class="ms-3 fw-bolder">{{ $data->user->name }}<br><small
+                                        class=""><i>{{ $data->user->email }}</i></small></p>
+                            </div>
                         </div>
-                        <div class="" style="margin-top: -60px">
+                        <div class="" style="">
                             <button type="submit" class="btn zoom-effects text-light btn-sm rounded-circle p-2"
-                                style="background-color:#F7941E; margin-top: -px ;  margin-left: 640px;" data-toggle="modal"
+                                style="background-color:#F7941E ;" data-toggle="modal"
                                 data-target="#exampleModalCenter">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 20 20">
                                     <path fill="currentColor"
@@ -117,15 +127,15 @@
         <div class="container mb-5" style="margin-top:-5%;">
             <div class="row  d-flex justify-content-center">
                 <div class="col-md-12">
-                    <div class="headings d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="" style="margin-left: 12px;"><b>Komentar ({{ $repliesCount }})</b></h5>
-                        <div class="col-10">
+                    <div class="headings row mb-3  mx-auto">
+                        <h5 class="col-12 col-md-3 col-lg-2 my-auto " style="font-size: 18px ; padding:0px;"><b class="">Komentar ({{ $repliesCount }})</b></h5>
+                        <div class="col-12 col-md-9 col-lg-10 p-0 mt-2">
                             <form method="POST" id="formReplyComplaintStore"
                                 action="{{ route('ReplyComplaint.store', ['id' => $data->id]) }}">
                                 @csrf
                                 <div class="input-group">
                                     <input type="text" id="reply" name="reply" width="500px"
-                                        class="form-control rounded-3 me-5" placeholder="Tambah komentar...">
+                                        class="form-control rounded-3 me-3" placeholder="Tambah komentar...">
                                     {{-- <button class="btn btn-primary rounded-2 me-2"><i class="fa-solid fa-face-laugh-beam"></i></button> --}}
                                     <button type="submit"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
@@ -134,9 +144,7 @@
 
                             </form>
                         </div>
-                        <div class="buttons">
 
-                        </div>
 
                     </div>
 
@@ -297,12 +305,12 @@
                                     <div class="input-group mb-3">
                                         @csrf
                                         <input type="text" id="reply_comment{{ $row->id }}" name="reply_comment"
-                                            width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                            width="500px" class="form-control form-control-sm rounded-3 me-1"
                                             placeholder="Balas komentar dari {{ $row->user->name }}....">
 
                                         <button type="submit" onclick="clickBalasKomentar({{ $row->id }})"
                                             style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                            class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                            class="btn btn-sm text-light ms-1"><b class="me-1 ms-1">Kirim</b></button>
                                     </div>
                                 </form>
                                 <div id="new-replies2{{ $row->id }}"></div>
@@ -864,12 +872,12 @@
                                     <div class="input-group mb-3">
                                         @csrf
                                         <input type="text" id="reply_comment${response.id}" name="reply_comment" width="500px"
-                                            class="form-control form-control-sm rounded-3 me-5"
+                                            class="form-control form-control-sm rounded-3 me-1"
                                             placeholder="Balas komentar dari ${response.name}....">
 
                                         <button type="submit" onclick="clickBalasKomentar(${response.id})"
                                             style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                            class="btn btn-sm text-light ms-3"><b class="me-3 ms-3">Kirim</b></button>
+                                            class="btn btn-sm text-light ms-1"><b class="me-1 ms-1">Kirim</b></button>
                                     </div>
                                 </form>
 
@@ -1221,13 +1229,13 @@
                                             <div class="input-group mb-3">
                                                 @csrf
                                                 <input type="text" id="reply_comment2${response.id}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                    width="500px" class="form-control form-control-sm rounded-3 me-1"
                                                     placeholder="Balas komentar dari ${response.name}....">
 
                                                 <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
                                                     style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn btn-sm text-light ms-3"><b
-                                                        class="me-3 ms-3">Kirim</b></button>
+                                                    class="btn btn-sm text-light ms-1"><b
+                                                        class="me-1 ms-1">Kirim</b></button>
                                             </div>
                                         </form>
                                     </div>
@@ -1393,13 +1401,13 @@
                                             <div class="input-group mb-3">
                                                 @csrf
                                                 <input type="text" id="reply_comment2${response.id}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                    width="500px" class="form-control form-control-sm rounded-3 me-1"
                                                     placeholder="Balas komentar dari ${response.name}....">
 
                                                 <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
                                                     style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn btn-sm text-light ms-3"><b
-                                                        class="me-3 ms-3">Kirim</b></button>
+                                                    class="btn btn-sm text-light ms-1"><b
+                                                        class="me-1 ms-1">Kirim</b></button>
                                             </div>
                                         </form>
                                     </div>

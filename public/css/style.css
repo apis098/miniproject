@@ -3,7 +3,6 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #0c0c0c;
   background-color: #ffffff;
-  overflow-x: hidden;
   width: auto;
 }
 
@@ -1069,11 +1068,10 @@ a:focus {
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
   .site-mobile-menu .site-mobile-menu-body {
-    overflow-y: auto;
+    overflow: auto;
     max-height: 350px;
     position: relative;
     padding: 0 20px 20px 20px;
-    /* height: calc(100vh - 20px); */
   }
   .site-mobile-menu-body::-webkit-scrollbar {
     width: 4px; /* Lebar scrollbar */

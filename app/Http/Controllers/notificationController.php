@@ -129,7 +129,7 @@ class notificationController extends Controller
         $notification->save();
         return redirect('/koki/beranda');
     }
-        public function update_all_status(){
+        public function update_all_status(){    
             $notification = notifications::where('user_id',auth()->user()->id)->where('status','belum')->get();
             foreach ($notification as $row){
                 $row->status = "sudah";
@@ -139,7 +139,6 @@ class notificationController extends Controller
             return response()->json([
                 'success' => true,
                 'message_count' => $messageCount,
-                'notification_ount' => 0,
             ]);
         }
 }

@@ -20,7 +20,8 @@
         <section class="text-align-center mt-5" id="all">
 
             <!-- rekomendasi chef start -->
-            <div class="row justify-content-center">
+            <!-- <div class="row justify-content-center" style="width: 100%;"> -->
+            <div style="width: 100%; display: flex; flex-wrap: wrap;">
                 <div class="col-md-3 hidden-content" style="">
                     <div class="card float-right" style="width: 15rem; margin-left:50px;  border-radius: 10px">
                         <div class="card-header text-white text-center"
@@ -3883,7 +3884,7 @@
 
                                                                                                             </div>
                                                                                                             <div class="d-flex ms-5 pl-0" style="margin-top:-1.2%;">
-                                                                                                                <p><a class="text-primary me-2" href="">@${penerima['name']}</a>${up['komentar']}
+                                                                                                                <p><a class="text-primary limit-name me-2" href="">@${penerima['name']}</a>${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}

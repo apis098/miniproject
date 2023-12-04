@@ -136,6 +136,26 @@
                 margin-left: -16px;
             }
         }
+        .price{
+            font-size: 20px
+        }
+        @media(min-width:552px) and (max-width:767px){
+            .btn-detail{
+                padding: 5px;
+            }
+            .price{
+                font-size: 15px;
+            }
+        }
+        @media(min-width:0px) and (max-width:552px){
+            .btn-detail{
+                padding: 2px;
+                font-size: 12px;
+            }
+            .price{
+                font-size: 10px;
+            }
+        }
     </style>
     <div class="container pt-4 px-2 main">
 
@@ -191,7 +211,7 @@
                         <tbody>
                             @foreach ($history_top_up as $history)
                                 <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="">
+                                    <td style="border-left:1px solid black;" class="price">
                                         Rp. {{ number_format($history->price, 2, ',', '.') }}
                                     </td>
                                     <td>
@@ -210,7 +230,7 @@
                                     {{-- <td>{{ $history->created_at->format('j F Y') }}</td> --}}
                                     <td style="border-right:1px solid black;">
                                         <a href="koki/detail-transaction/{{ $history->reference }}"
-                                            class="btn ml-2 text-light" id="buttonUploadVideo"
+                                            class="btn fw-bold ml-2 text-light btn-detail" id="buttonUploadVideo"
                                             style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                             Lihat detail
                                         </a>
@@ -240,11 +260,11 @@
                         <tbody>
                             @foreach ($history_penarikan as $tarik)
                             <tr class="mt-5">
-                                <td style="border-left:1px solid black;" class="">
+                                <td style="border-left:1px solid black;" class="price">
                                     Rp. {{ number_format($tarik->nilai, 2, '.', ',') }}
                                 </td>
                                 <td>{{ $tarik->created_at }}</td>
-                                <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2"
+                                <td style="border-right:1px solid black;"><button type="submit" class="btn ml-2 btn-detail"
                                         id="buttonUploadVideo"
                                         style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                         <span style="font-weight: 600; color: white;">{{  $tarik->status }}</span>
@@ -270,7 +290,7 @@
                         <tbody>
                             @foreach ($history_transaksi as $transaksi)
                                 <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="">
+                                    <td style="border-left:1px solid black;" class="price">
                                         {{ $transaksi->premium->nama_paket }}
                                     </td>
                                     <td>
@@ -287,7 +307,7 @@
                                         @endif
                                     </td>
                                     <td style="border-right:1px solid black;">
-                                        <button type="button" class="btn ml-2 text-light" id="buttonUploadVideo"
+                                        <button type="button" class="btn ml-2 text-bold btn-detail" id="buttonUploadVideo"
                                             style="background: #F7941E;color: white;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                             <a href="/detail-pembayaran/{{ $transaksi->reference }}"
                                                 style="font-weight: 600;color:#fff;">

@@ -26,7 +26,7 @@
         }
 
         .zoom-effects:hover {
-            transform: scale(0.97);
+            transform: scale(1);
         }
 
         .intro-1 {
@@ -51,7 +51,7 @@
 
         .table-custom {
             text-align: center;
-            width: 101%;
+            width: 100%;
         }
 
         .table-custom {
@@ -173,7 +173,7 @@
             width: 100%;
             padding-left: 34px;
             padding-right: 10px;
-            border-right: 2px solid #eee
+            border-right: 2px solid #eee;
         }
 
         .search-1 input:focus {
@@ -226,28 +226,32 @@
         .search-2 button {
             position: absolute;
             top: 0px;
-            right: -10px;
+            right:0px;
             border: none;
             height: 45px;
             background-color: #F7941E;
             color: #fff;
             width: 90px;
         }
-
-        @media(max-width:392px) {
-
-            .search-1 {
-                display: flex;
-                justify-content: center;
+        @media(min-width:0px) and (max-width:328px){
+            .search-2 button {
+                position: absolute;
+                top: 0px;
+                right: -17.5px;
+                border: none;
+                height: 45px;
+                background-color: #F7941E;
+                color: #fff;
+                width: 90px;
             }
+
         }
+
     </style>
 
     <div class="my-4 mx-5">
         <p class="text-center" style="color: black; font-size: 34px; font-family: Poppins;">User Terdaftar</p>
-
         <div class="">
-
             <script>
                 $(document).ready(function() {
                     $("#search-user").on("input", function() {
@@ -259,7 +263,7 @@
                 });
             </script>
             <table id="table-resep" class="table-custom ml-auto">
-                <div class="search-1" style="border-radius: 15px;">
+                <div class="search-1 ml-auto" style="border-radius: 15px;">
                     <div class="mt-2">
                         <div class="search-2"> <i class='bx bxs-map'></i>
                             <form action="#" method="GET">

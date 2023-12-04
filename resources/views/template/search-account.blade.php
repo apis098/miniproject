@@ -150,7 +150,7 @@
             }
         </style>
 
-        <div class="container py-5 mx-5">
+        <div class="container py-5 ">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
                     <h1 class=" font-poppins mb-5"><b>Temukan teman <br> memasak</b></h1>
@@ -180,7 +180,7 @@
         </div><!-- End -->
         @endsection
 
-    <div class="ms-5 mt-5 input-group">
+    <div class="ps-5 mt-5 input-group">
         <div class="ms-3">
             <h3 class="fw-bold">Hasil Pencarian</h3>
         </div>
@@ -196,10 +196,10 @@
 
             <!-- Team item -->
             @foreach ($user as $row)
-                <div class="col-xl-3 col-sm-4 mb-5">
+                <div class="col-lg-3 col-sm-6 col-md-4 col-12  mb-5 " style="height: auto">
                     <a class="text-dark" href="{{ route('show.profile', $row->id) }}">
                         <div class="bg-white shadow-sm py-4 px-4 border border-secondary"
-                            style="border-radius: 20px; height:22rem;">
+                            style="border-radius: 20px; height:auto;">
                             @if ($row->foto)
                                 <img src="{{ asset('storage/' . $row->foto) }}" alt="" width="50%" height="50%"
                                     class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
@@ -211,8 +211,8 @@
                             <h5 class="mb-0">
                                 {{ strlen($row->name) > 10 ? substr($row->name, 0, 10) . '...' : $row->name }}</h5> <span
                                 class="small text-muted">{{ $row->email }}</span>
-                            <div class="d-flex justify-content-center mt-3 me-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 256 256">
+                            <div class="d-flex justify-content-center align-items-center mt-3 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
                                     <path fill="currentColor"
                                         d="M208 26H72a30 30 0 0 0-30 30v168a6 6 0 0 0 6 6h144a6 6 0 0 0 0-12H54v-2a18 18 0 0 1 18-18h136a6 6 0 0 0 6-6V32a6 6 0 0 0-6-6Zm-6 160H72a29.87 29.87 0 0 0-18 6V56a18 18 0 0 1 18-18h130Z" />
                                 </svg>
