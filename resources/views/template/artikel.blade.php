@@ -239,9 +239,17 @@
                 margin-top: 40px;
             }
         }
+        .container-section{
+            margin-left: 6.5%;
+            margin-right: 0.4%
+        }
+        .container-komentar{
+            margin-left: 6.2%;
+            margin-right: 0.4%
+        }
 
     </style>
-    <section class="container">
+    <section class="container-section">
         <div class="row mt-4  align-item-center">
             <div class="col-md-3 col-lg-2 mt-3" style="width: 197px">
                 @if ($userLog == 2)
@@ -1157,7 +1165,7 @@
 
         }
     </style>
-    <section class="container mb-5">
+    <section class="container-komentar mb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">
                 <div class="headings d-flex justify-content-between align-items-center mb-3 ">

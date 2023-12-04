@@ -90,7 +90,6 @@
               width: 100%;
               color: #000;
               padding-left: 18px;
-              padding-right: 100px
           }
 
           .search-2 input:focus {
@@ -157,21 +156,6 @@
               background-color: black;
           }
 
-          .btn-fil {
-              width: 15%;
-              position: absolute;
-              background: white;
-              border-radius: 15px;
-              color: black;
-              font-size: 18px;
-              font-family: Poppins;
-              font-weight: 600;
-              letter-spacing: 0.48px;
-              margin-left: 33%;
-              bottom: 10%
-          }
-
-
 
 
           .intro-1 {
@@ -217,7 +201,7 @@
               }
 
               div.search {
-                  width: 85%;
+                  width: 75%;
               }
 
               div.kanan {
@@ -226,6 +210,12 @@
 
               h1.kanan {
                   margin-left: 20px;
+              }
+
+          }
+          @media (min-width:450px) and (max-width: 765px) {
+              div.search {
+                  width: 80%;
               }
 
           }
@@ -311,12 +301,14 @@
               }
           }
 
-          /* untuk tampilan ipad
-          @media (min-width: 760px) and (max-width: 1000px) {
-
+          /* untuk tampilan ipad */
+          @media (min-width: 760px) and (max-width: 1092px) {
+              div.kiri {
+                  margin-left: 75px;
+              }
 
               div.search {
-                  width: 92%;
+                  width: 85%;
               }
 
 
@@ -341,7 +333,7 @@
 
           @media (min-width: 1024px) {
               div.search {
-                  width: 85%;
+                  width: 100%;
               }
 
               div.kiri {
@@ -401,47 +393,64 @@
             -webkit-box-orient: vertical;
             }
         }
+        .btn-fil {
+            width: auto;
+            background: white;
+            border-radius: 15px;
+            color: black;
+            font-size: 18px;
+            font-family: Poppins;
+            font-weight: 600;
+            letter-spacing: 0.48px;
+            bottom: 10%;
+        }
+        @media (min-width:1400px){
+            .gambar-resep{
+                min-width: 250px;
+            }
+        }
+        @media (min-width:1200px){
+            .gambar-resep{
+                min-width: 180px;
+            }
+        }
       </style>
 
       <div class="container-fluid py-5">
-          <div class="row text-center text-white me-5">
-              <div style="left: 13%;" class="col-lg-9 row  ">
-                  <h1 class="mb-5 kanan"
-                      style=" color: white; font-size: 30px; font-family: Poppins; font-weight: 700; word-wrap: break-word; margin-left:-2.5%;">
+          <div class="row text-center text-white ">
+              <div style="" class="col-lg-9 row  mx-auto ">
+                  <h1 class="mb-5 col-12 "
+                      style=" color: white; font-size: 30px; font-family: Poppins; font-weight: bold; word-wrap: break-word; ">
                       Cari Resep Masakan <br />
                   </h1>
-                  <form action="">
-                      <div class="container">
-                          <div class="search" style="border-radius: 15px;">
-                              <div class="row">
-                                  <div class="col-md-12">
-                                      <div>
-                                          <div class="search-2"> <i class='bx bxs-map'></i>
-                                              <form action="{{ route('resep.home') }}" method="GET">
-                                                  <input type="text" name="nama_resep"
-                                                      placeholder="Masukkan nama resep..."
-                                                      value="{{ request()->nama_resep }}">
-                                                  <button type="submit" class="zoom-effects"
-                                                      style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">Cari</button>
-                                              </form>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </form>
-                  <!-- Button Modal -->
-                  <div class="mt-3 lep">
-                      <button class="btn btn-fil high besar" data-bs-toggle="modal" data-bs-target="#filter">
-                          <svg class="kanan" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                              viewBox="0 0 24 24">
-                              <path fill="currentColor"
-                                  d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />
-                          </svg>
-                          <span id="filter-name">filter</span>
-                      </button>
+                  <div class="gap-2 justify-content-between"  style="display:flex">
+                    <div class="search " style="border-radius: 15px;">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="search-2"> <i class='bx bxs-map'></i>
+                                    <form action="{{ route('resep.home') }}" method="GET">
+                                        <input type="text" name="nama_resep"
+                                            placeholder="Masukkan nama resep..."
+                                            value="{{ request()->nama_resep }}">
+                                        <button type="submit" class="zoom-effects"
+                                            style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)">Cari</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <button class="btn btn-fil " data-bs-toggle="modal" data-bs-target="#filter">
+                        <svg class="" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                            viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />
+                        </svg>
+                        <span id="filter-name">filter</span>
+                    </button>
                   </div>
+                  <!-- Button Modal -->
+
               </div>
           </div>
       </div>
@@ -666,7 +675,7 @@
           <p><b>Tidak ada data</b></p>
       </div>
   @endif
-  <div class="my-5 ms-5 me-5">
+  <div class="my-5 mx-5">
     <div class=" mt-5 mb-3 input-group">
         <div class="ms-1">
             <h3 class="fw-bold">Hasil Pencarian</h3>
@@ -674,18 +683,18 @@
     </div>
       <div class="row d-flex justify-content-center">
           @foreach ($recipes as $num => $item)
-              <div class="col-xl-3 col-lg-4 mb-5 col-sm-12 col-md-6">
+              <div class="col-xl-3 col-lg-4 mb-5 col-sm-8 col-12 col-md-6">
                   <div class="card" style="border-radius: 15px; border: 0.50px black solid">
                       <div class="mx-1 card-body">
-                          <div class=" my-3" style="background-color: white">
+                          <div class="mb-2" style="background-color: white">
                               <div class="d-flex justify-content-center">
-                                  <img class="img-fluid"
-                                      style="border: 0.50px black solid;width:300px;height:250px;border-radius:15px;"
+                                  <img class="img-fluid gambar resep gambar-resep"
+                                      style="border: 0.50px black solid;object-fit: cover; height:250px;border-radius:15px;"
                                       src="{{ asset('storage/' . $item->foto_resep) }}" />
                               </div>
                               @if ($item->isPremium === 'yes')
                                   <button id="buttonPremium" type="button"
-                                      style="position: absolute;  right: 76%;top:3%; background-color:#F7941E; "
+                                      style="position: absolute;  left: -6%;top:-4%; background-color:#F7941E; "
                                       class="btn btn-sm text-light rounded-circle p-2" data-bs-toggle="modal"
                                       data-bs-target="#staticBackdrop{{ $num }}">
                                       <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -750,7 +759,7 @@
                                   <div class="col-12 mb-3">
                                       <!-- untuk koki lain -->
                                       <h5>
-                                          <a style="color: black; font-weight: bold; font-size: 30px; margin-left:-1px" class="judul-resep"
+                                          <a style="color: black; font-weight: bold; font-size: 25px; margin-left:-1px" class="judul-resep"
                                               href="/artikel/{{ $item->id }}/{{ $item->nama_resep }}">
                                               {{ $item->nama_resep }}</a>
                                       </h5>
@@ -759,19 +768,19 @@
                                           {{ number_format($item->pengeluaran_memasak, 2, ',', '.') }}
                                       </p>
                                   </div>
-                                  <div class="col-12 row d-flex justify-content-between  mb-3  ">
-                                      <div class="col-6 d-flex">
+                                  <div class="col-12 row d-flex justify-content-between">
+                                      <div class="col-6 d-flex align-items-center pr-0">
                                           <span class="text-nowrap">
-                                              <img class="mb-1" width="20px" height="20px"
+                                              <img class="mb-1" width="17px" height="17px"
                                                   src="{{ asset('images/🦆 icon _thumbs up_.svg') }}" alt="">
 
                                               {{ $item->likes }} </span>
-                                          <span class="text-nowrap tesk ml-2    "> Suka
+                                          <span class="text-nowrap tesk ml-2" style="font-size: 15px"> Suka
                                           </span>
                                       </div>
-                                      <div class="col-6 ">
-                                          <span class="text-nowrap d-flex justify-content-between">
-                                              <img width="20px" height="20px"
+                                      <div class="col-6 pr-0">
+                                          <span class="text-nowrap d-flex gap-2 align-items-center" style="font-size: 15px">
+                                              <img width="17px" height="17px"
                                                   src="{{ asset('images/🦆 icon _time_.svg') }}" alt="">
 
                                               @if ($item->lama_memasak >= 60)
@@ -783,25 +792,25 @@
                                               @endif
                                           </span>
                                       </div>
-                                      <div class="col-6 my-3 d-flex justify-content-between">
+                                      <div class="col-6 my-3 d-flex gap-2 align-items-center pr-0">
                                           <span class="text-nowrap">
-                                              <img width="20px" height="20px"
+                                              <img width="16px" height="16px"
                                                   src="{{ asset('images/🦆 icon _comment square chat message_.svg') }}"
                                                   alt="">
-
-                                              {{ $item->comment_recipes->count() }} </span> <span class="tesk">
+                                              {{ $item->comment_recipes->count() }}
+                                          </span>
+                                          <span class="tesk " style="font-size: 15px">
                                               Komen
                                           </span>
                                       </div>
-                                      <div class="col-6 my-3">
+                                      <div class="col-6 my-3 pr-0">
 
-                                          <span class="text-nowrap  d-flex justify-content-between">
-                                              <img width="20px" height="20px"
+                                          <span class="text-nowrap  d-flex gap-2 align-items-center">
+                                              <img width="17px" height="17px"
                                                   src="{{ asset('images/🦆 icon _bookmark save_.svg') }}"
                                                   alt="">
                                               {{ $item->favorite_count }}
-                                              <span class="tesk"> Favorit
-                                              </span>
+                                              <span class="tesk " style="font-size: 15px"> Favorit </span>
                                           </span>
                                       </div>
                                   </div>

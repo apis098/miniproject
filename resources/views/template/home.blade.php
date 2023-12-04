@@ -134,7 +134,7 @@
 
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3">Resep Premium Terfavorit</h3>
+            <h3 class="fw-bold">Resep Premium Terfavorit</h3>
         </div>
     </div>
     @if ($resep_premium_favorite->count() == 0)
@@ -169,6 +169,22 @@
                     width: 100%;
                 }
             }
+            .Premiumbutton {
+                left: -7%;
+                top:-23%;
+            }
+            @media(min-width:330px) and (max-width:578px){
+                .Premiumbutton {
+                    left: -4%;
+                    top:-10%;
+                }
+            }
+            @media(min-width:578px) and (max-width:768px){
+                .Premiumbutton {
+                    left: -2.8%;
+                    top:-20%;
+                }
+            }
         </style>
         @foreach ($resep_premium_favorite as $num => $resep)
             <div class="col-lg-6 col-xl-4 col-md-12 col-sm-12 mb-3">
@@ -176,10 +192,10 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-12">
                             <img src="{{ asset('storage/' . $resep->foto_resep) }}"
-                                style="border-radius:15px;" class="img-resep-favorite-premium">
+                                style="border-radius:15px;object-fit: cover;" class="img-resep-favorite-premium">
                             <button id="buttonPremium" type="button"
-                                style="position: absolute;  right: 80%; top:-10%; background-color:#F7941E; "
-                                class="btn btn-sm text-light rounded-circle p-1" data-bs-toggle="modal"
+                                style="position: absolute;  background-color:#F7941E; "
+                                class="btn btn-sm Premiumbutton text-light rounded-circle p-1" data-bs-toggle="modal"
                                 data-bs-target="#staticBackdrop{{ $num }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
                                     viewBox="0 0 20 20">
@@ -238,7 +254,7 @@
 
 <section class="m-5">
     <div class=" input-group">
-        <h3 class="fw-bold ml-3 mb-3 mx-3">Feed Premium Terfavorit</h3>
+        <h3 class="fw-bold mb-3 ">Feed Premium Terfavorit</h3>
     </div>
     @if ($feed_premium_favorite->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
@@ -346,7 +362,7 @@
 
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3">Resep populer minggu ini</h3>
+            <h3 class="fw-bold ">Resep populer minggu ini</h3>
         </div>
     </div>
     @if ($real_reseps->count() == 0)
@@ -362,7 +378,7 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-12">
                             <img src="{{ asset('storage/' . $item->foto_resep) }}" class="img-resep-favorite-premium"
-                             alt="" style="border-radius:15px;">
+                             alt="" style="border-radius:15px; object-fit: cover">
                         </div>
                         <div class="col-md-7 col-sm-12">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -408,7 +424,7 @@
 
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3">Resep terfavorite minggu ini</h3>
+            <h3 class="fw-bold ">Resep terfavorite minggu ini</h3>
         </div>
     </div>
     @if ($favorite_resep->count() == 0)
@@ -424,7 +440,7 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-12">
                             <img src="{{ asset('storage/' . $item->foto_resep) }}" class="img-resep-favorite-premium"
-                                style="border-radius:15px;" alt="">
+                                style="border-radius:15px; object-fit: cover" alt="">
                         </div>
                         <div class="col-md-7 col-sm-12">
                             <span style="font-weight: 600;" class="my-1">{{ $item->nama_resep }}</span> <br>
@@ -477,7 +493,7 @@
 {{-- start koki terpopuler --}}
 <section class="m-5">
     <div class="input-group">
-        <div class="mx-3">
+        <div class="">
             <h3 class="fw-bold">Koki terpopuler</h3>
         </div>
     </div>
@@ -685,7 +701,7 @@
 <section class="m-5">
     <div class=" input-group">
         <div class="">
-            <h3 class="fw-bold ml-3 mb-5">Resep resep Terbaru</h3>
+            <h3 class="fw-bold mb-5">Resep resep Terbaru</h3>
         </div>
     </div>
     @if ($recipes->count() == 0)
@@ -694,7 +710,7 @@
             <p><b>Tidak ada data</b></p>
         </div>
     @endif
-    <div class="row mx-1">
+    <div class="row">
         @foreach ($recipes as $num => $item)
             <div class="col-lg-4 mb-3 col-sm-12 col-md-6">
                 <div class="card" style="border-radius: 15px; border: 0.50px black solid">
@@ -756,7 +772,7 @@
 {{-- start feed populer  --}}
 <section class="m-5">
     <div class=" input-group">
-        <h3 class="fw-bold ml-3 mb-3 mx-3">Feed Populer Minggu ini</h3>
+        <h3 class="fw-bold  mb-3 mx-3">Feed Populer Minggu ini</h3>
     </div>
     @if ($feed_populer->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
