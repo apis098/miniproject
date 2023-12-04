@@ -38,9 +38,8 @@
 
             ul.list-item {
                 list-style: none;
-                column-count: 2;
+                margin-left: -33px;
                 /* Mengatur jumlah kolom menjadi 3 */
-                column-gap: 20px;
                 /* Jarak antara kolom */
                 /* Menghilangkan marker pada elemen <ul> dengan class "list-item" */
             }
@@ -54,7 +53,7 @@
         <section>
             <div class="container">
                 <div class="row">
-                    <div class="col lg-6 mb-5 my-5">
+                    <div class="col-xl-8 col-lg-8 col-md-6 mb-5 my-5">
                         <h3 class="mb-3"><b> {{ $detail_course->nama_kursus }} </b></h3>
 
                         <button type="button"class="btn"
@@ -145,8 +144,6 @@
                                 font-size: 15px;
                                 transition: 0.4s;
                                 display: flex;
-                                justify-content: space-between;
-                                align-items: center;
                             }
 
                             .active,
@@ -173,9 +170,7 @@
                                 transition: max-height 0.2s ease-out;
                             }
 
-                            .accordion b {
-                                margin-left: -65%;
-                            }
+
 
                             .card {
                                 border: 1px solid #777;
@@ -193,13 +188,14 @@
                         <h3 class="fw-bold mb-3">Sesi Kursus</h3>
                         @foreach ($detail_session_course as $content_course)
                             <div class="card">
-                                <button class="accordion active"> <b>{{ $content_course->judul_sesi }} <br>
-                                        <small>{{ date('d F Y', strtotime($content_course->tanggal)) . ' ' . $content_course->waktu }}</small></b>
+                                <button class="accordion active">
+                                        <b class="ml-1">{{ $content_course->judul_sesi }} <br>
+                                        <small class="ml-1">{{ date('d F Y', strtotime($content_course->tanggal)) . ' ' . $content_course->waktu }}</small></b>
                                     @if ($content_course->lama_sesi >= 60)
-                                        <span>{{ number_format($content_course->lama_sesi / 60, 1) }}
+                                        <span class="ml-auto">{{ number_format($content_course->lama_sesi / 60, 1) }}
                                             jam</span>
                                     @else
-                                        <span>{{ $content_course->lama_sesi }}
+                                        <span class="ml-auto">{{ $content_course->lama_sesi }}
                                             {{ $content_course->informasi_lama_sesi }}</span>
                                     @endif
                                 </button>
@@ -229,7 +225,7 @@
                             <br>
                         @endforeach
                     </div>
-                    <div class="col-xl-3 col-sm-4 mb-4 my-4">
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-4 my-4">
                         <div class="card" style="">
                             <div class="card-body">
                                 <div class="text-center">
@@ -245,27 +241,29 @@
                                     <!-- button modal laporkan kursus -->
                                     @if (Auth::check())
                                         @if ($detail_course->user->id != Auth::user()->id)
-                                            <button type="button"
-                                                class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
-                                                style="position: absolute; right: 65px; background-color:#F7941E;"
-                                                data-toggle="modal" data-target="#modalLaporkanKursus">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                    viewBox="0 0 20 20">
-                                                    <path fill="currentColor"
-                                                        d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
-                                                </svg>
-                                            </button>
+
+                                            <button id="buttonPremium" type="button"
+                                            style="position: absolute;  right: 55%;top:2%; background-color:#F7941E; "
+                                            class="btn btn-sm text-light rounded-circle p-2" data-toggle="modal"
+                                            data-target="#modalLaporkanKursus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                            viewBox="0 0 20 20">
+                                            <path fill="currentColor"
+                                                d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
+                                        </svg>
+                                        </button>
                                         @endif
                                     @else
-                                        <button type="button"
-                                            class="btn btn-light zoom-effects text-light btn-sm rounded-circle p-2"
-                                            style="position: absolute; right: 65px; background-color:#F7941E;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                viewBox="0 0 20 20">
-                                                <path fill="currentColor"
-                                                    d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
-                                            </svg>
-                                        </button>
+
+                                        <button id="buttonPremium" type="button"
+                                        style="position: absolute;  left: 55%;top:2%; background-color:#F7941E; "
+                                        class="btn btn-sm text-light rounded-circle p-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                        viewBox="0 0 20 20">
+                                        <path fill="currentColor"
+                                            d="M3.5 2.75a.75.75 0 0 0-1.5 0v14.5a.75.75 0 0 0 1.5 0v-4.392l1.657-.348a6.449 6.449 0 0 1 4.271.572a7.948 7.948 0 0 0 5.965.524l2.078-.64A.75.75 0 0 0 18 12.25v-8.5a.75.75 0 0 0-.904-.734l-2.38.501a7.25 7.25 0 0 1-4.186-.363l-.502-.2a8.75 8.75 0 0 0-5.053-.439l-1.475.31V2.75Z" />
+                                    </svg>
+                                    </button>
                                     @endif
                                     <div class="modal fade" id="modalLaporkanKursus" tabindex="-1" role="dialog"
                                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
