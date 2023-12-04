@@ -52,7 +52,7 @@
 
         .table-custom {
             text-align: center;
-            width: 100%;
+            width:101%;
         }
 
         .table-custom {
@@ -84,6 +84,7 @@
 
         .table-custom thead {
             margin-bottom: 50px;
+            width: fit-content;
         }
 
         .table-custom td:first-child {
@@ -159,10 +160,7 @@
             background-color: #fff;
             padding: 4px;
             border-radius: 5px;
-            width: 205%;
-            margin-left: 20px;
-            margin-right;
-            30x;
+            width: 100%;
         }
 
         .search-1 {
@@ -200,20 +198,17 @@
 
         .search-2 {
             position: relative;
-            width: 35%;
-            margin-left: -5%
+            width: 100%;
         }
 
         .search-2 input {
             height: 45px;
             border: 0.50px black solid;
-            width: 137%;
+            width: 100%;
             border-radius: 15px;
-            margin-left: 80px;
             color: #000;
-            padding-left: 18px;
-            padding-right: 100px;
-            text-align: center
+
+            text-align: center;
         }
 
         .search-2 input:focus {
@@ -231,8 +226,8 @@
 
         .search-2 button {
             position: absolute;
-            margin-left: 136%;
             top: 0px;
+            right: -10px;
             border: none;
             height: 45px;
             background-color: #F7941E;
@@ -240,48 +235,38 @@
             width: 90px;
         }
 
-        @media (max-width:800px) {
-            .search-1 input {
-                border-right: none;
-                border-bottom: 1px solid #eee
+        @media(max-width:392px) {
+            .table-custom {
+                margin-left: auto;
             }
-
-            .search-2 i {
-                left: 4px
-            }
-
-            .search-2 input {
-                padding-left: 34px
-            }
-
-            .search-2 button {
-                height: 37px;
-                top: 5px
+            .search-1 {
+                display: flex;
+                justify-content: center;
             }
         }
     </style>
-    <div style="overflow-x:hidden;">
-        <div class="mx-5">
+    <div>
+        <div class="">
             <div class="my-5">
-                <div class="tab-content mb-3 mr-5" id="pills-tabContent">
+                <div class="tab-content mb-3" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                         tabindex="0">
-                        <div class="search" style="border-radius: 15px;">
-                            <div class="mt-2">
-                                <div class="search-2"> <i class='bx bxs-map'></i>
-                                    <form action="#" method="GET">
-                                        <input type="text" name="" style="text-align: left;" placeholder="Cari..."
-                                            value="" id="cari-data-koki">
-                                        <button type="submit" class="zoom-effects"
-                                            style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                            Cari
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                         {{-- start tab 1 --}}
                         <table class="table-custom">
+                            <div class="search-1" style="border-radius: 15px;">
+                                <div class="mt-2">
+                                    <div class="search-2"> <i class='bx bxs-map'></i>
+                                        <form action="#" method="GET">
+                                            <input type="text" name="" style="text-align: left;" placeholder="Cari..."
+                                                value="" id="cari-data-koki">
+                                            <button type="submit" class="zoom-effects"
+                                                style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
+                                                Cari
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                             <thead>
                                 <tr>
                                     <th scope="col"
