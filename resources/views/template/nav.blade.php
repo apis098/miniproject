@@ -376,7 +376,7 @@
                                                     style="max-width:35px">
                                             </a>
                                         @endif
-                                        <p class="mt-2 text-orange">
+                                        <p class="mt-2 text-orange ellipsis">
                                             {{ $row->sender->name }}</p>
                                         @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                             <form action="{{ route('replies.notification', $row->id) }}"
@@ -1044,7 +1044,7 @@
                                                                             style="max-width:35px">
                                                                     </a>
                                                                 @endif
-                                                                <p class="mt-2 text-orange">
+                                                                <p class="mt-2 text-orange ellipsis">
                                                                     {{ $row->sender->name }}</p>
                                                                 @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                                                     <form
@@ -1692,7 +1692,7 @@
                                                             alt="profile image" style="max-width:40px">
                                                     @endif
                                                 </a>
-                                                <p class="mt-2 text-orange">
+                                                <p class="mt-2 text-orange ellipsis">
                                                     <b>{{ auth()->user()->name }}</b>
                                                 </p>
                                             </div>
@@ -1786,7 +1786,7 @@
                                                             alt="profile image" style="max-width:40px">
                                                     @endif
                                                 </a>
-                                                <p class="mt-2 text-orange">
+                                                <p class="mt-2 text-orange ellipsis">
                                                     <b>{{ auth()->user()->name }}</b>
                                                 </p>
                                             </div>

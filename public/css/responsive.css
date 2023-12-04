@@ -149,7 +149,7 @@ padding-left: 0;
   align-items: center; /* Pusat vertikal */
 }
 
-@media (min-width:426px) and (max-width: 500px) {
+@media (min-width:426px) and (max-width: 600px) {
   .video-js .vjs-big-play-button{
     margin-left: 35%;
   }
