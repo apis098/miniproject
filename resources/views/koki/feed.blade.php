@@ -1,9 +1,7 @@
 @extends('layouts.nav_koki')
 @section('konten')
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
-  @push('style')
-    @powerGridStyles
-  @endpush
+
   <style>
     /* Gaya untuk tombol "Cari" */
     .zoom-effects {
@@ -181,27 +179,32 @@
         font-size: 8px;
       }
     }
-    @media(max-width: 577px) {
-        ul li a h5{
+    @media(max-width: 578px) {
+        .ul_feed li a h5{
             text-align: center;
         }
         .nav-item {
             width: 30%;
         }
-        ul {
+        .ul_feed {
             display: flex;
             justify-content:center;
         }
     }
-    @media(min-width: 578px) {
-        ul {
+    @media(min-width: 579px) {
+        .ul_feed {
             margin-left: 50px;
+            margin-right: 50px;
+        }
+        .tab-content {
+            margin-left: 50px;
+            margin-right: 50px;
         }
     }
   </style>
   <div>
     <div class="my-4 main">
-      <ul class="nav mb-2 mt-3" id="pills-tab" role="tablist">
+      <ul class="nav mb-2 mt-3 ul_feed" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
           <a id="click1" class="nav-link  active " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
             type="button" role="tab" aria-controls="pills-home" aria-selected="true">
@@ -255,7 +258,7 @@
 
 
 
-      <div class="tab-content mb-5 mx-5" id="pills-tabContent">
+      <div class="tab-content mb-5" id="pills-tabContent">
         <div class="tab-pane fade show active ml-3 mr-4" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
           tabindex="0">
           <form action="">
@@ -300,7 +303,7 @@
                 <div class="mt-4" id="feed_buat{{ $feed_buat->id }}">
                   <div class="row feed_dibuat_tab1">
                     <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                      <video src="{{ asset('storage/' . $feed_buat->upload_video) }}" style="width:100%;"
+                      <video src="{{ asset('storage/' . $feed_buat->upload_video) }}" style="width:102%;"
                         class="rounded-4"></video>
                     </div>
                     <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
