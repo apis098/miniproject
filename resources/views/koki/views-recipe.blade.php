@@ -431,6 +431,7 @@
                 font-size: 16px;
             }
 
+
             .btn-search {
                 font-size: 8px;
             }
@@ -443,19 +444,41 @@
                 width: 20%;
             }
         }
+        @media(max-width: 578px) {
+        .ul_resep li a h5{
+            text-align: center;
+        }
+        .nav-item {
+            width: 30%;
+        }
+        .ul_feed {
+            display: flex;
+            justify-content:end;
+        }
+    }
+    @media(min-width: 579px) {
+        .ul_resep {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+        .tab-content {
+            margin-left: 50px;
+            margin-right: 50px;
+        }
+    }
     </style>
 
 
 
     <div>
         <div class="my-4 mr-4 ml-1 main">
-            <ul class="nav mb-2 mx-md-5 mx-sm-3 mt-3 d-flex justify-content-start" id="pills-tab" role="tablist">
+            <ul class="nav mb-2 mt-3 ul_resep" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h6 class="text-dark text-li" style="font-weight: bold; word-wrap: break-word;">Resep <br> Dibuat
-                            </h6>
+                        <h5 class="text-dark text-li" style="font-weight: bold; word-wrap: break-word;">Resep <br> Dibuat
+                            </h5>
                             <div id="border1" class="ms-1"
                                 style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                             </div>
@@ -466,8 +489,8 @@
                     <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
-                        <h6 class="text-dark text-li" style="font-weight: bold; word-wrap: break-word;">Resep <br> Disukai
-                            </h6>
+                        <h5 class="text-dark text-li" style="font-weight: bold; word-wrap: break-word;">Resep <br> Disukai
+                            </h5>
                             <div id="b" class="ms-" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
                                 hidden></div>
                     </a>
@@ -477,7 +500,7 @@
                     <a id="a-tab" class="nav-link" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h6 class="text-dark text-li" style="font-weight: bold; word-wrap: break-word;">Resep <br> Disimpan</h6>
+                        <h5 class="text-dark text-li" style="font-weight: bold; word-wrap: break-word;">Resep <br> Favorit</h5>
                             <div id="pp" style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;">
                             </div>
                     </a>
@@ -486,11 +509,11 @@
 
 
 
-            <div class="tab-content mb-5 mx-5" id="pills-tabContent">
+            <div class="tab-content mb-5" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                     tabindex="0">
                     <div class="mt-1">
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex mx-3 justify-content-center">
                             <div class="search-1" style="border:1px solid black;height:50px;border-radius:15px;">
                                 <div class="search-2"><i class='bx bxs-map'></i>
                                     <form action="#" method="GET">
@@ -678,8 +701,8 @@
                 {{-- end --}}
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"
                     tabindex="0">
-                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
-                        <div class="d-flex">
+                    <div class="mt-1">
+                        <div class="d-flex mx-3 justify-content-center">
                             <div class="search-1" style="border: 1px solid black; border-radius:15px; height:50px;">
 
                                 <div class="search-2"><i class='bx bxs-map'></i>
@@ -698,14 +721,14 @@
 
                             </div>
                             <button
-                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn btn-sm ml-4">
-                                <span style="font-weight: 600">
-                                    <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
-                                        Buat Resep
-                                    </a>
-                                </span>
-                            </button>
+                            style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn btn-sm ml-4 btn-buat-resep">
+                            <span style="font-weight: 600">
+                                <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
+                                    Buat Resep
+                                </a>
+                            </span>
+                        </button>
                         </div>
                     </div>
 
@@ -872,8 +895,8 @@
                 </script>
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab"
                     tabindex="0">
-                    <div class="container mt-1" style="margin-top: -35px; margin-left: -5px;">
-                        <div class="d-flex">
+                    <div class="mt-1">
+                        <div class="d-flex justify-content-center mx-3">
                             <div class="search-1" style="border: 1px solid black; border-radius: 15px; height:50px;">
 
                                 <div class="search-2"><i class='bx bxs-map'></i>
@@ -892,14 +915,14 @@
 
                             </div>
                             <button
-                                style="border-radius: 15px; width: 20%; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                class="btn btn-sm ml-4">
-                                <span style="font-weight: 600">
-                                    <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
-                                        Buat Resep
-                                    </a>
-                                </span>
-                            </button>
+                            style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn btn-sm ml-4 btn-buat-resep">
+                            <span style="font-weight: 600">
+                                <a href="/koki/resep" type="button" style="text-decoration: none; color: white;">
+                                    Buat Resep
+                                </a>
+                            </span>
+                        </button>
                         </div>
                     </div>
 
