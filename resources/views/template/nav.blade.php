@@ -127,11 +127,12 @@
                     </div>
                 </div>
                 @if(!is_array($unreadNotificationCount) && !is_array($messageCount))
-                    
-                    <button id="scrollToBottomButton" class="scroll-button iconButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
-                        <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>  
-                    </button>
+                    @if($unreadNotificationCount + $messageCount > 0)
+                        <button id="scrollToBottomButton" class="scroll-button iconButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
+                            <span id="mobile-all-notification-count-real" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>  
+                        </button>
+                    @endif
                 @endif
                 <div class="site-mobile-menu-body"id="scrollTarget" >
                     <div class="container mt-3 " id="scrollTarget2">
@@ -936,7 +937,9 @@
                                 stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
                         </svg>
                         @if(!is_array($unreadNotificationCount) && !is_array($messageCount))
-                            <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>
+                            @if($unreadNotificationCount + $messageCount > 0)
+                                <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>
+                            @endif
                         @endif
                     </button>
                     <!-- Right elements -->
@@ -2488,8 +2491,6 @@
             $("#mobile-notification-button").click(function() {
                 $('#mobile-notification-button-real').click();
                 $('#offcanvas_id').removeClass('offcanvas-menu');
-                const badge = document.getElementById('mobile-all-notification-count');
-                const badge2 = document.getElementById('mobile-notification-count');
                 $.ajax({
                     type: "PATCH",
                     url: "{{ route('all.notifications') }}",
@@ -2498,19 +2499,23 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            let messageCount = response.message_count;
-                            let notificationCount = response.notification_count;
-                            if(messageCount == 0){
-                                badge.style.display = "none";
-                                badge2.style.display = "none";
+                            if(response.message_count == 0){
+                                $('#mobile-all-notification-count').css('display','none');
+                                $('#mobile-all-notification-count-real').css('display','none');
+                                $('#mobile-notification-count').css('display','none');
                             }else{
-                                badge.textContent = messageCount;
-                                badge2.style.display = "none";
+                                $('#mobile-all-notification-count').text(response.message_count);
+                                $('#mobile-all-notification-count-real').text(response.message_count);
+                                $('#mobile-notification-count').css('display','none');
                             }
                         }
                     },
                     error: function(xhr, status, error) {
-                       
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
                     }
                 });
             });
