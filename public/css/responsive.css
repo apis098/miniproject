@@ -148,6 +148,12 @@ padding-left: 0;
   justify-content: center; /* Pusat horizontal */
   align-items: center; /* Pusat vertikal */
 }
+
+@media (min-width:426px) and (max-width: 500px) {
+  .video-js .vjs-big-play-button{
+    margin-left: 35%;
+  }
+}
 @media screen and (max-width:992px){
   .center_nav{
     display: none ;
@@ -180,7 +186,7 @@ padding-left: 0;
 @media (max-width: 373px) {
   .limit-name {
       display: block;
-      width: 100px; 
+      width: 80px; 
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -199,7 +205,7 @@ padding-left: 0;
 @media (min-width:374px) and (max-width: 400px) {
   .limit-name {
       display: block;
-      width: 140px; 
+      width: 122px; 
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
