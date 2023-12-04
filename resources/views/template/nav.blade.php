@@ -132,6 +132,10 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
                             <span id="mobile-all-notification-count-real" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>  
                         </button>
+                    @else
+                        <button id="scrollToBottomButton" class="scroll-button iconButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
+                        </button>
                     @endif
                 @endif
                 <div class="site-mobile-menu-body"id="scrollTarget" >
@@ -376,7 +380,7 @@
                                                     style="max-width:35px">
                                             </a>
                                         @endif
-                                        <p class="mt-2 text-orange ellipsis">
+                                        <p class="mt-2 text-orange">
                                             {{ $row->sender->name }}</p>
                                         @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                             <form action="{{ route('replies.notification', $row->id) }}"
@@ -1044,7 +1048,7 @@
                                                                             style="max-width:35px">
                                                                     </a>
                                                                 @endif
-                                                                <p class="mt-2 text-orange ellipsis">
+                                                                <p class="mt-2 text-orange">
                                                                     {{ $row->sender->name }}</p>
                                                                 @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                                                     <form
@@ -1692,7 +1696,7 @@
                                                             alt="profile image" style="max-width:40px">
                                                     @endif
                                                 </a>
-                                                <p class="mt-2 text-orange ellipsis">
+                                                <p class="mt-2 text-orange">
                                                     <b>{{ auth()->user()->name }}</b>
                                                 </p>
                                             </div>
@@ -1786,7 +1790,7 @@
                                                             alt="profile image" style="max-width:40px">
                                                     @endif
                                                 </a>
-                                                <p class="mt-2 text-orange ellipsis">
+                                                <p class="mt-2 text-orange">
                                                     <b>{{ auth()->user()->name }}</b>
                                                 </p>
                                             </div>
@@ -2550,10 +2554,10 @@
         // Jika posisi scroll mencapai atau melampaui posisi bawah elemen scroll target
         if (scrollPosition >= scrollTargetHeight - windowHeight) {
             // Menyembunyikan tombol
-            scrollToBottomButton.style.display = 'none';
+            scrollToBottomButton.style.opacity = '0';
         } else {
             // Menampilkan kembali tombol
-            scrollToBottomButton.style.display = 'block';
+            scrollToBottomButton.style.opacity = '1';
         }
         });
     }
