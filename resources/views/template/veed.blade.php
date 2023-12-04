@@ -42,15 +42,24 @@
                                         </a>
                                     @endif
                                     <div>
+                                         <!-- <div class="pl-0 pr-0 d-flex justify-content-between">
+                                                <strong class="ellipsis">{{ explode(' ', $item_video->user->name)[0] }}</strong>
+                                                @if ($resep->user->isSuperUser == 'yes')
+                                                    <i class="fa-regular fa-sm text-primary fa-circle-check my-auto"></i>
+                                                @endif
+                                                </div> -->
+
                                         <div class="bg-light rounded-3 px-3 py-1">
                                             <a href="/profile-orang-lain/{{ $row->id }}" class="text-dark mb-0">
-                                                <strong>{{ $row->name }}</strong>
+                                            <div class="pl-0 pr-0 d-flex justify-content-between">
+                                                <strong class="ellipsis">{{ explode(' ', $row->name)[0] }}</strong>
                                                 @if ($row->isSuperUser == 'yes')
-                                                    <i class="fa-duotone fa-circle-check"></i>
+                                                    <i class="fa-duotone fa-circle-check my-auto"></i>
                                                 @endif
+                                            </div>
                                             </a>
                                             <a href="/profile-orang-lain/{{ $row->id }}" class="text-muted d-block">
-                                                <small>{{ $row->resep->count() }} Resep dibuat</small>
+                                                <small class="ellipsis">{{ $row->resep->count() }} Resep dibuat</small>
                                             </a>
                                         </div>
 
@@ -64,6 +73,14 @@
                 </div>
                 <!-- rekomendasi chef end -->
                 <style>
+                   @media (max-width: 370px) {
+                        .d-flex .btn-video {
+                            flex-direction: column;
+                        }
+                        .margin-atas {
+                            margin-top: 5%;
+                        }
+                    }
                     .video-js .vjs-big-play-button{
                         justify-content: center; /* Pusat horizontal */
                         align-items: center; /* Pusat vertikal */
@@ -281,12 +298,12 @@
                                                 postingan...</small>
                                         </div>
                                     @endif
-                                    <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video"
+                                    <textarea name="deskripsi_video" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="deskripsi_video" maxlength="225"
                                         rows="5" required>{{ old('deskripsi_video') }}</textarea>
                                     <br>
                                     <input type="file" name="upload_video" id="inputVideo" hidden>
-                                    <div class="row">
-                                    <div class="col-lg-10 col-md-10 col-sm-12">
+                                    <div class="d-flex btn-video justify-content-between flex-wrap">
+                                    <div class="">
                                     <a href="#" class="btn btn-light" id="aVideo" onclick="openV()"
                                         style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
                                         <div style="font-weight: 600; color: black;"><svg
@@ -297,8 +314,8 @@
                                             </svg> Tambahkan Video</div>
                                     </a>
                                     </div>
-                                    <div class="col-lg-2 col-md-2 col-sm-12">
-                                    <button type="submit" class="btn mt-2" id="buttonUploadVideo"
+                                    <div class="margin-atas">
+                                    <button type="submit" class="btn trisqi" id="buttonUploadVideo"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                         <span style="font-weight: 600; color: white;">Upload</span>
                                     </button>
@@ -312,8 +329,8 @@
                                     <textarea name="" class="form-control" placeholder="Ketik apa yang anda pikirkan" id="floatingTextarea"
                                         rows="5" required>{{ old('deskripsi_video') }}</textarea>
                                     <br>
-                                    <div class="row">
-                                    <div class="col-lg-10 col-md-10 col-sm-12">
+                                    <div class="d-flex justify-content-between flex-wrap">
+                                    <div class="">
                                     <a href="#" class="btn btn-light" onclick="harusLogin()"
                                         style="background-color: white; border: 0.50px black solid; border-radius: 10px;">
                                         <span style="font-weight: 600; color: black;"><svg
@@ -325,13 +342,24 @@
                                     </a>
                                     </div>
 
-                                    <div class="col-lg-2 col-md-2 col-sm-12">
-                                    <button type="button" href="#" class="btn mt-2" onclick="harusLogin()"
+                                    <div class="margin-atas">
+                                    <button type="button" href="#" class="btn" onclick="harusLogin()"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px">
                                         <span style="font-weight: 600; color: white;">Upload</span>
                                     </button>
                                     </div>
                                     </div>
+                                    <style>
+                                    /* CSS Media Query */
+                                    @media (max-width: 370px) {
+                                        /* .d-flex {
+                                            flex-direction: column;
+                                        } */
+                                        .margin-atas {
+                                            margin-top: 5%;
+                                        }
+                                    }
+                                    </style>
                                 </form>
                             @endif
                         </div>
@@ -390,19 +418,20 @@
                                                 class="border rounded-circle me-2" alt="Avatar" style="height: 40px" />
                                         @endif
                                     </a>
-                                    <!-- <div style="margin-top: 8px;"> -->
-                                        <a href="{{ route('show.profile', $item_video->user->id) }}" class="col-lg-8 col-md-8 col-10 text-dark my-auto pl-0" >
-                                            <strong class="text-center text-truncate">{{ $item_video->user->name }}</strong>
-                                        </a>
-                                        <a href="" class="col-lg-3 col-md-3 col-sm-12 text-muted d-block my-auto removePaddingLeft"
-                                             >
-                                            <small style="float: right;" class="historyJam">
-                                                {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}</small>
-                                        </a>
-                                    <!-- </div> -->
-                                </div>
+                                    <div class="col-lg-11 col-md-11 col-10 my-auto responsive-padding">
+                                        <div class="d-flex waktu justify-content-between">
+                                            <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark my-auto d-block">
+                                                <strong class="limit-name">{{ explode(' ', $item_video->user->name)[0] }}</strong>
+                                            </a>
+                                            <small class="text-muted" style="margin-top: 2px;">
+                                                {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}
+                                            </small>
+                                        </div>
+                                    </div>
 
+                                </div>
                             </div>
+
                             <style>
                                 .vjs-big-play-button {
                                     margin-left: 250px;
@@ -567,7 +596,7 @@
                             <div class="card-body col-12">
                                 <!-- Reactions -->
                                 <div class="d-flex justify-content-between mb-2">
-                                    <div class="col-6 pl-0">
+                                    <div class="col-8 pl-0">
                                     <span class="d-flex flex-row" style="color: black;">
                                     
                                         <!-- like feed start -->
@@ -578,35 +607,35 @@
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
                                                         <button class="pr-0"
-                                                            style="border: none; background-color:white;"
+                                                            style="border: none; background-color:white; margin-bottom: 1px;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i class="text-orange fa-solid fa-lg fa-thumbs-up"
-                                                                id="likeB{{ $urut }}"></i>
+                                                                id="likeB{{ $urut }}" style="font-size: large;"></i> 
                                                         </button>
-                                                        <span class="my-auto ml-auto"
+                                                        <span style="vertical-align: middle; font-size: xxx-small;" class="my-auto ml-auto"
                                                     id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                                     </form>
                                                 @else
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
                                                         <button class="text-dark pr-0"
-                                                            style="border: none; background-color:white;"
+                                                            style="border: none; background-color:white; margin-bottom: 1px;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i id="likeB{{ $urut }}"
-                                                                class="fa-regular fa-lg fa-thumbs-up"></i>
+                                                                class="fa-regular fa-lg fa-thumbs-up" style="font-size: large;"></i>
                                                         </button>
-                                                        <span class="my-auto ml-auto"
+                                                        <span style="vertical-align: middle; font-size: xxx-small;" class="my-auto ml-auto"
                                                     id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                                     </form>
                                                 @endif
                                             <!-- </span> -->
                                         @else
                                             <form class="text-center mr-1">
-                                                <button style="border: none; background-color:white;" id="buttonLikeVeed"
-                                                    type="button" onclick="harusLogin()" class="pr-0">
-                                                    <i class="fa-regular fa-lg fa-thumbs-up"></i>
+                                                <button style="border: none; background-color:white; margin-bottom: 2px;" id="buttonLikeVeed"
+                                                    type="button" onclick="harusLogin()" class="pr-0" style="margin-bottom: 1px;">
+                                                    <i class="fa-regular fa-lg fa-thumbs-up" style="font-size: large;"></i>
                                                 </button>
-                                                <span class="my-auto ml-auto"
+                                                <span style="vertical-align: middle; font-size: xxx-small" class="my-auto ml-auto"
                                                     id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
                                             </form>
                                         @endif
@@ -619,12 +648,12 @@
                                             {{-- id="button-modal-komentar-feed{{ $urut }}" --}} data-toggle="collapse" role="button"
                                             aria-expanded="false" aria-controls="collapseExample"
                                             data-target="#commentCollapse{{ $urut }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
-                                                viewBox="0 0 16 16">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 16 16" style="font-size: large;">
                                                 <path fill="currentColor"
                                                     d="M1 4.5A2.5 2.5 0 0 1 3.5 2h9A2.5 2.5 0 0 1 15 4.5v5a2.5 2.5 0 0 1-2.5 2.5H8.688l-3.063 2.68A.98.98 0 0 1 4 13.942V12h-.5A2.5 2.5 0 0 1 1 9.5v-5ZM3.5 3A1.5 1.5 0 0 0 2 4.5v5A1.5 1.5 0 0 0 3.5 11H5v2.898L8.312 11H12.5A1.5 1.5 0 0 0 14 9.5v-5A1.5 1.5 0 0 0 12.5 3h-9Z" />
                                             </svg>
-                                            <span class="my-auto"
+                                            <span class="my-auto" style="vertical-align: middle; font-size: xxx-small;"
                                                 id="jumlah_komentar_feed{{ $item_video->id }}">{{ $item_video->countCommentFeed() }}</span>
                                         </button>
                                         <!-- modal komentar feed -->
@@ -715,13 +744,13 @@
                                         <!-- Bagikan feed start -->
                                         <a class="ml-1 mr-1 my-auto text-dark text-center" href="#" data-bs-toggle="modal"
                                             data-bs-target="#bagikan{{ $item_video->id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25"
-                                                viewBox="0 0 512 512">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 512 512" style="font-size: large;">
                                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
                                                     stroke-linejoin="round" stroke-width="32"
                                                     d="m53.12 199.94l400-151.39a8 8 0 0 1 10.33 10.33l-151.39 400a8 8 0 0 1-15-.34l-67.4-166.09a16 16 0 0 0-10.11-10.11L53.46 215a8 8 0 0 1-.34-15.06ZM460 52L227 285" />
                                             </svg>
-                                            <span id="shared_count{{ $item_video->id }}"
+                                            <span id="shared_count{{ $item_video->id }}" style="vertical-align: middle; font-size: xxx-small;"
                                                 class="my-auto">{{ $item_video->share_veed->count() }}</span>
                                         </a>
 
@@ -984,24 +1013,24 @@
                                     
                                     </span>
                                     </div>
-                                    <div class="col-6" >
+                                    <div class="col-4 pr-0" >
                                     <!-- modal Bagikan end -->
                                     <span class="d-flex" style="float: right;">
                                         <!-- gift start -->
                                         @if (Auth::check() && auth()->user()->id != $item_video->users_id)
                                             <a type="button" class="text-dark me-2"><i
                                                     class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" data-toggle="modal"
-                                                    data-target="#giftModal{{ $item_video->id }}"></i>
+                                                    data-target="#giftModal{{ $item_video->id }}" style="font-size: large;"></i>
                                             </a>
                                         @elseif(!Auth::check())
                                             <a type="button" class="text-dark me-2"><i
                                                     class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
-                                                    onclick="harusLogin()"></i>
+                                                    onclick="harusLogin()" style="font-size: large;"></i>
                                             </a>
                                         @else
                                             <a type="button" data-bs-toggle="modal"
                                                 data-bs-target="#income{{ $item_video->id }}" class="text-dark me-2">
-                                                <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3"></i>
+                                                <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3" style="font-size: large;"></i>
                                             </a>
                                             <div class="modal fade" id="income{{ $item_video->id }}" tabindex="-1"
                                                 role="dialog" aria-hidden="true">
@@ -1327,8 +1356,8 @@
                                                             id="delete-feed-button{{ $item_video->id }}"></button>
                                                         <button type="button"
                                                             onclick="confirmation_delete_feed({{ $item_video->id }})"
-                                                            class="yuhu text-dark btn-sm rounded-5 ">
-                                                            <i class="fa-solid fa-lg fa-trash"></i>
+                                                            class="yuhu text-dark btn-sm rounded-5 me-2">
+                                                            <i class="fa-solid fa-lg fa-trash" style="font-size: large;"></i>
                                                         </button>
                                                     </form>
                                                 @elseif(Auth::user()->role == 'admin')
@@ -1384,7 +1413,7 @@
                                                 {{-- Untuk user belum login --}}
                                                 <button type="button" onclick="harusLogin()"
                                                     class="yuhu text-dark btn-sm rounded-5 "><i
-                                                        class="fa-solid fa-xl fa-triangle-exclamation me-2"></i>
+                                                        class="fa-solid fa-xl fa-triangle-exclamation me-2" style="font-size: large;"></i>
                                                 </button>
                                             @endif
                                             {{-- --}}
@@ -1399,20 +1428,20 @@
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
                                                     onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu">
                                                     <i
-                                                        class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
+                                                        class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: large;"></i>
                                                 </button>
                                             @elseif(Auth::check() &&
                                                     !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
                                                     onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu ">
                                                     <i
-                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
+                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: large;"></i>
                                                 </button>
                                             @else
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
                                                     onclick="harusLogin()" class="ms-1 yuhu ">
                                                     <i
-                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"></i>
+                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: large;"></i>
                                                 </button>
                                             @endif
                                         </form>
@@ -1582,7 +1611,7 @@
                                                                                     src="{{ asset('images/default.jpg') }}"
                                                                                     alt="{{ $item_comment->user_pengirim->name }}">
                                                                             @endif
-                                                                            <p class="ms-2 mt-2 fw-bolder  ">
+                                                                            <p class="ms-2 mt-2 fw-bolder limit-name">
                                                                                 {{ $item_comment->user_pengirim->name }}
                                                                             </p>
                                                                             <div
@@ -1973,7 +2002,7 @@
                                                                                                                     src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                                                                                     alt="{{ $reply_comment->user->name }}">
 
-                                                                                                                <span><p class="fw-bolder mt-2 mb-2 text-truncate">{{ $reply_comment->user->name }}</p></span>
+                                                                                                                <span><p class="fw-bolder mt-2 mb-2 limit-name">{{ $reply_comment->user->name }}</p></span>
 
                                                                                                                 <div class="d-flex flex-row-reverse ml-auto mt-2"
                                                                                                                     style="margin-left: 50%;">
@@ -2366,7 +2395,7 @@
                                                                                                                             alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                                                                                     @endif
                                                                                                                     <span>
-                                                                                                                        <p class="fw-bolder mt-2 mb-2 text-truncate">{{ $reply_replyComment->user_pengirim->name }}</p>
+                                                                                                                        <p class="fw-bolder mt-2 mb-2 limit-name">{{ $reply_replyComment->user_pengirim->name }}</p>
                                                                                                                     </span>
 
                                                                                                                     <small class="d-flex flex-row-reverse ml-auto mt-2"
@@ -2379,7 +2408,7 @@
                                                                                                                     <p
                                                                                                                         class="ms-5">
                                                                                                                         <a
-                                                                                                                            href="">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
+                                                                                                                            href="" class="limit-name">{{ '@' . $reply_replyComment->user_pemilik->name . ' ' }}</a>
                                                                                                                         {{ $reply_replyComment->komentar }}
                                                                                                                     </p>
                                                                                                                 </div>
@@ -2642,7 +2671,7 @@
                                                                                                                                     d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                             </svg>
                                                                                                                             &nbsp;
-                                                                                                                            <small class="me-2 ">Balas</small>
+                                                                                                                            <small class="me-3">Balas</small>
                                                                                                                         </a>
                                                                                                                     </div>
                                                                                                                 </div>
@@ -2792,12 +2821,13 @@
                                         <div class="bg-light rounded-3 px-3 py-1">
                                             <a href="/artikel/{{ $resep->id }}/{{ $resep->nama_resep }}"
                                                 class="text-dark mb-0">
-                                                <strong>{{ $resep->user->name }}</strong>
+                                                <div class="pl-0 pr-0 d-flex justify-content-between">
+                                                <strong class="ellipsis">{{ explode(' ', $item_video->user->name)[0] }}</strong>
                                                 @if ($resep->user->isSuperUser == 'yes')
-                                                    <i class="fa-regular fa-sm text-primary fa-circle-check"></i>
+                                                    <i class="fa-regular fa-sm text-primary fa-circle-check my-auto"></i>
                                                 @endif
-                                                <br>
-                                                <small>{{ $resep->nama_resep }}</small>
+                                                </div>
+                                                <small class="ellipsis">{{ $resep->nama_resep }}</small>
                                             </a>
                                         </div>
 
@@ -2828,15 +2858,19 @@
                                         @endif
                                     </a>
                                     <div>
+                                   
+
                                         <div class="bg-light rounded-3 px-3 py-1">
                                             <a href="/detail_kursus/{{ $kursus->id }}" class="text-dark mb-0">
-                                                <strong>{{ $kursus->user->name }}</strong>
+                                            <div class="pl-0 pr-0 d-flex justify-content-between">
+                                                <strong class="ellipsis">{{ explode(' ', $kursus->user->name)[0] }}</strong>
                                                 @if ($kursus->user->isSuperUser == 'yes')
-                                                    <i class="fa-regular text-primary fa-circle-check"></i>
+                                                    <i class="fa-regular text-primary fa-circle-check my-auto"></i>
                                                 @endif
+                                            </div>
                                             </a>
                                             <a href="/detail_kursus/{{ $kursus->id }}" class="text-muted d-block">
-                                                <small>{{ $kursus->nama_kursus }}</small>
+                                                <small class="ellipsis">{{ $kursus->nama_kursus }}</small>
                                             </a>
                                         </div>
 
@@ -3035,7 +3069,7 @@
                                                                                                                 alt="${pengirim['name']}">
 
                                                                                                                 <span>
-                                                                                                                    <p class="fw-bolder mt-2 mb-2 text-truncate">${pengirim['name']}</p>
+                                                                                                                    <p class="fw-bolder mt-2 mb-2 limit-name">${pengirim['name']}</p>
                                                                                                                 </span>
 
                                                                                                                 <small class="d-flex flex-row-reverse ml-auto mt-2" style="margin-left: 50%;">
@@ -3044,7 +3078,7 @@
 
                                                                                                             </div>
                                                                                                             <div class="d-flex pl-0" style="margin-top: -1.2%;">
-                                                                                                                <p class="ms-5"><a class="text-primary " href="">@${penerima['name']}</a> ${up['komentar']}
+                                                                                                                <p class="ms-5"><a class="text-primary " href="" class="limit-name">@${penerima['name']}</a> ${up['komentar']}
                                                                                                                 </p>
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
@@ -3123,7 +3157,7 @@
                                                                                                                                 d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
                                                                                                                         </svg>
                                                                                                                         &nbsp;
-                                                                                                                        <small class="me-2 ">Balas</small>
+                                                                                                                        <small class="me-3 ">Balas</small>
                                                                                                                     </a>
                                                                                                                 </div>
                                                                                                             </div>
@@ -3244,7 +3278,7 @@
                                                                                                                 alt="${pengirim['name']}">
 
                                                                                                                 <span>
-                                                                                                                    <p class=" fw-bolder mt-2 mb-2">${pengirim['name']}</p>
+                                                                                                                    <p class=" fw-bolder mt-2 mb-2 limit-name">${pengirim['name']}</p>
                                                                                                                 </span>
 
                                                                                                                 <div class="d-flex flex-row-reverse ml-auto mt-2" style="margin-left: 50%;">
@@ -3848,7 +3882,7 @@
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
 
-                                                                                                                <span><p class="fw-bolder mt-2 mb-2 text-truncate">${pengirim['name']}</p></span>
+                                                                                                                <span><p class="fw-bolder mt-2 mb-2 limit-name">${pengirim['name']}</p></span>
 
                                                                                                                 <small
                                                                                                                 class="d-flex flex-row-reverse ml-auto mt-2" style="margin-left: 50%;">${time}
@@ -4175,7 +4209,7 @@
                                                                                     src="{{ asset('${foto}') }}"
                                                                                     alt="">
 
-                                                                            <p class="ms-2 mt-2 fw-bolder">
+                                                                            <p class="ms-2 mt-2 fw-bolder limit-name">
                                                                                 ${pengirim['name']}
                                                                             </p>
                                                                             <div
