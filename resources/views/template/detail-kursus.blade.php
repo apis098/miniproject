@@ -444,19 +444,19 @@
                         <div class="my-4 mt-4">
                             <h3><b>Ulasan</b></h3>
                         </div>
-                        <div class="col-10 mb-5">
+                        <div class="mb-5">
                             {{-- @if (Auth::check()) --}}
                             <form method="POST"
                                 action="{{ route('ulasan-rating-kursus.store', [$detail_course->id, $detail_course->user->id, Auth::user()->id]) }}">
                                 @csrf
                                 <input type="hidden" name="rating" id="ratingKursuses">
-                                <div class="input-group" style="margin-left: -15px;">
+                                <div class="input-group d-flex justify-content-between" style="">
                                     <input type="text" id="reply" name="ulasan" maxlength="255"
-                                        style="border-radius: 10px;width: 150px;" {{-- $userLog === 1 ? 'disabled' : '' --}}
-                                        class="form-control" placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
+                                     {{-- $userLog === 1 ? 'disabled' : '' --}}
+                                        class="form-control" style="border-radius:10px;" placeholder="Tambahkan Ulasan...">
                                     <button type="button" data-toggle="modal" data-target="#modalBeriRating"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
-                                        class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
+                                        class="btn btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
                                 </div>
                                 <div class="modal fade" id="modalBeriRating" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -495,17 +495,16 @@
                 @endif
 
                 @foreach ($ulasan_kursus as $review)
-                    <div class="card mb-5" style="width: 77%;margin-top:-15px;border-radius:15px;">
+                    <div class="card mb-5" style="border-radius:15px;">
                         <div class="card-body">
                             <div class="row">
                                 <div class="d-flex">
                                     @if ($review->user->foto)
                                         <img src="{{ asset('storage/' . $review->user->foto) }}" alt=""
-                                            width="5%" height="5%"
+                                            width="30px"
                                             class="img-fluid rounded-circle mb-3 shadow-sm">
                                     @else
-                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="5%"
-                                            height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
+                                        <img src="{{ asset('images/default.jpg') }}" alt="" width="30px" class="img-fluid rounded-circle mb-3 shadow-sm">
                                     @endif
                                     <p class="text center my-1 mx-3"><b>{{ $review->user->name }}</b></p>
                                     <div class="d-flex ml-auto">
@@ -618,7 +617,7 @@
                                             d="M12 21.933A9.933 9.933 0 1 1 21.934 12A9.945 9.945 0 0 1 12 21.933Zm0-18.866A8.933 8.933 0 1 0 20.934 12A8.944 8.944 0 0 0 12 3.067Z" />
                                     </svg>
                                 @elseif(Auth::user()->id == $detail_course->user->id)
-                                    <div class="" id="buttonBukaFormBalas{{ $review->id }}"
+                                    <div class="my-auto" id="buttonBukaFormBalas{{ $review->id }}"
                                         onclick="formBalasUlasan({{ $review->id }})">
                                         <p style="border: 1px solid black;padding:2px;border-radius:10px;">
                                             Balas</p>
@@ -646,17 +645,17 @@
             @if (Auth::check())
                 @if (Auth::user()->id == $detail_course->user->id)
                     <div id="formBalasUlasan{{ $review->id }}" class="mb-5 mt-3 ml-5 hide"
-                        style="width: 66%;margin-top:-15px;border-radius:15px;">
+                        style="border-radius:15px;">
                         <form action="{{ route('balas.ulasan', [$detail_course->id, $review->user->id, $review->id]) }}"
                             method="post">
                             @csrf
-                            <div class="input-group" style="margin-left: -15px;">
+                            <div class="d-flex justify-content-between">
                                 <input type="text" id="reply" name="ulasan" maxlength="255"
-                                    style="border-radius: 10px;width: 150px;" {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control"
-                                    placeholder="{{-- $userLog === 1 ? 'Tambah Komentar' : 'Tambah Komentar' --}}">
+                                     {{-- $userLog === 1 ? 'disabled' : '' --}} class="form-control me-2"
+                                    placeholder="Tambahkan Balasan Ulasan...">
                                 <button type="submit"
-                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);margin-left: 30px;"
-                                    class="btn btn-sm text-light me-5"><b class="me-3 ms-3">Kirim</b></button>
+                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    class="btn btn-sm text-light"><b class="me-3 ms-3">Kirim</b></button>
                             </div>
                         </form>
                     </div>
@@ -669,10 +668,10 @@
                             <div class="d-flex">
                                 @if ($balasanChef->chef_teacher->foto)
                                     <img src="{{ asset('storage/' . $balasanChef->chef_teacher->foto) }}" alt=""
-                                        width="5%" height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
+                                        width="30px" class="img-fluid rounded-circle mb-3 shadow-sm">
                                 @else
-                                    <img src="{{ asset('images/default.jpg') }}" alt="" width="5%"
-                                        height="5%" class="img-fluid rounded-circle mb-3 shadow-sm">
+                                    <img src="{{ asset('images/default.jpg') }}" alt="" width="30px"
+                                         class="img-fluid rounded-circle mb-3 shadow-sm">
                                 @endif
                                 <p class="text center my-1 mx-3"><b>{{ $balasanChef->chef_teacher->name }}</b></p>
                             </div>
