@@ -126,7 +126,7 @@
                         <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
                     </div>
                 </div>
-                @if($unreadNotificationCount + $messageCount > 0)
+                @if($unreadNotificationCount !=null && $messageCount != null && $unreadNotificationCount + $messageCount > 0)
                     <button id="scrollToBottomButton" class="scroll-button iconButton">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
                         <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>  
@@ -934,7 +934,7 @@
                             <path fill="none" stroke="currentColor" stroke-linecap="round"
                                 stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
                         </svg>
-                        @if($unreadNotificationCount + $messageCount > 0)
+                        @if($unreadNotificationCount !=null && $messageCount != null && $unreadNotificationCount + $messageCount > 0)
                             <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>
                         @endif
                     </button>
