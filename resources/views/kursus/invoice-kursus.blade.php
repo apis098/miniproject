@@ -12,13 +12,16 @@
             margin-top: 20px;
             background-color: #fff;
         }
+        h2 {
+            background: #F7941E !important;
+        }
     </style>
 </head>
 
 <body>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
         integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
-        <h2 style="background-color: #F7941E" class="mb-1">
+        <h2 class="mb-1">
             <div class="container">
             <span style="background-color: white;" class="px-4">Invoice</span>
             </div>
