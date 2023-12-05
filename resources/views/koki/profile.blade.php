@@ -135,19 +135,19 @@
                                         <div class="mb-3">
                                             <textarea name="biodata" id="biodata" class="form-control" cols="30" rows="10">{{ $userLogin->biodata }}</textarea>
                                         </div>
-                                        <div class="mb-3" style="text-align: end;">
-                                            <button class="btn btn-warning btn-sm rounded-5 text-light"
-                                                style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                type="submit" id="saveProfileButton"><b
-                                                    class="ms-1 me-1">Simpan</b></button>
-                                        </div>
-                                    </form>
+                                       
                                 </div>
                             </div>
                         </div>
 
-                        <div class="modal-footer mt-3 mb-4">
-
+                        <div class="modal-footer mt-1">
+                            <div class="mb-1" style="text-align: end;">
+                                <button class="btn btn-warning btn-sm rounded-5 text-light"
+                                    style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    type="submit" id="saveProfileButton"><b
+                                        class="ms-1 me-1">Simpan</b></button>
+                            </div>
+                        </form>
                         </div>
                         </form>
                     </div>
