@@ -250,11 +250,6 @@ padding-left: 0;
 /* Mengatur warna latar belakang scrollbar */
 
   /* Aturan scrollbar untuk layar yang lebih besar */
-  ::-webkit-scrollbar {
-    display: none; /* Lebar scrollbar */
-  }
-
-
 
 /* .form-comment{
   display: flex;
