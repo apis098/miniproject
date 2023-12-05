@@ -204,10 +204,160 @@
         .garis {
             border-bottom: #F7941E 2px solid;
         }
+        .scrollbar::-webkit-scrollbar-track
+        {
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        .scrollbar::-webkit-scrollbar
+        {
+            height: 5px;
+            background-color: transparent;
+            /* background-color: #ffffff; */
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            background-color: #f7941f;
+        }
+        @media(min-width:0px) and (max-width:340px){
+            .app  {
+            height: 18px;
+            width: 100px;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            margin: 0 5px 0 5px;
+            text-align: center;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #000;
+            }
+            .btn-detail{
+                padding: 2px;
+                font-size: 12px
+            }
+
+        }
+        @media(min-width:0px) and (max-width:330px){
+
+            .table-custom {
+                margin-right: 5px;
+                margin-left: 124px;
+                text-align: center;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+            }
+        }
+        @media(min-width:330px) and (max-width:337px){
+
+            .table-custom {
+                margin-right: 5px;
+                margin-left: 120px;
+                text-align: center;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+            }
+        }
+        @media(min-width:337px) and (max-width:350px){
+
+            .table-custom {
+                margin-right: 5px;
+                margin-left: 90px;
+                text-align: center;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+            }
+            .btn-detail{
+                padding: 1px;
+            }
+        }
+        @media(min-width:350px) and (max-width:380px){
+
+            .table-custom {
+                margin-right: 5px;
+                margin-left: 50px;
+                text-align: center;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+            }
+            .btn-detail{
+                padding: 2px;
+            }
+        }
+        @media(min-width:380px) and (max-width:430px){
+
+            .table-custom {
+                margin-right: 5px;
+                margin-left: 17px;
+                text-align: center;
+                border-collapse: separate;
+                border-spacing: 0px 15px;
+            }
+            .btn-detail{
+                padding: 3px;
+            }
+        }
+        @media(min-width:340px) and (max-width:740px){
+            .app  {
+            height: 18px;
+            width: 90px;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            margin: 0 5px 0 5px;
+            text-align: center;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #000;
+            }
+            .btn-detail{
+                padding: 3px;
+            }
+        }
+        @media(min-width:740px) and (max-width:960px){
+            .app  {
+            height: 18px;
+            width: 150px;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            margin: 0 5px 0 5px;
+            text-align: center;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #000;
+            }
+        }
+        @media(min-width:960px) and (max-width:4000px){
+            .app  {
+            height: 18px;
+            width: 200px;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            margin: 0 5px 0 5px;
+            text-align: center;
+            text-decoration: none;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: #000;
+            }
+        }
+
     </style>
-    <div style="overflow-x:hidden ">
+    <div class=" scrollbar" style="max-width:100%; overflow-x:auto; overflow-y:hidden ">
     <div class=" d-flex justify-content-center">
-        <div class="my-5 ml-4">
+        <div class="my-3 mt-5 mx-5">
             <!--
         <ul class="nav mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -229,12 +379,11 @@
                 </a>
             </li>
         </ul> -->
-            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+            <div class="tab-content " id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                    tabindex="0">
-                    {{-- start tab 1 --}}
+                    tabindex="0" style="min-width:180px">
 
-                    <table class="table-custom ">
+                    <table class="table-custom" style=" ">
                         <thead>
                             <tr>
                                 <th scope="col">Judul</th>
@@ -247,20 +396,21 @@
 
                             @foreach ($complaints as $complaint)
                             <tr class="mt-5">
-                                    <td style="border-left:1px solid black;" class="mt">{{ $complaint->subject }}</td>
-                                    <td>{{ $complaint->description }}
+                                    <td style="border-left:1px solid black;" class="mt"> <p class="app">{{ $complaint->subject }}</p></td>
+                                    <td> <p class="app">{{ $complaint->description }}</p>
                                     </td>
-                                    <td>{{ $complaint->replies->count() }}</td>
-                                    <td style="border-right:1px solid black;">
-                                        <a href="/show-reply-by/{{ $complaint->id }}" type="button" class="btn btn-light btn-sm rounded-3 text-light"
+                                    <td><p class="app m-0">{{ $complaint->replies->count() }}</p></td>
+                                    <td style="border-right:1px solid black;" >
+                                        <a href="/show-reply-by/{{ $complaint->id }}" type="button" class="btn btn-light btn-detail rounded-3 text-light me-sm-4"
                                             style="background-color: #F7941E;">
-                                            <b class="ms-2 me-2">Detail</b>
+                                            <b class="ms-2 me-2 me-sm-4 ms-sm-0 mx-auto"  >Detail</b>
                                         </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
                     @if ($complaints->count() == 0)
                     <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                         style="margin-top: 5em; margin-left:-5%;">

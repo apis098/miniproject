@@ -247,6 +247,27 @@
             margin-left: 6.2%;
             margin-right: 0.4%
         }
+        ::-webkit-scrollbar-track
+        {
+            border-radius: 10px;
+            display: none;
+            background-color: #ffffff;
+        }
+
+        ::-webkit-scrollbar
+        {
+            height: 5px;
+            display: none;
+            background-color: transparent;
+            /* background-color: #ffffff; */
+        }
+
+        ::-webkit-scrollbar-thumb
+        {
+            border-radius: 10px;
+            display: none;
+            background-color:transparent;
+        }
 
     </style>
     <section class="container-section">
@@ -921,11 +942,7 @@
                     @endforeach
                 @endif
             </div>
-            <div class=" ml-3">
-                <div class="col-lg-6 mt-3 ml-5">
 
-                </div>
-            </div>
         </div>
         <div class="row mx-auto mb-5 mt-2" style="margin-top: -20px;">
             <div class="col-lg-4">
