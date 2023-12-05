@@ -95,49 +95,9 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                             </button>
                         </div>
-                        {{--
-                        <div class="modal-body" hidden>
-                            <form action="{{ route('update.profile') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="profile d-flex justify-content-center">
-
-                                    <label for="fileInputA" class="btn btn-warning btn-sm rounded-5 text-light"
-                                        style="position: absolute; top: 80%; right: 46%;background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                        id="chooseFileButtonA">
-                                        <b class="ms-2 me-2">Pilih file</b>
-                                    </label>
-
-                                    <a href="{{ route('delete.profile') }}" id="deleteProfile" hidden>Hapus</a>
-                                    <a onclick="DeleteData()" class="btn btn-warning btn-sm rounded-5"
-                                        style="position: absolute; top: 80%; right: 24.7%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                            class="ms-1 me-1 text-light">Hapus foto</b></a>
-
-                                    <button class="btn btn-warning btn-sm rounded-5 text-light me-3"
-                                        style="position: absolute; top: 80%; right: 5%;border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                        type="submit" id="saveProfileButton"><b class="ms-1 me-1">Simpan</b></button>
-
-                                    <input type="file" id="fileInputA" name="profile_picture" style="display:none">
-
-                                    @if ($userLogin->foto)
-                                        <img src="{{ asset('storage/' . $userLogin->foto) }}" width="106px" height="104px"
-                                            style="border-radius: 50%; margin-right:-28%;" id="profile-image">
-                                    @else
-                                        <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
-                                            style="border-radius: 50%; margin-right:-28%;" id="profile-image">
-                                    @endif
-
-                                    <div class="col-8" style="margin-left:35%;">
-                                        <input type="text" value="{{ $userLogin->name }}" name="name"
-                                            class="form-control form-control-sm">
-                                        <input type="email" name="email" value="{{ $userLogin->email }}"
-                                            class="form-control form-control-sm mt-3">
-                                    </div>
-
-                                </div>
-                        </div>--}}
                         <div class="modal-body">
                             <div class="row">
-                                <div class="col-md-3 col-sm-12 mb-3">
+                                <div class="col-md-3 col-sm-12 mb-3" style="text-align: center;">
                                     @if ($userLogin->foto)
                                         <img src="{{ asset('storage/' . $userLogin->foto) }}" width="106px"
                                             height="104px" style="border-radius: 50%;" id="profile-image">
@@ -145,6 +105,18 @@
                                         <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
                                             style="border-radius: 50%;" id="profile-image">
                                     @endif
+                                    <br>
+                                    <label for="fileInputA" class="btn btn-warning btn-sm mt-2 rounded-5 text-light"
+                                    style="background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                    id="chooseFileButtonA">
+                                    <b class="ms-3 me-3">Pilih file</b>
+                                </label>
+
+                                <a href="{{ route('delete.profile') }}" id="deleteProfile" hidden>Hapus</a>
+                                <a onclick="DeleteData()" class="btn btn-warning btn-sm rounded-5"
+                                    style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                        class="ms-1 me-2 text-light">Hapus foto</b></a>
+
                                 </div>
                                 <div class="col-md-9 col-sm-12">
                                     <form action="{{ route('update.profile') }}" method="POST"
@@ -163,19 +135,8 @@
                                         <div class="mb-3">
                                             <textarea name="biodata" id="biodata" class="form-control" cols="30" rows="10">{{ $userLogin->biodata }}</textarea>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="fileInputA" class="btn btn-warning btn-sm mt-2 rounded-5 text-light"
-                                                style="background-color: #F7941E; border-radius: 9px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                id="chooseFileButtonA">
-                                                <b class="ms-2 me-2">Pilih file</b>
-                                            </label>
-
-                                            <a href="{{ route('delete.profile') }}" id="deleteProfile" hidden>Hapus</a>
-                                            <a onclick="DeleteData()" class="btn btn-warning btn-sm rounded-5"
-                                                style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                                                    class="ms-1 me-1 text-light">Hapus foto</b></a>
-
-                                            <button class="btn btn-warning btn-sm rounded-5 text-light me-3"
+                                        <div class="mb-3" style="text-align: end;">
+                                            <button class="btn btn-warning btn-sm rounded-5 text-light"
                                                 style="border-radius: 9px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                                                 type="submit" id="saveProfileButton"><b
                                                     class="ms-1 me-1">Simpan</b></button>
