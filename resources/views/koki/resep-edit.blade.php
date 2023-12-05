@@ -58,8 +58,7 @@
                     <div class="mt-2" style="margin-bottom: 20px">
                         <label for="floatingTextarea"><b>Deskripsi</b></label>
                         <textarea name="deskripsi_resep" class="form-control" style="white-space:normal" cols="15" rows="5"
-                            placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
-                            {{ trim($edit_resep->deskripsi_resep) }}
+                            placeholder="Masukkan deskripsi makanan" id="floatingTextarea">{!! ($edit_resep->deskripsi_resep) !!}
                         </textarea>
                         @error('deskripsi_resep')
                             <div class="alert alert-danger">
@@ -240,8 +239,7 @@
                                     <input type="text" name="judul_langkah[]" id=""
                                         class="form-control mb-3 mx-3" value="{{ $item_langkah->judul_langkah }}">
                                     <textarea name="langkah_resep[]" class="form-control mx-3" style="white-space:normal;" cols="15"
-                                        rows="5" placeholder="Masukkan deskripsi makanan" id="floatingTextarea">
-                                    {{ trim($item_langkah->deskripsi_langkah) }}
+                                        rows="5" placeholder="Masukkan deskripsi makanan" id="floatingTextarea">{!! $item_langkah->deskripsi_langkah !!}
                                     </textarea>
                                     @error('langkah_resep.*')
                                         <div class="alert alert-danger">
