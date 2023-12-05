@@ -106,7 +106,7 @@
             padding: 30px;
         }
 
-       
+
 
         .b-b {
             border: black solid;
@@ -402,25 +402,20 @@
         </div>
 
         <style>
-            @media (min-width: 1200px) {
+            @media(min-width:1145px) {
                 .text-riwayat1 {
                     display: none;
-                    visibility: hidden;
+                }
+                .text-riwayat2 {
+                    display: block;
                 }
             }
-
-            @media (max-width: 1024px) and (min-width: 578px) {
+            @media(max-width:1144px) {
+                .text-riwayat1 {
+                    display: block;
+                }
                 .text-riwayat2 {
                     display: none;
-                    visibility: hidden;
-                }
-
-            }
-
-            @media (max-width:500px) {
-                .text-riwayat1 {
-                    display: none;
-                    visibility: hidden;
                 }
             }
 
@@ -453,13 +448,25 @@
                     margin-left: -35px;
                 }
             }
+            @media(max-width:992px) {
+                .riwayats {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            @media(min-width:993px) {
+                .riwayats {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
         </style>
         <form action="{{ route('koki.income') }}" method="POST" class="form1">
             @csrf
             <div class="text-center text-riwayat1">
                 <h3 style="font-family: Poppins">Riwayat</h3>
             </div>
-            <div class="d-flex justify-content-between">
+            <div class="riwayats">
                 <div class="text-riwayat2">
                     <h3 style="font-family:poppins">Riwayat</h3>
                 </div>
