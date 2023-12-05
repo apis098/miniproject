@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\balasRepliesCommentsFeeds;
 use App\Models\ChMessage;
 use App\Models\comment_veed;
@@ -45,7 +46,7 @@ class VeedController extends Controller
         $recipes = reseps::latest()->paginate(5);
         $course = kursus::latest()->paginate(5);
         $messageCount = [];
-        $income =[];    
+        $income =[];
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(5)->get();
         if ($userLogin) {
@@ -58,7 +59,7 @@ class VeedController extends Controller
             ->where('chef_id', auth()->user()->id)
             ->groupBy('feed_id')
             ->get();
-           
+
             $id_user = Auth::user()->id;
             $id_admin = User::where("role", "admin")->first();
             if ($id_user == $id_admin->id) {
@@ -83,6 +84,20 @@ class VeedController extends Controller
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
         $count_comment = comment_veed::count();
+                // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
+                if (Auth::user()) {
+                    if(auth()->user()->status_langganan == "sedang berlangganan") {
+                        $tanggal_berakhir_langganan = Carbon::parse(auth()->user()->akhir_langganan);
+                        $tanggal_saat_ini = Carbon::now();
+                        if($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
+                            $update_status = User::find(auth()->user()->id);
+                            $update_status->status_langganan = "belum berlangganan";
+                            $update_status->awal_langganan = null;
+                            $update_status->akhir_langganan = null;
+                            $update_status->save();
+                        }
+                    }
+                }
         return view("template.veed", compact('income','course','recipes','categorytopup',"count_comment","top_users", "messageCount", "allUser", "reply_comment_veed", "video_pembelajaran", "notification", "footer", "favorite", "unreadNotificationCount", "userLogin"));
     }
     public function detailVeed($id)
@@ -148,12 +163,12 @@ class VeedController extends Controller
                 $notification->categories = "like_veed";
                 $notification->message = "Menyukai postingan anda";
                 $notification->save();
-                                
+
                 $let_route = notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
-            
+
             $isLikeVeed = \App\Models\like_veed::query()
                 ->where('users_id', Auth::user()->id)
                 ->where('veed_id', $veed_id)
@@ -196,7 +211,7 @@ class VeedController extends Controller
             $notification->user_id = $penerima_id;
             $notification->notification_from = auth()->user()->id;
             $notification->veed_id = $veed_id;
-            $notification->categories = "Komentar veed"; 
+            $notification->categories = "Komentar veed";
             $notification->message =  "Mengomentari postingan anda";
             $notification->save();
 
@@ -249,7 +264,7 @@ class VeedController extends Controller
                 $notification->categories = "like_veed";
                 $notification->message = "Menyukai komentar anda";
                 $notification->save();
-                                
+
                 $let_route = notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
@@ -297,7 +312,7 @@ class VeedController extends Controller
             $notification->categories = "reply_comment";
             $notification->message = "Membalas komentar anda";
             $notification->save();
-                            
+
             $let_route = notifications::findOrFail($notification->id);
             $let_route->route = "/status-baca/shared-feed/" . $notification->id;
             $let_route->save();
@@ -344,7 +359,7 @@ class VeedController extends Controller
                 $notification->categories = "like_veed";
                 $notification->message = "Menyukai komentar anda";
                 $notification->save();
-                                
+
                 $let_route = notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
@@ -397,7 +412,7 @@ class VeedController extends Controller
                 $notification->categories = "like_veed";
                 $notification->message = "Menyukai komentar anda";
                 $notification->save();
-                                
+
                 $let_route = notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
@@ -473,7 +488,7 @@ class VeedController extends Controller
                     $notification->share_id = $data->id;
                     $notification->save();
                 }
-    
+
                 return response()->json([
                     "success"=> true,
                     "message"=>"Berhasil membagikan Postingan!",
@@ -492,7 +507,7 @@ class VeedController extends Controller
             ]);
         }
     }
- 
+
     public function balasRepliesCommentsFeeds(Request $request, string $pemilik_id, string $comment_id, string $parent_id = null)
     {
         if ($parent_id != null) {
@@ -520,7 +535,7 @@ class VeedController extends Controller
             $notification->categories = "reply_comment";
             $notification->message = "Membalas komentar anda";
             $notification->save();
-                            
+
             $let_route = notifications::findOrFail($notification->id);
             $let_route->route = "/status-baca/shared-feed/" . $notification->id;
             $let_route->save();

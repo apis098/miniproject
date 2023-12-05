@@ -20,6 +20,7 @@ use App\Models\ResepPremiums;
 use App\Models\Share;
 use App\Models\TopUpCategories;
 use App\Models\User;
+use Carbon\Carbon;
 
 class artikels extends Controller
 {
@@ -77,7 +78,20 @@ class artikels extends Controller
         $comment_count = $comment->count();
         $categorytopup  =  TopUpCategories::all();
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
-
+   // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
+   if (Auth::user()) {
+    if(auth()->user()->status_langganan == "sedang berlangganan") {
+        $tanggal_berakhir_langganan = Carbon::parse(auth()->user()->akhir_langganan);
+        $tanggal_saat_ini = Carbon::now();
+        if($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
+            $update_status = User::find(auth()->user()->id);
+            $update_status->status_langganan = "belum berlangganan";
+            $update_status->awal_langganan = null;
+            $update_status->akhir_langganan = null;
+            $update_status->save();
+        }
+    }
+}
         return view('template.artikel', compact('share_check','gift_check','gift_count','allUser','categorytopup','Premium','idAdmin','messageCount','admin', 'comment','comment_count', 'show_resep', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }

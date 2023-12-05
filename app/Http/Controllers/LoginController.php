@@ -123,6 +123,20 @@ class LoginController extends Controller
         $feed_premium_favorite = upload_video::query()->where('isPremium', 'yes')->orderBy('favorite_count', 'desc')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
         $resep_premium_favorite = reseps::query()->withCount('favorite')->orderBy('favorite_count', 'desc')->where('isPremium', 'yes')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
         $feed_populer = upload_video::query()->withCount('like_veed')->orderBy('like_veed_count', 'desc')->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
+        // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
+        if (Auth::user()) {
+            if(auth()->user()->status_langganan == "sedang berlangganan") {
+                $tanggal_berakhir_langganan = Carbon::parse(auth()->user()->akhir_langganan);
+                $tanggal_saat_ini = Carbon::now();
+                if($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
+                    $update_status = User::find(auth()->user()->id);
+                    $update_status->status_langganan = "belum berlangganan";
+                    $update_status->awal_langganan = null;
+                    $update_status->akhir_langganan = null;
+                    $update_status->save();
+                }
+            }
+        }
         return view('template.home', compact('feed_premium_favorite','feed_populer','resep_premium_favorite','categorytopup','messageCount', 'favorite_resep', 'recipes', 'categories_foods', 'top_users', 'real_reseps', 'userLogin', 'complaints', 'footer', 'notification', 'unreadNotificationCount', 'favorite', 'jumlah_resep', 'foto_resep'));
     }
 

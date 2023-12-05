@@ -102,6 +102,7 @@ class followersController extends Controller
             ->paginate(10);
         }
         $courses = kursus::where('users_id', $id)->take(6)->get();
+        
         return view('template.profile-oranglain',compact('courses','categorytopup','upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
     public function store(Request $request, $id)

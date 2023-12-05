@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\bahan_reseps;
+use App\Models\User;
 use App\Models\ChMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ use App\Models\Village;
 use App\Models\Regency;
 use App\Models\TopUpCategories;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class FiltersController extends Controller
 {
@@ -124,6 +126,20 @@ class FiltersController extends Controller
         }
         $recipes = $recipess->inRandomOrder()->paginate(4);
         //dd($recipes);
+   // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
+   if (Auth::user()) {
+    if(auth()->user()->status_langganan == "sedang berlangganan") {
+        $tanggal_berakhir_langganan = Carbon::parse(auth()->user()->akhir_langganan);
+        $tanggal_saat_ini = Carbon::now();
+        if($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
+            $update_status = User::find(auth()->user()->id);
+            $update_status->status_langganan = "belum berlangganan";
+            $update_status->awal_langganan = null;
+            $update_status->akhir_langganan = null;
+            $update_status->save();
+        }
+    }
+}
         return view('template.resep', compact('categorytopup','toolsCooks', 'messageCount', 'special_day', 'footer', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
     public function filter_resep(Request $request)
@@ -228,6 +244,20 @@ class FiltersController extends Controller
             });
         }
         $recipes->paginate(6);
+           // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
+           if (Auth::user()) {
+            if(auth()->user()->status_langganan == "sedang berlangganan") {
+                $tanggal_berakhir_langganan = Carbon::parse(auth()->user()->akhir_langganan);
+                $tanggal_saat_ini = Carbon::now();
+                if($tanggal_saat_ini->gt($tanggal_berakhir_langganan)) {
+                    $update_status = User::find(auth()->user()->id);
+                    $update_status->status_langganan = "belum berlangganan";
+                    $update_status->awal_langganan = null;
+                    $update_status->akhir_langganan = null;
+                    $update_status->save();
+                }
+            }
+        }
         return view('template.resep', compact('categorytopup','messageCount', 'toolsCooks', 'footer', 'special_day', 'categories_foods_all', 'categories_ingredients', 'recipes', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 }
