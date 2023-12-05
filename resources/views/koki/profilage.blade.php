@@ -277,10 +277,7 @@
                                 <label class="col-sm-2 col-form-label kanan"> <strong style="margin-left: 13px;">Biodata
                                     </strong></label>
                                 <div class="col-sm-10">
-                                    <textarea id="durasi" name="biodata" rows="4" value="{{-- $userLogin->password --}}"
-                                        class="form-control rounded-2 besar" placeholder="Masukkan Biodata...">
-                                {!! $userLogin->biodata !!}
-                                </textarea>
+                                    <textarea id="durasi" name="biodata" rows="4" class="form-control rounded-2 besar m-0 p-0" placeholder="Masukkan Biodata.">   {!! $userLogin->biodata !!}</textarea>
                                 </div>
                             </div>
 
