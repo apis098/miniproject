@@ -9,7 +9,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
-use App\Http\Controllers\Artikels;
+use App\Http\Controllers\ArtikelsController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FiltersController;
 use App\Http\Controllers\FollowersController;
@@ -45,7 +45,7 @@ use App\Http\Controllers\UlasanRatingController;
 
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
-Route::get('/artikel/{id}/{judul}', [Artikels::class, 'artikel_resep'])->name('artikel.resep')->middleware('auth.premium');
+Route::get('/artikel/{id}/{judul}', [ArtikelsController::class, 'artikel_resep'])->name('artikel.resep')->middleware('auth.premium');
 
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
