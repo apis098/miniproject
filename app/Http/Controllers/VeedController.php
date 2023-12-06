@@ -219,10 +219,10 @@ class VeedController extends Controller
             $let_route->route = "/status-baca/shared-feed/".$notification->id;
             $let_route->save();
         }
-        $comment_veed = comment_veed::find($new->id);
+        $comment_veed = comment_veed::findOrFail($new->id);
         $data_veed = upload_video::findOrFail($new->veed_id);
         $comment_count = $data_veed->countCommentFeed();
-        $pengirim_veed = User::find($pengirim_id);
+        $pengirim_veed = User::findOrFail($pengirim_id);
         $commentId = $comment_veed->id;
         $jumlah_like_veed = like_comment_veed::query()
         ->where('comment_veed_id', $comment_veed->id)

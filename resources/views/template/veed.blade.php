@@ -1678,7 +1678,7 @@
                                                                                     style="height: 40px;" />
                                                                             @endif
                                                                         </div>
-                                                                        <div class="col-lg-9 col-md-9 col-10">
+                                                                        <div class="col-xl-9 col-lg-8 col-md-9 col-10">
                                                                             <input type="text"
                                                                                 id="input_comment_veed{{ $item_video->id }}"
                                                                                 name="commentVeed"
@@ -1686,7 +1686,7 @@
                                                                                 class="form-control-sm border border-dark border-5 col-12"
                                                                                 placeholder="Masukkan komentar...">
                                                                         </div>
-                                                                        <div class="col-lg-2 col-md-2 col-12">
+                                                                        <div class="col-xl-2 col-lg-3 col-md-2 col-12">
                                                                             <button type="submit"
                                                                                 id="buttonCommentVeed{{ $urut }}"
                                                                                 onclick="komentar_feed({{ $item_video->id }})"
@@ -1705,14 +1705,14 @@
                                                                                 class="border rounded-circle"
                                                                                 alt="Avatar" style="height: 40px;" />
                                                                         </div>
-                                                                        <div class="col-lg-9 col-md-9 col-10">
+                                                                        <div class="col-xl-9 col-lg-7 col-md-9 col-10">
                                                                             <input type="text" id="input_comment_feed"
                                                                                 name="commentVeed"
                                                                                 style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); width: 100%; border-radius:30px;"
                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                 placeholder="Masukkan komentar...">
                                                                         </div>
-                                                                        <div class="col-lg-2 col-md-2 col-12">
+                                                                        <div class="col-xl-2 col-lg-4 col-md-2 col-12">
                                                                             <button type="button" id="buttonCommentVeed"
                                                                                 onclick="harusLogin()"
                                                                                 style="background-color: #F7941E; border-radius:10px; height:32px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
@@ -2052,7 +2052,7 @@
                                                                                                             @endif
                                                                                                         </div>
                                                                                                         <div
-                                                                                                            class="col-lg-9 col-md-9 col-10">
+                                                                                                            class="col-xl-9 col-lg-8 col-md-9 col-10">
                                                                                                             <input
                                                                                                                 type="text"
                                                                                                                 id="inputKomentarBalasan{{ $item_comment->id }}"
@@ -2061,7 +2061,7 @@
                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                 placeholder="Masukkan komentar...">
                                                                                                         </div>
-                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
+                                                                                                        <div class="col-xl-2 col-lg-3 col-md-2 col-12">
 
                                                                                                             <button
                                                                                                                 type="submit"
@@ -2147,7 +2147,7 @@
                                                                                                             {{-- ini like button --}}
                                                                                                             <div
                                                                                                                 class="d-flex ">
-                                                                                                                <div class="d-flex col-2 ms-4 pl-0"
+                                                                                                                <div class="d-flex col-2 ms-4 pl-0 mr-auto"
                                                                                                                     style="margin-top:-3%;">
                                                                                                                     @if (Auth::user())
                                                                                                                         @if ($reply_comment->checkLikedOrNo(auth()->user()->id))
@@ -2186,7 +2186,7 @@
                                                                                                                             width="15px"
                                                                                                                             height="40px"
                                                                                                                             alt="" class="me-3">
-                                                                                                                    @endif
+                                                                                                                @endif
                                                                                                                     <span
                                                                                                                         class="mt-2"
                                                                                                                         style="margin-left: -7%;"
@@ -2382,9 +2382,9 @@
                                                                                                                 </div>
 
                                                                                                                 <div
-                                                                                                                    style="margin-top:-2.2%; margin-left:-2.5%;" class="col-9 pr-0">
+                                                                                                                    style="margin-right:-2%" class="d-flex justify-content-end mt-2">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary mt-1"
+                                                                                                                        class="text-secondary my-auto ml-2"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse2{{ $reply_comment->id }}"
                                                                                                                         aria-expanded="true"
@@ -2440,7 +2440,7 @@
                                                                                                                             @endif
                                                                                                                         </div>
                                                                                                                         <div
-                                                                                                                            class="col-lg-9 col-md-9 col-10">
+                                                                                                                            class="col-xl-9 col-lg-8 col-md-9 col-10">
                                                                                                                             <input
                                                                                                                                 type="text"
                                                                                                                                 id="inputBalasRepliesCommentsFeeds1{{ $reply_comment->id }}"
@@ -2449,7 +2449,7 @@
                                                                                                                                 class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                 placeholder="Masukkan komentar...">
                                                                                                                         </div>
-                                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
+                                                                                                                        <div class="col-xl-2 col-lg-3 col-md-2 col-12 pl-0">
 
                                                                                                                             <button
                                                                                                                                 type="submit"
@@ -2545,7 +2545,7 @@
                                                                                                                 <div class="d-flex ms-3"
                                                                                                                     style="margin-top: -3%;">
                                                                                                                     <div
-                                                                                                                        class="d-flex col-2 ms-2 pl-0">
+                                                                                                                        class="d-flex col-2 ms-2 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                             @if ($reply_replyComment->likeRepliesReply(auth()->user()->id))
                                                                                                                                 <form
@@ -2784,9 +2784,9 @@
                                                                                                                             {{-- --}}
                                                                                                                         </div>
                                                                                                                     </div>
-                                                                                                                    <div class="col-9 pr-0">
+                                                                                                                    <div style="margin-right:-2%" class="d-flex justify-content-end mt-2">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary mt-2"
+                                                                                                                            class="text-secondary my-auto ml-2"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse3{{ $reply_replyComment->id }}"
                                                                                                                             aria-expanded="true"
@@ -2838,7 +2838,7 @@
                                                                                                                                 @endif
                                                                                                                             </div>
                                                                                                                             <div
-                                                                                                                                class="col-lg-9 col-md-9 col-10">
+                                                                                                                                class="col-xl-9 col-lg-8 col-md-9 col-10">
                                                                                                                                 <input
                                                                                                                                     type="text"
                                                                                                                                     id="inputBalasRepliesCommentsFeeds2{{ $reply_replyComment->id }}"
@@ -2847,7 +2847,7 @@
                                                                                                                                     class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                     placeholder="Masukkan komentar...">
                                                                                                                             </div>
-                                                                                                                            <div class="col-lg-2 col-md-2 col-12 pl-0">
+                                                                                                                            <div class="col-xl-2 col-lg-3 col-md-2 col-12 pl-0">
 
                                                                                                                                 <button
                                                                                                                                     type="submit"
@@ -2871,7 +2871,7 @@
                                                                                                                                     style="height: 40px;" />
                                                                                                                             </div>
                                                                                                                             <div
-                                                                                                                                class="col-lg-9 col-md-9 col-10">
+                                                                                                                                class="col-xl-9 col-lg-7 col-md-9 col-10">
                                                                                                                                 <input
                                                                                                                                     type="text"
                                                                                                                                     id="inputKomentarBalasan{{ $reply_comment->id }}"
@@ -2880,7 +2880,7 @@
                                                                                                                                     class="form-control-sm border border-dark border-5 me-3"
                                                                                                                                     placeholder="Masukkan komentar...">
                                                                                                                             </div>
-                                                                                                                            <div class="col-lg-2 col-md-2 col-12">
+                                                                                                                            <div class="col-xl-2 col-lg-4 col-md-2 col-12">
 
                                                                                                                                 <button
                                                                                                                                     type="button"
@@ -3214,7 +3214,7 @@
                                                                                                             {{-- ini like button --}}
                                                                                                              <div class="d-flex"
                                                                                                                     style="margin-top: -3%;">
-                                                                                                                    <div class="d-flex col-2 ms-4 pl-0">
+                                                                                                                    <div class="d-flex col-2 ms-4 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -3269,9 +3269,9 @@
                                                                                                                         </div>
                                                                                                                     </div>
 
-                                                                                                                <div style="" class="col-9 pr-0">
+                                                                                                                <div style=" margin-right:-4%" class="d-flex justify-content-end mt-2">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary mt-2"
+                                                                                                                        class="text-secondary my-auto ml-2"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#collapse${up['id']}"
                                                                                                                         aria-expanded="true"
@@ -3423,7 +3423,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex">
-                                                                                                                <div class="d-flex col-2 ms-4 pl-0" style="margin-top:-3%;">
+                                                                                                                <div class="d-flex col-2 ms-4 pl-0 mr-auto" style="margin-top:-3%;">
                                                                                                                     @if (Auth::user())
                                                                                                                             <form
                                                                                                                                 action="/sukai/balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${veed_id}"
@@ -3477,9 +3477,9 @@
 
                                                                                                                     </div>
                                                                                                                 </div>
-                                                                                                                <div style="margin-top:-2.2%; margin-left:-2.5%;" class="col-9 pr-0">
+                                                                                                                <div style="margin-right:-2%" class="d-flex justify-content-end mt-2">
                                                                                                                     <a href="#"
-                                                                                                                        class="text-secondary mt-1"
+                                                                                                                        class="text-secondary my-auto ml-2"
                                                                                                                         data-toggle="collapse"
                                                                                                                         data-target="#reply_collapse${up['id']}"
                                                                                                                         aria-expanded="true"
@@ -3530,7 +3530,7 @@
                                                                                                                                             @endif
                                                                                                                                         </div>
                                                                                                                                         <div
-                                                                                                                                            class="col-lg-9 col-md-9 col-10">
+                                                                                                                                            class="col-xl-9 col-lg-8 col-md-9 col-10">
                                                                                                                                             <input
                                                                                                                                                 type="text"
                                                                                                                                                 id="inputBalasRepliesCommentsFeeds1${up['id']}"
@@ -3539,7 +3539,7 @@
                                                                                                                                                 class="form-control-sm border border-dark border-5 me-3 mt-1"
                                                                                                                                                 placeholder="Masukkan komentar...">
                                                                                                                                         </div>
-                                                                                                                                        <div class="col-lg-2 col-md-2 col-12 pl-0">
+                                                                                                                                        <div class="col-xl-2 col-lg-3 col-md-2 col-12 pl-0">
                                                                                                                                             <button
                                                                                                                                                 type="submit"
                                                                                                                                                 id="buttonComment2Veed1${up['id']}"
@@ -4025,7 +4025,7 @@
                                                                                                             </div>
                                                                                                             {{-- ini like button --}}
                                                                                                             <div class="d-flex" style="margin-top: -3%;">
-                                                                                                                <div class="d-flex col-2 ms-4 pl-0">
+                                                                                                                <div class="d-flex col-2 ms-4 pl-0 mr-auto">
                                                                                                                         @if (Auth::user())
                                                                                                                                 <form
                                                                                                                                     action="/sukai/reply_balasan/komentar/{{ Auth::user()->id }}/${up['id']}/${feed_id}"
@@ -4079,10 +4079,10 @@
 
                                                                                                                         </div>
                                                                                                                 </div>
-                                                                                                                <div
-                                                                                                                        class="col-9 pr-0">
+                                                                                                                <div style="margin-right:-3%"
+                                                                                                                        class="d-flex justify-content-end mt-2">
                                                                                                                         <a href="#"
-                                                                                                                            class="text-secondary mt-2"
+                                                                                                                            class="text-secondary my-auto ml-2"
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse${up['id']}"
                                                                                                                             aria-expanded="true"
@@ -4353,7 +4353,7 @@
                                                                             <div class="d-flex ms-5">
                                                                                 <p>${up['komentar']}</p>
                                                                             </div>
-                                                                            <div class="d-flex col-lg-11"
+                                                                            <div class="d-flex col-lg-11 pr-0"
                                                                                 style="margin-top:-3%;">
                                                                                 <div class="d-flex ms-4">
                                                                                     @if (Auth::user())
@@ -4378,7 +4378,7 @@
                                                                                     @endif
                                                                                     <span class="my-auto" style="margin-left:-13%;"
                                                                                         id="countLikeComment${up['id']}">
-                                                                                        <p class="" id="jumlah_like${up['id']}">0</p>
+                                                                                        <p class="m-0" id="jumlah_like${up['id']}">0</p>
 
                                                                                     </span>
                                                                                 </div>
@@ -4402,20 +4402,22 @@
                                                                                             </form>
                                                                                     {{-- --}}
                                                                                 </div>
-                                                                                <a href="#"
-                                                                                    class="text-secondary mt-1"
-                                                                                    data-toggle="collapse"
-                                                                                    data-target="#collapse${up['id']}"
-                                                                                    aria-expanded="true"
-                                                                                    aria-controls="collapseOne">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="22" height="22"
-                                                                                        viewBox="0 0 24 24">
-                                                                                        <path fill="currentColor"
-                                                                                            d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
-                                                                                    </svg>
-                                                                                    &nbsp; <small>Balas</small>
-                                                                                </a>
+                                                                                <div style="margin-right:-2%;" class="d-flex justify-content-end mt-2">
+                                                                                    <a href="#"
+                                                                                        class="text-secondary my-auto mr-3"
+                                                                                        data-toggle="collapse"
+                                                                                        data-target="#collapse${up['id']}"
+                                                                                        aria-expanded="true"
+                                                                                        aria-controls="collapseOne">
+                                                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                            width="22" height="22"
+                                                                                            viewBox="0 0 24 24">
+                                                                                            <path fill="currentColor"
+                                                                                                d="M11 7.05V4a1 1 0 0 0-1-1a1 1 0 0 0-.7.29l-7 7a1 1 0 0 0 0 1.42l7 7A1 1 0 0 0 11 18v-3.1h.85a10.89 10.89 0 0 1 8.36 3.72a1 1 0 0 0 1.11.35A1 1 0 0 0 22 18c0-9.12-8.08-10.68-11-10.95zm.85 5.83a14.74 14.74 0 0 0-2 .13A1 1 0 0 0 9 14v1.59L4.42 11L9 6.41V8a1 1 0 0 0 1 1c.91 0 8.11.2 9.67 6.43a13.07 13.07 0 0 0-7.82-2.55z" />
+                                                                                        </svg>
+                                                                                        &nbsp; <small>Balas</small>
+                                                                                    </a>
+                                                                                </div>
                                                                             </div>
                                                                             <!-- Komentar Balasan Collapse Start -->
                                                                             <div class="collapse"
@@ -4499,7 +4501,7 @@
                             title: '<i class="fa-solid fa-triangle-exclamation"></i>',
                             titleColor: 'dark',
                             messageColor: 'dark',
-                            message: xhr.responseText,
+                            message: 'Komentar tidak Valid',
                             position: 'topCenter',
                         });
                     }
