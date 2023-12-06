@@ -1459,15 +1459,15 @@ a:focus {
     }
     .iconClass span{
       position: absolute;
-      top: 0px;
-      right: 6px;
+      top: -5px;
+      left: 15px;
       display: block;
       color: #ffffff;
       border-radius: 20px;
       font-size:x-small;
       padding-bottom: 4px;
       padding-top: 4px;
-      padding-right: 6.5px;
+      padding-right: 6px;
     }
     .iconButton{
       position: relative;

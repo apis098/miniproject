@@ -989,18 +989,18 @@
                             @endif
                         </a>
                         @if (Auth::check() && auth()->user()->role === 'koki')
-                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3  ms-auto"
-                                style="width: 255px; border-radius:13px;">
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right me-4"
+                                style="width: 255px; border-radius:13px;top:80%;">
                                 <div class="input-group">
                                     <a href="#">
                                         @if ($userLogin->foto)
                                             <img class="mr-3 ms-2 mb-1 rounded-circle"
                                                 src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
-                                                width="50px" height="50px">
+                                                width="37px" height="37px">
                                         @else
                                             <img class="mr-3 ms-2 mb-1 rounded-circle"
                                                 src="{{ asset('images/default.jpg') }}" alt="profile image"
-                                                style="max-width:40px">
+                                                style="max-width:37px">
                                         @endif
                                     </a>
                                     <p class="mt-2 text-orange">
