@@ -22,7 +22,7 @@ use App\Models\TopUpCategories;
 use App\Models\User;
 use Carbon\Carbon;
 
-class artikels extends Controller
+class ArtikelsController extends Controller
 {
     public function artikel_resep(string $id, string $judul)
     {
