@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
                 <!-- rekomendasi chef end -->
                 <style>
@@ -79,7 +79,7 @@
                         justify-content: center; /* Pusat horizontal */
                         align-items: center; /* Pusat vertikal */
                         }
-                        
+
                     .posisi {
                         margin-top: -3%;
                     }
@@ -592,7 +592,7 @@
                                 <div class="d-flex justify-content-between mb-2">
                                     <div class="col-9 pl-0">
                                     <span class="d-flex flex-row" style="color: black;">
-                                    
+
                                         <!-- like feed start -->
                                         @if (Auth::check())
                                             <!-- <span id="feed{{ $urut }}" class=""> -->
@@ -604,7 +604,7 @@
                                                             style="border: none; background-color:white; margin-bottom: 1px;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i class="text-orange fa-solid fa-lg fa-thumbs-up"
-                                                                id="likeB{{ $urut }}" style="font-size: large;"></i> 
+                                                                id="likeB{{ $urut }}" style="font-size: large;"></i>
                                                         </button>
                                                         <span style="vertical-align: middle; font-size: xxx-small;" class="my-auto ml-auto"
                                                     id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span>
@@ -911,18 +911,18 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body mb-4">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="col-2 mt-2 me-1"
+                                                        <div class="modal-body mb-4 px-3">
+                                                            <div class="  row align-items-center">
+                                                                <div class="col-lg-2 col-12 col-md-4 mt-2 "
                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                                     Kepada
                                                                 </div>
 
-                                                                <div class="search" style="border-radius: 15px;">
-                                                                    <div class="col-lg-11 mt-2">
+                                                                <div class="search col-lg-9 col-10 col-md-7 pl-md-2" style="border-radius: 15px;">
+                                                                    <div class=" mt-2">
                                                                         <div class="search-2"> <i class='bx bxs-map'></i>
 
-                                                                            <input id="search" type="text"
+                                                                            <input id="search" type="text" class="ml-4 ml-md-0"
                                                                                 name="" style="text-align: left;"
                                                                                 placeholder="Cari...">
 
@@ -931,14 +931,14 @@
                                                                 </div>
                                                             </div>
 
-                                                            <h3 class="mt-4 ml-3"
+                                                            <h3 class="mt-4 "
                                                                 style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word">
                                                                 Disarankan</h3>
                                                             @foreach ($allUser as $user)
                                                                 <div class="element-pencarian">
                                                                     <div class="d-flex mt-4">
                                                                         <div
-                                                                            class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-2">
+                                                                            class="col-xl-1 col-lg-1 col-md-2 col-sm-2 pl-0 col-2">
                                                                             <a class="foto" href="">
                                                                                 @if ($user->foto)
                                                                                     <img src="{{ asset('storage/' . $user->foto) }}"
@@ -955,7 +955,7 @@
                                                                         </div>
                                                                         <div
                                                                             class="col-xl-10 col-lg-10 col-md-9 col-sm-9 col-9">
-                                                                            <div class="nama rounded-3 px-3 py-1">
+                                                                            <div class="nama rounded-3 pr-3 py-1">
                                                                                 <a href="" class="text-dark mb-0">
                                                                                     <strong
                                                                                         class="input-name">{{ $user->name }}</strong>
@@ -968,7 +968,7 @@
 
                                                                         </div>
                                                                         <div
-                                                                            class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3">
+                                                                            class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1 mt-3 p-0">
                                                                             <input type="checkbox" class="select-checkbox"
                                                                                 name="user_id[]"
                                                                                 id="checkbox-{{ $item_video->id }}-{{ $user->id }}"
@@ -1004,7 +1004,7 @@
                                                 });
                                             });
                                         </script>
-                                    
+
                                     </span>
                                     </div>
                                     <div class="col-3 pr-0" >
@@ -1259,7 +1259,7 @@
                                                             </div>
                                                         </div>
                                                     </form>
-                                                    
+
                                                 </div>
                                             </div>
                                         </div>
@@ -1278,7 +1278,7 @@
 
 
                                         @media (max-width: 767px) {
-                                            
+
                                             .removePadding1{
                                                 padding-right: 0;
                                             }
@@ -1288,7 +1288,7 @@
                                         }
 
                                         @media (max-width: 999px) {
-                                            
+
                                             .removePadding2{
                                                 padding-right: 0;
                                             }
@@ -1305,7 +1305,7 @@
                                                 text-align: center;
                                             }
                                         }
-                                        
+
                                         @media (min-width: 1000px){
                                             .button-kirim{
                                                 float: right;
@@ -1379,7 +1379,7 @@
                                                     buttonPengganti.classList.remove('col-lg-10', 'col-md-12');
                                                     buttonPengganti.classList.add('col-lg-5', 'col-md-6');
                                                 }
-                                                
+
                                                 $('#moreGift' + num).removeClass('border-black');
                                                 $('#moreGift' + num).addClass('border-orange');
                                                 $('#extraGift' + num).removeClass('border-orange');
@@ -2389,7 +2389,7 @@
                                                                                                                         data-target="#collapse2{{ $reply_comment->id }}"
                                                                                                                         aria-expanded="true"
                                                                                                                         aria-controls="collapseOne" style="float: right;">
-                                                                                                                        
+
                                                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                             width="22"
                                                                                                                             height="22"
@@ -2790,7 +2790,7 @@
                                                                                                                             data-toggle="collapse"
                                                                                                                             data-target="#collapse3{{ $reply_replyComment->id }}"
                                                                                                                             aria-expanded="true"
-                                                                                                                            aria-controls="collapseOne" 
+                                                                                                                            aria-controls="collapseOne"
                                                                                                                             style="float: right;">
                                                                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                                 width="22"
@@ -2988,7 +2988,7 @@
                                         @endif
                                     </a>
                                     <div>
-                                   
+
 
                                         <div class="bg-light rounded-3 px-3 py-1">
                                             <a href="/detail_kursus/{{ $kursus->id }}" class="text-dark mb-0">
@@ -3277,7 +3277,7 @@
                                                                                                                         aria-expanded="true"
                                                                                                                         aria-controls="collapseOne"
                                                                                                                         style="float: right;">
-                                                                                                                        
+
                                                                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                                                                             width="22"
                                                                                                                             height="22"
@@ -4079,7 +4079,7 @@
 
                                                                                                                         </div>
                                                                                                                 </div>
-                                                                                                                <div 
+                                                                                                                <div
                                                                                                                         class="col-9 pr-0">
                                                                                                                         <a href="#"
                                                                                                                             class="text-secondary mt-2"
@@ -4536,7 +4536,7 @@
             // Cek lebar layar dan hapus class jika sesuai
             if (screenWidth <= 768) {
                 element.classList.remove('pr-0');
-            } else { 
+            } else {
                 element.classList.add('pr-0');
             }
         });
