@@ -106,7 +106,7 @@
             padding: 30px;
         }
 
-       
+
 
         .b-b {
             border: black solid;
@@ -362,39 +362,42 @@
             </div>
         </div>
 
-        <div class="row d-flex justify-content-center">
-            <div class="col-sm-4 col-md-6 mb-3 col-lg-4">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 mb-3 col-lg-4">
                 <div class="rounded-4  p-3 counter-card" style="border: 1px solid #333;">
-                    <div class="ms-1" style="margin-top: -3%">
-                        <h6 class="mb-0" style="font-size: 20px; font-weight: bold;">Belum diambil</h6>
+                    <div class="ms-1">
+                        <h6 class="mb-0" style="font-weight: bold;">Belum diambil</h6>
                     </div>
-                    <span class="d-flex justify-content-end "
-                        style="color: black;
-                         font-size: 40px; font-weight: 275;">RP
-                        {{ number_format(Auth::user()->saldo_pemasukan, 2, ',', '.') }}</span>
+                    <br>
+                    <h4 class=""
+                        style="color: black;text-align:right;
+                         font-weight: 275;">RP
+                        {{ number_format(Auth::user()->saldo_pemasukan, 2, ',', '.') }}</h4>
                 </div>
             </div>
 
-            <div class="col-sm-4 col-md-6 mb-3 col-lg-4">
+            <div class="col-sm-12 col-md-4 mb-3 col-lg-4">
                 <div class="rounded-4  p-3 counter-card" style="border: 1px solid #333;">
-                    <div class="ms-1" style="margin-top: -3%">
-                        <h6 class="mb-0" style="font-size: 20px; font-weight: bold;">Sudah diambil</h6>
+                    <div class="ms-1">
+                        <h6 class="mb-0" style="font-weight: bold;">Sudah diambil</h6>
                     </div>
-                    <span class="d-flex justify-content-end "
-                        style="color: black;
-                         font-size: 40px; font-weight: 275;">RP
+                    <br>
+                    <h4 class=""
+                        style="color: black;text-align:right;
+                         font-weight: 275;">RP
                         {{ number_format($saldo_sudahDiambil, 2, ',', '.') }}</span>
                 </div>
             </div>
 
-            <div class="col-sm-4 col-md-12 mb-3 col-lg-4">
+            <div class="col-sm-12 col-md-4 mb-3 col-lg-4">
                 <div class="rounded-4  p-3 counter-card" style="border: 1px solid #333;">
-                    <div class="ms-1" style="margin-top: -3%">
-                        <h6 class="mb-0" style="font-size: 20px; font-weight: bold;">Jumlah pendapatan</h6>
+                    <div class="ms-1">
+                        <h6 class="mb-0" style="font-weight: bold;">Jumlah pendapatan</h6>
                     </div>
-                    <span class="d-flex justify-content-end "
-                        style="color: black;
-                         font-size: 40px; font-weight: 275;">RP
+                    <br>
+                    <h4 class=""
+                        style="color: black;text-align:right;
+                         font-weight: 275;">RP
                         {{ number_format($saldo_total, 2, ',', '.') }}</span>
                 </div>
             </div>
@@ -402,45 +405,36 @@
         </div>
 
         <style>
-            @media (min-width: 1200px) {
-                .text-riwayat1 {
+            @media(min-width:1145px) {
+                .text-riwayat11 {
                     display: none;
-                    visibility: hidden;
                 }
-            }
-
-            @media (max-width: 1024px) and (min-width: 578px) {
-                .text-riwayat2 {
-                    display: none;
-                    visibility: hidden;
+                .text-riwayat21 {
+                    display: block;
                 }
-
-            }
-
-            @media (max-width:500px) {
-                .text-riwayat1 {
-                    display: none;
-                    visibility: hidden;
+                .form1 {
+                    display: block;
                 }
-            }
-
-            @media (min-width: 768px) {
                 .form2 {
                     display: none;
-                    visibility: hidden;
                 }
             }
-
-            @media (max-width: 578px) {
-                .btn-filter {
-                    font-size: 10px;
+            @media(max-width:1144px) {
+                .text-riwayat12 {
+                    display: block;
                 }
-
+                .text-riwayat22 {
+                    display: none;
+                }
                 .form1 {
                     display: none;
-                    visibility: hidden;
+                }
+                .form2 {
+                    display: block;
                 }
             }
+
+
 
             @media (max-width: 375px) and (min-width: 320px) {
                 .table-custom {
@@ -453,14 +447,26 @@
                     margin-left: -35px;
                 }
             }
+            @media(max-width:992px) {
+                .riwayats {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+            @media(min-width:993px) {
+                .riwayats {
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
         </style>
         <form action="{{ route('koki.income') }}" method="POST" class="form1">
             @csrf
-            <div class="text-center text-riwayat1">
+            <div class="text-center text-riwayat11">
                 <h3 style="font-family: Poppins">Riwayat</h3>
             </div>
-            <div class="d-flex justify-content-between">
-                <div class="text-riwayat2">
+            <div class="riwayats">
+                <div class="text-riwayat21">
                     <h3 style="font-family:poppins">Riwayat</h3>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -484,7 +490,11 @@
                             style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
                             class="btn my-auto">
                             <span class="btn-filter" style="color: rgb(255, 255, 255);">
-                                Filter Sekarang</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />
+                                </svg></span>
                         </button>
                     </div>
                 </div>
@@ -492,19 +502,23 @@
         </form>
         <form action="{{ route('koki.income') }}" method="POST" class="form2">
             @csrf
-            <div class="text-center text-riwayat1">
+            <div class="text-center text-riwayat22">
                 <h3 style="font-family: Poppins">Riwayat</h3>
             </div>
             <div class="d-flex justify-content-between">
-                <div class="text-riwayat2">
+                <div class="text-riwayat12">
                     <h3 style="font-family:poppins">Riwayat</h3>
                 </div>
 
                 <button type="button" data-toggle="modal" data-target="#modalFormFilter"
                     style="border-radius: 15px; background-color: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                    class="btn my-auto">
+                    class="btn my-auto ml-auto">
                     <span class="btn-filter" style="color: rgb(255, 255, 255);">
-                        Filter Sekarang</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M15 19.88c.04.3-.06.62-.29.83a.996.996 0 0 1-1.41 0L9.29 16.7a.989.989 0 0 1-.29-.83v-5.12L4.21 4.62a1 1 0 0 1 .17-1.4c.19-.14.4-.22.62-.22h14c.22 0 .43.08.62.22a1 1 0 0 1 .17 1.4L15 10.75v9.13M7.04 5L11 10.06v5.52l2 2v-7.53L16.96 5H7.04Z" />
+                                </svg></span>
                 </button>
                 <div class="modal" id="modalFormFilter">
                     <div class="modal-dialog">

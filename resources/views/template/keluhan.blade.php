@@ -113,7 +113,36 @@
         display: none;
     }
 }
+.subject {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
+
+    @supports (-webkit-line-clamp: 2) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+.description {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+
+    @supports (-webkit-line-clamp: 3) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: initial;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
 
 
 </style>
@@ -200,13 +229,13 @@
                             <div class="mt-3 ms-1">
                                 <p>
                                     <b>
-                                        <a style="color: black;" href="/show-reply-by/{{ $item->id }}">
+                                        <a class="subject" style="color: black;" href="/show-reply-by/{{ $item->id }}">
                                             {{ $item->subject }}
                                         </a>
                                     </b><br>
 
-                                    <small>
-                                        {{ Str::limit($item->description, 100, '...') }}
+                                    <small class="description">
+                                        {{ $item->description}}
                                     </small>
 
                                 </p>

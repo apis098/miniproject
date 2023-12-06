@@ -81,6 +81,38 @@
                 display: block;
             }
         }
+        .subject {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+            @supports (-webkit-line-clamp: 1) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            }
+        }
+        .description {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+
+
+            @supports (-webkit-line-clamp: 3) {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: initial;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            }
+        }
+
+
     </style>
     <section class="py-1 py-md-3 py-lg-4" style="margin-top: -6%;">
         <div class="container px-3 px-lg-5 my-5">
@@ -88,7 +120,7 @@
                 <div class="col-md-4 gambar-koki"><img class="card-img-top mb-2 mb-md-0 " src="{{ asset('images/complaint.png') }}"
                         alt="..." /></div>
                 <div class="col-md-8">
-                    <h3 class=" fw-bolder mb-3" style="font-family: poppins; margin-top:55px;"><b>{{ $data->subject }}</b>
+                    <h3 class=" fw-bolder mb-3" style="font-family: poppins; margin-top:55px;"><div class="card subject" style="box-shadow: none"><div><p>{{ $data->subject }}</p></div></div>
                     </h3>
                     <div class="w-full d-flex justify-content-between ">
                         <div class="d-flex">
@@ -115,7 +147,10 @@
                             </button>
                         </div>
                     </div>
-                    <p>{{ $data->description }}</p>
+                    <div class="card description" style="box-shadow: none">
+                        <div><p class="">{{ $data->description }}</p></div>
+                    </div>
+
 
 
                 </div>
@@ -645,6 +680,13 @@
     </section>
     </div>
     <script>
+        function errorComment(){
+            iziToast.error({
+                'title': 'Error',
+                'message': "komentar tidak boleh lebih dari 1000 karakter",
+                'position': 'topCenter'
+            });
+        }
         function ButtonReportReplyComment(num) {
             $("#FormReportReplyComment"+num).off('submit');
             $("#FormReportReplyComment" + num).submit(function(e) {
@@ -790,121 +832,126 @@
                 event.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
-                $.ajax({
-                    url: route,
-                    method: "POST",
-                    data: data,
-                    processData: false,
-                    contentType: false,
-                    success: function success(response) {
-                        iziToast.destroy();
-                        if (response.success) {
-                            iziToast.success({
-                                'title': 'Success',
-                                'message': response.message,
-                                'position': 'topCenter'
-                            });
-                            let inner =
-                                `
-                            <div class="card p-3" id="replies${response.id}">
-                        <div class="d-flex justify-content-between">
-                            <div class="user d-flex flex-row">
-                                    <img src="{{ asset('${response.foto}') }}" width="30" height="30"
-                                        class="user-img rounded-circle mr-2">
+                let value = $('#reply').val();
+                if (value.length > 1000) {
+                    errorComment();
+                } else {
+                    $.ajax({
+                        url: route,
+                        method: "POST",
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        success: function success(response) {
+                            iziToast.destroy();
+                            if (response.success) {
+                                iziToast.success({
+                                    'title': 'Success',
+                                    'message': response.message,
+                                    'position': 'topCenter'
+                                });
+                                let inner =
+                                    `
+                                <div class="card p-3" id="replies${response.id}">
+                            <div class="d-flex justify-content-between">
+                                <div class="user d-flex flex-row">
+                                        <img src="{{ asset('${response.foto}') }}" width="30" height="30"
+                                            class="user-img rounded-circle mr-2">
 
-                                    <div class="d-flex">
-                                        <span>
-                                            <div class="font-weight-semibold ms-1 me-2">
-                                                <small class="font-weight-bolder me-2">${response.name}</small>
-                                                    <div class="text-black" style="font-size: 13px">
-                                                        <small>1 detik yang lalu</small>
-                                                    </div>
-                                            </div>
-                                            <div>
-                                                <small>${response.reply}</small>
-                                            </div>
+                                        <div class="d-flex">
+                                            <span>
+                                                <div class="font-weight-semibold ms-1 me-2">
+                                                    <small class="font-weight-bolder me-2">${response.name}</small>
+                                                        <div class="text-black" style="font-size: 13px">
+                                                            <small>1 detik yang lalu</small>
+                                                        </div>
+                                                </div>
+                                                <div>
+                                                    <small>${response.reply}</small>
+                                                </div>
 
-                                        </span>
-                                    </div>
+                                            </span>
+                                        </div>
+
+                                </div>
 
                             </div>
+                            <div class="action d-flex mt-2 align-items-center">
 
-                        </div>
-                        <div class="action d-flex mt-2 align-items-center">
+                                <div class="reply px-7 me-2">
+                                    <small id="like-count-${response.id}">0</small>
+                                </div>
 
-                            <div class="reply px-7 me-2">
-                                <small id="like-count-${response.id}">0</small>
-                            </div>
+                                <div class="icons align-items-center input-group">
 
-                            <div class="icons align-items-center input-group">
-
-                                <form action="/comments/${response.id}/like" method="POST" id="likeForm${response.id}" class="like-form">
-                                    @csrf
-
-                                        <button type="submit" onclick="likeButton(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
-                                            <i class="fa-regular fa-thumbs-up" id="iconLike${response.id}"></i>
-                                        </button>
-
-                                </form>
-
-                                    <form action="/reply-destroy/${response.id}" method="POST"
-                                        id="formDelete${response.id}">
+                                    <form action="/comments/${response.id}/like" method="POST" id="likeForm${response.id}" class="like-form">
                                         @csrf
-                                        @method('DELETE')
-                                        <button type="submit" onclick="hapus_komentar(${response.id})" id="buttonDelete${response.id}" hidden>Hapus</button>
-                                        <button type="button" onclick="confirmation(${response.id})"
-                                            class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
-                                        </button>
+
+                                            <button type="submit" onclick="likeButton(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5 like-button">
+                                                <i class="fa-regular fa-thumbs-up" id="iconLike${response.id}"></i>
+                                            </button>
+
                                     </form>
 
-                            </div>
-                            <div class="d-flex justify-content-end input-group">
-                                <a href="#" class="text-secondary " data-toggle="collapse"
-                                    data-target="#collapse${response.id}" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="collapse" id="collapse${response.id}">
-                            <div class="card card-body mx-3">
-                                <form action="/replies-store/${response.id}" method="POST" id="formBalasKomentar${response.id}">
-                                    <div class="input-group mb-3">
-                                        @csrf
-                                        <input type="text" id="reply_comment${response.id}" name="reply_comment" width="500px"
-                                            class="form-control form-control-sm rounded-3 me-1"
-                                            placeholder="Balas komentar dari ${response.name}....">
+                                        <form action="/reply-destroy/${response.id}" method="POST"
+                                            id="formDelete${response.id}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" onclick="hapus_komentar(${response.id})" id="buttonDelete${response.id}" hidden>Hapus</button>
+                                            <button type="button" onclick="confirmation(${response.id})"
+                                                class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
 
-                                        <button type="submit" onclick="clickBalasKomentar(${response.id})"
-                                            style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                            class="btn btn-sm text-light ms-1"><b class="me-1 ms-1">Kirim</b></button>
-                                    </div>
-                                </form>
-
-                                <div id="new-replies2${response.id}"></div>
+                                </div>
+                                <div class="d-flex justify-content-end input-group">
+                                    <a href="#" class="text-secondary " data-toggle="collapse"
+                                        data-target="#collapse${response.id}" aria-expanded="true"
+                                        aria-controls="collapseOne">
+                                        <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                    </a>
                                 </div>
                             </div>
-                        </div>
-                            `;
-                            $("#reply").val('');
-                            $("#new-replies").append(inner);
-                        } else {
+                            <div class="collapse" id="collapse${response.id}">
+                                <div class="card card-body mx-3">
+                                    <form action="/replies-store/${response.id}" method="POST" id="formBalasKomentar${response.id}">
+                                        <div class="input-group mb-3">
+                                            @csrf
+                                            <input type="text" id="reply_comment${response.id}" name="reply_comment" width="500px"
+                                                class="form-control form-control-sm rounded-3 me-1"
+                                                placeholder="Balas komentar dari ${response.name}....">
+
+                                            <button type="submit" onclick="clickBalasKomentar(${response.id})"
+                                                style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                class="btn btn-sm text-light ms-1"><b class="me-1 ms-1">Kirim</b></button>
+                                        </div>
+                                    </form>
+
+                                    <div id="new-replies2${response.id}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                                `;
+                                $("#reply").val('');
+                                $("#new-replies").append(inner);
+                            } else {
+                                iziToast.error({
+                                    'title': 'Error',
+                                    'message': response.message,
+                                    'position': 'topCenter'
+                                });
+                            }
+                        },
+                        error: function error(xhr, error, status) {
+                            iziToast.destroy();
                             iziToast.error({
                                 'title': 'Error',
-                                'message': response.message,
+                                'message': xhr.responseText,
                                 'position': 'topCenter'
                             });
                         }
-                    },
-                    error: function error(xhr, error, status) {
-                        iziToast.destroy();
-                        iziToast.error({
-                            'title': 'Error',
-                            'message': xhr.responseText,
-                            'position': 'topCenter'
-                        });
-                    }
-                });
+                    });
+                }
             });
         });
 
@@ -1123,135 +1170,141 @@
                 e.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
-                $.ajax({
-                    url: route,
-                    method: "POST",
-                    data: data,
-                    processData: false,
-                    contentType: false,
-                    success: function success(response) {
-                        iziToast.destroy();
-                        if (response.success) {
-                            iziToast.success({
-                                'title': 'Success',
-                                'message': response.message,
-                                'position': 'topCenter'
-                            });
-                        } else {
+                let value = $("#reply_comment" + num).val();
+                console.log(value.length);
+                if (value.length > 1000) {
+                    errorComment()
+                } else {
+                    $.ajax({
+                        url: route,
+                        method: "POST",
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        success: function success(response) {
+                            iziToast.destroy();
+                            if (response.success) {
+                                iziToast.success({
+                                    'title': 'Success',
+                                    'message': response.message,
+                                    'position': 'topCenter'
+                                });
+                            } else {
+                                iziToast.error({
+                                    'title': 'Error',
+                                    'message': response.message,
+                                    'position': 'topCenter'
+                                });
+                            }
+                            $("#reply_comment" + num).val('');
+                            let inner =
+                                `
+                            <div id="cardReplyComment${response.id}">
+                            <div class="user d-flex flex-row mb-2" >
+
+                                                <img src="{{ asset('${response.foto}') }}" width="30"
+                                                    height="30" class="user-img rounded-circle mr-2">
+
+                                            <span>
+                                                <small
+                                                    class="font-weight-semibold ms-1 me-2"><b>${response.name}</b>
+                                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
+                                                        width="15" height="15" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                                    </svg>
+                                                </small>
+                                                    <div class="text-black" style="font-size: 13px">
+                                                        <small
+                                                            class="float-start">1 detik yang lalu</small>
+                                                    </div>
+                                                <div class="">
+                                                    <small class="font-weight">
+                                                        <br>
+                                                            <a href="">
+                                                               ${response.at}
+                                                            </a>
+                                                        ${response.reply}
+                                                    </small>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        {{-- llike --}}
+                                        <div class="action d-flex mt-2 align-items-center">
+
+                                            <div class="reply px-7 me-2">
+                                                <small id="like-count-balasan${response.id}">
+                                                    0</small>
+                                            </div>
+
+                                            <div class="icons align-items-center input-group">
+
+                                                <form action="/comments/reply/${response.id}/like" method="POST"
+                                                    id="like-form${response.id}">
+                                                    @csrf
+
+                                                        <button type="submit" onclick="like_button_balasan(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5"
+                                                            id="like-button">
+                                                            <i id="iconLikeBalasan${response.id}" class="fa-regular fa-thumbs-up"></i>
+                                                        </button>
+
+                                                </form>
+                                                {{-- @if (auth()->check()) --}}
+
+                                                    <form action="/reply-comment-destroy/${response.id}"
+                                                        method="POST" id="replyDelete${response.id}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" onclick="destroyReplyComment(${response.id})" id="buttonReplyDelete${response.id}" hidden></button>
+                                                        <button type="button"
+                                                            onclick="confirmationReply(${response.id})"
+                                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </form>
+
+                                            </div>
+
+                                            <div class="d-flex justify-content-end input-group">
+                                                <a href="#" class="text-secondary " data-toggle="collapse"
+                                                    data-target="#collapses${response.id}" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="collapses${response.id}">
+                                            <br>
+                                            <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
+                                                @csrf
+                                                <input type="hidden" name="parent_id" value="${response.id}">
+                                                <div class="input-group mb-3">
+                                                    @csrf
+                                                    <input type="text" id="reply_comment2${response.id}" name="reply_comment"
+                                                        width="500px" class="form-control form-control-sm rounded-3 me-1"
+                                                        placeholder="Balas komentar dari ${response.name}....">
+
+                                                    <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
+                                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn btn-sm text-light ms-1"><b
+                                                            class="me-1 ms-1">Kirim</b></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                             </div>`;
+                            $("#reply_comment2" + num).val('');
+                            $("#new-replies2" + num).append(inner);
+                        },
+                        error: function error(xhr, error, status) {
+                            iziToast.destroy();
                             iziToast.error({
                                 'title': 'Error',
-                                'message': response.message,
+                                'message': xhr.responseText,
                                 'position': 'topCenter'
                             });
                         }
-                        $("#reply_comment" + num).val('');
-                        let inner =
-                            `
-                        <div id="cardReplyComment${response.id}">
-                        <div class="user d-flex flex-row mb-2" >
-
-                                            <img src="{{ asset('${response.foto}') }}" width="30"
-                                                height="30" class="user-img rounded-circle mr-2">
-
-                                        <span>
-                                            <small
-                                                class="font-weight-semibold ms-1 me-2"><b>${response.name}</b>
-                                                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-                                                    width="15" height="15" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                </svg>
-                                            </small>
-                                                <div class="text-black" style="font-size: 13px">
-                                                    <small
-                                                        class="float-start">1 detik yang lalu</small>
-                                                </div>
-                                            <div class="">
-                                                <small class="font-weight">
-                                                    <br>
-                                                        <a href="">
-                                                           ${response.at}
-                                                        </a>
-                                                    ${response.reply}
-                                                </small>
-                                            </div>
-                                        </span>
-                                    </div>
-                                    {{-- llike --}}
-                                    <div class="action d-flex mt-2 align-items-center">
-
-                                        <div class="reply px-7 me-2">
-                                            <small id="like-count-balasan${response.id}">
-                                                0</small>
-                                        </div>
-
-                                        <div class="icons align-items-center input-group">
-
-                                            <form action="/comments/reply/${response.id}/like" method="POST"
-                                                id="like-form${response.id}">
-                                                @csrf
-
-                                                    <button type="submit" onclick="like_button_balasan(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                                        id="like-button">
-                                                        <i id="iconLikeBalasan${response.id}" class="fa-regular fa-thumbs-up"></i>
-                                                    </button>
-
-                                            </form>
-                                            {{-- @if (auth()->check()) --}}
-
-                                                <form action="/reply-comment-destroy/${response.id}"
-                                                    method="POST" id="replyDelete${response.id}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" onclick="destroyReplyComment(${response.id})" id="buttonReplyDelete${response.id}" hidden></button>
-                                                    <button type="button"
-                                                        onclick="confirmationReply(${response.id})"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </form>
-
-                                        </div>
-
-                                        <div class="d-flex justify-content-end input-group">
-                                            <a href="#" class="text-secondary " data-toggle="collapse"
-                                                data-target="#collapses${response.id}" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse" id="collapses${response.id}">
-                                        <br>
-                                        <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
-                                            @csrf
-                                            <input type="hidden" name="parent_id" value="${response.id}">
-                                            <div class="input-group mb-3">
-                                                @csrf
-                                                <input type="text" id="reply_comment2${response.id}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-1"
-                                                    placeholder="Balas komentar dari ${response.name}....">
-
-                                                <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
-                                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn btn-sm text-light ms-1"><b
-                                                        class="me-1 ms-1">Kirim</b></button>
-                                            </div>
-                                        </form>
-                                    </div>
-                         </div>`;
-                        $("#reply_comment2" + num).val('');
-                        $("#new-replies2" + num).append(inner);
-                    },
-                    error: function error(xhr, error, status) {
-                        iziToast.destroy();
-                        iziToast.error({
-                            'title': 'Error',
-                            'message': xhr.responseText,
-                            'position': 'topCenter'
-                        });
-                    }
-                });
+                    });
+                }
             });
         }
 
@@ -1289,142 +1342,146 @@
         }
 
         function clickBalasBalasKomentar(num, num2) {
-            console.log(num);
             $("#formBalasBalasKomentar" + num).off("submit");
             $("#formBalasBalasKomentar" + num).submit(function(e) {
                 e.preventDefault();
                 let route = $(this).attr("action");
                 let data = new FormData($(this)[0]);
-                $.ajax({
-                    url: route,
-                    method: "POST",
-                    data: data,
-                    processData: false,
-                    contentType: false,
-                    success: function success(response) {
-                        iziToast.destroy();
-                        if (response.success) {
-                            iziToast.success({
-                                'title': 'Success',
-                                'message': response.message,
-                                'position': 'topCenter'
-                            });
-                        } else {
+                let value = $("#reply_comment2"+num).val();
+                if (value.length > 1000) {
+                    errorComment();
+                } else {
+                    $.ajax({
+                        url: route,
+                        method: "POST",
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        success: function success(response) {
+                            iziToast.destroy();
+                            if (response.success) {
+                                iziToast.success({
+                                    'title': 'Success',
+                                    'message': response.message,
+                                    'position': 'topCenter'
+                                });
+                            } else {
+                                iziToast.error({
+                                    'title': 'Error',
+                                    'message': response.message,
+                                    'position': 'topCenter'
+                                });
+                            }
+                            $("#reply_comment" + num).val('');
+                            let inner =
+                                `
+                            <div id="cardReplyComment${response.id}">
+                            <div class="user d-flex flex-row mb-2" >
+
+                                                <img src="{{ asset('${response.foto}') }}" width="30"
+                                                    height="30" class="user-img rounded-circle mr-2">
+
+                                            <span>
+                                                <small
+                                                    class="font-weight-semibold ms-1 me-2"><b>${response.name}</b>
+                                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
+                                                        width="15" height="15" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                                    </svg>
+                                                </small>
+                                                    <div class="text-black" style="font-size: 13px">
+                                                        <small
+                                                            class="float-start">1 detik yang lalu</small>
+                                                    </div>
+                                                <div class="">
+                                                    <small class="font-weight">
+                                                        <br>
+                                                            <a href="">
+                                                                @${response.at}
+                                                            </a>
+                                                        ${response.reply}
+                                                    </small>
+                                                </div>
+                                            </span>
+                                        </div>
+                                        {{-- llike --}}
+                                        <div class="action d-flex mt-2 align-items-center">
+
+                                            <div class="reply px-7 me-2">
+                                                <small id="like-count-balasan-balasan${response.id}">
+                                                    0</small>
+                                            </div>
+
+                                            <div class="icons align-items-center input-group">
+
+                                                <form action="/comments/reply/${response.id}/like" method="POST"
+                                                    id="like-balasan-form${response.id}">
+                                                    @csrf
+
+                                                        <button type="submit" onclick="like_button_balasan_balasan(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5"
+                                                            id="like-button">
+                                                            <i class="fa-regular fa-thumbs-up" id="iconLikeBalasanBalasan${response.id}"></i>
+                                                        </button>
+
+                                                </form>
+                                                {{-- @if (auth()->check()) --}}
+
+                                                    <form action="/reply-comment-destroy/${response.id}"
+                                                        method="POST" id="replyDelete${response.id}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" onclick="destroyReplyComment(${response.id})" id="buttonReplyDelete${response.id}" hidden></button>
+                                                        <button type="button"
+                                                            onclick="confirmationReply(${response.id})"
+                                                            class="yuhu text-danger btn-sm rounded-5 "><i
+                                                                class="fa-solid fa-trash"></i>
+                                                        </button>
+                                                    </form>
+
+                                            </div>
+
+                                            <div class="d-flex justify-content-end input-group">
+                                                <a href="#" class="text-secondary " data-toggle="collapse"
+                                                    data-target="#collapses${response.id}" aria-expanded="true"
+                                                    aria-controls="collapseOne">
+                                                    <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="collapses${response.id}">
+                                            <br>
+                                            <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
+                                                @csrf
+                                                <input type="hidden" name="parent_id" value="${response.id}">
+                                                <div class="input-group mb-3">
+                                                    @csrf
+                                                    <input type="text" id="reply_comment2${response.id}" name="reply_comment"
+                                                        width="500px" class="form-control form-control-sm rounded-3 me-1"
+                                                        placeholder="Balas komentar dari ${response.name}....">
+
+                                                    <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
+                                                        style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                        class="btn btn-sm text-light ms-1"><b
+                                                            class="me-1 ms-1">Kirim</b></button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                            </div>            `;
+                            $("#reply_comment2" + num).val('');
+                            $("#new-replies2" + num2).append(inner);
+                        },
+                        error: function error(xhr, error, status) {
+                            iziToast.destroy();
                             iziToast.error({
                                 'title': 'Error',
-                                'message': response.message,
+                                'message': xhr.responseText,
                                 'position': 'topCenter'
                             });
                         }
-                        $("#reply_comment" + num).val('');
-                        let inner =
-                            `
-                        <div id="cardReplyComment${response.id}">
-                        <div class="user d-flex flex-row mb-2" >
-
-                                            <img src="{{ asset('${response.foto}') }}" width="30"
-                                                height="30" class="user-img rounded-circle mr-2">
-
-                                        <span>
-                                            <small
-                                                class="font-weight-semibold ms-1 me-2"><b>${response.name}</b>
-                                                <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-                                                    width="15" height="15" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                </svg>
-                                            </small>
-                                                <div class="text-black" style="font-size: 13px">
-                                                    <small
-                                                        class="float-start">1 detik yang lalu</small>
-                                                </div>
-                                            <div class="">
-                                                <small class="font-weight">
-                                                    <br>
-                                                        <a href="">
-                                                            @${response.at}
-                                                        </a>
-                                                    ${response.reply}
-                                                </small>
-                                            </div>
-                                        </span>
-                                    </div>
-                                    {{-- llike --}}
-                                    <div class="action d-flex mt-2 align-items-center">
-
-                                        <div class="reply px-7 me-2">
-                                            <small id="like-count-balasan-balasan${response.id}">
-                                                0</small>
-                                        </div>
-
-                                        <div class="icons align-items-center input-group">
-
-                                            <form action="/comments/reply/${response.id}/like" method="POST"
-                                                id="like-balasan-form${response.id}">
-                                                @csrf
-
-                                                    <button type="submit" onclick="like_button_balasan_balasan(${response.id})" class="yuhu me-2 text-dark btn-sm rounded-5"
-                                                        id="like-button">
-                                                        <i class="fa-regular fa-thumbs-up" id="iconLikeBalasanBalasan${response.id}"></i>
-                                                    </button>
-
-                                            </form>
-                                            {{-- @if (auth()->check()) --}}
-
-                                                <form action="/reply-comment-destroy/${response.id}"
-                                                    method="POST" id="replyDelete${response.id}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" onclick="destroyReplyComment(${response.id})" id="buttonReplyDelete${response.id}" hidden></button>
-                                                    <button type="button"
-                                                        onclick="confirmationReply(${response.id})"
-                                                        class="yuhu text-danger btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-trash"></i>
-                                                    </button>
-                                                </form>
-
-                                        </div>
-
-                                        <div class="d-flex justify-content-end input-group">
-                                            <a href="#" class="text-secondary " data-toggle="collapse"
-                                                data-target="#collapses${response.id}" aria-expanded="true"
-                                                aria-controls="collapseOne">
-                                                <small>Balasan <i class="fa-solid fa-chevron-down"></i></small>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="collapse" id="collapses${response.id}">
-                                        <br>
-                                        <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
-                                            @csrf
-                                            <input type="hidden" name="parent_id" value="${response.id}">
-                                            <div class="input-group mb-3">
-                                                @csrf
-                                                <input type="text" id="reply_comment2${response.id}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-1"
-                                                    placeholder="Balas komentar dari ${response.name}....">
-
-                                                <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
-                                                    style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn btn-sm text-light ms-1"><b
-                                                        class="me-1 ms-1">Kirim</b></button>
-                                            </div>
-                                        </form>
-                                    </div>
-
-                        </div>            `;
-                        $("#reply_comment2" + num).val('');
-                        $("#new-replies2" + num2).append(inner);
-                    },
-                    error: function error(xhr, error, status) {
-                        iziToast.destroy();
-                        iziToast.error({
-                            'title': 'Error',
-                            'message': xhr.responseText,
-                            'position': 'topCenter'
-                        });
-                    }
-                });
+                    });
+                }
             });
         }
 
