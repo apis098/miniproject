@@ -26,7 +26,7 @@
         }
 
         .zoom-effects:hover {
-            transform: scale(0.97);
+            transform: scale(1);
         }
 
         .intro-1 {
@@ -51,10 +51,7 @@
 
         .table-custom {
             text-align: center;
-        }
-
-        .table-custom {
-            text-align: center;
+            width: 100%;
             border-collapse: separate;
             border-spacing: 0px 15px;
         }
@@ -82,6 +79,7 @@
 
         .table-custom thead {
             margin-bottom: 50px;
+            width: fit-content;
         }
 
         .table-custom td:first-child {
@@ -157,7 +155,7 @@
             background-color: #fff;
             padding: 4px;
             border-radius: 5px;
-            width: 210%;
+            width: 100%;
         }
 
         .search-1 {
@@ -171,7 +169,7 @@
             width: 100%;
             padding-left: 34px;
             padding-right: 10px;
-            border-right: 2px solid #eee
+            border-right: 2px solid #eee;
         }
 
         .search-1 input:focus {
@@ -195,20 +193,7 @@
 
         .search-2 {
             position: relative;
-            width: 35%;
-            margin-left: -5%
-        }
-
-        .search-2 input {
-            height: 45px;
-            border: 0.50px black solid;
-            width: 137%;
-            border-radius: 15px;
-            margin-left: 80px;
-            color: #000;
-            padding-left: 18px;
-            padding-right: 100px;
-            text-align: center
+            width: 100%;
         }
 
         .search-2 input:focus {
@@ -224,472 +209,218 @@
             color: #eee
         }
 
-        .search-2 button {
-            position: absolute;
-            margin-left: 136%;
-            top: 0px;
-            border: none;
-            height: 45px;
-            background-color: #F7941E;
-            color: #fff;
-            width: 90px;
-        }
-
-        @media (max-width:800px) {
-            .search-1 input {
-                border-right: none;
-                border-bottom: 1px solid #eee
-            }
-
-            .search-2 i {
-                left: 4px
+        @media(min-width:992px) {
+            .search-2 button {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                border: none;
+                height: 45px;
+                background-color: #F7941E;
+                color: #fff;
+                width: 90px;
             }
 
             .search-2 input {
-                padding-left: 34px
+                height: 45px;
+                border: 0.50px black solid;
+                width: 100%;
+                border-radius: 15px;
+                color: #000;
+
+                text-align: center;
+            }
+        }
+        @media(max-width:991px) {
+            .search-2 button {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                border: none;
+                height: 35px;
+                background-color: #F7941E;
+                color: #fff;
+                width: 70px;
             }
 
-            .search-2 button {
-                height: 37px;
-                top: 5px
+            .search-2 input {
+                height: 35px;
+                border: 0.50px black solid;
+                width: 100%;
+                border-radius: 15px;
+                color: #000;
+
+                text-align: center;
+            }
+        }
+
+        .scrollbar::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: #F5F5F5;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            width: 8px;
+            background-color: #F5F5F5;
+            height: 5px;
+        }
+
+        .scrollbar::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #F7941E;
+        }
+
+        @media(max-width:992px) {
+            .modalfooterterima {
+                display: flex;
+                justify-content: center;
             }
         }
     </style>
-    <div style="overflow-x:hidden">
-        <div class=" d-flex justify-content-start ms-3">
-            <div class="my-5 ml-3">
-                <div class="tab-content mb-5 mx-3" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
-                        tabindex="0">
-                        <div class="search" style="border-radius: 15px;">
-                            <div class="col-lg-12 mt-2">
-                                <div class="search-2"> <i class='bx bxs-map'></i>
-                                    <form action="#" method="GET">
-                                        <input type="text" name="" style="text-align: left;" placeholder="Cari..."
-                                            value="{{ request()->nama_verified }}">
-                                        <button type="submit" class="zoom-effects"
-                                            style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
-                                            Cari
-                                        </button>
+    <script>
+        $(document).ready(function() {
+            $("#search-user").on("input", function() {
+                let value = $(this).val().toLowerCase();
+                $("#search-results").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
+    </script>
+    <div class="mx-3">
+        <div class="search-1 mt-3" style="border-radius: 15px;">
+            <div class="mt-2">
+                <div class="search-2"> <i class='bx bxs-map'></i>
+                    <form action="#" method="GET">
+                        <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
+                            id="search-user">
+                        <button type="submit" class="zoom-effects cari2"
+                            style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
+                            Cari
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="scrollbar" style="overflow-x:scroll;">
+            <table id="table-resep" class="table-custom ml-auto" style="min-width: 400px;">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama pengguna</th>
+                        <th scope="col">Jumlah suka</th>
+                        <th scope="col">Jumlah followers</th>
+                        <th scope="col">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody id="search-results">
+                    @foreach ($verified as $data_verified)
+                        <tr class="mt-5">
+                            <td style="border-left:1px solid black;">
+                                {{ $data_verified->name }}
+                            </td>
+                            <td>
+                                {{ number_format($data_verified->like, 0, ',', '.') }}
+                            </td>
+                            <td>
+                                {{ number_format($data_verified->followers, 0, ',', '.') }}
+                            </td>
+                            <td style="border-right:1px solid black;">
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn mr-1"
+                                        style="border: 1px solid black;border-radius:15px;background-color:#F7941E;color:white;"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#ModalTerima{{ $data_verified->id }}">Terima</button>
+                                    <button type="button" class="btn ml-1"
+                                        style="border: 1px solid black;border-radius:15px;background-color:white;color:black;"
+                                        data-bs-target="#ModalTolak{{ $data_verified->id }}"
+                                        data-bs-toggle="modal">Tolak</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <div class="modal" id="ModalTerima{{ $data_verified->id }}" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <form action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
+                                        method="post">
+                                        @csrf
+                                        @method('PATCH')
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="reportModal"
+                                                style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                                Peringatan</h5>
+                                            <button type="button" class="close text-black" data-bs-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body row d-flex align-items-center col-12">
+                                            <!-- Tambahkan kelas "align-items-center" -->
+                                            <div class="col-lg-2 col-md-12 mt-2 text-center">
+                                                <img class="mr-3" src="{{ asset('image 94.png') }}" width="100px"
+                                                    height="100px" style="border-radius: 50%" alt="">
+                                            </div>
+                                            <div class="col-lg-10 col-md-12">
+                                                <div class="widget-49-meeting-info">
+
+                                                </div>
+                                                <p class="ml-4">
+                                                    Apakah anda yakin telah mentransfer uang dengan benar ke koki?
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer modalfooterterima">
+                                            <button type="submit" class="btn btn-light text-light rounded-3"
+                                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                    class="ms-2 me-2">Ya</b>
+                                            </button>
+                                            <button type="button" data-dismiss="modal"
+                                                class="btn btn-light text-light rounded-3"
+                                                style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                    class="ms-2 me-2">Tidak</b>
+                                            </button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        {{-- start tab 1 --}}
-                        <table class="table-custom">
-                            <thead>
-                                <tr>
-                                    <th scope="col"
-                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                        Nama Pengguna</th>
-                                    <th scope="col"
-                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                        Jumlah Suka</th>
-                                    <th scope="col"
-                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                        Jumlah Pengikut</th>
-                                    <th scope="col"
-                                        style=" color: #F5F5F5; font-size: 20px; font-family: Poppins; font-weight: 600; word-wrap: break-word"">
-                                        Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <div id="search-results">
-                                    @foreach ($verified as $num => $data_verified)
-                                        <tr class="mt-5">
-                                            <td style="border-left:1px solid black;  font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word""
-                                                class="mt">{{ $data_verified->name }}
-                                            </td>
-                                            <td
-                                                style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
-                                                {{ number_format($data_verified->like, 0, ',', '.') }}</td>
-                                            <td
-                                                style=" font-size: 20px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word"">
-                                                {{ number_format($data_verified->followers, 0, ',', '.') }}</td>
-                                            <td style="border-right:1px solid black;">
-                                                <div class="d-flex">
-                                                    <form id="action_accept_verified{{ $num }}"
-                                                        action="{{ route('action.verified', [$data_verified->id, 'diterima']) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <button type="button"
-                                                            onclick="confirmation_accept({{ $num }})"
-                                                            class="btn btn-sm rounded-3 text-light me-2"
-                                                            style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px"><b
-                                                                class="ms-2 me-2"
-                                                                style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Terima</b>
-                                                        </button>
-                                                    </form>
-                                                    <button data-toggle="modal" data-target="#modalTolak{{ $num }}"
-                                                        type="button" class="btn btn-sm rounded-3 text-light"
-                                                        style="border-radius: 15px; border: 1px solid black;">
-                                                        <b class="ms-2 me-2"
-                                                            style="color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">
-                                                            Tolak
-                                                        </b>
-                                                    </button>
-                                                    <div class="modal" tabindex="-1" id="modalTolak{{ $num }}">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content modal-lg">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title">Kirim alasan</h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-dismiss="modal" aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body" style="text-align: right;">
-                                                                    <form id="action_menolak_verified{{ $num }}"
-                                                                        action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
-                                                                        method="post">
-                                                                        @csrf
-                                                                        @method('PATCH')
-                                                                        <div class="row mb-3">
-                                                                            <div class="col-5">
-                                                                                <img class="my-auto"
-                                                                                    src="{{ asset('images/alasan.png') }}"
-                                                                                    width="100%" height="100%"
-                                                                                    alt="">
-                                                                            </div>
-                                                                            <div class="col-7">
-                                                                                <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
-                                                                                    cols="5" rows="5"></textarea>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <button type="submit"
-                                                                            style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                                            class="btn  btn-sm text-light">
-                                                                            <b class="me-3 ms-3">Kirim</b></button>
-                                                                    </form>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                        <div class="modal" id="ModalTolak{{ $data_verified->id }}">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content" style="width: 100%;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Kirim alasan</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body" style="text-align: right;">
+                                        <form action="{{ route('action.verified', [$data_verified->id, 'ditolak']) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                            <div class="row mb-3">
+                                                <div class="col-lg-5 col-md-12">
+                                                    <img class="my-auto" src="{{ asset('images/alasan.png') }}"
+                                                        width="100%" height="100%" alt="">
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                <div class="col-lg-7 col-md-12">
+                                                    <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                                        cols="5" rows="5"></textarea>
+                                                </div>
+                                            </div>
+
+                                            <button type="submit"
+                                                style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                class="btn  btn-sm text-light">
+                                                <b class="me-3 ms-3">Kirim</b></button>
+                                        </form>
+                                    </div>
+
                                 </div>
-                            </tbody>
-                        </table>
-                        @if ($verified->count() == 0)
-                            <div class="d-flex flex-column justify-content-center align-items-center mt-5">
-                                <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                <p><b>Tidak ada data</b></p>
                             </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
+                        </div>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script>
-        let debounceTimer;
-
-        $(document).ready(function() {
-            $('#search-input').keyup(function() {
-                var query = $(this).val(); // Ambil nilai dari input pencarian
-                clearTimeout(debounceTimer);
-
-                debounceTimer = setTimeout(function() {
-                    get(1)
-                }, 500);
-
-                // Lakukan permintaan Ajax ke titik akhir pencarian hanya jika panjang query lebih dari 2 karakter
-                if (query.length > 2) {
-                    $.ajax({
-                        url: '/admin/laporan-pengguna', // Ganti URL sesuai dengan titik akhir pencarian Anda
-                        type: 'GET',
-                        data: {
-                            query: query
-                        },
-                        success: function(response) {
-                            // Tampilkan hasil pencarian di dalam div #search-results
-                            $('#search-results').html(response);
-                        },
-                        beforeSend: function() {
-                            $('#loading').html(showLoading())
-                        }
-                    });
-                } else {
-                    // Kosongkan hasil pencarian jika panjang query kurang dari 3 karakter
-                    $('#search-results').empty();
-                }
-            });
-        });
-
-
-        function showLoading() {
-            return `<div class="d-flex justify-content-center" style="">
-        <div class="spinner-border my-auto" role="status">
-            <span class="visually-hidden">Loading...</span>
-            </div></div>`
-
-        }
-    </script>
-
-    <script>
-        const click1 = document.getElementById("click1");
-        const click3 = document.getElementById("click3");
-        const border1 = document.getElementById("border1");
-        const border3 = document.getElementById("border3");
-        const click2 = document.getElementById("c");
-        const border2 = document.getElementById("b");
-        const underline = document.getElementById("f");
-        const buttonTab = document.getElementById("button-tab");
-        const o = document.getElementById("pp");
-        const a_tab = document.getElementById("a-tab");
-        buttonTab.addEventListener("click", function() {
-            tab3();
-        });
-
-        function tab3() {
-            event.preventDefault();
-            border1.style.display = "none";
-            border2.style.display = "none";
-            underline.style.display = "block";
-            underline.removeAttribute('hidden');
-            o.style.display = "none";
-        }
-        a_tab.addEventListener('click', function() {
-            event.preventDefault();
-            o.style.display = "block";
-            underline.style.display = "none";
-            border1.style.display = "none";
-            border2.style.display = "none";
-        });
-        click1.addEventListener('click', function() {
-            event.preventDefault();
-            border1.style.display = "block";
-            border2.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-        click2.addEventListener("click", function() {
-            event.preventDefault();
-            border2.removeAttribute('hidden');
-            border2.style.display = "block";
-            border1.style.display = "none";
-            underline.style.display = "none";
-            o.style.display = "none";
-        });
-    </script>
-
-    <!-- jQuery CDN -->
-    <script src="{{ asset('jquery/jquery-3.6.0.min.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.js"
-        integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
-
-    <script>
-        function DeleteData() {
-            iziToast.show({
-                backgroundColor: '#f2a5a8',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: 'Apakah Anda yakin ingin menghapus data ini?',
-                position: 'topCenter',
-                progressBarColor: 'dark',
-                close: false,
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>', function(
-                        instance, toast) {
-                        instance.hide({
-                            transitionOut: 'fadeOutUp',
-                            onClosing: function(instance, toast, closedBy) {
-                                document.getElementById('delete-form').submit();
-                            }
-                        }, toast, 'buttonName');
-                    }, false], // true to focus
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>', function(
-                        instance, toast) {
-                        instance.hide({}, toast, 'buttonName');
-                    }]
-                ],
-                onOpening: function(instance, toast) {
-                    console.info('callback abriu!');
-                },
-                onClosing: function(instance, toast, closedBy) {
-                    console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
-                }
-            });
-        }
-
-        function buttonAllert(num) {
-            iziToast.show({
-                backgroundColor: '#f2a5a8',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: 'Anda yakin ingin memblookir pengguna tersebut?',
-                position: 'topCenter',
-                progressBarColor: 'dark',
-                close: false,
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('formBlokir' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-
-        function confirmation_accept(num) {
-            iziToast.show({
-                backgroundColor: '#a4e3b2',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: 'Apakah anda yakin ingin menerima user ini menjadi koki terverifikasi?',
-                position: 'topCenter',
-                progressBarColor: 'dark',
-                close: false,
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('action_accept_verified' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-
-        function confirmation_menolak(num) {
-            iziToast.show({
-                backgroundColor: '#f2a5a8',
-                title: '<i class="fa-regular fa-circle-question"></i>',
-                titleColor: 'dark',
-                messageColor: 'dark',
-                message: 'Apakah anda yakin ingin menolak user ini menjadi koki terverifikasi?',
-                position: 'topCenter',
-                progressBarColor: 'dark',
-                close: false,
-                buttons: [
-                    ['<button class="text-dark" style="background-color:#ffffff">Ya</button>',
-                        function(instance, toast) {
-                            // Jika pengguna menekan tombol "Ya", kirim form
-                            document.getElementById('action_menolak_verified' + num).submit();
-                        }
-                    ],
-                    ['<button class="text-dark" style="background-color:#ffffff">Tidak</button>',
-                        function(instance, toast) {
-                            instance.hide({
-                                transitionOut: 'fadeOut'
-                            }, toast, 'button');
-                        }
-                    ],
-                ],
-            });
-        }
-    </script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const favoriteForm = document.querySelectorAll(".favorite-form");
-
-            favoriteForm.forEach(form1 => {
-                form1.addEventListener("submit", async function(event) {
-                    event.preventDefault();
-
-                    const button1 = form1.querySelector(
-                        ".favorite-button"); // Menggunakan form1
-                    const svg1 = button1.querySelector("svg"); // Menggunakan button1
-
-                    const response = await fetch(form1.action, {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-Token": "{{ csrf_token() }}",
-                        },
-                    });
-
-                    if (response.ok) {
-                        const responseData1 = await response.json();
-                        if (responseData1.favorited) {
-                            // Reset button color and SVG here
-                            button1.style.backgroundColor = "#F7941E";
-                            svg1.style.color = "white";
-                            // Modify SVG appearance if needed
-                            document.getElementById("fav-count-" + responseData1.resep_id)
-                                .textContent = responseData1.favorite_count;
-                        } else {
-                            // Update button color and SVG here
-                            button1.style.backgroundColor = "white";
-                            svg1.style.color = "#F7941E";
-                            button1.style.borderColor = "#F7941E";
-                            document.getElementById("fav-count-" + responseData1.resep_id)
-                                .textContent = responseData1.favorite_count;
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-    <script>
-        const deskripsi = document.getElementById("deskripsi");
-        const langkah = document.getElementById("langkah");
-        const borderDeskripsi = document.getElementById("borderDeskripsi");
-        const borderLangkah = document.getElementById("borderLangkah");
-        const bahan = document.getElementById("bahan");
-        const borderBahan = document.getElementById("borderBahan");
-        const alat = document.getElementById("alat");
-        const borderAlat = document.getElementById("borderAlat");
-        deskripsi.addEventListener('click', function() {
-            borderDeskripsi.style.display = "block";
-            borderLangkah.style.display = "none";
-            borderBahan.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-        bahan.addEventListener("click", function() {
-            borderBahan.removeAttribute('hidden');
-            borderBahan.style.display = "block";
-            borderDeskripsi.style.display = "none";
-            borderLangkah.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-
-        langkah.addEventListener("click", function() {
-            borderLangkah.style.display = "block";
-            borderDeskripsi.style.display = "none";
-            borderBahan.style.display = "none";
-            borderAlat.style.display = "none";
-        });
-        alat.addEventListener("click", function() {
-            borderAlat.style.display = "block";
-            borderLangkah.style.display = "none";
-            borderDeskripsi.style.display = "none";
-            borderBahan.style.display = "none";
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#search').on('input', function() {
-                var value = $(this).val().toLowerCase();
-                $('#table tbody tr').filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-    </script>
 @endsection

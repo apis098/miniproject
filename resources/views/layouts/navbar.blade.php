@@ -357,8 +357,8 @@
             </div>
             <!-- /.sidebar -->
         </aside>
-        <nav class="navbar navbar-dark" style="background-color:white;">
-            <div class="container-fluid">
+        <nav class="navbar navbar-dark" style="background-color:white;box-shadow:0px 0px 3px black">
+            <div class="container-fluid d-flex justify-between">
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
                     aria-label="Toggle navigation">
@@ -572,12 +572,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="btn-group dropstart">
+                    <i class="fa-solid fa-circle-user fa-3x" type="button" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                    <ul class="dropdown-menu mt-5" style="margin-right: -30px;">
+                        <li><a class="dropdown-item" href="/admin/dashboard">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{{ route('actionlogout') }}">Log out</a></li>
+                      </ul>
+                </div>
             </div>
         </nav>
-        <div class="content-wrapper" style="background-color: white;">
+        <div class="content-wrapper" style="background-color:white;">
             <div class="container">
-
-                <div class="row">
+                <div class="">
                     @yield('konten')
                 </div>
             </div>
