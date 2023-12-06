@@ -3,33 +3,33 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\complaintController;
+use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\KokiController;
-use App\Http\Controllers\likeController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ResepsController;
-use App\Http\Controllers\artikels;
-use App\Http\Controllers\favoriteController;
+use App\Http\Controllers\Artikels;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\FiltersController;
-use App\Http\Controllers\followersController;
-use App\Http\Controllers\notificationController;
+use App\Http\Controllers\FollowersController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ReportController;
-use App\Http\Controllers\special_days_controller;
+use App\Http\Controllers\SpecialDaysController;
 use App\Http\Controllers\KategoriMakananController;
 use App\Http\Controllers\FooterController;
-use App\Http\Controllers\donationController;
-use App\Http\Controllers\komentar_resep;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\KomentarResepController;
 use App\Http\Controllers\LikeCommentController;
 use App\Http\Controllers\VeedController;
-use App\Http\Controllers\detail_kursusController;
+use App\Http\Controllers\DetailKursusController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\KursusController;
 use App\Http\Controllers\TopUpController;
 use App\Http\Controllers\TripayCallbackController;
 use App\Http\Controllers\IncomeChefsController;
-use App\Http\Controllers\reservasiKursusController;
-use App\Http\Controllers\testingController;
+use App\Http\Controllers\ReservasiKursusController;
+use App\Http\Controllers\TestingController;
 use App\Http\Controllers\UlasanRatingController;
 
 /*
@@ -45,7 +45,7 @@ use App\Http\Controllers\UlasanRatingController;
 
 Route::get('/', [LoginController::class, 'home'])->name('home');
 
-Route::get('/artikel/{id}/{judul}', [artikels::class, 'artikel_resep'])->name('artikel.resep')->middleware('auth.premium');
+Route::get('/artikel/{id}/{judul}', [Artikels::class, 'artikel_resep'])->name('artikel.resep')->middleware('auth.premium');
 
 Route::get('resep', [FiltersController::class, 'resep_index'])->name('resep.home');
 Route::post('resep', [FiltersController::class, 'filter_resep'])->name('filter.resep');
@@ -55,40 +55,40 @@ Route::get('riwayat', [LoginController::class, 'riwayat'])->name('riwayat');
 
 //kursus
 Route::match(['get', 'post'],'/kursus', [KursusController::class, 'kursus_template'])->name('kursus');
-Route::get('/detail_kursus/{id}',[detail_kursusController::class,'detailKursus'])->name('detail.kursus');
-Route::get('/reservasi-kursus/{id}',[reservasiKursusController::class,'reservasiKursus'])->name('reservasi.kursus');
-Route::post('/transaksi-kursus/{id}/{user}/{chef}', [reservasiKursusController::class, 'transaksiKursus'])->name('transaksi.kursus');
-Route::get('/invoice-kursus/{id}',[reservasiKursusController::class,'invoiceKursus'])->name('invoice.kursus');
+Route::get('/detail_kursus/{id}',[DetailKursusController::class,'detailKursus'])->name('detail.kursus');
+Route::get('/reservasi-kursus/{id}',[ReservasiKursusController::class,'reservasiKursus'])->name('reservasi.kursus');
+Route::post('/transaksi-kursus/{id}/{user}/{chef}', [ReservasiKursusController::class, 'transaksiKursus'])->name('transaksi.kursus');
+Route::get('/invoice-kursus/{id}',[ReservasiKursusController::class,'invoiceKursus'])->name('invoice.kursus');
 // veed
 Route::get('/veed/{uuid?}', [VeedController::class, 'index'])->name('veed.index');
 
 
 //Search user account
-Route::get('search-account', [followersController::class, 'index'])->name('user.koki');
-Route::get('/profile-orang-lain/{id}', [followersController::class, 'show_profile'])->name('show.profile');
-Route::put('/status-baca/follow/{id}', [notificationController::class, 'followNotification'])->name('follow.notification');
-Route::put('/status-baca/like-replies/{id}', [notificationController::class, 'repliesNotification'])->name('replies.notification');
-Route::put('/status-baca/like-resep/{id}', [notificationController::class, 'likeResep'])->name('resep.like.notification');
-Route::put('/status-baca/shared-feed/{id}', [notificationController::class, 'shareVeed'])->name('share.veed.notification');
-Route::put('/status-baca/profile-blocked/{id}', [notificationController::class, 'blockedProfile'])->name('profile.blocked.notification');
-Route::put('/status-baca/replies-blocked/{id}', [notificationController::class, 'repliesBlocked'])->name('replies.blocked.notification');
-Route::put('/status-baca/tambah-resep/{id}', [notificationController::class, 'recipesNotification'])->name('resep.read.notification');
-Route::put('/status-baca/blokir-resep/{id}', [notificationController::class, 'blockedRecipes'])->name('blockedRecipes.notification');
-Route::put('/status-baca/blokir-komentar/{id}', [notificationController::class, 'blockedComent'])->name('blockedComent.notification');
-Route::put('/status-baca/blokir-feed/{id}', [notificationController::class, 'blockedFeed'])->name('blockedFeed.notification');
-Route::put('/status-baca/blokir-keluhan/{id}', [notificationController::class, 'blockedComplaint'])->name('blockedComplaint.notification');
-Route::put('/status-baca/top-up/{id}', [notificationController::class, 'top_up'])->name('topUp.notification');
-Route::put('/status-baca/verifed/{id}', [notificationController::class, 'verifed'])->name('notification.verifed');
-Route::put('/status-baca/data-koki/{id}', [notificationController::class, 'dataKoki'])->name('notification.dataKoki');
-Route::put('/status-baca/penarikan/{id}', [notificationController::class, 'penarikan'])->name('notification.penarikan');
-Route::put('/status-baca/kursus/{id}', [notificationController::class, 'kursus'])->name('notification.kursus');
-Route::put('/status-baca/ulasan/{id}', [notificationController::class, 'ulasan'])->name('notification.ulasan');
-Route::patch('/status-baca/semua', [notificationController::class, 'update_all_status'])->name('all.notifications');
+Route::get('search-account', [FollowersController::class, 'index'])->name('user.koki');
+Route::get('/profile-orang-lain/{id}', [FollowersController::class, 'show_profile'])->name('show.profile');
+Route::put('/status-baca/follow/{id}', [NotificationController::class, 'followNotification'])->name('follow.notification');
+Route::put('/status-baca/like-replies/{id}', [NotificationController::class, 'repliesNotification'])->name('replies.notification');
+Route::put('/status-baca/like-resep/{id}', [NotificationController::class, 'likeResep'])->name('resep.like.notification');
+Route::put('/status-baca/shared-feed/{id}', [NotificationController::class, 'shareVeed'])->name('share.veed.notification');
+Route::put('/status-baca/profile-blocked/{id}', [NotificationController::class, 'blockedProfile'])->name('profile.blocked.notification');
+Route::put('/status-baca/replies-blocked/{id}', [NotificationController::class, 'repliesBlocked'])->name('replies.blocked.notification');
+Route::put('/status-baca/tambah-resep/{id}', [NotificationController::class, 'recipesNotification'])->name('resep.read.notification');
+Route::put('/status-baca/blokir-resep/{id}', [NotificationController::class, 'blockedRecipes'])->name('blockedRecipes.notification');
+Route::put('/status-baca/blokir-komentar/{id}', [NotificationController::class, 'blockedComent'])->name('blockedComent.notification');
+Route::put('/status-baca/blokir-feed/{id}', [NotificationController::class, 'blockedFeed'])->name('blockedFeed.notification');
+Route::put('/status-baca/blokir-keluhan/{id}', [NotificationController::class, 'blockedComplaint'])->name('blockedComplaint.notification');
+Route::put('/status-baca/top-up/{id}', [NotificationController::class, 'top_up'])->name('topUp.notification');
+Route::put('/status-baca/verifed/{id}', [NotificationController::class, 'verifed'])->name('notification.verifed');
+Route::put('/status-baca/data-koki/{id}', [NotificationController::class, 'dataKoki'])->name('notification.dataKoki');
+Route::put('/status-baca/penarikan/{id}', [NotificationController::class, 'penarikan'])->name('notification.penarikan');
+Route::put('/status-baca/kursus/{id}', [NotificationController::class, 'kursus'])->name('notification.kursus');
+Route::put('/status-baca/ulasan/{id}', [NotificationController::class, 'ulasan'])->name('notification.ulasan');
+Route::patch('/status-baca/semua', [NotificationController::class, 'update_all_status'])->name('all.notifications');
 
 // artikel
-Route::post('/favorite-store/{id}', [favoriteController::class, 'store'])->name('favorite.store');
-Route::post('/favorite-feed-store/{id}', [favoriteController::class, 'storeVeed'])->name('favorite.feed.store');
-Route::post('/favorite-delete/multiple', [favoriteController::class, 'destroyFavorite'])->name('favorite.delete.multiple');
+Route::post('/favorite-store/{id}', [FavoriteController::class, 'store'])->name('favorite.store');
+Route::post('/favorite-feed-store/{id}', [FavoriteController::class, 'storeVeed'])->name('favorite.feed.store');
+Route::post('/favorite-delete/multiple', [FavoriteController::class, 'destroyFavorite'])->name('favorite.delete.multiple');
 
 Route::post('/keluhan-store', [complaintController::class, 'store'])->name('ComplaintUser.store');
 // Login Register & logout
@@ -99,7 +99,7 @@ Route::post('actionlogin', [LoginController::class, 'actionlogin'])->name('actio
 Route::get('actionlogout', [LoginController::class, 'actionlogout'])->name('actionlogout')->middleware('auth');
 
 Route::get('register', [RegisterController::class, 'register'])->name('register')->middleware('guest');
-Route::get('voice-note', [testingController::class, 'voice_note'])->name('voice.note');
+Route::get('voice-note', [TestingController::class, 'voice_note'])->name('voice.note');
 Route::post('actionregister', [RegisterController::class, 'actionregister'])->name('actionregister');
 Route::post('update/profile', [KokiController::class, 'updateProfile'])->name('update.profile');
 Route::post('update/password', [KokiController::class, 'updatePassword'])->name('update.password');
@@ -115,9 +115,9 @@ Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowR
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/replies-store/{id}', [ReplyController::class, 'replyComment'])->name('ReplyComment.store');
 Route::post('/reply-replies-store/{id}', [ReplyController::class, 'replyReplyComment'])->name('ReplyReplyComment.store');
-Route::post('/comments/{id}/like', [likeController::class, 'like'])->name('Replies.like');
-Route::post('/comments/reply/{id}/like', [likeController::class, 'likeBalasan'])->name('Replies.like.balasan');
-Route::post('/resep/{id}/like', [likeController::class, 'likeResep'])->name('Resep.like');
+Route::post('/comments/{id}/like', [LikeController::class, 'like'])->name('Replies.like');
+Route::post('/comments/reply/{id}/like', [LikeController::class, 'likeBalasan'])->name('Replies.like.balasan');
+Route::post('/resep/{id}/like', [LikeController::class, 'likeResep'])->name('Resep.like');
 Route::post('/comments/{id}/unlike', [LikeController::class, 'unlike'])->name('Replies.unlike');
 Route::delete('/reply-destroy/{id}', [ReplyController::class, 'destroy'])->name('ReplyDestroy.destroy');
 Route::delete('/reply-comment-destroy/{id}', [ReplyController::class, 'destroyComment'])->name('replyComment.destroy');
@@ -176,7 +176,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('topup-categories',[TopUpController::class,'categories'])->name('categories.topup.store');
         Route::delete('delete-topup-categories/{id}', [TopUpController::class, 'hapus_categories'])->name('hapus.categories.topup');
          // special_days
-         Route::resource('special-days', special_days_controller::class)->middleware('roleAdmin:admin_informasi_web');
+         Route::resource('special-days', SpecialDaysController::class)->middleware('roleAdmin:admin_informasi_web');
         //  kategori makanan
          Route::resource('kategori-makanan',KategoriMakananController::class)->middleware('roleAdmin:admin_informasi_web');
         // footer
@@ -220,8 +220,8 @@ Route::middleware(['auth', 'role:koki'],['auth','status:aktif'])->group(function
         Route::get('favorite',[KokiController::class,'favorite'])->name('koki.favorite');
         Route::resource('topup',TopUpController::class);
         Route::post('payment-method',[TopUpController::class,'paymentMethod'])->name('koki.payment.list');
-        // Route::resource('donation',donationController::class);
-        Route::post('donation',[donationController::class,'store'])->name('donation.store');
+        // Route::resource('donation',DonationController::class);
+        Route::post('donation',[DonationController::class,'store'])->name('donation.store');
     });
 });
 
@@ -231,14 +231,14 @@ Route::delete('/hapus_feed/{id}', [KokiController::class, "hapus_feed"])->name('
 Route::post("/update-feed/{id}", [KokiController::class, "updateFeed"])->name("update.feed")->middleware("auth");
 
 // like dan favorite pada artikel resep
-Route::post('/komentar-resep/{pengirim}/{penerima}/{recipe}/{comment?}', [komentar_resep::class, 'toComment'])->name('komentar.resep')->middleware("auth");
-Route::post('/balasan-komentar-resep/{id}/{user}', [komentar_resep::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
-Route::post('/balasan-balasan-komentar-resep/{id}/{user}', [komentar_resep::class, 'reply_reply_comment'])->name('balasan.balasan.komentar.resep')->middleware("auth");
+Route::post('/komentar-resep/{pengirim}/{penerima}/{recipe}/{comment?}', [KomentarResepController::class, 'toComment'])->name('komentar.resep')->middleware("auth");
+Route::post('/balasan-komentar-resep/{id}/{user}', [KomentarResepController::class, 'reply_comment'])->name('balasan.komentar.resep')->middleware("auth");
+Route::post('/balasan-balasan-komentar-resep/{id}/{user}', [KomentarResepController::class, 'reply_reply_comment'])->name('balasan.balasan.komentar.resep')->middleware("auth");
 Route::post('/koki/sukai/{id}', [LikeCommentController::class, 'like_comment_recipe'])->name('like.comment.recipe')->middleware('auth');
 Route::post('/like/komentar/{user}/{resep}/{comment}', [LikeCommentController::class, 'like_reply_comment_recipe'])->name('like.reply.comment.recipe')->middleware("auth");
 Route::post('/koki/sukai/balasan/{id}', [LikeCommentController::class, 'like_reply_comment'])->name('likeReply.comment.recipe')->middleware('auth');
-Route::delete('/hapus/komentar-resep/{id}', [komentar_resep::class, 'delete_comment'])->name('delete.comment')->middleware(['auth']);
-Route::delete('/hapus/komentar-resep-reply/{id}', [komentar_resep::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth');
+Route::delete('/hapus/komentar-resep/{id}', [KomentarResepController::class, 'delete_comment'])->name('delete.comment')->middleware(['auth']);
+Route::delete('/hapus/komentar-resep-reply/{id}', [KomentarResepController::class, 'delete_reply_comment'])->name('delete.reply.comment')->middleware('auth');
 
 // like dan komentar pada veed
 Route::post("/like/veed/{user_id}/{veed_id}", [VeedController::class, "sukai_veed"])->name("sukai.veed");
@@ -254,7 +254,7 @@ Route::post("/balas_komentar_balasan_feed/{pemilik_id}/{comment_id}/{parent_id?}
 // route lihat feed premium
 Route::get('/lihat_feed_premium/{video}', [VeedController::class, "lihat_feed_premium"])->name('lihat.feed.premium');
 //followers
-Route::post('/store-followers/{id}', [followersController::class, 'store'])->name('Followers.store');
+Route::post('/store-followers/{id}', [FollowersController::class, 'store'])->name('Followers.store');
 
 // testing payment
 Route::get('/testing-payment/{id}/{price}/{name_product}', [PaymentController::class, 'channel_pembayaran'])->name('testing.payment')->middleware(['auth', 'role:koki']);
