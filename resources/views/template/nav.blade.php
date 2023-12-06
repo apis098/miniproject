@@ -110,7 +110,7 @@
         <header class="header_section">
             <!-- Navbar-->
             {{-- site modal menu --}}
-            <div class="site-mobile-menu site-navbar-target">
+            <aside class="site-mobile-menu site-navbar-target">
                 <div class="d-flex mx-3">
                     <button onclick="offcanvas_hide()" class="yuhu ml-auto">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
@@ -348,7 +348,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </aside>
             <!-- .site-mobile-menu -->
             {{-- mobile notifications Modal --}}
             <div class="modal fade" id="mobileNotificationModal" tabindex="-1" role="dialog"
@@ -867,32 +867,39 @@
             {{-- .mobile notfication Modal --}}
             <nav class="navbar navbar-expand-lg  bg-body-tertiary custom_nav text-light">
                 <div class="container p-3">
+                    <button onclick="offcanvas_show()" class="navbar-toggler js-menu-toggle nav-link iconClass nav-icon" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
+                        </svg>
+                        @if(!is_array($unreadNotificationCount) && !is_array($messageCount))
+                            @if($unreadNotificationCount + $messageCount > 0)
+                                <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>
+                            @endif
+                        @endif
+                    </button>
                     <!-- Left elements -->
-                    <div class="d-flex">
+                    <div class="d-flex" style="max-width:200px ">
                         <!-- Brand -->
-                        <a class=" me-2 mb-1 d-flex align-items-center" href="#">
                             @if (Auth::check())
                                 @if (Auth::user()->role == 'Admin')
-                                    <a class="navbar-brand" href="{{ url('admin/index') }}">
+                                    <a class="" href="{{ url('admin/index') }}">
                                         <span class="text-start">
                                             HummaCook
                                         </span>
                                     </a>
                                 @else
-                                    <a class="navbar-brand " href="#">
-                                        <span class="text-start">
-                                            HummaCook
-                                        </span>
+                                    <a class="" href="#">
+                                        <img src="{{asset('images/logo.png')}}" width="100%" alt="">
                                     </a>
                                 @endif
                             @else
-                                <a class="navbar-brand" href="#">
+                                <a class="" href="#">
                                     <span class="text-start">
                                         HummaCook
                                     </span>
                                 </a>
                             @endif
-                        </a>
                     </div>
                     <!-- Left elements -->
                     <!-- Center elements -->
@@ -935,17 +942,7 @@
                         </ul>
                     </div>
                     <!-- Center elements -->
-                    <button onclick="offcanvas_show()" class="navbar-toggler js-menu-toggle nav-link iconClass nav-icon" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
-                        </svg>
-                        @if(!is_array($unreadNotificationCount) && !is_array($messageCount))
-                            @if($unreadNotificationCount + $messageCount > 0)
-                                <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>
-                            @endif
-                        @endif
-                    </button>
+                    
                     <!-- Right elements -->
                     <div class="right_nav">
                         @if (Auth::check())
