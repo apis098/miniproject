@@ -253,6 +253,15 @@
             display: none;
             background-color: #ffffff;
         }
+        .row {
+            --bs-gutter-x: 0;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: calc(var(--bs-gutter-y) * -1);
+            margin-right: calc(var(--bs-gutter-x) * -.5);
+            margin-left: calc(var(--bs-gutter-x) * -.5);
+        }
 
         ::-webkit-scrollbar
         {
