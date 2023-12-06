@@ -426,7 +426,7 @@
                                 <a id="button-biografi" class="nav-link active" data-bs-toggle="tab"
                                     data-bs-target="#resep" type="button" role="tab" aria-controls="resep"
                                     aria-selected="false">
-                                    <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Biografi
+                                    <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Bio
                                     </h5>
                                     <div id="border1" class=""
                                         style="width: 100%; height: 100%; border: 1px #F7941E solid;">

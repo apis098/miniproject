@@ -135,7 +135,7 @@
                                         <div class="mb-3">
                                             <textarea name="biodata" id="biodata" class="form-control" cols="30" rows="10">{{ $userLogin->biodata }}</textarea>
                                         </div>
-                                       
+
                                 </div>
                             </div>
                         </div>
@@ -375,7 +375,7 @@
                                         data-bs-target="#resep" type="button" role="tab" aria-controls="resep"
                                         aria-selected="false">
                                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
-                                            Biografi
+                                            Bio
                                         </h5>
                                         <div id="border1" class=""
                                             style="width: 100%; height: 100%; border: 1px #F7941E solid;">

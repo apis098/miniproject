@@ -1287,7 +1287,7 @@
 <!-- about section -->
 <section class="m-5">
     <div class="row">
-        <div class="col-md-6 my-5">
+        <div class="col-lg-7 col-xl-6 col-md-12 my-5">
             <div class="detail-box mx-3">
                 <div class="heading_container">
                     <h2 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">
@@ -1312,11 +1312,9 @@
                         </a> --}}
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="img-box">
-                <img src="{{ asset('images/tentang.png') }}" alt=""
-                    style="max-width: 100%; margin-top: -10%">
-            </div>
+        <div class="col-lg-5 col-md-12 col-xl-6">
+                <img src="{{ asset('images/tentang.png') }}" alt="" class="gambarHome"
+                    style="width: 500px;">
         </div>
     </div>
 </section>
