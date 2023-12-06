@@ -590,7 +590,7 @@
                             <div class="card-body col-12">
                                 <!-- Reactions -->
                                 <div class="d-flex justify-content-between mb-2">
-                                    <div class="col-8 pl-0">
+                                    <div class="col-9 pl-0">
                                     <span class="d-flex flex-row" style="color: black;">
                                     
                                         <!-- like feed start -->
@@ -600,7 +600,7 @@
                                                 @if ($item_video->checkLikeFeed(Auth::user()->id))
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
-                                                        <button class="pr-0"
+                                                        <button class="pr-0 pl-0"
                                                             style="border: none; background-color:white; margin-bottom: 1px;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i class="text-orange fa-solid fa-lg fa-thumbs-up"
@@ -612,7 +612,7 @@
                                                 @else
                                                     <form id="formLikeVeed{{ $urut }}"
                                                         action="/like/veed/{{ Auth::user()->id }}/{{ $item_video->id }}" class="mr-1 text-center">
-                                                        <button class="text-dark pr-0"
+                                                        <button class="text-dark pr-0 pl-0"
                                                             style="border: none; background-color:white; margin-bottom: 1px;"
                                                             onclick="likeFeed({{ $urut }})">
                                                             <i id="likeB{{ $urut }}"
@@ -1007,23 +1007,23 @@
                                     
                                     </span>
                                     </div>
-                                    <div class="col-4 pr-0" >
+                                    <div class="col-3 pr-0" >
                                     <!-- modal Bagikan end -->
                                     <span class="d-flex" style="float: right;">
                                         <!-- gift start -->
                                         @if (Auth::check() && auth()->user()->id != $item_video->users_id)
-                                            <a type="button" class="text-dark me-2"><i
+                                            <a type="button" class="text-dark"><i
                                                     class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto" data-toggle="modal"
                                                     data-target="#giftModal{{ $item_video->id }}" style="font-size: large;"></i>
                                             </a>
                                         @elseif(!Auth::check())
-                                            <a type="button" class="text-dark me-2"><i
+                                            <a type="button" class="text-dark"><i
                                                     class="fa-solid fa-gift fa-lg ml-3 mr-1 my-auto"
                                                     onclick="harusLogin()" style="font-size: large;"></i>
                                             </a>
                                         @else
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#income{{ $item_video->id }}" class="text-dark me-2">
+                                                data-bs-target="#income{{ $item_video->id }}" class="text-dark me-1">
                                                 <i class="fa-solid fa-coins fa-lg my-auto me-1 ms-3" style="font-size: large;"></i>
                                             </a>
                                             <div class="modal fade" id="income{{ $item_video->id }}" tabindex="-1"
@@ -1082,26 +1082,27 @@
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <div class="d-flex ">
+                                                        <div class="modal-body p-4 col-12">
+                                                            <div class="row">
                                                                 <label for="inputKecil{{ $item_video->id }}"
-                                                                    class="col-lg-3 my-1">
+                                                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
                                                                     <div class="card border-2 border-black scale"
                                                                         onclick="small_gift_click({{ $item_video->id }})"
                                                                         id="smallGift{{ $item_video->id }}"
+                                                                        style="width: auto; height: auto;"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/kecil.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
                                                                             <input hidden type="radio" value="5000"
                                                                                 name="giftInput"
                                                                                 id="inputKecil{{ $item_video->id }}">
                                                                             <div class="text-center">
-                                                                                <p class="card-title text-center"
+                                                                                <p class="card-title text-center mb-0"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                                                                     Kecil</p>
                                                                             </div>
-                                                                            <p class="text-center"
+                                                                            <p class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Rp. 5.000,00</p>
                                                                         </div>
@@ -1109,23 +1110,24 @@
                                                                 </label>
 
                                                                 <label for="mediumInput{{ $item_video->id }}"
-                                                                    class="col-lg-3 my-1">
+                                                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
                                                                     <div class="card border-2 scale border-black"
                                                                         onclick="medium_gift_click({{ $item_video->id }})"
                                                                         id="mediumGift{{ $item_video->id }}"
+                                                                        style="width: auto; height: auto;"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/sedang.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
                                                                             <input hidden type="radio" value="10000"
                                                                                 name="giftInput"
                                                                                 id="mediumInput{{ $item_video->id }}">
                                                                             <div class="text-center">
-                                                                                <p class="card-title text-center"
+                                                                                <p class="card-title text-center mb-0"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                                                                     Sedang</p>
                                                                             </div>
-                                                                            <p class="text-center"
+                                                                            <p class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Rp. 10.000,00</p>
                                                                         </div>
@@ -1133,81 +1135,193 @@
                                                                 </label>
 
                                                                 <label for="extraInput{{ $item_video->id }}"
-                                                                    class="col-lg-3 my-1">
+                                                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
                                                                     <div class="card border-2 scale border-black"
                                                                         onclick="extra_gift_click({{ $item_video->id }})"
                                                                         id="extraGift{{ $item_video->id }}"
+                                                                        style="width: auto; height: auto;"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/besar.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
                                                                             <input hidden type="radio" value="20000"
                                                                                 name="giftInput"
                                                                                 id="extraInput{{ $item_video->id }}">
                                                                             <div class="text-center">
-                                                                                <p class="card-title text-center"
+                                                                                <p class="card-title text-center mb-0"
                                                                                     style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                                                                     Besar</p>
                                                                             </div>
-                                                                            <p class="text-center"
+                                                                            <p class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Rp. 20.000,00</p>
                                                                         </div>
                                                                     </div>
                                                                 </label>
 
-                                                                <label for="moreInput" class="col-lg-3 my-1">
-                                                                    <button type="button"
-                                                                        onclick="more_gift_click({{ $item_video->id }})"
+                                                                <!-- <label for="moreInput"
+                                                                    class="col-lg-3 col-md-6 col-12 my-1 ">
+                                                                    <div class="card border-2 scale border-black"
+                                                                        onclick="more_gift_click('{{ $item_video->id }}')"
                                                                         id="moreGift{{ $item_video->id }}"
-                                                                        class="card border-2 border-black scale"
+                                                                        style="width: auto; height: auto;"
                                                                         data-card-selected="false">
                                                                         <img src="{{ asset('img/lainnya.png') }}"
                                                                             class="card-img-top" alt="">
-                                                                        <div class=card-body">
+                                                                        <div class="card-body">
 
-                                                                            <div class="mx-4 mt-2">
-                                                                                <p class="card-title "
+                                                                            <div class="mx-3 mt-2">
+                                                                                <p class="card-title text-center mb-0"
                                                                                     style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
                                                                                     Lainnya</p>
                                                                             </div>
                                                                             <p id="displayNumber{{ $item_video->id }}"
-                                                                                class="text-center"
+                                                                                class="text-center mb-0"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Masukkan Nilai</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </label> -->
+
+                                                                <label for="moreInput"
+                                                                    class="col-lg-3 col-md-6 col-12 my-1 ">
+                                                                    <button type="button" class="card border-2 scale border-black"
+                                                                        onclick="more_gift_click({{ $item_video->id }})"
+                                                                        id="moreGift{{ $item_video->id }}"
+                                                                        style="width: 100%; height: auto;"
+                                                                        data-card-selected="false">
+                                                                        <img src="{{ asset('img/lainnya.png') }}"
+                                                                            class="card-img-top mb-3" alt="">
+                                                                        <div class="card-body" style="width: 100%; padding-right: 3%; padding-left: 3%; padding-top: 3%;">
+                                                                        <div class="mx-3 mt-2">
+                                                                                <p class="card-title text-center mb-0"
+                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word; margin-top: 9%;">
+                                                                                    Lainnya</p>
+                                                                            </div>
+                                                                            <p id="displayNumber{{ $item_video->id }}"
+                                                                                class="text-center mb-0"
                                                                                 style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
                                                                                 Masukkan Nilai</p>
                                                                         </div>
                                                                     </button>
                                                                 </label>
 
+                                                                <!-- <label for="moreInput" class="col-lg-3 col-md-6 col-12 my-1 ">
+                                                                    <div type="button"
+                                                                        onclick="more_gift_click({{ $item_video->id }})"
+                                                                        id="moreGift{{ $item_video->id }}"
+                                                                        style="width: 100%; height: 100%;"
+                                                                        class="card border-2 border-black scale"
+                                                                        data-card-selected="false">
+                                                                        <img src="{{ asset('img/lainnya.png') }}"
+                                                                            class="card-img-top" alt="">
+                                                                        <div class="card-body">
+
+                                                                            <div class="mx-4 mt-2">
+                                                                                <p class="card-title mb-0"
+                                                                                    style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                    Lainnya</p>
+                                                                            </div>
+                                                                            <p id="displayNumber{{ $item_video->id }}"
+                                                                                class="text-center mb-0"
+                                                                                style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                Masukkan Nilai</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </label> -->
+
                                                             </div>
-                                                            <div class="d-flex mt-4 ml-3">
+                                                            <div class="col-12">
+                                                            <div class="row mt-4">
+                                                                <div class="col-lg-5 col-md-6 col-12 pl-0 removePadding1">
                                                                 <input type="number" id="moreInput{{ $item_video->id }}"
                                                                     name="moreInput" width="500px"
                                                                     class="form-control border-2 rounded-3 me-3 moreInput{{ $item_video->id }}"
                                                                     style="margin-top: 12px; border:solid black; display:none; border-radius:100px;"
-                                                                    placeholder="Masukkan jumlah donasi lainya...">
-                                                                <input type="text" id="message{{ $item_video->id }}"
-                                                                    name="message" width="500px"
-                                                                    class="form-control border-2 rounded-3 me-3 message{{ $item_video->id }}"
-                                                                    style="margin-top: 12px; border:solid black; border-radius:100px;"
-                                                                    placeholder="Tambahkan pesan untuk pembuat...">
+                                                                    placeholder="Masukkan jumlah donasi...">
+                                                                </div>
+                                                                <div id="button-pengganti" class="col-lg-10 col-md-12 col-12 removePadding2">
+                                                                    <input type="text" id="message{{ $item_video->id }}" name="message" width="500px"
+                                                                        class="form-control border-2 rounded-3 me-3 message{{ $item_video->id }}"
+                                                                        style="margin-top: 12px; border:solid black; border-radius:100px;"
+                                                                        placeholder="Tambahkan pesan...">
+                                                                </div>
 
+                                                                <div class="col-lg-2 col-md-12 col-12 pr-0 pl-0 penempatan-button">
                                                                 <button type="submit"
                                                                     onclick="gift_submit_button({{ $item_video->id }})"
                                                                     id="gift-btn{{ $item_video->id }}"
-                                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
-                                                                    class="btn  btn-sm text-light">
+                                                                    style="height: 40px; margin-top: 10px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                                    class="btn  btn-sm text-light button-kirim">
                                                                     <b class="me-3 ms-3">Kirim</b></button>
+                                                                </div>
+                                                            </div>
                                                             </div>
                                                         </div>
                                                     </form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
+                                        <style>
+                                        /* Style untuk layar berukuran lebih kecil dari 1000px */
+                                        @media (max-width: 1000px) {
+                                            /* Menyembunyikan gambar dengan class card-img-top pada elemen dengan ID yang memiliki pola id yang di-generate */
+                                            [id^="smallGift"] .card-img-top,
+                                            [id^="mediumGift"] .card-img-top,
+                                            [id^="extraGift"] .card-img-top,
+                                            [id^="moreGift"] .card-img-top {
+                                                display: none;
+                                            }
+                                        }
+
+
+
+                                        @media (max-width: 767px) {
+                                            
+                                            .removePadding1{
+                                                padding-right: 0;
+                                            }
+                                            .removePadding2{
+                                                padding-left: 0;
+                                            }
+                                        }
+
+                                        @media (max-width: 999px) {
+                                            
+                                            .removePadding2{
+                                                padding-right: 0;
+                                            }
+                                        }
+
+                                        @media (min-width: 767px){
+                                            .removePadding2{
+                                                padding-left: 0%;
+                                            }
+                                        }
+
+                                        @media (max-width: 1000px){
+                                            .penempatan-button{
+                                                text-align: center;
+                                            }
+                                        }
+                                        
+                                        @media (min-width: 1000px){
+                                            .button-kirim{
+                                                float: right;
+                                            }
+                                        }
+                                        </style>
+
                                         <!-- modal gift end -->
                                         <!-- gift end -->
                                         <script>
                                             function small_gift_click(num) {
+                                                const buttonPengganti = document.getElementById('button-pengganti');
+                                                if (buttonPengganti.classList.contains('col-lg-5', 'col-md-6')) {
+                                                    buttonPengganti.classList.remove('col-lg-5', 'col-md-6');
+                                                    buttonPengganti.classList.add('col-lg-10', 'col-md-12');
+                                                }
                                                 $('#smallGift' + num).removeClass('border-black');
                                                 $('#smallGift' + num).addClass('border-orange');
                                                 $('#mediumGift' + num).removeClass('border-orange');
@@ -1222,6 +1336,11 @@
                                             }
 
                                             function medium_gift_click(num) {
+                                                const buttonPengganti = document.getElementById('button-pengganti');
+                                                if (buttonPengganti.classList.contains('col-lg-5', 'col-md-6')) {
+                                                    buttonPengganti.classList.remove('col-lg-5', 'col-md-6');
+                                                    buttonPengganti.classList.add('col-lg-10', 'col-md-12');
+                                                }
                                                 $('#mediumGift' + num).removeClass('border-black');
                                                 $('#mediumGift' + num).addClass('border-orange');
                                                 $('#smallGift' + num).removeClass('border-orange');
@@ -1236,6 +1355,11 @@
                                             }
 
                                             function extra_gift_click(num) {
+                                                const buttonPengganti = document.getElementById('button-pengganti');
+                                                if (buttonPengganti.classList.contains('col-lg-5', 'col-md-6')) {
+                                                    buttonPengganti.classList.remove('col-lg-5', 'col-md-6');
+                                                    buttonPengganti.classList.add('col-lg-10', 'col-md-12');
+                                                }
                                                 $('#extraGift' + num).removeClass('border-black');
                                                 $('#extraGift' + num).addClass('border-orange');
                                                 $('#mediumGift' + num).removeClass('border-orange');
@@ -1250,6 +1374,12 @@
                                             }
 
                                             function more_gift_click(num) {
+                                                const buttonPengganti = document.getElementById('button-pengganti');
+                                                if (buttonPengganti.classList.contains('col-lg-10', 'col-md-12')) {
+                                                    buttonPengganti.classList.remove('col-lg-10', 'col-md-12');
+                                                    buttonPengganti.classList.add('col-lg-5', 'col-md-6');
+                                                }
+                                                
                                                 $('#moreGift' + num).removeClass('border-black');
                                                 $('#moreGift' + num).addClass('border-orange');
                                                 $('#extraGift' + num).removeClass('border-orange');
@@ -1293,8 +1423,8 @@
                                                     {{-- Laporkan Komentar --}}
                                                     <button type="button" data-bs-toggle="modal"
                                                         data-bs-target="#Modalsd{{ $urut }}"
-                                                        class="yuhu text-dark btn-sm rounded-5 "><i
-                                                            class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1"></i>
+                                                        class="yuhu text-dark btn-sm rounded-5 " style="vertical-align: middle"><i
+                                                            class="fa-solid fa-xl mt-1 fa-triangle-exclamation mt-1" style="font-size: 15pt; "></i>
                                                     </button>
                                                     <div class="modal fade" id="Modalsd{{ $urut }}"
                                                         tabindex="-1" role="dialog"
@@ -1331,10 +1461,16 @@
                                                                         {{-- @endif --}}
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="submit"
+                                                                        <!-- <button type="submit"
                                                                             class="btn btn-light text-light"
                                                                             style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                class="ms-2 me-2">Laporkan</b></button> -->
+                                                                                <button type="submit" class="btn btn-light text-light d-none d-sm-inline-block" style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Laporkan</b></button>
+
+                                                                                <button type="submit" class="btn btn-light text-light btn-sm d-sm-none" style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                class="ms-2 me-2">Laporkan</b></button>
+
                                                                     </div>
                                                                 </form>
                                                             </div>
@@ -1350,7 +1486,7 @@
                                                             id="delete-feed-button{{ $item_video->id }}"></button>
                                                         <button type="button"
                                                             onclick="confirmation_delete_feed({{ $item_video->id }})"
-                                                            class="yuhu text-dark btn-sm rounded-5 me-2">
+                                                            class="yuhu text-dark btn-sm rounded-5 me-1">
                                                             <i class="fa-solid fa-lg fa-trash" style="font-size: large;"></i>
                                                         </button>
                                                     </form>
@@ -1407,7 +1543,7 @@
                                                 {{-- Untuk user belum login --}}
                                                 <button type="button" onclick="harusLogin()"
                                                     class="yuhu text-dark btn-sm rounded-5 "><i
-                                                        class="fa-solid fa-xl fa-triangle-exclamation me-2" style="font-size: large;"></i>
+                                                        class="fa-solid fa-xl fa-triangle-exclamation mt-1" style="font-size: large;"></i>
                                                 </button>
                                             @endif
                                             {{-- --}}
@@ -1420,22 +1556,22 @@
                                             @if (Auth::check() &&
                                                     $item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
-                                                    onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu">
+                                                    onclick="toggleFavorite({{ $item_video->id }})" style="vertical-align: middle" class="ms-1 yuhu">
                                                     <i
-                                                        class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: large;"></i>
+                                                        class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: 15pt;"></i>
                                                 </button>
                                             @elseif(Auth::check() &&
                                                     !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
-                                                    onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu ">
+                                                    onclick="toggleFavorite({{ $item_video->id }})" style="vertical-align: middle" class="ms-1 yuhu ">
                                                     <i
-                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: large;"></i>
+                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: 15pt;"></i>
                                                 </button>
                                             @else
                                                 <button type="button" id="favorite-button{{ $item_video->id }}"
-                                                    onclick="harusLogin()" class="ms-1 yuhu ">
+                                                    onclick="harusLogin()" class="ms-1 yuhu " style="vertical-align: middle">
                                                     <i
-                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: large;"></i>
+                                                        class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}" style="font-size: 15pt;"></i>
                                                 </button>
                                             @endif
                                         </form>
@@ -1851,7 +1987,7 @@
                                                                                     class="d-flex justify-content-end mt-2">
                                                                                     @if ($item_comment->count_replies() > 0)
                                                                                         <a href="#"
-                                                                                            class="text-secondary"
+                                                                                            class="text-secondary ml-2"
                                                                                             data-toggle="collapse"
                                                                                             data-target="#collapse{{ $item_comment->id }}"
                                                                                             aria-expanded="true"
@@ -4242,7 +4378,7 @@
                                                                                     @endif
                                                                                     <span class="my-auto" style="margin-left:-13%;"
                                                                                         id="countLikeComment${up['id']}">
-                                                                                        <p class="my-auto" id="jumlah_like${up['id']}">0</p>
+                                                                                        <p class="" id="jumlah_like${up['id']}">0</p>
 
                                                                                     </span>
                                                                                 </div>

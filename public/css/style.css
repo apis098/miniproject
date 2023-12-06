@@ -153,11 +153,7 @@ a:focus {
   font-family: 'Dancing Script', cursive;
 }
 
-.navbar-brand span {
-  font-weight: bold;
-  font-size: 32px;
-  color: #ffffff;
-}
+
 
 .custom_nav-container {
   padding: 0;
@@ -1015,19 +1011,19 @@ a:focus {
 .site-mobile-menu {
   width: 300px;
   position: fixed;
-  right: 0;
+  margin-left: -0%;
   z-index: 2000;
   padding-top: 20px;
   background: #fff;
   height: calc(100vh);
-  -webkit-transform: translateX(110%);
-  -ms-transform: translateX(110%);
-  transform: translateX(110%);
+  -webkit-transform: translateX(-110%);
+  -ms-transform: translateX(-110%);
+  transform: translateX(-110%);
   box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
   -webkit-transition: 0.2s all cubic-bezier(0.66, 0.2, 0.48, 0.9);
   -o-transition: 0.2s all cubic-bezier(0.66, 0.2, 0.48, 0.9);
   transition: 0.2s all cubic-bezier(0.66, 0.2, 0.48, 0.9);
-  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   margin-top:-0,7%;
  }
   .offcanvas-menu .site-mobile-menu {
@@ -1036,6 +1032,27 @@ a:focus {
     transform: translateX(0%); 
     height: 103%;
   }
+  .site-mobile-menu .site-mobile-menu-body {
+    overflow-y: scroll;
+    max-height: 350px;
+    position: relative;
+    padding: 0 20px 20px 20px;
+  }
+  .site-mobile-menu-body::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  .site-mobile-menu-body::-webkit-scrollbar-thumb {
+    background-color:#F7941E;
+    border: solid white 5px ;
+    border-radius:15px;
+  }
+  
+  .site-mobile-menu-body::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
+  
+
   .site-mobile-menu .site-mobile-menu-header {
     width: 100%;
     float: left;
@@ -1067,24 +1084,6 @@ a:focus {
           max-width: 70px; }
         .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-logo a:hover {
           text-decoration: none; }
-  .site-mobile-menu .site-mobile-menu-body {
-    overflow: auto;
-    max-height: 350px;
-    position: relative;
-    padding: 0 20px 20px 20px;
-  }
-  .site-mobile-menu-body::-webkit-scrollbar {
-    width: 4px; /* Lebar scrollbar */
-  }
-  
-  .site-mobile-menu-body::-webkit-scrollbar-thumb {
-    background-color:#F7941E;
-    border-radius:3px;
-  }
-  
-  .site-mobile-menu-body::-webkit-scrollbar-track {
-    background-color: #ffffff;
-  }
   
   .site-mobile-menu .site-nav-wrap {
     padding: 0;
