@@ -126,19 +126,28 @@
                         <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
                     </div>
                 </div>
-                @if(!is_array($unreadNotificationCount) && !is_array($messageCount))
-                    @if($unreadNotificationCount + $messageCount > 0)
+                @if (!is_array($unreadNotificationCount) && !is_array($messageCount))
+                    @if ($unreadNotificationCount + $messageCount > 0)
                         <button id="scrollToBottomButton" class="scroll-button iconButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
-                            <span id="mobile-all-notification-count-real" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>  
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z" />
+                            </svg>
+                            <span id="mobile-all-notification-count-real"
+                                class="badge badge-danger fw-bolder badge-pill">{{ $unreadNotificationCount + $messageCount }}</span>
                         </button>
                     @else
                         <button id="scrollToBottomButton" class="scroll-button iconButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 256 256"><path fill="currentColor" d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z" />
+                            </svg>
                         </button>
                     @endif
                 @endif
-                <div class="site-mobile-menu-body"id="scrollTarget" >
+                <div class="site-mobile-menu-body"id="scrollTarget">
                     <div class="container mt-3 " id="scrollTarget2">
                         <div class="row align-items-center">
                             <a href="{{ route('home') }}"
@@ -235,7 +244,11 @@
                                     class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
                                     <div
                                         class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                            height="23" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                        </svg>
                                         <b>Profile</b>
                                         <i class="fa-solid ms-auto fa-arrow-right"></i>
                                     </div>
@@ -244,10 +257,15 @@
                                     class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
                                     <div
                                         class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2A10 10 0 0 0 2 12a9.89 9.89 0 0 0 2.26 6.33l-2 2a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 22h9a10 10 0 0 0 0-20Zm0 18H5.41l.93-.93a1 1 0 0 0 0-1.41A8 8 0 1 1 12 20Zm5-9H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Zm-2 4H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2ZM9 9h6a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2Z"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                            height="23" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12 2A10 10 0 0 0 2 12a9.89 9.89 0 0 0 2.26 6.33l-2 2a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 22h9a10 10 0 0 0 0-20Zm0 18H5.41l.93-.93a1 1 0 0 0 0-1.41A8 8 0 1 1 12 20Zm5-9H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Zm-2 4H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2ZM9 9h6a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2Z" />
+                                        </svg>
                                         <b>Kotak pesan</b>
-                                        @if($messageCount > 0)
-                                            <span id="mobile-message-count" class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{$messageCount}}</span>
+                                        @if ($messageCount > 0)
+                                            <span id="mobile-message-count"
+                                                class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{ $messageCount }}</span>
                                         @endif
                                         <i class="fa-solid ms-auto fa-arrow-right"></i>
                                     </div>
@@ -261,8 +279,9 @@
                                                 d="M225.29 165.93C216.61 151 212 129.57 212 104a84 84 0 0 0-168 0c0 25.58-4.59 47-13.27 61.93a20.08 20.08 0 0 0-.07 20.07A19.77 19.77 0 0 0 48 196h36.18a44 44 0 0 0 87.64 0H208a19.77 19.77 0 0 0 17.31-10a20.08 20.08 0 0 0-.02-20.07ZM128 212a20 20 0 0 1-19.6-16h39.2a20 20 0 0 1-19.6 16Zm-73.34-40C63.51 154 68 131.14 68 104a60 60 0 0 1 120 0c0 27.13 4.48 50 13.33 68Z" />
                                         </svg>
                                         <b>Notifikasi</b>
-                                        @if($unreadNotificationCount > 0)
-                                            <span id="mobile-notification-count" class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{$unreadNotificationCount}}</span>
+                                        @if ($unreadNotificationCount > 0)
+                                            <span id="mobile-notification-count"
+                                                class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{ $unreadNotificationCount }}</span>
                                         @endif
                                         <i class="fa-solid ms-auto fa-arrow-right"></i>
                                         {{-- <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -4px;" class="ms-auto" width="21" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6v2h8.59L5 17.59L6.41 19L16 9.41V18h2V6z"/></svg> --}}
@@ -697,8 +716,8 @@
                                                         kamu telah diblokir</small>
                                                     @if ($row->status == 'belum')
                                                         <img class="ms-2 mb-2 rounded-circle"
-                                                            src="{{ asset('images/badge.png') }}" alt="profile image"
-                                                            style="max-width:10px">
+                                                            src="{{ asset('images/badge.png') }}"
+                                                            alt="profile image" style="max-width:10px">
                                                     @endif
                                                     <input hidden type="text" value="{{ $row->complaint_id }}"
                                                         name="replies_id" id="replies_id" class="form-control">
@@ -715,8 +734,8 @@
                                                         kamu telah diblokir</small>
                                                     @if ($row->status == 'belum')
                                                         <img class="ms-2 mb-2 rounded-circle"
-                                                            src="{{ asset('images/badge.png') }}" alt="profile image"
-                                                            style="max-width:10px">
+                                                            src="{{ asset('images/badge.png') }}"
+                                                            alt="profile image" style="max-width:10px">
                                                     @endif
                                                 </button>
                                             </form>
@@ -730,8 +749,8 @@
                                                         anda</small>
                                                     @if ($row->status == 'belum')
                                                         <img class="ms-2 rounded-circle"
-                                                            src="{{ asset('images/badge.png') }}" alt="profile image"
-                                                            style="max-width:10px">
+                                                            src="{{ asset('images/badge.png') }}"
+                                                            alt="profile image" style="max-width:10px">
                                                     @endif
                                                 </button>
                                                 <input type="text" hidden name="follower_id" id="follower_id"
@@ -866,44 +885,32 @@
             </div>
             {{-- .mobile notfication Modal --}}
             <nav class="navbar navbar-expand-lg  bg-body-tertiary custom_nav text-light">
-                <div class="container p-3">
-                    <button onclick="offcanvas_show()" class="navbar-toggler js-menu-toggle nav-link iconClass nav-icon" type="button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="20" viewBox="0 0 14 14">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
-                        </svg>
-                        @if(!is_array($unreadNotificationCount) && !is_array($messageCount))
-                            @if($unreadNotificationCount + $messageCount > 0)
-                                <span id="mobile-all-notification-count" class="badge badge-danger fw-bolder badge-pill">{{$unreadNotificationCount+$messageCount}}</span>
-                            @endif
-                        @endif
-                    </button>
+                <div class="container nav_container pt-3 pb-3">
                     <!-- Left elements -->
-                    <div class="d-flex" style="max-width:200px ">
+                    <div class="d-flex logo-container" style="max-width:200px ">
                         <!-- Brand -->
-                            @if (Auth::check())
-                                @if (Auth::user()->role == 'Admin')
-                                    <a class="" href="{{ url('admin/index') }}">
-                                        <span class="text-start">
-                                            HummaCook
-                                        </span>
-                                    </a>
-                                @else
-                                    <a class="" href="#">
-                                        <img src="{{asset('images/logo.png')}}" width="100%" alt="">
-                                    </a>
-                                @endif
+                        @if (Auth::check())
+                            @if (Auth::user()->role == 'admin')
+                                <a class="ms-2" href="{{ url('admin/dashboard') }}">
+                                    <img class="logo-image" src="{{ asset('images/logo.png') }}" width="96%"
+                                        alt="">
+                                </a>
                             @else
-                                <a class="" href="#">
-                                    <span class="text-start">
-                                        HummaCook
-                                    </span>
+                                <a class="ms-2" href="{{ url('koki/beranda') }}">
+                                    <img class="logo-image" src="{{ asset('images/logo.png') }}" width="96%"
+                                        alt="">
                                 </a>
                             @endif
+                        @else
+                            <a class="ms-2" href="/">
+                                <img class="logo-image" src="{{ asset('images/logo.png') }}" width="96%"
+                                    alt="">
+                            </a>
+                        @endif
                     </div>
                     <!-- Left elements -->
                     <!-- Center elements -->
-                    <div class="center_nav">
+                    <div class="center_nav ">
                         <ul class="navbar-nav flex-row js-clone-nav d-none d-md-flex mr-auto ">
 
                             <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
@@ -941,8 +948,183 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="start-element-mobile text-start">
+                        <button onclick="offcanvas_show()"
+                            class="yuhu iconClass nav-icon" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 14 14">
+                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" d="M13.5 2H.5m13 5H.5m13 5H.5" />
+                            </svg>
+                            @if (!is_array($unreadNotificationCount) && !is_array($messageCount))
+                                @if ($unreadNotificationCount + $messageCount > 0)
+                                    <span id="mobile-all-notification-count"
+                                        class="badge badge-danger fw-bolder badge-pill">{{ $unreadNotificationCount + $messageCount }}</span>
+                                @endif
+                            @endif
+                        </button>
+                    </div>
+                    <div class="center-element-mobile text-center">
+                        <a class="" href="/">
+                            <img class="center-logo-image {{Auth::check() ? '':'ms-2'}}" src="{{ asset('images/logo.png') }}" width="100%" alt="">
+                        </a>
+                    </div>
+                    <div class="right-element-mobile text-end">
+                        <a type="" data-toggle="dropdown" class="me-1" href="#">
+                            @if(Auth::check())
+                                @if ($userLogin->foto)
+                                    <img loading="lazy" class=" rounded-circle"
+                                        src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
+                                        width="37px" height="37px">
+                                @else
+                                    <img loading="lazy" class=" rounded-circle border border-light"
+                                        src="{{ asset('images/default.jpg') }}" alt="profile image" width="37px"
+                                        height="37px">
+                                @endif
+                            @else
+                                <a href="/login" class="btn btn-light btn-sm me-1" style="border-radius: 7px; padding-top:1px; padding-bottom:2px; padding-left:4px;padding-right:4px;">
+                                    <small class="fw-bolder text-orange">
+                                        Masuk
+                                    </small>
+                                </a>
+                            @endif
+                        </a>
+                        @if (Auth::check() && auth()->user()->role === 'koki')
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3  ms-auto"
+                                style="width: 255px; border-radius:13px;">
+                                <div class="input-group">
+                                    <a href="#">
+                                        @if ($userLogin->foto)
+                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
+                                                width="50px" height="50px">
+                                        @else
+                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                                style="max-width:40px">
+                                        @endif
+                                    </a>
+                                    <p class="mt-2 text-orange">
+                                        <b>{{ auth()->user()->name }}</b>
+                                    </p>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="/koki/index" class="dropdown-item text-orange" style="width: 230px">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                    </svg>
+                                    Profil
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/koki/beranda" class="dropdown-item text-orange" style="width: 230px">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                            d="M7.253 4.255a5.25 5.25 0 0 1 9.494 0A5.75 5.75 0 0 1 19.75 15.05v3.002c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.344.08-2.242.08H8.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.343-.08-2.242v-3.001A5.75 5.75 0 0 1 7.253 4.256Zm-.45 1.5A4.25 4.25 0 0 0 5.3 13.896a.75.75 0 0 1 .45.687v2.666h12.5v-2.666a.75.75 0 0 1 .45-.687a4.251 4.251 0 0 0-1.503-8.143c.035.244.053.493.053.746V7a.75.75 0 0 1-1.5 0v-.5A3.746 3.746 0 0 0 12 2.75A3.752 3.752 0 0 0 8.25 6.5V7a.75.75 0 0 1-1.5 0v-.5c0-.253.018-.502.053-.745ZM18.248 18.75H5.752c.004.57.018 1 .065 1.345c.062.461.169.659.3.789c.13.13.327.237.788.3c.483.064 1.131.066 2.095.066h6c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3c.13-.13.237-.327.3-.788c.046-.346.06-.776.064-1.345Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Dashboard
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" data-toggle="modal" data-target="#favoriteModal"
+                                    style="width: 230px;" class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="21"
+                                        class="me-1" height="21" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M19 3H5v18l7-3l7 3V3zm-2 15l-5-2.18L7 18V5h10v13z" />
+                                    </svg>
+                                    Favorite
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('penawaran.premium') }}" style="width: 230px;"
+                                    class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                    </svg>
+                                    Upgrade
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" style="width: 230px;" data-bs-toggle="modal"
+                                    data-bs-target="#topup" class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z" />
+                                    </svg>
+                                    Top up
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('riwayat') }}" style="width: 230px;"
+                                    class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z" />
+                                    </svg>
+                                    Riwayat Top up
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                    class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                        <path fill="currentColor"
+                                            d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                    </svg>
+                                    Keluar
+                                </a>
+                            </div>
+                        @elseif(Auth::check() && auth()->user()->role == 'admin')
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right mt-3 me-5 ms-auto"
+                                style="width: 255px; border-radius:13px;">
+                                <div class="input-group">
+                                    <a href="#">
+                                        @if ($userLogin->foto)
+                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                src="{{ asset('storage/' . $userLogin->foto) }}" alt="profile image"
+                                                width="50px" height="50px">
+                                        @else
+                                            <img class="mr-3 ms-2 mb-1 rounded-circle"
+                                                src="{{ asset('images/default.jpg') }}" alt="profile image"
+                                                style="max-width:40px">
+                                        @endif
+                                    </a>
+                                    <p class="mt-2 text-orange">
+                                        <b>{{ auth()->user()->name }}</b>
+                                    </p>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 16 16">
+                                        <path fill="currentColor" fill-rule="evenodd"
+                                            d="m7.879 5l1.06-1.06l1.421-1.422a3.5 3.5 0 0 0-3.653 4.674l.326.897l-.675.674l-3.797 3.798a.621.621 0 1 0 .878.878l3.798-3.797l.674-.675l.897.325a3.5 3.5 0 0 0 4.674-3.653L12.06 7.062L11 8.12L9.94 7.06l-1-1L7.878 5Zm6.173-1.93A4.987 4.987 0 0 1 15 6a5 5 0 0 1-6.703 4.703L4.5 14.5a2.121 2.121 0 0 1-3-3l3.797-3.797A5 5 0 0 1 13 2l-1.076 1.076l-.863.863L10 5l1 1l1.06-1.06l.864-.864L14 3l.052.07Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Dashboard
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('actionlogout') }}" style="width: 230px;"
+                                    class="dropdown-item text-orange">
+                                    <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20"
+                                        height="20" viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z" />
+                                        <path fill="currentColor"
+                                            d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z" />
+                                    </svg>
+                                    Keluar
+                                </a>
+                            </div>
+                        @endif
+                    </div>
                     <!-- Center elements -->
-                    
+
                     <!-- Right elements -->
                     <div class="right_nav">
                         @if (Auth::check())
@@ -2500,14 +2682,16 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            if(response.message_count == 0){
-                                $('#mobile-all-notification-count').css('display','none');
-                                $('#mobile-all-notification-count-real').css('display','none');
-                                $('#mobile-notification-count').css('display','none');
-                            }else{
-                                $('#mobile-all-notification-count').text(response.message_count);
-                                $('#mobile-all-notification-count-real').text(response.message_count);
-                                $('#mobile-notification-count').css('display','none');
+                            if (response.message_count == 0) {
+                                $('#mobile-all-notification-count').css('display', 'none');
+                                $('#mobile-all-notification-count-real').css('display', 'none');
+                                $('#mobile-notification-count').css('display', 'none');
+                            } else {
+                                $('#mobile-all-notification-count').text(response
+                                .message_count);
+                                $('#mobile-all-notification-count-real').text(response
+                                    .message_count);
+                                $('#mobile-notification-count').css('display', 'none');
                             }
                         }
                     },
@@ -2522,44 +2706,43 @@
             });
         });
         document.getElementById('scrollToBottomButton').addEventListener('click', function() {
-        var targetElement = document.getElementById('scrollTarget2');
+            var targetElement = document.getElementById('scrollTarget2');
 
-        if (targetElement) {
-            targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end'  // Opsional: Menggulirkan ke bagian bawah elemen target
-            });
-        }
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'end' // Opsional: Menggulirkan ke bagian bawah elemen target
+                });
+            }
         });
         // script.js
-    document.addEventListener('DOMContentLoaded', function() {
-    var scrollTarget = document.getElementById('scrollTarget');
-    var scrollToBottomButton = document.getElementById('scrollToBottomButton');
+        document.addEventListener('DOMContentLoaded', function() {
+            var scrollTarget = document.getElementById('scrollTarget');
+            var scrollToBottomButton = document.getElementById('scrollToBottomButton');
 
-    if (scrollTarget && scrollToBottomButton) {
-        // Mengatur fungsi untuk memantau perubahan posisi scroll pada elemen target
-        scrollTarget.addEventListener('scroll', function() {
-        // Mendapatkan tinggi elemen scroll target
-        var scrollTargetHeight = scrollTarget.scrollHeight - 50;
+            if (scrollTarget && scrollToBottomButton) {
+                // Mengatur fungsi untuk memantau perubahan posisi scroll pada elemen target
+                scrollTarget.addEventListener('scroll', function() {
+                    // Mendapatkan tinggi elemen scroll target
+                    var scrollTargetHeight = scrollTarget.scrollHeight - 50;
 
-        // Mendapatkan posisi scroll saat ini di dalam elemen target
-        var scrollPosition = scrollTarget.scrollTop;
+                    // Mendapatkan posisi scroll saat ini di dalam elemen target
+                    var scrollPosition = scrollTarget.scrollTop;
 
-        // Mendapatkan tinggi jendela browser
-        var windowHeight = scrollTarget.clientHeight;
+                    // Mendapatkan tinggi jendela browser
+                    var windowHeight = scrollTarget.clientHeight;
 
-        // Jika posisi scroll mencapai atau melampaui posisi bawah elemen scroll target
-        if (scrollPosition >= scrollTargetHeight - windowHeight) {
-            // Menyembunyikan tombol
-            scrollToBottomButton.style.opacity = '0';
-        } else {
-            // Menampilkan kembali tombol
-            scrollToBottomButton.style.opacity = '1';
-        }
+                    // Jika posisi scroll mencapai atau melampaui posisi bawah elemen scroll target
+                    if (scrollPosition >= scrollTargetHeight - windowHeight) {
+                        // Menyembunyikan tombol
+                        scrollToBottomButton.style.opacity = '0';
+                    } else {
+                        // Menampilkan kembali tombol
+                        scrollToBottomButton.style.opacity = '1';
+                    }
+                });
+            }
         });
-    }
-    });
-
     </script>
 </body>
 
