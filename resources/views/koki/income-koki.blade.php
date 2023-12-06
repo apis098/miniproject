@@ -1,6 +1,22 @@
 @extends('layouts.nav_koki')
 @section('konten')
     <style>
+        .border-orange {
+            /* width: 150px;
+            height: 225px; */
+            border-radius: 15px;
+            border: #F7941E solid;
+            overflow: hidden;
+        }
+
+        .border-black {
+            /* width: 150px;
+            height: 225px; */
+            border-radius: 15px;
+            border: black solid;
+            overflow: hidden;
+        }
+
         .table-rounded thead th:first-child {
             border-top-left-radius: 10px;
         }
@@ -127,62 +143,154 @@
             <div class="modal-content">
                 <div class="d-flex">
                     @if ($check)
-                        <div class="col-6">
+                        <div class="col-10">
                             <h5 class="modal-title ml-3 mt-3"
                                 style="color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                 Masukkan nilai</h5>
                         </div>
                     @else
-                        <div class="col-6">
+                        <div class="col-10">
                             <h5 class="modal-title ml-3 mt-3"
                                 style="color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                 Data pribadi</h5>
                         </div>
                     @endif
-                    <div class="col-6 mt-3">
+                    <div class="col-2 mt-3">
                         <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close">
                             <i class="fa-regular text-dark fa-circle-xmark"></i>
                         </button>
                     </div>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body col-12">
                     @if ($check)
                         <form action="{{ route('ajukan.penarikan') }}" id="FormAjukanPenarikan" method="post">
                             @csrf
-                            <div class="d-flex justify-content-center">
-                                <label class="card border-black rounded-4  p-2 me-4 scale" id="small_option"
-                                    onclick="small_option()">
+                            <div class="row justify-content-center p-2">
+                                <!-- <label class="col-lg-3 col-md-6 col-12 card border-black rounded-4 p-2  scale" id="small_option"
+                                    onclick="small_option()" style="width: 90%;">
                                     <input hidden id="50k" type="radio" value="50000" name="select_input">
-                                    <img src="{{ asset('img/2.png') }}" class="card-img-top" alt="">
+                                    <img src="{{ asset('img/2.png') }}" class="card-img-top" alt="" width="50">
                                     <div class="card-body text-center">
                                         <h6 class="fw-bolder mt-1" id="text-small">Rp. 50.000,00</h6>
                                     </div>
                                 </label>
-                                <label class="card border-black rounded-4 p-2 me-4 scale" id="medium_option"
-                                    onclick="medium_option()">
+                                <label class="col-lg-3 col-md-6 col-12 card border-black rounded-4 p-2  scale" id="medium_option"
+                                    onclick="medium_option()" style="width: 90%;">
                                     <input hidden id="100k" type="radio" value="100000" name="select_input">
-                                    <img src="{{ asset('img/4.png') }}" class="card-img-top ms-2 " alt="">
+                                    <img src="{{ asset('img/4.png') }}" class="card-img-top ms-2 " alt="" width="50">
                                     <div class="card-body text-center">
                                         <h6 class="fw-bolder mt-1" id="text-medium">Rp. 100.000,00</h6>
                                     </div>
                                 </label>
-                                <label class="card border-black rounded-4 p-2 me-4 scale" id="large_option"
-                                    onclick="large_option()">
+                                <label class="col-lg-3 col-md-6 col-12 card border-black rounded-4 p-2  scale" id="large_option"
+                                    onclick="large_option()" style="width: 90%;">
                                     <input hidden id="150k" type="radio" value="150000" name="select_input">
-                                    <img src="{{ asset('img/5.png') }}" class="card-img-top" alt="">
+                                    <img src="{{ asset('img/5.png') }}" class="card-img-top" alt="" width="50">
                                     <div class="card-body text-center">
                                         <h6 class="fw-bolder mt-1" id="text-large">Rp. 150.000,00</h6>
                                     </div>
                                 </label>
-                                <label class="card border-black rounded-4 p-2 scale" id="more_option"
-                                    onclick="more_option()">
+                                <label class="col-lg-3 col-md-6 col-12 card border-black rounded-4 p-2 scale" id="more_option"
+                                    onclick="more_option()" style="width: 90%;">
                                     <input hidden id="0k" type="radio" value="null" name="select_input">
-                                    <img src="{{ asset('img/money.png') }}" class="card-img-top" alt="">
+                                    <img src="{{ asset('img/money.png') }}" class="card-img-top" alt="" width="50">
                                     <div class="card-body text-center">
                                         <h6 class="fw-bolder mt-1" id="more-text">Lainya</h6>
                                     </div>
+                                </label> -->
+                                <label
+                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                    <div class="card border-2 border-black scale"
+                                        onclick="small_option()"
+                                        id="small_option"
+                                        style="width: auto; height: auto;"
+                                        data-card-selected="false">
+                                        <input hidden id="50k" type="radio" value="50000" name="select_input">
+                                        <img src="{{ asset('img/2.png') }}"
+                                            class="card-img-top" alt="">
+                                        <div class="card-body">
+                                        <div class="text-center">
+                                        <h6 class="fw-bolder mt-1" id="text-small">Rp. 50.000,00</h6>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label
+                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                    <div class="card border-2 border-black scale"
+                                        onclick="medium_option()"
+                                        id="medium_option"
+                                        style="width: auto; height: auto;"
+                                        data-card-selected="false">
+                                        <input hidden id="100k" type="radio" value="100000" name="select_input">
+                                        <img src="{{ asset('img/4.png') }}"
+                                             class="card-img-top">
+                                        <div class="card-body">
+                                        <div class="text-center">
+                                        <h6 class="fw-bolder mt-1" id="text-medium">Rp. 100.000,00</h6>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label
+                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                    <div class="card border-2 border-black scale"
+                                        onclick="large_option()"
+                                        id="large_option"
+                                        style="width: auto; height: auto;"
+                                        data-card-selected="false">
+                                        <input hidden id="150k" type="radio" value="150000" name="select_input">
+                                        <img src="{{ asset('img/5.png') }}"
+                                            class="card-img-top" alt="">
+                                        <div class="card-body">
+                                        <div class="text-center">
+                                        <h6 class="fw-bolder mt-1" id="text-large">Rp. 150.000,00</h6>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label
+                                    class="col-lg-3 col-md-6 col-12 my-1 mb-3">
+                                    <div class="card border-2 border-black scale tinggi"
+                                        onclick="more_option()"
+                                        id="more_option"
+                                        style="width: auto;"
+                                        data-card-selected="false">
+                                        <input hidden id="0k" type="radio" value="null" name="select_input">
+                                        <img src="{{ asset('img/money.png') }}"
+                                            class="card-img-top" alt="">
+                                        <div class="card-body">
+                                        <div class="text-center">
+                                        <h6 class="fw-bolder mt-1" id="more-text">Lainya</h6>
+                                    </div>
+                                        </div>
+                                    </div>
                                 </label>
                             </div>
+                            <style>
+                                @media (max-width: 1000px) {
+                                            /* Menyembunyikan gambar dengan class card-img-top pada elemen dengan ID yang memiliki pola id yang di-generate */
+                                            [id^="small_option"] .card-img-top,
+                                            [id^="medium_option"] .card-img-top,
+                                            [id^="large_option"] .card-img-top,
+                                            [id^="more_option"] .card-img-top {
+                                                display: none;
+                                            }
+                                        }
+                                @media (min-width: 1001px) {
+                                    .tinggi {
+                                        height: 94%;
+                                    }
+                                    .removePadding {
+                                        padding: 0;
+                                    }
+                                }
+                                @media (max-width: 1000px) {
+                                    .tinggi {
+                                        height: auto;
+                                    }
+                                }   
+                            </style>
                             <script>
                                 function small_option() {
                                     $('#small_option').removeClass('border-black');
@@ -260,7 +368,7 @@
                                     $('#nilai').addClass('b-o');
                                 }
                             </script>
-                            <div class="mb-3 d-flex justify-content-center  col-lg-12">
+                            <div class="mb-3 d-flex justify-content-center col-lg-12 removePadding">
                                 <input type="text" name="display_nilai" placeholder="Masukkan jumlah" id="nilai"
                                     oninput="formatNumber()" class="form-control  rounded-4 mr-2  b-b"
                                     style="display: none; width:86%;">
@@ -273,6 +381,7 @@
                                     <b class="ms-2 me-2">Tarik</b>
                                 </button>
                             </div>
+                            
                         </form>
                     @else
                         <form action="{{ route('kirim.dataPribadiChef') }}" method="post" id="FormKirimDataPribadiChef">
