@@ -9,7 +9,7 @@ class LikeFeed extends Model
 {
     use HasFactory;
     protected $table = "like_veeds";
-    protected $fillable = [ 
+    protected $fillable = [
         "users_id",
         "veed_id"
     ];
@@ -17,6 +17,6 @@ class LikeFeed extends Model
         return $this->belongsTo(User::class, "users_id");
     }
     public function veed() {
-        return $this->belongsTo(upload_video::class, "veed_id");
+        return $this->belongsTo(UploadVideo::class, "veed_id");
     }
 }

@@ -19,6 +19,6 @@ class DetailSesiDibeli extends Model
     }
     public function sesi_kursus()
     {
-        return $this->belongsTo(sessionCourses::class, 'sesi_kursus_id');
+        return $this->belongsTo(SessionsCourses::class, 'sesi_kursus_id');
     }
 }
