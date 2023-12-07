@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\kursus;
-use App\Models\notifications;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\Kursus;
+use App\Models\Notifications;
 use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\TransaksiKursus;
-use App\Models\income_chefs;
+use App\Models\IncomeChefs;
 use App\Models\DetailSesiDibeli;
-use App\Models\sessionCourses;
+use App\Models\SessionCourses;
 
 class ReservasiKursusController extends Controller
 {
@@ -39,21 +39,21 @@ class ReservasiKursusController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
-        $course = kursus::find($id);
+        $footer = Footer::first();
+        $course = Kursus::find($id);
         return view('kursus.reservasi-kursus', compact('course', 'categorytopup', 'idAdmin', 'messageCount', 'admin', 'footer', 'userLog', 'notification', 'unreadNotificationCount', 'userLogin', 'favorite'));
     }
 
@@ -61,7 +61,7 @@ class ReservasiKursusController extends Controller
     {
         $detail_transaksiKursus = TransaksiKursus::where('course_id', $id)->where('user_id', Auth::user()->id)->first();
         $id2 = $detail_transaksiKursus->id;
-        $detail_sesiDibeli = sessionCourses::whereHas('DetailSesiDibeli', function ($query) use ($id2) {
+        $detail_sesiDibeli = SessionCourses::whereHas('DetailSesiDibeli', function ($query) use ($id2) {
             $query->where('transaksi_kursus_id', $id2);
         })->get();
         $user = User::find($detail_transaksiKursus->user_id);
@@ -80,7 +80,7 @@ class ReservasiKursusController extends Controller
             return redirect()->back()->with('error', 'Saldo anda tidak mencukupi!');
         } else {
             $checkTransaksi = TransaksiKursus::where("course_id", $id)->where("user_id", $user)->count();
-            $checkCourse = kursus::find($id);
+            $checkCourse = Kursus::find($id);
             if($checkTransaksi > $checkCourse->jumlah_siswa) {
                 return redirect()->back()->with('error', 'Gagal membeli kursus karena kuota sudah terpenuhi!');
             }
@@ -101,7 +101,7 @@ class ReservasiKursusController extends Controller
             $koki->saldo_pemasukan = $koki->saldo_pemasukan + $amount;
             $koki->save();
 
-            income_chefs::create([
+            IncomeChefs::create([
                 "chef_id" => $chef,
                 "user_id" => $user,
                 "course_id" => $id,
