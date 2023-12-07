@@ -102,6 +102,7 @@
     </head>
 
 <body id="offcanvas_id" class="sub_page">
+    
     <div class="hero_area">
         <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
 
@@ -110,224 +111,103 @@
         <header class="header_section">
             <!-- Navbar-->
             {{-- site modal menu --}}
-            <aside class="site-mobile-menu site-navbar-target">
-                <div class="d-flex mx-3">
-                    <button onclick="offcanvas_hide()" class="yuhu ml-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-                            <g fill="none" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" d="M15 15L9 9m6 0l-6 6" />
-                                <circle cx="12" cy="12" r="10" />
-                            </g>
-                        </svg>
-                    </button>
-                </div>
-                <div class="site-mobile-menu-header pt-2 pb-1">
-                    <div class="d-flex justify-content-center">
-                        <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
+            <div id="sidenav">
+                <div class="site-mobile-menu site-navbar-target">
+                    <div class="d-flex mx-3">
+                        <button id="offcanvas_hide_button" class="yuhu ml-auto">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                                <g fill="none" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" d="M15 15L9 9m6 0l-6 6" />
+                                    <circle cx="12" cy="12" r="10" />
+                                </g>
+                            </svg>
+                        </button>
                     </div>
-                </div>
-                @if (!is_array($unreadNotificationCount) && !is_array($messageCount))
-                    @if ($unreadNotificationCount + $messageCount > 0)
-                        <button id="scrollToBottomButton" class="scroll-button iconButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z" />
-                            </svg>
-                            <span id="mobile-all-notification-count-real"
-                                class="badge badge-danger fw-bolder badge-pill">{{ $unreadNotificationCount + $messageCount }}</span>
-                        </button>
-                    @else
-                        <button id="scrollToBottomButton" class="scroll-button iconButton">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                                viewBox="0 0 256 256">
-                                <path fill="currentColor"
-                                    d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z" />
-                            </svg>
-                        </button>
+                    <div class="site-mobile-menu-header pt-2 pb-1">
+                        <div class="d-flex justify-content-center">
+                            <h2 style="font-family: 'Dancing Script', cursive;" class="fw-bolder">HummaCook</h2>
+                            {{-- <img src="{{asset('images/logo.png')}}" class="img-fluid" alt=""> --}}
+                        </div>
+                    </div>
+                    @if (!is_array($unreadNotificationCount) && !is_array($messageCount) && Auth::check() && auth()->user()->role == "koki")
+                        @if ($unreadNotificationCount + $messageCount > 0)
+                            <button id="scrollToBottomButton" class="scroll-button iconButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z" />
+                                </svg>
+                                <span id="mobile-all-notification-count-real"
+                                    class="badge badge-danger fw-bolder badge-pill">{{ $unreadNotificationCount + $messageCount }}</span>
+                            </button>
+                        @else
+                            <button id="scrollToBottomButton" class="scroll-button iconButton">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="m204.24 148.24l-72 72a6 6 0 0 1-8.48 0l-72-72a6 6 0 0 1 8.48-8.48L122 201.51V40a6 6 0 0 1 12 0v161.51l61.76-61.75a6 6 0 0 1 8.48 8.48Z" />
+                                </svg>
+                            </button>
+                        @endif
                     @endif
-                @endif
-                <div class="site-mobile-menu-body"id="scrollTarget">
-                    <div class="container mt-3 " id="scrollTarget2">
-                        <div class="row align-items-center">
-                            <a href="{{ route('home') }}"
-                                class="{{ request()->is('/') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 ">
-                                <div
-                                    class="d-flex justify-content-start align-items-center {{ request()->is('/') ? 'text-orange' : '' }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                        height="23" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6v18H5Zm8 0v-9h8v7q0 .825-.587 1.413T19 21h-6Zm0-11V3h6q.825 0 1.413.588T21 5v5h-8Z" />
-                                    </svg>
-                                    <b>Beranda</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div>
-                            </a>
-                            <a href="{{ route('resep.home') }}"
-                                class="{{ request()->is('resep') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div
-                                    class="d-flex justify-content-start align-items-center {{ request()->is('resep') ? 'text-orange' : '' }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                        height="23" viewBox="0 0 14 14">
-                                        <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2" />
-                                    </svg>
-                                    <b>Resep</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div>
-                            </a>
-                            <a href="{{ route('kursus') }}"
-                                class="{{ request()->is('kursus') ? 'orange-outline' : 'black-outline' }} rounded-5 text-dark pt-2 pb-2 mt-2">
-                                <div
-                                    class="d-flex justify-content-start align-items-center {{ request()->is('kursus') ? 'text-orange' : '' }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                        height="23" viewBox="0 0 14 14">
-                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round">
-                                            <ellipse cx="10.6" cy="3.5" rx="2.4" ry="3" />
-                                            <path
-                                                d="M10.6 6.5v7M3.5.5v13M6 .5V3a2.5 2.5 0 0 1-2.5 2.5h0A2.5 2.5 0 0 1 1 3V.5" />
-                                        </g>
-                                    </svg>
-                                    <b>Kursus</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div>
-                            </a>
-                            <a href="{{ url('veed') }}"
-                                class="{{ request()->is('veed') ? 'orange-outline' : 'black-outline' }} rounded-5 text-dark pt-2 pb-2 mt-2">
-                                <div
-                                    class="d-flex justify-content-start align-items-center {{ request()->is('veed') ? 'text-orange' : '' }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="22"
-                                        height="22" viewBox="0 0 14 14">
-                                        <path fill="currentColor" fill-rule="evenodd"
-                                            d="M8.09.084a.75.75 0 1 0-.232 1.482A5.502 5.502 0 0 1 7 12.5a5.502 5.502 0 0 1-5.116-3.475a.75.75 0 1 0-1.394.552A7.002 7.002 0 0 0 14 7A7.002 7.002 0 0 0 8.09.084ZM6.164.661a.75.75 0 0 1-.54.914a5.453 5.453 0 0 0-.735.246a.75.75 0 1 1-.576-1.385c.302-.126.615-.231.938-.314a.75.75 0 0 1 .913.54ZM3.185 1.894a.75.75 0 0 1-.016 1.06a5.61 5.61 0 0 0-.95 1.225a.75.75 0 1 1-1.302-.744a7.025 7.025 0 0 1 1.208-1.557a.75.75 0 0 1 1.06.016ZM.916 5.28a.75.75 0 0 1 .638.847a5.554 5.554 0 0 0-.054.775a.75.75 0 0 1-1.5 0c0-.333.023-.662.069-.984a.75.75 0 0 1 .847-.638ZM4.5 8.882V5.118a1 1 0 0 1 1.447-.894l3.764 1.882a1 1 0 0 1 0 1.788L5.947 9.776A1 1 0 0 1 4.5 8.882Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                    <b>Feed</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div>
-                            </a>
-                            <a href="{{ route('keluhan') }}"
-                                class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
-                                <div
-                                    class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                        height="23" viewBox="0 0 48 48">
-                                        <path fill="currentColor"
-                                            d="M24 12.042A6.042 6.042 0 0 0 17.958 6h-5.916a6.042 6.042 0 1 0 0 12.083H13.2V21S24 19.542 24 12.042ZM18.5 28c0 2.21-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4Zm-4 6C11.663 34 6 35.43 6 38.267V42h17v-3.733C23 35.429 17.337 34 14.5 34Zm19-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4Zm0 2c-2.837 0-8.5 1.43-8.5 4.267V42h17v-3.733C42 35.429 36.337 34 33.5 34ZM32.042 7A6.042 6.042 0 0 0 26 13.042c0 7.5 9.6 8.958 9.6 8.958v-2.917h.358a6.042 6.042 0 1 0 0-12.083h-3.916Z" />
-                                    </svg>
-                                    <b>Diskusi</b>
-                                    <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                </div>
-                            </a>
-                            @if (Auth::check())
-                                <div class="d-flex justify-content-center align-items-center mt-2">
-                                    <div class="border border-dark w-25"></div> <b class="mx-2">Opsi user</b>
-                                    <div class="w-25 border border-dark"></div>
-                                </div>
-                                <a href="{{ route('keluhan') }}"
-                                    class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                    <div class="{{Auth::check() ? 'site-mobile-menu-body':'site-mobile-menu-body2'}}"id="scrollTarget">
+                        <div class="container mt-3 " id="scrollTarget2">
+                            <div class="row align-items-center">
+                                <a href="{{ route('home') }}"
+                                    class="{{ request()->is('/') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 ">
                                     <div
-                                        class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="21"
-                                            height="21" viewBox="0 0 14 14">
+                                        class="d-flex justify-content-start align-items-center {{ request()->is('/') ? 'text-orange' : '' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                            height="23" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h6v18H5Zm8 0v-9h8v7q0 .825-.587 1.413T19 21h-6Zm0-11V3h6q.825 0 1.413.588T21 5v5h-8Z" />
+                                        </svg>
+                                        <b>Beranda</b>
+                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                                <a href="{{ route('resep.home') }}"
+                                    class="{{ request()->is('resep') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                    <div
+                                        class="d-flex justify-content-start align-items-center {{ request()->is('resep') ? 'text-orange' : '' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                            height="23" viewBox="0 0 14 14">
                                             <path fill="none" stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round"
-                                                d="M2.5 13.5h9m1.93-10.1a2.49 2.49 0 0 0-4.09-1.26a2.49 2.49 0 0 0-4.68 0A2.49 2.49 0 0 0 .57 3.4A2.51 2.51 0 0 0 2.5 6.45V10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V6.45a2.51 2.51 0 0 0 1.93-3.05ZM2.5 8.5h9" />
+                                                d="M12.5 9.75v-.5a5.5 5.5 0 0 0-11 0v.5m12 0H.5l.32 1.07a2 2 0 0 0 1.92 1.43h8.52a2 2 0 0 0 1.92-1.43Zm-6.5-6v-2" />
                                         </svg>
-                                        <b>Dashboard</b>
+                                        <b>Resep</b>
                                         <i class="fa-solid ms-auto fa-arrow-right"></i>
                                     </div>
                                 </a>
-                                <a href="{{ route('keluhan') }}"
-                                    class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                <a href="{{ route('kursus') }}"
+                                    class="{{ request()->is('kursus') ? 'orange-outline' : 'black-outline' }} rounded-5 text-dark pt-2 pb-2 mt-2">
                                     <div
-                                        class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
+                                        class="d-flex justify-content-start align-items-center {{ request()->is('kursus') ? 'text-orange' : '' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                            height="23" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
-                                        </svg>
-                                        <b>Profile</b>
-                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                                <a href="{{ route('keluhan') }}"
-                                    class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
-                                    <div
-                                        class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                            height="23" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M12 2A10 10 0 0 0 2 12a9.89 9.89 0 0 0 2.26 6.33l-2 2a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 22h9a10 10 0 0 0 0-20Zm0 18H5.41l.93-.93a1 1 0 0 0 0-1.41A8 8 0 1 1 12 20Zm5-9H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Zm-2 4H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2ZM9 9h6a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2Z" />
-                                        </svg>
-                                        <b>Kotak pesan</b>
-                                        @if ($messageCount > 0)
-                                            <span id="mobile-message-count"
-                                                class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{ $messageCount }}</span>
-                                        @endif
-                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                                <button type="button" id="mobile-notification-button" style="background: #ffffff;"
-                                    class="black-outline rounded-5  text-dark pt-2 pb-2 mt-2">
-                                    <div class="d-flex justify-content-start align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                            height="23" viewBox="0 0 256 256">
-                                            <path fill="currentColor"
-                                                d="M225.29 165.93C216.61 151 212 129.57 212 104a84 84 0 0 0-168 0c0 25.58-4.59 47-13.27 61.93a20.08 20.08 0 0 0-.07 20.07A19.77 19.77 0 0 0 48 196h36.18a44 44 0 0 0 87.64 0H208a19.77 19.77 0 0 0 17.31-10a20.08 20.08 0 0 0-.02-20.07ZM128 212a20 20 0 0 1-19.6-16h39.2a20 20 0 0 1-19.6 16Zm-73.34-40C63.51 154 68 131.14 68 104a60 60 0 0 1 120 0c0 27.13 4.48 50 13.33 68Z" />
-                                        </svg>
-                                        <b>Notifikasi</b>
-                                        @if ($unreadNotificationCount > 0)
-                                            <span id="mobile-notification-count"
-                                                class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{ $unreadNotificationCount }}</span>
-                                        @endif
-                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -4px;" class="ms-auto" width="21" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6v2h8.59L5 17.59L6.41 19L16 9.41V18h2V6z"/></svg> --}}
-                                    </div>
-                                </button>
-                                <button hidden data-toggle="modal" id="mobile-notification-button-real"
-                                    data-target="#mobileNotificationModal" style="background: #ffffff;"
-                                    class="rounded-5  text-dark pt-2 pb-2 mt-2">
-                                    <div class="d-flex justify-content-start align-items-center ">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                            height="23" viewBox="0 0 256 256">
-                                            <path fill="currentColor"
-                                                d="M225.29 165.93C216.61 151 212 129.57 212 104a84 84 0 0 0-168 0c0 25.58-4.59 47-13.27 61.93a20.08 20.08 0 0 0-.07 20.07A19.77 19.77 0 0 0 48 196h36.18a44 44 0 0 0 87.64 0H208a19.77 19.77 0 0 0 17.31-10a20.08 20.08 0 0 0-.02-20.07ZM128 212a20 20 0 0 1-19.6-16h39.2a20 20 0 0 1-19.6 16Zm-73.34-40C63.51 154 68 131.14 68 104a60 60 0 0 1 120 0c0 27.13 4.48 50 13.33 68Z" />
-                                        </svg>
-                                        <b>Notifikasi</b>
-                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                    </div>
-                                </button>
-                                <a href="{{ route('keluhan') }}"
-                                    class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
-                                    <div
-                                        class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="23"
-                                            height="23" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
-                                        </svg>
-                                        <b>Berlangganan</b>
-                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
-                                    </div>
-                                </a>
-                                <a href="{{ route('keluhan') }}"
-                                    class="{{ request()->is('keluhan') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
-                                    <div
-                                        class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                            height="23" viewBox="0 0 24 24">
-                                            <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                            height="23" viewBox="0 0 14 14">
+                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <ellipse cx="10.6" cy="3.5" rx="2.4" ry="3" />
                                                 <path
-                                                    d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z" />
-                                                <path stroke-linecap="round"
-                                                    d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3m-4 9.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118c.868-.14 1.72-.355 2.492-.727c.696-.337 1.549-.81 2.122-1.341c.572-.53 1.168-1.397 1.59-2.075c.364-.582.188-1.295-.386-1.728a1.887 1.887 0 0 0-2.22 0l-1.807 1.365c-.7.53-1.465 1.017-2.376 1.162c-.11.017-.225.033-.345.047m0 0a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004" />
-                                                <rect width="3" height="8" x="2" y="14" rx="1.5" />
+                                                    d="M10.6 6.5v7M3.5.5v13M6 .5V3a2.5 2.5 0 0 1-2.5 2.5h0A2.5 2.5 0 0 1 1 3V.5" />
                                             </g>
                                         </svg>
-                                        <b>Top up</b>
+                                        <b>Kursus</b>
+                                        <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                    </div>
+                                </a>
+                                <a href="{{ url('veed') }}"
+                                    class="{{ request()->is('veed') ? 'orange-outline' : 'black-outline' }} rounded-5 text-dark pt-2 pb-2 mt-2">
+                                    <div
+                                        class="d-flex justify-content-start align-items-center {{ request()->is('veed') ? 'text-orange' : '' }}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="22"
+                                            height="22" viewBox="0 0 14 14">
+                                            <path fill="currentColor" fill-rule="evenodd"
+                                                d="M8.09.084a.75.75 0 1 0-.232 1.482A5.502 5.502 0 0 1 7 12.5a5.502 5.502 0 0 1-5.116-3.475a.75.75 0 1 0-1.394.552A7.002 7.002 0 0 0 14 7A7.002 7.002 0 0 0 8.09.084ZM6.164.661a.75.75 0 0 1-.54.914a5.453 5.453 0 0 0-.735.246a.75.75 0 1 1-.576-1.385c.302-.126.615-.231.938-.314a.75.75 0 0 1 .913.54ZM3.185 1.894a.75.75 0 0 1-.016 1.06a5.61 5.61 0 0 0-.95 1.225a.75.75 0 1 1-1.302-.744a7.025 7.025 0 0 1 1.208-1.557a.75.75 0 0 1 1.06.016ZM.916 5.28a.75.75 0 0 1 .638.847a5.554 5.554 0 0 0-.054.775a.75.75 0 0 1-1.5 0c0-.333.023-.662.069-.984a.75.75 0 0 1 .847-.638ZM4.5 8.882V5.118a1 1 0 0 1 1.447-.894l3.764 1.882a1 1 0 0 1 0 1.788L5.947 9.776A1 1 0 0 1 4.5 8.882Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <b>Feed</b>
                                         <i class="fa-solid ms-auto fa-arrow-right"></i>
                                     </div>
                                 </a>
@@ -336,38 +216,168 @@
                                     <div
                                         class="d-flex justify-content-start align-items-center {{ request()->is('keluhan') ? 'text-orange' : '' }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
-                                            height="23" viewBox="0 0 24 24">
+                                            height="23" viewBox="0 0 48 48">
                                             <path fill="currentColor"
-                                                d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8s-8 3.58-8 8s3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13l.75 1.3L12.5 13Z" />
+                                                d="M24 12.042A6.042 6.042 0 0 0 17.958 6h-5.916a6.042 6.042 0 1 0 0 12.083H13.2V21S24 19.542 24 12.042ZM18.5 28c0 2.21-1.79 4-4 4s-4-1.79-4-4s1.79-4 4-4s4 1.79 4 4Zm-4 6C11.663 34 6 35.43 6 38.267V42h17v-3.733C23 35.429 17.337 34 14.5 34Zm19-2c2.21 0 4-1.79 4-4s-1.79-4-4-4s-4 1.79-4 4s1.79 4 4 4Zm0 2c-2.837 0-8.5 1.43-8.5 4.267V42h17v-3.733C42 35.429 36.337 34 33.5 34ZM32.042 7A6.042 6.042 0 0 0 26 13.042c0 7.5 9.6 8.958 9.6 8.958v-2.917h.358a6.042 6.042 0 1 0 0-12.083h-3.916Z" />
                                         </svg>
-                                        <b>Riwayat top up</b>
+                                        <b>Diskusi</b>
                                         <i class="fa-solid ms-auto fa-arrow-right"></i>
                                     </div>
                                 </a>
-                            @endif
+                                @if (Auth::check() && auth()->user()->role == "koki")
+                                    <a href="{{ url('search-account') }}"
+                                        class="{{ request()->is('search-account') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div
+                                            class="d-flex justify-content-start align-items-center {{ request()->is('search-account') ? 'text-orange' : '' }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23" height="23" viewBox="0 0 24 24"><path fill="currentColor" d="M11 12q-1.65 0-2.825-1.175T7 8q0-1.65 1.175-2.825T11 4q1.65 0 2.825 1.175T15 8q0 1.65-1.175 2.825T11 12Zm10.4 10.8l-2.5-2.5q-.525.3-1.125.5T16.5 21q-1.875 0-3.187-1.312T12 16.5q0-1.875 1.313-3.187T16.5 12q1.875 0 3.188 1.313T21 16.5q0 .675-.2 1.275t-.5 1.125l2.5 2.5q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275ZM16.5 19q1.05 0 1.775-.725T19 16.5q0-1.05-.725-1.775T16.5 14q-1.05 0-1.775.725T14 16.5q0 1.05.725 1.775T16.5 19Zm-5.475-6q-1.05 1.55-1.05 3.5t1.05 3.5H5q-.825 0-1.412-.587T3 18v-.775q0-.85.425-1.575t1.175-1.1q1.275-.65 2.875-1.1t3.55-.45Z"/></svg>
+                                            <b>Cari teman</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                        <div class="border border-dark w-25"></div> <b class="mx-2">Opsi user</b>
+                                        <div class="w-25 border border-dark"></div>
+                                    </div>
+                                    <a href="{{ url('koki/beranda') }}"
+                                        class="{{ request()->is('koki/beranda') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div
+                                            class="d-flex justify-content-start align-items-center {{ request()->is('koki/beranda') ? 'text-orange' : '' }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="21" height="21  " viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M2.5 13.5h9m1.93-10.1a2.49 2.49 0 0 0-4.09-1.26a2.49 2.49 0 0 0-4.68 0A2.49 2.49 0 0 0 .57 3.4A2.51 2.51 0 0 0 2.5 6.45V10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V6.45a2.51 2.51 0 0 0 1.93-3.05ZM2.5 8.5h9"/></svg>
+                                            <b>Dashboard</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                    <a href="{{ url('koki/index') }}"
+                                        class="{{ request()->is('koki/index') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div
+                                            class="d-flex justify-content-start align-items-center {{ request()->is('koki/index') ? 'text-orange' : '' }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                                height="23" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                            </svg>
+                                            <b>Profile</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                    <a href="{{ url('roomchat') }}"
+                                        class="{{ request()->is('roomchat') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div
+                                            class="d-flex justify-content-start align-items-center {{ request()->is('roomchat') ? 'text-orange' : '' }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                                height="23" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M12 2A10 10 0 0 0 2 12a9.89 9.89 0 0 0 2.26 6.33l-2 2a1 1 0 0 0-.21 1.09A1 1 0 0 0 3 22h9a10 10 0 0 0 0-20Zm0 18H5.41l.93-.93a1 1 0 0 0 0-1.41A8 8 0 1 1 12 20Zm5-9H7a1 1 0 0 0 0 2h10a1 1 0 0 0 0-2Zm-2 4H9a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2ZM9 9h6a1 1 0 0 0 0-2H9a1 1 0 0 0 0 2Z" />
+                                            </svg>
+                                            <b>Kotak pesan</b>
+                                            @if ($messageCount > 0)
+                                                <span id="mobile-message-count"
+                                                    class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{ $messageCount }}</span>
+                                            @endif
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                    <button type="button" id="mobile-notification-button" style="background: #ffffff;"
+                                        class="black-outline rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div class="d-flex justify-content-start align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                                height="23" viewBox="0 0 256 256">
+                                                <path fill="currentColor"
+                                                    d="M225.29 165.93C216.61 151 212 129.57 212 104a84 84 0 0 0-168 0c0 25.58-4.59 47-13.27 61.93a20.08 20.08 0 0 0-.07 20.07A19.77 19.77 0 0 0 48 196h36.18a44 44 0 0 0 87.64 0H208a19.77 19.77 0 0 0 17.31-10a20.08 20.08 0 0 0-.02-20.07ZM128 212a20 20 0 0 1-19.6-16h39.2a20 20 0 0 1-19.6 16Zm-73.34-40C63.51 154 68 131.14 68 104a60 60 0 0 1 120 0c0 27.13 4.48 50 13.33 68Z" />
+                                            </svg>
+                                            <b>Notifikasi</b>
+                                            @if ($unreadNotificationCount > 0)
+                                                <span id="mobile-notification-count"
+                                                    class="badge badge-danger fw-bolder badge-pill badge-mobile ms-2">{{ $unreadNotificationCount }}</span>
+                                            @endif
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                            {{-- <svg xmlns="http://www.w3.org/2000/svg" style="margin-right: -4px;" class="ms-auto" width="21" height="21" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6v2h8.59L5 17.59L6.41 19L16 9.41V18h2V6z"/></svg> --}}
+                                        </div>
+                                    </button>
+                                    <button hidden data-toggle="modal" id="mobile-notification-button-real"
+                                        data-target="#mobileNotificationModal" style="background: #ffffff;"
+                                        class="rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div class="d-flex justify-content-start align-items-center ">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                                height="23" viewBox="0 0 256 256">
+                                                <path fill="currentColor"
+                                                    d="M225.29 165.93C216.61 151 212 129.57 212 104a84 84 0 0 0-168 0c0 25.58-4.59 47-13.27 61.93a20.08 20.08 0 0 0-.07 20.07A19.77 19.77 0 0 0 48 196h36.18a44 44 0 0 0 87.64 0H208a19.77 19.77 0 0 0 17.31-10a20.08 20.08 0 0 0-.02-20.07ZM128 212a20 20 0 0 1-19.6-16h39.2a20 20 0 0 1-19.6 16Zm-73.34-40C63.51 154 68 131.14 68 104a60 60 0 0 1 120 0c0 27.13 4.48 50 13.33 68Z" />
+                                            </svg>
+                                            <b>Notifikasi</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </button>
+                                    <div class="d-flex justify-content-center align-items-center mt-2">
+                                        <div class="border border-dark w-25"></div> <b class="mx-2">Penawaran</b>
+                                        <div class="w-25 border border-dark"></div>
+                                    </div>
+                                    <a href="{{ url('penawaran-premium') }}"
+                                        class="{{ request()->is('penawaran-premium') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div
+                                            class="d-flex justify-content-start align-items-center {{ request()->is('penawaran-premium') ? 'text-orange' : '' }}">
+                                            <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="23"
+                                                height="23" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                            </svg>
+                                            <b>Berlangganan</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                    <button onclick="TopUpMobileButton()" data-bs-toggle="modal" data-bs-target="#topup" id="mobile-top-up-button" class="black-outline bg-white rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div id="text" class="d-flex justify-content-start align-items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                                height="23" viewBox="0 0 24 24">
+                                                <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                                    <path
+                                                        d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z" />
+                                                    <path stroke-linecap="round"
+                                                        d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3m-4 9.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118c.868-.14 1.72-.355 2.492-.727c.696-.337 1.549-.81 2.122-1.341c.572-.53 1.168-1.397 1.59-2.075c.364-.582.188-1.295-.386-1.728a1.887 1.887 0 0 0-2.22 0l-1.807 1.365c-.7.53-1.465 1.017-2.376 1.162c-.11.017-.225.033-.345.047m0 0a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004" />
+                                                    <rect width="3" height="8" x="2" y="14" rx="1.5" />
+                                                </g>
+                                            </svg>
+                                            <b>Top up</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </button>
+                                    <a href="{{ url('riwayat') }}"
+                                        class="{{ request()->is('riwayat') ? 'orange-outline' : 'black-outline' }} rounded-5  text-dark pt-2 pb-2 mt-2">
+                                        <div
+                                            class="d-flex justify-content-start align-items-center {{ request()->is('riwayat') ? 'text-orange' : '' }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="23"
+                                                height="23" viewBox="0 0 24 24">
+                                                <path fill="currentColor"
+                                                    d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8s-8 3.58-8 8s3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13l.75 1.3L12.5 13Z" />
+                                            </svg>
+                                            <b>Riwayat top up</b>
+                                            <i class="fa-solid ms-auto fa-arrow-right"></i>
+                                        </div>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="site-mobile-menu-footer">
+                        <div class="container">
+                            <div class="row align-items-center mx-2">
+                                @if (Auth::check())
+                                    <a href="{{route('actionlogout')}}" style="width: 95%;" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <b>Keluar</b>
+                                        </div>
+                                    </a>
+                                @else
+                                    <a href="/login" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <b>Masuk/daftar</b>
+                                        </div>
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="site-mobile-menu-footer">
-                    <div class="container">
-                        <div class="row align-items-center mx-2">
-                            @if (Auth::check())
-                                <a href="/login" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <b>Keluar</b>
-                                    </div>
-                                </a>
-                            @else
-                                <a href="/login" class="btn-orange rounded-5 pt-2 pb-2 mt-3">
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <b>Masuk/daftar</b>
-                                    </div>
-                                </a>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-            </aside>
+            </div>
             <!-- .site-mobile-menu -->
             {{-- mobile notifications Modal --}}
             <div class="modal fade" id="mobileNotificationModal" tabindex="-1" role="dialog"
@@ -949,7 +959,7 @@
                         </ul>
                     </div>
                     <div class="start-element-mobile text-start">
-                        <button onclick="offcanvas_show()"
+                        <button id="offcanvas_show_button"
                             class="yuhu iconClass nav-icon" type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 14 14">
                                 <path fill="none" stroke="currentColor" stroke-linecap="round"
@@ -989,7 +999,7 @@
                             @endif
                         </a>
                         @if (Auth::check() && auth()->user()->role === 'koki')
-                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right me-4"
+                            <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right profile-dropdown me-4"
                                 style="width: 255px; border-radius:13px;top:80%;">
                                 <div class="input-group">
                                     <a href="#">
@@ -2177,9 +2187,8 @@
                             Top Up</h5>
                     </div>
                     <div class="col-1">
-                        <button type="button" class="close mr-1 mt-3" data-bs-dismiss="modal"
-                            aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <button type="button" class="close mr-1 mt-3 text-dark" data-bs-dismiss="modal" onclick="dissmissTopUpModal()" aria-label="Close">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8m0-18C6.47 2 2 6.47 2 12s4.47 10 10 10s10-4.47 10-10S17.53 2 12 2m2.59 6L12 10.59L9.41 8L8 9.41L10.59 12L8 14.59L9.41 16L12 13.41L14.59 16L16 14.59L13.41 12L16 9.41L14.59 8Z"/></svg>
                         </button>
                     </div>
                 </div>
@@ -2489,29 +2498,44 @@
         @endif
     </script>
     <script>
-        function offcanvas_show() {
-            $('#offcanvas_id').addClass('offcanvas-menu');
-        }
+            function openCanvas() {
+                $('#offcanvas_id').addClass('offcanvas-menu');
+            }
 
-        function offcanvas_hide() {
-            $('#offcanvas_id').removeClass('offcanvas-menu');
-        }
+            function closeCanvas() {
+                $('#offcanvas_id').removeClass('offcanvas-menu');
+            }
+           // click outisde offcanvas
+            $(document).mouseup(function(e) {
+            var container = $(".site-mobile-menu");
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                if ( $('body').hasClass('offcanvas-menu') ) {
+                    $('body').removeClass('offcanvas-menu');
+                }
+            }
+            });
+            $('#offcanvas_show_button').on('click', function () {
+                openCanvas();
+            });
+            $('#offcanvas_hide_button').on('click',function(){
+                closeCanvas();
+            });
+            
         $(document).ready(function() {
-            $("#buttonaddrecipe").click(function(event) {
-                event.preventDefault();
+                $("#buttonaddrecipe").click(function(event) {
+                    event.preventDefault();
 
-                var data = $("#form-add-recipe").serialize();
-                $.ajax({
-                    url: "{{ route('resep.store') }}",
-                    type: "POST",
-                    data: data,
-                    error: function(data) {
-                        console.log(data.error);
-                    }
+                    var data = $("#form-add-recipe").serialize();
+                    $.ajax({
+                        url: "{{ route('resep.store') }}",
+                        type: "POST",
+                        data: data,
+                        error: function(data) {
+                            console.log(data.error);
+                        }
+                    });
                 });
             });
-        });
-
         $('#select-all').on('change', function() {
             $('.data-checkbox').prop('checked', this.checked);
         });
@@ -2743,6 +2767,17 @@
                 });
             }
         });
+        // function TopUpMobileButton() {
+        //                                         $('#mobile-top-up-button').removeClass('black-outline');
+        //                                         $('#mobile-top-up-button').addClass('orange-outline');
+        //                                         $('#text').addClass('text-orange');
+        //                                         $('#offcanvas_id').removeClass('offcanvas-menu');
+        //                                     }
+        //                                     function dissmissTopUpModal(){
+        //                                         $('#mobile-top-up-button').removeClass('orange-outline');
+        //                                         $('#mobile-top-up-button').addClass('black-outline');
+        //                                         $('#text').removeClass('text-orange');
+        //                                     }
     </script>
 </body>
 
