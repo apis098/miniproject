@@ -231,6 +231,7 @@
                 text-align: center;
             }
         }
+
         @media(max-width:991px) {
             .search-2 button {
                 position: absolute;
@@ -277,23 +278,13 @@
             }
         }
     </style>
-    <script>
-        $(document).ready(function() {
-            $("#search-user").on("input", function() {
-                let value = $(this).val().toLowerCase();
-                $("#search-results").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                });
-            });
-        });
-    </script>
     <div class="mx-3">
         <div class="search-1 mt-3" style="border-radius: 15px;">
             <div class="mt-2">
                 <div class="search-2"> <i class='bx bxs-map'></i>
                     <form action="#" method="GET">
                         <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                            id="search-user">
+                            id="search-user" class="search-user">
                         <button type="submit" class="zoom-effects cari2"
                             style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                             Cari
@@ -314,7 +305,7 @@
                 </thead>
                 <tbody id="search-results">
                     @foreach ($verified as $data_verified)
-                        <tr class="mt-5">
+                        <tr class="mt-5 search-result">
                             <td style="border-left:1px solid black;">
                                 {{ $data_verified->name }}
                             </td>
@@ -365,7 +356,7 @@
 
                                                 </div>
                                                 <p class="ml-4">
-                                                    Apakah anda yakin telah mentransfer uang dengan benar ke koki?
+                                                    Apakah anda menerima user ini sebagai koki terverifikasi?
                                                 </p>
                                             </div>
                                         </div>
@@ -423,4 +414,15 @@
             </table>
         </div>
     </div>
+    <script>
+
+        $(document).ready(function() {
+                            $('.search-user').on('input', function() {
+                                var value = $(this).val().toLowerCase();
+                                $('.search-result').filter(function() {
+                                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                                });
+                            });
+                        });
+    </script>
 @endsection
