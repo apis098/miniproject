@@ -13,10 +13,10 @@ class UlasanKursus extends Model
         "course_id", "user_id", "chef_id", "ulasan", 'rating', "chef_teacher_id", "parent_id"
     ];
     public function notification() {
-        return $this->hasMany(notifications::class, "ulasan_id");
+        return $this->hasMany(Notifications::class, "ulasan_id");
     }
     public function course() {
-        return $this->belongsTo(kursus::class, "course_id");
+        return $this->belongsTo(Kursus::class, "course_id");
     }
     public function user() {
         return $this->belongsTo(User::class, "user_id");

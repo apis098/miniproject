@@ -13,6 +13,6 @@ class SpecialDays extends Model
         'nama'
     ];
     public function resep() {
-        return $this->belongsToMany(reseps::class, "hari_reseps", "hari_khusus_id")->withTimestamps();
+        return $this->belongsToMany(Reseps::class, "hari_reseps", "hari_khusus_id")->withTimestamps();
     }
 }

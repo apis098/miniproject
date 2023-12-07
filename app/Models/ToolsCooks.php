@@ -14,6 +14,6 @@ class ToolsCooks extends Model
         "nama_alat"
     ];
     public function recipe() {
-        return $this->belongsTo(reseps::class, "recipes_id");
+        return $this->belongsTo(Reseps::class, "recipes_id");
     }
 }

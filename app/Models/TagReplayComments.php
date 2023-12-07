@@ -13,14 +13,14 @@ class TagReplayComments extends Model
         "reply_comment_id",
         "recipe_id",
         "user_id",
-        "tag", 
+        "tag",
         "isi"
     ];
     public function reply_comment() {
-        return $this->belongsTo(replyComplaint::class, "reply_comment_id");
+        return $this->belongsTo(ReplyComplaint::class, "reply_comment_id");
     }
     public function recipe() {
-        return $this->belongsTo(reseps::class, "recipe_id");
+        return $this->belongsTo(Reseps::class, "recipe_id");
     }
     public function user() {
         return $this->belongsTo(User::class, "user_id");

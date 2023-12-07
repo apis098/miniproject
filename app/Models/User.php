@@ -55,84 +55,84 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
     public function notification_verifed() {
-        return $this->hasMany(notifications::class, 'verifed_id');
+        return $this->hasMany(Notifications::class, 'verifed_id');
     }
     public function penarikan() {
-        return $this->hasMany(penarikans::class, "chef_id");
+        return $this->hasMany(Penarikans::class, "chef_id");
     }
     public function data_pribadi_chefs()
     {
-        return $this->hasMany(dataPribadiKoki::class, "chef_id");
+        return $this->hasMany(DataPribadiKoki::class, "chef_id");
     }
     public function chefTeacher() {
         return $this->hasMany(UlasanKursus::class, 'chef_teacher_id');
     }
     public function isFavoriteCourse($course) {
-        return favorite::where('kursus_id', $course)->where('user_id_from', $this->id)->exists();
+        return Favorite::where('kursus_id', $course)->where('user_id_from', $this->id)->exists();
     }
     public function resep() {
-        return $this->hasMany(reseps::class);
+        return $this->hasMany(Reseps::class);
     }
     public function followers()
     {
-        return $this->hasMany(followers::class);
+        return $this->hasMany(Followers::class);
     }
     public function comment_recipe()
     {
-        return $this->belongsToMany(reseps::class, "comment_recipes", "users_id", "recipes_id")->withPivot("comment");
+        return $this->belongsToMany(Reseps::class, "comment_recipes", "users_id", "recipes_id")->withPivot("comment");
     }
     public function like_comment_recipe()
     {
-        return $this->hasMany(like_comment_recipes::class, "users_id");
+        return $this->hasMany(LikeCommentRecips::class, "users_id");
     }
     public function reply_comment_recipe() {
-        return $this->hasMany(replyCommentRecipe::class);
+        return $this->hasMany(ReplyCommentRecipe::class);
     }
     public function like_reply_comment_recipe() {
         return $this->hasMany(LikeReplyCommentRecipes::class, "users_id");
     }
     public function tag_comment() {
-        return $this->hasMany(tagReplyComments::class);
+        return $this->hasMany(TagReplayComments::class);
     }
     public function upload_video() {
-        return $this->hasMany(upload_video::class);
+        return $this->hasMany(UploadVideo::class);
     }
     public function comment_veed() {
-        return $this->hasMany(comment_veed::class);
+        return $this->hasMany(CommentFeed::class);
     }
     public function reply_comment_veed() {
-        return $this->hasMany(reply_comment_veed::class);
+        return $this->hasMany(ReplyCommentFeed::class);
     }
     public function like_veed() {
-        return $this->hasMany(like_veed::class);
+        return $this->hasMany(LikeFeed::class);
     }
     public function like_comment_veed() {
-        return $this->hasMany(like_comment_veed::class);
+        return $this->hasMany(LikeCommentFeed::class);
     }
     public function like_reply_comment_veed() {
-        return $this->hasMany(like_reply_comment_veed::class);
+        return $this->hasMany(LikeReplyCommentFeed::class);
     }
     public function user_premiums() {
-        return $this->hasMany(history_premiums::class, 'users_id');
+        return $this->hasMany(HistoryPremium::class, 'users_id');
     }
     public function kursus() {
-        return $this->hasMany(kursus::class, "users_id");
+        return $this->hasMany(Kursus::class, "users_id");
     }
     public function pengirim_balasanKomentarFeed()
     {
-        return $this->hasMany(balasRepliesCommentsFeeds::class, "pengirim_reply_comment_id");
+        return $this->hasMany(BalasReplyCommentfeeds::class, "pengirim_reply_comment_id");
     }
     public function pemilik_balasanKomentarFeed()
     {
-        return $this->hasMany(balasRepliesCommentsFeeds::class, "pemilik_reply_comment_id");
+        return $this->hasMany(BalasReplyCommentfeeds::class, "pemilik_reply_comment_id");
     }
     public function like_balas_reply_comment_feed()
     {
-        return $this->hasMany(likeBalasRepliesCommentsFeeds::class, "user_id");
+        return $this->hasMany(LikeBalasReplyCommentFeeds::class, "user_id");
     }
     public function parent_balas_replies_comment()
     {
-        return $this->hasMany(balasRepliesCommentsFeeds::class, "parent_id");
+        return $this->hasMany(BalasReplyCommentfeeds::class, "parent_id");
     }
     public function chef_transaksi_kursus() {
         return $this->hasMany(TransaksiKursus::class, "chef_id");

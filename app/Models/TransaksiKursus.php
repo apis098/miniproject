@@ -18,7 +18,7 @@ class TransaksiKursus extends Model
         "harga",
     ];
     public function course() {
-        return $this->belongsTo(kursus::class, "course_id");
+        return $this->belongsTo(Kursus::class, "course_id");
     }
     public function chef() {
         return $this->belongsTo(User::class, "chef_id");

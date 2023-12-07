@@ -23,12 +23,12 @@ class Share extends Model
         return $this->belongsTo(User::class,'sender_id');
     }
     public function feed(){
-        return $this->belongsTo(upload_video::class,'feed_id');
+        return $this->belongsTo(UploadVideo::class,'feed_id');
     }
     public function recipes(){
-        return $this->belongsTo(reseps::class,'resep_id');
+        return $this->belongsTo(Reseps::class,'resep_id');
     }
     public function complaint(){
-        return $this->belongsTo(complaint::class,'keluhan_id');
+        return $this->belongsTo(Complaint::class,'keluhan_id');
     }
 }

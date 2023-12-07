@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
-use App\Models\dataPribadiKoki;
-use App\Models\detail_premiums;
+use App\Models\DataPribadiKoki;
+use App\Models\DetailPremiums;
 use App\Models\favorite;
 use App\Models\footer;
 use App\Models\notifications;
@@ -86,7 +86,7 @@ class AdminController extends Controller
 
     public function data_koki()
     {
-        $data = dataPribadiKoki::where("status", "diproses")->get();
+        $data = DataPribadiKoki::where("status", "diproses")->get();
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
 
         return view('admin.datakoki', compact('data', 'verifed_count'));
@@ -94,7 +94,7 @@ class AdminController extends Controller
 
     public function proses_data_koki(Request $request, $id)
     {
-        $data = dataPribadiKoki::find($id);
+        $data = DataPribadiKoki::find($id);
         if ($request->status === "diterima") {
             $data->status = "diterima";
             $data->save();
@@ -334,7 +334,7 @@ class AdminController extends Controller
 
         if ($premium_create) {
             foreach ($request->detail_paket as $d) {
-                detail_premiums::create([
+                DetailPremiums::create([
                     "premium_id" => $premium_create->id,
                     "detail" => $d
                 ]);
@@ -374,7 +374,7 @@ class AdminController extends Controller
 
 
         foreach ($request->detail_paket as $num => $d) {
-            $detail_premium = detail_premiums::find($request->id_detail_paket[$num]);
+            $detail_premium = DetailPremiums::find($request->id_detail_paket[$num]);
             $detail_premium->detail = $d;
             $detail_premium->save();
         }
@@ -386,7 +386,7 @@ class AdminController extends Controller
         ]);
     }
     public function hapus_tawaran($id) {
-        $premium = premiums::find($id);
+        $premium = Premiums::find($id);
         $premium->delete();
         return response()->json([
             'success'=>true,

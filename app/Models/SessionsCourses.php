@@ -21,11 +21,11 @@ class SessionsCourses extends Model
     ];
     public function kursus()
     {
-        return $this->belongsTo(kursus::class, "course_id");
+        return $this->belongsTo(Kursus::class, "course_id");
     }
     public function detail_sesi()
     {
-        return $this->hasMany(detailSessionCourses::class, "session_course_id");
+        return $this->hasMany(DetailSessionCourses::class, "session_course_id");
     }
     public function DetailSesiDibeli()
     {

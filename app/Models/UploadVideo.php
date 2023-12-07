@@ -45,7 +45,7 @@ class UploadVideo extends Model
     }
     public function comment_veed()
     {
-        return $this->hasMany(comment_veed::class, "veed_id");
+        return $this->hasMany(CommentFeed::class, "veed_id");
     }
     public function share_count(){
         return Share::where('feed_id',$this->id)->count();
@@ -56,7 +56,7 @@ class UploadVideo extends Model
     }
     public function favorite()
     {
-        return $this->hasMany(favorite::class,'feed_id');
+        return $this->hasMany(Favorite::class,'feed_id');
     }
     public function like_veed()
     {
@@ -85,7 +85,7 @@ class UploadVideo extends Model
     }
     public function countCommentFeed()
     {
-        $comment = comment_veed::where("veed_id", $this->id)->count();
+        $comment = CommentFeed::where("veed_id", $this->id)->count();
         $reply = ReplyCommentFeed::where('veed_id',$this->id)->count();
         $data_reply = ReplyCommentFeed::where('veed_id',$this->id)->first();
         $count_replies_reply = 0 ;
@@ -114,11 +114,11 @@ class UploadVideo extends Model
     }
     public function income_chefs()
     {
-        return $this->hasMany(income_chefs::class, "feed_id");
+        return $this->hasMany(IncomeChefs::class, "feed_id");
     }
     public function incomes(){
         if(Auth::check()){
-            return income_chefs::where('feed_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
+            return IncomeChefs::where('feed_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
         }else{
             return false;
         }
