@@ -20,7 +20,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\TransaksiKursus;
-use App\Models\penarikans;
+use App\Models\Penarikans;
 
 class AdminController extends Controller
 {
@@ -128,7 +128,7 @@ class AdminController extends Controller
 
     public function ajuan_penarikan()
     {
-        $data = penarikans::where("status", "diproses")->get();
+        $data = Penarikans::where("status", "diproses")->get();
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
 
         return view('admin.ajuanpenarikan', compact('data', 'verifed_count'));
@@ -136,7 +136,7 @@ class AdminController extends Controller
 
     public function proses_ajuan_penarikan(Request $request, int $id)
     {
-        $data = penarikans::find($id);
+        $data = Penarikans::find($id);
         if ($request->status === "diterima") {
             $data->status = "diterima";
             $data->save();
