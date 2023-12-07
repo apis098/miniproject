@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bahan_reseps;
+use App\Models\BahanReseps;
 use App\Models\User;
 use App\Models\ChMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\reseps;
-use App\Models\notifications;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\kategori_makanan;
-use App\Models\special_days;
-use App\Models\toolsCooks;
+use App\Models\Reseps;
+use App\Models\Notifications;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\KategoriMakanan;
+use App\Models\SpecialDays;
+use App\Models\ToolsCooks;
 use Illuminate\Support\Facades\Validator;
 use App\Models\kursus;
 use App\Models\District;
@@ -32,7 +32,7 @@ class FiltersController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
@@ -40,23 +40,23 @@ class FiltersController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status','belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
         // memberikan data untuk filter lanjutan resep
-        $special_day = special_days::all();
-        $toolcook = toolsCooks::all();
+        $special_day = SpecialDays::all();
+        $toolcook = ToolsCooks::all();
         $toolsCooks = $toolcook->unique("nama_alat");
-        $categories_foods_all = kategori_makanan::all();
-        $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
+        $categories_foods_all = KategoriMakanan::all();
+        $categories_ingredients = BahanReseps::pluck("nama_bahan")->unique();
         // validasi filter
         if ($request->min_time != NULL && $request->max_time != NULL) {
             if ($request->min_timer === 'jam') {
@@ -83,7 +83,7 @@ class FiltersController extends Controller
             //return redirect()->back()->withErrors($validator);
             return redirect('resep')->with('error', $validator->errors()->all());
         }
-        $recipess = reseps::query();
+        $recipess = Reseps::query();
         if ($request->has('nama_resep')) {
             $recipess->where('nama_resep', 'like', '%' . $request->nama_resep . '%');
         }
@@ -147,7 +147,7 @@ class FiltersController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
@@ -155,23 +155,23 @@ class FiltersController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
         // memberikan data untuk filter lanjutan resep
-        $special_day = special_days::all();
-        $toolcook = toolsCooks::all();
+        $special_day = SpecialDays::all();
+        $toolcook = ToolsCooks::all();
         $toolsCooks = $toolcook->unique("nama_alat");
-        $categories_foods_all = kategori_makanan::all();
-        $categories_ingredients = bahan_reseps::pluck("nama_bahan")->unique();
+        $categories_foods_all = KategoriMakanan::all();
+        $categories_ingredients = BahanReseps::pluck("nama_bahan")->unique();
         // validasi filter
         $validator  = Validator::make($request->all(), [
             'min_price' => 'lte:max_price|required_with:max_price',
@@ -191,7 +191,7 @@ class FiltersController extends Controller
             return redirect('resep')->with('error', $validator->errors()->all());
         }
         //dd($recipes);
-        //$recipes = reseps::query();
+        //$recipes = Reseps::query();
         $min_price = null;
         $max_price = null;
         $min = null;
@@ -200,7 +200,7 @@ class FiltersController extends Controller
         $ingredients = null;
         $days = [];
         $categories_foods = [];
-        $recipes = reseps::query();
+        $recipes = Reseps::query();
         if ($request->has('min_price') != NULL && $request->has('max_price') != NULL) {
             $minprice = str_replace(['.', ','], '', $request->min_price);
             $maxprice = str_replace(['.', ','], '', $request->max_price);

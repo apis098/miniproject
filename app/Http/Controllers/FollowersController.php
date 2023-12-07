@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
-use App\Models\favorite;
-use App\Models\followers;
-use App\Models\footer;
-use App\Models\kursus;
-use App\Models\notifications;
-use App\Models\reseps;
+use App\Models\Favorite;
+use App\Models\Followers;
+use App\Models\Footer;
+use App\Models\Kursus;
+use App\Models\Notifications;
+use App\Models\Reseps;
 use App\Models\TopUpCategories;
-use App\Models\upload_video;
+use App\Models\UploadVideo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +23,7 @@ class FollowersController extends Controller
         $username = $request->username;
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
@@ -31,17 +31,17 @@ class FollowersController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
@@ -78,10 +78,10 @@ class FollowersController extends Controller
 
         $user = User::findOrFail($id);
         $userLogin = Auth::user();
-        $recipes = reseps::where('user_id', $user->id)->take(6)->orderBy('created_at', 'asc')->get();
-        $upload_video = upload_video::where('users_id', $user->id)->orderBy('created_at', 'asc')->take(6)->get();
+        $recipes = Reseps::where('user_id', $user->id)->take(6)->orderBy('created_at', 'asc')->get();
+        $upload_video = UploadVideo::where('users_id', $user->id)->orderBy('created_at', 'asc')->take(6)->get();
         $notification = [];
-        $footer= footer::first();
+        $footer= Footer::first();
         $favorite = [];
         $unreadNotificationCount=[];
         $categorytopup  =  TopUpCategories::all();
@@ -90,18 +90,18 @@ class FollowersController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10); // Paginasi notifikasi dengan 10 item per halaman
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $unreadNotificationCount = Notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $courses = kursus::where('users_id', $id)->take(6)->get();
+        $courses = Kursus::where('users_id', $id)->take(6)->get();
 
         return view('template.profile-oranglain',compact('courses','categorytopup','upload_video','messageCount','recipes','user','footer','notification','userLogin','unreadNotificationCount','userLogin','favorite'));
     }
@@ -110,7 +110,7 @@ class FollowersController extends Controller
         $userfollowing = User::findOrFail($id);
         $userLogin = Auth::user();
         if ($userLogin && !$userfollowing->followers()->where('follower_id', auth()->user()->id)->exists()) {
-            $follow = new followers([
+            $follow = new Followers([
                 'user_id' => $userfollowing->id,
                 'follower_id' => auth()->user()->id,
             ]);
@@ -120,7 +120,7 @@ class FollowersController extends Controller
             }
             $userfollowing->increment('followers');
             $userfollowing->followers()->save($follow);
-            $notifications = new notifications([
+            $notifications = new Notifications([
                 'notification_from' => auth()->user()->id,
                 'follower_id' => auth()->user()->id,
                 'user_id' => $userfollowing->id,
