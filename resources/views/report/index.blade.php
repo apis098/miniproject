@@ -282,7 +282,7 @@
         }
     </style>
 
-    <div class="" style="overflow-x:hidden">
+    <div class="" style="overflow-x:auto;">
         <div class=" d-flex justify-content-start">
             <div class="my-5">
                 <ul class="nav mb-3 ml-3" id="pills-tab" role="tablist">
