@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\ChMessage;
 use App\Models\DataPribadiKoki;
 use App\Models\DetailPremiums;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\notifications;
-use App\Models\premiums;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\Notifications;
+use App\Models\Premiums;
 use App\Models\Report;
-use App\Models\reseps;
+use App\Models\Reseps;
 use App\Models\TopUpCategories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -28,10 +28,10 @@ class AdminController extends Controller
     {
         $admin = User::find(Auth::user()->id);
         $jumlah_user = User::where('role', 'koki')->count();
-        $jumlah_resep = reseps::all()->count();
+        $jumlah_resep = Reseps::all()->count();
         $jumlah_report = Report::all()->count();
         $reports = Report::orderBy("created_at", "desc")->get();
-        $reseps = reseps::orderBy("created_at", "desc")->get();
+        $reseps = Reseps::orderBy("created_at", "desc")->get();
         $datetime = User::pluck("created_at");
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         $year = 2018;
@@ -99,19 +99,19 @@ class AdminController extends Controller
             $data->status = "diterima";
             $data->save();
             // create notification
-            $notify = notifications::create([
+            $notify = Notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => "Data anda diterima oleh Admin.",
                 'categories' => 'data-koki',
             ]);
-            $up = notifications::find($notify->id);
+            $up = Notifications::find($notify->id);
             $up->route = '/status-baca/data-koki/' . $notify->id;
             $up->save();
         } elseif ($request->status === "ditolak") {
             $data->delete();
             // create notification
-            $notif = notifications::create([
+            $notif = Notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Data anda tidak diterima oleh Admin.',
@@ -147,25 +147,25 @@ class AdminController extends Controller
             $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
             $admin->saldo = $admin->saldo + 2000;
             $admin->save();
-            $n = notifications::create([
+            $n = Notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => $data->nilai . ' sudah berhasil ditarik tunai.',
                 'categories' => 'penarikan',
             ]);
-            $update = notifications::find($n->id);
+            $update = Notifications::find($n->id);
             $update->route = '/status-baca/penarikan/' . $n->id;
             $update->save();
         } elseif ($request->status === "ditolak") {
             $data->delete();
-            $notif = notifications::create([
+            $notif = Notifications::create([
                 'user_id' => $data->chef_id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Penarikan gagal.',
                 'alasan' => $request->alasan,
                 'categories' => 'ajuan_penarikan',
             ]);
-            $up = notifications::find($notif->id);
+            $up = Notifications::find($notif->id);
             $up->route = '/status-baca/penarikan/' . $notif->id;
             $up->save();
         }
@@ -181,13 +181,13 @@ class AdminController extends Controller
             $user->level_koki = 0;
             $user->save();
             // create notification
-            $notif = notifications::create([
+            $notif = Notifications::create([
                 'user_id' => $id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Selamat anda telah menjadi koki terverifikasi.',
                 'categories' => 'verifed',
             ]);
-            $up = notifications::find($notif->id);
+            $up = Notifications::find($notif->id);
             $up->route = '/status-baca/verifed/' . $notif->id;
             $up->save();
         } else if ($status === "ditolak") {
@@ -196,14 +196,14 @@ class AdminController extends Controller
             $user->isSuperUser = "ditolak";
             $user->save();
             // create notification
-            $notify = notifications::create([
+            $notify = Notifications::create([
                 'user_id' => $id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Mohon maaf anda belum terverifikasi menjadi koki terverifikasi.',
                 'alasan' => $request->alasan,
                 'categories' => 'verifed',
             ]);
-            $update = notifications::find($notify->id);
+            $update = Notifications::find($notify->id);
             $update->route = "/status-baca/verifed/" . $notify->id;
             $update->save();
         }
@@ -222,11 +222,11 @@ class AdminController extends Controller
         $messageCount = [];
         $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         // unreadNotification count and notification
-        $notification = notifications::where('user_id', auth()->user()->id)
+        $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status', 'belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+        $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         // category top-up
         $categorytopup = TopUpCategories::all();
         return view('koki.user', compact("koki", "userLogin", "students", "messageCount", "notification", "unreadNotificationCount", "categorytopup"));
@@ -238,7 +238,7 @@ class AdminController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $categorytopup = TopUpCategories::all();
         $unreadNotificationCount = [];
         $messageCount = [];
@@ -246,18 +246,18 @@ class AdminController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $penawaran_premium = premiums::all();
+        $penawaran_premium = Premiums::all();
         $categoryTopUp = TopUpCategories::all();
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         return view('admin.tawaran', compact('verifed_count', 'categoryTopUp', 'penawaran_premium', 'categorytopup', 'messageCount', 'notification', 'footer', 'unreadNotificationCount', 'userLogin', 'favorite'));
@@ -326,7 +326,7 @@ class AdminController extends Controller
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         }
-        $premium_create = premiums::create([
+        $premium_create = Premiums::create([
             "nama_paket" => $request->nama_paket,
             "harga_paket" => $request->harga_paket,
             "durasi_paket" => $request->durasi_paket
@@ -366,7 +366,7 @@ class AdminController extends Controller
             return response()->json($validasi->errors()->first(), 422);
         }
 
-        $premium = premiums::find($id);
+        $premium = Premiums::find($id);
         $premium->nama_paket = $request->nama_paket;
         $premium->harga_paket = $request->harga_paket;
         $premium->durasi_paket = $request->durasi_paket;
