@@ -24,27 +24,27 @@ class Report extends Model
     'replies_reply_comment_feed_id',
 ];  
     public function course() {
-        return $this->belongsTo(kursus::class, 'course_id');
+        return $this->belongsTo(Kursus::class, 'course_id');
     }
     public function complaint()
     {
-        return $this->belongsTo(complaint::class);
+        return $this->belongsTo(Complaint::class);
     }
     public function comment_feed(){
-        return $this->belongsTo(comment_veed::class,'comment_feed_id');
+        return $this->belongsTo(CommentFeed::class,'comment_feed_id');
     }
     public function reply_comment_feed(){
-        return $this->belongsTo(reply_comment_veed::class,'reply_comment_feed_id');
+        return $this->belongsTo(ReplyCommentFeed::class,'reply_comment_feed_id');
     }
     public function replies_reply_comment_feed(){
-        return $this->belongsTo(balasRepliesCommentsFeeds::class,'replies_reply_comment_feed_id');
+        return $this->belongsTo(BalasReplyCommentfeeds::class,'replies_reply_comment_feed_id');
     }
     public function user()
     {
         return $this->belongsTo(User::class);
     }
     public function resep(){
-        return $this->belongsTo(reseps::class);
+        return $this->belongsTo(Reseps::class);
     }
     public function userSender()
 {
@@ -55,17 +55,17 @@ class Report extends Model
         return $this->belongsTo(Reply::class,'reply_id');
     }
     public function comment(){
-        return $this->belongsTo(comment_recipes::class,'comment_id');
+        return $this->belongsTo(CommentResipes::class,'comment_id');
     }
     public function replyComment(){
-        return $this->belongsTo(replyCommentRecipe::class,'reply_comment_id');
+        return $this->belongsTo(ReplyCommentRecipe::class,'reply_comment_id');
     }
     public function reply_complaint()
     {
-        return $this->belongsTo(replyComplaint::class,'reply_id_complaint');
+        return $this->belongsTo(ReplyComplaint::class,'reply_id_complaint');
     }
     public function feed()
     {
-        return $this->belongsTo(upload_video::class,'feed_id');
+        return $this->belongsTo(UploadVideo::class,'feed_id');
     }
 }

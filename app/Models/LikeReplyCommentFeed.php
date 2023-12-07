@@ -18,9 +18,9 @@ class LikeReplyCommentFeed extends Model
         return $this->belongsTo(User::class, "users_id");
     }
     public function reply_comment_veed() {
-        return $this->belongsTo(reply_comment_veed::class, "reply_comment_veed_id");
+        return $this->belongsTo(ReplyCommentFeed::class, "reply_comment_veed_id");
     }
     public function veed() {
-        return $this->belongsTo(upload_video::class, "veed_id");
+        return $this->belongsTo(UploadVideo::class, "veed_id");
     }
 }

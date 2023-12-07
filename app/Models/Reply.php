@@ -12,15 +12,15 @@ class Reply extends Model
 
     public function complaint()
     {
-        return $this->belongsTo(complaint::class);
+        return $this->belongsTo(Complaint::class);
     }
     public function notifications()
     {
-        return $this->hasMany(notifications::class);
+        return $this->hasMany(Notifications::class);
     }
     public function likes()
     {
-        return $this->hasMany(likes::class);
+        return $this->hasMany(Likes::class);
     }
     
     public function user()
@@ -29,6 +29,6 @@ class Reply extends Model
     }
     public function replies()
     {
-        return $this->hasMany(replyComplaint::class);
+        return $this->hasMany(ReplyComplaint::class);
     }
 }

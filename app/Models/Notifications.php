@@ -43,25 +43,25 @@ class Notifications extends Model
         return $this->belongsTo(UlasanKursus::class, 'ulasan_id');
     }
     public function kursus() {
-        return $this->belongsTo(kursus::class, 'kursus_id');
+        return $this->belongsTo(Kursus::class, 'kursus_id');
     }
     public function verifed() {
         return $this->belongsTo(User::class, 'verifed_id');
     }
     public function data_koki() {
-        return $this->belongsTo(dataPribadiKoki::class, 'data_koki_id');
+        return $this->belongsTo(DataPribadiKoki::class, 'data_koki_id');
     }
     public function penarikan()
     {
-        return $this->belongsTo(penarikans::class, "penarikan_id");
+        return $this->belongsTo(Penarikans::class, "penarikan_id");
     }
     public function complaint()
     {
-        return $this->belongsTo(complaint::class);
+        return $this->belongsTo(Complaint::class);
     }
     public function likes()
     {
-        return $this->belongsTo(likes::class);
+        return $this->belongsTo(Likes::class);
     }
     public function user()
     {
@@ -73,7 +73,7 @@ class Notifications extends Model
     }
     public function followers()
     {
-        return $this->belongsTo(followers::class);
+        return $this->belongsTo(Followers::class);
     }
     public function reply()
     {
@@ -85,10 +85,10 @@ class Notifications extends Model
     }
     public function resep()
     {
-        return $this->belongsTo(reseps::class);
+        return $this->belongsTo(Reseps::class);
     }
     public function veed()
     {
-        return $this->belongsTo(upload_video::class,'veed_id');
+        return $this->belongsTo(UploadVideo::class,'veed_id');
     }
 }

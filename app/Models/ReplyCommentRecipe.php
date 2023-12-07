@@ -26,10 +26,10 @@ class ReplyCommentRecipe extends Model
         return $this->belongsTo(User::class, "recipient_id");
     }
     public function recipe() {
-        return $this->belongsTo(reseps::class, "recipe_id");
+        return $this->belongsTo(Reseps::class, "recipe_id");
     }
     public function comment() {
-        return $this->belongsTo(comment_recipes::class, "comment_id");
+        return $this->belongsTo(CommentResipes::class, "comment_id");
     }
     public function like() {
         return $this->hasMany(LikeReplyCommentRecipes::class, "comment_id");
