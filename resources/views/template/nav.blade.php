@@ -956,6 +956,44 @@
                                     <b>Diskusi</b>
                                 </a>
                             </li>
+                            <li class="dropdown nav-item me-3 me-lg-1 pl-1 pr-1 ">
+                                <a href="#" class="fw-bolder dr-toggle dropdown-toggle nav-link text-white" data-toggle="dropdown" data-hover="Shortcodes">Penawaran <span></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right animated" style="border-radius: 15px;">
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/penawaran-premium" class="dropdown-item text-orange" style="width: 230px">
+                                        <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="28"
+                                            height="28" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
+                                        </svg>
+                                        <b>Berlangganan</b>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a id="topupbtn" data-bs-toggle="modal" data-bs-target="#topup" href="/koki/index" class="dropdown-item text-orange" style="width: 230px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="28"
+                                            height="28" viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                                <path
+                                                    d="M17.414 10.414C18 9.828 18 8.886 18 7c0-1.886 0-2.828-.586-3.414m0 6.828C16.828 11 15.886 11 14 11h-4c-1.886 0-2.828 0-3.414-.586m10.828 0Zm0-6.828C16.828 3 15.886 3 14 3h-4c-1.886 0-2.828 0-3.414.586m10.828 0Zm-10.828 0C6 4.172 6 5.114 6 7c0 1.886 0 2.828.586 3.414m0-6.828Zm0 6.828ZM13 7a1 1 0 1 1-2 0a1 1 0 0 1 2 0Z" />
+                                                <path stroke-linecap="round"
+                                                    d="M18 6a3 3 0 0 1-3-3m3 5a3 3 0 0 0-3 3M6 6a3 3 0 0 0 3-3M6 8a3 3 0 0 1 3 3m-4 9.388h2.26c1.01 0 2.033.106 3.016.308a14.85 14.85 0 0 0 5.33.118c.868-.14 1.72-.355 2.492-.727c.696-.337 1.549-.81 2.122-1.341c.572-.53 1.168-1.397 1.59-2.075c.364-.582.188-1.295-.386-1.728a1.887 1.887 0 0 0-2.22 0l-1.807 1.365c-.7.53-1.465 1.017-2.376 1.162c-.11.017-.225.033-.345.047m0 0a8.176 8.176 0 0 1-.11.012m.11-.012a.998.998 0 0 0 .427-.24a1.492 1.492 0 0 0 .126-2.134a1.9 1.9 0 0 0-.45-.367c-2.797-1.669-7.15-.398-9.779 1.467m9.676 1.274a.524.524 0 0 1-.11.012m0 0a9.274 9.274 0 0 1-1.814.004" />
+                                                <rect width="3" height="8" x="2" y="14" rx="1.5" />
+                                            </g>
+                                        </svg>
+                                        <b>Top up</b>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="/riwayat" class="dropdown-item text-orange" style="width: 230px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="me-2" width="28"
+                                            height="28" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8s-8 3.58-8 8s3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13l.75 1.3L12.5 13Z" />
+                                        </svg>
+                                        <b>Riwayat Transaksi</b>
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <div class="start-element-mobile text-start">
@@ -1162,7 +1200,7 @@
 
                                 </li>
                                 <li class="nav-item ">
-                                    <a class="nav-link yuhu mt-1 me-2" type="button" href="/search-account"
+                                    <a class="nav-link yuhu text-light mt-1 me-2" type="button" href="/search-account"
                                         id="navbarDropdownMenuLink" role="button" aria-expanded="false">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                             viewBox="0 0 24 24">
@@ -1921,37 +1959,7 @@
                                                 </svg>
                                                 Favorite
                                             </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="{{ route('penawaran.premium') }}" style="width: 230px;"
-                                                class="dropdown-item text-orange">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
-                                                    width="20" height="20" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="M14.005 2.003a8 8 0 0 1 3.292 15.293A8 8 0 1 1 6.711 6.71a8.003 8.003 0 0 1 7.294-4.707Zm-4 6a6 6 0 1 0 0 12a6 6 0 0 0 0-12Zm1 1v1h2v2h-4a.5.5 0 0 0-.09.992l.09.008h2a2.5 2.5 0 0 1 0 5v1h-2v-1h-2v-2h4a.5.5 0 0 0 .09-.992l-.09-.008h-2a2.5 2.5 0 0 1 0-5v-1h2Zm3-5A5.985 5.985 0 0 0 9.52 6.016a8 8 0 0 1 8.47 8.471a6 6 0 0 0-3.986-10.484Z" />
-                                                </svg>
-                                                Upgrade
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" style="width: 230px;" data-bs-toggle="modal"
-                                                data-bs-target="#topup" class="dropdown-item text-orange">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
-                                                    width="20" height="20" viewBox="0 0 256 256">
-                                                    <path fill="currentColor"
-                                                        d="M196 140a16 16 0 1 1-16-16a16 16 0 0 1 16 16Zm40-32v80a32 32 0 0 1-32 32H60a32 32 0 0 1-32-32V68.92A32 32 0 0 1 60 36h132a12 12 0 0 1 0 24H60a8 8 0 0 0-8 8.26v.08A8.32 8.32 0 0 0 60.48 76H204a32 32 0 0 1 32 32Zm-24 0a8 8 0 0 0-8-8H60.48A33.72 33.72 0 0 1 52 98.92V188a8 8 0 0 0 8 8h144a8 8 0 0 0 8-8Z" />
-                                                </svg>
-                                                Top up
-                                            </a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="{{ route('riwayat') }}" style="width: 230px;"
-                                                class="dropdown-item text-orange">
-                                                <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
-                                                    width="20" height="20" viewBox="0 0 24 24">
-                                                    <path fill="currentColor"
-                                                        d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8s8 3.58 8 8s-3.58 8-8 8zm-.22-13h-.06c-.4 0-.72.32-.72.72v4.72c0 .35.18.68.49.86l4.15 2.49c.34.2.78.1.98-.24a.71.71 0 0 0-.25-.99l-3.87-2.3V7.72c0-.4-.32-.72-.72-.72z" />
-                                                </svg>
-                                                Riwayat Top up
-                                            </a>
-                                            <div class="dropdown-divider"></div>
+                                            <div class="dropdown-divider"></div>    
                                             <a href="{{ route('actionlogout') }}" style="width: 230px;"
                                                 class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg"

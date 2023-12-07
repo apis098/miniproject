@@ -1758,7 +1758,7 @@
                                                                                 style="margin-top:-3%;">
                                                                                 @php
                                                                                     // mendapatkan jumlah like tiap komentar
-                                                                                    $countLike = \App\Models\like_comment_veed::query()
+                                                                                    $countLike = \App\Models\likeCommentFeed::query()
                                                                                         ->where('comment_veed_id', $item_comment->id)
                                                                                         ->where('veed_id', $item_video->id)
                                                                                         ->count();
@@ -2114,7 +2114,7 @@
                                                                                                 </div>
                                                                                                 @foreach ($item_comment->reply_comment_veed as $numeric => $reply_comment)
                                                                                                     @php
-                                                                                                        $countLike2sd = App\Models\like_reply_comment_veed::query()
+                                                                                                        $countLike2sd = App\Models\LikeReplyCommentFeed::query()
                                                                                                             ->where('reply_comment_veed_id', $reply_comment->id)
                                                                                                             ->where('veed_id', $item_video->id)
                                                                                                             ->count();
@@ -2585,7 +2585,7 @@
                                                                                                                                 alt="" class="me-3">
                                                                                                                         @endif
                                                                                                                         @php
-                                                                                                                            $countLike3sd = App\Models\likeBalasRepliesCommentsFeeds::query()
+                                                                                                                            $countLike3sd = App\Models\LikeBalasReplyCommentFeeds::query()
                                                                                                                                 ->where('reply_comment_feed_id', $reply_replyComment->id)
                                                                                                                                 ->where('feed_id', $item_video->id)
                                                                                                                                 ->count();

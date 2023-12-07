@@ -62,7 +62,6 @@
         .table-custom td {
             padding-top: 30px;
             padding-bottom: 30px;
-            width: 195px;
             border-top: 1px solid black;
             border-bottom: 1px solid black;
             border-left: none;
@@ -74,7 +73,6 @@
 
         .table-custom th {
             padding: 10px;
-            width: 195px;
             background-color: #F7941E;
             margin-bottom: 50px;
             color: #fff;
@@ -129,7 +127,6 @@
             word-wrap: break-word;
             border: none;
             letter-spacing: 0.20px;
-            margin-left: 210%;
         }
 
         .btn-hapus {
@@ -154,42 +151,42 @@
 
     </style>
 
-    <div class=" d-flex justify-content-start" style="overflow-x: hidden">
-        <div class="my-5 ml-4">
+    <div class="">
+        <div class="my-5">
             <ul class="nav mb-3" id="pills-tab" role="tablist">
 
                 <li class="nav-item" role="presentation">
-                    <a id="click1" class="nav-link mr-5 active" id="pills-home-tab" data-bs-toggle="pill"
+                    <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">Sosial Media</h5>
-                        <div id="border1" class="ms-4" style="width: 70%; height: 100%; border: 1px #F7941E solid;">
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Sosial Media</h5>
+                        <div id="border1" class="" style="width: 100%; height: 100%; border: 1px #F7941E solid;">
                         </div>
                     </a>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <a id="c" class="nav-link mr-5" id="pills-profile-tab" data-bs-toggle="pill"
+                    <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
                         <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Kontak</h5>
-                        <div id="b" class="ms-2" style="width: 75%; height: 80%; border: 1px #F7941E solid;"
+                        <div id="b" class="" style="width: 100%; height: 100%; border: 1px #F7941E solid;"
                             hidden>
                         </div>
                     </a>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <button id="a-tab" class="nav-link mr-5 yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
+                    <button id="a-tab" class="nav-link yuhu mt-2" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
-                        <h5 class="text-dark ms-2" style="font-weight: 600; word-wrap: break-word;">lokasi</h5>
-                        <div id="pp" class="ms-3"
-                            style="width: 70%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
+                        <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">Lokasi</h5>
+                        <div id="pp" class=""
+                            style="width: 100%; height: 100%; display:none; border: 1px #F7941E solid;"></div>
                     </button>
                 </li>
             </ul>
-            <div class="tab-content mb-5 mx-3" id="pills-tabContent">
+            <div class="tab-content mb-5 ml-3" id="pills-tabContent">
                 @foreach ($footer as $item)
                     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab"
                         tabindex="0">
@@ -200,28 +197,28 @@
                             <div class="mb-3 row">
                                 <label for="input" class="col-sm-2 col-form-label fw-bold " >Facebook</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input" name="facebook" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
+                                    <input type="text" class="form-control" id="input" name="facebook" style="font-family:poppins;"
                                         value="{{ $item->facebook }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input1" class="col-sm-2 col-form-label fw-bold " >Youtube</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input1" name="youtube" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
+                                    <input type="text" class="form-control" id="input1" name="youtube" style="font-family:poppins;"
                                         value="{{ $item->youtube }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input2" class="col-sm-2 col-form-label fw-bold " >Twitter</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input2" name="twitter" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
+                                    <input type="text" class="form-control" id="input2" name="twitter" style="font-family:poppins;"
                                         value="{{ $item->twitter }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input3" class="col-sm-2 col-form-label fw-bold " >Instagram</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input3" name="instagram" style="width: 240%;font-family:poppins; margin-left: 10px;max-width:240%"
+                                    <input type="text" class="form-control" id="input3" name="instagram" style="font-family:poppins;"
                                         value="{{ $item->instagram }}">
                                 </div>
                             </div>
@@ -234,7 +231,7 @@
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
                             <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 206%;font-family:poppins">Edit</button>
+                            border-radius: 15px;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
@@ -247,14 +244,14 @@
                             <div class="mb-3 row">
                                 <label for="input4" class="col-sm-2 col-form-label fw-bold">Telfon</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input4" name="kontak" style="width: 240%;font-family:poppins;max-width:240%"
+                                    <input type="text" class="form-control" id="input4" name="kontak" style="font-family:poppins;"
                                         value="{{ $item->kontak }}">
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="input5" class="col-sm-2 col-form-label fw-bold">Telegram</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input5" name="telegram" style="width: 240%;font-family:poppins;max-width:240% "
+                                    <input type="text" class="form-control" id="input5" name="telegram" style="font-family:poppins; "
                                        value="{{ $item->telegram }}">
 
                                 </div>
@@ -262,7 +259,7 @@
                             <div class="mb-3 row">
                                 <label for="input6" class="col-sm-2 col-form-label fw-bold">E-mail</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input6" name="email" style="width: 240%;font-family:poppins;max-width:240% "
+                                    <input type="text" class="form-control" id="input6" name="email" style="font-family:poppins; "
                                        value="{{ $item->email }}">
                                 </div>
                             </div>
@@ -277,7 +274,7 @@
                             <input type="text" class="form-control" id="input" name="facebook"
                             value="{{ $item->facebook }}" hidden>
                             <button type="submit" class="btn text-white" style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 206%;font-family:poppins">Edit</button>
+                            border-radius: 15px;font-family:poppins">Edit</button>
                         </form>
                     </div>
                     {{-- end --}}
@@ -290,7 +287,7 @@
                             <div class="mb-3 row">
                                 <label for="input7" class="col-sm-2 col-form-label fw-bold">Lokasi</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="input7" name="lokasi" style="width: 240%;font-family:poppins;max-width:240%"
+                                    <input type="text" class="form-control" id="input7" name="lokasi" style="font-family:poppins;"
                                     value="{{ $item->lokasi }}">
                                 </div>
                             </div>
@@ -309,13 +306,12 @@
                             <input type="text" class="form-control" id="input6" name="email"
                             value="{{ $item->email }}" hidden>
                             <button type="submit" class="btn text-white " style=" background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-                            border-radius: 15px;margin-left: 206%;font-family:poppins">Edit</button>
+                            border-radius: 15px;font-family:poppins">Edit</button>
                         </form>
                     </div>
                 @endforeach
 
             </div>
-
         </div>
     </div>
     <script>
