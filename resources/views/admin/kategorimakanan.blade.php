@@ -277,6 +277,16 @@
                 justify-content: center;
             }
         }
+        @media(max-width:576px) {
+            .navLaptops {
+                display: none;
+            }
+        }
+        @media(min-width:578px) {
+            .navHandphones {
+                display: none;
+            }
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -287,9 +297,67 @@
                 });
             });
         });
+        $(document).ready(function() {
+            $("#search-user2").on("input", function() {
+                let value = $(this).val().toLowerCase();
+                $("#search-results").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
     </script>
     <div class="mx-3">
-        <nav class="navbar bg-body-tertiary">
+        <div class="navHandphones mt-3">
+            <div class="d-grid gap-2">
+                <button class="btn btn-white" style="border: 1px solid black;border-radius:10px;" data-target="#exampleModal2" data-toggle="modal" type="button">Tambah</button>
+                <div class="search-1" style="border-radius: 15px;">
+                    <div class="">
+                      <div class="search-2"> <i class='bx bxs-map'></i>
+                        <form action="#" method="GET">
+                          <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
+                            id="search-user2">
+                          <button type="submit" class="zoom-effects cari2"
+                            style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
+                            Cari
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered " role="document">
+                  <div class="modal-content" style="border-radius: 15px">
+                      <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel"
+                              style=" color: black; font-size: 25px; font-family: Poppins; letter-spacing: 0.80px; word-wrap: break-word">
+                              Tambah</h5>
+                          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          <br>
+                          <form method="POST" action="{{ route('special-days.store') }}">
+                              @csrf
+                              <div class="">
+                                  <div class="col-sm-10">
+                                      <input type="text" class="form-control" name="nama" id="nama"
+                                          style="border-radius:10px;">
+                                      <br>
+                                      <button type="submit"
+                                          class="btn  btn-sm text-white d-flex justify-content-xxl-end"
+                                          style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; padding: 4px 15px; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.13px; word-wrap: break-word">
+                                          Tambah
+                                      </button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <nav class="navbar bg-body-tertiary navLaptops">
             <div class="container-fluid">
                 <a class="navbar-brand">
                     <button type="button" class="btn btn-buat " data-toggle="modal"
