@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\complaint;
-use App\Models\like_reply;
+use App\Models\LikeReply;
 use App\Models\likes;
 use App\Models\notifications;
 use App\Models\Reply;
@@ -65,7 +65,7 @@ class LikeController extends Controller
         $complaintId = $balasan->complaint_id;
         $user = Auth::user();
         if ($user && !$balasan->likes_reply()->where('user_id', auth()->user()->id)->exists()) {
-            $like = new like_reply([
+            $like = new LikeReply([
                 'user_id' => auth()->user()->id,
                 'reply_complaint_id' => $balasan ->id,
             ]);

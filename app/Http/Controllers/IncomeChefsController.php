@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\income_chefs;
-use App\Models\reseps;
-use App\Models\upload_video;
+use App\Models\IncomeChefs;
+use App\Models\Reseps;
+use App\Models\UploadVideo;
 use App\Models\User;
-use App\Models\penarikans;
-use App\Models\dataPribadiKoki;
+use App\Models\Penarikans;
+use App\Models\DataPribadiKoki;
 use App\Models\Share;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class IncomeChefsController extends Controller
             $level_koki = $kokis->level_koki / 10;
             $pemasukan = 100 * $level_koki;
         }
-        $income = income_chefs::where('chef_id', $chef)
+        $income = IncomeChefs::where('chef_id', $chef)
             ->where('user_id', $user)
             ->where('feed_id', $content)
             ->where('status', $status)
@@ -33,7 +33,7 @@ class IncomeChefsController extends Controller
         $pengguna = User::find($user);
         if ($chef != $user && $pengguna->role != "admin") {
             if ($income != true) {
-                income_chefs::create([
+                IncomeChefs::create([
                     "chef_id" => $chef,
                     "user_id" => $user,
                     "feed_id" => $content,
@@ -50,21 +50,21 @@ class IncomeChefsController extends Controller
                 // memperbarui level koki
                 // menghitung total like, share, view, favorite, dan followers
                 // menghitung total popularitas seluruhnya
-                $total_like_feed_semua = upload_video::whereHas("like_veed")->count();
-                $total_like_resep_semua = reseps::whereHas("likes")->count();
+                $total_like_feed_semua = UploadVideo::whereHas("like_veed")->count();
+                $total_like_resep_semua = Reseps::whereHas("likes")->count();
                 $total_share_semua = Share::count();
-                $total_view_semua = income_chefs::count();
-                $total_favorite_feed_semua = upload_video::whereHas("favorite")->count();
-                $total_favorite_resep_semua = reseps::whereHas("favorite")->count();
+                $total_view_semua = IncomeChefs::count();
+                $total_favorite_feed_semua = UploadVideo::whereHas("favorite")->count();
+                $total_favorite_resep_semua = Reseps::whereHas("favorite")->count();
                 $total_followers_semua = User::sum('followers');
                 $total_popularitas = $total_like_feed_semua + $total_like_resep_semua + $total_share_semua + $total_view_semua + $total_favorite_feed_semua + $total_favorite_resep_semua + $total_followers_semua;
                 // menghitung total popularitas chef
-                $total_like_feed = upload_video::where("users_id", $chef)->whereHas("like_veed")->count();
-                $total_like_resep = reseps::where("user_id", $chef)->whereHas("likes")->count();
+                $total_like_feed = UploadVideo::where("users_id", $chef)->whereHas("like_veed")->count();
+                $total_like_resep = Reseps::where("user_id", $chef)->whereHas("likes")->count();
                 $total_share = Share::where('user_id', $chef)->count();
-                $total_view = income_chefs::where("chef_id", $chef)->count();
-                $total_favorite_feed = upload_video::where("users_id", $chef)->whereHas("favorite")->count();
-                $total_favorite_resep = reseps::where("user_id")->whereHas("favorite")->count();
+                $total_view = IncomeChefs::where("chef_id", $chef)->count();
+                $total_favorite_feed = UploadVideo::where("users_id", $chef)->whereHas("favorite")->count();
+                $total_favorite_resep = Reseps::where("user_id")->whereHas("favorite")->count();
                 $total_followers = $koki->followers;
                 $total_popularitas_chef = $total_like_feed + $total_like_resep + $total_share + $total_view + $total_favorite_feed + $total_favorite_resep + $total_followers;
                 $level = $total_popularitas_chef / $total_popularitas;
@@ -110,7 +110,7 @@ class IncomeChefsController extends Controller
                 ]);
             }
         }
-        $penarikan = penarikans::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
+        $penarikan = Penarikans::where('chef_id', Auth::user()->id)->where('status', 'diproses')->exists();
 
         if ($penarikan) {
             return response()->json([
@@ -150,8 +150,8 @@ class IncomeChefsController extends Controller
                 ]);
             }
         }
-        $data = dataPribadiKoki::where("chef_id", Auth::user()->id)->first();
-        penarikans::create([
+        $data = DataPribadiKoki::where("chef_id", Auth::user()->id)->first();
+        Penarikans::create([
             "chef_id" => Auth::user()->id,
             "data_id" => $data->id,
             "nilai" => $nilai

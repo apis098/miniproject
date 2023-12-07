@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\comment_recipes;
-use App\Models\like_comment_recipes;
+use App\Models\CommentResipes;
+use App\Models\LikeCommentRecips;
 use App\Models\LikeReplyCommentRecipes;
-use App\Models\notifications;
-use App\Models\replyCommentRecipe;
+use App\Models\Notifications;
+use App\Models\ReplyCommentRecipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,23 +14,23 @@ class LikeCommentController extends Controller
 {
     public function like_comment_recipe($id)
     {
-        $comment = comment_recipes::findOrFail($id);
+        $comment = CommentResipes::findOrFail($id);
         $log = Auth::user();
         if ($log == false) {
             return redirect()->back()->with("error", "Anda harus login dulu sebelum menyukai komentar!");
         }
-        $like = like_comment_recipes::query();
+        $like = LikeCommentRecips::query();
         $like->where("users_id", Auth::user()->id);
         $like->where("comment_id", $id);
         $count_like = $like->count();
         if ($count_like == 0) {
-            like_comment_recipes::create([
+            LikeCommentRecips::create([
                 "users_id" => auth()->user()->id,
                 "comment_id" => $comment->id,
                 "recipe_id" => $comment->recipes_id,
             ]);
             if ($comment->users_id != auth()->user()->id){
-                $notifications = new notifications();
+                $notifications = new Notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->users_id;
                 $notifications->like_comment_recipes_id = 1;
@@ -68,11 +68,11 @@ class LikeCommentController extends Controller
                 return redirect()->back()->with("success", "Sukses membatalkan menyukai komentar!");
             }
         }
-        
+
     }
 
     public function like_reply_comment($id){
-        $comment = replyCommentRecipe::findOrFail($id);
+        $comment = ReplyCommentRecipe::findOrFail($id);
         $user = Auth::user();
         if($user && !LikeReplyCommentRecipes::where('comment_id',$comment->id)->where('users_id', auth()->user()->id)->exists()){
             LikeReplyCommentRecipes::create([
@@ -82,7 +82,7 @@ class LikeCommentController extends Controller
             ]);
             $comment->increment('likes');
             if ($comment->users_id != auth()->user()->id){
-                $notifications = new notifications();
+                $notifications = new Notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->users_id;
                 $notifications->like_reply_comment_recipes_id = 1;

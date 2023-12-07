@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
-use App\Models\complaint;
-use App\Models\favorite;
-use App\Models\footer;
+use App\Models\Complaint;
+use App\Models\Favorite;
+use App\Models\Footer;
 use App\Models\likes;
-use App\Models\notifications;
+use App\Models\Notifications;
 use App\Models\Reply;
-use App\Models\replyComplaint;
+use App\Models\ReplyComplaint;
 use App\Models\TopUpCategories;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -35,12 +35,12 @@ class ReplyController extends Controller
     }
     public function show($id)
     {
-        $data = complaint::findOrFail($id);
+        $data = Complaint::findOrFail($id);
         $replies = $data->replies->sortByDesc('likes');
         $repliesCount = $replies->count();
         $userLogin = Auth::user();
         $notification = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $favorite = [];
         $unreadNotificationCount = [];
         $categorytopup = TopUpCategories::all();
@@ -53,14 +53,14 @@ class ReplyController extends Controller
         //     $balasanKomentar = $replies->first()->repliesComment->sortByDesc('likes');
         // }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -80,7 +80,7 @@ class ReplyController extends Controller
             return response()->json($validasi->errors()->first(), 422);
         }
 
-        $complaint = complaint::findOrFail($id);
+        $complaint = Complaint::findOrFail($id);
         $user = Auth::user();
         if ($user) {
             $reply = new Reply([
@@ -89,13 +89,13 @@ class ReplyController extends Controller
             ]);
             $complaint->replies()->save($reply);
             if ($complaint->user_id != auth()->user()->id) {
-                $notifications = new notifications([
+                $notifications = new Notifications([
                     'notification_from' => auth()->user()->id,
                     'complaint_id' => $complaint->id,
                     'user_id' => $complaint->user->id,
                     'reply_id' => $reply->id,
                 ]);
-                $complaint->notifications()->save($notifications);
+                $complaint->Notifications()->save($notifications);
             }
             if (Auth::user()->foto != null) {
                 $foto = 'storage/' . Auth::user()->foto;
@@ -133,7 +133,7 @@ class ReplyController extends Controller
         $user = Auth::check();
         if ($user) {
             $comment = Reply::findOrFail($id);
-            $reply = new replyComplaint();
+            $reply = new ReplyComplaint();
             $reply->reply_id = $comment->id;
             $reply->complaint_id = $comment->complaint_id;
             $reply->user_id = $comment->user_id;
@@ -141,7 +141,7 @@ class ReplyController extends Controller
             $reply->reply = $request->reply_comment;
             $reply->save();
             if ($comment->user_id != auth()->user()->id) {
-                $notifications = new notifications();
+                $notifications = new Notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->user_id;
                 $notifications->reply_id_comment = $comment->id;
@@ -191,7 +191,7 @@ class ReplyController extends Controller
         $user = Auth::check();
         if ($user) {
             $comment = Reply::findOrFail($id);
-            $reply = new replyComplaint();
+            $reply = new ReplyComplaint();
             $reply->reply_id = $comment->id;
             $reply->complaint_id = $comment->complaint_id;
             $reply->user_id = $comment->user_id;
@@ -200,7 +200,7 @@ class ReplyController extends Controller
             $reply->parent_id = $request->parent_id;
             $reply->save();
             if ($comment->user_id != auth()->user()->id) {
-                $notifications = new notifications();
+                $notifications = new Notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $comment->user_id;
                 $notifications->reply_id_comment = $comment->id;
@@ -242,7 +242,7 @@ class ReplyController extends Controller
         $data->delete();
 
         if (auth()->user()->role == "admin") {
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $data->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
@@ -260,11 +260,11 @@ class ReplyController extends Controller
     }
     public function destroyComment(Request $request, $id)
     {
-        $data = replyComplaint::findOrFail($id);
+        $data = ReplyComplaint::findOrFail($id);
         $data->delete();
 
         if (auth()->user()->role == "admin") {
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $data->user_id_sender;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;

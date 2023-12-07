@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\jenis_kursuses;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\JenisKursus;
 use App\Models\kursus;
-use App\Models\notifications;
+use App\Models\Notifications;
 use App\Models\paket_kursuses;
-use App\Models\pivot_jenis_kursuses;
 use DateTime;
 use DateTimeZone;
 use Illuminate\Http\Request;
@@ -19,11 +18,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
-use App\Models\sessionCourses;
+use App\Models\SessionsCourses;
 use App\Models\TopUpCategories;
 use App\Models\Village;
 use Carbon\Carbon;
-use App\Models\detailSessionCourses;
+use App\Models\DetailSessionCourses;
 use App\Models\User;
 
 class KursusController extends Controller
@@ -36,21 +35,21 @@ class KursusController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $messageCount = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -88,7 +87,7 @@ class KursusController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
@@ -96,14 +95,14 @@ class KursusController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -179,7 +178,7 @@ class KursusController extends Controller
             $kursus_favorite->where('rating', $rate);
             $kursus_rating->where('rating', $rate);
         }
-        $jenis_kursus = jenis_kursuses::pluck('jenis_kursus')->unique();
+        $jenis_kursus = Jeniskursus::pluck('jenis_kursus')->unique();
         $provinsi = Province::pluck('name');
         $regency = Regency::pluck('name');
         $district = District::pluck('name');
@@ -214,20 +213,20 @@ class KursusController extends Controller
             $currentTime = new DateTime('now', new DateTimeZone('Asia/Jakarta'));
             $update_status->waktu_diterima = $currentTime->format('Y-m-d H:i:s');
             // create notification
-            $notifikasi = notifications::create([
+            $notifikasi = Notifications::create([
                 'user_id' => $update_status->user->id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Selamat kursus anda diterima!',
                 'categories' => 'kursus',
                 'kursus_id' => $id
             ]);
-            $update = notifications::findOrFail($notifikasi->id);
+            $update = Notifications::findOrFail($notifikasi->id);
             $update->route = '/status-baca/kursus/'.$notifikasi->id;
             $update->save();
         } else if ($status === "ditolak") {
             kursus::find($id)->delete();
              // create notification
-             $notifikasi = notifications::create([
+             $notifikasi = Notifications::create([
                 'user_id' => $update_status->user->id,
                 'notification_from' => Auth::user()->id,
                 'message' => 'Kursus anda tidak diterima!',
@@ -235,7 +234,7 @@ class KursusController extends Controller
                 'categories' => 'kursus',
                 'kursus_id' => $id
             ]);
-            $update = notifications::findOrFail($notifikasi->id);
+            $update = Notifications::findOrFail($notifikasi->id);
             $update->route = '/status-baca/kursus/'.$notifikasi->id;
             $update->save();
         }
@@ -251,7 +250,7 @@ class KursusController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
@@ -259,14 +258,14 @@ class KursusController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -358,7 +357,7 @@ class KursusController extends Controller
             "tanggal_berakhir_kursus" => $request->tanggal_berakhir_kursus,
         ]);
         if ($tambah_kursus) {
-            jenis_kursuses::create([
+            Jeniskursus::create([
                 'id_kursus' => $tambah_kursus->id,
                 'jenis_kursus' => $request->jenis_kursus
             ]);
@@ -390,7 +389,7 @@ class KursusController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $messageCount = [];
@@ -398,14 +397,14 @@ class KursusController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status', 'belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -487,7 +486,7 @@ class KursusController extends Controller
         $edit_kursus->tanggal_dimulai_kursus = $request->tanggal_dimulai_kursus;
         $edit_kursus->tanggal_berakhir_kursus = $request->tanggal_berakhir_kursus;
         $edit_kursus->save();
-        $jenisKursus = jenis_kursuses::where('id_kursus', $edit_kursus->id)->first();
+        $jenisKursus = Jeniskursus::where('id_kursus', $edit_kursus->id)->first();
         $jenisKursus->jenis_kursus = $request->jenis_kursus;
         $jenisKursus->save();
         return response()->json([
@@ -527,7 +526,7 @@ class KursusController extends Controller
         } else if ($request->informasi_lama_sesi === "jam") {
             $lama_sesi = $request->lama_sesi * 60;
         }
-        sessionCourses::create([
+        SessionsCourses::create([
             "course_id" => $request->course_id,
             "judul_sesi" => $request->judul_sesi,
             "lama_sesi" => $lama_sesi,
@@ -565,7 +564,7 @@ class KursusController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->first(), 422);
         }
-        $sesi_kursus = sessionCourses::findOrFail($id);
+        $sesi_kursus = SessionsCourses::findOrFail($id);
         $sesi_kursus->judul_sesi = $request->judul_sesi;
         $sesi_kursus->lama_sesi = $request->lama_sesi;
         $sesi_kursus->informasi_lama_sesi = $request->informasi_lama_sesi;
@@ -588,7 +587,7 @@ class KursusController extends Controller
     }
     public function hapusSesi(string $id)
     {
-        $sesi_kursus = sessionCourses::findOrFail($id);
+        $sesi_kursus = SessionsCourses::findOrFail($id);
         $sesi_kursus->delete();
         return response()->json([
             "success" => true,
@@ -612,13 +611,13 @@ class KursusController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->first(), 422);
         }
-        $detail = detailSessionCourses::create([
+        $detail = DetailSessionCourses::create([
             "session_course_id" => $id,
             "detail_sesi" => $request->detail_sesi,
             "lama_sesi" => $request->lama_sesi,
             "informasi_lama_sesi" => $request->informasi_lama_sesi,
         ]);
-        $nomer = detailSessionCourses::where("session_course_id", $id)->count();
+        $nomer = DetailSessionCourses::where("session_course_id", $id)->count();
         if ($request->lama_sesi >= 60) {
             $lama_sesi = $request->lama_sesi / 60;
         } else {
@@ -652,12 +651,12 @@ class KursusController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors()->first(), 422);
         }
-        $detail_sesi = detailSessionCourses::findOrFail($id);
+        $detail_sesi = DetailSessionCourses::findOrFail($id);
         $detail_sesi->detail_sesi = $request->detail_sesi;
         $detail_sesi->lama_sesi = $request->lama_sesi;
         $detail_sesi->informasi_lama_sesi = $request->informasi_lama_sesi;
         $detail_sesi->save();
-        $count = detailSessionCourses::where("session_course_id", $detail_sesi->id)->count();
+        $count = DetailSessionCourses::where("session_course_id", $detail_sesi->id)->count();
         if ($request->lama_sesi >= 60) {
             $lama_sesi = $request->lama_sesi / 60;
         } else {
@@ -675,7 +674,7 @@ class KursusController extends Controller
     }
     public function hapusDetailSesi(string $id)
     {
-        $data = detailSessionCourses::find($id);
+        $data = DetailSessionCourses::find($id);
         $data->delete();
         return response()->json([
             "success" => true,
@@ -691,10 +690,10 @@ class KursusController extends Controller
     }
     public function favoriteKursus($chef, $course)
     {
-        $check = favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->exists();
+        $check = Favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->exists();
         $kursus = kursus::find($course);
         if ($check) {
-            $data = favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->first();
+            $data = Favorite::where('user_id_from', Auth::user()->id)->where('kursus_id', $course)->where('user_id', $chef)->first();
             $data->delete();
             $kursus->jumlah_favorite = $kursus->jumlah_favorite - 1;
             $kursus->save();
@@ -703,7 +702,7 @@ class KursusController extends Controller
                 'unfavorite' => true,
             ]);
         } else {
-            favorite::create([
+            Favorite::create([
                 'kursus_id' => $course,
                 'user_id' => $chef,
                 'user_id_from' => Auth::user()->id

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\ChMessage;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\notifications;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\Notifications;
 use App\Models\TopUpCategories;
-use App\Models\transactionTopUp;
+use App\Models\TransactionTopUp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,7 +32,7 @@ class TopUpController extends Controller
         $transaction = $tripay->requestTransaction($method, $price);
         // insert in database
 
-        transactionTopUp::create([
+        TransactionTopUp::create([
             'user_id' => auth()->user()->id,
             'price' => $price,
             'reference' => $transaction->reference,
@@ -62,25 +62,25 @@ class TopUpController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status','belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
+        $footer = Footer::first();
         $tripay = new TripayPaymentController();
         $detail_transaction = $tripay->detailTransaction($reference);
 
         $referece = $detail_transaction->reference;
-        $data_transaction = transactionTopUp::where('reference', $reference)->first();
+        $data_transaction = TransactionTopUp::where('reference', $reference)->first();
 
         return view('tripay.detail_transaction', compact('data_transaction', 'detail_transaction', 'categorytopup', 'userLogin', 'footer', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
     }
@@ -133,20 +133,20 @@ class TopUpController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status','belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
+        $footer = Footer::first();
         $tripay = new TripayPaymentController();
         $channels = $tripay->getPaymentChannels();
 

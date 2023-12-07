@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ChMessage;
-use App\Models\notifications;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\history_premiums;
+use App\Models\Notifications;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\HistoryPremium;
 use App\Models\TopUpCategories;
 use App\Models\user_premiums;
 
@@ -37,20 +37,20 @@ class PaymentController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
+        $footer = Footer::first();
         $channels = new TripayPaymentController();
         $channel = $channels->getPaymentMerchant();
         return view('testing.paymentTesting', compact('categorytopup','channel', 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
@@ -60,7 +60,7 @@ class PaymentController extends Controller
         $getRequest = new TripayPaymentController();
         $get = $getRequest->requestTransaksi($request->method,$request->amount, $request->name_product, $request->name, $request->email);
         // create data in resep_premiums table
-        history_premiums::create([
+        HistoryPremium::create([
             'users_id' => auth()->user()->id,
             'premiums_id' => $request->id,
             'reference' => $get->reference,
@@ -92,25 +92,25 @@ class PaymentController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
+        $footer = Footer::first();
         $detail_pembayaran = new TripayPaymentController();
-        $premium = history_premiums::where('reference', $reference)->first();
+        $premium = HistoryPremium::where('reference', $reference)->first();
         $hari = $premium->premium->durasi_paket;
         $detail = $detail_pembayaran->detailPembayaran($reference);
-        $detail_transaksi = history_premiums::where("reference", $reference)->first();
+        $detail_transaksi = HistoryPremium::where("reference", $reference)->first();
         return view('testing.detailPaymentTesting', compact('categorytopup',"hari","detail_transaksi","detail", 'messageCount', 'notification', 'unreadNotificationCount', 'userLogin', 'footer', 'favorite'));
     }
     // halaman daftar transaksi
@@ -134,21 +134,21 @@ class PaymentController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             // jika user sudah login
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
-        $daftar_transaksi = history_premiums::latest()->where('users_id', auth()->user()->id)->get();
+        $footer = Footer::first();
+        $daftar_transaksi = HistoryPremium::latest()->where('users_id', auth()->user()->id)->get();
         return view('testing.daftarPaymentTesting', compact('categorytopup',"daftar_transaksi", "messageCount", "notification", "unreadNotificationCount", "userLogin", "footer", "favorite"));
     }
 }

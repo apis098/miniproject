@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kategori_makanan;
+use App\Models\KategoriMakanan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -14,9 +14,9 @@ class KategoriMakananController extends Controller
     public function index(Request $request)
     {
         if ($request->has('m')) {
-            $kategori_makanans = kategori_makanan::where("nama_makanan", "like", "%" . $request->m . "%")->paginate(5);
+            $kategori_makanans = KategoriMakanan::where("nama_makanan", "like", "%" . $request->m . "%")->paginate(5);
         } else {
-            $kategori_makanans = kategori_makanan::paginate(5);
+            $kategori_makanans = KategoriMakanan::paginate(5);
         }
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         return view('admin.kategorimakanan', compact('kategori_makanans','verifed_count'));
@@ -33,7 +33,7 @@ class KategoriMakananController extends Controller
         ], [
             "nama_makanan.required" => "Field Kategori Makanan Harus Diisi"
         ]);
-        kategori_makanan::create([
+        KategoriMakanan::create([
             'nama_makanan' => $request->nama_makanan
         ]);
         return redirect()->back()->with('success', 'Data Kategori Makanan Berhasil Ditambah.');
@@ -50,7 +50,7 @@ class KategoriMakananController extends Controller
             "nama_makanan.required" => "Field Kategori Makanan Harus Diisi"
         ]);
 
-        kategori_makanan::find($id)->update([
+        KategoriMakanan::find($id)->update([
             'nama_makanan' => $request->nama_makanan
         ]);
         return redirect()->route('kategori-makanan.index', compact('request'))->with('success', 'Data Kategori Makanan Berhasil Edit.');
@@ -62,7 +62,7 @@ class KategoriMakananController extends Controller
      */
     public function destroy(string $id)
     {
-        $kategori_makanans = kategori_makanan::find($id);
+        $kategori_makanans = KategoriMakanan::find($id);
         $kategori_makanans->resep()->where('kategori_reseps_id', $kategori_makanans->id)->update([
             "kategori_reseps_id" => NULL
         ]);

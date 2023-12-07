@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\comment_recipes;
-use App\Models\notifications;
-use App\Models\replyCommentRecipe;
-use App\Models\reseps;
+use App\Models\CommentResipes;
+use App\Models\Notifications;
+use App\Models\ReplyCommentRecipe;
+use App\Models\Reseps;
 use Illuminate\Support\Facades\Validator;
 
 class KomentarResepController extends Controller
@@ -24,9 +24,9 @@ class KomentarResepController extends Controller
         }
         $c = null;
         $komentar = $request->komentar;
-        $resepData  = reseps::findOrFail($recipe);
+        $resepData  = Reseps::findOrFail($recipe);
         if ($comment != null) {
-            $c = replyCommentRecipe::create([
+            $c = ReplyCommentRecipe::create([
                 'pengirim_id' => $pengirim,
                 'penerima_id' => $penerima,
                 'recipe_id' => $recipe,
@@ -34,14 +34,14 @@ class KomentarResepController extends Controller
                 'komentar' => $komentar
             ]);
         } else {
-            $c = comment_recipes::create([
+            $c = CommentResipes::create([
                 'pengirim_id' => $pengirim,
                 'penerima_id' => $penerima,
                 'recipes_id' => $recipe,
                 "comment" => $komentar
             ]);
             if ($resepData->user_id != auth()->user()->id){
-                $notifications = new notifications();
+                $notifications = new Notifications();
                 $notifications->notification_from = auth()->user()->id;
                 $notifications->user_id = $resepData->user_id;
                 $notifications->comment_id = 1;
@@ -78,8 +78,8 @@ class KomentarResepController extends Controller
         if($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         };
-        $comment = comment_recipes::findOrFail($id);
-        $reply = new replyCommentRecipe();
+        $comment = CommentResipes::findOrFail($id);
+        $reply = new ReplyCommentRecipe();
         $reply->users_id = auth()->user()->id;
         $reply->recipient_id = $user;
         $reply->recipe_id = $comment->recipes_id;
@@ -90,7 +90,7 @@ class KomentarResepController extends Controller
         }
         $reply->save();
         if ($comment->users_id != auth()->user()->id){
-            $notifications = new notifications();
+            $notifications = new Notifications();
             $notifications->notification_from = auth()->user()->id;
             $notifications->user_id = $comment->users_id;
             $notifications->reply_comment_id = 1;
@@ -115,8 +115,8 @@ class KomentarResepController extends Controller
         ]);
     }
     public function reply_reply_comment(Request $request,$id,$user){
-        $comment = comment_recipes::findOrFail($id);
-        $reply = new replyCommentRecipe();
+        $comment = CommentResipes::findOrFail($id);
+        $reply = new ReplyCommentRecipe();
         $reply->users_id = auth()->user()->id;
         $reply->recipient_id = $user;
         $reply->recipe_id = $comment->recipes_id;
@@ -125,7 +125,7 @@ class KomentarResepController extends Controller
             $reply->parent_id = $request->parent_id;
         $reply->save();
         if ($comment->users_id != auth()->user()->id){
-            $notifications = new notifications();
+            $notifications = new Notifications();
             $notifications->notification_from = auth()->user()->id;
             $notifications->user_id = $comment->users_id;
             $notifications->reply_comment_id = 1;
@@ -151,13 +151,13 @@ class KomentarResepController extends Controller
         ]);
     }
     public function delete_comment(string $id) {
-        comment_recipes::where('id', $id)->delete();
+        CommentResipes::where('id', $id)->delete();
         return response()->json([
             'message' => 'Sukses menghapus komentar!'
         ]);
     }
     public function delete_reply_comment(string $id) {
-        replyCommentRecipe::where('id', $id)->delete();
+        ReplyCommentRecipe::where('id', $id)->delete();
         return response()->json([
             'message' => 'Sukses menghapus komentar!'
         ]);

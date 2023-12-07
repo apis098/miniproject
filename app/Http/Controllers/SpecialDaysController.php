@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\special_days;
+use App\Models\SpecialDays;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,9 +11,9 @@ class SpecialDaysController extends Controller
     public function index(Request $request)
     {
         if ($request->has('d')) {
-            $special_days = special_days::where("nama", "like", "%" . $request->d . "%")->paginate(5);
+            $special_days = SpecialDays::where("nama", "like", "%" . $request->d . "%")->paginate(5);
         } else {
-            $special_days = special_days::paginate(5);
+            $special_days = SpecialDays::paginate(5);
         }
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         return view('admin.specialdays', compact('special_days','verifed_count'));
@@ -26,7 +26,7 @@ class SpecialDaysController extends Controller
         ], [
             "nama.required" => "Field Hari Khusus Harus Diisi"
         ]);
-        special_days::create([
+        SpecialDays::create([
             'nama' => $request->nama
         ]);
 
@@ -42,7 +42,7 @@ class SpecialDaysController extends Controller
             "nama.required" => "Field Hari Khusus Harus Diisi"
         ]);
 
-        special_days::find($id)->update([
+        SpecialDays::find($id)->update([
             'nama' => $request->nama
         ]);
 
@@ -51,7 +51,7 @@ class SpecialDaysController extends Controller
 
     public function destroy(string $id)
     {
-        $special_days = special_days::find($id);
+        $special_days = SpecialDays::find($id);
         //      // Cek apakah ada produk terkait dengan kategori ini
 
         $special_days->resep()->where("hari_khusus_id", $special_days->id)->update([

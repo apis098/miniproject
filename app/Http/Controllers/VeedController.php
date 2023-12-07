@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
-use App\Models\balasRepliesCommentsFeeds;
+use App\Models\BalasReplyCommentfeeds;
 use App\Models\ChMessage;
-use App\Models\comment_veed;
-use App\Models\like_comment_veed;
+use App\Models\CommentFeed;
+use App\Models\LikeCommentFeed;
 use App\Models\Share;
-use App\Models\upload_video;
+use App\Models\UploadVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\notifications;
-use App\Models\favorite;
-use App\Models\followers;
-use App\Models\footer;
-use App\Models\income_chefs;
-use App\Models\kursus;
-use App\Models\like_reply_comment_veed;
-use App\Models\like_veed;
-use App\Models\likeBalasRepliesCommentsFeeds;
+use App\Models\Notifications;
+use App\Models\Favorite;
+use App\Models\Followers;
+use App\Models\Footer;
+use App\Models\IncomeChefs;
+use App\Models\Kursus;
+use App\Models\LikeReplyCommentFeed;
+use App\Models\LikeFeed;
+use App\Models\LikeBalasReplyCommentFeeds;
+// use App\Models\LikeReplyCommentFeed;
 use App\Models\Reply;
-use App\Models\reply_comment_veed;
-use App\Models\reseps;
+use App\Models\ReplyCommentFeed;
+use App\Models\Reseps;
 use App\Models\TopUpCategories;
 use Flasher\Prime\EventDispatcher\Event\ResponseEvent;
 use Illuminate\Support\Facades\Crypt;
@@ -43,8 +44,8 @@ class VeedController extends Controller
         $unreadNotificationCount = [];
         $categorytopup  =  TopUpCategories::all();
         $admin = false;
-        $recipes = reseps::latest()->paginate(5);
-        $course = kursus::latest()->paginate(5);
+        $recipes = Reseps::latest()->paginate(5);
+        $course = Kursus::latest()->paginate(5);
         $messageCount = [];
         $income =[];
         $allUser = User::where('role', 'koki')->whereNot('id', auth()->user())->get();
@@ -53,8 +54,8 @@ class VeedController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $video_pembelajaran = upload_video::inRandomOrder()->get();
-            $income = income_chefs::select('feed_id', DB::raw('SUM(pemasukan) as total_income'))
+            $video_pembelajaran = UploadVideo::inRandomOrder()->get();
+            $income = IncomeChefs::select('feed_id', DB::raw('SUM(pemasukan) as total_income'))
             ->where('status', 'sawer')
             ->where('chef_id', auth()->user()->id)
             ->groupBy('feed_id')
@@ -65,25 +66,25 @@ class VeedController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
+        $footer = Footer::first();
 
-        $video_pembelajaran = upload_video::inRandomOrder()->get();
-        $reply_comment_veed = reply_comment_veed::latest()->get();
+        $video_pembelajaran = UploadVideo::inRandomOrder()->get();
+        $reply_comment_veed = ReplyCommentFeed::latest()->get();
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
-        $count_comment = comment_veed::count();
+        $count_comment = CommentFeed::count();
                 // mengecek apakah koki berlangganan sudah habis atau belum masa berlangganannya,
                 if (Auth::user()) {
                     if(auth()->user()->status_langganan == "sedang berlangganan") {
@@ -114,7 +115,7 @@ class VeedController extends Controller
         $user_following = [];
         if ($userLogin) {
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
-            $user_following = followers::where('follower_id', auth()->user()->id)->get();
+            $user_following = Followers::where('follower_id', auth()->user()->id)->get();
         }
         if ($userLogin) {
             $id_user = Auth::user()->id;
@@ -122,23 +123,23 @@ class VeedController extends Controller
             if ($id_user == $id_admin->id) {
                 $admin = true;
             }
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
             $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $footer = footer::first();
+        $footer = Footer::first();
 
-        $item_video = upload_video::findOrFail($id);
+        $item_video = UploadVideo::findOrFail($id);
 
-        $reply_comment_veed = reply_comment_veed::latest()->get();
+        $reply_comment_veed = ReplyCommentFeed::latest()->get();
 
         // $tripay = new TripayPaymentController();
         // $channels = $tripay->getPaymentChannels();
@@ -147,16 +148,16 @@ class VeedController extends Controller
     }
     public function sukai_veed(string $user_id, string $veed_id)
     {
-        $cek = like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();
-        $feed = upload_video::findOrFail($veed_id);
+        $cek = LikeFeed::where("users_id", $user_id)->where("veed_id", $veed_id)->count();
+        $feed = UploadVideo::findOrFail($veed_id);
         if ($cek == 0) {
-            $like = new like_veed();
+            $like = new LikeFeed();
             $like->users_id = $user_id;
             $like->veed_id = $veed_id;
             $like->save();
 
             if($feed->users_id != Auth::user()->id){
-                $notification = new notifications();
+                $notification = new Notifications();
                 $notification->user_id = $feed->users_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->veed_id = $veed_id;
@@ -164,16 +165,16 @@ class VeedController extends Controller
                 $notification->message = "Menyukai postingan anda";
                 $notification->save();
 
-                $let_route = notifications::findOrFail($notification->id);
+                $let_route = Notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
 
-            $isLikeVeed = \App\Models\like_veed::query()
+            $isLikeVeed = \App\Models\LikeFeed::query()
                 ->where('users_id', Auth::user()->id)
                 ->where('veed_id', $veed_id)
                 ->count();
-            $countLikeFeed = like_veed::where("veed_id", $veed_id)->count();
+            $countLikeFeed = LikeFeed::where("veed_id", $veed_id)->count();
             return response()->json([
                 "success" => true,
                 "message" => "Sukses memberi like!",
@@ -182,12 +183,12 @@ class VeedController extends Controller
                 'count' => $countLikeFeed
             ]);
         } elseif ($cek == 1) {
-            like_veed::where("users_id", $user_id)->where("veed_id", $veed_id)->delete();
-            $isLikeVeed = \App\Models\like_veed::query()
+            LikeFeed::where("users_id", $user_id)->where("veed_id", $veed_id)->delete();
+            $isLikeVeed = \App\Models\LikeFeed::query()
                 ->where('users_id', Auth::user()->id)
                 ->where('veed_id', $veed_id)
                 ->count();
-            $countLikeFeed = like_veed::where("veed_id", $veed_id)->count();
+            $countLikeFeed = LikeFeed::where("veed_id", $veed_id)->count();
             return response()->json([
                 "success" => true,
                 "message" => "Sukses membatalkan like!",
@@ -199,7 +200,7 @@ class VeedController extends Controller
     }
     public function komentar_veed(Request $request, string $pengirim_id, string $penerima_id, string $veed_id)
     {
-        $new = comment_veed::create([
+        $new = CommentFeed::create([
             "pengirim_id" => $pengirim_id,
             "penerima_id" => $penerima_id,
             "veed_id" => $veed_id,
@@ -207,7 +208,7 @@ class VeedController extends Controller
         ]);
         $data_sender = User::findOrFail($pengirim_id);
         if($penerima_id != Auth::user()->id){
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $penerima_id;
             $notification->notification_from = auth()->user()->id;
             $notification->veed_id = $veed_id;
@@ -215,16 +216,16 @@ class VeedController extends Controller
             $notification->message =  "Mengomentari postingan anda";
             $notification->save();
 
-            $let_route = notifications::findOrFail($notification->id);
+            $let_route = Notifications::findOrFail($notification->id);
             $let_route->route = "/status-baca/shared-feed/".$notification->id;
             $let_route->save();
         }
-        $comment_veed = comment_veed::findOrFail($new->id);
-        $data_veed = upload_video::findOrFail($new->veed_id);
+        $comment_veed = CommentFeed::findOrFail($new->id);
+        $data_veed = UploadVideo::findOrFail($new->veed_id);
         $comment_count = $data_veed->countCommentFeed();
         $pengirim_veed = User::findOrFail($pengirim_id);
         $commentId = $comment_veed->id;
-        $jumlah_like_veed = like_comment_veed::query()
+        $jumlah_like_veed = LikeCommentFeed::query()
         ->where('comment_veed_id', $comment_veed->id)
         ->where('veed_id', $veed_id)
         ->count();
@@ -244,20 +245,20 @@ class VeedController extends Controller
     }
     public function like_komentar_veed(string $user_id, string $komentar_veed_id, string $veed_id)
     {
-        $isLike = like_comment_veed::query();
+        $isLike = LikeCommentFeed::query();
         $isLike->where("users_id", $user_id);
         $isLike->where("comment_veed_id", $komentar_veed_id);
         $isLike->where("veed_id", $veed_id);
         $countIsLike = $isLike->count();
         if ($countIsLike == 0) {
-            $store_like = like_comment_veed::create([
+            $store_like = LikeCommentFeed::create([
                 "users_id" => $user_id,
                 "comment_veed_id" => $komentar_veed_id,
                 "veed_id" => $veed_id
             ]);
-            $comment = comment_veed::findOrFail($komentar_veed_id);
+            $comment = CommentFeed::findOrFail($komentar_veed_id);
             if($comment->pengirim_id != Auth::user()->id){
-                $notification = new notifications();
+                $notification = new Notifications();
                 $notification->user_id = $comment->pengirim_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->veed_id = $veed_id;
@@ -265,12 +266,12 @@ class VeedController extends Controller
                 $notification->message = "Menyukai komentar anda";
                 $notification->save();
 
-                $let_route = notifications::findOrFail($notification->id);
+                $let_route = Notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
             // mendapatkan jumlah like tiap komentar
-            $countLike = \App\Models\like_comment_veed::query()
+            $countLike = \App\Models\LikeCommentFeed::query()
                 ->where('comment_veed_id', $komentar_veed_id)
                 ->where('veed_id', $veed_id)
                 ->count();
@@ -283,7 +284,7 @@ class VeedController extends Controller
         } elseif ($countIsLike == 1) {
             $isLike->delete();
             // mendapatkan jumlah like tiap komentar
-            $countLike = \App\Models\like_comment_veed::query()
+            $countLike = \App\Models\LikeCommentFeed::query()
                 ->where('comment_veed_id', $komentar_veed_id)
                 ->where('veed_id', $veed_id)
                 ->count();
@@ -297,15 +298,15 @@ class VeedController extends Controller
     }
     public function balas_komentar_veed(Request $request, string $users_id, string $comment_id, string $veed_id)
     {
-        $store_comment = reply_comment_veed::create([
+        $store_comment = ReplyCommentFeed::create([
             "users_id" => $users_id,
             "comment_id" => $comment_id,
             "veed_id" => $veed_id,
             "komentar" => $request->komentarBalasan
         ]);
-        $comment = comment_veed::findOrFail($comment_id);
+        $comment = CommentFeed::findOrFail($comment_id);
         if($comment->pengirim_id != Auth::user()->id){
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $comment->pengirim_id;
             $notification->notification_from = auth()->user()->id;
             $notification->veed_id = $veed_id;
@@ -313,15 +314,15 @@ class VeedController extends Controller
             $notification->message = "Membalas komentar anda";
             $notification->save();
 
-            $let_route = notifications::findOrFail($notification->id);
+            $let_route = Notifications::findOrFail($notification->id);
             $let_route->route = "/status-baca/shared-feed/" . $notification->id;
             $let_route->save();
         }
-        $item_comment = reply_comment_veed::where('comment_id', $comment_id)->first();
-        $dataReplies = reply_comment_veed::findOrFail($store_comment->id);
-        $feed = upload_video::findOrFail($store_comment->veed_id);
+        $item_comment = ReplyCommentFeed::where('comment_id', $comment_id)->first();
+        $dataReplies = ReplyCommentFeed::findOrFail($store_comment->id);
+        $feed = UploadVideo::findOrFail($store_comment->veed_id);
         $comment_count = $feed->countCommentFeed();
-        $jumlah_like_veed = like_reply_comment_veed::query();
+        $jumlah_like_veed = LikeReplyCommentFeed::query();
         $user_sender = User::findOrFail(auth()->user()->id);
         $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
         if ($store_comment) {
@@ -340,19 +341,19 @@ class VeedController extends Controller
     }
     public function like_replies_reply(string $user_id, string $reply_replyComment_id, $veed_id)
     {
-        $check = likeBalasRepliesCommentsFeeds::where("user_id", $user_id)
+        $check = LikeBalasReplyCommentFeeds::where("user_id", $user_id)
             ->where("reply_comment_feed_id", $reply_replyComment_id)
             ->where("feed_id", $veed_id)
             ->count();
         if ($check == 0) {
-            likeBalasRepliesCommentsFeeds::create([
+            LikeBalasReplyCommentFeeds::create([
                 "user_id" => $user_id,
                 "reply_comment_feed_id" => $reply_replyComment_id,
                 "feed_id" => $veed_id
             ]);
-            $data_replies = balasRepliesCommentsFeeds::findOrFail($reply_replyComment_id);
+            $data_replies = BalasReplyCommentfeeds::findOrFail($reply_replyComment_id);
             if($data_replies->pengirim_reply_comment_id != Auth::user()->id){
-                $notification = new notifications();
+                $notification = new Notifications();
                 $notification->user_id = $data_replies->pengirim_reply_comment_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->veed_id = $veed_id;
@@ -360,11 +361,11 @@ class VeedController extends Controller
                 $notification->message = "Menyukai komentar anda";
                 $notification->save();
 
-                $let_route = notifications::findOrFail($notification->id);
+                $let_route = Notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
-            $countLike = likeBalasRepliesCommentsFeeds::query()
+            $countLike = LikeBalasReplyCommentFeeds::query()
                 ->where('feed_id', $veed_id)
                 ->where('reply_comment_feed_id', $reply_replyComment_id)
                 ->count();
@@ -375,11 +376,11 @@ class VeedController extends Controller
                 "countLike" => $countLike
             ]);
         } elseif ($check == 1) {
-            likeBalasRepliesCommentsFeeds::where("user_id", $user_id)
+            LikeBalasReplyCommentFeeds::where("user_id", $user_id)
                 ->where("reply_comment_feed_id", $reply_replyComment_id)
                 ->where("feed_id", $veed_id)
                 ->delete();
-            $countLike = likeBalasRepliesCommentsFeeds::query()
+            $countLike = LikeBalasReplyCommentFeeds::query()
                 ->where('feed_id', $veed_id)
                 ->where('reply_comment_feed_id', $reply_replyComment_id)
                 ->count();
@@ -393,19 +394,19 @@ class VeedController extends Controller
     }
     public function sukai_balasan_komentar_veed(string $user_id, string $reply_comment_id, $veed_id)
     {
-        $check = like_reply_comment_veed::where("users_id", $user_id)
+        $check = LikeReplyCommentFeed::where("users_id", $user_id)
             ->where("reply_comment_veed_id", $reply_comment_id)
             ->where("veed_id", $veed_id)
             ->count();
         if ($check == 0) {
-            like_reply_comment_veed::create([
+            LikeReplyCommentFeed::create([
                 "users_id" => $user_id,
                 "reply_comment_veed_id" => $reply_comment_id,
                 "veed_id" => $veed_id
             ]);
-            $data_replies = reply_comment_veed::findOrFail($reply_comment_id);
+            $data_replies = ReplyCommentFeed::findOrFail($reply_comment_id);
             if($data_replies->users_id != Auth::user()->id){
-                $notification = new notifications();
+                $notification = new Notifications();
                 $notification->user_id = $data_replies->users_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->veed_id = $veed_id;
@@ -413,11 +414,11 @@ class VeedController extends Controller
                 $notification->message = "Menyukai komentar anda";
                 $notification->save();
 
-                $let_route = notifications::findOrFail($notification->id);
+                $let_route = Notifications::findOrFail($notification->id);
                 $let_route->route = "/status-baca/shared-feed/" . $notification->id;
                 $let_route->save();
             }
-            $countLike = like_reply_comment_veed::query()
+            $countLike = LikeReplyCommentFeed::query()
                 ->where('veed_id', $veed_id)
                 ->where('reply_comment_veed_id', $reply_comment_id)
                 ->count();
@@ -428,11 +429,11 @@ class VeedController extends Controller
                 "countLike" => $countLike
             ]);
         } elseif ($check == 1) {
-            like_reply_comment_veed::where("users_id", $user_id)
+            LikeReplyCommentFeed::where("users_id", $user_id)
                 ->where("reply_comment_veed_id", $reply_comment_id)
                 ->where("veed_id", $veed_id)
                 ->delete();
-            $countLike = like_reply_comment_veed::query()
+            $countLike = LikeReplyCommentFeed::query()
                 ->where('veed_id', $veed_id)
                 ->where('reply_comment_veed_id', $reply_comment_id)
                 ->count();
@@ -446,7 +447,7 @@ class VeedController extends Controller
     }
     public function hapus_komentar_feed(string $id)
     {
-        $COMMENT = comment_veed::find($id);
+        $COMMENT = CommentFeed::find($id);
         $COMMENT->delete();
         return response()->json([
             "message" => "Sukses menghapus komentar feed!"
@@ -454,14 +455,14 @@ class VeedController extends Controller
     }
     public function hapus_balasan_komentar_feed(string $id)
     {
-        $reply_comment = reply_comment_veed::find($id);
+        $reply_comment = ReplyCommentFeed::find($id);
         $reply_comment->delete();
         return response()->json([
             "message" => "Sukses menghapus balasan komentar feed!"
         ]);
     }
     public function delete_replies_reply_feed($id){
-        $replies_replyComment = balasRepliesCommentsFeeds::findOrFail($id);
+        $replies_replyComment = BalasReplyCommentfeeds::findOrFail($id);
         $replies_replyComment->delete();
         return response()->json([
             "message" => "Sukses menghapus balasan komentar feed!"
@@ -472,7 +473,7 @@ class VeedController extends Controller
         if (Auth::check()) {
             $userIds = $request->input('user_id', []); // Mendapatkan array user_id yang dicentang
             if($userIds != null){
-                $feed = upload_video::findOrFail($id);
+                $feed = UploadVideo::findOrFail($id);
                 foreach ($userIds as $userId) {
                     // insert data share
                     $data = new Share();
@@ -481,7 +482,7 @@ class VeedController extends Controller
                     $data->feed_id = $id;
                     $data->save();
                     // insert data notifikasi
-                    $notification = new notifications();
+                    $notification = new Notifications();
                     $notification->user_id = $userId;
                     $notification->notification_from = auth()->user()->id;
                     $notification->veed_id = $id;
@@ -511,7 +512,7 @@ class VeedController extends Controller
     public function balasRepliesCommentsFeeds(Request $request, string $pemilik_id, string $comment_id, string $parent_id = null)
     {
         if ($parent_id != null) {
-            $store = balasRepliesCommentsFeeds::create([
+            $store = BalasReplyCommentfeeds::create([
                 "pengirim_reply_comment_id" => auth()->user()->id,
                 "pemilik_reply_comment_id" => $pemilik_id,
                 "reply_comment_id" => $comment_id,
@@ -519,16 +520,16 @@ class VeedController extends Controller
                 "komentar" => $request->komentar
             ]);
         } else {
-            $store = balasRepliesCommentsFeeds::create([
+            $store = BalasReplyCommentfeeds::create([
                 "pengirim_reply_comment_id" => auth()->user()->id,
                 "pemilik_reply_comment_id" => $pemilik_id,
                 "reply_comment_id" => $comment_id,
                 "komentar" => $request->komentar
             ]);
         }
-        $data_reply = reply_comment_veed::findOrFail($comment_id);
+        $data_reply = ReplyCommentFeed::findOrFail($comment_id);
         if($data_reply->users_id != Auth::user()->id){
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $data_reply->users_id;
             $notification->notification_from = auth()->user()->id;
             $notification->veed_id = $data_reply->veed_id;
@@ -536,17 +537,17 @@ class VeedController extends Controller
             $notification->message = "Membalas komentar anda";
             $notification->save();
 
-            $let_route = notifications::findOrFail($notification->id);
+            $let_route = Notifications::findOrFail($notification->id);
             $let_route->route = "/status-baca/shared-feed/" . $notification->id;
             $let_route->save();
         }
-        $feed = upload_video::findOrFail($data_reply->veed_id);
+        $feed = UploadVideo::findOrFail($data_reply->veed_id);
         $comment_count = $feed->countCommentFeed();
-        $dataReplies = balasRepliesCommentsFeeds::findOrFail($store->id);
+        $dataReplies = BalasReplyCommentfeeds::findOrFail($store->id);
         $user_sender = User::findOrFail(auth()->user()->id);
         $user_penerima = User::findOrFail($pemilik_id);
         $feed_id = $store->reply_comment->veed_id;
-        $jumlah_like_veed = like_reply_comment_veed::query();
+        $jumlah_like_veed = LikeReplyCommentFeed::query();
         $time =  \Carbon\Carbon::parse($dataReplies->created_at)->locale('id_ID')->diffForHumans();
         return response()->json([
             "success" => true,

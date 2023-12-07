@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kursus;
+use App\Models\Kursus;
 use App\Models\UlasanKursus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use App\Models\notifications;
+use App\Models\Notifications;
 
 class UlasanRatingController extends Controller
 {
@@ -59,19 +59,19 @@ class UlasanRatingController extends Controller
       $jumlah_rate = UlasanKursus::where('course_id', $course)->where('rating', '!=', 'null')->count();
       $hasil = intval($rate / $jumlah_rate);
       $result = $rate / $jumlah_rate;
-      $edit_rating = kursus::find($course);
+      $edit_rating = Kursus::find($course);
       $edit_rating->rating = $hasil;
       $edit_rating->rating_asli = $result;
       $edit_rating->save();
       // create notification
-      $create_notification = notifications::create([
+      $create_notification = Notifications::create([
         'ulasan_id' => $ulasan->id,
         'user_id' => $ulasan->chef->id,
         'notification_from' => Auth::user()->id,
         'message' => 'Kursus anda telah diulas oleh murid anda!',
         'categories' => 'ulasan kursus',
       ]);
-      $update = notifications::find($create_notification->id);
+      $update = Notifications::find($create_notification->id);
       $update->route = '/status-baca/ulasan/'.$create_notification->id;
       $update->save();
       return redirect()->back()->with('success', 'Sukses memberikan ulasan pada kursus ini!');
@@ -95,13 +95,13 @@ class UlasanRatingController extends Controller
             "ulasan" => $request->ulasan,
         ]);
         // create notification
-        $notifikasi = notifications::create([
+        $notifikasi = Notifications::create([
           'user_id' => $user,
           'notification_from' => Auth::user()->id,
           'ulasan_id' => $ulasan->id,
           'message' => 'Ulasan anda telah dibalas oleh koki.',
         ]);
-        $update = notifications::findOrFail($notifikasi->id);
+        $update = Notifications::findOrFail($notifikasi->id);
         $update->route = '/status-baca/ulasan/'.$notifikasi->id;
         $update->save();
         return redirect()->back()->with('success', 'Sukses membalas ulasan!');

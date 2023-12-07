@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\complaint;
-use App\Models\favorite;
-use App\Models\notifications;
+use App\Models\Complaint;
+use App\Models\Favorite;
+use App\Models\Notifications;
 use App\Models\Reply;
-use App\Models\replyComplaint;
-use App\Models\comment_recipes;
-use App\Models\replyCommentRecipe;
+use App\Models\ReplyComplaint;
+use App\Models\CommentResipes;
+use App\Models\ReplyCommentRecipe;
 use App\Models\Report;
-use App\Models\reseps;
+use App\Models\Reseps;
 use App\Models\TopUpCategories;
-use App\Models\upload_video;
+use App\Models\UploadVideo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use App\Models\kursus;
-use App\Models\comment_veed;
-use App\Models\reply_comment_veed;
-use App\Models\balasRepliesCommentsFeeds;
+use App\Models\Kursus;
+use App\Models\CommentFeed;
+use App\Models\ReplyCommentFeed;
+use App\Models\BalasReplyCommentfeeds;
 use Str;
 use Illuminate\Support\Facades\Validator;
 class ReportController extends Controller
@@ -61,11 +61,11 @@ class ReportController extends Controller
         $unreadNotificationCount=[];
         $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $unreadNotificationCount = Notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
                 $statusProfile = $data->whereNotNull('profile_id')->count();
                 $statusResep = $data->whereNotNull('resep_id')->count();
                 $statusVeed = $data->whereNotNull('feed_id')->count();
@@ -83,11 +83,11 @@ class ReportController extends Controller
                 $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $show_resep = reseps::find(2);
+        $show_resep = Reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         return view('report.index',compact('statusCourse','reportCourse','verifed_count','categorytopup','allComments','reportVeed','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep','statusVeed'));
@@ -118,11 +118,11 @@ class ReportController extends Controller
         $unreadNotificationCount=[];
         $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $unreadNotificationCount = Notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
                 $statusProfile = $data->whereNotNull('profile_id')->count();
                 $statusResep = $data->whereNotNull('resep_id')->count();
                 $statusComplaint = $data->whereNotNull('complaint_id')->count();
@@ -130,11 +130,11 @@ class ReportController extends Controller
                 $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $show_resep = reseps::find(2);
+        $show_resep = Reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.keluhan',compact('categorytopup','allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
@@ -167,11 +167,11 @@ class ReportController extends Controller
         $unreadNotificationCount=[];
         $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $unreadNotificationCount = Notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
                 $statusProfile = $data->whereNotNull('profile_id')->count();
                 $statusResep = $data->whereNotNull('resep_id')->count();
                 $statusComplaint = $data->whereNotNull('complaint_id')->count();
@@ -179,11 +179,11 @@ class ReportController extends Controller
                 $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $show_resep = reseps::find(2);
+        $show_resep = Reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.komentar',compact('categorytoptup','allComments','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
@@ -218,11 +218,11 @@ class ReportController extends Controller
         $unreadNotificationCount=[];
         $categorytopup  =  TopUpCategories::all();
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status','belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-                $unreadNotificationCount = notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
+                $unreadNotificationCount = Notifications::where('user_id',auth()->user()->id)->where('status', 'belum')->count();
                 $statusProfile = $data->whereNotNull('profile_id')->count();
                 $statusResep = $data->whereNotNull('resep_id')->count();
                 $statusComplaint = $data->whereNotNull('complaint_id')->count();
@@ -230,11 +230,11 @@ class ReportController extends Controller
                 $userLog = 2;
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
             ->orderBy('created_at', 'desc')
             ->paginate(10);
         }
-        $show_resep = reseps::find(2);
+        $show_resep = Reseps::find(2);
         $title = "Data laporan pelanggaran panduan komunitas";
         return view('report.profil',compact('categorytopup','allReport','reportResep','reportComplaint','data', 'reportReply', 'reportProfile','title','show_resep', 'userLog','notification','unreadNotificationCount','userLogin','favorite','statusProfile','statusKomentar','statusComplaint','statusResep'));
 
@@ -250,7 +250,7 @@ class ReportController extends Controller
 
     public function store_comment_feed(Request $request,$comment_id,$reply_comment_feed_id,$reply_replies_comment_feed_id){
         if($comment_id != 0){
-            $comment = comment_veed::findOrFail($comment_id);
+            $comment = CommentFeed::findOrFail($comment_id);
             if(Auth::check()){
                 $report = new Report();
                 $report->comment_feed_id = $comment_id;
@@ -263,7 +263,7 @@ class ReportController extends Controller
             }
             return redirect()->back()->with('success','Laporan anda telah terkirim');
         }elseif($reply_comment_feed_id != 0){
-            $reply = reply_comment_veed::findOrFail($reply_comment_feed_id);
+            $reply = ReplyCommentFeed::findOrFail($reply_comment_feed_id);
             if(Auth::check()){
                 $report = new Report();
                 $report->reply_comment_feed_id = $reply->id;
@@ -276,7 +276,7 @@ class ReportController extends Controller
             }
             return redirect()->back()->with('success','Laporan anda telah terkirim');
         }elseif($reply_replies_comment_feed_id != 0){
-            $replies_reply = balasRepliesCommentsFeeds::findOrFail($reply_replies_comment_feed_id);
+            $replies_reply = BalasReplyCommentfeeds::findOrFail($reply_replies_comment_feed_id);
             if(Auth::check()){
                 $report = new Report();
                 $report->replies_reply_comment_feed_id = $replies_reply->id;
@@ -301,7 +301,7 @@ class ReportController extends Controller
         if($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         }
-        $resep = reseps::findOrFail($id);
+        $resep = Reseps::findOrFail($id);
         $report = new Report();
         if(Auth::check()){
             $report->resep_id = $resep->id;
@@ -321,7 +321,7 @@ class ReportController extends Controller
         ]);
     }
     public function storeVeed(Request $request,$id){
-        $feed = upload_video::findOrFail($id);
+        $feed = UploadVideo::findOrFail($id);
         if(Auth::check()){
             $report = new Report();
             $report->user_Id = $feed->users_id;
@@ -336,7 +336,7 @@ class ReportController extends Controller
     }
     public function storeReplyComment(Request $request,$id){
         if(Auth::check()){
-            $reply = replyComplaint::findOrFail($id);
+            $reply = ReplyComplaint::findOrFail($id);
             $report = new Report();
             $report->user_id = $reply->user_id;
             $report->user_id_sender = auth()->user()->id;
@@ -377,7 +377,7 @@ class ReportController extends Controller
     }
     public function storeComplaint(Request $request, $id){
         if(Auth::check()) { // Memeriksa apakah pengguna telah login
-        $complaint = complaint::findOrFail($id);
+        $complaint = Complaint::findOrFail($id);
         $report = new Report();
         $report->complaint_id = $complaint->id;
         $report->user_id = $complaint->user_id;
@@ -392,7 +392,7 @@ class ReportController extends Controller
     }
     public function store_comment_recipes(Request $request,$id){
         if(Auth::check()){
-            $comment = comment_recipes::findOrFail($id);
+            $comment = CommentResipes::findOrFail($id);
             $report = new Report();
             $report->user_id = $comment->users_id;
             $report->user_id_sender = auth()->user()->id;
@@ -406,7 +406,7 @@ class ReportController extends Controller
     }
     public function reply_comment_recipes(Request $request,$id){
         if(Auth::check()){
-            $comment = replyCommentRecipe::findOrFail($id);
+            $comment = ReplyCommentRecipe::findOrFail($id);
             $report = new Report();
             $report->user_id = $comment->users_id;
             $report->user_id_sender = auth()->user()->id;
@@ -452,7 +452,7 @@ class ReportController extends Controller
         $user->name = $nama_random;
         $user->save();
 
-        $notification = new notifications();
+        $notification = new Notifications();
         $notification->user_id = $report->user_id;
         $notification->notification_from = auth()->user()->id;
         $notification->random_name = $nama_random;
@@ -470,7 +470,7 @@ class ReportController extends Controller
         $report->user->increment('jumlah_pelanggaran');
         if($report->reply_id != null){
             $report->replies->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->reply_id_report = 1;
@@ -480,7 +480,7 @@ class ReportController extends Controller
         }
         if($report->complaint_id != null){
             $report->complaint->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->complaint_id_report = 1;
@@ -490,7 +490,7 @@ class ReportController extends Controller
         }
         if($report->resep_id != null){
             $report->resep->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->resep_id_report = 1;
@@ -500,7 +500,7 @@ class ReportController extends Controller
         }
         if($report->feed_id != null){
             $report->feed->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->veed_id_report = 1;
@@ -516,7 +516,7 @@ class ReportController extends Controller
                 $profile->save();
                 $report->delete();
 
-                $notification = new notifications();
+                $notification = new Notifications();
                 $notification->user_id = $report->profile_id;
                 $notification->notification_from = auth()->user()->id;
                 $notification->profile_id = $report->profile_id;
@@ -530,7 +530,7 @@ class ReportController extends Controller
         }
         if($report->comment_feed_id != null) {
             $report->comment_feed->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->categories = "block_comment";
@@ -541,7 +541,7 @@ class ReportController extends Controller
         }
         if($report->reply_comment_feed_id != null) {
             $report->reply_comment_feed->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->categories = "block_comment";
@@ -552,7 +552,7 @@ class ReportController extends Controller
         }
         if($report->replies_reply_comment_feed_id != null) {
             $report->replies_reply_comment_feed->delete();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $report->user_id;
             $notification->notification_from = auth()->user()->id;
             $notification->categories = "block_comment";
@@ -614,7 +614,7 @@ class ReportController extends Controller
         return redirect()->back()->with('success', 'Laporan telah dihapus');
     }
     public function storeCourse(Request $request,$id) {
-        $kursus = kursus::find($id);
+        $kursus = Kursus::find($id);
         $user_id = $kursus->user->id;
         Report::create([
             "course_id" => $id,

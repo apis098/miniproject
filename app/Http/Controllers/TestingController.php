@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\basic_tips;
 use App\Models\ChMessage;
-use App\Models\complaint;
-use App\Models\favorite;
-use App\Models\footer;
-use App\Models\kategori_makanan;
-use App\Models\notifications;
-use App\Models\reseps;
+use App\Models\Complaint;
+use App\Models\Favorite;
+use App\Models\Footer;
+use App\Models\KategoriMakanan;
+use App\Models\Notifications;
+use App\Models\Reseps;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,26 +47,26 @@ class TestingController extends Controller
     }
 
     public function notification(){
-        $data = notifications::where('user_id',auth()->user()->id)->get();
+        $data = Notifications::where('user_id',auth()->user()->id)->get();
         // $data = $notif->where('user_id',auth()->user()->id);
         $title = "testing notification";
         return view('testing.notification',compact('data','title'));
     }
     public function voice_note(){
-        $complaints = complaint::paginate(3, ['*'], 'complaint-page');
-        $reseps = reseps::query();
+        $complaints = Complaint::paginate(3, ['*'], 'complaint-page');
+        $reseps = Reseps::query();
         $real_reseps = $reseps->has("likes")->orderBy("likes", "desc")->take(3)->get();
         $real_reseps = $reseps->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->take(3)->get();
-        $resep = reseps::query();
+        $resep = Reseps::query();
         $favorite_resep = $resep->has('favorite')->orderBy('favorite_count', 'desc')->take(3)->get();
         $favorite_resep = $resep->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->get();
         $top_users = User::has("followers")->orderBy("followers", "desc")->take(4)->get();
-        $categories_foods = kategori_makanan::all();
-        $recipes = reseps::whereDate('created_at', today())->take(3)->get();
+        $categories_foods = KategoriMakanan::all();
+        $recipes = Reseps::whereDate('created_at', today())->take(3)->get();
         $userLogin = Auth::user();
-        $jumlah_resep = reseps::all()->count();
-        $foto_resep = reseps::take(5)->get();
-        $footer = footer::first();
+        $jumlah_resep = Reseps::all()->count();
+        $foto_resep = Reseps::take(5)->get();
+        $footer = Footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
@@ -75,14 +75,14 @@ class TestingController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
                 ->where('status','belum')
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
