@@ -286,6 +286,9 @@
             .navHandphones {
                 display: none;
             }
+            .search-1 {
+                width: 300px;
+            }
         }
     </style>
     <script>
