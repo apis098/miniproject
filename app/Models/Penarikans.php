@@ -19,10 +19,10 @@ class Penarikans extends Model
         return $this->belongsTo(User::class, "chef_id");
     }
     public function data() {
-        return $this->belongsTo(dataPribadiKoki::class, "data_id");
+        return $this->belongsTo(DataPribadiKoki::class, "data_id");
     }
     public function notification()
     {
-        return $this->hasMany(notificarions::class, "penarikan_id");
+        return $this->hasMany(Notifications::class, "penarikan_id");
     }
 }

@@ -24,13 +24,13 @@ class ReplyComplaint extends Model
     }
     public function likes_reply()
     {
-        return $this->hasMany(like_reply::class);
+        return $this->hasMany(LikeReply::class);
     }
     public function notifications()
     {
-        return $this->hasMany(notifications::class);
+        return $this->hasMany(Notifications::class);
     }
     public function tag_comment() {
-        return $this->hasMany(tagReplyComments::class);
+        return $this->hasMany(TagReplayComments::class);
     }
 }

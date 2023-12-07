@@ -20,21 +20,21 @@ class ReplyCommentFeed extends Model
         return $this->belongsTo(User::class, "users_id");
     }
     public function comment_veed() {
-        return $this->belongsTo(comment_veed::class, "comment_id");
+        return $this->belongsTo(CommentFeed::class, "comment_id");
     }
     public function veed() {
-        return $this->belongsTo(upload_video::class, "veed_id");
+        return $this->belongsTo(UploadVideo::class, "veed_id");
     }
     public function like_reply_comment_veed() {
-        return $this->hasMany(like_reply_comment_veed::class);
+        return $this->hasMany(LikeReplyCommentFeed::class);
     }
     public function checkLikedOrNo($user_id){
-        return like_reply_comment_veed::where('users_id',$user_id)
+        return LikeReplyCommentFeed::where('users_id',$user_id)
         ->where('reply_comment_veed_id',$this->id)
         ->exists();
     }
     public function balasRepliesCommentsFeeds()
     {
-        return $this->hasMany(balasRepliesCommentsFeeds::class, "reply_comment_id");
+        return $this->hasMany(BalasReplyCommentfeeds::class, "reply_comment_id");
     }
 }

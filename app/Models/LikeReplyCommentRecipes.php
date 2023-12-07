@@ -18,9 +18,9 @@ class LikeReplyCommentRecipes extends Model
         return $this->belongsTo(User::class, "users_id");
     }
     public function recipe() {
-        return $this->belongsTo(reseps::class, "recipe_id");
+        return $this->belongsTo(Reseps::class, "recipe_id");
     }
     public function comment() {
-        return $this->belongsTo(replyCommentRecipe::class, "comment_id");
+        return $this->belongsTo(ReplyCommentRecipe::class, "comment_id");
     }
 }

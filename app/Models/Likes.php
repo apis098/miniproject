@@ -12,7 +12,7 @@ class Likes extends Model
 
     public function complaint()
     {
-        return $this->belongsTo(complaint::class);
+        return $this->belongsTo(Complaint::class);
     }
     public function user()
     {
@@ -20,6 +20,6 @@ class Likes extends Model
     }
     public function resep()
     {
-        return $this->belongsTo(reseps::class, "resep_id");
+        return $this->belongsTo(Reseps::class, "resep_id");
     }
 }

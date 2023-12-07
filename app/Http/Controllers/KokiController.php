@@ -37,6 +37,7 @@ use App\Models\UlasanKursus;
 use App\Models\balasKomentar;
 use App\Models\dataPribadiKoki;
 use App\Models\penarikans;
+use App\Models\UploadVideo;
 
 class KokiController extends Controller
 {
@@ -166,12 +167,13 @@ class KokiController extends Controller
                 ->paginate(10);
         }
         $id_user = Auth::user()->id;
-        $feed_dibuat = upload_video::where("users_id", $id_user)->get();
-        $feed_disukai = upload_video::whereHas("like_veed", function ($query) use ($id_user) {
+        // $uuid_feed = upload_video::find("uuid");
+        $feed_dibuat = UploadVideo::where("users_id", $id_user)->get();
+        $feed_disukai = UploadVideo::whereHas("like_veed", function ($query) use ($id_user) {
             $query->where("users_id", $id_user);
         });
         $feed_disukai = $feed_disukai->get();
-        $feed_favorite = upload_video::whereHas("favorite", function ($query) use ($id_user) {
+        $feed_favorite = UploadVideo::whereHas("favorite", function ($query) use ($id_user) {
             $query->where("user_id_from", $id_user);
         });
         $feed_favorite = $feed_favorite->get();
@@ -181,6 +183,13 @@ class KokiController extends Controller
             "feed_favorite" => $feed_favorite
         ];
         return view('koki.feed', compact('categorytopup', 'data', 'userLogin', 'notification', 'favorite', 'unreadNotificationCount', 'messageCount'));
+    }
+
+    public function showFeed($uuid)
+    {
+        $uuid = upload_video::findOrFail($uuid);
+
+        return view('template.veed', compact('uuid'));
     }
 
     public function beranda(Request $request)

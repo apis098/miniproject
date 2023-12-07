@@ -28,35 +28,35 @@ class Reseps extends Model
     }
     public function bahan()
     {
-        return $this->hasMany(bahan_reseps::class, 'resep_id');
+        return $this->hasMany(BahanReseps::class, 'resep_id');
     }
     public function langkah()
     {
-        return $this->hasMany(langkah_reseps::class, 'resep_id');
+        return $this->hasMany(LangkahResep::class, 'resep_id');
     }
     public function alat()
     {
-        return $this->hasMany(toolsCooks::class, 'recipes_id');
+        return $this->hasMany(ToolsCooks::class, 'recipes_id');
     }
     public function notifications()
     {
-        return $this->hasMany(notifications::class);
+        return $this->hasMany(Notifications::class);
     }
     public function likes()
     {
-        return $this->hasMany(likes::class, 'resep_id');
+        return $this->hasMany(Likes::class, 'resep_id');
     }
     public function favorite()
     {
-        return $this->hasMany(favorite::class, 'resep_id');
+        return $this->hasMany(Favorite::class, 'resep_id');
     }
     public function kategori_resep()
     {
-        return $this->belongsToMany(kategori_makanan::class, "kategori_reseps", "reseps_id", "kategori_reseps_id");
+        return $this->belongsToMany(KategoriMakanan::class, "kategori_reseps", "reseps_id", "kategori_reseps_id");
     }
     public function hari_resep()
     {
-        return $this->belongsToMany(special_days::class, "hari_reseps", "reseps_id", "hari_khusus_id");
+        return $this->belongsToMany(SpecialDays::class, "hari_reseps", "reseps_id", "hari_khusus_id");
     }
     public function comment_user()
     {
@@ -67,12 +67,12 @@ class Reseps extends Model
     }
     public function comment_recipes()
     {
-        return $this->hasMany(comment_recipes::class,'recipes_id');
+        return $this->hasMany(CommentResipes::class,'recipes_id');
     }
     public function comment_count()
     {
-        $comment_count = comment_recipes::where('recipes_id',$this->id)->count();
-        $data_comment = comment_recipes::where('recipes_id',$this->id)->first();
+        $comment_count = CommentResipes::where('recipes_id',$this->id)->count();
+        $data_comment = CommentResipes::where('recipes_id',$this->id)->first();
         $reply_comment_count = 0 ;
         if($data_comment != null && $data_comment->reply_comment_recipe->count() > 0)
         {
@@ -81,25 +81,25 @@ class Reseps extends Model
         return $comment_count + $reply_comment_count;
     }
     public function like_comment_recipe() {
-        return $this->hasMany(like_comment_recipes::class);
+        return $this->hasMany(LikeCommentRecips::class);
     }
     public function reply_comment_recipe() {
-        return $this->hasMany(replyCommentRecipe::class, "recipe_id");
+        return $this->hasMany(ReplyCommentRecipe::class, "recipe_id");
     }
     public function like_reply_comment_recipe() {
         return $this->belongsTo(LikeReplyCommentRecipes::class, "recipe_id");
     }
     public function tag_comment() {
-        return $this->hasMany(tagReplyComments::class);
+        return $this->hasMany(TagReplayComments::class);
     }
     public function income_chefs()
     {
-        return $this->hasMany(income_chefs::class, "resep_id");
+        return $this->hasMany(IncomeChefs::class, "resep_id");
     }
     public function incomes()
     {
         if(Auth::check()){
-            return income_chefs::where('resep_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
+            return IncomeChefs::where('resep_id',$this->id)->where('chef_id',auth()->user()->id)->sum('pemasukan');
         }else{
             return false;
         }
