@@ -173,6 +173,7 @@ padding-left: 0;
     width: 100px;
   }
 }
+
 @media (min-width:993px) and (max-width:2000px){
   .start-element-mobile{
     display: none;

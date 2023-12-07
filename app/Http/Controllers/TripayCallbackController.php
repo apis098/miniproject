@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\history_premiums;
-use App\Models\notifications;
-use App\Models\premiums;
-use App\Models\transactionTopUp;
+use App\Models\HistoryPremium;
+use App\Models\Notifications;
+use App\Models\Premiums;
+use App\Models\TransactionTopUp;
 use App\Models\User;
 use DateInterval;
 use Illuminate\Http\Request;
@@ -52,7 +52,7 @@ class TripayCallbackController extends Controller
         $status = strtoupper((string) $data->status);
 
         if ($data->is_closed_payment === 1) {
-            $transaction = history_premiums::where('reference', $tripayReference)
+            $transaction = HistoryPremium::where('reference', $tripayReference)
                 ->where('status', '=', 'unpaid')
                 ->first();
 
@@ -82,10 +82,10 @@ class TripayCallbackController extends Controller
                         'message' => 'Unrecognized payment status',
                     ]);
             }
-            $history_transaksi = history_premiums::where("reference", $tripayReference)->first();
+            $history_transaksi = HistoryPremium::where("reference", $tripayReference)->first();
             $id_user = $history_transaksi->users_id;
             $premiums = $history_transaksi->premiums_id;
-            $premium = premiums::find($premiums);
+            $premium = Premiums::find($premiums);
             $saldo = $premium->harga_paket * 0.8;
             $saldo_pemasukan = $premium->harga_paket * 0.2;
             $admin = User::where('role', 'admin')->where('isSuperUser', 'admin_keuangan')->first();
@@ -117,7 +117,7 @@ class TripayCallbackController extends Controller
             $user->save();
 
             $admin = User::where('role','admin')->where('isSuperUser', 'admin_keuangan')->first();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $user->id;
             $notification->notification_from = $admin->id;
             $notification->top_up_id = $transaction->id;
@@ -158,7 +158,7 @@ class TripayCallbackController extends Controller
         $tripayReference = $data->reference;
         $status = strtoupper((string) $data->status);
         if ($data->is_closed_payment === 1) {
-            $transaction = transactionTopUp::where('reference', $tripayReference)
+            $transaction = TransactionTopUp::where('reference', $tripayReference)
                 ->where('status', '=', 'UNPAID')
                 ->first();
             if (!$transaction) {
@@ -188,7 +188,7 @@ class TripayCallbackController extends Controller
                     ]);
             }
 
-            $history_transaksi = transactionTopUp::where("reference", $tripayReference)->first();
+            $history_transaksi = TransactionTopUp::where("reference", $tripayReference)->first();
             $user = User::findOrFail($transaction->user_id);
             $saldo_lama = $user->saldo;
             $saldo_baru = $transaction->price;
@@ -196,7 +196,7 @@ class TripayCallbackController extends Controller
             $user->save();
 
             $admin = User::where('role','admin')->where('isSuperUser', 'admin_keuangan')->first();
-            $notification = new notifications();
+            $notification = new Notifications();
             $notification->user_id = $user->id;
             $notification->notification_from = $admin->id;
             $notification->top_up_id = $transaction->id;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\footer;
+use App\Models\Footer;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class FooterController extends Controller
      */
     public function index()
     {
-        $footer=footer::all();
+        $footer=Footer::all();
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         return view('admin.footer',compact('footer','verifed_count'));
     }
@@ -37,7 +37,7 @@ class FooterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(footer $footer)
+    public function show(Footer $footer)
     {
         //
     }
@@ -45,7 +45,7 @@ class FooterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(footer $footer)
+    public function edit(Footer $footer)
     {
         //
     }
@@ -53,7 +53,7 @@ class FooterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, footer $footer)
+    public function update(Request $request, Footer $footer)
     {
         $this->validate($request,[
          'facebook' => 'required',
@@ -83,7 +83,7 @@ class FooterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(footer $footer)
+    public function destroy(Footer $footer)
     {
         //
     }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\favorite;
-use App\Models\reseps;
-use App\Models\upload_video;
+use App\Models\Favorite;
+use App\Models\Reseps;
+use App\Models\UploadVideo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Gd\Shapes\EllipseShape;
@@ -14,9 +14,9 @@ class FavoriteController extends Controller
     public function store($id)
     {
         $user = Auth::user();
-        $resep = reseps::findOrFail($id);
+        $resep = Reseps::findOrFail($id);
         if ($user && !$resep->favorite()->where('user_id_from', auth()->user()->id)->exists()) {
-            $data = new favorite();
+            $data = new Favorite();
             $data->user_id_from = auth()->user()->id;
             $data->resep_id = $resep->id;
             $data->user_id = $resep->user_id;
@@ -44,9 +44,9 @@ class FavoriteController extends Controller
     }
     public function storeVeed($id){
         $user = Auth::user();
-        $feed = upload_video::findOrFail($id);
+        $feed = UploadVideo::findOrFail($id);
         if($user && !$feed->favorite()->where('user_id_from', auth()->user()->id)->exists()){
-            $favorite = new favorite();
+            $favorite = new Favorite();
             $favorite->user_id_from = auth()->user()->id;
             $favorite->user_id = $feed->users_id;
             $favorite->feed_id = $feed->id;
@@ -79,18 +79,18 @@ class FavoriteController extends Controller
         }
 
         // Hapus data berdasarkan ID yang diterima dari permintaan
-        $favorites = favorite::whereIn('id', $selectedIds)->get();
+        $favorites = Favorite::whereIn('id', $selectedIds)->get();
 
         // Iterasi melalui setiap data favorite untuk mengurangi favorite_count pada resep terkait
         foreach ($favorites as $favorite) {
-            $resep = reseps::find($favorite->resep_id);
+            $resep = Reseps::find($favorite->resep_id);
             if ($resep) {
                 $resep->decrement('favorite_count');
             }
         }
 
         // Hapus data favorite setelah mengurangi favorite_count pada resep terkait
-        favorite::whereIn('id', $selectedIds)->delete();
+        Favorite::whereIn('id', $selectedIds)->delete();
 
        return redirect()->back()->with('success','data favorite berhasil dihapus');
     }

@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\bahan_reseps;
+use App\Models\BahanReseps;
 use App\Models\ChMessage;
-use App\Models\favorite;
-use App\Models\followers;
-use App\Models\footer;
-use App\Models\langkah_reseps;
-use App\Models\reseps;
+use App\Models\Favorite;
+use App\Models\Followers;
+use App\Models\Footer;
+use App\Models\LangkahResep;
+use App\Models\Reseps;
 use App\Models\Share;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\notifications;
-use App\Models\special_days;
-use App\Models\toolsCooks;
+use App\Models\Notifications;
+use App\Models\SpecialDays;
+use App\Models\ToolsCooks;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use App\Models\kategori_makanan;
-use App\Models\hari_reseps;
-use App\Models\kategori_reseps;
+use App\Models\KategoriMakanan;
+use App\Models\HariReseps;
+use App\Models\KategoryResep;
 use App\Models\TopUpCategories;
 use App\Models\User;
 use Illuminate\Validation\Validator as ValidationValidator;
@@ -34,7 +34,7 @@ class ResepsController extends Controller
         $userLogin = Auth::user();
         $notification = [];
         $favorite = [];
-        $footer = footer::first();
+        $footer = Footer::first();
         $unreadNotificationCount = [];
         $categorytopup = TopUpCategories::all();
         $messageCount = [];
@@ -42,19 +42,19 @@ class ResepsController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
-        $categories_food = kategori_makanan::all();
-        $special_days = special_days::all();
+        $categories_food = KategoriMakanan::all();
+        $special_days = SpecialDays::all();
         return view("koki.resep", compact('categorytopup','messageCount', 'categories_food', 'footer', 'notification', 'special_days', 'userLogin', 'unreadNotificationCount', 'favorite'));
     }
 
@@ -135,7 +135,7 @@ class ResepsController extends Controller
                 $time = $request->lama_memasak;
             }
             $price = str_replace(['.', ','], '', $request->pengeluaran_memasak);
-            $create_recipe = reseps::create([
+            $create_recipe = Reseps::create([
                 "user_id" => Auth::user()->id,
                 "nama_resep" => $request->nama_resep,
                 "foto_resep" => $request->file('foto_resep')->store('photo-recipe', 'public'),
@@ -149,7 +149,7 @@ class ResepsController extends Controller
             if ($create_recipe) {
                 foreach ($request->bahan_resep as $number => $b) {
                     $bahan = strtolower(trim($b));
-                    bahan_reseps::create([
+                    BahanReseps::create([
                         "resep_id" => $create_recipe->id,
                         "nama_bahan" => $bahan,
                         "takaran_bahan" => $request->takaran_resep[$number]
@@ -157,13 +157,13 @@ class ResepsController extends Controller
                 }
                 foreach ($request->nama_alat as $nm => $a) {
                     $alat = strtolower(trim($a));
-                    toolsCooks::create([
+                    ToolsCooks::create([
                         "recipes_id" => $create_recipe->id,
                         "nama_alat" => $alat
                     ]);
                 }
                 foreach ($request->langkah_resep as $nomer => $langkah) {
-                    langkah_reseps::create([
+                    LangkahResep::create([
                         "resep_id" => $create_recipe->id,
                         "foto_langkah" => $request->file("foto_langkah_resep.$nomer")->store('photo-step', 'public'),
                         "judul_langkah" => $request->judul_langkah[$nomer],
@@ -172,7 +172,7 @@ class ResepsController extends Controller
                 }
                 if ($request->has('hari_khusus')) {
                     foreach ($request->hari_khusus as $key => $value) {
-                        hari_reseps::create([
+                        HariReseps::create([
                             "reseps_id" => $create_recipe->id,
                             "hari_khusus_id" => $value
                         ]);
@@ -180,14 +180,14 @@ class ResepsController extends Controller
                 }
                 if ($request->has('jenis_makanan')) {
                     foreach ($request->jenis_makanan as $no => $jenis) {
-                        kategori_reseps::create([
+                        KategoryResep::create([
                             "reseps_id" => $create_recipe->id,
                             "kategori_reseps_id" => $jenis
                         ]);
                     }
                 }
                 //notifikasi untuk follower
-                $followerIds = followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
+                $followerIds = Followers::where('user_id', auth()->user()->id)->pluck('follower_id')->toArray();
                 if ($followerIds != null) {
                     foreach ($followerIds as $followerId) {
                         $notification = new Notifications([
@@ -207,7 +207,7 @@ class ResepsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(reseps $reseps)
+    public function show(Reseps $reseps)
     {
         //
     }
@@ -217,11 +217,11 @@ class ResepsController extends Controller
      */
     public function edit(string $id)
     {
-        $edit_resep = reseps::find($id);
-        $special_days = special_days::all();
-        $categories_foods = kategori_makanan::all();
+        $edit_resep = Reseps::find($id);
+        $special_days = SpecialDays::all();
+        $categories_foods = KategoriMakanan::all();
         $userLogin = Auth::user();
-        $footer = footer::first();
+        $footer = Footer::first();
         $notification = [];
         $favorite = [];
         $unreadNotificationCount = [];
@@ -231,14 +231,14 @@ class ResepsController extends Controller
             $messageCount = ChMessage::where('to_id', auth()->user()->id)->where('seen', '0')->count();
         }
         if ($userLogin) {
-            $notification = notifications::where('user_id', auth()->user()->id)
+            $notification = Notifications::where('user_id', auth()->user()->id)
             ->where('status','belum')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-            $unreadNotificationCount = notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
+            $unreadNotificationCount = Notifications::where('user_id', auth()->user()->id)->where('status', 'belum')->count();
         }
         if ($userLogin) {
-            $favorite = favorite::where('user_id_from', auth()->user()->id)
+            $favorite = Favorite::where('user_id_from', auth()->user()->id)
                 ->orderBy('created_at', 'desc')
                 ->paginate(10);
         }
@@ -314,7 +314,7 @@ class ResepsController extends Controller
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         } else {
-            $update_resep = reseps::find($id);
+            $update_resep = Reseps::find($id);
             $update_resep->nama_resep = $request->nama_resep;
             if ($request->hasFile("foto_resep")) {
                 Storage::delete("public/" . $update_resep->foto_resep);
@@ -339,36 +339,36 @@ class ResepsController extends Controller
             if ($request->has('hari_khusus')) {
                 $update_resep->hari_resep()->sync($request->hari_khusus);
             } else {
-                hari_reseps::where("reseps_id", $update_resep->id)->delete();
+                HariReseps::where("reseps_id", $update_resep->id)->delete();
             }
             if ($request->has('jenis_makanan')) {
                 $update_resep->kategori_resep()->sync($request->jenis_makanan);
             } else {
-                kategori_reseps::where("reseps_id", $update_resep->id)->delete();
+                KategoryResep::where("reseps_id", $update_resep->id)->delete();
             }
             if ($request->has("hapus_bahan")) {
                 foreach ($request->hapus_bahan as $key => $value) {
                     $n = (int)$value;
-                    bahan_reseps::where("id", $n)->delete();
+                    BahanReseps::where("id", $n)->delete();
                 }
             }
             if ($request->has("hapus_alat")) {
                 foreach ($request->hapus_alat as $nms => $vv) {
                     $c = (int)$vv;
-                    toolsCooks::where("id", $c)->delete();
+                    ToolsCooks::where("id", $c)->delete();
                 }
             }
             if ($request->has("hapus_langkah")) {
                 foreach ($request->hapus_langkah as $key => $v) {
                     $d = (int)$v;
-                    $lr = langkah_reseps::where("id", $d)->first();
+                    $lr = LangkahResep::where("id", $d)->first();
                     Storage::delete("public/" . $lr->foto_langkah);
                     $lr->delete();
                 }
             }
             foreach ($request->bahan_resep as $i => $b) {
                 $bahan = strtolower(trim($b));
-                bahan_reseps::where('id', $request->id_bahan_resep[$i])->update([
+                BahanReseps::where('id', $request->id_bahan_resep[$i])->update([
                     "nama_bahan" => $bahan,
                     "takaran_bahan" => $request->takaran_resep[$i]
                 ]);
@@ -377,7 +377,7 @@ class ResepsController extends Controller
             if ($request->has("bahan_resep_tambahan")) {
                 foreach ($request->bahan_resep_tambahan as $number => $b) {
                     $bahan = strtolower(trim($b));
-                    bahan_reseps::create([
+                    BahanReseps::create([
                         "resep_id" => $update_resep->id,
                         "nama_bahan" => $bahan,
                         "takaran_bahan" => $request->takaran_resep_tambahan[$number]
@@ -386,20 +386,20 @@ class ResepsController extends Controller
             }
 
             foreach ($request->nama_alat as $in => $na) {
-                $alat = toolsCooks::where('id', $request->id_alat[$in])->first();
+                $alat = ToolsCooks::where('id', $request->id_alat[$in])->first();
                 $alat->nama_alat = $na;
                 $alat->save();
             }
             if ($request->has("nama_alat_tambahan")) {
                 foreach ($request->nama_alat_tambahan as $nam => $amn) {
-                    toolsCooks::create([
+                    ToolsCooks::create([
                         "recipes_id" => $update_resep->id,
                         "nama_alat" => $amn
                     ]);
                 }
             }
             foreach ($request->langkah_resep as $index => $langkah) {
-                $langkah_resep = langkah_reseps::where('id', $request->id_langkah_resep[$index])->first();
+                $langkah_resep = LangkahResep::where('id', $request->id_langkah_resep[$index])->first();
                 $langkah_resep->deskripsi_langkah = $langkah;
                 if ($request->hasFile("foto_langkah_resep.$index")) {
                     Storage::delete("public/" . $langkah_resep->foto_langkah);
@@ -408,14 +408,14 @@ class ResepsController extends Controller
                 $langkah_resep->save();
             }
             foreach ($request->judul_langkah as $bb => $jl) {
-                $langkah_resep2 = langkah_reseps::where('id', $request->id_langkah_resep[$bb])->first();
+                $langkah_resep2 = LangkahResep::where('id', $request->id_langkah_resep[$bb])->first();
                 $langkah_resep2->judul_langkah = $jl;
                 $langkah_resep2->save();
             }
             // menambahkan langkah2 jika ada
             if ($request->has("langkah_resep_tambahan")) {
                 foreach ($request->langkah_resep_tambahan as $nomer => $langkah) {
-                    langkah_reseps::create([
+                    LangkahResep::create([
                         "resep_id" => $update_resep->id,
                         "foto_langkah" => $request->file("foto_langkah_resep_tambahan.$nomer")->store('photo-step', 'public'),
                         "judul_langkah" => $request->judul_resep_tambahan[$nomer],
@@ -436,17 +436,17 @@ class ResepsController extends Controller
      */
     public function destroy(string $id)
     {
-        $resep = reseps::where('id', $id)->first();
+        $resep = Reseps::where('id', $id)->first();
         Storage::delete("public/" . $resep->foto_resep);
         foreach ($resep->langkah as $v) {
             Storage::delete("public/" . $v->foto_langkah);
         }
-        reseps::where("id", $id)->delete();
+        Reseps::where("id", $id)->delete();
         return redirect('koki/index')->with('success', 'Sukses! anda berhasil menghapus data resep.');
     }
     public function shareRecipe(Request $request){
         if(Auth::check()){
-            $resep = reseps::findOrFail($request->recipe_id);
+            $resep = Reseps::findOrFail($request->recipe_id);
             $user_id = $request->input('user_id', []);
             if($user_id != null){
                 foreach ($user_id as $share_to) {
@@ -456,7 +456,7 @@ class ResepsController extends Controller
                     $share->resep_id = $request->recipe_id;
                     $share->save();
 
-                    $notification = new notifications();
+                    $notification = new Notifications();
                     $notification->user_id = $share_to;
                     $notification->notification_from = auth()->user()->id;
                     $notification->resep_id = $request->recipe_id;
