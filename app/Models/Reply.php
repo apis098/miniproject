@@ -14,6 +14,9 @@ class Reply extends Model
     {
         return $this->belongsTo(Complaint::class);
     }
+    // public function userSender(){
+
+    // }
     public function notifications()
     {
         return $this->hasMany(Notifications::class);

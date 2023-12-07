@@ -353,7 +353,7 @@
                                     <div id="cardReplyComment{{ $item->id }}">
                                         <div class="user d-flex flex-row mb-2">
                                             @if ($item->userSender->foto)
-                                                <img src="{{ asset('storage/' . $item->userSenderfoto) }}" width="30"
+                                                <img src="{{ asset('storage/' . $item->userSender->foto) }}" width="30"
                                                     height="30" class="user-img rounded-circle mr-2">
                                             @else
                                                 <img src="{{ asset('images/default.jpg') }}" width="30"
