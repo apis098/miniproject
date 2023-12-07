@@ -250,9 +250,9 @@
                 <form action="{{ route('actionregister') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="">
-                        <div class="d-flex">
+                        <div class="row">
 
-                            <div class="card my-3 col-3">
+                            <div class="card my-3 col-lg-4 col-12 ">
                                 <div class="card-body text-center" style="margin-left:-4px" >
                                     <svg id="svg-placeholder" fill="none" xmlns="http://www.w3.org/2000/svg" class="mt-4 mb-4" width="50"
                                 height="55" viewBox="0 0 22 25">
@@ -265,10 +265,10 @@
                             </div>
 
 
-                            <div class="col-8 my-auto mx-1 ">
+                            <div class="col-lg-8 col-12 my-auto mx-1 ">
                                 {{-- <input name="profile_picture" id="profile_picture" class="input-file my-auto mx-1"
                                                          type="file" class="formFile"> --}}
-                                <div class="row ms-3"
+                                <div class="row ms-lg-3 mb-3 mb-lg-0"
                                     style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0.50px rgb(142, 136, 136) solid; height: 40x;">
 
                                     <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"

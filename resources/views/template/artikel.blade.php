@@ -1405,8 +1405,8 @@
                                     @csrf
                                     <div class="input-group mb-3">
                                         <input type="text" id="reply_comment{{ $row->id }}"
-                                            name="reply_comment" width="500px"
-                                            class="form-control form-control-sm rounded-3 me-5"
+                                            name="reply_comment" width=""
+                                            class="form-control form-control-sm rounded-3 me-lg-5"
                                             placeholder="Balas komentar dari {{ $row->user_pengirim->name }}....">
 
                                         <button type="submit" onclick="ButtonBalasanKomentarResep({{ $row->id }})"
@@ -1419,7 +1419,7 @@
                                     <div class="input-group mb-3">
                                         <input type="text" id="reply_comment"
                                             name="reply_comment{{ $row->id }}" width="500px"
-                                            class="form-control form-control-sm rounded-3 me-5"
+                                            class="form-control form-control-sm rounded-3 me-lg-5"
                                             placeholder="Balas komentar dari {{ $row->user_pengirim->name }}....">
 
                                         <button type="button" onclick="harusLogin()"
@@ -1596,7 +1596,7 @@
                                                 <div class="input-group mb-3">
                                                     <input type="text" id="reply_reply_comment{{ $item->id }}"
                                                         name="reply_comment" width="500px"
-                                                        class="form-control form-control-sm rounded-3 me-5"
+                                                        class="form-control form-control-sm rounded-3 me-lg-5"
                                                         placeholder="Balas komentar dari {{ $item->user->name }}....">
 
                                                     <button type="submit"
@@ -1610,7 +1610,7 @@
                                             <form>
                                                 <div class="input-group mb-3">
                                                     <input type="text" id="reply_comment" name="reply_comment"
-                                                        width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                        width="500px" class="form-control form-control-sm rounded-3 me-lg-5"
                                                         placeholder="Balas komentar dari {{ $item->user->name }}....">
 
                                                     <button type="button" onclick="harusLogin()"
@@ -1766,7 +1766,7 @@
                                 @csrf
                                 <div class="input-group mb-3">
                                     <input type="text" id="reply_comment" name="reply_comment" width="500px"
-                                        class="form-control form-control-sm rounded-3 me-5"
+                                        class="form-control form-control-sm rounded-3 me-lg-5"
                                         placeholder="Balas komentar dari ${response.pengirim}....">
 
                                     <button type="submit" onclick="ButtonBalasanKomentarResep(${response.id})"
@@ -1892,7 +1892,7 @@
                                             @csrf
                                             <div class="input-group mb-3">
                                                 <input type="text" id="reply_reply_comment${response.id}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                    width="500px" class="form-control form-control-sm rounded-3 me-lg-5"
                                                     placeholder="Balas komentar dari ${response.user_name}....">
 
                                                 <button type="submit" onclick="ButtonBalasanBalasanKomentarResep(${response.id})"
@@ -2013,7 +2013,7 @@
                                             @csrf
                                             <div class="input-group mb-3">
                                                 <input type="text" id="reply_reply_comment${response.id}" name="reply_comment"
-                                                    width="500px" class="form-control form-control-sm rounded-3 me-5"
+                                                    width="500px" class="form-control form-control-sm rounded-3 me-lg-5"
                                                     placeholder="Balas komentar dari ${response.user_name}....">
 
                                                 <button type="submit" onclick="ButtonBalasanBalasanKomentarResep(${response.id})"

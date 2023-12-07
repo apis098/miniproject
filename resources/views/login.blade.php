@@ -21,7 +21,7 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: row-reverse;
+            flex-direction: column;
         }
 
         .eye {
@@ -40,10 +40,9 @@
         }
 
         .register-container {
-            flex: 1;
-            display: flex;
-            flex-direction:;
-            align-items: center;
+            /* flex:0;
+            display: flex; */
+            flex-direction:row;
             justify-content: center;
             height: 100%;
             /* width: 100%; */
@@ -144,8 +143,8 @@
 
           .content-container{
             text-align:center;
-            margin-top:40%;
-            width: 50%
+            margin-top:5%;
+            width: 100%
 
 
             }
@@ -153,37 +152,53 @@
                 display: none
 
         }
+        .mobileImage{
+            display: flex;
+            justify-content: center;
+        }
+        .TitleTwo{
+            display: none;
+        }
 
         }
 
-        @media only screen and (min-width: 601px) and (max-width: 992px) {
-    /* Aturan CSS untuk perangkat berukuran sedang di sini */
-    body {
-        font-size: 16px; /* Mengubah ukuran font */
-    }
-    .content-container{
-        text-align:center;
-        margin-top:23%;
-        width:50%
 
-    }
-    .bg-image{
-    display:none;
+    @media only screen and (min-width: 601px) and (max-width: 992px) {
+        /* Aturan CSS untuk perangkat berukuran sedang di sini */
+        body {
+            font-size: 16px; /* Mengubah ukuran font */
+        }
+        .content-container{
+            text-align:center;
+            margin-top:23%;
+            width:100%
 
-    }
+        }
+        .bg-image{
+        display:none;
+
+        }
+        .mobileImage{
+            display: flex;
+            justify-content: center;
+        }
+        .TitleTwo{
+            display: none;
+        }
 
 
-    .frame-47 {
-        display: block;
+        .frame-47 {
+            display: block;
 
-    }
+        }
 
     }
 
      @media only screen and (min-width: 992px) {
     /* Aturan CSS untuk perangkat berukuran besar di sini */
     .register-container {
-        width: 50%; /* Mengurangi lebar container */
+        width: 100%; /* Mengurangi lebar container */
+        display: flex;
     }
     .content-container{
         margin-top:10px;
@@ -200,6 +215,15 @@
         /* top: 14%;
         left: 12%; */
 
+    }
+    .TitleOne{
+        display: none;
+    }
+    .TitleTwo{
+        display: block;
+    }
+    .mobileImage{
+        display: none;
     }
 
     }
@@ -232,20 +256,34 @@
 @endif
 
 <body>
-    <div class="register-container">
+    <div class="register-container" style="">
         <div class="bg-image">
             <div class="humma-cook"> <i>HummaCook</i></div>
             <img src="{{ asset('images/frame 47.png') }}" class="frame-47" alt="" srcset="">
         </div>
-        <div class="content-container mx-5">
+        <div class="p-3 mb-auto TitleOne">
             <div
                 style="color: black; font-size: 28px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">
                 Masuk</div>
+                <br>
             <div
                 style="width: 100%; color: black; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:3%">
-                Selamat datang di <i style="font-family:Dancing Script; font-size: 18px">Hummacook</i> </div>
-            <div class=" mb-3 ">
+                Masuk Dengan Mengunakan Email Dan Password</div>
+        </div>
+        <div class="mobileImage  " >
+            <img src="{{asset('images/logoLogin.png')}}" alt="" srcset="">
+        </div>
+        <div class="content-container mx-lg-5 my-lg-auto mt-auto" style="height: full">
+            <div class="p-3 mb-auto TitleTwo ">
+                <div
+                    style="color: black; font-size: 28px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">
+                    Masuk</div>
 
+                <div
+                    style="width: 100%; color: black; font-size: 15px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word;margin-bottom:3%">
+                    Masuk Dengan Mengunakan Email Dan Password</div>
+            </div>
+            <div class=" mb-3 ">
                 <form action="{{ route('actionlogin') }}" method="post" id="myForm" onsubmit="return validateForm()" >
                     @csrf
                     <!-- Email input -->
@@ -260,16 +298,17 @@
                         <a id="mybutton" onclick="change()"><span id="mybutton" class="left-pan"><i class="fa-solid fa-eye"></i></span></a>
                     </div>
                     <!-- Register buttons -->
-                    <p>Belum punya akun? <a style="color: #f7941e;" href="{{ route('register') }}">Register</a> </p>
-                    <!-- Submit button -->
-                    <button type="submit" class="button-buat rounded-4"> <b style="color:white">Login</b></button>
 
-                <div class="form-check my-3">
-                    <input class="form-check-input" type="checkbox" value="" name="kebijakanPrivasi" id="kebijakanPrivasi">
-                    <label type="button" class="form-check-label"data-bs-toggle="modal" data-bs-target="#exampleModal">
-                      Kebijakan Privasi
-                    </label>
-                  </div>
+                    <!-- Submit button -->
+                    <div class="d-flex gap-2 pl-2 mt-3 mb-2">
+                        <input class="form-check-input" type="checkbox" value="" name="kebijakanPrivasi" id="kebijakanPrivasi">
+                        <label type="button" class="form-check-label"data-bs-toggle="modal" data-bs-target="#exampleModal">
+                          Kebijakan Privasi
+                        </label>
+                    </div>
+                    <button type="submit" class="button-buat rounded-4 p-2"> <b style="color:white">Login</b></button>
+                    <p class="mt-2">Belum punya akun? <a style="color: #f7941e;" href="{{ route('register') }}">Register</a> </p>
+
                   <div id="kebijakanPrivasiError" style="color: red;"></div>
             </div>
         </div>
