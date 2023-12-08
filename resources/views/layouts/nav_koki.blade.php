@@ -77,8 +77,7 @@
         h2 {
             font-family: 'Dancing Script', cursive;
         }
-    </style>
-    <style>
+        
         .scale {
             box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
             transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
@@ -1125,7 +1124,7 @@
                         </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.recipe') }}"
-                                class="nav-link mx-3 {{ request()->is('koki/view-recipe') ? 'activet text-orange' : 'text-white' }}"
+                                class="nav-link mx-3 {{ request()->is('koki/views-recipe') ? 'activet text-orange' : 'text-white' }}"
                                 style="width: 12em">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     viewBox="0 0 14 14">
