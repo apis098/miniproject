@@ -281,7 +281,7 @@
     </style>
     <section class="container-section">
         <div class="row mt-4  align-item-center">
-            <div class="col-md-3 col-lg-2 mt-3" style="width: 197px">
+            <div class="col-md-3 col-lg-2 mt-3" style="max-width: 197px">
                 @if ($userLog == 2)
                     @if ($show_resep->User->id != Auth::user()->id)
                         <button type="submit" style="position: absolute;  background-color:#F7941E; "
