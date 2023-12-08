@@ -550,7 +550,7 @@
                         @endif
                         <div class="d-flex justify-content-evenly my-4  gap-1 " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class=" card col-lg-4  col-xl-3  border-black col-md-4 col-12 "
+                                <div class=" card col-lg-3  col-xl-3  border-black col-md-4 col-12 "
                                     style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
                                     <div class="mx-auto">
                                         <div class="col-12 card-header mx-auto  text-center" style="border: none; max-height:120px; padding:10px 0px;">
