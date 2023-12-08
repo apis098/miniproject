@@ -1240,7 +1240,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="user d-flex flex-row">
                             @if ($row->foto)
-                                <img src="{{ asset('storage/' . $row->user->foto) }}" width="30" height="30"
+                                <img src="{{ asset('storage/' . $row->user_pengirim->foto) }}" width="30" height="30"
                                     class="user-img rounded-circle mr-2">
                             @else
                                 <img src="{{ asset('images/default.jpg') }}" width="30" height="30"
@@ -1249,7 +1249,7 @@
                             @if (Auth::check() && Auth::user()->role == 'admin')
                                 <span>
                                     <div class="font-weight-semibold ms-1 me-2">
-                                        <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
+                                        <small class="font-weight-bolder me-2">{{ $row->user_pengirim->name }}</small>
                                         <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg" width="15"
                                             height="15" viewBox="0 0 24 24">
                                             <path fill="currentColor"

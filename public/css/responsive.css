@@ -80,6 +80,7 @@ padding-left: 0;
   .slider_section .detail-box h1 {
     font-size: 3rem;
   }
+
 }
 
 @media (min-width: 1200px) {
@@ -173,7 +174,11 @@ padding-left: 0;
     width: 100px;
   }
 }
-
+@media screen and (max-width:426px) {
+  .header-text{
+    font-size: 20px;
+  }
+}
 @media (min-width:993px) and (max-width:2000px){
   .start-element-mobile{
     display: none;
