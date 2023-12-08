@@ -19,7 +19,7 @@
     </style>
     <div class="ms-5 me-5">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12 col-md-4">
                 <div class="card my-5 border border-dark sus susi" style="border-radius:25px;">
                     <div class="text-center mt-5">
                         <div style="position: relative; display: inline-block;">

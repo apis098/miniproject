@@ -5,7 +5,9 @@ body {
   background-color: #ffffff;
   width: auto;
 }
-
+.nav_container{
+  width: 100%;
+}
 .layout_padding {
   padding: 90px 0;
 }

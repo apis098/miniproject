@@ -66,6 +66,13 @@
             background-size: cover;
         }
 
+        .ellipsis {
+        white-space: nowrap; /* Prevents text from wrapping */
+        overflow: hidden; /* Hides the overflowing content */
+        text-overflow: ellipsis; /* Shows an ellipsis (...) to indicate truncated text */
+        width: 100px; /* Adjust this width to fit your layout */
+        }
+
         h1,
         h2 {
             font-family: 'Dancing Script', cursive;
@@ -152,6 +159,17 @@
         .dropdown-item:active,
         .dropdown-item:focus {
             background: white;
+        }
+        .main-sidebar {
+            height: 100%;
+            overflow-y: hidden;
+            z-index: 1038;
+        }
+        @media (min-width: 1000px) {
+            .padding {
+                padding-left: 2%;
+                padding-right: 2%;
+            }
         }
     </style>
 
@@ -259,7 +277,7 @@
                                                         style="max-width:35px">
                                                 </a>
                                             @endif
-                                            <p class="mt-2 text-orange">
+                                            <p class="mt-2 text-orange ellipsis">
                                                 {{ $row->sender->name }}</p>
                                             @if ($row->reply_id != null && $row->complaint_id != null && $row->like_id == null)
                                                 <form action="{{ route('replies.notification', $row->id) }}"
@@ -815,7 +833,7 @@
                                                 style="max-width:40px">
                                         @endif
                                     </a>
-                                    <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
+                                    <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b></p>
                                 </div>
                                 <div class="dropdown-divider"></div>
                                 <a href="/koki/index" class="dropdown-item text-orange itemdropdown" style="width: 230px">
@@ -895,7 +913,7 @@
                                         style="max-width:40px">
                                 @endif
                             </a>
-                            <p class="mt-2 text-orange"><b>{{ auth()->user()->name }}</b></p>
+                            <p class="mt-2 text-orange ellipsis"><b>{{ auth()->user()->name }}</b></p>
                         </div>
                         <div class="dropdown-divider">
                             <a href="/admin/dashboard" class="dropdown-item text-orange" style="width: 230px">
@@ -950,8 +968,9 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
+
         <aside id="sidebarContent" class="main-sidebar sidebar-dark-primary elevation-4"
-            style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px">
+            style="width: 260px; background-color: #F7941E; border-bottom-right-radius: 30px; border-top-right-radius: 30px; height: 100%;">
             <!-- Brand Logo -->
             <div class="mt-3">
                 <a class=" t" href="{{ route('home') }}" style="font-size: 40px;">Hummacook</a>
@@ -962,7 +981,7 @@
                 <nav class="mt-1">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.beranda') }}"
                                 class="nav-link mx-3  {{ request()->routeIs('koki.beranda') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
@@ -976,13 +995,14 @@
                                     Beranda
                                 </p>
                             </a>
-                        </li>
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        </li> -->
+
+                         <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.feed') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/feed') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
-                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="28"
-                                    height="28" viewBox="0 0 20 20">
+                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 20 20">
                                     <path fill="currentColor"
                                         d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm6 0v12h8V4H6zM2 5v2h2V5H2zm0 4v2h2V9H2zm0 4v2h2v-2H2zm14-8v2h2V5h-2zm0 4v2h2V9h-2zm0 4v2h2v-2h-2zM8 7l5 3l-5 3V7z" />
                                 </svg>
@@ -990,9 +1010,9 @@
                                     Feed
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.recipe') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/views-recipe') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
@@ -1006,13 +1026,13 @@
                                     Resep
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.kursus') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/kursus') ? 'activet text-orange' : 'text-white' }} {{ request()->is('koki/kursus-content') ? 'activet text-orange' : 'text-white' }} {{ request()->is('koki/user') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                     viewBox="0 0 20 20">
                                     <path fill="currentColor"
                                         d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z" />
@@ -1021,14 +1041,14 @@
                                     Kursus
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.profilage') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/profilage') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
-                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="28"
-                                    height="28" viewBox="0 0 24 24">
+                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 24 24">
                                     <path fill="currentColor"
                                         d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
                                 </svg>
@@ -1036,15 +1056,14 @@
                                     Profil
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
-
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.income') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/income-koki') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
-                                <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="25"
-                                    height="25" viewBox="0 0 14 14">
+                                <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 14 14">
                                     <g fill="none" stroke="currentColor" stroke-linecap="round"
                                         stroke-linejoin="round">
                                         <path
@@ -1057,18 +1076,130 @@
                                     Penghasilan
                                 </p>
                             </a>
-                        </li>
+                        </li> -->
 
-                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                        <!-- <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.diskusi') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/diskusi') ? 'activet text-orange' : 'text-white' }}"
                                 style="width:13em">
-                                <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="25"
-                                    height="25" viewBox="0 0 20 20">
+                                <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 20 20">
                                     <path fill="currentColor"
                                         d="m10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z" />
                                 </svg>
                                 <p style="margin-left: 12px; font-size: 20px; font-family: Poppins; font-weight: 500;">
+                                    Diskusi
+                                </p>
+                            </a>
+                        </li> -->
+                         
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('koki.beranda') }}"
+                                class="nav-link mx-3 {{ request()->routeIs('koki.beranda') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="m221.56 100.85l-79.95-75.47l-.16-.15a19.93 19.93 0 0 0-26.91 0l-.17.15l-79.93 75.47a20.07 20.07 0 0 0-6.44 14.7V208a20 20 0 0 0 20 20h48a20 20 0 0 0 20-20v-44h24v44a20 20 0 0 0 20 20h48a20 20 0 0 0 20-20v-92.45a20.07 20.07 0 0 0-6.44-14.7ZM204 204h-40v-44a20 20 0 0 0-20-20h-32a20 20 0 0 0-20 20v44H52v-86.72l76-71.75l76 71.75Z" />
+                            </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
+                                    Beranda
+                                </p>
+                            </a>
+                        </li>                        
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('koki.feed') }}"
+                                class="nav-link mx-3 {{ request()->is('koki/feed') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="M0 4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm6 0v12h8V4H6zM2 5v2h2V5H2zm0 4v2h2V9H2zm0 4v2h2v-2H2zm14-8v2h2V5h-2zm0 4v2h2V9h-2zm0 4v2h2v-2h-2zM8 7l5 3l-5 3V7z" />
+                                </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
+                                    Feed
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('koki.recipe') }}"
+                                class="nav-link mx-3 {{ request()->is('koki/view-recipe') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    viewBox="0 0 14 14">
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M7 3h0a6.5 6.5 0 0 1 6.5 6.5v0a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1v0A6.5 6.5 0 0 1 7 3Zm0 0V1.5m-6.5 11h13" />
+                                </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
+                                    Resep
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('koki.kursus') }}"
+                                class="nav-link mx-3 {{ request()->is('koki/kursus') ? 'activet text-orange' : 'text-white' }} {{ request()->is('koki/kursus-content') ? 'activet text-orange' : 'text-white' }} {{ request()->is('koki/user') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                    viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="M7 17H2a2 2 0 0 1-2-2V2C0 .9.9 0 2 0h16a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-5l4 2v1H3v-1l4-2zM2 2v11h16V2H2z" />
+                                </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
+                                    Kursus
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('koki.profilage') }}"
+                                class="nav-link mx-3 {{ request()->is('koki/profilage') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg style="vertical-align: top;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M12 11q.825 0 1.413-.588Q14 9.825 14 9t-.587-1.413Q12.825 7 12 7q-.825 0-1.412.587Q10 8.175 10 9q0 .825.588 1.412Q11.175 11 12 11Zm0 2q-1.65 0-2.825-1.175Q8 10.65 8 9q0-1.65 1.175-2.825Q10.35 5 12 5q1.65 0 2.825 1.175Q16 7.35 16 9q0 1.65-1.175 2.825Q13.65 13 12 13Zm0 11q-2.475 0-4.662-.938q-2.188-.937-3.825-2.574Q1.875 18.85.938 16.663Q0 14.475 0 12t.938-4.663q.937-2.187 2.575-3.825Q5.15 1.875 7.338.938Q9.525 0 12 0t4.663.938q2.187.937 3.825 2.574q1.637 1.638 2.574 3.825Q24 9.525 24 12t-.938 4.663q-.937 2.187-2.574 3.825q-1.638 1.637-3.825 2.574Q14.475 24 12 24Zm0-2q1.8 0 3.375-.575T18.25 19.8q-.825-.925-2.425-1.612q-1.6-.688-3.825-.688t-3.825.688q-1.6.687-2.425 1.612q1.3 1.05 2.875 1.625T12 22Zm-7.7-3.6q1.2-1.3 3.225-2.1q2.025-.8 4.475-.8q2.45 0 4.463.8q2.012.8 3.212 2.1q1.1-1.325 1.713-2.95Q22 13.825 22 12q0-2.075-.788-3.887q-.787-1.813-2.15-3.175q-1.362-1.363-3.175-2.151Q14.075 2 12 2q-2.05 0-3.875.787q-1.825.788-3.187 2.151Q3.575 6.3 2.788 8.113Q2 9.925 2 12q0 1.825.6 3.463q.6 1.637 1.7 2.937Z" />
+                                </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
+                                    Profil
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
+                            <a href="{{ route('koki.income') }}"
+                                class="nav-link mx-3 pr-1 {{ request()->is('koki/income-koki') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 14 14">
+                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M7 10.02v1.01m0-6.02v.94m0 7.54c3.5 0 6-1.24 6-4c0-3-1.5-5-4.5-6.5l1.18-1.52a.66.66 0 0 0-.56-1H4.88a.66.66 0 0 0-.56 1L5.5 3C2.5 4.51 1 6.51 1 9.51c0 2.74 2.5 3.98 6 3.98Z" />
+                                        <path
+                                            d="M6 9.56A1.24 1.24 0 0 0 7 10a1.12 1.12 0 0 0 1.19-1A1.12 1.12 0 0 0 7 8a1.12 1.12 0 0 1-1.19-1A1.11 1.11 0 0 1 7 6a1.26 1.26 0 0 1 1 .4" />
+                                    </g>
+                                </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
+                                    Penghasilan
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em; margin-bottom: 2em">
+                            <a href="{{ route('koki.diskusi') }}"
+                                class="nav-link mx-3 {{ request()->is('koki/diskusi') ? 'activet text-orange' : 'text-white' }}"
+                                style="width: 12em">
+                                <svg style="text-align: center;" xmlns="http://www.w3.org/2000/svg" width="32"
+                                    height="32" viewBox="0 0 20 20">
+                                    <path fill="currentColor"
+                                        d="m10 15l-4 4v-4H2a2 2 0 0 1-2-2V3c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-8zM5 7v2h2V7H5zm4 0v2h2V7H9zm4 0v2h2V7h-2z" />
+                                </svg>
+                                <p
+                                style="margin-left: 10px; font-size: 20px; font-family: Poppins; font-weight: 500; ">
                                     Diskusi
                                 </p>
                             </a>
@@ -1086,7 +1217,7 @@
                     <div class="d-flex">
                         <div class="col-11">
                             <h5 class="modal-title ml-1 mt-3"
-                                style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                style="color: black; margin-right: -25px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                                 Top Up</h5>
                         </div>
                         <div class="col-1">
@@ -1100,36 +1231,37 @@
                     <form action="{{ route('payments.method.get') }}" method="POST">
                         @csrf
                         <div class="modal-body">
-                            @foreach ($categorytopup as $topup)
-                                <div class="col-lg-4 my-3">
-                                    <label for="inputanKecil{{ $loop->iteration }}"
-                                        id="topUp{{ $loop->iteration }}" class="card border-2 scale cardTopup"
-                                        data-card-selected="false"
-                                        style="height: 85px; border-radius: 15px; border: 1.5px black solid; overflow: hidden;">
-                                        <input type="radio" id="inputanKecil{{ $loop->iteration }}"
-                                            style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
-                                        <div class="d-flex flex-row">
-                                            <a href="" class="text-start pl-2 pt-2"
-                                                style="color: black; font-size: 20px; font-family: Poppins;">
-                                                {{ $topup->name }} <br>
-                                                <small>
-                                                    Rp. {{ number_format($topup->price, 2, ',', '.') }}
-                                                </small>
-                                            </a>
-
-                                            <img src="{{ asset('images/' . $topup->foto) }}" class="ml-auto"
-                                                width="100px" height="92px;" alt="">
-                                        </div>
-                                    </label>
+                        @foreach ($categorytopup as $topup)
+                            <center>
+                            <label for="inputanKecil{{ $loop->iteration }}"
+                                id="topUp{{ $loop->iteration }}" class="card border-2 scale cardTopup"
+                                data-card-selected="false"
+                                style="height: 85px; border-radius: 15px; border: 1.5px black solid; overflow: hidden;">
+                                <input type="radio" id="inputanKecil{{ $loop->iteration }}"
+                                    style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
+                                <div class="d-flex flex-row">
+                                    <a href="#" class="text-start pl-2 pt-2"
+                                    style="color: black; font-size: 20px; font-family: Poppins;"
+                                    id="textOrange{{ $loop->iteration }}">
+                                        {{ $topup->name }} <br>
+                                        <small id="textOrangePrice{{ $loop->iteration }}">
+                                            Rp. {{ number_format($topup->price, 2, ',', '.') }}
+                                        </small>
+                                    </a>
+                                    <img src="{{ asset('images/' . $topup->foto) }}" class="ml-auto"
+                                        width="100px" height="92px;" alt="">
                                 </div>
-                            @endforeach
+                            </label>
+                            </center>
+                        @endforeach
 
-                            <div class="col-lg-3 my-3">
+
+                            <center>
                                 <div id="topUpLainya" class="card border-2 scale cardTopup" id="card"
                                     data-card-selected="false"
                                     style="height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;">
                                     <div class="d-flex flex-row">
-                                        <a href="" class="text-start pl-2 pt-2"
+                                        <a href="#" class="text-start pl-2 pt-2"
                                             style="color: black; font-size:10px; font-family:Poppins;">
                                             <p id="anotherText"
                                                 style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
@@ -1145,15 +1277,23 @@
                                             height="92px;" alt="">
                                     </div>
                                 </div>
-                            </div>
-
-                            <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
+                            </center>
+                            
+                            <center>
+                            <div id="inputanLainya" style="display: none;" class="padding mb-3">
                                 <input type="number" id="inputan" name="inputanLainya"
                                     class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;"
                                     placeholder="Masukkan nominal lainya...">
                             </div>
+                            </center>
                         </div>
                         <script>
+                            const textOrange1 = document.getElementById('textOrange1');
+                            const textOrange2 = document.getElementById('textOrange2');
+                            const textOrange3 = document.getElementById('textOrange3');
+                            const textOrangePrice1 = document.getElementById('textOrangePrice1');
+                            const textOrangePrice2 = document.getElementById('textOrangePrice2');
+                            const textOrangePrice3 = document.getElementById('textOrangePrice3');
                             const topUpKecil = document.getElementById('topUp1');
                             const topUpSedang = document.getElementById('topUp2');
                             const topUpBesar = document.getElementById('topUp3');
@@ -1162,49 +1302,83 @@
                             const inputElement = document.getElementById("inputan");
                             const displayElement = document.getElementById("displayInput");
                             const anotherText = document.getElementById("anotherText");
+
                             topUpKecil.addEventListener('click', function() {
                                 topUpKecil.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "#F7941E";
+                                textOrangePrice1.style.color = "#F7941E";
+                                textOrange2.style.color = "black";
+                                textOrangePrice2.style.color = "black";
+                                textOrange3.style.color = "black";
+                                textOrangePrice3.style.color = "black";
                                 topUpBesar.style.borderColor = "black";
                                 topUpSedang.style.borderColor = "black";
                                 topUpLainya.style.borderColor = "black";
                                 inputanLainya.style.display = "none";
+                                topUpSedang.style.color = "black";
+                                topUpBesar.style.color = "black";
+                                topUpLainya.style.color = "black";
+                                anotherText.style.color = "black";
+                                displayElement.style.color = "black";
                             });
+
                             topUpSedang.addEventListener("click", function() {
                                 topUpSedang.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "black";
+                                textOrangePrice1.style.color = "black";
+                                textOrange2.style.color = "#F7941E";
+                                textOrangePrice2.style.color = "#F7941E";
+                                textOrange3.style.color = "black";
+                                textOrangePrice3.style.color = "black";
                                 topUpKecil.style.borderColor = "black";
                                 topUpBesar.style.borderColor = "black";
                                 topUpLainya.style.borderColor = "black";
                                 inputanLainya.style.display = "none";
+                                topUpKecil.style.color = "black";
+                                topUpBesar.style.color = "black";
+                                topUpLainya.style.color = "black";
+                                anotherText.style.color = "black";
+                                displayElement.style.color = "black";
                             });
+
                             topUpBesar.addEventListener("click", function() {
                                 topUpBesar.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "black";
+                                textOrangePrice1.style.color = "black";
+                                textOrange2.style.color = "black";
+                                textOrangePrice2.style.color = "black";
+                                textOrange3.style.color = "#F7941E";
+                                textOrangePrice3.style.color = "#F7941E";
                                 topUpKecil.style.borderColor = "black";
                                 topUpSedang.style.borderColor = "black";
                                 topUpLainya.style.borderColor = "black";
                                 inputanLainya.style.display = "none";
+                                topUpKecil.style.color = "black";
+                                topUpSedang.style.color = "black";
+                                topUpLainya.style.color = "black";
+                                anotherText.style.color = "black";
+                                displayElement.style.color = "black";
                             });
+
                             topUpLainya.addEventListener('click', function() {
                                 topUpLainya.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "black";
+                                textOrangePrice1.style.color = "black";
+                                textOrange2.style.color = "black";
+                                textOrangePrice2.style.color = "black";
+                                textOrange3.style.color = "black";
+                                textOrangePrice3.style.color = "black";
+                                displayElement.style.color = "#F7941E";
                                 topUpKecil.style.borderColor = "black";
                                 topUpSedang.style.borderColor = "black";
                                 topUpBesar.style.borderColor = "black";
                                 inputanLainya.style.display = "block";
+                                topUpKecil.style.color = "black";
+                                topUpBesar.style.color = "black";
+                                topUpSedang.style.color = "black";
+                                anotherText.style.color = "#F7941E";
                             });
-                            inputElement.addEventListener("input", function() {
-                                const inputValue = inputElement.value;
-                                // Format nilai dengan titik sebagai pemisah ribuan
-                                const formattedValue = formatNumber(inputValue);
-                                // Tampilkan nilai yang diformat pada elemen p
-                                displayElement.textContent = formattedValue;
-                                if (inputValue.trim() === "") {
-                                    displayElement.textContent = "Masukkan nilai...";
-                                    anotherText.textContent = "Lainya";
-                                } else {
-                                    anotherText.textContent = "Jumlah lainya:"
-                                    displayElement.textContent = "Rp. " + formattedValue + ",00";
-                                }
 
-                            });
 
                             function formatNumber(number) {
                                 // Hapus semua titik yang ada
@@ -1214,10 +1388,12 @@
                                 return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                             }
                         </script>
+                        <center>
                         <button type="submit" id="buttonCommentVeed"
                             style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                            class="btn btn-sm text-light mb-3 mx-4">
+                            class="btn btn-sm text-light mb-3">
                             <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
+                        </center>
                     </form>
                 </div>
             </div>

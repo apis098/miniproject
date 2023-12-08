@@ -208,27 +208,27 @@
             }
 
             @media(min-width:992px) {
-                .nav-item a h6 {
+                .tab a h6 {
                     font-size: 20px;
                 }
             }
 
             @media (max-width: 578px) {
-                .nav-item {
+                .tab {
                     width: 130px;
                     text-align: center;
                 }
             }
 
             @media (max-width: 375px) {
-                .nav-item {
+                .tab {
                     width: 120px;
                     text-align: center;
                 }
             }
 
             @media (max-width: 320px) {
-                .nav-item {
+                .tab {
                     width: 100px;
                     font-size: 12px;
                     text-align: center;
@@ -409,7 +409,7 @@
         }
 
         @media(max-width: 578px) {
-            .nav-item {
+            .tab {
                 width: 33%;
                 text-align: center;
                 justify-content: center;
@@ -427,7 +427,7 @@
         }
 
         @media(max-width: 320px) {
-            .nav-item a h5 {
+            .tab a h5 {
                 font-size: 16px;
             }
 
@@ -448,7 +448,7 @@
         .ul_resep li a h5{
             text-align: center;
         }
-        .nav-item {
+        .tab {
             width: 30%;
         }
         .ul_feed {
@@ -473,7 +473,7 @@
     <div>
         <div class="my-4 mr-4 ml-1 main">
             <ul class="nav mb-2 mt-3 ul_resep" id="pills-tab" role="tablist">
-                <li class="nav-item" role="presentation">
+                <li class="tab" role="presentation">
                     <a id="click1" class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
                         aria-selected="true">
@@ -485,7 +485,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" role="presentation">
+                <li class="tab" role="presentation">
                     <a id="c" class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                         aria-selected="false">
@@ -496,7 +496,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item" role="presentation">
+                <li class="tab" role="presentation">
                     <a id="a-tab" class="nav-link" id="pills-footer-tab" data-bs-toggle="pill"
                         data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact"
                         aria-selected="false">
