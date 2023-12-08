@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
 
   <style>
-    .ellipsis{
+    .ellipsis-deskripsi{
       text-overflow: ellipsis!important;
       overflow: hidden!important;
       -webkit-line-clamp: 1!important;
@@ -12,7 +12,7 @@
       word-break: break-word!important;
       transition: -webkit-line-clamp 0.5s ease-in-out;
     }
-    .ellipsis:hover {
+    .ellipsis-deskripsi:hover {
         -webkit-line-clamp: 5!important; /* Nilai saat di-hover */
     }
     /* Gaya untuk tombol "Cari" */
@@ -399,7 +399,7 @@
                         class="rounded-4"></video>
                       <div style="width: auto;">
                         <div class="p-0">
-                          <span class="ellipsis">{{ $feed_buat->deskripsi_video }}</span>
+                          <span class="ellipsis-deskripsi">{{ $feed_buat->deskripsi_video }}</span>
                         </div>
                        
                       </div>
@@ -615,7 +615,7 @@
                       class="rounded-4"></video>
 
                     <div class="">
-                      <span class="ellipsis"> {{ $feed_suka->deskripsi_video }}</span>
+                      <span class="ellipsis-deskripsi"> {{ $feed_suka->deskripsi_video }}</span>
                     </div>
                   </div>
                   <div class="card-footer d-flex justify-content-between" style="background-color: white; padding: 10px;">
@@ -715,7 +715,7 @@
                     <video src="{{ asset('storage/' . $feed_favorite->upload_video) }}" style="width:100%;"
                       class="rounded-4"></video>
                     <div class="tek">
-                      <span class="ellipsis">{{ $feed_favorite->deskripsi_video }}</span>
+                      <span class="ellipsis-deskripsi">{{ $feed_favorite->deskripsi_video }}</span>
                     </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between" style="background-color: white; padding: 10px;">
