@@ -913,9 +913,9 @@
             </div>
             {{-- .mobile notfication Modal --}}
             <nav class="navbar navbar-expand-lg  bg-body-tertiary custom_nav text-light">
-                <div class="container nav_container pt-3 pb-3">
+                <div class="d-flex justify-content-between nav_container pt-3 pb-3 pl-3 pr-3">
                     <!-- Left elements -->
-                    <div class="d-flex logo-container" style="max-width:200px ">
+                    <div class="d-flex logo-container text-start" style="max-width:200px ">
                         <!-- Brand -->
                         @if (Auth::check())
                             @if (Auth::user()->role == 'admin')
@@ -939,8 +939,7 @@
                     <!-- Left elements -->
                     <!-- Center elements -->
                     <div class="center_nav ">
-                        <ul class="navbar-nav flex-row js-clone-nav d-none d-md-flex mr-auto ">
-
+                        <ul class="navbar-nav flex-row ml-2 js-clone-nav d-none d-md-flex mr-auto ">
                             <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
                                 <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" id="navbar"
                                     href="{{ route('home') }}"><b>Beranda</b></a>
