@@ -440,8 +440,7 @@
     <div class="container-fluid py-5">
       <div class="row text-center text-white ">
         <div style="" class="col-lg-9 row  mx-auto ">
-          <h1 class="mb-5 col-12 "
-            style=" color: white; font-size: 30px; font-family: Poppins; font-weight: bold; word-wrap: break-word; ">
+          <h1 class="mb-5 col-12 header-text">
             Cari Resep Masakan <br />
           </h1>
           <div class="gap-2 justify-content-between" style="display:flex">
