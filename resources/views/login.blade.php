@@ -258,7 +258,7 @@
 <body>
     <div class="register-container" style="">
         <div class="bg-image">
-            <div class="humma-cook"> <i>HummaCook</i></div>
+            <div class="humma-cook"> <img src="{{asset('images/logo.png')}}" width="80%" alt="" srcset=""></div>
             <img src="{{ asset('images/frame 47.png') }}" class="frame-47" alt="" srcset="">
         </div>
         <div class="p-3 mb-auto TitleOne">

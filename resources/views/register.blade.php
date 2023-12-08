@@ -153,6 +153,9 @@
             body {
                  font-size: 14px; /* Mengurangi ukuran font */
              }
+             .deskripsi{
+                display: none;
+            }
 
 
           .content-container{
@@ -175,9 +178,12 @@
     }
     .content-container{
         text-align:center;
-        margin-top:23%;
-        width:50%;
+        margin-top:10%;
+        width:70%;
 
+    }
+    .deskripsi{
+        display: block;
     }
     .bg-image{
     display:none;
@@ -202,6 +208,9 @@
     .register-container {
         width: 50%; /* Mengurangi lebar container */
     }
+    .deskripsi{
+        display: block;
+    }
     .content-container{
         margin-top:10px;
         width:50%;
@@ -219,6 +228,12 @@
 
     }
 }
+::placeholder {
+    color: #999999; /* Warna teks */
+    font-style: italic; /* Gaya font */
+    font-size: 13px; /* Ukuran font */
+    /* Tambahkan properti CSS lainnya sesuai kebutuhan */
+}
     </style>
 </head>
 
@@ -226,16 +241,16 @@
 
     <div class="register-container">
         <div class="bg-image">
-            <div class="humma-cook">HummaCook</div>
+            <div class="humma-cook"><img src="{{asset('images/logo.png')}}" width="80%" alt="" srcset=""></div>
             <img src="{{ asset('images/frame 47.png') }}" class="frame-47" alt="" srcset="">
         </div>
         <div class="content-container mx-5">
             <div
                 style="color: black; font-size: 28px; font-family: Poppins; font-weight: 600; letter-spacing: 0.80px; word-wrap: break-word">
                 Buat akun</div>
-            <div
+            <div class="deskripsi"
                 style="width: 100%; color: black; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.34px; word-wrap: break-word">
-                Selamat datang di <i style="font-family:Dancing Script; font-size: 18px"> Hummacook</i> </div>
+                Silakan Register untuk mengakses fitur yang lebih banyak </div>
             <div class="">
                 @if (session()->has('error'))
                     <script>
@@ -265,7 +280,7 @@
                             </div>
 
 
-                            <div class="col-lg-8 col-12 my-auto mx-1 ">
+                            <div class="col-lg-8 col-12 my-auto  ">
                                 {{-- <input name="profile_picture" id="profile_picture" class="input-file my-auto mx-1"
                                                          type="file" class="formFile"> --}}
                                 <div class="row ms-lg-3 mb-3 mb-lg-0"
@@ -274,13 +289,13 @@
                                     <button type="button" id="inputanfile" onclick="inputfilee()" class="col-4"
                                         style="background: #F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 15px; border: 0px; padding: 9px 12px; right: 2px;">
                                         <div
-                                            style="color: #EAEAEA; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
+                                            style="color: #EAEAEA; font-size: 10px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                             Pilih File</div>
                                         <input name="profile_picture" class="form-control my-auto mx-1"
                                             style="display: none;" type="file" id="inputan">
                                     </button>
-                                    <div class="col-8 mt-2" id="fileinfo"
-                                        style="color: black; font-size: 14px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
+                                    <div class="col-8 col-lg-6 mt-2" id="fileinfo"
+                                        style="color: black; font-size: 10px; font-family: Poppins; font-weight: 600; word-wrap: break-word;">
                                         Tidak ada file terpilih</div>
                                 </div>
                             </div>
@@ -318,7 +333,7 @@
                     </div>
                     <div class="form mb-3">
                       <input type="password" name="copassword" id="pass"
-                          class="form-control username rounded-4 form-input" placeholder="Konfirmasi password..." required>
+                          class="form-control username rounded-4  form-input"  placeholder="Konfirmasi password..." required>
                       <a id="mybutton" onclick="change('pass','mybutton')"><span id="mybutton" class="left-pan"><i
                                   class="fa-solid fa-eye"></i></span></a>
                   </div>
