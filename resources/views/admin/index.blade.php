@@ -1,7 +1,7 @@
     @extends('layouts.navbar')
 
     @section('konten')
-        <div class="mx-auto my-3">
+        <div class="mx-3 my-3">
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <div class="card px-3 py-4"style="border: 1px solid #333;border-radius:15px;">
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <h5 class="fw-bold">Resep baru dari koki</h5> <br>
-                    <div class="card p-3" style="border:1px solid #333;border-radius:15px;height:400px;">
+                    <div class="card p-3" style="border:1px solid #333;border-radius:15px;height:400px;overflow-y:scroll;">
                         @foreach ($reseps as $rsp)
                             <div class="border-bottom py-3">
                                 <a href="#" class="text-decoration-none d-flex text-dark">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <h5 class="fw-bold">Laporan pengguna</h5> <br>
-                    <div class="card p-3" style="border: 1px solid #333;border-radius:15px;height:400px;">
+                    <div class="card p-3" style="border: 1px solid #333;border-radius:15px;height:400px;overflow-y:scroll;">
                         @foreach ($reports as $r)
                             <!-- Konten laporan terbaru -->
                             <div class="border-bottom py-3">

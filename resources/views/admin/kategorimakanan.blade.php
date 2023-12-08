@@ -526,6 +526,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$kategori_makanans->links('vendor.pagination.default')}}
             @if ($kategori_makanans->count() == 0)
                 <div class="d-flex flex-column justify-content-center align-items-center mt-5">
                     <img src="{{ asset('images/data.png') }}" style="width: 15em">

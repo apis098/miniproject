@@ -112,6 +112,53 @@
             }
         }
 
+        @media (min-width: 768px) {
+        .ellipsis-name {
+            display: block;
+            width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        }
+        @media (max-width: 425px) {
+        .ellipsis-name {
+            display: block;
+            width: 155px; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        }
+        @media (max-width: 373px) {
+        .ellipsis-name {
+            display: block;
+            width: 125px; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        }
+        @media (min-width:426px) and (max-width: 767px) {
+        .ellipsis-name {
+            display: block;
+            width: 200px; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        }
+
+        @media (min-width:374px) and (max-width: 400px) {
+        .ellipsis-name {
+            display: block;
+            width: 155px; 
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        }
+
 
     </style>
     <section class="py-1 py-md-3 py-lg-4" style="margin-top: -6%;">
@@ -236,7 +283,7 @@
                                 @if ($row->user->role == 'admin')
                                     <span>
                                         <div class="font-weight-semibold ms-1 me-2">
-                                            <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
+                                            <small class="font-weight-bolder">{{ $row->user->name }}</small>
                                             <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
                                                 width="15" height="15" viewBox="0 0 24 24">
                                                 <path fill="currentColor"
@@ -255,7 +302,7 @@
                                     <div class="d-flex">
                                         <span>
                                             <div class="font-weight-semibold ms-1 me-2">
-                                                <small class="font-weight-bolder me-2">{{ $row->user->name }}</small>
+                                                <small class="font-weight-bolder font-weight-bolder">{{ $row->user->name }}</small>
                                                 @if ($repliesCount > 0)
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small>{{ \Carbon\Carbon::parse($row->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
@@ -274,9 +321,7 @@
                         </div>
                         <div class="action d-flex mt-2 align-items-center">
 
-                            <div class="reply px-7 me-2">
-                                <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
-                            </div>
+                           
 
                             <div class="icons align-items-center input-group">
 
@@ -295,6 +340,9 @@
                                         </button>
                                     @endif
                                 </form>
+                                <div class="reply px-7 me-2">
+                                    <small id="like-count-{{ $row->id }}"> {{ $row->likes }}</small>
+                                </div>
                                 @if (Auth::check() && $userLogin->id != $row->user_id && $userLogin->role != 'admin')
                                     <button type="button" data-toggle="modal" data-target="#Modal{{ $row->id }}"
                                         class="yuhu text-danger btn-sm rounded-5 "><i
@@ -318,7 +366,7 @@
                                         <button type="submit" onclick="hapus_komentar({{ $row->id }})"
                                             id="buttonDelete{{ $row->id }}" hidden>Hapus</button>
                                         <button type="button" onclick="confirmation({{ $row->id }})"
-                                            class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                                            class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash" style="font-size: 11pt;"></i>
                                         </button>
                                     </form>
                                 @endif
@@ -360,21 +408,26 @@
                                                     height="30" class="user-img rounded-circle mr-2">
                                             @endif
                                             <span>
+                                                <div class="font-weight-semibold ms-1 me-2">
+                                                <div class="d-flex">
                                                 <small
-                                                    class="font-weight-semibold ms-1 me-2"><b>{{ $item->userSender->name }}</b>
-                                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-                                                        width="15" height="15" viewBox="0 0 24 24">
-                                                        <path fill="currentColor"
-                                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                    </svg>
+                                                    class="font-weight-bolder font-weight-bolder ellipsis-name"><b>{{ $item->userSender->name }}</b>
                                                 </small>
+                                                <svg class="text-primary" style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg"
+                                                    width="15" height="15" viewBox="0 0 24 24">
+                                                    <path fill="currentColor"
+                                                        d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
+                                                </svg>
+                                                </div>
                                                 @if ($item->count() > 0)
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small
                                                             class="float-start">{{ \Carbon\Carbon::parse($item->created_at)->locale('id_ID')->diffForHumans(['short' => false]) }}</small>
                                                     </div>
                                                 @endif
-                                                <div class="">
+                                                </div>
+                                                
+                                                <div class="pt-3" style="max-width: 90%;">
                                                     <small class="font-weight">
                                                         @if ($item->parent_id != null)
                                                             <a href="">
@@ -389,10 +442,7 @@
                                         {{-- llike --}}
                                         <div class="action d-flex mt-2 align-items-center">
 
-                                            <div class="reply px-7 me-2">
-                                                <small id="like-count-balasan{{ $item->id }}">
-                                                    {{ $item->likes }}</small>
-                                            </div>
+                                            
 
                                             <div class="icons align-items-center input-group">
 
@@ -414,6 +464,10 @@
                                                         </button>
                                                     @endif
                                                 </form>
+                                                <div class="reply px-7 me-2">
+                                                    <small id="like-count-balasan{{ $item->id }}">
+                                                        {{ $item->likes }}</small>
+                                                </div>
                                                 @if (auth()->check())
                                                 @if (auth()->user()->id != $item->user_id_sender && $userLogin->role != 'admin')
                                                     <button type="button" data-toggle="modal"
@@ -443,7 +497,7 @@
                                                         <button type="button"
                                                             onclick="confirmationReply({{ $item->id }})"
                                                             class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                class="fa-solid fa-trash"></i>
+                                                                class="fa-solid fa-trash" style="font-size: 11pt;" ></i>
                                                         </button>
                                                     </form>
                                                 @endif
@@ -861,7 +915,7 @@
                                         <div class="d-flex">
                                             <span>
                                                 <div class="font-weight-semibold ms-1 me-2">
-                                                    <small class="font-weight-bolder me-2">${response.name}</small>
+                                                    <small class="font-weight-bolder font-weight-bolder">${response.name}</small>
                                                         <div class="text-black" style="font-size: 13px">
                                                             <small>1 detik yang lalu</small>
                                                         </div>
@@ -878,9 +932,7 @@
                             </div>
                             <div class="action d-flex mt-2 align-items-center">
 
-                                <div class="reply px-7 me-2">
-                                    <small id="like-count-${response.id}">0</small>
-                                </div>
+                                
 
                                 <div class="icons align-items-center input-group">
 
@@ -892,6 +944,9 @@
                                             </button>
 
                                     </form>
+                                    <div class="reply px-7 me-2">
+                                        <small id="like-count-${response.id}">0</small>
+                                    </div>
 
                                         <form action="/reply-destroy/${response.id}" method="POST"
                                             id="formDelete${response.id}">
@@ -899,7 +954,7 @@
                                             @method('DELETE')
                                             <button type="submit" onclick="hapus_komentar(${response.id})" id="buttonDelete${response.id}" hidden>Hapus</button>
                                             <button type="button" onclick="confirmation(${response.id})"
-                                                class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash"></i>
+                                                class="yuhu text-danger btn-sm rounded-5 "><i class="fa-solid fa-trash" style="font-size: 11pt;"></i>
                                             </button>
                                         </form>
 
@@ -1206,18 +1261,22 @@
                                                     height="30" class="user-img rounded-circle mr-2">
 
                                             <span>
+                                            <div class="font-weight-semibold ms-1 me-2">
+                                            <div class="d-flex">
                                                 <small
-                                                    class="font-weight-semibold ms-1 me-2"><b>${response.name}</b>
-                                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
+                                                    class="font-weight-bolder font-weight-bolder ellipsis-name"><b>${response.name}</b>
+                                                    </small>
+                                                    <svg class="text-primary" style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg"
                                                         width="15" height="15" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
                                                             d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
                                                     </svg>
-                                                </small>
+                                            </div>
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small
                                                             class="float-start">1 detik yang lalu</small>
                                                     </div>
+                                                </div>
                                                 <div class="">
                                                     <small class="font-weight">
                                                         <br>
@@ -1232,10 +1291,7 @@
                                         {{-- llike --}}
                                         <div class="action d-flex mt-2 align-items-center">
 
-                                            <div class="reply px-7 me-2">
-                                                <small id="like-count-balasan${response.id}">
-                                                    0</small>
-                                            </div>
+                                            
 
                                             <div class="icons align-items-center input-group">
 
@@ -1249,6 +1305,10 @@
                                                         </button>
 
                                                 </form>
+                                                <div class="reply px-7 me-2">
+                                                    <small id="like-count-balasan${response.id}">
+                                                        0</small>
+                                                </div>
                                                 {{-- @if (auth()->check()) --}}
 
                                                     <form action="/reply-comment-destroy/${response.id}"
@@ -1259,7 +1319,7 @@
                                                         <button type="button"
                                                             onclick="confirmationReply(${response.id})"
                                                             class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                class="fa-solid fa-trash"></i>
+                                                                class="fa-solid fa-trash" style="font-size: 11pt;"></i>
                                                         </button>
                                                     </form>
 
@@ -1382,19 +1442,23 @@
                                                     height="30" class="user-img rounded-circle mr-2">
 
                                             <span>
+                                                <div class="font-weight-semibold ms-1 me-2">
+                                                <div class="d-flex">
                                                 <small
-                                                    class="font-weight-semibold ms-1 me-2"><b>${response.name}</b>
-                                                    <svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
+                                                    class="font-weight-bolder font-weight-bolder ellipsis-name"><b>${response.name}</b>
+                                                    </small>
+                                                    <svg class="text-primary" style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg"
                                                         width="15" height="15" viewBox="0 0 24 24">
                                                         <path fill="currentColor"
                                                             d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
                                                     </svg>
-                                                </small>
+                                                </div>
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small
                                                             class="float-start">1 detik yang lalu</small>
                                                     </div>
-                                                <div class="">
+                                                </div>
+                                                    <div class="">
                                                     <small class="font-weight">
                                                         <br>
                                                             <a href="">
@@ -1408,10 +1472,7 @@
                                         {{-- llike --}}
                                         <div class="action d-flex mt-2 align-items-center">
 
-                                            <div class="reply px-7 me-2">
-                                                <small id="like-count-balasan-balasan${response.id}">
-                                                    0</small>
-                                            </div>
+                                            
 
                                             <div class="icons align-items-center input-group">
 
@@ -1425,6 +1486,10 @@
                                                         </button>
 
                                                 </form>
+                                                <div class="reply px-7 me-2">
+                                                    <small id="like-count-balasan-balasan${response.id}">
+                                                        0</small>
+                                                </div>
                                                 {{-- @if (auth()->check()) --}}
 
                                                     <form action="/reply-comment-destroy/${response.id}"
@@ -1435,7 +1500,7 @@
                                                         <button type="button"
                                                             onclick="confirmationReply(${response.id})"
                                                             class="yuhu text-danger btn-sm rounded-5 "><i
-                                                                class="fa-solid fa-trash"></i>
+                                                                class="fa-solid fa-trash" style="font-size: 11pt;"></i>
                                                         </button>
                                                     </form>
 

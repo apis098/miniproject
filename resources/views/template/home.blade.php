@@ -74,7 +74,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="container">
-                        <div class="row">
+                        <div class="row ms-2">
                             <div class="col-md-7 col-lg-6 mt-5">
                                 <div class="detail-box mt-5">
                                     <h3 class="text-poppins"><b>
@@ -992,303 +992,60 @@
 
     </div>
 </div> --}}
+<section class="slider_section" style="padding:1%">
+    <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row ms-2">
+                        <div class="col-md-7 col-lg-6 mt-5">
+                            <div class="detail-box text-poppins text-dark mt-5">
+                                <h3 class="text-poppins text-dark">
+                                    <b>Tentang Kami</b>
+                                </h3>
+                                <p>
+                                    Selamat Datang di HummaCook! HummaCook adalah online
+                                    media portal yang menyajikan kumpulan aneka resep masakan
+                                    untuk menginspirasi para pehobi masak. Menyajikan resep-resep
+                                    rumahan yang mudah dibuat oleh semua orang, dan
+                                    bahan-bahan masakan yang mudah didapatkan. Resep-resep
+                                    ditulis oleh teman-teman food blogger seantero Nusantara yang
+                                    sudah berpengalaman di bidang masak memasak. Harapan
+                                    kami semua orang bisa memasak dengan mudah dan berhasil,
+                                    supaya dapat disajikan dengan sempurna untuk keluarga tercinta. 
+                                    Semua resep di sini telah teruji dapur dan foto yang
+                                    ditampilkan adalah original/hasil aslinya. Terima Kasih.
+                                </p>
+                                <div class="ms-1" style="display: flex; align-items: center;">
+                                    <p class="fw-bold"
+                                        style="margin-left: em; margin-bottom: 0.5em; color: white; font-size: 16px; font-family: Poppins; font-weight: 400; letter-spacing: 0.48px; word-wrap: break-word">
+                                        @if ($jumlah_resep <= 10)
+                                            {{ $jumlah_resep }}
+                                        @elseif($jumlah_resep > 10)
+                                            {{ floor($jumlah_resep / 10) * 10 }}+
+                                        @endif
+                                        resep
+                                    </p>
+                                </div>
 
-<style>
-    .text-poppins {
-        font-family: 'Poppins';
-    }
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div style="text-align: right; margin-top:-16%;">
+                                <img src="{{ asset('images/tentang.png') }}" alt="Gambar Contoh" class="gambarHome"
+                                    style="width: 70%; ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    .card-margin {
-        margin-bottom: 1.875rem;
-        height: ;
-    }
-
-    .card {
-        border: 0;
-        box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-        -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
-    }
-
-    .card {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-        word-wrap: break-word;
-        background-color: #ffffff;
-        background-clip: border-box;
-        border: 1px solid #e6e4e9;
-        border-radius: 8px;
-    }
-
-    .card .card-header.no-border {
-        border: 0;
-    }
-
-    .card .card-header {
-        background: none;
-        padding: 0 0.9375rem;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        min-height: 50px;
-    }
-
-    .card-header:first-child {
-        border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
-    }
-
-    .widget-49 .widget-49-title-wrapper {
-        display: flex;
-        align-items: center;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-primary {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #edf1fc;
-        width: 3rem;
-        height: 3rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #fcfcfd;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-day {
-        color: #dde1e9;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-month {
-        color: #dde1e9;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-success {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #e8faf8;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-success .widget-49-date-day {
-        color: #17d1bd;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-success .widget-49-date-month {
-        color: #17d1bd;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-info {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #ebf7ff;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-info .widget-49-date-day {
-        color: #36afff;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-info .widget-49-date-month {
-        color: #36afff;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-warning {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: floralwhite;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-warning .widget-49-date-day {
-        color: #FFC868;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-warning .widget-49-date-month {
-        color: #FFC868;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-danger {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #feeeef;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-danger .widget-49-date-day {
-        color: #F95062;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-danger .widget-49-date-month {
-        color: #F95062;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-light {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #fefeff;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-light .widget-49-date-day {
-        color: #f7f9fa;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-light .widget-49-date-month {
-        color: #f7f9fa;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-dark {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #ebedee;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-dark .widget-49-date-day {
-        color: #394856;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-dark .widget-49-date-month {
-        color: #394856;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-base {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        background-color: #f0fafb;
-        width: 4rem;
-        height: 4rem;
-        border-radius: 50%;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-base .widget-49-date-day {
-        color: #68CBD7;
-        font-weight: 500;
-        font-size: 1.5rem;
-        line-height: 1;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-date-base .widget-49-date-month {
-        color: #68CBD7;
-        line-height: 1;
-        font-size: 1rem;
-        text-transform: uppercase;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info {
-        display: flex;
-        flex-direction: column;
-        margin-left: 1rem;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-pro-title {
-        color: #3c4142;
-        font-size: 14px;
-    }
-
-    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-meeting-time {
-        color: #B1BAC5;
-        font-size: 13px;
-    }
-
-    .widget-49 .widget-49-meeting-points {
-        font-weight: 400;
-        font-size: 13px;
-        margin-top: .5rem;
-        margin-left: -10%;
-    }
-
-    .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
-        display: list-item;
-        color: #727686;
-    }
-</style>
+</section>
 <!-- about section -->
-<section class="m-5">
+{{-- <section class="m-5">
     <div class="row">
         <div class="col-lg-7 col-xl-6 col-md-12 my-5">
-            <div class="detail-box mx-3">
+            <div class="detail-box">
                 <div class="heading_container">
                     <h2 style="font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold;">
                         Tentang Kami
@@ -1303,21 +1060,18 @@
                     ditulis oleh teman-teman food blogger seantero Nusantara yang
                     sudah berpengalaman di bidang masak memasak. Harapan
                     kami semua orang bisa memasak dengan mudah dan berhasil,
-                    supaya dapat disajikan dengan sempurna untuk keluarga
-                    tercinta. Semua resep di sini telah teruji dapur dan foto yang
+                    supaya dapat disajikan dengan sempurna untuk keluarga tercinta. 
+                    Semua resep di sini telah teruji dapur dan foto yang
                     ditampilkan adalah original/hasil aslinya. Terima Kasih.
                 </p>
-                {{-- <a href="">
-                            Baca Selengkapnya
-                        </a> --}}
             </div>
         </div>
-        <div class="col-lg-5 col-md-12 col-xl-6">
-                <img src="{{ asset('images/tentang.png') }}" alt="" class="gambarHome"
-                    style="width: 500px;">
+        <div class="col-lg-5 col-md-6 col-xl-6 text-center align-items-center">
+                <img src="{{ asset('images/tentang.png') }}" alt="" class="img-fluid mt-2"
+                    style="max-width: 68%;">
         </div>
     </div>
-</section>
+</section> --}}
 <!-- end about section -->
 <script>
     function harusLogin() {

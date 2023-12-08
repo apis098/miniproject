@@ -200,7 +200,7 @@ class KursusController extends Controller
 
     public function kursus()
     {
-        $all_course = kursus::where("status", "ditunggu")->get();
+        $all_course = kursus::where("status", "ditunggu")->paginate(5);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         return view('admin.kursus', compact("all_course",'verifed_count'));
     }
