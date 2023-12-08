@@ -329,13 +329,11 @@
                                         style="color: white; font-size: 17px; font-family: Poppins; font-weight: 500; letter-spacing: 0.40px; word-wrap: break-word">Unblock</b>
                                 </button>
 
-                                <div class="modal fade" id="Modal{{ $data->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal fade" id="Modal{{ $data->id }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
-                                            <form
-                                                action="{{ route('unblock.user.store', $data->id) }}"
-                                                method="post">
+                                            <form action="{{ route('unblock.user.store', $data->id) }}" method="post">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="modal-header">
@@ -350,9 +348,8 @@
                                                 <div class="modal-body row d-flex align-items-center col-12">
                                                     <!-- Tambahkan kelas "align-items-center" -->
                                                     <div class="col-2 mt-2">
-                                                        <img class="mr-3" src="{{ asset('image 94.png') }}"
-                                                            width="100px" height="100px" style="border-radius: 50%"
-                                                            alt="">
+                                                        <img class="mr-3" src="{{ asset('image 94.png') }}" width="100px"
+                                                            height="100px" style="border-radius: 50%" alt="">
                                                     </div>
                                                     <div class="col-10">
                                                         <div class="widget-49-meeting-info">
@@ -383,6 +380,13 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $user->links('vendor.pagination.default') }}
+            @if ($user->count() == 0)
+                <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+                    <img src="{{ asset('images/data.png') }}" style="width: 15em">
+                    <p><b>Tidak ada data</b></p>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

@@ -527,6 +527,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $special_days->links('vendor.pagination.default') }}
             @if ($special_days->count() == 0)
                 <div class="d-flex flex-column justify-content-center align-items-center mt-5">
                     <img src="{{ asset('images/data.png') }}" style="width: 15em">

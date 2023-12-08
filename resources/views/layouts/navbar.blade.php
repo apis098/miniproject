@@ -576,8 +576,8 @@
                     </div>
                 </div>
                 <div class="btn-group dropstart">
-                    <i class="fa-solid fa-circle-user fa-3x" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false"></i>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" data-bs-toggle="dropdown" width="50" height="50" viewBox="0 0 12 12"><path fill="#888888" d="M4.217 6.264A.753.753 0 0 1 4.775 6h2.45c.232 0 .427.118.558.264A.84.84 0 0 1 8 6.81v.16c0 .817-.817 1.53-2 1.53s-2-.713-2-1.53v-.16c0-.202.087-.4.217-.546ZM6 5a1 1 0 1 0 0-2a1 1 0 0 0 0 2Zm0 6A5 5 0 1 0 6 1a5 5 0 0 0 0 10Zm0-1a4 4 0 1 1 0-8a4 4 0 0 1 0 8Z"/></svg>
                     <ul class="dropdown-menu mt-5" style="margin-right: -30px;width:255px;">
                         <li>
                             <a href="#" style="color: black;">

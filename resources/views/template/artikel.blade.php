@@ -1328,7 +1328,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('Report.comment.recipes', $row->id) }}\" method="POST">
+                                            <form action="{{ route('Report.comment.recipes', $row->id) }}" method="POST">
                                                 @csrf
                                                 <div class="modal-body d-flex align-items-center">
                                                     <!-- Tambahkan kelas "align-items-center" -->

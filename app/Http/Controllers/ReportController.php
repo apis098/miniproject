@@ -158,7 +158,7 @@ class ReportController extends Controller
         ->orWhereNotNull("reply_comment_id")
         ->paginate(6, ['*'], "report-reply-page");
         $reportProfile = Report::whereNotNull("profile_id")->paginate(6, ['*'], "report-profile-page");
-        // $allComments = $reportReply->concat($reportReplyComment);
+         $allComments = $reportReply->concat($reportReplyComment);
         $userLogin = Auth::user();
         // untuk user belum login
         $userLog = 1;
@@ -394,7 +394,7 @@ class ReportController extends Controller
         if(Auth::check()){
             $comment = CommentResipes::findOrFail($id);
             $report = new Report();
-            $report->user_id = $comment->users_id;
+            $report->user_id = $comment->pengirim_id;
             $report->user_id_sender = auth()->user()->id;
             $report->comment_id = $comment->id;
             $report->description = $request->description;
@@ -598,7 +598,7 @@ class ReportController extends Controller
         }
     }
     public function blocked_index(){
-        $user = User::where('status','nonaktif')->get();
+        $user = User::where('status','nonaktif')->paginate(5);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers','>',10000)->where('role','koki')->count();
         return view('admin.unblock',compact('user','verifed_count'));
     }

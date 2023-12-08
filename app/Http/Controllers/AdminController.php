@@ -79,14 +79,14 @@ class AdminController extends Controller
     public function verifed(Request $request)
     {
         // Ambil pengguna yang memiliki jumlah followers lebih dari 10,000
-        $verified = User::where('followers', '>', 10000)->where('isSuperUser', 'no')->paginate(6);
+        $verified = User::where('followers', '>', 10000)->where('isSuperUser', 'no')->paginate(5);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
         return view('admin.verifed', compact('verified', 'verifed_count'));
     }
 
     public function data_koki()
     {
-        $data = DataPribadiKoki::where("status", "diproses")->get();
+        $data = DataPribadiKoki::where("status", "diproses")->paginate(5);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
 
         return view('admin.datakoki', compact('data', 'verifed_count'));
@@ -128,7 +128,7 @@ class AdminController extends Controller
 
     public function ajuan_penarikan()
     {
-        $data = Penarikans::where("status", "diproses")->get();
+        $data = Penarikans::where("status", "diproses")->paginate(5);
         $verifed_count = User::where('isSuperUser', 'no')->where('followers', '>', 10000)->where('role', 'koki')->count();
 
         return view('admin.ajuanpenarikan', compact('data', 'verifed_count'));

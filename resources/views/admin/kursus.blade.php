@@ -486,6 +486,13 @@
           @endforeach
         </tbody>
       </table>
+      {{ $all_course->links('vendor.pagination.default') }}
+      @if ($all_course->count() == 0)
+        <div class="d-flex flex-column justify-content-center align-items-center mt-5">
+          <img src="{{ asset('images/data.png') }}" style="width: 15em">
+          <p><b>Tidak ada data</b></p>
+        </div>
+      @endif
     </div>
   </div>
 @endsection
