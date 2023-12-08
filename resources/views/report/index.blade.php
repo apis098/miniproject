@@ -1056,6 +1056,7 @@
               <div class="widget-49-meeting-info">
 
               </div>
+
               @if (!empty($row->replies->reply))
                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies->reply }}</textarea>
               @elseif(!empty($row->reply_complaint->reply))
@@ -1066,6 +1067,8 @@
                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->reply_comment_feed->komentar }}</textarea>
               @elseif(!empty($row->replies_reply_comment_feed->komentar))
                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies_reply_comment_feed->komentar }}</textarea>
+              @elseif($row->comment_id != null)
+              <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->comment->comment }}</textarea>
               @endif
 
             </div>
