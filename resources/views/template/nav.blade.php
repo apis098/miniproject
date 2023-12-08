@@ -120,7 +120,7 @@
     </head>
 
 <body id="offcanvas_id" class="sub_page">
-    
+
     <div class="hero_area">
         <div class="bg-box radius-bawah" style="background-color: #F7941E; ">
 
@@ -1994,7 +1994,7 @@
                                                 </svg>
                                                 Favorite
                                             </a>
-                                            <div class="dropdown-divider"></div>    
+                                            <div class="dropdown-divider"></div>
                                             <a href="{{ route('actionlogout') }}" style="width: 230px;"
                                                 class="dropdown-item text-orange">
                                                 <svg class="me-2" xmlns="http://www.w3.org/2000/svg"
@@ -2158,16 +2158,18 @@
                                         <img src="{{ asset('storage/' . $row->resep->foto_resep) }}"
                                             class=" ms-5 me-2" style="border-radius: 10px;max-width:106px"
                                             alt="">
-                                        <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
-                                            <div style="justify-content: space-between;" class="mb-1">
-                                                <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
-                                                    {{ $row->resep->nama_resep }}</h6>
+                                        <div class="card">
+                                            <a href="/artikel/{{ $row->resep->id }}/{{ $row->resep->nama_resep }}">
+                                                <div style="justify-content: space-between;" class="mb-1">
+                                                    <h6 class="fw-bolder modal-title mt-2 me-5 text-orange">
+                                                        {{ $row->resep->nama_resep }}</h6>
 
-                                                <small
-                                                    class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
+                                                    <small
+                                                        class="text-secondary  me-3">{{ strlen($row->resep->deskripsi_resep) > 80 ? substr($row->resep->deskripsi_resep, 0, 80) . '...' : $row->resep->deskripsi_resep }}</small>
 
-                                            </div>
-                                        </a>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 @elseif($row->feed_id != null)
                                     <div class="modal-body d-flex align-items-center">
@@ -2179,16 +2181,18 @@
                                             <source src="/storage/{{ $row->veed->upload_video }}"
                                                 type="video/mp4">
                                         </video>
-                                        <a href="/veed/{{ $row->veed->uuid }}">
-                                            <div style="justify-content: space-between;" class="mb-1">
-                                                <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
-                                                    {{ $row->veed->deskripsi_video }}</h6>
+                                        <div class="card" style="box-shadow: none;border:none">
+                                            <a href="/veed/{{ $row->veed->uuid }}">
+                                                <div style="justify-content: space-between;" class="mb-1">
+                                                    <h6 class="fw-bolder modal-title mt-2 me-5 ms-5 text-orange">
+                                                        {{ $row->veed->deskripsi_video }}</h6>
 
-                                                <small
-                                                    class="text-secondary ms-3 me-3">{{ strlen($row->veed->deskripsi_video) > 80 ? substr($row->veed->deskripsi_video, 0, 80) . '...' : $row->veed->deskripsi_video }}</small>
+                                                    <small
+                                                        class="text-secondary ms-3 me-3">{{ strlen($row->veed->deskripsi_video) > 80 ? substr($row->veed->deskripsi_video, 0, 80) . '...' : $row->veed->deskripsi_video }}</small>
 
-                                            </div>
-                                        </a>
+                                                </div>
+                                            </a>
+                                        </div>
                                     </div>
                                 @endif
                             </form>
@@ -2424,7 +2428,7 @@
                                     </div>
                                 </div>
                             </center>
-                            
+
                             <center>
                             <div id="inputanLainya" style="display: none;" class="padding mb-3">
                                 <input type="number" id="inputan" name="inputanLainya"
@@ -2751,7 +2755,7 @@
             $('#offcanvas_hide_button').on('click',function(){
                 closeCanvas();
             });
-            
+
         $(document).ready(function() {
                 $("#buttonaddrecipe").click(function(event) {
                     event.preventDefault();
