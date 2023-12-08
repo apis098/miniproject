@@ -920,18 +920,18 @@
                         @if (Auth::check())
                             @if (Auth::user()->role == 'admin')
                                 <a class="ms-2" href="{{ url('admin/dashboard') }}">
-                                    <img class="logo-image" src="{{ asset('images/logo.png') }}" width="96%"
+                                    <img class="logo-image mt-2" src="{{ asset('images/logo.png') }}" width="96%"
                                         alt="">
                                 </a>
                             @else
                                 <a class="ms-2" href="{{ url('koki/beranda') }}">
-                                    <img class="logo-image" src="{{ asset('images/logo.png') }}" width="96%"
+                                    <img class="logo-image mt-2" src="{{ asset('images/logo.png') }}" width="96%"
                                         alt="">
                                 </a>
                             @endif
                         @else
                             <a class="ms-2" href="/">
-                                <img class="logo-image" src="{{ asset('images/logo.png') }}" width="96%"
+                                <img class="logo-image mt-2" src="{{ asset('images/logo.png') }}" width="96%"
                                     alt="">
                             </a>
                         @endif
@@ -939,7 +939,7 @@
                     <!-- Left elements -->
                     <!-- Center elements -->
                     <div class="center_nav ">
-                        <ul class="navbar-nav flex-row ml-2 js-clone-nav d-none d-md-flex mr-auto ">
+                        <ul class="navbar-nav flex-row ml-4 mt-1 js-clone-nav d-none d-md-flex mr-auto ">
                             <li class="nav-item me-3 me-lg-1 pl-1 pr-1">
                                 <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" id="navbar"
                                     href="{{ route('home') }}"><b>Beranda</b></a>
