@@ -98,7 +98,25 @@
 
         <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
         <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
-
+        <style>
+            @media (min-width: 992px) {
+            .cardTopup {
+                width: 450px;
+            }
+        }
+        @media (min-width: 1000px) {
+            .padding {
+                padding-left: 2%;
+                padding-right: 2%;
+            }
+        }
+        .ellipsis {
+        white-space: nowrap; /* Prevents text from wrapping */
+        overflow: hidden; /* Hides the overflowing content */
+        text-overflow: ellipsis; /* Shows an ellipsis (...) to indicate truncated text */
+        width: 100px; /* Adjust this width to fit your layout */
+        }
+        </style>
     </head>
 
 <body id="offcanvas_id" class="sub_page">
@@ -1069,7 +1087,7 @@
                                                 style="max-width:37px">
                                         @endif
                                     </a>
-                                    <p class="mt-2 text-orange">
+                                    <p class="mt-2 text-orange ellipsis">
                                         <b>{{ auth()->user()->name }}</b>
                                     </p>
                                 </div>
@@ -1160,7 +1178,7 @@
                                                 style="max-width:40px">
                                         @endif
                                     </a>
-                                    <p class="mt-2 text-orange">
+                                    <p class="mt-2 text-orange ellipsis">
                                         <b>{{ auth()->user()->name }}</b>
                                     </p>
                                 </div>
@@ -1941,7 +1959,7 @@
                                                             alt="profile image" style="max-width:40px">
                                                     @endif
                                                 </a>
-                                                <p class="mt-2 text-orange">
+                                                <p class="mt-2 text-orange ellipsis">
                                                     <b>{{ auth()->user()->name }}</b>
                                                 </p>
                                             </div>
@@ -2005,7 +2023,7 @@
                                                             alt="profile image" style="max-width:40px">
                                                     @endif
                                                 </a>
-                                                <p class="mt-2 text-orange">
+                                                <p class="mt-2 text-orange ellipsis">
                                                     <b>{{ auth()->user()->name }}</b>
                                                 </p>
                                             </div>
@@ -2203,13 +2221,152 @@
         </div>
     </footer>
     {{-- Modal Top Up --}}
-    <div class="modal " id="topup">
+    <!-- <div class="modal" id="topup">
+            <div class="modal-dialog">
+                <div class="modal-content text-center">
+                    <div class="d-flex">
+                        <div class="col-11">
+                            <h5 class="modal-title ml-1 mt-3"
+                                style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                Top Up</h5>
+                        </div>
+                    </div>
+
+                    <form action="{{ route('payments.method.get') }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
+                            @foreach ($categorytopup as $topup)
+                            <center>
+                                    <label for="inputanKecil{{ $loop->iteration }}"
+                                        id="topUp{{ $loop->iteration }}" class="card border-2 scale cardTopup"
+                                        data-card-selected="false"
+                                        style="height: 85px; border-radius: 15px; border: 1.5px black solid; overflow: hidden;">
+                                        <input type="radio" id="inputanKecil{{ $loop->iteration }}"
+                                            style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
+                                        <div class="d-flex flex-row">
+                                            <a href="#" class="text-start pl-2 pt-2"
+                                                style="color: black; font-size: 20px; font-family: Poppins;">
+                                                {{ $topup->name }} <br>
+                                                <small>
+                                                    Rp. {{ number_format($topup->price, 2, ',', '.') }}
+                                                </small>
+                                            </a>
+
+                                            <img src="{{ asset('images/' . $topup->foto) }}" class="ml-auto"
+                                                width="100px" height="92px;" alt="">
+                                        </div>
+                                    </label>
+                            </center>
+                            @endforeach
+
+                            <center>
+                                <div id="topUpLainya" class="card border-2 scale cardTopup" id="card"
+                                    data-card-selected="false"
+                                    style="height: 85px; border-radius: 15px; border: 1.50px black solid; overflow: hidden;">
+                                    <div class="d-flex flex-row">
+                                        <a href="" class="text-start pl-2 pt-2"
+                                            style="color: black; font-size:10px; font-family:Poppins;">
+                                            <p id="anotherText"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Lainya <br>
+
+                                            </p>
+                                            <p id="displayInput"
+                                                style="color: black; font-size:15px; margin-top:-10%; font-family: Poppins; font-weight: 400; word-wrap: break-word;">
+                                                Masukkan nilai....
+                                            </p>
+                                        </a>
+                                        <img src="{{ asset('img/2.png') }}" class="ml-auto" width="100px"
+                                            height="92px;" alt="">
+                                    </div>
+                                </div>
+                            </center>
+
+                            <center>
+                            <div id="inputanLainya" style="display: none;">
+                                <input type="number" id="inputan" name="inputanLainya"
+                                    class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;"
+                                    placeholder="Masukkan nominal lainya...">
+                            </div>
+                            </center>
+                        </div>
+                        <script>
+                            const topUpKecil = document.getElementById('topUp1');
+                            const topUpSedang = document.getElementById('topUp2');
+                            const topUpBesar = document.getElementById('topUp3');
+                            const topUpLainya = document.getElementById('topUpLainya');
+                            const inputanLainya = document.getElementById('inputanLainya');
+                            const inputElement = document.getElementById("inputan");
+                            const displayElement = document.getElementById("displayInput");
+                            const anotherText = document.getElementById("anotherText");
+                            topUpKecil.addEventListener('click', function() {
+                                topUpKecil.style.borderColor = "#F7941E";
+                                topUpBesar.style.borderColor = "black";
+                                topUpSedang.style.borderColor = "black";
+                                topUpLainya.style.borderColor = "black";
+                                inputanLainya.style.display = "none";
+                            });
+                            topUpSedang.addEventListener("click", function() {
+                                topUpSedang.style.borderColor = "#F7941E";
+                                topUpKecil.style.borderColor = "black";
+                                topUpBesar.style.borderColor = "black";
+                                topUpLainya.style.borderColor = "black";
+                                inputanLainya.style.display = "none";
+                            });
+                            topUpBesar.addEventListener("click", function() {
+                                topUpBesar.style.borderColor = "#F7941E";
+                                topUpKecil.style.borderColor = "black";
+                                topUpSedang.style.borderColor = "black";
+                                topUpLainya.style.borderColor = "black";
+                                inputanLainya.style.display = "none";
+                            });
+                            topUpLainya.addEventListener('click', function() {
+                                topUpLainya.style.borderColor = "#F7941E";
+                                topUpKecil.style.borderColor = "black";
+                                topUpSedang.style.borderColor = "black";
+                                topUpBesar.style.borderColor = "black";
+                                inputanLainya.style.display = "block";
+                            });
+                            inputElement.addEventListener("input", function() {
+                                const inputValue = inputElement.value;
+                                // Format nilai dengan titik sebagai pemisah ribuan
+                                const formattedValue = formatNumber(inputValue);
+                                // Tampilkan nilai yang diformat pada elemen p
+                                displayElement.textContent = formattedValue;
+                                if (inputValue.trim() === "") {
+                                    displayElement.textContent = "Masukkan nilai...";
+                                    anotherText.textContent = "Lainya";
+                                } else {
+                                    anotherText.textContent = "Jumlah lainya:"
+                                    displayElement.textContent = "Rp. " + formattedValue + ",00";
+                                }
+
+                            });
+
+                            function formatNumber(number) {
+                                // Hapus semua titik yang ada
+                                const cleanValue = number.replace(/\./g, '');
+
+                                // Ubah nilai menjadi format dengan titik sebagai pemisah ribuan
+                                return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                            }
+                        </script>
+                       <button type="submit" id="buttonCommentVeed"
+                            style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                            class="btn btn-sm text-light mb-3 mx-4">
+                            <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
+                    </form>
+                </div>
+            </div>
+        </div>   -->
+
+        <div class="modal " id="topup">
         <div class="modal-dialog">
             <div class="modal-content text-center">
                 <div class="d-flex">
                     <div class="col-11">
                         <h5 class="modal-title ml-1 mt-3"
-                            style="color: black; margin-right: -50px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                            style="color: black; margin-right: -25px; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
                             Top Up</h5>
                     </div>
                     <div class="col-1">
@@ -2222,106 +2379,153 @@
                 <form action="{{ route('payments.method.get') }}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        @foreach ($categorytopup as $topup)
-                            <div class="col-lg-3 my-3">
-                                <label for="inputanKecil{{ $loop->iteration }}" id="topUp{{ $loop->iteration }}"
-                                    class="card border-2 scale" id="card" data-card-selected="false"
-                                    style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-                                    <input type="radio" id="inputanKecil{{ $loop->iteration }}"
-                                        style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
-                                    <div class=card-body">
-                                        <div class="d-flex">
-                                            <div class="text-start mx-3 mt-2">
-                                                <a href="#" class="card-title"
-                                                    style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                    {{ $topup->name }}
-                                                </a>
-                                                <p class="text-start mt-1"
-                                                    style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                    @foreach ($categorytopup as $topup)
+                                <center>
+                                    <label for="inputanKecil{{ $loop->iteration }}"
+                                        id="topUp{{ $loop->iteration }}" class="card border-2 scale cardTopup mb-3"
+                                        data-card-selected="false"
+                                        style="height: 85px; border-radius: 15px; border: 1px black solid; overflow: hidden;">
+                                        <input type="radio" id="inputanKecil{{ $loop->iteration }}"
+                                            style="display:none ;" name="inputanTopUp" value="{{ $topup->price }}">
+                                        <div class="d-flex flex-row">
+                                            <a href="#" class="text-start pl-2 pt-2"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word" id="textOrange{{ $loop->iteration }}">
+                                                {{ $topup->name }} <br>
+                                                <small id="textOrangePrice{{ $loop->iteration }}">
                                                     Rp. {{ number_format($topup->price, 2, ',', '.') }}
-                                                </p>
-                                            </div>
-                                            <div class="ms-auto">
-                                                <img src="{{ asset('images/' . $topup->foto) }}" class="mr-2"
-                                                    width="100px" height="92px;" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </label>
-                            </div>
-                        @endforeach
-
-                        <div class="col-lg-3 my-3">
-                            <div id="topUpLainya" class="card border-2 scale" id="card"
-                                data-card-selected="false"
-                                style="width: 435px; height: 85px; border-radius: 15px; border: 0.50px black solid; overflow: hidden;">
-
-                                <div class=card-body">
-                                    <div class="d-flex">
-                                        <div class="text-start mx-3 mt-2">
-                                            <a href="#" id="anotherText" class="card-title"
-                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                Lainya
+                                                </small>
                                             </a>
-                                            <p class="text-start mt-1" id="displayInput"
-                                                style="color: black; font-size: 22px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+
+                                            <img src="{{ asset('images/' . $topup->foto) }}" class="ml-auto"
+                                                width="100px" height="92px;" alt="">
+                                        </div>
+                                    </label>
+                                </center>
+                            @endforeach
+
+                            <center>
+                                <div id="topUpLainya" class="card border-2 scale cardTopup mb-3" id="card"
+                                    data-card-selected="false"
+                                    style="height: 85px; border-radius: 15px; border: 1px black solid; overflow: hidden;">
+                                    <div class="d-flex flex-row">
+                                        <a href="#" class="text-start pl-2 pt-2"
+                                            style="color: black; font-size:10px; font-family:Poppins;">
+                                            <p id="anotherText"
+                                                style="color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                Lainya <br>
+
+                                            </p>
+                                            <p id="displayInput"
+                                                style="color: black; font-size:15px; margin-top:-10%; font-family: Poppins; font-weight: 400; word-wrap: break-word;">
                                                 Masukkan nilai....
                                             </p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <img src="{{ asset('img/2.png') }}" class="mr-2" width="100px"
-                                                height="92px;" alt="">
-                                        </div>
+                                        </a>
+                                        <img src="{{ asset('img/2.png') }}" class="ml-auto" width="100px"
+                                            height="92px;" alt="">
                                     </div>
                                 </div>
-
+                            </center>
+                            
+                            <center>
+                            <div id="inputanLainya" style="display: none;" class="padding mb-3">
+                                <input type="number" id="inputan" name="inputanLainya"
+                                    class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;"
+                                    placeholder="Masukkan nominal lainya...">
                             </div>
-                        </div>
-
-                        <div id="inputanLainya" style="display: none;" class="col-lg-12 my-3">
-                            <input type="number" id="inputan" name="inputanLainya"
-                                class="form-control border-2" style="border-radius: 10px; border:solid #F7941E;"
-                                placeholder="Masukkan nominal lainya...">
-                        </div>
+                            </center>
                     </div>
                     <script>
-                        const topUpKecil = document.getElementById('topUp1');
-                        const topUpSedang = document.getElementById('topUp2');
-                        const topUpBesar = document.getElementById('topUp3');
-                        const topUpLainya = document.getElementById('topUpLainya');
-                        const inputanLainya = document.getElementById('inputanLainya');
-                        const inputElement = document.getElementById("inputan");
-                        const displayElement = document.getElementById("displayInput");
-                        const anotherText = document.getElementById("anotherText");
-                        topUpKecil.addEventListener('click', function() {
-                            topUpKecil.style.borderColor = "#F7941E";
-                            topUpBesar.style.borderColor = "black";
-                            topUpSedang.style.borderColor = "black";
-                            topUpLainya.style.borderColor = "black";
-                            inputanLainya.style.display = "none";
-                        });
-                        topUpSedang.addEventListener("click", function() {
-                            topUpSedang.style.borderColor = "#F7941E";
-                            topUpKecil.style.borderColor = "black";
-                            topUpBesar.style.borderColor = "black";
-                            topUpLainya.style.borderColor = "black";
-                            inputanLainya.style.display = "none";
-                        });
-                        topUpBesar.addEventListener("click", function() {
-                            topUpBesar.style.borderColor = "#F7941E";
-                            topUpKecil.style.borderColor = "black";
-                            topUpSedang.style.borderColor = "black";
-                            topUpLainya.style.borderColor = "black";
-                            inputanLainya.style.display = "none";
-                        });
-                        topUpLainya.addEventListener('click', function() {
-                            topUpLainya.style.borderColor = "#F7941E";
-                            topUpKecil.style.borderColor = "black";
-                            topUpSedang.style.borderColor = "black";
-                            topUpBesar.style.borderColor = "black";
-                            inputanLainya.style.display = "block";
-                        });
+                        const textOrange1 = document.getElementById('textOrange1');
+                            const textOrange2 = document.getElementById('textOrange2');
+                            const textOrange3 = document.getElementById('textOrange3');
+                            const textOrangePrice1 = document.getElementById('textOrangePrice1');
+                            const textOrangePrice2 = document.getElementById('textOrangePrice2');
+                            const textOrangePrice3 = document.getElementById('textOrangePrice3');
+                            const topUpKecil = document.getElementById('topUp1');
+                            const topUpSedang = document.getElementById('topUp2');
+                            const topUpBesar = document.getElementById('topUp3');
+                            const topUpLainya = document.getElementById('topUpLainya');
+                            const inputanLainya = document.getElementById('inputanLainya');
+                            const inputElement = document.getElementById("inputan");
+                            const displayElement = document.getElementById("displayInput");
+                            const anotherText = document.getElementById("anotherText");
+
+                            topUpKecil.addEventListener('click', function() {
+                                topUpKecil.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "#F7941E";
+                                textOrangePrice1.style.color = "#F7941E";
+                                textOrange2.style.color = "black";
+                                textOrangePrice2.style.color = "black";
+                                textOrange3.style.color = "black";
+                                textOrangePrice3.style.color = "black";
+                                topUpBesar.style.borderColor = "black";
+                                topUpSedang.style.borderColor = "black";
+                                topUpLainya.style.borderColor = "black";
+                                inputanLainya.style.display = "none";
+                                topUpSedang.style.color = "black";
+                                topUpBesar.style.color = "black";
+                                topUpLainya.style.color = "black";
+                                anotherText.style.color = "black";
+                                displayElement.style.color = "black";
+                            });
+
+                            topUpSedang.addEventListener("click", function() {
+                                topUpSedang.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "black";
+                                textOrangePrice1.style.color = "black";
+                                textOrange2.style.color = "#F7941E";
+                                textOrangePrice2.style.color = "#F7941E";
+                                textOrange3.style.color = "black";
+                                textOrangePrice3.style.color = "black";
+                                topUpKecil.style.borderColor = "black";
+                                topUpBesar.style.borderColor = "black";
+                                topUpLainya.style.borderColor = "black";
+                                inputanLainya.style.display = "none";
+                                topUpKecil.style.color = "black";
+                                topUpBesar.style.color = "black";
+                                topUpLainya.style.color = "black";
+                                anotherText.style.color = "black";
+                                displayElement.style.color = "black";
+                            });
+
+                            topUpBesar.addEventListener("click", function() {
+                                topUpBesar.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "black";
+                                textOrangePrice1.style.color = "black";
+                                textOrange2.style.color = "black";
+                                textOrangePrice2.style.color = "black";
+                                textOrange3.style.color = "#F7941E";
+                                textOrangePrice3.style.color = "#F7941E";
+                                topUpKecil.style.borderColor = "black";
+                                topUpSedang.style.borderColor = "black";
+                                topUpLainya.style.borderColor = "black";
+                                inputanLainya.style.display = "none";
+                                topUpKecil.style.color = "black";
+                                topUpSedang.style.color = "black";
+                                topUpLainya.style.color = "black";
+                                anotherText.style.color = "black";
+                                displayElement.style.color = "black";
+                            });
+
+                            topUpLainya.addEventListener('click', function() {
+                                topUpLainya.style.borderColor = "#F7941E";
+                                textOrange1.style.color = "black";
+                                textOrangePrice1.style.color = "black";
+                                textOrange2.style.color = "black";
+                                textOrangePrice2.style.color = "black";
+                                textOrange3.style.color = "black";
+                                textOrangePrice3.style.color = "black";
+                                displayElement.style.color = "#F7941E";
+                                topUpKecil.style.borderColor = "black";
+                                topUpSedang.style.borderColor = "black";
+                                topUpBesar.style.borderColor = "black";
+                                inputanLainya.style.display = "block";
+                                topUpKecil.style.color = "black";
+                                topUpBesar.style.color = "black";
+                                topUpSedang.style.color = "black";
+                                anotherText.style.color = "#F7941E";
+                            });
+
                         inputElement.addEventListener("input", function() {
                             const inputValue = inputElement.value;
                             // Format nilai dengan titik sebagai pemisah ribuan
@@ -2346,10 +2550,12 @@
                             return cleanValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                         }
                     </script>
+                    <center>
                     <button type="submit" id="buttonCommentVeed"
                         style="height: 40px; width: 90%; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                        class="btn btn-sm text-light mb-3 mx-4">
+                        class="btn btn-sm text-light mb-3">
                         <b class="me-3 ms-3">Bayar <i class="fa-regular mt-1 fa-credit-card"></i></i></b></button>
+                    </center>
                 </form>
             </div>
         </div>
