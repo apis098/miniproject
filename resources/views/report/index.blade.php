@@ -451,7 +451,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-user">
+                  id="search-feed">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -461,7 +461,7 @@
             {{-- start tab 1 --}}
             <div class="scrollbar" style="overflow-x:scroll;">
 
-              <table id="table-resep" class="table-custom ml-auto" style="min-width: 400px;">
+              <table id="table-feed" class="table-custom ml-auto" style="min-width: 400px;">
                 <thead>
                   <tr>
                     <th scope="col">Pelapor</th>
@@ -509,7 +509,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-user">
+                  id="search-keluhan">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -563,7 +563,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-user">
+                  id="search-komentar">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -617,7 +617,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-user">
+                  id="search-profile">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -669,7 +669,7 @@
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
-                  id="search-user">
+                  id="search-kursus">
                 <button type="submit" class="zoom-effects cari2"
                   style="border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);color: white; font-size: 17px; font-family: Poppins; font-weight: 600; letter-spacing: 0.40px; word-wrap: break-word">
                   Cari
@@ -678,7 +678,7 @@
             </div>
             <div class="scrollbar" style="overflow-x:scroll;">
 
-              <table id="table-profile" class="table-custom ml-auto" style="min-width: 400px;">
+              <table id="table-kursus" class="table-custom ml-auto" style="min-width: 400px;">
                 <thead>
                   <tr>
                     <th scope="col">Pelapor</th>
@@ -867,6 +867,22 @@
       $('#search-profile').on('input', function() {
         var value = $(this).val().toLowerCase();
         $('#table-profile').filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    $(document).ready(function() {
+      $('#search-feed').on('input', function() {
+        var value = $(this).val().toLowerCase();
+        $('#table-feed').filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    $(document).ready(function() {
+      $('#search-kursus').on('input', function() {
+        var value = $(this).val().toLowerCase();
+        $('#table-kursus').filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });

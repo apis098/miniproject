@@ -54,7 +54,7 @@ class ReportController extends Controller
         $reportCourse = Report::whereNotNull("course_id")->paginate(6, ['*'], "report-kursus-page");
         $allComments = $reportReply->concat($reportCommentFeed);
         // membuat pagination pada concat
-        $perPage = 2;
+        $perPage = 5;
         $pageName = "report-comments-page";
         // currentPage untuk mengambil nilai dari page-nya.
         $currentPage = Paginator::resolveCurrentPage($pageName);
