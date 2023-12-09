@@ -278,21 +278,21 @@
         justify-content: center;
       }
     }
+
     @media(max-width:768px) {
-        .ull {
-            display: flex;
-            justify-content:center;
-        }
+      .ull {
+        display: flex;
+        justify-content: center;
+      }
     }
   </style>
-
   <div class="" style="overflow-x:auto;">
     <div class="">
       <div class="my-5">
 
         <ul class="nav mb-3 ml-auto ull" id="pills-tab" role="tablist">
           <li class="nav-item tabs" role="presentation">
-            <a href="#" class="nav-link active" id="button-resep" data-bs-toggle="tab" data-bs-target="#resep"
+            <a href="#" class="nav-link active " id="button-resep" data-bs-toggle="tab" data-bs-target="#resep"
               type="button" role="tab" aria-controls="profile" aria-selected="false">
               <h5 class="text-dark" style="font-weight: 600; word-wrap: break-word;">
                 Resep
@@ -446,8 +446,7 @@
             {{ $reportResep->links('vendor.pagination.defaultReportResep') }}
           </div>
           {{-- end --}}
-          <div class="tab-pane fade show" id="feed" role="tabpanel" aria-labelledby="pills-home-tab"
-            tabindex="0">
+          <div class="tab-pane fade" id="feedss" role="tabpanel" aria-labelledby="pills-home-tab" tabindex="0">
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
                 <input type="text" name="" style="text-align: left;" placeholder="Cari..." value=""
@@ -504,7 +503,7 @@
             {{ $reportVeed->links('vendor.pagination.defaultReportFeed') }}
           </div>
           {{-- end --}}
-          <div class="tab-pane fade" id="keluhan" role="tabpanel" aria-labelledby="pills-profile-tab"
+          <div class="tab-pane fade" id="keluhann" role="tabpanel" aria-labelledby="pills-profile-tab"
             tabindex="0">
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
@@ -558,7 +557,7 @@
             {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
           </div>
           {{-- end --}}
-          <div class="tab-pane fade" id="komentar" role="tabpanel" aria-labelledby="pills-contact-tab"
+          <div class="tab-pane fade" id="komentarr" role="tabpanel" aria-labelledby="pills-contact-tab"
             tabindex="0">
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
@@ -612,7 +611,7 @@
             {{-- $allComments->links('vendor.pagination.defaultReportReply') --}}
           </div>
           {{-- end --}}
-          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="pills-contact-tab"
+          <div class="tab-pane fade" id="profilee" role="tabpanel" aria-labelledby="pills-contact-tab"
             tabindex="0">
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
@@ -664,7 +663,7 @@
             @endif
             {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
           </div>
-          <div class="tab-pane fade" id="kursus" role="tabpanel" aria-labelledby="pills-contact-tab"
+          <div class="tab-pane fade" id="kursuss" role="tabpanel" aria-labelledby="pills-contact-tab"
             tabindex="0">
             <div class="search-2"> <i class='bx bxs-map'></i>
               <form action="#" method="GET">
@@ -1085,7 +1084,7 @@
               @elseif(!empty($row->replies_reply_comment_feed->komentar))
                 <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->replies_reply_comment_feed->komentar }}</textarea>
               @elseif($row->comment_id != null)
-              <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->comment->comment }}</textarea>
+                <textarea readonly class="form-control" style="border-radius: 15px" name="description" rows="5">{{ $row->comment->comment }}</textarea>
               @endif
 
             </div>
@@ -1724,6 +1723,92 @@
     const border6 = document.getElementById("border6");
     const kursus = document.getElementById("button-kursus");
     const feed = document.getElementById("button-feed");
+    //
+    const tabresep = $("#resep");
+    const tabfeedss = $("#feedss");
+    const tabkeluhan = $("#keluhann");
+    const tabkomentar = $("#komentarr");
+    const tabprofile = $("#profilee");
+    const tabkursus = $("#kursuss");
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlFeedExists = urlParams.has('report-feeds-page');
+    const urlKeluhanExists = urlParams.has('report-complaint-page');
+    const urlKomentarExists = urlParams.has('report-comments-page');
+    const urlProfileExists = urlParams.has('report-profile-page');
+    const urlKursusExists = urlParams.has('report-kursus-page');
+    if (urlFeedExists) {
+      tabresep.removeClass('show active');
+      tabfeedss.addClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
+      border5.style.display = "block";
+      border1.style.display = "none";
+      border2.style.display = "none";
+      border3.style.display = "none";
+      border4.style.display = "none";
+      border6.style.display = "none";
+    }
+    if (urlKeluhanExists) {
+      border2.removeAttribute('hidden');
+      border2.style.display = "block";
+      border1.style.display = "none";
+      border3.style.display = "none";
+      border4.style.display = "none";
+      border5.style.display = "none";
+      border6.style.display = "none";
+      tabkeluhan.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
+    }
+    if (urlKomentarExists) {
+      border3.removeAttribute('hidden');
+      border3.style.display = "block";
+      border1.style.display = "none";
+      border2.style.display = "none";
+      border4.style.display = "none";
+      border5.style.display = "none";
+      border6.style.display = "none";
+      tabkomentar.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
+    }
+    if (urlProfileExists) {
+      border4.style.display = "block";
+      border1.style.display = "none";
+      border2.style.display = "none";
+      border3.style.display = "none";
+      border5.style.display = "none";
+      border6.style.display = "none";
+      tabprofile.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabkursus.removeClass('show active');
+    }
+    if (urlKursusExists) {
+      border6.style.display = "block";
+      border2.style.display = "none";
+      border3.style.display = "none";
+      border4.style.display = "none";
+      border5.style.display = "none";
+      border1.style.display = "none";
+      tabkursus.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
+    }
     resep.addEventListener('click', function() {
       border1.style.display = "block";
       border2.style.display = "none";
@@ -1731,7 +1816,12 @@
       border4.style.display = "none";
       border5.style.display = "none";
       border6.style.display = "none";
-
+      tabresep.addClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
     });
     kursus.addEventListener('click', function() {
       border6.style.display = "block";
@@ -1740,7 +1830,12 @@
       border4.style.display = "none";
       border5.style.display = "none";
       border1.style.display = "none";
-
+      tabkursus.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
     });
     keluhan.addEventListener("click", function() {
       border2.removeAttribute('hidden');
@@ -1750,7 +1845,12 @@
       border4.style.display = "none";
       border5.style.display = "none";
       border6.style.display = "none";
-
+      tabkeluhan.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
     });
 
     komentar.addEventListener("click", function() {
@@ -1761,7 +1861,12 @@
       border4.style.display = "none";
       border5.style.display = "none";
       border6.style.display = "none";
-
+      tabkomentar.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
     });
     profile.addEventListener("click", function() {
       border4.style.display = "block";
@@ -1770,7 +1875,12 @@
       border3.style.display = "none";
       border5.style.display = "none";
       border6.style.display = "none";
-
+      tabprofile.addClass('show active');
+      tabresep.removeClass('show active');
+      tabfeedss.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabkursus.removeClass('show active');
     });
     feed.addEventListener("click", function() {
       border5.style.display = "block";
@@ -1779,7 +1889,12 @@
       border3.style.display = "none";
       border4.style.display = "none";
       border6.style.display = "none";
-
+      tabfeedss.addClass('show active');
+      tabresep.removeClass('show active');
+      tabkeluhan.removeClass('show active');
+      tabkomentar.removeClass('show active');
+      tabprofile.removeClass('show active');
+      tabkursus.removeClass('show active');
     });
   </script>
   <script>

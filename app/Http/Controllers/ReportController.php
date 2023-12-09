@@ -31,7 +31,7 @@ class ReportController extends Controller
 
     public function index(Request $request)
     {
-        $reportResep = Report::whereNotNull("resep_id")->paginate(6, ['*'], "report-resep-page");
+        $reportResep = Report::whereNotNull("resep_id")->paginate(2, ['*'], "report-resep-page");
         if ($request->has('resep')) {
             $searchQuery = $request->resep;
             $reportResep = Report::where('description', 'like', '%' . $searchQuery . '%')
@@ -39,7 +39,7 @@ class ReportController extends Controller
                 ->paginate(6, ['*'], "report-resep-page");
         }
         $data = Report::all();
-        $reportVeed = Report::whereNotNull("feed_id")->paginate(6, ["*"], "report-feeds-page");
+        $reportVeed = Report::whereNotNull("feed_id")->paginate(1, ["*"], "report-feeds-page");
         $reportComplaint = Report::whereNotNull("complaint_id")->paginate(6, ['*'], "report-complaint-page");
         $reportReply = Report::whereNotNull("reply_id")
             ->orWhereNotNull('reply_comment_id')
@@ -54,7 +54,7 @@ class ReportController extends Controller
         $reportCourse = Report::whereNotNull("course_id")->paginate(6, ['*'], "report-kursus-page");
         $allComments = $reportReply->concat($reportCommentFeed);
         // membuat pagination pada concat
-        $perPage = 5;
+        $perPage = 1;
         $pageName = "report-comments-page";
         // currentPage untuk mengambil nilai dari page-nya.
         $currentPage = Paginator::resolveCurrentPage($pageName);
