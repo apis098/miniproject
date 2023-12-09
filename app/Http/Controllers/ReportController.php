@@ -495,6 +495,18 @@ class ReportController extends Controller
         }
         return redirect()->back()->with('success', 'Nama berhasil disesuaikan');
     }
+    public function block_resep(Request $request, $id) {
+        $resep = Reseps::findOrFail($id);
+        $resep->User->increment('jumlah_pelanggaran');
+        $resep->delete();
+        $notification = new Notifications();
+        $notification->user_id = $resep->user_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->resep_id_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        return redirect('/resep')->with('success', 'Resep telah diblokir');
+    }
     public function block(Request $request, $id)
     {
         $report = Report::findOrFail($id);
