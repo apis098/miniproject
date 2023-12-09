@@ -501,7 +501,7 @@
               </div>
             @endif
 
-            {{ $reportVeed->links('vendor.pagination.defaultReportResep') }}
+            {{ $reportVeed->links('vendor.pagination.defaultReportFeed') }}
           </div>
           {{-- end --}}
           <div class="tab-pane fade" id="keluhan" role="tabpanel" aria-labelledby="pills-profile-tab"
@@ -583,7 +583,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($allComments as $row)
+                  @foreach ($pagination as $row)
                     <tr class="mt-5">
                       <td style="border-left:1px solid black;" class="mt">
                         {{ $row->userSender->name }}
@@ -601,13 +601,14 @@
                 </tbody>
               </table>
             </div>
-            @if ($allComments->count() == 0)
+            @if ($pagination->count() == 0)
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
                 <p><b>Tidak ada data</b></p>
               </div>
             @endif
+            {{ $pagination->links('vendor.pagination.defaultReportComment') }}
             {{-- $allComments->links('vendor.pagination.defaultReportReply') --}}
           </div>
           {{-- end --}}
@@ -785,7 +786,7 @@
                 <p><b>Tidak ada data</b></p>
               </div>
             @endif
-            {{ $reportCourse->links('vendor.pagination.defaultReportProfile') }}
+            {{ $reportCourse->links('vendor.pagination.defaultReportKursus') }}
           </div>
         </div>
       </div>
