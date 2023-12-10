@@ -237,14 +237,14 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                        <form action="{{ route('complaint.destroy', $data->id) }}" method="post">
+                          <form action="{{ route('complaint.destroy', $data->id) }}" method="post">
                             @csrf
                             @method('DELETE')
-                          <button type="submit" class="btn btn-light text-light rounded-3"
-                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
-                              class="ms-2 me-2">Ya</b>
-                          </button>
-                        </form>
+                            <button type="submit" class="btn btn-light text-light rounded-3"
+                              style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                class="ms-2 me-2">Ya</b>
+                            </button>
+                          </form>
                           <button type="button" data-dismiss="modal" class="btn btn-light text-light rounded-3"
                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
                               class="ms-2 me-2">Tidak</b>
@@ -254,10 +254,47 @@
                     </div>
                   </div>
                 @elseif(Auth::user()->role == 'admin')
-                <button type="submit" class="btn zoom-effects text-light btn-sm rounded-circle p-2"
-                style="background-color:#F7941E ;" data-toggle="modal" data-target="#ModalBlokir">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 16 16"><path fill="currentColor" d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM3.965 13.096a6.5 6.5 0 0 0 9.131-9.131ZM1.5 8a6.474 6.474 0 0 0 1.404 4.035l9.131-9.131A6.499 6.499 0 0 0 1.5 8Z"/></svg>
-                </div>
+                  <button type="submit" class="btn zoom-effects text-light btn-sm rounded-circle p-2"
+                    style="background-color:#F7941E ;" data-toggle="modal" data-target="#ModalBlokir">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 16 16">
+                      <path fill="currentColor"
+                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM3.965 13.096a6.5 6.5 0 0 0 9.131-9.131ZM1.5 8a6.474 6.474 0 0 0 1.404 4.035l9.131-9.131A6.499 6.499 0 0 0 1.5 8Z" />
+                    </svg>
+                  </button>
+                  <div class="modal" id="ModalBlokir">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content" style="width: 100%;">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Kirim alasan</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" style="text-align: right;">
+                          <form action="{{ route('block.complaint', $data->id) }}" method="post">
+                            @csrf
+                            @method('PUT')
+                            <input type="hidden" name="block_complaint" value="yes">
+                            <div class="row mb-3">
+                              <div class="col-lg-5 col-md-12">
+                                <img class="my-auto" src="{{ asset('images/alasan.png') }}" width="100%"
+                                  height="100%" alt="">
+                              </div>
+                              <div class="col-lg-7 col-md-12">
+                                <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                  cols="5" rows="5"></textarea>
+                              </div>
+                            </div>
+
+                            <button type="submit"
+                              style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                              class="btn  btn-sm text-light">
+                              <b class="me-3 ms-3">Kirim</b></button>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
                 @endif
               @endif
             </div>

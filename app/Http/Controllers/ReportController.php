@@ -506,14 +506,32 @@ class ReportController extends Controller
     public function block_resep(Request $request, $id) {
         $resep = Reseps::findOrFail($id);
         $resep->User->increment('jumlah_pelanggaran');
-        $resep->delete();
         $notification = new Notifications();
         $notification->user_id = $resep->user_id;
         $notification->notification_from = auth()->user()->id;
         $notification->resep_id_report = 1;
         $notification->alasan = $request->alasan;
         $notification->save();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/blokir-resep/".$notification->id;
+        $up->save();
+        $resep->delete();
         return redirect('/resep')->with('success', 'Resep telah diblokir');
+    }
+    public function block_complaint(Request $request, $id) {
+        $complaint = Complaint::findOrFail($id);
+        $complaint->user->increment('jumlah_pelanggaran');
+        $notification = new Notifications();
+        $notification->user_id = $complaint->user_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->complaint_id_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/blokir-keluhan/".$notification->id;
+        $up->save();
+        $complaint->delete();
+        return redirect('/keluhan')->with('success', 'Keluhan telah diblokir');
     }
     public function block(Request $request, $id)
     {
@@ -527,6 +545,9 @@ class ReportController extends Controller
             $notification->reply_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/replies-blocked/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Komentar berhasil diblokir');
         }
         if ($report->complaint_id != null) {
@@ -537,6 +558,9 @@ class ReportController extends Controller
             $notification->complaint_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/blokir-keluhan/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Keluhan telah diblokir');
         }
         if ($report->resep_id != null) {
@@ -547,6 +571,9 @@ class ReportController extends Controller
             $notification->resep_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/blokir-resep/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Resep telah diblokir');
         }
         if ($report->feed_id != null) {
@@ -557,6 +584,9 @@ class ReportController extends Controller
             $notification->veed_id_report = 1;
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/blokir-feed/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Postingan telah diblokir');
         }
         if ($report->profile_id != null) {
@@ -573,6 +603,9 @@ class ReportController extends Controller
                 $notification->profile_id = $report->profile_id;
                 $notification->alasan = $request->alasan;
                 $notification->save();
+                $up = Notifications::find($notification->id);
+                $up->route = "/status-baca/profile-blocked/".$notification->id;
+                $up->save();
                 return redirect()->back()->with('success', 'Foto profile telah diblokir');
             } else {
                 $report->delete();
@@ -588,6 +621,9 @@ class ReportController extends Controller
             $notification->message = "Komentar kamu telah di blokir";
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/blokir-komentar/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Komentar berhasil diblokir');
         }
         if ($report->reply_comment_feed_id != null) {
@@ -599,6 +635,9 @@ class ReportController extends Controller
             $notification->message = "Komentar kamu telah di blokir";
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/blokir-komentar/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Komentar berhasil diblokir');
         }
         if ($report->replies_reply_comment_feed_id != null) {
@@ -610,6 +649,9 @@ class ReportController extends Controller
             $notification->message = "Komentar kamu telah di blokir";
             $notification->alasan = $request->alasan;
             $notification->save();
+            $up = Notifications::find($notification->id);
+            $up->route = "/status-baca/blokir-komentar/".$notification->id;
+            $up->save();
             return redirect()->back()->with('success', 'Komentar berhasil diblokir');
         }
         if ($report->user->jumlah_pelanggaran > 3) {

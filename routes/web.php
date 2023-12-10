@@ -169,6 +169,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('content-destroy/{id}', [ReportController::class, 'block'])->name('blockContent.destroy');
         Route::put('block-resep/{id}', [ReportController::class, 'block_resep'])->name('block.resep');
         Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
+        Route::put('block-complaint/{id}', [ReportController::class, 'block_complaint'])->name('block.complaint');
         Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status')->middleware('roleAdmin:admin_laporan');
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
