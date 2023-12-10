@@ -282,7 +282,9 @@ class ReportController extends Controller
             } else {
                 return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
             }
-            return redirect()->back()->with('success', 'Laporan anda telah terkirim');
+            return response([
+                'message' => 'Laporan anda telah terkirim'
+            ]);
         } elseif ($reply_comment_feed_id != 0) {
             $reply = ReplyCommentFeed::findOrFail($reply_comment_feed_id);
             if (Auth::check()) {
@@ -295,7 +297,9 @@ class ReportController extends Controller
             } else {
                 return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
             }
-            return redirect()->back()->with('success', 'Laporan anda telah terkirim');
+            return response([
+                'message' => 'Laporan anda telah terkirim'
+            ]);
         } elseif ($reply_replies_comment_feed_id != 0) {
             $replies_reply = BalasReplyCommentfeeds::findOrFail($reply_replies_comment_feed_id);
             if (Auth::check()) {
@@ -308,7 +312,9 @@ class ReportController extends Controller
             } else {
                 return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
             }
-            return redirect()->back()->with('success', 'Laporan anda telah terkirim');
+            return response([
+                'message' => 'Laporan anda telah terkirim'
+            ]);
         }
     }
 
@@ -352,7 +358,9 @@ class ReportController extends Controller
             $report->description = $request->description;
             $report->feed_id = $id;
             $report->save();
-            return redirect()->back()->with('success', 'Berhasil melaporkan postingan');
+            return response()->json([
+                'message' => 'Berhasil melaporkan postingan'
+            ]);
         } else {
             return redirect()->route('login')->with('error', 'Silahkan login terlebih dahulu');
         }
