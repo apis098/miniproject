@@ -334,6 +334,24 @@
                                                             name="replies_id" id="replies_id" class="form-control">
                                                     </button>
                                                 </form>
+                                            @elseif($row->report_kursus_id != null)
+                                                <form action="{{ route('blockedKursus.notification', $row->id) }}"
+                                                    method="POST">
+                                                    @method('PUT')
+                                                    @csrf
+                                                    <button class="yuhu mt-2" type="button" data-toggle="modal"
+                                                        data-target="#modalAlasan{{ $row->id }}">
+                                                        <small class=" ms-1 text-secondary">Kursus
+                                                            anda telah diblokir</small>
+                                                        @if ($row->status == 'belum')
+                                                            <img class="ms-2 rounded-circle"
+                                                                src="{{ asset('images/badge.png') }}"
+                                                                alt="profile image" style="max-width:10px">
+                                                        @endif
+                                                    </button>
+                                                    <input type="text" hidden name="follower_id" id="follower_id"
+                                                        value="{{ $row->follower_id }}" class="form-control">
+                                                </form>
                                             @elseif($row->top_up_id != null)
                                                 <form action="{{ route('topUp.notification', $row->id) }}"
                                                     method="POST">

@@ -535,12 +535,9 @@
                                             <span>
                                                 <div class="font-weight-semibold ms-1 me-2">
                                                     <div class="d-flex">
-                                                        <small
-                                                            class="font-weight-bolder font-weight-bolder ellipsis-name"><b>{{ $item->userSender->name }}</b>
-                                                        </small>
-                                                        <svg class="text-primary" style="margin-top: 2px;"
-                                                            xmlns="http://www.w3.org/2000/svg" width="15"
-                                                            height="15" viewBox="0 0 24 24">
+                                                        <small class="font-weight-bolder">{{ $item->userSender->name }}</small>
+                                                        <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
+                                                            width="15" height="15" viewBox="0 0 24 24">
                                                             <path fill="currentColor"
                                                                 d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
                                                         </svg>
@@ -595,13 +592,13 @@
                                                         {{ $item->likes }}</small>
                                                 </div>
                                                 @if (auth()->check())
-                                                    @if (auth()->user()->id != $item->user_id_sender && $userLogin->role != 'admin')
+                                                    @if (auth()->user()->id != $item->user_id_sender && $item->userSender->role != "admin" && $userLogin->role != 'admin')
                                                         <button type="button" data-toggle="modal"
                                                             data-target="#modalBalasan{{ $item->id }}"
                                                             class="yuhu text-danger btn-sm rounded-5 "><i
                                                                 class="fa-solid fa-triangle-exclamation me-2"></i>
                                                         </button>
-                                                    @elseif(auth()->user()->role == 'admin')
+                                                    @elseif(auth()->user()->role == 'admin' && $item->userSender->role != "admin")
                                                         <button type="button" data-toggle="modal"
                                                             data-target="#blockModalReply{{ $item->id }}"
                                                             class="yuhu text-danger btn-sm rounded-5 "><svg
@@ -612,6 +609,7 @@
                                                                     fill="currentColor" fill-rule="nonzero" />
                                                             </svg>
                                                         </button>
+                                                    @elseif($item->userSender->role == "admin")
                                                     @else
                                                         <form action="{{ route('replyComment.destroy', $item->id) }}"
                                                             method="POST" id="replyDelete{{ $item->id }}">
@@ -628,6 +626,13 @@
                                                             </button>
                                                         </form>
                                                     @endif
+                                                @else
+                                                 @if ($item->userSender->role != "admin")
+                                                 <button type="button"
+                                                 class="yuhu text-danger btn-sm rounded-5 "><i
+                                                     class="fa-solid fa-triangle-exclamation me-2"></i>
+                                             </button>
+                                                 @endif
                                                 @endif
                                             </div>
 
