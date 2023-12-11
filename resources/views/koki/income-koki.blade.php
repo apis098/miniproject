@@ -289,7 +289,7 @@
                                     .tinggi {
                                         height: auto;
                                     }
-                                }   
+                                }
                             </style>
                             <script>
                                 function small_option() {
@@ -381,7 +381,7 @@
                                     <b class="ms-2 me-2">Tarik</b>
                                 </button>
                             </div>
-                            
+
                         </form>
                     @else
                         <form action="{{ route('kirim.dataPribadiChef') }}" method="post" id="FormKirimDataPribadiChef">
@@ -767,7 +767,7 @@
             <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: -3em;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada pendapatan</b></p>
             </div>
         @endif
         {{ $income_koki->links('pagination::default') }}

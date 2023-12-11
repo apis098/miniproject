@@ -435,7 +435,7 @@
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                     style="margin-top: -3em">
                                     <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p><b>Tidak ada data</b></p>
+                                    <p><b>Tidak ada resep</b></p>
                                 </div>
                             @endif
                             <div class="row mb-5" style="margin-top:-50px;">
@@ -475,7 +475,7 @@
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                     style="margin-top: -3em">
                                     <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p><b>Tidak ada data</b></p>
+                                    <p><b>Tidak ada postingan</b></p>
                                 </div>
                             @endif
                             <div class="row mb-5" style="margin-top: -50px; ">
@@ -598,7 +598,7 @@
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                     style="margin-top: -3em">
                                     <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p><b>Tidak ada data</b></p>
+                                    <p><b>Tidak ada kursus</b></p>
                                 </div>
                             @endif
                             <div class="row mb-5" style="margin-top: -50px; ">

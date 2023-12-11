@@ -160,7 +160,7 @@
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                     style="margin-top: 2em">
                                     <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                    <p style="color: #1d1919"><b>Tidak ada komentar</b></p>
                                 </div>
                             @endif
                             @foreach ($komentar_feed as $commentFeed)
@@ -200,7 +200,7 @@
                                 <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                     style="margin-top: 2em">
                                     <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                    <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                    <p style="color: #1d1919"><b>Tidak ada komentar</b></p>
                                 </div>
                             @endif
                             @foreach ($komentar_resep as $commentRecipe)

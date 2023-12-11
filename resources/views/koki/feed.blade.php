@@ -373,7 +373,7 @@
             <div class="d-flex mt-5 flex-column h-100 justify-content-center align-items-center"
               style="margin-top: -3em; margin-right:15%;">
               <img src="{{ asset('images/data.png') }}" style="width: 15em">
-              <p><b>Tidak ada data</b></p>
+              <p><b>Tidak ada postingan</b></p>
             </div>
           @endif
 
@@ -391,7 +391,7 @@
 
                 <div class="d-flex justify-content-evenly gap1 feed_dibuat_tab1">
                   <div class="card border-black p-0">
-                    
+
                       <div id="feed_buat{{ $feed_buat->id }}">
                       <div class="card-body p-2">
                       <a href="{{ route('veed.index', ['uuid' => $feed_buat->uuid]) }}" class="text-black fs-6">
@@ -401,10 +401,10 @@
                         <div class="p-0">
                           <span class="ellipsis-deskripsi">{{ $feed_buat->deskripsi_video }}</span>
                         </div>
-                       
+
                       </div>
                       <style>
-                        
+
                         .border-black {
                             /* width: 150px;
                             height: 225px; */

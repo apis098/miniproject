@@ -110,7 +110,7 @@
                         <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                             style="margin-top: 7em">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
+                            <p><b>Tidak ada postingan</b></p>
                         </div>
                     @endif
 

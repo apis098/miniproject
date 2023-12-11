@@ -397,7 +397,7 @@
             <div class="d-flex flex-column justify-content-center align-items-center"
               style="margin-top: 20%; margin-bottom: 20%;">
               <img src="{{ asset('images/data.png') }}" style="width: 15em">
-              <p><b>Tidak ada data</b></p>
+              <p><b>Tidak ada postingan</b></p>
             </div>
           @endif
           @foreach ($video_pembelajaran as $urut => $item_video)

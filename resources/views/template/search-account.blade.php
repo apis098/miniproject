@@ -188,7 +188,7 @@
     @if ($user->count() == 0)
         <div class="d-flex flex-column justify-content-center align-items-center">
             <img src="{{ asset('images/data.png') }}" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>akun tidak di temukan</b></p>
         </div>
     @endif
     <div class="ms-5 mt-5 me-5">

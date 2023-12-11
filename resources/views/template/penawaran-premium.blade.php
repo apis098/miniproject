@@ -91,7 +91,7 @@
                 @if ($penawaran_premium->count() == 0)
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                    <p><b>Tidak ada data</b></p>
+                    <p><b>Premium masih belum tersedia</b></p>
                 </div>
             @endif
                 @foreach ($penawaran_premium as $item_prem)

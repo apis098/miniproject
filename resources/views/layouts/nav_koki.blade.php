@@ -77,7 +77,7 @@
         h2 {
             font-family: 'Dancing Script', cursive;
         }
-        
+
         .scale {
             box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
             transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
@@ -786,8 +786,9 @@
                                 @forelse ($notification as $row)
                                 @empty
                                     <div class="text-center">
-                                        <img src="{{ asset('images/nodata.png') }}" class="col-sm-6 mt-4 mb-2"
+                                        <img src="{{ asset('images/data.png') }}" class="col-sm-6 mt-4 mb-2"
                                             alt="...">
+                                        <p><b>Tidak ada notifikasi</b></p>
                                     </div>
                                 @endforelse
 
@@ -1091,7 +1092,7 @@
                                 </p>
                             </a>
                         </li> -->
-                         
+
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.beranda') }}"
                                 class="nav-link mx-3 {{ request()->routeIs('koki.beranda') ? 'activet text-orange' : 'text-white' }}"
@@ -1106,7 +1107,7 @@
                                     Beranda
                                 </p>
                             </a>
-                        </li>                        
+                        </li>
                         <li class="nav-item" style="margin-bottom: -30px; margin-top: 2em">
                             <a href="{{ route('koki.feed') }}"
                                 class="nav-link mx-3 {{ request()->is('koki/feed') ? 'activet text-orange' : 'text-white' }}"
@@ -1277,7 +1278,7 @@
                                     </div>
                                 </div>
                             </center>
-                            
+
                             <center>
                             <div id="inputanLainya" style="display: none;" class="padding mb-3">
                                 <input type="number" id="inputan" name="inputanLainya"

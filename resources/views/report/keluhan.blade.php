@@ -455,7 +455,7 @@
                     @if ($reportComplaint->count() == 0)
                     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
                         <img src="{{asset('images/data.png')}}" style="width: 15em">
-                        <p><b>Tidak ada data</b></p>
+                        <p><b>Tidak ada laporan</b></p>
                     </div>
                 @endif
 

@@ -903,8 +903,9 @@
                             @forelse ($notification as $row)
                             @empty
                                 <div class="text-center mt-5">
-                                    <img src="{{ asset('images/nodata.png') }}" style="width:60%" class="col-sm-6 mt-4"
+                                    <img src="{{ asset('images/data.png') }}" style="width:60%" class="col-sm-6 mt-4"
                                         alt="...">
+                                    <p><b>Tidak ada notifikasi</b></p>
                                 </div>
                             @endforelse
                         </div>
@@ -1920,8 +1921,9 @@
                                                     @forelse ($notification as $row)
                                                     @empty
                                                         <div class="text-center mt-5">
-                                                            <img src="{{ asset('images/nodata.png') }}"
+                                                            <img src="{{ asset('images/data.png') }}"
                                                                 class="col-sm-6 mt-4" alt="...">
+                                                                <p><b>Tidak ada notifikasi</b></p>
                                                         </div>
                                                     @endforelse
                                                 </div>

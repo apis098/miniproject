@@ -207,7 +207,7 @@
         @if ($complaints->count() == 0)
     <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
         <img src="images/data.png" style="width: 15em">
-        <p><b>Tidak ada data</b></p>
+        <p><b>Tidak ada keluhan</b></p>
     </div>
 @endif
 

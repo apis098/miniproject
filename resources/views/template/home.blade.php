@@ -147,7 +147,7 @@
     @if ($resep_premium_favorite->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>Tidak ada resep</b></p>
         </div>
     @endif
     <div class="row mt-4">
@@ -266,7 +266,7 @@
     @if ($feed_premium_favorite->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>Tidak ada postingan</b></p>
         </div>
     @endif
     <div class="row">
@@ -375,7 +375,7 @@
     @if ($real_reseps->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>Tidak ada resep</b></p>
         </div>
     @endif
     <div class="row mt-4">
@@ -437,7 +437,7 @@
     @if ($favorite_resep->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>Tidak ada resep</b></p>
         </div>
     @endif
     <div class="row  mt-4">
@@ -684,7 +684,7 @@
         @if ($categories_foods->count() == 0)
             <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
                 <img src="images/data.png" style="width: 15em">
-                <p style="color: white"><b>Tidak ada data</b></p>
+                <p style="color: white"><b>Tidak ada kategori</b></p>
             </div>
         @endif
         <div class="row">
@@ -714,7 +714,7 @@
     @if ($recipes->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>Tidak ada resep</b></p>
         </div>
     @endif
     <div class="row">
@@ -784,7 +784,7 @@
     @if ($feed_populer->count() == 0)
         <div class="d-flex flex-column h-100 justify-content-center align-items-center" style="margin-top: 5em">
             <img src="images/data.png" style="width: 15em">
-            <p><b>Tidak ada data</b></p>
+            <p><b>Tidak ada Postingan</b></p>
         </div>
     @endif
     <div class="row">
@@ -904,7 +904,7 @@
                                     ditulis oleh teman-teman food blogger seantero Nusantara yang
                                     sudah berpengalaman di bidang masak memasak. Harapan
                                     kami semua orang bisa memasak dengan mudah dan berhasil,
-                                    supaya dapat disajikan dengan sempurna untuk keluarga tercinta. 
+                                    supaya dapat disajikan dengan sempurna untuk keluarga tercinta.
                                     Semua resep di sini telah teruji dapur dan foto yang
                                     ditampilkan adalah original/hasil aslinya. Terima Kasih.
                                 </p>
@@ -952,7 +952,7 @@
                     ditulis oleh teman-teman food blogger seantero Nusantara yang
                     sudah berpengalaman di bidang masak memasak. Harapan
                     kami semua orang bisa memasak dengan mudah dan berhasil,
-                    supaya dapat disajikan dengan sempurna untuk keluarga tercinta. 
+                    supaya dapat disajikan dengan sempurna untuk keluarga tercinta.
                     Semua resep di sini telah teruji dapur dan foto yang
                     ditampilkan adalah original/hasil aslinya. Terima Kasih.
                 </p>

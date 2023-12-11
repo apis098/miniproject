@@ -439,7 +439,7 @@
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada laporan</b></p>
               </div>
             @endif
 
@@ -496,7 +496,7 @@
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada laporan</b></p>
               </div>
             @endif
 
@@ -551,7 +551,7 @@
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada laporan</b></p>
               </div>
             @endif
             {{ $reportComplaint->links('vendor.pagination.defaultReportComplaint') }}
@@ -604,7 +604,7 @@
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada laporan</b></p>
               </div>
             @endif
             {{ $pagination->links('vendor.pagination.defaultReportComment') }}
@@ -658,7 +658,7 @@
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada laporan</b></p>
               </div>
             @endif
             {{ $reportProfile->links('vendor.pagination.defaultReportProfile') }}
@@ -782,7 +782,7 @@
               <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                 style="margin-top: 5em; margin-left:-5%;">
                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                <p><b>Tidak ada data</b></p>
+                <p><b>Tidak ada laporan</b></p>
               </div>
             @endif
             {{ $reportCourse->links('vendor.pagination.defaultReportKursus') }}

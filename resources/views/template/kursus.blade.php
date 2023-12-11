@@ -665,7 +665,7 @@
           @if ($semua_kursus->count() == 0)
             <div class="d-flex flex-column justify-content-center align-items-center">
               <img src="{{ asset('images/data.png') }}" style="width: 15em">
-              <p><b>Tidak ada data</b></p>
+              <p><b>Tidak ada kursus</b></p>
             </div>
           @endif
           <div class="row">
@@ -720,7 +720,7 @@
           @if ($kursus_terbaru->count() == 0)
             <div class="d-flex flex-column justify-content-center align-items-center">
               <img src="{{ asset('images/data.png') }}" style="width: 15em">
-              <p><b>Tidak ada data</b></p>
+              <p><b>Tidak ada kursus</b></p>
             </div>
           @endif
           <div class="row">
@@ -775,7 +775,7 @@
           @if ($kursus_terfavorite->count() == 0)
             <div class="d-flex flex-column justify-content-center align-items-center">
               <img src="{{ asset('images/data.png') }}" style="width: 15em">
-              <p><b>Tidak ada data</b></p>
+              <p><b>Tidak ada kursus</b></p>
             </div>
           @endif
           <div class="row">
@@ -831,7 +831,7 @@
           @if ($kursus_terbaik->count() == 0)
             <div class="d-flex flex-column justify-content-center align-items-center">
               <img src="{{ asset('images/data.png') }}" style="width: 15em">
-              <p><b>Tidak ada data</b></p>
+              <p><b>Tidak ada kursus</b></p>
             </div>
           @endif
           <div class="row mx-1" style="margin-left: -50px">

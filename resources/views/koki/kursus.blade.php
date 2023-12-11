@@ -343,7 +343,7 @@
                     @if ($kursus_sendiri->count() < 1)
                         <div class="d-flex mt-5 mr-5 flex-column h-100 justify-content-center align-items-center">
                             <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                            <p><b>Tidak ada data</b></p>
+                            <p><b>Tidak ada kursus</b></p>
                         </div>
                     @endif
                     <div class="row daftarkursus" id="myCourse">

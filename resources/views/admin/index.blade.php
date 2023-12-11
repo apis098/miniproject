@@ -97,7 +97,7 @@
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                 style="margin-top: 2em">
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                <p style="color: #1d1919"><b>Tidak ada resep</b></p>
                             </div>
                         @endforelse
                     </div>
@@ -132,7 +132,7 @@
                             <div class="d-flex flex-column h-100 justify-content-center align-items-center"
                                 style="margin-top: 2em">
                                 <img src="{{ asset('images/data.png') }}" style="width: 15em">
-                                <p style="color: #1d1919"><b>Tidak ada data</b></p>
+                                <p style="color: #1d1919"><b>Tidak ada laporan</b></p>
                             </div>
                         @endforelse
                     </div>
