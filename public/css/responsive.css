@@ -215,6 +215,13 @@ padding-left: 0;
       overflow: hidden;
       text-overflow: ellipsis;
   }
+  .limit-waktu {
+    display: block;
+    width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 }
 @media (max-width: 425px) {
   .limit-name {
@@ -224,6 +231,13 @@ padding-left: 0;
       overflow: hidden;
       text-overflow: ellipsis;
   }
+  .limit-waktu {
+    display: block;
+    width: 91px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 }
 @media (max-width: 373px) {
   .limit-name {
@@ -233,6 +247,13 @@ padding-left: 0;
       overflow: hidden;
       text-overflow: ellipsis;
   }
+  .limit-waktu {
+    display: block;
+    width: 80px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 }
 @media (min-width:426px) and (max-width: 767px) {
   .limit-name {
@@ -242,6 +263,13 @@ padding-left: 0;
       overflow: hidden;
       text-overflow: ellipsis;
   }
+  .limit-waktu {
+    display: block;
+    width: 110px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 }
 
 @media (min-width:374px) and (max-width: 400px) {
@@ -252,6 +280,13 @@ padding-left: 0;
       overflow: hidden;
       text-overflow: ellipsis;
   }
+  .limit-waktu {
+    display: block;
+    width: 91px; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 }
 
 @media (max-width: 425px) {
