@@ -565,7 +565,13 @@ class ReportController extends Controller
         $up->route = "/status-baca/replies-blocked/".$notification->id;
         $up->save();
         $komen->delete();
+        if($request->ajax()) {
+            return response()->json([
+                'message' => 'Komentar diskusi telah diblokir'
+            ]);
+        } else {
         return redirect()->back()->with('success', 'Komentar diskusi telah diblokir');
+        }
     }
     public function block_reply_comment_replies(Request $request, $id) {
         $komen = ReplyComplaint::findOrFail($id);
@@ -580,7 +586,13 @@ class ReportController extends Controller
         $up->route = "/status-baca/replies-blocked/".$notification->id;
         $up->save();
         $komen->delete();
+        if($request->ajax()) {
+            return response()->json([
+                'message' => 'Komentar diskusi telah diblokir'
+            ]);
+        } else {
         return redirect()->back()->with('success', 'Komentar diskusi telah diblokir');
+        }
     }
     public function block(Request $request, $id)
     {

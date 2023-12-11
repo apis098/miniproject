@@ -532,11 +532,13 @@
                                                 <div class="font-weight-semibold ms-1 me-2">
                                                     <div class="d-flex">
                                                         <small class="font-weight-bolder">{{ $item->userSender->name }}</small>
+                                                        @if ($item->userSender->role == 'admin')
                                                         <svg class="text-primary ms-1" xmlns="http://www.w3.org/2000/svg"
                                                             width="15" height="15" viewBox="0 0 24 24">
                                                             <path fill="currentColor"
                                                                 d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
                                                         </svg>
+                                                        @endif
                                                     </div>
                                                     @if ($item->count() > 0)
                                                         <div class="text-black" style="font-size: 13px">
@@ -586,13 +588,54 @@
                                                 @if (auth()->check())
                                                     @if (auth()->user()->id != $item->user_id_sender && $item->userSender->role != "admin" && $userLogin->role != 'admin')
                                                         <button type="button" data-toggle="modal"
-                                                            data-target="#modalBalasan{{ $item->id }}"
+                                                            data-target="#ModalLaporkanKomentar{{ $item->id }}"
                                                             class="yuhu text-danger btn-sm rounded-5 "><i
                                                                 class="fa-solid fa-triangle-exclamation me-2"></i>
                                                         </button>
+                                                        <div class="modal fade" id="ModalLaporkanKomentar{{ $item->id }}" tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Laporkan komentar dari
+                                                                            {{ $item->userSender->name }}</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{route('report.reply.comment', $item->id)}}" id="FormLaporkanKomentar{{ $item->id }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <div class="modal-body d-flex align-items-center" style="background-color: #ffffff;">
+                                                                            <!-- Tambahkan kelas "align-items-center" -->
+                                                                            @if ($item->userSender->foto)
+                                                                                <img class="rounded-circle" src="{{ asset('storage/' . $item->userSender->foto) }}"
+                                                                                    width="106px" height="104px"
+                                                                                    style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
+                                                                                    alt="">
+                                                                                <textarea class="form-control" name="description" style="margin-left: 1em; border-radius: 15px;" rows="5" id="InputLaporkanKomentar{{ $item->id }}"
+                                                                                    placeholder="Alasan"></textarea>
+                                                                            @else
+                                                                                <img src="{{ asset('images/default.jpg') }}" width="106px" height="104px"
+                                                                                    style="border-radius: 50%; max-width:110px; border:0.05rem solid rgb(185, 180, 180);"
+                                                                                    alt="">
+                                                                                <textarea class="form-control rounded-5" id="InputLaporkanKomentar{{ $item->id }}"
+                                                                                    style="margin-left: 1em; border-radius: 15px;" name="description" rows="5" placeholder="Alasan..."></textarea>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn text-light" id="ButtonLaporkanKomentar{{ $item->id }}"
+                                                                                onclick="ProcessLaporkanKomentar({{ $item->id }})"
+                                                                                style="border-radius: 15px; background-color:#F7941E; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"><b
+                                                                                    class="ms-2 me-2">Laporkan</b></button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @elseif(auth()->user()->role == 'admin' && $item->userSender->role != "admin")
                                                         <button type="button" data-toggle="modal"
-                                                            data-target="#blockModalReply{{ $item->id }}"
+                                                            data-target="#blockModal2{{ $item->id }}"
                                                             class="yuhu text-danger btn-sm rounded-5 "><svg
                                                                 xmlns="http://www.w3.org/2000/svg" width="20"
                                                                 height="20" viewBox="0 0 24 24">
@@ -719,10 +762,10 @@
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
-                                <form action="{{ route('ReplyDestroy.destroy', $row->id) }}"
-                                    id="FormReplyDestroy${{ $row->id }}" method="POST">
+                                <form action="{{ route('block.komen.replies', $row->id) }}"
+                                    id="FormBlockKomenReplies{{ $row->id }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('PUT')
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="reportModal"
                                             style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
@@ -732,23 +775,23 @@
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body d-flex align-items-center col-12">
+                                    <div class="modal-body d-flex align-items-center row">
                                         <!-- Tambahkan kelas "align-items-center" -->
-                                        <div class="col-4">
-                                            <img style="margin-left: -50%;" class="rounded-circle mb-1"
-                                                src="{{ asset('images/alasan.png') }}" width="250px" height="180px">
+                                        <div class="col-md-4">
+                                            <img style="" class="rounded-circle mb-1"
+                                                src="{{ asset('images/alasan.png') }}" width="150px" height="180px">
                                         </div>
                                         <div class="col-md-8">
                                             <div class="widget-49-meeting-info">
 
                                             </div>
-                                            <textarea class="form-control" id="InputReplyDestroy{{ $row->id }}" style="border-radius: 15px" name="alasan"
+                                            <textarea class="form-control" id="InputBlockKomenReplies{{ $row->id }}" style="border-radius: 15px" name="alasan"
                                                 rows="5" placeholder="Alasan"></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-light text-light"
-                                            onclick="ButtonReplyDestroy({{ $row->id }})"
+                                        <button type="submit" class="btn btn-light text-light" id="ButtonBlockKomenReplies{{ $row->id }}"
+                                            onclick="ProcessBlockKomenReplies({{ $row->id }})"
                                             style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
                                                 class="ms-2 me-2">Kirim</b>
                                         </button>
@@ -762,48 +805,48 @@
 
             @foreach ($row->replies as $item)
                 @if (!empty($item->id))
-                    <div class="modal fade" id="blockModalReply{{ $item->id }}" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <form action="{{ route('replyComment.destroy', $item->id) }}"
-                                    id="FormReplyCommentDestroy{{ $item->id }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="reportModal"
-                                            style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                            Kirim Peringatan</h5>
-                                        <button type="button" class="close text-black" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                <div class="modal fade" id="blockModal2{{ $item->id }}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <form action="{{ route('block.reply.comment.replies', $item->id) }}"
+                                id="FormBlockKomenReplies2{{ $item->id }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="reportModal"
+                                        style=" color: black; font-size: 25px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                        Kirim Peringatan</h5>
+                                    <button type="button" class="close text-black" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body d-flex align-items-center row">
+                                    <!-- Tambahkan kelas "align-items-center" -->
+                                    <div class="col-md-4">
+                                        <img style="" class="rounded-circle mb-1"
+                                            src="{{ asset('images/alasan.png') }}" width="150px" height="180px">
                                     </div>
-                                    <div class="modal-body d-flex align-items-center col-12">
-                                        <!-- Tambahkan kelas "align-items-center" -->
-                                        <div class="col-4">
-                                            <img style="margin-left: -50%;" class="rounded-circle mb-1"
-                                                src="{{ asset('images/alasan.png') }}" width="250px" height="180px">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="widget-49-meeting-info">
+                                    <div class="col-md-8">
+                                        <div class="widget-49-meeting-info">
 
-                                            </div>
-                                            <textarea class="form-control" id="InputReplyCommentDestroy{{ $item->id }}" style="border-radius: 15px"
-                                                name="alasan" rows="5" placeholder="Alasan"></textarea>
                                         </div>
+                                    <textarea class="form-control" id="InputBlockKomenReplies2{{ $item->id }}" style="border-radius: 15px" name="alasan"
+                                            rows="5" placeholder="Alasan"></textarea>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-light text-light"
-                                            onclick="ButtonReplyCommentDestroy({{ $item->id }})"
-                                            style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
-                                                class="ms-2 me-2">Kirim</b>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-light text-light" id="ButtonBlockKomenReplies2{{ $item->id }}"
+                                        onclick="ProcessBlockKomenReplies2({{ $item->id }})"
+                                        style=" background-color:#F7941E;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius:15px;"><b
+                                            class="ms-2 me-2">Kirim</b>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                </div>
                 @endif
             @endforeach
             {{-- modal report balasan komentar --}}
@@ -860,6 +903,73 @@
     </section>
     </div>
     <script>
+        function ProcessBlockKomenReplies(num) {
+            $("#FormBlockKomenReplies" +num).off("submit");
+            $("#FormBlockKomenReplies" +num).submit(function (event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        iziToast.success({
+                            'title': 'Success',
+                            'message': response.message,
+                            'position': 'topCenter'
+                        });
+                        $("#ButtonBlockKomenReplies"+num).prop("disabled", true);
+                        $("#InputBlockKomenReplies"+num).val("");
+                        $("#replies"+num).empty();
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
+        function ProcessLaporkanKomentar(num) {
+            $("#FormLaporkanKomentar" + num).off("submit");
+            $("#FormLaporkanKomentar" + num).submit(function (event) {
+                event.preventDefault();
+                let route = $(this).attr("action");
+                let data = new FormData($(this)[0]);
+                $.ajax({
+                    url: route,
+                    method: "POST",
+                    data: data,
+                    processData: false,
+                    contentType: false,
+                    success: function success(response) {
+                        iziToast.destroy();
+                        iziToast.success({
+                            'title': 'Success',
+                            'message': response.message,
+                            'position': 'topCenter'
+                        });
+                        $("#ButtonLaporkanKomentar" + num).prop("disabled", true);
+                        $("#InputLaporkanKomentar" + num).val("");
+                    },
+                    error: function error(xhr, error, status) {
+                        iziToast.destroy();
+                        iziToast.error({
+                            'title': 'Error',
+                            'message': xhr.responseText,
+                            'position': 'topCenter'
+                        });
+                    }
+                });
+            });
+        }
         function errorComment() {
             iziToast.error({
                 'title': 'Error',
@@ -1393,11 +1503,7 @@
                                                 <small
                                                     class="font-weight-bolder font-weight-bolder ellipsis-name"><b>${response.name}</b>
                                                     </small>
-                                                    <svg class="text-primary" style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg"
-                                                        width="15" height="15" viewBox="0 0 24 24">
-                                                        <path fill="currentColor"
-                                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                    </svg>
+
                                             </div>
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small
@@ -1574,11 +1680,7 @@
                                                 <small
                                                     class="font-weight-bolder font-weight-bolder ellipsis-name"><b>${response.name}</b>
                                                     </small>
-                                                    <svg class="text-primary" style="margin-top: 2px;" xmlns="http://www.w3.org/2000/svg"
-                                                        width="15" height="15" viewBox="0 0 24 24">
-                                                        <path fill="currentColor"
-                                                            d="m10.6 16.6l7.05-7.05l-1.4-1.4l-5.65 5.65l-2.85-2.85l-1.4 1.4l4.25 4.25ZM12 22q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z" />
-                                                    </svg>
+
                                                 </div>
                                                     <div class="text-black" style="font-size: 13px">
                                                         <small
