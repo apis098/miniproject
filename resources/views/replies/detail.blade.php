@@ -433,11 +433,7 @@
 
                         </div>
                         <div class="action d-flex mt-2 align-items-center">
-
-
-
                             <div class="icons align-items-center input-group">
-
                                 <form action="{{ route('Replies.like', $row->id) }}" method="POST" class="like-form">
                                     @csrf
                                     @if (
@@ -564,11 +560,7 @@
                                         </div>
                                         {{-- llike --}}
                                         <div class="action d-flex mt-2 align-items-center">
-
-
-
                                             <div class="icons align-items-center input-group">
-
                                                 <form action="{{ route('Replies.like.balasan', $item->id) }}"
                                                     method="POST" id="like-form">
                                                     @csrf
@@ -646,16 +638,17 @@
                                         </div>
                                         <div class="collapse" id="collapses{{ $item->id }}">
                                             <br>
-                                            <form action="{{ route('ReplyReplyComment.store', $row->id) }}"
+                                            <form action="{{ route('ReplyReplyComment.store', [$item->id, $row->id]) }}"
                                                 method="POST" id="formBalasBalasKomentar{{ $item->id }}">
                                                 @csrf
                                                 <input type="hidden" name="parent_id" value="{{ $item->id }}">
+
                                                 <div class="input-group mb-3">
                                                     @csrf
                                                     <input type="text" id="reply_comment2{{ $item->id }}"
                                                         name="reply_comment" width="500px"
                                                         class="form-control form-control-sm rounded-3 me-5"
-                                                        placeholder="Balas komentar dari {{ $item->user->name }}....">
+                                                        placeholder="Balas balasan komentar dari {{ $item->userSender->name }}....">
 
                                                     <button type="submit"
                                                         onclick="clickBalasBalasKomentar({{ $item->id }}, {{ $row->id }})"
@@ -1469,7 +1462,7 @@
                                         </div>
                                         <div class="collapse" id="collapses${response.id}">
                                             <br>
-                                            <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
+                                            <form action="/reply-replies-store/${response.id}/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
                                                 @csrf
                                                 <input type="hidden" name="parent_id" value="${response.id}">
                                                 <div class="input-group mb-3">
@@ -1650,14 +1643,14 @@
                                         </div>
                                         <div class="collapse" id="collapses${response.id}">
                                             <br>
-                                            <form action="/reply-replies-store/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
+                                            <form action="/reply-replies-store/${response.id}/${response.id2}" method="POST" id="formBalasBalasKomentar${response.id}">
                                                 @csrf
                                                 <input type="hidden" name="parent_id" value="${response.id}">
                                                 <div class="input-group mb-3">
                                                     @csrf
                                                     <input type="text" id="reply_comment2${response.id}" name="reply_comment"
                                                         width="500px" class="form-control form-control-sm rounded-3 me-1"
-                                                        placeholder="Balas komentar dari ${response.name}....">
+                                                        placeholder="Balas s komentar dari ${response.name}....">
 
                                                     <button type="submit" onclick="clickBalasBalasKomentar(${response.id}, ${response.id2})"
                                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"

@@ -520,7 +520,7 @@ class ReportController extends Controller
     }
     public function block_comment_recipe(Request $request,$id){
         $comment = CommentResipes::findOrFail($id);
-        
+
     }
     public function block_complaint(Request $request, $id) {
         $complaint = Complaint::findOrFail($id);
@@ -551,6 +551,36 @@ class ReportController extends Controller
         $up->save();
         $kursus->delete();
         return redirect('/kursus')->with('success', 'Berhasil memblokir kursus');
+    }
+    public function block_komen_replies(Request $request, $id) {
+        $komen = Reply::findOrFail($id);
+        $komen->user->increment('jumlah_pelanggaran');
+        $notification = new Notifications();
+        $notification->user_id = $komen->user_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->reply_id_comment = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/replies-blocked/".$notification->id;
+        $up->save();
+        $komen->delete();
+        return redirect()->back()->with('success', 'Komentar diskusi telah diblokir');
+    }
+    public function block_reply_comment_replies(Request $request, $id) {
+        $komen = ReplyComplaint::findOrFail($id);
+        $komen->user->increment('jumlah_pelanggaran');
+        $notification = new Notifications();
+        $notification->user_id = $komen->user_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->reply_id_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/replies-blocked/".$notification->id;
+        $up->save();
+        $komen->delete();
+        return redirect()->back()->with('success', 'Komentar diskusi telah diblokir');
     }
     public function block(Request $request, $id)
     {

@@ -136,7 +136,7 @@ class ReplyController extends Controller
             $reply = new ReplyComplaint();
             $reply->reply_id = $comment->id;
             $reply->complaint_id = $comment->complaint_id;
-            $reply->user_id = $comment->user_id;
+            $reply->user_id = $comment->user->id;
             $reply->user_id_sender = auth()->user()->id;
             $reply->reply = $request->reply_comment;
             $reply->save();
@@ -176,7 +176,7 @@ class ReplyController extends Controller
         }
 
     }
-    public function replyReplyComment(Request $request, $id)
+    public function replyReplyComment(Request $request, $id,$id2)
     {
         $validasi = Validator::make($request->all(), [
             'reply_comment' => 'required|string',
@@ -187,14 +187,14 @@ class ReplyController extends Controller
         if ($validasi->fails()) {
             return response()->json($validasi->errors()->first(), 422);
         }
-
         $user = Auth::check();
         if ($user) {
-            $comment = Reply::findOrFail($id);
+            $comment = ReplyComplaint::findOrFail($id);
+            $c = Reply::find($id2);
             $reply = new ReplyComplaint();
-            $reply->reply_id = $comment->id;
+            $reply->reply_id = $c->id;
             $reply->complaint_id = $comment->complaint_id;
-            $reply->user_id = $comment->user_id;
+            $reply->user_id = $comment->userSender->id;
             $reply->user_id_sender = auth()->user()->id;
             $reply->reply = $request->reply_comment;
             $reply->parent_id = $request->parent_id;
@@ -225,7 +225,7 @@ class ReplyController extends Controller
                 'reply' => $request->reply_comment,
                 'id' => $reply->id,
                 'at' => $at,
-                'id2' => $id
+                'id2' => $id2
             ]);
         } else {
             return response()->json([

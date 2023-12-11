@@ -25,7 +25,7 @@ return new class extends Migration
         Schema::create('reply_complaints', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('complaint_id');
-            $table->unsignedBigInteger('reply_id');
+            $table->unsignedBigInteger('reply_id')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_id_sender');
             $table->text('reply');

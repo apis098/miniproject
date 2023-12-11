@@ -114,7 +114,7 @@ Route::put('/keluhan-update/{id}', [complaintController::class, 'update'])->name
 Route::get('/show-reply-by/{id}', [ReplyController::class, 'show'])->name('ShowReplies.show');
 Route::post('/reply-store-by/{id}', [ReplyController::class, 'reply'])->name('ReplyComplaint.store');
 Route::post('/replies-store/{id}', [ReplyController::class, 'replyComment'])->name('ReplyComment.store');
-Route::post('/reply-replies-store/{id}', [ReplyController::class, 'replyReplyComment'])->name('ReplyReplyComment.store');
+Route::post('/reply-replies-store/{id}/{id2}', [ReplyController::class, 'replyReplyComment'])->name('ReplyReplyComment.store');
 Route::post('/comments/{id}/like', [LikeController::class, 'like'])->name('Replies.like');
 Route::post('/comments/reply/{id}/like', [LikeController::class, 'likeBalasan'])->name('Replies.like.balasan');
 Route::post('/resep/{id}/like', [LikeController::class, 'likeResep'])->name('Resep.like');
@@ -172,6 +172,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::put('block-user/{id}',[ReportController::class,'blockUser'])->name('block.user');
         Route::put('block-complaint/{id}', [ReportController::class, 'block_complaint'])->name('block.complaint');
         Route::put('block-kursus/{id}', [ReportController::class, 'block_kursus'])->name('block.kursus');
+        Route::put('block-comment-replies/{id}', [ReportController::class, 'block_komen_replies'])->name('block.komen.replies');
+        Route::put('block-reply-comment-replies/{id}', [ReportController::class, 'block_reply_comment_replies'])->name('block.reply.comment.replies');
         Route::get('random-profile/{id}', [ReportController::class, 'randomName'])->name('randomName.update');
         Route::get('blocked-user', [ReportController::class, 'blocked_index'])->name('blocked.user.status')->middleware('roleAdmin:admin_laporan');
         Route::put('unblock-user/{id}', [ReportController::class, 'unblock_store'])->name('unblock.user.store');
