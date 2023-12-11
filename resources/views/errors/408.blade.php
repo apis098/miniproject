@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Error 404</title>
+  <title>Error 408</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,700" rel="stylesheet"><link rel="stylesheet" href="{{asset('Errors/style.css')}}">
 
@@ -17,12 +17,12 @@
 	</div>
 	<div class="flex-container" id="error-message">
 		<div>
-			<h1>404</h1>
-			<h2 style="font-family: Poppins;">Waduh!!!😅😅😅 Halaman yang kamu cari tidak di temukan</h2>
+			<h1>408</h1>
+			<h2 style="font-family: Poppins;">Request Timeout</h2>
 		</div>
 		<div>
 			<p style="font-family: Poppins;">
-				Silakan kembali ke halaman sebelumnya <span class="underlined">atau membunuh kutu kutu ini</span>. Bunuh kutu sebanyak banyaknya dengan senjatamu
+				Waktu request telah habil  <span class="underlined">, Silakan kembali ke halaman sebelumnya dan silakan coba lagi</span>. Atau membunuh kutu sebanyak banyaknya dengan senjatamu
 			</p>
 		</div>
 	</div>
