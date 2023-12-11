@@ -9,6 +9,7 @@ use App\Models\Reply;
 use App\Models\ReplyComplaint;
 use App\Models\CommentResipes;
 use App\Models\ReplyCommentRecipe;
+use App\Models\CommentRecipes;
 use App\Models\Report;
 use App\Models\Reseps;
 use App\Models\TopUpCategories;
@@ -518,6 +519,10 @@ class ReportController extends Controller
         $resep->delete();
         return redirect('/resep')->with('success', 'Resep telah diblokir');
     }
+    public function block_comment_recipe(Request $request,$id){
+        $comment = CommentRecipes::findOrFail($id);
+        
+    }   
     public function block_complaint(Request $request, $id) {
         $complaint = Complaint::findOrFail($id);
         $complaint->user->increment('jumlah_pelanggaran');

@@ -34,7 +34,7 @@ class Report extends Model
         return $this->belongsTo(CommentFeed::class,'comment_feed_id');
     }
     public function reply_comment_feed(){
-        return $this->belongsTo(ReplyCommentFeed::class,'reply_comment_feed_id');
+        return $this->belongsTo(ReplyCommentFeed::class,'reply_coomment_feed_id');
     }
     public function replies_reply_comment_feed(){
         return $this->belongsTo(BalasReplyCommentfeeds::class,'replies_reply_comment_feed_id');
