@@ -153,7 +153,7 @@
         <div class="container py-5 ">
             <div class="row text-center text-white">
                 <div class="col-lg-8 mx-auto">
-                    <h1 class=" font-poppins mb-5"><b>Temukan teman <br> memasak</b></h1>
+                    <h1 class=" font-poppins mb-5"><b  class="header-text">Temukan Teman<br> Memasak</b></h1>
                     <form action="">
                         <div class="container">
                             <div class="search" style="border-radius: 15px;">

@@ -7,9 +7,9 @@
   {{-- ---------------------- Delete Modal ---------------------- --}}
   <div class="app-modal" data-name="delete">
       <div class="app-modal-container">
-          <div class="app-modal-card" style="background-color:rgb(255, 154, 45); border-radius:15px;" data-name="delete" data-modal='0'>
-              <div class="app-modal-header text-light">Anda yakin ingin menghapus pesan?</div>
-              <div class="app-modal-body text-light"><small>Anda tidak bisa memulihkan pesan yang terhapus!</small></div>
+          <div class="app-modal-card border border-2 border-dark" style=" background-color: #ffffff; border-radius: 10px;" data-name="delete" data-modal='0'>
+              <div class="app-modal-header text-dark">Anda yakin ingin menghapus pesan?</div>
+              <div class="app-modal-body text-dark"><small>Anda tidak bisa memulihkan pesan yang terhapus!</small></div>
               <div class="app-modal-footer">
                   <a href="javascript:void(0)" class="app-btn cancel btn btn-light text-dark">Tidak</a>
                   <a href="javascript:void(0)" class="app-btn a-btn-dark btn btn-dark text-light delete">Ya,saya yakin</a>

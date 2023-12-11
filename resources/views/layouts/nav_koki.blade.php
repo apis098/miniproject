@@ -47,7 +47,12 @@
             color: orange !important;
             /* Warna teks saat aktif */
         }
-
+        .btn-orange{
+            background-color:#F7941E;
+            color: #ffffff;
+            border-radius:15px ;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
         .nav-link.activet:hover {
             background-color: white;
             /* Warna latar belakang saat dihover */
