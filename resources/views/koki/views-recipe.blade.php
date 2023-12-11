@@ -463,7 +463,7 @@
         }
         .tab-content {
             margin-left: 50px;
-            margin-right: 50px;
+            margin-right: ;
         }
     }
     </style>
@@ -548,14 +548,14 @@
                                 <p><b>Tidak ada data</b></p>
                             </div>
                         @endif
-                        <div class="d-flex justify-content-evenly my-4  gap-1 " style="flex-wrap: wrap;" id="resepDibuat">
+                        <div class="row mx-auto " style="flex-wrap: wrap;" id="resepDibuat">
                             @foreach ($resep_dibuat as $num => $my_recipe)
-                                <div class=" card col-lg-3  col-xl-3  border-black col-md-4 col-12 "
-                                    style="border-radius:15px; width: 100%; border: 1px solid black; max-width:250px">
-                                    <div class="mx-auto">
-                                        <div class="col-12 card-header mx-auto  text-center" style="border: none; max-height:120px; padding:10px 0px;">
-                                            <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="card-img-top"
-                                                style="min-width:auto; max-height: 120px; border-radius:15px; object-fit: cover"
+                                <div class=" d-flex justify-content-center col-lg-3  col-xl-3 p-1 col-md-4 col-sm-6 "
+                                    style=" width: 100%; box-shadow:none;">
+                                    <div class="border card" style="border-radius: 15px">
+                                        <div class=" " style="border: none; max-height:120px; padding:10px 0px;">
+                                            <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="mx-2"
+                                                style="max-width:90%; min-width:90%; min-height: 150px; max-height:150px;  border-radius:15px; object-fit: cover"
                                                 alt="...">
                                         </div>
                                         <div class="mx-auto col-12">
@@ -566,7 +566,7 @@
                                                 </a>
                                             </div>
                                             <div class="row">
-                                                <div class="col-12 col-md-12 col-lg-5 d-flex">
+                                                <div class="col-12 col-md-12 col-xl-5 d-flex">
                                                     <svg width="17" height="23" viewBox="0 0 28 28"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g id="&#240;&#159;&#166;&#134; icon &#34;thumbs up&#34;">
@@ -577,7 +577,7 @@
                                                     </svg>
                                                     <span class="ml-1">{{ $my_recipe->likes()->count() }} suka</span>
                                                 </div>
-                                                <div class="col-12 col-md-12 col-lg-7 ">
+                                                <div class="col-12 col-md-12 col-xl-7 ">
                                                     <svg width="15" height="16" viewBox="0 0 30 31"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <g
@@ -616,7 +616,7 @@
                                     </div>
                                 </div>
                                 {{-- <div class="resep-sendiri card col-lg-4 ml-3 col-xl-3 border border-black col-md-4 col-sm-12 my-3"
-                                    style="border-radius:15px; border: 1px solid black;">
+                                    style="border-radius:15px; bordq    eler: 1px solid black;">
                                     <div class="row mx-auto">
                                         <div class="col-12 card-header mx-auto text-center">
                                             <img src="{{ asset('storage/' . $my_recipe->foto_resep) }}" class="card-img-top"
