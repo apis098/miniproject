@@ -67,90 +67,110 @@
         </div>
         <!-- rekomendasi chef end -->
         <style>
-
           @media (min-width: 426px) {
-              .addPadding {
-                  padding-left: 3px;
-              }
-              .button-responsive {
-                height: 38px;
-              }
-              .komentar1 {
-                margin-left: 51px;
-              }
-              .icon-komentar1 {
-                margin-left: 26px;
-              }
-              .komentar2 {
-                margin-left: 47px;
-              }
-              .icon-komentar2 {
-                margin-left: 17px;
-              }
+            .addPadding {
+              padding-left: 3px;
+            }
+
+            .button-responsive {
+              height: 38px;
+            }
+
+            .komentar1 {
+              margin-left: 51px;
+            }
+
+            .icon-komentar1 {
+              margin-left: 26px;
+            }
+
+            .komentar2 {
+              margin-left: 47px;
+            }
+
+            .icon-komentar2 {
+              margin-left: 17px;
+            }
           }
+
           @media (max-width: 425px) {
-              .text-deskripsi {
-                  font-size: 10pt;
-              }
+            .text-deskripsi {
+              font-size: 10pt;
+            }
 
-              .text-name {
-                  font-size: 10pt;
-              }
+            .text-name {
+              font-size: 10pt;
+            }
 
-              .text-small {
-                  font-size: 8pt;
-              }
-              .inputan-komentar::placeholder {
-              font-size:10px;
-              line-height: normal; /* Atur sesuai kebutuhan */
-              padding-top: 0 !important; /* Atur sesuai kebutuhan */
-              }
-              .button-responsive {
-                height: 26px;
-                padding: 4px;
-                font-size: 9pt;
-              }
-              .inputan-komentar {
-                height: 26px;
-                padding-top: 0 !important;
-              }
-              .komentar1 {
-                margin-left: 42px;
-              }
-              .icon-komentar1 {
-                margin-left: 17px;
-              }
-              .komentar2 {
-                margin-left: 37px;
-              }
-              .icon-komentar2 {
-                margin-left: 7px;
-              }
+            .text-small {
+              font-size: 8pt;
+            }
+
+            .inputan-komentar::placeholder {
+              font-size: 10px;
+              line-height: normal;
+              /* Atur sesuai kebutuhan */
+              padding-top: 0 !important;
+              /* Atur sesuai kebutuhan */
+            }
+
+            .button-responsive {
+              height: 26px;
+              padding: 4px;
+              font-size: 9pt;
+            }
+
+            .inputan-komentar {
+              height: 26px;
+              padding-top: 0 !important;
+            }
+
+            .komentar1 {
+              margin-left: 42px;
+            }
+
+            .icon-komentar1 {
+              margin-left: 17px;
+            }
+
+            .komentar2 {
+              margin-left: 37px;
+            }
+
+            .icon-komentar2 {
+              margin-left: 7px;
+            }
 
           }
+
           @media (max-width: 375px) {
-              .d-flex .btn-video {
-                  flex-direction: column;
-              }
-              .margin-atas {
-                  margin-top: 5%;
-              }
+            .d-flex .btn-video {
+              flex-direction: column;
+            }
+
+            .margin-atas {
+              margin-top: 5%;
+            }
           }
+
           @media (max-width: 425px) {
-              .foto-responsive {
-                  height: 30px;
-              }
-              .foto-komentar {
-                  height: 28px;
-              }
+            .foto-responsive {
+              height: 30px;
+            }
+
+            .foto-komentar {
+              height: 28px;
+            }
           }
+
           @media (min-width: 426px) {
-              .foto-responsive {
-                  height: 40px;
-              }
-              .foto-komentar {
-                  height: 38px;
-              }
+            .foto-responsive {
+              height: 40px;
+            }
+
+            .foto-komentar {
+              height: 38px;
+            }
           }
 
           .video-js .vjs-big-play-button {
@@ -426,8 +446,8 @@
                     @media (max-width: 370px) {
 
                       /* .d-flex {
-                                              flex-direction: column;
-                                          } */
+                                                flex-direction: column;
+                                            } */
                       .margin-atas {
                         margin-top: 5%;
                       }
@@ -477,50 +497,53 @@
             </div>
           @endif
           @foreach ($video_pembelajaran as $urut => $item_video)
-            <div class="card mt-4 mb-5 item-video">
+            <div class="card mt-4 mb-5 item-video" id="itemvideo{{ $item_video->id }}">
               <!-- Data -->
               <div class="card-header p-3" style="background-color: white">
                 <p id="uuid" hidden>{{ $item_video->uuid }}</p>
-                <div class="row mb-1 item col-12 pr-0" style="padding-left: 2%; padding-right: 2%;" data-id="{{ $item_video->id }}">
-                                    <a href="" class="col-lg-1 col-md-1 col-2 pr-3 pl-1">
-                                        @if ($item_video->user->foto)
-                                            <img src="{{ asset('storage/' . $item_video->user->foto) }}"
-                                                class="border rounded-circle me-2 foto-responsive" alt="Avatar" style="height: 40px" />
-                                        @else
-                                            <img src="{{ asset('images/default.jpg') }}"
-                                                class="border rounded-circle me-2 foto-responsive" alt="Avatar" style="height: 40px" />
-                                        @endif
-                                    </a>
-                                    <div class="col-lg-11 col-md-11 col-10 my-auto pr-0">
-                            <div class="d-flex waktu justify-content-between">
-                                <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark my-auto d-block">
-                                    <strong class="text-truncate limit-name text-deskripsi">{{ $item_video->user->name }}</strong>
-                                </a>
-                                <small class="text-muted text-small">
-                                    {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}
-                                </small>
-                            </div>
-                        </div>
-                        <style>
-                            /* CSS Media Query */
-                            @media (max-width: 425px) {
-                                .d-flex .waktu {
-                                    flex-direction: column;
-                                    /* align-items: flex-start; */
-                                }
-                                /* .text-muted {
-                                    margin-top: 0.5rem;
-                                } */
-                            }
-                            @media (min-width: 426px) {
-                                .d-flex .waktu {
-                                    flex-direction: row;
-                                    /* align-items: center;
-                                    justify-content: space-between; */
-                                }
-                            }
-                        </style>
+                <div class="row mb-1 item col-12 pr-0" style="padding-left: 2%; padding-right: 2%;"
+                  data-id="{{ $item_video->id }}">
+                  <a href="" class="col-lg-1 col-md-1 col-2 pr-3 pl-1">
+                    @if ($item_video->user->foto)
+                      <img src="{{ asset('storage/' . $item_video->user->foto) }}"
+                        class="border rounded-circle me-2 foto-responsive" alt="Avatar" style="height: 40px" />
+                    @else
+                      <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle me-2 foto-responsive"
+                        alt="Avatar" style="height: 40px" />
+                    @endif
+                  </a>
+                  <div class="col-lg-11 col-md-11 col-10 my-auto pr-0">
+                    <div class="d-flex waktu justify-content-between">
+                      <a href="{{ route('show.profile', $item_video->user->id) }}" class="text-dark my-auto d-block">
+                        <strong class="text-truncate limit-name text-deskripsi">{{ $item_video->user->name }}</strong>
+                      </a>
+                      <small class="text-muted text-small">
+                        {{ \Carbon\Carbon::parse($item_video->created_at)->locale('id_ID')->diffForHumans() }}
+                      </small>
                     </div>
+                  </div>
+                  <style>
+                    /* CSS Media Query */
+                    @media (max-width: 425px) {
+                      .d-flex .waktu {
+                        flex-direction: column;
+                        /* align-items: flex-start; */
+                      }
+
+                      /* .text-muted {
+                                      margin-top: 0.5rem;
+                                  } */
+                    }
+
+                    @media (min-width: 426px) {
+                      .d-flex .waktu {
+                        flex-direction: row;
+                        /* align-items: center;
+                                      justify-content: space-between; */
+                      }
+                    }
+                  </style>
+                </div>
               </div>
 
               <style>
@@ -725,7 +748,7 @@
                         </form>
                       @endif
                       <!-- <span class="my-auto"
-                                              id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span> -->
+                                                id="countLikeFeed{{ $urut }}">{{ $item_video->like_veed->count() }}</span> -->
 
                       <!-- like feed end -->
                       <!-- komentar feed start -->
@@ -1210,28 +1233,28 @@
                                   </label>
 
                                   <!-- <label for="moreInput"
-                                                                      class="col-lg-3 col-md-6 col-12 my-1 ">
-                                                                      <div class="card border-2 scale border-black"
-                                                                          onclick="more_gift_click('{{ $item_video->id }}')"
-                                                                          id="moreGift{{ $item_video->id }}"
-                                                                          style="width: auto; height: auto;"
-                                                                          data-card-selected="false">
-                                                                          <img src="{{ asset('img/lainnya.png') }}"
-                                                                              class="card-img-top" alt="">
-                                                                          <div class="card-body">
+                                                                        class="col-lg-3 col-md-6 col-12 my-1 ">
+                                                                        <div class="card border-2 scale border-black"
+                                                                            onclick="more_gift_click('{{ $item_video->id }}')"
+                                                                            id="moreGift{{ $item_video->id }}"
+                                                                            style="width: auto; height: auto;"
+                                                                            data-card-selected="false">
+                                                                            <img src="{{ asset('img/lainnya.png') }}"
+                                                                                class="card-img-top" alt="">
+                                                                            <div class="card-body">
 
-                                                                              <div class="mx-3 mt-2">
-                                                                                  <p class="card-title text-center mb-0"
-                                                                                      style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                      Lainnya</p>
-                                                                              </div>
-                                                                              <p id="displayNumber{{ $item_video->id }}"
-                                                                                  class="text-center mb-0"
-                                                                                  style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                  Masukkan Nilai</p>
-                                                                          </div>
-                                                                      </div>
-                                                                  </label> -->
+                                                                                <div class="mx-3 mt-2">
+                                                                                    <p class="card-title text-center mb-0"
+                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                        Lainnya</p>
+                                                                                </div>
+                                                                                <p id="displayNumber{{ $item_video->id }}"
+                                                                                    class="text-center mb-0"
+                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                    Masukkan Nilai</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </label> -->
 
                                   <label for="moreInput" class="col-lg-3 col-md-6 col-12 my-1 ">
                                     <button type="button" class="card border-2 scale border-black"
@@ -1255,28 +1278,28 @@
                                   </label>
 
                                   <!-- <label for="moreInput" class="col-lg-3 col-md-6 col-12 my-1 ">
-                                                                      <div type="button"
-                                                                          onclick="more_gift_click({{ $item_video->id }})"
-                                                                          id="moreGift{{ $item_video->id }}"
-                                                                          style="width: 100%; height: 100%;"
-                                                                          class="card border-2 border-black scale"
-                                                                          data-card-selected="false">
-                                                                          <img src="{{ asset('img/lainnya.png') }}"
-                                                                              class="card-img-top" alt="">
-                                                                          <div class="card-body">
+                                                                        <div type="button"
+                                                                            onclick="more_gift_click({{ $item_video->id }})"
+                                                                            id="moreGift{{ $item_video->id }}"
+                                                                            style="width: 100%; height: 100%;"
+                                                                            class="card border-2 border-black scale"
+                                                                            data-card-selected="false">
+                                                                            <img src="{{ asset('img/lainnya.png') }}"
+                                                                                class="card-img-top" alt="">
+                                                                            <div class="card-body">
 
-                                                                              <div class="mx-4 mt-2">
-                                                                                  <p class="card-title mb-0"
-                                                                                      style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
-                                                                                      Lainnya</p>
-                                                                              </div>
-                                                                              <p id="displayNumber{{ $item_video->id }}"
-                                                                                  class="text-center mb-0"
-                                                                                  style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
-                                                                                  Masukkan Nilai</p>
-                                                                          </div>
-                                                                      </div>
-                                                                  </label> -->
+                                                                                <div class="mx-4 mt-2">
+                                                                                    <p class="card-title mb-0"
+                                                                                        style=" color: black; font-size: 20px; font-family: Poppins; font-weight: 600; letter-spacing: 0.64px; word-wrap: break-word">
+                                                                                        Lainnya</p>
+                                                                                </div>
+                                                                                <p id="displayNumber{{ $item_video->id }}"
+                                                                                    class="text-center mb-0"
+                                                                                    style="color: black; font-size: 15px; font-family: Poppins; font-weight: 400; word-wrap: break-word">
+                                                                                    Masukkan Nilai</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </label> -->
 
                                 </div>
                                 <div class="col-12">
@@ -1488,7 +1511,8 @@
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
-                                  <form action="{{ route('report.feed', $item_video->id) }}" method="POST" id="FormReportFeed{{ $item_video->id }}">
+                                  <form action="{{ route('report.feed', $item_video->id) }}" method="POST"
+                                    id="FormReportFeed{{ $item_video->id }}">
                                     @csrf
                                     <div class="modal-body d-flex align-items-center">
                                       @if ($item_video->user->foto)
@@ -1498,16 +1522,20 @@
                                         <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px"
                                           height="104px" style="border-radius: 50%" alt="">
                                       @endif
-                                      <textarea class="form-control rounded-5" id="AlasanReportFeed{{ $item_video->id }}" style="border-radius: 15px" name="description" rows="5"
-                                        placeholder="Alasan..."></textarea>
+                                      <textarea class="form-control rounded-5" id="AlasanReportFeed{{ $item_video->id }}" style="border-radius: 15px"
+                                        name="description" rows="5" placeholder="Alasan..."></textarea>
                                       {{-- @endif --}}
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="submit" id="ButtonReportFeed{{ $item_video->id }}" onclick="ReportFeed({{ $item_video->id }})" class="btn btn-light text-light d-none d-sm-inline-block"
+                                      <button type="submit" id="ButtonReportFeed{{ $item_video->id }}"
+                                        onclick="ReportFeed({{ $item_video->id }})"
+                                        class="btn btn-light text-light d-none d-sm-inline-block"
                                         style="border-radius: 15px; background-color:#F7941E;"><b
                                           class="ms-2 me-2">Laporkan</b></button>
 
-                                      <button type="submit" id="ButtonReportFeed2{{ $item_video->id }}" onclick="ReportFeed({{ $item_video->id }})" class="btn btn-light text-light btn-sm d-sm-none"
+                                      <button type="submit" id="ButtonReportFeed2{{ $item_video->id }}"
+                                        onclick="ReportFeed({{ $item_video->id }})"
+                                        class="btn btn-light text-light btn-sm d-sm-none"
                                         style="border-radius: 15px; background-color:#F7941E;"><b
                                           class="ms-2 me-2">Laporkan</b></button>
 
@@ -1538,66 +1566,72 @@
                               </svg>
                             </button>
                             <!-- <div class="modal fade" id="blocskModal{{ $item_video->id }}" tabindex="-1"
+                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="reportModal"
+                                        style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
+                                        Blokir komentar
+                                      </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
+                                      {{-- @csrf --}}
+                                      <div class="modal-body d-flex align-items-center">
+
+                                        <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px"
+                                          height="104px" style="border-radius: 50%" alt="">
+                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                          placeholder="Alasan..."></textarea>
+                                        {{-- @endif --}}
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="submit" class="btn btn-light text-light"
+                                          style="border-radius: 15px; background-color:#F7941E;"><b
+                                            class="ms-2 me-2">Blokir</b></button>
+                                      </div>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div> -->
+
+                            <div class="modal fade p-0" id="blocksModal{{ $item_video->id }}" tabindex="-1"
                               role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                               <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="reportModal"
-                                      style=" font-size: 22px; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                      Blokir komentar
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <form action="{{-- route('Report.comment.recipes',$row->id) --}}" method="POST">
-                                    {{-- @csrf --}}
-                                    <div class="modal-body d-flex align-items-center">
-
-                                      <img class="me-2" src="{{ asset('images/default.jpg') }}" width="106px"
-                                        height="104px" style="border-radius: 50%" alt="">
-                                      <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                        placeholder="Alasan..."></textarea>
-                                      {{-- @endif --}}
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="submit" class="btn btn-light text-light"
-                                        style="border-radius: 15px; background-color:#F7941E;"><b
-                                          class="ms-2 me-2">Blokir</b></button>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div> -->
-
-                            <div class="modal fade p-0" id="blocksModal{{ $item_video->id }}" tabindex="-1" role="dialog"
-                              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="reportModal"
                                       style=" font-size: large; font-family: Poppins; font-weight: 700; letter-spacing: 0.70px; word-wrap: break-word">
-                                      Kirim Pesan</h5>
-                                      <button type="button" class="btn-close" style="margin-top: 1px;" data-dismiss="modal"
-                                                aria-label="Close"></button>
+                                      Kirim Peringatan</h5>
+                                    <button type="button" class="btn-close" style="margin-top: 1px;"
+                                      data-dismiss="modal" aria-label="Close"></button>
                                   </div>
-                                  <form action="" method="POST" id="">
-                                  <div class="row col-12 mb-3 pr-0 mt-3">
+                                  <form action="admin/block-feed/{{$item_video->id}}" method="POST" id="FormBlockFeed{{ $item_video->id }}">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="row col-12 mb-3 pr-0 mt-3">
                                       <div class="col-lg-4 col-md-12 align-items-ceneter text-center">
-                                          <img class="img-fluid foto-modal" src="{{ asset('images/alasan.png') }}"
-                                              width="100%" alt="">
+                                        <img class="img-fluid foto-modal" src="{{ asset('images/alasan.png') }}"
+                                          width="100%" alt="">
                                       </div>
                                       <div class="col-lg-8 col-md-12 align-items-center pr-0">
-                                          <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
-                                              cols="5" rows="5"></textarea>
+                                        <textarea name="alasan" id="AlasanBlockFeed{{ $item_video->id }}" class="form-control"
+                                          style="border-radius: 15px;" placeholder="Alasan..." cols="5" rows="5"></textarea>
                                       </div>
-                                  </div>
+                                    </div>
                                     <div class="modal-footer">
                                       <button type="submit" class="btn btn-light text-light d-none d-sm-inline-block"
+                                        id="ButtonBlockFeed{{ $item_video->id }}"
+                                        onclick="BlockFeed({{ $item_video->id }})"
                                         style="border-radius: 15px; background-color:#F7941E;"><b
                                           class="ms-2 me-2">Kirim</b></button>
 
                                       <button type="submit" class="btn btn-light text-light btn-sm d-sm-none"
+                                        id="ButtonBlockFeed{{ $item_video->id }}"
+                                        onclick="BlockFeed({{ $item_video->id }})"
                                         style="border-radius: 15px; background-color:#F7941E;"><b
                                           class="ms-2 me-2">Kirim</b></button>
 
@@ -1608,48 +1642,48 @@
                             </div>
 
                             <style>
-                            @media (max-width: 1000px) {
+                              @media (max-width: 1000px) {
 
-                            /* Menyembunyikan gambar dengan class card-img-top pada elemen dengan ID yang memiliki pola id yang di-generate */
-                            .foto-modal {
-                              display: none;
-                            }
-                            }
+                                /* Menyembunyikan gambar dengan class card-img-top pada elemen dengan ID yang memiliki pola id yang di-generate */
+                                .foto-modal {
+                                  display: none;
+                                }
+                              }
                             </style>
 
                             <!-- <div class="modal" id="blocksModal{{ $item_video->id }}">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content" style="width: 100%;">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title fw-bolder">Kirim alasan</h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body" style="text-align: right;">
-                                            <form action="" method="post">
-                                                <input type="hidden" name="block_resep" value="yes">
-                                                <div class="row mb-3">
-                                                    <div class="col-lg-4 col-md-12 align-items-ceneter text-center">
-                                                        <img class="img-fluid" src="{{ asset('images/alasan.png') }}"
-                                                            width="100%" alt="">
-                                                    </div>
-                                                    <div class="col-lg-8 col-md-12 align-items-center">
-                                                        <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
+                                  <div class="modal-dialog modal-dialog-centered">
+                                      <div class="modal-content" style="width: 100%;">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title fw-bolder">Kirim alasan</h5>
+                                              <button type="button" class="btn-close" data-dismiss="modal"
+                                                  aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body" style="text-align: right;">
+                                              <form action="" method="post">
+                                                  <input type="hidden" name="block_resep" value="yes">
+                                                  <div class="row mb-3">
+                                                      <div class="col-lg-4 col-md-12 align-items-ceneter text-center">
+                                                          <img class="img-fluid" src="{{ asset('images/alasan.png') }}"
+                                                              width="100%" alt="">
+                                                      </div>
+                                                      <div class="col-lg-8 col-md-12 align-items-center">
+                                                          <textarea name="alasan" id="alasan" class="form-control" style="border-radius: 15px;" placeholder="Alasan..."
                                                             cols="5" rows="5"></textarea>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                <button type="submit"
-                                                    style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
-                                                    class="btn  btn-sm text-light">
-                                                    <b class="me-3 ms-3">Kirim</b></button>
-                                            </form>
-                                        </div>
+                                                      </div>
+                                                  </div>
+                                                  <div>
+                                                  <button type="submit"
+                                                      style="height: 40px; margin-right: 20px; margin-top: 12px; background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);"
+                                                      class="btn  btn-sm text-light">
+                                                      <b class="me-3 ms-3">Kirim</b></button>
+                                              </form>
+                                          </div>
 
-                                    </div>
-                                </div>
-                            </div> -->
-                            @endif
+                                      </div>
+                                  </div>
+                              </div> -->
+                          @endif
                         @else
                           {{-- Untuk user belum login --}}
                           <button type="button" onclick="harusLogin()" class="yuhu text-dark btn-sm rounded-5 "><i
@@ -1665,16 +1699,14 @@
                         @if (Auth::check() &&
                                 $item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                           <button type="button" id="favorite-button{{ $item_video->id }}"
-                            onclick="toggleFavorite({{ $item_video->id }})"
-                            class="ms-1 yuhu">
+                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu">
                             <i class="text-orange fa-solid fa-xl fa-bookmark icons{{ $item_video->id }}"
                               style="font-size: medium;"></i>
                           </button>
                         @elseif(Auth::check() &&
                                 !$item_video->favorite()->where('user_id_from', auth()->user()->id)->exists())
                           <button type="button" id="favorite-button{{ $item_video->id }}"
-                            onclick="toggleFavorite({{ $item_video->id }})"
-                            class="ms-1 yuhu ">
+                            onclick="toggleFavorite({{ $item_video->id }})" class="ms-1 yuhu ">
                             <i class="fa-regular fa-xl fa-bookmark icons{{ $item_video->id }}"
                               style="font-size: medium;"></i>
                           </button>
@@ -1775,10 +1807,10 @@
                                     <div class="col-lg-1 col-md-1 col-2 pl-0" style="">
                                       @if (Auth::user()->foto)
                                         <img src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                          class="border rounded-circle foto-responsive" alt="Avatar"  />
+                                          class="border rounded-circle foto-responsive" alt="Avatar" />
                                       @else
-                                        <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle foto-responsive"
-                                          alt="Avatar"  />
+                                        <img src="{{ asset('images/default.jpg') }}"
+                                          class="border rounded-circle foto-responsive" alt="Avatar" />
                                       @endif
                                     </div>
                                     <div class="col-xl-9 col-lg-8 col-md-9 col-7 pl-1">
@@ -1792,7 +1824,8 @@
                                       <button type="submit" id="buttonCommentVeed{{ $urut }}"
                                         onclick="komentar_feed({{ $item_video->id }})"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
-                                        class="btn btn-sm mb-1 text-light button-responsive"><b class="me-2 ms-2">Kirim</b></button>
+                                        class="btn btn-sm mb-1 text-light button-responsive"><b
+                                          class="me-2 ms-2">Kirim</b></button>
                                     </div>
                                   </div>
                                 </form>
@@ -1800,8 +1833,8 @@
                                 <form class="mt-2">
                                   <div class="row mb-3">
                                     <div class="col-lg-1 col-md-1 col-2 pl-0" style="">
-                                      <img src="{{ asset('images/default.jpg') }}" class="border rounded-circle foto-responsive"
-                                        alt="Avatar"  />
+                                      <img src="{{ asset('images/default.jpg') }}"
+                                        class="border rounded-circle foto-responsive" alt="Avatar" />
                                     </div>
                                     <div class="col-xl-9 col-lg-7 col-md-9 col-7 pl-1">
                                       <input type="text" id="input_comment_feed" name="commentVeed"
@@ -1812,7 +1845,8 @@
                                     <div class="col-xl-2 col-lg-4 col-md-2 col-3 p-0">
                                       <button type="button" id="buttonCommentVeed" onclick="harusLogin()"
                                         style="background-color: #F7941E; border-radius:10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); float: right;"
-                                        class="btn btn-sm mb-1 text-light button-responsive"><b class="me-2 ms-2">Kirim</b></button>
+                                        class="btn btn-sm mb-1 text-light button-responsive"><b
+                                          class="me-2 ms-2">Kirim</b></button>
                                     </div>
                                   </div>
                                 </form>
@@ -1924,16 +1958,19 @@
                                                             width="106px" height="104px" style="border-radius: 50%"
                                                             alt="">
                                                         @else
-                                                          <img class="me-2" src="{{ asset('images/default.jpg') }}"
-                                                            width="106px" height="104px" style="border-radius: 50%"
+                                                          <img class="me-2"
+                                                            src="{{ asset('images/default.jpg') }}" width="106px"
+                                                            height="104px" style="border-radius: 50%"
                                                             alt="">
                                                         @endif
-                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5" id="AlasanLaporkanKomentarUtama{{ $item_comment->id }}"
-                                                          placeholder="Alasan..."></textarea>
+                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                          id="AlasanLaporkanKomentarUtama{{ $item_comment->id }}" placeholder="Alasan..."></textarea>
                                                         {{-- @endif --}}
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-light text-light" id="ButtonLaporkanKomentarUtama{{ $item_comment->id }}" onclick="LaporkanKomentarUtama({{ $item_comment->id }})"
+                                                        <button type="submit" class="btn btn-light text-light"
+                                                          id="ButtonLaporkanKomentarUtama{{ $item_comment->id }}"
+                                                          onclick="LaporkanKomentarUtama({{ $item_comment->id }})"
                                                           style="border-radius: 15px; background-color:#F7941E;"><b
                                                             class="ms-2 me-2">Laporkan</b></button>
                                                       </div>
@@ -1991,24 +2028,27 @@
                                                       <div class="modal-body col-12 row pr-0">
                                                         <div class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
 
-                                                          <img class="me-2" src="{{ asset('images/default.jpg') }}"
-                                                            width="80px" height="80px" style="border-radius: 50%"
+                                                          <img class="me-2"
+                                                            src="{{ asset('images/default.jpg') }}" width="80px"
+                                                            height="80px" style="border-radius: 50%"
                                                             alt="">
                                                         </div>
                                                         <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                        <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                          placeholder="Alasan..."></textarea>
+                                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                            placeholder="Alasan..."></textarea>
                                                         </div>
                                                         {{-- @endif --}}
                                                       </div>
                                                       <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-light text-light d-none d-sm-inline-block"
+                                                        <button type="submit"
+                                                          class="btn btn-light text-light d-none d-sm-inline-block"
                                                           style="border-radius: 15px; background-color:#F7941E;"><b
-                                                          class="ms-2 me-2">Blokir</b></button>
+                                                            class="ms-2 me-2">Blokir</b></button>
 
-                                                        <button type="submit" class="btn btn-light text-light btn-sm d-sm-none"
+                                                        <button type="submit"
+                                                          class="btn btn-light text-light btn-sm d-sm-none"
                                                           style="border-radius: 15px; background-color:#F7941E;"><b
-                                                          class="ms-2 me-2">Blokir</b></button>
+                                                            class="ms-2 me-2">Blokir</b></button>
                                                       </div>
                                                     </form>
                                                   </div>
@@ -2068,12 +2108,12 @@
                                                     <div class="col-lg-1 col-md-1 col-2 pl-0"style=" margin-top:-1.1%;">
                                                       @if (Auth::user()->foto)
                                                         <img src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                                          class="border rounded-circle foto-responsive" alt="Avatar"
-                                                           />
+                                                          class="border rounded-circle foto-responsive"
+                                                          alt="Avatar" />
                                                       @else
                                                         <img src="{{ asset('images/default.jpg') }}"
-                                                          class="border rounded-circle foto-responsive" alt="Avatar"
-                                                           />
+                                                          class="border rounded-circle foto-responsive"
+                                                          alt="Avatar" />
                                                       @endif
                                                     </div>
                                                     <div class="col-xl-9 col-lg-8 col-md-9 col-7 pl-1">
@@ -2100,8 +2140,8 @@
                                                   <div class="row mb-3">
                                                     <div class="col-lg-1 col-md-1 col-2 pl-0" style="">
                                                       <img src="{{ asset('images/default.jpg') }}"
-                                                        class="border rounded-circle foto-responsive" alt="Avatar"
-                                                         />
+                                                        class="border rounded-circle foto-responsive"
+                                                        alt="Avatar" />
                                                     </div>
                                                     <div class="col-lg-9 col-md-9 col-7 pl-1">
                                                       <input type="text"
@@ -2136,8 +2176,7 @@
                                                   <div id="balasan_komentar_ini{{ $reply_comment->id }}"class="">
                                                     <div class="mb-4 mt-4 row">
                                                       <div class="d-flex col-12 pl-0 pr-0">
-                                                        <img 
-                                                          class="rounded-circle me-2 foto-komentar"
+                                                        <img class="rounded-circle me-2 foto-komentar"
                                                           src="{{ $reply_comment->user->foto ? asset('storage/' . $reply_comment->user->foto) : asset('images/default.jpg') }}"
                                                           alt="{{ $reply_comment->user->name }}">
 
@@ -2148,10 +2187,12 @@
 
                                                         <div class="d-flex flex-row-reverse ml-auto"
                                                           style="margin-left: 50%;">
-                                                          <small class="text-small limit-waktu">{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
+                                                          <small
+                                                            class="text-small limit-waktu">{{ \Carbon\Carbon::parse($reply_comment->created_at)->locale('id_ID')->diffForHumans() }}</small>
                                                         </div>
                                                       </div>
-                                                      <div style="margin-top:-1.2%;" class="d-flex pl-0 text-deskripsi">
+                                                      <div style="margin-top:-1.2%;"
+                                                        class="d-flex pl-0 text-deskripsi">
                                                         <p class="komentar1">{{ $reply_comment->komentar }}
                                                         </p>
                                                       </div>
@@ -2189,7 +2230,8 @@
                                                           @else
                                                             <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                               onclick="harusLogin()" width="15px" height="40px"
-                                                              alt="" class="me-3" style="margin-left: 18%;">
+                                                              alt="" class="me-3"
+                                                              style="margin-left: 18%;">
                                                           @endif
                                                           <span class="mt-2" style="margin-left: -7%;"
                                                             id="like-count{{ $reply_comment->id }}">
@@ -2224,7 +2266,8 @@
                                                                           <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                       </div>
-                                                                      <form id="FormLaporkanBalasanKomentar{{ $reply_comment->id }}"
+                                                                      <form
+                                                                        id="FormLaporkanBalasanKomentar{{ $reply_comment->id }}"
                                                                         action="{{ route('report.comment.feed', ['comment_id' => 0, 'reply_comment_id' => $reply_comment->id, 'reply_replies_comment_id' => 0]) }}"
                                                                         method="POST">
                                                                         @csrf
@@ -2244,12 +2287,14 @@
                                                                               style="border-radius: 50%"
                                                                               alt="">
                                                                           @endif
-                                                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5" id="AlasanLaporkanBalasanKomentar{{ $reply_comment->id }}"
-                                                                            placeholder="Alasan..."></textarea>
+                                                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                            id="AlasanLaporkanBalasanKomentar{{ $reply_comment->id }}" placeholder="Alasan..."></textarea>
                                                                           {{-- @endif --}}
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                          <button type="submit" id="ButtonLaporkanBalasanKomentar{{ $reply_comment->id }}" onclick="LaporkanBalasanKomentar({{ $reply_comment->id }})"
+                                                                          <button type="submit"
+                                                                            id="ButtonLaporkanBalasanKomentar{{ $reply_comment->id }}"
+                                                                            onclick="LaporkanBalasanKomentar({{ $reply_comment->id }})"
                                                                             class="btn btn-light text-light"
                                                                             style="border-radius: 15px; background-color:#F7941E;"><b
                                                                               class="ms-2 me-2">Laporkan</b></button>
@@ -2271,7 +2316,8 @@
                                                                   <button type="button"
                                                                     onclick="confirmation_delete_reply_comment({{ $reply_comment->id }})"
                                                                     class="yuhu text-danger btn-sm rounded-5 float-end">
-                                                                    <i class="fa-solid fa-trash" style="font-size: medium;"></i>
+                                                                    <i class="fa-solid fa-trash"
+                                                                      style="font-size: medium;"></i>
                                                                   </button>
                                                                 </form>
                                                               @elseif(Auth::user()->role == 'admin')
@@ -2287,8 +2333,8 @@
                                                                   </svg>
                                                                 </button>
                                                                 <div class="modal fade" data-bs-backdrop="static"
-                                                                  id="blookModal{{ $reply_comment->id }}" tabindex="-1"
-                                                                  role="dialog"
+                                                                  id="blookModal{{ $reply_comment->id }}"
+                                                                  tabindex="-1" role="dialog"
                                                                   aria-labelledby="exampleModalCenterTitle"
                                                                   aria-hidden="true">
                                                                   <div class="modal-dialog modal-dialog-centered"
@@ -2310,29 +2356,32 @@
                                                                       <form action="{{-- route('Report.comment.recipes',$row->id) --}}"
                                                                         method="POST">
                                                                         {{-- @csrf --}}
-                                                                        <div
-                                                                          class="modal-body col-12 row pr-0">
-                                                                          <div class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
+                                                                        <div class="modal-body col-12 row pr-0">
+                                                                          <div
+                                                                            class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
 
                                                                             <img class="me-2"
                                                                               src="{{ asset('images/default.jpg') }}"
                                                                               width="106px" height="104px"
-                                                                              style="border-radius: 50%" alt="">
+                                                                              style="border-radius: 50%"
+                                                                              alt="">
                                                                           </div>
                                                                           <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                                          <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                            placeholder="Alasan..."></textarea>
+                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                              placeholder="Alasan..."></textarea>
                                                                           </div>
                                                                           {{-- @endif --}}
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                        <button type="submit" class="btn btn-light text-light d-none d-sm-inline-block"
-                                                                          style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                          class="ms-2 me-2">Blokir</b></button>
+                                                                          <button type="submit"
+                                                                            class="btn btn-light text-light d-none d-sm-inline-block"
+                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                              class="ms-2 me-2">Blokir</b></button>
 
-                                                                        <button type="submit" class="btn btn-light text-light btn-sm d-sm-none"
-                                                                          style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                          class="ms-2 me-2">Blokir</b></button>
+                                                                          <button type="submit"
+                                                                            class="btn btn-light text-light btn-sm d-sm-none"
+                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                              class="ms-2 me-2">Blokir</b></button>
                                                                         </div>
                                                                       </form>
                                                                     </div>
@@ -2390,12 +2439,12 @@
                                                               @if (Auth::user()->foto)
                                                                 <img
                                                                   src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                                                  class="border rounded-circle mr-auto foto-responsive" alt="Avatar"
-                                                                   />
+                                                                  class="border rounded-circle mr-auto foto-responsive"
+                                                                  alt="Avatar" />
                                                               @else
                                                                 <img src="{{ asset('images/default.jpg') }}"
-                                                                  class="border rounded-circle foto-responsive" alt="Avatar"
-                                                                  />
+                                                                  class="border rounded-circle foto-responsive"
+                                                                  alt="Avatar" />
                                                               @endif
                                                             </div>
                                                             <div class="col-xl-9 col-lg-8 col-md-9 col-7 pl-1">
@@ -2422,8 +2471,8 @@
                                                           <div class="row mb-3">
                                                             <div style="" class="col-lg-1 col-md-1 col-2 pl-0">
                                                               <img src="{{ asset('images/default.jpg') }}"
-                                                                class="border rounded-circle foto-responsive" alt="Avatar"
-                                                                 />
+                                                                class="border rounded-circle foto-responsive"
+                                                                alt="Avatar" />
                                                             </div>
                                                             <div class="col-lg-9 col-md-9 col-7 pl-1">
                                                               <input type="text"
@@ -2459,13 +2508,11 @@
                                                       <div class="mb-4 mt-4 row">
                                                         <div class="d-flex col-12 pl-0 pr-0">
                                                           @if ($reply_replyComment->user_pengirim->foto)
-                                                            <img 
-                                                              class="rounded-circle me-2 foto-komentar"
+                                                            <img class="rounded-circle me-2 foto-komentar"
                                                               src="{{ asset('storage/' . $reply_replyComment->user_pengirim->foto) }}"
                                                               alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                           @else
-                                                            <img 
-                                                              class="rounded-circle me-2 foto-komentar"
+                                                            <img class="rounded-circle me-2 foto-komentar"
                                                               src="{{ asset('images/default.jpg') }}"
                                                               alt="{{ $reply_replyComment->user_pengirim->name }}">
                                                           @endif
@@ -2474,7 +2521,8 @@
                                                               {{ $reply_replyComment->user_pengirim->name }}</p>
                                                           </span>
 
-                                                          <small class="d-flex flex-row-reverse ml-auto text-small limit-waktu"
+                                                          <small
+                                                            class="d-flex flex-row-reverse ml-auto text-small limit-waktu"
                                                             style="margin-left: 50%;">{{ \Carbon\Carbon::parse($reply_replyComment->created_at)->locale('id_ID')->diffForHumans() }}
                                                           </small>
 
@@ -2518,7 +2566,8 @@
                                                             @else
                                                               <img src="{{ asset('images/🦆 icon _thumbs up_.svg') }}"
                                                                 onclick="harusLogin()" width="15px" height="40px"
-                                                                alt="" class="me-3" style="margin-left: 12%;">
+                                                                alt="" class="me-3"
+                                                                style="margin-left: 12%;">
                                                             @endif
                                                             @php
                                                               $countLike3sd = App\Models\LikeBalasReplyCommentFeeds::query()
@@ -2562,7 +2611,8 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                           </button>
                                                                         </div>
-                                                                        <form id="FormLaporkanBalasanBalasanKomentar{{ $reply_replyComment->id }}"
+                                                                        <form
+                                                                          id="FormLaporkanBalasanBalasanKomentar{{ $reply_replyComment->id }}"
                                                                           action="{{ route('report.comment.feed', ['comment_id' => 0, 'reply_comment_id' => 0, 'reply_replies_comment_id' => $reply_replyComment->id]) }}"
                                                                           method="POST">
                                                                           @csrf
@@ -2582,13 +2632,15 @@
                                                                                 style="border-radius: 50%"
                                                                                 alt="">
                                                                             @endif
-                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5" id="AlasanLaporkanBalasanBalasanKomentar{{ $reply_replyComment->id }}"
-                                                                              placeholder="Alasan..."></textarea>
+                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                              id="AlasanLaporkanBalasanBalasanKomentar{{ $reply_replyComment->id }}" placeholder="Alasan..."></textarea>
                                                                             {{-- @endif --}}
                                                                           </div>
                                                                           <div class="modal-footer">
-                                                                            <button type="submit" id="ButtonLaporkanBalasanBalasanKomentar{{ $reply_replyComment->id }}"
-                                                                              class="btn btn-light text-light" onclick="LaporkanBalasanBalasanKomentar({{ $reply_replyComment->id }})"
+                                                                            <button type="submit"
+                                                                              id="ButtonLaporkanBalasanBalasanKomentar{{ $reply_replyComment->id }}"
+                                                                              class="btn btn-light text-light"
+                                                                              onclick="LaporkanBalasanBalasanKomentar({{ $reply_replyComment->id }})"
                                                                               style="border-radius: 15px; background-color:#F7941E;"><b
                                                                                 class="ms-2 me-2">Laporkan</b></button>
                                                                           </div>
@@ -2609,7 +2661,8 @@
                                                                     <button type="button"
                                                                       onclick="confirmation_delete_replies_reply({{ $reply_replyComment->id }})"
                                                                       class="yuhu text-danger btn-sm rounded-5 float-end">
-                                                                      <i class="fa-solid fa-trash" style="font-size: medium;"></i>
+                                                                      <i class="fa-solid fa-trash"
+                                                                        style="font-size: medium;"></i>
                                                                     </button>
                                                                   </form>
                                                                 @elseif(Auth::user()->role == 'admin')
@@ -2649,29 +2702,31 @@
                                                                         <form action="{{-- route('Report.comment.recipes',$reply_replyComment->id) --}}"
                                                                           method="POST">
                                                                           {{-- @csrf --}}
-                                                                          <div
-                                                                            class="modal-body col-12 row pr-0">
-                                                                            <div class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
-                                                                            <img class="me-2"
-                                                                              src="{{ asset('images/default.jpg') }}"
-                                                                              width="106px" height="104px"
-                                                                              style="border-radius: 50%"
-                                                                              alt="">
+                                                                          <div class="modal-body col-12 row pr-0">
+                                                                            <div
+                                                                              class="col-lg-3 col-md-12 col-12 text-center mb-3 pr-0">
+                                                                              <img class="me-2"
+                                                                                src="{{ asset('images/default.jpg') }}"
+                                                                                width="106px" height="104px"
+                                                                                style="border-radius: 50%"
+                                                                                alt="">
                                                                             </div>
                                                                             <div class="col-lg-9 col-md-12 col-12 pr-0">
-                                                                            <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
-                                                                              placeholder="Alasan..."></textarea>
+                                                                              <textarea class="form-control rounded-5" style="border-radius: 15px" name="description" rows="5"
+                                                                                placeholder="Alasan..."></textarea>
                                                                             </div>
                                                                             {{-- @endif --}}
                                                                           </div>
                                                                           <div class="modal-footer">
-                                                                          <button type="submit" class="btn btn-light text-light d-none d-sm-inline-block"
-                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                            class="ms-2 me-2">Blokir</b></button>
+                                                                            <button type="submit"
+                                                                              class="btn btn-light text-light d-none d-sm-inline-block"
+                                                                              style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                class="ms-2 me-2">Blokir</b></button>
 
-                                                                          <button type="submit" class="btn btn-light text-light btn-sm d-sm-none"
-                                                                            style="border-radius: 15px; background-color:#F7941E;"><b
-                                                                            class="ms-2 me-2">Blokir</b></button>
+                                                                            <button type="submit"
+                                                                              class="btn btn-light text-light btn-sm d-sm-none"
+                                                                              style="border-radius: 15px; background-color:#F7941E;"><b
+                                                                                class="ms-2 me-2">Blokir</b></button>
                                                                           </div>
                                                                         </form>
                                                                       </div>
@@ -2725,12 +2780,12 @@
                                                                 @if (Auth::user()->foto)
                                                                   <img
                                                                     src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                                                    class="border rounded-circle foto-responsive" alt="Avatar"
-                                                                     />
+                                                                    class="border rounded-circle foto-responsive"
+                                                                    alt="Avatar" />
                                                                 @else
                                                                   <img src="{{ asset('images/default.jpg') }}"
-                                                                    class="border rounded-circle foto-responsive" alt="Avatar"
-                                                                     />
+                                                                    class="border rounded-circle foto-responsive"
+                                                                    alt="Avatar" />
                                                                 @endif
                                                               </div>
                                                               <div class="col-xl-9 col-lg-8 col-md-9 col-7 pl-1">
@@ -2758,8 +2813,8 @@
                                                               <div style=""
                                                                 class="col-lg-1 col-md-1 col-2 pl-0">
                                                                 <img src="{{ asset('images/default.jpg') }}"
-                                                                  class="border rounded-circle foto-responsive" alt="Avatar"
-                                                                   />
+                                                                  class="border rounded-circle foto-responsive"
+                                                                  alt="Avatar" />
                                                               </div>
                                                               <div class="col-xl-9 col-lg-7 col-md-9 col-7 pl-1">
                                                                 <input type="text"
@@ -2955,6 +3010,42 @@
     integrity="sha512-rO18JLH5mM83ToEn/5KhZ8BpHJ4uUKrGLybcp6wK0yuRfqQCSGVbEq1yIn/9coUjRU88TA6UJDLPK9sO6DN0Iw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
+    function BlockFeed(num) {
+      $("#FormBlockFeed" + num).off("submit");
+      $("#FormBlockFeed" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr("route");
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: "/admin/block-feed/" + num,
+          method: "POST",
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': response.message,
+              'position': 'topCenter',
+            });
+            $("#ButtonBlockFeed" + num).prop('disabled', true);
+            $("#AlasanBlockFeed" + num).val("");
+            $("#itemvideo" + num).css('display', 'none');
+            location.reload();
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter',
+            });
+          }
+        });
+      });
+    }
+
     function gift_submit_button(num) {
       $("#gift-form" + num).off("submit");
       $("#gift-form" + num).submit(function(e) {
@@ -3074,7 +3165,7 @@
                                                                                                             class="mb-4 row">
                                                                                                             <div class="d-flex col-12 pl-0 pr-0">
 
-                                                                                                                <img 
+                                                                                                                <img
                                                                                                                 class="rounded-circle me-2 foto-komentar"
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
@@ -3282,7 +3373,7 @@
                             <div class="" id="balasan_komentar_ini${up['id']}">
                                                                                                         <div class="mb-4 mt-4 row">
                                                                                                             <div class="d-flex col-12 pl-0 pr-0">
-                                                                                                                <img 
+                                                                                                                <img
                                                                                                                 class="rounded-circle me-2 foto-komentar"
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
@@ -3886,7 +3977,7 @@
                                                                                                             class="mb-4 row">
                                                                                                             <div class="d-flex col-12 pl-0 pr-0">
 
-                                                                                                                <img 
+                                                                                                                <img
                                                                                                                 class="rounded-circle me-2 foto-komentar"
                                                                                                                 src="{{ asset('${foto}') }}"
                                                                                                                 alt="${pengirim['name']}">
@@ -4213,7 +4304,7 @@
                                                                         style="">
                                                                         <div class="d-flex col-12">
 
-                                                                                <img 
+                                                                                <img
                                                                                     class="rounded-circle foto-komentar"
                                                                                     src="{{ asset('${foto}') }}"
                                                                                     alt="">
@@ -4425,140 +4516,140 @@
 
     // form report feed
     function ReportFeed(num) {
-        $("#FormReportFeed" + num).off("submit");
-        $("#FormReportFeed" + num).submit(function (event) {
-            event.preventDefault();
-            let route = $(this).attr('action');
-            let data = new FormData($(this)[0]);
-            $.ajax({
-                url: route,
-                method: "POST",
-                data: data,
-                processData: false,
-                contentType: false,
-                success: function success(response) {
-                    iziToast.destroy();
-                    iziToast.success({
-                        'title': 'Success',
-                        'message': response.message,
-                        'position': 'topCenter'
-                    });
-                    $("#AlasanReportFeed"+num).val("");
-                    $("#ButtonReportFeed"+num).prop("disabled", true);
-                    $("#ButtonReportFeed2"+num).prop("disabled", true);
-                },
-                error: function error(xhr, error, status) {
-                    iziToast.destroy();
-                    iziToast.error({
-                        'title': 'Error',
-                        'message': xhr.responseText,
-                        'position': 'topCenter'
-                    });
-                }
+      $("#FormReportFeed" + num).off("submit");
+      $("#FormReportFeed" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr('action');
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          method: "POST",
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': response.message,
+              'position': 'topCenter'
             });
+            $("#AlasanReportFeed" + num).val("");
+            $("#ButtonReportFeed" + num).prop("disabled", true);
+            $("#ButtonReportFeed2" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
+            });
+          }
         });
+      });
     }
     // form report komentar utama
     function LaporkanKomentarUtama(num) {
-        $("#FormLaporkanKomentarUtama" + num).off("submit");
-        $("#FormLaporkanKomentarUtama" + num).submit(function (event) {
-            event.preventDefault();
-            let route = $(this).attr("action");
-            let data = new FormData($(this)[0]);
-            $.ajax({
-                url: route,
-                method: "POST",
-                data: data,
-                processData: false,
-                contentType: false,
-                success: function success(response) {
-                    iziToast.destroy();
-                    iziToast.success({
-                        'title': 'Success',
-                        'message': response.message,
-                        'position': 'topCenter'
-                    });
-                    $("#AlasanLaporkanKomentarUtama"+num).val("");
-                    $("#ButtonLaporkanKomentarUtama"+num).prop("disabled", true);
-                },
-                error: function error(xhr, error, status) {
-                    iziToast.destroy();
-                    iziToast.error({
-                        'title': 'Error',
-                        'message': xhr.responseText,
-                        'position': 'topCenter'
-                    });
-                }
+      $("#FormLaporkanKomentarUtama" + num).off("submit");
+      $("#FormLaporkanKomentarUtama" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr("action");
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          method: "POST",
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': response.message,
+              'position': 'topCenter'
             });
+            $("#AlasanLaporkanKomentarUtama" + num).val("");
+            $("#ButtonLaporkanKomentarUtama" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
+            });
+          }
         });
+      });
     }
-     // form report komentar balasan
-     function LaporkanBalasanKomentar(num) {
-        $("#FormLaporkanBalasanKomentar" + num).off("submit");
-        $("#FormLaporkanBalasanKomentar" + num).submit(function (event) {
-            event.preventDefault();
-            let route = $(this).attr("action");
-            let data = new FormData($(this)[0]);
-            $.ajax({
-                url: route,
-                method: "POST",
-                data: data,
-                processData: false,
-                contentType: false,
-                success: function success(response) {
-                    iziToast.destroy();
-                    iziToast.success({
-                        'title': 'Success',
-                        'message': response.message,
-                        'position': 'topCenter'
-                    });
-                    $("#AlasanLaporkanBalasanKomentar"+num).val("");
-                    $("#ButtonLaporkanBalasanKomentar"+num).prop("disabled", true);
-                },
-                error: function error(xhr, error, status) {
-                    iziToast.destroy();
-                    iziToast.error({
-                        'title': 'Error',
-                        'message': xhr.responseText,
-                        'position': 'topCenter'
-                    });
-                }
+    // form report komentar balasan
+    function LaporkanBalasanKomentar(num) {
+      $("#FormLaporkanBalasanKomentar" + num).off("submit");
+      $("#FormLaporkanBalasanKomentar" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr("action");
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          method: "POST",
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': response.message,
+              'position': 'topCenter'
             });
+            $("#AlasanLaporkanBalasanKomentar" + num).val("");
+            $("#ButtonLaporkanBalasanKomentar" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
+            });
+          }
         });
+      });
     }
-     // form report komentar balasan balasan
-     function LaporkanBalasanBalasanKomentar(num) {
-        $("#FormLaporkanBalasanBalasanKomentar" + num).off("submit");
-        $("#FormLaporkanBalasanBalasanKomentar" + num).submit(function (event) {
-            event.preventDefault();
-            let route = $(this).attr("action");
-            let data = new FormData($(this)[0]);
-            $.ajax({
-                url: route,
-                method: "POST",
-                data: data,
-                processData: false,
-                contentType: false,
-                success: function success(response) {
-                    iziToast.destroy();
-                    iziToast.success({
-                        'title': 'Success',
-                        'message': response.message,
-                        'position': 'topCenter'
-                    });
-                    $("#AlasanLaporkanBalasanBalasanKomentar"+num).val("");
-                    $("#ButtonLaporkanBalasanBalasanKomentar"+num).prop("disabled", true);
-                },
-                error: function error(xhr, error, status) {
-                    iziToast.destroy();
-                    iziToast.error({
-                        'title': 'Error',
-                        'message': xhr.responseText,
-                        'position': 'topCenter'
-                    });
-                }
+    // form report komentar balasan balasan
+    function LaporkanBalasanBalasanKomentar(num) {
+      $("#FormLaporkanBalasanBalasanKomentar" + num).off("submit");
+      $("#FormLaporkanBalasanBalasanKomentar" + num).submit(function(event) {
+        event.preventDefault();
+        let route = $(this).attr("action");
+        let data = new FormData($(this)[0]);
+        $.ajax({
+          url: route,
+          method: "POST",
+          data: data,
+          processData: false,
+          contentType: false,
+          success: function success(response) {
+            iziToast.destroy();
+            iziToast.success({
+              'title': 'Success',
+              'message': response.message,
+              'position': 'topCenter'
             });
+            $("#AlasanLaporkanBalasanBalasanKomentar" + num).val("");
+            $("#ButtonLaporkanBalasanBalasanKomentar" + num).prop("disabled", true);
+          },
+          error: function error(xhr, error, status) {
+            iziToast.destroy();
+            iziToast.error({
+              'title': 'Error',
+              'message': xhr.responseText,
+              'position': 'topCenter'
+            });
+          }
         });
+      });
     }
   </script>
 
@@ -4600,24 +4691,24 @@
     // Menjalankan fungsi ketika ukuran layar berubah
     window.addEventListener('resize', removeClassOnResize);
   </script>
-  <script>
-    // Mengambil elemen dengan kelas tertentu
-    var element = document.querySelector('.col-lg-8 col-md-8 col-sm-11 text-dark my-auto pl-3');
+    <script>
+      // Mengambil elemen dengan kelas tertentu
+      var element = document.querySelector('.col-lg-8 col-md-8 col-sm-11 text-dark my-auto pl-3');
 
-    // Fungsi untuk menghapus kelas pada lebar layar 425px atau lebih besar
-    function removeClassOnResize() {
-      if (window.innerWidth >= 425) {
-        element.classList.remove('pl-0');
-      } else {
-        element.classList.add('pl-0');
+      // Fungsi untuk menghapus kelas pada lebar layar 425px atau lebih besar
+      function removeClassOnResize() {
+        if (window.innerWidth >= 425) {
+          element.classList.remove('pl-0');
+        } else {
+          element.classList.add('pl-0');
+        }
       }
-    }
 
-    // Menjalankan fungsi ketika halaman dimuat
-    removeClassOnResize();
+      // Menjalankan fungsi ketika halaman dimuat
+      removeClassOnResize();
 
-    // Menjalankan fungsi ketika ukuran layar berubah
-    window.addEventListener('resize', removeClassOnResize);
-  </script> -->
+      // Menjalankan fungsi ketika ukuran layar berubah
+      window.addEventListener('resize', removeClassOnResize);
+    </script> -->
 
 @endsection

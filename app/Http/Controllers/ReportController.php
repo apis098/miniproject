@@ -573,6 +573,23 @@ class ReportController extends Controller
         return redirect()->back()->with('success', 'Komentar diskusi telah diblokir');
         }
     }
+    public function block_feed(Request $request, $id) {
+        $feed = UploadVideo::findOrFail($id);
+        $feed->user->increment("jumlah_pelanggaran");
+        $notification = new Notifications();
+        $notification->user_id = $feed->users_id;
+        $notification->notification_from = auth()->user()->id;
+        $notification->veed_id_report = 1;
+        $notification->alasan = $request->alasan;
+        $notification->save();
+        $feed->delete();
+        $up = Notifications::find($notification->id);
+        $up->route = "/status-baca/blokir-feed/".$notification->id;
+        $up->save();
+        return response()->json([
+            'message' => 'Berhasil memblokir feed ini',
+        ]);
+    }
     public function block_reply_comment_replies(Request $request, $id) {
         $komen = ReplyComplaint::findOrFail($id);
         $komen->user->increment('jumlah_pelanggaran');
